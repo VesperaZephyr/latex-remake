@@ -1,0 +1,554 @@
+% ============ 第九章 §2 有限域上多项式的零点 (原书 pp.325-341) ============
+\section{有限域上多项式的零点}\label{sec:ch9-s2}
+
+设 $\F_q$ 是 $q$ 元有限域, $q=p^s$, 其中 $p$ 为素数, $s\geqslant 1$. 对于 $f=f(x_1,\cdots,x_n)\in\F_q[x_1,\cdots,x_n]$, 如果 $f(c_1,\cdots,c_n)=0$, $c_i\in\F_q$, 则称 $(x_1,\cdots,x_n)=(c_1,\cdots,c_n)$ 是多项式 $f$ 在 $\F_q$ 中的零点. 如果 $f$ 没有常数项, 即 $f(0,\cdots,0)=0$, 我们称 $(0,\cdots,0)$ 为 $f$ 的平凡零点, 而其他零点 $(c_1,\cdots,c_n)$（即 $f(c_1,\cdots,c_n)=0$, $c_1,\cdots,c_n$ 不全为 $0$）叫 $f$ 在 $\F_q$ 中的非平凡零点. 设 $f_1,\cdots,f_r$ 均属于 $\F_q[x_1,\cdots,x_n]$, 如果
+\[
+  f_i(c_1,\cdots,c_n)=0\qquad(1\leqslant i\leqslant r),
+\]
+则 $(x_1,\cdots,x_n)=(c_1,\cdots,c_n)$ 叫作 $f_1,\cdots,f_r$ 的公共零点. 以 $N_q(f)$ 和 $N_q(f_1,\cdots,f_r)$ 分别表示 $f$ 和 $f_1,\cdots,f_r$ 在 $\F_q$ 中零点的个数.
+
+$1909$ 年, Dickson 猜想: 如果 $f(x_1,\cdots,x_n)\in\F_q[x_1,\cdots,x_n]$ 并且无常数项, 则当 $\deg f<n$ 时, $f$ 在 $\F_q$ 中必有非平凡零点. 这个猜想于 $1936$ 年由 Chevalley 和 Warning 证明. Warning 事实上得到了如下更强的结果:
+
+\begin{theorem}[\emph{Warning}]\label{thm:9.3}
+设 $f(x_1,\cdots,x_n)\in\F_q[x_1,\cdots,x_n]$, $q=p^s$, $\deg f<n$, 则 $p\mid N_q(f)$. 特别若 $f$ 无常数项, 则 $f$ 的非平凡零点至少有 $p-1(\geqslant 1)$ 个.
+\end{theorem}
+
+\begin{proof}
+记 $F(x_1,\cdots,x_n)=1-f(x_1,\cdots,x_n)^{q-1}$, 则对 $c_1,\cdots,c_n\in\F_q$,
+\[
+  F(c_1,\cdots,c_n)=\begin{cases}
+    1, & \text{如果 } f(c_1,\cdots,c_n)=0,\\
+    0, & \text{如果 } f(c_1,\cdots,c_n)\in\F_q^{\times}.
+  \end{cases}
+\]
+于是我们得到 $N_q(f)$ 的一个表达式
+\begin{equation}\tag{1}
+  N_q(f)=\sum_{a_1,\cdots,a_n\in\F_q}F(a_1,\cdots,a_n).
+\end{equation}
+我们将此式两边看成是 $\F_q$ 中的元素. 注意 $\deg F=(q-1)\deg f<n(q-1)$. 所以对多项式 $F(x_1,\cdots,x_n)$ 展开的每个单项式 $cx_1^{k_1}x_2^{k_2}\cdots x_n^{k_n}\ (c\in\F_q)$, 均有 $k_1+k_2+\cdots+k_n<n(q-1)$. 从而必有 $i$, 使得 $0\leqslant k_i\leqslant q-2$. 不妨设 $0\leqslant k_1\leqslant q-2$. 如果 $1\leqslant k_1\leqslant q-2$, 则 (1) 式右边对于这个单项式的求和为
+\begin{equation}\tag{2}
+  \sum_{a_1,\cdots,a_n\in\F_q}ca_1^{k_1}\cdots a_n^{k_n}
+  =c\sum_{a_2,\cdots,a_n\in\F_q}a_2^{k_2}\cdots a_n^{k_n}\cdot
+  \sum_{a_1\in\F_q}a_1^{k_1}.
+\end{equation}
+由于 $\F_q^{\times}$ 是由元素 $\alpha$ 生成的 $q-1$ 阶循环群. 所以当 $1\leqslant k\leqslant q-2$ 时 $\alpha^k\neq 1$, $\alpha^{q-1}=1$. 于是
+\[
+  \sum_{a\in\F_q^{\times}}a^k=\sum_{i=0}^{q-2}(\alpha^i)^k
+  =\sum_{i=0}^{q-2}(\alpha^k)^i=\frac{1-\alpha^{q-1}}{1-\alpha^k}=0.
+\]
+这就表明 (2) 式为 $0$. 当 $k_1=0$ 时, 则 (2) 式左边为
+\[
+  \sum_{a_1,\cdots,a_n\in\F_q}ca_2^{k_2}\cdots a_n^{k_n}
+  =c\sum_{a_2,\cdots,a_n\in\F_q}a_2^{k_2}\cdots a_n^{k_n}\cdot\sum_{a_1\in\F_q}1
+  =cq\sum_{a_2,\cdots,a_n\in\F_q}a_2^{k_2}\cdots a_n^{k_n}=0,
+\]
+这是因为在 $\F_q$ 中 $q=0$. 于是对 $F$ 的每个单项式的求和均为 $0$, 所以 (1) 式右边为 $0$. 从而 $N_q(f)$ 看成 $\F_q$ 中元素为 $0$. 由于 $\F_q$ 是特征 $p$ 的域而 $N_q(f)$ 是非负整数, 所以 $p\mid N_q(f)$. 进而, 若 $f$ 无常数项, 则 $f$ 有平凡零点. 于是 $p\mid N_q(f)\geqslant 1$, 所以 $N_q(f)\geqslant p$. 因此 $f$ 的非平凡零点至少有 $p-1$ 个.
+\end{proof}
+
+这个结果很容易推广到多项式组公共零点的情形.
+
+\begin{theorem}\label{thm:9.4}
+设 $f_1,\cdots,f_r\in\F_q[x_1,\cdots,x_n]$, $q=p^s$, $\sum_{i=1}^{r}\deg f_i<n$, 则 $p\mid N_q(f_1,\cdots,f_r)$. 特别当 $f_1,\cdots,f_r$ 均没有常数项时, $f_1,\cdots,f_r$ 在 $\F_q$ 中的非平凡零点至少有 $p-1(\geqslant 1)$ 个.
+\end{theorem}
+
+\begin{proof}
+令 $F=(1-f_1^{q-1})\cdots(1-f_r^{q-1})$, 则
+\[
+  N_q(f_1,\cdots,f_r)=\sum_{a_1,\cdots,a_n\in\F_q}F(a_1,\cdots,a_n).
+\]
+以下证明与定理 \ref{thm:9.3} 相仿.
+\end{proof}
+
+$1964$ 年, J. Ax 采用 Dwork 的 $p$-adic 分析方法将上述结果作了重大的改进: 在定理 \ref{thm:9.4} 的假定之下,
+\[
+  q^{\lambda}\mid N_q(f_1,\cdots,f_r),\qquad
+  \lambda=\left[\frac{n-\sum_{i=1}^{r}\deg f_i}{\sum_{i=1}^{r}\deg f_i}\right]\ (\geqslant 1),
+\]
+这里对实数 $\alpha>0$, $[\alpha]$ 表示不超过 $\alpha$ 的最大整数. $1971$ 年, N. Katz 又把上述结果进一步改进为
+\[
+  q^{\mu}\mid N_q(f_1,\cdots,f_r),\qquad
+  \mu=\left[\frac{n-\sum_{i=1}^{r}\deg f_i}{\max\limits_{1\leqslant i\leqslant r}\deg f_i}\right].
+\]
+Katz 的证明使用了深刻的代数几何知识. $1989$ 年, 万大庆对于 Katz 的结果给了一个简单的证明, 发表在 Amer. Jour. Math. 111(1989), 1-8. 证明中用到 Gauss 和在分圆域中素理想分解的一个深刻结果, 而证明的其余部分则是复杂而初等的计算和估计. 在介绍万大庆的证明之前我们先定义 Gauss 和. 这里的定义和第四章第 $2$ 节中高斯和的定义本质上是一致的.
+
+令 $\zeta_m=e^{\frac{2\pi i}{m}}\in\C$. 考虑分圆域 $K=\Q\left(\zeta_{p(q-1)}\right)$, $q=p^f$, $p$ 是素数, 则我们有如下的分圆域扩张图表:
+\[
+  \begin{array}{ccc}
+    K=\Q(\zeta_{p(q-1)}) & & P_i\ (1\leqslant i\leqslant g)\\
+    \mid & & \mid\\
+    M=\Q(\zeta_p)\qquad L=\Q(\zeta_{q-1}) & & \mathfrak{p}_i\ (1\leqslant i\leqslant g)\\
+    \mid & & \mid\\
+    \Q & & p
+  \end{array}
+\]
+素数 $p$ 在 $M,L,K$ 中的素理想分解为
+\[
+  pO_M=\mathfrak{p}^{p-1},\quad\mathfrak{p}=(\zeta_p-1)\ (\text{完全分歧}),
+\]
+\[
+  pO_L=\mathfrak{p}_1\cdots\mathfrak{p}_g,\quad f(\mathfrak{p}_i/p)=f\ (1\leqslant i\leqslant g),
+  \quad g=\frac{\varphi(q-1)}{f},
+\]
+\[
+  pO_K=(P_1\cdots P_g)^{p-1},\quad\mathfrak{p}_i=P_i^{p-1}\ (1\leqslant i\leqslant g),
+  \quad f(P_i/\mathfrak{p}_i)=1.
+\]
+记 $P=P_1$. 由于 $f=f(P/p)$, 可知 $O_K/P=\Z[\zeta_{p(q-1)}]/P$ 是有限域 $\F_{p^f}=\F_q$. 对每个 $\alpha\in O_K$, 我们以 $\bar{\alpha}$ 表示 $\alpha$ 在 $O_K/P$ 中的象, 从而 $\bar{\alpha}$ 也是 $\F_q$ 中元素. 令
+\[
+  T=\{0,1,\zeta_{q-1},\zeta_{q-1}^2,\cdots,\zeta_{q-1}^{q-2}\},\qquad T^*=T-\{0\}.
+\]
+熟知 $T$ 中所有元素在 $O_K/P$ 中的象彼此不同, 因此
+\[
+  \F_q=\bar{T}=\{0,1,\overline{\zeta}_{q-1},\cdots,\overline{\zeta}_{q-1}^{q-2}\}.
+\]
+我们用 $S$ 表示 $\F_q$ 对于 $\F_p$ 的迹映射, 即
+\[
+  S(\alpha)=\alpha+\alpha^p+\alpha^{p^2}+\cdots+\alpha^{p^{f-1}}\qquad(\alpha\in\F_q),
+\]
+则 $S(\alpha^p)=S(\alpha)$, $S(\alpha+\beta)=S(\alpha)+S(\beta)$. 再定义映射
+\[
+  \psi\colon O_K\to\langle\zeta_p\rangle,\qquad
+  \psi(x)=\zeta_p^{S(\bar{x})}\quad(x\in O_K),
+\]
+则 $\psi(x+y)=\psi(x)\psi(y)$, $\sum_{x\in T}\psi(x)=0$. 我们要定义的 Gauss 和为
+\[
+  g(j)=\sum_{x\in T^*}x^j\psi(x)
+  =\sum_{x\in T^*}x^j\zeta_p^{S(\bar{x})}\in\Z[\zeta_{p(q-1)}]\qquad(j\in\Z).
+\]
+易知当 $j\equiv i\ (\mathrm{mod}\ q-1)$ 时, $g(j)=g(i)$. 所以共有 $q-1$ 个 Gauss 和 $g(j)\ (0\leqslant j\leqslant q-2)$. 下面是 Gauss 和的基本性质.
+
+\begin{theorem}\label{thm:9.5}
+(1) $g(0)=-1$, 而对于 $1\leqslant j\leqslant q-2$,
+\[
+  g(j)\overline{g(j)}=q,\qquad g(j)g(-j)=(-1)^jq,\qquad g(pj)=g(j);
+\]
+(2) 如果 $i+j\not\equiv 0\ (\mathrm{mod}\ q-1)$, 则
+\[
+  \frac{g(i)g(j)}{g(i+j)}=\sum_{x\in T}x^i[1-x]^j\in\Z[\zeta_{q-1}],
+\]
+这里对 $\alpha\in O_K$, 以 $[\alpha]$ 表示 $T$ 中惟一元素, 使得 $[\alpha]=\bar{\alpha}$ 在 $O_K/P$ 中的象. 并且对任意整数 $n$, 均规定 $0^n=0$.
+\end{theorem}
+
+\begin{proof}
+(1) $g(0)=\sum_{x\in T^*}\psi(x)=\sum_{x\in T}\psi(x)-\psi(0)=-1$, 而对 $1\leqslant j\leqslant q-2$,
+\begin{align*}
+  g(j)\overline{g(j)}&=\sum_{a,b\in T^*}\left(\frac{a}{b}\right)^j\psi(a-b)
+  =\sum_{b,c\in T^*}c^j\psi(bc-b)\\
+  &=\sum_{b\in T^*}\psi(0)+\sum_{1\neq c\in T^*}c^j\sum_{b\in T^*}\psi(b(c-1))\\
+  &=q-1+\sum_{1\neq c\in T^*}c^j\sum_{d\in T^*}\psi(d)
+  =q-1+(-1)(-1)=q,
+\end{align*}
+\begin{align*}
+  g(j)g(-j)&=\sum_{a,b\in T^*}\left(\frac{a}{b}\right)^j\psi(a+b)
+  =\sum_{b,c\in T^*}c^j\psi(b(c+1))\\
+  &=\sum_{b\in T^*}(-1)^j+\sum_{(-1)\neq c\in T^*}c^j\sum_{d\in T^*}\psi(d)\\
+  &=(-1)^j(q-1)+(-[1]^j)(-1)=(-1)^jq,
+\end{align*}
+\begin{align*}
+  g(pj)&=\sum_{x\in T^*}x^{pj}\psi(x)
+  =\sum_{y\in T^*}y^j\psi\left(\sqrt[p]{y}\right)
+  =\sum_{y\in T^*}y^j\psi(y)=g(j).
+\end{align*}
+(2)
+\begin{align*}
+  g(i+j)\sum_{b\in T}b^i[1-b]^j&=\sum_{a,b\in T}a^{i+j}b^i[1-b]^j\psi(a)\\
+  &=\sum_{a,b\in T}(ab)^i[a-ab]^j\psi(a)\\
+  &=\sum_{\substack{a\in T^*\\ \alpha\in T}}\alpha^i[a-\alpha]^j\psi(a)\\
+  &=\sum_{a,\alpha\in T}\alpha^i[a-\alpha]^j\psi(a)-\sum_{\alpha\in T}\alpha^i[-\alpha]^j\\
+  &=\sum_{\alpha,\beta\in T}\alpha^i\beta^j\psi(\alpha+\beta)-(-1)^j\sum_{\alpha\in T^*}\alpha^{i+j}\\
+  &=\sum_{\alpha,\beta\in T}\alpha^i\beta^j\psi(\alpha)\psi(\beta)
+\end{align*}
+（由于 $i+j\not\equiv 0\ (\mathrm{mod}\ q-1)$, $\sum_{\alpha\in T^*}\alpha^{i+j}=0$）
+\[
+  =g(i)g(j).
+\]
+\end{proof}
+
+由 $g(j)\in\Z[\zeta_{p(q-1)}]$ 可知 $g(j)$ 是分圆域 $K=\Q(\zeta_{p(q-1)})$ 中的代数整数. 再由 $g(j)\overline{g(j)}=q$ 可知理想 $g(j)O_K$ 的素理想因子一定是 $p$ 在 $O_K$ 中的素理想因子 $P_1,\cdots,P_g$, 即
+\[
+  g(j)O_K=P_1^{e_1}\cdots P_g^{e_g},
+\]
+其中 $e_i=V_{P_i}(g(j))\ (1\leqslant i\leqslant g)$. 下面定理给出 $V_P(g(j))$ 的值, $P=P_1$. 由于伽罗瓦群 $\Gal(K/\Q)$ 的元素可以把 $P$ 变成任何 $P_i$, 利用自同构可算出所有 $e_i$ 值. 但是本节中只用到 $V_P(g(j))$.
+
+\begin{theorem}[\emph{Stickelberger}]\label{thm:9.6}
+记 $s(j)=V_P(g(-j))\ (0\leqslant j\leqslant q-2)$, $q=p^f$, 整数 $j$ 的 $p$ 进展开为 $j=a_0+a_1p+\cdots+a_{f-1}p^{f-1}$, 则
+\[
+  s(j)=a_0+a_1+\cdots+a_{f-1}.
+\]
+\end{theorem}
+
+\begin{proof}
+当 $j=0$ 时, $V_P(g(0))=V_P(-1)=0=s(0)$, 所以定理对 $j=0$ 成立. 以下设 $1\leqslant j\leqslant q-2$. 当 $i+j\not\equiv 0\ (\mathrm{mod}\ (q-1))$ 时, 由定理 \ref{thm:9.5} 的 (2) 知 $M=g(-i)g(-j)/g(-(i+j))$ 是代数整数. 当 $i+j\equiv 0\ (\mathrm{mod}\ (q-1))$ 时, $M=-g(-i)g(-j)$ 也是代数整数. 所以 $s(i)+s(j)-s(i+j)=V_P(M)\geqslant 0$, 即
+\begin{equation}\tag{2}
+  s(i)+s(j)\geqslant s(i+j).
+\end{equation}
+再由 $g(j)g(-j)=(-1)^jq=(-1)^jp^f$ 可知
+\begin{align*}
+  s(j)+s(q-1-j)&=fV_P(p)=f\cdot e(P/p)V_p(p)=f(p-1),
+\end{align*}
+于是
+\begin{equation}\tag{3}
+  \sum_{j=1}^{q-2}s(j)=\frac{1}{2}\sum_{j=1}^{q-2}(s(j)+s(q-1-j))
+  =\frac{1}{2}(p-1)(q-2)f.
+\end{equation}
+现在证明 $s(1)=1$. 由于 $p$ 在 $M=\Q(\zeta_p)$ 中完全分歧: $pO_M=\mathfrak{p}^{p-1}$, $\mathfrak{p}=\pi O_M$, $\pi=\zeta_p-1$, 而 $\mathfrak{p}$ 在 $K$ 中不分歧, 从而 $\pi$ 是 $K$ 对于 $P$ 的素元, 即 $V_P(\pi)=1$. 于是
+\begin{align*}
+  g(-1)&=\sum_{x\in T^*}x^{-1}\zeta_p^{S(\bar{x})}
+  =\sum_{x\in T^*}x^{-1}(1+\pi)^{S(\bar{x})}
+  \equiv\sum_{x\in T^*}x^{-1}(1+\pi S(\bar{x}))\pmod{P^2}\\
+  &\equiv\pi\sum_{x\in T^*}x^{-1}S(\bar{x})\pmod{P^2}\\
+  &\equiv\pi\sum_{x\in T^*}x^{-1}(x+x^p+\cdots+x^{p^{f-1}})\pmod{P^2}\\
+  &\equiv\pi\sum_{q\in T^*}1\equiv\pi(q-1)\equiv-\pi\pmod{P^2},
+\end{align*}
+这就表明 $s(1)=V_P(g(-1))=V_P(\pi)=1$. 再由 (2) 式可知对于 $1\leqslant j\leqslant p-1$, $s(j)\leqslant js(1)=j$. 从而对 $j=a_0+a_1p+\cdots+a_{f-1}p^{f-1}$,
+\begin{align*}
+  s(j)&\leqslant s(a_0)+s(a_1p)+\cdots+s(a_{f-1}p^{f-1})\\
+  &=s(a_0)+s(a_1)+\cdots+s(a_{f-1})\\
+  &\leqslant a_0+a_1+\cdots+a_{f-1}.
+\end{align*}
+于是由 (3) 式便有
+\begin{align*}
+  \frac{1}{2}(p-1)(q-2)f&=\sum_{j=1}^{q-2}s(j)\\
+  &\leqslant\sum_{a_0,\cdots,a_{f-1}=0}^{p-1}(a_0+\cdots+a_{f-1})-f(p-1)\\
+  &=f\sum_{a_0,\cdots,a_{f-1}=0}^{p-1}a_0-f(p-1)\\
+  &=f\left(p^{f-1}\cdot\frac{p(p-1)}{2}-(p-1)\right)\\
+  &=\frac{1}{2}(p-1)(q-2)f.
+\end{align*}
+所以上面的不等式均是等式, 于是 $s(j)=a_0+a_1+\cdots+a_{f-1}$.
+\end{proof}
+
+现在我们回到有限域上多项式的零点问题上来, 介绍 Katz 结果的证明.
+
+\begin{theorem}[\emph{Katz}]\label{thm:9.7}
+设 $f_1,\cdots,f_r\in\F_q[x_1,\cdots,x_n]$, $d_i=\deg f_i$, $d_1+\cdots+d_r<n$, 则 $q^{\mu}\mid N_q(f_1,\cdots,f_r)$, 其中
+\[
+  \mu=\left[\frac{n-\sum_{i=1}^{r}d_i}{\max\limits_{1\leqslant i\leqslant r}d_i}\right].
+\]
+\end{theorem}
+
+\begin{proof}
+（万大庆）我们前面给出映射
+\[
+  \psi\colon O_K\to\langle\zeta_p\rangle,\qquad\psi(x)=\zeta_p^{S(\bar{x})},
+\]
+其中 $\bar{x}\in O_K/P=\F_q$, 所以这个映射也可看成是
+\[
+  \psi\colon\F_q\to\langle\zeta_p\rangle,\qquad\psi(x)=\zeta_p^{S(x)},
+\]
+其中 $S$ 是 $\F_q$ 到 $\F_p$ 的迹映射. 由于
+\[
+  \sum_{y\in\F_q}\psi(yu)=\begin{cases}
+    0, & \text{若 } u\in\F_q^{\times},\\
+    q, & \text{若 } u=0,
+  \end{cases}
+\]
+由此可知
+\[
+  q^rN_q(f_1,\cdots,f_r)
+  =\sum_{\substack{x_1,\cdots,x_n\in\F_q\\ y_1,\cdots,y_r\in\F_q}}
+  \prod_{i=1}^{r}\psi(y_if_i(x_1,\cdots,x_n)).
+\]
+我们以 $N$ 表示非负整数集合. 对于 $a=(a_1,\cdots,a_n)\in N^n$, 我们把 $x_1^{a_1}\cdots x_n^{a_n}$ 简写成 $X^a$, 并且记
+\[
+  |a|=\max_{1\leqslant i\leqslant n}a_i,\qquad
+  W(i)=\{w(i)\in N^n\mid|w(i)|\leqslant d_i\}\quad(1\leqslant i\leqslant r),
+\]
+则 $W(i)$ 是 $N^n$ 的有限子集合. 而多项式 $f_i(x_1,\cdots,x_n)$ 可以展开成
+\[
+  f_i(x_1,\cdots,x_n)=\sum_{w(i)\in W(i)}a(w(i))X^{w(i)},
+  \qquad a(w(i))\in\F_q\quad(1\leqslant i\leqslant r),
+\]
+于是
+\begin{equation}\tag{4}
+  q^rN_q(f_1,\cdots,f_r)
+  =\sum_{\substack{X\in\F_q^n\\ Y\in\F_q^r}}
+  \prod_{i=1}^{r}\prod_{w(i)\in W(i)}\psi(a(w(i))y_iX^{w(i)}),
+\end{equation}
+其中 $Y=(y_1,\cdots,y_r)$. 现在我们利用前述结果, 即把 $\F_q$ 看成是
+\[
+  \F_q=\{\bar{a}\mid a\in T=\{0,1,\zeta_{q-1},\cdots,\zeta_{q-1}^{q-2}\}\},
+\]
+其中 $\bar{a}$ 是 $a$ 在 $\Z[\zeta_{p(q-1)}]/P$ 中的象. 记
+\[
+  T^*=T-\{0\}=\{1,\zeta_{q-1},\zeta_{q-1}^2,\cdots,\zeta_{q-1}^{q-2}\}.
+\]
+我们现在求一个多项式
+\begin{equation}\tag{5}
+  P(U)=\sum_{m=0}^{q-1}c(m)U^m\in\C[U],
+\end{equation}
+使得对每个 $t\in T$, $P(t)=\zeta_p^{S(\bar{t})}$. 由于 $P(U)$ 有 $q$ 个系数, 所以它由在 $T$ 上的取值所完全决定. 事实上, 由关于 $c(m)\ (0\leqslant m\leqslant q-1)$ 的线性方程组
+\[
+  \sum_{m=0}^{q-1}c(m)t^m=\zeta_p^{S(\bar{t})}\qquad(t\in T)
+\]
+可知: 当 $1\leqslant j\leqslant q-2$ 时, 对于前面定义的 Gauss 和 $g(\omega^{-j})$, 有
+\[
+  -g(\omega^{-j})=\sum_{t\in T^*}t^{-j}\zeta_p^{S(\bar{t})}
+  =\sum_{m=0}^{q-1}c(m)\sum_{t\in T^*}t^{m-j}=(q-1)c(j),
+\]
+\[
+  0=\sum_{t\in T}\zeta_p^{S(\bar{t})}
+  =\sum_{m=0}^{q-1}c(m)\sum_{t\in T}t^m=qc(0)+(q-1)c(q-1),
+\]
+\[
+  -1=\sum_{t\in T^*}\zeta_p^{S(\bar{t})}
+  =\sum_{m=0}^{q-1}c(m)\sum_{t\in T^*}t^m=(q-1)(c(0)+c(q-1)).
+\]
+由此即知
+\[
+  c(0)=1,\qquad c(q-1)=-\frac{q}{q-1},
+\]
+\begin{equation}\tag{6}
+  c(j)=-\frac{g(\omega^{-j})}{q-1}\qquad(1\leqslant j\leqslant q-2),
+\end{equation}
+其中 $\omega$ 是 $T^*$ 的乘法群 $\F_q^{\times}$ 的一个生成元. 而 (4) 式又可表示成
+\[
+  q^rN_q(f_1,\cdots,f_r)
+  =\sum_{\substack{t\in T^n\\ t'\in T^r}}
+  \prod_{i=1}^{r}\prod_{w(i)\in W(i)}
+  P\left([a(w(i))]t_i'\,t^{w(i)}\right),
+\]
+其中 $t'=(t_1',\cdots,t_r')$, 而对 $\alpha\in\F_q=O_K/P$, $[\alpha]$ 表示 $T$ 中惟一元素, 使得 $\overline{[\alpha]}=\alpha$. 利用 (5) 式又有
+\begin{align}
+  q^rN_q(f_1,\cdots,f_r)&=\sum_{\substack{t\in T^n\\ t'\in T^r}}
+  \prod_{i=1}^{r}\prod_{w(i)\in W(i)}
+  \sum_{m_i(w(i))=0}^{q-1}c(m_i(w(i)))
+  [a(w(i))]^{m_i(w(i))}(t_i')^{m_i(w(i))}t^{m_i(w(i))w(i)}\nonumber\\
+  &=\sum_{m\in M}\left\{\prod_{i=1}^{r}\prod_{w(i)\in W(i)}
+  [a(w(i))]^{m_i(w(i))}\right\}
+  \left\{\prod_{i=1}^{r}\prod_{w(i)}c(m_i(w(i)))\right\}\nonumber\\
+  &\qquad\cdot\left\{\sum_{t\in T^n}t^{e(m)}\sum_{t'\in T^r}(t')^{e'(m)}\right\},\tag{7}
+\end{align}
+其中 $M$ 是全部映射
+\[
+  m\colon W(1)\times\cdots\times W(r)\to\{0,1,\cdots,q-1\}^r,
+\]
+\[
+  (\varpi(1),\cdots,\varpi(r))\mapsto(m_1(\varpi(1)),\cdots,m_r(\varpi(r)))
+\]
+组成的集合, 而
+\[
+  e(m)=\sum_{i=1}^{r}\sum_{w(i)\in W(i)}m_i(w(i))w(i)\in N^n,
+\]
+\[
+  e'(m)=(e_1',\cdots,e_r')\in N^r,\qquad
+  e_i'=\sum_{w(i)\in W(i)}m_i(w(i)).
+\]
+如果 $q-1$ 不能除尽 $e(m)$ 和 $e'(m)$ 的所有分量, 则
+\[
+  \sum_{t\in T^n}t^{e(m)}\sum_{t'\in T^r}(t')^{e'(m)}=0.
+\]
+以下设 $q-1$ 除尽 $e(m)$ 和 $e'(m)$ 的所有分量. 如果以 $s_1$ 和 $s_2$ 分别表示 $e(m)$ 和 $e'(m)$ 中非零分量的个数, 则
+\begin{equation}\tag{8}
+  \sum_{t\in T^n}t^{e(m)}\sum_{t'\in T^r}(t')^{e'(m)}
+  =(q-1)^{s_1+s_2}q^{n+r-s_1-s_2}.
+\end{equation}
+我们有估计（因非零系数 $\geqslant q-1$）
+\[
+  s_1(q-1)\leqslant\sum_{i=1}^{r}\sum_{w(i)\in W(i)}m_i(w(i))|w(i)|
+  \leqslant\sum_{i=1}^{r}d_i\sum_{w(i)}m_i(w(i))
+  =\sum_{i=1}^{r}d_ie_i'.
+\]
+设 $e_1',\cdots,e_{s_2}'\neq 0$, $e_{s_2+1}'=\cdots=e_r'=0$, 则（令 $d=\max\limits_{1\leqslant i\leqslant s_2}d_i$）
+\begin{align*}
+  s_1(q-1)&\leqslant\sum_{i=1}^{s_2}d_ie_i'
+  \leqslant d\left(\sum_{i=1}^{s_2}e_i'\right)-\sum_{i=1}^{s_2}(d-d_i)e_i'\\
+  &\leqslant d\left(\sum_{i=1}^{s_2}e_i'\right)-(q-1)\sum_{i=1}^{s_2}(d-d_i),
+\end{align*}
+从而
+\[
+  \frac{s_1+s_2d-\sum_{i=1}^{s_2}d_i}{d}
+  \leqslant\frac{1}{q-1}\sum_{i=1}^{s_2}e_i',
+\]
+但是右边为整数, 于是
+\begin{equation}\tag{9}
+  \left[\frac{s_1+s_2d-\sum_{i=1}^{s_2}d_i}{d}\right](q-1)
+  \leqslant\sum_{i=1}^{s_2}e_i'
+  =\sum_{i=1}^{s_2}\sum_{w(i)}m_i(w(i)).
+\end{equation}
+对于 $x=(x_1,\cdots,x_l)\in N^l$, 记 $\langle x\rangle=(\langle x_1\rangle,\cdots,\langle x_l\rangle)$, 其中 $\langle x_i\rangle$ 表示 $x_i\ (\mathrm{mod}\ q-1)$ 的最小非负剩余, 则
+\[
+  \sum_{t\in T^n}t^{e(m)}\sum_{t'\in T^r}(t')^{e'(m)}
+  =\sum_t t^{p^je(m)}\sum_{t'}(t')^{p^je'(m)}
+  =\sum_t t^{\langle p^je(m)\rangle}\sum_{t'}(t')^{\langle p^je'(m)\rangle}.
+\]
+于是由 (9) 式可知
+\[
+  f(q-1)\left[\frac{s_1+s_2d-\sum_{i=1}^{s_2}d_i}{d}\right]
+  \leqslant f\sum_{i=1}^{s_2}\sum_{w(i)}\langle p^jm_i(w(i))\rangle
+  \quad(0\leqslant j\leqslant f-1)
+\]
+\[
+  \leqslant\sum_{i=1}^{s_2}\sum_{w(i)}\sum_{j=0}^{f-1}p^js(m_i(w(i))),
+\]
+其中 $s(\alpha)$ 表示整数 $\alpha=a_0+a_1p+\cdots+a_lp^l$ 的 $p$ 进展开的数字和
+\[
+  s(\alpha)=a_0+a_1+\cdots+a_l.
+\]
+记 $B=\left[\frac{s_1+s_2d-\sum_{i=1}^{s_2}d_i}{d}\right]$, 则
+\begin{equation}\tag{10}
+  f(p-1)B\leqslant\sum_{i=1}^{s_2}\sum_{w(i)}s(m_i(w(i)))
+  \leqslant\sum_{i=1}^{r}\sum_{w(i)}s(m_i(w(i)))
+  =\sum_{i=1}^{r}\sum_{w(i)}V_P(c(m_i(w(i))))
+\end{equation}
+（根据定理 \ref{thm:9.6} 和 (6) 式）. 由于 $V_P(q)=fV_P(p)=f(p-1)$, 从公式 (7), (8) 和 (10) 可知
+\begin{equation}\tag{11}
+  rf(p-1)+V_P\left(N_q(f_1,\cdots,f_r)\right)\geqslant f(p-1)B',
+\end{equation}
+其中
+\begin{align*}
+  B'&=\min_{\substack{0\leqslant s_1\leqslant n\\ 0\leqslant s_2\leqslant r}}
+  \min_{1\leqslant i_1<\cdots<i_{s_2}\leqslant r}
+  \left\{\left[\frac{s_1-\sum_{j=1}^{s_2}d_{i_j}}
+  {\max\limits_{1\leqslant j\leqslant s_2}d_{i_j}}\right]+n+r-s_1\right\}\\
+  &=\min_{0\leqslant s_2\leqslant r}\min_{1\leqslant i_1<\cdots<i_{s_2}\leqslant r}
+  \left\{\left[\frac{n-\sum_{j=1}^{s_2}d_{i_j}}
+  {\max\limits_{1\leqslant j\leqslant s_2}d_{i_j}}\right]+r\right\}.
+\end{align*}
+易知若 $1\leqslant d_1\leqslant d_2\leqslant\cdots\leqslant d_{t+1}$, $n\geqslant d_1+\cdots+d_{t+1}$, 则
+\[
+  \frac{n-(d_1+\cdots+d_t)}{d_t}
+  \geqslant\frac{n-(d_1+\cdots+d_{t+1})}{d_{t+1}},
+\]
+由此即知 $B'=\left[\frac{n-\sum_{j=1}^{r}d_j}{\max\limits_{1\leqslant j\leqslant r}d_j}\right]+r$. 再由 (11) 式可知
+\[
+  V_P\left(N_q(f_1,\cdots,f_r)\right)\geqslant f(p-1)\mu.
+\]
+由于 $e(P/p)=p-1$, $N_q(f_1,\cdots,f_r)$ 是整数, 从而
+\[
+  V_p\left(N_q(f_1,\cdots,f_r)\right)\geqslant f\mu.
+\]
+于是 $q^{\mu}=p^{f\mu}\mid N_q(f_1,\cdots,f_r)$. 这就完成了 Katz 定理的证明.
+\end{proof}
+
+$1995$ 年, O. Moreno 和 C. J. Moreno（Amer. Jour. Math. 117 (1995), 241--244）又对 Katz 定理作了改进.
+
+\begin{definition}\label{def:ch9-1}
+设 $m\geqslant 2$, $d=a_0+a_1m+\cdots+a_tm^t\ (0\leqslant a_i<m)$ 是整数 $d\geqslant 0$ 的 $m$ 进展开, 记
+\[
+  s_m(d)=a_0+a_1+\cdots+a_t.
+\]
+对于 $d=(d_1,\cdots,d_n)\in N^n$, 定义单项式 $X^d=x_1^{d_1}\cdots x_n^{d_n}$ 的 $m$ 进次数为
+\[
+  w_m(X^d)=s_m(d_1)+\cdots+s_m(d_n).
+\]
+最后, 对每个多项式 $f=f(x_1,\cdots,x_n)=\sum_dc(d)X^d\in\F_q[x_1,\cdots,x_n]$, 定义 $f$ 的 $m$ 进次数为
+\[
+  w_m(f)=\max_{c(d)\neq 0}w_m(X^d).
+\]
+\end{definition}
+
+Moreno-Moreno 的结果是说: 在定理 \ref{thm:9.7} 的条件下, 结果可以改进为（$q=p^f$）
+\[
+  p^{\mu}\mid N_q(f_1,\cdots,f_r),\qquad
+  \mu=\left[f\left(\frac{n-\sum_{i=1}^{r}w_p(f_i)}
+  {\max\limits_{1\leqslant i\leqslant r}w_p(f_i)}\right)\right].
+\]
+由于 $w_p(f_i)$ 通常小于 $\deg f_i$, 所以这个结果比 Katz 的结果有所改进. 事实上, 将 Moreno 的证明稍加变化, 我们可以得到更一般的结果.
+
+\begin{theorem}[\emph{冯克勤}]\label{thm:9.8}
+设 $f_i(x_1,\cdots,x_n)\in\F_q[x_1,\cdots,x_n]\ (1\leqslant i\leqslant r)$, $q=p^f$, $f=ab$, 其中 $a$ 和 $b$ 均为正整数, 则 $p^{\mu}\mid N_q(f_1,\cdots,f_r)$, 其中
+\[
+  \mu=a\left[b\frac{n-\sum_{i=1}^{r}w_p^a(f_i)}
+  {\max\limits_{1\leqslant i\leqslant r}w_p^a(f_i)}\right].
+\]
+（当 $a=1$, $b=f$ 时, 此即为 Moreno 的结果. 当 $a=f$, $b=1$ 时, 易知这相当于 Katz 的结果.）
+\end{theorem}
+
+\begin{proof}
+证明基于如下的预备性引理:
+
+\begin{lemma}\label{lem:ch9-4}
+在定理 \ref{thm:9.8} 的假定下, 存在 $rb$ 个 $\F_m$ 上的多项式（$m=p^a$）
+\[
+  _iG_j={}_iG_j(y_1,\cdots,y_{nb})\in\F_m[y_1,\cdots,y_{nb}]
+  \qquad(1\leqslant i\leqslant r,\ 1\leqslant j\leqslant b),
+\]
+使得
+\[
+  N_q(f_1,\cdots,f_r)=N_m(\{_iG_j\mid 1\leqslant i\leqslant r,\ 1\leqslant j\leqslant b\}),
+  \qquad\deg{}_iG_j\leqslant w_m(f_i).
+\]
+\end{lemma}
+
+\begin{proof}
+（引理 \ref{lem:ch9-4} 的证明）$[\F_q:\F_m]=b$. 以 $\mu_1,\cdots,\mu_b$ 表示 $\F_q$ 的一组 $\F_m$-基, 则 $\F_q$ 上的变量 $x_j\ (1\leqslant j\leqslant n)$ 可表为
+\[
+  x_j=\sum_{i=1}^{b}\mu_iz_i^{(j)}\qquad(1\leqslant j\leqslant n),
+\]
+其中 $z_i^{(j)}$ 是 $\F_m$ 上的变量. $f_i$ 的每个单项式 $\alpha X^d=\alpha x_1^{d_1}\cdots x_n^{d_n}\ (\alpha\in\F_q)$ 则可表示成
+\begin{equation}\tag{12}
+  \alpha x_1^{d_1}\cdots x_n^{d_n}
+  =\alpha\left(\sum_{i=1}^{b}\mu_iz_i^{(1)}\right)^{d_1}\cdots
+  \left(\sum_{i=1}^{b}\mu_iz_i^{(n)}\right)^{d_n}.
+\end{equation}
+以 $d_1=c_1m^{j_1}+c_2m^{j_2}+\cdots+c_lm^{j_l}\ (1\leqslant c_i\leqslant m-1,\ j_1<j_2<\cdots<j_l)$ 表示 $d_1$ 的 $m$ 进展开. 由于 $z_i^{(1)}\ (1\leqslant i\leqslant b)$ 取值于 $\F_m$, 所以 $z_i^{(1)m}$ 和 $z_i^{(1)}$ 在 $\F_m$ 上是同一个函数. 多项式 $g$ 和 $h$ 若在 $\F_m$ 上为同样的映射, 我们叫作 $g$ 和 $h$ 在 $\F_m$ 上等价, 表示成 $g\sim h$. 于是 $z_i^{(1)m}\sim z_i^{(1)}$. 所以
+\begin{equation}\tag{13}
+  \left(\sum_{i=1}^{b}\mu_iz_i^{(1)}\right)^{d_1}
+  =\prod_{\lambda=1}^{l}\left(\sum_{i=1}^{b}\mu_iz_i^{(1)}\right)^{c_{\lambda}m^{j_{\lambda}}}
+  \sim\prod_{\lambda=1}^{l}\left(\sum_{i=1}^{b}\mu_i^{m^{j_{\lambda}}}z_i^{(1)}\right)^{c_{\lambda}}.
+\end{equation}
+(13) 式右边多项式的次数为 $c_1+c_2+\cdots+c_l=s_m(d_1)$. 由 (12) 式可知 $\alpha X^d$ 在 $\F_m$ 上等价于以 $z_i^{(j)}\ (1\leqslant i\leqslant b,\ 1\leqslant j\leqslant n)$ 为变量并且次数为 $s_m(d_1)+\cdots+s_m(d_n)=w_m(X^d)$ 的多项式. 把 $\{z_i^{(j)}\mid 1\leqslant i\leqslant b,\ 1\leqslant j\leqslant n\}$ 改写成 $\{y_1,\cdots,y_{nb}\}$, 将 $f_i$ 的每个单项式都按 (12) 式展开, 然后按 (13) 式化成与之 $\F_m$-等价的形式, 再将属于 $\F_q$ 的系数用基 $\mu_1,\cdots,\mu_b$ 表示, 可知 $f_i(x_1,\cdots,x_n)$ 最后化成
+\[
+  \sum_{j=1}^{b}{}_iG_j(y_1,\cdots,y_{nb})\mu_j,
+\]
+其中 ${}_iG_j$ 均是系数属于 $\F_m$ 的多项式, 而 $\deg{}_iG_j\leqslant w_m(f_i)$. 由于 $\{\mu_1,\cdots,\mu_b\}$ 为 $\F_q$ 的一组 $\F_m$-基, 易知 $N_q(f_1,\cdots,f_r)=N_m(\{_iG_j\})$. 这就证明了引理 \ref{lem:ch9-4}.
+\end{proof}
+
+现在由 Katz 的结果很容易推出定理 \ref{thm:9.8}: 由定理 \ref{thm:9.7} 我们知道
+\[
+  m^{\lambda}=p^{a\lambda}\mid N_m(\{_iG_j\}),
+\]
+其中
+\[
+  a\lambda=a\left[\frac{nb-\sum_{i,j}\deg{}_iG_j}
+  {\max\limits_{i,j}\deg{}_iG_j}\right]
+  \geqslant a\left[\frac{nb-b\sum_{i=1}^{r}w_m(f_i)}
+  {\max\limits_{1\leqslant i\leqslant r}w_m(f_i)}\right]=\mu,
+\]
+因此 $p^{\mu}\mid N_m(\{_iG_j\})=N_q(f_1,\cdots,f_r)$. 这就完成了定理 \ref{thm:9.8} 的证明.
+\end{proof}
+
+\begin{example}
+取 $q=3^4$, $f=f(x_1,\cdots,x_5)=\sum_{i=1}^{5}x_i^{20}\in\F_q[x_1,\cdots,x_5]$. 由 $20=2+2\cdot 3^2$ 可知 $w_3(f)=s_3(20)=2+2=4$. Moreno 的结果给出 $3^A\mid N_q(f)$, 其中 $A=\left[4\cdot\frac{5-4}{4}\right]=1$. Katz 的结果给出平凡的结论. 如果取 $a=b=2$, 则定理 \ref{thm:9.8} 得出 $3^B\mid N_q(f)$, 其中
+\[
+  B=2\left[2\cdot\frac{5-s_9(20)}{s_9(20)}\right]
+  =2\left[2\cdot\frac{5-4}{4}\right]=2.
+\]
+\end{example}
+
+关于有限域上零点个数的这些改进, 在特征和与指数和的估计和编码理论中近年来有许多重要的应用.
+
+\begin{Exercises}
+\item 设 $\alpha_1,\cdots,\alpha_n$ 是 $\F_{q^n}$ 对 $\F_q$ 的一组基. 证明
+\[
+  f(x_1,\cdots,x_n)=\prod_{i=0}^{n-1}\left(\alpha_1^{q^i}x_1+\cdots+\alpha_n^{q^i}x_n\right)
+\]
+是系数属于 $\F_q$ 的 $n$ 次多项式, 并且方程 $f(x_1,\cdots,x_n)=0$ 在 $\F_q$ 中只有平凡解 $(x_1,\cdots,x_n)=(0,\cdots,0)$. 这表明: 定理 \ref{thm:9.3} 中的条件 $\deg f<n$ 不能再改进.
+
+\item 设 $f(x_1,\cdots,x_n)\in\F_q[x_1,\cdots,x_n]$, $\deg f=d$, 则 $N_q(f)\leqslant dq^{n-1}$.
+
+\item 以 $\Omega_d$ 表示 $\F_q[x_1,\cdots,x_n]$ 中所有次数 $\leqslant d$ 的多项式组成的集合（包括常数多项式）, $d\geqslant 1$. 以 $|\Omega_d|$ 表示 $\Omega_d$ 中多项式的个数. 证明:
+\[
+  \frac{1}{|\Omega_d|}\sum_{f\in\Omega_d}N_q(f)=q^{n-1},
+  \qquad\text{其中 } |\Omega_d|=\binom{n+d}{d}.
+\]
+
+\item 定义函数 $V,\psi\colon\F_q\to\Z$, 其中 $q$ 为奇数, 而
+\[
+  V(x)=\begin{cases}
+    -1, & \text{若 } x\in\F_q^{\times},\\
+    q-1, & \text{若 } x=0,
+  \end{cases}
+\]
+\[
+  \psi(x)=\begin{cases}
+    1, & \text{若 } x\ \text{为 } \F_q\ \text{中平方元素},\\
+    -1, & \text{否则}.
+  \end{cases}
+\]
+求证: 对于 $a_1,a_2\in\F_q^{\times}$, $b\in\F_q$, 方程 $a_1x^2+a_2y^2=b$ 在 $\F_q$ 中的解数为 $q+V(b)\psi(-a_1a_2)$. 特别地, 此方程一定有解, 并且当 $b\neq 0$ 时, 此方程至少有 $q-1$ 个解.
+
+\item 设 $q=p^f$, 其中 $p$ 是奇素数. 求证对每个正整数 $k$, 方程 $x^2=y^{2k}$ 在 $\F_q$ 中的解数均为 $2q-1$.
+
+\item 证明若 $q\equiv 3\ (\mathrm{mod}\ 8)$, 则方程 $y^2=2(x^2+1)^2$ 在 $\F_q$ 中无解.
+\end{Exercises}

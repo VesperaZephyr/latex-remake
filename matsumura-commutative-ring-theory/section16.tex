@@ -1,0 +1,604 @@
+% ============ §16 Regular sequences and the Koszul complex (原书 pp.123-132) ============
+\section{Regular sequences and the Koszul complex}\label{sec:16}\index{regular sequences, section 16}\index{Koszul complex, section 16}
+
+Let $A$ be a ring and $M$ an $A$-module. An element $a \in A$ is said
+to be $M$-regular\index{regular element} if $ax \neq 0$ for all $0 \neq x \in M$. A sequence $a_1, \ldots, a_n$ of elements
+of $A$ is an \emph{$M$-sequence}\index{M-sequence} (or an \emph{$M$-regular sequence}) if the following two
+conditions hold:
+\begin{enumerate}[(1)]
+  \item $a_1$ is $M$-regular, $a_2$ is $(M/a_1M)$-regular, $\ldots$, $a_n$ is $(M/\sum_{i=1}^{n-1} a_iM)$-
+        regular;
+  \item $M \neq \sum_{i=1}^{n} a_iM$.
+\end{enumerate}
+Note that, after permutation, the elements of an $M$-sequence may no longer
+form an $M$-sequence.
+
+\begin{theorem}\label{thm:16.1}
+If $a_1, \ldots, a_n$ is an $M$-sequence then so is $a_1^{\nu_1}, \ldots, a_n^{\nu_n}$ for
+positive integers $\nu_1, \ldots, \nu_n$.
+\end{theorem}
+
+\begin{proof}
+It is sufficient to prove that if $a_1, \ldots, a_n$ is an $M$-sequence then so is
+$a_1^{\nu_1}, a_2, \ldots, a_n$. Indeed, assuming this, we have in turn that $a_1^{\nu_1}, a_2, \ldots, a_n$
+is an $M$-sequence, then setting $M_1 = M/a_1^{\nu_1}M$ we have that $a_2, a_3, \ldots, a_n$,
+and hence also $a_2^{\nu_2}, a_3, \ldots, a_n$, is an $M_1$-sequence, and so on. Also, the
+second condition $M \neq \sum a_i^{\nu_i}M$ is obvious.
+
+Let us now prove by induction on $n$ that if $b_1, \ldots, b_n$ is an $M$-sequence,
+and if $\sum_{i=1}^{n} b_it_i = 0$ with $t_i \in M$ then $t_i \in b_1M + \cdots + b_nM$ for all
+$i$. First of all from the condition that $b_n$ is not a zero-divisor modulo
+$b_1, \ldots, b_{n-1}$ we can write
+\[
+  t_n = \sum_{i=1}^{n-1} b_i\eta_i, \quad \text{with } \eta_i \in M.
+\]
+Therefore $\sum_{i=1}^{n-1} b_i(t_i + b_n\eta_i) = 0$, so that by induction we have
+\[
+  t_i + b_n\eta_i \in b_1M + \cdots + b_{n-1}M \quad \text{for } 1 \le i \le n - 1,
+\]
+giving $t_i \in b_1M + \cdots + b_nM$ for $1 \le i \le n - 1$. The condition for $t_n$ is already known.
+
+Now assuming $\nu > 1$ we prove by induction on $\nu$ that $a_1^{\nu}, a_2, \ldots, a_n$ is
+an $M$-sequence. Since $a_1$ is $M$-regular, so is $a_1^{\nu}$. For $i > 1$, suppose that
+for some $\sigma \in M$ we have
+\[
+  a_i\sigma = a_1^{\nu}\xi_1 + a_2\xi_2 + \cdots + a_{i-1}\xi_{i-1} \quad \text{with } \xi_j \in M.
+\]
+Then since $a_1^{\nu-1}, a_2, \ldots, a_i$ is an $M$-sequence, we can write
+\[
+  \sigma = a_1^{\nu-1}\eta_1 + \cdots + a_{i-1}\eta_{i-1} \quad \text{with } \eta_j \in M.
+\]
+Hence we get
+\[
+  0 = a_1^{\nu-1}(a_i\eta_1 - a_i\xi_1) + a_2(\eta_2 - a_i\xi_2) + \cdots + a_{i-1}(\eta_{i-1} - a_i\xi_{i-1}).
+\]
+The above assertion gives $a_i\eta_1 - a_i\xi_1 \in a_1^{\nu-1}M + a_2M + \cdots + a_{i-1}M$,
+and hence $a_i\eta_1 \in a_1M + a_2M + \cdots + a_{i-1}M$. Therefore $\eta_1 \in a_1M + \cdots +
+a_{i-1}M$, and so as required we have $\sigma \in a_1^{\nu}M + a_2M + \cdots + a_{i-1}M$.
+\end{proof}
+
+Let $A$ be a ring, $X_1, \ldots, X_n$ indeterminates over $A$, and $M$ an $A$-module.
+We can view elements of $M \otimes_A A[X_1, \ldots, X_n]$ as polynomials in the $X_i$
+with coefficients in $M$,
+\[
+  F(X) = F(X_1, \ldots, X_n) = \sum t_{\alpha_1 \cdots \alpha_n}X_1^{\alpha_1} \cdots X_n^{\alpha_n}, \quad \text{with } t_{\alpha} \in M.
+\]
+For this reason we write $M[X_1, \ldots, X_n]$ for $M \otimes_A A[X_1, \ldots, X_n]$; we can
+consider this either as an $A$-module or as an $A[X_1, \ldots, X_n]$-module. For
+$a_1, \ldots, a_n \in A$ and $F \in M[X_1, \ldots, X_n]$, we can substitute the $a_i$ for $X_i$ to
+get $F(a_1, \ldots, a_n) \in M$.
+
+\begin{definition}
+Let $a_1, \ldots, a_n \in A$, set $I = \sum a_iA$ and let $M$ be an $A$-module
+with $IM \neq M$. We say that $a_1, \ldots, a_n$ is an $M$-quasi-regular sequence\index{quasi-regular sequence} if the
+following condition holds for each $\nu$:
+\[
+  (*) \quad
+  \begin{aligned}
+    &F(X_1, \ldots, X_n) \in M[X_1, \ldots, X_n] \text{ is homogeneous of degree } \nu \text{ and }\\
+    &F(a) \in I^{\nu+1}M \text{ implies that all the coefficients of } F \text{ are in } IM.
+  \end{aligned}
+\]
+This notion is obviously independent of the order of $a_1, \ldots, a_n$.
+\end{definition}
+
+In the above definition it would not make any difference if we replaced
+the condition that $F(a) \in I^{\nu+1}M$ by the condition $F(a) = 0$. Indeed, if $F$ is
+homogeneous of degree $\nu$ and $F(a) \in I^{\nu+1}M$ then there exist a homogeneous
+element $G(X) \in M[X_1, \ldots, X_n]$ of degree $\nu + 1$ such that $F(a) = G(a)$. Then
+write $G(X) = \sum X_iG_i(X)$ with each $G_i$ homogeneous of degree $\nu$, and set
+$F^*(X) = F(X) - \sum a_iG_i(X)$, so that $F^*$ is homogeneous of degree $\nu$ and
+$F^*(a) = 0$. Moreover, if $F^*$ has coefficients in $IM$ then so does $F$.
+
+We can define a map $\varphi\colon (M/IM)[X_1, \ldots, X_n] \to \gr_I M = \bigoplus_{\nu \ge 0}
+I^\nu M/I^{\nu+1}M$ as follows: taking a homogeneous element $F(X) \in M[X]$ of
+degree $\nu$ into the class of $F(a)$ in $I^\nu M/I^{\nu+1}M$ provides a homomorphism (of
+additive groups) from $M[X]$ into $\gr_I M$ which preserves degrees. Since
+$IM[X]$ is in the kernel, this induces a homomorphism
+\[
+  \varphi\colon M[X]/IM[X] = (M/IM)[X] \to \gr_I M,
+\]
+which is obviously surjective. Then $a_1, \ldots, a_n$ is a quasi-regular sequence
+precisely when $\varphi$ is injective, and hence an isomorphism.
+
+\begin{theorem}\label{thm:16.2}
+Let $A$ be a ring, $M$ an $A$-module, and $a_1, \ldots, a_n \in A$; set
+$I = (a_1, \ldots, a_n)A$. Then we have the following:
+\begin{enumerate}[(i)]
+  \item if $a_1, \ldots, a_n$ is an $M$-sequence then it is $M$-quasi-regular;
+  \item if $a_1, \ldots, a_n$ is an $M$-quasi-regular sequence, and if $x \in A$ satisfies
+        $IM:x = IM$ then $I^\nu M:x = I^\nu M$ for any $\nu > 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof (taken from Rees [5])]
+First of all we prove (ii) by induction on $\nu$.
+The case $\nu = 1$ is just the assumption; suppose that $\nu > 1$. For $\xi \in M$, if
+$x\xi \in I^\nu M$ then also $x\xi \in I^{\nu-1}M$, so that by the inductive hypothesis
+$\xi \in I^{\nu-1}M$, and hence we can write $\xi = F(a)$ with $F = F(X) \in M[X_1, \ldots,
+X_n]$ homogeneous of degree $\nu - 1$. Now $x\xi = xF(a) \in I^\nu M$, so that by
+definition of quasi-regular sequence each coefficient of $xF(X)$ belongs to
+$IM$. Using $IM:x = IM$ once more we find that the coefficients of $F(X)$
+also belong to $IM$, and therefore $\xi = F(a) \in I^\nu M$.
+
+Now we prove (i) by induction on $n$. The case $n = 1$ can easily be
+checked. Suppose that $n > 1$, and that the statement holds up to $n - 1$, so
+that in particular $a_1, \ldots, a_{n-1}$ is $M$-quasi-regular. Now let $F(X) \in
+M[X_1, \ldots, X_n]$ be homogeneous of degree $\nu$, such that $F(a) = 0$. We prove
+by induction on $\nu$ that the coefficients of $F$ belong to $IM$. We separate
+out $F(X)$ into terms containing $X_n$ and not containing $X_n$, writing
+\[
+  F(X) = G(X_1, \ldots, X_{n-1}) + X_nH(X_1, \ldots, X_n).
+\]
+Here $G$ is homogeneous of degree $\nu$ and $H$ of degree $\nu - 1$. Then, as we
+proved in (ii),
+\[
+  H(a) \in (a_1, \ldots, a_{n-1})^\nu M:a_n = (a_1, \ldots, a_{n-1})^\nu M \subset I^\nu M,
+\]
+and hence, by induction on $\nu$, the coefficients of $H(X)$ belong to $IM$.
+Moreover, by the above formula there is a homogeneous polynomial
+$h(X_1, \ldots, X_{n-1})$ of degree $\nu$ with coefficients in $M$ such that $H(a) =
+h(a_1, \ldots, a_{n-1})$, and so setting
+\[
+  g(X) = G(X_1, \ldots, X_{n-1}) + a_nh(X_1, \ldots, X_{n-1}),
+\]
+since $a_1, \ldots, a_{n-1}$ is $M$-quasi-regular, the coefficients of $g$ lie in
+$(a_1, \ldots, a_{n-1})M$; therefore the coefficients of $G$ lie in
+\[
+  (a_1, \ldots, a_n)M.
+\]
+\end{proof}
+
+This theorem holds for any $A$ and $M$, but as we will see in the next
+theorem, under some conditions we can say that conversely, quasi-regular
+implies regular. Then the notions of regular and quasi-regular sequences
+for $M$ coincide, and so reordering an $M$-sequence gives again an $M$-
+sequence.
+
+\begin{theorem}\label{thm:16.3}
+Let $A$ be a Noetherian ring, $M \neq 0$ an $A$-module, and
+$a_1, \ldots, a_n \in A$; set $I = (a_1, \ldots, a_n)A$. Under the condition
+\[
+  (*) \quad \text{each of } M, M/a_1M, \ldots, M/(a_1, \ldots, a_{n-1})M \text{ is } I\text{-adically separated},
+\]
+if $a_1, \ldots, a_n$ is $M$-quasi-regular it is an $M$-sequence.
+\end{theorem}
+
+\begin{remark}
+The hypothesis $(*)$ holds in either of the following cases:
+\begin{enumerate}[($\beta$)]
+  \item $M$ is finite and $I \subset \rad(A)$;
+  \item $A$ is an $\N$-graded ring, $M$ an $\N$-graded module, and each $a_i$ is
+        homogeneous of positive degree.
+\end{enumerate}
+However, for a non-Noetherian ring $A$ there are examples where the
+theorem fails (Dieudonn\'e [1]) even if $A$ is local, $M = A$ and $I \subset \rad(A)$.
+\end{remark}
+
+\begin{proof}
+We prove first that $a_1$ is $M$-regular. If $\xi \in M$ with $a_1\xi = 0$ then
+by hypothesis $\xi \in IM$. Then setting $\xi = \sum a_i\eta_i$ we get $0 = \sum a_1a_i\eta_i$, so that
+$\eta_i \in IM$. Proceeding in the same way we get $\xi \in \bigcap_{\nu \ge 1} I^\nu M = (0)$.
+
+Now set $M_1 = M/a_1M$; if we prove that $a_2, \ldots, a_n$ is an $M_1$-quasi-regular
+sequence then the theorem follows by induction on $n$. (If $M$ is $I$-adically
+separated and $M \neq 0$ then $M \neq IM$.) So let $\bar{f}(X_2, \ldots, X_n)$ be a homogeneous
+polynomial of degree $\nu$ with coefficients in $M_1$, such that $\bar{f}(a_2, \ldots, a_n) = 0$.
+If $F(X_1, \ldots, X_n)$ is a homogeneous polynomial of degree $\nu$ with coefficients
+in $M$ which reduces to $\bar{f}$ modulo $a_1M$, then $F(a_1, \ldots, a_n) \in a_1M$. Set
+$F(a_1, \ldots, a_n) = a_1\sigma$; suppose that $\sigma \in I^iM$, so that we can write $\sigma = G_i(a)$
+with $G_i(X) \in M[X_1, \ldots, X_n]$ homogeneous of degree $i$. Then
+\[
+  a_1G_i(a_2, \ldots, a_n) = a_1G_i(a_1, \ldots, a_n),
+\]
+and if $i < \nu - 1$ it follows that the coefficients of $G_i$ belong to $IM$, so that
+$\sigma \in I^{i+1}M$; repeating this argument we see that $\sigma \in I^{\nu-1}M$. Setting $i = \nu - 1$
+in the above formula, then since $X_1$ does not appear in $F$, we can
+apply the definition of quasi-regular sequence to $F(X_1, \ldots, X_n) -
+X_1G_{\nu-1}(X_1, \ldots, X_n)$ to deduce that the coefficients of $F$ belong to $IM$.
+Hence, the coefficients of $\bar{f}$ belong to $IM_1$.
+\end{proof}
+
+\begin{corollary*}
+Let $A$ be a Noetherian ring, $M$ an $A$-module and $a_1, \ldots, a_n$
+an $M$-sequence. If conditions ($\alpha$) or ($\beta$) of the above remark hold then any
+permutation of $a_1, \ldots, a_n$ is again an $M$-sequence.
+\end{corollary*}
+
+Here is an example where a permutation of an $M$-sequence fails to be
+an $M$-sequence: let $k$ be a field, $A = k[X, Y, Z]$ and set $a_1 = X(Y - 1)$,
+$a_2 = Y$, $a_3 = Z(Y - 1)$. Then $(a_1, a_2, a_3)A = (X, Y, Z)A \neq A$, and $a_1, a_2, a_3$
+is an $A$-sequence, whereas $a_1, a_3, a_2$ is not.
+
+\subsection*{The Koszul complex}
+
+Given a ring $A$ and $x_1, \ldots, x_n \in A$, we define a complex $K_\bullet$ as follows:
+set $K_0 = A$, and $K_p = 0$ if $p$ is not in the range $0 \le p \le n$. For $1 \le p \le n$,
+let $K_p = \bigoplus A e_{i_1 \cdots i_p}$ be the free $A$-module of rank $\binom{n}{p}$ with basis
+$\{e_{i_1, \ldots, i_p} \mid 1 \le i_1 < \cdots < i_p \le n\}$. The differential $d\colon K_p \to K_{p-1}$ is defined
+by setting
+\[
+  d(e_{i_1 \cdots i_p}) = \sum_{r=1}^{p} (-1)^{r-1}x_{i_r}e_{i_1 \cdots \hat{i}_r \cdots i_p}
+\]
+(for $p = 1$, set $d(e_i) = x_i$). One checks easily that $dd = 0$. This complex is
+called the \emph{Koszul complex}\index{Koszul complex}, and written $K_\bullet(x_1, \ldots, x_n)$ (alternatively,
+$K_\bullet(x)$ or $K_{\bullet, x}$). For an $A$-module $M$ we set $K_\bullet(x, M) = K_\bullet(x) \otimes_A M$.
+Moreover, for a complex $C_\bullet$ of $A$-modules we set $C_\bullet(x) = C_\bullet \otimes K_\bullet(x)$. In
+particular, for $n = 1$ the complex $K_\bullet(x)$ is just
+\[
+  0 \to 0 \to A \xrightarrow{x} A \to 0,
+\]
+and it is easy to check that $K_\bullet(x_1, \ldots, x_n) = K_\bullet(x_1) \otimes \cdots \otimes K_\bullet(x_n)$. Since the
+tensor product of complexes satisfies $L_\bullet \otimes M_\bullet \cong M_\bullet \otimes L_\bullet$, the Koszul com-
+plex is invariant (up to isomorphism) under permutation of $x_1, \ldots, x_n$. The
+Koszul complex $K_\bullet(x, M)$ has homology groups $H_p(K_\bullet(x, M))$, which we
+abbreviate to $H_p(x, M)$. Quite generally we have
+\[
+  H_0(x, M) = M/\mathfrak{a}M,
+\]
+where $\mathfrak{a} = \sum x_iA$, and
+\[
+  H_n(x, M) \cong \{m \in M \mid x_1m = \cdots = x_nm = 0\}.
+\]
+
+\begin{theorem}\label{thm:16.4}
+Let $C_\bullet$ be a complex of $A$-modules and $x \in A$. Then we obtain
+an exact sequence of complexes
+\[
+  0 \to C_\bullet \to C_\bullet(x) \to C'_\bullet \to 0,
+\]
+where $C'_\bullet$ is the complex obtained by shifting the degrees in $C_\bullet$ up by $1$ (that is
+$C'_p = C_{p-1}$, and the differential of $C'_\bullet$ is that of $C_\bullet$). The homology long
+exact sequence obtained from this is
+\[
+  \cdots \to H_p(C_\bullet) \to H_p(C_\bullet(x)) \to H_{p-1}(C_\bullet) \xrightarrow{(-1)^{p-1}x}
+  H_{p-1}(C_\bullet) \to \cdots;
+\]
+we have $x \cdot H_p(C_\bullet(x)) = 0$ for all $p$.
+\end{theorem}
+
+\begin{proof}
+From the fact that $K_1(x) = Ax$ and $K_0(x) = A$ and the definition
+of tensor product of complexes, we can identify $C_p(x)$ with $C_p \oplus C_{p-1}$, and
+for $\xi \in C_p$, $\eta \in C_{p-1}$ we have
+\[
+  d(\xi, \eta) = (d\xi + (-1)^{p-1}x\eta, d\eta).
+\]
+The first assertion is clear from this. Moreover, $H_p(C'_\bullet) = H_{p-1}(C_\bullet)$ is also
+clear, and if $\eta \in C_{p-1} = C'_p$ satisfies $d\eta = 0$ then in $C_\bullet(x)$ we have $d(0, \eta) =
+((-1)^{p-1}x\eta, 0)$, so that the long exact sequence has the form indicated
+in the theorem. Finally, if $d(\xi, \eta) = 0$ then $d\eta = 0$ and $d\xi = (-1)^px\eta$, so
+that $x \cdot (\xi, \eta) = (x\xi, (-1)^px\eta) \in d(C_{p+1}(x))$, and therefore $x \cdot H_p(C_\bullet(x)) = 0$.
+\end{proof}
+
+Applying this theorem to $K_\bullet(x, M)$ and using the commutativity of
+tensor product of complexes, we see that the ideal $(\mathfrak{x}) = (x_1, \ldots, x_n)$
+generated by $\mathfrak{x}$ annihilates the homology groups $H_p(x, M)$:
+\[
+  (\mathfrak{x}) \cdot H_p(x, M) = 0 \quad \text{for all } p.
+\]
+
+\begin{theorem}\label{thm:16.5}
+\begin{enumerate}[(i)]
+  \item Let $A$ be a ring, $M$ an $A$-module, and $x_1, \ldots, x_n$ an $M$-sequence; then
+        \[
+          H_p(x, M) = 0 \text{ for } p > 0 \quad \text{and} \quad H_0(x, M) = M/\mathfrak{x}M.
+        \]
+  \item Suppose that one of the following two conditions ($\alpha$) or ($\beta$) holds:
+        \begin{enumerate}[($\alpha$)]
+          \item $(A, m)$ is a local ring, $x_1, \ldots, x_n \in m$ and $M$ is a finite $A$-module;
+          \item $A$ is an $\N$-graded ring, $M$ is an $\N$-graded $A$-module, and $x_1, \ldots, x_n$ are
+                homogeneous elements of degree $> 0$.
+        \end{enumerate}
+        Then the converse of (i) holds in the following strong form: if $H_p(x, M) = 0$
+        and $M \neq 0$ then $x_1, \ldots, x_n$ is an $M$-sequence.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We use induction on $n$.
+
+(i) When $n = 1$ we have $H_1(x, M) = \{\xi \in M \mid x\xi = 0\} = 0$, so that
+the assertion holds. When $n > 1$, for $p > 1$ the previous theorem provides
+an exact sequence
+\[
+  0 = H_p(x_1, \ldots, x_{n-1}, M) \to H_p(x_1, \ldots, x_n, M)
+  \to H_{p-1}(x_1, \ldots, x_{n-1}, M) = 0.
+\]
+so that $H_p(x_1, \ldots, x_n, M) = 0$. For $p = 1$, setting $M_i = M/(x_1, \ldots, x_i)M$ we
+have an exact sequence
+\[
+  0 \to H_1(x_n, M_{n-1}) \to H_1(x_1, \ldots, x_n, M) \to H_1(x_1, \ldots, x_{n-1}, M) = M_{n-2}
+\]
+\[
+  \xrightarrow{x_n} M_{n-1},
+\]
+and since $x_n$ is $M_{n-1}$-regular we have $H_1(x_n, M) = 0$.
+
+(ii) Assuming either ($\alpha$) or ($\beta$), $M \neq 0$ implies that $M_i \neq 0$ for $1 \le i \le n$. By
+hypothesis and by the previous theorem,
+\[
+  H_1(x_1, \ldots, x_{n-1}, M) \xrightarrow{x_n} H_1(x_1, \ldots, x_{n-1}, M) \to H_1(x, M) = 0;
+\]
+but quite generally $H_1(x_1, \ldots, x_{n-1}, M)$ is a finite $A$-module in case ($\alpha$), or an $\N$-graded
+module in case ($\beta$), so that by NAK, $H_1(x_1, \ldots, x_{n-1}, M) = 0$. Thus by
+induction $x_1, \ldots, x_{n-1}$ is an $M$-sequence. Now by the same exact sequence
+and the first part of (i), we see that $x_n$ is $M_{n-1}$-regular, and therefore
+$x_1, \ldots, x_n$ is an $M$-sequence.
+\end{proof}
+
+Let $A$ be a ring, $M$ an $A$-module and $I$ an ideal of $A$. If $a_1, \ldots, a_n$ are
+elements of $I$, we say that they form a \emph{maximal $M$-sequence in $I$}\index{maximal M-sequence} if $a_1, \ldots, a_n$
+is an $M$-sequence, and $a_1, \ldots, a_n, b$ is not an $M$-sequence for any $b \in I$. If
+$a_1, \ldots, a_n$ is an $M$-sequence then $a_1M, (a_1, a_2)M, \ldots, (a_1, \ldots, a_n)M$ is strictly
+increasing, so that the chain of ideals $(a_1) \subset (a_1, a_2) \subset \cdots$ is also strict-
+ly increasing. If $A$ is Noetherian this cannot continue indefinitely,
+so that any $M$-sequence can be extended until we arrive at a maximal
+$M$-sequence.
+
+In Theorems 6--8 below, the hypothesis that $M$ is a finite
+$A$-module can be weakened to the statement that $M$ is a finite $B$-module for a
+homomorphism $A \to B$ of Noetherian rings, as one sees on inspecting
+the proof. The reason for this is that, if we set $\Ass_B(M) = \{P_1, \ldots, P_r\}$ and
+$P_i \cap A = p_i$, then any ideal of $A$ consisting entirely of zero-divisors of $M$ is
+contained in $\bigcup p_i$, and therefore contained in one of the $p_i$. Note that
+according to [M], (9.A), we have $\Ass_A(M) = \{p_1, \ldots, p_r\}$.
+
+\begin{theorem}\label{thm:16.6}
+Let $A$ be a Noetherian ring, $M$ a finite $A$-module and $I$
+an ideal of $A$; suppose that $IM \neq M$. For a given integer $n > 0$ the following
+conditions are equivalent;
+\begin{enumerate}[(1)]
+  \item $\Ext^i_A(N, M) = 0$ for all $i < n$ and for any finite $A$-module $N$ with
+        $\Supp(N) \subset V(I)$;
+  \item $\Ext^i_A(A/I, M) = 0$ for all $i < n$;
+  \item $\Ext^i_A(A/I, M) = 0$ for all $i < n$ and for some finite $A$-module $N$ with
+        $\Supp(N) = V(I)$;
+  \item there exists an $M$-sequence of length $n$ contained in $I$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1) \Rightarrow (2) \Rightarrow (3)$ are obvious. For $(2') \Rightarrow (3)$, if $I$ consists only of zero-
+divisors of $M$ then there exists an associated prime $P$ of $M$ containing $I$
+(this is where we need the finiteness of $M$). Hence there is an injective
+map $A/P \to M$. Localising at $P$, we see that $\Hom_{A_P}(A_P/PA_P, M_P) \neq 0$, where
+$(A/P)_P = A_P/PA_P$. Now $P \in V(I) = \Supp(N)$, so that $N_P \neq 0$, and hence by
+NAK, $N_P/PN_P = N \otimes_A k \neq 0$. Thus $N \otimes k$ is a non-zero vector space
+over $k$, and $\Hom_A(N \otimes k, k) \neq 0$. Putting together what we have said,
+we can follow the composite $N_P \to N \otimes k \to k \to M_P$ to show that
+$\Hom_{A_P}(N_P, M_P) \neq 0$. The left-hand side is equal to $(\Hom_A(N, M))_P$, so that
+$\Hom_A(N, M) \neq 0$. But this contradicts $(2')$. Hence $I$ contains an
+$M$-regular element $f$. By assumption, $M/IM \neq 0$, and if $n = 1$ then we are
+done. If $n > 1$ we set $M_1 = M/fM$; then from the exact sequence
+\[
+  0 \to M \xrightarrow{f} M \to M_1 \to 0
+\]
+we get $\Ext^i_A(N, M_1) = 0$ for $i < n - 1$, so that by induction $I$ contains an
+$M_1$-sequence $f_2, \ldots, f_n$.
+
+For the proof of $(3) \Rightarrow (1)$ we do not need to assume that $A$ is Noetherian
+or $M$ finite. Let $f_1, \ldots, f_n \in I$ be an $M$-sequence; we have the exact sequence
+\[
+  0 \to M \xrightarrow{f_1} M \to M_1 \to 0,
+\]
+and if $n > 1$ the inductive hypothesis $\Ext^i_A(N, M_1) = 0$ for $i < n - 1$, so that
+\[
+  0 \to \Ext^i_A(N, M) \xrightarrow{f_1} \Ext^i_A(N, M)
+\]
+is exact for $i < n$. But $\Ext^i_A(N, M)$ is annihilated by elements of $\ann(N)$.
+Since $\Supp(N) = V(\ann(N)) \subset V(I)$, we have $I \subset \sqrt{\ann(N)}$, and a
+sufficiently large power of $f_1$ annihilates $\Ext^i_A(N, M)$. Therefore,
+$\Ext^i_A(N, M) = 0$ for $i < n$.
+\end{proof}
+
+Let $M$ and $I$ be as in the above theorem, and $a_1, \ldots, a_n$ an $M$-sequence
+in $I$. For $1 \le i \le n$, set $M_i = M/(a_1, \ldots, a_i)M$; then it is easy to see
+that $\Hom_A(A/I, M_i) \supset \Ext^1_A(A/I, M_{i-1}) \supset \cdots \supset \Ext^i_A(A/I, M)$. Therefore,
+if $\Ext^i_A(A/I, M) = 0$ we can find another element $a_{n+1} \in I$ such that
+$a_1, \ldots, a_{n+1}$ is an $M$-sequence. Hence if $a_1, \ldots, a_n$ is a maximal $M$-sequence
+in $I$ we must have $\Ext^n_A(A/I, M) \neq 0$. We thus obtain the following theorem.
+
+\begin{theorem}\label{thm:16.7}
+Let $A$ be a Noetherian ring, $I$ an ideal of $A$ and $M$ a finite
+$A$-module such that $M \neq IM$; then the length of a maximal $M$-sequence
+in $I$ is a well-determined integer $n$, and $n$ is determined by
+\[
+  \Ext^i_A(A/I, M) = 0 \text{ for } i < n \quad \text{and} \quad \Ext^n_A(A/I, M) \neq 0.
+\]
+We write $n = \depth(I, M)$, and call $n$ the \emph{$I$-depth}\index{depth} of $M$. (If $M = IM$, the
+$I$-depth is by convention $\infty$.) Theorem 7 takes the form
+\[
+  \depth(I, M) = \inf\{i \mid \Ext^i_A(A/I, M) \neq 0\}.
+\]
+In particular for a Noetherian local ring $(A, m, k)$, we call $\depth(m, M)$
+simply the \emph{depth} of $M$, and write $\depth M$ or $\depth_A M$:
+\[
+  \depth M = \inf\{i \mid \Ext^i_A(k, M) \neq 0\}.
+\]
+From Theorem 6 we see that if $V(I) = V(I')$ then $\depth(I, M) =
+\depth (I', M)$; this also follows easily from Theorem 1.
+
+If $\ann (M) = \mathfrak{a}$ and we set $\bar{A} = A/\mathfrak{a}$ then $M$ is also an $\bar{A}$-module. Writing
+$\bar{a}$ or $\bar{I}$ for the image of an element $a$ or an ideal $I$ of $A$ under the natural
+homomorphism $A \to \bar{A}$ we clearly have that $a_1, \ldots, a_n$ is an $M$-sequence
+if and only if $\bar{a}_1, \ldots, \bar{a}_n$ is. Thus $\depth (I, M) = \depth (\bar{I}, M)$, and if we set
+$I + \mathfrak{a} = J$, then since $\bar{I} = \bar{J}$ we also have $\depth (I, M) = \depth (J, M)$.
+\end{theorem}
+
+We can also prove that the length of a maximal $M$-sequence is
+well-determined by means of the Koszul complex.
+
+\begin{theorem}\label{thm:16.8}
+Let $A$ be a Noetherian ring, $I = (y_1, \ldots, y_n)$ an ideal of $A$,
+and $M$ a finite $A$-module such that $M \neq IM$. If we set
+\[
+  q = \sup\{i \mid H_i(y, M) \neq 0\},
+\]
+then any maximal $M$-sequence in $I$ has length $n - q$.
+\end{theorem}
+
+\begin{proof}
+Let $x_1, \ldots, x_s$ be a maximal $M$-sequence in $I$; we argue by induction
+on $s$. If $s = 0$ then every element of $I$ is a zero-divisor of $M$, so that there
+exists $P \in \Ass(M)$ containing $I$. By definition of $\Ass$, there exists $0 \neq \xi \in M$
+such that $P = \ann(\xi)$, and hence $I\xi = 0$. Thus $\xi \in H_n(y, M)$ so that $q = n$,
+and the assertion holds in this case.
+
+If $s > 0$ we set $M_1 = M/x_1M$; then from the exact sequence
+\[
+  0 \to M \xrightarrow{x_1} M \to M_1 \to 0
+\]
+and from the fact that $IH_i(y, M) = 0$ (by Theorem 4), it follows that
+\[
+  0 \to H_i(y, M) \to H_i(y, M_1) \to H_{i-1}(y, M) \to 0
+\]
+is exact for every $i$. Thus $H_{q+1}(y, M_1) \neq 0$ and $H_i(y, M_1) = 0$ for $i > q + 1$;
+but $x_2, \ldots, x_s$ is a maximal $M_1$-sequence in $I$, so that by induction we
+have $q + 1 = n - (s - 1)$, and therefore $q = n - s$.
+\end{proof}
+
+In other words, $\depth(I, M)$ is the number of successive zero terms from
+the left in the sequence
+\[
+  H_n(y, M), H_{n-1}(y, M), \ldots, H_0(y, M) = M/IM \neq 0.
+\]
+This fact is sometimes referred to as the `depth sensitivity' of the Koszul
+complex.
+
+\begin{corollary*}
+In the situation of the theorem, $y_1, \ldots, y_n$ is an $M$-sequence if
+and only if $\depth (I, M) = n$.
+\end{corollary*}
+
+\begin{proof}
+$\depth(I, M) = n \iff H_i(y, M) = 0$ for all $i > 0 \iff y$ is an $M$-sequence.
+\end{proof}
+
+\subsection*{Grade}
+
+A little before Auslander and Buchsbaum [2], Rees [5] introduced and
+developed the theory of another notion related to regular sequences, that of
+grade.\index{grade} Let $A$ be a Noetherian ring and $M \neq 0$ a finite $A$-module. Then Rees
+made the definition
+\[
+  \grade M = \inf\{i \mid \Ext^i_A(M, A) \neq 0\}.
+\]
+For a proper ideal $J$ of $A$ we also call $\grade (A/J)$ the \emph{grade of the ideal}
+$J$, and write $\grade J$. If we set $\mathfrak{a} = \ann(M)$ then since $\Supp(M) = V(\mathfrak{a})$,
+Theorem 6 gives $\grade M = \depth(\mathfrak{a}, A)$. Moreover, if $g = \grade M$ then
+$\Ext^g_A(M, A) \neq 0$, so that
+\[
+  \grade M \le \projdim M.
+\]
+If $I$ is an ideal then $\grade I (=\grade(A/I)) = \depth(I, A)$ is the length
+of a maximal $A$-sequence in $I$, but in general if $a_1, \ldots, a_r$ is an $A$-sequence
+then one sees easily from Theorem~\ref{thm:13.5} that $\htop(a_1, \ldots, a_r) = r$. Thus if
+$a_1, \ldots, a_r$ is a maximal $A$-sequence in $I$, we have $r = \htop(a_1, \ldots, a_r) \le \htop I$.
+Hence for an ideal $I$ we have $\grade I \le \htop I$.
+
+\begin{theorem}\label{thm:16.9}
+Let $A$ be a Noetherian ring, and $M, N$ finite $A$-modules;
+suppose $M \neq 0$, $\grade M = k$ and $\projdim N = l \le k$. Then
+\[
+  \Ext^i_A(M, N) = 0 \quad \text{for } i < k - l.
+\]
+\end{theorem}
+
+\begin{proof}
+We use induction on $l$. If $l = 0$ then $N$ is a direct summand of some
+free module $A^m$, so that we need only say what happens for $N = A$, but
+then the assertion is just the definition of grade. If $l > 0$ we choose an
+exact sequence
+\[
+  0 \to N_1 \to L_0 \to N \to 0
+\]
+with $L_0$ a finite free module; then $\projdim N_1 = l - 1$, so that by induction
+\[
+  \Ext^i_A(M, L_0) = 0 \quad \text{for } i < k \quad \text{and}
+\]
+\[
+  \Ext^i_A(M, N_1) = 0 \quad \text{for } i < k - l;
+\]
+the assertion follows from this.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:16}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:16.1-ex}
+Let $(A, m)$ be a Noetherian local ring, $M \neq 0$ a finite $A$-module, and
+$a_1, \ldots, a_r \in m$ an $M$-sequence. Set $M' = M/(a_1, \ldots, a_r)M$. Then
+\[
+  \dim M' = \dim M - r.
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:16.2-ex}
+Let $A$ be a Noetherian ring, $\mathfrak{a}$ and $\mathfrak{b}$ ideals of $A$; then if $\grade \mathfrak{a}
+> \projdim A/\mathfrak{b}$ we have $\mathfrak{b}:\mathfrak{a} = \mathfrak{b}$.
+\end{exercise}
+
+\begin{exercise}\label{ex:16.3-ex}
+Let $A$ be a Noetherian ring. A proper ideal $I$ of $A$ is called a \emph{perfect ideal} if
+$\grade I = \projdim A/I$. If $I$ is a perfect ideal of grade $k$ then all the prime
+divisors of $I$ have grade $k$.
+\end{exercise}
+
+\begin{remark}
+Quite generally, we have $\grade I (=\grade(A/I)) \le \projdim A/I$. If $A$ is a
+regular local ring and $P \in \Spec A$ then as we will see in Theorems 19.1 and 19.2, $P$ is
+perfect, that is $A/P$ is Cohen--Macaulay.
+\end{remark}
+
+\begin{exercise}\label{ex:16.4-ex}
+Let $f\colon A \to B$ be a flat ring homomorphism, $M$ an $A$-module, and
+$a_1, \ldots, a_n \in A$ an $M$-sequence; if $(M/(a_1, \ldots, a_n)M) \otimes_A B \neq 0$ then
+$f(a_1), \ldots, f(a_n)$ is an $M \otimes_A B$-sequence.
+\end{exercise}
+
+\begin{exercise}\label{ex:16.5-ex}
+Let $A$ be a Noetherian local ring, $M$ a finite $A$-module, and $P$ a prime ideal
+of $A$; show that $\depth(P, M) \le \depth_{A_P} M_P$, and construct an example
+where the inequality is strict.
+\end{exercise}
+
+\begin{exercise}\label{ex:16.6-ex}
+Let $A$ be a ring and $a_1, \ldots, a_n \in A$ an $A$-quasi-regular sequence. If $A$
+contains a field $k$ then $a_1, \ldots, a_n$ are algebraically independent over $k$.
+\end{exercise}
+
+\begin{exercise}\label{ex:16.7-ex}
+Let $(A, m)$ and $(B, n)$ be Noetherian local rings, and suppose that $A \subset B$,
+$n \cap A = m$ and that $mB$ is an $n$-primary ideal. Then for a finite $B$-module
+$M$ we have
+\[
+  \depth_A M = \depth_B M.
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:16.8-ex}
+Let $A$ be a ring, $P_1, \ldots, P_r$ prime ideals, $I$ an ideal, and $x$ an element of $A$. If
+$x \notin I + \bigcup_{i=1}^{r} P_i$ then there is a $y \in I$ such that $x + y \notin \bigcup_{i=1}^{r} P_i$
+(E. Davis).
+\end{exercise}
+
+\begin{exercise}\label{ex:16.9-ex}
+Use the previous question to show the following: let $A$ be a Noetherian
+ring, and suppose that $I \neq A$ is an ideal generated by $n$ elements; then
+$\grade I \le n$, and if $\grade I = n$ then $I$ can be generated by an $A$-sequence
+([K], Th. 125).
+\end{exercise}
+
+\begin{exercise}\label{ex:16.10-ex}
+Let $A$ be a Noetherian ring, and suppose that $P$ is a height $r > 0$ prime
+ideal generated by $r$ elements $a_1, \ldots, a_r$.
+\begin{enumerate}[(i)]
+  \item Suppose either that $A$ is local, or that $A$ is $\N$-graded and the $a_i$ are
+        homogeneous of positive degree. Then $A$ is an integral domain, and for
+        $1 \le i \le r$ the ideal $(a_1, \ldots, a_i)$ is prime; hence $a_1, \ldots, a_r$ is an $A$-sequence.
+  \item In general $a_1, \ldots, a_r$ does not have to be an $A$-sequence, but $P$ can in
+        any case be generated by an $A$-sequence (E. Davis).
+\end{enumerate}
+\end{exercise}

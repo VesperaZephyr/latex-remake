@@ -1,0 +1,502 @@
+% ============ §19 Regular rings (原书 pp.153-161) ============
+\section{Regular rings}\label{sec:19}\index{regular local rings, section 19}\index{regular rings, section 19}\index{minimal resolution, section 19}\index{global dimension, section 19}
+
+\textbf{Minimal free resolutions.} Let $(A, m, k)$ be a local ring, $M$ and $N$ finite
+$A$-modules. An $A$-linear map $\varphi\colon M \to N$ induces a $k$-linear map
+$\bar{\varphi}\colon M \otimes k \to N \otimes k$, which we denote $\bar{\varphi}$; then one sees easily that
+\[
+  \varphi \text{ is an isomorphism } \iff \bar{\varphi} \text{ is surjective and } \Ker \varphi = mM.
+\]
+In particular for free modules $M$ and $N$, if $\bar{\varphi}$ is an isomorphism then $\rank
+M = \rank N$, and writing $\varphi$ as a matrix we have $\det \varphi \notin m$, so that
+\[
+  \varphi \text{ is an isomorphism } \iff \bar{\varphi} \text{ is an isomorphism}.
+\]
+Let $M$ be a finite $A$-module. An exact sequence
+\[
+  (*) \quad \cdots \xrightarrow{d_{i+1}} L_i \xrightarrow{d_i} L_{i-1} \to \cdots \to L_1 \xrightarrow{d_1} L_0 \xrightarrow{\varepsilon} M \to 0
+\]
+(or the complex $L_\bullet$) is called a \emph{minimal (free) resolution}\index{minimal resolution} of $M$ if it satisfies the
+three conditions (1) each $L_i$ is a finite free $A$-module, (2) $\bar{d}_i = 0$, or in other
+words $d_iL_i \subset mL_{i-1}$ for all $i$, and (3) $\bar{\varepsilon}\colon L_0 \otimes k \to M \otimes k$ is an isomorph-
+ism. Breaking up $(*)$ into short exact sequences $0 \to K_1 \to L_0 \to M \to 0$,
+$0 \to K_2 \to L_1 \to K_1 \to 0, \ldots$, we have $L_0 \otimes k \cong M \otimes k$,
+$L_1 \otimes k \cong K_1 \otimes k, \ldots$. Any two minimal resolutions of $M$ are isomorphic as com-
+plexes (prove this!).
+
+\begin{example*}
+Let $x_1, \ldots, x_n \in m$ be an $A$-sequence, and let $K_\bullet = K_\bullet(x_1, \ldots, x_n)$
+be the Koszul complex
+\[
+  0 \to K_n \to K_{n-1} \to \cdots \to K_0 \to A/(x_1, \ldots, x_n) \to 0;
+\]
+then $K_\bullet$ is a minimal resolution of $A/(x_1, \ldots, x_n)$ over $A$.
+\end{example*}
+
+Let $(A, m, k)$ be a Noetherian local ring; then a finite $A$-module $M$
+always has a minimal resolution. Construction: let $\{\omega_1, \ldots, \omega_p\}$ be a
+minimal basis of $M$, let $L_0 = Ae_1 + \cdots + Ae_p$ be a free module, and define
+$\varepsilon\colon L_0 \to M$ by $\varepsilon(e_i) = \omega_i$; taking $K_1$ to be the kernel of $\varepsilon$ we get
+$0 \to K_1 \to L_0 \to M \to 0$ with $L_0 \otimes k \cong M \otimes k$. Now $K_1$ is again a
+finite $A$-module, so that we need only proceed as before.
+
+\begin{lemma}\label{lem:19.1}
+Let $(A, m, k)$ be a local ring, and $M$ a finite $A$-module. Suppose
+that $L_\bullet$ is a minimal resolution of $M$; then
+\begin{enumerate}[(i)]
+  \item $\dim_k \Tor^A_i(M, k) = \rank L_i$ for all $i$,
+  \item $\projdim M = \sup \{i \mid \Tor^A_i(M, k) \neq 0\} \le \projdim_A k$,
+  \item if $M \neq 0$ and $\projdim M = r < \infty$ then for any finite $A$-module $N \neq 0$
+        we have $\Ext^r_A(M, N) \neq 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) We have $\Tor^A_i(M, k) = H_i(L_\bullet \otimes k)$, but from the definition of
+minimal resolution, $\bar{d}_i = 0$, and hence $H_i(L_\bullet \otimes k) = L_i \otimes k$, and the dimen-
+sion of this as a $k$-vector space is equal to $\rank_A L_i$.
+
+(ii) follows from (i).
+
+(iii) Since $L_{r+1} = 0$ and $L_r \neq 0$, $\Ext^r_A(M, N)$ is the cokernel of $d_r^*\colon
+\Hom_A(L_r, N) \to \Hom_A(L_{r-1}, N)$, but since $L_i$ is free, $\Hom_A(L_i, N)$ is just
+a direct sum of a number of copies of $N$; we can write $d_r\colon L_r \to L_{r-1}$ as a
+matrix with entries in $m$, and then $d_r^*$ is given by the same matrix, so that
+$\Im(d_r^*) \subset m\,\Hom_A(L_r, N)$, and by NAK $\Ext^r_A(M, N) \neq 0$.
+\end{proof}
+
+\begin{remark}
+One sees from the above lemma that $\Tor_i(M, k) = 0$ implies that
+$L_i = 0$, and therefore $\projdim M < i$, so that $\Tor_j(M, k) = 0$ for $j > i$. It is
+conjectured that this holds in more generality, or more precisely:
+\emph{Rigidity conjecture.}\index{rigidity conjecture, section 19} Let $R$ be a Noetherian ring, $M$ and $N$ finite $R$-modules;
+suppose that $\projdim M < \infty$. Then $\Tor^R_i(M, N) = 0$ implies that
+$\Tor^R_j(M, N) = 0$ for all $j > i$.
+\end{remark}
+
+This has been proved by Lichtenbaum~\cite{Li1} if $R$ is a regular ring, but
+is unsolved in general.
+
+The following theorem is not an application of Lemma~\hyperref[lem:19.1]{1}, but is proved
+by a similar technique.
+
+\begin{theorem}[Auslander and Buchsbaum]\label{thm:19.1}
+Let $A$ be a Noetherian local
+ring and $M \neq 0$ a finite $A$-module. Suppose that $\projdim M < \infty$; then
+\[
+  \projdim M + \depth M = \depth A.
+\]
+\end{theorem}
+
+\begin{proof}
+Set $\projdim M = h$; we work by induction on $h$. If $h = 0$ then $M$
+is a free $A$-module, so that the assertion is trivial. If $h = 1$, let
+\[
+  (\varphi) \quad 0 \to A^m \xrightarrow{\varphi} A^n \to M \to 0
+\]
+be a minimal resolution of $M$. We can write $\varphi$ as an $m \times n$ matrix with
+entries in $m$. From $(\varphi)$ we obtain the long exact sequence
+\[
+  \cdots \to \Ext^i_A(k, A^n) \xrightarrow{\varphi^*} \Ext^i_A(k, A^m) \to \Ext^{i+1}_A(k, M) \to \cdots,
+\]
+and writing out $\Ext^i_A(k, A^m) = \Ext^i_A(k, A)^m$ and $\Ext^i_A(k, A^n) = \Ext^i_A(k, A)^n$,
+we can express $\varphi^*$ by the same matrix as $\varphi$. However, the entries of $\varphi$ are
+elements of $m$, and therefore annihilate $\Ext^i_A(k, A)$, so that $\varphi^* = 0$, and we
+have an exact sequence
+\[
+  0 \to \Ext^i_A(k, A)^n \to \Ext^{i+1}_A(k, M) \to \Ext^{i+1}_A(k, A)^m \to 0
+\]
+for every $i$. Since $\depth M = \inf \{i \mid \Ext^i_A(k, M) \neq 0\}$ we have $\depth M =
+\depth A - 1$ and the theorem holds if $h = 1$. If $h > 1$ then taking any exact
+sequence
+\[
+  0 \to M' \to A^n \to M \to 0,
+\]
+we have $\projdim M' = h - 1$, so that an easy induction completes the
+proof.
+\end{proof}
+
+\begin{lemma}\label{lem:19.2}
+Let $A$ be a ring and $n > 0$ a given integer. Then the following
+conditions are equivalent.
+\begin{enumerate}[(1)]
+  \item $\projdim M \le n$ for every $A$-module $M$;
+  \item $\projdim M \le n$ for every finite $A$-module $M$;
+  \item $\injdim N \le n$ for every $A$-module $N$;
+  \item $\Ext^{n+1}_A(M, N) = 0$ for all $A$-modules $M$ and $N$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$(1) \implies (2)$ is trivial.
+
+$(2) \implies (3)$ For any ideal $I$, the $A$-module $A/I$ is finite, so that
+$\Ext^{n+1}_A(A/I, N) = 0$, and hence by \S\ref{sec:18}, Lemma~\hyperref[lem:18.1]{1}, $\injdim N \le n$.
+
+$(3) \implies (4)$ is trivial, and $(4) \implies (1)$ is well-known (see p.~280).
+\end{proof}
+
+We define the \emph{global dimension}\index{global dimension} of a ring $A$ by
+\[
+  \gldim A = \sup \{\projdim M \mid M \text{ is an $A$-module}\}.
+\]
+According to Lemma~\hyperref[lem:19.2]{2} above, this is also equal to the maximum projective
+dimension of all finite $A$-modules. If $(A, m, k)$ is a Noetherian local ring then by
+Lemma~\hyperref[lem:19.1]{1}, $\gldim A = \projdim_A k$.
+
+We have defined regular local rings (see \S\ref{sec:14}) as Noetherian local rings
+for which $\dim A = \embdim A$, and we have seen that they are integral
+domains (Theorem~\ref{thm:14.3}) and CM rings (Theorem~\ref{thm:17.8}). A regular local
+ring is Gorenstein (Theorem~\ref{thm:18.1}, (5')). A necessary and sufficient condition
+for a Noetherian local ring $(A, m, k)$ to be regular is that $\gr_m(A)$ is a poly-
+nomial ring over $k$ (Theorem~\ref{thm:17.10}). The following theorem gives another
+important necessary and sufficient condition.
+
+\begin{theorem}[Serre]\label{thm:19.2}
+Let $A$ be a Noetherian local ring. Then
+\[
+  A \text{ is regular} \iff \gldim A = \dim A \iff \gldim A < \infty.
+\]
+\end{theorem}
+
+\begin{proof}
+(I) Suppose that $(A, m, k)$ is an $n$-dimensional regular local ring.
+Let $x_1, \ldots, x_n$ be a regular system of parameters; then since this is an
+$A$-sequence, the Koszul complex $K_\bullet(x_1, \ldots, x_n)$ is a minimal free resolution of
+$A/(x_1, \ldots, x_n) = k$, and $K_n \neq 0$, $K_{n+1} = 0$, so that as we have already seen,
+$\gldim A = \projdim k = n$.
+
+(II) Conversely, suppose that $\gldim A = r < \infty$ and $\embdim A = s$. We
+prove that $A$ is regular by induction on $s$; we can assume that $s > 0$, that
+is $m \neq 0$. Then $m \notin \Ass(A)$: for if $0 \neq a \in A$ is such that $ma = 0$, consider
+a minimal resolution
+\[
+  0 \to L_r \to L_{r-1} \to \cdots \to L_0 \to k \to 0
+\]
+of $k$ (with $r > 0$); then $L_r \subset mL_{r-1}$, but then $aL_r = 0$, which contradicts the
+assumption that $L_r$ is a free module. Thus we can choose $x \in m$ not
+contained in $m^2$ or in any associated prime of $A$. Then $x$ is $A$-regular,
+hence also $m$-regular, so that if we set $B = A/xA$ then according to Lemma~\hyperref[lem:18.2]{2}
+of \S\ref{sec:18}, $\Ext^q_A(m, N) = \Ext^q_B(m/xm, N)$ for all $B$-modules $N$, and hence
+we obtain $\projdim_B m/xm \le r$.
+
+Now we prove that the natural map $m/xm \to m/xA$ splits, so that
+$m/xA$ is isomorphic to a direct summand of $m/xm$. Since $x \notin m^2$, we can take
+a minimal basis $x_1 = x, x_2, \ldots, x_s$ of $m$ starting with $x$ (here $s = \embdim
+A$). We set $b = (x_2, \ldots, x_s)$, so that by the minimal basis condition,
+$b \cap xA \subset xm$, and therefore there exists a chain
+\[
+  m/xA = (b + xA)/xA \cong b/(b \cap xA) \to m/xm \to m/xA
+\]
+of natural maps, whose composite is the identity. This proves the above
+claim. Now clearly,
+\[
+  \projdim_B m/xA \le \projdim_B m/xm \le r.
+\]
+Taking a minimal $B$-projective resolution of $m/xA$ and patching it together
+with the exact sequence $0 \to m/xA \to B \to k \to 0$ gives a projective
+resolution of $k$ of length $\le r + 1$, and hence $\gldim B = \projdim_B k \le r + 1$,
+so that by induction, $B$ is a regular local ring. Since $x$ is not contained
+in any associated prime of $A$ we have $\dim B = \dim A - 1$, and therefore
+$A$ is regular.
+\end{proof}
+
+\begin{theorem}[Serre]\label{thm:19.3}
+Let $A$ be a regular local ring and $P$ a prime ideal; then
+$A_P$ is a regular local ring.
+\end{theorem}
+
+\begin{proof}
+Since $\projdim_A A/P \le \gldim A < \infty$, as an $A$-module $A/P$ has a
+projective resolution $L_\bullet$ of finite length. Then $L_\bullet \otimes_A A_P$ is a projective
+resolution of $(A/P) \otimes_A A_P = A_P/PA_P = K(P)$ as an $A_P$-module, so that $K(P)$
+has a projective resolution of finite length as an $A_P$-module, which means that $A_P$
+has finite global dimension; thus by the previous theorem, $A_P$ is
+regular.
+\end{proof}
+
+\begin{definition*}
+A \emph{regular ring}\index{regular rings} is a Noetherian ring such that the localisation
+at every prime is a regular local ring. By the previous theorem, it is
+enough\index{regular local rings} for the localisation at every maximal ideal to be regular.
+\end{definition*}
+
+\begin{theorem}\label{thm:19.4}
+A regular ring is normal.
+\end{theorem}
+
+\begin{proof}
+The definition of normal is local, so that it is enough to show that a
+regular local ring is normal. We show that the conditions of the corollary
+to Theorem~\ref{thm:11.5} are satisfied. (a) The localisation at a height 1 prime ideal is a
+DVR by the previous theorem and Theorem~\ref{thm:11.2}. (b) All the prime
+divisors of a non-zero principal ideal have height 1 by Theorem~\ref{thm:17.8} (the
+implication regular $\Rightarrow$ CM).
+\end{proof}
+
+\begin{theorem}\label{thm:19.5}
+If $A$ is regular then so are $A[X]$ and $A[[X]]$.
+\end{theorem}
+
+\begin{proof}
+For $A[X]$, let $P$ be a maximal ideal of $A[X]$ and set $P \cap A = m$.
+Then $A[X]_P$ is a localisation of $A_m[X]$, so that replacing $A$ by $A_m$, we can assume
+$A$ is a regular local ring. Then setting $A/m = k$ we have $A[X]/m[X] =
+k[X]$, so that there is a monic polynomial $f(X)$ with coefficients in $A$ such that
+$P = (m, f(X))$, and such that $f$ reduces to an irreducible polynomial in
+$k[X]$ modulo $m$. Then by Theorem~\ref{thm:15.1}, we clearly have
+\[
+  \dim A[X]_P = \htop P = 1 + \htop m = 1 + \dim A;
+\]
+on the other hand $m$ is generated by $\dim A$ elements, so that $P = (m, f)$ is
+generated by $\dim A + 1$ elements, and therefore $A[X]_P$ is regular.
+
+For $A[[X]]$, set $B = A[[X]]$ and let $M$ be a maximal ideal of $B$; then $X \in M$
+by Theorem~\ref{thm:8.2}, (i). Therefore $M \cap A = m$ is a maximal ideal of $A$. Now
+although we cannot say that $B_M$ contains $A_m[[X]]$, the two have the same
+completion, $(B_M)^\wedge = (A_m)^\wedge[[X]]$. A Noetherian local ring is regular if and
+only if its completion is regular (since both the dimension and embedding
+dimension remain the same on taking the completion). Thus if we replace
+$A$ by $(A_m)^\wedge$, the maximal ideal of $B = A[[X]]$ is $M = (m, X)$, and $\htop M =
+\htop m + 1$, so that $B$ is also regular.
+\end{proof}
+
+Next we discuss the properties of modules which have finite free
+resolutions (the definition is given below).
+
+\begin{lemma}[Schanuel]\label{lem:19.3}
+Let $A$ be a ring and $M$ an $A$-module. Suppose that
+\[
+  0 \to K \to P \to M \to 0 \quad \text{and} \quad 0 \to K' \to P' \to M \to 0
+\]
+are exact sequences with $P$ and $P'$ projective. Then $K \oplus P' \cong K' \oplus P$.
+\end{lemma}
+
+% 注: 原书此处用 λ, λ' 与矩阵 (φ, ψ, φψ = 1) 的写法, 扫描版矩阵不可辨;
+% 此处按标准 fibre product 证法转录, 结论与原书一致.
+\begin{proof}
+From the fact that $P$ and $P'$ are projective, there exist $\lambda\colon P \to P'$
+and $\lambda'\colon P' \to P$, giving the diagram
+\[
+  \begin{array}{ccccccc}
+    0 & \to & K & \to & P & \xrightarrow{\varepsilon} & M \to 0 \\
+    & & & & \downarrow \lambda' & & \downarrow \lambda \\
+    0 & \to & K' & \to & P' & \xrightarrow{\varepsilon'} & M \to 0
+  \end{array}
+\]
+with $\varepsilon'\lambda = \varepsilon$ and $\varepsilon\lambda' = \varepsilon'$.
+We add in harmless summands $P'$ and $P$ to the two exact rows, and line
+up the middle terms:
+\[
+  0 \to K \oplus P' \to P \oplus P' \xrightarrow{(\varepsilon, 0)} M \to 0
+  \quad \text{and} \quad
+  0 \to P \oplus K' \to P \oplus P' \xrightarrow{(0, \varepsilon')} M \to 0.
+\]
+Consider the submodule $W = \{(x, y) \in P \oplus P' \mid \varepsilon(x) = \varepsilon'(y)\}$ of $P \oplus P'$,
+the fibre product of $P$ and $P'$ over $M$. Projection onto the first factor gives
+the exact sequence $0 \to K' \to W \to P \to 0$: indeed $W \to P$ is surjective since
+$\varepsilon'$ is surjective, and its kernel is $\{(0, y) \mid \varepsilon'(y) = 0\} = K'$. Since $P$ is
+projective, this sequence splits, so that $W \cong K' \oplus P$. Similarly, projection onto
+the second factor gives the exact sequence $0 \to K \to W \to P' \to 0$, which splits, so
+that $W \cong K \oplus P'$. Therefore $\varphi$ induces an isomorphism
+$K \oplus P' \cong P \oplus K'$.
+\end{proof}
+
+\begin{lemma}[generalised Schanuel lemma]\label{lem:19.4}
+Let $A$, $M$ be as above, and suppose
+that
+\[
+  0 \to P_n \to \cdots \to P_1 \to P_0 \to M \to 0
+  \quad \text{and} \quad
+  0 \to Q_n \to \cdots \to Q_1 \to Q_0 \to M \to 0
+\]
+are exact sequences with $P_i$ and $Q_i$ projective for
+$0 \le i \le n - 1$. Then
+\[
+  P_0 \oplus Q_1 \oplus P_2 \oplus \cdots \cong Q_0 \oplus P_1 \oplus Q_2 \oplus \cdots
+\]
+(the alternating sums of $P_i$ and $Q_i$).
+\end{lemma}
+
+\begin{proof}
+Write $K$ for the kernel of $P_0 \to M$ and $K'$ for the kernel of
+$Q_0 \to M$; then, by the previous lemma, $K \oplus Q_0 \cong P_0 \oplus K'$. Now add
+in harmless summands $Q_n$ and $P_n$ to $0 \to P_n \to \cdots \to P_1 \to
+K \to 0$ and $0 \to Q_n \to \cdots \to Q_1 \to K' \to 0$ respectively, to obtain
+exact sequences
+\[
+  0 \to P_n \to \cdots \to P_1 \oplus Q_0 \to K \oplus Q_0 \to 0
+  \quad \text{and} \quad
+  0 \to Q_n \to \cdots \to Q_1 \oplus P_0 \to P_0 \oplus K' \to 0,
+\]
+and induction on $n$ gives the assertion.
+\end{proof}
+
+A \emph{finite free resolution} (or \emph{FFR}\index{FFR} for short) of an $A$-module $M$ is a
+resolution
+\[
+  0 \to F_r \to \cdots \to F_1 \to F_0 \to M \to 0 \quad \text{(of finite length)}
+\]
+with each $F_i$ a finite free module. If $M$ has an FFR we set
+\[
+  \chi(M) = \sum_{i=0}^{r} (-1)^i \rank F_i,
+\]
+and call $\chi(M)$ the \emph{Euler number}\index{Euler number} of $M$. By Lemma~\hyperref[lem:19.4]{4},
+$\chi(M)$ is independent of the choice of FFR. Moreover, since for any prime
+ideal $P$,
+\[
+  0 \to (F_r)_P \to \cdots \to (F_1)_P \to (F_0)_P \to M_P \to 0
+\]
+is an FFR of the $A_P$-module $M_P$ we have $\chi(M) = \chi(M_P)$. If $M$ is itself
+free then one sees easily from Lemma~\hyperref[lem:19.4]{4} that $\chi(M) = \rank M$.
+
+\begin{theorem}\label{thm:19.6}
+Let $(A, m)$ be a local ring, and suppose that for any finite
+subset $E \subset m$ there exists $0 \neq y \in A$ such that $yE = 0$; then the only
+$A$-modules having an FFR are the free modules.
+\end{theorem}
+
+\begin{remark}
+If $A$ is Noetherian then the assumption on $m$ is equivalent to
+$m \in \Ass(A)$, or $\depth A = 0$. In this case the theorem is a special case of
+Theorem~\ref{thm:19.1}.
+\end{remark}
+
+\begin{proof}
+Suppose that $0 \to F_r \to F_{r-1} \to \cdots \to F_0 \to M \to 0$ is an FFR
+of $M$, and set $N = \Coker(F_r \to F_{r-1})$; if we prove that $N$ is free then
+we can decrease $r$ by 1, so that we only need consider the case $0 \to
+F_1 \to F_0 \to M \to 0$. Now let $0 \to L_1 \to L_0 \to M \to 0$ be a minimal
+free resolution of $M$; then since $L_0$ and $F_0$ are finitely generated, by
+Schanuel's lemma (or by Theorem~\ref{thm:2.6}), $L_1$ is also finite. Considering bases of
+$F_1$ and $L_1$, we can write down a set of generators of $L_1$ as a submodule of
+$F_0$ using only a finite number of elements of $m$. Then by assumption, there
+exists $0 \neq y \in A$ such that $yL_1 = 0$. Since $L_1$ is a free module, we must
+have $L_1 = 0$, so that $M \cong L_0$, and is free.
+\end{proof}
+
+\begin{theorem}\label{thm:19.7}
+Let $A$ be any ring; if $M$ is an $A$-module having an FFR then
+$\chi(M) \ge 0$.
+\end{theorem}
+
+\begin{proof}
+Choose a minimal prime ideal $P$ of $A$; since $\chi(M) = \chi(M_P)$, we can
+replace $A$ by $A_P$, and then $A$ is a local ring with maximal ideal $m$ equal to
+$\nil(A)$. Then the assumption of the previous theorem is satisfied: for
+$x_1, \ldots, x_r \in m$, we can assume by induction on $r$ that there is a $z \neq 0$
+such that $zx_1 = \cdots = zx_{r-1}$; but $x_r$ is nilpotent, so that there is an $i \ge 0$
+such that $zx_r^i \neq 0$ but $zx_r^{i+1} = 0$, and we can take $y = zx_r^i$. Therefore by
+the previous theorem $M$ is a free module, and $\chi(M) = \rank M \ge 0$.
+\end{proof}
+
+\begin{theorem}[Auslander and Buchsbaum~\cite{AB2}]\label{thm:19.8}
+Let $A$ be a Noetherian
+ring and $M$ an $A$-module, and suppose that $M$ has an FFR. Then the
+following three conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $\ann(M) \neq 0$;
+  \item $\chi(M) = 0$;
+  \item $\ann(M)$ contains an $A$-regular element.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1) \implies (2)$ Suppose that $\chi(M) > 0$; then for any $P \in \Ass(A)$ we have
+$\chi(M_P) > 0$, and hence $M_P \neq 0$. By Theorem~\hyperref[thm:19.6]{6}, $M_P$ is a free $A_P$-module, so
+that setting $I = \ann(M)$ we have $I_P = \ann(M_P) = 0$. If we set $J = \ann(I)$
+then this is equivalent to $J \not\subset P$. Since this holds for every $P \in \Ass(A)$
+we see that $J$ contains an $A$-regular element, but then $J \cdot I = 0$ implies that
+$I = 0$, a contradiction.
+
+$(2) \implies (3)$ If $\chi(M) = 0$ then by Theorem~\hyperref[thm:19.6]{6}, $M_P = 0$ for every $P \in \Ass(A)$.
+This means that $\ann(M) \not\subset P$, so that $\ann(M)$ contains an $A$-regular
+element.
+
+$(3) \implies (1)$ is obvious.
+\end{proof}
+
+\begin{theorem}[Vasconcelos~\cite{Vas1}]\label{thm:19.9}
+Let $A$ be a Noetherian local ring, and
+$I$ a proper ideal of $A$; assume that $\projdim I < \infty$. Then
+\[
+  I \text{ is generated by an $A$-sequence} \iff I/I^2 \text{ is a free module over } A/I.
+\]
+\end{theorem}
+
+\begin{proof}
+$(\implies)$ is already known (Theorem~\ref{thm:16.2}). In fact, $I^v/I^{v+1}$ is a free
+$A/I$-module for $v = 1, 2, \ldots$
+
+$(\Longleftarrow)$ We can assume that $I \neq 0$. Since $I$ has finite projective dimension
+over $A$ so has $A/I$, and since $A$ is local, $A/I$ has an FFR. Now $\ann(A/I) = I$,
+so that by the previous theorem $I$ is not contained in any associated prime
+of $A$, and therefore we can choose an element $x \in I$ such that $x$ is not
+contained in $m^2$ or in any associated prime of $A$. Then $x$ is $A$-regular,
+and $\bar{x} = x \bmod I^2$ is a member of a basis of $I/I^2$ over $A/I$; let $\bar{x}$,
+$\bar{y}_2, \ldots, \bar{y}_n \in I$ be such that their images form a basis of $I/I^2$. Then if we
+set $B = A/xA$, we see by the same argument as in (II) of the proof of
+Theorem~\hyperref[thm:19.2]{2} that $\projdim_B I/xI < \infty$, and that $I/xA$ is isomorphic to a direct
+summand of $I/xI$. We now set $I^* = I/xA$, so that $\projdim_A I^* < \infty$. But
+on the other hand one sees easily that $I^*/I^{*2}$ is a free module over $B/I^*$,
+and an induction on the number of generators of $I$ completes the proof.
+\end{proof}
+
+\begin{remark}
+In Lech~\cite{Le1}, a set $x_1, \ldots, x_n$ of elements of $A$ is defined to be
+\emph{independent}\index{independent elements} if
+\[
+  \sum a_ix_i = 0 \Rightarrow a_i \in (x_1, \ldots, x_n) \quad \text{for all } i.
+\]
+If we set $I = (x_1, \ldots, x_n)$ then this condition is equivalent to saying that
+the images of $x_1, \ldots, x_n$ in $I/I^2$ form a basis of $I/I^2$ over $A/I$. Then if $A$
+and $I$ satisfy the hypotheses of the previous theorem, the theorem tells us
+that $I = (y_1, \ldots, y_n)$ with $y_1, \ldots, y_n$ an $A$-sequence. Setting $x_i = \sum a_{ij}y_j$ we
+see that the matrix $(a_{ij})$ is invertible when considered in $A/I$; this means that
+the determinant of $(a_{ij})$ is not in the maximal ideal of $A$, and so $(a_{ij})$ itself
+is invertible. Thus $x_1, \ldots, x_n$ is an $A$-quasi-regular sequence, hence an
+$A$-sequence. In particular, we get the following corollary.
+\end{remark}
+
+\begin{corollary*}
+Let $(A, m)$ be a regular local ring. Then if $x_1, \ldots, x_n \in m$ are
+independent in the sense of Lech, they form an $A$-sequence.
+\end{corollary*}
+
+However, if we try to prove this corollary as it stands, the induction
+does not go through. The key to success with Vasconcelos' theorem is to
+strengthen the statement so that induction can be used effectively. Now
+as Kaplansky has also pointed out, the main part of Theorem~\hyperref[thm:19.2]{2} (the
+implication $\gldim A < \infty \Rightarrow$ regular) follows at once from Theorem~\hyperref[thm:19.9]{9},
+because if $m$ is generated by an $A$-sequence then $\embdim A \le \depth A \le
+\dim A$.
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:19}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:19.1-ex}
+Let $k$ be a field and $R = R_0 + R_1 + R_2 + \cdots$ a Noetherian graded ring
+with $R_0 = k$; set $m = R_1 + R_2 + \cdots$. Show that if $R_m$ is an $n$-dimensional
+regular local ring then $R$ is a polynomial ring $R = k[y_1, \ldots, y_n]$ with $y_i$
+homogeneous of positive degree.
+\end{exercise}
+
+\begin{exercise}\label{ex:19.2-ex}
+Let $A$ be a ring and $M$ an $A$-module. Say that $M$ is \emph{stably free}\index{stably free} if there exist
+finite free modules $F$ and $F'$ such that $M \oplus F = F'$. Obviously a stably free
+$A$-module $M$ is a finite projective $A$-module, and has an FFR $0 \to
+F \to F' \to M \to 0$. Prove that, conversely, a finite projective module
+having an FFR is stably free.
+\end{exercise}
+
+\begin{exercise}\label{ex:19.3-ex}
+Prove that if every finite projective module over a Noetherian ring $A$ is
+stably free then every finite $A$-module of finite projective dimension has an
+FFR.
+\end{exercise}
+
+\begin{exercise}\label{ex:19.4-ex}
+Prove that if every finite module over a Noetherian ring $A$ has an FFR
+then $A$ is regular.
+\end{exercise}

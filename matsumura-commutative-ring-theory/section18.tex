@@ -1,0 +1,795 @@
+% ============ §18 Gorenstein rings (原书 pp.139-152) ============
+\section{Gorenstein rings}\label{sec:18}\index{Gorenstein rings, section 18}
+
+\begin{lemma}\label{lem:18.1}
+Let $A$ be a ring, $M$ an $A$-module, and $n > 0$ a given integer,
+\[
+  \injdim M \le n \iff \Ext^{n+1}_A(A/I, M) = 0 \text{ for all ideals } I.
+\]
+If $A$ is Noetherian, then we can replace `for all ideals' by `for all prime
+ideals' in the right-hand condition.
+\end{lemma}
+
+\begin{proof}
+($\Rightarrow$) This is clear on calculating the Ext by an injective resolution
+of $M$.
+
+($\Leftarrow$) If $n = 0$ then from the exact sequence $0 \to I \to A \to A/I \to 0$ and
+from the fact that $\Ext^1_A(A/I, M) = 0$ we get that $\Hom(A, M) \to
+\Hom(I, M) \to 0$ is exact. Since this holds for every $I$, Theorem B3 of
+Appendix B implies that $M$ is injective. Suppose then that $n > 0$.
+There exists an exact sequence
+\[
+  0 \to M \to Q^0 \to Q^1 \to \cdots \to Q^{n-1} \to C \to 0,
+\]
+with each $Q^i$ injective. (We can obtain this by taking an injective resolution
+of $M$ up to $Q^{n-1}$ and setting $C$ for the cokernel of $Q^{n-2} \to Q^{n-1}$.)
+One sees easily that $\Ext^{n+1}_A(A/I, M) \cong \Ext^1_A(A/I, C)$, so that by the argument
+used in the $n = 0$ case, $C$ is injective, and so $\injdim M \le n$.
+
+If $A$ is Noetherian then by Theorem~\ref{thm:6.4}, any finite $A$-module $N$ has a
+chain $N = N_0 \supset N_1 \supset \cdots \supset N_{r+1} = 0$ of submodules such that $N_j/N_{j+1} \cong
+A/P_j$, with $P_j \in \Spec A$. Using this, if $\Ext^i_A(A/P, M) = 0$ for all prime ideals
+$P$ then we also have $\Ext^i_A(N, M) = 0$ for all finite $A$-modules $N$. Now we
+just have to apply this with $i = n + 1$ and $N = A/I$.
+\end{proof}
+
+\begin{lemma}\label{lem:18.2}
+Let $A$ be a ring, $M$ and $N$ two $A$-modules, and $x \in A$;
+suppose that $x$ is both $A$-regular and $M$-regular, and that $xN = 0$. Set $B = A/xA$ and
+$\bar{M} = M/xM$. Then
+\begin{enumerate}[(i)]
+  \item $\Hom_B(N, \bar{M}) = 0$, and $\Ext^{n+1}_A(N, M) \cong \Ext^n_B(N, \bar{M})$ for all $n \ge 0$;
+  \item $\Ext^n_A(M, N) \cong \Ext^n_B(\bar{M}, N)$ for all $n \ge 0$;
+  \item $\Tor^A_n(M, N) \cong \Tor^B_n(\bar{M}, N)$ for all $n \ge 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) The first formula is obvious. For the second, set $T^n(N) =
+\Ext^{n+1}_A(N, M)$, and view $T^n$ as a contravariant functor from the category
+of $B$-modules to that of Abelian groups. Then first of all, the exact sequence
+\[
+  0 \to M \xrightarrow{x} M \to \bar{M} \to 0
+\]
+gives $T^0(N) = \Hom_A(N, M) = \Hom_B(N, \bar{M})$. Moreover, since $x$ is
+$A$-regular we have $\projdim_A B = 1$, and therefore $T^n(B) = 0$ for $n > 0$,
+so that $T^n(L) = 0$ for $n > 0$ and every projective $B$-module $L$. Finally, for
+any short exact sequence $0 \to N' \to N \to N'' \to 0$ of $B$-modules, there is
+a long exact sequence
+\[
+  0 \to T^0(N'') \to T^0(N) \to T^0(N')
+\]
+\[
+  \to T^1(N'') \to T^1(N) \to T^1(N') \to \cdots .
+\]
+This proves that $T^\bullet$ is the derived functor of $\Hom_B(-, \bar{M})$, and therefore
+coincides with $\Ext^\bullet_B(-, \bar{M})$.
+
+(ii) We first prove $\Tor^A_n(M, B) = 0$ for $n > 0$. For $n > 1$ this follows
+from $\projdim_A B = 1$. For $n = 1$, consider the long exact sequence
+$0 \to \Tor^A_1(M, B) \to M \xrightarrow{x} M \to M \otimes_A B \to 0$ associated with the short
+exact sequence $0 \to A \xrightarrow{x} A \to B \to 0$. Since $x$ is $M$-regular we have
+$\Tor^A_1(M, B) = 0$.
+
+Now let $L_\bullet \to M \to 0$ be a free resolution of the $A$-module $M$. Then
+$L_\bullet \otimes_A B \to M \otimes_A B \to 0$ is exact by what we have just proved, so that
+$L_\bullet \otimes_A B$ is a free resolution of the $B$-module $M \otimes_A B = \bar{M}$. Then $\Ext^n_A(M, N)
+= H^n(\Hom_A(L_\bullet, N)) = H^n(\Hom_B(L_\bullet \otimes_A B, N)) = \Ext^n_B(\bar{M}, N)$ by Formula 9
+of Appendix A.
+
+(iii) Using the same notation as above, we have $\Tor^A_n(M, N) =
+H_n(L_\bullet \otimes_A N) = H_n((L_\bullet \otimes_A B) \otimes_B N) = \Tor^B_n(\bar{M}, N)$.
+\end{proof}
+
+\begin{lemma}\label{lem:18.3}
+Let $(A, m, k)$ be a Noetherian local ring, $M$ a finite $A$-module, and
+$P \in \Spec A$; suppose that $\htop (m/P) = 1$. Then
+\[
+  \Ext^{r+1}_A(k, M) = 0 \Rightarrow \Ext^r_A(A/P, M) = 0.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose $x \in m - P$; then $0 \to A/P \xrightarrow{x} A/P \to A/(P + Ax) \to 0$ is
+an exact sequence, and $P + Ax$ is an $m$-primary ideal, so that if we let
+$N = A/(P + Ax)$, there exists a chain of submodules of $N$
+\[
+  N = N_0 \supset N_1 \supset \cdots \supset N_s = 0 \quad \text{such that } N_i/N_{i+1} \cong k.
+\]
+Hence from $\Ext^{r+1}_A(k, M) = 0$ we get $\Ext^{r+1}_A(A/(P + Ax), M) = 0$, and
+\[
+  \Ext^r_A(A/P, M) \xrightarrow{x} \Ext^r_A(A/P, M) \to 0
+\]
+is exact, so that by NAK $\Ext^r_A(A/P, M) = 0$.
+\end{proof}
+
+\begin{lemma}\label{lem:18.4}
+Let $(A, m, k)$ be a Noetherian local ring, $M$ a finite $A$-module, and
+$P \in \Spec A$; suppose that $\htop (m/P) = d$. Then
+\[
+  \Ext^{r+d}_A(k, M) = 0 \Rightarrow \Ext^r_{A_P}(\kappa(P), M_P) = 0.
+\]
+\end{lemma}
+
+\begin{proof}
+Let $m = P_0 \supset P_1 \supset \cdots \supset P_d = P$, with $P_i \in \Spec A$ and $\htop (P_i/P_{i+1}) = 1$;
+then by the previous lemma, from $\Ext^{r+d}_A(k, M) = 0$ we get
+\[
+  \Ext^{r+d-1}_A(A/P_1, M) = 0,
+\]
+and localising at $P_1$ we get
+\[
+  \Ext^{r+d-1}_{A_{P_1}}(\kappa(P_1), M_{P_1}) = 0.
+\]
+Proceeding in the same way gives the result.
+\end{proof}
+
+\begin{theorem}\label{thm:18.1}
+Let $(A, m, k)$ be an $n$-dimensional Noetherian local ring.
+Then the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $\injdim A < \infty$;
+  \item $\injdim A = n$;
+  \item $\Ext^i_A(k, A) = 0$ for $i \neq n$ and $\cong k$ for $i = n$;
+  \item $\Ext^i_A(k, A) = 0$ for some $i > n$;
+  \item $\Ext^i_A(k, A) = 0$ for $i < n$ and $\cong k$ for $i = n$;
+  \item[($4'$)] $A$ is a CM ring and $\Ext^n_A(k, A) \cong k$;
+  \item[($5$)] $A$ is a CM ring, and every parameter ideal of $A$ is irreducible;
+  \item[($5'$)] $A$ is a CM ring and there exists an irreducible parameter ideal.
+\end{enumerate}
+Recall that an ideal $I$ is \emph{irreducible} if $I = J \cap J'$ implies either $I = J$ or
+$I = J'$ (see \S\ref{sec:6}).
+\end{theorem}
+
+\begin{definition}
+A Noetherian local ring for which the above equivalent
+conditions hold is said to be \emph{Gorenstein}.\index{Gorenstein ring}
+\end{definition}
+
+\begin{proof}[Proof of $(1) \Rightarrow (1')$]
+Set $\injdim A = r$. If $P$ is a minimal prime ideal of $A$
+such that $\htop (m/P) = \dim A = n$ then $PA_P \in \Ass(A_P)$, so that
+$\Hom_{A_P}(\kappa(P), A_P) \neq 0$; hence, by Lemma~\hyperref[lem:18.4]{4}, $\Ext^n_A(k, A) \neq 0$, therefore $r \ge n$.
+If $r = 0$ this means that $n = 0$, and we are done. If $r > 0$, set $\Ext^r_A(-, A) =
+T$; then this is a right-exact contravariant functor, and by Lemma~\hyperref[lem:18.1]{1},
+there is a prime ideal $P$ such that $T(A/P) \neq 0$. Now if $P \neq m$ and we take
+$x \in m - P$, the exact sequence
+\[
+  0 \to A/P \xrightarrow{x} A/P
+\]
+leads to an exact sequence
+\[
+  T(A/P) \xrightarrow{x} T(A/P) \to 0;
+\]
+but then by NAK, $T(A/P) = 0$, which is a contradiction. Thus $P = m$, and
+so $T(k) \neq 0$. We have $m \notin \Ass(A)$, since otherwise there would exist an
+exact sequence $0 \to k \to A$, and hence an exact sequence
+\[
+  T(A) = \Ext^r_A(A, A) = 0 \to T(k) \to 0,
+\]
+which is a contradiction. Hence $m$ contains an $A$-regular element $x$. If we set
+$B = A/xA$ then by Lemma~\hyperref[lem:18.2]{2}, $\Ext^n_B(N, B) = \Ext^{n+1}_A(N, A)$ for every $B$-
+module $N$, so that $\injdim B = r - 1$. By induction on $r$ we have $r - 1 =
+\dim B = n - 1$, and hence $r = n$.
+\end{proof}
+
+\begin{proof}[Proof of $(1') \Rightarrow (2)$]
+When $n = 0$ we have $m \in \Ass(A)$, so there exists an exact
+sequence $0 \to k \to A$, and since $\injdim A = 0$,
+\[
+  A = \Hom(A, A) \to \Hom(k, A) \to 0
+\]
+is exact. Therefore $\Hom(k, A)$ is generated by one element. But
+$\Hom (k, A) \neq 0$, so that we must have $\Hom (k, A) \cong k$. By assumption, $A$ is
+an injective module, so that $\Ext^i_A(k, A) = 0$ for $i > 0$; thus we are done in the
+case $n = 0$. If $n > 0$ then, as we have seen above, $m$ contains an $A$-regular
+element $x$, and if we set $B = A/xA$ then $\dim B = \injdim B = n - 1$, so that by
+Lemma~\hyperref[lem:18.2]{2} and induction on $n$ we have
+\[
+  \Ext^i_A(k, A) = \Ext^{i-1}_B(k, B) =
+  \begin{cases}
+    0 & \text{if } 0 < i \neq n \\
+    k & \text{if } i = n
+  \end{cases}
+\]
+and
+\[
+  \Hom_A(k, A) = 0. \qquad\blacksquare
+\]
+\end{proof}
+
+\begin{proof}[Proof of $(3) \Rightarrow (1)$]
+We use induction on $n$. Assume that for some $i > n$ we have
+$\Ext^i_A(k, A) = 0$. If $n = 0$ then $m$ is the unique prime ideal of $A$, so that by
+Lemma~\hyperref[lem:18.1]{1}, $\injdim A \le i < \infty$. If $n > 0$ let $P$ be a prime ideal distinct
+from $m$, and set $d = \htop (m/P)$ and $B = A_P$; then by Lemma~\hyperref[lem:18.4]{4} we have
+$\Ext^{i-d}_B(\kappa(P), B) = 0$. Moreover, $\dim B \le n - d < i - d$, so that by induction
+$\injdim B < \infty$. Thus for any finite $A$-module $M$ we have
+\[
+  (\Ext^i_A(M, A))_P = \Ext^i_B(M_P, B) = 0
+\]
+for $i > n \ge \dim B = \injdim B$). Therefore, setting $T(M) = \Ext^i_A(M, A)$,
+we get $\Supp(T(M)) = \{m\}$, and since $T(M)$ is a finite $A$-module,
+$T(M) \neq 0$ implies that $T(M) \otimes_A k \neq 0$. Using this, we now prove that $T(A/P) = 0$ for every prime
+ideal $P$. If $T(A/P) \neq 0$ for some $P$, choose a maximal $P$ with this property. By
+assumption $T(k) = 0$, so that $P \neq m$, so that we can take $x \in m - P$ and form
+\[
+  0 \to A/P \xrightarrow{x} A/P \to A/(P + Ax) \to 0.
+\]
+We write $A/(P + Ax) = M_0 \supset M_1 \supset \cdots \supset M_s = 0$ with $M_l/M_{l+1} \cong A/P_l$;
+then $P_l$ is strictly bigger than $P$, so that $T(A/(P + Ax)) = 0$. Therefore
+\[
+  T(A/P) \xrightarrow{x} T(A/P) \to 0
+\]
+so that multiplication by $x$ in $T(A/P)$ is injective; but since
+$l(T(A/P)) < \infty$, injective implies surjective. Hence by NAK, $T(A/P) = 0$,
+which is a contradiction. Therefore $T(A/P) = 0$ for every $P \in \Spec A$, so that
+$\injdim A < \infty$ by Lemma~\hyperref[lem:18.1]{1}.
+
+Thus we have proved that $(1), (1'), (2)$ and $(3)$ are equivalent. Now we
+prove the equivalence of $(2), (4), (4'), (5)$ and $(5')$.
+
+$(4) \Rightarrow (2)$ is obvious. $(4) \Leftrightarrow (4')$ comes at once from the fact that $A$ is CM if and
+only if $\Ext^i_A(k, A) = 0$ for all $i < n$ (the implication $(2) \Rightarrow (3)$ of
+Theorem~\ref{thm:16.6}).
+
+$(4') \Rightarrow (5)$. A system of parameters $x_1, \ldots, x_n$ in a CM ring $A$ is an $A$-
+sequence, so that setting $B = A/\sum x_iA$, we have
+\[
+  \Hom_A(k, B) \cong \Ext^n_A(k, A) \cong k.
+\]
+Then $B$ is an Artinian ring, and any minimal non-zero ideal of $B$ is
+isomorphic to $k$, so that the above formula says that $B$ has just one such
+ideal, say $I_0$. If $I_1$ and $I_2$ are any non-zero ideals of $B$ then both of
+them contain $I_0$, so that $I_1 \cap I_2 \neq (0)$. Lifting this up to $A$, this means
+that $(x_1, \ldots, x_n)$ is an irreducible ideal.
+
+$(5') \Rightarrow (2)$. If $A$ is CM we already have $\Ext^i_A(k, A) = 0$ for $i < n$. If $q$ is
+an irreducible parameter ideal and we set $B = A/q$ then, in the same way as
+above,
+\[
+  \Ext^{n+1}_A(k, A) \cong \Ext^1_B(k, B),
+\]
+so that it is enough to prove that in an Artinian ring $B$, $(0)$ is irreducible
+implies that
+\[
+  \Hom_B(k, B) \cong k \quad \text{and} \quad \Ext^i_B(k, B) = 0 \text{ for } i > 0.
+\]
+The statement for Hom is easy: first of all, $B$ is Artinian, so that
+$\Hom_B(k, B) \neq 0$; for non-zero $f, g \in \Hom_B(k, B)$ we must have $f(k) = g(k)$,
+since otherwise $f(k) \cap g(k) = (0)$, which contradicts the irreducibility of $(0)$.
+Hence $f(1) = g(\alpha)$ for some $\alpha \in k$, and $f = \alpha g$, so that $\Hom_B(k, B) = k$.
+
+Now consider the $\Ext^i_B(k, B)$. Choose a chain of ideals $(0) = N_0 \subset
+N_1 \subset \cdots \subset N_r = B$ such that $N_i/N_{i-1} \cong k$, and consider the exact sequences
+\[
+  0 \to N_1 \to N_2 \to k \to 0
+\]
+\[
+  0 \to N_2 \to N_3 \to k \to 0
+\]
+\[
+  \vdots
+\]
+\[
+  0 \to N_{r-1} \to B \to k \to 0.
+\]
+From the long exact sequence
+\[
+  0 \to \Hom_B(k, B) \to \Hom_B(N_{i+1}, B) \to \Hom_B(N_i, B) \xrightarrow{\delta_i}
+  \Ext^1_B(k, B) \to \cdots
+\]
+and an easy induction (using $N_1 \cong k$ and $\Hom_B(k, B) \cong k$), we get that
+$l(\Hom_B(N_i, B)) \le i$, with equality holding if and only if $\delta_1, \ldots, \delta_{i-1}$ are all
+zero. However,
+\[
+  l(\Hom_B(N_r, B)) = l(\Hom_B(B, B)) = l(B) = r,
+\]
+so that we must have $\delta_1 = \cdots = \delta_{r-1} = 0$. Then from
+\[
+  0 \to N_{r-1} \to B \to k \to 0
+\]
+we get the exact sequence
+\[
+  0 \to \Ext^1_B(k, B) \to \Ext^1_B(B, B) = 0,
+\]
+and therefore $\Ext^1_B(k, B) = 0$. Now from Lemma~\hyperref[lem:18.1]{1}, $B$ is an injective $B$-
+module, so that $\Ext^i_B(k, B) = 0$ for all $i > 0$.
+\end{proof}
+
+\begin{lemma}\label{lem:18.5}
+Let $A$ be a Noetherian ring, $S \subset A$ a multiplicative set, and $I$ an
+injective $A$-module; then $I_S$ is an injective $A_S$-module.
+\end{lemma}
+
+\begin{proof}
+Every ideal of $A_S$ is the localisation $\mathfrak{a}_S$ of an ideal $\mathfrak{a}$ of $A$. From
+$0 \to \mathfrak{a} \to A$ we get the exact sequence $\Hom_A(A, I) \to \Hom_A(\mathfrak{a}, I) \to 0$,
+and, since $\mathfrak{a}$ is finitely generated
+\[
+  \Hom_{A_S}(A_S, I_S) \to \Hom_{A_S}(\mathfrak{a}_S, I_S) \to 0
+\]
+is exact. This proves that $I_S$ is an injective $A_S$-module.
+\end{proof}
+
+\begin{theorem}\label{thm:18.2}
+If $A$ is a Gorenstein local ring and $P \in \Spec A$ then $A_P$ is also
+Gorenstein.
+\end{theorem}
+
+\begin{proof}
+If $0 \to A \to I^0 \to I^1 \to \cdots \to I^n \to 0$ is an injective reso-
+lution of $A$, then localising at $P$ and applying the previous lemma gives an
+injective resolution of $A_P$, so that $\injdim A_P \le n$.
+\end{proof}
+
+\begin{definition}
+A Noetherian ring $A$ is \emph{Gorenstein} if its localisation at every
+maximal ideal is a Gorenstein local ring. (By the previous theorem, it then
+follows that $A_P$ is Gorenstein for every $P \in \Spec A$.)
+\end{definition}
+
+\begin{theorem}\label{thm:18.3}
+Let $A$ be a Noetherian local ring and $\hat{A}$ its completion.
+Then $A$ is Gorenstein $\iff \hat{A}$ is Gorenstein.
+\end{theorem}
+
+\begin{proof}
+We have $\dim A = \dim \hat{A}$, and since $\hat{A}$ is faithfully flat over $A$,
+$\Ext^i_A(k, A) \otimes_A \hat{A} = \Ext^i_{\hat{A}}(k, \hat{A})$, so that we only need to use condition (3)
+of Theorem 1.
+\end{proof}
+
+Closely related to the theory of Gorenstein rings is Matlis' theory
+of injective modules over Noetherian rings. We now discuss the main
+results of Matlis~\cite{Matl1}.
+
+Let $A$ be a Noetherian ring, and $E$ an injective $A$-module. If $E$ is a
+submodule of an $A$-module $M$ then since we can extend the identity map
+$1_E$ to a linear map $f\colon M \to E$, we have $M = E \oplus F$ (with $F = \Ker f$).
+An $A$-module $N$ is \emph{indecomposable}\index{indecomposable module} if $N$ cannot be written as a direct
+sum of two submodules. We write $E_A(N)$ or $E(N)$ for the \emph{injective hull}\index{injective hull}
+of an $A$-module $E$ (see Appendix B).
+
+\begin{theorem}\label{thm:18.4}
+Let $A$ be a Noetherian ring and $P, Q \in \Spec A$.
+\begin{enumerate}[(i)]
+  \item $E(A/P)$ is indecomposable.
+  \item Any indecomposable injective $A$-module is of the form $E(A/P)$ for
+        some $P \in \Spec A$.
+  \item If $x \in A - P$ then multiplication by $x$ induces an automorphism of $E(A/P)$.
+  \item $P \nsubseteq Q \iff E(A/P) \to E(A/Q)$ is injective.
+  \item For any $\xi \in E(A/P)$ there exists a positive integer $\nu$ (depending on $\xi$)
+        such that $P^\nu\xi = 0$.
+  \item If $Q \subset P$ then $E(A/Q)$ is an $A_P$-module, and is an injective hull of
+        $(A/Q)_P = A_P/QA_P$, that is
+        \[
+          E_A(A/Q) = E_{A_P}(A_P/QA_P).
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $I_1$ and $I_2$ are non-zero ideals of $A/P$ then $0 \neq I_1I_2 \subset I_1 \cap I_2$.
+Since $E(A/P)$ is an essential extension of $A/P$ (see Appendix B), so that for
+any two non-zero submodules $N_1, N_2$ of $E(A/P)$ we have $N_i \cap (A/P) \neq 0$, so
+that
+\[
+  N_1 \cap N_2 \supset (N_1 \cap A/P) \cap (N_2 \cap A/P) \neq 0.
+\]
+(ii) Let $N \neq 0$ be an indecomposable injective $A$-module and choose
+$P \in \Ass(N)$. Then $A/P$ can be embedded into $N$, and so $E(A/P)$ can also; but
+an injective submodule is always a direct summand, and since $N$ is
+indecomposable, $N = E(A/P)$.
+
+(iii) Write $\varphi$ for multiplication by $x$ in $E(A/P)$; then $\Ker(\varphi) \cap (A/P) = 0$, so
+that $\Ker(\varphi) = 0$, and $\Im \varphi$ is isomorphic to $E(A/P)$. Hence $\Im \varphi$ is injective,
+and is therefore a direct summand of $E(A/P)$, so that by (i), $\Im \varphi = E(A/P)$.
+
+(iv) If $P \nsubseteq Q$ and $x \in P - Q$ then multiplication by $x$ is injective in
+$E(A/Q)$ but not in $E(A/P)$.
+
+(v) By the proof of (ii) together with (iv), $\Ass(E(A/P)) = \{P\}$, so that the
+submodule $A\xi \cong A/\ann(\xi)$ also has $\Ass(A\xi) = \{P\}$. Hence $\ann(\xi)$ is a
+$P$-primary ideal.
+
+(vi) By (iii), we can view $E(A/Q)$ as an $A_P$-module; hence it contains
+$(A/Q)_P$. Since $E(A/Q)$ is an essential extension of $A/Q$ and $A/Q \subset (A/Q)_P \subset
+E(A/Q)$, it is also an essential extension of $(A/Q)_P$. For $A_P$-modules $M$ and $N$,
+any $A$-linear map $M \to N$ is also $A_P$-linear, and of course conversely,
+so that for an $A_P$-module, being injective as an $A_P$-module is the same as
+being injective as an $A$-module. Thus $E(A/Q)$ is an injective hull of the
+$A_P$-module $(A/Q)_P$.
+\end{proof}
+
+\begin{example}\label{ex:18.1}
+If $A$ is an integral domain and $K$ its field of fractions, $K = E(A)$
+(prove this!).
+\end{example}
+
+\begin{example}\label{ex:18.2}
+If $A$ is a DVR with uniformising element $x$ and field of fractions
+$K$, and $k = A/xA$, then $E(k) = K/A$. Indeed, if $I$ is a non-zero ideal of $A$
+we can write $I = x^rA$, and if $f\colon I \to K/A$ is a given map, let $f(x^r) = \alpha
+\bmod A$ for some $\alpha \in K$; then $f$ can be extended to a map $\bar{f}\colon A \to K/A$
+by setting $\bar{f}(1) = (\alpha/x^r) \bmod A$. Therefore $K/A$ is injective. We have
+$(x^{-1}A)/A \cong A/xA = k$, and it is easy to see that $K/A$ is an essential extension
+of $x^{-1}A/A$. Thus $K/A$ can be thought of as $E(k)$.
+\end{example}
+
+\begin{theorem}\label{thm:18.5}
+We consider modules over a Noetherian ring $A$.
+\begin{enumerate}[(i)]
+  \item A direct sum of any number of injective modules is injective.
+  \item Every injective module is a direct sum of indecomposable injective
+        modules.
+  \item The direct sum decomposition in (ii) is unique, in the sense that if
+        \[
+          M = \bigoplus M_i \quad \text{(with indecomposable } M_i\text{)}
+        \]
+        then for any $P \in \Spec A$, the sum $M(P)$ of all the $M_i$ isomorphic to $E(A/P)$
+        depends only on $M$ and $P$, and not on the decomposition $M = \bigoplus M_i$.
+        Moreover, the number of $M_i$ isomorphic to $E(A/P)$ is equal to
+        \[
+          \dim_{\kappa(P)} \Hom_{A_P}(\kappa(P), M_P), \quad \text{(where } \kappa(P) = A_P/PA_P),
+        \]
+        so that this also is independent of the decomposition.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Let $M_\lambda$ for $\lambda \in \Lambda$ be injective modules. It is enough to prove that
+for an ideal $I$ of $A$, any linear map $\varphi\colon I \to \bigoplus M_\lambda$ can be extended to a linear
+map $\bar{\varphi}\colon A \to \bigoplus M_\lambda$. Since $I$ is finitely generated, $\varphi(I)$ is contained
+in a finite direct sum $M_{\lambda_1} \oplus \cdots \oplus M_{\lambda_n}$ of the $M_\lambda$. If $\varphi_\mu$ is the $\mu$th component
+of $\varphi(\mathfrak{a})$, then $\varphi_\mu\colon I \to M_\mu$ extends
+to $\bar{\varphi}_\mu\colon A \to M_\mu$, and we just set $\bar{\varphi}(1) = \bar{\varphi}_1(1) + \cdots + \bar{\varphi}_n(1)$.
+
+(ii) Say that a family $\mathcal{F} = \{E_\lambda\}$ of indecomposable injective submodules
+$E_\lambda$ of $M$ is \emph{free} if the sum in $M$ of the $E_\lambda$ is direct, that is if, for any finite
+number $E_{\lambda_1}, \ldots, E_{\lambda_n}$ of them,
+\[
+  E_{\lambda_n} \cap (E_{\lambda_1} + \cdots + E_{\lambda_{n-1}}) = 0.
+\]
+Let $\mathfrak{M}$ be the set of all free families $\mathcal{F}$, ordered by inclusion. Then by
+Zorn's lemma $\mathfrak{M}$ has a maximal element, say $\mathcal{F}_0$. Write $N = \sum_{E \in \mathcal{F}_0} E$; then
+by (i), $N$ is injective, hence a direct summand of $M$, and $M = N \oplus N'$. If
+$N' \neq 0$ then since it is a direct summand of $M$ it must be injective, and
+for $P \in \Ass(N')$, the proof of Theorem 4, (ii), shows that $N'$ contains a
+direct summand $E'$ isomorphic to $E(A/P)$. Thus $\mathcal{F}_0 \cup \{E'\}$ is a free family,
+contradicting the maximality of $\mathcal{F}_0$. Hence $N' = 0$ and $M = N$.
+
+(iii) If we can show that $M(P)$ has the property that every submodule
+$E$ of $M$ isomorphic to $E(A/P)$ is contained in $M(P)$, then $M(P)$ is the
+submodule of $M$ generated by all such $E$, and therefore is determined by
+$M$ and $P$ only. To prove this, take any $\xi \in E$; we can write $\xi = \xi_1 + \cdots +
+\xi_r$ with $\xi_i \in M(P_i)$, where $P_1, \ldots, P_r$ are distinct prime ideals and $P = P_1$.
+Setting $\eta_1 = \xi - \xi_1$, and $\eta_i = \xi_i$ for $2 \le i \le r$ we have $\eta_1 + \cdots + \eta_r = 0$, with
+$\eta_1 \in M(P_1) + E$ and $\eta_i \in M(P_i)$ for $i \ge 2$. We need only prove that in this case
+each $\eta_i = 0$. Suppose that $P_1$ is minimal among $P_1, \ldots, P_r$; then for any $m$
+we have $(P_1 \cdots P_r)^m \nsubseteq P_1$, so that taking $a \in (P_1 \cdots P_{r-1})^m - P_1$ and $m$
+large enough, we get $a\eta_1 = \cdots = a\eta_{r-1} = 0$. Then also $\eta_r = 0$, but
+multiplication by $a$ is an automorphism of $M(P_r)$, so that $\eta_r = 0$. By
+induction on $r$ we get $\eta_i = 0$ for all $i$.
+
+We now prove that if $M(P) = M_1 \oplus \cdots \oplus M_s$ with $M_i \cong E(A/P)$ then
+\[
+  s = \dim_{\kappa(P)} \Hom_{A_P}(\kappa(P), M_P).
+\]
+(We are writing this as if $s$ were finite, but, as one can see from the proof
+below, the same works for any cardinal number.) By Theorem 4, (vi), both
+sides of $M(P) = M_1 \oplus \cdots \oplus M_s$ are $A_P$-modules, and $M_i = E(\kappa(P))$.
+Moreover, by Theorem 4, (v), $E(A/Q)_P = 0$ if $Q \nsubseteq P$, so that
+\[
+  M_P = \bigoplus_{Q \subset P} M(Q)_P = \bigoplus_{Q \subset P} M(Q).
+\]
+Hence we can replace $A$ by $A_P$, and assume that $A$ is a local ring with $P$
+its maximal ideal; set $k = \kappa(P)$. If $Q \neq P$ then any $x \in P - Q$ gives an
+automorphism of $M(Q)$, but $x \cdot k = 0$, so that $\Hom_A(k, M(Q)) = 0$. Hence
+$\Hom_A(k, M) = \Hom_A(k, M(P))$, so that there is no loss of generality in
+assuming that $M = M(P)$. For any $A$-module $N$, we can identify
+$\Hom_A(k, N)$ with the submodule $\{\xi \in N \mid P\xi = 0\}$, but since $E(k)$ is an
+essential extension of $k$ we must have $\dim_k \Hom_A(k, E(k)) = 1$, so that if
+$M = M_1 \oplus \cdots \oplus M_s$ with $M_i \cong E(k)$ then $s = \dim_k \Hom_A(k, M)$.
+\end{proof}
+
+\begin{theorem}\label{thm:18.6}
+Let $(A, m, k)$ be a Noetherian local ring, and $E = E_A(k)$ the
+injective hull of $k$. For each $A$-module $M$ set $M' = \Hom_A(M, E)$.
+\begin{enumerate}[(i)]
+  \item If $M$ is an $A$-module and $0 \neq x \in M$, then there exists $\varphi \in M'$ such that
+        $\varphi(x) \neq 0$. In other words the canonical map $\theta\colon M \to M''$ defined by $\theta(x)(\varphi)
+        = \varphi(x)$ for $x \in M$ and $\varphi \in M'$ is injective.
+  \item If $M$ is an $A$-module of finite length, then $l(M) = l(M')$ and the
+        canonical map $M \to M''$ is an isomorphism.
+  \item Let $\hat{A}$ be the completion of $A$; then $E$ is also an $\hat{A}$-module, and
+        is an injective hull of $k$ as $\hat{A}$-module.
+  \item $\Hom_A(E, E) = \Hom_{\hat{A}}(E, E) = \hat{A}$. In other words, each endomor-
+        phism of the $A$-module $E$ is multiplication by a unique element of $\hat{A}$.
+  \item $E$ is Artinian as an $A$-module and also as an $\hat{A}$-module. Assume
+        now that $A$ is complete, and write $\mathcal{N}$ (resp.\ $\mathcal{A}$) for the category of
+        Noetherian (respectively Artinian) $A$-modules. Then if $M \in \mathcal{A}$ we have
+        $M' \in \mathcal{N}$ and $M \cong M''$; if $M \in \mathcal{N}$ we have $M' \in \mathcal{A}$ and $M \cong M''$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Let $f\colon Ax \to E$ be the composite of the canonical maps
+$Ax \cong A/\ann(x)$, $A/\ann(x) \to A/m = k$ and $k \to E$. Then $f(x) \neq 0$. Since $E$ is
+injective we can extend $f$ to $\varphi\colon M \to E$.
+
+(ii) If $l(M) = n < \infty$ then $M$ has a submodule $M_1$ of length $n - 1$, and
+$0 \to M_1 \to M \to k \to 0$ is exact, so that $0 \to k' \to M' \to M_1' \to 0$ is exact.
+However
+\[
+  k' = \Hom_A(k, E) = \Hom_A(k, k) \cong k,
+\]
+so that by induction on $n$ we get $l(M) = n = l(M')$. The canonical map
+$M \to M''$ is injective by (i), and $l(M) = l(M') = l(M'')$, hence it must be an
+isomorphism.
+
+(iii) Each element of $E$ is annihilated by some power of $m$, so that the
+canonical map $E \to E \otimes_A \hat{A}$ is surjective. However, since $\hat{A}$ is faithfully
+flat over $A$ it is also injective, so that $E \cong E \otimes_A \hat{A}$, and we can view $E$ as
+an $\hat{A}$-module. Let $F$ be the injective hull of $E$ as an $\hat{A}$-module. Then $F$
+is also the $A$-injective hull of $k$, so that every element of $F$ is annihilated
+by some power of $m\hat{A}$. As an $A$-module $F$ splits into a direct sum of $E$
+and an $\hat{A}$-module $C$. If $x \in C$, and if $m^\nu Ax = 0$, then for each $\hat{a} \in \hat{A}$ we
+can find $a \in A$ such that $\hat{a} \equiv a \bmod m^\nu\hat{A}$ and hence $\hat{a}x = ax \in C$.
+Therefore $C$ is an $A$-module. But $F$ is indecomposable as an $\hat{A}$-module.
+Hence $C = 0$ and $E = F$.
+
+(iv) For $\nu > 0$ set $E_\nu = \{x \in E \mid m^\nu x = 0\}$. Then we have $(A/m^\nu)' \cong
+\Hom_A(A/m^\nu, E) \cong E_\nu$, and $\Hom_A(E_\nu, E_\nu) = \Hom_A(E_\nu, E) = E'_\nu = (A/m^\nu)'' =
+A/m^\nu$. Now $E_1 \subset E_2 \subset \cdots$ and $E = \bigcup_\nu E_\nu$ by Theorem 4, (v), hence $E =
+\varinjlim E_\nu$. Therefore $\Hom_A(E, E) = \Hom_A(\varinjlim E_\nu, E) = \varprojlim \Hom_A(E_\nu, E) =
+\varprojlim A/m^\nu = \hat{A}$.
+
+(v) If an $A$-module $M$ is Artinian and $x \in M$, then $Ax \cong A/\ann(x)$ is also
+Artinian and consequently $m^\nu \subset \ann(x)$ for some $\nu$. Therefore $M$ can be
+viewed as an $\hat{A}$-module, and its $\hat{A}$-submodules are precisely its $A$-
+submodules. It is also clear that if an $\hat{A}$-module $M$ is Artinian then we have
+the same conclusion. Therefore to prove (v) we may assume that $A$ is
+complete.
+
+If $M$ is a submodule of $E$ set $M^\perp = \{a \in A \mid aM = 0\}$. If $I$ is an ideal of $A$ set
+$I^\perp = \{x \in E \mid Ix = 0\}$. Then clearly $M^{\perp\perp} \supset M$. If $x \in E - M$ there exist
+$\varphi \in (E/M)'$ satisfying $\varphi(x \bmod M) \neq 0$ by (i), and if we identify $E' =
+\Hom_A(E, E)$ with $A$ then $(E/M)'$ is identified with $M^\perp$. Thus $\varphi(x \bmod M) =
+ax$ for some $a \in M^\perp$, and $x \notin M^{\perp\perp}$. Therefore $M^{\perp\perp} = M$. Similarly, if
+$a \in \hat{A} - I$ then there exists $\varphi \in (A/I)'$ such that $\varphi(a \bmod I) \neq 0$, and
+$(A/I)'$ is identified with the submodule $I^\perp$ of $E = A'$. Thus, setting $x =
+\varphi(1 \bmod I)$ we have $x \in I^\perp$ and $ax = \varphi(a \bmod I) \neq 0$. This proves $a \notin I^{\perp\perp}$, so
+that $I = I^{\perp\perp}$. Thus $M \mapsto M^\perp$ is an order-reversing bijection from the set of
+submodules of $E$ onto the set of ideals of $A$. Since $A$ is Noetherian, it follows
+that $E$ is Artinian. By Theorem~\ref{thm:3.1} finite direct sums $E^n$ of $E$ are also
+Artinian for all $n > 0$.
+
+If $M \in \mathcal{N}$ then there is a surjection $A^n \to M$ for some $n$, and so
+there is an injection $M' \hookrightarrow (A^n)' = E^n$. Hence $M'$ is Artinian. On the
+other hand, if $M \in \mathcal{A}$ there is an injection $M \to E^n$ for some $n$. This can be
+seen as follows: consider all linear maps $M \to E^n$, where $n$ is not fixed,
+and take one $\varphi\colon M \to E^n$ whose kernel is minimal among the kernels of
+those maps. Then, using (i) we can easily see that $\Ker(\varphi) = 0$. Now, from
+$0 \to M \to E^n$ we have $(E^n)' = A^n \to M' \to 0$ exact, hence $M' \in \mathcal{N}$. Now the
+assertion $M \cong M''$ for $M \in \mathcal{N}$ or $\mathcal{A}$ can easily be checked using (iv) if $M = A$
+or $E$, and the general case follows from this and from (i).
+\end{proof}
+
+\begin{lemma}\label{lem:18.6}
+Let $A$ be a Noetherian ring, $S \subset A$ a multiplicative set, $M$ an $A$-
+module and $N \subset M$ a submodule. Assume that $M$ is an essential extension
+of $N$; then $M_S$ is an essential extension of $N_S$.
+\end{lemma}
+
+\begin{proof}
+For $\xi \in M$ we write $\xi_s = \xi/1 \in M_S$; then any element of $M_S$ can be written
+$u^{-1}\xi_s$ (with $u$ a unit of $A$, and $\xi \in M$), so that it is enough to show that
+for any non-zero $\xi_s$ we have $N_S \cap A_S\xi_s \neq 0$. Suppose that $\ann(\xi_s)$ is a
+maximal element of the set of ideals $\{\ann(t\xi_s) \mid t \in S\}$; then if we set $\eta = \xi_s$,
+we have $\eta_s = \eta$, and hence $\eta \neq 0$. Now let $\mathfrak{b} = \{b \in A \mid b\eta \in N\}$; by
+assumption,
+\[
+  \mathfrak{b}\eta = A\eta \cap N \neq 0.
+\]
+Suppose that $\mathfrak{b} = (b_1, \ldots, b_r)$; if $b_1\eta_s = \cdots = b_r\eta_s = 0$ then there is a $t \in S$
+such that $tb_i\eta = 0$ for all $i$. Then $t\mathfrak{b}\eta = 0$, but by choice of $\eta$ we have
+$\ann(\eta) = \ann(t\eta)$, so that $\mathfrak{b}\eta = 0$, which is a contradiction. Thus $b_i\eta_s \neq 0$
+for some $i$, and
+\[
+  b_i\eta_s \in A_S\eta_s \cap N_S = A_S\xi_s \cap N_S,
+\]
+as required.
+\end{proof}
+
+By Lemmas 5 and 6, if $M$ is an injective hull of $N$ then the $A_S$-module
+$M_S$ is an injective hull of $N_S$. Hence if $0 \to M \to I^0 \to I^1 \to \cdots$ is
+a minimal injective resolution of an $A$-module $M$, then $0 \to M_S \to I^0_S \to
+I^1_S \to \cdots$ is a minimal injective resolution of the $A_S$-module $M_S$. The
+$I^i$ are determined uniquely up to isomorphism by $M$. We can therefore
+define $\mu_i(P, M)$ to be the number of summands isomorphic to $E(A/P)$
+appearing in a decomposition of $I^i$ as a direct sum of indecomposable
+modules. We can write symbolically
+\[
+  I^i = \bigoplus_{P \in \Spec A} \mu_i(P, M)E(A/P).
+\]
+From what we have just proved, for a multiplicative set $S \subset A$,
+\[
+  \mu_i(P, M) = \mu_i(PA_S, M_S) \quad \text{if } P \cap S = \emptyset.
+\]
+
+\begin{theorem}\label{thm:18.7}
+Let $A$ be a Noetherian ring, $M$ an $A$-module, and
+$P \in \Spec A$. Then
+\[
+  \mu_i(P, M) = \dim_{\kappa(P)} \Ext^i_{A_P}(\kappa(P), M_P) = \dim_{\kappa(P)}(\Ext^i_A(A/P, M))_P.
+\]
+In particular, if $M$ is a finite $A$-module then $\mu_i(P, M) < \infty$.
+\end{theorem}
+
+\begin{proof}
+Replacing $A$ and $M$ by $A_P$ and $M_P$ we can assume that $(A, P, k)$ is
+a local ring. Let $0 \to M \to I^0 \to I^1 \to \cdots$ be a minimal injective
+resolution of $M$, so that $\Ext^i_A(k, M)$ is obtained as the homology of the
+complex
+\[
+  \cdots \to \Hom_A(k, I^{i-1}) \to \Hom_A(k, I^i) \to \Hom_A(k, I^{i+1})
+  \to \cdots
+\]
+We can identify $\Hom_A(k, I^i)$ with the submodule $T^i = \{x \in I^i \mid Px = 0\} \subset
+I^i$. By construction of the minimal injective resolution, $I^i$ is an essential
+extension of $d(I^{i-1})$, so that for $x \in T^i$ the submodule $Ax \cong k$ intersects
+$d(I^{i-1})$, and $x \in d(I^{i-1})$. Therefore, $T^i \subset d(I^{i-1})$, and $dT^{i-1} = dT^i = 0$, so
+that $\Ext^i_A(k, M) = T^i$. Also,
+\[
+  \dim_k T^i = \dim_k \Hom_A(k, I^i),
+\]
+and by Theorem 4, (iii), this is equal to $\mu_i(P, M)$.
+\end{proof}
+
+\begin{theorem}\label{thm:18.8}
+A necessary and sufficient condition for a ring $A$ to be
+Gorenstein is that a minimal injective resolution $0 \to A \to I^0 \to
+I^1 \to \cdots$ of $A$ satisfies
+\[
+  I^i = \bigoplus_{\htop P = i} E(A/P),
+\]
+or, in other words, $\mu_i(P, A) = \delta_{i,\htop P}$ (the Kronecker $\delta$) for every $P \in \Spec A$.
+\end{theorem}
+
+\begin{proof}
+By Theorem 7 and condition (2) of Theorem 1 we have
+\[
+  A_P \text{ is Gorenstein} \iff \mu_i(P, A) = \delta_{i,\htop P}. \qquad\blacksquare
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:18.9}
+Let $(A, m)$ be a Noetherian local ring, and $M$ a finite
+$A$-module. Then
+\[
+  \injdim M < \infty \iff \injdim M = \depth A.
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose that $\injdim M = r < \infty$. If $P$ is a prime ideal distinct from
+$m$, choose $x \in m - P$. Then
+\[
+  0 \to A/P \xrightarrow{x} A/P,
+\]
+together with the right-exactness of $\Ext^r_A(-, M)$ gives an exact sequence
+\[
+  \Ext^r_A(A/P, M) \xrightarrow{x} \Ext^r_A(A/P, M) \to 0,
+\]
+so that by NAK $\Ext^r_A(A/P, M) = 0$. Putting this together with Lemma~\hyperref[lem:18.1]{1},
+we get $\Ext^r_A(k, M) \neq 0$. Set $t = \depth A$, and let $x_1, \ldots, x_t \in m$ be a
+maximal $A$-sequence; then setting $A/(x_1, \ldots, x_t) = N$ we have $m \in \Ass(N)$.
+Hence there exists an exact sequence $0 \to k \to N$, and we must have
+$\Ext^t_A(N, M) \neq 0$. The Koszul complex $K(x_1, \ldots, x_t)$ is a projective resolution
+of $N = A/(x_1, \ldots, x_t)$, so computing Ext by means of it we see that
+\[
+  \Ext^t_A(N, M) \cong M/(x_1, \ldots, x_t)M,
+\]
+and by NAK this is non-zero. Thus $\projdim N = t$, and from $\Ext^r_A(N, M) \neq
+0$ we get $t \le r$, whereas from $\Ext^t_A(N, M) \neq 0$ we get $t \ge r$. Hence $t = r$.
+\end{proof}
+
+\begin{remark}[the Bass conjecture and the intersection theorem]
+Let $(A, m, k)$ be
+a Noetherian local ring of dimension $d$. H. Bass~\cite{Ba1} conjectured the
+following:
+\[
+  (B) \quad \text{if there exists a finite } A\text{-module } M (\neq 0) \text{ of finite injective}
+\]
+\[
+  \text{dimension, then } A \text{ is a CM ring.}
+\]
+According to Theorem 9 this is equivalent to asking that $\injdim M = d$.
+The converse of the Bass conjecture is true. Indeed, if $A$ is CM, taking a
+maximal $A$-sequence $x_1, \ldots, x_d$, and setting $B = A/(x_1, \ldots, x_d)$ and $E = E(k)$
+we have $l_A(B) < \infty$. By Theorem 6, $M = \Hom_A(B, E)$ is also of finite length,
+hence is finitely generated. We prove $\injdim_A M \le d$; the Koszul complex
+$0 \to A \to A^d \to \cdots \to A^d \to A \to B \to 0$ with respect to $x_1, \ldots, x_d$ provides an $A$-
+free resolution of $B$. Now applying the exact functor $\Hom_A(-, E)$ to this
+gives the exact sequence $0 \to M \to E \to E^d \to \cdots \to E^d \to E \to 0$. This proves
+$\injdim_A M \le d$.
+
+$(B)$ is a special case of the following theorem.
+\[
+  (C) \quad \text{If } I^\bullet\colon 0 \to I^0 \to \cdots \to I^d \to 0 \text{ is a complex of injective modules such}
+\]
+\[
+  \text{that } H^i(I^\bullet) \text{ is finitely generated for all } i \text{ and } I^\bullet \text{ is not exact, then }
+\]
+\[
+  I^d \neq 0.
+\]
+Using the theory of dualizing complexes (see~\cite{Rob}) one can prove that $(C)$
+is equivalent to the following
+
+\emph{Intersection Theorem.} If $F_\bullet\colon 0 \to F_r \to \cdots \to F_0 \to 0$ is a complex of finitely
+generated free modules such that $H_i(F_\bullet)$ has finite length for all $i$ and $F_\bullet$ is
+not exact, then $F_r \neq 0$.
+
+$(B)$ was proved by Peskine and Szpiro~\cite{PS1} in some important cases, and
+by Hochster~\cite{H} in the equal characteristic case (i.e. when $A$ contains a
+field) as a corollary of his existence theorem for the `big CM module', i.e. a
+(not necessarily finite) $A$-module with $\depth = \dim A$, see~\cite{H} p. 10 and
+p. 70. The intersection theorem was conjectured by Peskine--Szpiro~\cite{PS3} and
+by P. Roberts independently. They pointed out that it was also a
+consequence of Hochster's theorem. Finally, P. Roberts~\cite{Rob3} settled the
+remaining unequal characteristic case of the intersection theorem by using
+the advanced technique of algebraic geometry developed by W. Fulton
+(\cite{Ful}). Therefore $(B)$, which was known as Bass's conjecture for 24 years,
+is now a theorem. Some other conjectures listed in~\cite{H} are still open.
+\end{remark}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:18}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:18.1-ex}
+Let $(A, m)$ be a Noetherian local ring, $x_1, \ldots, x_n$ an $A$-sequence, and set
+$B = A/(x_1, \ldots, x_n)$; then $A$ is Gorenstein $\iff B$ is Gorenstein.
+\end{exercise}
+
+\begin{exercise}\label{ex:18.2-ex}
+Use the result of Ex.~\ref{ex:18.1-ex} to give another proof of Theorem~\hyperref[thm:18.3]{3}.
+\end{exercise}
+
+\begin{exercise}\label{ex:18.3-ex}
+If $A$ is Gorenstein then so is the polynomial ring $A[X]$.
+\end{exercise}
+
+\begin{exercise}\label{ex:18.4-ex}
+Is the ring $R$ of Ex.~\ref{ex:17.2-ex} Gorenstein?
+\end{exercise}
+
+\begin{exercise}\label{ex:18.5-ex}
+Let $(A, m, k)$ be a local ring; then $E = E_A(k)$ is a faithful $A$-module (that is
+$0 \neq a \in A \Rightarrow aE \neq 0$).
+\end{exercise}
+
+\begin{exercise}\label{ex:18.6-ex}
+Let $(A, m, k)$ be a complete Noetherian local ring and $M$ an $A$-module. If $M$
+is a faithful $A$-module and is an essential extension of $k$ then $M \cong E_A(k)$.
+\end{exercise}
+
+\begin{exercise}\label{ex:18.7-ex}
+Let $k$ be a field, $S = k[X_1, \ldots, X_n]$ and $P = (X_1, \ldots, X_n)$; set $A = S_P$,
+$\hat{A} = k[[X_1, \ldots, X_n]]$ and $E = k[X_1^{-1}, \ldots, X_n^{-1}]$. We make $E$ into an
+$A$-module by the following multiplication: if $X^\alpha = X_1^{\alpha_1} \cdots X_n^{\alpha_n}$ and $X^{-\beta}
+= X_1^{-\beta_1} \cdots X_n^{-\beta_n}$, the product $X^\alpha X^{-\beta}$ is defined to be $X^{\alpha-\beta}$ if $\alpha_i \le \beta_i$ for all $i$
+and $0$ otherwise. Then $E = E_A(S/P) = E_{\hat{A}}(k)$. (Use the preceding question;
+see also Northcott~\cite{Nort8} for further results. The elements of this $A$-module
+$E$ are called \emph{inverse polynomials}; they were defined and used by Macaulay
+~\cite{Mac} as early as 1916.)
+\end{exercise}
+
+\begin{exercise}\label{ex:18.8-ex}
+Let $k$ be a field and $t$ an indeterminate. Consider the subring $A =
+k[t^3, t^5, t^7]$ of $k[t]$ and show that $A$ is a one-dimensional CM ring which
+is not Gorenstein. How about $k[t^3, t^4, t^5]$ and $k[t^4, t^5, t^6]$?
+\end{exercise}

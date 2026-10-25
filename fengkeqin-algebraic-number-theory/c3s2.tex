@@ -1,0 +1,506 @@
+% ============ 第三章 §2 Dirichlet 单位定理 (原书 pp.114-131) ============
+\section{Dirichlet 单位定理}\label{sec:ch3-s2}
+
+\subsection{Dirichlet 单位定理}\label{sec:ch3-s2-1}
+
+\begin{sloppypar}
+对于每个数域 $K$,我们以 $U_K$ 表示整数环 $O_K$ 的单位群,即 $U_K$ 是 $O_K$ 中乘法可逆元素全体所形成的乘法群.本节的主要目的是决定单位群 $U_K$ 的结构.我们在第一章已经知道,数域 $K$ 中的单位根(即乘法有限阶元素)全体是有限循环群,表示成 $W_K$,这是乘法 Abel 群 $U_K$ 的扭子群.根据附录 A, (1) 可知,$U_K$ 中存在一个无扭子群(即自由 Abel 群)$V_K$,使得 $U_K=W_K\times V_K$(直积).我们要证明,自由 Abel 群 $V_K$ 的秩是有限的,并且等于 $r_1+r_2-1$,其中 $r_1$ 和 $r_2$ 分别是 $K$ 到 $\C$ 中的实嵌入个数和复嵌入对数.这就是著名的 Dirichlet 单位定理.在证明此定理之前,首先给出 $O_K$ 中元素属于 $U_K$ 或者 $W_K$ 的判别条件.
+\end{sloppypar}
+
+\begin{lemma}\label{lem:ch3-6}
+设 $K$ 为 $n$ 次数域,$\sigma_1,\cdots,\sigma_n$ 是 $K$ 到 $\C$ 中的 $n$ 个嵌入,$u\in O_K$,则
+\begin{enumerate}[(a)]
+  \item $u\in U_K\Leftrightarrow N_{K/\Q}(u)=\pm 1$;
+  \item $u\in W_K\Leftrightarrow|\sigma_i(u)|=1$($1\leqslant i\leqslant n$).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) 如果 $u\in U_K$,则 $u^{-1}\in O_K$.于是 $N(u)$,$N(u^{-1})\in\Z$.但是 $N(u)\cdot N(u^{-1})=N(1)=1$,从而 $N(u)=\pm 1$.反之,若 $u\in O_K$,$N(u)=\pm 1$,则 $u$ 是多项式
+\[
+  f(x)=\prod_{i=1}^{n}(x-\sigma_i(u))=x^n+a_{n-1}x^{n-1}+\cdots+a_1x\pm 1\in\Z[x]
+\]
+的根.于是 $u^{-1}$ 为 $\Z[x]$ 中首 $1$ 多项式 $x^n\pm(a_1x^{n-1}+\cdots+a_{n-1}x+1)$ 的根,从而 $u^{-1}\in O_K$,即 $u\in U_K$.
+
+(b) 如果 $u$ 为单位根,即存在某个 $m\in\Z$,使得 $u^m=1$,则
+\[
+  \sigma_i(u)^m=\sigma_i(u^m)=1\qquad(1\leqslant i\leqslant n),
+\]
+于是 $|\sigma_i(u)|=1$($1\leqslant i\leqslant n$).反之,设 $u\in O_K$,$|\sigma_i(u)|=1$($1\leqslant i\leqslant n$),则 $u^j$($j\in\Z$)是 $n$ 次多项式
+\[
+  g(x)=\prod_{i=1}^{n}(x-\sigma_i(u^j))=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in\Z[x]
+\]
+的根.$a_i$ 均是 $\sigma_1(u^j),\cdots,\sigma_n(u^j)$ 的初等对称函数,但是
+\[
+  |\sigma_1(u^j)|=\cdots=|\sigma_n(u^j)|=1,
+\]
+因此 $|a_i|\leqslant\binom{n}{i}$($0\leqslant i\leqslant n-1$).$\Z[x]$ 中这样的多项式只有有限多个,从而存在两个有理整数 $j,k$,$j>k$,使得 $u^j=u^k$.由于 $u\neq 0$,从而 $u^{j-k}=1$.这就表明 $u$ 是单位根.
+\end{proof}
+
+\begin{theorem}[\emph{Dirichlet,单位定理}]\label{thm:3.6}
+设 $K$ 为 $n$ 次数域,$K$ 到 $\C$ 中有 $r_1$ 个实嵌入和 $r_2$ 对复嵌入,$r_1+2r_2=n$,则 $U_K=W_K\times V_K$(直积),其中 $W_K$ 是 $K$ 中单位根群(有限循环群),而 $V_K$ 是秩为 $r=r_1+r_2-1$ 的自由 Abel 群.
+\end{theorem}
+
+\begin{proof}
+考虑对数映射
+\[
+  l\colon U_K\to R^{r_1+r_2},\qquad
+  l(\eta)=\left(\lambda_1\log|\eta^{(1)}|,\dots,\lambda_{r_1+r_2}\log|\eta^{(r_1+r_2)}|\right),
+\]
+其中 $\eta^{(i)}=\sigma_i(\eta)$,$\lambda_i=1$(对于 $1\leqslant i\leqslant r_1$),$2$(对于 $r_1+1\leqslant i\leqslant r_1+r_2$).易知 $l$ 是从乘法群 $U_K$ 到加法群 $R^{r_1+r_2}$ 中的同态.根据引理 \ref{lem:ch3-6}(b) 可知
+\begin{align*}
+  \eta\in\operatorname{Ker}l
+  &\Leftrightarrow\log|\eta^{(i)}|=0\quad(1\leqslant i\leqslant r_1+r_2)\\
+  &\Leftrightarrow|\eta^{(i)}|=1\quad(1\leqslant i\leqslant n)\\
+  &\Leftrightarrow\eta\in W_K,
+\end{align*}
+因此 $\operatorname{Ker}l=W_K$.于是 $V_K=U_K/W_K\cong l(U_K)$.另一方面,如果 $\eta\in U_K$,则由引理 \ref{lem:ch3-6}(a) 知
+\[
+  \sum_{i=1}^{r_1+r_2}\lambda_i\log|\eta^{(i)}|
+  =\sum_{i=1}^{n}\log|\eta^{(i)}|=\log|N(\eta)|=0.
+\]
+这就表明象集合 $l(U_K)$ 是 $R^{r_1+r_2}$ 的超平面
+\[
+  H=\left\{(a_1,\dots,a_{r_1+r_2})\in R^{r_1+r_2}\;\middle|\;a_1+\cdots+a_{r_1+r_2}=0\right\}
+\]
+的一个加法子群.进而,对于 $R^{r_1+r_2}$ 的每个有界子集 $B$,则存在一个常数 $M$,使得 $(a_1,\cdots,a_{r_1+r_2})\in B$ 时,$|a_i|\leqslant M$($1\leqslant i\leqslant r_1+r_2$).于是若 $l(\eta)\in B$,则 $|\eta^{(i)}|\leqslant e^M$($1\leqslant i\leqslant n$).从而 $\eta$ 所满足的多项式
+\[
+  \prod_{i=1}^{n}(x-\eta^{(i)})=x^n+a_1x^{n-1}+\cdots+a_n\in\Z[x]
+\]
+的诸系数也是有界的:$|a_i|\leqslant e^M\binom{n}{i}$.这样的多项式只有有限多个,从而满足 $l(\eta)\in B$ 的元素 $\eta\in U_K$ 也只有有限多个,即 $l(U_K)\cap B$ 是有限集合.这就表明 $l(U_K)$ 是 $R^{r_1+r_2}$ 的离散子群.根据本章 §1 中引理 \ref{lem:ch3-2},$l(U_K)$ 是 $R^{r_1+r_2}$ 的某个子空间中的格.由于 $l(U_K)\subseteq H$,可知 $l(U_K)$ 的秩 $\leqslant r_1+r_2-1$.为了完成定理 \ref{thm:3.6} 的证明,我们只需再证 $l(U_K)$ 中存在 $r$ 个 $\Z$-线性无关元素即可.这需要以下 $3$ 个引理:
+\end{proof}
+
+\begin{lemma}\label{lem:ch3-7}
+对于 $0\neq\alpha\in O_K$,我们定义
+\[
+  l(\alpha)=(\alpha_1,\dots,\alpha_{r_1+r_2})
+  =\left(\lambda_1\log|\alpha^{(1)}|,\dots,\lambda_{r_1+r_2}\log|\alpha^{(r_1+r_2)}|\right).
+\]
+则对于每个 $0\neq\alpha\in O_K$ 和每个 $k$($1\leqslant k\leqslant r_1+r_2$),均存在 $0\neq\beta\in O_K$,使得 $l(\beta)=(b_1,\cdots,b_{r_1+r_2})$ 满足 $b_i<a_i$(当 $i\neq k$ 时),并且
+\[
+  |N(\beta)|\leqslant\left(\frac{2}{\pi}\right)^{r_2}|d(K)|^{1/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+不妨取 $k=1$.定义
+\[
+  B=\{(x_1,\dots,x_n)\in R^n\mid |x_i|\leqslant c_i\ (1\leqslant i\leqslant r_1),\ x_j^2+x_{j+r_2}^2\leqslant c_j\ (r_1+1\leqslant j\leqslant r_1+r_2)\},
+\]
+其中
+\[
+  c_1=(c_2\cdots c_{r_1+r_2})^{-1}\left(\frac{2}{\pi}\right)^{r_2}|d(K)|^{1/2},
+\]
+而 $0<c_i<e^{a_i}$($2\leqslant i\leqslant r_1+r_2$),则
+\[
+  \mu(B)=2^{r_1}c_1\cdots c_{r_1}\cdot\pi^{r_2}c_{r_1+1}\cdots c_{r_1+r_2}
+  =2^n\cdot 2^{-r_2}|d(K)|^{1/2}.
+\]
+于是由 Minkowski 定理,可知有 $0\neq\beta\in O_K$,使得
+\[
+  \lambda_i\log|\beta^{(i)}|\leqslant\log c_i<a_i\qquad(2\leqslant i\leqslant r_1+r_2),
+\]
+而
+\[
+  |N(\beta)|\leqslant c_1\cdots c_{r_1+r_2}=\left(\frac{2}{\pi}\right)^{r_2}|d(K)|^{1/2},
+\]
+从而 $\beta$ 即为所求.
+\end{proof}
+
+\begin{lemma}\label{lem:ch3-8}
+对每个 $k$($1\leqslant k\leqslant r_1+r_2$),均存在
+\[
+  u_k\in U_K,\qquad l(u_k)=(y_1,\dots,y_{r_1+r_2}),
+\]
+使得当 $i\neq k$ 时,$y_i<0$.
+\end{lemma}
+
+\begin{proof}
+从任意一个 $\alpha_1\in O_K-\{0\}$ 开始,根据引理 \ref{lem:ch3-7} 依次求出 $\alpha_2,\alpha_3,\cdots\in O_K-\{0\}$,使得当 $i\neq k$ 时均有 $(l(\alpha_{j+1}))_i<(l(\alpha_j))_i$(这里 $(l(\alpha))_i$ 表示向量 $l(\alpha)\in R^{r_1+r_2}$ 的第 $i$ 个坐标),并且 $|N(\alpha_j)|\leqslant M$.由最后一个条件可知主理想集合 $\{\alpha_jO_K\mid j=1,2,\cdots\}$ 是有限集合,从而存在 $j>h$,使得 $\alpha_jO_K=\alpha_hO_K$.令 $\alpha_j=u_k\alpha_h$,则 $u_k\in U_K$,并且满足引理条件.
+\end{proof}
+
+利用引理 \ref{lem:ch3-8},我们得到 $r_1+r_2$ 个单位 $u_k$,使得
+\[
+  l(u_k)=(y_{k1},\dots,y_{k,r_1+r_2}),
+\]
+而 $r_1+r_2$ 阶实方阵 $(y_{ij})$ 的元素符号有形式:主对角线上为正,其余元素均为负,并且 $(y_{ij})$ 的每行之和均为零.为证 $l(u_k)$($1\leqslant k\leqslant r_1+r_2$)中有 $r=r_1+r_2-1$ 个线性无关,我们只需证明方阵 $(y_{ij})$ 的秩为 $r$ 即可,而这可由下面的一般性引理推出.
+
+\begin{lemma}\label{lem:ch3-9}
+设 $A=(a_{ij})$ 为 $m$ 阶实方阵,主对角线上元素为正,而其余元素均为负,并且每行元素之和均为 $0$,则 $\operatorname{rank}A=m-1$.
+\end{lemma}
+
+\begin{proof}
+设 $(a_{ij})=(v_1,\cdots,v_m)$,$v_i$ 为列向量 $\begin{pmatrix}a_{1i}\\ \vdots\\ a_{mi}\end{pmatrix}$.如果其中有 $m-1$ 个列向量是线性相关的,必要时对于方阵 $A$ 的诸行和诸列作一个适当的置换,不妨设 $A$ 的前 $m-1$ 列线性相关,则有不全为 $0$ 的 $t_i\in R$,使得 $\sum_{i=1}^{m-1}t_iv_i=0$(零列向量).必要时乘以适当常数之后,可设 $t_k=1$,而其余 $|t_j|\leqslant 1$($1\leqslant j\leqslant m-1$,$j\neq k$).现在考虑 $A$ 的第 $k$ 行,便有
+\[
+  0=\sum_{j=1}^{m}a_{kj}<\sum_{j=1}^{m-1}a_{kj}\leqslant\sum_{j=1}^{m-1}t_ja_{kj}=0,
+\]
+这就导致矛盾.因此 $\operatorname{rank}A=m-1$.
+\end{proof}
+
+\begin{sloppypar}
+这就完全证明了定理 \ref{thm:3.6}.这个定理也可叙述成如下形式:数域 $K$ 中存在着 $r=r_1+r_2-1$ 个单位 $\eta_1,\cdots,\eta_r\in U_K$,使得每个单位 $\eta\in U_K$ 均可惟一地表示成
+\[
+  \eta=w\eta_1^{a_1}\cdots\eta_r^{a_r},\qquad w\in W_K,\ a_i\in\Z.
+\]
+这样一组单位 $\{\eta_1,\cdots,\eta_r\}$ 称作是域 $K$ 的一个\emph{基本单位组}.如果 $\{\varepsilon_1,\cdots,\varepsilon_r\}$ 又是 $K$ 的一个基本单位组,则易知
+\[
+  \varepsilon_i=w_i\prod_{j=1}^{r}\eta_j^{a_{ij}},\qquad w_i\in W_K,\ a_{ij}\in\Z,\ \det(a_{ij})=\pm 1.
+\]
+此外,如果令 $l(\eta_i)=(y_{i1},\cdots,y_{i,r+1})$($l$ 为对数映射),并且定义
+\[
+  R(\eta_1,\dots,\eta_r)=|\det(y_{ij})_{1\leqslant i,j\leqslant r}|,
+\]
+则(由于 $\log|\varepsilon_k^{(i)}|=\sum_{j=1}^{r}a_{kj}\log|\eta_j^{(i)}|$)
+\begin{align*}
+  R(\varepsilon_1,\dots,\varepsilon_r)
+  &=|\det(\lambda_i\log|\varepsilon_k^{(i)}|)_{1\leqslant i,k\leqslant r}|\\
+  &=2^{\max(r_2-1,0)}|\det(\log|\varepsilon_k^{(i)}|)|\\
+  &=2^{\max(r_2-1,0)}|\det(\log|\eta_k^{(i)}|)|\cdot|\det(a_{ij})|\\
+  &=R(\eta_1,\dots,\eta_r).
+\end{align*}
+这就表明实数 $R(\eta_1,\cdots,\eta_r)$ 与基本单位组 $\{\eta_1,\cdots,\eta_r\}$ 的取法无关,从而它是数域 $K$ 的不变量,我们称它为数域 $K$ 的 \emph{regulator},并且记成 $R(K)$.我们在本书第二部分将会看到,$R(K)$ 混在类数 $h(K)$ 的解析公式之中.对于一般的数域 $K$,寻求 $K$ 的基本单位组是件相当困难的事情.因此 $R(K)$ 也是用类数解析公式计算类数 $h(K)$ 的一个主要困难所在.
+\end{sloppypar}
+
+以下两小节我们举一些计算基本单位组的例子.
+
+\subsection{实二次域的基本单位, Pell 方程}\label{sec:ch3-s2-2}
+
+对于虚二次域 $K$,$r_1=0$,$r_2=1$,于是 $r=r_1+r_2-1=0$,这表明单位群 $U_K$ 就是单位根群 $W_K$.而在第一章中我们已经完全决定了虚二次域的单位根群,从而也就完全决定了虚二次域的单位群.
+
+现在我们考虑实二次域 $K=\Q(\sqrt{d})$,$d>0$,无平方因子.这时 $r_1=2$,$r_2=0$,$r=r_1+r_2-1=1$.即 $K$ 的基本单位组由一个单位 $\varepsilon$ 构成.称 $\varepsilon$ 为实二次域 $K$ 的\emph{基本单位}.由于 $W_K=\{\pm1\}$,因此 $U_K=\{\pm\varepsilon^n\mid n\in\Z\}$.不难看出,可以作为基本单位的只有 $\pm\varepsilon$ 和 $\pm\varepsilon^{-1}$,从而满足 $\varepsilon>1$ 的基本单位是惟一确定的.
+
+\begin{sloppypar}
+对于 $d\equiv 2,3\ (\mathrm{mod}\ 4)$ 的情形,$O_K=\Z[\sqrt{d}]$.从而 $K$ 中整数可写成 $a+b\sqrt{d}$,$a,b\in\Z$.而 $a+b\sqrt{d}$ 为 $K$ 中单位 $\Leftrightarrow$
+\[
+  N(a+b\sqrt{d})=a^2-db^2=\pm 1
+\]
+(引理 \ref{lem:ch3-6}).二元二次不定方程 $x^2-dy^2=\pm 1$ 称作是 \emph{Pell 方程}.于是我们看到,Pell 方程在 $\Z$ 中的解 $(x,y)$ 与实二次域的单位有密切联系,而由 $U_K$ 的结构不难得到 Pell 方程全部解的结构.具体说来就是:
+\end{sloppypar}
+
+\begin{lemma}\label{lem:ch3-10}
+设 $K=\Q(\sqrt{d})$,$d>0$,无平方因子,$d\equiv 2,3\ (\mathrm{mod}\ 4)$.令 $\varepsilon=a+b\sqrt{d}$($a,b\in\Z$)是域 $K$ 的基本单位,$\varepsilon>1$.又令 $\varepsilon^n=(a+b\sqrt{d})^n=a_n+b_n\sqrt{d}$,$a_n,b_n\in\Z$.
+\begin{enumerate}[(a)]
+  \item 如果 $N(\varepsilon)=1$,则 Pell 方程 $x^2-dy^2=-1$ 无有理整数解,而 $x^2-dy^2=1$ 的全部有理整数解为 $\{(\pm a_n,\pm b_n)\mid n\in\Z\}$.
+  \item 如果 $N(\varepsilon)=-1$,则 $x^2-dy^2=-1$ 的全部有理整数解为 $\{(\pm a_{2n+1},\pm b_{2n+1})\mid n\in\Z\}$,而 $x^2-dy^2=1$ 的全部有理整数解为
+  \[
+    \{(\pm a_{2n},\pm b_{2n})\mid n\in\Z\}.
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+这是由于如果 $N(\varepsilon)=1$,则 $U_K=\{\pm\varepsilon^n\mid n\in\Z\}$ 中每个单位的范均为 $1$.如果 $N(\varepsilon)=-1$,则范为 $1$ 的单位全体形成 $U_K$ 的一个指数为 $2$ 的子群,并且这个群就是 $\{\pm\varepsilon^{2n}\mid n\in\Z\}$.将这些翻译成 Pell 方程的语言即得引理.
+\end{proof}
+
+\begin{remark}
+(1) 对于实二次域 $\Q(\sqrt{d})$,它的基本单位何时范为 $1$,何时范为 $-1$?目前有不少判别法,但是都只适用于某些特定的情形(例如习题 7).对于一般情形目前还没有简便而完整的判别方法.
+
+(2) 我们也可由解 Pell 方程 $x^2-dy^2=\pm 1$ 来求实二次域 $K=\Q(\sqrt{d})$($d\equiv 2,3\ (\mathrm{mod}\ 4)$)的基本单位:设 $a,b\in\Z$ 满足 $a^2-db^2=1$ 或 $-1$,$a+b\sqrt{d}>1$,并且使得 $a+b\sqrt{d}$ 在这些条件下达到最小,称 $(a,b)$ 是 Pell 方程 $x^2-dy^2=\pm 1$ 的\emph{最小解}.显然,对应于这个最小解 $(a,b)$,$\varepsilon=a+b\sqrt{d}$ 就是实二次域 $\Q(\sqrt{d})$ 中满足 $\varepsilon>1$ 的基本单位.
+
+设 $(a,b)$ 为 Pell 方程 $x^2-dy^2=\pm 1$ 的最小解,则必然 $a>0$,$b>0$(因为 $\pm a\pm b\sqrt{d}$ 中只有一个 $>1$).令
+\[
+  a_n+b_n\sqrt{d}=(a+b\sqrt{d})^n,\qquad n=1,2,\dots,
+\]
+则
+\[
+  (a+b\sqrt{d})(a_{n-1}+b_{n-1}\sqrt{d})=(a_n+b_n\sqrt{d}),
+\]
+于是 $b_n=ab_{n-1}+ba_{n-1}$,从而序列 $\{b_n\}$ 是递增的.因此,我们可以从 $y=1,2,\dots$ 依次试验 $dy^2\pm 1$ 是否为完全平方数.如果 $b$ 为最小的自然数,使得 $db^2+1$ 或 $db^2-1$ 为完全平方数,令 $a$ 为这个完全平方数的正平方根,我们就得到 $x^2-dy^2=\pm 1$ 的最小解 $(a,b)$,从而也就得到实二次域 $\Q(\sqrt{d})$ 的基本单位 $\varepsilon=a+b\sqrt{d}>1$.
+\end{remark}
+
+\begin{example}\label{ex:ch3-s2-2-1}
+$K=\Q(\sqrt{23})$,Pell 方程为 $x^2-23y^2=\pm 1$.由于 $23b^2\pm 1$($b=1,2,3,4$)均不是完全平方数,而 $23\cdot 5^2-1=24^2$.从而 $\varepsilon=24+5\sqrt{23}$ 为 $K$ 的基本单位,$N(\varepsilon)=1$.从而 $x^2-23y^2=-1$ 没有整数解.而 $x^2-23y^2=1$ 的全部整数解为
+\[
+  \{(x,y)=(\pm a_n,\pm b_n)\mid n\geqslant 0,\ a_n+b_n\sqrt{23}=(24+5\sqrt{23})^n\}.
+\]
+\end{example}
+
+对于 $d\equiv 1\ (\mathrm{mod}\ 4)$ 的情形,$K=\Q(\sqrt{d})$,$O_K=\Z\oplus\Z\omega$,$\omega=\frac{1}{2}(1+\sqrt{d})$.从而 $K$ 中整数表示成
+\begin{align*}
+  a+b\omega&=\frac{2a+b}{2}+\frac{b}{2}\sqrt{d}=\frac{A+B\sqrt{d}}{2},\quad A,B\in\Z,\\
+  &\qquad A\equiv B\ (\mathrm{mod}\ 2).
+\end{align*}
+而 $\varepsilon=\frac{1}{2}(A+B\sqrt{d})$ 为单位 $\Leftrightarrow A^2-dB^2=\pm 4$.对于这种情形我们有:
+
+\begin{lemma}\label{lem:ch3-11}
+设 $K=\Q(\sqrt{d})$,$d>0$,无平方因子,$d\equiv 1\ (\mathrm{mod}\ 4)$,$\varepsilon=\frac{1}{2}(a+b\sqrt{d})>1$ 为域 $K$ 的基本单位,$a,b\in\Z$,$a\equiv b\ (\mathrm{mod}\ 2)$.令
+\[
+  \frac{1}{2}(a_n+b_n\sqrt{d})=\varepsilon^n,\qquad n\in\Z,
+\]
+则
+\begin{enumerate}[(a)]
+  \item 当 $N(\varepsilon)=-1$ 时,$x^2-dy^2=4$ 的全部整解为 $\{(\pm a_{2n},\pm b_{2n})\mid n\in\Z\}$,而 $x^2-dy^2=-4$ 的全部整解为 $\{(\pm a_{2n+1},\pm b_{2n+1})\mid n\in\Z\}$.当 $N(\varepsilon)=1$ 时,$x^2-dy^2=-4$ 无整解,而 $x^2-dy^2=4$ 的全部整解为 $\{(\pm a_n,\pm b_n)\mid n\in\Z\}$.
+  \item 当 $N(\varepsilon)=-1$ 时,如果 $a\equiv b\equiv 0\ (\mathrm{mod}\ 2)$,则 $x^2-dy^2=-1$ 的全部整解为
+  \[
+    \left\{\left(\pm\frac{1}{2}a_{2n+1},\pm\frac{1}{2}b_{2n+1}\right)\mid n\in\Z\right\},
+  \]
+  $x^2-dy^2=1$ 的全部整解为
+  \[
+    \left\{\left(\pm\frac{1}{2}a_{2n},\pm\frac{1}{2}b_{2n}\right)\mid n\in\Z\right\};
+  \]
+  如果 $a\equiv b\equiv 1\ (\mathrm{mod}\ 2)$,则 $x^2-dy^2=-1$ 的全部整解为
+  \[
+    \left\{\left(\pm\frac{1}{2}a_{6n+3},\pm\frac{1}{2}b_{6n+3}\right)\mid n\in\Z\right\},
+  \]
+  $x^2-dy^2=1$ 的全部整解为
+  \[
+    \left\{\left(\pm\frac{1}{2}a_{6n},\pm\frac{1}{2}b_{6n}\right)\mid n\in\Z\right\}.
+  \]
+  当 $N(\varepsilon)=1$ 时,$x^2-dy^2=-1$ 无整解.如果 $a\equiv b\equiv 0\ (\mathrm{mod}\ 2)$,则 $x^2-dy^2=1$ 的全部整解为
+  \[
+    \left\{\left(\pm\frac{1}{2}a_n,\pm\frac{1}{2}b_n\right)\mid n\in\Z\right\};
+  \]
+  如果 $a\equiv b\equiv 1\ (\mathrm{mod}\ 2)$,则 $x^2-dy^2=1$ 的全部整解为
+  \[
+    \left\{\left(\pm\frac{1}{2}a_{3n},\pm\frac{1}{2}b_{3n}\right)\mid n\in\Z\right\}.
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+对于 (a) 可像引理 \ref{lem:ch3-10} 一样地证明.对于 (b),我们只需证明:如果
+\[
+  \varepsilon=\frac{1}{2}(a+b\sqrt{d})=\frac{1}{2}(a_1+b_1\sqrt{d})>1,\qquad a_1\equiv b_1\equiv 1\ (\mathrm{mod}\ 2),
+\]
+则 $a_2\equiv b_2\equiv 1\ (\mathrm{mod}\ 2)$,而 $a_3\equiv b_3\equiv 0\ (\mathrm{mod}\ 2)$.由此不难得到 (b) 中全部结果.
+
+设 $\varepsilon=\frac{1}{2}(a_1+b_1\sqrt{d})>1$,$a_1\equiv b_1\equiv 1\ (\mathrm{mod}\ 2)$,则
+\[
+  a_2+b_2\sqrt{d}=\frac{1}{2}(a_1+b_1\sqrt{d})^2=\frac{1}{2}(a^2+db^2+2ab\sqrt{d}).
+\]
+由于 $a^2\equiv b^2\equiv d\equiv 1\ (\mathrm{mod}\ 4)$,可知
+\[
+  a_2=\frac{1}{2}(a^2+db^2)\equiv 1\ (\mathrm{mod}\ 2),\qquad b_2=ab\equiv 1\ (\mathrm{mod}\ 2).
+\]
+另一方面,
+\begin{align*}
+  a_3+b_3\sqrt{d}&=\frac{1}{4}(a_1+b_1\sqrt{d})^3\\
+  &=\frac{1}{4}\left[a^3+3adb^2+(3a^2b+b^3d)\sqrt{d}\right].
+\end{align*}
+由于 $a^2-b^2d=\pm 4$,从而
+\[
+  a^3+3adb^2=a(a^2+3db^2)=4a(b^2d\pm 1)\equiv 0\ (\mathrm{mod}\ 8),
+\]
+\[
+  3a^2b+b^3d=b(3a^2+b^2d)=4ab(a^2\pm 1)\equiv 0\ (\mathrm{mod}\ 8),
+\]
+从而 $a_3\equiv b_3\equiv 0\ (\mathrm{mod}\ 2)$.这就完全证明了引理.
+\end{proof}
+
+\begin{remark}
+对于实二次域 $\Q(\sqrt{d})$,其基本单位 $\varepsilon_d>1$ 究竟有多大?这也是人们长期以来所关心的问题.如果 $d=t^2+4$ 没有平方因子,$t>0$(例如 $t=1,3,5$ 等等),则 $\varepsilon_d=\frac{1}{2}(t+\sqrt{d})$(习题 3).如果 $d=t^2-4$ 无平方因子,$t\geqslant 5$,则 $\varepsilon_d=\frac{1}{2}(t+\sqrt{d})$(习题 4).对于这两种情形,$\varepsilon_d$ 差不多等于 $\sqrt{d}$.但是
+\[
+  \varepsilon_{67}=48842+5967\sqrt{67},\qquad
+  \varepsilon_{94}=2143295+221064\sqrt{94},
+\]
+这表明 $\varepsilon_d$ 的大小也很没有规律.关于 $\varepsilon_d$ 的目前最好的上界,是由华罗庚于 1942 年得到的:
+\[
+  h_K\cdot\log\varepsilon_d<\frac{1}{2}\sqrt{d}\log d+\sqrt{d}\qquad(K=\Q(\sqrt{d})),
+\]
+(我们在本书第二部分要解释,为什么类数 $h_K$ 和 $K$ 的 regulator $\log\varepsilon_d$ 搅在一起),特别地有 $\log\varepsilon_d<\frac{1}{2}\sqrt{d}\log d+\sqrt{d}$.
+\end{remark}
+
+\subsection{其他情形}\label{sec:ch3-s2-3}
+
+如果 $K$ 不是二次域,寻求代数数域 $K$ 的基本单位组是相当困难的问题.这里我们就某些类型的数域给出计算基本单位系的理论结果.证明是初等的,但是为节省篇幅我们略去证明.
+
+\subsection*{(A) 非全实的实三次域}
+\addcontentsline{toc}{subsection}{(A) 非全实的实三次域}
+
+设 $K=\Q(\alpha)$ 是三次域,其中 $\alpha$ 为实数,但是与 $\alpha$ 共轭的另两个数是一对共轭的复数.这时 $r_1=r_2=1$,于是 $r=r_1+r_2-1=1$.所以 $K$ 的基本单位组也只包含一个单位 $\varepsilon$.与实二次域情形一样,我们也称 $\varepsilon$ 为 $K$ 的基本单位.由于 $W_K=\{\pm1\}$,可知作为基本单位只能是 $\pm\varepsilon$,$\pm\varepsilon^{-1}$ 当中的一个,其中只有一个是大于 $1$ 的实数,所以大于 $1$ 的基本单位 $\varepsilon$ 也是惟一确定的,而 $K$ 的全部单位为 $\pm\varepsilon^n$,其中 $n$ 过所有整数.
+
+\begin{lemma}\label{lem:ch3-12}
+设 $K=\Q(\alpha)$ 是实三次域,$\alpha$ 的极小多项式为 $f(x)=x^3+kx-1$,其中 $k$ 是大于 $1$ 的有理整数(易知这时 $f(x)$ 为 $\Q[x]$ 中不可约多项式,并且 $f(x)$ 只有一个实根 $\alpha$).如果正整数 $4k^3+27$ 没有平方因子,则 $\alpha^2+k$ 是 $K$ 的基本单位.
+\end{lemma}
+
+\begin{proof}[证明大意]
+$f(x)=x^3+kx-1$ 的判别式为 $-(4k^3+27)<0$,可知 $f(x)$ 只有一个实根 $\alpha$ 并且 $\alpha\in O_K$.由 $d_K(1,\alpha,\alpha^2)=-(4k^3+27)$,而 $4k^3+27$ 无平方因子,可知 $O_K=\Z[\alpha]$.由于 $\frac{1}{\alpha}=\alpha^2+k\in O_K$,可知 $\alpha$ 为 $K$ 中单位,从而 $\alpha^2+k=\frac{1}{\alpha}$ 是 $O_K$ 中大于 $1$ 的单位.问题的关键是证明 $\alpha^2+k$ 必是 $K$ 的基本单位.为此,我们可以先证明:对 $O_K$ 中每个大于 $1$ 的单位 $\eta$,都有 $1\leqslant|d_K(1,\eta,\eta^2)|\leqslant 4\eta^3+24$.利用初等的分析工具可证这个事实,此处从略.特别对 $O_K$ 中大于 $1$ 的基本单位 $\varepsilon$,$1\leqslant|d_K(1,\varepsilon,\varepsilon^2)|\leqslant 4\varepsilon^3+24$.如果 $\alpha^2+k$ 不是基本单位,则 $\alpha^2+k=\varepsilon^t$,其中 $t\geqslant 2$.由于 $d(K)=d_K(1,\alpha,\alpha^2)=-(4k^3+27)$ 是 $d_K(1,\varepsilon,\varepsilon^2)$($\neq 0$)的因子,可知 $4k^3+27\leqslant 4\varepsilon^3+24$,于是 $k<\varepsilon$.再由 $\alpha<1$ 可知 $k^2<\varepsilon^2\leqslant\varepsilon^t=\alpha^2+k<1+k$.当 $k\geqslant 2$ 时 $k^2<1+k$ 不可能成立,从而导致矛盾,所以 $\alpha^2+k$ 为 $K$ 的基本单位.
+\end{proof}
+
+\begin{remark}
+取 $k=2,4,5$,则 $4k^3+27=59,283,527$ 均无平方因子.可以证明存在无限多整数 $k\geqslant 2$,使 $4k^3+27$ 均无平方因子,从而满足上述引理条件.
+\end{remark}
+
+\subsection*{(B) 全实三次域}
+\addcontentsline{toc}{subsection}{(B) 全实三次域}
+
+设 $f(x)$ 为 $\Q[x]$ 中三次不可约多项式,并且 $3$ 个根均为实根.令 $\alpha$ 为其中一个根,则 $K=\Q(\alpha)$ 叫作全实三次域,这时 $r_1=3$,$r_2=0$.于是 $r=3-1=2$,即 $K$ 的基本单位组由两个单位组成.根据引理 \ref{lem:ch3-8},我们可求出 $K$ 的一个单位 $\eta$,满足
+\[
+  |\eta^{(1)}|>1,\qquad |\eta^{(2)}|<1,\qquad |\eta^{(3)}|<1,
+\]
+这里 $\eta^{(i)}=\sigma_i(\eta)$,而 $\sigma_i$($i=1,2,3$)是 $K$ 到 $\C$ 的 $3$ 个实嵌入.由于满足 $|\omega^{(1)}|\leqslant|\eta^{(1)}|$,$|\omega^{(2)}|<1$,$|\omega^{(3)}|<1$ 的 $\omega\in O_K$ 只有有限多个,所以有最小的单位 $\varepsilon_1\in U_K$,使得 $|\varepsilon_1^{(1)}|>1$,$|\varepsilon_1^{(2)}|<1$,$|\varepsilon_1^{(3)}|<1$.同样可求得最小单位 $\varepsilon_2\in U_K$,使得 $|\varepsilon_2^{(2)}|>1$,$|\varepsilon_2^{(1)}|<1$,$|\varepsilon_2^{(3)}|<1$.
+
+\begin{lemma}\label{lem:ch3-13}
+$\varepsilon_1$ 和 $\varepsilon_2$ 构成 $K$ 的一个基本单位组.
+\end{lemma}
+
+\begin{proof}[证明从略]
+注意这个引理只有理论意义.实际上我们还需要寻求满足所述条件的 $\varepsilon_1,\varepsilon_2$ 的好的算法.对于任意数域 $K$,研究 $O_K$ 的整基,类数和基本单位组的实用算法,已成为代数数论的重要研究课题(计算代数数论).
+\end{proof}
+
+\subsection*{(C) Minkowski 单位}
+\addcontentsline{toc}{subsection}{(C) Minkowski 单位}
+
+设 $K/\Q$ 是 $n$ 次实伽罗瓦扩张,则 $r=n-1$.当 $n$ 很大时,寻求 $K$ 的一个基本单位组 $\varepsilon_1,\varepsilon_2,\cdots,\varepsilon_r$ 通常是很困难的.以 $\{\sigma_1,\cdots,\sigma_n\}$ 表示 $K/\Q$ 的伽罗瓦群,对每个 $\alpha\in K$,记 $\alpha^{(i)}=\sigma_i(\alpha)$.
+
+\begin{definition}\label{def:ch3-6}
+设 $K/\Q$ 是 $n$ 次实伽罗瓦扩张,单位 $\varepsilon\in U_K$ 叫作 $K$ 的 \emph{Minkowski 单位},是指 $\varepsilon^{(1)},\cdots,\varepsilon^{(n)}$ 中任意 $r$ 个均构成 $K$ 的一个基本单位组.(由于 $\varepsilon^{(1)}\varepsilon^{(2)}\cdots\varepsilon^{(n)}=\pm1$,可知这时 $\varepsilon^{(i)}$($1\leqslant i\leqslant n$)当中任意 $r$ 个均是 $K$ 的基本单位组.)
+\end{definition}
+
+哪些实伽罗瓦域 $K$ 存在 Minkowski 单位,也是一个重要的研究课题.
+
+\begin{lemma}[\emph{Brumer, 1969}]\label{lem:ch3-14}
+当 $n=3,5,7$ 时,$n$ 次实伽罗瓦域 $K$ 必存在 Minkowski 单位.
+\end{lemma}
+
+\begin{proof}[证明从略]
+寻求 Minkowski 单位的好算法,也是计算数论的重要课题.
+\end{proof}
+
+\subsection*{(D) 分圆域}
+\addcontentsline{toc}{subsection}{(D) 分圆域}
+
+设 $K=\Q(\zeta_{p^t})$,$p$ 为奇素数,$t\geqslant 1$.我们已经知道,$W_K$ 是 $2p^t$ 阶循环群.又
+\[
+  n=[K:\Q]=\varphi(p^t),\qquad r_1=0,\qquad r_2=\frac{1}{2}\varphi(p^t),
+\]
+从而 $r=\frac{1}{2}\varphi(p^t)-1$.令 $K_+=\Q(\zeta_{p^t}+\zeta_{p^t}^{-1})$ 是 $K$ 的极大实子域,则 $[K_+:\Q]=\frac{1}{2}\varphi(p^t)$,从而 $K_+$ 的基本单位组中单位的个数也是 $r=\frac{1}{2}\varphi(p^t)-1$.
+
+\begin{lemma}[\emph{Kummer}]\label{lem:ch3-15}
+分圆域 $K=\Q(\omega)$($\omega=\zeta_{p^t}$)的每个单位都是实单位和单位根的乘积.
+\end{lemma}
+
+\begin{proof}
+令 $G=\Gal(K/\Q)=\{\sigma_a\mid 1\leqslant a\leqslant p^t-1,\ p\nmid a,\ \sigma_a(\omega)=\omega^a\}$,于是 $\sigma_{-1}$ 为复共轭自同构.对于每个 $\sigma\in G$,$\alpha\in K$,$\sigma(\overline{\alpha})=\sigma\sigma_{-1}(\alpha)=\sigma_{-1}\sigma(\alpha)=\overline{\sigma(\alpha)}$.设 $\varepsilon\in U_K$,则 $\overline{\varepsilon}=\sigma_{-1}(\varepsilon)\in U_K$.并且对于每个 $\sigma\in G$,均有 $|\sigma(\varepsilon/\overline{\varepsilon})|=|\sigma(\varepsilon)/\overline{\sigma(\varepsilon)}|=1$.根据引理 \ref{lem:ch3-6} 即知 $\varepsilon/\overline{\varepsilon}=\lambda$ 是单位根.但是 $W_K=\{\pm\omega^a\mid 0\leqslant a\leqslant p^t-1\}=\{\pm\omega^{2a}\mid 0\leqslant a\leqslant p^t-1\}$,从而 $\varepsilon=\pm\omega^{2a}\overline{\varepsilon}$.如果 $\varepsilon=\omega^{2a}\overline{\varepsilon}$,则
+\[
+  \varepsilon\cdot\omega^{-a}=\overline{\varepsilon}\cdot\omega^a=\overline{\varepsilon\omega^{-a}},
+\]
+因此 $\mu=\varepsilon\cdot\omega^{-a}$ 为实单位,而 $\varepsilon=\omega^a\cdot\mu$ 即满足引理要求.最后再证 $\varepsilon=-\omega^{2a}\overline{\varepsilon}$ 不可能.如果 $\varepsilon=-\omega^{2a}\overline{\varepsilon}$,由于 $pO_K=\mathfrak{p}^n$,$\mathfrak{p}=(1-\omega)$,$O_K=\Z[\omega]$,因此
+\[
+  \mu=\varepsilon\cdot\omega^{-a}=c_0+c_1\omega+\cdots+c_{n-1}\omega^{n-1},\qquad c_i\in\Z,
+\]
+并且 $\overline{\mu}=c_0+c_1\omega^{-1}+\cdots+c_{n-1}\omega^{-(n-1)}$,但是 $\mu=-\overline{\mu}$,而
+\[
+  \omega\equiv\omega^{-1}\equiv 1\ (\mathrm{mod}\ \mathfrak{p}),
+\]
+从而 $-\mu=\overline{\mu}\equiv c_0+c_1\omega+\cdots+c_{n-1}\omega^{n-1}=\mu\ (\mathrm{mod}\ \mathfrak{p})$,于是 $2\mu\in\mathfrak{p}$,即 $\mu\in\mathfrak{p}$,这与 $\mu$ 是单位相矛盾.
+\end{proof}
+
+\begin{corollary}
+分圆域 $K=\Q(\zeta_{p^t})$ 中存在一组实单位
+\[
+  \{\eta_1,\dots,\eta_r\}\qquad\left(r=\frac{1}{2}\varphi(p^t)-1\right),
+\]
+使得它同时是 $K$ 和其极大实子域 $K_+$ 的基本单位组.
+\end{corollary}
+
+\begin{proof}
+设 $\{\varepsilon_1,\cdots,\varepsilon_r\}$ 是 $K$ 的任意一个基本单位组.根据引理 \ref{lem:ch3-15} 知 $\varepsilon_i=\omega_i\eta_i$,$\omega_i\in W_K$,$\eta_i$ 为实单位,从而 $\eta_i$ 也是 $K_+$ 中的单位.易知这样的 $\{\eta_1,\cdots,\eta_r\}$ 满足推论 1 的要求.
+\end{proof}
+
+\begin{corollary}
+对于分圆域 $K=\Q(\zeta_{p^t})$ 和它的极大实子域 $K_+$,我们有 $R_K/R_{K_+}=2^r$,$r=\frac{1}{2}\varphi(p^t)-1$.
+\end{corollary}
+
+\begin{proof}
+取 $\{\eta_1,\cdots,\eta_r\}$ 同时是 $K$ 和 $K_+$ 的基本单位组(推论 1).由于
+\[
+  \Gal(K/\Q)=\{\sigma_a\mid(a,p)=1,\ 1\leqslant a\leqslant p^t-1\},\qquad
+  \Gal(K_+/\Q)=\Gal(K/\Q)/\{1,\sigma_{-1}\}.
+\]
+从而可取 $\{\sigma_a\mid 1\leqslant a\leqslant\frac{1}{2}(p^t-1),\ (a,p)=1\}$ 为 $\Gal(K_+/\Q)$ 的代表元.于是
+\begin{align*}
+  R_K&=\left|\det\left(\lambda_a\log|\sigma_a(\eta_j)|\right)_{1\leqslant a,j\leqslant r}\right|\\
+  &=2^r\left|\det\left(\log|\sigma_a(\eta_j)|\right)\right|=2^rR_{K_+}.
+\end{align*}
+\end{proof}
+
+\subsection{关于费尔马猜想的 Kummer 定理}\label{sec:ch3-s2-4}
+
+\begin{sloppypar}
+现在我们介绍 Kummer 关于费马猜想所作的工作.大家知道,费马猜想是说:当 $n\geqslant 3$ 时,方程 $x^n+y^n=z^n$ 没有有理整数解 $(x,y,z)$,使得 $xyz\neq 0$.利用初等数论,不难证明这个猜想对于 $n=4$ 是正确的.从而只需再对每个奇素数 $p$,证明费马猜想对于 $n=p$ 正确即可(为什么?).Kummer 证明了:如果对于奇素数 $p$,$p$ 不能除尽分圆域 $\Q(\zeta_p)$ 的类数 $h_p$,则费马猜想对于 $n=p$ 是正确的.在 $100$ 以内除了 $37,59$ 和 $67$ 之外,其余奇素数 $p$ 均满足条件 $p\nmid h_p$,从而对于这些奇素数 $p$,费马猜想均正确.自 Kummer 时代起,人们就把费马猜想分成两种情形,第 $1$ 种情形是说费马方程 $x^p+y^p=z^p$ 不存在解满足 $p\nmid xyz\neq 0$,第 $2$ 种情形则是说不存在解满足 $p\mid xyz\neq 0$.第 $2$ 种情形的证明还需要应用少许 $p$-adic 域的知识,我们现在介绍 Kummer 对于第 $1$ 种情形的证明.也就是说,我们要证明:
+\end{sloppypar}
+
+\begin{theorem}[\emph{Kummer}]\label{thm:3.7}
+设 $p$ 为奇素数,$h_p$ 是分圆域 $\Q(\zeta)$($\zeta=\zeta_p$)的类数,如果 $p\nmid h_p$,则费马方程 $x^p+y^p=z^p$ 没有有理整数解 $(x,y,z)$,使得 $p\nmid xyz\neq 0$.
+\end{theorem}
+
+\begin{proof}
+如果 $p=3$,由于 $3\nmid xyz$,从而 $x^3,y^3,z^3\equiv\pm1\ (\mathrm{mod}\ 9)$,于是 $x^3+y^3\equiv 0$ 或者 $\pm2\not\equiv\pm1\equiv z^3\ (\mathrm{mod}\ 9)$,这就表明定理对于 $p=3$ 成立.从而以后假设 $p\geqslant 5$.进而,如果 $x\equiv y\equiv -z\ (\mathrm{mod}\ p)$,则 $x^p+y^p\equiv -2z^p$,如果 $x^p+y^p=z^p$,则 $3z^p\equiv 0\ (\mathrm{mod}\ p)$,但是这在 $p\geqslant 5$ 和 $p\nmid z$ 的情形是不可能的.因此或者 $x\not\equiv y\ (\mathrm{mod}\ p)$,或者 $x\not\equiv -z\ (\mathrm{mod}\ p)$,而在后一种情形可以考虑方程 $x^p+(-z)^p=(-y)^p$.因此我们总可以假设 $x\not\equiv y\ (\mathrm{mod}\ p)$.最后,如果 $d=(x,y)$,则 $d\mid z$,而 $(x/d,y/d,z/d)$ 仍是费马方程的解.从而我们又可设 $x,y,z$ 两两互素.
+
+在上述假定之下现在着手证明定理 \ref{thm:3.7}.在分圆域 $\Q(\zeta)$($\zeta=\zeta_p$)的整数环 $\Z[\zeta]$ 中,方程 $x^p+y^p=z^p$ 可以写成
+\[
+  (x+y)(x+\zeta y)\cdots(x+\zeta^{p-1}y)=z^p.
+\]
+我们再证 $\Z[\zeta]$ 中如下 $3$ 个非常简单的事实:
+
+(i) $\Z[\zeta]$ 中 $p$ 个主理想 $(x+\zeta^iy)$($0\leqslant i\leqslant p-1$)两两互素.因为若不然,则存在 $\Z[\zeta]$ 中一个素理想 $\mathfrak{p}$ 和 $i,j$,$0\leqslant i<j\leqslant p-1$,使得 $x+\zeta^iy\equiv x+\zeta^jy\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$.从而
+\begin{align*}
+  0&\equiv(x+\zeta^iy)-(x+\zeta^jy)\equiv\zeta^iy(1-\zeta^{j-i})\\
+  &\equiv\zeta^i\cdot\frac{1-\zeta^{j-i}}{1-\zeta}\cdot y(1-\zeta)\ (\mathrm{mod}\ \mathfrak{p}).
+\end{align*}
+由于 $\zeta$ 和 $\frac{1-\zeta^{j-i}}{1-\zeta}$ 均为 $\Z[\zeta]$ 中单位,于是 $y(1-\zeta)\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$.另一方面,
+\[
+  0\equiv\zeta^j(x+\zeta^iy)-\zeta^i(x+\zeta^jy)=\zeta^ix(\zeta^{j-i}-1)\ (\mathrm{mod}\ \mathfrak{p}),
+\]
+于是 $x(1-\zeta)\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$.由于已假定 $(x,y)=1$,于是 $1-\zeta\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$,即 $\mathfrak{p}\mid(1-\zeta)$.但是我们已经知道 $(1-\zeta)$ 是 $\Z[\zeta]$ 中的素理想,并且 $pO_K=(1-\zeta)^{p-1}$(见第二章).从而必然 $\mathfrak{p}=(1-\zeta)=(1-\zeta^i)$(对每个 $1\leqslant i\leqslant p-1$).于是 $x+y\equiv x+\zeta^iy\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$,即 $x+y\in\mathfrak{p}\cap\Z=p\Z$.从而 $x+y\equiv 0\ (\mathrm{mod}\ p)$,于是 $z^p\equiv x^p+y^p\equiv x+y\equiv 0\ (\mathrm{mod}\ p)$,即 $p\mid z$.这与假设 $p\nmid xyz$ 相矛盾.
+
+(ii) 对于每个整数 $\alpha\in\Z[\zeta]$,均存在有理整数 $a$,使得 $\alpha^p\equiv a\ (\mathrm{mod}\ p)$.这是因为 $\alpha$ 可以表示为 $\alpha=a_0+a_1\zeta+\cdots+a_{p-1}\zeta^{p-1}$,$a_i\in\Z$.从而
+\begin{align*}
+  \alpha^p&\equiv a_0^p+a_1^p\zeta^p+\cdots+a_{p-1}^p(\zeta^{p-1})^p\\
+  &=a_0^p+a_1^p+\cdots+a_{p-1}^p\ (\mathrm{mod}\ p),
+\end{align*}
+而同余式右方为有理整数.
+
+(iii) 设 $\alpha=a_0+a_1\zeta+\cdots+a_{p-1}\zeta^{p-1}$,$a_i\in\Z$.如果至少有一个 $a_i$ 为 $0$,并且 $p\mid\alpha$,则 $p$ 必然除尽每个 $a_i$($0\leqslant i\leqslant p-1$).这是由于 $\{1,\zeta,\cdots,\zeta^{p-1}\}$ 中任何 $p-1$ 个元素均形成 $\Z[\zeta]$ 的一组整基.
+
+现在回到定理的证明.考虑理想等式
+\[
+  \prod_{i=0}^{p-1}(x+\zeta^iy)=(z)^p.
+\]
+根据 (i),左边 $p$ 个理想两两互素,从而每个均是某理想的 $p$ 次幂,即 $(x+\zeta^iy)=\mathfrak{a}_i^p$($0\leqslant i\leqslant p-1$).由于左边为主理想,因此(取 $i=1$)$[\mathfrak{a}_1]^p=1$(这里 $[\mathfrak{a}]$ 表示理想 $\mathfrak{a}$ 的理想类).由于 $p\nmid h_p$,即域 $K=\Q(\zeta)$ 的理想类群 $C(K)$ 中没有 $p$ 阶元素,所以 $[\mathfrak{a}_1]=1$,即 $\mathfrak{a}_1$ 为主理想.设 $\mathfrak{a}_1=(\alpha)$,$\alpha\in\Z[\zeta]$,于是 $x+\zeta y=\varepsilon\cdot\alpha^p$,其中 $\varepsilon\in U_K$.根据引理 \ref{lem:ch3-15},$\varepsilon=\zeta^r\varepsilon_1$,其中 $\varepsilon_1$ 为实单位.又由 (ii) 知 $\alpha^p\equiv a\ (\mathrm{mod}\ p)$,其中 $a\in\Z$,从而
+\[
+  x+\zeta y=\zeta^r\varepsilon_1\alpha^p\equiv\zeta^r\varepsilon_1a\ (\mathrm{mod}\ p).
+\]
+于是 $\overline{x+\zeta y}=x+\zeta^{-1}y\equiv\zeta^{-r}\varepsilon_1a\ (\mathrm{mod}\ p)$.因此
+\[
+  \zeta^{-r}(x+\zeta y)\equiv\zeta^r(x+\zeta^{-1}y)\ (\mathrm{mod}\ p),
+\]
+即
+\begin{equation}  x+\zeta y-\zeta^{2r}x-\zeta^{2r-1}y\equiv 0\ (\mathrm{mod}\ p).\tag{*}\end{equation}
+如果 $1,\zeta,\zeta^{2r}$ 和 $\zeta^{2r-1}$ 两两不同,由 $p\geqslant 5$ 和 (iii) 可知 $p\mid x$ 并且 $p\mid y$.这与假设 $p\nmid xyz$ 相矛盾.从而 $1,\zeta,\zeta^{2r}$ 和 $\zeta^{2r-1}$ 至少有两个相等.但是显然 $1\neq\zeta$,$\zeta^{2r}\neq\zeta^{2r-1}$,从而只有如下 $3$ 个可能:
+
+(1) $1=\zeta^{2r}$.此时 (*) 式变为 $x+\zeta y-x-\zeta^{-1}y\equiv 0\ (\mathrm{mod}\ p)$,即 $\zeta y-\zeta^{-1}y\equiv 0\ (\mathrm{mod}\ p)$.由 (iii) 推得 $p\mid y$,而这与 $p\nmid xyz$ 相矛盾.
+
+(2) $1=\zeta^{2r-1}$,即 $\zeta=\zeta^{2r}$.这时 (*) 式变为 $(x-y)-(x-y)\zeta\equiv 0\ (\mathrm{mod}\ p)$.由 (iii) 推得 $x-y\equiv 0\ (\mathrm{mod}\ p)$,这又与假设 $p\nmid(x-y)$ 相矛盾.
+
+(3) $\zeta=\zeta^{2r-1}$.这时 (*) 式为 $x-\zeta^2x\equiv 0\ (\mathrm{mod}\ p)$.由 (iii) 推出 $p\mid x$,而这又与 $p\nmid xyz$ 相矛盾.
+
+综合上述,我们便完全证明了定理.
+\end{proof}
+
+\begin{remark}
+我们在第六章要介绍 Kummer 的另外一个结果.他给出 $p\nmid h_p$ 的一个初等判别法:$p\nmid h_p\Leftrightarrow p$ 除不尽 Bernoulli 数 $B_2,B_4,\cdots,B_{p-3}$ 的分子.令 $i(p)$ 表示上述 $\frac{p-3}{2}$ 个 Bernoulli 数中分子被 $p$ 除尽的个数.1972\~{}1974 年 Skula, Br\"uckner, Iwasawa 将定理 \ref{thm:3.7} 推广为:如果 $i(p)<\sqrt{p}-2$,则定理 \ref{thm:3.7} 的结论仍然成立.
+\end{remark}
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 求方程 $x^2-15y^2=1$ 和 $x^2-17y^2=1$ 满足 $|x|,|y|\leqslant 100$ 的全部有理整数解 $(x,y)$.
+  \item 计算 $\Q(\sqrt{d})$($d=2,3,5,6,7,10,11,13,14,65$)的基本单位.
+  \item 设 $d=t^2+4$ 无平方因子,$t\in\Z$,$t>0$.求证 $\varepsilon_0=\frac{1}{2}(t+\sqrt{t^2+4})$ 是实二次域 $\Q(\sqrt{d})$ 的基本单位.
+  \item 设 $d=t^2-4$ 无平方因子,$t\geqslant 5$,$t\in\Z$.求证 $\varepsilon=\frac{t+\sqrt{t^2-4}}{2}$ 为实二次域 $\Q(\sqrt{d})$ 的基本单位.
+  \item $p$ 为奇素数,$K=\Q(\zeta)$,$\zeta=\zeta_p$,$g$ 为模 $p$ 的一个原根,并且 $2\nmid g$(在 $g$ 和 $g+p$ 中必有一个满足此条件).令
+  \[
+    \varepsilon=\zeta^{-\frac{g-1}{2}}\frac{1-\zeta^g}{1-\zeta}=\frac{\sin g\theta}{\sin\theta},\qquad \theta=\frac{\pi}{p},
+  \]
+  求证 $\varepsilon$ 为 $K$ 的实单位,并且 $\varepsilon$ 的全部共轭元为
+  \[
+    \varepsilon_s=\frac{\sin g^{s+1}\theta}{\sin g^s\theta}\qquad\left(0\leqslant s\leqslant\frac{p-3}{2}\right).
+  \]
+  (称 $\varepsilon=\varepsilon_0,\varepsilon_1,\cdots,\varepsilon_{\frac{p-3}{2}}$ 为 $K$ 中的分圆单位,我们在第六章要证明它们之中的任意 $\frac{p-3}{2}$ 个均是无关单位组.)
+  \item 设 $p$ 为素数,$p\equiv 1\ (\mathrm{mod}\ 4)$,求证 $\Q(\sqrt{p})$ 的基本单位的范为 $-1$.
+  \item 若 $d$ 是无平方因子的正整数,并且 $d\equiv 3\ (\mathrm{mod}\ 4)$,求证 $K=\Q(\sqrt{d})$ 的基本单位的范为 $1$.
+  \item (Fermat)证明方程 $x^2+2=y^3$ 的有理整数解只有 $(x,y)=(\pm5,3)$.
+  \item 证明方程 $x^2+5=y^3$ 没有有理整数解.
+  \item 设 $k$ 是大于 $2$ 的整数并且没有平方因子,而且不存在整数 $a$ 使得 $k=3a^2\pm1$.如果 $K=\Q(\sqrt{-k})$ 的类数不被 $3$ 除尽,求证方程 $x^2+k=y^3$ 没有有理整数解.
+\end{Exercises}

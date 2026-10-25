@@ -1,0 +1,912 @@
+% ==================================================================
+%  §11.2  曲线、曲面及流形的定向
+%  源：徐森林、薛春华《数学分析》第二册, 印刷页 322-332
+%  底本：PaddleOCR-VL 为主, MinerU 交叉核对
+%  约定：全西文标点; \[\] 表行间公式; align*/aligned 表多行;
+%        定理/证明以 \qedhere 收 □, 不需 □ 的用 \noqedhere 抑制
+%        章节标题（\chapter/\section）按原书原文保留顿号「、」,
+%        正文一律不得出现中文标点（规范 §1.3）
+%  图：图11.2.1-11.2.6、11.2.8-11.2.12、11.2.17 用 TikZ 绘;
+%      图11.2.7、11.2.13、11.2.14（Möbius 带状图）与图11.2.15、11.2.16
+%      （左右手系）TikZ 难以保真, 按规范 §5.1 用原书截图（figures/）。
+%  按「原书优先」照录原书排版/笔误之处：
+%      · 例11.2.1 中「由 $(-y,x)\perp(x,y)=\boldsymbol{x}$ 也可看出 ...」
+%      · 例11.2.4 首行原书作 $\boldsymbol{x}'(\theta,z)$（带撇）
+%      · 例11.2.5 中 $\boldsymbol{n}(\theta,0)$ 的行列式第三行首元素
+%        原书印作 $-\sin\theta\cos\theta$（由结果反推应为 $\cos2\theta$）
+%      · 定义11.2.4 条件 (3) 中原书印作 $\varphi_{n}^{\beta}$（应为 $u_{n}^{\beta}$）
+%  订正 OCR 之处：
+%      · 希腊字母 α 被 OCR 识成拉丁 a（已由原书影印页确认为 α）
+%      · 「定义为」符号实为 \doteq（≐, 点上加于等号）
+%      · \underset{\cdot}{连} 系 OCR 伪影, 实为「连续」
+% ==================================================================
+\section{曲线、曲面及流形的定向}
+
+为了给出定向曲线上的第二型曲线积分, 定向曲面上的第二型曲面积分以及定向流形上的外微分形式的积分, 必须引进曲线, 曲面及流形可定向与定向的概念, 这是一个极其重要又是关键的概念. 它是由 Poincare 首先提出来的.
+
+\begin{definition}\label{def:11.2.1}
+设 $C$ 为空间 $\mathbb{R}^{n}$ 中的 $C^{1}$ 曲线. 如果沿 $C$ 有处处非零的连续变动的切向量场, 则称 $C$ 是可定向的 (\cref{fig:11.2.1}, 简记为\cref{fig:11.2.2}).
+\end{definition}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.46\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 曲线 C 坐标轨迹 (三次贝塞尔曲线)
+      \coordinate (P0) at (-2.0, -0.6);
+      \coordinate (P1) at (-1.1,  0.55);
+      \coordinate (P2) at (-0.2,  0.75);
+      \coordinate (P3) at ( 0.6,  0.35);
+      \coordinate (P4) at ( 1.3, -0.45);
+      \coordinate (P5) at ( 2.0, -0.25);
+      
+      % 绘制光滑曲线 C
+      \draw[very thick] plot[smooth, tension=0.85] coordinates {(P0) (P1) (P2) (P3) (P4) (P5)};
+      \node[right] at (P5) {$C$};
+      
+      % 沿曲线取若干采样点，引出切向量场 tau (带箭头的切线向量)
+      % 点 1: 约 P0 附近
+      \coordinate (Q1) at (-1.60, -0.05);
+      \draw[->, thick, ThemeColor] (Q1) -- ++(0.55, 0.45);
+      \fill (Q1) circle (1.2pt);
+      
+      % 点 2: 约波峰 P2 附近
+      \coordinate (Q2) at (-0.35, 0.74);
+      \draw[->, thick, ThemeColor] (Q2) -- ++(0.70, 0.05);
+      \fill (Q2) circle (1.2pt);
+      
+      % 点 3: 下坡段
+      \coordinate (Q3) at (0.85, 0.05);
+      \draw[->, thick, ThemeColor] (Q3) -- ++(0.55, -0.42);
+      \fill (Q3) circle (1.2pt);
+      
+      % 点 4: 波谷回升段
+      \coordinate (Q4) at (1.55, -0.40);
+      \draw[->, thick, ThemeColor] (Q4) -- ++(0.60, 0.22);
+      \fill (Q4) circle (1.2pt);
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.1}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.46\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 同样的曲线 C，但带有曲线上嵌入的定向箭头
+      \coordinate (P0) at (-2.0, -0.6);
+      \coordinate (P1) at (-1.1,  0.55);
+      \coordinate (P2) at (-0.2,  0.75);
+      \coordinate (P3) at ( 0.6,  0.35);
+      \coordinate (P4) at ( 1.3, -0.45);
+      \coordinate (P5) at ( 2.0, -0.25);
+      
+      \draw[very thick, postaction={decorate}, decoration={markings,
+        mark=at position 0.18 with {\arrow[thick]{>}},
+        mark=at position 0.52 with {\arrow[thick]{>}},
+        mark=at position 0.85 with {\arrow[thick]{>}}}]
+        plot[smooth, tension=0.85] coordinates {(P0) (P1) (P2) (P3) (P4) (P5)};
+      \node[right] at (P5) {$C$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.2}
+  \end{minipage}
+\end{figure}
+
+如果 $C$ 有 $C^{1}$ 参数表示 $\boldsymbol{x}:[\alpha, \beta] \to \mathbb{R}^{n}$, 沿参数增加的方向或切向量场 $\boldsymbol{x}^{\prime}(t)$ 的指向确定了 $C$ 的一个定向, 记此定向曲线为 $\overrightarrow{C}$. 而参数减少的方向或 $-\boldsymbol{x}^{\prime}(t)$ 的指向确定了 $C$ 的另一个相反的定向, 记为 $\overrightarrow{C}^{-}$, 或称为 $\overrightarrow{C}$ 的负向. 如果参数定义域为 $[\alpha, \beta]$, 则 $f([\alpha, \beta])$ 为\textbf{道路连通集}, 所以 $C$ 恰有两个上述相反的定向.
+
+如果 $C$ 由两个不相连接的道路连通部分, 则它恰有 4 个不同的定向.
+
+\begin{example}\label{ex:11.2.1}
+平面 $\mathbb{R}^{2}$ 上的圆 $C: x^{2}+y^{2}=R^{2}$.
+\end{example}
+
+参数表示为
+\[
+  \boldsymbol{x}(\theta)=(x(\theta), y(\theta))=(R \cos \theta, R \sin \theta), \quad 0 \leqslant \theta \leqslant 2 \pi,
+\]
+切向量场为
+\[
+  \boldsymbol{x}^{\prime}(\theta)=\left(x^{\prime}(\theta), y^{\prime}(\theta)\right)=(-R \sin \theta, R \cos \theta).
+\]
+从 $\theta=0$ 到 $\theta=2 \pi$ 确定了圆 $C$ 的一个定向, 它是逆时针方向的定向圆, 记为 $\overrightarrow{C}$ (\cref{fig:11.2.3}); 而从 $\theta=2 \pi$ 到 $\theta=0$ 确定了圆 $\overrightarrow{C}$ 的相反定向, 它是顺时针方向的定向圆, 记为 $\overrightarrow{C}^{-}$ (\cref{fig:11.2.4}).
+
+实际上, 不用圆 $C$ 的参数表示, 由 $(-y, x) \perp(x, y)=\boldsymbol{x}$ 也可看出 $(-y, x)$ 是沿 $C$ 的逆时针方向的连续的单位切向量场 (当然处处非零). 而 $(-y, x)=(-R \sin \theta, R \cos \theta)$ 表明两种讨论的结果是一致的.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-1.9, 0) -- (1.9, 0) node[below right] {$x$};
+      \draw[->] (0, -1.8) -- (0, 1.8) node[right] {$y$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 定向圆 (逆时针箭头)
+      \draw[thick, postaction={decorate}, decoration={markings,
+        mark=at position 0.12 with {\arrow[thick]{>}},
+        mark=at position 0.38 with {\arrow[thick]{>}},
+        mark=at position 0.62 with {\arrow[thick]{>}},
+        mark=at position 0.88 with {\arrow[thick]{>}}}]
+        (0,0) circle (1.3);
+      
+      % 半径与点 P
+      \coordinate (P) at (50:1.3);
+      \draw (0,0) -- (P);
+      \fill (P) circle (1.3pt);
+      \node[right=2pt] at (P) {$\boldsymbol{x}=(R \cos \theta, R \sin \theta)$};
+      
+      % 切向量 (逆时针方向，垂直于半径 OP)
+      \draw[->, very thick, ThemeColor] (P) -- ++(-0.95*0.766, 0.95*0.643) 
+        node[above=2pt, inner sep=1pt] {$\boldsymbol{x}^{\prime}=(-R \sin \theta, R \cos \theta)$};
+        
+      % 直角符号
+      \coordinate (A) at ($(P)!0.16!(0,0)$);
+      \coordinate (B) at ($(P)!0.16!90:(0,0)$);
+      \draw (A) -- ($(A)+(B)-(P)$) -- (B);
+      
+      % 夹角 theta
+      \draw (0.40,0) arc (0:50:0.40);
+      \node at (0.55,0.22) {$\theta$};
+      \node[below] at (0.75, -0.05) {$R$};
+      \node at (0, -2.15) {定向圆 $\overrightarrow{C}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.3}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-1.9, 0) -- (1.9, 0) node[below right] {$x$};
+      \draw[->] (0, -1.8) -- (0, 1.8) node[right] {$y$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 定向圆 (顺时针箭头)
+      \draw[thick, postaction={decorate}, decoration={markings,
+        mark=at position 0.12 with {\arrow[thick]{<}},
+        mark=at position 0.38 with {\arrow[thick]{<}},
+        mark=at position 0.62 with {\arrow[thick]{<}},
+        mark=at position 0.88 with {\arrow[thick]{<}}}]
+        (0,0) circle (1.3);
+      
+      % 半径与点 P
+      \coordinate (P) at (50:1.3);
+      \draw (0,0) -- (P);
+      \fill (P) circle (1.3pt);
+      \node[right=2pt] at (P) {$\boldsymbol{x}$};
+      
+      % 切向量 (顺时针方向，垂直于半径 OP)
+      \draw[->, very thick, ThemeColor] (P) -- ++(0.95*0.766, -0.95*0.643);
+      
+      % 直角符号
+      \coordinate (A) at ($(P)!0.16!(0,0)$);
+      \coordinate (B) at ($(P)!0.16!-90:(0,0)$);
+      \draw (A) -- ($(A)+(B)-(P)$) -- (B);
+      
+      % 夹角 theta
+      \draw (0.40,0) arc (0:50:0.40);
+      \node at (0.55,0.22) {$\theta$};
+      \node[below] at (0.75, -0.05) {$R$};
+      \node at (0, -2.15) {定向圆 $\overrightarrow{C}^{-}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.4}
+  \end{minipage}
+\end{figure}
+
+\begin{example}\label{ex:11.2.2}
+$\mathbb{R}^{3}$ 中的圆柱螺线 $C: \boldsymbol{x}(\theta)=(x(\theta), y(\theta), z(\theta))=(R \cos \theta, R \sin \theta, b \theta)$, $R>0$, $b>0$.
+\end{example}
+
+切向量场
+\[
+  \boldsymbol{x}^{\prime}(\theta)=\left(x^{\prime}(\theta), y^{\prime}(\theta), z^{\prime}(\theta)\right)=(-R \sin \theta, R \cos \theta, b) \neq(0,0,0).
+\]
+当 $\theta$ 增加时, 它确定了圆柱螺线 $C$ 的一个定向, 记此定向曲线为 $\overrightarrow{C}$ (\cref{fig:11.2.5}); 当 $\theta$ 减少时, 它确定了圆柱螺线 $C$ 的一个相反方向, 记此定向曲线为 $\overrightarrow{C}^{-}$.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+    % 上下两底面椭圆
+    \draw[thick] (0, 2.1) ellipse (1.25 and 0.35);
+    \draw[thick] (-1.25, -2.1) arc (180:360:1.25 and 0.35);
+    \draw[dashed] (-1.25, -2.1) arc (180:0:1.25 and 0.35);
+    
+    % 两侧母线
+    \draw[thick] (-1.25, 2.1) -- (-1.25, -2.1);
+    \draw[thick] (1.25, 2.1) -- (1.25, -2.1);
+    
+    % 坐标轴: z 轴竖直向上
+    \draw[dashed] (0, -2.1) -- (0, 2.1);
+    \draw[->, thick] (0, 2.1) -- (0, 2.8) node[left] {$z$};
+    
+    % y 轴向右偏前
+    \draw[dashed] (0, -2.1) -- (1.25, -2.1);
+    \draw[->, thick] (1.25, -2.1) -- (2.2, -1.8) node[below] {$y$};
+    
+    % x 轴向左前
+    \draw[dashed] (0, -2.1) -- (-0.8, -2.6);
+    \draw[->, thick] (-0.8, -2.6) -- (-1.5, -3.1) node[below left] {$x$};
+    \node[below right] at (0, -2.1) {$O$};
+    
+    % 圆柱螺线: 采用角度计算，避免弧度过大导致的 Dimension too large
+    % 第一圈前段 (-90 到 90, 前侧实线)
+    \draw[very thick]
+      plot[domain=-90:90, samples=25, smooth, variable=\t] 
+      ({1.25*sin(\t)}, {-2.1 + 0.95*(\t + 90)/180 + 0.35*cos(\t)});
+    \draw[very thick, ->] ({1.25*sin(-5)}, {-2.1 + 0.95*85/180 + 0.35*cos(-5)}) -- 
+                         ({1.25*sin(10)}, {-2.1 + 0.95*100/180 + 0.35*cos(10)});
+      
+    % 第一圈后段 (90 到 270, 后侧虚线)
+    \draw[dashed, thick]
+      plot[domain=90:270, samples=25, smooth, variable=\t] 
+      ({1.25*sin(\t)}, {-1.15 + 0.95*(\t - 90)/180 - 0.35*cos(\t - 180)});
+      
+    % 第二圈前段 (前侧实线)
+    \draw[very thick]
+      plot[domain=-90:90, samples=25, smooth, variable=\t] 
+      ({1.25*sin(\t)}, {-0.2 + 0.95*(\t + 90)/180 + 0.35*cos(\t)});
+    \draw[very thick, ->] ({1.25*sin(-5)}, {-0.2 + 0.95*85/180 + 0.35*cos(-5)}) -- 
+                         ({1.25*sin(10)}, {-0.2 + 0.95*100/180 + 0.35*cos(10)});
+      
+    % 第二圈后段 (后侧虚线)
+    \draw[dashed, thick]
+      plot[domain=90:270, samples=25, smooth, variable=\t] 
+      ({1.25*sin(\t)}, {0.75 + 0.95*(\t - 90)/180 - 0.35*cos(\t - 180)});
+      
+    % 第三段到顶 (前侧实线)
+    \draw[very thick]
+      plot[domain=-90:0, samples=15, smooth, variable=\t] 
+      ({1.25*sin(\t)}, {1.7 + 0.40*(\t + 90)/90 + 0.35*cos(\t)});
+    \draw[very thick, ->] ({1.25*sin(-45)}, {1.7 + 0.40*45/90 + 0.35*cos(-45)}) -- 
+                         ({1.25*sin(-30)}, {1.7 + 0.40*60/90 + 0.35*cos(-30)});
+
+    % 方程标注
+    \node[right] at (1.35, 0.4) {$\boldsymbol{x}(\theta)=(R \cos \theta, R \sin \theta, b \theta)$};
+    \node[below] at (0, -3.2) {定向圆柱螺线 $\overrightarrow{C}$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.2.5}
+\end{figure}
+
+\begin{definition}\label{def:11.2.2}
+$\mathbb{R}^{n}$ 中 $n-1$ 维超曲面的定向.
+
+设 $\Sigma$ 为 $\mathbb{R}^{n}$ 中的 $n-1$ 维 $C^{1}$ 超曲面 (即 $n-1$ 维 $C^{1}$ 流形). 如果 $\Sigma$ 有连续变动的处处非零的法向量场, 则称曲面 $\Sigma$ 是可定向的 (\cref{fig:11.2.6}); 否则 $\Sigma$ 称为不可定向的 (\cref{fig:11.2.7}).
+\end{definition}
+
+显然, 如果 $\Sigma$ 上的一个处处非零的连续法向量场 $\boldsymbol{n}$ 确定了 $\Sigma$ 的一个定向, 记此定向曲面为 $\overrightarrow{\Sigma}$, 则 $-\boldsymbol{n}$ 确定了 $\Sigma$ 的另一个相反的定向, 记此定向曲面为 $\overrightarrow{\Sigma}^{-}$. 而道路连通 (这里等价于连通) 的超曲面 $\Sigma$ 恰有两个定向 (\cref{fig:11.2.6}).
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 波浪形双侧曲面片
+      \draw[thick] (-2.0, 0.1) .. controls (-1.3, 1.1) and (-0.6, 1.1) .. (0, 0.2)
+                   .. controls (0.6, -0.6) and (1.3, 0.2) .. (2.0, -0.1);
+      \draw[thick] (-2.0, -0.3) .. controls (-1.3, 0.7) and (-0.6, 0.7) .. (0, -0.2)
+                   .. controls (0.6, -1.0) and (1.3, -0.2) .. (2.0, -0.5);
+      \draw[thick] (-2.0, 0.1) -- (-2.0, -0.3);
+      \draw[thick] (2.0, -0.1) -- (2.0, -0.5);
+      
+      % 连续法向量场 n
+      \foreach \x/\y in {-1.3/0.82, -0.4/0.50, 0.7/0.05, 1.4/-0.02}{
+        \draw[->, thick, ThemeColor] (\x,\y) -- ++(0.06, 0.65);
+      }
+      \node[above] at (-1.3, 1.5) {$\boldsymbol{n}$};
+      \node[above] at (0.7, 0.75) {$\boldsymbol{n}$};
+      \node[below] at (-1.5, -0.6) {$\overrightarrow{\Sigma}$};
+      
+      % 局部曲面片标注
+      \node at (0, -1.35) {可定向曲面 (双侧曲面)};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.6}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=0.92\linewidth]{ch11-fig-11.2.7}
+    \caption{}\label{fig:11.2.7}
+  \end{minipage}
+\end{figure}
+
+连通的可定向曲面也称为双侧曲面; 连通的不可定向曲面也称为单侧曲面. 注意, 如果 $\Sigma$ 有两个不相连接的道路连通部分, 且可定向, 则它恰有 4 个定向.
+
+\begin{example}\label{ex:11.2.3}
+球面 $\Sigma=S^{2}(R): F(x, y, z)=x^{2}+y^{2}+z^{2}-R^{2}=0$.
+\end{example}
+
+法向量场为 $\left(F_{x}^{\prime}, F_{y}^{\prime}, F_{z}^{\prime}\right)=(2 x, 2 y, 2 z)$. 从而 $\boldsymbol{n}_{\text{外}}=(x, y, z)$ 为球面 $\Sigma=S^{2}(R)$ 的一个处处非零的连续法向量场, 它确定了该球面的一个定向, 称为外法向 (外侧), 记作 $\overrightarrow{\Sigma}$ (\cref{fig:11.2.8}); 而 $\boldsymbol{n}_{\text{内}}=-\boldsymbol{n}_{\text{外}}=(-x,-y,-z)$ 确定了该球面的另一个相反定向, 称为内法向 (内侧), 记作 $\overrightarrow{\Sigma}^{-}$ (\cref{fig:11.2.9}).
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 球面外轮廓与赤道圆
+      \draw[thick] (0,0) circle (1.35);
+      \draw[thick] (-1.35,0) arc (180:360:1.35 and 0.42);
+      \draw[dashed] (-1.35,0) arc (180:0:1.35 and 0.42);
+      
+      % 坐标轴
+      \draw[dashed] (0,0) -- (0,1.35);
+      \draw[->, thick] (0,1.35) -- (0,2.0) node[above] {$z$};
+      \draw[dashed] (0,0) -- (1.35,0);
+      \draw[->, thick] (1.35,0) -- (2.0,0) node[right] {$y$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 球面上点 P 与外法向量
+      \coordinate (P) at (45:1.35);
+      \draw (0,0) -- (P);
+      \fill (P) circle (1.3pt);
+      \draw[->, very thick, ThemeColor] (P) -- ++(45:0.85) node[right] {$\boldsymbol{n}_{\text{外}}$};
+      
+      % 半径角
+      \draw (0.35,0) arc (0:45:0.35);
+      \node at (0.48,0.22) {$R$};
+      \node at (0, -1.8) {外侧 $\overrightarrow{\Sigma}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.8}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 球面外轮廓与赤道圆
+      \draw[thick] (0,0) circle (1.35);
+      \draw[thick] (-1.35,0) arc (180:360:1.35 and 0.42);
+      \draw[dashed] (-1.35,0) arc (180:0:1.35 and 0.42);
+      
+      % 坐标轴
+      \draw[dashed] (0,0) -- (0,1.35);
+      \draw[->, thick] (0,1.35) -- (0,2.0) node[above] {$z$};
+      \draw[dashed] (0,0) -- (1.35,0);
+      \draw[->, thick] (1.35,0) -- (2.0,0) node[right] {$y$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 球面上点 P 与内法向量
+      \coordinate (P) at (45:1.35);
+      \draw (0,0) -- (P);
+      \fill (P) circle (1.3pt);
+      \draw[->, very thick, ThemeColor] (P) -- ($(P)!0.65!(0,0)$) node[midway, left=2pt] {$\boldsymbol{n}_{\text{内}}$};
+      
+      % 半径角
+      \draw (0.35,0) arc (0:45:0.35);
+      \node at (0.48,0.22) {$R$};
+      \node at (0, -1.8) {内侧 $\overrightarrow{\Sigma}^{-}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.9}
+  \end{minipage}
+\end{figure}
+
+因为球面 $\Sigma=S^{n}(R)$ 道路连通, 所以它恰有两个定向 (恰有两侧, 外侧与内侧). 蚂蚁能爬遍一侧, 但不能从一侧爬到另一侧.
+
+应用球面坐标有
+\begin{align*}
+  \boldsymbol{x}(\theta, \varphi) &=(x(\theta, \varphi), y(\theta, \varphi), z(\theta, \varphi)) \\
+                                 &=(R \sin \theta \cos \varphi, R \sin \theta \sin \varphi, R \cos \theta), \\
+  \boldsymbol{x}_{\theta}^{\prime} &=(R \cos \theta \cos \varphi, R \cos \theta \sin \varphi,-R \sin \theta), \\
+  \boldsymbol{x}_{\varphi}^{\prime} &=(-R \sin \theta \sin \varphi, R \sin \theta \cos \varphi, 0).
+\end{align*}
+法向量场为
+\begin{align*}
+  \boldsymbol{x}_{\theta}^{\prime} \times \boldsymbol{x}_{\varphi}^{\prime}
+  &=\begin{vmatrix}
+      \boldsymbol{e}_{1} & \boldsymbol{e}_{2} & \boldsymbol{e}_{3} \\
+      R \cos \theta \cos \varphi & R \cos \theta \sin \varphi & -R \sin \theta \\
+      -R \sin \theta \sin \varphi & R \sin \theta \cos \varphi & 0
+    \end{vmatrix} \\
+  &=\left(R^{2} \sin ^{2} \theta \cos \varphi, R^{2} \sin ^{2} \theta \sin \varphi, R^{2} \sin \theta \cos \theta\right) \\
+  &=R^{2} \sin \theta(\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta).
+\end{align*}
+当 $\theta=0, \pi$ 时, $\boldsymbol{x}_{\theta}^{\prime} \times \boldsymbol{x}_{\varphi}^{\prime}=\boldsymbol{0}$, 这是由于选择 $(\theta, \varphi)$ 作为参数造成``北极''与``南极''为奇异点. 但是,
+\[
+  \left(\frac{x}{R}, \frac{y}{R}, \frac{z}{R}\right)=(\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta)=\boldsymbol{n}_{0}
+\]
+为球面 $\Sigma=S^{2}(R)$ 的连续的单位法向量场, 它确定了一个定向, 它就是外法向球面 $\overrightarrow{\Sigma}$.
+
+\begin{example}\label{ex:11.2.4}
+$\mathbb{R}^{3}$ 中柱面 $\Sigma: F(x, y, z)=x^{2}+y^{2}-R^{2}=0$.
+\end{example}
+
+法向量场为 $\left(F_{x}^{\prime}, F_{y}^{\prime}, F_{z}^{\prime}\right)=(2 x, 2 y, 0)$. 从而 $\boldsymbol{n}_{\text{外}}=(x, y, 0)$ 为柱面 $\Sigma$ 上的处处非零的连续法向量场, 它确定了该柱面的一个定向 (外侧) $\overrightarrow{\Sigma}$ (\cref{fig:11.2.10}); 而 $\boldsymbol{n}_{\text{内}}=-\boldsymbol{n}_{\text{外}}=(-x,-y,0)$ 确定了该柱面的另一个相反的定向 (内侧) $\overrightarrow{\Sigma}^{-}$ (\cref{fig:11.2.11}).
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 柱面两端椭圆与母线
+      \draw[thick] (0, 1.8) ellipse (1.1 and 0.32);
+      \draw[thick] (-1.1, -1.8) arc (180:360:1.1 and 0.32);
+      \draw[dashed] (-1.1, -1.8) arc (180:0:1.1 and 0.32);
+      \draw[thick] (-1.1, 1.8) -- (-1.1, -1.8);
+      \draw[thick] (1.1, 1.8) -- (1.1, -1.8);
+      
+      % 坐标轴
+      \draw[dashed] (0, -1.8) -- (0, 1.8);
+      \draw[->, thick] (0, 1.8) -- (0, 2.4) node[above] {$z$};
+      \draw[->, thick] (0, 0) -- (1.8, 0.6) node[above right] {$y$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 外法向量 (向柱面外侧)
+      \draw[->, very thick, ThemeColor] (-1.1, 0.2) -- ++(-0.75, 0) node[left] {$\boldsymbol{n}_{\text{外}}$};
+      \draw[->, very thick, ThemeColor] (1.1, -0.4) -- ++(0.75, 0) node[right] {$\boldsymbol{n}_{\text{外}}$};
+      
+      \node at (0, -2.4) {外侧 $\overrightarrow{\Sigma}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.10}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 柱面两端椭圆与母线
+      \draw[thick] (0, 1.8) ellipse (1.1 and 0.32);
+      \draw[thick] (-1.1, -1.8) arc (180:360:1.1 and 0.32);
+      \draw[dashed] (-1.1, -1.8) arc (180:0:1.1 and 0.32);
+      \draw[thick] (-1.1, 1.8) -- (-1.1, -1.8);
+      \draw[thick] (1.1, 1.8) -- (1.1, -1.8);
+      
+      % 坐标轴
+      \draw[dashed] (0, -1.8) -- (0, 1.8);
+      \draw[->, thick] (0, 1.8) -- (0, 2.4) node[above] {$z$};
+      \draw[->, thick] (0, 0) -- (1.8, 0.6) node[above right] {$y$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 内法向量 (向柱面内部轴线)
+      \draw[->, very thick, ThemeColor] (-1.1, 0.2) -- ++(0.70, 0) node[right] {$\boldsymbol{n}_{\text{内}}$};
+      \draw[->, very thick, ThemeColor] (1.1, -0.4) -- ++(-0.70, 0) node[left] {$\boldsymbol{n}_{\text{内}}$};
+      
+      \node at (0, -2.4) {内侧 $\overrightarrow{\Sigma}^{-}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.11}
+  \end{minipage}
+\end{figure}
+
+因为柱面 $\Sigma$ 是道路连通的, 所以它恰有两个定向 (恰有两侧, 外侧与内侧). 蚂蚁能爬遍一侧, 但不能从一侧爬到另一侧.
+
+应用柱面坐标有
+\begin{align*}
+  \boldsymbol{x}^{\prime}(\theta, z) &=(x(\theta, z), y(\theta, z), z(\theta, z))=(R \cos \theta, R \sin \theta, z), \\
+  \boldsymbol{x}_{\theta}^{\prime} &=(-R \sin \theta, R \cos \theta, 0), \\
+  \boldsymbol{x}_{z}^{\prime} &=(0,0,1).
+\end{align*}
+法向量场
+\begin{align*}
+  \boldsymbol{x}_{\theta}^{\prime} \times \boldsymbol{x}_{z}^{\prime}
+  &=\begin{vmatrix}
+      \boldsymbol{e}_{1} & \boldsymbol{e}_{2} & \boldsymbol{e}_{3} \\
+      -R \sin \theta & R \cos \theta & 0 \\
+      0 & 0 & 1
+    \end{vmatrix} \\
+  &=(R \cos \theta, R \sin \theta, 0)=(x, y, 0)=\boldsymbol{n}_{\text{外}}
+\end{align*}
+为该柱面上的处处非零的连续法向量场, 它确定了 $\overrightarrow{\Sigma}$ (外侧).
+
+\begin{example}\label{ex:11.2.5}
+Möbius 带 $\Sigma$.
+\end{example}
+
+不可定向的曲面的一个著名例子称为\textbf{Möbius 带}. 设想有一张矩形纸带 (\cref{fig:11.2.12}), 记作 $ABB_{1}A_{1}$, 用手捏着它的两头, 然后像拧麻花一样将它扭转过来, 再将线段 $AB$ 与线段 $A_{1}B_{1}$ 粘贴起来, 但要使 $A$ 与 $B_{1}$ 粘合, 而 $B$ 与 $A_{1}$ 粘合, 这样得到的曲面就称为 Möbius 带 (\cref{fig:11.2.13}). 记这张曲面为 $\Sigma$ 或 $M$.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 矩形纸带长条
+      \draw[thick] (-2.2, -0.4) rectangle (2.2, 0.4);
+      
+      % 四个顶点标注
+      \node[below left] at (-2.2, -0.4) {$A$};
+      \node[above left] at (-2.2,  0.4) {$B$};
+      \node[below right] at ( 2.2, -0.4) {$A_{1}$};
+      \node[above right] at ( 2.2,  0.4) {$B_{1}$};
+      
+      % 两端弯折准备粘合的提示弯箭头
+      % A 粘合到 B1，B 粘合到 A1
+      \draw[->, thick, ThemeColor] (-2.2, 0.4) to[out=130, in=50] (-2.2, -0.4);
+      \draw[->, thick, ThemeColor] ( 2.2, -0.4) to[out=-50, in=-130] ( 2.2, 0.4);
+      
+      \node at (0, -0.9) {矩形纸带 $ABB_{1}A_{1}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.2.12}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \includegraphics[width=0.92\linewidth]{ch11-fig-11.2.13}
+    \caption{}\label{fig:11.2.13}
+  \end{minipage}
+\end{figure}
+
+在 $\Sigma$ 上任取一点 $P$, 在 $P$ 点处指定一个单位法向量, 当点 $P$ 在曲面 $\Sigma$ 上沿其中心线连续变化时, 这个单位法向量也连续地改变, 当点 $P$ 扫过一圈仍回到原来的出发点时, 这时的单位法向量的方向正好与最初的单位法向量的方向相反. 这就说明 Möbius 带是不可定向的 (严格证明应该用反证法), 即它是单侧曲面. 蚂蚁在 Möbius 带上无需越过它的边界就能爬遍所有的地方. 换另一种通俗的说法, 那就是, 有一个人提着红色油漆桶来刷 Möbius 带, 那么他可以将 Möbius 带的所有部分全都刷上红色油漆, 而无需越过它的边界. 对于双侧曲面 (如球面, 柱面等) 是绝对做不到的!
+
+上述只是一种定性的描述, 就连连续变动的单位法向量场的描述也是不具体的. 现在我们给出 Möbius 带的一个参数表示, 并计算它的法向量场. Möbius 带的参数表示为
+\begin{align*}
+  \boldsymbol{x}(\theta, t) &=((1-t \sin \theta) \cos 2 \theta,(1-t \sin \theta) \sin 2 \theta, t \cos \theta) \\
+                            &=(\cos 2 \theta, \sin 2 \theta, 0)+t(-\sin \theta \cos 2 \theta,-\sin \theta \sin 2 \theta, \cos \theta),
+\end{align*}
+\[
+  0 \leqslant \theta \leqslant \pi, \quad|t| \leqslant h,
+\]
+其中 $h$ 为充分小的正数.
+\begin{align*}
+  \boldsymbol{x}_{\theta}^{\prime} &=(-2 \sin 2 \theta, 2 \cos 2 \theta, 0) \\
+                                   &\quad +t(2 \sin \theta \sin 2 \theta-\cos \theta \cos 2 \theta,-2 \sin \theta \cos 2 \theta-\cos \theta \sin 2 \theta,-\sin \theta), \\
+  \boldsymbol{x}_{t}^{\prime} &=(-\sin \theta \cos 2 \theta,-\sin \theta \sin 2 \theta, \cos \theta).
+\end{align*}
+\textbf{重点}\quad$\boldsymbol{x}(\pi, 0)=\boldsymbol{x}(0,0)$.
+
+中心线 $t=0$, $\boldsymbol{x}(\theta, 0)=(\cos 2 \theta, \sin 2 \theta, 0)$ 为 $x O y$ 平面上的圆.
+
+沿中心线的法向量场
+\begin{align*}
+  \boldsymbol{n}(\theta, 0) &=\boldsymbol{x}_{\theta}^{\prime}(\theta, 0) \times \boldsymbol{x}_{t}^{\prime}(\theta, 0) \\
+                            &=(-2 \sin 2 \theta, 2 \cos 2 \theta, 0) \times(-\sin \theta \cos 2 \theta,-\sin \theta \sin 2 \theta, \cos \theta) \\
+                            &=\begin{vmatrix}
+                               \boldsymbol{e}_{1} & \boldsymbol{e}_{2} & \boldsymbol{e}_{3} \\
+                               -2 \sin 2 \theta & 2 \cos 2 \theta & 0 \\
+                               -\sin \theta \cos \theta & -\sin \theta \sin 2 \theta & \cos \theta
+                             \end{vmatrix} \\
+                            &=(2 \cos \theta \cos 2 \theta, 2 \sin 2 \theta \cos \theta, 2 \sin \theta).
+\end{align*}
+特别地
+\[
+  \boldsymbol{n}(0,0)=(0,2,0) \times(0,0,1)=(2,0,0),
+\]
+\[
+  \boldsymbol{n}(\pi, 0)=(0,2,0) \times(0,0,-1)=(-2,0,0)=-\boldsymbol{n}(0,0),
+\]
+故沿中心线, 当 $\theta$ 从 0 连续变到 $\pi$ 时, 法向量 $\boldsymbol{n}(\theta, 0)$ 从 $\boldsymbol{n}(0,0)=(2,0,0)$ 连续变到 $\boldsymbol{n}(\pi, 0)=-\boldsymbol{n}(0,0)=(-2,0,0)$ (相反方向). 应用反证法可知 Möbius 带是不可定向的 (\cref{fig:11.2.14}).
+
+\begin{definition}\label{def:11.2.3}
+$\mathbb{R}^{n}$ 中 $n$ 维连通开集 $\Sigma$ 有两个定向, 一个是右手系 (\cref{fig:11.2.15}), 另一个是左手系 (\cref{fig:11.2.16}).
+\end{definition}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.52\linewidth]{ch11-fig-11.2.14}
+  \caption{}\label{fig:11.2.14}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.26\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{ch11-fig-11.2.15}
+    \caption{}\label{fig:11.2.15}
+  \end{minipage}\qquad
+  \begin{minipage}[b]{0.29\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{ch11-fig-11.2.16}
+    \caption{}\label{fig:11.2.16}
+  \end{minipage}
+\end{figure}
+
+如果上述 $n$ 维开集有参数表示 $\boldsymbol{x}: \Delta \to \Sigma$, $\left(u_{1}, u_{2}, \cdots, u_{n}\right) \to \boldsymbol{x}\left(u_{1}, u_{2}, \cdots, u_{n}\right)=\left(x_{1}\left(u_{1}, u_{2}, \cdots, u_{n}\right), x_{2}\left(u_{1}, u_{2}, \cdots, u_{n}\right), \cdots, x_{n}\left(u_{1}, u_{2}, \cdots, u_{n}\right)\right)$, 则
+\[
+  \frac{\partial\left(x_{1}, x_{2}, \cdots, x_{n}\right)}{\partial\left(u_{1}, u_{2}, \cdots, u_{n}\right)}
+  \begin{cases}
+    >0, & \left(u_{1}, u_{2}, \cdots, u_{n}\right) \text{ 为右手系参数}, \\
+    <0, & \left(u_{1}, u_{2}, \cdots, u_{n}\right) \text{ 为左手系参数}.
+  \end{cases}
+\]
+
+回忆一下 $\mathbb{R}^{n}$ 中 $n-1$ 维 $C^{1}$ 正则超曲面 $\Sigma$, 它有参数表示 $\boldsymbol{x}(u_{1}, \allowbreak u_{2}, \allowbreak \cdots, \allowbreak u_{n-1})$, $(u_{1}, \allowbreak u_{2}, \allowbreak \cdots, \allowbreak u_{n-1}) \in \Delta$, $\operatorname{rank}\{\boldsymbol{x}_{u_{1}}^{\prime}, \allowbreak \boldsymbol{x}_{u_{2}}^{\prime}, \allowbreak \cdots, \allowbreak \boldsymbol{x}_{u_{n-1}}^{\prime}\}=n-1$. 因此, $\Sigma$ 上有处处非零的连续法向量场
+\[
+  \boldsymbol{x}_{u_{1}}^{\prime} \times \cdots \times \boldsymbol{x}_{u_{n-1}}^{\prime}
+  =\begin{vmatrix}
+     \boldsymbol{e}_{1} & \cdots & \boldsymbol{e}_{n} \\
+     & \boldsymbol{x}_{u_{1}}^{\prime} & \\
+     & \vdots & \\
+     & \boldsymbol{x}_{u_{n-1}}^{\prime} &
+   \end{vmatrix}.
+\]
+这就证明了 $\Sigma$ 是可定向的超曲面.
+
+\begin{remark}\label{rem:11.2.1}
+在\cref{ex:11.2.3}中, 读者千万不要误会从 $\boldsymbol{x}_{\theta}^{\prime} \times \boldsymbol{x}_{\varphi}^{\prime}$ 为 $S^{2}(R)$ 上的处处连续的法向量场就能导致 $S^{2}(R)$ 是可定向的, 原因是当 $\theta=0, \pi$ 时 $\boldsymbol{x}_{\theta}^{\prime} \times \boldsymbol{x}_{\varphi}^{\prime}=\boldsymbol{0}$, 它不是非零法向量! 用 $\theta, \varphi$ 作为 $S^{2}(R)$ 的参数, 它不满足正则超曲面整体参数表示的要求. 但是, 用这样的参数不行, 也不能否定 $S^{2}(R)$ 是可定向的. 事实上, 一眼就能看出 $(x, y, z)$ 是 $S^{2}(R)$ 上的处处非零的连续法向量场, 因而 $S^{2}(R)$ 是可定向的.
+
+如果在 Möbius 带 $\Sigma$ (\cref{fig:11.2.13}) 上挖去一条直线段 $AB$ (与 $B_{1}A_{1}$ 粘合), 显然在余下的集合 $\Sigma \setminus AB$ 上有连续变动的处处非零的法向量场. 但是, 一旦当挖去的线段又粘合时, 发现两边的法向量方向恰好相反, 怎么也拼不起一个 $\Sigma$ 上的整体处处非零的连续法向量. 这是不可定向曲面几何上的特性.
+\end{remark}
+
+\begin{remark}\label{rem:11.2.2}
+在\cref{def:11.2.1}中用处处非零的连续变动的切向量场来刻画一维曲线的可定向性. 在\cref{def:11.2.2}中用处处非零的连续变动的法向量场来刻画 $n-1$ 维超曲面的可定向性. 有一个问题自然会产生, 如何刻画 $k(2 \leqslant k \leqslant n-2)$ 维曲面的可定向性. 上述方法不能借鉴, 那么有什么新方法呢? 下面的定理给出了希望.
+\end{remark}
+
+\begin{theorem}\label{thm:11.2.1}
+设 $\Sigma$ 为 $\mathbb{R}^{n}$ 中的 $n-1$ 维超曲面 (即 $n-1$ 维流形), 则
+
+$\Sigma$ 上存在处处非零的连续法向量场 $\Leftrightarrow \Sigma$ 上存在局部坐标系族
+\[
+  \mathcal{D}_{1}=\left\{\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha} \mid i=1,2, \cdots, n-1\right\} \mid \alpha \in \mu\right\},
+\]
+使得
+
+(1) $\bigcup\limits_{\alpha \in \mu} U_{\alpha}=\Sigma$;
+
+(2) $U_{\alpha}$ 为 $\Sigma$ 中开集, $\varphi: U_{\alpha} \to \varphi_{\alpha}\left(U_{\alpha}\right)$, $x \to \varphi_{\alpha}(x)=(u_{1}^{\alpha}, \allowbreak u_{2}^{\alpha}, \allowbreak \cdots, \allowbreak u_{n-1}^{\alpha})$ 为同胚, 其中 $\varphi_{\alpha}\left(U_{\alpha}\right)$ 为 $\mathbb{R}^{n-1}$ 中的开集, $x=\varphi_{\alpha}^{-1}(u_{1}^{\alpha}, \allowbreak u_{2}^{\alpha}, \allowbreak \cdots, \allowbreak u_{n-1}^{\alpha})=(x_{1}(u_{1}^{\alpha}, \allowbreak u_{2}^{\alpha}, \allowbreak \cdots, \allowbreak u_{n-1}^{\alpha}), \allowbreak x_{2}(u_{1}^{\alpha}, \allowbreak u_{2}^{\alpha}, \allowbreak \cdots, \allowbreak u_{n-1}^{\alpha}), \allowbreak \cdots, \allowbreak x_{n}(u_{1}^{\alpha}, \allowbreak u_{2}^{\alpha}, \allowbreak \cdots, \allowbreak u_{n-1}^{\alpha}))$ 是 $C^{1}$ 的;
+
+(3) $\forall\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \in \mathcal{D}_{1}$, $\forall\left(U_{\beta}, \varphi_{\beta}\right),\left\{u_{i}^{\beta}\right\} \in \mathcal{D}_{1}$, 如果 $U_{\alpha} \cap U_{\beta} \neq \varnothing$, 则坐标变换 $\varphi_{\beta} \circ \varphi_{\alpha}^{-1}: \varphi_{\alpha}\left(U_{\alpha} \cap U_{\beta}\right) \to \varphi_{\beta}\left(U_{\alpha} \cap U_{\beta}\right)$, $\left(u_{1}^{\alpha}, u_{2}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right) \to\left(u_{1}^{\beta}, u_{2}^{\beta}, \cdots, u_{n-1}^{\beta}\right)$ 的 Jacobi 行列式
+\[
+  \frac{\partial\left(u_{1}^{\beta}, u_{2}^{\beta}, \cdots, u_{n-1}^{\beta}\right)}{\partial\left(u_{1}^{\alpha}, u_{2}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right)}>0.
+\]
+\end{theorem}
+
+\begin{proof}
+$(\Rightarrow)$ 设 $\Sigma$ 上存在处处非零的连续法向量场 $\boldsymbol{n}$, $\left\{x_{i} \mid i=1,2, \cdots, n\right\}$ 为 $\mathbb{R}^{n}$ 中的通常的整体直角坐标. 取 $\Sigma$ 的连通的局部坐标系
+\[
+  \left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \quad \text{与} \quad\left(U_{\beta}, \varphi_{\beta}\right),\left\{u_{i}^{\beta}\right\},
+\]
+使得
+\[
+  \left[\overrightarrow{x_{u_{1}^{\alpha}}^{\prime}}, x_{u_{2}^{\alpha}}^{\prime}, \cdots, x_{u_{n-1}^{\alpha}}^{\prime}, \boldsymbol{n}\right]=\left[\overrightarrow{e_{1}}, e_{2}, \cdots, e_{n}\right],
+\]
+即左边 $n$ 个向量用 $e_{1}, e_{2}, \cdots, e_{n}$ 表示的矩阵的行列式大于 0 (只要有一点满足此式, 则由 $U_{\alpha}$ 连通, $\boldsymbol{n}$ 连续与零值定值推出此式在 $U_{\alpha}$ 中成立), 其中 $\left\{e_{1}, e_{2}, \cdots, e_{n}\right\}$ 为 $\mathbb{R}^{n}$ 中关于直角坐标系 $\left\{x_{i}\right\}$ 的规范基向量场. 同理有
+\[
+  \left[\overrightarrow{x_{u_{1}^{\beta}}^{\prime}}, x_{u_{2}^{\beta}}^{\prime}, \cdots, x_{u_{n-1}^{\beta}}^{\prime}, \boldsymbol{n}\right]=\left[\overrightarrow{e_{1}}, e_{2}, \cdots, e_{n}\right],
+\]
+当 $U_{\alpha} \cap U_{\beta} \neq \varnothing$ 时, 在 $U_{\alpha} \cap U_{\beta}$ 中有
+\[
+  \begin{pmatrix}
+    \boldsymbol{x}_{u_{1}^{\beta}}^{\prime} \\
+    \vdots \\
+    \boldsymbol{x}_{u_{n-1}^{\beta}}^{\prime} \\
+    \boldsymbol{n}
+  \end{pmatrix}
+  =\begin{pmatrix}
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{1}^{\beta}} & 0 \\
+    \vdots & & \vdots & \vdots \\
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{n-1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{n-1}^{\beta}} & 0 \\
+    0 & \cdots & 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \boldsymbol{x}_{u_{1}^{\alpha}}^{\prime} \\
+    \vdots \\
+    \boldsymbol{x}_{u_{n-1}^{\alpha}}^{\prime} \\
+    \boldsymbol{n}
+  \end{pmatrix},
+\]
+故
+\[
+  \frac{\partial\left(u_{1}^{\alpha}, u_{2}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right)}{\partial\left(u_{1}^{\beta}, u_{2}^{\beta}, \cdots, u_{n-1}^{\beta}\right)}
+  =\operatorname{det}
+  \begin{pmatrix}
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{1}^{\beta}} & 0 \\
+    \vdots & & \vdots & \vdots \\
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{n-1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{n-1}^{\beta}} & 0 \\
+    0 & \cdots & 0 & 1
+  \end{pmatrix}>0.
+\]
+于是,
+\[
+  \mathcal{D}_{1}=\left\{(U, \varphi),\left\{u_{i}\right\} \mid\left[\overrightarrow{x_{u_{1}^{\alpha}}^{\prime}}, x_{u_{2}^{\alpha}}^{\prime}, \cdots, x_{u_{n-1}^{\alpha}}^{\prime}, \boldsymbol{n}\right]=\left[\overrightarrow{e_{1}}, e_{2}, \cdots, e_{n}\right]\right\},
+\]
+为满足本定理右边三个条件的 $\Sigma$ 的局部坐标系族.
+
+$(\Leftarrow)$ 设 $\mathcal{D}_{1}=\left\{\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \mid \alpha \in \mu\right\}$ 为 $\Sigma$ 上满足右边三个条件的局部坐标系族, $\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \in \mathcal{D}_{1}$,
+\[
+  \begin{pmatrix}
+    \boldsymbol{x}_{u_{1}^{\alpha}}^{\prime} \\
+    \vdots \\
+    \boldsymbol{x}_{u_{n-1}^{\alpha}}^{\prime}
+  \end{pmatrix}
+  =\begin{pmatrix}
+    \dfrac{\partial x_{1}}{\partial u_{1}^{\alpha}} & \cdots & \dfrac{\partial x_{n}}{\partial u_{1}^{\alpha}} \\
+    \vdots & & \vdots \\
+    \dfrac{\partial x_{1}}{\partial u_{n-1}^{\alpha}} & \cdots & \dfrac{\partial x_{n}}{\partial u_{n-1}^{\alpha}}
+  \end{pmatrix}
+  \begin{pmatrix}
+    \boldsymbol{e}_{1} \\
+    \vdots \\
+    \boldsymbol{e}_{n}
+  \end{pmatrix}.
+\]
+令
+\begin{align*}
+  n_{i}^{\alpha} &=(-1)^{i+n} \operatorname{det}
+    \begin{pmatrix}
+      \dfrac{\partial x_{1}}{\partial u_{1}^{\alpha}} & \cdots & \dfrac{\partial x_{i-1}}{\partial u_{1}^{\alpha}} & \dfrac{\partial x_{i+1}}{\partial u_{1}^{\alpha}} & \cdots & \dfrac{\partial x_{n}}{\partial u_{1}^{\alpha}} \\
+      \vdots & & \vdots & \vdots & & \vdots \\
+      \dfrac{\partial x_{1}}{\partial u_{n-1}^{\alpha}} & \cdots & \dfrac{\partial x_{i-1}}{\partial u_{n-1}^{\alpha}} & \dfrac{\partial x_{i+1}}{\partial u_{n-1}^{\alpha}} & \cdots & \dfrac{\partial x_{n}}{\partial u_{n-1}^{\alpha}}
+    \end{pmatrix} \\
+  &=(-1)^{i+n} \frac{\partial\left(x_{1}, \cdots, x_{i-1}, x_{i+1}, \cdots, x_{n}\right)}{\partial\left(u_{1}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right)}, \quad i=1,2, \cdots, n.
+\end{align*}
+\[
+  \boldsymbol{n}^{\alpha} \doteq \frac{\pm 1}{\sqrt{\sum_{i=1}^{n}\left(n_{i}^{\alpha}\right)^{2}}}\left(n_{1}^{\alpha}, n_{2}^{\alpha}, \cdots, n_{n}^{\alpha}\right),
+\]
+其中 $\pm 1$ 选得使
+\[
+  \left[\overrightarrow{x_{u_{1}^{\alpha}}^{\prime}, x_{u_{2}^{\alpha}}^{\prime}, \cdots, x_{u_{n-1}^{\alpha}}^{\prime}, \boldsymbol{n}^{\alpha}}\right]=\left[\overrightarrow{e_{1}, e_{2}, \cdots, e_{n}}\right],
+\]
+从 $\operatorname{rank}\left(\dfrac{\partial x_{i}}{\partial u_{j}^{\alpha}}\right)=\operatorname{rank}\left\{\boldsymbol{x}_{u_{1}^{\alpha}}^{\prime}, \boldsymbol{x}_{u_{2}^{\alpha}}^{\prime}, \cdots, \boldsymbol{x}_{u_{n-1}^{\alpha}}^{\prime}\right\}=n-1$ 可知, $\boldsymbol{n}^{\alpha}$ 是定义确切的. 又因为 $\dfrac{\partial x_{i}}{\partial u_{j}^{\alpha}}$ 为连续函数, 所以 $\boldsymbol{n}^{\alpha}$ 为 $U_{\alpha}$ 上的连续的单位法向量场.
+
+如果 $\left(U_{\beta}, \varphi_{\beta}\right),\left\{u_{i}^{\beta}\right\} \in \mathcal{D}$, 类似地可得到 $U_{\beta}$ 上的连续单位法向量场 $\boldsymbol{n}^{\beta}$, 使得
+\[
+  \left[\overrightarrow{x_{u_{1}^{\beta}}^{\prime}, x_{u_{2}^{\beta}}^{\prime}, \cdots, x_{u_{n-1}^{\beta}}^{\prime}, \boldsymbol{n}^{\beta}}\right]=\left[\overrightarrow{e_{1}, e_{2}, \cdots, e_{n}}\right],
+\]
+于是,
+\[
+  \begin{pmatrix}
+    \boldsymbol{x}_{u_{1}^{\beta}}^{\prime} \\
+    \vdots \\
+    \boldsymbol{x}_{u_{n-1}^{\beta}}^{\prime} \\
+    \boldsymbol{n}^{\beta}
+  \end{pmatrix}
+  =\begin{pmatrix}
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{1}^{\beta}} & 0 \\
+    \vdots & & \vdots & \vdots \\
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{n-1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{n-1}^{\beta}} & 0 \\
+    0 & \cdots & 0 & \delta_{\beta \alpha}
+  \end{pmatrix}
+  \begin{pmatrix}
+    \boldsymbol{x}_{u_{1}^{\alpha}}^{\prime} \\
+    \vdots \\
+    \boldsymbol{x}_{u_{n-1}^{\alpha}}^{\prime} \\
+    \boldsymbol{n}^{\alpha}
+  \end{pmatrix},
+\]
+其中 $\delta_{\beta \alpha}=\pm 1$. 由
+\[
+  \frac{\partial\left(u_{1}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right)}{\partial\left(u_{1}^{\beta}, \cdots, u_{n-1}^{\beta}\right)} \cdot \delta_{\beta \alpha}
+  =\operatorname{det}
+  \begin{pmatrix}
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{1}^{\beta}} & 0 \\
+    \vdots & & \vdots & \vdots \\
+    \dfrac{\partial u_{1}^{\alpha}}{\partial u_{n-1}^{\beta}} & \cdots & \dfrac{\partial u_{n-1}^{\alpha}}{\partial u_{n-1}^{\beta}} & 0 \\
+    0 & \cdots & 0 & \delta_{\beta \alpha}
+  \end{pmatrix}>0
+\]
+与
+\[
+  \frac{\partial\left(u_{1}^{\alpha}, u_{2}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right)}{\partial\left(u_{1}^{\beta}, u_{2}^{\beta}, \cdots, u_{n-1}^{\beta}\right)}>0
+\]
+推得 $\delta_{\beta \alpha}=1$, 且在 $U_{\alpha} \cap U_{\beta}$ 中 $\boldsymbol{n}^{\beta}=\delta_{\beta \alpha} \boldsymbol{n}^{\alpha}=\boldsymbol{n}^{\alpha}$. 因此, 我们可以拼成一个 $\Sigma$ 上的连续的整体单位法向量场, 当然它是处处非零的.
+\end{proof}
+
+\cref{thm:11.2.1}给出的是充分必要条件, 自然右边的条件也可作为 $\mathbb{R}^{n}$ 中 $n-1$ 维超曲面 ($n-1$ 维流形) 可定向的定义. 它与\cref{def:11.2.2}相比的优点在于可以推广到 $\mathbb{R}^{n}$ 中更一般的 $k(1 \leqslant k \leqslant n-1)$ 维曲面 ($k$ 维流形) $\Sigma$. 这里 $\mathbb{R}^{n}$ 为 $k$ 维曲面 $\Sigma$ 的外围空间, 右边条件 (2) 中还要用到 $\boldsymbol{x}=\boldsymbol{x}\left(u_{1}^{\alpha}, u_{2}^{\alpha}, \cdots, u_{n-1}^{\alpha}\right)$. 但是, 我们可摆脱外围空间 (即无外围空间, 也无连续变动的处处非零法向量场) 来定义 $k$ 维可定向流形.
+
+\begin{definition}\label{def:11.2.4}
+设 $(M, \mathcal{T})$ 为 Hausdorff 空间, 如果存在局部坐标系族
+\[
+  \mathcal{D}=\left\{\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha} \mid i=1,2, \cdots, n\right\} \mid \alpha \in \varGamma\right\},
+\]
+使得
+
+(1) $\bigcup\limits_{\alpha \in \varGamma} U_{\alpha}=M$;
+
+(2) $U_{\alpha}$ 为 $M$ 中的开集, $\varphi_{\alpha}: U_{\alpha} \to \varphi_{\alpha}\left(U_{\alpha}\right)$ 为同胚, $\varphi_{\alpha}\left(U_{\alpha}\right)$ 为 $\mathbb{R}^{n}$ 中的开集 (局部欧);
+
+(3) ($C^{r}$ 相容) $\forall\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \in \mathcal{D}$, $\forall\left(U_{\beta}, \varphi_{\beta}\right),\left\{u_{i}^{\beta}\right\} \in \mathcal{D}$, 如果 $U_{\alpha} \cap U_{\beta} \neq \varnothing$, 则坐标变换 $\varphi_{\beta} \circ \varphi_{\alpha}^{-1}: \varphi_{\alpha}\left(U_{\alpha} \cap U_{\beta}\right) \to \varphi_{\beta}\left(U_{\alpha} \cap U_{\beta}\right)$, $\left(u_{1}^{\alpha}, \cdots, u_{n}^{\alpha}\right) \to\left(u_{1}^{\beta}, \cdots, \varphi_{n}^{\beta}\right)=\varphi_{\beta} \circ \varphi_{\alpha}^{-1}\left(u_{1}^{\alpha}, \cdots, u_{n}^{\alpha}\right)$ 是 $C^{r}$ 的 $(r=1,2, \cdots, \infty, \omega)$.
+
+则称 $\mathcal{D}$ 为 $(M, \mathcal{T})$ 的 $C^{r}$ 微分构造, 而 $(M, \mathcal{D})$ 称为 $n$ 维 $C^{r}$ 微分流形.
+
+进而, 如果 $\exists \mathcal{D}_{1}=\left\{\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \mid \alpha \in \mu\right\} \subset \mathcal{D}$ 满足
+
+① $\bigcup\limits_{\alpha \in \mu} U_{\alpha}=M$;
+
+② $\forall\left(U_{\alpha}, \varphi_{\alpha}\right),\left\{u_{i}^{\alpha}\right\} \in \mathcal{D}_{1}$, $\forall\left(U_{\beta}, \varphi_{\beta}\right),\left\{u_{i}^{\beta}\right\} \in \mathcal{D}_{1}$, 如果 $U_{\alpha} \cap U_{\beta} \neq \varnothing$, 则在 $U_{\alpha} \cap U_{\beta}$ 中, 有
+\[
+  \frac{\partial\left(u_{1}^{\beta}, u_{2}^{\beta}, \cdots, u_{n}^{\beta}\right)}{\partial\left(u_{1}^{\alpha}, u_{2}^{\alpha}, \cdots, u_{n}^{\alpha}\right)}>0.
+\]
+
+则称 $(M, \mathcal{D})$ 是可定向的. $\mathcal{D}_{1}$ 就为 $(M, \mathcal{D})$ 的一个定向.
+\end{definition}
+
+\begin{example}\label{ex:11.2.6}
+证明: $\mathbb{R}^{n+1}$ 中单位球面 $S^{n}=S^{n}(1)=\{(x_{1}, \allowbreak \cdots, \allowbreak x_{n}, \allowbreak x_{n+1}) \in \mathbb{R}^{n+1} \mid x_{1}^{2}+\cdots+x_{n}^{2}+x_{n+1}^{2}=1\}$ 是可定向的.
+\end{example}
+
+\begin{solution}[证法 1]
+易见 $\boldsymbol{n}=\sum\limits_{i=1}^{n+1} x_{i} e_{i}$ 为 $S^{n}$ 上的连续单位法向量场, 根据\cref{thm:11.2.1}知, $S^{n}$ 是可定向的. \noqedhere
+\end{solution}
+
+\begin{solution}[证法 2]
+设 $x=\left(x_{1}, \cdots, x_{n}, x_{n+1}\right) \in \mathbb{R}^{n+1}$. 令 (\cref{fig:11.2.17})
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.35, >=stealth, line cap=round, line join=round]
+    % 球面外轮廓大圆与赤道圆
+    \draw[thick] (0,0) circle (1.45);
+    \draw[dashed] (-1.45,0) arc (180:0:1.45 and 0.45);
+    \draw[thick] (-1.45,0) arc (180:360:1.45 and 0.45);
+    
+    % 赤道超平面 (透视平行四边形)
+    \draw[thick] (-2.2, -0.15) -- (0.6, -0.70) -- (2.2, 0.15) -- (-0.6, 0.70) -- cycle;
+    
+    % 竖直坐标轴 x_{n+1}
+    \draw[dashed] (0, -1.45) -- (0, 1.45);
+    \draw[->, thick] (0, 1.45) -- (0, 2.15) node[above] {$x_{n+1}$};
+    \draw[thick] (0, -1.45) -- (0, -1.9);
+    
+    % 南北极点
+    \coordinate (N) at (0, 1.45);
+    \coordinate (S) at (0, -1.45);
+    \fill (N) circle (1.4pt);
+    \fill (S) circle (1.4pt);
+    \node[above left] at (N) {$N(0,\cdots,0,1)$};
+    \node[below left] at (S) {$S(0,\cdots,0,-1)$};
+    \node[below left] at (0,0) {$O$};
+    
+    % 球面上点 P (第一卦限)
+    \coordinate (P) at (40:1.45);
+    \fill (P) circle (1.4pt);
+    \node[right=2pt] at (P) {$x=(x_{1},\cdots,x_{n},x_{n+1})$};
+    
+    % 从北极 N 穿过点 P 射向赤道面的连线
+    % 直线 N -> P 延长与赤道面 (y 轴方向) 交于点 U
+    % N 为 (0, 1.45), P 为 (1.11, 0.93), 当 y 坐标为交点高度时
+    % 赤道面中心在 (0,0), 透视点 U 约在 (1.85, -0.12)
+    \coordinate (U) at (1.85, -0.12);
+    \draw[thick, ThemeColor] (N) -- (P);
+    \draw[thick, dashed, ThemeColor] (P) -- (U);
+    \fill[ThemeColor] (U) circle (1.4pt);
+    \node[below right] at (U) {$(u_{1},\cdots,u_{n},0)$};
+    
+    % 从南极 S 到点 P 的虚连线
+    \draw[dashed] (S) -- (P);
+    
+    % 区域记号
+    \node[above] at (-1.15, 0.75) {$S^{n}$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.2.17}
+\end{figure}
+
+\[
+  \begin{aligned}
+    U_{\text{南}} &=S^{n} \setminus\left\{(0, \cdots, 0,-1)\right\}, \\
+    U_{\text{北}} &=S^{n} \setminus\left\{(0, \cdots, 0,1)\right\}.
+  \end{aligned}
+\]
+作南极投影 $\varphi_{\text{南}}: U_{\text{南}} \to \mathbb{R}^{n}$,
+\[
+  \left(u_{1}, u_{2}, \cdots, u_{n}\right)=\varphi_{\text{南}}\left(x_{1}, \cdots, x_{n}, x_{n+1}\right)=\left(\frac{x_{1}}{1+x_{n+1}}, \frac{x_{2}}{1+x_{n+1}}, \cdots, \frac{x_{n}}{1+x_{n+1}}\right),
+\]
+\[
+  \left(x_{1}, \cdots, x_{n}, x_{n+1}\right)=\varphi_{\text{南}}^{-1}\left(u_{1}, u_{2}, \cdots, u_{n}\right)=\left(\frac{2 u_{1}}{1+\sum_{i=1}^{n} u_{i}^{2}}, \cdots, \frac{2 u_{n}}{1+\sum_{i=1}^{n} u_{i}^{2}}, \frac{1-\sum_{i=1}^{n} u_{i}^{2}}{1+\sum_{i=1}^{n} u_{i}^{2}}\right),
+\]
+其中由 $t(0, \cdots, 0,-1)+(1-t)\left(x_{1}, \cdots, x_{n}, x_{n+1}\right)=0$ 得到 $-t+(1-t) x_{n+1}=0$,
+\[
+  t=\frac{x_{n+1}}{1+x_{n+1}}, \quad u_{i}=(1-t) x_{i}=\frac{x_{i}}{1+x_{n+1}},
+\]
+\[
+  u_{1}^{2}+u_{2}^{2}+\cdots+u_{n}^{2}=\frac{x_{1}^{2}+x_{2}^{2}+\cdots+x_{n}^{2}}{\left(1+x_{n+1}\right)^{2}}=\frac{1-x_{n+1}^{2}}{\left(1+x_{n+1}\right)^{2}}=\frac{1-x_{n+1}}{1+x_{n+1}}=\frac{2}{1+x_{n+1}}-1,
+\]
+\[
+  x_{i}=\left(1+x_{n+1}\right) u_{i}=\frac{2 u_{i}}{1+\sum_{i=1}^{n} u_{i}^{2}}, \quad i=1,2, \cdots, n,
+\]
+\[
+  x_{n+1}=\frac{2}{1+\sum_{i=1}^{n} u_{i}^{2}}-1=\frac{1-\sum_{i=1}^{n} u_{i}^{2}}{1+\sum_{i=1}^{n} u_{i}^{2}}.
+\]
+类似作北极投影 $\varphi_{\text{北}}: U_{\text{北}} \to \mathbb{R}^{n}$,
+\[
+  \left(\overline{u}_{1}, \overline{u}_{2}, \cdots, \overline{u}_{n}\right)=\varphi_{\text{北}}\left(x_{1}, \cdots, x_{n}, x_{n+1}\right)=\left(\frac{x_{1}}{1-x_{n+1}}, \frac{x_{2}}{1-x_{n+1}}, \cdots, \frac{x_{n}}{1-x_{n+1}}\right),
+\]
+\[
+  \left(x_{1}, \cdots, x_{n}, x_{n+1}\right)=\varphi_{\text{北}}^{-1}\left(\overline{u}_{1}, \overline{u}_{2}, \cdots, \overline{u}_{n}\right)=\left(\frac{2 \overline{u}_{1}}{1+\sum_{i=1}^{n} \overline{u}_{i}^{2}}, \cdots, \frac{2 \overline{u}_{n}}{1+\sum_{i=1}^{n} \overline{u}_{i}^{2}}, \frac{\sum_{i=1}^{n} \overline{u}_{i}^{2}-1}{1+\sum_{i=1}^{n} \overline{u}_{i}^{2}}\right).
+\]
+于是,
+\[
+  \left(\bar{u}_{1}, \bar{u}_{2}, \cdots, \bar{u}_{n}\right)=\left(\frac{u_{1}}{\sum_{i=1}^{n} u_{i}^{2}}, \frac{u_{2}}{\sum_{i=1}^{n} u_{i}^{2}}, \cdots, \frac{u_{n}}{\sum_{i=1}^{n} u_{i}^{2}}\right),
+\]
+\[
+  \left(u_{1}, u_{2}, \cdots, u_{n}\right)=\left(\frac{\overline{u}_{1}}{\sum_{i=1}^{n} \overline{u}_{i}^{2}}, \frac{\overline{u}_{2}}{\sum_{i=1}^{n} \overline{u}_{i}^{2}}, \cdots, \frac{\overline{u}_{n}}{\sum_{i=1}^{n} \overline{u}_{i}^{2}}\right).
+\]
+通过计算 (留作习题) Jacobi 行列式
+\[
+  J_{\varphi_{2} \circ \varphi_{1}^{-1}}=\frac{\partial\left(\overline{u}_{1}, \overline{u}_{2}, \cdots, \overline{u}_{n}\right)}{\partial\left(u_{1}, u_{2}, \cdots, u_{n}\right)}=-\frac{1}{\left(\sum_{i=1}^{n} u_{i}^{2}\right)^{n}}.
+\]
+如果将局部坐标 $\left\{\bar{u}_{1}, \bar{u}_{2}, \bar{u}_{3}, \cdots, \bar{u}_{n}\right\}$ 换成 $\left\{\bar{u}_{2}, \bar{u}_{1}, \bar{u}_{3}, \cdots, \bar{u}_{n}\right\}$, 则相应的 Jacobi 行列式就大于 0. 这就证明了 $\mathcal{D}_{1}=\left\{\left\{u_{1}, u_{2}, \cdots, u_{n}\right\},\left\{\bar{u}_{2}, \bar{u}_{1}, \bar{u}_{3}, \cdots, \bar{u}_{n}\right\}\right\}$ 确定了 $S^{n}$ 的一个定向. \qedhere
+\end{solution}
+
+\begin{exblock}{练习题 11.2}
+将下列拼接曲面分成两两之间无公共内点的光滑曲面片的并集, 用参数方程表示这些光滑曲面片, 并确定它们的边界的定向, 使之与指定的曲面定向协调, 即使边界定向为曲面定向的诱导定向:
+\begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item 顶点为 $(0,0,0),(1,0,0),(0,1,0),(0,0,1)$ 的四面体的表面, 法向量指向外侧;
+  \item 半球面 $x^{2}+y^{2}+z^{2}=1,\ z \geqslant 0$ 和 $z=0$ 围成的曲面, 法向量指向球面的内部;
+  \item 设 $\Sigma=\Sigma_{1} \cup \Sigma_{2}$, 其中
+    \[
+      \Sigma_{1}=\left\{(x, y, z) \mid x^{2}+4 y^{2}+z^{2}=12,\ 0 \leqslant y \leqslant \frac{1}{2}\right\},
+    \]
+    \[
+      \Sigma_{2}=\left\{(x, y, z) \mid x^{2}+3 y^{2}+z^{2}=12,\ -\frac{1}{2} \leqslant y \leqslant 0\right\},
+    \]
+    法向量指向 $\Sigma$ 的外侧.
+\end{enumerate}
+\end{exblock}

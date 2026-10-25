@@ -1,0 +1,334 @@
+\section{微分方程初步}\label{sec:8-3}
+
+微分方程的思想来源于代数方程．代数方程解决问题的步骤大致如下：先把要解决的实际问题变成求一个数或若干个数，然后根据问题的要求说明这个数或这些数应满足什么样的方程（立方程）．代数的理论告诉我们应怎么解．例如二次方程
+\[
+ax^2 + bx + c = 0,
+\]
+通过配方，得
+\[
+a\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a},
+\]
+在 $b^2 - 4ac \geqslant 0$ 的情形下，解得
+\[
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a},
+\]
+这就是解方程．把方程的根写出来后，再根据实际问题的要求决定哪个根是我们要求的．例如我们在求极限时用过的例题，设
+\[
+x_1 = \sqrt{2}, \quad x_{n+1} = \sqrt{2 + x_n}, \quad n = 1, 2, \cdots,
+\]
+这时应用 $\{x_n\}$ 单调上升有上界的性质，证明 $\{x_n\}$ 的极限存在，设为 $a$，结果知 $a$ 应满足方程
+\[
+a = \sqrt{2 + a},
+\]
+或
+\[
+a^2 - a - 2 = 0.
+\]
+用二次方程求根公式得 $a = \frac{1 \pm 3}{2}$，即 $a = 2$ 或 $-1$．因 $a$ 为正数，知 $-1$ 不是所要求的，故 $a = 2$，这就计算出 $\lim x_n = 2$．
+
+值得指出的是，代数研究的是代数方程的一般理论．例如 $n$ 次方程有 $n$ 个（复）根，实系数方程的复根总是成对出现等等，并且通过代数的恒等式变换，给出求根的方法．
+
+数学分析用微积分解决问题和上面所说的有类似的地方．先把要解决的实际问题化为求一个函数或若干个函数，然后根据问题的要求说明这些函数及其微商应满足什么样的关系式（微分方程），再根据数学分析的理论，求微分方程的解．解可能有多个，最后根据实际问题的要求决定哪一个解是我们所需要的．从思想上看，代数方程与微分方程有很相似的地方，不同的是，微分方程的未知量不是一个数而是一个函数，因此微分方程的理论与解微分方程的方法和代数学也就完全不同．
+
+本节只能通过一些例子介绍微分方程的最初步的思想和方法，目的是让读者体会到立微分方程和解微分方程是怎么一回事．而这一点对理解数学分析是极其重要的，因为立微分方程与解微分方程是数学分析应用的核心所在．
+
+我们先从什么叫微分方程讲起．
+
+一个包含自变量及未知函数及其若干阶导数的方程
+\[
+F(x, y, y', \cdots, y^{(n)}) = 0
+\]
+称为（常）微分方程，其中包含的未知函数的导数的最高阶数称为方程的阶．
+
+例如
+\[
+xy'' + y' + xy = 0,
+\]
+\[
+y' = y,
+\]
+\[
+y' = x\mathrm{e}^{-x^2}
+\]
+等分别都是微分方程，第一个是二阶的，后两个都是一阶的．
+
+所谓解微分方程就是要求出函数 $y = \varphi(x)$，使 $\varphi(x)$ 及其有关导数代入方程后变成 $x$ 的恒等式：
+\[
+F\big(x, \varphi(x), \varphi'(x), \cdots, \varphi^{(n)}(x)\big) \equiv 0.
+\]
+
+\begin{example}
+自变量是 $t$，未知函数为 $x = x(t)$，微商用点表示，则
+\[
+\ddot{x} = a
+\]
+是一个二阶微分方程，是等加速直线运动所满足的方程．两边取积分，得
+\[
+\dot{x} = at + C_1,
+\]
+再积分
+\[
+x = \frac{1}{2}at^2 + C_1 t + C_2.
+\]
+这就是方程的解，因为它求二次微商后的确满足 $\ddot{x} = a$．
+
+因此可见，二阶方程的一般解出现两个任意常数，或者说，二阶方程的解组成由两个任意常数描写的函数族．
+\end{example}
+
+\begin{example}
+\[
+y' = \cos x.
+\]
+这是一个一阶方程，右边只有包含自变量的函数，左边只是未知函数的导数，求原函数或不定积分便得方程的解
+\[
+y = \sin x + C.
+\]
+可见，从微分方程的角度看，求不定积分就是求解形如 $y' = f(x)$ 的微分方程．
+\end{example}
+
+这种一阶方程的解，包含了一个任意常数．
+
+一般说来，一个 $n$ 阶方程，如果它的解包含了 $n$ 个任意常数，则称这种解为方程的通解．根据某种特定条件决定出来的解，称为方程的特解．
+
+在例~1 中，$x = \frac{1}{2}at^2 + C_1 t + C_2$ 是方程 $\ddot{x} = a$ 的通解．但如果我们要求解满足
+\[
+\begin{cases}
+\ddot{x} = a, \\
+\dot{x}(0) = v_0, \\
+x(0) = s_0,
+\end{cases}
+\]
+则解为 $x = \frac{1}{2}at^2 + v_0 t + s_0$，它是方程 $\ddot{x} = a$ 的一个特解．
+
+\begin{example}
+求解 $y' - y^2 x = 0$．
+\end{example}
+
+\begin{proof}[解]
+这是一个一阶方程，我们用恒等变换的方法解它．这方程等价于
+\[
+y' = y^2 x,
+\]
+即
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} = y^2 x,
+\]
+或
+\[
+\frac{\mathrm{d}y}{y^2} = x\,\mathrm{d}x.
+\]
+根据不定积分的换元法则，要一个函数 $y = y(x)$ 满足这个式子，当且仅当 $y$ 满足
+\[
+\int \frac{1}{y^2}\,\mathrm{d}y = \int x\,\mathrm{d}x,
+\]
+从而
+\[
+-\frac{1}{y} = \frac{x^2}{2} + C,
+\]
+即解得
+\[
+y = -\frac{1}{\frac{x^2}{2} + C}.
+\]
+这是方程的通解，因为它代回原来的方程，
+\[
+y' = \frac{x}{\left(\frac{x^2}{2} + C\right)^2},
+\]
+的确有
+\[
+\frac{x}{\left(\frac{x^2}{2} + C\right)^2} - \left(\frac{1}{\frac{x^2}{2} + C}\right)^2 x = 0.
+\]
+\end{proof}
+
+这例子告诉我们如何利用已知数学分析的理论（不定积分的换元法则）来解微分方程．这个例子的方法可推广于一般的可分离变量的一阶方程
+\[
+y' = f(x)g(y).
+\]
+这时
+\[
+\frac{\mathrm{d}y}{\mathrm{d}x} = f(x)g(y),
+\]
+即
+\[
+\frac{1}{g(y)}\,\mathrm{d}y = f(x)\,\mathrm{d}x,
+\]
+当且仅当
+\[
+\int \frac{\mathrm{d}y}{g(y)} = \int f(x)\,\mathrm{d}x.
+\]
+如果这两个不定积分都能用初等函数表出，那么它给出解的隐函数表示．
+
+\begin{example}
+考虑大气中气压变化的问题．气压 $p$ 随高度 $h$ 而变化，求气压随高度 $h$ 变化的规律 $p = p(h)$．
+\end{example}
+
+\begin{proof}[解]
+取横截面为单位正方形无限方柱，在一水平横截面 $A$ 上所受的力，是 $A$ 以上空气柱的重量，这个重量随高度变化而变化．
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.45\textwidth]{fig8-36.png}
+\figcap{图 8-36}\label{fig:8-36}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.6\textwidth]{fig8-37.png}
+\figcap{图 8-37}\label{fig:8-37}
+\end{minipage}
+\end{figure}
+
+设高度从 $h$ 变到 $h + \mathrm{d}h$（图~\ref{fig:8-36}），这时气压从 $p(h)$ 变到 $p(h + \mathrm{d}h)$，它的改变量就是由平面 $A$ 到平面 $A'$ 之间的空气重量，应该近似等于在 $A$ 的空气密度 $\rho$ 乘以气柱高度 $\mathrm{d}h$，故
+\[
+\mathrm{d}p = -\rho\,\mathrm{d}h.
+\]
+由波义耳定律知空气密度与气压间的关系是 $\rho = \lambda p$，其中 $\lambda$ 是常数，因此代入后得
+\[
+\mathrm{d}p = -\lambda p\,\mathrm{d}h,
+\]
+或者写成微商的形式
+\[
+\frac{\mathrm{d}p}{\mathrm{d}h} = -\lambda p,
+\]
+这就是气压 $p$ 随 $h$ 变化的函数 $p = p(h)$ 所应满足的微分方程．分离变量得
+\[
+\frac{\mathrm{d}p}{p} = -\lambda\,\mathrm{d}h,
+\]
+故
+\[
+\int \frac{\mathrm{d}p}{p} = -\lambda\int \mathrm{d}h,
+\]
+即
+\[
+\ln p = -\lambda h + C_1,
+\]
+或
+\[
+p = C\mathrm{e}^{-\lambda h},
+\]
+其中 $C = \mathrm{e}^{C_1}$ 是任意常数．这就是气压方程的解，它通过指数函数表示出来．
+\end{proof}
+
+一个连续量，其变化率与其本身的大小成正比 $y' = \lambda y$，则这个连续量用指数函数 $y = C\mathrm{e}^{\lambda x}$ 表示．如果比例常数取 $1$，即 $\lambda = 1$，那么函数就用 $C\mathrm{e}^x$ 表示，出现了自然对数．连续量的变化率与其本身大小成正比的现象，在自然界中比比皆是，如镭的蜕变，细菌的繁殖，复利问题等等．取比例常数为 $1$，有如在这些现象中的一个“单位”，这时便自然出现 $\mathrm{e}^x$．这正是把以 $\mathrm{e}$（它是无理数、超越数）为基底的对数函数称之为“自然对数”的原因．
+
+立微分方程通常有两种方法，一种如例~4 所示，用的是微元法，这里需要用一些物理的概念或定律．另一种是，许多物理定律本身就是用微分方程表示出来的．这时，把物理定律写出来也就等于把方程定出来了．例如，牛顿第二定律本身就是微分方程，在质点作直线运动时，
+\[
+m\ddot{x} = f
+\]
+便是微分方程．如果 $f$ 只依赖于 $t$，则这是用不定积分（两次）便能解决的问题．如果 $f$ 还依赖 $x$ 或 $x$ 的微商，这问题便很复杂了，需要另作专门的讨论．我们现在看一个质点在三维空间 $(x, y, z)$ 作运动，在本章第二节中，我们知道它的运动规律可以通过向量表示出来，即
+\[
+\boldsymbol{r} = \boldsymbol{r}(t).
+\]
+并且它的微商 $\frac{\mathrm{d}\boldsymbol{r}}{\mathrm{d}t}$ 就是质点运动的速度 $\boldsymbol{v}(t)$，二阶微商就是加速度 $\boldsymbol{a}(t)$．这时牛顿第二定律便表示为
+\[
+m\frac{\mathrm{d}^2\boldsymbol{r}}{\mathrm{d}t^2} = \boldsymbol{f},
+\]
+其中
+\[
+\boldsymbol{r}(t) = \big(x(t), y(t), z(t)\big), \quad \boldsymbol{f} = (f_x, f_y, f_z),
+\]
+把它们投影到三个坐标轴，则方程等价于
+\[
+\begin{cases}
+m\displaystyle\frac{\mathrm{d}^2 x}{\mathrm{d}t^2} = f_x, \\
+m\displaystyle\frac{\mathrm{d}^2 y}{\mathrm{d}t^2} = f_y, \\
+m\displaystyle\frac{\mathrm{d}^2 z}{\mathrm{d}t^2} = f_z.
+\end{cases}
+\]
+注意，右边的 $f_x, f_y, f_z$ 可能依赖于 $t$，还同时依赖于 $x, y, z, x', y', z'$ 等等．所以这是一个微分方程组，求它的解通常都不是很容易的．它的一种特殊情形，我们将在下一节讨论．
+
+\begin{example}[单摆]
+设一质量为 $m$ 的质点系于一长为 $l$ 的线上而在重力的作用下摆动，则在任何时刻这个摆都位于同一平面上．取圆弧的最低点为坐标原点 $O$，而以 $s$ 表示动点 $M$ 到 $O$ 的弧长，并约定“左负右正”，即当 $M$ 在 $O$ 的左方时 $s < 0$，而当 $M$ 在 $O$ 右方时 $s > 0$．空气阻力忽略不计，并设运动开始时摆处于铅垂线上，点 $M$ 在最大偏离时 $s$ 取值 $s_0$．试求摆的运动方程 $s = s(t)$．
+\end{example}
+
+\begin{proof}[解]
+将重力 $mg$ 沿切向及法向分解（图~\ref{fig:8-37}），这时对运动起作用的乃是切向分力 $-mg\sin\theta$．根据牛顿第二定律得
+\[
+m\frac{\mathrm{d}^2 s}{\mathrm{d}t^2} = -mg\sin\theta.
+\]
+因圆周角 $\theta = \frac{s}{l}$，故得
+\[
+\frac{\mathrm{d}^2 s}{\mathrm{d}t^2} = -g\sin\frac{s}{l}.
+\]
+这就是单摆 $s = s(t)$ 所应满足的微分方程．解这个方程有相当大的困难．我们现在只讨论一种特殊情形，即点 $M$ 离开 $O$ 点的偏离很小的情形．这时 $s$ 很小，因此角 $\frac{s}{l}$ 亦很小，从而
+\[
+\sin\frac{s}{l} \approx \frac{s}{l},
+\]
+故运动方程可近似地化为
+\[
+\frac{\mathrm{d}^2 s}{\mathrm{d}t^2} = -g\frac{s}{l}.
+\]
+现在我们来求此方程的解．令 $\frac{\mathrm{d}s}{\mathrm{d}t} = p(s)$，则
+\[
+\frac{\mathrm{d}^2 s}{\mathrm{d}t^2} = \frac{\mathrm{d}p}{\mathrm{d}t} = \frac{\mathrm{d}p}{\mathrm{d}s}\frac{\mathrm{d}s}{\mathrm{d}t} = p\frac{\mathrm{d}p}{\mathrm{d}s},
+\]
+故可把方程化为一阶方程
+\[
+p\frac{\mathrm{d}p}{\mathrm{d}s} = -\frac{g}{l}s.
+\]
+这是可分离变量的微分方程，解得
+\[
+p^2 = -\frac{g}{l}s^2 + C_1,
+\]
+即
+\[
+\left(\frac{\mathrm{d}s}{\mathrm{d}t}\right)^2 = -\frac{g}{l}s^2 + C_1.
+\]
+由于点 $M$ 在最大偏离时的弧长为 $s_0$，这时速度为 $0$，即
+\[
+\frac{\mathrm{d}s}{\mathrm{d}t}\Bigg|_{s=s_0} = 0,
+\]
+由此定出常数 $C_1$：
+\[
+C_1 = \frac{g}{l}s_0^2.
+\]
+于是
+\[
+\left(\frac{\mathrm{d}s}{\mathrm{d}t}\right)^2 = \frac{g}{l}(s_0^2 - s^2).
+\]
+将上式开方，分离变量并进行积分，便得
+\[
+\int \frac{\mathrm{d}s}{\sqrt{s_0^2 - s^2}} = \sqrt{\frac{g}{l}}t + C_2,
+\]
+或
+\[
+\arcsin\frac{s}{s_0} = \sqrt{\frac{g}{l}}t + C_2,
+\]
+因而
+\[
+s = s_0 \sin\left(\sqrt{\frac{g}{l}}t + C_2\right).
+\]
+由于假定运动开始时，摆处于铅直线上，即 $s\big|_{t=0} = 0$，代入上式可以定出 $C_2 = 0$．最后得到
+\[
+s = s_0 \sin\sqrt{\frac{g}{l}}t.
+\]
+这就是单摆的运动，它是具有周期 $T = 2\pi\sqrt{\frac{l}{g}}$ 的简谐振动，且周期不依赖于 $s_0$，这和中学学的物理知识一致，但现在我们知道这知识的来源了．
+\end{proof}
+
+\begin{xiti}
+\item 求下列微分方程的通解：
+\begin{ziti}
+\item $xy' - y\ln y = 0$；
+\item $y' = \sqrt{\frac{1 - y^2}{1 - x^2}}$；
+\item $3x^2 + 5x - 5y' = 0$；
+\item $xy\,\mathrm{d}x + (x^2 + 1)\,\mathrm{d}y = 0$；
+\item $y - xy' = a(y^2 + y')$；
+\item $(y + 3)\,\mathrm{d}x + \cot x\,\mathrm{d}y = 0$；
+\item $\frac{\mathrm{d}y}{\mathrm{d}x} = 10^{x+y}$；
+\item $x\sec y\,\mathrm{d}x + (x + 1)\,\mathrm{d}y = 0$；
+\item $(\mathrm{e}^{x+y} - \mathrm{e}^x)\,\mathrm{d}x + (\mathrm{e}^{x+y} + \mathrm{e}^y)\,\mathrm{d}y = 0$；
+\item $y\ln x\,\mathrm{d}x + x\ln y\,\mathrm{d}y = 0$．
+\end{ziti}
+
+\item 求已给微分方程满足初始条件的特解：
+\begin{ziti}
+\item $\frac{\mathrm{d}y}{\mathrm{d}x}\sin x = y\ln y, \quad y\big|_{x=\frac{\pi}{2}} = \mathrm{e}$；
+\item $y' = \mathrm{e}^{2x - y}, \quad y\big|_{x=0} = 0$；
+\item $\frac{x}{1+y}\,\mathrm{d}x - \frac{y}{1+x}\,\mathrm{d}y = 0, \quad y\big|_{x=0} = 1$．
+\end{ziti}
+
+\item 质量为 $1\text{ g}$ 的质点受力作用作直线运动，这力和时间成正比，和质点运动的速度成反比，在 $t = 10\text{ s}$ 时，速度等于 $50\text{ cm/s}$，力为 $4 \times 10^{-5}\text{ N}$．问从运动开始经过了一分钟后的速度是多少？
+
+\item 镭的衰变有如下的规律：镭的衰变速度与镭所现存的量 $R$ 成正比，由经验材料断定，镭经过 $1600$ 年后，只余原始量 $R_0$ 的一半，试求镭的量 $R$ 与时间 $t$ 的函数关系．
+\end{xiti}

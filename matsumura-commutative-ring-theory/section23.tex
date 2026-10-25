@@ -1,0 +1,421 @@
+% ============ §23 Flatness and fibres (原书 pp.178-185) ============
+\section{Flatness and fibres}\label{sec:23}\index{flatness and fibres, section 23}\index{fibre ring, section 23}\index{normal ring, criterion of Serre, section 23}\index{regularity and flatness, section 23}
+
+Let $(A, m)$ and $(B, n)$ be Noetherian local rings, and $\varphi\colon A \to B$ a local
+homomorphism. We set $F = B \otimes_A k(m) = B/mB$ for the \emph{fibre ring}\index{fibre ring} of
+$\varphi$ over $m$. If $B$ is flat over $A$ then according to Theorem~\ref{thm:15.1}, we
+have
+\[
+  (*) \quad \dim B = \dim A + \dim F.
+\]
+
+As the following shows, under certain conditions the converse holds.
+
+\begin{theorem}\label{thm:23.1}
+Let $A$, $B$ and $F$ be as above. If $A$ is a regular local ring, $B$ is
+Cohen-Macaulay, and $\dim B = \dim A + \dim F$ then $B$ is flat over $A$.
+\end{theorem}
+
+\begin{proof}
+We use induction on $\dim A$. If $\dim A = 0$ then $A$ is a field, and we are
+done. If $\dim A > 0$, take $x \in m - m^2$ and set $A' = A/xA$ and $B' = B/xB$. Then
+\[
+  \dim B' \le \dim A' + \dim F = \dim A - 1 + \dim F = \dim B - 1,
+\]
+and using a system of parameters of $B'$ one sees that $\dim B' \ge \dim B - 1$, so
+that
+\[
+  \dim B' = \dim A' + \dim F = \dim B - 1.
+\]
+One sees easily from this that $x$ is $B$-regular and $B'$ is a CM ring. Hence by
+induction $B'$ is flat over $A'$. Thus $\Tor^{A'}_1(A/m, B') = 0$; moreover, $x$ is
+both $A$-regular and $B$-regular, so that $\Tor^A_1(A/m, B') = \Tor^A_1(A/m, B)$.
+Therefore by Theorem~\hyperref[thm:22.3]{22.3}, $B$ is flat over $A$.
+\end{proof}
+
+We give a translation of the above theorem into algebraic geometry for the sake
+of application. (The language is that of modern algebraic geometry, see for
+example [Ha], Ch.~2.)
+
+\begin{corollary*}
+Let $k$ be a field, $X$ and $Y$ irreducible algebraic $k$-schemes, and
+$f\colon Y \to X$ a morphism. Set $\dim X = n$, $\dim Y = m$, and suppose that the
+following conditions hold: (1) $X$ is regular; (2) $Y$ is Cohen-Macaulay; (3) $f$
+takes closed points of $Y$ into closed points of $X$ (this holds for example if
+$f$ is proper); (4) for every closed point $x \in X$ the fibre $f^{-1}(x)$ is
+$(m - n)$-dimensional (or empty). Then $f$ is flat.
+\end{corollary*}
+
+\begin{proof}
+Let $y \in Y$ be a closed point, and set $x = f(y)$, $A = \mathcal{O}_{X,x}$, and
+$B = \mathcal{O}_{Y,y}$. We have $\dim A = n$, $\dim B = m$, and since by
+Theorem~\ref{thm:15.1} $\dim B/m_AB \le \dim B - \dim A = m - n$, we get
+$\dim B/m_AB = m - n$ from (4). Therefore by the above theorem $B$ is flat over $A$,
+and this is what was required to prove.
+\end{proof}
+
+\begin{theorem}\label{thm:23.2}
+Let $\varphi\colon A \to B$ be a homomorphism of Noetherian rings, and let $E$ be an
+$A$-module and $G$ a $B$-module. Suppose that $G$ is flat over $A$; then we have
+the following:
+\begin{enumerate}[(i)]
+  \item if $p \in \Spec A$ and $G/pG \neq 0$ then $\Ass_A(G/pG) = \{p\}$; moreover, if
+        $P \in \Ass_B(G/pG)$ then $P \cap A = p$;
+  \item $\Ass_B(E \otimes_A G) = \bigcup_{p \in \Ass_A(E)} \Ass_B(G/pG)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) $G/pG = G \otimes_A (A/p)$ is flat over $A/p$, and $A/p$ is an integral domain,
+so that any non-zero element of $A/p$ is $G/pG$-regular (see Ex.~\ref{ex:7.5-ex}). In
+other words, the elements of $A - p$ are $G/pG$-regular. This gives
+$\Ass_A(G/pG) = \{p\}$. Also, if $P \in \Ass_B(G/pG)$ then there exists $t \in G/pG$
+such that $\ann_B(t) = P$, and then $P \cap A = \ann_A(t) \in \Ass_A(G/pG) = \{p\}$.
+
+(ii) If $p \in \Ass_A(E)$ then there is an exact sequence of the form
+$0 \to A/p \to E$, and since $G$ is flat the sequence $0 \to G/pG \to E \otimes_A G$
+is also exact; thus
+\[
+  \Ass_B(G/pG) \subset \Ass_B(E \otimes_A G).
+\]
+Conversely, if $P \in \Ass_B(E \otimes_A G)$ then there is an $e \in E \otimes_A G$ such
+that $\ann_B(e) = P$. We write $e = \sum x_i \otimes y_i$ with $x_i \in E$ and $y_i \in G$,
+and set $E' = \sum Ax_i$; then by flatness of $G$, we can view $E' \otimes_A G$ as a
+submodule $E' \otimes_A G \subset E \otimes_A G$. Since $e \in E' \otimes_A G$ we have
+$P \in \Ass_B(E' \otimes_A G)$. Now $E'$ is a finite $A$-module, so that we can
+choose a shortest primary decomposition of $0$ in $E'$, say
+$0 = Q_1 \cap \cdots \cap Q_r$. Since $E'$ can be embedded in $\bigoplus (E'/Q_i)$, if we set
+$E_i = E'/Q_i$ then
+\[
+  \Ass_B(E' \otimes_A G) \subset \bigcup_i \Ass_B(E_i \otimes_A G),
+\]
+and therefore $P \in \Ass_B(E_i \otimes_A G)$ for some $i$. This $E_i$ is a finite
+$A$-module having just one associated prime, say $p$. We have
+$p \in \Ass_A(E') \subset \Ass_A(E)$. For large enough $\nu$ we get $p^\nu E_i = 0$, so
+that $p^\nu(E_i \otimes_A G) = 0$, and thus $p \subset P \cap A$. Moreover, an
+element of $A - p$ is $E_i$-regular, and hence also $E_i \otimes_A G$-regular, so that
+finally $p = P \cap A$. Now choose a chain of submodules of $E_i$,
+\[
+  E_i = E_0 \supset E_1 \supset \cdots \supset E_r = 0
+\]
+such that $E_j/E_{j+1} \cong A/p_j$ with $p_j \in \Spec A$. Then also
+\[
+  E_i \otimes_A G \supset E_1 \otimes_A G \supset \cdots \supset E_r \otimes_A G = 0,
+\]
+with
+\[
+  (E_j \otimes_A G)/(E_{j+1} \otimes_A G) \cong (A/p_j) \otimes_A G = G/p_jG,
+\]
+so that $\Ass_B(E_i \otimes_A G) \subset \bigcup_j \Ass_B(G/p_jG)$. Therefore
+$P \in \Ass_B(G/p_jG)$ for some $j$, but by (i), $P \cap A = p_j$, so that $p_j = p$
+and $P \in \Ass_B(G/pG)$.
+\end{proof}
+
+\begin{theorem}\label{thm:23.3}
+Let $(A, m, k)$ and $(B, n, k')$ be Noetherian local rings, and
+$\varphi\colon A \to B$ a local homomorphism. Let $M$ be a finite $A$-module, $N$ a
+finite $B$-module, and assume that $N$ is flat over $A$. Then
+\[
+  \depth_B(M \otimes_A N) = \depth_A M + \depth_B(N/mN).
+\]
+\end{theorem}
+
+\begin{proof}
+Let $x_1, \ldots, x_r \in m$ be a maximal $M$-sequence, and $y_1, \ldots, y_s \in n$ a
+maximal $N/mN$-sequence. Writing $x_i'$ for the images of $x_i$ in $B$, let us
+prove that $x_1', \ldots, x_r', y_1, \ldots, y_s$ is a maximal $M \otimes_A N$-sequence. Now
+$x_1', \ldots, x_r'$ is an $M \otimes_A N$-sequence, and if we set
+$M_1 = M/\sum x_iM$ then
+\[
+  m \in \Ass_A(M_1), \quad \text{and} \quad (M \otimes_A N) \Big/ \sum_{i=1}^r x_i(M \otimes_A N) = M_1 \otimes_A N.
+\]
+Moreover, by the corollary of Theorem~\hyperref[thm:22.5]{22.5}, $y_1$ is $N$-regular, and
+$N_1 = N/y_1N$ is flat over $A$, so that from the exact sequence
+$0 \to N \xrightarrow{y_1} N \to N_1 \to 0$ we get the exact sequence
+$0 \to M_1 \otimes_A N \xrightarrow{y_1} M_1 \otimes_A N \to M_1 \otimes_A N_1 \to 0$.
+Proceeding in the same way we see that $y_1, \ldots, y_s$ is an
+$M_1 \otimes_A N$-sequence. After this we need only prove that the $B$-module
+\[
+  (M \otimes_A N) \Big/ \Big( \sum x_i(M \otimes_A N) + \sum y_j(M \otimes_A N) \Big) = M_1 \otimes_A N_s
+\]
+has depth $0$, that is $n \in \Ass_B(M_1 \otimes_A N_s)$; however,
+$m \in \Ass_A(M_1)$ and $n \in \Ass_B(N_s/mN_s)$, so that this follows at once from
+the previous theorem.
+\end{proof}
+
+\begin{corollary*}
+Let $A \to B$ be a local homomorphism of Noetherian rings as in the theorem, and
+set $F = B/mB$. Assume that $B$ is flat over $A$. Then
+\begin{enumerate}[(i)]
+  \item $\depth B = \depth A + \depth F$;
+  \item $B$ is CM $\iff$ $A$ and $F$ are both CM.
+\end{enumerate}
+\end{corollary*}
+
+\begin{proof}
+(i) is the case $M = A$, $N = B$ of the theorem. From (i) and (*) we have
+\[
+  \dim B - \depth B = (\dim A - \depth A) + (\dim F - \depth F)
+\]
+and in view of $\dim A \ge \depth A$ and $\dim F \ge \depth F$, (ii) is clear.
+\end{proof}
+
+\begin{theorem}\label{thm:23.4}
+Let $A \to B$ be a local homomorphism of Noetherian local rings, set $m = \rad(A)$
+and $F = B/mB$. We assume that $B$ is flat over $A$; then
+\[
+  B \text{ is Gorenstein} \iff A \text{ and } F \text{ are both Gorenstein}.
+\]
+\end{theorem}
+
+\begin{proof}
+(K.~Watanabe [1]). By the corollary just proved, we can assume that $A$, $B$ and
+$F$ are CM. Set $\dim A = r$ and $\dim F = s$, and let $\{x_1, \ldots, x_r\}$ be a
+system of parameters of $A$, and $\{y_1, \ldots, y_s\}$ a subset of $B$ which reduces
+to a system of parameters of $F$ modulo $mB$. Then as we have seen in the proof
+of Theorem~\hyperref[thm:23.3]{3}, $(x_1, \ldots, x_r, y_1, \ldots, y_s)$ is a $B$-sequence, and
+therefore a system of parameters of $B$, and $\bar{B} = B/(x, y)B$ is flat over
+$\bar{A} = A/(x)A$. Thus replacing $A$ and $B$ by $\bar{A}$ and $\bar{B}$, we can reduce to
+the case $\dim A = \dim B = 0$. Now in general, a zero-dimensional local ring
+$(R, M)$ is Gorenstein if and only if $\Hom_R(R/M, R) = (0 : M)_R$ is isomorphic to
+$R/M$. Now set
+\[
+  \rad(B) = n, \quad \rad(F) = n/mB = \bar{n} \quad \text{and} \quad (0 : m)_A = I.
+\]
+Then $I$ is of the form $I \cong (A/m)^t$ for some $t$, and
+$(0 : mB)_B = IB \cong (A/m)^t \otimes_A B = F^t$. Furthermore, we have
+$(0 : n)_B = (0 : \bar{n})_{IB} \cong ((0 : \bar{n})_F)^t$, and hence if we set
+$(0 : \bar{n})_F \cong (F/\bar{n})^u = (B/n)^u$ then $(0 : n)_B \cong (B/n)^{tu}$.
+Therefore
+\[
+  B \text{ is Gorenstein} \iff tu = 1 \iff t = u = 1 \iff A \text{ and } F \text{ are Gorenstein}.
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:23.5}
+If $A$ is Gorenstein then so are $A[X]$ and $A[[X]]$.
+\end{theorem}
+
+\begin{proof}
+We write $B$ for either of $A[X]$ or $A[[X]]$, so that $B$ is flat over $A$. For any
+maximal ideal $M$ of $B$ we set $M \cap A = \mathfrak{p}$ and $A/\mathfrak{p}A = \kappa(\mathfrak{p})$. In case
+$B = A[X]$, the local ring $B_M$ is a localisation of $B \otimes_A A_{\mathfrak{p}} =
+A_{\mathfrak{p}}[X]$, and the fibre ring of $A_{\mathfrak{p}} \to B_M$ is a localisation of
+$\kappa(\mathfrak{p})[X]$, hence regular. In case $B = A[[X]]$ then $X \in M$, and
+$\mathfrak{p}$ a maximal ideal of $A$, so that $\kappa(\mathfrak{p}) = A/\mathfrak{p}$ and
+\[
+  B \otimes_A \kappa(\mathfrak{p}) = (A/\mathfrak{p})[[X]] = \kappa(\mathfrak{p})[[X]].
+\]
+This is a regular local ring, and is the fibre ring of $A_{\mathfrak{p}} \to B_M$. Thus in
+either case $B_M$ is Gorenstein by the previous theorem.
+\end{proof}
+
+\begin{theorem}\label{thm:23.6}
+Let $A$ be a Gorenstein ring containing a field $k$; then for any finitely
+generated field extension $K$ of $k$, the ring $A \otimes_k K$ is Gorenstein.
+\end{theorem}
+
+\begin{proof}
+We need only consider the case that $K$ is generated over $k$ by one element $x$.
+If $x$ is transcendental over $k$ then $A \otimes_k K$ is isomorphic to a
+localisation of $A \otimes_k k[X] = A[X]$, and since $A[X]$ is Gorenstein, so is
+$A \otimes_k K$. If $x$ is algebraic over $k$ then since $K \cong k[X]/(f(X))$ with
+$f(X) \in k[X]$ a manic polynomial, we have
+\[
+  A \otimes_k K = A[X]/(f(X));
+\]
+now $A[X]$ is Gorenstein and $f(X)$ is a non-zero-divisor of $A[X]$, so that we see
+that $A \otimes_k K$ is also Gorenstein.
+\end{proof}
+
+\begin{remark}
+Theorems 5 and 6 also hold on replacing Gorenstein by Cohen-Macaulay; the
+proofs are exactly the same. For complete intersection rings the counterpart of
+Theorem 4 also holds, so that the analogs of Theorems 5 and 6 follow; the proof
+involves Andr\'e homology (Avramov [1]). As we see in the next theorem, a
+slightly weaker form of the same result holds for regular rings.
+\end{remark}
+
+\begin{theorem}\label{thm:23.7}
+Let $(A, m, k)$ and $(B, n, k')$ be Noetherian local rings, and $A \to B$ a local
+homomorphism; set $F = B/mB$. We assume that $B$ is flat over $A$.
+\begin{enumerate}[(i)]
+  \item If $B$ is regular then so is $A$.
+  \item If $A$ and $F$ are regular then so is $B$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) We have $\Tor^A_i(k, k) \otimes_A B = \Tor^B_i(B \otimes_A k, B \otimes_A k)$, and the right-hand
+side is zero for $i > \dim B$. Since $B$ is faithfully flat over $A$, we have
+$\Tor^A_i(k, k) = 0$ for $i \gg 0$, so that by \S19, Lemma~\ref{lem:19.1}, (i),
+$\projdim_A k < \infty$ and since $\projdim k = \gldim A$, by
+Theorem~\ref{thm:19.2}, $A$ is regular.
+
+(ii) Set $r = \dim A$ and $s = \dim F$. Let $\{x_1, \ldots, x_r\}$ be a regular system of
+parameters of $A$, and $\{y_1, \ldots, y_s\}$ a subset of $n$ which maps to a regular
+system of parameters of $F$. Since $A \to B$ is injective, we can view $A$ as a
+subring $A \subset B$. Then $\{x_1, \ldots, x_r, y_1, \ldots, y_s\}$ generates $n$ but
+$\dim B = r + s$, so that $B$ is regular.
+\end{proof}
+
+\begin{remark}
+In Theorem 7, even if $B$ is regular, $F$ need not be. For example, let $k$ be a
+field, $x$ an indeterminate over $k$, and $B = k[x]_{(x)}$, $A = k[x^2]_{(x^2)}
+\subset B$; then $F = B/x^2B = k[x]/(x^2)$ has a nilpotent element. By Theorem 1,
+or directly, we see that $B$ is flat over $A$. (From a geometrical point of view,
+this example corresponds to the projection of the plane curve $y = x^2$ onto the
+$y$-axis, and, not surprisingly, the fibre over the origin is singular.)
+\end{remark}
+
+Consider the following conditions $(R_i)$ and $(S_i)$ for $i = 0, 1, 2, \ldots$ on a
+Noetherian ring $A$:
+\[
+  (R_i) \quad A_P \text{ is regular for all } P \in \Spec A \text{ with } \htop P \le i;
+\]
+\[
+  (S_i) \quad \depth A_P \ge \min(\htop P, i) \text{ for all } P \in \Spec A.
+\]
+$(S_0)$ always holds. $(S_1)$ says that all the associated primes of $A$ are minimal,
+that is $A$ does not have embedded associated primes. $(R_0) + (S_1)$ is the
+necessary and sufficient condition for $A$ to be reduced. $(S_i)$ for all $i \ge 0$
+is just the definition of a CM ring.
+
+For an integral domain $A$, $(S_1)$ is equivalent to the condition that every prime
+divisor of a non-zero principal ideal has height $1$. The characterisation of
+normal integral domain given in the corollary to Theorem~\ref{thm:11.5} can be
+somewhat generalised as follows.
+
+\begin{theorem}[Serre]\label{thm:23.8}
+$(R_1) + (S_2)$ are necessary and sufficient conditions for a Noetherian ring $A$ to
+be normal.
+\end{theorem}
+
+\begin{proof}
+We defined a normal ring (see \S9), by the condition that the localisation at
+every prime is an integrally closed domain. The conditions $(R_i)$ and $(S_i)$ are
+also conditions on localisations, so that we can assume that $A$ is local.
+
+\textit{Necessity}. This follows from Theorems~\ref{thm:11.2} and \ref{thm:11.5}.
+
+\textit{Sufficiency}. Since $A$ satisfies $(R_0)$ and $(S_1)$ it is reduced, and the
+shortest primary decomposition of $(0)$ is $(0) = P_1 \cap \cdots \cap P_r$, where $P_i$
+are the minimal primes of $A$. Thus if we set $K$ for the total ring of fractions
+of $A$, we have
+\[
+  K = K_1 \times \cdots \times K_r, \quad \text{with } K_i \text{ the field of fractions of } A/P_i.
+\]
+First of all we show that $A$ is integrally closed in $K$. Suppose that we have a
+relation in $K$ of the form
+\[
+  (a/b)^n + c_1(a/b)^{n-1} + \cdots + c_n = 0,
+\]
+with $a, b, c_1, \ldots, c_n \in A$ and $b$ an $A$-regular element. This is equivalent to
+a relation
+\[
+  a^n + \sum_{i=1}^n c_i a^{n-i}b^i = 0
+\]
+in $A$. Let $P \in \Spec A$ be such that $\htop P = 1$; then by $(R_1)$, $A_P$ is regular,
+and therefore normal, so that $a_P \in b_P A_P$, where we write $a_P$, $b_P$ for the
+images in $A_P$ of $a$, $b$. Now $b$ is $A$-regular, so that by $(S_1)$, all the prime
+divisors of the principal ideal $bA$ have height $1$; thus if
+$bA = \mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_t$ is a shortest primary decomposition and we set
+$\mathfrak{p}_i$ for the prime divisor of $\mathfrak{q}_i$, then $a \in bA_{\mathfrak{p}_i} \cap A = \mathfrak{q}_i$ for all
+$i$, and hence $a \in bA$, so that $a/b \in A$. Therefore $A$ is integrally closed in
+$K$; in particular, the idempotents $e_i$ of $K$, which satisfy $e_i^2 - e_i = 0$, must
+belong to $A$, so that from $1 = \sum e_i$ and $e_ie_j = 0$ for $i \neq j$ we get
+\[
+  A = Ae_1 \times \cdots \times Ae_r.
+\]
+Now since $A$ is supposed to be local, we must have $r = 1$, so that $A$ is an
+integrally closed domain.
+\end{proof}
+
+\begin{theorem}\label{thm:23.9}
+Let $(A, m)$ and $(B, n)$ be Noetherian local rings and $A \to B$ a local
+homomorphism. Suppose that $B$ is flat over $A$, and that $i \ge 0$ is a given
+integer. Then
+\begin{enumerate}[(i)]
+  \item if $B$ satisfies $(R_i)$, so does $A$;
+  \item if both $A$ and the fibre ring $B \otimes_A \kappa(\mathfrak{p})$ over every prime ideal
+        $\mathfrak{p}$ of $A$ satisfy $(R_i)$, so does $B$.
+  \item The above two statements also hold with $(S_i)$ in place of $(R_i)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) For $\mathfrak{p} \in \Spec A$, since $B$ is faithfully flat over $A$, there is a prime
+ideal of $B$ lying over $\mathfrak{p}$; if we let $P$ be a minimal element among these then
+$\htop(P/\mathfrak{p}B) = 0$, so that $\htop P = \htop \mathfrak{p}$. Hence
+$\htop \mathfrak{p} \le i \Rightarrow B_P$ is regular, so that by
+Theorem~\hyperref[thm:23.7]{7}, $A_{\mathfrak{p}}$ is regular. Also, by the corollary to
+Theorem~\hyperref[thm:23.3]{3}, $\depth B_P = \depth A_{\mathfrak{p}}$, so that one sees easily that $(S_i)$ for
+$B$ implies $(S_i)$ for $A$.
+
+(ii) Let $P \in \Spec B$ and set $P \cap A = \mathfrak{p}$. If $\htop P \le i$ then we have
+$\htop \mathfrak{p} \le i$ and $\htop(P/\mathfrak{p}B) \le i$, hence $A_{\mathfrak{p}}$ and
+$B \otimes_A \kappa(\mathfrak{p})$ are both regular, so by Theorem~\hyperref[thm:23.7]{7}, (ii), $B_P$ is regular.
+Hence $B$ satisfies $(R_i)$. Moreover, for $(S_i)$ we have
+\begin{align*}
+  \depth B_P &= \depth A_{\mathfrak{p}} + \depth B \otimes_A \kappa(\mathfrak{p}) \\
+             &\ge \min(\htop \mathfrak{p}, i) + \min(\htop P/\mathfrak{p}B, i) \\
+             &\ge \min(\htop \mathfrak{p} + \htop P/\mathfrak{p}B, i) = \min(\htop P, i).
+\end{align*}
+\end{proof}
+
+\begin{corollary*}
+Under the same assumptions as Theorem~\hyperref[thm:23.9]{9}, we have
+\begin{enumerate}[(i)]
+  \item if $B$ is normal (or reduced) then so is $A$;
+  \item if both $A$ and the fibre rings of $A \to B$ are normal (or reduced) then
+        so is $B$.
+\end{enumerate}
+\end{corollary*}
+
+\begin{remark}
+If $A$ and the closed fibre ring $F = B/mB$ only are normal, then $B$ does not
+have to be; for instance, there are known examples of normal Noetherian rings
+for which the completion is not normal.
+\end{remark}
+
+Finally, we would like to draw the reader's attention to the following obvious,
+but useful, fact concerning the fibre ring. Let $\varphi'\colon A' \to B'$ be a ring
+homomorphism and $I$ an ideal of $A'$; we set $A = A'/I$, $B = B'/IB'$, and write
+$\varphi\colon A \to B$ for the map induced by $\varphi'$. If $\mathfrak{p}' \in \Spec A'$ is such that
+$I \subset \mathfrak{p}'$, we set $\mathfrak{p} = \mathfrak{p}'/I$; then the fibre of $\varphi'$ over $\mathfrak{p}'$ coincides
+with the fibre of $\varphi$ over $\mathfrak{p}$. To see this,
+\[
+  B' \otimes_{A'} \kappa(\mathfrak{p}') = B' \otimes_{A'} (A'/\mathfrak{p}')_{\mathfrak{p}'} = B \otimes_A (A/\mathfrak{p})_{\mathfrak{p}} = B \otimes_A \kappa(\mathfrak{p}).
+\]
+It follows from this that if all the fibre rings of $\varphi'$ have a good property,
+the same is true of $\varphi$. For an example of this, see Ex.~\ref{ex:23.2-ex}.
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:23}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:23.1-ex}
+If $A$ is a Gorenstein local ring then all the fibre rings of $A \to \hat{A}$ are again
+Gorenstein; the same thing holds for Cohen-Macaulay.
+\end{exercise}
+
+\begin{exercise}\label{ex:23.2-ex}
+If $A$ is a quotient of a CM local ring, and satisfies $(S_i)$, then the completion
+$\hat{A}$ also satisfies $(S_i)$. In particular, if $A$ does not have embedded
+associated primes then neither does $\hat{A}$.
+\end{exercise}
+
+\begin{exercise}\label{ex:23.3-ex}
+Give another proof of Theorem~\hyperref[thm:23.4]{4} along the following lines:
+\begin{enumerate}[(1)]
+  \item Using $\Ext^i_A(A/m, A) \otimes_A \hat{B} = \Ext^i_B(F, B)$, show that $B$ Gorenstein
+        implies $A$ Gorenstein.
+  \item Assuming that $A$ is Gorenstein, prove that $F$ is Gorenstein if and only
+        if $B$ is. Firstly reduce to the case $\dim A = 0$. Then prove that
+        $\Ext^i_B(F, B) = 0$ for $i > 0$ and $\cong F$ for $i = 0$, and deduce that if
+        $0 \to B \to I^{\bullet}$ is an injective resolution of $B$ as a $B$-module then
+        $0 \to F \to \Hom_B(F, I^{\bullet})$ is an injective resolution of $F$ as an $F$-module,
+        so that, writing $k$ for the residue field of $B$, we have
+        $\Ext^i_B(k, B) = \Ext^i_F(k, F)$ for all $i$.
+\end{enumerate}
+\end{exercise}

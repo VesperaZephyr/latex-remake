@@ -1,0 +1,180 @@
+\section{实数的完备性}
+
+在绪论中我们曾分析过数系的结构．当时指出，正整数系对减法运算不封闭，把它扩充为整数系，便对减法运算封闭了．但整数系对除法运算不封闭，把它扩充为有理数系，便对除法运算封闭了．有理数系本身不连续，把它扩充为实数系，它就连续了．在这一节中，我们从另一角度来研究从有理数系到实数系的扩充．
+
+有理数系实际上对极限运算是不封闭的．例如有理数系中的数列 $x_n = \left( 1 + \frac{1}{n} \right)^n$，它在有理数系里没有极限，因为它的极限 $e$ 是无理数．
+
+能否说实数系对极限运算是封闭的呢？这问题的提法不能提为：任何实数数列在实数系都有极限存在．因为像数列 $x_n = (-1)^{n-1}$，在任何数系它也不可能有极限存在（除非改变极限的定义）．因此这问题的提法应该是：对那些“该有极限存在”的实数列，在实数系里应有极限存在．这时才能说实数系对极限运算是封闭的．
+
+然则何谓“该有极限存在”的数列？我们不妨研究一下极限存在的必要条件．设极限 $\lim x_n = a$ 存在，则任给 $\varepsilon > 0$，存在 $N$，使得只要 $n > N$，有
+\[
+|x_n - a| < \frac{\varepsilon}{2},
+\]
+因此只要 $n > N$，$m > N$，有
+\[
+|x_n - x_m| < |x_n - a| + |x_m - a| < \varepsilon.
+\]
+能否把最后的这个叙述，看成“该有极限存在”的条件？换句话说，上述条件是否也是极限存在的充分条件？下面的定理告诉我们，在实数系里，这是正确的．
+
+\begin{theorem}[柯西收敛原理]\label{thm:9.4}
+在实数系中，数列 $\{x_n\}$ 有极限存在的充分必要条件是：任给 $\varepsilon > 0$，存在 $N$，当 $n > N$，$m > N$ 时，有
+\[
+|x_n - x_m| < \varepsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+必要性上面已证．下证充分性．设数列 $\{x_n\}$ 满足条件：对任意的 $\varepsilon > 0$，存在 $N$，当 $n > N$，$m > N$ 时，有
+\[
+|x_n - x_m| < \varepsilon.
+\]
+第一步证明 $\{x_n\}$ 是有界的．事实上，取 $\varepsilon = 1$，则存在 $n_0$，使当 $n \geqslant n_0$ 时，有
+\[
+|x_n - x_{n_0}| < 1,
+\]
+因此
+\[
+|x_n| \leqslant |x_{n_0}| + 1.
+\]
+取 $M = \{|x_1|, \cdots, |x_{n_0-1}|, |x_{n_0}| + 1\}$，则有 $|x_n| \leqslant M$（对任意 $n$），这就证明了 $\{x_n\}$ 是有界的．
+
+第二步证明 $\{x_n\}$ 有极限存在．由定理~\ref{thm:9.3}，知 $\{x_n\}$ 有子数列 $\{x_{n_k}\}$，使得 $\lim\limits_{k \to \infty} x_{n_k} = a$ 存在．我们下面来证明 $\lim\limits_{n \to \infty} x_n = a$．事实上，任给 $\varepsilon > 0$，一方面，存在 $N_1$，当 $n > N_1$，$m > N_1$ 时，
+\[
+|x_n - x_m| < \frac{\varepsilon}{2}.
+\]
+另一方面，存在 $k_0$，只要 $n_k > n_{k_0}$，便有
+\[
+|x_{n_k} - a| < \frac{\varepsilon}{2}.
+\]
+取 $N = \max(N_1, n_{k_0})$，只要 $n > N$，选取 $n_k > N$，则有
+\[
+|x_n - a| \leqslant |x_n - x_{n_k}| + |x_{n_k} - a| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+这就证明了 $\lim\limits_{n \to \infty} x_n = a$，定理证完．
+\end{proof}
+
+这个定理，只用数列本身给出了数列极限存在的充分必要条件，是一个十分重要的定理．以后读者将会看到它的许多应用．
+
+\begin{definition}\label{def:9.3}
+在数系 $S$ 中，如果数列 $\{x_n\}$ 满足下列性质：任给 $\varepsilon > 0$，存在 $N$，使得只要 $n > N$，$m > N$，有
+\[
+|x_n - x_m| < \varepsilon,
+\]
+则称 $\{x_n\}$ 为 $S$ 的基本列，或称为柯西列．
+\end{definition}
+
+用基本列的概念，定理~\ref{thm:9.4}（柯西收敛原理）又可叙述为：
+
+{\thmheadfont 定理 9.4$'$（柯西收敛原理）}\quad 在实数系 $\mathbb{R}$ 中，数列 $\{x_n\}$ 有极限存在的充分必要条件是 $\{x_n\}$ 为 $\mathbb{R}$ 中的基本列．
+
+柯西收敛原理断言，一方面，每个有极限存在的实数列都是基本列，另一方面，每个实数系的基本列都有极限存在．
+
+\begin{definition}\label{def:9.4}
+称数系 $S$ 是完备的，如果 $S$ 中的每个基本列都在 $S$ 中有极限存在．
+\end{definition}
+
+由柯西收敛原理的充分性立即可得下面的定理．
+
+\begin{theorem}[柯西]\label{thm:9.5}
+实数系 $\mathbb{R}$ 是完备的．
+\end{theorem}
+
+完备的数系对极限运算是封闭的．因此定理~\ref{thm:9.5} 说的就是实数系对极限运算封闭．
+
+例子 $x_n = \left( 1 + \frac{1}{n} \right)^n$ 表明，有理数系是不完备的．因此我们现在可以下结论说，有理数系对极限运算不封闭，而扩充为实数系后，对极限运算便封闭了．
+
+还值得指出的一点是，关于实数完备性的刻画，并没有涉及实数的顺序，实际上只用到实数系的两点：①每一个实数 $x$，都有一个 $|x|$ 与之对应；②两个实数 $x_1$，$x_2$ 之间的距离，可用 $|x_1 - x_2|$ 表示．这是和本章 §1 对实数系连续性的描述所不同的地方．
+
+连续变量的柯西收敛原理，以极限 $x \to a^+$ 为例，可以叙述为：极限 $\lim\limits_{x \to a^+} f(x)$ 存在的充分必要条件是，任给 $\varepsilon > 0$，存在 $\delta > 0$，只要 $0 < x' - a < \delta$，$0 < x'' - a < \delta$，就有
+\[
+|f(x') - f(x'')| < \varepsilon.
+\]
+事实上，设极限 $\lim\limits_{x \to a^+} f(x) = A$ 存在，则对任意 $\varepsilon > 0$，存在 $\delta > 0$，当 $0 < x - a < \delta$ 时，有
+\[
+|f(x) - A| < \varepsilon/2,
+\]
+因此只要 $0 < x' - a < \delta$，$0 < x'' - a < \delta$，有
+\[
+|f(x') - f(x'')| \leqslant |f(x') - A| + |f(x'') - A| < \varepsilon,
+\]
+必要性得证．
+
+下证充分性．设 $\{x_n\}$ 是任意满足 $\lim\limits_{n \to \infty} x_n = a$ 且 $x_n > a$ 的数列．已知对任意 $\varepsilon > 0$，存在 $\delta > 0$，只要 $0 < x' - a < \delta$，$0 < x'' - a < \delta$，就有
+\[
+|f(x') - f(x'')| < \varepsilon.
+\]
+则对上述 $\delta > 0$，存在 $N$，当 $n > N$ 时，有
+\[
+0 < x_n - a < \delta,
+\]
+于是当 $n > N$，$m > N$ 时，有
+\[
+|f(x_n) - f(x_m)| < \varepsilon.
+\]
+即 $\{f(x_n)\}$ 是基本列，由实数列的柯西收敛原理，极限 $\lim\limits_{n \to \infty} f(x_n)$ 存在．这样，我们就证明了，对任意 $x_n \to a$，$x_n > a$，都有 $\lim\limits_{n \to \infty} f(x_n)$ 存在．下面我们来证明，对不同的 $\{x_n\}$，这个极限值 $\lim\limits_{n \to \infty} f(x_n)$ 都是相同的．用反证法．若不然，设存在 $x_n \to a$，$x_n > a$ 和 $x_n' \to a$，$x_n' > a$ 但
+\[
+\lim_{n \to \infty} f(x_n) \neq \lim_{n \to \infty} f(x_n').
+\]
+定义一个新的数列
+\[
+t_n =
+\begin{cases}
+x_k, & n = 2k - 1, \\
+x_k', & n = 2k,
+\end{cases}
+\quad k = 1, 2, \cdots
+\]
+它是 $x_n$ 与 $x_n'$ 交叉插项而成，即
+\[
+\{t_n\} = \{x_1, x_1', x_2, x_2', \cdots\}.
+\]
+则 $t_n \to a$，$t_n > a$，但 $\lim\limits_{n \to \infty} f(t_n)$ 不存在（因为它的两个子序列极限不相等）．这就证明了，对任意的 $x_n \to a$，$x_n > a$，极限 $\lim\limits_{n \to \infty} f(x_n)$ 存在且极限值不依赖于 $\{x_n\}$ 的选择．根据函数极限与数列极限关系的定理~\ref{thm:3-10}，知函数极限 $\lim\limits_{x \to a^+} f(x)$ 存在．
+
+请读者对其他的极限过程，写出柯西收敛原理．
+
+\begin{xiti}
+\item 设 $f(x)$ 在 $(a, b)$ 连续，求证：$f(x)$ 在 $(a, b)$ 一致连续的充要条件是 $\lim\limits_{x \to a^+} f(x)$ 与 $\lim\limits_{x \to b^-} f(x)$ 都存在．
+\item 求证数列 $x_n = 1 + \dfrac{1}{\sqrt{2}} + \cdots + \dfrac{1}{\sqrt{n}}$ 当 $n \to \infty$ 时的极限不存在．
+\item 利用柯西收敛原理讨论下列数列的收敛性：
+\begin{ziti}
+\item $x_n = a_0 + a_1 q + a_2 q^2 + \cdots + a_n q^n \ (\lvert q \rvert < 1, \ |a_k| \leqslant M)$；
+\item $x_n = 1 + \dfrac{\sin 1}{2} + \dfrac{\sin 2}{2^2} + \cdots + \dfrac{\sin n}{2^n}$；
+\item $x_n = 1 - \dfrac{1}{2} + \dfrac{1}{3} - \cdots + (-1)^{n+1} \dfrac{1}{n}$．
+\end{ziti}
+\item 证明 $\lim\limits_{x \to x_0} f(x)$ 存在的充要条件是：对任意给定 $\varepsilon > 0$，存在 $\delta > 0$，当 $0 < |x' - x_0| < \delta$，$0 < |x'' - x_0| < \delta$ 时，恒有
+\[
+|f(x') - f(x'')| < \varepsilon.
+\]
+\item 证明 $f(x)$ 在 $x_0$ 点连续的充要条件是：任给 $\varepsilon > 0$，存在 $\delta > 0$，当 $|x' - x_0| < \delta$，$|x'' - x_0| < \delta$ 时，恒有
+\[
+|f(x') - f(x'')| < \varepsilon.
+\]
+\item 证明下列极限不存在：
+\begin{ziti}
+\item $x_n = \dfrac{n-1}{n+1} \cos \dfrac{2n\pi}{3}$；
+\item $x_n = \sqrt[n]{1 + 2^{n(-1)^n}}$；
+\item $x_n = \sin \left( \pi \sqrt{n^2 + n} \right)$；
+\item $x_n = \cos n$；
+\item $x_n = \tan n$．
+\end{ziti}
+\item 设 $f(x)$ 在 $(a, +\infty)$ 上可导，$|f'(x)|$ 单调下降，且 $\lim\limits_{x \to +\infty} f(x)$ 存在，求证 $\lim\limits_{x \to +\infty} x f'(x) = 0$．
+\item 设 $f(x)$ 在 $(-\infty, +\infty)$ 可导，且 $|f'(x)| \leqslant k < 1$，任给 $x_0$，令
+\[
+x_{n+1} = f(x_n) \quad (n = 0, 1, 2, \cdots),
+\]
+求证：
+\begin{ziti}
+\item $\lim\limits_{n \to \infty} x_n$ 存在；
+\item 上述极限为 $x = f(x)$ 的根，且是唯一的．
+\end{ziti}
+\item 设 $f(x)$ 在 $[a, b]$ 满足条件：
+\begin{ziti}
+\item $|f(x) - f(y)| \leqslant k |x - y|, \ \forall x, y \in [a, b], \ 0 < k < 1$；
+\item $f(x)$ 的值域包含在 $[a, b]$ 内．
+\end{ziti}
+则对任意 $x_0 \in [a, b]$，令 $x_{n+1} = f(x_n)$（$n = 0, 1, 2, \cdots$），有
+\begin{ziti}
+\item $\lim\limits_{n \to +\infty} x_n$ 存在；
+\item 方程 $x = f(x)$ 的解在 $[a, b]$ 上是唯一的，这个解就是上述极限值．
+\end{ziti}
+\end{xiti}

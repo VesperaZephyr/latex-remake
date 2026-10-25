@@ -1,0 +1,1362 @@
+% ==================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S3.6  应用导数研究函数之二: 凹凸性、图形
+% ==================================================================
+%  源：原书印刷页 221-241（PDF 物理页 227-247）
+%  底本：PaddleOCR-VL-1.6 + 高清影印比对校订
+%  规范：全西文半角标点；单一落盘出口 _texout.py
+% ==================================================================
+\section{应用导数研究函数之二: 凹凸性、图形}\label{sec:3.6}
+
+继 3.5 节, 应用 Lagrange 中值定理来研究函数的凹凸性.
+
+\begin{definition}\label{def:3.6.1}
+设 $f$ 为区间 $I$ 上的函数. 如果 $\forall x_{1},x_{2}\in I$, $\forall \lambda\in (0,1)$, 总有
+\[
+f(\lambda x_{1}+(1-\lambda)x_{2})\leqslant \lambda f(x_{1})+(1-\lambda)f(x_{2}),
+\]
+则称 $f$ 在 $I$ 上为\textbf{凸函数}(或\textbf{下凸函数}).
+
+如果上述不等式中“$\leqslant$”改为“$<$”, 则称 $f$ 在 $I$ 上为\textbf{严格凸函数}(或\textbf{严格下凸函数}).
+
+如果 $\forall x_{1},x_{2}\in I$, $\forall \lambda\in (0,1)$, 总有
+\[
+f(\lambda x_{1}+(1-\lambda)x_{2})\geqslant \lambda f(x_{1})+(1-\lambda)f(x_{2}),
+\]
+则称 $f$ 在 $I$ 上为\textbf{凹函数}.
+
+如果上述不等式中“$\geqslant$”改为“$>$”, 则称 $f$ 在 $I$ 上为\textbf{严格凹函数}.
+\end{definition}
+
+从几何上看, 凸(凹)函数 $y=f(x)$ ($x\in I$) 的图形上的任何不同的两点间的曲线段完全落在连接该两点的直线段(称为曲线过这两点的\textbf{弦})的下(上)方、严格凸(凹)函数 $y=f(x)$ ($x\in I$) 的图形上的任何不同的两点间的曲线段完全严格落在该两点的弦的下(上)方(如图~\ref{fig:3.6.1}、图~\ref{fig:3.6.2} 所示, 其中 $x=\lambda x_{1}+(1-\lambda)x_{2}$).
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.72, >=Stealth, font=\small, baseline=(current bounding box.north)]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \draw[very thick] (0.5,0.7) to[out=10, in=250] (3.8,3.3) node[right] {$y=f(x)$};
+  
+  \def\xone{0.8}
+  \def\xtwo{3.4}
+  \def\xmid{2.2}
+  
+  \coordinate (P1) at (\xone, 0.74);
+  \coordinate (P2) at (\xtwo, 2.6);
+  \path (P1) -- (P2) coordinate[pos=0.538] (S);
+  \coordinate (C) at (\xmid, 1.25);
+  
+  \draw[thick] (P1) -- (P2);
+  
+  \draw[dashed] (\xone,0) node[below] {$x_1$} -- (P1) -- (0,0.74) node[left] {$f(x_1)$};
+  \draw[dashed] (\xtwo,0) node[below] {$x_2$} -- (P2) -- (0,2.6) node[left] {$f(x_2)$};
+  \draw[dashed] (\xmid,0) node[below] {$x$} -- (S) -- (0,{1.87}) node[above left=-2pt] {\scriptsize $\lambda f(x_1)+(1-\lambda)f(x_2)$};
+  \draw[dashed] (C) -- (0,1.25) node[left] {$f(x)$};
+  
+  \fill (P1) circle (1.5pt);
+  \fill (P2) circle (1.5pt);
+  \fill (S) circle (1.5pt);
+  \fill (C) circle (1.5pt);
+\end{tikzpicture}
+\caption{凸函数}\label{fig:3.6.1}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.72, >=Stealth, font=\small, baseline=(current bounding box.north)]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \draw[very thick] (0.5,0.7) to[out=70, in=190] (3.8,3.1) node[right] {$y=f(x)$};
+  
+  \def\xone{0.8}
+  \def\xtwo{3.4}
+  \def\xmid{2.2}
+  
+  \coordinate (P1) at (\xone, 1.35);
+  \coordinate (P2) at (\xtwo, 2.95);
+  \path (P1) -- (P2) coordinate[pos=0.538] (S);
+  \coordinate (C) at (\xmid, 2.75);
+  
+  \draw[thick] (P1) -- (P2);
+  
+  \draw[dashed] (\xone,0) node[below] {$x_1$} -- (P1) -- (0,1.35) node[left] {$f(x_1)$};
+  \draw[dashed] (\xtwo,0) node[below] {$x_2$} -- (P2) -- (0,2.95) node[left] {$f(x_2)$};
+  \draw[dashed] (\xmid,0) node[below] {$x$} -- (C) -- (0,2.75) node[left] {$f(x)$};
+  \draw[dashed] (S) -- (0,{2.21}) node[above left=-2pt] {\scriptsize $\lambda f(x_1)+(1-\lambda)f(x_2)$};
+  
+  \fill (P1) circle (1.5pt);
+  \fill (P2) circle (1.5pt);
+  \fill (S) circle (1.5pt);
+  \fill (C) circle (1.5pt);
+\end{tikzpicture}
+\caption{凹函数}\label{fig:3.6.2}
+\end{minipage}
+\end{figure}
+
+显然, $f$ 在区间 $I$ 上为(严格)凸(凹)函数 $\Longleftrightarrow -f$ 在区间 $I$ 上为(严格)凹(凸)函数. 因此, 凡对(严格)凸函数成立的命题, (严格)凹函数也成立相应的命题. 这可以类似(严格)凸函数的证明, 或者用 $-f$ 代替 $f$ 并应用(严格)凸函数的结论推得. 因此, 今后只须讨论(严格)凸函数的性质即可.
+
+\begin{theorem}\label{thm:3.6.1}
+$f$ 在区间 $I$ 中为凸函数 $\Longleftrightarrow \forall x_{1},x_{2},x_{3}\in I$, $x_{1}<x_{2}<x_{3}$, 下面不等式
+\[
+\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant\frac{f(x_{3})-f(x_{1})}{x_{3}-x_{1}}\leqslant\frac{f(x_{3})-f(x_{2})}{x_{3}-x_{2}}
+\]
+中任何两个组成的不等式成立(如图~\ref{fig:3.6.3} 所示).
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9, >=Stealth, font=\small]
+  \draw[->] (-0.3,0) -- (5.0,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \draw[very thick] (0.6,0.8) to[out=10, in=250] (4.2,3.8);
+  
+  \coordinate (P1) at (0.9, 0.95);
+  \coordinate (P2) at (2.4, 1.6);
+  \coordinate (P3) at (3.8, 3.4);
+  
+  \draw[thick] (P1) -- (P2) -- (P3) -- cycle;
+  
+  \draw[dashed] (P1) -- (0.9,0) node[below] {$x_1$};
+  \draw[dashed] (P2) -- (2.4,0) node[below=1pt] {$x_2$};
+  \node[below=14pt, align=center] at (2.4,0) {\scriptsize $x_2=\lambda x_1+(1-\lambda)x_3$\\[
+1pt] \scriptsize $\lambda = \frac{x_3-x_2}{x_3-x_1}$};
+  \draw[dashed] (P3) -- (3.8,0) node[below] {$x_3$};
+  \fill (P1) circle (1.5pt) node[below left=-1pt] {$P_1(x_1,f(x_1))$};
+  \fill (P2) circle (1.5pt) node[below right=-2pt] {$P_2(x_2,f(x_2))$};
+  \fill (P3) circle (1.5pt) node[right=1pt] {$P_3(x_3,f(x_3))$};
+\end{tikzpicture}
+\caption{三条弦的斜率}\label{fig:3.6.3}
+\end{figure}
+\begin{proof}
+(1) $f$ 在区间 $I$ 上为凸函数
+\begin{align*}
+&\Longleftrightarrow f(x_{2})=f\left(\frac{x_{3}-x_{2}}{x_{3}-x_{1}}x_{1}+\frac{x_{2}-x_{1}}{x_{3}-x_{1}}x_{3}\right)\\
+&\quad\leqslant \frac{x_{3}-x_{2}}{x_{3}-x_{1}}f(x_{1})+\frac{x_{2}-x_{1}}{x_{3}-x_{1}}f(x_{3})\\
+&\Longleftrightarrow f(x_{3})-f(x_{2})\geqslant \frac{x_{3}-x_{1}-x_{2}+x_{1}}{x_{3}-x_{1}}f(x_{3})-\frac{x_{3}-x_{2}}{x_{3}-x_{1}}f(x_{1})\\
+&\quad=\frac{x_{3}-x_{2}}{x_{3}-x_{1}}f(x_{3})-\frac{x_{3}-x_{2}}{x_{3}-x_{1}}f(x_{1})\\
+&\quad=\frac{x_{3}-x_{2}}{x_{3}-x_{1}}[f(x_{3})-f(x_{1})]\\
+&\Longleftrightarrow \frac{f(x_{3})-f(x_{1})}{x_{3}-x_{1}}\leqslant \frac{f(x_{3})-f(x_{2})}{x_{3}-x_{2}}.
+\end{align*}
+(2) $f$ 在区间 $I$ 上为凸函数
+\begin{align*}
+&\Longleftrightarrow f(x_{2})-f(x_{1})\leqslant \frac{x_{3}-x_{2}-x_{3}+x_{1}}{x_{3}-x_{1}}f(x_{1})+\frac{x_{2}-x_{1}}{x_{3}-x_{1}}f(x_{3})\\
+&\quad=-\frac{x_{2}-x_{1}}{x_{3}-x_{1}}f(x_{1})+\frac{x_{2}-x_{1}}{x_{3}-x_{1}}f(x_{3})\\
+&\quad=\frac{x_{2}-x_{1}}{x_{3}-x_{1}}[f(x_{3})-f(x_{1})]\\
+&\Longleftrightarrow \frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant \frac{f(x_{3})-f(x_{1})}{x_{3}-x_{1}}.
+\end{align*}
+(3) $f$ 在区间 $I$ 上为凸函数
+\begin{align*}
+&\Longleftrightarrow (x_{3}-x_{1})f(x_{2})\leqslant (x_{3}-x_{2})f(x_{1})+(x_{2}-x_{1})f(x_{3})\\
+&\Longleftrightarrow -(x_{3}-x_{2})f(x_{1})\leqslant (x_{2}-x_{1})f(x_{3})-(x_{3}-x_{2}+x_{2}-x_{1})f(x_{2})\\
+&\Longleftrightarrow (x_{3}-x_{2})[f(x_{2})-f(x_{1})]\leqslant (x_{2}-x_{1})[f(x_{3})-f(x_{2})]\\
+&\Longleftrightarrow \frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant \frac{f(x_{3})-f(x_{2})}{x_{3}-x_{2}}.
+\end{align*}
+\end{proof}
+观察一下定理~\ref{thm:3.6.1} 的几何意义是有帮助的. 在图~\ref{fig:3.6.3} 中, 画出了 $y=f(x)$ 的三条弦 $P_{1}P_{2},P_{2}P_{3},P_{1}P_{3}$, 其中 $P_{i}=(x_{i},f(x_{i}))$, $i=1,2,3$. 这三条弦组成了一个三角形. 定理~\ref{thm:3.6.1} 中不等式的几何表示是
+\[
+\overline{P_{1}P_{2}}\ \text{的斜率}\leqslant \overline{P_{1}P_{3}}\ \text{的斜率}\leqslant \overline{P_{2}P_{3}}\ \text{的斜率}.
+\]
+这正表示曲线 $y=f(x)$ 的下凸状态, 几何表示便于定理~\ref{thm:3.6.1} 中不等式的记忆.
+
+关于凸函数, 有重要的 Jensen(詹森)不等式.
+
+\begin{theorem}[Jensen 不等式]\label{thm:3.6.2}
+$f$ 在区间 $I$ 上为凸函数 $\Longleftrightarrow \forall x_{i}\in I$, $\forall \lambda_{i}>0$ ($i=1,2,\cdots,n$), $\sum_{i=1}^{n}\lambda_{i}=1$, 有
+\[
+f\left(\sum_{i=1}^{n}\lambda_{i}x_{i}\right)\leqslant \sum_{i=1}^{n}\lambda_{i}f(x_{i}).
+\]
+如果 $f$ 在区间 $I$ 上为严格凸函数, 则当上述 $x_{1},x_{2},\cdots,x_{n}\in I$ 不全相等时, 有
+\[
+f\left(\sum_{i=1}^{n}\lambda_{i}x_{i}\right)< \sum_{i=1}^{n}\lambda_{i}f(x_{i}).
+\]
+\end{theorem}
+
+\begin{proof}
+($\Longrightarrow$) 设 $f$ 在区间 $I$ 上为凸函数.
+
+(归纳法) 当 $n=1$ 时, $\lambda_{1}=1$, $f\left(\sum_{i=1}^{1}\lambda_{i}x_{i}\right)=f(\lambda_{1}x_{1})=f(x_{1})=\sum_{i=1}^{1}\lambda_{i}f(x_{i})$;
+
+当 $n=2$ 时, $\lambda_{1}=\lambda$, $\lambda_{2}=1-\lambda$,
+\[
+f\left(\sum_{i=1}^{2}\lambda_{i}x_{i}\right)=f(\lambda x_{1}+(1-\lambda)x_{2})\leqslant \lambda f(x_{1})+(1-\lambda)f(x_{2})=\sum_{i=1}^{2}\lambda_{i}f(x_{i});
+\]
+假设 $n=k$ 时, $\forall x_{i}\in I$, $\forall \lambda_{i}>0$ ($i=1,2,\cdots,k$), $\sum_{i=1}^{k}\lambda_{i}=1$, 有
+\[
+f\left(\sum_{i=1}^{k}\lambda_{i}x_{i}\right)\leqslant \sum_{i=1}^{k}\lambda_{i}f(x_{i}),
+\]
+则当 $n=k+1$ 时, $\forall x_{i}\in I$, $\forall \lambda_{i}>0$ ($i=1,2,\cdots,k+1$), $\sum_{i=1}^{k+1}\lambda_{i}=1$. 令 $\mu_{i}=\frac{\lambda_{i}}{1-\lambda_{k+1}}$, $i=1,2,\cdots,k$, 便有 $\mu_{i}>0$ 且 $\sum_{i=1}^{k}\mu_{i}=\sum_{i=1}^{k}\frac{\lambda_{i}}{1-\lambda_{k+1}}=\frac{1-\lambda_{k+1}}{1-\lambda_{k+1}}=1$. 于是,
+\begin{align*}
+f\left(\sum_{i=1}^{k+1}\lambda_{i}x_{i}\right)&=f\left((1-\lambda_{k+1})\sum_{i=1}^{k}\frac{\lambda_{i}}{1-\lambda_{k+1}}x_{i}+\lambda_{k+1}x_{k+1}\right)\\
+&\leqslant (1-\lambda_{k+1})f\left(\sum_{i=1}^{k}\frac{\lambda_{i}}{1-\lambda_{k+1}}x_{i}\right)+\lambda_{k+1}f(x_{k+1}).
+\end{align*}
+归纳可得
+\begin{align*}
+f\left(\sum_{i=1}^{k+1}\lambda_{i}x_{i}\right)&\leqslant (1-\lambda_{k+1})\sum_{i=1}^{k}\frac{\lambda_{i}}{1-\lambda_{k+1}}f(x_{i})+\lambda_{k+1}f(x_{k+1})\\
+&=\sum_{i=1}^{k+1}\lambda_{i}f(x_{i}).
+\end{align*}
+
+($\Longleftarrow$) 如果右边条件成立, 特别当 $n=2$ 时, $\lambda=\lambda_{1}$, $1-\lambda=1-\lambda_{1}=\lambda_{2}$, 故有
+\[
+f(\lambda x_{1}+(1-\lambda)x_{2})=f(\lambda_{1}x_{1}+\lambda_{2}x_{2})\leqslant \lambda_{1}f(x_{1})+\lambda_{2}f(x_{2})=\lambda f(x_{1})+(1-\lambda)f(x_{2}).
+\]
+这就证明了 $f$ 在区间 $I$ 上为凸函数.
+
+关于严格凸函数情形, 当 $x_{1},x_{2},\cdots,x_{n}$ 不全相等时, 我们重新审查归纳证明. 当 $n=2$ 时, $x_{1},x_{2}$ 不全相等就是 $x_{1}\neq x_{2}$, 按定义, 严格的不等号成立. 假设 $n=k$ 时, 严格不等号成立. 再设 $x_{1},x_{2},\cdots,x_{k+1}$ 不全相等, 如果其中 $x_{1},x_{2},\cdots,x_{k}$ 不全相等, 则上述归纳法中最后的那个不等号应当是严格的; 如果 $x_{1}=\cdots=x_{k}\neq x_{k+1}$, 则 $\sum_{i=1}^{k}\mu_{i}x_{i}=x_{1}\sum_{i=1}^{k}\mu_{i}=x_{1}\neq x_{k+1}$, 此时归纳过程的第 1 个不等号是严格的. 总之, 不等式
+\[
+f\left(\sum_{i=1}^{n}\lambda_{i}x_{i}\right)<\sum_{i=1}^{n}\lambda_{i}f(x_{i})
+\]
+对一切 $n\in\mathbb{N}$ 成立.
+\end{proof}
+
+\begin{theoremp}[Jensen 不等式]\label{thm:3.6.2p}
+$f$ 在区间 $I$ 上为凸函数 $\Longleftrightarrow \forall x_{i}\in I$, $\forall \beta_{i}>0$ ($i=1,2,\cdots,n$), 有
+\[
+f\left(\frac{\displaystyle\sum_{i=1}^{n}\beta_{i}x_{i}}{\displaystyle\sum_{i=1}^{n}\beta_{i}}\right)\leqslant\frac{\displaystyle\sum_{i=1}^{n}\beta_{i}f(x_{i})}{\displaystyle\sum_{i=1}^{n}\beta_{i}}.
+\]
+如果 $f$ 是严格凸的, 则当上述 $x_{1},x_{2},\cdots,x_{n}\in I$ 不全相等时有
+\[
+f\left(\frac{\displaystyle\sum_{i=1}^{n}\beta_{i}x_{i}}{\displaystyle\sum_{i=1}^{n}\beta_{i}}\right)<\frac{\displaystyle\sum_{i=1}^{n}\beta_{i}f(x_{i})}{\displaystyle\sum_{i=1}^{n}\beta_{i}}.
+\]
+\end{theoremp}
+
+在函数 $f$ 有导函数 $f'$ 的情况下, 判断 $f$ 的凸性将变得比较容易, 因为我们有下面定理.
+
+\begin{theorem}\label{thm:3.6.3}
+设 $f$ 在区间 $I$ 上可导, 则下面三个结论等价:
+\begin{enumerate}[label=(\arabic*)]
+  \item $f$ 在 $I$ 上为(严格)凸函数;
+  \item $f'$ 在 $I$ 上为(严格)增函数;
+  \item $\forall x_{0},x\in I$, $x\neq x_{0}$, 有
+  \[
+  f(x)\geqslant f(x_{0})+f'(x_{0})(x-x_{0})
+\]
+  (或 $f(x)>f(x_{0})+f'(x_{0})(x-x_{0})$), 即 $f$ 的图形(严格)在其任一点 $(x_{0},f(x_{0}))$ 的切线的上方.
+\end{enumerate}
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9, >=Stealth, font=\small]
+  \draw[->] (-0.3,0) -- (4.8,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \draw[very thick] (0.8,1.2) to[out=5, in=250] (3.8,3.6);
+  
+  \coordinate (P1) at (1.0, 1.25);
+  \coordinate (P1h) at (1.6, 1.35);
+  \coordinate (P2h) at (3.1, 2.55);
+  \coordinate (P2) at (3.8, 3.6);
+  
+  \draw[thick] (P1) -- (P2);
+  \draw[dashed] (P1) -- (P1h);
+  \draw[dashed] (P2h) -- (P2);
+  
+  \draw[dashed] (P1) -- (1.0,0) node[below] {$x_1$};
+  \draw[dashed] (P1h) -- (1.6,0) node[below] {$x_1+h$};
+  \draw[dashed] (P2h) -- (3.1,0) node[below] {$x_2-h$};
+  \draw[dashed] (P2) -- (3.8,0) node[below] {$x_2$};
+  
+  \fill (P1) circle (1.5pt) node[above left=-1pt] {$(x_1,f(x_1))$};
+  \fill (P1h) circle (1.5pt) node[below right=-1pt] {$(x_1+h,f(x_1+h))$};
+  \fill (P2h) circle (1.5pt) node[right=1pt] {$(x_2-h,f(x_2-h))$};
+  \fill (P2) circle (1.5pt) node[right=1pt] {$(x_2,f(x_2))$};
+\end{tikzpicture}
+\caption{割线斜率的逼近}\label{fig:3.6.4}
+\end{figure}
+
+\begin{proof}
+(1) $\Longrightarrow$ (2) 设 $f$ 在 $I$ 上为凸函数, 即 $\forall x_{1},x_{2}\in I$, $x_{1}<x_{2}$, 充分小的 $h>0$, 使得 $x_{1}<x_{1}+h<x_{2}-h<x_{2}$. 根据 $f$ 的凸性及定理~\ref{thm:3.6.1}, 有(如图~\ref{fig:3.6.4} 所示)
+\[
+\frac{f(x_{1}+h)-f(x_{1})}{h}\leqslant\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant\frac{f(x_{2})-f(x_{2}-h)}{h}.
+\]
+因为 $f$ 可导, 令 $h\to 0^{+}$, 得到
+\[
+f'(x_{1})=f'_{+}(x_{1})\leqslant\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant f'_{-}(x_{2})=f'(x_{2}),
+\]
+所以, $f'$ 在 $I$ 上为增函数.
+
+在 $f$ 为严格凸函数的情形时, 我们取定一点 $x^{*}\in (x_{1},x_{2})$, 从而得出
+\[
+f'(x_{1})\leqslant\frac{f(x^{*})-f(x_{1})}{x^{*}-x_{1}}<\frac{f(x_{2})-f(x^{*})}{x_{2}-x^{*}}\leqslant f'(x_{2}).
+\]
+这就得出了严格不等式 $f'(x_{1})<f'(x_{2})$, 即 $f'$ 在 $I$ 上为严格增函数.
+
+(1) $\Longleftarrow$ (2) 设 $f'$ 在 $I$ 上为增函数. 对任何 $x_{1}<x_{2}<x_{3}$, 由 Lagrange 中值定理知, 存在 $x_{1}<\xi_{1}<x_{2}<\xi_{2}<x_{3}$, 使得
+\[
+\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}=f'(\xi_{1})\leqslant f'(\xi_{2})=\frac{f(x_{3})-f(x_{2})}{x_{3}-x_{2}}.
+\]
+再根据定理~\ref{thm:3.6.1} 知, $f$ 在 $I$ 上为凸函数.
+
+如果 $f'$ 在 $I$ 上为严格增函数, 则上述不等式为
+\[
+\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}=f'(\xi_{1})<f'(\xi_{2})=\frac{f(x_{3})-f(x_{2})}{x_{3}-x_{2}},
+\]
+再由定理~\ref{thm:3.6.1}, $f$ 在 $I$ 上为严格凸函数.
+
+(2) $\Longrightarrow$ (3) 设 $f'$ 在 $I$ 为增函数. $\forall x_{0},x\in I$, 由 Lagrange 中值定理知, 存在介于 $x_{0}$ 与 $x$ 之间的 $\xi$, 使得
+\begin{align*}
+f(x)-[f(x_{0})+f'(x_{0})(x-x_{0})]&=[f(x)-f(x_{0})]-f'(x_{0})(x-x_{0})\\
+&=f'(\xi)(x-x_{0})-f'(x_{0})(x-x_{0})\\
+&=[f'(\xi)-f'(x_{0})](x-x_{0})\geqslant 0,
+\end{align*}
+即 $f(x)\geqslant f(x_{0})+f'(x_{0})(x-x_{0})$, 即 $f$ 的图形落在 $(x_{0},f(x_{0}))$ 的切线的上方.
+
+如果 $f'$ 在 $I$ 为严格增函数, $\forall x_{0},x\in I$, $x\neq x_{0}$, 上述不等式为
+\[
+f(x)-[f(x_{0})+f'(x_{0})(x-x_{0})]=[f'(\xi)-f'(x_{0})](x-x_{0})>0,
+\]
+即 $f(x)>f(x_{0})+f'(x_{0})(x-x_{0})$, 即 $f$ 的图形严格落在 $(x_{0},f(x_{0}))$ 的切线的上方.
+
+(1) $\Longleftarrow$ (3) $\forall x_{1},x_{2}\in I$, $x_{1}<x_{2}$, 令 $x_{3}=\lambda x_{1}+(1-\lambda)x_{2}$, $0<\lambda<1$. 由 (3) 并利用
+\[
+x_{1}-x_{3}=(1-\lambda)(x_{1}-x_{2}),\quad x_{2}-x_{3}=\lambda(x_{2}-x_{1})
+\]
+得到
+\[
+f(x_{1})\geqslant f(x_{3})+f'(x_{3})(x_{1}-x_{3})=f(x_{3})+(1-\lambda)(x_{1}-x_{2})f'(x_{3}),
+\]
+\[
+f(x_{2})\geqslant f(x_{3})+f'(x_{3})(x_{2}-x_{3})=f(x_{3})+\lambda(x_{2}-x_{1})f'(x_{3}).
+\]
+于是,
+\begin{align*}
+\lambda f(x_{1})+(1-\lambda)f(x_{2})&\geqslant \lambda[f(x_{3})+(1-\lambda)(x_{1}-x_{2})f'(x_{3})]\\
+&\quad +(1-\lambda)[f(x_{3})+\lambda(x_{2}-x_{1})f'(x_{3})]\\
+&=f(x_{3})=f(\lambda x_{1}+(1-\lambda)x_{2}),
+\end{align*}
+即 $f$ 在 $I$ 上为凸函数.
+
+如果 $f$ 的图形严格在曲线每一点 $(x_{0},f(x_{0}))$, $x_{0}\in I$ 的切线的上方, 则上述不等式中所有的“$\geqslant$”均为“$>$”. 于是,
+\[
+\lambda f(x_{1})+(1-\lambda)f(x_{2})>f(\lambda x_{1}+(1-\lambda)x_{2}),
+\]
+即 $f$ 在 $I$ 上为严格凸函数.
+
+(2) $\Longleftarrow$ (3) 由 (3), $\forall x_{1},x_{2}\in I$, $x_{1}<x_{2}$, 有
+\begin{align*}
+f(x_{1})&\geqslant f(x_{2})+f'(x_{2})(x_{1}-x_{2}),\\
+f(x_{2})&\geqslant f(x_{1})+f'(x_{1})(x_{2}-x_{1}),
+\end{align*}
+从而
+\[
+f'(x_{1})\leqslant\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant f'(x_{2}),
+\]
+即 $f'$ 在 $I$ 上为单调增函数.
+
+如果 $f$ 的图形严格在曲线每一点 $(x_{0},f(x_{0}))$, $x_{0}\in I$ 的切线的上方, 则上述“$\geqslant$”均为“$>$”. 于是,
+\[
+f'(x_{1})<\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}<f'(x_{2}),
+\]
+即 $f'$ 在 $I$ 上为严格增函数.
+\end{proof}
+
+当 $f$ 在 $\mathring{I}=(a,b)$ 内二阶可导时, 我们有下面应用起来更方便的定理.
+
+\begin{theorem}\label{thm:3.6.4}
+设 $f$ 在区间 $I$ 上二阶可导, 则 $f$ 在 $I$ 上为(严格)凸函数 $\Longleftrightarrow f''(x)\geqslant 0$, $\forall x\in I$ ($f''(x)\geqslant 0$, $\forall x\in\mathring{I}$, 且 $\{x\in I\mid f''(x)=0\}$ 不含非退化区间).
+\end{theorem}
+
+\begin{proof}
+$f$ 在 $I$ 上为(严格)凸函数
+\[
+\xLongleftrightarrow{\text{定理~3.6.3}} f'\ \text{在}\ I\ \text{上为(严格)单调增函数}
+\]
+\[
+\xLongleftrightarrow[\text{定理~3.5.3}]{\text{定理~3.5.2}} f''(x)\geqslant 0,\ \forall x\in I\ (f''(x)\geqslant 0,\ \forall x\in\mathring{I},\ \text{且}\ \{x\in I\mid f''(x)=0\}\ \text{不含非退化区间}). \qedhere
+\]
+\end{proof}
+
+上面详细讨论了曲线 $y=f(x)$ 的凹凸性. 研究凹与凸交界的点是十分有意义的.
+
+\begin{definition}\label{def:3.6.2}
+设连续曲线 $y=f(x)$ 在点 $(x_{0},f(x_{0}))$ 的近旁的两侧分别是严格凸(凹)与严格凹(凸)的, 则称点 $(x_{0},f(x_{0}))$ 或 $x_{0}$ 为 $y=f(x)$ 的\textbf{拐点}(如图~\ref{fig:3.6.5}、图~\ref{fig:3.6.6} 所示).
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.72, >=Stealth, font=\small, baseline=(current bounding box.north)]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \coordinate (X0) at (1.8, 1.8);
+  
+  \draw[very thick] (0.6, 1.3) to[out=-20, in=210] (X0) to[out=30, in=190] (3.0, 2.0);
+  
+  \draw[dashed] (1.8,0) node[below] {$x_0$} -- (1.8, 2.8);
+  \draw[dashed] (0,1.8) node[left] {$f(x_0)$} -- (X0);
+  
+  \fill (X0) circle (1.5pt);
+  \node[above=6pt] at (X0) {拐点};
+  \node[above left] at (1.3, 1.5) {凸};
+  \node[below right] at (2.2, 1.8) {凹};
+\end{tikzpicture}
+\caption{由凸变凹拐点}\label{fig:3.6.5}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\begin{tikzpicture}[scale=0.72, >=Stealth, font=\small, baseline=(current bounding box.north)]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \coordinate (X0) at (2.0, 1.8);
+  
+  \draw[very thick] (0.8, 1.95) to[out=20, in=150] (X0) to[out=-30, in=200] (3.2, 1.55);
+  
+  \draw[dashed] (2.0,0) node[below] {$x_0$} -- (2.0, 2.8);
+  \draw[dashed] (0,1.8) node[left] {$f(x_0)$} -- (X0);
+  
+  \fill (X0) circle (1.5pt);
+  \node[above=6pt] at (X0) {拐点};
+  \node[below left] at (1.6, 1.7) {凹};
+  \node[above right] at (2.4, 1.7) {凸};
+\end{tikzpicture}
+\caption{由凹变凸拐点}\label{fig:3.6.6}
+\end{minipage}
+\end{figure}
+
+由定义可见, 拐点正是严格凸(凹)与严格凹(凸)的分界点.
+
+\begin{theorem}\label{thm:3.6.5}
+设 $f$ 在 $x_{0}$ 处二阶可导, 并且 $x_{0}$ 为 $f$ 的拐点, 则 $f''(x_{0})=0$. 但反之不真.
+\end{theorem}
+
+\begin{proof}
+因为 $f$ 在 $x_{0}$ 处 2 阶可导, 所以 $f$ 在 $x_{0}$ 近旁可导. 又因 $x_{0}$ 为 $f$ 的拐点, 故 $(x_{0},f(x_{0}))$ 为严格凸(凹)与严格凹(凸)的分界点. 根据定理~\ref{thm:3.6.3} 可知, $f'$ 以 $x_{0}$ 为严格增(减)与严格减(增)的分界点. 由此推得 $x_{0}$ 为 $f'$ 的极大(小)值点. 根据 Fermat 定理立即知 $f''(x_{0})=0$.
+
+反过来, 考虑函数 $y=f(x)=x^{4}$, $f'(x)=4x^{3}$,
+\[
+y''(x)=f''(x)\left\{
+\begin{aligned}
+&>0, &&x<0, f\ \text{严格凸},\\
+&=0, &&x=0, \text{非拐点},\\
+&>0, &&x>0, f\ \text{严格凸},
+\end{aligned}\right.
+\]
+$f''(0)=0$, 但 $(0,f(0))=(0,0)$ 不是拐点.
+\end{proof}
+
+\begin{theorem}\label{thm:3.6.6}
+设连续曲线 $y=f(x)$ 在 $x_{0}$ 的某去心开邻域 $U^{\circ}(x_{0})$ 内 2 阶可导. 如果在 $U_{+}^{\circ}(x_{0})$ 与 $U_{-}^{\circ}(x_{0})$ 内 $f''$ 的符号相反, 则 $(x_{0},f(x_{0}))$ 为曲线 $y=f(x)$ 的拐点.
+\end{theorem}
+
+\begin{proof}
+由于在 $U_{+}^{\circ}(x_{0})$ 与 $U_{-}^{\circ}(x_{0})$ 内 $f''$ 的符号相反, 故凹凸性也相反, 从而 $(x_{0},f(x_{0}))$ 为 $y=f(x)$ 的拐点.
+\end{proof}
+
+\begin{example}\label{ex:3.6.1}
+研究下列函数的凹凸性与拐点:
+\begin{enumerate}[label=(\arabic*)]
+  \item $y=\arctan x$;
+  \item $y=\sqrt[3]{x}=x^{\frac{1}{3}}$;
+  \item $y=\sin x$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) 从
+\[
+y'=\frac{1}{1+x^{2}}\left\{
+\begin{aligned}
+&\text{严格增}, &&x<0, &&y\ \text{严格凸},\\
+&\text{严格减}, &&x>0, &&y\ \text{严格凹}
+\end{aligned}\right.
+\]
+知 $(0,0)$ 为 $y=\arctan x$ 的拐点(如图~\ref{fig:3.6.7} 所示).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9, >=Stealth, font=\small]
+  \draw[->] (-2.8,0) -- (3.2,0) node[below] {$x$};
+  \draw[->] (0,-2.0) -- (0,2.2) node[left] {$y$};
+  \node[below right] at (0,0) {$O$};
+  
+  \draw[thick] (-2.8, 1.57) -- (3.0, 1.57);
+  \draw[thick] (-2.8, -1.57) -- (3.0, -1.57);
+  \node[above right] at (0, 1.57) {$\frac{\pi}{2}$};
+  \node[below right] at (0, -1.57) {$-\frac{\pi}{2}$};
+  
+  \draw[very thick] plot[domain=-2.7:2.7, samples=60] (\x, {rad(atan(\x))});
+  
+  \node[above left] at (-1.2, -0.9) {凸};
+  \node[below right] at (1.2, 0.9) {凹};
+\end{tikzpicture}
+\caption{$y=\arctan x$ 的图形}\label{fig:3.6.7}
+\end{figure}
+
+或者
+\[
+y''=\frac{-2x}{(1+x^{2})^{2}}\left\{
+\begin{aligned}
+&>0, &&x<0, y\ \text{严格凸},\\
+&=0, &&x=0, \text{拐点},\\
+&<0, &&x>0, y\ \text{严格凹}.
+\end{aligned}\right.
+\]
+
+(2) 从
+\[
+y'=\frac{1}{3}x^{-\frac{2}{3}}\left\{
+\begin{aligned}
+&\text{严格增}, &&x<0, &&y\ \text{严格凸},\\
+&\text{严格减}, &&x>0, &&y\ \text{严格凹}
+\end{aligned}\right.
+\]
+知 $(0,0)$ 为 $y=\sqrt[3]{x}$ 的拐点. 注意, 在 $x=0$ 处,
+\[
+y'(0)=\lim_{x\to 0}\frac{\sqrt[3]{x}-0}{x-0}=\lim_{x\to 0}x^{-\frac{2}{3}}=+\infty.
+\]
+因此, 在 $x=0$ 处, $y$ 不可导, 但 $(0,0)$ 处的切线为 $y$ 轴.
+
+或者从
+\[
+y''=-\frac{2}{9}x^{-\frac{5}{3}}\left\{
+\begin{aligned}
+&>0, &&x<0, y\ \text{严格凸},\\
+&<0, &&x>0, y\ \text{严格凹}
+\end{aligned}\right.
+\]
+知 $(0,0)$ 为 $y=\sqrt[3]{x}$ 的拐点(如图~\ref{fig:3.6.8} 所示).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9, >=Stealth, font=\small]
+  \draw[->] (-2.8,0) -- (3.2,0) node[below] {$x$};
+  \draw[->] (0,-2.2) -- (0,2.4) node[left] {$y$};
+  \node[below right] at (0,0) {$O$};
+  
+  \foreach \x in {-2,-1,1,2}
+    \draw (\x, 1.5pt) -- (\x, -1.5pt);
+  \node[below] at (1,0) {$1$};
+  \node[below] at (2,0) {$2$};
+  \foreach \y in {-2,-1,1,2}
+    \draw (1.5pt, \y) -- (-1.5pt, \y);
+    
+  \draw[very thick] plot[domain=0.01:2.6, samples=60] (\x, {\x^(1/3)});
+  \draw[very thick] plot[domain=-2.6:-0.01, samples=60] (\x, {-(abs(\x))^(1/3)});
+  
+  \fill (0,0) circle (1.5pt);
+  \node[below left] at (-1.0, -0.6) {凸};
+  \node[below right] at (1.0, 0.6) {凹};
+\end{tikzpicture}
+\caption{$y=\sqrt[3]{x}$ 的图形}\label{fig:3.6.8}
+\end{figure}
+
+(3) 从 $y'=\cos x$,
+\[
+y''=-\sin x\left\{
+\begin{aligned}
+&>0, &&x\in(2k\pi-\pi,2k\pi), y\ \text{严格凸},\\
+&=0, &&x=k\pi, \text{拐点},\\
+&<0, &&x\in(2k\pi,2k\pi+\pi), y\ \text{严格凹}.
+\end{aligned}\right.
+\]
+(如图~\ref{fig:3.6.9} 所示).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[xscale=0.9, yscale=1.2, >=Stealth, font=\small]
+  \draw[->] (-2.4,0) -- (7.2,0) node[below] {$x$};
+  \draw[->] (0,-1.7) -- (0,1.9) node[left] {$y$};
+  \node[below right] at (0,0) {$O$};
+  
+  \draw (-1.57, 1.5pt) -- (-1.57, -1.5pt) node[below] {$-\frac{\pi}{2}$};
+  \draw (1.57, 1.5pt) -- (1.57, -1.5pt) node[below] {$\frac{\pi}{2}$};
+  \draw (3.14, 1.5pt) -- (3.14, -1.5pt) node[below] {$\pi$};
+  \draw (4.71, 1.5pt) -- (4.71, -1.5pt) node[below] {$\frac{3\pi}{2}$};
+  \draw (6.28, 1.5pt) -- (6.28, -1.5pt) node[below] {$2\pi$};
+  
+  \draw (1.5pt, 1) -- (-1.5pt, 1) node[left] {$1$};
+  \draw (1.5pt, -1) -- (-1.5pt, -1) node[left] {$-1$};
+  
+  \draw[very thick] plot[domain=-2.1:6.6, samples=80] (\x, {sin(\x r)});
+  
+  \fill (0,0) circle (1.5pt) node[above left=3pt] {拐点};
+  \fill (3.14,0) circle (1.5pt) node[above=4pt] {拐点};
+  \fill (6.28,0) circle (1.5pt);
+  
+  \node[below] at (1.57, 0.8) {凹};
+  \node[above] at (4.71, -0.8) {凸};
+  \node[above] at (-1.57, -0.8) {凸};
+\end{tikzpicture}
+\caption{$y=\sin x$ 的图形}\label{fig:3.6.9}
+\end{figure}
+
+对具体的凸(凹)函数使用 Jensen 不等式, 可以得出许许多多不等式, 这是证明与构造不等式的一种常用方法.
+
+\begin{example}\label{ex:3.6.2}
+设 $x_{1},x_{2},\cdots,x_{n}\geqslant 0$, 则
+\[
+\sqrt[n]{x_{1}x_{2}\cdots x_{n}}\leqslant\frac{x_{1}+x_{2}+\cdots+x_{n}}{n},
+\]
+并且等号当且仅当 $x_{1}=x_{2}=\cdots=x_{n}$ 时成立.
+\end{example}
+
+\begin{proof}
+如果某个 $x_{i}=0$, 则 $\sqrt[n]{x_{1}x_{2}\cdots x_{n}}=0\leqslant\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}$.
+
+如果 $x_{i}>0$, $i=1,2,\cdots,n$. 考虑函数 $y=\ln x$, 则 $y'=\frac{1}{x}$, $y''=-\frac{1}{x^{2}}<0$, $\forall x\in(0,+\infty)$, 故 $y=\ln x$ 在 $(0,+\infty)$ 上严格凹. 于是,
+\[
+\ln\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}\geqslant\frac{\ln x_{1}+\ln x_{2}+\cdots+\ln x_{n}}{n}=\ln\sqrt[n]{x_{1}x_{2}\cdots x_{n}},
+\]
+即
+\[
+\sqrt[n]{x_{1}x_{2}\cdots x_{n}}\leqslant\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}.
+\]
+且等号当且仅当 $x_{1}=x_{2}=\cdots=x_{n}$ 时成立.
+\end{proof}
+
+\begin{example}\label{ex:3.6.3}
+$\forall x_{1},x_{2},\cdots,x_{n}>0$, 证明: 不等式
+\[
+\frac{x_{1}x_{2}\cdots x_{n}}{(x_{1}+x_{2}+\cdots+x_{n})^{n}}\leqslant\frac{(1+x_{1})\cdots(1+x_{n})}{(n+x_{1}+\cdots+x_{n})^{n}},
+\]
+等号当且仅当 $x_{1}=x_{2}=\cdots=x_{n}$ 时才成立.
+\end{example}
+
+\begin{proof}
+\begin{align*}
+&\frac{x_{1}x_{2}\cdots x_{n}}{(x_{1}+x_{2}+\cdots+x_{n})^{n}}\leqslant\frac{(1+x_{1})\cdots(1+x_{n})}{(n+x_{1}+\cdots+x_{n})^{n}}\\
+&\Longleftrightarrow \frac{x_{1}x_{2}\cdots x_{n}}{(1+x_{1})(1+x_{2})\cdots(1+x_{n})}\leqslant\left[\frac{\frac{1}{n}(x_{1}+x_{2}+\cdots+x_{n})}{1+\frac{1}{n}(x_{1}+x_{2}+\cdots+x_{n})}\right]^{n}\\
+&\Longleftrightarrow \frac{1}{n}\sum_{i=1}^{n}\ln\frac{x_{i}}{1+x_{i}}\leqslant\ln\frac{\frac{1}{n}\sum_{i=1}^{n}x_{i}}{1+\frac{1}{n}\sum_{i=1}^{n}x_{i}}.
+\end{align*}
+若令 $f(x)=\ln\frac{x}{1+x}$, 则
+\[
+f'(x)=\frac{1}{x(1+x)},\quad f''(x)=-\frac{1+2x}{x^{2}(1+x)^{2}}<0,\quad\forall x>0.
+\]
+因此, $f(x)$ 在 $(0,+\infty)$ 上为严格凹函数, 根据 Jensen 不等式(定理~\ref{thm:3.6.2})得到
+\[
+\frac{1}{n}\sum_{i=1}^{n}\ln\frac{x_{i}}{1+x_{i}}\leqslant\ln\frac{\frac{1}{n}\sum_{i=1}^{n}x_{i}}{1+\frac{1}{n}\sum_{i=1}^{n}x_{i}},
+\]
+并且式中等号当且仅当 $x_{1}=x_{2}=\cdots=x_{n}$ 时才成立.
+\end{proof}
+
+\begin{example}\label{ex:3.6.4}
+设 $a,b,c>0$. 证明: $(abc)^{\frac{a+b+c}{3}}\leqslant a^{a}b^{b}c^{c}$, 并且等号当且仅当 $a=b=c$ 时才成立.
+\end{example}
+
+\begin{proof}
+如果能证明
+\begin{equation}
+\left(\frac{a+b+c}{3}\right)^{a+b+c}\leqslant a^{a}b^{b}c^{c}, \tag{*}
+\end{equation}
+则根据几何-算术平均不等式, 有
+\begin{equation}
+(abc)^{\frac{a+b+c}{3}}=(\sqrt[3]{abc})^{a+b+c}\leqslant\left(\frac{a+b+c}{3}\right)^{a+b+c}\leqslant a^{a}b^{b}c^{c}. \tag{**}
+\end{equation}
+显然,
+\[
+\text{(*) 式}\Longleftrightarrow \frac{a+b+c}{3}\ln\frac{a+b+c}{3}\leqslant\frac{a\ln a+b\ln b+c\ln c}{3}.
+\]
+为证明此不等式, 我们令 $f(x)=x\ln x$, $x>0$, 则
+\[
+f'(x)=1+\ln x,\quad f''(x)=\frac{1}{x}>0.
+\]
+从而, $f(x)=x\ln x$ 在 $(0,+\infty)$ 上为严格的凸函数, 依 Jensen 不等式有
+\[
+\frac{a+b+c}{3}\ln\frac{a+b+c}{3}\leqslant\frac{a\ln a+b\ln b+c\ln c}{3}.
+\]
+从 (**) 式可看出, 等号成立当且仅当 $a=b=c$.
+\end{proof}
+
+\begin{example}\label{ex:3.6.5}
+设 $f$ 为区间 $I$ 上的凸函数, $[\alpha,\beta]\subset\mathring{I}$, 则 $f$ 在 $[\alpha,\beta]$ 上满足 Lipschitz(李普希兹)条件, 即有常数 $M$, 使得
+\[
+|f(x_{1})-f(x_{2})|\leqslant M|x_{1}-x_{2}|,\quad\forall x_{1},x_{2}\in[\alpha,\beta].
+\]
+由此知 $f$ 在 $\mathring{I}$ 中连续. 注意, $f$ 在 $I$ 中未必连续.
+\end{example}
+
+\begin{proof}
+取 $A,B\in\mathring{I}$, s.t. $[\alpha,\beta]\subset[A,B]\subset\mathring{I}$, $\forall x_{1},x_{2}\in[\alpha,\beta]$, 不妨设 $x_{1}<x_{2}$. 因为 $f$ 为凸函数, 所以有
+\[
+\frac{f(\alpha)-f(A)}{\alpha-A}\leqslant\frac{f(x_{1})-f(\alpha)}{x_{1}-\alpha}\leqslant\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\leqslant\frac{f(\beta)-f(x_{2})}{\beta-x_{2}}\leqslant\frac{f(B)-f(\beta)}{B-\beta}.
+\]
+这就蕴涵着
+\[
+\left|\frac{f(x_{2})-f(x_{1})}{x_{2}-x_{1}}\right|\leqslant M=\max\left\{\left|\frac{f(B)-f(\beta)}{B-\beta}\right|,\left|\frac{f(\alpha)-f(A)}{\alpha-A}\right|\right\},
+\]
+即
+\[
+|f(x_{1})-f(x_{2})|\leqslant M|x_{1}-x_{2}|,\quad\forall x_{1},x_{2}\in[\alpha,\beta].
+\]
+$\forall x_{0}\in\mathring{I}$, 取 $[\alpha,\beta]$ 使得 $x_{0}\in(\alpha,\beta)\subset[\alpha,\beta]\subset\mathring{I}$. 上述不等式表明 $f$ 在 $[\alpha,\beta]$ 连续, 从而 $f$ 在 $x_{0}$ 连续. 由 $x_{0}\in\mathring{I}$ 任取知 $f$ 在 $\mathring{I}$ 上连续.
+
+但是, $f$ 在 $I$ 中未必连续. 反例:
+\[
+f(x)=\left\{
+\begin{aligned}
+&1, &&x=0,\\
+&x^{2}, &&x>0
+\end{aligned}\right.
+\]
+在 $[0,+\infty)$ 内为凸函数, 但 $f$ 在端点 $0$ 处不连续.
+\end{proof}
+
+\begin{example}\label{ex:3.6.6}
+设 $f$ 在区间 $I$ 中为凸函数. 证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item 在 $\mathring{I}$ 上有单调增的左右导函数 $f'_{-},f'_{+}$, 并且 $f'_{-}(x)\leqslant f'_{+}(x)$, $\forall x\in\mathring{I}$;
+  \item 设 $x\in\mathring{I}$, 如果 $f'_{+}$ 在 $x$ 左连续(或 $f'_{-}$ 在 $x$ 右连续), 则 $f$ 在 $x$ 可导.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) $\forall x_{0}\in\mathring{I}$, $x_{1}<x_{2}<x_{0}<x_{3}$, 因 $f$ 在 $I$ 中下凸, 所以
+\[
+\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}}\leqslant\frac{f(x_{2})-f(x_{0})}{x_{2}-x_{0}}\leqslant\frac{f(x_{3})-f(x_{0})}{x_{3}-x_{0}},
+\]
+由此知函数 $\frac{f(x)-f(x_{0})}{x-x_{0}}$ 当 $x<x_{0}$ 时单调增, 且有上界 $\frac{f(x_{3})-f(x_{0})}{x_{3}-x_{0}}$, 从而当 $x\to x_{0}^{-}$ 时, 极限存在有限, 即 $f'_{-}(x_{0})$ 存在有限, 且
+\[
+f'_{-}(x_{0})=\lim_{x\to x_{0}^{-}}\frac{f(x)-f(x_{0})}{x-x_{0}}\leqslant\frac{f(x_{3})-f(x_{0})}{x_{3}-x_{0}}.
+\]
+同理可证函数 $\frac{f(x)-f(x_{0})}{x-x_{0}}$ 当 $x>x_{0}$ 时是单调增的, 且随 $x\to x_{0}^{+}$ 函数单调减有下界 $\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}}$, 故极限存在有限, 即 $f'_{+}(x_{0})$ 存在有限, 并有
+\[
+f'_{+}(x_{0})=\lim_{x\to x_{0}^{+}}\frac{f(x)-f(x_{0})}{x-x_{0}}\geqslant\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}}.
+\]
+任取 $x_{0}\in\mathring{I}$, 再取 $x_{1}<x_{0}<x_{3}$, 则有
+\[
+\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}}\leqslant\frac{f(x_{3})-f(x_{0})}{x_{3}-x_{0}},
+\]
+\[
+f'_{-}(x_{0})=\lim_{x_{1}\to x_{0}^{-}}\frac{f(x_{1})-f(x_{0})}{x_{1}-x_{0}}\leqslant\lim_{x_{3}\to x_{0}^{+}}\frac{f(x_{3})-f(x_{0})}{x_{3}-x_{0}}=f'_{+}(x_{0}).
+\]
+此外, $\forall x_{1},x_{2}\in\mathring{I}$, $x_{1}<x_{2}$, 取 $\Delta x>0$, s.t. $x_{1}<x_{1}+\Delta x<x_{2}<x_{2}+\Delta x$, 因 $f$ 在 $I$ 上为凸函数, 故
+\[
+\frac{f(x_{1}+\Delta x)-f(x_{1})}{\Delta x}\leqslant\frac{f(x_{2})-f(x_{1}+\Delta x)}{x_{2}-(x_{1}+\Delta x)}\leqslant\frac{f(x_{2}+\Delta x)-f(x_{2})}{\Delta x},
+\]
+令 $\Delta x\to 0^{+}$, 得到
+\[
+f'_{+}(x_{1})\leqslant f'_{+}(x_{2}),
+\]
+所以, $f'_{+}$ 在 $\mathring{I}$ 上单调增.
+
+同理得到 $f'_{-}(x_{1})\leqslant f'_{-}(x_{2})$, $f'_{-}$ 在 $\mathring{I}$ 上单调增.
+
+(2) $\forall x_{0}\in\mathring{I}$, 当 $x<x_{0}$ 时, 同上证法有
+\[
+f'_{+}(x)\leqslant f'_{-}(x_{0})\overset{\text{由(1)}}{\leqslant} f'_{+}(x_{0}).
+\]
+于是, 由 $f'_{+}$ 左连续得到
+\[
+f'_{+}(x_{0})=\lim_{x\to x_{0}^{-}}f'_{+}(x)\leqslant f'_{-}(x_{0})\leqslant f'_{+}(x_{0}).
+\]
+\[
+f'_{+}(x_{0})=f'_{-}(x_{0}),
+\]
+即 $f$ 在 $x_{0}$ 处可导.
+
+类似地, $\forall x_{0}\in\mathring{I}$, 当 $x_{0}<x$ 时, 同上证法有
+\[
+f'_{-}(x_{0})\leqslant f'_{+}(x_{0})\leqslant f'_{-}(x).
+\]
+于是, 由 $f'_{-}$ 右连续得到
+\[
+f'_{-}(x_{0})\leqslant f'_{+}(x_{0})\leqslant\lim_{x\to x_{0}^{+}}f'_{-}(x)=f'_{-}(x_{0}),
+\]
+\[
+f'_{-}(x_{0})=f'_{+}(x_{0}),
+\]
+$f$ 在 $x_{0}$ 处可导.
+\end{proof}
+
+我们已经知道, 表示函数有三种方法, 即列表法、解析法(或分析法)和图示法. 解析法便于运算与量的分析, 而用图形来表示函数有直观、醒目的优点, 从图形上看, 函数的动态, 即它的递增、递减、正性、凹凸性将一览无遗. 在许多场合, 我们也希望将一个已有解析式的函数用图形表示出来, 以便于直观地了解它的性态, 这就产生了函数作图的需要.
+
+为更好地作函数 $y=f(x)$ 的图形, 应考虑下列几点:
+\begin{enumerate}[label=(\arabic*)]
+  \item 明确函数的定义域与值域, 以界定函数图象的存在范围;
+  \item 函数是否具有对称性? 这又可以分为轴对称(如偶函数图形关于 $y$ 轴对称)和中心对称(如奇函数图形关于原点 $O$ 对称). 如果找到了对称轴或对称中心, 将使我们劳动减少了一半, 对称部分可以用“复制”的方法得到;
+  \item 函数是否具有周期性? 对于周期函数, 就只需作出它在一个周期之上的图形, 然后用“复制”的方法得到;
+  \item 求出函数的驻点(即 $f'=0$ 的点), 确定函数的单调区间; 求出 $f''=0$ 的点, 确定凹凸性与拐点;
+  \item 求出函数的某些特殊点, 如不连续点, 不可导点, 与两坐标轴的交点等;
+  \item 考察渐近线(如果曲线 $C$ 上动点 $P$ 沿着曲线无限地远离原点时, 点 $P$ 与某定直线 $L$ 的距离趋于 $0$, 则称直线 $L$ 为曲线 $C$ 的\textbf{渐近线});
+
+  关于渐近线作如下的讨论: 若 $\lim_{x\to x_0}f(x)=\infty$, $\lim_{x\to x_0^{+}}f(x)=\infty$ 或 $\lim_{x\to x_0^{-}}f(x)=-\infty$ 时, 曲线 $y=f(x)$ 有垂直于 $x$ 轴的渐近线 $x=x_{0}$, 称为\textbf{垂直渐近线}.
+
+  此外, 曲线 $y=f(x)$ 有斜渐近线(如图~\ref{fig:3.6.10} 所示)
+  \[
+  y=kx+b\Longleftrightarrow \lim_{x\to\pm\infty}\frac{f(x)}{x}=k,\quad \lim_{x\to\pm\infty}[f(x)-kx]=b.
+\]
+  事实上, ($\Longleftarrow$) 如果 $\lim_{x\to\pm\infty}\frac{f(x)}{x}=k$, $\lim_{x\to\pm\infty}[f(x)-kx]=b$, 则曲线 $y=f(x)$ 上的动点 $P=(x,f(x))$ 到直线 $y=kx+b$ 的距离
+  \[
+  |PN|=|PM|\cos\alpha=|f(x)-(kx+b)|\cdot\frac{1}{\sqrt{1+k^2}}\to 0\cdot\frac{1}{\sqrt{1+k^2}}=0\quad(x\to\pm\infty),
+\]
+  从而 $y=kx+b$ 为曲线 $y=f(x)$ 的斜渐近线.
+
+  ($\Longrightarrow$) 设曲线 $y=f(x)$ 有斜渐近线 $y=kx+b$, 则曲线上的动点 $P=(x,f(x))$ 到斜渐近线 $y=kx+b$ 的距离为
+  \[
+  |PN|=|PM|\cos\alpha=|f(x)-(kx+b)|\cdot\frac{1}{\sqrt{1+k^{2}}}\to 0\quad(x\to\pm\infty),
+\]
+  即
+  \[
+  \lim_{x\to\pm\infty}[f(x)-(kx+b)]=0\Longleftrightarrow \lim_{x\to\pm\infty}[f(x)-kx]=b.
+\]
+  \[
+  \lim_{x\to\pm\infty}\left(\frac{f(x)}{x}-k\right)=\lim_{x\to\pm\infty}\frac{1}{x}[f(x)-kx]=0\cdot b=0\Longleftrightarrow \lim_{x\to\pm\infty}\frac{f(x)}{x}=k.
+\]
+  从上述还可看出如果 $\lim_{x\to+\infty}f(x)=b$, 则 $k=0$, $y=b$ 为 $f(x)$ 的一条\textbf{水平渐近线}.
+
+  \item 如果 $x_{0}$ 为 $f$ 的拐点, 且 $f$ 在 $x_{0}$ 点处可导, 则由定理~\ref{thm:3.6.3} 推得曲线在拐点 $(x_{0},f(x_{0}))$ 处的切线将曲线 $y=f(x)$ 分在它的两侧, 这一观察对函数作图会有帮助.
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9, >=Stealth, font=\small]
+  \draw[->] (-0.3,0) -- (5.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \draw[thick] (0.3, 0.75) -- (4.8, 3.0) node[right=1pt] {$y=kx+b$};
+  
+  \draw[very thick] (0.5, 2.0) to[out=5, in=205] (4.0, 3.1) node[above=2pt] {$y=f(x)$};
+  
+  \coordinate (P) at (2.2, 2.22);
+  \coordinate (M) at (2.2, 1.7);
+  
+  \draw[thick] (P) -- (2.2,0) node[below] {$x$};
+  \draw[thick] (P) -- (2.6, 1.9);
+  \node[right] at (2.6, 1.9) {$N$};
+  
+  \fill (P) circle (1.5pt) node[above] {$P$};
+  \fill (M) circle (1.5pt) node[below right=-1pt] {$M$};
+  
+  \draw (1.3,0) arc (0:26.565:0.5);
+  \node at (1.5, 0.15) {$\alpha$};
+  
+  \draw (2.2, 1.95) arc (-90:-63.435:0.25);
+  \node at (2.35, 2.0) {$\alpha$};
+\end{tikzpicture}
+\caption{斜渐近线}\label{fig:3.6.10}
+\end{figure}
+
+综合上述 7 个特点, 再应用描点法画出函数 $y=f(x)$ 的图形.
+
+\begin{example}\label{ex:3.6.7}
+作函数 $f(x)=x\mathrm{e}^{x}$, $x\in(-\infty,+\infty)$ 的图形, 并求 $f$ 的最值.
+\end{example}
+
+\begin{solution}
+从
+\[
+f'(x)=(x+1)\mathrm{e}^{x}\left\{
+\begin{aligned}
+&<0, &&x<-1, &&f\ \text{严格减},\\
+&=0, &&x=-1, &&f(-1)\ \text{为最小值},\\
+&>0, &&x>-1, &&f\ \text{严格增}
+\end{aligned}\right.
+\]
+得到 $f(-1)=-\mathrm{e}^{-1}=-\frac{1}{\mathrm{e}}$ 为 $f$ 在 $(-\infty,+\infty)$ 上的最小值.
+
+又因 $\lim_{x\to+\infty}f(x)=\lim_{x\to+\infty}x\mathrm{e}^{x}=+\infty$, 故 $f$ 在 $(-\infty,+\infty)$ 上无最大值.
+\[
+\lim_{x\to-\infty}f(x)=\lim_{x\to-\infty}x\mathrm{e}^{x}=\lim_{x\to-\infty}\frac{x}{\mathrm{e}^{-x}}=\lim_{x\to-\infty}\frac{1}{-\mathrm{e}^{-x}}=0.
+\]
+这表明 $y=f(x)=x\mathrm{e}^{x}$ 有水平渐近线 $y=0$, 即 $x$ 轴.
+
+从
+\[
+\lim_{x\to+\infty}\frac{f(x)}{x}=\lim_{x\to+\infty}\frac{x\mathrm{e}^{x}}{x}=\lim_{x\to+\infty}\mathrm{e}^{x}=+\infty
+\]
+看出 $y=f(x)=x\mathrm{e}^{x}$ 再无其他渐近线.
+
+进而有
+\[
+f''(x)=(x+2)\mathrm{e}^{x}\left\{
+\begin{aligned}
+&<0, &&x<-2, &&f\ \text{严格凹},\\
+&=0, &&x=-2, &&\text{拐点},\\
+&>0, &&x>-2, &&f\ \text{严格凸},
+\end{aligned}\right.
+\]
+\[
+f(-2)=-2\mathrm{e}^{-2}=-\frac{2}{\mathrm{e}^{2}}.
+\]
+综合上述再画出图~\ref{fig:3.6.11}.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9, >=Stealth, font=\small]
+  \draw[->] (-3.8,0) -- (2.0,0) node[below] {$x$};
+  \draw[->] (0,-1.5) -- (0,3.3) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \foreach \x in {-3,-2,-1,1}
+    \draw (\x, 1.5pt) -- (\x, -1.5pt) node[below=1pt] {\scriptsize $\x$};
+  \foreach \y in {-1,1,2}
+    \draw (1.5pt, \y) -- (-1.5pt, \y) node[left=1pt] {\scriptsize $\y$};
+  \draw (1.5pt, 2.718) -- (-1.5pt, 2.718) node[left=1pt] {\scriptsize $\mathrm{e}$};
+  
+  \draw[very thick] plot[domain=-3.5:1.05, samples=70] (\x, {\x*exp(\x)});
+  
+  \draw[dashed] (1,0) -- (1, 2.718) -- (0, 2.718);
+  \draw[dashed] (-1,0) -- (-1, -0.368) -- (0, -0.368) node[right=1pt] {\scriptsize $-\frac{1}{\mathrm{e}}$};
+  \draw[dashed] (-2,0) -- (-2, -0.271) -- (0, -0.271) node[right=1pt] {\scriptsize $-\frac{2}{\mathrm{e}^2}$};
+  
+  \fill (-2, -0.271) circle (1.5pt) node[below=5pt] {\scriptsize 拐点};
+  \fill (-1, -0.368) circle (1.5pt);
+  
+  \node[below left] at (-2.8, -0.05) {\scriptsize 凹};
+  \node[below=2pt] at (-1.3, -0.45) {\scriptsize 凸};
+\end{tikzpicture}
+\caption{$y=x\mathrm{e}^{x}$ 的图形}\label{fig:3.6.11}
+\end{figure}
+
+\begin{example}\label{ex:3.6.8}
+作出函数
+\[
+f(x)=\frac{1}{1+x^{2}}
+\]
+的图形.
+\end{example}
+
+\begin{solution}
+\[
+f'(x)=\frac{-2x}{(1+x^2)^2}\left\{
+\begin{aligned}
+&>0, &&x<0, &&f\ \text{严格增},\\
+&=0, &&x=0, &&f(0)\ \text{达最大值},\\
+&<0, &&x>0, &&f\ \text{严格减}.
+\end{aligned}\right.
+\]
+\[
+f''(x)=\frac{2(3x^{2}-1)}{(1+x^{2})^{3}}\left\{
+\begin{aligned}
+&>0, &&x<-\frac{\sqrt{3}}{3}, &&f\ \text{严格凸},\\
+&=0, &&x=-\frac{\sqrt{3}}{3}, &&\text{拐点},\\
+&<0, &&-\frac{\sqrt{3}}{3}<x<\frac{\sqrt{3}}{3}, &&f\ \text{严格凹},\\
+&=0, &&x=\frac{\sqrt{3}}{3}, &&\text{拐点},\\
+&>0, &&x>\frac{\sqrt{3}}{3}, &&f\ \text{严格凸}.
+\end{aligned}\right.
+\]
+\[
+f(0)=1,\quad f\left(-\frac{\sqrt{3}}{3}\right)=\frac{3}{4}=f\left(\frac{\sqrt{3}}{3}\right).
+\]
+\[
+\lim_{x\to+\infty}f(x)=\lim_{x\to+\infty}\frac{1}{1+x^{2}}=0=\lim_{x\to-\infty}\frac{1}{1+x^{2}}=\lim_{x\to-\infty}f(x).
+\]
+$f$ 的定义域为 $(-\infty,+\infty)$, 它为偶函数, 因此只需画出 $x\geqslant 0$ 的那部分, $f$ 的值域为 $(0,1]$(如图~\ref{fig:3.6.12} 所示).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1, >=Stealth, font=\small]
+  \draw[->] (-3.2,0) -- (3.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,1.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \node[above right] at (0,1) {$1$};
+  
+  \draw[very thick] plot[domain=-3.0:3.0, samples=70] (\x, {1/(1+\x*\x)});
+  
+  \draw[dashed] (-0.577,0) node[below] {$-\frac{1}{\sqrt{3}}$} -- (-0.577, 0.75) -- (0.577, 0.75) -- (0.577, 0) node[below] {$\frac{1}{\sqrt{3}}$};
+  \node[above right=1pt] at (0.577, 0.75) {$(\frac{1}{\sqrt{3}}, \frac{3}{4})$};
+  
+  \fill (-0.577, 0.75) circle (1.2pt);
+  \fill (0.577, 0.75) circle (1.2pt);
+  \fill (0,1) circle (1.2pt);
+\end{tikzpicture}
+\caption{$y=\frac{1}{1+x^2}$ 的图形}\label{fig:3.6.12}
+\end{figure}
+
+\begin{example}\label{ex:3.6.9}
+作出多项式函数
+\[
+f(x)=4x^{3}-3x=x(4x^{2}-3)
+\]
+的图形.
+\end{example}
+
+\begin{solution}
+对函数 $f$ 求导, 得
+\begin{align*}
+f'(x)&=12x^{2}-3=12\left(x^{2}-\frac{1}{4}\right)\\
+&=12\left(x+\frac{1}{2}\right)\left(x-\frac{1}{2}\right)\left\{
+\begin{aligned}
+&>0, &&x<-\frac{1}{2}, &&f\ \text{严格增},\\
+&=0, &&x=-\frac{1}{2}, &&f\left(-\frac{1}{2}\right)\ \text{达极大值},\\
+&<0, &&-\frac{1}{2}<x<\frac{1}{2}, &&f\ \text{严格减},\\
+&=0, &&x=\frac{1}{2}, &&f\left(\frac{1}{2}\right)\ \text{达极小值},\\
+&>0, &&x>\frac{1}{2}, &&f\ \text{严格增}.
+\end{aligned}\right.
+\end{align*}
+\[
+f\left(-\frac{1}{2}\right)=1,\quad f\left(\frac{1}{2}\right)=-1,
+\]
+\[
+f(0)=f\left(-\frac{\sqrt{3}}{2}\right)=f\left(\frac{\sqrt{3}}{2}\right)=0.
+\]
+再对 $f'$ 求导, 得
+\[
+f''(x)=24x\left\{
+\begin{aligned}
+&<0, &&x<0, &&f\ \text{严格凹},\\
+&=0, &&x=0, &&\text{拐点},\\
+&>0, &&x>0, &&f\ \text{严格凸}.
+\end{aligned}\right.
+\]
+因为
+\[
+\lim_{x\to+\infty}f(x)=\lim_{x\to+\infty}x^{3}\left(4-\frac{3}{x^{2}}\right)=+\infty,
+\]
+\[
+\lim_{x\to-\infty}f(x)=\lim_{x\to-\infty}x^{3}\left(4-\frac{3}{x^{2}}\right)=-\infty,
+\]
+所以, $f(x)$ 在 $(-\infty,+\infty)$ 上无最大值与最小值. 又因为 $f(x)$ 为奇函数, 故 $f(x)$ 的图形关于原点对称.
+
+因 $f'(0)=-3$, $f''(0)=0$, 故在拐点 $(0,0)$ 处先作曲线的切线 $y=-3x$, 再作其图形(如图~\ref{fig:3.6.13} 所示).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[xscale=1.2, yscale=0.55, >=Stealth, font=\small]
+  \draw[->] (-1.8,0) -- (1.8,0) node[below] {$x$};
+  \draw[->] (0,-4.5) -- (0,4.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \foreach \x in {-1,1}
+    \draw (\x, 2pt) -- (\x, -2pt) node[below=1pt] {\scriptsize $\x$};
+  \foreach \y in {-4,-2,2,4}
+    \draw (2pt, \y) -- (-2pt, \y) node[left=1pt] {\scriptsize $\y$};
+  
+  \draw[very thick] plot[domain=-1.18:1.18, samples=70] (\x, {4*\x*\x*\x - 3*\x});
+  
+  \fill (0,0) circle (1.5pt);
+\end{tikzpicture}
+\caption{$f(x)=4x^3-3x$ 的图形}\label{fig:3.6.13}
+\end{figure}
+
+\begin{example}\label{ex:3.6.10}
+求曲线 $f(x)=\frac{x^{3}}{x^{2}+2x-3}=\frac{x^{3}}{(x+3)(x-1)}$ 的渐近线, 并描出草图.
+\end{example}
+
+\begin{solution}
+显然, $f(x)$ 在 $x=-3,1$ 处无定义, 且
+\[
+\lim_{x\to(-3)^{-}}f(x)=\lim_{x\to(-3)^{-}}\frac{x^{3}}{(x+3)(x-1)}=-\infty,
+\]
+\[
+\lim_{x\to(-3)^{+}}f(x)=\lim_{x\to(-3)^{+}}\frac{x^{3}}{(x+3)(x-1)}=+\infty,
+\]
+\[
+\lim_{x\to 1^{-}}f(x)=\lim_{x\to 1^{-}}\frac{x^{3}}{(x+3)(x-1)}=-\infty,
+\]
+\[
+\lim_{x\to 1^{+}}f(x)=\lim_{x\to 1^{+}}\frac{x^{3}}{(x+3)(x-1)}=+\infty.
+\]
+因此, 该曲线有垂直渐近线 $x=-3$ 与 $x=1$.
+
+又因 $k=\lim_{x\to\infty}\frac{f(x)}{x}=\lim_{x\to\infty}\frac{x^{2}}{x^{2}+2x-3}=1$,
+\begin{align*}
+b&=\lim_{x\to\infty}[f(x)-kx]=\lim_{x\to\infty}\left(\frac{x^{3}}{x^{2}+2x-3}-x\right)\\
+&=\lim_{x\to\infty}\frac{-2x^{2}+3x}{x^{2}+2x-3}=-2,
+\end{align*}
+所以, 此曲线还有斜渐近线为 $y=kx+b=x-2$.
+
+由于
+\[
+f'(x)=\frac{x^{2}(x^{2}+4x-9)}{(x^{2}+2x-3)^{2}}=\frac{x^{2}(x+\sqrt{13}+2)(x-\sqrt{13}+2)}{(x+3)^{2}(x-1)^{2}},
+\]
+进一步计算得 $f''(x)=\frac{2x(7x^{2}-18x+27)}{(x^{2}+2x-3)^{3}}$.
+
+列表如下:
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+\hline
+$x$ & $-\infty$ & & $-\sqrt{13}-2$ & & $-3$ & & $0$ & & $1$ & & $\sqrt{13}-2$ & & $+\infty$ \\
+\hline
+$x+\sqrt{13}+2$ & & $-$ & & $+$ & & $+$ & & $+$ & & $+$ & & $+$ & \\
+\hline
+$x-\sqrt{13}+2$ & & $-$ & & $-$ & & $-$ & & $-$ & & $-$ & & $+$ & \\
+\hline
+$f'(x)$ & & $+$ & $0$ & $-$ & & $-$ & $0$ & $-$ & & $-$ & $0$ & $+$ & \\
+\hline
+$f''(x)$ & & $-$ & & $-$ & & $+$ & & $-$ & & $+$ & & $+$ & \\
+\hline
+$f(x)$ & & $\nearrow\text{凹}$ & 极大 & $\searrow\text{凹}$ & 无 & $\searrow\text{凸}$ & 拐点 & $\searrow\text{凹}$ & 无 & $\searrow\text{凸}$ & 极小 & $\text{凸}\nearrow$ & \\
+\hline
+\end{tabular}
+\end{center}
+
+表中, $f$ 的增减区间, 极值点, 凹凸区间, 拐点一目了然, 根据这些, 计算 $f(-\sqrt{13}-2)$, $f(\sqrt{13}-2)$, 先画出渐近线, 描上特殊点, $(\mp\sqrt{13}-2,f(\mp\sqrt{13}-2))$, $(0,0)$, 函数的图象就跃然纸上了(如图~\ref{fig:3.6.14} 所示).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[xscale=0.65, yscale=0.45, >=Stealth, font=\small]
+  \draw[->] (-6.8,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-7.0) -- (0,7.0) node[left] {$y$};
+  \node[below right] at (0,0) {$O$};
+  
+  \draw[dashed, thick] (-3, -7.0) -- (-3, 7.0);
+  \draw[dashed, thick] (1, -7.0) -- (1, 7.0);
+  \draw[dashed, thick] (-6.5, -8.5) -- (3.8, 1.8) node[above right=-2pt] {\scriptsize $y=x-2$};
+  
+  \foreach \x in {-5,-4,-3,-2,-1,2}
+    \draw (\x, 2.5pt) -- (\x, -2.5pt) node[below=1pt] {\scriptsize $\x$};
+  \node[above=2pt] at (-5.6, 0) {\scriptsize $-(\sqrt{13}+2)$};
+  \draw (-5.6, 2.5pt) -- (-5.6, -2.5pt);
+  
+  \draw[very thick] (-6.5, -6.5) to[out=55, in=180] (-5.606, -5.5) to[out=0, in=95] (-3.4, -7.5);
+  
+  \draw[very thick] plot[domain=-2.55:0.75, samples=60] (\x, {(\x*\x*\x)/((\x+3)*(\x-1))});
+  
+  \draw[very thick] plot[domain=1.25:3.2, samples=60] (\x, {(\x*\x*\x)/((\x+3)*(\x-1))});
+  
+  \fill (0,0) circle (1.5pt);
+  \node[below right] at (1.6, 0) {\scriptsize $(\sqrt{13}-2)$};
+  \draw (1.6, 2.5pt) -- (1.6, -2.5pt);
+\end{tikzpicture}
+\caption{$f(x)=\frac{x^3}{(x+3)(x-1)}$ 的图形}\label{fig:3.6.14}
+\end{figure}
+
+\begin{example}\label{ex:3.6.11}
+讨论函数 $f(x)=\sqrt[3]{x^{3}-x^{2}-x+1}=\sqrt[3]{(x-1)^{2}(x+1)}$ 的性态, 并作出其图象.
+\end{example}
+
+\begin{solution}
+显然此曲线与坐标轴交点为 $(1,0)$, $(-1,0)$, $(0,1)$ 三点. 求出导数与 2 阶导数:
+\[
+f'(x)=\frac{x+\frac{1}{3}}{\sqrt[3]{x-1}\sqrt[3]{(x+1)^{2}}},
+\]
+\[
+f''(x)=-\frac{8}{9}\frac{1}{\sqrt[3]{(x-1)^{4}}\sqrt[3]{(x+1)^{5}}}.
+\]
+注意, $f$ 在 $x=\pm 1$ 处均不可导, 但
+\[
+\lim_{x\to -1}\frac{\sqrt[3]{(x-1)^{2}}\sqrt[3]{x+1}}{x+1}=\lim_{x\to -1}\frac{\sqrt[3]{(x-1)^{2}}}{\sqrt[3]{(x+1)^{2}}}=+\infty,
+\]
+故在点 $(-1,0)$ 处有垂直于 $x$ 轴的切线 $x=-1$.
+
+又
+\[
+\lim_{x\to 1^{-}}\frac{\sqrt[3]{(x-1)^{2}}\sqrt[3]{x+1}}{x-1}=\lim_{x\to 1^{-}}\frac{\sqrt[3]{x+1}}{\sqrt[3]{x-1}}=-\infty,
+\]
+\[
+\lim_{x\to 1^{+}}\frac{\sqrt[3]{(x-1)^{2}}\sqrt[3]{x+1}}{x-1}=\lim_{x\to 1^{+}}\frac{\sqrt[3]{x+1}}{\sqrt[3]{x-1}}=+\infty,
+\]
+故在点 $(1,0)$ 处切线不存在, 它为尖点.
+
+渐近线:
+\[
+k=\lim_{x\to\infty}\frac{\sqrt[3]{x^{3}-x^{2}-x+1}}{x}=\lim_{x\to\infty}\sqrt[3]{1-\frac{1}{x}-\frac{1}{x^{2}}+\frac{1}{x^{3}}}=1,
+\]
+\begin{align*}
+b&=\lim_{x\to\infty}(\sqrt[3]{x^{3}-x^{2}-x+1}-x)\\
+&=\lim_{x\to\infty}\frac{(x^{3}-x^{2}-x+1)-x^{3}}{(\sqrt[3]{x^{3}-x^{2}-x+1})^{2}+x\sqrt[3]{x^{3}-x^{2}-x+1}+x^{2}}\\
+&=\lim_{x\to\infty}\frac{-1-\frac{1}{x}+\frac{1}{x^{2}}}{\left(\sqrt[3]{1-\frac{1}{x}-\frac{1}{x^{2}}+\frac{1}{x^{3}}}\right)^{2}+\sqrt[3]{1-\frac{1}{x}-\frac{1}{x^{2}}+\frac{1}{x^{3}}}+1}\\
+&=-\frac{1}{3}.
+\end{align*}
+故 $f(x)=\sqrt[3]{x^{3}-x^{2}-x+1}$ 的斜渐近线为 $y=x-\frac{1}{3}$.
+
+极大值
+\[
+f\left(-\frac{1}{3}\right)=\left.\sqrt[3]{(x-1)^{2}}\sqrt[3]{x+1}\right|_{x=-\frac{1}{3}}=\sqrt[3]{\frac{4^{2}}{3^{2}}}\sqrt[3]{\frac{2}{3}}=\frac{2}{3}\sqrt[3]{4}>1.
+\]
+
+列表如下:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+\hline
+$x$ & $-\infty$ & & $-1$ & & $-\frac{1}{3}$ & & $1$ & & $+\infty$ \\
+\hline
+$x+1$ & & $-$ & & $+$ & & $+$ & & $+$ & \\
+\hline
+$x+\frac{1}{3}$ & & $-$ & & $-$ & & $+$ & & $+$ & \\
+\hline
+$x-1$ & & $-$ & & $-$ & & $-$ & & $+$ & \\
+\hline
+$f'$ & & $+$ & $\infty$ & $+$ & $0$ & $-$ & $\infty$ & $+$ & \\
+\hline
+$f''$ & & $+$ & $\infty$ & $-$ & & $-$ & $-\infty$ & $-$ & \\
+\hline
+$f$ & & $\nearrow\text{凸}$ & \begin{tabular}{c} 拐点 \\ $(-1,0)$ \end{tabular} & $\text{凹}\nearrow$ & 极大 & $\text{凹}\searrow$ & 极小 & $\text{凹}\nearrow$ & \\
+\hline
+\end{tabular}
+\end{center}
+
+综合上述画出 $f(x)=\sqrt[3]{x^{3}-x^{2}-x+1}$ 的图形(如图~\ref{fig:3.6.15} 所示).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1, >=Stealth, font=\small]
+  \draw[->] (-2.2,0) -- (2.4,0) node[below] {$x$};
+  \draw[->] (0,-2.0) -- (0,2.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  
+  \draw[thick] (-1.6, -1.933) -- (2.3, 1.967) node[above left=-2pt] {\scriptsize $y=x-\frac{1}{3}$};
+  
+  \draw (1/3, 1.5pt) -- (1/3, -1.5pt) node[below=1pt] {\scriptsize $\frac{1}{3}$};
+  \draw (1.5pt, -1/3) -- (-1.5pt, -1/3) node[below right=1pt] {\scriptsize $-\frac{1}{3}$};
+  \draw (-1, 1.5pt) -- (-1, -1.5pt) node[below right=1pt] {\scriptsize $-1$};
+  \draw (1, 1.5pt) -- (1, -1.5pt) node[below=1pt] {\scriptsize $1$};
+  \node[below right] at (0,1) {\scriptsize $1$};
+  
+  \draw[very thick] plot[domain=-1:1, samples=80] (\x, {((1-\x)^2 * (\x+1))^(1/3)});
+  \draw[very thick] plot[domain=1:2.3, samples=60] (\x, {((\x-1)^2 * (\x+1))^(1/3)});
+  \draw[very thick] plot[domain=-1.6:-1, samples=50] (\x, {-((1-\x)^2 * (-\x-1))^(1/3)});
+  
+  \draw[very thick] (-1, -0.6) -- (-1, 1.2);
+  
+  \draw[dashed] (-1/3, 0) node[below] {\scriptsize $-\frac{1}{3}$} -- (-1/3, 1.058) -- (0, 1.058) node[right=1pt] {\scriptsize $\frac{2}{3}\sqrt[3]{4}$};
+\end{tikzpicture}
+\caption{$f(x)=\sqrt[3]{x^3-x^2-x+1}$ 的图形}\label{fig:3.6.15}
+\end{figure}
+
+\begin{exblock}{练习题 3.6}
+\begin{enumerate}
+  \item 判断下列函数 $f$ 的凸性:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(x)=x^{\mu}$, 其中 $\mu\geqslant 1$, $x\geqslant 0$;
+    \item $f(x)=a^{x}$, 其中 $a>0$, $x\in\mathbb{R}$;
+    \item $f(x)=-\ln x$, $x>0$;
+    \item $f(x)=x\ln x$, $x>0$.
+  \end{enumerate}
+
+  \item 确定下列函数的凹凸区间与拐点:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $y=2x^{3}-3x^{2}-36x+25$;
+    \item $y=x+\frac{1}{x}$;
+    \item $y=\ln(x^{2}+1)$;
+    \item $y=\frac{1}{1+x^{2}}$.
+  \end{enumerate}
+
+  \item 证明下列不等式, 并指明式中等号成立的条件:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $a^{\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}}\leqslant\frac{a^{x_{1}}+a^{x_{2}}+\cdots+a^{x_{n}}}{n}$, 其中 $a>0, a\neq 1$;
+    \item $\left(\frac{x_{1}+x_{2}+\cdots+x_{n}}{n}\right)^{p}\leqslant\frac{x_{1}^{p}+x_{2}^{p}+\cdots+x_{n}^{p}}{n}$, 其中 $p>1$;
+    \item 当 $x_{1},x_{2},\cdots,x_{n}>0$ 时,
+    \[
+    \frac{x_{1}+x_{2}+\cdots+x_{n}}{n}\leqslant(x_{1}^{x_{1}}x_{2}^{x_{2}}\cdots x_{n}^{x_{n}})^{\frac{1}{x_{1}+x_{2}+\cdots+x_{n}}};
+\]
+    \item 设 $\lambda_{1},\lambda_{2},\cdots,\lambda_{n}>0$ 且 $\lambda_{1}+\lambda_{2}+\cdots+\lambda_{n}=1$, 则 $\forall x_{i}\geqslant 0, i=1,2,\cdots,n$, 有
+    \[
+    x_{1}^{\lambda_{1}}x_{2}^{\lambda_{2}}\cdots x_{n}^{\lambda_{n}}\leqslant\sum_{i=1}^{n}\lambda_{i}x_{i}.
+\]
+  \end{enumerate}
+
+  \item 证明: $f$ 在区间 $I$ 上为凸函数 $\Longleftrightarrow \forall x_{1},x_{2}\in I$, $\varphi(\lambda)=f(\lambda x_{1}+(1-\lambda)x_{2})$ 为 $[0,1]$ 上的凸函数.
+
+  \item 设 $f:[a,b]\to\mathbb{R}$ 为凸函数, 如果 $\exists c\in(a,b)$, s.t. $f(a)=f(c)=f(b)$. 证明: $f$ 为常值函数.
+
+  \item 设 $a<b<c<d$. 证明: 若 $f$ 在 $[a,c]$ 及 $[b,d]$ 上都为凸函数, 则 $f$ 在 $[a,d]$ 上也为凸函数.
+
+  \item \begin{enumerate}[label=(\arabic*)]
+    \item 设函数 $f$ 在 $\mathbb{R}$ 上有界且 $f''\geqslant 0$. 证明: $f$ 为常值函数.
+    \item 设 $f$ 为 $\mathbb{R}$ 上的 2 阶可导函数且有界. 证明 $\exists \xi\in\mathbb{R}$, s.t. $f''(\xi)=0$.
+    \item 设 $f:\mathbb{R}\to\mathbb{R}$ 2 阶可导, 且 $\lim_{x\to\infty}f(x)=r\in\mathbb{R}$, 证明: $\exists \xi\in\mathbb{R}$, s.t. $f''(\xi)=0$.
+  \end{enumerate}
+
+  \item 画出下列曲线的图形:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $y=x^{4}-2x+10$;
+    \item $y=\mathrm{e}^{-x^2}$;
+    \item $y=\ln(1+x^2)$;
+    \item $y=x-\ln(1+x)$;
+    \item $y=\frac{x}{1-x^2}$;
+    \item $y=x^{2}\mathrm{e}^{-x}$;
+    \item $y=x^{3}+6x^{2}-15x-20$;
+    \item $y=(x-1)x^{\frac{2}{3}}$;
+    \item $y=x-2\arctan x$;
+    \item $y=|x|^{\frac{2}{3}}(x-2)^{2}$.
+  \end{enumerate}
+
+  \item 应用凸函数概念证明如下不等式:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\forall a,b\in\mathbb{R}$, 有 $\mathrm{e}^{\frac{a+b}{2}}\leqslant\frac{\mathrm{e}^{a}+\mathrm{e}^{b}}{2}$;
+    \item $\forall a,b\geqslant 0$, 有 $2\arctan\frac{a+b}{2}\geqslant\arctan a+\arctan b$.
+  \end{enumerate}
+
+  \item $a$ 与 $b$ 为何值时, 点 $(1,3)$ 为曲线 $y=ax^{3}+bx^{2}$ 的拐点.
+
+  \item 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 如果 $f$ 为凸函数, $\lambda$ 为非负实数, 则 $\lambda f$ 为凸函数;
+    \item 如果 $f,g$ 均为凸函数, 则 $f+g$ 也为凸函数;
+    \item 如果 $f$ 为区间 $I$ 上的凸函数, $g$ 为 $J\supset f(I)$ 上的凸增函数, 则 $g\circ f$ 为 $I$ 上的凸函数.
+  \end{enumerate}
+
+  \item 设 $f,g$ 均为区间 $I$ 上的凸函数. 证明: $F(x)=\max\{f(x),g(x)\}$ 也为 $I$ 上的凸函数.
+
+  \item 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f$ 为区间 $I$ 上的凸函数 $\Longleftrightarrow \forall x_{1},x_{2},x_{3}\in I$, $x_{1}<x_{2}<x_{3}$, 恒
+    \[
+    \Delta=\begin{vmatrix}
+    1 & x_{1} & f(x_{1})\\
+    1 & x_{2} & f(x_{2})\\
+    1 & x_{3} & f(x_{3})
+\end{vmatrix}\geqslant 0;
+\]
+    \item $f$ 为严格凸函数 $\Longleftrightarrow \Delta>0$.
+  \end{enumerate}
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 3.6}
+\begin{enumerate}
+  \item 设 $f$ 为开区间 $I$ 上的 2 阶可导函数. 证明:
+  \[
+  f\ \text{为}\ I\ \text{上的凸函数}\Longleftrightarrow f''(x)\geqslant 0,\ \forall x\in I
+\]
+  (用 2 次 Lagrange 中值定理证明充分性; 用 $f''(x)=\lim_{h\to 0}\frac{f(x+h)+f(x-h)-2f(x)}{h^2}$ 证明必要性.)
+
+  \item 设 $f$ 在 $[a,b]$ 上连续, 定义函数
+  \[
+  D^{2}f(x)=\lim_{h\to 0}\frac{f(x+h)+f(x-h)-2f(x)}{h^{2}}.
+\]
+  又设 $\forall x\in(a,b)$, 上述极限均存在, 且 $D^{2}f(x)=0, x\in(a,b)$. 证明: $f(x)=c_{1}x+c_{2}$, 其中 $c_{1},c_{2}$ 为常数.
+
+  \item 应用 Jensen 不等式证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 设 $a_{i}>0$ ($i=1,2,\cdots,n$), 有
+    \[
+    \frac{n}{\frac{1}{a_{1}}+\frac{1}{a_{2}}+\cdots+\frac{1}{a_{n}}}\leqslant\sqrt[n]{a_{1}a_{2}\cdots a_{n}}\leqslant\frac{a_{1}+a_{2}+\cdots+a_{n}}{n};
+\]
+    \item 设 $a_{i},b_{i}>0$ ($i=1,2,\cdots,n$), 有
+    \[
+    \sum_{i=1}^{n}a_{i}b_{i}\leqslant\left(\sum_{i=1}^{n}a_{i}^{p}\right)^{\frac{1}{p}}\left(\sum_{i=1}^{n}b_{i}^{q}\right)^{\frac{1}{q}},
+\]
+    其中 $p>0, q>0$, $\frac{1}{p}+\frac{1}{q}=1$.
+  \end{enumerate}
+
+  \item 设 $f$ 为区间 $I$ 上的严格凸函数. 证明: 若 $x_{0}\in I$ 为 $f$ 的极小值点, 则 $x_{0}$ 为 $f$ 在 $I$ 上惟一的极小值点.
+
+  \item 证明: 区间 $I$ 上的两个单调增的非负凸函数 $f,g$ 之积仍为凸函数.
+
+  \item 设 $f(x)$ 为 $[0,+\infty)$ 上的凸函数, $f(x)\geqslant 0$ 且 $f(0)=0$. 证明: $\frac{f(x)}{x}$ 为 $(0,+\infty)$ 上的单调增函数.
+
+  \item 设 $f_{1}(x),f_{2}(x)$ 为 $[0,+\infty)$ 上的两个函数, $f_{1}(x)\geqslant 0, f_{2}(x)\geqslant 0$ 且 $f_{1}(0)=f_{2}(0)=0$. 证明: 函数
+  \[
+  \frac{f_{1}(x)f_{2}(x)}{x}
+\]
+  在 $(0,+\infty)$ 上也为凸函数.
+
+  \item 由 $f(x)=x\ln x, x>0$ 为凸函数, 证明:
+  \[
+  \left(\sum_{k=1}^{n}t_{k}x_{k}\right)^{\sum_{k=1}^{n}t_{k}x_{k}}\leqslant\prod_{k=1}^{n}x_{k}^{t_{k}x_{k}}.
+\]
+\end{enumerate}
+\end{exblock}

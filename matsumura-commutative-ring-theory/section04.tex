@@ -1,0 +1,596 @@
+% ============ §4 Localisation and Spec of a ring (原书 pp.20-29) ============
+\section{Localisation and Spec of a ring}\label{sec:4}\index{Localisation, section 4}\index{Spec of a ring, section 4}
+
+Let $A$ be a ring and $S \subset A$ a multiplicative set; that is (as in
+\S\ref{sec:1}) suppose that
+\[
+  \text{(i) } x, y \in S \Rightarrow xy \in S, \quad \text{and} \quad \text{(ii) } 1 \in S.
+\]
+
+\begin{definition}
+Suppose that $f\colon A \to B$ is a ring homomorphism satisfying
+the two conditions
+\begin{enumerate}[(1)]
+  \item $f(x)$ is a unit of $B$ for all $x \in S$;
+  \item if $g\colon A \to C$ is a homomorphism of rings taking every element of $S$ to
+        a unit of $C$ then there exists a unique homomorphism
+        $h\colon B \to C$ such that $g = hf$;
+\end{enumerate}
+then $B$ is uniquely determined up to isomorphism, and is called the
+\emph{localisation}\index{localisation} or the \emph{ring of fractions} of $A$ with respect to $S$. We write
+$B = S^{-1}A$ or $A_S$, and call $f\colon A \to A_S$ the canonical map.
+\end{definition}
+
+We prove the existence of $B$ as follows: define the relation $\sim$ on the
+set $A \times S$ by
+\[
+  (a, s) \sim (b, s') \iff \exists t \in S \text{ such that } t(s'a - sb) = 0;
+\]
+it is easy to check that this is an equivalence relation (if we just had
+$s'a = sb$ in the definition, the transitive law would fail when $S$ has
+zero-divisors). Write $a/s$ for the equivalence class of $(a, s)$ under $\sim$, and
+let $B$ be the set of these; sums and products are defined in $B$ by the usual
+rules for calculating with fractions:
+\[
+  a/s + b/s' = (as' + bs)/ss', \qquad (a/s) \cdot (b/s') = ab/ss'.
+\]
+This makes $B$ into a ring, and defining $f\colon A \to B$ by $f(a) = a/1$ we see that
+$f$ is a homomorphism of rings satisfying (1) and (2) above. Indeed, if $s \in S$
+then $f(s) = s/1$ has the inverse $1/s$; and if $g\colon A \to C$ is as in (2) then we just
+have to set $h(a/s) = g(a)g(s)^{-1}$ (the reader should check that $a/s = b/s'$
+implies $g(a)g(s)^{-1} = g(b)g(s')^{-1}$). From this construction we see that the
+kernel of the canonical map $f\colon A \to A_S$ is given by
+\[
+  \Ker f = \{a \in A \mid sa = 0 \text{ for some } s \in S\}.
+\]
+Hence $f$ is injective if and only if $S$ does not contain any zero-divisors
+of $A$. In particular, the set of all non-zero-divisors of $A$ is a multiplicative
+set; the ring of fractions with respect to $S$ is called the \emph{total ring of fractions}
+of $A$. If $A$ is an integral domain then its total ring of fractions is the same
+thing as its field of fractions.
+
+In general, let $f\colon A \to B$ be any ring homomorphism, $I$ an ideal of $A$
+and $J$ an ideal of $B$. According to the conventions at the beginning of the
+book, we write $IB$ for the ideal $f(I)B$ of $B$. This is called the \emph{extension} of
+$I$ to $B$, or the \emph{extended ideal}\index{extended ideal}, and is sometimes also written $I^e$. Moreover,
+we write $J \cap A$ for the ideal $f^{-1}(J)$ of $A$. This is called the \emph{contracted ideal}\index{contracted ideal}
+of $J$, and is sometimes also written $J^c$. In this notation, the inclusions
+\[
+  I^{ec} \supset I \quad \text{and} \quad J^{ce} \subset J
+\]
+follow immediately from the definitions; from the first inclusion we get
+$I \subset I^e$, but substituting $J = I^e$ in the second gives $I^{ece} \subset I^e$, and hence
+\[
+  (*) \quad I^{ece} = I^e, \quad \text{and similarly} \quad J^{cec} = J^c.
+\]
+This shows that there is a canonical bijection between the sets $\{IB \mid I$
+is an ideal of $A\}$ and $\{J \cap A \mid J$ is an ideal of $B\}$.
+
+If $P$ is a prime ideal of $B$ then $B/P$ is an integral domain, and since
+$A/P^c$ can be viewed as a subring of $B/P$ it is also an integral domain, so
+that $P^c$ is a prime ideal of $A$. (The extended ideal of a prime ideal does
+not have to be prime.)
+
+An ideal $J$ of $B$ is said to be \emph{primary}\index{primary ideal} if it satisfies the two conditions:
+(1) $1 \notin J$, and (2) for $x, y \in B$, if $xy \in J$ and $x \notin J$ then $y^n \in J$ for some
+$n > 0$; in other words, all zero-divisors of $B/J$ are nilpotent. The property
+that all zero-divisors are nilpotent passes to subrings, so that just as for
+prime ideals we see that the contraction of a primary ideal remains primary.
+If $J$ is primary then $\sqrt{J}$ is a prime ideal (see Ex.~\ref{ex:4.1-ex}).
+
+The importance of rings of fractions for ring theory stems mainly from
+the following theorem.
+
+\begin{theorem}\label{thm:4.1}
+\begin{enumerate}[(i)]
+  \item All the ideals of $A_S$ are of the form $IA_S$, with $I$ an ideal of $A$.
+  \item Every prime ideal of $A_S$ is of the form $pA_S$ with $p$ a prime ideal of
+        $A$ disjoint from $S$, and conversely, $pA_S$ is prime in $A_S$ for every such $p$;
+        exactly the same holds for primary ideals.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $J$ is an ideal of $A_S$, set $I = J \cap A$. If $x = a/s \in J$ then
+$x \cdot f(s) = f(a) \in J$, so that $a \in I$, and then $x = (1/s) \cdot f(a) \in IA_S$. The converse
+inclusion $IA_S \subset J$ is obvious, so that $J = IA_S$.
+
+(ii) If $P$ is a prime ideal of $A_S$ and we set $p = P \cap A$, then $p$ is a prime
+ideal of $A$, and from the above proof $P = pA_S$. Moreover, since $P$ does
+not contain units of $A_S$, we have $p \cap S = \emptyset$. Conversely, if $p$ is a prime
+ideal of $A$ disjoint from $S$ then
+\[
+  \frac{a}{s} \cdot \frac{b}{t} \in pA_S \quad \text{with } s, t \in S \Rightarrow rab \in p \text{ for some } r \in S,
+\]
+and since $r \notin p$ we must have $a \in p$ or $b \in p$, so that $a/s$ or $b/t \in pA_S$. One
+also sees easily that $1 \notin pA_S$, so that $pA_S$ is a prime ideal of $A_S$.
+
+For primary ideals the argument is exactly the same: if $p$ is a primary
+ideal of $A$ disjoint from $S$ and if $rab \in p$ with $r \in S$, then since no power
+of $r$ is in $p$ we have $ab \in p$. From this we get either $a/s \in pA_S$ or $(b/t)^n \in pA_S$
+for some $n$.
+\end{proof}
+
+\begin{corollary*}
+If $A$ is Noetherian (or Artinian) then so is $A_S$.
+\end{corollary*}
+
+\begin{proof}
+This follows from (i) of the theorem.
+\end{proof}
+
+We now give examples of rings of fractions $A_S$ for various multiplicative
+sets $S$.
+
+\begin{example}\label{ex:4.1}
+Let $a \in A$ be an element which is not nilpotent, and set
+$S = \{1, a, a^2, \ldots\}$. In this case we sometimes write $A_a$ for $A_S$. (The reason
+for not allowing $a$ to be nilpotent is so that $0 \notin S$. In general if $0 \in S$ then
+from the construction of $A_S$ it is clear that $A_S = 0$, which is not very
+interesting.) The prime ideals of $A_a$ correspond bijectively with the prime
+ideals of $A$ not containing $a$.
+\end{example}
+
+\begin{example}\label{ex:4.2}
+Let $p$ be a prime ideal of $A$, and set $S = A - p$. In this case
+we usually write $A_p$ for $A_S$. (Writing $A_p$ and $A_{A-p}$ to denote the same thing
+is totally illogical notation, and the Bourbaki school avoids $A_S$, writing
+$S^{-1}A$ instead; however, the notation $A_S$ does not lead to any confusion.)
+The localisation $A_p$ is a local ring with maximal ideal $pA_p$. Indeed, as we saw
+in Theorem 1, $pA_p$ is a prime ideal of $A_p$, and furthermore, if $J \subset A_p$ is any
+proper ideal then $I = J \cap A$ is an ideal of $A$ disjoint from $A - p$, and so $I \subset p$,
+giving $J = IA_p \subset pA_p$. The prime ideals of $A_p$ correspond bijectively with
+the prime ideals of $A$ contained in $p$.
+\end{example}
+
+\begin{example}\label{ex:4.3}
+Let $I$ be a proper ideal of $A$ and set $S = 1 + I = \{1 + x \mid
+x \in I\}$. Then $S$ is a multiplicative set, and the prime ideals of $A_S$
+correspond bijectively with the prime ideals $p$ of $A$ such that $I + p \neq A$.
+\end{example}
+
+\begin{example}\label{ex:4.4}
+Let $S$ be a multiplicative set, and set $\bar{S} = \{a \in A \mid ab \in S \text{ for
+some } b \in A\}$. Then $\bar{S}$ is also a multiplicative set, called the \emph{saturation}\index{saturation (of a multiplicative set)}
+of $S$. Since quite generally a divisor of a unit is again a unit, we see from
+the definition of the ring of fractions that $A_S = A_{\bar{S}}$, and $\bar{S}$ is maximal among
+multiplicative sets $T$ such that $A_S = A_T$. Indeed, one sees easily that $\bar{S} =
+\{a \in A \mid a/1 \text{ is a unit in } A_S\}$. The multiplicative set $S = A - p$ of
+Example 2 is already saturated.
+\end{example}
+
+\begin{theorem}\label{thm:4.2}
+Localisation commutes with passing to quotients by ideals.
+More precisely, let $A$ be a ring, $S \subset A$ a multiplicative set, $I$ an ideal of $A$
+and $\bar{S}$ the image of $S$ in $A/I$; then
+\[
+  A_S/IA_S \cong (A/I)_{\bar{S}}.
+\]
+\end{theorem}
+
+\begin{proof}
+Both sides have the universal property for ring homomorphisms
+$g\colon A \to C$ such that
+\begin{enumerate}[(1)]
+  \item every element of $S$ maps to a unit of $C$,
+  \item every element of $I$ maps to $0$;
+\end{enumerate}
+the isomorphism follows by the uniqueness of the solution to a universal
+mapping problem. In concrete terms the isomorphism is given by
+\[
+  a/s \bmod IA_S \mapsto \bar{a}/\bar{s}, \quad \text{where } \bar{a} = a + I, \; \bar{s} = s + I.
+\]
+\end{proof}
+
+In particular, if $p$ is a prime ideal of $A$ then
+\[
+  A_p/pA_p \cong (A/p)_{A-p}.
+\]
+The left-hand side is the \emph{residue field} of the local ring $A_p$, whereas the
+right-hand side is the field of fractions of the integral domain $A/p$. This
+field is written $\kappa(p)$ and called the \emph{residue field of $p$}.\index{residue field of a prime ideal}
+
+\begin{theorem}\label{thm:4.3}
+Let $A$ be a ring, $S \subset A$ a multiplicative set, and
+$f\colon A \to A_S$ the canonical map. If $B$ is a ring, with ring homomorphisms
+$g\colon A \to B$ and $h\colon B \to A_S$ satisfying
+\begin{enumerate}[(1)]
+  \item $f = hg$,
+  \item for every $b \in B$ there exists $s \in S$ such that $g(s) \cdot b \in g(A)$,
+\end{enumerate}
+then $A_S$ can also be regarded as a ring of fractions of $B$. More precisely,
+\[
+  A_S = B_{g(S)} = B_T, \quad \text{where } T = \{t \in B \mid h(t) \text{ is a unit of } A_S\}.
+\]
+\end{theorem}
+
+\begin{proof}
+We can factorise $h$ as $B \to B_T \to A_S$; write $\alpha\colon B_T \to A_S$ for
+the second of these maps. Now $g(S) \subset T$, so that the composite $A \to B
+\to B_T$ factorises as $A \to A_S \to B_T$; write $\beta\colon A_S \to B_T$ for the second of
+these maps. Then
+\[
+  \alpha\beta = 1 \quad \text{and} \quad \beta\alpha = 1,
+\]
+so that $\beta\alpha = 1$, the identity map of $A_S$. Moreover by assumption, for $b \in B$
+there exist $a \in A$ and $s \in S$ such that $bg(s) = g(a)$. Hence, $\beta(a/s) = g(a)/g(s) =
+b/1$. In particular for $t \in T$, if we take $a \in A$ such that $t/1 = \beta(a)$ then
+$a = \alpha\beta(a) = \alpha(t/1) = h(t)$, so that $a$ is a unit of $A_S$. Hence, $b/t = \beta(a/s)\beta(a^{-1})$,
+and $\beta$ is surjective. Thus $\alpha$ and $\beta$ are mutually inverse, giving an
+isomorphism $A_S \cong B_T$. The fact that $A_S \cong B_{g(S)}$ can be proved similarly.
+(Alternatively, this follows since $T$ is the saturation of the multiplicative
+set $g(S)$. The reader should check this for himself.)
+\end{proof}
+
+\begin{corollarynum}\label{cor:4.1}
+If $p$ is a prime ideal of $A$, $S = A - p$ and $B$ satisfies the
+conditions of the theorem, then setting $P = pA_S \cap B$ we have $A_S = B_P$.
+\end{corollarynum}
+
+\begin{proof}
+Under these circumstances the $T$ in the theorem is exactly $B - P$.
+\end{proof}
+
+\begin{corollarynum}\label{cor:4.2}
+Let $S \subset A$ be a multiplicative set not containing any zero-
+divisors; then $A$ can be viewed as a subring of $A_S$, and for any intermediate
+ring $A \subset B \subset A_S$, the ring $A_S$ is a ring of fractions of $B$.
+\end{corollarynum}
+
+\begin{corollarynum}\label{cor:4.3}
+If $S$ and $T$ are two multiplicative subsets of $A$ with $S \subset T$,
+then writing $\bar{T}$ for the image of $T$ in $A_S$, we have $(A_S)_{\bar{T}} = A_T$.
+\end{corollarynum}
+
+\begin{corollarynum}\label{cor:4.4}
+If $S \subset A$ is a multiplicative set and $P$ is a prime ideal of $A$
+disjoint from $S$ then $(A_S)_{PA_S} = A_P$. In particular if $P \subset Q$ are prime ideals of
+$A$, then
+\[
+  (A_P)_{QA_P} = A_Q.
+\]
+\end{corollarynum}
+
+\begin{definition}
+The set of all prime ideals of a ring $A$ is called the \emph{spectrum}\index{spectrum of a ring}
+of $A$, and written $\Spec A$; the set of maximal ideals of $A$ is called the
+\emph{maximal spectrum} of $A$, and written m-Spec $A$.
+\end{definition}
+
+By Theorem~\ref{thm:1.1} we have
+\[
+  A \neq 0 \iff \text{m-Spec } A \neq \emptyset \iff \Spec A \neq \emptyset.
+\]
+If $I$ is any ideal of $A$, we set
+\[
+  V(I) = \{p \in \Spec A \mid p \supset I\}.
+\]
+Then
+\[
+  V(I) \cup V(I') = V(I \cap I') = V(II'),
+\]
+and for any family $\{I_\lambda\}_{\lambda \in \Lambda}$ of ideals we have
+\[
+  \bigcap_{\lambda \in \Lambda} V(I_\lambda) = V\left(\sum_{\lambda \in \Lambda} I_\lambda\right).
+\]
+From this it follows that $\mathcal{F} = \{V(I) \mid I \text{ is an ideal of } A\}$ is closed under
+finite unions and arbitrary intersections, so that there is a topology on
+$\Spec A$ for which $\mathcal{F}$ is the set of closed sets. This is called the \emph{Zariski
+topology}\index{Zariski topology}. From now on we will usually consider the spectrum of a ring
+together with its Zariski topology. m-Spec $A$ will be considered with the
+subspace topology, which we will also call the Zariski topology.
+
+For $a \in A$ we set $D(a) = \{p \in \Spec A \mid a \notin p\}$; this is the complement
+of $V(aA)$, and so is an open set. Conversely, any open set of $\Spec A$ can
+be written as the union of open sets of the form $D(a)$. Indeed, if
+$U = \Spec A - V(I)$ then $U = \bigcup_{a \in I} D(a)$. Hence, the open sets of the form
+$D(a)$ form a basis for the topology of $\Spec A$.
+
+Let $f\colon A \to B$ be a ring homomorphism. For $P \in \Spec B$, the ideal
+$P \cap A = f^{-1}(P)$ is a point of $\Spec A$. The map $\Spec B \to \Spec A$ defined by
+taking $P$ into $P \cap A$ is written ${}^a f$. As one sees easily, $({}^a f)^{-1}(V(I)) = V(IB)$,
+so that ${}^a f$ is continuous. If $g\colon B \to C$ is another ring homomorphism then
+obviously ${}^a(gf) = {}^a f \cdot {}^a g$. Hence, the correspondence $A \mapsto \Spec A$ and
+$f \mapsto {}^a f$ defines a contravariant functor from the category of rings to the
+category of topological spaces. If ${}^a f(P) = p$, that is if $P \cap A = p$, we say
+that $P$ \emph{lies over} $p$.\index{lies over}
+
+\begin{remark}
+For $P$ a maximal ideal of $B$ it does not necessarily follow that
+$P \cap A$ is a maximal ideal of $A$; for an example we need only consider the
+natural inclusion $A \to B$ of an integral domain $A$ in its field of fractions
+$B$. Thus the correspondence $A \mapsto$ m-Spec $A$ is not functorial. This is one
+reason for thinking of $\Spec A$ as more important than m-Spec $A$. On the
+other hand, one could say that $\Spec A$ contains too many points; for
+example, the set $\{p\}$ consisting of a single point is closed in $\Spec A$ if and
+only if $p$ is a maximal ideal (in general the closure of $\{p\}$ coincides with
+$V(p)$), so that $\Spec A$ almost never satisfies the separation axiom $T_1$.
+\end{remark}
+
+Let $M$ be an $A$-module and $S \subset A$ a multiplicative set; we define the
+localisation $M_S$ of $M$ in the same way as $A_S$. That is,
+\[
+  M_S = \left\{\frac{m}{s} \;\middle|\; m \in M, \; s \in S\right\},
+\]
+and
+\[
+  \frac{m}{s} = \frac{m'}{s'} \iff t(s'm - sm') = 0 \text{ for some } t \in S.
+\]
+If we define addition in $M_S$ and scalar multiplication by elements
+of $A_S$ by
+\[
+  m/s + m'/s' = (s'm + sm')/ss' \quad \text{and} \quad (a/s) \cdot (m/s') = am/ss',
+\]
+then $M_S$ becomes an $A_S$-module, and a canonical $A$-linear map $M \to M_S$
+is given by $m \mapsto m/1$; the kernel is $\{m \in M \mid sm = 0 \text{ for some } s \in S\}$. If $S =
+A - p$ is the complement of a prime ideal $p$ of $A$ we write $M_p$ for $M_S$. The set
+$\{p \in \Spec A \mid M_p \neq 0\}$ is called the \emph{support} of $M$,\index{support of a module} and written $\Supp(M)$. If $M$ is
+finitely generated, and we let $M = A\omega_1 + \cdots + A\omega_n$, then
+\[
+  p \in \Supp(M) \iff M_p \neq 0 \iff \exists i \text{ such that } \omega_i \neq 0 \text{ in } M_p
+\]
+\[
+  \iff \exists i \text{ such that } \ann(\omega_i) \subset p \iff \ann(M) = \bigcap_{i=1}^{n} \ann(\omega_i) \subset p,
+\]
+so that $\Supp(M)$ coincides with the closed subset $V(\ann(M))$ of $\Spec A$.
+
+\begin{theorem}\label{thm:4.4}
+$M_S \cong M \otimes_A A_S$.
+\end{theorem}
+
+\begin{proof}
+The map $M \times A_S \to M_S$ defined by $(m, a/s) \mapsto am/s$ is $A$-bilinear,
+so that there exists a linear map $\alpha\colon M \otimes A_S \to M_S$ such that $\alpha(m \otimes a/s) =
+am/s$. Conversely we can define $\beta\colon M_S \to M \otimes A_S$ by $\beta(m/s) = m \otimes (1/s)$;
+indeed, if $m/s = m'/s'$ then $ts'm = tsm'$ for some $t \in S$, and so
+\[
+  m \otimes (1/s) = m \otimes (ts'/tss') = ts'm \otimes (1/tss') = tsm' \otimes (1/tss')
+                 = m' \otimes (1/s').
+\]
+Now it is easy to check that $\alpha$ and $\beta$ are mutually inverse $A_S$-linear
+maps. Hence, $M_S$ and $M \otimes_A A_S$ are isomorphic as $A_S$-modules.
+\end{proof}
+
+\begin{theorem}\label{thm:4.5}
+$M \mapsto M_S$ is an exact (covariant) functor from the category
+of $A$-modules to the category of $A_S$-modules. That is, for a morphism of
+$A$-modules $f\colon M \to N$ there is a morphism $f_S\colon M_S \to N_S$ of $A_S$-modules
+such that
+\[
+  (1_M)_S = 1_{M_S}, \qquad (gf)_S = g_S f_S,
+\]
+and such that an exact sequence $0 \to M' \to M \to M'' \to 0$ goes into an
+exact sequence $0 \to M'_S \to M_S \to M''_S \to 0$.
+\end{theorem}
+
+\begin{proof}
+To prove the exactness of $0 \to M'_S \to M_S$ on the last line, view $M'$
+as a submodule of $M$; then for $x \in M'$ and $s \in S$,
+\[
+  x/s = 0 \text{ in } M_S \iff tx = 0 \text{ for some } t \in S
+\]
+\[
+  \iff x/s = 0 \text{ in } M'_S,
+\]
+as required. The remaining assertions follow from the properties of the
+tensor product (see Appendix A) and from the previous theorem. (Of
+course they can easily be proved directly.)
+\end{proof}
+
+It follows from this that localisation commutes with $\otimes$ and with $\Tor$,
+and we will treat all this together in the section on flatness in \S\ref{sec:7}.
+
+Let $A$ be a ring, $M$ an $A$-module and $p \in \Spec A$. There are at least
+two interpretations of what it should mean that some property of $A$ or $M$
+holds `locally at $p$'. Namely, this could mean that $A_p$ (or $M_p$) has the
+property, or it could mean that $A_q$ (or $M_q$) has the property for all $q$ in
+some neighbourhood $U$ of $p$ in $\Spec A$. The first of these is more commonly
+used, but there are cases when the two interpretations coincide. In any
+case, we now prove a number of theorems which assert that a local property
+implies a global one.
+
+\begin{theorem}\label{thm:4.6}
+Let $A$ be a ring, $M$ an $A$-module and $x \in M$. If $x = 0$ in $M_p$
+for every maximal ideal $p$ of $A$, then $x = 0$.
+\end{theorem}
+
+\begin{proof}
+\[
+  x = 0 \text{ in } M_p \iff sx = 0 \text{ for some } s \in A - p \iff \ann(x) \not\subset p.
+\]
+However, if $1 \notin \ann(x)$ then by Theorem~\ref{thm:1.1}, there must exist a maximal
+ideal containing $\ann(x)$. Therefore $1 \in \ann(x)$, that is $x = 0$.
+\end{proof}
+
+\begin{theorem}\label{thm:4.7}
+Let $A$ be an integral domain with field of fractions $K$; set
+$\mathcal{X} = \text{m-Spec } A$. We consider any ring of fractions of $A$ as a subring of $K$.
+Then in this sense we have
+\[
+  A = \bigcap_{m \in \mathcal{X}} A_m.
+\]
+\end{theorem}
+
+\begin{proof}
+For $x \in K$ the set $I = \{a \in A \mid ax \in A\}$ is an ideal of $A$. Now
+$x \in A_m$ is equivalent to $I \not\subset m$, so that if $x \in A_m$ for every maximal ideal
+$m$ then $1 \in I$, that is $x \in A$.
+\end{proof}
+
+\begin{remark}
+The above $I$ is the ideal consisting of all possible denominators
+of $x$ when written as a fraction of elements of $A$, together with $0$, and this
+can be called the \emph{ideal of denominators} of $x$; similarly $Ix$ can be called
+the \emph{ideal of numerators} of $x$.
+\end{remark}
+
+\begin{theorem}\label{thm:4.8}
+Let $A$ be a ring and $M$ a finite $A$-module. If $M \otimes_A \kappa(m) = 0$
+for every maximal ideal $m$ then $M = 0$.
+\end{theorem}
+
+\begin{proof}
+$\kappa(m) = A_m/mA_m$, so that $M \otimes_A \kappa(m) = M_m/mM_m$, and by NAK
+(Theorem~\ref{thm:2.2}), $M \otimes_A \kappa(m) = 0 \iff M_m = 0$. Thus the assertion follows from
+Theorem~\ref{thm:4.6}.
+\end{proof}
+
+The theorem just proved is easy, but we can weaken the assumption
+that $M$ is finite over $A$; we have the following result.
+
+\begin{theorem}\label{thm:4.9}
+Let $f\colon A \to B$ be a homomorphism of rings, and $M$ a finite
+$B$-module; if $M \otimes_A \kappa(p) = 0$ for every $p \in \Spec A$, then $M = 0$.
+\end{theorem}
+
+\begin{proof}
+If $M \neq 0$ then by Theorem 6 there is a maximal ideal $P$ of $B$ such
+that $M_P \neq 0$, so that by NAK, $M_P/PM_P \neq 0$. If we now set $p = P \cap A$ then,
+since $pM_P \subset PM_P$, we have $M_P/pM_P \neq 0$. Set $T = B - P$ and $S = A - p$;
+then the localisation $M_S = M_p$ of $M$ as an $A$-module and the localisation
+$M_T$ of $M$ as a $B$-module coincide (both of them are $\{m/s \mid m \in M, \; s \in S\}$).
+We have $f(S) \subset T$, so that
+\[
+  M_p = M_T \neq 0 \quad \text{and hence} \quad M_p/PM_p = (M_p/PM_p)_T = (M \otimes_A \kappa(p))_T \neq 0;
+\]
+it follows that $M \otimes_A \kappa(p) \neq 0$.
+\end{proof}
+
+\begin{remark}
+In Theorem~\ref{thm:4.9} we cannot restrict $p$ to be a maximal ideal of
+$A$. As one sees from the proof we have just given, $M = 0$ provided that
+$M \otimes \kappa(p) = 0$ for every ideal $p$ which is the restriction of a maximal ideal
+of $B$. However, if for example $(A, m)$ is a local integral domain with field
+of fractions $B$, and $M = B$, then $M \otimes \kappa(m) = B/mB = 0$, but $M \neq 0$.
+\end{remark}
+
+\begin{theorem}\label{thm:4.10}
+Let $A$ be a ring and $M$ a finite $A$-module.
+\begin{enumerate}[(i)]
+  \item For any non-negative integer $r$ set
+        \[
+          U_r = \{p \in \Spec A \mid M_p \text{ can be generated over } A_p \text{ by } r \text{ elements}\};
+        \]
+        then $U_r$ is an open subset of $\Spec A$.
+  \item If $M$ is a module of finite presentation then the set
+        \[
+          U = \{p \in \Spec A \mid M_p \text{ is a free } A_p\text{-module}\}
+        \]
+        is open in $\Spec A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Suppose that $M_p = A_p\omega_1 + \cdots + A_p\omega_r$. Each $\omega_i$ is of the form
+$\omega_i = m_i/s_i$ with $s_i \in A - p$ and $m_i \in M$, but since $s_i$ is a unit of $A_p$, we can
+replace $\omega_i$ by $m_i$, and so assume that $\omega_i$ is (the image in $M_p$ of) an element
+of $M$. Define a linear map $\varphi\colon A^r \to M$ from the direct sum of $r$ copies of
+$A$ to $M$ by $(a_1, \ldots, a_r) \mapsto \sum a_i\omega_i$, and write $C$ for the cokernel of $\varphi$. Localising
+the exact sequence $A^r \to M \to C \to 0$ at a prime ideal $q$, we get an
+exact sequence
+\[
+  A_q^r \to M_q \to C_q \to 0,
+\]
+and when $q = p$ we get $C_p = 0$. $C$ is a quotient of $M$, so is finitely generated,
+so that the support $\Supp(C)$ is a closed set, and hence there is an open
+neighbourhood $V$ of $p$ such that $C_q = 0$ for $q \in V$. This means that $V \subset U_r$.
+(In short, if $\omega_1, \ldots, \omega_r \in M$ generate $M_p$ at $p$ then they generate $M_q$ for all $q$
+in a neighbourhood of $p$.)
+
+(ii) Suppose that $M_p$ is a free $A_p$-module, and let $\omega_1, \ldots, \omega_r$ be a basis.
+As in (i) there is no loss of generality in assuming that $\omega_i \in M$. Moreover,
+if we choose a suitable $D(a)$ as a neighbourhood of $p$ in $\Spec A$, $\omega_1, \ldots, \omega_r$
+generate $M_q$ for every $q \in D(a)$. Thus, replacing $A$ by $A_a$ and $M$ by $M_a$,
+we can assume that the elements $\omega_1, \ldots, \omega_r$ satisfy $M_q = \sum A_q\omega_i$ for every
+prime ideal $q$ of $A$. Then by Theorem 6,
+\[
+  M/\sum A\omega_i = 0, \quad \text{that is } M = A\omega_1 + \cdots + A\omega_r.
+\]
+(We think of replacing $A$ by $A_a$ as shrinking $\Spec A$ down to the
+neighbourhood $D(a)$ of $p$.) Now, defining $\varphi\colon A^r \to M$ as above, and letting
+$K$ be its kernel, we get the exact sequence
+\[
+  0 \to K \to A^r \to M \to 0;
+\]
+moreover, $K_p = 0$. By Theorem~\ref{thm:2.6}, $K$ is finitely generated, so that applying
+(i) with $r = 0$, we have that $K_q = 0$ for every $q$ in a neighbourhood $V$ of
+$p$; this gives $(A_q)^r \cong M_q$, so that $V \subset U$.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:4}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:4.1-ex}
+The radical of a primary ideal is prime; also, if $I$ is a proper ideal containing
+a power $m^\nu$ of a maximal ideal $m$ then $I$ is primary and $\sqrt{I} = m$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.2-ex}
+If $P$ is a prime ideal of a ring $A$ then the \emph{symbolic $n$th power} of $P$ is the ideal
+$P^{(n)}$ given by
+\[
+  P^{(n)} = P^nA_P \cap A.
+\]
+This is a primary ideal with radical $P$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.3-ex}
+If $S$ is a multiplicative set of a ring $A$ then $\Spec(A_S)$ is homeomorphic to
+the subspace $\{p \mid p \cap S = \emptyset\} \subset \Spec A$; this is in general neither open nor
+closed in $\Spec A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.4-ex}
+If $I$ is an ideal of $A$ then $\Spec(A/I)$ is homeomorphic to the closed subset
+$V(I)$ of $\Spec A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.5-ex}
+The spectrum of a ring $\Spec A$ is quasi-compact, that is, given an open
+covering $\{U_\lambda\}_{\lambda \in \Lambda}$ of $X = \Spec A$ (with $X = \bigcup_\lambda U_\lambda$), a finite number of the
+$U_\lambda$ already cover $X$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.6-ex}
+If $\Spec A$ is disconnected then $A$ contains an idempotent $e$ (an element $e$
+satisfying $e^2 = e$) distinct from $0$ and $1$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.7-ex}
+If $A$ and $B$ are rings then $\Spec(A \times B)$ can be identified with the disjoint
+union $\Spec A \sqcup \Spec B$, with both of these open and closed in
+$\Spec(A \times B)$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.8-ex}
+If $M$ is an $A$-module, $N$ and $N'$ submodules of $M$, and $S \subset A$ a
+multiplicative set, then $N_S \cap N'_S = (N \cap N')_S$, where both sides are consi-
+dered as subsets of $M_S$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.9-ex}
+A topological space is said to be \emph{Noetherian} if the closed sets satisfy the
+descending chain condition. If $A$ is a Noetherian ring then $\Spec A$ is a
+Noetherian topological space. (Note that the converse is not true in
+general.)
+\end{exercise}
+
+\begin{exercise}\label{ex:4.10-ex}
+We say that a non-empty closed set $V$ in a topological space is \emph{reducible} if
+it can be expressed as a union $V = V_1 \cup V_2$ of two strictly smaller closed
+sets $V_1$ and $V_2$, and \emph{irreducible} if it does not have any such expression. If
+$p \in \Spec A$ then $V(p)$ is an irreducible closed set, and conversely every
+irreducible closed set of $\Spec A$ can be written as $V(p)$ for some $p \in \Spec A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.11-ex}
+Any closed subset of a Noetherian topological space can be written as a
+union of finitely many irreducible closed sets.
+\end{exercise}
+
+\begin{exercise}\label{ex:4.12-ex}
+Use the results of the previous two exercises to prove the following: for $I$ a
+proper ideal of a Noetherian ring, the set of prime ideals containing $I$ has
+only finitely many minimal elements.
+\end{exercise}

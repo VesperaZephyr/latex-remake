@@ -1,0 +1,873 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》(第一册)
+%  \S6.2  Riemann 积分的性质、积分第一与第二中值定理
+%  源: 原书印刷页 353--371(PDF 物理页 359--377)
+%  底本: PaddleOCR-VL-1.6, 见 chapters/_ch06_2_raw.md
+%  约定: 全西文标点; 行间公式用一对方括号; 多行公式用 align 或 aligned;
+%        跨册引用一律用 extref(写作「定理 x.y.z」原文); 数学模式内的中文必须包text
+% ====================================================================
+\section{Riemann 积分的性质、积分第一与第二中值定理}\label{sec:6.2}
+
+要深入研究 Riemann 积分, 仅仅停留在定义上是不行的, 必须进一步讨论其各种性质, 才能加以展开. 由 Riemann 积分定义知, $\forall a,b\in\mathbb{R}$, $a<b$, 有
+\[
+\int_{b}^{a}c\,\mathrm{d}x=\lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}=\lim_{\|T\|\to 0}\sum_{i=1}^{n}c\Delta x_{i}=\lim_{\|T\|\to 0}c(b-a)=c(b-a).
+\]
+为了方便, 我们约定
+\[
+\int_{b}^{a}f(x)\,\mathrm{d}x=-\int_{a}^{b}f(x)\,\mathrm{d}x,\quad a<b;
+\]
+\[
+\int_{a}^{a}f(x)\,\mathrm{d}x=0.
+\]
+由此知, 上边等式对任何 $a,b\in\mathbb{R}$ 成立.
+
+\begin{theorem}\label{thm:6.2.1}
+设 $f$, $g$ 在 $[a,b]$ 上 Riemann 可积, $\lambda,\mu\in\mathbb{R}$, 则 $\lambda f$, $f\pm g$ 在 $[a,b]$ 上也 Riemann 可积, 且
+
+(1)
+\[
+\int_{a}^{b}\lambda f(x)\,\mathrm{d}x=\lambda\int_{a}^{b}f(x)\,\mathrm{d}x;
+\]
+
+(2)
+\[
+\int_{a}^{b}[f(x)\pm g(x)]\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x\pm\int_{a}^{b}g(x)\,\mathrm{d}x;
+\]
+两式综合表达为
+\[
+\int_{a}^{b}[\lambda f(x)+\mu g(x)]\,\mathrm{d}x=\lambda\int_{a}^{b}f(x)\,\mathrm{d}x+\mu\int_{a}^{b}g(x)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+对 $\forall\varepsilon>0$, 由 $f$, $g$ 在 $[a,b]$ 上 Riemann 可积, $\exists\delta>0$, 当 $[a,b]$ 的分割 $T$, $\|T\|<\delta$ 时, 有
+\[
+\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-\int_{a}^{b}f(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{|\lambda|+|\mu|+1},
+\]
+\[
+\left|\sum_{i=1}^{n}g(\xi_{i})\Delta x_{i}-\int_{a}^{b}g(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{|\lambda|+|\mu|+1}.
+\]
+于是, 有
+\begin{align*}
+&\left|\sum_{i=1}^{n}[\lambda f(\xi_{i})+\mu g(\xi_{i})]\Delta x_{i}-\left(\lambda\int_{a}^{b}f(x)\,\mathrm{d}x+\mu\int_{a}^{b}g(x)\,\mathrm{d}x\right)\right|\\
+&\leqslant|\lambda|\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-\int_{a}^{b}f(x)\,\mathrm{d}x\right|\\
+&\quad+|\mu|\left|\sum_{i=1}^{n}g(\xi_{i})\Delta x_{i}-\int_{a}^{b}g(x)\,\mathrm{d}x\right|\\
+&\leqslant\frac{|\lambda|\varepsilon}{|\lambda|+|\mu|+1}+\frac{|\mu|\varepsilon}{|\lambda|+|\mu|+1}<\varepsilon,
+\end{align*}
+即
+\begin{align*}
+\int_{a}^{b}[\lambda f(x)+\mu g(x)]\,\mathrm{d}x&=\lim_{\|T\|\to 0}\sum_{i=1}^{n}[\lambda f(\xi_{i})+\mu g(\xi_{i})]\Delta x_{i}\\
+&=\lambda\int_{a}^{b}f(x)\,\mathrm{d}x+\mu\int_{a}^{b}g(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{thm:6.2.2}
+(1) 设 $f$ 为 $[a,b]$ 上的 Riemann 可积函数, 且 $f(x)\geqslant 0$, $\forall x\in[a,b]$, 则
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x\geqslant 0;
+\]
+
+(2) 设 $f$, $g$ 均为 $[a,b]$ 上的 Riemann 可积函数, 且 $g(x)\leqslant f(x)$, $\forall x\in[a,b]$, 则有
+\[
+\int_{a}^{b}g(x)\,\mathrm{d}x\leqslant\int_{a}^{b}f(x)\,\mathrm{d}x.
+\]
+
+(3) 在 (2) 中, 如果 $\exists x_{0}\in[a,b]$, s. t. $g(x_{0})<f(x_{0})$, 且 $f$, $g$ 均在 $x_{0}$ 连续, 则
+\[
+\int_{a}^{b}g(x)\,\mathrm{d}x<\int_{a}^{b}f(x)\,\mathrm{d}x.
+\]
+特别当 $g=0$ 时, $\int_{a}^{b}f(x)\,\mathrm{d}x>0$.
+\end{theorem}
+
+\begin{proof}
+(1) 因为 $f(x)\geqslant 0$, 故 $\sum\limits_{i=1}^{n}f(\xi_{i})\Delta x_{i}\geqslant 0$, 从而
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\geqslant 0.
+\]
+
+(2) 由定理~\ref{thm:6.2.1} 及 $f$, $g$ 在 $[a,b]$ 上 Riemann 可积知, $g(x)-f(x)$ 在 $[a,b]$ 上也 Riemann 可积. 再由 $g(x)\leqslant f(x)$ 推得 $f(x)-g(x)\geqslant 0$. 从 (1) 立即得到
+\begin{align*}
+\int_{a}^{b}f(x)\,\mathrm{d}x-\int_{a}^{b}g(x)\,\mathrm{d}x&=\int_{a}^{b}[f(x)-g(x)]\,\mathrm{d}x\geqslant 0,\\
+\int_{a}^{b}g(x)\,\mathrm{d}x&\leqslant\int_{a}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+
+(3) 因为 $f-g$ 在 $x_{0}$ 连续, 且 $f(x_{0})-g(x_{0})>0$, 所以存在区间 $[\alpha,\beta]$ 含 $x_{0}$, s. t. $\forall x\in[\alpha,\beta]\cap[a,b]=[\overline{\alpha},\overline{\beta}]$, 有
+\[
+f(x)-g(x)>\frac{1}{2}[f(x_{0})-g(x_{0})]>0.
+\]
+因此,
+\begin{align*}
+\int_{a}^{b}[f(x)-g(x)]\,\mathrm{d}x&\xlongequal{\text{定理~\ref{thm:6.2.4}}}\int_{a}^{\overline{\alpha}}[f(x)-g(x)]\,\mathrm{d}x\\
+&\quad+\int_{\overline{\alpha}}^{\overline{\beta}}[f(x)-g(x)]\,\mathrm{d}x+\int_{\overline{\beta}}^{b}[f(x)-g(x)]\,\mathrm{d}x\\
+&\geqslant 0+\int_{\overline{\alpha}}^{\overline{\beta}}\frac{1}{2}[g(x_{0})-g(x_{0})]\,\mathrm{d}x\\
+&=\frac{1}{2}[f(x_{0})-g(x_{0})](\overline{\beta}-\overline{\alpha})>0,
+\end{align*}
+于是,
+\[
+\int_{a}^{b}g(x)\,\mathrm{d}x<\int_{a}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:6.2.3}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, 则 $|f|$ 在 $[a,b]$ 上也 Riemann 可积, 且
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x\leqslant\int_{a}^{b}|f(x)|\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+因 $f$ 在 $[a,b]$ 上 Riemann 可积, 根据例~\ref{ex:6.1.9}, $|f|$ 在 $[a,b]$ 上也 Riemann 可积, 再由不等式
+\[
+-|f(x)|\leqslant f(x)\leqslant|f(x)|
+\]
+及定理~\ref{thm:6.2.2}(2) 得到
+\begin{align*}
+-\int_{a}^{b}|f(x)|\,\mathrm{d}x&\leqslant\int_{a}^{b}f(x)\,\mathrm{d}x\leqslant\int_{a}^{b}|f(x)|\,\mathrm{d}x,\\
+\left|\int_{a}^{b}f(x)\,\mathrm{d}x\right|&\leqslant\int_{a}^{b}|f(x)|\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:6.2.1}
+设
+\[
+f(x)=\begin{cases}1,&x\in\mathbb{Q},\\-1,&x\in\mathbb{R}\setminus\mathbb{Q},\end{cases}
+\]
+则类似 Dirichlet 函数可证 $f(x)$ 在 $[0,1]$ 上不是 Riemann 可积的, 但 $|f(x)|=1$ 在 $[0,1]$ 上 Riemann 可积.
+\end{example}
+
+\begin{theorem}\label{thm:6.2.4}
+设 $c\in[a,b]$, $f$ 为 $[a,b]$ 上的函数, 则: $f$ 在 $[a,b]$ 上 Riemann 可积 $\Leftrightarrow f$ 在 $[a,c]$ 上与 $[c,b]$ 上均 Riemann 可积. 并且,
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}[证法 1]
+$f$ 在 $[a,b]$ 上 Riemann 可积
+\[
+\xLongleftrightarrow{\text{定理~\ref{thm:6.1.4}(8)}}f\ \text{在}\ [a,b]\ \text{上几乎处处连续且有界}
+\]
+\[
+\Leftrightarrow f\ \text{在}\ [a,c]\ \text{及}\ [c,b]\ \text{上均几乎处处连续且有界}
+\]
+\[
+\xLongleftrightarrow{\text{定理~\ref{thm:6.1.4}(8)}}f\ \text{在}\ [a,c]\ \text{与}\ [c,b]\ \text{上均 Riemann 可积}.
+\]
+现在考虑 $[a,c]$ 的分割 $T'$, $[c,b]$ 的分割 $T''$, 则 $T=T'+T''$ 为 $[a,b]$ 的分割, $c$ 为 $T'$, $T''$, $T$ 的分点. 于是
+\begin{align*}
+\int_{a}^{b}f(x)\,\mathrm{d}x&=\lim_{\|T\|\to 0}\sum_{T}f(\xi_{i})\Delta x_{i}\\
+&=\lim_{\|T'\|\to 0}\sum_{T'}f(\xi_{i})\Delta x_{i}+\lim_{\|T''\|\to 0}\sum_{T''}f(\xi_{i})\Delta x_{i}\\
+&=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{proof}[证法 2]
+($\Rightarrow$) 因为 $f$ 在 $[a,b]$ 上 Riemann 可积, 根据例~\ref{ex:6.1.8}, $f$ 在 $[a,c]$ 与 $[c,b]$ 上均 Riemann 可积.
+
+($\Leftarrow$) 设 $f$ 在 $[a,c]$ 与 $[c,b]$ 上均 Riemann 可积, 则对 $\forall\varepsilon>0$, $\exists\delta_{1},\delta_{2}>0$, s. t. $\|T'\|<\delta_{1}$, $\|T''\|<\delta_{2}$, 有
+\[
+\left|\sum_{T'}f(\xi_{i})\Delta x_{i}-\int_{a}^{c}f(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{3},
+\]
+\[
+\left|\sum_{T''}f(\xi_{i})\Delta x_{i}-\int_{c}^{b}f(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{3},
+\]
+其中 $T'$ 与 $T''$ 分别为 $[a,c]$ 与 $[c,b]$ 的分割. 令 $T$ 为 $[a,b]$ 的分割,\linebreak[4]$\|T\|<\delta=\min\left\{\delta_{1},\delta_{2},\dfrac{\varepsilon}{9M+1}\right\}$, $M=\sup\limits_{x\in[a,b]}|f(x)|$. 则
+\begin{align*}
+&\left|\sum_{T}f(\xi_{i})\Delta x_{i}-\left[\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x\right]\right|\\
+&\leqslant\left|\sum_{T'}f(\xi_{i})\Delta x_{i}-\int_{a}^{c}f(x)\,\mathrm{d}x\right|+\left|\sum_{T''}f(\xi_{i})\Delta x_{i}-\int_{c}^{b}f(x)\,\mathrm{d}x\right|+3M\|T\|\\
+&<\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+3M\cdot\frac{\varepsilon}{9M+1}<\varepsilon.
+\end{align*}
+因而, $f$ 在 $[a,b]$ 上 Riemann 可积, 且
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\lim_{\|T\|\to 0}\sum_{T}f(\xi_{i})\Delta x_{i}=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{remark}\label{remark:6.2.1}
+对于任何 $a,b,c\in\mathbb{R}$, 都有
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\]
+例如: 当 $a<b<c$ 时, $f$ 在 $[a,c]$ 上 Riemann 可积 $\Leftrightarrow f$ 在 $[a,b]$ 与 $[b,c]$ 上均 Riemann 可积. 并由定理~\ref{thm:6.2.4}, 有
+\[
+\int_{a}^{c}f(x)\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x+\int_{b}^{c}f(x)\,\mathrm{d}x,
+\]
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{c}f(x)\,\mathrm{d}x-\int_{b}^{c}f(x)\,\mathrm{d}x=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{remark}
+
+\begin{theorem}[积分第一中值定理]\label{thm:6.2.5}
+设 $f$ 在 $[a,b]$ 上连续, 则必存在 $\xi\in[a,b]$, 使得 (图~\ref{fig:6.2.1})
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=f(\xi)(b-a).
+\]
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=0.92cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (7.9,0) node[below right] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.85) node[left] {$y$};
+  \draw (0,2.60) -- (6.6,2.60);
+  \fill[pattern=north east lines] (1.6,2.60) -- (3.6,2.60)
+    .. controls (3.0,2.28) and (2.2,1.90) .. (1.6,1.60) -- cycle;
+  \fill[pattern=crosshatch] (3.6,2.60)
+    .. controls (4.1,2.90) and (4.6,3.20) .. (5.0,3.40)
+    .. controls (5.8,3.80) and (6.2,4.10) .. (6.6,4.35)
+    -- (6.6,2.60) -- cycle;
+  \draw[very thick] (1.6,1.60) .. controls (2.2,1.90) and (3.0,2.28) .. (3.6,2.60)
+    .. controls (4.1,2.90) and (4.6,3.20) .. (5.0,3.40)
+    .. controls (5.8,3.80) and (6.2,4.10) .. (6.6,4.35);
+  \draw (1.6,0) -- (1.6,1.60);
+  \draw (6.6,0) -- (6.6,4.35);
+  \draw[dashed] (3.6,0) -- (3.6,2.60);
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (-0.05,2.60) {$f(\xi)$};
+  \node[above] at (5.1,4.42) {$y=f(x)$};
+  \node[below] at (1.6,-0.06) {$a$};
+  \node[below] at (3.6,-0.06) {$\xi$};
+  \node[below] at (6.6,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.2.1}
+\end{figure}
+
+\begin{proof}
+由于 $f$ 在 $[a,b]$ 上连续, 根据最值定理, $f$ 达到最大值 $M$ 与最小值 $m$, 则有 $m\leqslant f(x)\leqslant M$, $x\in[a,b]$.
+
+由定理~\ref{thm:6.2.2}(2) 得到
+\begin{align*}
+m(b-a)&=\int_{a}^{b}m\,\mathrm{d}x\\
+&\leqslant\int_{a}^{b}f(x)\,\mathrm{d}x\\
+&\leqslant\int_{a}^{b}M\,\mathrm{d}x=M(b-a),
+\end{align*}
+即
+\[
+m\leqslant\frac{1}{b-a}\int_{a}^{b}f(x)\,\mathrm{d}x\leqslant M.
+\]
+由连续函数的介值定理可知, $\exists\xi\in[a,b]$, s. t.
+\[
+f(\xi)=\frac{1}{b-a}\int_{a}^{b}f(x)\,\mathrm{d}x,
+\]
+也就是 $\int_{a}^{b}f(x)\,\mathrm{d}x=f(\xi)(b-a)$, $\xi\in[a,b]$.
+\end{proof}
+
+$f(\xi)=\frac{1}{b-a}\int_{a}^{b}f(x)\,\mathrm{d}x$ 称为 $f$ 在区间 $[a,b]$ 上的平均值, 记作 $M(f)$.
+
+\begin{theorem}[推广的积分第一中值定理]\label{thm:6.2.6}
+设 $f$ 与 $g$ 都在 $[a,b]$ 上连续, 且 $g(x)$ 在 $[a,b]$ 上不变号, 则 $\exists\xi\in[a,b]$, s. t.
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=f(\xi)\int_{a}^{b}g(x)\,\mathrm{d}x.
+\]
+特别地, 当 $g(x)\equiv 1$ 时, 它就是定理~\ref{thm:6.2.5}.
+\end{theorem}
+
+\begin{proof}
+不妨设 $g(x)\geqslant 0$, $x\in[a,b]$, 此时有
+\[
+mg(x)\leqslant f(x)g(x)\leqslant Mg(x),\quad x\in[a,b],
+\]
+其中 $M$ 与 $m$ 分别为 $f$ 在 $[a,b]$ 上的最大值与最小值. 根据定理~\ref{thm:6.2.2}(2),
+\[
+m\int_{a}^{b}g(x)\,\mathrm{d}x\leqslant\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\leqslant M\int_{a}^{b}g(x)\,\mathrm{d}x.
+\]
+
+(1) 若 $\int_{a}^{b}g(x)\,\mathrm{d}x=0$, 则由上式知,
+\[
+0\leqslant\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\leqslant 0,
+\]
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=0=f(\xi)\cdot 0=f(\xi)\int_{a}^{b}g(x)\,\mathrm{d}x,\quad\forall\xi\in(a,b).
+\]
+
+(2) 若 $\int_{a}^{b}g(x)\,\mathrm{d}x>0$, 则
+\[
+m\leqslant\frac{\displaystyle\int_{a}^{b}f(x)g(x)\,\mathrm{d}x}{\displaystyle\int_{a}^{b}g(x)\,\mathrm{d}x}\leqslant M.
+\]
+由连续函数的介值定理, $\exists\xi\in[a,b]$, s. t.
+\[
+f(\xi)=\frac{\displaystyle\int_{a}^{b}f(x)g(x)\,\mathrm{d}x}{\displaystyle\int_{a}^{b}g(x)\,\mathrm{d}x},
+\]
+即
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=f(\xi)\int_{a}^{b}g(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{theorem}[积分第二中值定理]\label{thm:6.2.7}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积.
+
+(1) 如果 $g$ 在 $[a,b]$ 上单调减, 且 $g(x)\geqslant 0$, $x\in[a,b]$, 则 $\exists\xi\in[a,b]$, s. t.
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x;
+\]
+
+(2) 如果 $g$ 在 $[a,b]$ 上单调增, 且 $g(x)\geqslant 0$, $x\in[a,b]$, 则 $\exists\eta\in[a,b]$, s. t.
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(b)\int_{\eta}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) 设
+\[
+F(x)=\int_{a}^{x}f(t)\,\mathrm{d}t,\quad x\in[a,b].
+\]
+由于 $f$ 在 $[a,b]$ 上 Riemann 可积, 故从定理~\ref{thm:6.3.1} 知, $F$ 在 $[a,b]$ 上连续, 因此, 它达到最大值 $M$ 和最小值 $m$.
+
+设 $g(a)=0$. 因 $g(x)\geqslant 0$ 且 $g$ 单调减, 必有 $g(x)\equiv 0$, $x\in[a,b]$, 则
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&=\int_{a}^{b}f(x)\cdot 0\,\mathrm{d}x=0=0\cdot\int_{a}^{\xi}f(x)\,\mathrm{d}x\\
+&=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x.
+\end{align*}
+
+设 $g(a)>0$. 因 $f$ 在 $[a,b]$ 上 Riemann 可积, 根据定理~\ref{thm:6.1.2}, $f$ 在 $[a,b]$ 上有界, 设 $|f(x)|<L$, $x\in[a,b]$. 又因 $g$ 单调减, 故 $g$ 在 $[a,b]$ 上 Riemann 可积, 从而 $\forall\varepsilon>0$, 必有 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, s. t.
+\[
+\sum_{T}\omega_{i}^{g}\Delta x_{i}<\frac{\varepsilon}{L}.
+\]
+于是,
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}f(x)g(x)\,\mathrm{d}x\\
+&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}[g(x)-g(x_{i-1})]f(x)\,\mathrm{d}x+\sum_{i=1}^{n}g(x_{i-1})\int_{x_{i-1}}^{x_{i}}f(x)\,\mathrm{d}x\\
+&\leqslant\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}|g(x)-g(x_{i-1})|\cdot|f(x)|\,\mathrm{d}x\\
+&\quad+\sum_{i=1}^{n}g(x_{i-1})[F(x_{i})-F(x_{i-1})]\\
+&\leqslant L\sum_{i=1}^{n}\omega_{i}^{g}\Delta x_{i}+\sum_{i=1}^{n-1}F(x_{i})[g(x_{i-1})-g(x_{i})]+F(b)g(x_{n-1})\\
+&<L\cdot\frac{\varepsilon}{L}+M\sum_{i=1}^{n-1}[g(x_{i-1})-g(x_{i})]+Mg(x_{n-1})=\varepsilon+Mg(a).
+\end{align*}
+类似地, 有
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&\geqslant-\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}|g(x)-g(x_{i-1})|\cdot|f(x)|\,\mathrm{d}x\\
+&\quad+\sum_{i=1}^{n}g(x_{i-1})[F(x_{i})-F(x_{i-1})]\\
+&\geqslant-L\cdot\sum_{i=1}^{n}\omega_{i}^{g}\Delta x_{i}+\sum_{i=1}^{n-1}F(x_{i})[g(x_{i-1})-g(x_{i})]+F(b)g(x_{n-1})\\
+&>-L\cdot\frac{\varepsilon}{L}+m\sum_{i=1}^{n-1}[g(x_{i-1})-g(x_{i})]+mg(x_{n-1})=-\varepsilon+mg(a).
+\end{align*}
+综合上述得到
+\[
+mg(a)-\varepsilon<\int_{a}^{b}f(x)g(x)\,\mathrm{d}x<Mg(a)+\varepsilon.
+\]
+令 $\varepsilon\to 0^{+}$, 有
+\[
+mg(a)\leqslant\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\leqslant Mg(a),
+\]
+\[
+m\leqslant\frac{\displaystyle\int_{a}^{b}f(x)g(x)\,\mathrm{d}x}{g(a)}\leqslant M.
+\]
+根据连续函数的介值定理, $\exists\xi\in[a,b]$, s. t.
+\[
+\int_{a}^{\xi}f(x)\,\mathrm{d}x=F(\xi)=\frac{1}{g(a)}\int_{a}^{b}f(x)g(x)\,\mathrm{d}x,
+\]
+即
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x.
+\]
+
+(2) 设
+\[
+\widetilde{F}(x)=\int_{x}^{b}f(t)\,\mathrm{d}t,\quad x\in[a,b].
+\]
+由于 $f$ 在 $[a,b]$ 上 Riemann 可积, 故从定理~\ref{thm:6.3.1} 知, $\widetilde{F}$ 在 $[a,b]$ 上连续, 因此, 它达到最大值 $M$ 与最小值 $m$.
+
+设 $g(b)=0$. 因 $g(x)\geqslant 0$ 且 $g$ 单调增, 必有 $g(x)\equiv 0$, $x\in[a,b]$, 则
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&=\int_{a}^{b}f(x)\cdot 0\,\mathrm{d}x=0=0\cdot\int_{\eta}^{b}f(x)\,\mathrm{d}x\\
+&=g(b)\int_{\eta}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+
+设 $g(b)>0$. 因 $f$ 在 $[a,b]$ 上 Riemann 可积, 根据定理~\ref{thm:6.1.2}, $f$ 在 $[a,b]$ 上有界, 设 $|f(x)|<L$, $x\in[a,b]$, 又因为 $g$ 单调增, 故 $g$ 在 $[a,b]$ 上 Riemann 可积, 从而对 $\forall\varepsilon>0$, 必有 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, s. t.
+\[
+\sum_{T}\omega_{i}^{g}\Delta x_{i}<\frac{\varepsilon}{L}.
+\]
+于是,
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}f(x)g(x)\,\mathrm{d}x\\
+&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}[g(x)-g(x_{i})]f(x)\,\mathrm{d}x+\sum_{i=1}^{n}g(x_{i})\int_{x_{i-1}}^{x_{i}}f(x)\,\mathrm{d}x\\
+&\leqslant\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}|g(x)-g(x_{i-1})|\cdot|f(x)|\,\mathrm{d}x\\
+&\quad+\sum_{i=1}^{n}g(x_{i})[\widetilde{F}(x_{i-1})-\widetilde{F}(x_{i})]\\
+&\leqslant L\sum_{i=1}^{n}\omega_{i}^{g}\Delta x_{i}+g(x_{1})\widetilde{F}(x_{0})+\sum_{i=1}^{n-1}\widetilde{F}(x_{i})[g(x_{i+1})-g(x_{i})]\\
+&<L\cdot\frac{\varepsilon}{L}+Mg(x_{1})+M\sum_{i=1}^{n-1}[g(x_{i+1})-g(x_{i})]<\varepsilon+Mg(x_{n})=\varepsilon+Mg(b).
+\end{align*}
+类似地, 有
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&\geqslant-\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}|g(x)-g(x_{i-1})|\cdot|f(x)|\,\mathrm{d}x\\
+&\quad+\sum_{i=1}^{n}g(x_{i})[\widetilde{F}(x_{i-1})-\widetilde{F}(x_{i})]\\
+&\geqslant-L\sum_{i=1}^{n}\omega_{i}^{g}\Delta x_{i}+g(x_{1})\widetilde{F}(x_{0})+\sum_{i=1}^{n}\widetilde{F}(x_{i})[g(x_{i+1})-g(x_{i})]\\
+&>-L\cdot\frac{\varepsilon}{L}+mg(x_{1})+m\sum_{i=1}^{n-1}[g(x_{i+1})-g(x_{i})]>-\varepsilon+mg(b).
+\end{align*}
+综合上述得到
+\[
+mg(b)-\varepsilon<\int_{a}^{b}f(x)g(x)\,\mathrm{d}x<Mg(b)+\varepsilon.
+\]
+令 $\varepsilon\to 0^{+}$, 有
+\[
+mg(b)\leqslant\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\leqslant Mg(b),
+\]
+\[
+m\leqslant\frac{\displaystyle\int_{a}^{b}f(x)g(x)\,\mathrm{d}x}{g(b)}\leqslant M.
+\]
+根据连续函数的介值定理可知, $\exists\eta\in[a,b]$, s. t.
+\[
+\int_{\eta}^{b}f(x)\,\mathrm{d}x=\widetilde{F}(\eta)=\frac{1}{g(b)}\int_{a}^{b}f(x)g(x)\,\mathrm{d}x,
+\]
+即
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(b)\int_{\eta}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{theorem}[一般的积分第二中值定理]\label{thm:6.2.8}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, $g$ 为单调函数, 则 $\exists\xi\in[a,b]$, s. t.
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+g(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) 如果 $g$ 单调减, 令 $\widetilde{g}(x)=g(x)-g(b)$, 则 $\widetilde{g}\geqslant 0$, 且 $\widetilde{g}$ 仍单调减. 根据积分第二中值定理 (1), $\exists\xi\in[a,b]$, s. t.
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x-g(b)\int_{a}^{b}f(x)\,\mathrm{d}x&=\int_{a}^{b}f(x)[g(x)-g(b)]\,\mathrm{d}x\\
+&=\int_{a}^{b}f(x)\widetilde{g}(x)\,\mathrm{d}x=\widetilde{g}(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x\\
+&=[g(a)-g(b)]\int_{a}^{\xi}f(x)\,\mathrm{d}x.
+\end{align*}
+因此,
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+g(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\]
+
+(2) 如果 $g$ 单调增, 令 $\widetilde{g}(x)=g(x)-g(a)$, 则 $\widetilde{g}\geqslant 0$, 且 $\widetilde{g}(x)$ 仍单调增. 根据积分第二中值定理 (2), $\exists\xi\in[a,b]$, s. t.
+\begin{align*}
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x-g(a)\int_{a}^{b}f(x)\,\mathrm{d}x&=\int_{a}^{b}f(x)[g(x)-g(a)]\,\mathrm{d}x\\
+&=\int_{a}^{b}f(x)\widetilde{g}(x)\,\mathrm{d}x=\widetilde{g}(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x\\
+&=[g(b)-g(a)]\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+因此,
+\[
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+g(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\]
+或者, 令 $\widetilde{g}(x)=g(b)-g(x)$, 由 $g$ 单调增, 可知 $\widetilde{g}(x)$ 单调减, $\widetilde{g}\geqslant 0$. 根据积分第二中值定理 (1), $\exists\xi\in[a,b]$, s. t.
+\begin{align*}
+\int_{a}^{b}f(x)[g(b)-g(x)]\,\mathrm{d}x&=[g(b)-g(a)]\int_{a}^{\xi}f(x)\,\mathrm{d}x,\\
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+g(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+或者, 因为 $g$ 单调增, 故 $-g(x)$ 单调减, 由 (1) 知, $\exists\xi\in[a,b]$, s. t.
+\begin{align*}
+\int_{a}^{b}f(x)[-g(x)]\,\mathrm{d}x&=-g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+[-g(b)]\int_{\xi}^{b}f(x)\,\mathrm{d}x,\\
+\int_{a}^{b}f(x)g(x)\,\mathrm{d}x&=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+g(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:6.2.2}
+设
+\[
+f(x)=\begin{cases}\sin x-1,&-1\leqslant x<0,\\x^{2},&0\leqslant x\leqslant 1,\end{cases}
+\]
+求 $\int_{-1}^{1}f(x)\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}
+如图~\ref{fig:6.2.2} 所示.
+\begin{align*}
+\int_{-1}^{1}f(x)\,\mathrm{d}x&\xlongequal{\text{定理~\ref{thm:6.2.4}}}\int_{-1}^{0}f(x)\,\mathrm{d}x+\int_{0}^{1}f(x)\,\mathrm{d}x\\
+&=\int_{-1}^{0}(\sin x-1)\,\mathrm{d}x+\int_{0}^{1}x^{2}\,\mathrm{d}x\\
+&=\cos(-1)-\cos 0-[0-(-1)]+\frac{1^{3}-0^{3}}{3}\\
+&=\cos 1-1-1+\frac{1}{3}=\cos 1-\frac{5}{3}.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.15cm,y=0.85cm,>=Stealth]
+  \draw[->] (-2.15,0) -- (2.35,0) node[below right] {$x$};
+  \draw[->] (0,-2.75) -- (0,1.75) node[left] {$y$};
+  \fill[pattern=north east lines] (-1,0) -- (-1,-1.8415)
+    .. controls (-0.6,-1.72) and (-0.25,-1.33) .. (0,-1) -- cycle;
+  \draw[thick] (-1,-1.8415) .. controls (-0.6,-1.72) and (-0.25,-1.33) .. (0,-1);
+  \draw (-1,0) -- (-1,-1.8415);
+  \fill[pattern=dots] (0,0) .. controls (0.45,0.20) and (0.80,0.64) .. (1,1) -- (1,0) -- cycle;
+  \draw[thick] (0,0) .. controls (0.45,0.20) and (0.80,0.64) .. (1,1);
+  \draw (1,0) -- (1,1);
+  \fill (0,0) circle (1.5pt);
+  \fill (-1,-1.8415) circle (1.5pt);
+  \fill (1,1) circle (1.5pt);
+  \draw[fill=white] (0,-1) circle (1.5pt);
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (-1.04,0.12) {$-1$};
+  \node[below] at (1,-0.10) {$1$};
+  \node[right] at (0.06,-1) {$-1$};
+  \node[right] at (0.08,0.47) {$y=x^{2}$};
+  \node[left] at (-0.10,-2.02) {$y=\sin x-1$};
+\end{tikzpicture}
+\caption{}\label{fig:6.2.2}
+\end{figure}
+
+\begin{example}\label{ex:6.2.3}
+(1) 设 $f$ 在 $[a,b]$ 上连续, 且 $f(x)\geqslant 0$, $\int_{a}^{b}f(x)\,\mathrm{d}x=0$, 则 $f(x)\equiv 0$, $x\in[a,b]$.
+
+(2) 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 且 $f(x)\geqslant 0$, $\int_{a}^{b}f(x)\,\mathrm{d}x=0$, 则 $f(x)$ 在 $[a,b]$ 上几乎处处为 $0$, 即 $\{x\mid x\in[a,b],f(x)\neq 0\}$ 为零测集, 记为 $f(x)\xrightarrow{\text{a. e.}}0$, $x\in[a,b]$.
+\end{example}
+
+\begin{solution}
+(1) (反证) 假设 $f(x)\not\equiv 0$, $x\in[a,b]$, 则 $\exists x_{0}\in[a,b]$, s. t. $f(x_{0})\neq 0$, 则 $f(x_{0})>0$. 根据定理~\ref{thm:6.2.2}(3), $\int_{a}^{b}f(x)\,\mathrm{d}x>0$, 这与题设 $\int_{a}^{b}f(x)\,\mathrm{d}x=0$ 相矛盾.
+
+(2) 因 $f$ 在 $[a,b]$ 上 Riemann 可积, 根据定理~\ref{thm:6.1.4}(8), $f$ 在 $[a,b]$ 上几乎处处连续, 由定理~\ref{thm:6.2.2}(3), $f$ 在每个连续点 $x_{0}$ 处, $f(x_{0})=0$. 所以, $f(x)$ 在 $[a,b]$ 上几乎处处为 $0$.
+\end{solution}
+
+\begin{example}\label{ex:6.2.4}
+求 $f(x)=\sin x$ 在 $[0,\pi]$ 上的平均值 $M(f)$.
+\end{example}
+
+\begin{solution}
+由例~\ref{ex:6.1.14}, 有
+\begin{align*}
+M(f)&=\frac{1}{\pi}\int_{0}^{\pi}\sin x\,\mathrm{d}x\\
+&=\frac{1}{\pi}(\cos 0-\cos\pi)=\frac{1}{\pi}[1-(-1)]=\frac{2}{\pi}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:6.2.5}
+不计算积分值比较下列积分的大小:
+
+(1) $\int_{0}^{1}x^{3}\,\mathrm{d}x$ 与 $\int_{0}^{1}x^{2}\,\mathrm{d}x$;
+
+(2) $\int_{1}^{2}x^{3}\,\mathrm{d}x$ 与 $\int_{1}^{2}x^{2}\,\mathrm{d}x$;
+
+(3) $\int_{0}^{1}\mathrm{e}^{x^{2}}(1-x)\,\mathrm{d}x$ 与 $\int_{0}^{1}0\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}
+(1) 因为 $x^{3}\leqslant x^{2}$, $x\in[0,1]$, 且 $\left(\frac{1}{2}\right)^{3}<\left(\frac{1}{2}\right)^{2}$, $x^{3}$ 与 $x^{2}$ 均连续, 根据定理~\ref{thm:6.2.2}(3), 有
+\[
+\int_{0}^{1}x^{3}\,\mathrm{d}x<\int_{0}^{1}x^{2}\,\mathrm{d}x.
+\]
+
+(2) 因 $x^{3}\geqslant x^{2}$, $x\in[1,2]$, 且 $2^{3}>2^{2}$, $x^{3}$ 与 $x^{2}$ 均连续, 根据定理~\ref{thm:6.2.2}(3), 有
+\[
+\int_{1}^{2}x^{3}\,\mathrm{d}x>\int_{1}^{2}x^{2}\,\mathrm{d}x.
+\]
+
+(3) 因 $\mathrm{e}^{x^{2}}(1-x)\geqslant 0$, $x\in[0,1]$, 且 $\mathrm{e}\left(\frac{1}{2}\right)^{2}\left(1-\frac{1}{2}\right)>0$, $\mathrm{e}^{x^{2}}(1-x)$ 与 $0$ 均连续, 根据定理~\ref{thm:6.2.2}(3), 有
+\[
+\int_{0}^{1}\mathrm{e}^{x^{2}}(1-x)\,\mathrm{d}x>\int_{0}^{1}0\,\mathrm{d}x.
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.2.6}
+证明: $\frac{2}{\sqrt[4]{\mathrm{e}}}<\int_{0}^{2}\mathrm{e}^{x^{2}-x}\,\mathrm{d}x<2\mathrm{e}^{2}$.
+\end{example}
+
+\begin{solution}
+令 $f(x)=\mathrm{e}^{x^{2}-x}$, 则由 $-\frac{1}{4}\leqslant x^{2}-x\leqslant 2$, $\forall x\in[0,2]$ 得到
+\[
+\frac{1}{\sqrt[4]{\mathrm{e}}}=\mathrm{e}^{-\frac{1}{4}}\leqslant\mathrm{e}^{x^{2}-x}\leqslant\mathrm{e}^{2},\quad\forall x\in[0,2].
+\]
+又因为
+\[
+\frac{1}{\sqrt[4]{\mathrm{e}}}<f(1)=1<\mathrm{e}^{2},
+\]
+根据定理~\ref{thm:6.2.2}(3), 有
+\[
+\frac{2}{\sqrt[4]{\mathrm{e}}}=\int_{0}^{2}\frac{\mathrm{d}x}{\sqrt[4]{\mathrm{e}}}<\int_{0}^{2}\mathrm{e}^{x^{2}-x}\,\mathrm{d}x<\int_{0}^{2}\mathrm{e}^{2}\,\mathrm{d}x=2\mathrm{e}^{2}.
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.2.7}
+设 $f$, $g$ 在 $[a,b]$ 上连续. 证明 Cauchy-Schwarz 不等式:
+\[
+\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}\leqslant\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\int_{a}^{b}g^{2}(x)\,\mathrm{d}x,
+\]
+其中等号当且仅当 $f=\lambda g$ 或 $g=\lambda f$ 时成立 $(\lambda\in\mathbb{R})$.
+\end{example}
+
+\begin{solution}[证法 1]
+$\forall t\in\mathbb{R}$, 有
+\begin{align*}
+0&\leqslant\int_{a}^{b}[f(x)-\tan(x)]^{2}\,\mathrm{d}x\\
+&=\int_{a}^{b}f^{2}(x)\,\mathrm{d}x-2t\int_{a}^{b}f(x)g(x)\,\mathrm{d}x+t^{2}\int_{a}^{b}g^{2}(x)\,\mathrm{d}x.
+\end{align*}
+
+(1) 如果 $\int_{a}^{b}g^{2}(x)\,\mathrm{d}x=0$, 由例~\ref{ex:6.2.2} 知, $g(x)=0$, $x\in[a,b]$, 故
+\begin{align*}
+\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}&=\left[\int_{a}^{b}f(x)\cdot 0\,\mathrm{d}x\right]^{2}=0\\
+&=\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot 0\\
+&=\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x.
+\end{align*}
+
+(2) 如果 $\int_{a}^{b}g^{2}(x)\,\mathrm{d}x>0$, 则由上述关于 $t$ 的二次三项式非负, 故其判别式
+\[
+\Delta=4\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}-4\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\int_{a}^{b}g^{2}(x)\,\mathrm{d}x\leqslant 0,
+\]
+即
+\[
+\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}\leqslant\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x.
+\]
+当 $f=\lambda g$ 时, 显然有
+\begin{align*}
+\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}&=\left[\int_{a}^{b}\lambda g(x)g(x)\,\mathrm{d}x\right]^{2}\\
+&=\lambda^{2}\left[\int_{a}^{b}g^{2}(x)\,\mathrm{d}x\right]^{2}\\
+&=\int_{a}^{b}[\lambda g(x)]^{2}\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x.
+\end{align*}
+同理, 当 $g=\lambda f$ 时, 等式也成立.
+
+反之, 如果 $\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}=\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x$, 则
+
+① $\int_{a}^{b}g^{2}(x)\,\mathrm{d}x=0$, 由例~\ref{ex:6.2.2} 可知, $g=0=0\cdot f$;
+
+② $\int_{a}^{b}g^{2}(x)\,\mathrm{d}x>0$, 由
+\[
+\Delta=4\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}-4\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\int_{a}^{b}g^{2}(x)\,\mathrm{d}x=0
+\]
+立刻知道, 二次三项式
+\[
+t^{2}\int_{a}^{b}g^{2}(x)\,\mathrm{d}x-2t\int_{a}^{b}f(x)g(x)\,\mathrm{d}x+\int_{a}^{b}f^{2}(x)\,\mathrm{d}x
+\]
+必有实根 $\lambda$, 即
+\begin{align*}
+0&=\lambda^{2}\int_{a}^{b}g^{2}(x)\,\mathrm{d}x-2\lambda\int_{a}^{b}f(x)g(x)\,\mathrm{d}x+\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\\
+&=\int_{a}^{b}[f(x)-\lambda g(x)]^{2}\,\mathrm{d}x,
+\end{align*}
+再由例~\ref{ex:6.2.2} 知, $f(x)-\lambda g(x)=0$, 即 $f=\lambda g$.
+\end{solution}
+
+\begin{solution}[证法 2]
+因 $f$, $g$ 在 $[a,b]$ 上连续, 故 $fg$, $f^{2}$, $g^{2}$ 在 $[a,b]$ 上也连续. 从而它们在 $[a,b]$ 上都 Riemann 可积. 对 $[a,b]$ 的任何分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, 有 Cauchy-Schwarz 不等式:
+\begin{align*}
+\left(\sum_{i=1}^{n}f(\xi_{i})g(\xi_{i})\Delta x_{i}\right)^{2}&=\left(\sum_{i=1}^{n}f(\xi_{i})\sqrt{\Delta x_{i}}\cdot g(\xi_{i})\sqrt{\Delta x_{i}}\right)^{2}\\
+&\leqslant\sum_{i=1}^{n}f^{2}(\xi_{i})\Delta x_{i}\cdot\sum_{i=1}^{n}g^{2}(\xi_{i})\Delta x_{i}.
+\end{align*}
+令 $\|T\|\to 0$ 得到
+\[
+\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}\leqslant\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x.
+\]
+\end{solution}
+
+\begin{remark}\label{remark:6.2.2}
+根据例~\ref{ex:6.2.3}(2), 请读者证明:
+
+设 $f$, $g$ 在 $[a,b]$ 上 Riemann 可积, 则有 Cauchy-Schwarz 不等式
+\[
+\left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}\leqslant\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x,
+\]
+其中等号当且仅当 $f\xlongequal{\text{a. e.}}\lambda g$ 或 $g\xlongequal{\text{a. e.}}\lambda f$, $x\in[a,b]$ 时成立 $(\lambda\in\mathbb{R})$.
+\end{remark}
+
+\begin{example}\label{ex:6.2.8}
+设 $f$ 在 $[a,b]$ 上连续, 且 $\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}xf(x)\,\mathrm{d}x=0$, 则在 $(a,b)$ 内至少存在两点 $x_{1},x_{2}$, 使得 $f(x_{1})=f(x_{2})=0$.
+\end{example}
+
+\begin{solution}[证法 1]
+如果 $f$ 在 $(a,b)$ 内无零点, 由 $f$ 连续与零值定理, $f$ 在 $(a,b)$ 内恒大于 $0$ 或恒小于 $0$. 不妨设 $f$ 在 $(a,b)$ 内恒大于 $0$. 再由 $f$ 在 $[a,b]$ 上连续知, $f(x)\geqslant 0$, $\forall x\in[a,b]$. 因此,
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x>0,
+\]
+这与题设 $\int_{a}^{b}f(x)\,\mathrm{d}x=0$ 相矛盾.
+
+如果 $f$ 在 $(a,b)$ 内恰有一个零点 $x_{0}$, 则 $f(x)$ 在 $(a,x_{0})$ 与 $(x_{0},b)$ 内严格异号, 从而 $(x-x_{0})f(x)$ 在 $(a,x_{0})$ 与 $(x_{0},b)$ 内必严格同号, 因此,
+\[
+\int_{a}^{b}(x-x_{0})f(x)\,\mathrm{d}x>0\ (\text{或}<0),
+\]
+这与题设 $\int_{a}^{b}(x-x_{0})f(x)\,\mathrm{d}x=\int_{a}^{b}xf(x)\,\mathrm{d}x-x_{0}\int_{a}^{b}f(x)\,\mathrm{d}x=0-x_{0}\cdot 0=0$ 相矛盾.
+
+综合上述得到 $f$ 在 $(a,b)$ 内至少有两个零点 $x_{1},x_{2}$, 即 $x_{1}\neq x_{2}$, 且 $f(x_{1})=0=f(x_{2})$.
+\end{solution}
+
+\begin{solution}[证法 2]
+由 $\int_{a}^{b}f(x)\,\mathrm{d}x=0$ 推得 $f$ 在 $(a,b)$ 内必存在零点. (反证) 假设 $f$ 在 $(a,b)$ 内只有一个零点 $x_{0}$, 即 $f(x_{0})=0$. 则由
+\[
+0=\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{x_{0}}f(x)\,\mathrm{d}x+\int_{x_{0}}^{b}f(x)\,\mathrm{d}x
+\]
+可得
+\[
+\int_{a}^{x_{0}}f(x)\,\mathrm{d}x=-\int_{x_{0}}^{b}f(x)\,\mathrm{d}x\neq 0
+\]
+(最后一个不等号是因为 $f$ 在 $(x_{0},b)$ 上严格同号). 又因为 $f$ 在 $[a,x_{0}]$ 与 $[x_{0},b]$ 内都不变号, 故由推广的积分第一中值定理可知, $\exists\xi_{1},\xi_{2}$, s. t. $a<\xi_{1}<x_{0}<\xi_{2}<b$, 且
+\begin{align*}
+0&=\int_{a}^{b}xf(x)\,\mathrm{d}x=\int_{a}^{x_{0}}xf(x)\,\mathrm{d}x+\int_{x_{0}}^{b}xf(x)\,\mathrm{d}x\\
+&=\xi_{1}\int_{a}^{x_{0}}f(x)\,\mathrm{d}x+\xi_{2}\int_{x_{0}}^{b}f(x)\,\mathrm{d}x=(\xi_{2}-\xi_{1})\int_{x_{0}}^{b}f(x)\,\mathrm{d}x\neq 0,
+\end{align*}
+矛盾.
+\end{solution}
+
+\begin{exblock}{练习题 6.2}
+  \item 证明下列不等式:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{2\pi}|a\cos x+b\sin x|\,\mathrm{d}x\leqslant 2\pi\sqrt{a^{2}+b^{2}}$;
+    \item $\int_{0}^{1}x^{m}(1-x^{n})\,\mathrm{d}x\leqslant\frac{m^{m}n^{n}}{(m+n)^{m+n}}$, \quad $m,n\in\mathbb{N}$;
+    \item $\int_{0}^{10}\frac{x}{x^{3}+16}\,\mathrm{d}x\leqslant\frac{5}{6}$;
+    \item $1<\int_{0}^{\frac{\pi}{2}}\frac{\sin x}{x}\,\mathrm{d}x<\frac{\pi}{2}$;
+    \item $1<\int_{0}^{1}\mathrm{e}^{x^{2}}\,\mathrm{d}x<\mathrm{e}$;
+    \item $3\sqrt{\mathrm{e}}<\int_{\mathrm{e}}^{4\mathrm{e}}\frac{\ln x}{\sqrt{x}}\,\mathrm{d}x<6$;
+    \item $\frac{\pi}{2}<\int_{0}^{\frac{\pi}{2}}\frac{\mathrm{d}x}{\sqrt{1-\frac{1}{2}\sin^{2}x}}<\frac{\pi}{\sqrt{2}}$.
+  \end{enumerate}
+
+  \item 求下列极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{n\to+\infty}\int_{a}^{b}\mathrm{e}^{-nx^{2}}\,\mathrm{d}x$, \quad $0<a<b$;
+    \item $\lim\limits_{n\to+\infty}\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 确定下列积分的正负:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{\frac{1}{2}}^{1}\mathrm{e}^{x}\ln^{3}x\,\mathrm{d}x$;
+    \item $\int_{0}^{\pi}f(x)\,\mathrm{d}x$, \quad $f(x)=\begin{cases}\dfrac{\sin x}{x},&x\neq 0,\\1,&x=0.\end{cases}$
+  \end{enumerate}
+
+  \item 比较下列积分的大小:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{1}\mathrm{e}^{-x}\,\mathrm{d}x$ 与 $\int_{0}^{1}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\frac{\sin x}{1+x}\,\mathrm{d}x$ 与 $\int_{0}^{1}\frac{\sin x}{1+x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{\frac{\pi}{2}}\frac{\sin x}{x}\,\mathrm{d}x$ 与 $\int_{0}^{\frac{\pi}{2}}\frac{\sin^{2}x}{x^{2}}\,\mathrm{d}x$;
+    \item $\int_{-1}^{0}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$ 与 $\int_{0}^{1}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}x\,\mathrm{d}x$ 与 $\int_{0}^{1}x^{2}\,\mathrm{d}x$;
+    \item $\int_{0}^{\frac{\pi}{2}}x\,\mathrm{d}x$ 与 $\int_{0}^{\frac{\pi}{2}}\sin x\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 设函数 $f$ 与 $g$ 在 $[a,b]$ 上连续, 且 $f(x)\leqslant g(x)$, $\forall x\in[a,b]$, 又 $\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}g(x)\,\mathrm{d}x$, 证明: $f=g$.
+
+  \item 设函数 $f$ 在 $[a,b]$ 上连续, 且 $\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=0$ 对一切连续函数 $g$ 成立. 证明: $f=0$.
+
+  \item 证明 Dirichlet 积分
+  \[
+  \int_{0}^{\pi}\frac{\sin\left(n+\frac{1}{2}\right)x}{\sin\frac{x}{2}}\,\mathrm{d}x=\pi,\quad n=0,1,2,\cdots.
+\]
+  (提示: 将被积函数表示为余弦函数之和, 或用数学归纳法.)
+
+  \item 证明: Fejèr 积分
+  \[
+  \int_{0}^{\pi}\left(\frac{\sin\frac{nx}{2}}{\sin\frac{x}{2}}\right)^{2}\,\mathrm{d}x=n\pi,\quad n=0,1,2,\cdots.
+\]
+  (提示: 将被积函数表示为题 7 中被积函数之和.)
+
+  \item 设 $f$ 为 $[0,1]$ 上的连续函数, 且 $f>0$. 证明:
+  \[
+  \int_{0}^{1}f(x)\,\mathrm{d}x\cdot\int_{0}^{1}\frac{1}{f(x)}\,\mathrm{d}x\geqslant 1.
+\]
+
+  \item 应用 Riemann 积分 $\int_{1}^{n+1}\frac{\mathrm{d}x}{x}<\sum\limits_{i=1}^{n}\frac{1}{i}$ 与 $\sum\limits_{i=1}^{n-1}\frac{1}{i+1}<\int_{1}^{n}\frac{\mathrm{d}x}{x}$ 证明:
+  \[
+  \ln(1+n)<1+\frac{1}{2}+\cdots+\frac{1}{n}<1+\ln n.
+\]
+\end{exblock}
+
+\begin{exblock}{思考题 6.2}
+  \item 证明:
+  \[
+  \int_{0}^{\frac{\pi}{2}}\mathrm{e}^{-R\sin x}\,\mathrm{d}x
+  \begin{cases}<\dfrac{\pi}{2R}(1-\mathrm{e}^{-R}),&R>0,\\[3mm]>\dfrac{\pi}{2R}(1-\mathrm{e}^{-R}),&R<0,\\[3mm]=\dfrac{\pi}{2},&R=0.\end{cases}
+\]
+
+  \item 设 $f$ 为 $[0,\pi]$ 上的连续函数, 它满足
+  \[
+  \int_{0}^{\pi}f(\theta)\cos\theta\,\mathrm{d}\theta=\int_{0}^{\pi}f(\theta)\sin\theta\,\mathrm{d}\theta.
+\]
+  证明: $f$ 在 $(0,\pi)$ 内至少有两个零点.
+
+  \item (1) 设 $f(x)$ 在 $[a,b]$ 上连续, 且 $\int_{a}^{b}f(x)\,\mathrm{d}x=0$, $\int_{a}^{b}xf(x)\,\mathrm{d}x=0$. 证明: 至少存在两点 $x_{1},x_{2}\in(a,b)$ 使得 $f(x_{1})=f(x_{2})=0$.
+
+  (2) 设 $f(x)$ 为定义在 $[a,b]$ 上的连续函数. 如果它的前 $n$ 个矩全为 $0$, 即
+  \[
+  \int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}xf(x)\,\mathrm{d}x=\cdots=\int_{a}^{b}x^{n-1}f(x)\,\mathrm{d}x=0.
+\]
+  证明: 函数 $f(x)$ 或者恒为 $0$ 或者在 $(a,b)$ 上至少改变 $n$ 次符号, 即 $f$ 至少有 $n$ 个零点.
+
+  \item 设 $f(x)$ 在 $[a,b]$ 上 Riemann 可积, 且它的一切矩全为 $0$, 即
+  \[
+  \int_{a}^{b}f(x)x^{n}\,\mathrm{d}x=0,\quad n=0,1,2,\cdots.
+\]
+  证明: $f$ 在每一连续点处为 $0$. 特别当 $f$ 连续时, $f=0$.
+
+  \item 设函数 $f$ 在 $[0,+\infty)$ 上连续, 且 $\lim\limits_{x\to+\infty}f(x)=a$. 证明:
+  \[
+  \lim_{x\to+\infty}\frac{1}{x}\int_{0}^{x}f(t)\,\mathrm{d}t=a.
+\]
+
+  \item 设函数 $f$ 在 $[0,\pi]$ 上连续, $n\in\mathbb{N}$. 证明:
+  \[
+  \lim_{n\to+\infty}\int_{0}^{\pi}f(x)|\sin nx|\,\mathrm{d}x=\frac{2}{\pi}\int_{0}^{\pi}f(x)\,\mathrm{d}x.
+\]
+
+  \item 设 $f$ 是 $(-\infty,+\infty)$ 上的周期为 $T$ 的连续函数. 证明:
+  \[
+  \lim_{x\to+\infty}\frac{1}{x}\int_{0}^{x}f(t)\,\mathrm{d}t=\frac{1}{T}\int_{0}^{T}f(t)\,\mathrm{d}t.
+\]
+
+  \item (1) 设 $f$ 与 $g$ 分别为区间 $[a,b]$ 上的非负与正值连续函数. 证明:
+  \[
+  \lim_{n\to+\infty}\sqrt[n]{\int_{a}^{b}g(x)[f(x)]^{n}\,\mathrm{d}x}=\max_{a\leqslant x\leqslant b}f(x).
+\]
+
+  (2) 设 $f$ 与 $g$ 皆为 $[a,b]$ 上的正值连续函数. 证明:
+  \[
+  \lim_{n\to+\infty}\frac{\displaystyle\int_{a}^{b}g(x)f^{n+1}(x)\,\mathrm{d}x}{\displaystyle\int_{a}^{b}g(x)f^{n}(x)\,\mathrm{d}x}=\max_{a\leqslant x\leqslant b}f(x),
+\]
+  其中 $f^{n}(x)=[f(x)]^{n}$.
+
+  \item 进一步证明: 积分第一中值定理~\ref{thm:6.2.5} 与推广积分第一中值定理~\ref{thm:6.2.6} 中, 可选 $\xi$ 使得 $\xi\in(a,b)$.
+
+  \item 设 $f$, $g$ 均在 $[a,b]$ 上 Riemann 可积, $g(x)$ 在 $[a,b]$ 上不变号, $M=\sup\limits_{a\leqslant x\leqslant b}f(x)$, $m=\inf\limits_{a\leqslant x\leqslant b}f(x)$. 证明: $\exists\mu\in[m,M]$, s. t.
+  \[
+  \int_{a}^{b}f(x)g(x)\,\mathrm{d}x=\mu\int_{a}^{b}g(x)\,\mathrm{d}x.
+\]
+
+  \item 设 $f$ 与 $g$ 在 $[a,b]$ 上 Riemann 可积, 证明 Cauchy-Schwarz 不等式
+  \[
+  \left[\int_{a}^{b}f(x)g(x)\,\mathrm{d}x\right]^{2}\leqslant\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\,\mathrm{d}x,
+\]
+  其中等号当且仅当 $f\xlongequal{\text{a. e.}}\lambda g$ 或 $g\xlongequal{\text{a. e.}}\lambda f$, $x\in[a,b]$ 时成立.
+
+  \item 应用 Cauchy-Schwarz 不等式证明:
+
+  (1) 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 则
+  \[
+  \left[\int_{a}^{b}f(x)\,\mathrm{d}x\right]^{2}\leqslant(b-a)\int_{a}^{b}f^{2}(x)\,\mathrm{d}x;
+\]
+
+  (2) 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 且 $f(x)\geqslant m>0$, 则
+  \[
+  \int_{a}^{b}f(x)\,\mathrm{d}x\cdot\int_{a}^{b}\frac{1}{f(x)}\,\mathrm{d}x\geqslant(b-a)^{2};
+\]
+
+  (3) 设 $f$ 与 $g$ 都在 $[a,b]$ 上 Riemann 可积, 则有 Minkowski 不等式
+  \[
+  \left[\int_{a}^{b}(f(x)+g(x))^{2}\,\mathrm{d}x\right]^{\frac{1}{2}}\leqslant\left[\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\right]^{\frac{1}{2}}+\left[\int_{a}^{b}g^{2}(x)\,\mathrm{d}x\right]^{\frac{1}{2}}.
+\]
+
+  \item 设 $f$ 为 $(0,+\infty)$ 上的连续减函数, $f(x)>0$; 又设
+  \[
+  a_{n}=\sum_{k=1}^{n}f(k)-\int_{1}^{n}f(x)\,\mathrm{d}x.
+\]
+  证明: 数列 $\{a_{n}\}$ 收敛.
+
+  \item 设 $f$ 在 $[a,b]$ 上 Riemann 可积, $\varphi$ 在 $[\alpha,\beta]$ 上单调且连续可导, $\varphi(\alpha)=a$, $\varphi(\beta)=b$.
+  证明: $\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{\alpha}^{\beta}f(\varphi(t))\varphi'(t)\,\mathrm{d}t$.
+
+  \item 设 $f$ 为 $[a,b]$ 上的连续函数, $g$ 为连续可导的单调函数, 试用一个比较简单的论述, 证明积分第二中值定理:
+  \[
+  \int_{a}^{b}f(x)g(x)\,\mathrm{d}x=g(a)\int_{a}^{\xi}f(x)\,\mathrm{d}x+g(b)\int_{\xi}^{b}f(x)\,\mathrm{d}x.
+\]
+  (提示: 应用分部积分法 $\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=\int_{a}^{b}g(x)\,\mathrm{d}\int_{a}^{x}f(t)\,\mathrm{d}t$, 以及积分第一中值定理.)
+
+  \item 设 $f(x)$ 在 $[a,b]$ 上连续可导, 而
+  \[
+  \Delta_{n}=\int_{a}^{b}f(x)\,\mathrm{d}x-\frac{b-a}{n}\sum_{k=1}^{n}f\left(a+k\cdot\frac{b-a}{n}\right).
+\]
+  证明: (1) $-\frac{1}{2}\left(\frac{b-a}{n}\right)^{2}\sum\limits_{k=1}^{n}M_{k}\leqslant\Delta_{n}\leqslant-\frac{1}{2}\left(\frac{b-a}{n}\right)^{2}\sum\limits_{k=1}^{n}m_{k}$, 其中
+  \[
+  m_{k}=\min\left\{f'(x)\mid a+(k-1)\frac{b-a}{n}\leqslant x\leqslant a+k\frac{b-a}{n}\right\},
+\]
+  \[
+  M_{k}=\max\left\{f'(x)\mid a+(k-1)\frac{b-a}{n}\leqslant x\leqslant a+k\frac{b-a}{n}\right\}.
+\]
+  (2) $\lim\limits_{n\to+\infty}n\Delta_{n}=-\frac{b-a}{2}[f(b)-f(a)]$.
+
+  \item 设 $f$ 为 $[a,b]$ 上的连续函数, 且对任一满足 $\int_{a}^{b}g(x)\,\mathrm{d}x=0$ 的连续函数 $g$ 有\linebreak[4]$\int_{a}^{b}f(x)g(x)\,\mathrm{d}x=0$. 证明: $f$ 为常值函数.
+
+  \item 求出满足下列条件的所有函数 $f(x)$:
+
+  (1) $f$ 在 $[0,1]$ 上为连续函数;
+
+  (2) $\int_{0}^{1}f(x)\,\mathrm{d}x=1$;
+
+  (3) $\exists\alpha\in\mathbb{R}$, s. t.
+  \[
+  \int_{0}^{1}xf(x)\,\mathrm{d}x=\alpha,\quad\int_{0}^{1}x^{2}f(x)\,\mathrm{d}x=\alpha^{2}.
+\]
+\end{exblock}

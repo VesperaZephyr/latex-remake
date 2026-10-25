@@ -1,0 +1,292 @@
+\section{微积分基本定理}\label{sec:7-3}
+
+按照定义，定积分是函数黎曼和的极限，根据这个定义来计算定积分，往往是十分困难或复杂的，我们举一个最简单的例子．
+
+\begin{example}
+计算 $\displaystyle \int_0^1 x^2\,dx$．
+\end{example}
+
+\begin{proof}[解]
+由于 $f(x) = x^2$ 在 $[0,1]$ 连续，因而可积．这样，我们可以通过一种特殊的分法与取特殊的 $\xi_i$，把极限求出来（见图~\ref{fig:7-10}）．将 $[0,1]$ 区间 $n$ 等分，分点为 $x_i = \frac{i}{n}$ ($i = 0, 1, 2, \cdots, n$)，这时 $\Delta x_i = x_i - x_{i-1} = \frac{1}{n}$，取 $\xi_i$ 为 $[x_{i-1}, x_i]$ 的右端点 $\xi_i = \frac{i}{n}$，则黎曼和为
+\[
+\sum_{i=1}^n f(\xi_i)\Delta x_i = \sum_{i=1}^n \left(\frac{i}{n}\right)^2 \frac{1}{n} = \frac{1}{n^3}\sum_{i=1}^n i^2 = \frac{1}{6}\frac{(n + 1)(2n + 1)}{n^2},
+\]
+令 $n \to \infty$，这时 $\lambda \to 0$，上述黎曼和的极限为
+\[
+\int_0^1 x^2\,dx = \lim_{n \to \infty}\frac{1}{6}\frac{(n + 1)(2n + 1)}{n^2} = \frac{1}{3},
+\]
+即
+\[
+\int_0^1 x^2\,dx = \frac{1}{3}.
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig7-10.png}
+\figcap{图 7-10}\label{fig:7-10}
+\end{figure}
+
+对 $f(x) = x^2$，我们可以求出这个积分，但已相当复杂．设想对 $x^3$、$x^4$ 或更一般的 $x^\alpha$，或 $f(x) = \sin x$，如何计算它们的定积分？下面的微积分基本定理告诉我们，一般说来，不需要从定义出发来计算定积分，定积分的计算可以化为求原函数即不定积分的计算．
+
+\begin{theorem}\label{thm:7-10}
+若 $f(x)$ 在 $[a,b]$ 连续，则函数 $G(x) = \int_a^x f(t)\,dt$ 在 $[a,b]$ 可导，且
+\[
+G'(x) = f(x), \qquad \forall x \in [a,b].
+\]
+\end{theorem}
+
+\begin{proof}
+显然
+\[
+G(x + \Delta x) = \int_a^{x+\Delta x}f(t)\,dt,
+\]
+因此
+\begin{align*}
+\frac{G(x + \Delta x) - G(x)}{\Delta x} &= \frac{1}{\Delta x}\left[\int_a^{x+\Delta x}f(t)\,dt - \int_a^x f(t)\,dt\right] \\
+&= \frac{1}{\Delta x}\int_x^{x+\Delta x}f(t)\,dt,
+\end{align*}
+由积分中值定理知道，在 $x$ 与 $x + \Delta x$ 之间必存在一点 $\xi$，使得
+\[
+\int_x^{x+\Delta x}f(t)\,dt = f(\xi)\Delta x,
+\]
+于是
+\[
+\frac{G(x + \Delta x) - G(x)}{\Delta x} = f(\xi),
+\]
+令 $\Delta x \to 0$，则 $x + \Delta x \to x$，从而 $\xi \to x$，由 $f(x)$ 连续性便有
+\[
+\lim_{\Delta x \to 0}\frac{G(x + \Delta x) - G(x)}{\Delta x} = \lim_{\Delta x \to 0}f(\xi) = f(x).
+\]
+这就证明了 $G(x)$ 在 $[a,b]$ 可导，且 $G'(x) = f(x)$．
+\end{proof}
+
+定理说的是，变上限的定积分是被积函数的一个原函数，只要被积函数是连续的．这一点从图形上看是很清楚的（图~\ref{fig:7-11}）：变动的曲边梯形的面积的变化率等于纵坐标．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig7-11.png}
+\figcap{图 7-11}\label{fig:7-11}
+\end{figure}
+
+这定理的一层意思是说，任何连续函数有原函数存在．这定理的另一层意思是可推出下面的重要定理．
+
+\begin{theorem}[微积分基本定理]\label{thm:7-11}
+设 $f(x)$ 在 $[a,b]$ 上连续，$F(x)$ 是 $f(x)$ 在 $[a,b]$ 的任意一个原函数，即 $F'(x) = f(x)$，则
+\[
+\int_a^b f(x)\,dx = F(b) - F(a).
+\]
+\end{theorem}
+
+\begin{proof}
+由定理~\ref{thm:7-10} 知道，$G(x) = \int_a^x f(t)\,dt$ 是 $f(x)$ 的一个原函数．由于同一函数的两个原函数只能差一个常数，因此
+\[
+G(x) = F(x) + c,
+\]
+即
+\[
+\int_a^x f(t)\,dt = F(x) + c,
+\]
+其中 $c$ 是一个常数．在等式两边令 $x = a$，由于 $G(a) = \int_a^a f(t)\,dt = 0$，便知
+\[
+F(a) + c = 0,
+\]
+即
+\[
+c = -F(a),
+\]
+代回去便得
+\[
+\int_a^x f(t)\,dt = F(x) - F(a).
+\]
+取 $x = b$，便得
+\[
+\int_a^b f(t)\,dt = F(b) - F(a).
+\]
+\end{proof}
+
+我们还可以用微分中值定理，证明一个条件稍弱而结论相同的微积分基本定理．
+
+\begin{theorem}[微积分基本定理]\label{thm:7-12}
+若 $f(x)$ 在 $[a,b]$ 可积，$F(x)$ 是 $f(x)$ 在 $[a,b]$ 的任意一个原函数，即 $F'(x) = f(x)$，则
+\[
+\int_a^b f(x)\,dx = F(b) - F(a).
+\]
+\end{theorem}
+
+\begin{proof}
+给 $[a,b]$ 任意分法：
+\[
+a = x_0 < x_1 < x_2 < \cdots < x_n = b,
+\]
+则由微分中值定理知在 $(x_{i-1}, x_i)$ 中，存在 $\xi_i$，使得
+\begin{align*}
+F(b) - F(a) &= F(x_n) - F(x_0) \\
+&= \sum_{i=1}^n \left(F(x_i) - F(x_{i-1})\right) \\
+&= \sum_{i=1}^n F'(\xi_i)\Delta x_i = \sum_{i=1}^n f(\xi_i)\Delta x_i,
+\end{align*}
+令 $\lambda = \max_{1 \leqslant i \leqslant n}|\Delta x_i| \to 0$，由 $f(x)$ 在 $[a,b]$ 可积知道，右边的极限存在，且等于 $f(x)$ 在 $[a,b]$ 的定积分，故
+\[
+F(b) - F(a) = \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i = \int_a^b f(x)\,dx.
+\]
+\end{proof}
+
+这两个定理都称为微积分基本定理．它们的结论都是一样的，定理~\ref{thm:7-12} 的条件较定理~\ref{thm:7-11} 的要弱些，因为已知每个闭区间上的连续函数都是可积的．定理~\ref{thm:7-12} 的证明要简练一些．定理~\ref{thm:7-11} 的条件虽强一些，但定理~\ref{thm:7-11}（实际上是定理~\ref{thm:7-10}）的证明要直观一些，而且定理~\ref{thm:7-10} 还多说明了一点：连续函数总有原函数存在．这两个定理都十分重要，我们要求读者搞清楚定理的条件、结论以及它们的证明．
+
+常常用记号 $F(x)\Big|_a^b$ 表示 $F(b) - F(a)$，于是有
+\[
+\int_a^b f(x)\,dx = F(x)\bigg|_a^b,
+\]
+其中 $F(x)$ 是 $f(x)$ 的任意一个原函数．这公式通常称为微积分基本公式，或称牛顿---莱布尼茨（Newton-Leibniz）公式．
+
+定积分作为求连续量作用的总和或积累，在有些问题中，例如已知作直线运动的质点的速度 $v$，求质点从 $t = a$ 至 $t = b$ 所走过的路程，很容易看出这是求微商运算的逆运算．但在许多实际问题中，如求变力作的功，以及以后会看到的，像求连续分布的物体的力矩、转动惯量、引力等等，是很难看得出它与求微商运算的关系的．微积分基本定理深刻揭示了这两者的关系，这是微积分发展历史中的转折点．在此之前，人们计算每一个定积分都要探求一种特殊的方法才能把它算出来．但是，有了微积分基本定理之后，人们可以用统一的求原函数的方法来计算定积分．这样微积分才真正开始成为一门独立的学科．因此，把这定理称为微积分的基本定理是一点也不过分的．
+
+在本节开始，我们从定积分定义计算出
+\[
+\int_0^1 x^2\,dx = \frac{1}{3}.
+\]
+现在用牛顿---莱布尼茨公式便容易算出
+\[
+\int_0^1 x^2\,dx = \frac{x^3}{3}\bigg|_0^1 = \frac{1}{3}.
+\]
+
+\begin{example}
+求 $\displaystyle \int_0^a \sqrt{a^2 - x^2}\,dx$ ($a > 0$)．
+\end{example}
+
+\begin{proof}[解]
+前面计算过
+\[
+\int \sqrt{a^2 - x^2}\,dx = \frac{x}{2}\sqrt{a^2 - x^2} + \frac{a^2}{2}\arcsin\frac{x}{a} + c,
+\]
+因此，
+\[
+\int_0^a \sqrt{a^2 - x^2}\,dx = \left(\frac{x}{2}\sqrt{a^2 - x^2} + \frac{a^2}{2}\arcsin\frac{x}{a}\right)\bigg|_0^a = \frac{\pi}{4}a^2,
+\]
+这正是以 $a$ 为半径的圆的 $1/4$ 面积．这样，用微积分便很容易算出了圆面积为 $\pi a^2$．
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.85\textwidth]{fig7-12.png}
+\figcap{图 7-12}\label{fig:7-12}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.85\textwidth]{fig7-13.png}
+\figcap{图 7-13}\label{fig:7-13}
+\end{minipage}
+\end{figure}
+
+类似地，计算
+\[
+\int_0^a \frac{b}{a}\sqrt{a^2 - x^2}\,dx = \frac{b}{4a}\pi a^2 = \frac{\pi ab}{4},
+\]
+这就是椭圆的 $1/4$ 面积，由此得到椭圆的面积为 $\pi ab$．
+\end{proof}
+
+\begin{example}
+求 $\displaystyle \int_{\frac{\pi}{2}}^\pi \sqrt{\cos^2 x}\,dx$．
+\end{example}
+
+\begin{proof}[解]
+\begin{align*}
+\int_{\frac{\pi}{2}}^\pi \sqrt{\cos^2 x}\,dx &= \int_{\frac{\pi}{2}}^\pi |\cos x|\,dx \\
+&= -\int_{\frac{\pi}{2}}^\pi \cos x\,dx = -\sin x\bigg|_{\frac{\pi}{2}}^\pi = 1.
+\end{align*}
+\end{proof}
+
+\begin{example}
+求 $\displaystyle \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} f(x)\,dx$，其中
+\[
+f(x) = \begin{cases}
+-\sin x, & x \geqslant 0, \\
+x, & x < 0.
+\end{cases}
+\]
+\end{example}
+
+\begin{proof}[解]
+\begin{align*}
+\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}f(x)\,dx &= \int_{-\frac{\pi}{2}}^0 x\,dx - \int_0^{\frac{\pi}{2}}\sin x\,dx \\
+&= \frac{x^2}{2}\bigg|_{-\frac{\pi}{2}}^0 + \cos x\bigg|_0^{\frac{\pi}{2}} = -\frac{\pi^2}{8} - 1 = -\left(1 + \frac{\pi^2}{8}\right).
+\end{align*}
+\end{proof}
+
+\begin{example}
+求 $\displaystyle \int_{-1}^1 \frac{dx}{1 + x^2}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int_{-1}^1 \frac{dx}{1 + x^2} = \arctan x\bigg|_{-1}^1 = \frac{\pi}{4} + \frac{\pi}{4} = \frac{\pi}{2}.
+\]
+我们也可以如下求相应的不定积分
+\begin{align*}
+\int \frac{dx}{1 + x^2} &= \int \frac{dx}{x^2\left(1 + \frac{1}{x^2}\right)} \\
+&= -\int \frac{d\frac{1}{x}}{1 + \left(\frac{1}{x}\right)^2} = -\arctan\frac{1}{x} + c,
+\end{align*}
+如果用这个原函数来计算上述定积分，则有
+\begin{align*}
+\int_{-1}^1 \frac{dx}{1 + x^2} &= -\left.\arctan\frac{1}{x}\right|_{-1}^1 \\
+&= -\frac{\pi}{4} - \frac{\pi}{4} = -\frac{\pi}{2},
+\end{align*}
+结果和前面的不同．问题出在什么地方呢？原来 $-\arctan\frac{1}{x}$ 在 $x = 0$ 没有意义，也就是说，在 $[-1,1]$ 它不是 $\frac{1}{1 + x^2}$ 的原函数，因此不能用牛顿---莱布尼茨公式，故后一个计算是错误的．如果积分区间不包含原点，则 $\arctan x$ 与 $-\arctan\frac{1}{x}$ 都是 $\frac{1}{1 + x^2}$ 的原函数，这时两个式子都成立，例如
+\[
+\int_1^{\sqrt{3}}\frac{dx}{1 + x^2} = \arctan x\bigg|_1^{\sqrt{3}} = \frac{\pi}{3} - \frac{\pi}{4} = \frac{\pi}{12},
+\]
+\[
+\int_1^{\sqrt{3}}\frac{dx}{1 + x^2} = -\arctan\frac{1}{x}\bigg|_1^{\sqrt{3}} = -\frac{\pi}{6} + \frac{\pi}{4} = \frac{\pi}{12}.
+\]
+\end{proof}
+
+\begin{xiti}
+\item 计算下列定积分：
+\begin{ziti}
+\item $\displaystyle \int_0^\pi \cos^2 x \, dx$；
+\item $\displaystyle \int_0^a \sqrt{a - x} \, dx$；
+\item $\displaystyle \int_0^\pi \sqrt{1 - \sin^2 x} \, dx$；
+\item $\displaystyle \int_{-4}^{-3}\frac{dx}{x\sqrt{x^2 - 4}}$；
+\item $\displaystyle \int_1^2 \frac{\ln x}{x} \, dx$；
+\item $\displaystyle \int_{\frac{1}{\mathrm{e}}}^{\mathrm{e}} |\ln x| \, dx$．
+\end{ziti}
+
+\item 求下列极限：
+\begin{ziti}
+\item $\displaystyle \lim_{n \to \infty} \sum_{k=1}^n \frac{1}{n} \sin \frac{k\pi}{n}$；
+\item $\displaystyle \lim_{n \to \infty}\left(\frac{1}{n} + \frac{1}{n+1} + \cdots + \frac{1}{2n}\right)$；
+\item $\displaystyle \lim_{n \to \infty} \sum_{k=1}^{n-1} \frac{k}{n^2}$；
+\item $\displaystyle \lim_{n \to \infty} \frac{1}{n} \left[ \sqrt{1 + \cos \frac{\pi}{n}} + \sqrt{1 + \cos \frac{2\pi}{n}} + \cdots + \sqrt{1 + \cos \frac{n\pi}{n}} \right]$．
+\end{ziti}
+
+\item 若 $f(x)$ 连续，求 $F'(x)$：
+\begin{ziti}
+\item $\displaystyle F(x) = \int_0^{x^2} f(t) \, dt$；
+\item $\displaystyle F(x) = \int_x^b f(t) \, dt$；
+\item $\displaystyle F(x) = \int_x^{x^3} \mathrm{e}^{t^2} \, dt$．
+\end{ziti}
+
+\item 求下列极限：
+\begin{ziti}
+\item $\displaystyle \lim_{x \to 0} \frac{\int_0^x \cos t^2 \, dt}{x}$；
+\item $\displaystyle \lim_{x \to \infty} \frac{\left( \int_0^x \mathrm{e}^{t^2} \, dt \right)^2}{\int_0^x \mathrm{e}^{2t^2} \, dt}$．
+\end{ziti}
+
+\item 求函数
+\[
+F(x) = \int_{-1}^x |t|\,dt, \quad x \in [-1,1].
+\]
+
+\item 设 $f(x)$ 在 $[0, +\infty)$ 连续且单调递增，求证：函数
+\[
+F(x) = \frac{1}{x}\int_0^x f(t)\,dt
+\]
+在 $(0, +\infty)$ 上连续且单调递增．
+
+\item 设 $f'(x)$ 在 $[a,b]$ 连续，且 $f(a) = 0$，求证
+\[
+\left|\int_a^b f(x)\,dx\right| \leqslant \frac{(b-a)^2}{2}\max_{a \leqslant x \leqslant b}|f'(x)|.
+\]
+\end{xiti}

@@ -1,0 +1,60 @@
+% !TeX program = xelatex
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  按《中文数学书籍 LaTeX 重排规范》v2.1 重排
+%  编译：xelatex -> biber -> xelatex x3（见 tools/build.py）
+% ==================================================================
+\documentclass[
+  BookTitleCN     = {数学分析},
+  BookTitleCNSub  = {第三册},
+  AuthorCN        = {徐森林\quad 金亚东\quad 薛春华},
+  Publisher       = {清华大学出版社},
+  Year            = {2007},
+  ISBN            = {978-7-302-14572-1},
+  Biblatex        = true,
+  BibStyle        = numeric,
+  BibSorting      = none,
+  BibFile         = refs,
+  StartPage       = 1
+]{zhmbook}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\input{chapters/preface}
+
+\tableofcontents
+
+\mainmatter
+
+% 本书为《数学分析》第三册，正文起自第 12 章，
+% 将章计数器设为 11，使首个 \chapter 自增后为「第 12 章」。
+% 正文起始页码设为 1，与原书对齐（PDF 物理页 = 印刷页 + 6）。
+\setcounter{chapter}{11}
+\setcounter{page}{1}
+
+% 第 12 章 无穷级数（§12.1–§12.5 + 复习题 12）
+\input{chapters/ch12}
+
+% 第 13 章 函数项级数（§13.1–§13.2 + 复习题 13）
+\input{chapters/ch13}
+
+% 第 14 章 幂级数、用多项式一致逼近连续函数（§14.1–§14.3 + 复习题 14）
+\input{chapters/ch14}
+
+% 第 15 章 含参变量积分（§15.1–§15.4 + 复习题 15）
+\input{chapters/ch15}
+
+% 第 16 章 Fourier 分析（§16.1–§16.4 + 复习题 16）
+\input{chapters/ch16}
+
+\backmatter
+% 原书正文未标注文献引用角标（底本全文正则扫描 0 处 [n] 标记），
+% 但书末参考文献完整列出 9 条，故以 \nocite{*} 令 Biber 全量输出，
+% 条目顺序由 BibSorting=none 锁定为原书顺序。
+\nocite{*}
+\makebibliography
+
+\end{document}

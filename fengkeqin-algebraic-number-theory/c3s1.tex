@@ -1,0 +1,530 @@
+% ============ 第三章 §1 类群和类数 (原书 pp.96-113) ============
+\section{类群和类数}\label{sec:ch3-s1}
+
+\subsection{\texorpdfstring{$R^n$}{Rn} 中的格, Minkowski 定理}\label{sec:ch3-s1-1}
+
+\begin{definition}\label{def:ch3-1}
+加法群 $R^n$ 的子集 $H$ 叫作 $R^n$ 的一个\emph{格},是指存在 $n$ 维实向量空间 $R^n$ 中的一组基 $\{\alpha_1,\cdots,\alpha_n\}$,使得
+\[
+  H=\Z\alpha_1\oplus\cdots\oplus\Z\alpha_n.
+\]
+于是 $R^n$ 中每个格 $H$ 均是秩 $n$ 的自由 Abel 加法群,而 $\{\alpha_1,\cdots,\alpha_n\}$ 是加法群 $H$ 的一组基.
+\end{definition}
+
+设 $H$ 是 $R^n$ 中一个格,$\{\alpha_1,\cdots,\alpha_n\}$ 是 $H$ 的一组基.定义
+\[
+  P(\alpha_1,\cdots,\alpha_n)=\left\{\sum_{i=1}^{n}a_i\alpha_i\;\middle|\;0\leqslant a_i<1\right\},
+\]
+这是 $R^n$ 中的一个平行多面体.由于 $\{\alpha_1,\cdots,\alpha_n\}$ 也是实向量空间 $R^n$ 的一组基,从而 $R^n$ 中每个元素(即向量)均可惟一地表示成
+\[
+  \alpha=r_1\alpha_1+\cdots+r_n\alpha_n,\qquad r_i\in\R.
+\]
+以 $[r]$ 表示实数 $r$ 的整数部分,则 $0\leqslant\{r\}=r-[r]<1$,并且 $\alpha=h+f$,其中
+\[
+  h=\sum_{i=1}^{n}[r_i]\alpha_i\in H,\qquad
+  f=\sum_{i=1}^{n}\{r_i\}\alpha_i\in P(\alpha_1,\cdots,\alpha_n).
+\]
+换句话说,$R^n$ 中每个元素均属于 $f+H$,其中 $f\in P(\alpha_1,\cdots,\alpha_n)$.另一方面,对于 $P(\alpha_1,\cdots,\alpha_n)$ 中两个不同的元素 $f_1$ 和 $f_2$,显然 $f_1-f_2\notin H$.这就表明 $P(\alpha_1,\cdots,\alpha_n)$ 是加法商群 $R^n/H$ 中诸陪集的完全代表元系.
+
+取 $e_1=(1,0,\dots,0)$,$e_2=(0,1,0,\dots,0)$,$\dots$,$e_n=(0,\dots,0,1)$ 为实向量空间 $R^n$ 的标准基.设 $\alpha_i=\sum_{j=1}^{n}r_{ij}e_j$,$r_{ij}\in\R$.$\mu$ 表示 $R^n$ 上的 Lebesgue 测度.熟知 $\mu(P(\alpha_1,\cdots,\alpha_n))=|\det(r_{ij})|$.如果 $\{\alpha'_1,\cdots,\alpha'_n\}$ 是格 $H$ 的另一组基,$\alpha'_i=\sum_{j=1}^{n}a_{ij}\alpha_j$,则 $a_{ij}\in\Z$ 并且 $\det(a_{ij})=\pm1$.于是
+\begin{align*}
+  \mu(P(\alpha'_1,\cdots,\alpha'_n))
+  &=|\det(r_{ij})\cdot\det(a_{ij})|\\
+  &=|\det(r_{ij})|=\mu(P(\alpha_1,\cdots,\alpha_n)).
+\end{align*}
+这就表明 $\mu(P(\alpha_1,\cdots,\alpha_n))$ 与基 $\{\alpha_1,\cdots,\alpha_n\}$ 的选取无关,即是格 $H$ 本身的特性.我们将它叫作是格 $H$ 的\emph{体积},表示成 $V(H)$.粗糙地说,格 $H$ 在 $R^n$ 中分布愈稀疏,则格 $H$ 的体积(即平行多面体 $P(\alpha_1,\cdots,\alpha_n)$ 的测度)也愈大.
+
+\begin{lemma}\label{lem:ch3-1}
+设 $H$ 和 $H'$ 均是 $R^n$ 中的格,并且 $H\supseteq H'$,则加法商群 $H/H'$ 是有限群,并且
+\[
+  |H/H'|=\frac{V(H')}{V(H)}.
+\]
+\end{lemma}
+
+\begin{proof}
+由于 $H'$ 和 $H$ 均是秩 $n$ 的自由 Abel 群,从附录 A, (1) 即知存在 $H$ 的一组基 $\{\alpha_1,\cdots,\alpha_n\}$,使得 $H'=\Z d_1\alpha_1\oplus\cdots\oplus\Z d_n\alpha_n$,$d_i\in\Z-\{0\}$.于是
+\[
+  H/H'\cong\Z/d_1\Z\oplus\cdots\oplus\Z/d_n\Z,
+\]
+从而 $|H/H'|=|d_1\cdots d_n|$.另一方面,如果 $\alpha_i=\sum_{j=1}^{n}r_{ij}e_j$,则
+\[
+  V(H')=|\det(d_ir_{ij})|=|d_1\cdots d_n|\cdot|\det(r_{ij})|=|d_1\cdots d_n|\cdot V(H).
+\]
+由此即得引理.
+\end{proof}
+
+\begin{definition}\label{def:ch3-2}
+$R^n$ 的加法子群 $H$ 叫作是\emph{离散}的,是指对于 $R^n$ 的每个有界子集 $K$,$K\cap H$ 均是有限集合.
+\end{definition}
+
+\begin{lemma}\label{lem:ch3-2}
+\begin{enumerate}[(a)]
+  \item $R^n$ 中每个格 $H$ 均是 $R^n$ 的离散子群.
+  \item $R^n$ 中的每个离散子群 $D$ 必是 $R^n$ 的某个 $r$ 维子空间($0\leqslant r\leqslant n$)中的格.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) 设 $H$ 为 $R^n$ 的格,$\{\alpha_1,\cdots,\alpha_n\}$ 是 $H$ 的一组基,则 $\{\alpha_1,\cdots,\alpha_n\}$ 也是实向量空间 $R^n$ 的一组基.如果 $K$ 是 $R^n$ 中的有界子集,则 $K$ 中元素对于基 $\{\alpha_1,\cdots,\alpha_n\}$ 的坐标均是有界的,即存在某个常数 $M$,使得当 $\alpha=\sum_{i=1}^{n}r_i\alpha_i\in K$,$r_i\in\R$ 时,必然有 $|r_i|\leqslant M$($1\leqslant i\leqslant n$).如果 $\alpha\in K\cap H$,则 $r_i\in\Z$,$|r_i|\leqslant M$.这只有有限多个可能,从而 $K\cap H$ 为有限集合,于是 $H$ 是 $R^n$ 的离散子群.
+
+(b) 设 $D$ 是 $R^n$ 的离散子群,$\{\alpha_1,\cdots,\alpha_r\}$ 为 $D$ 中极大 $\R$-线性无关子集合,则 $0\leqslant r\leqslant n$.由于平行多面体 $P=P(\alpha_1,\cdots,\alpha_r)$ 为 $R^n$ 的有界子集合,从而 $P\cap D$ 为有限集合.由 $\{\alpha_1,\cdots,\alpha_r\}$ 的极大性可知每个 $x\in D$ 均可表为 $x=\sum_{i=1}^{r}\lambda_i\alpha_i$,$\lambda_i\in\R$.对于每个 $j\in\Z$,令
+\[
+  x_j=jx-\sum_{i=1}^{r}[j\lambda_i]\alpha_i=\sum_{i=1}^{r}\{j\lambda_i\}\alpha_i\in D\cap P.
+\]
+而 $x=x_1+\sum_{i=1}^{r}[\lambda_i]\alpha_i$,$x_1\in D\cap P$,从而 $D$ 是由有限集合 $(D\cap P)\cup\{\alpha_1,\cdots,\alpha_r\}$ 生成的子群,即 $D$ 为有限生成 Abel 群.另一方面,由于 $D\cap P$ 有限而 $\Z$ 无限,可知存在两个不同的整数 $j$ 和 $k$,使得 $x_j=x_k$,即 $(j-k)\lambda_i=[j\lambda_i]-[k\lambda_i]\in\Z$,于是 $\lambda_i\in\Q$($1\leqslant i\leqslant r$).由于 $D$ 是有限生成的,并且每个生成元均为 $\{\alpha_1,\cdots,\alpha_r\}$ 的 $\Q$ 线性组合,乘以诸系数的公分母 $d$($\neq 0$)之后,可知 $dD\subseteq\Z\alpha_1\oplus\cdots\oplus\Z\alpha_r$,即 $dD$ 为秩 $r$ 的自由 Abel 群 $\Z\alpha_1\oplus\cdots\oplus\Z\alpha_r$ 的子群.根据附录 A, (1),可知 $dD$ 为秩 $\leqslant r$ 的自由 Abel 群.但是 $r\leqslant\operatorname{rank}D=\operatorname{rank}(dD)\leqslant r$,因此 $dD$ 的秩为 $r$,于是 $dD=\Z f_1\oplus\cdots\oplus\Z f_r$,而 $D=\Z(f_1/d)\oplus\cdots\oplus\Z(f_r/d)$.这就表明 $D$ 是 $R^n$ 中由向量 $f_i/d$($1\leqslant i\leqslant r$)张成的 $r$ 维子空间中的格.
+\end{proof}
+
+\begin{definition}\label{def:ch3-3}
+$R^n$ 中子集合 $S$ 叫作是\emph{凸集合},是指
+\[
+  x,y\in S\Rightarrow\frac{1}{2}(x+y)\in S.
+\]
+$S$ 叫作是\emph{关于原点对称}的,是指 $x\in S\Rightarrow -x\in S$.
+\end{definition}
+
+\begin{theorem}[\emph{Minkowski}]\label{thm:3.1}
+设 $H$ 为 $R^n$ 中的格,$S$ 是 $R^n$ 中的 Lebesgue 可测子集合(测度表示成 $\mu(S)$).
+\begin{enumerate}[(a)]
+  \item 如果 $\mu(S)>V(H)$,则存在 $s,s'\in S$,$s\neq s'$,使得 $s-s'\in H$;
+  \item 如果 $S$ 又为关于原点对称的凸集,则当 $\mu(S)>2^nV(H)$ 时,$S\cap H$ 中有非零向量;
+  \item 如果 $S$ 为关于原点对称的紧凸集,则当 $\mu(S)\geqslant 2^nV(H)$ 时,$S\cap H$ 中有非零向量.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) 取 $\alpha_1,\cdots,\alpha_n$ 为格 $H$ 的一组基,$P=P(\alpha_1,\cdots,\alpha_n)$ 是上面定义的平行多面体,则 $\{h+P\mid h\in H\}$ 是一些两两非交的集合,它们的并集为 $R^n$(这是由于 $P$ 是 $R^n/H$ 的诸陪集完全代表元系).从而 $\{S\cap(h+P)\mid h\in H\}$ 也是一些两两非交的集合,并且它们的并集为 $S$.因此
+\[
+  \mu(S)=\sum_{h\in H}\mu(S\cap(h+P))=\sum_{h\in H}\mu((-h+S)\cap P).
+\]
+如果对于 $H$ 中任意两个不同的元素 $h$ 和 $h'$,$(-h+S)\cap P$ 与 $(-h'+S)\cap P$ 均是非交的,则
+\[
+  \mu(S)=\sum_{h\in H}\mu((-h+S)\cap P)\leqslant\mu(P)=V(H),
+\]
+这就与假设 $\mu(S)>V(H)$ 相矛盾.所以存在 $h,h'\in H$,$h\neq h'$,使得 $(-h+S)\cap P$ 与 $(-h'+S)\cap P$ 有公共元素 $x$,即
+\[
+  x=-h+s=-h'+s',\qquad s,s'\in S.
+\]
+而 $0\neq h-h'=s-s'\in H$.
+
+(b) 令 $S'=\frac{1}{2}S$,则 $\mu(S')=\frac{1}{2^n}\mu(S)>V(H)$.由 (a) 知存在 $x,y\in S'$,$x\neq y$,使得 $x-y\in H$.于是 $2x,-2y\in S$,从而
+\[
+  x-y=\frac{1}{2}(2x+(-2y))\in S,
+\]
+即
+\[
+  0\neq x-y\in S\cap H.
+\]
+
+(c) 取 $S_m=\left(1+\frac{1}{m}\right)S$,则 $S_m$ 与 $S$ 一样是关于原点对称的凸集,而 $\mu(S_m)=\left(1+\frac{1}{m}\right)^n\mu(S)>2^n\cdot V(H)$(当 $m\geqslant 1$ 时).于是由 (b) 知存在 $0\neq h_m\in S_m\cap H$.由于 $\{h_m\mid m\geqslant 1\}$ 是紧集 $S_1=2S$ 中的序列,从而有一个子序列收敛于某点 $h\in R^n$.由于 $\lim_{m\to\infty}S_m=S$,而 $S$ 为紧集,可知 $h\in S$.又由于 $H$ 是 $R^n$ 的离散子群,易知 $H$ 中非零子序列 $\{h_m\mid m\geqslant 1\}$ 的极限 $h\in H$ 并且 $h\neq 0$.于是 $0\neq h\in S\cap H$.
+\end{proof}
+
+\begin{remark}
+Minkowski 定理是说,一个比较规则的图形当体积足够大时,必然包含格 $H$ 中的一个点 $x\neq 0$.特别当 $H=\Z^n$ 时,这就是通常所谓整点问题.研究 $R^n$ 中某个几何图形中整点的存在性以及估计整点个数,这是数论的一个分支----``数的几何''中的一个主要课题,而 Minkowski 定理则是这一分支的奠基性定理.
+\end{remark}
+
+\subsection{分式理想和理想类群}\label{sec:ch3-s1-2}
+
+\begin{sloppypar}
+对于数域 $K$,我们以 $I^{\circ}(K)$ 表示 $O_K$ 的全部非零理想构成的集合.它对于理想的乘法是一个具有幺元素的交换半群,幺元素为 $O_K$.第二章中的引理 \ref{lem:ch2-6} 表明半群 $I^{\circ}(K)$ 满足乘法消去律,即若 $A,B,C\in I^{\circ}(K)$,如果 $AB=AC$,则 $B=C$.大家知道,每个具有消去律的含幺交换半群 $M$ 均可扩大成一个交换群 $G$,$G$ 中元素可表示成 $M$ 中元素相除,并且群 $G$ 在同构的意义下是惟一的.
+\end{sloppypar}
+
+构作 $G$ 的方法通常是形式化的:考虑集合
+\[
+  S=\left\{\frac{A}{B}\;\middle|\;A,B\in M\right\},
+\]
+这里 $\frac{A}{B}$ 不过是一个符号.在集合 $S$ 中引入关系:$\frac{A}{B}\sim\frac{C}{D}$ 当且仅当 $AD=BC$.这是 $S$ 上一个等价关系.我们用 $\left[\frac{A}{B}\right]$ 表示 $\frac{A}{B}$ 所在的等价类,而以 $G$ 表示 $S$ 对关系 $\sim$ 的所有等价类构成的集合.在 $G$ 中引入运算
+\[
+  \left[\frac{A}{B}\right]\left[\frac{C}{D}\right]=\left[\frac{AC}{BD}\right].
+\]
+这个运算是确切定义的,即与等价类中代表元 $\frac{A}{B}$ 和 $\frac{C}{D}$ 的选取方式无关.$G$ 对于这个运算形成交换群,其幺元素为 $\left[\frac{1}{1}\right]$($1$ 为 $M$ 中幺元素),而 $\left[\frac{A}{B}\right]$ 的逆元素为 $\left[\frac{B}{A}\right]$.如果把 $M$ 中元素 $A$ 等同于 $G$ 中元素 $\left[\frac{A}{1}\right]$,则 $M$ 便可看成是 $G$ 的一部分,并且 $G$ 中每个元素均是 $M$ 中元素之商:$\left[\frac{A}{B}\right]=\left[\frac{A}{1}\right]\cdot\left[\frac{B}{1}\right]^{-1}$.于是半群 $M$ 扩大成群 $G$.
+
+\begin{sloppypar}
+这个过程不过是小学算术的抽象化.若 $M$ 为非负整数加法半群,则 $G$ 就是整数加法群,扩大出来的负整数均为两个正整数之差.若 $M$ 为正有理整数乘法半群,$G$ 便是正有理数乘法群,扩大出来的正分数为两个正整数的商.现在对于半群 $I^{\circ}(K)$,我们扩大出来的抽象元素 $\left[\frac{A}{B}\right]$ 也可赋以具体含义,它们只需要将 $O_K$ 中理想的概念稍加推广,即所谓``分式理想''.
+\end{sloppypar}
+
+\begin{definition}\label{def:ch3-4}
+数域 $K$ 的子集合 $I$ 叫作是 $K$ 的\emph{分式理想},是指存在 $0\neq\mu\in O_K$,使得 $\mu I$ 为 $O_K$ 的非零理想.我们用 $I(K)$ 表示 $K$ 的全体分式理想组成的集合.
+\end{definition}
+
+\begin{sloppypar}
+$O_K$ 的每个非零理想均为分式理想(取 $\mu=1$),所以分式理想是 $O_K$ 中理想概念的推广.分式理想 $I$ 为 $O_K$ 中理想当且仅当 $I\subseteq O_K$(习题 1).为明确起见,今后我们把 $O_K$ 中理想叫作整理想,而 $K$ 的分式理想则常常简称为理想.记 $A=\mu I$,则分式理想作为集合为
+\[
+  I=\frac{1}{\mu}A=\left\{\frac{1}{\mu}a\;\middle|\;a\in A\right\},
+\]
+所以 $K$ 的每个(分式)理想不过是某个整理想的所有元素均除以一个``公分母'' $\mu\in O_K$ 而得到的集合.
+\end{sloppypar}
+
+现在于 $I(K)$ 中引入乘法运算:对于 $A,B\in I(K)$,定义
+\begin{equation}\label{eq:ch3-frac-prod}
+  AB=\left\{\sum_{i=1}^{n}a_ib_i\;\middle|\;a_i\in A,\ b_i\in B,\ n\geqslant 1\right\}.
+\end{equation}
+当 $A$ 和 $B$ 是整理想时,\eqref{eq:ch3-frac-prod} 式就是通常的理想乘积定义.而对一般的分式理想 $A$ 和 $B$,记 $A=\frac{1}{\alpha}A'$,$B=\frac{1}{\beta}B'$,其中 $\alpha$ 和 $\beta$ 为 $O_K$ 中非零元素,$A'$,$B'$ 为整理想,由 \eqref{eq:ch3-frac-prod} 式易知 $AB=\frac{1}{\alpha\beta}A'B'$.所以 $AB$ 也是分式理想,即由 \eqref{eq:ch3-frac-prod} 式定义的乘法确实为分式理想集合 $I(K)$ 中的运算.
+
+\begin{theorem}\label{thm:3.2}
+\begin{enumerate}[(a)]
+  \item $I(K)$ 对于上述乘法运算形成群,并且 $I^{\circ}(K)$ 可看成是 $I(K)$ 的子半群.每个分式理想 $I$ 均可惟一地表示成两个互素非零整理想的商:$I=\frac{A}{B}=AB^{-1}$,其中 $A,B\in I^{\circ}(K)$,$(A,B)=1$.
+  \item $I(K)$ 是自由 Abel 群,并且 $O_K$ 的所有非零素理想构成自由 Abel 群 $I(K)$ 的一组基.换句话说,每个分式理想 $I$ 均惟一地表示成
+  \begin{equation}    I=P_1^{e_1}P_2^{e_2}\cdots P_r^{e_r},\tag{2}
+  \end{equation}
+  其中 $P_1,\cdots,P_r$ 是 $O_K$ 中不同的(非零)素理想,而 $e_i$($1\leqslant i\leqslant r$)是非零有理整数(可正可负).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) 易知 $I(K)$ 中乘法运算满足结合律与交换律,并且 $O_K$ 是关于这个运算的幺元素.为证 $I(K)$ 是群,只需证明每个分式理想 $I$ 在 $I(K)$ 中均有逆元素.设 $I=\frac{1}{\mu}A$,其中 $\mu\in O_K$,$\mu\neq 0$,而 $A\in I^{\circ}(K)$.由第二章引理 \ref{lem:ch2-5} 可知存在 $B\in I^{\circ}(K)$,使得 $AB=(\alpha)=\alpha O_K$ 是主理想(事实上,我们可取 $\alpha$ 为整理想 $A$ 中任一非零元素,因为这时 $A\mid(\alpha)$,从而存在整理想 $B$,使得 $AB=(\alpha)$).于是
+\[
+  IB=\left(\frac{1}{\mu}A\right)B=\frac{1}{\mu}(AB)=\frac{\alpha}{\mu}O_K,
+\]
+所以 $I\left(\frac{\mu}{\alpha}B\right)=O_K$.由于 $\mu B$ 是整理想,从而 $\frac{\mu}{\alpha}B=\frac{1}{\alpha}(\mu B)$ 是分式理想,并且它就是 $I$ 的逆元素.于是 $I(K)$ 为 Abel 群.
+
+(b) 对每个分式理想 $I=\frac{1}{\mu}A$,我们有 $(\mu)I=A$.将此式两边同时除以整理想 $(\mu)$ 和 $A$ 的最大公因子 $C$(注意 $I(K)$ 为群所以有消去律),得到 $MI=N$,其中 $M=(\mu)/C$,$N=A/C$ 均是整理想,并且 $(M,N)=1$.于是 $I=N/M$ 是两个互素的整理想之商.由 Dedekind 整环 $O_K$ 中理想的惟一因式分解特性容易知道这种表达式 $I=N/M$ 是惟一的,并且同样可证分解式 (2) 的存在性和惟一性.这就表明 $I(K)$ 是自由 Abel 群,并且 $O_K$ 的所有非零素理想构成自由 Abel 群 $I(K)$ 的一组基.
+\end{proof}
+
+\begin{sloppypar}
+群 $I(K)$ 叫作数域 $K$ 的\emph{分式理想群}.关于整理想的许多概念和性质均可推广到分式理想上来.比如说,对每个 $0\neq\alpha\in O_K$,$(\alpha)=\alpha O_K$ 是整理想,叫 $O_K$ 的主理想.一般地,对每个 $0\neq\alpha\in K$,$(\alpha)=\alpha O_K$ 是分式理想(因为由第一章 §2 习题 2 知道存在 $0\neq n\in\Z\subseteq O_K$,使得 $n\alpha\in O_K$.于是 $\alpha O_K=\frac{1}{n}(n\alpha O_K)$,而 $n\alpha O_K$ 是整理想).我们称 $\alpha O_K$($0\neq\alpha\in K$)为主分式理想.由于
+\[
+  (\alpha)(\alpha^{-1})=(\alpha O_K)(\alpha^{-1}O_K)=(\alpha\alpha^{-1})O_K=O_K,
+\]
+可知 $(\alpha)$ 的逆元素仍是主分式理想 $(\alpha^{-1})$.所以 $I(K)$ 中主分式理想全体形成一个子群,叫作 $K$ 的\emph{主分式理想群},表示成 $P(K)$.
+\end{sloppypar}
+
+\begin{definition}\label{def:ch3-5}
+商群 $C(K)=I(K)/P(K)$ 叫作 $K$ 的\emph{(分式)理想类群}.$C(K)$ 中每个元素叫作 $K$ 的一个\emph{(分式)理想类}.
+\end{definition}
+
+换句话说,$K$ 的两个分式理想 $A$ 和 $B$ 叫作是\emph{等价}的,是指 $A$ 和 $B$ 在 $I(K)$ 对子群 $P(K)$ 的同一个陪集之中,即存在 $0\neq\alpha\in K$,使得 $A=(\alpha)B=\alpha B$.而 $C(K)$ 中元素即是分式理想的一个等价类.
+
+$I(K)$ 和 $P(K)$ 都是无限 Abel 群.我们将要证明商群 $C(K)$ 是有限 Abel 群,它的阶数 $h(K)=|C(K)|$ 叫作数域 $K$ 的\emph{理想类数},简称作 $K$ 的类数.
+
+\begin{sloppypar}
+$h(K)$ 是数域 $K$ 的重要不变量,因为由类群 $C(K)$ 的定义可知:
+\begin{align*}
+  h(K)=1&\Leftrightarrow I(K)=P(K)\ \text{(即每个分式理想均为主分式理想)}\\
+  &\Leftrightarrow O_K\ \text{的每个(整)理想均为主理想(习题 1)}\\
+  &\Leftrightarrow O_K\ \text{是主理想整环}\\
+  &\Leftrightarrow O_K\ \text{为(关于元素的)惟一因子分解整环(第二章引理 \ref{lem:ch2-8})}.
+\end{align*}
+所以在某种意义上,$h(K)$ 的大小可用来衡量 Dedekind 整环 $O_K$ 与惟一因子分解整环相距多远.
+\end{sloppypar}
+
+\begin{sloppypar}
+1847 年,德国数学家 Kummer 证明了,对每个奇素数 $p$,若分圆域 $\Q(\zeta_p)$ 的类数 $h_p$ 为 $1$(即 $\Z[\zeta_p]$ 为惟一因子分解整环),则方程 $x^p+y^p=z^p$ 没有正整数解.他计算出对于 $p=3,5,7,11,13,17$ 和 $19$,$h_p=1$,从而对方程指数 $n$ 是这些素数时证明了费马猜想.他还算出 $h_{23}=3$.进一步,他又证明了:尽管 $h_p>1$,但只要 $h_p$ 不被 $p$ 除尽,那么 $x^p+y^p=z^p$ 仍旧没有正整数解.他发现在 $100$ 以内除了 $37,59$ 和 $67$ 之外均满足 $p\nmid h_p$.所以 Kummer 对分圆域类数的研究,使费马猜想的研究有了重大进展.在此之前,高斯于 19 世纪初研究了二次数域的类数.自那以后,对于数域的类数和类群结构的研究就成为经典代数数论的一个中心研究课题.
+\end{sloppypar}
+
+我们也可以定义分式理想的整除性.设 $A$ 和 $B$ 是数域 $K$ 的两个分式理想,称 $B$ 被 $A$ 整除(表示成 $A\mid B$),是指 $B/A=BA^{-1}$ 为整理想.分式理想的整除性也有与整理想情形一些类似的性质(习题 5).
+
+\begin{sloppypar}
+最后,我们还可以定义分式理想的范.设 $I$ 是域 $K$ 的分式理想,则它可表示成整理想的商:$I=\frac{A}{B}$,$A,B\in I^{\circ}(K)$.我们定义
+\end{sloppypar}
+\[
+  N_K(I)=N_K(A)/N_K(B).
+\]
+由于 $B\neq 0$,从而 $N_K(B)$ 是非零有理整数,于是 $N_K(I)\in\Q$.如果 $I$ 又可表成另外两个整理想之商:$I=\frac{A'}{B'}$,则 $AB'=A'B$,于是 $N_K(A)N_K(B')=N_K(A')N_K(B)$,即 $N_K(A)/N_K(B)=N_K(A')/N_K(B')$.这表明 $N_K(I)$ 的定义是分式理想 $I$ 自身的特性,与将 $I$ 表成整理想之商的方式无关.我们称 $N_K(I)$ 为分式理想 $I$ 的\emph{范}.它也有与整理想范类似的性质(习题 3 和 4).
+
+\subsection{类数有限性定理}\label{sec:ch3-s1-3}
+
+现在我们由 Minkowski 定理得到 Dirichlet 的类数有限性定理以及其他一些有益的结果.方法是:通过 $n$ 次数域 $K$ 到 $\C$ 中的 $n$ 个嵌入将 $K$ 的每个理想对应于 $R^n$ 中的一个格.
+
+\begin{sloppypar}
+我们在第一章中讲过,每个 $n$ 次数域 $K$ 到 $\C$ 中有 $r_1$ 个实嵌入 $\sigma_i\colon K\to\R$($1\leqslant i\leqslant r_1$)和 $r_2$ 对复嵌入 $\sigma_{r_1+j}=\overline{\sigma}_{r_1+r_2+j}\colon K\to\C$($1\leqslant j\leqslant r_2$),$r_1+2r_2=n$.由此得到映射
+\begin{align*}
+  \sigma\colon K&\to R^n,\\
+  \sigma(\alpha)&=(\sigma_1(\alpha),\dots,\sigma_{r_1}(\alpha),\operatorname{Re}(\sigma_{r_1+1}(\alpha)),\dots,\operatorname{Re}(\sigma_{r_1+r_2}(\alpha)),\\
+  &\qquad\operatorname{Im}(\sigma_{r_1+1}(\alpha)),\dots,\operatorname{Im}(\sigma_{r_1+r_2}(\alpha))),
+\end{align*}
+其中 $\operatorname{Re}(\gamma)$,$\operatorname{Im}(\gamma)$ 分别表示复数 $\gamma$ 的实部和虚部.$\sigma$ 显然是加法群的同态.进而,由于每个 $\sigma_i$ 均是单同态,可知 $\sigma$ 是单同态,即 $\sigma$ 为嵌入.我们称 $\sigma$ 为 $K$ 到 $R^n$ 中的\emph{正则嵌入}.
+\end{sloppypar}
+
+\begin{lemma}\label{lem:ch3-3}
+设 $\mathfrak{a}$ 为 $n$ 次数域 $K$ 中的非零整理想,则 $\sigma(\mathfrak{a})$ 是 $R^n$ 中的格,并且
+\[
+  V(\sigma(\mathfrak{a}))=2^{-r_2}N(\mathfrak{a})|d(K)|^{1/2}.
+\]
+\end{lemma}
+
+\begin{proof}
+我们在第二章中证明了整理想 $\mathfrak{a}$ 的加法群是秩 $n$ 的自由 Abel 群,即 $\mathfrak{a}=\Z\alpha_1\oplus\cdots\oplus\Z\alpha_n$.取 $e_1,\cdots,e_n$ 为 $R^n$ 的标准基,则 $\sigma(\alpha_i)=\sum_{j=1}^{n}x_{ij}e_j$,其中
+\[
+  x_{ij}=\begin{cases}
+    \sigma_j(\alpha_i), & 1\leqslant j\leqslant r_1;\\
+    \operatorname{Re}(\sigma_j(\alpha_i)), & r_1+1\leqslant j\leqslant r_1+r_2;\\
+    \operatorname{Im}(\sigma_j(\alpha_i)), & r_1+r_2+1\leqslant j\leqslant n.
+  \end{cases}
+\]
+于是 $\sigma(\mathfrak{a})=\Z\sigma(\alpha_1)+\cdots+\Z\sigma(\alpha_n)$,并且
+\[
+  V(\sigma(\mathfrak{a}))=|\det(x_{ij})|=2^{-r_2}|\det(\sigma_j(\alpha_i))|
+  =2^{-r_2}|d_K(\alpha_1,\dots,\alpha_n)|^{1/2}
+  =2^{-r_2}N(\mathfrak{a})|d(K)|^{1/2}.
+\]
+由于上式右边不为 $0$,即 $\det(x_{ij})\neq 0$,这就表明 $\sigma(\alpha_1),\cdots,\sigma(\alpha_n)$ 是线性无关的,从而 $\sigma(\mathfrak{a})=\Z\sigma(\alpha_1)\oplus\cdots\oplus\Z\sigma(\alpha_n)$ 为 $R^n$ 中的格.
+\end{proof}
+
+\begin{lemma}\label{lem:ch3-4}
+设 $\mathfrak{a}$ 是数域 $K$ 中的非零整理想,$[K:\Q]=n=r_1+2r_2$,则
+\begin{enumerate}[(a)]
+  \item 存在 $0\neq x\in\mathfrak{a}$,使得
+  \[
+    |N_{K/\Q}(x)|\leqslant\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}N(\mathfrak{a}).
+  \]
+  \item $K$ 的每个理想类 $C$ 中均有整理想 $\mathfrak{B}$,使得
+  \[
+    N(\mathfrak{B})\leqslant\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}.
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) 对于 $y=(y_1,\cdots,y_n)\in R^n$,定义
+\[
+  \lambda(y)=\sum_{i=1}^{r_1}|y_i|+2\sum_{j=1}^{r_2}\left(y_{r_1+j}^2+y_{r_1+r_2+j}^2\right)^{1/2}.
+\]
+对于 $t>0$,定义 $R^n$ 中集合 $B_t=\{y=(y_1,\cdots,y_n)\in R^n\mid\lambda(y)\leqslant t\}$.易知 $B_t$ 是关于原点对称的紧凸集,由多重定积分可算出
+\[
+  \mu(B_t)=\int_{\lambda(y)\leqslant t}\cdots\int\mathrm{d}y_1\cdots\mathrm{d}y_n
+  =2^{r_1}\left(\frac{\pi}{2}\right)^{r_2}\frac{t^n}{n!}.
+\]
+根据引理 \ref{lem:ch3-3},对于 $K$ 中非零整理想 $\mathfrak{a}$,$\sigma(\mathfrak{a})$ 为 $R^n$ 中的格,并且
+\[
+  V(\sigma(\mathfrak{a}))=2^{-r_2}N(\mathfrak{a})|d(K)|^{1/2}.
+\]
+当 $t^n=\left(\frac{4}{\pi}\right)^{r_2}N(\mathfrak{a})|d(K)|^{1/2}n!$ 时,$\mu(B_t)=2^nV(\sigma(\mathfrak{a}))$.从而由 Minkowski 定理可知存在 $0\neq x\in\mathfrak{a}$,使得 $\sigma(x)\in B_t$,即 $\lambda(\sigma(x))\leqslant t$.于是
+\begin{align*}
+  |N_{K/\Q}(x)|&=\prod_{i=1}^{n}|\sigma_i(x)|
+  \leqslant\left(\frac{1}{n}\sum_{i=1}^{n}|\sigma_i(x)|\right)^n
+  =\frac{1}{n^n}(\lambda(\sigma(x)))^n\\
+  &\leqslant\frac{1}{n^n}t^n
+  =\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}N(\mathfrak{a}).
+\end{align*}
+
+(b) 设 $\mathfrak{a}'\in C$.由于 $\mathfrak{a}'$ 除以任何整数之后仍为理想类 $C$ 中的理想,因此可以不妨设 $\mathfrak{a}=\mathfrak{a}'^{-1}$ 是整理想.由 (a) 知道存在 $0\neq x\in\mathfrak{a}$,$|N(x)|\leqslant\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}N(\mathfrak{a})$.令 $\mathfrak{B}=x\mathfrak{a}^{-1}=x\mathfrak{a}'$.由于 $x\in\mathfrak{a}$ 可知 $\mathfrak{B}$ 为 $C$ 中整理想,并且
+\[
+  N(\mathfrak{B})=N(x)N(\mathfrak{a}')\leqslant\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}N(\mathfrak{a}\mathfrak{a}').
+\]
+由于 $N(\mathfrak{a}\mathfrak{a}')=N(O_K)=1$,于是证毕.
+\end{proof}
+
+\begin{lemma}\label{lem:ch3-5}
+当 $n=[K:\Q]\geqslant 2$ 时,
+\[
+  |d(K)|\geqslant\frac{\pi}{3}\left(\frac{3\pi}{4}\right)^{n-1}.
+\]
+从而存在绝对常数 $N$,使得对每个数域 $K$ 均有 $n/\log|d(K)|\leqslant N$.
+\end{lemma}
+
+\begin{proof}
+由于数域 $K$ 的每个非零整理想的范均 $\geqslant 1$,所以由引理 \ref{lem:ch3-4}(b) 即知 $|d(K)|^{1/2}\geqslant\frac{n^n}{n!}\left(\frac{\pi}{4}\right)^{r_2}$.于是
+\[
+  |d(K)|\geqslant\left(\frac{\pi}{4}\right)^{2r_2}\left(\frac{n^n}{n!}\right)^2
+  \geqslant\left(\frac{\pi}{4}\right)^n\left(\frac{n^n}{n!}\right)^2.
+\]
+然后对 $n$ 用归纳法不难证明上式右边 $\geqslant\frac{\pi}{3}\left(\frac{3\pi}{4}\right)^{n-1}$,从而得到引理 5 的第 1 个论断,然后立即得到第 2 个论断.
+\end{proof}
+
+有了上面的准备,我们很容易得到下面一些重要结果.
+
+\begin{theorem}[\emph{Minkowski}]\label{thm:3.3}
+对于每个数域 $K\neq\Q$,均有 $|d(K)|>1$.从而至少有一个素数在 $K$ 中分歧.
+\end{theorem}
+
+\begin{proof}
+由于 $n=[K:\Q]\geqslant 2$,根据引理 \ref{lem:ch3-5} 可知
+\[
+  |d(K)|\geqslant\frac{\pi}{3}\left(\frac{3\pi}{4}\right)^{n-1}>1.
+\]
+再由 Dedekind 判别式定理(定理 \ref{thm:2.10})便知至少有一个素数在 $K$ 中分歧.
+\end{proof}
+
+\begin{theorem}[\emph{Dirichlet,类数有限性定理}]\label{thm:3.4}
+每个数域 $K$ 的理想类数 $h(K)=|C(K)|$ 均有限.
+\end{theorem}
+
+\begin{proof}
+对于每个 $q\in\Z$,$q\geqslant 1$,我们有
+\[
+  N(\mathfrak{a})=q\Rightarrow|O_K/\mathfrak{a}|=q\Rightarrow\overline{q}=\overline{0}\in O_K/\mathfrak{a}\Rightarrow\mathfrak{a}\mid qO_K.
+\]
+由 $qO_K$ 的素理想分解式可知 $qO_K$ 只有有限个整理想因子,从而也只有有限多个整理想 $\mathfrak{a}$ 使得 $N(\mathfrak{a})=q$.从而
+\[
+  N(\mathfrak{b})\leqslant\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}
+\]
+的整理想 $\mathfrak{b}$ 也只有有限多个.根据引理 \ref{lem:ch3-4}(b),$K$ 的每个理想类中均包含有这样的整理想 $\mathfrak{b}$,这就表明 $K$ 只有有限多个理想类.
+\end{proof}
+
+\begin{theorem}[\emph{Hermite}]\label{thm:3.5}
+对于每个固定的 $d\in\Z$,只有有限多个数域 $K$ 使得 $d(K)=d$.
+\end{theorem}
+
+\begin{proof}
+设 $d(K)=d$.由 $n\leqslant M\cdot\log|d|$(引理 \ref{lem:ch3-5})可知 $K$ 的次数有界,从而满足 $r_1+2r_2=n$ 的 $n,r_1,r_2$ 也只有有限多个可能,因此只需对固定的一组 $n,r_1,r_2$ 证明定理即可.
+
+当 $r_1>0$ 时,令
+\[
+  B=\left\{(y_1,\dots,y_n)\in R^n\;\middle|\;\begin{array}{l}
+    |y_1|\leqslant 2^{n-1}\left(\frac{\pi}{2}\right)^{-r_2}|d|^{1/2},\\
+    |y_i|\leqslant 1/2\quad (2\leqslant i\leqslant r_1),\\
+    \left(y_{r_1+j}^2+y_{r_1+r_2+j}^2\right)^{1/2}\leqslant 1/2\quad (1\leqslant j\leqslant r_2).
+  \end{array}\right\}
+\]
+而当 $r_1=0$ 时,令
+\[
+  B=\left\{(y_1,\dots,y_n)\in R^n\;\middle|\;\begin{array}{l}
+    |2y_1|\leqslant 1/2,\quad |2y_{r_2+1}|\leqslant 2^n\left(\frac{\pi}{2}\right)^{1-r_2}|d|^{1/2};\\
+    \left(y_j^2+y_{r_2+j}^2\right)^{1/2}\leqslant 1/2\quad (2\leqslant j\leqslant r_2).
+  \end{array}\right\}
+\]
+易知 $B$ 为 $R^n$ 中关于原点对称的紧凸集.当 $r_1>0$ 时,
+\[
+  \mu(B)=2^n\left(\frac{\pi}{2}\right)^{-r_2}|d|^{1/2}\left(\frac{\pi}{4}\right)^{r_2}=2^{n-r_2}|d|^{1/2}.
+\]
+而当 $r_1=0$ 时,也有
+\[
+  \mu(B)=\frac{1}{2}\cdot\left(\frac{\pi}{2}\right)^{1-r_2}\cdot 2^n\cdot|d|^{1/2}\left(\frac{\pi}{4}\right)^{r_2-1}=2^{n-r_2}|d|^{1/2}.
+\]
+而 $V(\sigma(O_K))=2^{-r_2}|d|^{1/2}$.根据定理 \ref{thm:3.1} 可知存在 $0\neq x\in O_K$,使得 $\sigma(x)\in B$.我们来证明 $K=\Q(x)$:
+
+当 $r_1>0$ 时,由于 $i\neq 1$ 时 $|\sigma_i(x)|\leqslant 1/2$,而
+\[
+  |N(x)|=\prod_{i=1}^{n}|\sigma_i(x)|\geqslant 1,
+\]
+因此 $|\sigma_1(x)|\geqslant 1$,于是 $\sigma_1(x)\neq\sigma_i(x)$($2\leqslant i\leqslant n$),从而 $\sigma_i(x)$($1\leqslant i\leqslant n$)彼此不同.对于 $r_1=0$ 的情形同样可证 $|\sigma_1(x)|\geqslant 1$,$|\sigma_i(x)|\leqslant 1/2$($2\leqslant i\leqslant r_2$).由 $|\operatorname{Re}(\sigma_1(x))|\leqslant 1/4$,$|\sigma_1(x)|\geqslant 1$ 可知 $\operatorname{Im}(\sigma_1(x))\neq 0$.因此 $\sigma_1(x)\neq\overline{\sigma_1(x)}$.当 $\sigma_j\neq\sigma_1$ 和 $\overline{\sigma}_1$ 时,$|\sigma_j(x)|\leqslant 1/2$,从而 $\sigma_1(x)\neq\sigma_j(x)$.于是 $\sigma_j(x)$($1\leqslant j\leqslant n$)也两两不同.因此,在任何情形下,$x$ 均有 $n$ 个不同的共轭元素,从而 $x$ 的极小多项式的次数 $\geqslant n$,于是 $[\Q(x):\Q]\geqslant n$.但是 $\Q(x)\subseteq K$,从而 $[\Q(x):\Q]\leqslant[K:\Q]=n$.所以 $[\Q(x):\Q]=n$,即 $\Q(x)=K$.
+
+由于 $x\in B$,从 $B$ 的定义可知 $|\sigma_i(x)|$($1\leqslant i\leqslant n$)均有一个只依赖于 $n,d,r_1,r_2$ 的上界.而 $x$ 的极小多项式的系数为 $\sigma_i(x)$($1\leqslant i\leqslant n$)的初等对称函数,所以这些系数的绝对值也有只依赖于 $n,d,r_1,r_2$ 的上界.但是这些系数为有理整数,从而只有有限多个这样的极小多项式,于是也只有有限多个这样的元素 $x$ 和有限多个数域 $K=\Q(x)$.这就证明了定理.
+\end{proof}
+
+\begin{sloppypar}
+定理 \ref{thm:3.5} 的证明事实上给出了计算数域类群和类数的一个方法,这就是:首先计算数域 $K$ 的 \emph{Minkowski 常数}
+\[
+  M(K)=\left(\frac{4}{\pi}\right)^{r_2}\frac{n!}{n^n}|d(K)|^{1/2}.
+\]
+根据引理 \ref{lem:ch3-4},每个理想类均有整理想 $\mathfrak{B}$,使得 $N(\mathfrak{B})\leqslant M(K)$.因此,如果我们对每个有理素数 $p\leqslant M(K)$,将 $pO_K$ 作素理想分解,即求出 $p$ 的全部素理想因子 $\mathfrak{p}$,不难看出,类群 $C(K)$ 是由集合 $A=\{[\mathfrak{p}]\mid\mathfrak{p}\mid p,\ p\leqslant M(K)\}$ 生成的,其中 $[\mathfrak{p}]$ 表示素理想 $\mathfrak{p}$ 所在的理想类.当集合 $A$ 不太大时,考查 $A$ 中诸元素之间的乘法关系,就可决定类群 $C(K)$ 和类数 $h(K)$.下面我们举一些例子.
+\end{sloppypar}
+
+\begin{example}\label{ex:ch3-s1-3-1}
+实二次域 $K=\Q(\sqrt{d})$,$d>0$,无平方因子,$n=2$,$r_2=0$,从而 $M(K)=\frac{1}{2}|d(K)|^{1/2}$.
+
+对于 $K=\Q(\sqrt5)$,$d(K)=5$,$M(K)<2$.于是域 $K$ 的每个理想类均有整理想 $A$,$N_K(A)=1$,即 $A=O_K=(1)$.所以每个理想类均是主理想类.因此 $h(K)=1$,即 $O_K=\Z\left[\frac{1}{2}(1+\sqrt5)\right]$ 为主理想整环和惟一因子分解整环.
+
+对于 $K=\Q(\sqrt{10})$,则 $O_K=\Z[\sqrt{10}]$,$d(K)=40$,$M(K)=\frac{1}{2}\sqrt{40}<4$.素数 $2$ 和 $3$ 在 $K$ 中分解成
+\[
+  2O_K=\mathfrak{p}_2^2,\quad N(\mathfrak{p}_2)=2,\quad [\mathfrak{p}_2]^2=[(2)]=1,
+\]
+\[
+  3O_K=\mathfrak{p}_3\overline{\mathfrak{p}}_3,\quad N(\mathfrak{p}_3)=N(\overline{\mathfrak{p}}_3)=3,\quad [\mathfrak{p}_3][\overline{\mathfrak{p}}_3]=1,
+\]
+从而 $[\mathfrak{p}_3]=[\overline{\mathfrak{p}}_3]^{-1}$.于是类群 $C(K)$ 由 $[\mathfrak{p}_2]$ 和 $[\mathfrak{p}_3]$ 生成,我们来决定 $[\mathfrak{p}_2]$ 的阶.由于
+\begin{align*}
+  [\mathfrak{p}_2]=1&\Leftrightarrow\mathfrak{p}_2\ \text{为主理想}\ (\alpha),\ \alpha\in O_K\\
+  &\Leftrightarrow 2=N(\mathfrak{p}_2)=|N(\alpha)|\qquad(\text{令}\ \alpha=a+b\sqrt{10},\ a,b\in\Z)\\
+  &\Leftrightarrow a^2-10b^2=\pm 2\quad(a,b\in\Z)\\
+  &\Leftrightarrow a^2\equiv\pm 2\ (\mathrm{mod}\ 5),
+\end{align*}
+最后一个同余式与 $\left(\frac{\pm2}{5}\right)=-1$ 相矛盾,因此 $[\mathfrak{p}_2]\neq 1$,再由 $[\mathfrak{p}_2]^2=1$ 可知 $[\mathfrak{p}_2]$ 是 $2$ 阶元素.
+
+另一方面,$x^2-10y^2=-6$ 有整解 $(x,y)=(2,1)$.令 $\alpha=2+\sqrt{10}\in O_K$,则 $N((\alpha))=6$,所以整理想 $(\alpha)$ 必分解成范为 $2$ 和 $3$ 的两个素理想之积,即 $(\alpha)=\mathfrak{p}_2\mathfrak{p}_3$ 或 $(\alpha)=\mathfrak{p}_2\overline{\mathfrak{p}}_3$.对前者则 $[\mathfrak{p}_2][\mathfrak{p}_3]=1$,即 $[\mathfrak{p}_3]=[\mathfrak{p}_2]^{-1}$.对后者则 $[\mathfrak{p}_2][\overline{\mathfrak{p}}_3]=1$,即 $[\mathfrak{p}_3]=[\overline{\mathfrak{p}}_3]^{-1}=[\mathfrak{p}_2]$.所以 $C(K)$ 由 $[\mathfrak{p}_2]$ 生成,即 $C(K)$ 为 $2$ 元群,$h(K)=2$.
+\end{example}
+
+\begin{example}\label{ex:ch3-s1-3-2}
+对于虚二次域 $K=\Q(\sqrt{-d})$($d>0$),则 $n=2$,$r_2=1$,从而 $M(K)=\frac{2}{\pi}\sqrt{|d(K)|}$.
+
+\begin{sloppypar}
+对于 $K=\Q(\sqrt{-23})$,$O_K=\Z\left[\frac{1}{2}(1+\sqrt{-23})\right]$,即 $O_K=\left\{\frac{1}{2}(a+b\sqrt{-23})\;\middle|\;a,b\in\Z,\ a\equiv b\ (\mathrm{mod}\ 2)\right\}$,$M(K)=\frac{2}{\pi}\sqrt{23}<4$.由 $-23\equiv 1\ (\mathrm{mod}\ 8)$ 和 $\left(\frac{-23}{3}\right)=1$ 可知 $2$ 和 $3$ 在 $K$ 中分裂:
+\end{sloppypar}
+\[
+  2O_K=\mathfrak{p}_2\overline{\mathfrak{p}}_2,\quad N(\mathfrak{p}_2)=N(\overline{\mathfrak{p}}_2)=2,\quad [\overline{\mathfrak{p}}_2]=[\mathfrak{p}_2]^{-1},
+\]
+\[
+  3O_K=\mathfrak{p}_3\overline{\mathfrak{p}}_3,\quad N(\mathfrak{p}_3)=N(\overline{\mathfrak{p}}_3)=3,\quad [\overline{\mathfrak{p}}_3]=[\mathfrak{p}_3]^{-1}.
+\]
+于是 $C(K)$ 由 $[\mathfrak{p}_2]$ 和 $[\mathfrak{p}_3]$ 生成.现在决定 $[\mathfrak{p}_2]$ 的阶.由于
+\begin{align*}
+  [\mathfrak{p}_2]=1&\Leftrightarrow\mathfrak{p}_2=(\alpha),\ \alpha=\frac{1}{2}(a+b\sqrt{-23}),\ a,b\in\Z,\ 2\mid a-b\\
+  &\Leftrightarrow\frac{1}{4}(a^2+23b^2)=N(\mathfrak{p}_2)=2,\ a,b\in\Z\\
+  &\Rightarrow a^2+23b^2=8,\ a,b\in\Z.
+\end{align*}
+但是 $x^2+23y^2=8$ 显然没有整解,因此 $[\mathfrak{p}_2]\neq 1$.另一方面,$x^2+23y^2=32$ 有解 $(x,y)=(3,1)$.令 $\alpha=\frac{1}{2}(3+\sqrt{-23})\in O_K$,则 $N(\alpha)=8$,所以 $(\alpha)$ 的分解只有以下 $4$ 个可能:
+\[
+  (\alpha)=\mathfrak{p}_2^3,\ \mathfrak{p}_2^2\overline{\mathfrak{p}}_2,\ \mathfrak{p}_2\overline{\mathfrak{p}}_2^2,\ \overline{\mathfrak{p}}_2^3.
+\]
+由于 $\mathfrak{p}_2\overline{\mathfrak{p}}_2=(2)$ 不是 $(\alpha)$ 的因子(因为 $\frac{\alpha}{2}\notin O_K$),所以 $(\alpha)$ 只能为 $\mathfrak{p}_2^3$ 或 $\overline{\mathfrak{p}}_2^3$,由此即知 $[\mathfrak{p}_2]^3=1$,即 $[\mathfrak{p}_2]$ 是 $3$ 阶元素.
+
+进而,$x^2+23y^2=24$ 有解 $(x,y)=(1,1)$.令 $\beta=\frac{1}{2}(1+\sqrt{-23})\in O_K$,则 $(\beta)$ 是范为 $6$ 的整理想,于是
+\[
+  (\beta)=\mathfrak{p}_2\mathfrak{p}_3,\ \overline{\mathfrak{p}}_2\mathfrak{p}_3,\ \mathfrak{p}_2\overline{\mathfrak{p}}_3\ \text{或}\ \overline{\mathfrak{p}}_2\overline{\mathfrak{p}}_3,
+\]
+即 $[\mathfrak{p}_3]=[\mathfrak{p}_2]$ 或 $[\mathfrak{p}_3]=[\mathfrak{p}_2]^{-1}$,从而 $C(K)$ 只由 $[\mathfrak{p}_2]$ 生成,即为 $3$ 阶(循环)群,$h(K)=3$.
+
+对于 $K=\Q(\sqrt{-67})$,$M(K)=\frac{2}{\pi}\sqrt{67}<6$.由 $-67\equiv 5\ (\mathrm{mod}\ 8)$,$\left(\frac{-67}{3}\right)=\left(\frac{-67}{5}\right)=-1$,可知 $2,3,5$ 在 $K$ 中均是惯性的.这就表明 $N(\mathfrak{a})\leqslant 5$ 的整理想 $\mathfrak{a}$ 均是主理想.从而 $C(K)$ 只包括主理想类,即 $h(K)=1$.类似方法可证得对于 $K=\Q(\sqrt{-d})$,$d=1,2,3,7,11,19,43,67$ 和 $163$,均有 $h(K)=1$.高斯曾经猜想:虚二次域当中只有这 $9$ 个域的类数为 $1$.这个猜想直到 $1967$ 年才由英国数学家 Baker 和美国数学家 Stark 分别独立地证明.高斯关于二次域类数问题的另一个著名猜想是:存在着无穷多个实二次域其类数为 $1$.这个猜想直到现在既未被证明亦未被推翻.我们在本书第二部分要指明证明这一猜想的困难所在.
+\end{example}
+
+\begin{example}\label{ex:ch3-s1-3-3}
+$K=\Q(\omega)$,$\omega^3-2\omega+2=0$.这是对 $2$ 的 Eisenstein 型数域.从我们已经讲过的 Eisenstein 型数域一般结果可知 $2\nmid|O_K/\Z[\omega]|$,而 $d_K(1,\omega,\omega^2)=-(4\cdot(-2)^3+27\cdot 2^2)=-4\cdot 19$.于是 $d(K)=-4\cdot 19$ 并且 $O_K=\Z[\omega]$.由 $d(K)<0$ 知 $x^3-2x+2$ 只有一个实根,于是 $n=3$,$r_1=r_2=1$.所以
+\[
+  M(K)=\frac{4}{\pi}\cdot\frac{6}{3^3}\cdot 2\sqrt{19}=2.4\cdots.
+\]
+因为 $K$ 是对 $2$ 的 Eisenstein 型数域,从而 $2O_K=\mathfrak{p}^3$,即只有 $\mathfrak{p}$ 是 $N(\mathfrak{p})=2$ 的整理想.因为 $K$ 的每个理想类必然包含 $O_K$ 或者 $\mathfrak{p}$,从而 $h(K)\leqslant 2$.并且 $h(K)$ 为元素 $[\mathfrak{p}]$ 的阶.但是由 $\mathfrak{p}^3=2O_K$ 知 $[\mathfrak{p}]^3=1$,而 $[\mathfrak{p}]$ 不可能为 $3$ 阶元素(因为 $h(K)\leqslant 2$),从而只可能 $[\mathfrak{p}]=1$,于是 $h(K)=1$.
+\end{example}
+
+但是当 $M(K)$ 很大的时候,上述方法计算起来是相当麻烦的.我们在本书第二部分将要引进更有效的解析工具来研究数域的类数.
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 设 $A$ 是数域 $K$ 的分式理想,求证:
+  \begin{enumerate}[(a)]
+    \item $A$ 为整理想 $\Leftrightarrow A\subseteq O_K$;
+    \item $A^{-1}=\{\alpha\in K\mid\alpha A\subseteq O_K\}$.
+  \end{enumerate}
+  \item $O_K$ 为主理想整环的充分必要条件是 $h(K)=1$.
+  \item \begin{enumerate}[(1)]
+    \item $K$ 的每个分式理想 $A$ 的加法群为秩 $n=[K:\Q]$ 的自由 Abel 群,即存在 $A$ 中元素 $\alpha_1,\cdots,\alpha_n$,使得 $A=\Z\alpha_1\oplus\Z\alpha_2\oplus\cdots\oplus\Z\alpha_n$.
+    \item 设 $\omega_1,\cdots,\omega_n$ 是 $O_K$ 的一组整基,$\alpha_1,\cdots,\alpha_n$ 为 (1) 中给出的 $A$ 的一组 $\Z$-基,则存在 $n$ 阶方阵 $T=(t_{ij})$,$t_{ij}\in\Q$,使得
+    \[
+      \begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix}
+      =T\begin{pmatrix}\omega_1\\ \vdots\\ \omega_n\end{pmatrix}.
+    \]
+    求证 $N_K(A)$ 等于 $\det(T)$ 的绝对值.
+  \end{enumerate}
+  \item 设 $A$ 和 $B$ 是数域 $K$ 的两个分式理想,则
+  \begin{enumerate}[(a)]
+    \item $N_K(AB)=N_K(A)N_K(B)$;
+    \item 若 $\{\alpha_1,\cdots,\alpha_n\}$ 是 $A$ 的一组 $\Z$-基(习题 3),则 $d_K(\alpha_1,\cdots,\alpha_n)=N_K(A)^2d(K)$;
+    \item 若 $A=(\alpha)=\alpha O_K$ 是主(分式)理想,则 $N_K(A)=|N_{K/\Q}(\alpha)|$.
+  \end{enumerate}
+  \item 设 $A$ 和 $B$ 是数域 $K$ 的两个分式理想,求证:
+  \begin{enumerate}[(a)]
+    \item $A\mid B\Leftrightarrow B\subseteq A$.并且当 $B\subseteq A$ 时,$|A/B|=N_K(B/A)$;
+    \item 若 $A=P_1^{a_1}\cdots P_r^{a_r}$,$B=P_1^{b_1}\cdots P_r^{b_r}$,其中 $P_1,\cdots,P_r$ 是 $O_K$ 中不同的素理想,$a_i,b_i\in\Z$,则 $A\mid B\Leftrightarrow a_i\leqslant b_i$($1\leqslant i\leqslant r$).
+  \end{enumerate}
+  \item 设 $\mathfrak{a}$ 为 $n$ 次数域 $K$ 中的分式理想,$\sigma\colon K\to R^n$ 为正则嵌入,则 $\sigma(\mathfrak{a})$ 为 $R^n$ 中的格,并且 $V(\sigma(\mathfrak{a}))=2^{-r_2}N(\mathfrak{a})|d(K)|^{1/2}$.
+  \item 设 $a,b,c\in\R$,$4ac-b^2>0$.求证当 $f\geqslant\frac{2}{\pi}\sqrt{4ac-b^2}$ 时,存在 $(x,y)\in\Z^2$,$(x,y)\neq(0,0)$,使得 $ax^2+bxy+cy^2\leqslant f$.
+  \item \begin{enumerate}[(a)]
+    \item 求以下实二次域的类群和类数:
+    \[
+      K=\Q(\sqrt{d}),\qquad d=2,3,5,6,7,11,13,14,15,17,19,21,22,23;
+    \]
+    \item 求以下虚二次域的类群和类数:
+    \[
+      K=\Q(\sqrt{-d}),\qquad d=1,2,3,5,6,7,10,11,13,15,17,19,23,43,163;
+    \]
+    \item 求数域 $K=\Q(\omega)$,$\omega^3+\omega+1=0$ 的理想类数.
+  \end{enumerate}
+  \item 求证:
+  \begin{enumerate}[(a)]
+    \item $K=\Q(\sqrt{-14})$ 的类群是 $4$ 阶循环群;
+    \item $K=\Q(\sqrt{-21})$ 的类群是两个 $2$ 阶循环群的直积;
+    \item $K=\Q(\sqrt{-103})$ 的类数是 $5$.
+  \end{enumerate}
+  \item 求证:
+  \begin{enumerate}[(a)]
+    \item $\Q(\zeta_7)$ 和 $\Q(\omega+\omega^{-1})$($\omega=\zeta_7$)的类数均是 $1$;
+    \item $\Q(\omega+\omega^{-1})$($\omega=\zeta_{11}$)的类数是 $1$.
+  \end{enumerate}
+  \item 求证:
+  \begin{enumerate}[(a)]
+    \item $\Z[\sqrt[3]{2}]$ 和 $\Z[\alpha]$($\alpha^3=\alpha+1$,$\alpha\in\R$)均是主理想整环;
+    \item $\Z[\sqrt[3]{m}]$($m=3,5,6$)均是主理想整环;
+    \item $\Z[\omega]$($\omega\in\R$,$\omega^3=\omega-1$)是主理想整环.
+  \end{enumerate}
+  \item 设 $g$ 是大于 $1$ 的整数,$n$ 是大于 $1$ 的奇数,$d=n^g-1$ 没有平方因子.求证 $\Q(\sqrt{-d})$ 的类群必有 $g$ 阶元素.
+  \item 设 $p$ 为素数并且 $p\equiv 11\ (\mathrm{mod}\ 12)$,$p>3^n$,则 $\Q(\sqrt{-p})$ 的类数 $\geqslant n$.
+\end{Exercises}

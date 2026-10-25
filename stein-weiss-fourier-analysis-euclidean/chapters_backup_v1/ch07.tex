@@ -1,0 +1,621 @@
+\chapter{Multiple Fourier Series}
+\label{ch:multiple-fourier}
+
+The purpose of this chapter is to give a brief introduction to several parts of the theory of multiple Fourier series. While from the abstract point of view this represents only a particular instance of Fourier analysis on compact abelian groups, our emphasis is on the connection between the analysis on the $n$-torus and Euclidean $n$-dimensional space. Thus, in Section~2 we consider the process of ``periodization'' applied to functions on $E_n$, which gives us the Poisson summation formula, and in Section~3 we consider the corresponding periodization for multiplier operators. In the fourth and fifth sections we consider another topic, the summability of multiple Fourier series. We study that subject at this stage, instead of earlier in the nonperiodic context (in which very similar results could be proved) mainly for reasons of elegance and appropriateness. The results that are presented are valid only in the case $n > 1$, and are obtained by techniques different from those originally developed for treating similar problems in the more familiar one-dimensional case.
+
+\section{Elementary Properties}
+
+Let $\Lambda$ denote the additive group of points in $E_n$ having integral coordinates (the addition being, of course, the one derived from the vector structure of $E_n$). $\Lambda$ will be called the \emph{unit lattice}. We consider the coset space $E_n/\Lambda$ and we identify, in the usual manner, functions defined on $E_n/\Lambda$ with periodic functions on $E_n$. More precisely, a function $f$ satisfying $f(x + m) = f(x)$ whenever $m \in \Lambda$ is identified with the function whose value at the coset determined by $x$ is $f(x)$. The elements of $\Lambda$ are the periods of these functions.
+
+There exists a natural identification of $E_n/\Lambda$ with the $n$-torus $T_n = \{(e^{2\pi i x_1}, e^{2\pi i x_2}, \dots, e^{2\pi i x_n}) \in \mathbf{C}^n : (x_1, x_2, \dots, x_n) \in E_n\}$. This identification is given by the mapping $(x_1, x_2, \dots, x_n) \to (e^{2\pi i x_1}, e^{2\pi i x_2}, \dots, e^{2\pi i x_n})$ and, from it, we obtain the standard identification of periodic functions on $E_n$ with functions on the $n$-torus.
+
+A set $D \subset E_n$ will be called a \emph{fundamental domain} if every point of $E_n$ has exactly one translate with respect to $\Lambda$ in $D$. A periodic function on $E_n$ is, clearly, uniquely determined by its restriction to a fundamental domain. One that is both simple and appropriate for our purposes is the fundamental cube $Q_n = \{x \in E_n : -1/2 \leq x_j < 1/2, j = 1, 2, \dots, n\}$. Integration on $T_n$ can be defined in terms of the Lebesgue integral on $Q_n$: if $f$ is a function on $T_n$ we write
+\begin{equation}\label{eq:c7-1-1}
+\int_{T_n} f\,dx = \int_{Q_n} f\,dx
+\end{equation}
+and interpret this equality in the following way. Any function $f$ on $T_n$ gives rise to a periodic one on $E_n$, and the restriction of this last function to $Q_n$ is the one appearing on the right side of \eqref{eq:c7-1-1}. The function $f$ on $T_n$ is defined to be measurable if the corresponding function on $Q_n$ is Lebesgue measurable; if the latter is integrable then the integral on the left side of \eqref{eq:c7-1-1} is defined to be equal to the integral on the right side. In the same way, the $L^p$ spaces on $T_n$ are identified with the $L^p$ spaces on $Q_n$. Similarly, we can identify the class of finite Borel measures on $T_n$ with the class of finite Borel measures concentrated on the fundamental cube $Q_n$. We shall use the notation $L^p(T_n)$ and $\mathcal{B}(T_n)$ for the $L^p$ spaces on $T_n$ and the Borel measures on $T_n$, respectively. It should be pointed out, however, that the class of continuous functions on $T_n$, $C(T_n)$, does not correspond to the class of continuous functions on $Q_n$, but only to those functions which remain continuous on $E_n$ when extended by periodicity. $C(T_n)$ is a Banach subspace of $L^\infty(T_n)$ (that is, we endow the former space with the $L^\infty$ norm). We record here the elementary inclusion relations
+\[
+\mathcal{B}(T_n) \supset L^p(T_n) \supset C(T_n)
+\]
+and remark that, as usual, $L^1(T_n)$ may be considered as identified with the subspace of absolutely continuous measures of $\mathcal{B}(T_n)$.
+
+We shall now discuss Fourier series of measures and functions in $T_n$. To every element $\mu \in \mathcal{B}(T_n)$ we assign the Fourier series
+\begin{equation}\label{eq:c7-1-2}
+d\mu \sim \sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x},
+\end{equation}
+where
+\begin{equation}\label{eq:c7-1-3}
+a_m = \int_{T_n} e^{-2\pi i m \cdot x}\,d\mu(x)
+\end{equation}
+are the Fourier--Stieltjes coefficients of $d\mu$. To facilitate formal manipulation with Fourier coefficients it is convenient to consider, for each measure $\mu$ in $\mathcal{B}(T_n)$, the continuous linear functional
+\begin{equation}\label{eq:c7-1-4}
+\mathcal{L}_\mu : f \to \int_{T_n} f\,d\mu,
+\end{equation}
+which it defines on the space $C(T_n)$. By the Riesz--Markov representation theorem we know that, conversely, every continuous linear functional on $C(T_n)$ is of the form \eqref{eq:c7-1-4} for some $\mu \in \mathcal{B}(T_n)$ with $\|\mathcal{L}_\mu\| = \|d\mu\|$, where the norm on the left is that of the linear functional $\mathcal{L}_\mu$ and the norm on the right is the total measure of $\mu$. This identification makes it easy to define the convolution of two measures $\mu_1$ and $\mu_2$ in $\mathcal{B}(T_n)$: it is the measure $\mu$ which represents (via \eqref{eq:c7-1-4}) the linear functional
+\begin{equation}\label{eq:c7-1-5}
+f \to \int_{T_n} f\,d\mu = \int_{T_n} \int_{T_n} f(x + y)\,d\mu_1(x)\,d\mu_2(y).
+\end{equation}
+From this definition it is clear that $\|d\mu\| \leq \|d\mu_1\| \|d\mu_2\|$ and, with this operation of convolution, $\mathcal{B}(T_n)$ is a commutative Banach algebra. If we put $f(x) = e^{-2\pi i m \cdot x}$ in \eqref{eq:c7-1-5} we obtain the multiplication formula
+\begin{equation}\label{eq:c7-1-6}
+d\mu_1 * d\mu_2 \sim \sum_{m \in \Lambda} a_m b_m e^{2\pi i m \cdot x},
+\end{equation}
+where $\{a_m\}$ and $\{b_m\}$ are the Fourier--Stieltjes coefficients of $d\mu_1$ and $d\mu_2$ respectively.
+
+A cursory examination of \eqref{eq:c7-1-5} also leads to an alternative definition of $d\mu_1 * d\mu_2$. It is the measure $\mu$ with the property that
+\[
+\mu(E) = \int_{T_n} \mu_1(E - y)\,d\mu_2(y)
+\]
+for any Borel set $E$. From this it is clear that if $\mu_1$ (or $\mu_2$) is absolutely continuous then $\mu$ is also absolutely continuous. The measure $\mu_1$, however, is absolutely continuous if and only if it has a Radon--Nikodym derivative $f \in L^1(T_n)$. In this case the Radon--Nikodym derivative of $\mu$ is the function $h$ defined by
+\[
+h(x) = \int_{T_n} f(x - y)\,d\mu_2(y).
+\]
+This integral converges absolutely for almost every $x$ by virtue of Fubini's theorem. If $\mu_2$ is also absolutely continuous, with Radon--Nikodym derivative $g \in L^1(T_n)$, then
+\[
+h(x) = \int_{T_n} f(x - y) g(y)\,dy.
+\]
+Thus, we see that $L^1(T_n)$ inherits the convolution structure from $\mathcal{B}(T_n)$. In particular, the multiplication formula \eqref{eq:c7-1-6} holds for $L^1$ functions as well.
+
+In order to formulate the basic facts concerning completeness of the Fourier expansion, it is convenient to refer to any finite sum of the form $\sum a_m e^{2\pi i m \cdot x}$ as a \emph{trigonometric polynomial}.
+
+\begin{theorem}\label{thm:c7-1-7}
+\begin{enumerate}
+\item[(i)] The trigonometric polynomials are dense in $C(T_n)$ and $L^p(T_n)$, $1 \leq p < \infty$.
+\item[(ii)] Suppose that for some $\mu \in \mathcal{B}(T_n)$, $\int_{T_n} e^{-2\pi i m \cdot x}\,d\mu(x) = 0$ for all $m \in \Lambda$; then $\mu = 0$.
+\item[(iii)] Suppose $f \in L^2(T_n)$ and $f \sim \sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$, then
+\[
+\sum_{m \in \Lambda} |a_m|^2 = \|f\|_2^2.
+\]
+The correspondence $f \leftrightarrow \{a_m\}$ is a unitary mapping of $L^2(T_n)$ onto $l^2(\Lambda)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Since the trigonometric polynomials form an algebra which separates points of the $n$-torus, which contains the constants and is closed under complex conjugation, we can apply the Stone--Weierstrass theorem in order to obtain the density of the trigonometric polynomials in $C(T_n)$. This approximation property together with the density of $C(T_n)$ in $L^p(T_n)$, $1 \leq p < \infty$, implies the corresponding approximation property in $L^p(T_n)$.
+
+In order to show (ii) we observe that the property $\int_{T_n} e^{-2\pi i m \cdot x}\,d\mu(x) = 0$ for all $m \in \Lambda$ is equivalent to
+\[
+\int_{T_n} P(x)\,d\mu(x) = 0
+\]
+for each trigonometric polynomial $P$. But, by (i), this implies that $\int_{T_n} f(x)\,d\mu(x) = 0$ for all $f \in C(T_n)$. It follows, therefore, that $\mu = 0$.
+
+Given $f \in L^2(T_n)$ then, if $N$ is a positive integer, the infimum of the expression $\|f - \sum_{|m| \leq N} a_m e^{2\pi i m \cdot x}\|_2$ is attained when the numbers $a_m$ are the Fourier coefficients $\int_{T_n} e^{-2\pi i m \cdot x} f(x)\,dx$ of $f$. This assertion follows from the fact that the functions $\{e^{2\pi i m \cdot x}\}$ are mutually orthogonal and normalized. Because each $f \in L^2(T_n)$ can be approximated by trigonometric polynomials we know, therefore, that $\lim_{N \to \infty} \|f - \sum_{|m| \leq N} a_m e^{2\pi i m \cdot x}\|_2 = 0$. Consequently,
+\[
+\left\|f\right\|_2 - \left\|\sum_{|m| \leq N} a_m e^{2\pi i m \cdot x}\right\|_2 \to 0
+\]
+as $N \to \infty$ and so $\|f\|_2 = (\sum_{m \in \Lambda} |a_m|^2)^{1/2}$. This shows that the mapping $f \to \{a_m\}$ is an isometry. If it is also onto, then this mapping must be unitary. In fact, let $\{a_m\}$ be given with $\sum_{m \in \Lambda} |a_m|^2 < \infty$ and put $s_N(x) = \sum_{|m| \leq N} a_m e^{2\pi i m \cdot x}$. Clearly, $\|s_{N_1} - s_{N_2}\|_2 = (\sum_{N_1 < |m| \leq N_2} |a_m|^2)^{1/2}$, if $N_1 < N_2$. Therefore, $\{s_N\}$ is a Cauchy sequence in $L^2(T_n)$ and, thus, it converges in the norm to some function $f \in L^2(T_n)$. Since
+\[
+a_m = \int_{T_n} s_N(x) e^{-2\pi i x \cdot m}\,dx \qquad \text{if } |m| \leq N,
+\]
+it follows that
+\[
+a_m = \int_{T_n} f(x) e^{-2\pi i x \cdot m}\,dx \qquad \text{for all } m \in \Lambda.
+\]
+This shows (iii) and, therefore, the theorem is proved.
+\end{proof}
+
+We now derive some useful corollaries of this result.
+
+\begin{corollary}\label{cor:c7-1-8}
+Suppose $f \in L^1(T_n)$ and $\sum_{m \in \Lambda} |a_m| < \infty$, where $\{a_m\}$ are the Fourier coefficients of $f$; then $f$ can be modified on a set of measure zero so that it is in $C(T_n)$ and equals $\sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ for all $x \in T_n$.
+\end{corollary}
+
+\begin{proof}
+It follows from the hypotheses that the function whose values are $f(x) - \sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ has zero Fourier coefficients; thus, by (ii) of Theorem~\ref{thm:c7-1-7}, this function must be $0$ almost everywhere.
+\end{proof}
+
+When $k$ is a positive integer the class $C^{(k)}(Q_n) (= C^{(k)}(T_n))$ consists of the restrictions to $Q_n$ of all periodic functions on $E_n$ belonging to the class $C^{(k)} = C^{(k)}(E_n)$.
+
+\begin{corollary}\label{cor:c7-1-9}
+Suppose $f \in C^{(k)}(T_n)$ for $k > n/2$, then $\sum_{m \in \Lambda} |a_m| < \infty$, where $\{a_m\}$ are the Fourier coefficients of $f$.
+\end{corollary}
+
+\begin{proof}
+In the first chapter we defined $x^\alpha$ for $x = (x_1, x_2, \dots, x_n) \in E_n$ and $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_n)$ an $n$-tuple of nonnegative integers to be the number $x_1^{\alpha_1} x_2^{\alpha_2} \cdots x_n^{\alpha_n}$ (we also adopted the convention that $0^0 = 1$). Using this notation and integrating by parts we obtain
+\begin{equation}\label{eq:c7-1-10}
+\int_{T_n} (D^\alpha f)(x) e^{-2\pi i m \cdot x}\,dx = (2\pi i m)^\alpha \int_{T_n} f(x) e^{-2\pi i m \cdot x}\,dx = (2\pi i m)^\alpha a_m,
+\end{equation}
+whenever $f \in C^{(k)}(T_n)$ and $\alpha_1 + \alpha_2 + \cdots + \alpha_n \leq k$. Since $D^\alpha f$ is continuous, there exists a constant $A$ such that $|a_m| \leq A |m|^{-k}$ for $|m| \neq 0$. The result follows from the convergence of $\sum_{m \neq 0} |m|^{-k}$ for $k > n$.
+\end{proof}
+
+\begin{corollary}\label{cor:c7-1-11}
+If $f \in L^1(T_n)$ and $f \sim \sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ then $a_m \to 0$ as $|m| \to \infty$.
+\end{corollary}
+
+\section{The Poisson Summation Formula}
+
+For a function $f$ on $E_n$ we consider the process of ``periodization'': the formal sum
+\begin{equation}\label{eq:c7-2-1}
+f^\sharp(x) = \sum_{m \in \Lambda} f(x + m).
+\end{equation}
+Under suitable hypotheses this sum defines a periodic function on $E_n$, hence a function on $T_n$, whose Fourier coefficients are given by the Fourier transform of $f$ evaluated at lattice points.
+
+Let $f \in L^1(E_n)$ and let $\hat{f}(y) = \int_{E_n} f(x) e^{-2\pi i x \cdot y}\,dx$ denote its Fourier transform. Integrate the series \eqref{eq:c7-2-1} term by term against $e^{-2\pi i m \cdot x}$ over $Q_n$:
+\begin{equation}\label{eq:c7-2-2}
+\int_{Q_n} f^\sharp(x) e^{-2\pi i m \cdot x}\,dx = \sum_{m' \in \Lambda} \int_{Q_n} f(x + m') e^{-2\pi i m \cdot x}\,dx = \int_{E_n} f(x) e^{-2\pi i m \cdot x}\,dx = \hat{f}(m).
+\end{equation}
+Thus, formally, $f^\sharp \sim \sum_{m \in \Lambda} \hat{f}(m) e^{2\pi i m \cdot x}$. We also record the dual relation
+\begin{equation}\label{eq:c7-2-3}
+\sum_{m \in \Lambda} f(m) = \sum_{m \in \Lambda} \hat{f}(m),
+\end{equation}
+the \emph{Poisson summation formula}, valid when both series converge absolutely.
+
+\begin{theorem}\label{thm:c7-2-4}
+Suppose $f \in L^1(E_n)$. Then the series $\sum_{m \in \Lambda} f(x + m)$ converges in the norm of $L^1(Q_n)(= L^1(T_n))$. The resulting function in $L^1(T_n)$ has the Fourier expansion
+\begin{equation}\label{eq:c7-2-5}
+f^\sharp(x) \sim \sum_{m \in \Lambda} \hat{f}(m) e^{2\pi i m \cdot x}.
+\end{equation}
+\end{theorem}
+
+\begin{corollary}\label{cor:c7-2-6}
+Suppose $\hat{f}(y) = \int_{E_n} f(x) e^{-2\pi i x \cdot y}\,dx$ and
+\[
+\sum_{m \in \Lambda} |\hat{f}(m)| < \infty.
+\]
+Then $\sum_{m \in \Lambda} f(x + m)$ converges absolutely and uniformly to a continuous function $g$ with Fourier coefficients $\hat{f}(m)$; in particular,
+\[
+\sum_{m \in \Lambda} f(x + m) = \sum_{m \in \Lambda} \hat{f}(m) e^{2\pi i m \cdot x}.
+\]
+\end{corollary}
+
+\begin{equation}\label{eq:c7-2-7}
+\sum_{m \in \Lambda} |f(x + m)| \leq C (1 + |x|)^{-n - \varepsilon}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-2-8}
+\hat{f}(y) = O(|y|^{-n - \varepsilon}) \quad \text{as } |y| \to \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-2-9}
+\sum_{m \in \Lambda} f(x + m) = \sum_{m \in \Lambda} \hat{f}(m) e^{2\pi i m \cdot x}.
+\end{equation}
+
+Let $\Phi$ be a kernel on $E_n$ such that
+\begin{equation}\label{eq:c7-2-10}
+\Phi \in L^1(E_n), \quad \|\Phi\|_1 \leq A, \quad \sup_{y} |\hat{\Phi}(y)| \leq A.
+\end{equation}
+
+\begin{theorem}\label{thm:c7-2-11}
+Suppose $\Phi$ satisfies the conditions \eqref{eq:c7-2-10}, $f \in L^p(T_n)$ and $f(x) \sim \sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$. Then
+\begin{equation}\label{eq:c7-2-12}
+\sigma_\varepsilon(x) = \sum_{m \in \Lambda} a_m \hat{\Phi}(\varepsilon m) e^{2\pi i m \cdot x}
+\end{equation}
+satisfies
+\[
+\|\sigma_\varepsilon\|_p \leq A \|f\|_p, \quad 1 \leq p \leq \infty,
+\]
+and $\sigma_\varepsilon \to f$ in $L^p(T_n)$ as $\varepsilon \to 0$, for $1 \leq p < \infty$; if $f \in C(T_n)$ the convergence is uniform.
+\end{theorem}
+
+The Abel--Poisson means are obtained by taking $\hat{\Phi}(y) = e^{-2\pi|y|}$:
+\begin{equation}\label{eq:c7-2-13}
+\sigma_r(x) = \sum_{m \in \Lambda} a_m r^{|m|} e^{2\pi i m \cdot x}, \quad 0 < r < 1,
+\end{equation}
+and the Bochner--Riesz means by taking $\hat{\Phi}(y) = (1 - |y|^2)_+^\alpha$:
+\begin{equation}\label{eq:c7-2-14}
+S_R^\alpha(x) = \sum_{|m| \leq R} a_m \left(1 - \frac{|m|^2}{R^2}\right)^\alpha e^{2\pi i m \cdot x}.
+\end{equation}
+
+\begin{corollary}\label{cor:c7-2-15}
+The conclusions of Theorem~\ref{thm:c7-2-11} hold, in particular, for the Riesz means \eqref{eq:c7-2-14}, when $\alpha$ is larger than the critical index $(n-1)/2$, and for the Abel--Poisson means \eqref{eq:c7-2-13}.
+\end{corollary}
+
+\begin{equation}\label{eq:c7-2-16}
+\sum_{m \in \Lambda} |m|^{-\alpha} e^{2\pi i m \cdot x} \sim \gamma_\alpha |x|^{\alpha - n} + b(x).
+\end{equation}
+
+\begin{theorem}\label{thm:c7-2-17}
+Let $0 < \operatorname{Re}(\alpha) < n$. Then the series $\sum_{|m| > 0} |m|^{-\alpha} e^{2\pi i m \cdot x}$ is the Fourier series of an integrable function on $Q_n$ which is of class $C^\infty$ on $Q_n - \{0\}$ and behaves like $\gamma_\alpha |x|^{\alpha - n}$ as $x \to 0$, where $\gamma_\alpha = \pi^{n/2 - \alpha} \Gamma((n - \alpha)/2) / \Gamma(\alpha/2)$.
+\end{theorem}
+
+\section{Multiplier Transformations}
+
+We now consider the ``periodization'' of multiplier operators, which provides a powerful technique for transferring results from the nonperiodic (Euclidean) setting to the torus.
+
+\begin{theorem}\label{thm:c7-3-1}
+Suppose $\tilde{T} \in (L^p(T_n), L^q(T_n))$, $1 \leq p, q \leq \infty$. Then there exists a bounded complex valued function $\lambda : m \to \lambda(m)$ on the lattice $\Lambda$, such that
+\[
+\tilde{T}\left(\sum a_m e^{2\pi i m \cdot x}\right) = \sum \lambda(m) a_m e^{2\pi i m \cdot x}
+\]
+and $\|\lambda\|_\infty \leq \|\tilde{T}\|$.
+\end{theorem}
+
+For a bounded function $\lambda$ on $\Lambda$, define the operator $\tilde{T}$ acting on trigonometric polynomials by
+\begin{equation}\label{eq:c7-3-2}
+\tilde{T}\left(\sum a_m e^{2\pi i m \cdot x}\right) = \sum \lambda(m) a_m e^{2\pi i m \cdot x}.
+\end{equation}
+
+\begin{corollary}\label{cor:c7-3-3}
+$\tilde{T} \in (L^2(T_n), L^2(T_n))$ if and only if $\{\lambda(m)\}$ is a bounded sequence. Moreover, the operator norm $\|\tilde{T}\|$ equals $\sup_{m \in \Lambda} |\lambda(m)|$.
+\end{corollary}
+
+\begin{theorem}\label{thm:c7-3-4}
+$\tilde{T} \in (L^1(T_n), L^1(T_n))$ if and only if there exists a finite Borel measure $\mu$ on $T_n$, such that
+\[
+\lambda(m) = \int_{T_n} e^{-2\pi i m \cdot x}\,d\mu(x) \quad \text{for all } m \in \Lambda.
+\]
+In this case $\|\tilde{T}\| = \|d\mu\|$.
+\end{theorem}
+
+\begin{equation}\label{eq:c7-3-5}
+\tilde{T} f = f * d\mu.
+\end{equation}
+
+\begin{theorem}\label{thm:c7-3-6}
+Suppose $\mu \in \mathcal{B}(E_n)$ and $\hat{\mu}$ is its Fourier transform. Then $\sum_{m \in \Lambda} \hat{\mu}(m) e^{2\pi i m \cdot x}$ is the Fourier series of a measure $\tilde{\mu}$ on $T_n$; moreover, $\|d\tilde{\mu}\| \leq \|d\mu\|$.
+\end{theorem}
+
+\begin{equation}\label{eq:c7-3-7}
+\hat{\mu}(y) = \int_{E_n} e^{-2\pi i x \cdot y}\,d\mu(x).
+\end{equation}
+
+\begin{theorem}\label{thm:c7-3-8}
+Suppose $1 \leq p \leq \infty$ and $T \in (L^p(E_n), L^p(E_n))$. Let $\hat{u}$ be the multiplier corresponding to $T$ and suppose that $\hat{u}$ is continuous at each point of the lattice $\Lambda$. Set $\lambda(m) = \hat{u}(m)$ and let $\tilde{T}$ be the corresponding operator \eqref{eq:c7-3-2}. Then $\tilde{T} \in (L^p(T_n), L^p(T_n))$ and $\|\tilde{T}\| \leq \|T\|$.
+\end{theorem}
+
+\begin{lemma}\label{lem:c7-3-9}
+Suppose $f$ is a continuous periodic function on $E_n$, then
+\[
+\sum_{m \in \Lambda} |\hat{f}(m)| \leq C \int_{E_n} |f(x)| (1 + |x|)^{-n - \varepsilon}\,dx.
+\]
+\end{lemma}
+
+\begin{equation}\label{eq:c7-3-10}
+\|T_\varepsilon f\|_p \leq A \|f\|_p, \quad 1 \leq p \leq \infty.
+\end{equation}
+
+\begin{lemma}\label{lem:c7-3-11}
+Suppose $P$ and $Q$ are trigonometric polynomials, $T$ belongs to $(L^p(E_n), L^p(E_n))$, $\tilde{T}$ is defined on the class of trigonometric polynomials by \eqref{eq:c7-3-2} and $w_\delta(y) = e^{-\pi \delta |y|^2}$ for $\delta > 0$. Then, if $P * Q$ denotes the convolution of the corresponding periodic functions,
+\[
+\int_{T_n} (\tilde{T}P)(x) \overline{Q(x)}\,dx = \int_{T_n} P(x) \overline{(\tilde{T}^* Q)(x)}\,dx,
+\]
+where $\tilde{T}^*$ is the operator whose multiplier is $\overline{\hat{u}}$.
+\end{lemma}
+
+\begin{equation}\label{eq:c7-3-12}
+\|\tilde{T}_\varepsilon\| \leq \|T_\varepsilon\|.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-13}
+\tilde{T}_\varepsilon \to \tilde{T} \quad \text{as } \varepsilon \to 0.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-14}
+\|T(f * \varphi_\varepsilon) - (Tf) * \varphi_\varepsilon\|_p \to 0.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-15}
+\hat{u}(\varepsilon y) \to \hat{u}(0) \quad \text{as } \varepsilon \to 0.
+\end{equation}
+
+\begin{corollary}\label{cor:c7-3-16}
+The conclusions of Theorem~\ref{thm:c7-3-8} are still valid if, instead of assuming $\hat{u}$ is continuous at the points of $\Lambda$, we assume that
+\[
+\hat{u}(y) \to \hat{u}(0) \quad \text{as } y \to 0.
+\]
+\end{corollary}
+
+\begin{equation}\label{eq:c7-3-17}
+\hat{u}(y) = \int_{E_n} K(x) e^{-2\pi i x \cdot y}\,dx + m(y).
+\end{equation}
+
+\begin{theorem}\label{thm:c7-3-18}
+Let $\lambda$ be a continuous function on $E_n$. Suppose that for each $\varepsilon > 0$ there exists an operator $\tilde{T}_\varepsilon \in (L^p(T_n), L^p(T_n))$ given by
+\[
+\tilde{T}_\varepsilon\left(\sum a_m e^{2\pi i m \cdot x}\right) = \sum \lambda(\varepsilon m) a_m e^{2\pi i m \cdot x},
+\]
+with $\|\tilde{T}_\varepsilon\| \leq A$ for all $\varepsilon$. Then the operator $\tilde{T}$ with multiplier $\lambda(m) = \lambda(m)$ belongs to $(L^p(T_n), L^p(T_n))$ and $\|\tilde{T}\| \leq A$.
+\end{theorem}
+
+\begin{equation}\label{eq:c7-3-19}
+\lambda(\varepsilon m) \to \lambda(0) \quad \text{as } \varepsilon \to 0.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-20}
+\tilde{T}_\varepsilon P \to \lambda(0) P \quad \text{as } \varepsilon \to 0.
+\end{equation}
+
+\begin{lemma}\label{lem:c7-3-21}
+There exists a nonnegative continuous function $\eta$ having compact support in $E_n$ and satisfying
+\[
+\eta(x) > 0 \quad \text{for } |x| < 1, \quad \hat{\eta}(m) = 1 \quad \text{for all } m \in \Lambda.
+\]
+\end{lemma}
+
+\begin{equation}\label{eq:c7-3-22}
+\eta(x) = \sum_{m \in \Lambda} \hat{\eta}(m) e^{2\pi i m \cdot x}, \quad |x| < 1.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-23}
+\hat{\eta}(y) = \int_{E_n} \eta(x) e^{-2\pi i x \cdot y}\,dx.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-24}
+\eta_\delta(x) = \delta^{-n} \eta(x/\delta).
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-25}
+\|\tilde{T}_\varepsilon\| \leq A + \delta.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-26}
+\|\tilde{T}\| \leq \inf_{\varepsilon > 0} \|\tilde{T}_\varepsilon\|.
+\end{equation}
+
+\begin{equation}\label{eq:c7-3-27}
+\sup_{\varepsilon > 0} \|\tilde{T}_\varepsilon\| = \|T\|.
+\end{equation}
+
+\begin{corollary}\label{cor:c7-3-28}
+$\sup_{\varepsilon > 0} \|\tilde{T}_\varepsilon\| = \|T\|$, where $\|\tilde{T}_\varepsilon\|$ and $\|T\|$ denote the operator norms of the operators $\tilde{T}_\varepsilon$ and $T$ occurring in Theorem~\ref{thm:c7-3-18}.
+\end{corollary}
+
+\section{Summability Below the Critical Index (Negative Results)}
+
+Let $\sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ be the Fourier series of an integrable function $f$. Corollary~\ref{cor:c7-2-15} asserts that the equality
+\begin{equation}\label{eq:c7-4-1}
+f(x) = \lim_{R \to \infty} S_R^\alpha(x) = \lim_{R \to \infty} \sum_{|m| \leq R} a_m \left(1 - \frac{|m|^2}{R^2}\right)^\alpha e^{2\pi i m \cdot x}
+\end{equation}
+is valid (almost everywhere and also if the limit is taken in the $L^1$ norm), provided $\alpha$ is larger than the critical index $(n-1)/2$. It is natural to ask what happens when $\alpha \leq (n-1)/2$. In this section we shall be concerned mainly with the two cases $\alpha = (n-1)/2$ and $\alpha = 0$.
+
+In order to gain some perspective about this question we begin by reviewing the classical results when $n = 1$. In this case summability at the critical index $(\alpha = 0)$ and ordinary convergence coincide. Kolmogorov showed that there exists an $L^1$ function for which the limit \eqref{eq:c7-4-1} fails to exist for every $x$ when $\alpha = 0$. Nevertheless, there are localization results for $L^1$ functions. In higher dimensions the situation is quite different, and the negative results are considerably stronger.
+
+\begin{theorem}\label{thm:c7-4-2}
+There exists an $f \in L^1(T_n)$, $n > 1$, such that
+\[
+\sup_{R > 0} |S_R^{(n-1)/2}(x)| = \infty \quad \text{for all } x \in T_n.
+\]
+\end{theorem}
+
+\begin{theorem}\label{thm:c7-4-3}
+The trigonometric series
+\begin{equation}\label{eq:c7-4-4}
+\sum_{m \neq 0} |m|^{-(n+1)/2} e^{2\pi i m \cdot x}
+\end{equation}
+converges (in the sense of \eqref{eq:c7-4-1} with $\alpha = (n-1)/2$) at some point $x^0$ if and only if the corresponding Riemann sums are uniformly bounded at $x^0$. Moreover, the set of points at which these sums are uniformly bounded has measure zero when $n > 1$.
+\end{theorem}
+
+\begin{corollary}\label{cor:c7-4-5}
+There exists a function which belongs to $L^p(T_n)$, $p < 2n/(n+1)$, whose Fourier series diverges almost everywhere.
+\end{corollary}
+
+\begin{lemma}\label{lem:c7-4-6}
+If $n > 1$ then
+\[
+\sum_{m \neq 0} |m|^{-(n+1)/2} e^{2\pi i m \cdot x}
+\]
+is the Fourier series of a function which is locally integrable on $Q_n - \{0\}$ and behaves like $\gamma |x|^{-(n+1)/2}$ near the origin.
+\end{lemma}
+
+\begin{equation}\label{eq:c7-4-7}
+K_R^\alpha(x) = \sum_{|m| \leq R} \left(1 - \frac{|m|^2}{R^2}\right)^\alpha e^{2\pi i m \cdot x}.
+\end{equation}
+
+\begin{lemma}\label{lem:c7-4-8}
+If $x^0$ is a point for which
+\[
+\sup_{0 < R < \infty} |K_R^{(n-1)/2}(x^0)| < \infty,
+\]
+then the same is true for $|K_R^\alpha(x^0)|$ for all $\alpha$ in a neighborhood of $(n-1)/2$.
+\end{lemma}
+
+\begin{equation}\label{eq:c7-4-9}
+K_R^\alpha(x) = R^{n-\alpha} \Phi_\alpha(Rx) + b_R(x).
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-10}
+\Phi_\alpha(x) = \int_{|y| \leq 1} (1 - |y|^2)^\alpha e^{2\pi i x \cdot y}\,dy.
+\end{equation}
+
+\begin{lemma}\label{lem:c7-4-11}
+If $x^0 \in S$, then
+\[
+\sup_{0 < R < \infty} |K_R^{(n-1)/2}(x^0)| < \infty.
+\]
+\end{lemma}
+
+\begin{equation}\label{eq:c7-4-12}
+K_R^\alpha(x^0) = \sum_{|m| \leq R} \left(1 - \frac{|m|^2}{R^2}\right)^\alpha e^{2\pi i m \cdot x^0}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-13}
+\Phi_\alpha(x) = \gamma_\alpha |x|^{-\alpha - n/2} J_{n/2 + \alpha}(2\pi |x|).
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-14}
+|J_{n/2 + \alpha}(2\pi R)| \leq A R^{-1/2}, \quad R \geq 1.
+\end{equation}
+
+\begin{lemma}[Hardy--Littlewood]\label{lem:c7-4-15}
+Suppose $K$ is a bounded real function on $[1, \infty)$, and $\lim_{T \to \infty} \frac{1}{T} \int_1^T K(t) e^{2\pi i \lambda t}\,dt = a(\lambda)$ exists for every $\lambda \geq 0$. Let $\{\lambda_j\}$ be the set of real numbers for which $a(\lambda_j) = 0$. Then
+\[
+\lim_{T \to \infty} \sup_{T \leq t < 2T} \left| \int_1^t K(s) e^{2\pi i \lambda_j s}\,ds \right| = \infty.
+\]
+\end{lemma}
+
+\begin{equation}\label{eq:c7-4-16}
+F_1(t) = \int_1^t K(s) e^{2\pi i \lambda s}\,ds.
+\end{equation}
+
+\begin{lemma}\label{lem:c7-4-17}
+If $n > 1$, the complement of $S$ has measure $0$.
+\end{lemma}
+
+\begin{equation}\label{eq:c7-4-18}
+|F_1(t)| \leq B t, \quad 1 \leq t < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-19}
+F_1(t) = \int_1^t K(s) e^{2\pi i \lambda_0 s}\,ds.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-20}
+F_2(t) = \int_1^t K(s) e^{2\pi i \lambda_0 s} \frac{ds}{s}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-21}
+|F_2'(t)| \leq B t, \quad 1 \leq t < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-22}
+|F_1(t)| \leq \frac{B t}{2}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-23}
+\sup_{1 \leq R < \infty} |K_R(x^0)| \leq B.
+\end{equation}
+
+\begin{equation}\tag{4.23$'$}\label{eq:c7-4-23p}
+\sup_{R > 0} |K_R(x^0)| = \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-24}
+h = t^{1/2}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-25}
+|F_2'(t)| \leq B t, \quad 1 \leq t < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-26}
+|F_1(t)| \leq \frac{B t}{2}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-27}
+\sup_{0 < R < \infty} |K_R(x^0)| = \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-28}
+\int_1^T K(t) e^{2\pi i \lambda t}\,dt = a(\lambda) T + o(T).
+\end{equation}
+
+\begin{equation}\label{eq:c7-4-29}
+\int_1^T K(t) e^{2\pi i \lambda t} \frac{dt}{t} = a(\lambda) \log T + O(1).
+\end{equation}
+
+\section{Summability Below the Critical Index}
+
+In this section we shall see that if $f \in L^p(T_n)$, $1 < p < \infty$, then there are positive results for summability below the critical index. The theorem that is proved does not, in view of the counterexamples of Section~4, completely dispose of the problems of summability of multiple Fourier series.
+
+\begin{theorem}\label{thm:c7-5-1}
+Suppose $1 < p < \infty$, $n > 1$ and $\alpha > (n-1)|1/2 - 1/p|$. Then
+\begin{enumerate}
+\item[(a)] $S_*^\alpha(f) = \sup_{0 < R < \infty} |S_R^\alpha(f)|$ satisfies
+\[
+\|S_*^\alpha(f)\|_p \leq A_{p,\alpha} \|f\|_p;
+\]
+\item[(b)] $S_R^\alpha(f)(x) \to f(x)$ almost everywhere as $R \to \infty$;
+\item[(c)] $S_R^\alpha(f) \to f$ in the $L^p(T_n)$ norm as $R \to \infty$.
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lem:c7-5-2}
+When $\alpha > (n-1)/2$ conclusion (a) of Theorem~\ref{thm:c7-5-1} is true.
+\end{lemma}
+
+\begin{lemma}\label{lem:c7-5-3}
+Let
+\begin{equation}\label{eq:c7-5-4}
+K_R^\alpha(x) = \sum_{|m| \leq R} \left(1 - \frac{|m|^2}{R^2}\right)^\alpha e^{2\pi i m \cdot x}.
+\end{equation}
+Then for $R \geq 1$,
+\begin{equation}\label{eq:c7-5-5}
+|K_R^\alpha(x)| \leq A_\alpha R^n (1 + R|x|)^{-n/2 - \alpha}.
+\end{equation}
+\end{lemma}
+
+\begin{equation}\label{eq:c7-5-6}
+\|S_*^\alpha(f)\|_2 \leq A_\alpha \|f\|_2, \quad \alpha > 0.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-7}
+\int_{T_n} |S_R^\alpha(f)(x)|^2\,dx \leq A_\alpha^2 \int_{T_n} |f(x)|^2\,dx.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-8}
+S_*^\alpha(f)(x) = \sup_{0 < R < \infty} |S_R^\alpha(f)(x)|.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-9}
+\tilde{f}(x) = \begin{cases} f(x) & \text{if } |x| \leq 1, \\ 0 & \text{if } |x| > 1. \end{cases}
+\end{equation}
+
+\begin{lemma}\label{lem:c7-5-10}
+If $\alpha > 0$ then $\|S_*^\alpha(f)\|_2 \leq A_\alpha \|f\|_2$ for all $f$ in $L^2(T_n)$.
+\end{lemma}
+
+\begin{equation}\label{eq:c7-5-11}
+S_R^\alpha(f)(x) = \int_{T_n} f(x - y) K_R^\alpha(y)\,dy.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-12}
+S_R^\alpha(f)(x) = \int_{E_n} \tilde{f}(x - y) K_R^\alpha(y)\,dy + \text{error}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-13}
+\sup_{0 < R < \infty} \left| \int_{E_n} \tilde{f}(x - y) K_R^\alpha(y)\,dy \right| \leq A_\alpha M\tilde{f}(x).
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-14}
+\|M\tilde{f}\|_2 \leq A \|\tilde{f}\|_2 \leq A \|f\|_2.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-15}
+\|S_*^\alpha(f)\|_p \leq A_{p,\alpha} \|f\|_p, \quad 1 < p < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-16}
+\alpha_\theta = (1 - \theta) \alpha_0 + \theta \alpha_1.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-17}
+\frac{1}{p_\theta} = \frac{1 - \theta}{p_0} + \frac{\theta}{p_1}.
+\end{equation}
+
+\begin{equation}\label{eq:c7-5-18}
+\|S_*^{\alpha_\theta}(f)\|_{p_\theta} \leq A \|f\|_{p_\theta}.
+\end{equation}
+
+\section{Further Results}
+
+\begin{enumerate}
+\item[6.1.] An application of reasoning similar to that used in the proof of Theorem~\ref{thm:c7-2-17} shows that each of the following are Fourier series of functions that are continuously differentiable and periodic on the fundamental cube except at the origin; moreover, they have the indicated behavior:
+\begin{enumerate}
+\item[(a)] $\sum_{m \neq 0} e^{ci|m| \log |m|} |m|^{-\varepsilon - n/2} e^{2\pi i m \cdot x}$ is the Fourier series of a continuous periodic function, if $c \neq 0$ and $\varepsilon > 0$;
+\item[(b)] If $P_k$ is a homogeneous harmonic polynomial of degree $k \geq 1$, then $\sum_{m \neq 0} |m|^{-n-k} P_k(m) e^{2\pi i m \cdot x}$ is a bounded function;
+\item[(c)] $\sum_{m \neq 0} |m|^{-\alpha - k} b(|m|) P_k(m) e^{2\pi i m \cdot x}$ is asymptotic to $c|x|^{-(n-\alpha)-k} b(1/|x|) P_k(x)$ as $|x| \to 0$, when $P_k$ is a homogeneous harmonic polynomial of degree $k \geq 0$, $0 < \alpha < n$ and $b$ is an appropriate function slowly varying near $\infty$.
+\end{enumerate}
+
+\item[6.2.] The one-dimensional cases of the above examples are due to Hardy and Littlewood. Moreover, if the dimension $n$ is even, then
+\[
+\sum_{|m| > 1} |m|^{-n} (\log |m|)^{-1} e^{ci|m| \log(|m|)^a} e^{2\pi i m \cdot x}, \quad c \neq 0, \; 0 < a < 2/n,
+\]
+is the Fourier series of a function of class $C^{n/2}$ but is not absolutely convergent; this shows that Corollary~\ref{cor:c7-1-9} cannot be improved very much.
+
+\item[6.3.] The following considerations give an interpretation of the heuristic formula \eqref{eq:c7-2-16}. Let $P_k(x)$ be a homogeneous harmonic polynomial of degree $k$. Fix $x$ and consider the following two functions of $\alpha$:
+\[
+\sum_{m \neq 0} |m|^{-\alpha} P_k(m) e^{2\pi i m \cdot x} \quad \text{and} \quad \gamma_{\alpha,k} |x|^{\alpha - n - k} P_k(x),
+\]
+where $\gamma_{\alpha,k} = i^{-k} \pi^{n/2 - \alpha} \Gamma((k + \alpha)/2) / \Gamma((n + k - \alpha)/2)$. These two functions of $\alpha$ are equal in the sense that they are analytic continuations of each other.
+
+\item[6.4.] Let $S \subset E_n$ be convex, symmetric, open and bounded with $|S| > 2^n$. Then $S$ contains at least one lattice point different from the origin. This classical theorem of Minkowski can be proved by making use of the Poisson summation formula. Let $S_{1/2} = \{x : 2x \in S\}$ and let $\varphi$ denote the characteristic function of $S_{1/2}$. We set
+\[
+u_k(x, t) = \sum_{m \in \Lambda} e^{-2\pi t |m|} e^{2\pi i m \cdot (x + m_k)} \quad (\text{assuming convergence}),
+\]
+and observe that the $(n+1)$-tuple $F = (u_0, u_1, \dots, u_n)$ satisfies the generalized Cauchy--Riemann equations \eqref{eq:c6-4-1} of Chapter~VI. In analogy with the theory described there we say that $F \in \mathbf{H}^p(T_n)$ if $\sup_{t > 0} \int_{T_n} |F(x, t)|^p\,dx < \infty$.
+\begin{enumerate}
+\item[(a)] $F \in \mathbf{H}^p(T_n)$, $1 < p < \infty$, if and only if $\sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ is the Fourier series of a function in $L^p(T_n)$. This can be proved by using the results developed in Section~3.
+\item[(c)] The special case $p = 1$ implies the following extension of the classical F.~and M.~Riesz theorem: Suppose $\sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ and $\sum_{m \neq 0} a_m (m_k/|m|) e^{2\pi i m \cdot x}$, $k = 1, 2, \dots, n$, are Fourier--Stieltjes series of finite measures; then these measures are absolutely continuous.
+\end{enumerate}
+
+\item[6.5.] A result that complements the last result is as follows. Suppose that $\sum_{m \in \Lambda} a_m e^{2\pi i m \cdot x}$ and $\sum_{m \neq 0} a_m (m_k/|m|) e^{2\pi i m \cdot x}$, $k = 1, 2, \dots, n$, are Fourier--Stieltjes series of finite measures; then for each homogeneous (of degree $r$) harmonic polynomial $P_r(x)$, $r = 0, 1, 2, \dots$, the series $\sum_{m \neq 0} (P_r(m)/|m|^r) a_m e^{2\pi i m \cdot x}$ is also the Fourier--Stieltjes series of an absolutely continuous measure.
+
+\item[6.6.] Theorem~\ref{thm:c7-2-11} and Lemma~\ref{lem:c7-5-2} have the following more general formulation. Suppose $\varphi \in L^1(E_n)$ with $\int_{E_n} \varphi(x)\,dx = 0$. Let $\varphi_\varepsilon(x) = \varepsilon^{-n} \varphi(x/\varepsilon)$ and $K_\varepsilon(x) = \sum_{m \in \Lambda} \varphi_\varepsilon(x + m)$. Consider $(f * K_\varepsilon)(x) = \int_{T_n} f(x - y) K_\varepsilon(y)\,dy$. Then:
+\begin{enumerate}
+\item[(a)] $\|f * K_\varepsilon\|_p \leq A \|f\|_p$ for $1 \leq p \leq \infty$, provided $\sup_y |\hat{\varphi}(y)| \leq A$.
+\item[(b)] Suppose, in addition, that $\psi(x) = \sup_{|x| \leq |x'|} |\varphi(x')|$ is integrable on $E_n$. Then $(f * K_\varepsilon)(x) \to f(x)$ at each point of the Lebesgue set of $f$.
+\end{enumerate}
+\end{enumerate}
+
+\bibnoteshead
+
+The failure of localization at the critical index for $L^1(T_n)$ was proved in Bochner's paper~\cite{Bochner7} that was alluded to above. The existence of an $L^1(T_n)$ function $(n > 1)$ whose Fourier series is almost nowhere summable by the Riesz means at the critical index is contained in Stein~\cite{Stein5}. The present stronger form of Theorem~4.2, however, is new; the same is true of Theorem~4.3. All of these results have as one of their starting points the technique introduced by Bochner, which involves the set $S$ of points $x$ where $\{|x - m|\}$ are linearly independent over the rationals. For Theorem~5.1 see Stein~\cite{Stein4}; also~\cite{Stein2}, and~\cite{Stein7}, which are closely related. The reader may also consult the Survey paper of Shapiro~\cite{Shapiro1}, which covers several topics in multiple Fourier series.

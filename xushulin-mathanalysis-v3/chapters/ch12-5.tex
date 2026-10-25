@@ -1,0 +1,460 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S12.5  无穷乘积
+%  源：原书印刷页 62-73（PDF 物理页 68-79）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch12_12_5_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误与原书照录清单见 tools/_make_ch12_5a.py 头部说明
+% ==================================================================
+\section{无穷乘积}\label{sec:12.5}
+
+与无穷级数相对偶地可研究无穷乘积.
+
+\begin{definition}\label{def:12.5.1}
+设 $p_{1},p_{2},\cdots,p_{n},\cdots$ 为一给定的数列. 称形式乘积
+\[
+  \prod_{n=1}^{\infty}p_{n}=p_{1}p_{2}\cdots p_{n}\cdots
+\]
+为无穷乘积. $P_{n}=p_{1}p_{2}\cdots p_{n}$ 称为 $\prod_{n=1}^{\infty}p_{n}$ 的第 $n$ 个部分乘积.
+\end{definition}
+
+如果 $\lim\limits_{n\to+\infty}P_{n}=P\neq0$, 则称无穷乘积 $\prod_{n=1}^{\infty}p_{n}$ 收敛, 且表示为 $\prod_{n=1}^{\infty}p_{n}=P$. 否则（$\lim\limits_{n\to+\infty}P_{n}=0$, $+\infty$, $-\infty$, $\infty$ 或不存在）称无穷乘积 $\prod_{n=1}^{\infty}p_{n}$ 发散. 特别当 $P=0$ 时, 称无穷乘积 $\prod_{n=1}^{\infty}p_{n}$ 发散于 $0$.
+
+\begin{theorem}[无穷乘积收敛的必要条件]\label{thm:12.5.1}
+设无穷乘积 $\prod_{n=1}^{\infty}p_{n}$ 收敛, 则 $\lim\limits_{n\to+\infty}p_{n}=1$. 但反之不真.
+\end{theorem}
+
+\begin{proof}
+设无穷乘积 $\prod_{n=1}^{\infty}p_{n}$ 收敛于 $P\neq0$, 即 $\lim\limits_{n\to+\infty}P_{n}=P$. 于是,
+\[
+  \lim_{n\to+\infty}p_{n}=\lim_{n\to+\infty}\frac{P_{n}}{P_{n-1}}=\frac{\lim\limits_{n\to+\infty}P_{n}}{\lim\limits_{n\to+\infty}P_{n-1}}=\frac{P}{P}=1.
+\]
+但反之不真. 例如: 考察无穷级数 $\prod_{n=1}^{\infty}\left(1+\frac{1}{n}\right)$. 显然, $\lim\limits_{n\to+\infty}p_{n}=\lim\limits_{n\to+\infty}\left(1+\frac{1}{n}\right)=1$. 而 $P_{n}=\prod_{k=1}^{n}\left(1+\frac{1}{k}\right)=\frac{2}{1}\cdot\frac{3}{2}\cdots\frac{n}{n-1}\cdot\frac{n+1}{n}=n+1$, $\prod_{n=1}^{\infty}\left(1+\frac{1}{n}\right)$ 发散于 $\lim\limits_{n\to+\infty}P_{n}=+\infty$.
+\end{proof}
+
+\begin{example}\label{ex:12.5.1}
+$\sum_{n=1}^{\infty}p_{n}$ 发散于 $0$, 未必有 $\lim\limits_{n\to+\infty}p_{n}=1$.
+\end{example}
+
+(1) $p_{n}=\frac{1}{2}$, $\lim\limits_{n\to+\infty}p_{n}=\frac{1}{2}\neq1$, 但
+\[
+  \prod_{n=1}^{\infty}p_{n}=\prod_{n=1}^{\infty}\frac{1}{2}=\lim_{n\to+\infty}\prod_{k=1}^{n}\frac{1}{2}=\lim_{n\to+\infty}\frac{1}{2^{n}}=0.
+\]
+
+(2) $p_{n}=\frac{(-1)^{n}}{2}$, $\lim\limits_{n\to+\infty}p_{n}$ 不存在, 当然 $\lim\limits_{n\to+\infty}p_{n}\neq1$, 但
+\[
+  \prod_{n=1}^{\infty}p_{n}=\prod_{n=1}^{\infty}\frac{(-1)^{n}}{2}=\lim_{n\to+\infty}\prod_{k=1}^{n}\frac{(-1)^{k}}{2}=\lim_{n\to+\infty}\frac{(-1)^{\frac{n(n+1)}{2}}}{2^{n}}=0.
+\]
+
+(3) 设 $p_{n_{0}}=0$, 则当 $n>n_{0}$ 时, $P_{n}=p_{1}\cdots p_{n_{0}}\cdots p_{n}=0$, 因而
+\[
+  \prod_{n=1}^{\infty}p_{n}=\lim_{n\to+\infty}P_{n}=\lim_{n\to+\infty}0=0.
+\]
+
+\begin{theorem}[无穷乘积与无穷级数敛散性的对偶定理]\label{thm:12.5.2}
+设 $p_{n}>0$, 则
+\begin{enumerate}
+  \item $\prod_{n=1}^{\infty}p_{n}$ 收敛于 $P>0 \Leftrightarrow \sum_{n=1}^{\infty}\ln p_{n}$ 收敛于 $S=\ln P$（$P=\mathrm{e}^{S}$）;
+  \item $\prod_{n=1}^{\infty}p_{n}$ 发散于 $0 \Leftrightarrow \sum_{n=1}^{\infty}\ln p_{n}$ 发散于 $-\infty$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\prod_{n=1}^{\infty}p_{n}$ 收敛于 $P>0$
+$\Leftrightarrow$ 数列 $P_{n}=\prod_{k=1}^{n}p_{k}$ 收敛于 $P>0$
+$\Leftrightarrow$ 数列 $\ln P_{n}=\sum_{k=1}^{n}\ln p_{k}$ 收敛于 $\ln P=S$
+$\Leftrightarrow$ $\sum_{n=1}^{\infty}\ln p_{n}$ 收敛于 $\ln P=S$.
+
+(2) $\prod_{n=1}^{\infty}p_{n}$ 发散于 $0$
+$\Leftrightarrow$ 数列 $P_{n}=\prod_{k=1}^{n}p_{k}$ 收敛于 $0$
+$\Leftrightarrow$ 数列 $\ln P_{n}=\sum_{k=1}^{n}\ln p_{k}$ 发散于 $-\infty$.
+\end{proof}
+
+如果 $\prod_{n=1}^{\infty}p_{n}$ 收敛, 由定理~\ref{thm:12.5.1} 知, $\lim\limits_{n\to+\infty}p_{n}=1$, 则 $\exists N\in\mathbb{N}$, 当 $n>N$ 时, $p_{n}>0$. 令 $p_{n}=1+a_{n}$, $a_{n}>-1$. 记
+\[
+  \prod_{n=1}^{\infty}p_{n}=\prod_{n=1}^{\infty}(1+a_{n}).
+\]
+
+此无穷乘积收敛 $\Rightarrow\lim\limits_{n\to+\infty}p_{n}=1\Leftrightarrow\lim\limits_{n\to+\infty}a_{n}=0$.
+
+这样改变无穷乘积的形式, 能否带来什么好结果呢? 以下诸定理给出了肯定的回答. 并且将判别无穷乘积敛散的问题转化为判别无穷级数敛散的问题.
+
+\begin{theorem}\label{thm:12.5.3}
+如果 $a_{n}\geqslant0$（或 $a_{n}\leqslant0$ 且 $1+a_{n}>0$,）, $n=1,2,\cdots$, 则 $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 同敛散.
+\end{theorem}
+
+\begin{proof}
+因为不论 $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 何者收敛, 都有 $\lim\limits_{n\to+\infty}a_{n}=0$. 此时, 若 $a_{n}\neq0$ 有
+\[
+  \lim_{n\to+\infty}\frac{\ln(1+a_{n})}{a_{n}}=\lim_{n\to+\infty}\ln(1+a_{n})^{\frac{1}{a_{n}}}=\ln\mathrm{e}=1,
+\]
+所以, $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 同敛散（同为正项级数或同为负项级数, 再由比较判别法的极限形式. 注意, $a_{n}=0$ 不影响敛散性的证明）. 根据定理~\ref{thm:12.5.2} 有, $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 同敛散, 所以, $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 同敛散.
+\end{proof}
+
+\begin{remark}\label{rem:12.5.1}
+在定理~\ref{thm:12.5.3} 中, 如果 $a_{n}\geqslant0$, $\sum_{n=1}^{\infty}a_{n}=+\infty$, 则
+\[
+  \prod_{k=1}^{n}(1+a_{k})\geqslant a_{1}+a_{2}+\cdots+a_{n}=\sum_{k=1}^{n}a_{k}\to+\infty\quad(n\to+\infty),
+\]
+从而 $\prod_{n=1}^{\infty}(1+a_{n})=+\infty$.
+
+如果 $a_{n}\leqslant0$, $1+a_{n}\geqslant0$ 且 $\sum_{n=1}^{\infty}a_{n}=-\infty$, 则 $P_{n}=\prod_{k=1}^{n}(1+a_{k})$ 单调减有下界 $0$. 此时 $\prod_{n=1}^{\infty}(1+a_{n})$ 必发散于 $0$.
+
+如果 $\{a_{n}\}$ 不保号, 就有下面的结论.
+\end{remark}
+
+\begin{theorem}\label{thm:12.5.4}
+(1) 设 $\sum_{n=1}^{\infty}a_{n}^{2}$ 收敛, 则 $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 同敛散.
+
+(2) 设 $\sum_{n=1}^{\infty}a_{n}$ 收敛, $\sum_{n=1}^{\infty}a_{n}^{2}=+\infty$, 则 $\prod_{n=1}^{\infty}(1+a_{n})$ 发散于 $0$.
+\end{theorem}
+
+\begin{proof}
+(1) 因为 $\sum_{n=1}^{\infty}a_{n}^{2}$ 收敛, 根据定理~\ref{thm:12.1.2}, $\lim\limits_{n\to+\infty}a_{n}^{2}=0$, 从而 $\lim\limits_{n\to+\infty}a_{n}=0$. 于是, 当 $a_{n}\neq0$ 时, 有
+\[
+  \begin{aligned}
+    \lim_{n\to+\infty}\frac{a_{n}-\ln(1+a_{n})}{a_{n}^{2}}&=\lim_{x\to0}\frac{x-\ln(1+x)}{x^{2}}\xlongequal{\text{L'Hospital 法则}}\lim_{x\to0}\frac{1-\frac{1}{1+x}}{2x}\\
+    &=\lim_{x\to0}\frac{1}{2(1+x)}=\frac{1}{2}.
+  \end{aligned}
+\]
+从而, $\sum_{n=1}^{\infty}[a_{n}-\ln(1+a_{n})]$ 也收敛（注意, 若 $a_{n}=0$, 不影响收敛性的证明）. 由此推得 $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 同敛散. 再由定理~\ref{thm:12.5.2} 知, $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 同敛散, 所以 $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 同敛散.
+
+(2) 从 $\sum_{n=1}^{\infty}a_{n}^{2}=+\infty$ 与
+\[
+  \lim_{n\to+\infty}\frac{a_{n}-\ln(1+a_{n})}{a_{n}^{2}}=\frac{1}{2}\quad(a_{n}\neq0)
+\]
+便知 $\sum_{n=1}^{\infty}[a_{n}-\ln(1+a_{n})]=+\infty$. 再由 $\sum_{n=1}^{\infty}a_{n}$ 收敛推得 $\sum_{n=1}^{\infty}\ln(1+a_{n})=-\infty$, 因而 $\prod_{n=1}^{\infty}(1+a_{n})$ 发散到 $0$.
+\end{proof}
+
+\begin{theorem}\label{thm:12.5.5}
+设 $1+a_{n}>0$, 则 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 收敛蕴涵着 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛. 但反之不真.
+\end{theorem}
+
+\begin{proof}
+显然,
+\[
+  \begin{gathered}
+    \prod_{n=1}^{\infty}(1+|a_{n}|)\ \text{收敛}
+    \xLongleftrightarrow{\text{定理~\ref{thm:12.5.2}(1)}}
+    \sum_{n=1}^{\infty}\ln(1+|a_{n}|)\ \text{收敛}\\[3pt]
+    \xLongleftrightarrow{\text{定理~\ref{thm:12.5.3}}}
+    \sum_{n=1}^{\infty}|a_{n}|\ \text{收敛}
+    \xLongleftarrow[\text{(*)}]{\text{比较判别法}}
+    \sum_{n=1}^{\infty}|\ln(1+a_{n})|\ \text{收敛}\\[3pt]
+    \Rightarrow\sum_{n=1}^{\infty}\ln(1+a_{n})\ \text{收敛}
+    \xLongleftrightarrow{\text{定理~\ref{thm:12.5.2}(1)}}
+    \prod_{n=1}^{\infty}(1+a_{n})\ \text{收敛}.
+  \end{gathered}
+\]
+其中 $(*)$ 是当 $a_{n}\neq0$ 时, 有
+\[
+  \lim_{n\to+\infty}\frac{\bigl|\ln(1+a_{n})\bigr|}{|a_{n}|}=\lim_{n\to+\infty}\left|\frac{\ln(1+a_{n})}{a_{n}}\right|=1.
+\]
+
+但是, 其逆命题不真. 反例: 设
+\[
+  a_{n}=\left\{\begin{array}
+{ll}
+    -\dfrac{1}{\sqrt{k+1}}, & n=2k-1,\\[8pt]
+    \dfrac{1}{\sqrt{k+1}}+\dfrac{1}{k+1}+\dfrac{1}{(k+1)\sqrt{k+1}}, & n=2k,
+\end{array}\right.
+\]
+则 $\sum_{n=3}^{\infty}a_{n}$, $\sum_{n=3}^{\infty}a_{n}^{2}$ 都发散, $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 发散, 而 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛.
+
+事实上, 因为
+\[
+  \begin{aligned}
+    \sum_{n=1}^{2N}a_{n}&=\sum_{k=1}^{N}(a_{2k-1}+a_{2k})=\sum_{k=1}^{N}\left(-\frac{1}{\sqrt{k+1}}+\frac{1}{\sqrt{k+1}}+\frac{1}{k+1}+\frac{1}{(k+1)\sqrt{k+1}}\right)\\
+    &=\sum_{k=1}^{N}\frac{1}{k+1}+\sum_{k=1}^{N}\frac{1}{(k+1)\sqrt{k+1}}\to+\infty\quad(N\to+\infty),
+  \end{aligned}
+\]
+所以, $\sum_{n=1}^{\infty}a_{n}=+\infty$. 而
+\[
+  \sum_{n=1}^{2N}a_{n}^{2}=\sum_{k=1}^{N}(a_{2k-1}^{2}+a_{2k}^{2})\geqslant\sum_{k=2}^{N}\frac{1}{k+1}\to+\infty\quad(N\to+\infty).
+\]
+所以, $\sum_{n=1}^{\infty}a_{n}^{2}=+\infty$. 现在证明 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛. 因为
+\[
+  \begin{aligned}
+    P_{2N}&=\prod_{n=1}^{2N}(1+a_{n})=\prod_{k=1}^{N}(1+a_{2k-1})(1+a_{2k})\\
+    &=\prod_{k=1}^{N}\left(1-\frac{1}{\sqrt{k+1}}\right)\left(1+\frac{1}{\sqrt{k+1}}+\frac{1}{k+1}+\frac{1}{(k+1)\sqrt{k+1}}\right)\\
+    &=\prod_{k=1}^{N}\left(1-\frac{1}{\sqrt{k+1}}\right)\left(1+\frac{1}{\sqrt{k+1}}\right)\left(1+\frac{1}{k+1}\right)=\prod_{k=1}^{N}\left[1-\frac{1}{(k+1)^{2}}\right],
+  \end{aligned}
+\]
+由于 $\sum_{k=1}^{\infty}\frac{1}{(k+1)^{2}}$ 收敛与上面得到的结果知, $\prod_{k=1}^{\infty}\left(1-\frac{1}{(k+1)^{2}}\right)$ 收敛. 这说明数列 $\{P_{2N}\}$ 当 $N\to+\infty$ 时有非零的极限, 设 $\lim\limits_{N\to+\infty}P_{2N}=P\neq0$. 于是,
+\[
+  \lim_{N\to+\infty}P_{2N+1}=\lim_{N\to+\infty}P_{2N}(1+a_{2N+1})=P(1+0)=P.
+\]
+根据\extref{定理 1.1.1} 就证明了 $\lim\limits_{n\to+\infty}P_{n}=P\neq0$, 即 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛于 $P$.
+
+再证 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 发散.（反证）假设 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 收敛, 由于定理~\ref{thm:12.5.3}, 它应等价于 $\sum_{n=1}^{\infty}|a_{n}|$ 收敛. 由此推得 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 这与上面已证得 $\sum_{n=1}^{\infty}a_{n}=+\infty$（发散于 $+\infty$）相矛盾.
+\end{proof}
+
+\begin{example}\label{ex:12.5.2}
+在定理~\ref{thm:12.5.4} 中, 如果 $\sum_{n=1}^{\infty}a_{n}^{2}=+\infty$, 问: $\prod_{n=1}^{\infty}(1+a_{n})$ 与 $\sum_{n=1}^{\infty}a_{n}$ 是否仍同敛散? 回答是否定的. 定理~\ref{thm:12.5.5} 中的反例也是这里的反例.
+\end{example}
+
+\begin{definition}\label{def:12.5.2}
+如果 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 收敛, 则称 $\prod_{n=1}^{\infty}(1+a_{n})$ 绝对收敛; 如果 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛, 而 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 发散, 则称 $\prod_{n=1}^{\infty}(1+a_{n})$ 条件收敛.
+\end{definition}
+% ===== PART-B =====
+% ===== PART-B =====
+
+显然, 定理~\ref{thm:12.5.5} 表明 $\prod_{n=1}^{\infty}(1+a_{n})$ 绝收收敛, 它必收敛. 但是, 反之不真. 例~\ref{ex:12.5.6} 中, 当 $\frac{1}{2}<\alpha\leqslant1$ 时, $\prod_{n=1}^{\infty}\left[1+(-1)^{n-1}\frac{1}{n^{\alpha}}\right]$ 也是收敛非绝对收敛的反例.
+
+根据无穷乘积与无穷级数敛散性的对偶定理~\ref{thm:12.5.2} 以及绝对收敛级数的特性定理~\ref{thm:12.3.6}, 我们有下面绝对收敛无穷乘积的特性定理.
+
+\begin{theorem}[绝对收敛无穷乘积的特性]\label{thm:12.5.6}
+绝对收敛的无穷乘积, 可以任意改变其因子的次序而不影响其收敛性与积.
+\end{theorem}
+
+\begin{proof}
+设 $\prod_{n=1}^{\infty}(1+a_{n})$ 改变因子的先后次序变成 $\prod_{n=1}^{\infty}(1+b_{n})$. 因为 $\prod_{n=1}^{\infty}(1+a_{n})$ 绝对收敛, 即 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 收敛. 从定理~\ref{thm:12.5.5} 的证明知道, 它等价于 $\sum_{n=1}^{\infty}\ln(1+|a_{n}|)$ 收敛, 等价于 $\sum_{n=1}^{\infty}|a_{n}|$ 收敛, 也等价于 $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 绝对收敛. 由定理~\ref{thm:12.3.6} 得到 $\sum_{n=1}^{\infty}\ln(1+b_{n})$ 也绝对收敛, 而且 $\sum_{n=1}^{\infty}\ln(1+b_{n})=\sum_{n=1}^{\infty}\ln(1+a_{n})$. 从而, $\prod_{n=1}^{\infty}(1+b_{n})$ 绝对收敛, 而且
+\[
+  \prod_{n=1}^{\infty}(1+a_{n})=\prod_{n=1}^{\infty}(1+b_{n}).
+\]
+\end{proof}
+
+与条件收敛级数的特性定理~\ref{thm:12.3.7}（Riemann）相呼应, 有下面的定理.
+
+\begin{theorem}[条件收敛无穷乘积的特性]\label{thm:12.5.7}
+设无穷乘积 $\prod_{n=1}^{\infty}(1+a_{n})$ 条件收敛（$1+a_{n}>0$）. 则适当交换它因子的次序, 可使其收敛于任一事先指定的正数, 也可使其发散（发散于 $0$, $+\infty$, 或 $P_{n}=\prod_{k=1}^{n}(1+a_{k})$ 无极限）.
+\end{theorem}
+
+\begin{proof}
+因为 $\prod_{n=1}^{\infty}(1+a_{n})$ 条件收敛, 所以 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛, 而 $\prod_{n=1}^{\infty}(1+|a_{n}|)$ 发散. 由定理~\ref{thm:12.5.3} 知, $\sum_{n=1}^{\infty}|a_{n}|=+\infty$. 再由
+\[
+  \lim_{n\to+\infty}\left|\frac{\ln(1+a_{n})}{a_{n}}\right|=1\quad(a_{n}\neq0)
+\]
+推得 $\sum_{n=1}^{\infty}|\ln(1+a_{n})|=+\infty$. 从而 $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 为一个条件收敛的级数, 设其和为 $\alpha$. 今改变 $\sum_{n=1}^{\infty}\ln(1+a_{n})$ 的次序, 得一新级数 $\sum_{n=1}^{\infty}\ln(1+b_{n})$, 使其和为预先指定的实数 $\beta\neq\alpha$, 于是,
+\[
+  \prod_{n=1}^{\infty}(1+b_{n})=\mathrm{e}^{\beta}\neq\mathrm{e}^{\alpha}=\prod_{n=1}^{\infty}(1+a_{n}).
+\]
+而 $\prod_{n=1}^{\infty}(1+b_{n})$ 正是由 $\prod_{n=1}^{\infty}(1+a_{n})$ 改变因子次序所得的无穷乘积.
+
+如果 $\beta=+\infty$, 则 $\sum_{n=1}^{\infty}(1+b_{n})=+\infty$; 如果 $\beta=-\infty$, 则 $\sum_{n=1}^{\infty}(1+b_{n})=0$（发散于 $0$）; 如果新级数 $\sum_{n=1}^{\infty}\ln(1+b_{n})$ 无极限, 则新无穷乘积 $\prod_{n=1}^{\infty}(1+b_{n})$ 的部分积无极限. 这些是罗列的新无穷乘积发散的各种情况.
+\end{proof}
+
+\begin{example}\label{ex:12.5.3}
+(1) $\prod_{n=1}^{\infty}\left(1+\frac{1}{n}\right)=+\infty$; (2) $\prod_{n=2}^{\infty}\left(1-\frac{1}{n}\right)=0$.
+\end{example}
+
+证法 1 (1) $\prod_{n=1}^{\infty}\left(1+\frac{1}{n}\right)=\lim\limits_{n\to+\infty}\prod_{k=1}^{n}\left(1+\frac{1}{k}\right)=\lim\limits_{n\to+\infty}\left(\frac{2}{1}\cdot\frac{3}{2}\cdots\frac{n+1}{n}\right)=\lim\limits_{n\to+\infty}(n+1)=+\infty$.
+
+(2)
+\[
+  \prod_{n=2}^{\infty}\left(1-\frac{1}{n}\right)=\lim_{n\to+\infty}\prod_{k=2}^{n}\left(1-\frac{1}{k}\right)=\lim_{n\to+\infty}\left(\frac{1}{2}\cdot\frac{2}{3}\cdots\frac{n-1}{n}\right)=\lim_{n\to+\infty}\frac{1}{n}=0.
+\]
+
+证法 2 从 $\sum_{n=1}^{\infty}\frac{1}{n}=+\infty$ 及定理~\ref{thm:12.5.3} 可知, $\prod_{n=1}^{\infty}\left(1+\frac{1}{n}\right)$ 与 $\prod_{n=2}^{\infty}\left(1-\frac{1}{n}\right)$ 都发散. 由于 $1+\frac{1}{n}>1$, $0<1-\frac{1}{n}<1$ 可推得
+\[
+  \prod_{n=1}^{\infty}\left(1+\frac{1}{n}\right)=+\infty,\quad\prod_{n=2}^{\infty}\left(1-\frac{1}{n}\right)=0.
+\]
+
+\begin{example}\label{ex:12.5.4}
+证明:
+(1) $\prod_{n=1}^{\infty}\left[1+\frac{1}{(n+1)^{2}}\right]$, (2) $\prod_{n=1}^{\infty}\left[1-\frac{1}{(n+1)^{2}}\right]$
+都绝对收敛, 当然也是收敛的.
+\end{example}
+
+证明 (1)、(2) 从 $\sum_{n=1}^{\infty}\frac{1}{(n+1)^{2}}<+\infty$（收敛）及定理~\ref{thm:12.5.3} 立知,
+\[
+  \prod_{n=1}^{\infty}\left[1+\frac{1}{(n+1)^{2}}\right]\quad\text{与}\quad\prod_{n=1}^{\infty}\left[1-\frac{1}{(n+1)^{2}}\right]
+\]
+都是绝对收敛的.
+
+事实上, 对于 (2),
+\[
+  \begin{aligned}
+    \prod_{n=1}^{\infty}\left[1-\frac{1}{(n+1)^{2}}\right]&=\lim_{n\to+\infty}\prod_{k=1}^{n}\left[1-\frac{1}{(k+1)^{2}}\right]\\
+    &=\lim_{n\to+\infty}\prod_{k=1}^{n}\left(1-\frac{1}{k+1}\right)\left(1+\frac{1}{k+1}\right)=\lim_{n\to+\infty}\prod_{k=1}^{n}\frac{k}{k+1}\prod_{k=1}^{n}\frac{k+2}{k+1}\\
+    &=\lim_{n\to+\infty}\left(\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdot\frac{4}{5}\cdots\frac{n}{n+1}\right)\left(\frac{3}{2}\cdot\frac{4}{3}\cdot\frac{5}{4}\cdots\frac{n+1}{n}\cdot\frac{n+2}{n+1}\right)\\
+    &=\lim_{n\to+\infty}\left(\frac{1}{2}\cdot\frac{n+2}{n+1}\right)=\frac{1}{2},
+  \end{aligned}
+\]
+即 $\prod_{n=1}^{\infty}\left[1-\frac{1}{(n+1)^{2}}\right]$ 收敛于 $\frac{1}{2}$.
+
+\begin{example}\label{ex:12.5.5}
+证明:
+(1) $\prod_{n=1}^{\infty}\left[1+\frac{1}{(n+1)^{\alpha}}\right]$, (2) $\prod_{n=1}^{\infty}\left[1-\frac{1}{(n+1)^{\alpha}}\right]$,
+当 $\alpha>1$ 时都绝对收敛; 当 $\alpha<1$ 时都发散.
+\end{example}
+
+证明 \extref{例 1.4.2} 表明 $\sum_{n=1}^{\infty}\frac{1}{(n+1)^{\alpha}}$ 当 $\alpha>1$ 时收敛; 当 $\alpha<1$ 时发散. 再根据定理~\ref{thm:12.5.3} 知, $\prod_{n=1}^{\infty}\left[1+\frac{1}{(n+1)^{\alpha}}\right]$ 与 $\prod_{n=1}^{\infty}\left[1-\frac{1}{(n+1)^{\alpha}}\right]$ 当 $\alpha>1$ 时都绝对收敛; 当 $\alpha\leqslant1$ 时都发散.
+
+\begin{example}\label{ex:12.5.6}
+设 $\alpha>0$, 讨论无穷乘积
+\[
+  \prod_{n=1}^{\infty}\left[1+(-1)^{n-1}\frac{1}{n^{\alpha}}\right]
+\]
+的敛散性.
+\end{example}
+
+解 记 $a_{n}=(-1)^{n-1}\frac{1}{n^{\alpha}}$, 则由 Leibniz 判别法知 $\sum_{n=1}^{\infty}a_{n}$ 收敛. 当 $\alpha>\frac{1}{2}$ 时, $\sum_{n=1}^{\infty}a_{n}^{2}=\sum_{n=1}^{\infty}\frac{1}{n^{2\alpha}}$ 收敛. 根据定理~\ref{thm:12.5.4}(1), 无穷级数 $\prod_{n=1}^{\infty}\left[1+(-1)^{n-1}\frac{1}{n^{\alpha}}\right]$ 是收敛的. 但是, 由于当 $\frac{1}{2}<\alpha\leqslant1$ 时, $\prod_{n=1}^{\infty}(1+|a_{n}|)=\prod_{n=1}^{\infty}\left(1+\frac{1}{n^{\alpha}}\right)$ 发散立知, $\prod_{n=1}^{\infty}\left[1+(-1)^{n-1}\frac{1}{n^{\alpha}}\right]$ 是条件收敛的.
+
+当 $0<\alpha\leqslant\frac{1}{2}$ 时, 由于 $\sum_{n=1}^{\infty}a_{n}^{2}=\sum_{n=1}^{\infty}\frac{1}{n^{2\alpha}}$ 发散, 而 $\sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n^{\alpha}}$ 收敛, 根据定理~\ref{thm:12.5.4}(2), 无穷级数 $\prod_{n=1}^{\infty}(1+a_{n})$ 发散于 $0$.
+
+综合上述与例~\ref{ex:12.5.5} 的结论,
+\[
+  \prod_{n=1}^{\infty}\left[1+(-1)^{n-1}\frac{1}{n^{\alpha}}\right]
+\]
+当 $\alpha>1$ 时绝对收敛; 当 $\frac{1}{2}<\alpha\leqslant1$ 时, 条件收敛; 当 $0<\alpha\leqslant\frac{1}{2}$ 时发散于 $0$.
+
+\begin{example}\label{ex:12.5.7}
+设 $\alpha>\beta>0$. 证明:
+\[
+  \prod_{n=1}^{\infty}\frac{\beta+n}{\alpha+n}=\lim_{n\to+\infty}\frac{(\beta+1)(\beta+2)\cdots(\beta+n)}{(\alpha+1)(\alpha+2)\cdots(\alpha+n)}=0.
+\]
+\end{example}
+
+证明 考虑无穷乘积
+\[
+  \prod_{n=1}^{\infty}\frac{\beta+n}{\alpha+n}=\prod_{n=1}^{\infty}\left(1+\frac{\beta-\alpha}{\alpha+n}\right).
+\]
+令 $a_{n}=\frac{\beta-\alpha}{\alpha+n}$, 则 $a_{n}<0$ 且 $\sum_{n=1}^{\infty}\frac{\beta-\alpha}{\alpha+n}$ 发散. 由注~\ref{rem:12.5.1} 知, 无穷乘积 $\prod_{n=1}^{\infty}\frac{\beta+n}{\alpha+n}$ 发散于 $0$, 即
+\[
+  \prod_{n=1}^{\infty}\frac{\beta+n}{\alpha+n}=\lim_{n\to+\infty}\frac{(\beta+1)(\beta+2)\cdots(\beta+n)}{(\alpha+1)(\alpha+2)\cdots(\alpha+n)}=0.
+\]
+
+\begin{example}\label{ex:12.5.8}
+讨论 $\prod_{n=1}^{\infty}(1+x^{2^{n-1}})$ 的敛散性.
+\end{example}
+
+解 $P_{n}=(1+x)(1+x^{2})(1+x^{4})(1+x^{8})\cdots(1+x^{2^{n-1}})$.
+
+当 $x=1$ 时, $P_{n}=2^{n}\to+\infty$（$n\to+\infty$）, 无穷乘积发散于 $+\infty$.
+
+当 $x=-1$ 时, 因为 $1+x=0$, 所以 $P_{n}=0$（$n\in\mathbb{N}$）, $\prod_{n=1}^{\infty}(1+x^{2^{n-1}})=\lim\limits_{n\to+\infty}P_{n}=\lim\limits_{n\to+\infty}0=0$, 无穷乘积发散于 $0$.
+
+当 $x\neq\pm1$ 时,
+\[
+  \begin{aligned}
+    P_{n}&=\frac{(1-x)(1+x)(1+x^{2})(1+x^{4})\cdots(1+x^{2^{n-1}})}{1-x}\\
+    &=\frac{1-x^{2^{n}}}{1-x}\xrightarrow{}\left\{\begin{array}
+{ll}
+      \dfrac{1}{1-x}, & |x|<1,\\[8pt]
+      +\infty, & x>1,\\[2pt]
+      -\infty, & x<-1.
+\end{array}\right.
+  \end{aligned}
+\]
+于是, $\prod_{n=1}^{\infty}(1+x^{2^{n-1}})$ 当且仅当 $|x|<1$ 时收敛.
+
+\begin{example}\label{ex:12.5.9}
+设 $\alpha>-1$,
+\[
+  \mathrm{C}_{\alpha}^{0}=1,\quad\mathrm{C}_{\alpha}^{n}=\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!},
+\]
+证明: $\lim\limits_{n\to+\infty}C_{\alpha}^{n}=0$.
+\end{example}
+
+证明 易见
+\[
+  \begin{aligned}
+    (-1)^{n}C_{\alpha}^{n}&=(-1)^{n}\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}\\
+    &=\left(1-\frac{\alpha+1}{1}\right)\left(1-\frac{\alpha+1}{2}\right)\cdots\left(1-\frac{\alpha+1}{n}\right)\\
+    &=\prod_{k=1}^{n}\left(1-\frac{\alpha+1}{k}\right).
+  \end{aligned}
+\]
+因为 $\alpha+1>0$, 且 $\sum_{n=1}^{\infty}\frac{\alpha+1}{n}$ 发散, 故由注~\ref{rem:12.5.1} 知无穷乘积 $\prod_{k=1}^{\infty}\left(1-\frac{\alpha+1}{k}\right)$ 发散于 $0$, 即
+\[
+  \lim_{n\to+\infty}C_{\alpha}^{n}=\lim_{n\to+\infty}(-1)^{n}\prod_{k=1}^{n}\left(1-\frac{\alpha+1}{k}\right)=0.
+\]
+
+\begin{example}\label{ex:12.5.10}
+证明: $\prod_{n=1}^{\infty}\frac{(2n)^{2}}{(2n-1)(2n+1)}=\frac{\pi}{2}$（Wallis 公式）.
+\end{example}
+
+证明 当 $0<\alpha<\frac{\pi}{2}$ 时, $\sin^{2n+1}x<\sin^{2n}x<\sin^{2n-1}x$, 积分得
+\[
+  \int_{0}^{\frac{\pi}{2}}\sin^{2n+1}x\,\mathrm{d}x<\int_{0}^{\frac{\pi}{2}}\sin^{2n}x\,\mathrm{d}x<\int_{0}^{\frac{\pi}{2}}\sin^{2n-1}x\,\mathrm{d}x,
+\]
+即
+\[
+  \frac{(2n)!!}{(2n+1)!!}<\frac{(2n-1)!!}{(2n)!!}\frac{\pi}{2}<\frac{(2n-2)!!}{(2n-1)!!},
+\]
+于是,
+\[
+  \frac{1}{2n+1}\left[\frac{(2n)!!}{(2n-1)!!}\right]^{2}<\frac{\pi}{2}<\left[\frac{(2n)!!}{(2n-1)!!}\right]^{2}\cdot\frac{1}{2n}.
+\]
+又因为
+\[
+  P_{n}=\prod_{k=1}^{n}\frac{(2k)^{2}}{(2k-1)(2k+1)}=\frac{1}{2n+1}\left[\frac{(2n)!!}{(2n-1)!!}\right]^{2},
+\]
+所以与上式比较得到
+\[
+  P_{n}<\frac{\pi}{2}<P_{n}\cdot\frac{2n+1}{2n},
+\]
+\[
+  \frac{2n}{2n+1}\cdot\frac{\pi}{2}<P_{n}<\frac{\pi}{2}.
+\]
+根据 $\lim\limits_{n\to+\infty}\frac{2n}{2n+1}\cdot\frac{\pi}{2}=\frac{\pi}{2}=\lim\limits_{n\to+\infty}\frac{\pi}{2}$ 与夹逼定理推得
+\[
+  \prod_{n=1}^{\infty}\frac{(2n)^{2}}{(2n-1)(2n+1)}=\lim_{n\to+\infty}P_{n}=\frac{\pi}{2}.
+\]
+
+\begin{exblock}{练习题 12.5}
+\begin{enumerate}
+  \item 讨论下列无穷乘积的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\prod_{n=1}^{\infty}\frac{1}{n}$;
+    \item $\displaystyle\prod_{n=1}^{\infty}\frac{(n+1)^{2}}{n(n+2)}$;
+    \item $\displaystyle\prod_{n=1}^{\infty}\sqrt[n]{1+\frac{1}{n}}$.
+  \end{enumerate}
+  \item 证明下列等式:
+  \begin{enumerate}
+    \item $\displaystyle\prod_{n=2}^{\infty}\frac{n^{2}-1}{n^{2}+1}=\frac{2}{3}$;
+    \item $\displaystyle\prod_{n=2}^{\infty}\left(1-\frac{2}{n(n+1)}\right)=\frac{1}{3}$;
+    \item $\displaystyle\prod_{n=0}^{\infty}\left(1+\left(\frac{1}{2}\right)^{2^{n}}\right)=2$.
+  \end{enumerate}
+  \item 应用 Wallis 公式证明:
+  \begin{enumerate}
+    \item $\displaystyle\prod_{n=1}^{\infty}\left(1-\frac{1}{4n^{2}}\right)=\frac{2}{\pi}$;
+    \item $\displaystyle\prod_{n=1}^{\infty}\left(1-\frac{1}{(2n+1)^{2}}\right)=\frac{\pi}{4}$.
+  \end{enumerate}
+  \item 设 $\sum_{n=1}^{\infty}a_{n}^{2}<+\infty$, 证明: $\prod_{n=1}^{\infty}\cos a_{n}$ 收敛.
+  \item 能否由 $\prod_{n=1}^{\infty}p_{n}$, $\prod_{n=1}^{\infty}q_{n}$ 的收敛性推得下列乘积:
+  \[
+    \prod_{n=1}^{\infty}(p_{n}+q_{n}),\quad\prod_{n=1}^{\infty}p_{n}q_{n},\quad\prod_{n=1}^{\infty}\frac{p_{n}}{q_{n}}
+\]
+  的收敛性?
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 12.5}
+\begin{enumerate}
+  \item 讨论下列无穷乘积的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\prod_{n=1}^{\infty}\frac{n}{\sqrt{n^{2}+1}}$;
+    \item $\displaystyle\prod_{n=2}^{\infty}\left(\frac{n^{2}-1}{n^{2}+1}\right)^{p}$, $p$ 为任意实数;
+    \item $\displaystyle\prod_{n=1}^{\infty}\sqrt[n]{\ln(n+x)-\ln n}$, $x>0$.
+  \end{enumerate}
+  \item 证明下列等式:
+  \begin{enumerate}
+    \item $\displaystyle\prod_{n=1}^{\infty}\cos\frac{x}{2^{n}}=\frac{\sin x}{x}$, $x\neq0$;
+    \item $\displaystyle\frac{2}{\sqrt{2}}\cdot\frac{2}{\sqrt{2+\sqrt{2}}}\cdot\frac{2}{\sqrt{2+\sqrt{2+\sqrt{2}}}}\cdots=\frac{\pi}{2}$;
+    \item $\displaystyle\prod_{n=1}^{\infty}\left(1+\frac{1}{a_{n}}\right)=\mathrm{e}$, 其中 $a_{1}=1$, $a_{n}=n(a_{n-1}+1)$.
+  \end{enumerate}
+  （提示: 先证 $P_{n}=\prod_{k=1}^{n}\left(1+\frac{1}{a_{k}}\right)=\frac{a_{n}+1}{n!}$.）
+  \item 设
+  \[
+    a_{n}=\left\{\begin{array}
+{ll}
+      -\dfrac{1}{\sqrt{k}}, & n=2k-1,\\[8pt]
+      \dfrac{1}{\sqrt{k}}+\dfrac{1}{k}+\dfrac{1}{k\sqrt{k}}, & n=2k,
+\end{array}\right.
+\]
+  证明: $\sum_{n=1}^{\infty}a_{n}$, $\sum_{n=1}^{\infty}a_{n}^{2}$ 都发散, 但 $\prod_{n=1}^{\infty}(1+a_{n})$ 收敛.
+  \item 设级数 $\sum_{n=1}^{\infty}x_{n}^{2}$ 收敛, 证明: 无穷乘积 $\prod_{n=1}^{\infty}\cos x_{n}$ 也收敛.
+  \item 设级数 $\sum_{n=1}^{\infty}a_{n}$ 绝对收敛, 证明: 无穷乘积 $\prod_{n=1}^{\infty}\tan\left(\frac{\pi}{4}+a_{n}\right)$ 也收敛, 其中 $|a_{n}|<\frac{\pi}{4}$.
+  \item 证明: 级数
+  \[
+    \left(\frac{1}{\sqrt{2}}+\frac{1}{2}\right)+\left(-\frac{1}{\sqrt{2}}\right)+\left(\frac{1}{\sqrt{3}}+\frac{1}{3}\right)+\left(-\frac{1}{\sqrt{3}}\right)+\cdots
+\]
+  发散, 但无穷乘积
+  \[
+    \left(1+\frac{1}{\sqrt{2}}+\frac{1}{2}\right)\left(1-\frac{1}{\sqrt{2}}\right)\left(1+\frac{1}{\sqrt{3}}+\frac{1}{3}\right)\left(1-\frac{1}{\sqrt{3}}\right)\cdots
+\]
+  却收敛.
+\end{enumerate}
+\end{exblock}

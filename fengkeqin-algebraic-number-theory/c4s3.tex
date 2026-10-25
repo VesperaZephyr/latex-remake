@@ -1,0 +1,407 @@
+% ============ 第四章 §3 Dedekind zeta 函数 ζ_K(s) (原书 pp.174-187) ============
+\section{\texorpdfstring{Dedekind zeta 函数 $\zeta_{\texorpdfstring{K}{K}}(s)$}{Dedekind zeta 函数 zetaK(s)}}\label{sec:ch4-s3}
+
+\subsection{留数公式}\label{sec:ch4-s3-1}
+
+现在我们将 Dirichlet 和 Riemann 开创的解析方法用于代数数论. 对于代数数论中的许多本质性问题（如本书第五章中关于素理想分解和密度问题、第六章中的类数问题, 以及类域论的建立等）, 解析方法都作出了重要的贡献. 
+
+仿照域 $\Q$ 上的 Riemann zeta 函数 $\zeta(s)=\sum_{n=1}^{\infty}n^{-s}$, Dedekind 对于每个代数数域 $K$, 定义了 Dirichlet 级数
+\[
+  \zeta_K(s)=\sum_{\mathfrak{a}}N(\mathfrak{a})^{-s},
+\]
+其中 $\mathfrak{a}$ 过数域 $K$ 的全部非零整理想, $N(\mathfrak{a})=N_{K/\Q}(\mathfrak{a})$, 称 $\zeta_K(s)$ 为数域 $K$ 的 \emph{Dedekind zeta 函数}. 如果以 $a_n$ 表示 $O_K$ 中范为 $n$ 的整理想个数, 则 $\zeta_K(s)=\sum_{n=1}^{\infty}a_nn^{-s}$, 从而 $\zeta_K(s)$ 不过是数论函数 $a_n$ 的 Dirichlet 级数. 按照前面的研究程度, 下一步自然需要考查 $\zeta_K(s)$ 的解析特性. 我们先来证明它的收敛横坐标 $\sigma_0\leqslant 1$. 
+
+\begin{theorem}\label{thm:4.12}
+(a) 级数 $\zeta_K(s)=\sum_{\mathfrak{a}}N(\mathfrak{a})^{-s}$ 有如下性质：
+
+(P) 在 $\operatorname{Re}(s)>1$ 中收敛, 并且在半平面 $\operatorname{Re}(s)>1$ 的每个紧子集中一致绝对收敛（从而在 $\operatorname{Re}(s)>1$ 中定义出正则函数）. 
+
+(b) 当 $\operatorname{Re}(s)>1$ 时, 无穷乘积 $\prod_{\mathfrak{p}}(1-N(\mathfrak{p})^{-s})^{-1}$ 收敛, 并且有 Euler 乘积展开式 $\zeta_K(s)=\prod_{\mathfrak{p}}(1-N(\mathfrak{p})^{-s})^{-1}$, 其中 $\mathfrak{p}$ 过 $O_K$ 的全部素理想. 
+\end{theorem}
+
+\begin{proof}
+(a) 令 $n=[K:\Q]$. 由于每个有理素数 $p$ 在 $K$ 中至多有 $n$ 个素理想因子（$g\leqslant\sum_{i=1}^{g}e_if_i\leqslant n$）, 从而当 $\sigma>1$ 时, 
+\[
+  \sum_{N(\mathfrak{p})\leqslant x}N(\mathfrak{p})^{-\sigma}
+  \leqslant\sum_{p\leqslant x}\sum_{\mathfrak{p}\mid p}N(\mathfrak{p})^{-\sigma}
+  \leqslant n\sum_{p\leqslant x}p^{-\sigma}
+  \leqslant n\sum_{m\leqslant x}m^{-\sigma}.
+\]
+这就表明 $D$-级数 $\sum_{\mathfrak{p}}N(\mathfrak{p})^{-s}$ 有性质 (P). 进而, 当 $\sigma>1$ 时, 
+\[
+  \sum_{N(\mathfrak{p})\leqslant x}\sum_{m=1}^{\infty}N(\mathfrak{p})^{-m\sigma}
+  =\sum_{N(\mathfrak{p})\leqslant x}N(\mathfrak{p})^{-\sigma}(1-N(\mathfrak{p})^{-\sigma})^{-1}
+  \leqslant 2\sum_{N(\mathfrak{p})\leqslant x}N(\mathfrak{p})^{-\sigma},
+\]
+从而 $\sum_{\mathfrak{p}}\sum_{m=1}^{\infty}N(\mathfrak{p})^{-ms}$ 也有性质 (P). 于是无穷乘积 $\prod_{\mathfrak{p}}(1-N(\mathfrak{p})^{-s})^{-1}$ 也有性质 (P). 进而, 由 $O_K$ 中素理想惟一分解性质, 可知当 $\sigma>1$ 时, 
+\[
+  \prod_{N(\mathfrak{p})\leqslant x}(1-N(\mathfrak{p})^{-\sigma})^{-1}
+  =\prod_{N(\mathfrak{p})\leqslant x}(1+N(\mathfrak{p})^{-\sigma}+N(\mathfrak{p})^{-2\sigma}+\cdots)
+  \geqslant\sum_{N(\mathfrak{a})\leqslant x}N(\mathfrak{a})^{-\sigma}.
+\]
+这就证明了 $\zeta_K(s)=\sum_{\mathfrak{a}}N(\mathfrak{a})^{-s}$ 也有性质 (P). 
+
+(b) 我们已经证明了 $\prod_{\mathfrak{p}}(1-N(\mathfrak{p})^{-s})^{-1}$ 有性质 (P). 另一方面, 
+\[
+  \prod_{N(\mathfrak{p})\leqslant x}(1-N(\mathfrak{p})^{-s})^{-1}
+  =\sum_{N(\mathfrak{a})\leqslant x}N(\mathfrak{a})^{-s}+\sum_{N(\mathfrak{a})>x}'N(\mathfrak{a})^{-s},
+\]
+从而当 $\operatorname{Re}(s)=\sigma>1$ 时, 这就证明了在 $\operatorname{Re}(s)>1$ 时, $\zeta_K(s)=\prod_{\mathfrak{p}}(1-N(\mathfrak{p})^{-s})^{-1}$. 
+\end{proof}
+
+\begin{remark}
+记 $C$ 是数域 $K$ 的任意一个理想类, 定义
+\[
+  \zeta_K(C,s)=\sum_{\mathfrak{a}\in C}N(\mathfrak{a})^{-s}=\sum_{n=1}^{\infty}a_n(C)n^{-s},
+\]
+其中 $\mathfrak{a}$ 过理想类 $C$ 中全部非零整理想, 而 $a_n(C)$ 表示类 $C$ 中范为 $n$ 的整理想个数. 显然 $\zeta_K(s)=\sum_{C\in C(K)}\zeta_K(C,s)$, 并且由于正项级数 $\sum_{n=1}^{\infty}a_n(C)n^{-s}$ 的系数小于 $\sum_{n=1}^{\infty}a_nn^{-s}=\zeta_K(s)$ 中相应的系数, 从而由定理 \ref{thm:4.1} 知 $\zeta_K(C,s)$ 也有性质 (P). 
+\end{remark}
+
+\begin{sloppypar}
+现在考虑 $\zeta_K(C,s)$ 和 $\zeta_K(s)$ 在 $s=1$ 处的性状. 我们要证 $s=1$ 为 $\zeta_K(C,s)$ 和 $\zeta_K(s)$ 的一阶极点, 因此 $\sigma_0=1$. 根据 $D$-级数的一般理论, $\sigma_0$ 和 $\zeta_K(C,s)$ 在 $\sigma_0=1$ 的留数与部分和 $\sum_{n=1}^{N}a_n(C)$ 的大小有关. 正是在这一点上, 解析理论与代数数论发生了深刻的联系. 因为下面定理显示出, 在 $\sum_{n=1}^{N}a_n(C)$ 公式的主项中几乎包含了我们在本书第一部分得到的数域 $K$ 的全部不变量, 而定理的证明本身也显示出我们需要借助代数数论中多么广泛的知识. 
+\end{sloppypar}
+
+\begin{theorem}\label{thm:4.13}
+设 $C$ 是代数数域 $K$ 的一个理想类, $n=[K:\Q]$, 
+\[
+  f(C,x)=\sum_{\substack{\mathfrak{a}\in C\\ N(\mathfrak{a})\leqslant x}}1=\sum_{n\leqslant x}a_n(C),
+\]
+其中 $\mathfrak{a}$ 过范 $\leqslant x$ 并且属于类 $C$ 的整理想, 则当 $x\to\infty$ 时, 
+\[
+  f(C,x)=\rho_Kx+O\left(x^{1-\frac{1}{n}}\right),
+\]
+\[
+  \rho_K=\frac{2^{r_1}(2\pi)^{r_2}R_K}{w_K\cdot\sqrt{|d(K)|}},
+\]
+其中 $r_1$ 和 $r_2$ 分别是 $K$ 到 $\C$ 中的实嵌入个数和复嵌入对数, $R_K$ 和 $d(K)$ 分别是 $K$ 的 regulator 和判别式, $w_K$ 是 $K$ 中单位根群 $W_K$ 的阶. 
+\end{theorem}
+
+\begin{proof}
+第一步（理想求和化为元素求和）. 先在理想类 $C^{-1}$ 中任取一个整理想 $\mathfrak{B}$. 如果 $\mathfrak{a}$ 为 $C$ 中的整理想, 则 $\mathfrak{a}\mathfrak{B}=(\alpha)$, $\alpha\in\mathfrak{B}$, $N(\alpha)=N(\mathfrak{a})N(\mathfrak{B})\leqslant xN(\mathfrak{B})$. 反之, 如果 $\alpha\in\mathfrak{B}$, $N(\alpha)\leqslant x\cdot N(\mathfrak{B})$, 则 $\mathfrak{a}=(\alpha)\mathfrak{B}^{-1}$ 为整理想, 并且 $N(\mathfrak{a})=N(\alpha)N(\mathfrak{B})^{-1}\leqslant x$. 从而 $f(C,x)$ 等于主理想集合 $\{(\alpha)=\alpha O_K\mid\alpha\in\mathfrak{B},\ N(\alpha)\leqslant x\cdot N(\mathfrak{B})\}$ 中主理想个数. 由于 $(\alpha)=(\beta)\Leftrightarrow\alpha/\beta\in U_K$, 于是
+\begin{equation}\tag{1}
+  f(C,x)=\#\{\alpha\ (\mathrm{mod}\ U_K)\mid\alpha\in\mathfrak{B},\ N(\alpha)\leqslant xN(\mathfrak{B})\},
+\end{equation}
+其中 $\alpha\ (\mathrm{mod}\ U_K)$ 表示在每个集合 $\alpha U_K$ 中取一个元素, 而 $\#A=|A|$. 设 $\alpha_1,\cdots,\alpha_n$ 是 Abel 群 $\mathfrak{B}$ 的一组基, 则 $\mathfrak{B}$ 中每个元素惟一地表示成 $\alpha=\sum_{i=1}^{n}m_i\alpha_i$（$m_i\in\Z$）. 作映射
+\begin{equation}\tag{2}
+  \varphi\colon\mathfrak{B}\to\R^n,\qquad \alpha=\sum_{i=1}^{n}m_i\alpha_i\mapsto(m_1,\dots,m_n),
+\end{equation}
+则 $\varphi(\mathfrak{B})$ 为 $\R^n$ 中的格, 于是公式 (1) 可写成
+\begin{equation}\tag{3}
+  f(C,x)=\#\left\{(x_1,\dots,x_n)\in\Z^n\;\middle|\;\alpha=\sum_{i=1}^{n}x_i\alpha_i\ (\mathrm{mod}\ U_K),\ 0<N(\alpha)\leqslant xN(\mathfrak{B})\right\}.
+\end{equation}
+
+第二步（处理单位群）. 接下来要应用 Dirichlet 单位定理. 这个定理是说：$U_K=W_K\times V_K$, 其中 $W_K$ 是 $K$ 的单位根群, $V_K$ 是秩 $r=r_1+r_2-1$ 的自由 Abel 群, 并且 $V_K$ 以一组基本单位 $\varepsilon_1,\cdots,\varepsilon_r$ 为基. 考虑映射
+\[
+  K^*\xrightarrow{\sigma}\R^{*r_1}\times\C^{*r_2}\xrightarrow{l}\R^{r_1+r_2},
+\]
+其中 $\sigma(\alpha)=(\sigma_1(\alpha),\cdots,\sigma_{r_1+r_2}(\alpha))$（$\sigma_1,\cdots,\sigma_{r_1+r_2}$ 是 $K$ 到 $\C$ 中的前 $r_1+r_2$ 个嵌入）, 而
+\[
+  l(y_1,\dots,y_{r_1+r_2})=(n_1\log|y_1|,\dots,n_{r_1+r_2}\log|y_{r_1+r_2}|)
+\]
+为对数映射, $n_i=1$（$1\leqslant i\leqslant r_1$）, $2$（$r_1+1\leqslant i\leqslant r_1+r_2$）. 我们已经知道：
+
+(i) $\operatorname{Ker}(l\circ\sigma)=W_K$；
+
+(ii) $l\circ\sigma(V_K)$ 为 $\R^{r_1+r_2}$ 的超平面
+\[
+  H=\left\{(x_1,\dots,x_{r_1+r_2})\in\R^{r_1+r_2}\mid x_1+\cdots+x_{r_1+r_2}=0\right\}
+\]
+中的格, 并且此格以 $l\circ\sigma(\varepsilon_1),\cdots,l\circ\sigma(\varepsilon_r)$ 为基. 令
+\[
+  t=(n_1,\dots,n_{r_1+r_2})\in\R^{r_1+r_2},
+\]
+显然 $t\notin H$. 从而 $t$, $l\circ\sigma(\varepsilon_1),\cdots,l\circ\sigma(\varepsilon_r)$ 形成实向量空间 $r_1+r_2$ 的一组基, 即
+\[
+  \R^{r_1+r_2}=\R t\oplus\R l\circ\sigma(\varepsilon_1)\oplus\cdots\oplus\R l\circ\sigma(\varepsilon_r).
+\]
+对于每个 $\alpha\in K^{\times}=K-\{0\}$, $l\circ\sigma(\alpha)\in\R^{r_1+r_2}$, 从而惟一地写成
+\[
+  l\circ\sigma(\alpha)=ct+\sum_{i=1}^{r}c_i l\circ\sigma(\varepsilon_i),\qquad c,c_i\in\R.
+\]
+而每个单位惟一地写成 $u=w\varepsilon_1^{a_1}\cdots\varepsilon_r^{a_r}$, $w\in W_K$, $a_i\in\Z$. 于是
+\[
+  l\circ\sigma(u\alpha)=ct+\sum_{i=1}^{r}(c_i+a_i)l\circ\sigma(\varepsilon_i).
+\]
+这就表明, 对于每个 $\alpha=\sum_{i=1}^{n}x_i\alpha_i\in\mathfrak{B}-\{0\}$, $x_i\in\Z$, 在 $\alpha U_K$ 中可选取恰好 $w_K$ 个元素 $\alpha uw$（$w\in W_K$）, 使得 $0\leqslant c_i+a_i<1$（$1\leqslant i\leqslant r$）. 从而 (3) 式又可化为
+\begin{equation}\tag{4}
+  \begin{aligned}
+    w_Kf(C,x)&=\#\Big\{(x_1,\dots,x_n)\in\Z^n\;\Big|\;\alpha=\sum_{i=1}^{n}x_i\alpha_i,\ 0<N(\alpha)\leqslant xN(\mathfrak{B}),\\
+    &\qquad l\circ\sigma(\alpha)=ct+\sum_{i=1}^{r}c_i l\circ\sigma(\varepsilon_i),\ c,c_i\in\R,\\
+    &\qquad 0\leqslant c_i<1\ (1\leqslant i\leqslant r)\Big\}.
+  \end{aligned}
+\end{equation}
+对于 $y=(y_1,\cdots,y_{r_1+r_2})\in\R^{r_1}\times\C^{r_2}$, 我们定义
+\[
+  N(y)=\left|y_1\cdots y_{r_1}y_{r_1+1}^2\cdots y_{r_1+r_2}^2\right|,
+\]
+则
+\[
+  N(\sigma(\alpha))=N\left(\sum_{i=1}^{n}x_i\sigma(\alpha_i)\right).
+\]
+注意当 $\alpha\in K$ 时, $N(\sigma(\alpha))$ 与普通的范 $N(\alpha)$ 一致. 又定义
+\begin{equation}\tag{5}
+  \begin{aligned}
+    \Gamma_0&=\Big\{(x_1,\dots,x_n)\in\R^n\;\Big|\;0<N\left(\sum_{i=1}^{n}x_i\sigma(\alpha_i)\right)\leqslant 1,\\
+    &\qquad l\left(\sum_{i=1}^{n}x_i\sigma(\alpha_i)\right)=ct+\sum_{i=1}^{r}c_i l\circ\sigma(\varepsilon_i),\ 0\leqslant c_i<1\Big\},
+  \end{aligned}
+\end{equation}
+这是 $\R^n$ 中一个形状良好的集合. 而由 (4) 式知 $w_Kf(C,x)$ 不过是集合 $(xN(\mathfrak{B}))^{\frac{1}{n}}\Gamma_0$ 中整点 $(x_1,\cdots,x_n)$ 的个数. 当 $x\to\infty$ 时, $(xN(\mathfrak{B}))^{\frac{1}{n}}\Gamma_0$ 中整点个数相当于集合 $(xN(\mathfrak{B}))^{\frac{1}{n}}\Gamma_0$ 的体积
+\[
+  V((xN(\mathfrak{B}))^{\frac{1}{n}}\Gamma_0)=xN(\mathfrak{B})V(\Gamma_0)
+\]
+的大小（每单位体积有一个整点！）, 而误差的阶应当为 $(xN(\mathfrak{B}))^{\frac{1}{n}}\cdot\Gamma_0$ 的表面积的测度, 即误差的阶应当为 $O(x^{\frac{1}{n}(n-1)})=O(x^{1-\frac{1}{n}})$. 因此我们有
+\begin{equation}\tag{6}
+  w_Kf(C,x)=xN(\mathfrak{B})V(\Gamma_0)+O\left(x^{1-\frac{1}{n}}\right)\qquad(x\to\infty\ \text{时}).
+\end{equation}
+
+第三步（计算 $V(\Gamma_0)$）. 令
+\[
+  \sum_{i=1}^{n}x_i\sigma(\alpha_i)=(y_1,\dots,y_{r_1},y_{r_1+1}+iy_{r_1+r_2+1},\dots,y_{r_1+r_2}+iy_n),
+\]
+即
+\[
+  y_k=\sum_{j=1}^{n}x_j\sigma_k(\alpha_j)\quad(1\leqslant k\leqslant r_1),
+\]
+\[
+  y_k+iy_{r_2+k}=\sum_{j=1}^{n}x_j\sigma_k(\alpha_j)\quad(r_1+1\leqslant k\leqslant r_1+r_2),
+\]
+则
+\[
+  \Gamma_0=\left\{(y_1,\dots,y_n)\in\R^n\;\middle|\;
+  \begin{array}{l}
+    \text{(i) } 0<|y_1\cdots y_{r_1}(y_{r_1+1}^2+y_{r_1+r_2+1}^2)\cdots(y_{r_1+r_2}^2+y_n^2)|\leqslant 1;\\
+    \text{(ii) } (\log|y_1|,\dots,\log|y_{r_1}|,\log(y_{r_1+1}^2+y_{r_1+r_2+1}^2),\dots,\\
+    \qquad\log(y_{r_1+r_2}^2+y_n^2))=ct+\sum_{i=1}^{r}c_i l\circ\sigma(\varepsilon_i)\ (0\leqslant c_i<1,\ c\in\R).
+  \end{array}\right\}
+\]
+再令 $\Gamma=\{(y_1,\cdots,y_n)\in\Gamma_0\mid y_i>0\ (1\leqslant i\leqslant r_1)\}$, 则
+\begin{equation}\tag{7}
+  V(\Gamma_0)=\int_{\Gamma_0}\mathrm{d}x_1\cdots\mathrm{d}x_n
+  =2^{r_2}\int_{\Gamma}J\left(\frac{y_1,\cdots,y_n}{x_1,\cdots,x_n}\right)^{-1}\mathrm{d}y_1\cdots\mathrm{d}y_n.
+\end{equation}
+由于
+\[
+  \frac{\partial y_k}{\partial x_j}=\begin{cases}
+    \sigma_k(\alpha_j), & 1\leqslant k\leqslant r_1;\\
+    \operatorname{Re}(\sigma_k(\alpha_j)), & r_1+1\leqslant k\leqslant r_1+r_2;\\
+    \operatorname{Im}(\sigma_k(\alpha_j)), & r_1+r_2+1\leqslant k\leqslant n,
+  \end{cases}
+\]
+即知 Jacobi 行列式为
+\[
+  J\left(\frac{y_1,\cdots,y_n}{x_1,\cdots,x_n}\right)
+  =2^{-r_2}|\det(\sigma_i(\alpha_j))|=2^{-r_2}d(\alpha_1,\dots,\alpha_n)^{1/2}
+  =2^{-r_2}N(\mathfrak{B})|d(K)|^{1/2}.
+\]
+从而由 (7) 式即知
+\begin{equation}\tag{8}
+  V(\Gamma_0)=\frac{2^{r_1+r_2}}{N(\mathfrak{B})|d(K)|^{1/2}}V(\Gamma).
+\end{equation}
+为了计算 $V(\Gamma)$, 我们在 $\R^n=\R^{r_1}\oplus\C^{r_2}$ 中引入极坐标：
+\[
+  \rho_i=y_i\quad(1\leqslant i\leqslant r_1),
+\]
+\[
+  \rho_{r_1+j}(\cos\theta_j+i\sin\theta_j)=y_{r_1+j}+iy_{r_1+r_2+j}\quad(1\leqslant j\leqslant r_2).
+\]
+于是
+\[
+  \Gamma=\left\{(\rho_1,\dots,\rho_{r_1+r_2},\theta_1,\dots,\theta_{r_2})\;\middle|\;
+  \begin{array}{l}
+    \text{(i) } 0\leqslant P=\rho_1\cdots\rho_{r_1}\cdot(\rho_{r_1+1}\cdots\rho_{r_1+r_2})^2\leqslant 1;\\
+    \text{(ii) } \log\rho_i=\frac{\log P}{n}+\sum_{j=1}^{r}c_j\log|\varepsilon_j^{(i)}|,\ 0\leqslant c_j\leqslant 1;\\
+    \text{(iii) } 0\leqslant\theta_j<2\pi\ (1\leqslant j\leqslant r_2).
+  \end{array}\right\},
+\]
+这里我们利用了 $c=\log P/n$（此式可由 (5) 式中条件 (ii) 得到）. 不难看出
+\[
+  J\left(\frac{y_1,\cdots,y_n}{\rho_1,\cdots,\rho_{r_1+r_2},\theta_1,\cdots,\theta_{r_2}}\right)
+  =\rho_{r_1+1}\cdots\rho_{r_1+r_2}.
+\]
+从而
+\begin{align*}
+  V(\Gamma)&=\int_{\rho,\theta}\rho_{r_1+1}\cdots\rho_{r_1+r_2}\mathrm{d}\rho_1\cdots\mathrm{d}\rho_{r_1+r_2}\mathrm{d}\theta_1\cdots\mathrm{d}\theta_{r_2}\\
+  &=(2\pi)^{r_2}\int_{\rho}\rho_{r_1+1}\cdots\rho_{r_1+r_2}\mathrm{d}\rho_1\cdots\mathrm{d}\rho_{r_1+r_2},
+\end{align*}
+再将坐标 $(\rho_1,\cdots,\rho_{r_1+r_2})$ 改成 $(P,c_1,\cdots,c_r)$. 由于
+\[
+  \frac{\partial\rho_i}{\partial P}=\frac{\rho_i\partial\log\rho_i}{\partial P}=\frac{\rho_i}{nP}\quad(1\leqslant i\leqslant r_1+r_2),
+\]
+\[
+  \frac{\partial\rho_i}{\partial c_j}=\frac{\rho_i\partial\log\rho_i}{\partial c_j}=\rho_i\cdot\log|\varepsilon_j^{(i)}|\quad(1\leqslant j\leqslant r),
+\]
+从而
+\[
+  J\left(\frac{\rho_1,\cdots,\rho_{r_1+r_2}}{P,c_1,\cdots,c_r}\right)
+  =\left|\det\begin{pmatrix}
+    \frac{\rho_1}{nP}, & \dots, & \frac{\rho_{r_1+r_2}}{nP}\\
+    \rho_1\log|\varepsilon_1^{(1)}|, & \dots, & \rho_{r_1+r_2}\log|\varepsilon_1^{(r_1+r_2)}|\\
+    \dots & \dots & \dots\\
+    \rho_1\log|\varepsilon_r^{(1)}|, & \dots, & \rho_{r_1+r_2}\log|\varepsilon_r^{(r_1+r_2)}|
+  \end{pmatrix}\right|
+  =\frac{\rho_1\cdots\rho_{r_1+r_2}}{nP\cdot2^{r_2}}R_K\cdot n.
+\]
+从而
+\begin{align*}
+  V(\Gamma)&=(2\pi)^{r_2}\int_{0\leqslant P,c_1,\dots,c_r\leqslant 1}\rho_1\cdots\rho_{r_1}\rho_{r_1+1}^2\cdots\rho_{r_1+r_2}^2\cdot\frac{R_K\cdot n}{nP\cdot2^{r_2}}\mathrm{d}P\mathrm{d}c_1\cdots\mathrm{d}c_r\\
+  &=\pi^{r_2}R_K.
+\end{align*}
+将此与 (6) 和 (8) 式放在一起, 即得
+\[
+  f(C,x)=\frac{2^{r_1}(2\pi)^{r_2}R_K}{w_K|d(K)|^{1/2}}x+O\left(x^{1-\frac{1}{n}}\right)\qquad(x\to\infty).
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:4.14}
+$\zeta_K(C,s)$ 与 $\zeta_K(s)$ 均可解析延拓到半平面 $\operatorname{Re}(s)>1-\frac{1}{n}$ 中, 并且它们仅在 $s=1$ 处有单极点, 其留数分别为
+\[
+  \underset{s=1}{\operatorname{res}}\zeta_K(C,s)=\rho_K,\qquad
+  \underset{s=1}{\operatorname{res}}\zeta_K(s)=h_K\rho_K.
+\]
+\end{theorem}
+
+\begin{proof}
+根据定理 \ref{thm:4.1}, $\zeta_K(C,s)=\rho_K\zeta(s)+\sum_{n=1}^{\infty}(a_n(C)-\rho_K)n^{-s}$. 而当 $N\to\infty$ 时, 
+\[
+  \sum_{n=1}^{N}(a_n(C)-\rho_K)=f(C,N)-\rho_KN=O\left(N^{1-\frac{1}{n}}\right).
+\]
+从而 $\sum_{n=1}^{\infty}(a_n(C)-\rho_K)n^{-s}$ 在 $\operatorname{Re}(s)>1-\frac{1}{n}$ 中正则. 而 $\zeta(s)$ 在 $s=1$ 有单极点, 从而
+\[
+  \underset{s=1}{\operatorname{res}}\zeta_K(C,s)=\rho_K\underset{s=1}{\operatorname{res}}\zeta(s)=\rho_K.
+\]
+最后
+\[
+  \underset{s=1}{\operatorname{res}}\zeta_K(s)=\sum_{C\in C(K)}\underset{s=1}{\operatorname{res}}\zeta_K(C,s)
+  =\rho_K\sum_{C\in C(K)}1=\rho_K|C(K)|=\rho_Kh_K.
+\]
+至此我们把 $\zeta_K(C,s)$ 和 $\zeta_K(s)$ 解析延拓到 $\operatorname{Re}(s)>1-\frac{1}{n}$. 为了进一步延拓到整个复平面上, 我们也需要函数方程. 
+\end{proof}
+
+\subsection{\texorpdfstring{$\zeta_{\texorpdfstring{K}{K}}(s)$}{zetaK(s)} 的函数方程}\label{sec:ch4-s3-2}
+
+\begin{theorem}\label{thm:4.15}
+(a) $\zeta_K(s)=\sum_{\mathfrak{a}}N(\mathfrak{a})^{-s}$ 可以解析延拓成整个复平面上的亚纯函数, 并且只有 $s=1$ 是奇点（而且是单极点, 留数为 $\rho_Kh_K$）. 
+
+(b) 令
+\[
+  \Phi(s)=\left(\frac{|d(K)|}{4^{r_2}\pi^n}\right)^{s/2}\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\zeta_K(s),
+\]
+则有函数方程
+\[
+  \Phi(s)=W\cdot\Phi(1-s),
+\]
+其中 $W$ 为（依赖于 $K$ 的）复常数, 并且 $|W|=1$. 
+\end{theorem}
+
+\begin{proof}[证明大意]
+我们目前已经具备有证明此定理所需的全部知识和技巧, 但是计算过于复杂. 所以这里只扼要地介绍一下主要思想, 完整的证明可见 E. Hecke 著名的《代数数论讲义》一书（Vorlesungen über die Theorie der algebraischen Zahlen, 1923 年）, 或者 E. Landau 的书 ``Einführung in die Elementare und Analytische Theorie der Algebraischen Zahlen und der Ideale''（1918 年, p. 55\~{}77）. 
+
+事实上, 对于每个理想类 $C\in C(K)$, 均可给出 $\zeta_K(C,s)$ 的解析延拓和函数方程, 然后合并起来就得到 $\zeta_K(s)$ 的结果. 对于 $\zeta_K(C,s)$, 首先像定理 \ref{thm:4.13} 证明的第一步那样, 将理想求和化为元素求和：
+\begin{align*}
+  \zeta_K(C,s)&=\sum_{\mathfrak{a}\in C}N(\mathfrak{a})^{-s}\\
+  &=\sum_{\substack{\alpha\in\mathfrak{B}\\ \alpha\ (\mathrm{mod}\ U_K)}}(N(\alpha)N(\mathfrak{B})^{-1})^{-s}\\
+  &=N(\mathfrak{B})^s\sum_{\substack{\alpha\in\mathfrak{B}\\ \alpha\ (\mathrm{mod}\ U_K)}}N(\alpha)^{-s}\\
+  &=N(\mathfrak{B})^s\sum_{\substack{\alpha=x_1\alpha_1+\cdots+x_n\alpha_n\ (\mathrm{mod}\ U_K)\\ x_i\in\Z}}\prod_{i=1}^{n}(x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)})^{-s}\\
+  &=N(\mathfrak{B})^s\sum_{\substack{x_1,\dots,x_n\in\Z\\ \alpha\ (\mathrm{mod}\ U_K)}}\prod_{i=1}^{r_1}(x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)})^{-s}\\
+  &\qquad\cdot\prod_{i=r_1+1}^{r_1+r_2}\left|x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)}\right|^{-2s},
+\end{align*}
+其中 $\mathfrak{B}$ 为理想类 $C^{-1}$ 中任意一个整理想, 而 $\alpha_1,\cdots,\alpha_n$ 为加法群 $\mathfrak{B}$ 的一组基. 随后像定理 \ref{thm:4.13} 证明第二步那样, 将 $\mathrm{mod}\ U_K$ 条件用 Dirichlet 单位定理加以改造（详情从略）. 再对于上式右边乘积中的每个因子, 像处理 $\zeta(s)$ 和 $L(s,\chi)$ 时一样借助于 Gamma 函数化为积分, 具体来说, 就是使用
+\begin{align*}
+  &\pi^{-s/2}\Gamma(s/2)(x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)})^{-s}\\
+  &\qquad=\int_0^{\infty}e^{-\pi(x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)})^2}t^{s/2-1}\mathrm{d}t\qquad(1\leqslant i\leqslant r_1),\\
+  &\pi^{-s}\Gamma(s)|x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)}|^{-2s}\\
+  &\qquad=\int_0^{\infty}e^{-\pi|x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)}|^2}t^{s-1}\mathrm{d}t\qquad(r_1+1\leqslant i\leqslant r_1+r_2),
+\end{align*}
+于是
+\begin{align*}
+  &\pi^{-\frac{ns}{2}}\Gamma(s/2)^{r_1}\Gamma(s)^{r_2}\prod_{i=1}^{r_1}(x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)})^{-s}\\
+  &\qquad\cdot\prod_{i=r_1+1}^{r_1+r_2}\left|x_1\alpha_1^{(i)}+\cdots+x_n\alpha_n^{(i)}\right|^{-2s}\\
+  &=\int_0^{\infty}\cdots\int_0^{\infty}\mathrm{d}t_1\cdots\mathrm{d}t_{r_1+r_2}(t_1\cdots t_{r_1})^{s/2-1}(t_{r_1+1}\cdots t_{r_1+r_2})^{s-1}\\
+  &\qquad\cdot\sum_{x_1,\dots,x_n\in\Z}e^{-\pi tQ(\overline{x})}.
+\end{align*}
+其中 $Q(\overline{x})=Q(x_1,\cdots,x_n)$ 为 $x_1,\cdots,x_n$ 的一个二次型. 令
+\[
+  \theta(Q,t)=\sum_{x_1,\dots,x_n\in\Z}e^{-\pi tQ(\overline{x})}.
+\]
+用高维的 Poisson 求和公式可得到
+\[
+  \theta(\widetilde{Q},t^{-1})=C\cdot\theta(Q,t),
+\]
+其中 $C$ 是一个相当复杂的常数（主要成分是代数数域上的 Gauss 和）, $\widetilde{Q}$ 是与 $Q$ 相联系的另一个二次型, $\widetilde{Q}$ 和 $Q$ 都是正定的二次型. 于是由积分公式将 $\zeta_K(s)$ 延拓到整个复平面上. 再利用 $\theta(Q,t)$ 的上述变换公式, 经过相当冗长的计算, 即得到定理中的函数方程. 其中常数 $W$ 很复杂, 但是可以计算出它的绝对值是 $1$. 
+\end{proof}
+
+利用函数方程我们又可得到 $\zeta_K(s)$ 的零点特性与极点特性. 与前面 $\zeta(s)$ 和 $L(s,\chi)$ 一样, 我们首先需要：
+
+\begin{lemma}\label{lem:ch4-10}
+$\zeta_K(1+it)\neq 0$（$t\in\R$）. 
+\end{lemma}
+
+\begin{proof}
+我们已经知道 $s=1$ 是 $\zeta_K(s)$ 的单极点. 而当 $t\neq 0$ 时, 证明 $\zeta_K(1+it)\neq 0$ 几乎与证明 $\zeta(1+it)\neq 0$ 完全一样, 只要把证明中的有理素数 $p$ 均改成 $N(\mathfrak{p})$ 即可. 
+\end{proof}
+
+\begin{lemma}\label{lem:ch4-11}
+(a) $\zeta_K(s)$ 只有 $s=1$ 为奇点, 并且是留数为 $\rho_Kh_K$ 的单极点；
+
+(b) $\zeta_K(s)$ 在 $s=0$ 为 $r=r_1+r_2-1$ 阶零点, 在 $s=-2,-4,-6,\cdots$ 处为 $r+1$ 阶零点, 在 $s=-1,-3,-5,\cdots$ 处为 $r_2$ 阶零点（以上均称作是 $\zeta_K(s)$ 的\emph{平凡零点}）, 而 $\zeta_K(s)$ 的其他零点均在区域 $0<\operatorname{Re}(s)<1$ 之中, 并且关于直线 $\operatorname{Re}(s)=1/2$ 是对称的. 
+\end{lemma}
+
+\begin{proof}
+利用定理 \ref{thm:4.15} 中的函数方程、Gamma 函数的极点特性以及引理 \ref{lem:ch4-11} 即可证得全部结论, 证明与对 $\zeta(s)$ 和 $L(s,\chi)$ 的做法完全一样. 
+\end{proof}
+
+\begin{remark}
+(1) 猜想对于每个数域 $K$, $\zeta_K(s)$ 的非平凡零点均在直线 $\operatorname{Re}(s)=1/2$ 之上. 这是通常 Riemann 猜想（对 $K=\Q$ 的情形）的推广. 目前还没有一个数域 $K$（甚至 $\Q$）上能够解决这个猜想. 
+
+(2) 关于 $\zeta_K(s)$ 人们还有许多猜想. 其中著名的 Artin 猜想是说：如果数域 $K$ 是数域 $L$ 的子域, 则 $\zeta_L(s)/\zeta_K(s)$ 是整个复平面上的全纯函数. 根据引理 \ref{lem:ch4-11}, $\zeta_L(s)$ 和 $\zeta_K(s)$ 的单极点 $s=1$ 相互抵消. 因此 Artin 猜想相当于说：$\zeta_K(s)$ 的每个零点均是 $\zeta_L(s)$ 的零点, 并且前者的阶数不超过后者的阶数. 从引理 \ref{lem:ch4-11} 又可看到, 对于平凡零点这个结论是对的（换句话说, 域 $K$ 的 $r$ 和 $r_2$ 分别不超过域 $L$ 的 $r$ 和 $r_2$, 从 $r$ 和 $r_2$ 的定义很容易证出这一点（习题））. 问题在于：对于 $\zeta_L(s)$ 和 $\zeta_K(s)$ 在带状区域 $0<\operatorname{Re}(s)<1$ 中的那些神秘的非平凡零点, 是否也有同样的结论？我们在本书最后一章中要证明, 当 $L$ 和 $K$ 均是 Abel 数域的时候（$L\supseteq K$）, Artin 猜想是对的. 1946 年, Brauer 利用有限群表示理论证明了：如果 $L/K$ 是数域的 Galois 扩张, 并且 $\operatorname{Gal}(L/K)$ 是 Abel 群, 则 Artin 猜想是对的. 对于一般情形至今仍未解决. 
+
+(3) 我们在 §2 中计算出 $\zeta(s)$ 和 $L(s,\chi)$ 在 $s=0,-1,-2,\cdots$ 处的值. 当 $K$ 为 Abel 数域时, 我们在第六章要给出 $\zeta_K(s)$ 在 $s=0,-1,-2,\cdots$ 处的值. 对于任意的代数数域 $K$, 近来人们有许多奇妙的猜想, 将 $\zeta_K(n)$（$n=0,-1,-2,\cdots$）与某些微分流形的不变量联系起来, 或者与代数 $K$-理论中的某些 $K$-群 $K_n(O_K)$ 的结构发生关系. 这些猜想是代数数论与微分几何、调和分析、代数几何、自守函数理论等许多学科相互交织的产物, 在当前是一个很活跃的领域. 对于全实的数域 $K$（即 $r_1=[K:\Q]$）, 日本年青而早逝的数学家新谷（Shintani）于 1978 年给出了计算 $\zeta_K(n)$（$n=0,-1,-2,\cdots$）的一个初等的公式, 但是对于一般的数域 $K$, 关于 $\zeta_K(s)$ 取值方面的研究还有许多空白. 
+
+(4) 至于 $\zeta_K(s)$ 在正整数处的取值, 最值得注意的是 $\zeta_K(s)$ 在 $s=1$ 的留数与域 $K$ 的类数 $h_K$ 相联系：$\underset{s=1}{\operatorname{res}}\zeta_K(s)=\rho_Kh_K$. 这就表明对 $\zeta_K(s)$ 的解析性质的研究会给出类数问题的结果. 目前研究最为透彻的是 Abel 数域的情形, 是由 Hasse 和他的学生 Leopoldt 于 20 世纪 40 年代至 60 年代作出的. 其中最基本结果是 Hasse 对于 Abel 数域的类数解析公式. 这是我们在第六章中要介绍的主题. 
+\end{remark}
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 设 $L/K$ 是数域的扩张. 求证 $r(L)\geqslant r(K)$, $r_2(L)\geqslant r_2(K)$, 其中 $r(L)$ 和 $r_2(L)$ 分别表示数域 $L$ 的不变量 $r=r_1+r_2-1$ 和 $r_2$. 
+  \item 对于数域 $K$ 中每个整理想 $\mathfrak{a}$, 定义
+  \[
+    \varphi(\mathfrak{a})=\left|(O_K/\mathfrak{a})^{\times}\right|,
+  \]
+  \[
+    d_m(\mathfrak{a})=\prod_{\mathfrak{B}\mid\mathfrak{a}}N(\mathfrak{B})^m\qquad(\text{其中 } \mathfrak{B}\ \text{过 } \mathfrak{a}\ \text{的整理想因子}),
+  \]
+  \[
+    \widetilde{d}_m(\mathfrak{a})=\mathfrak{a}\ \text{分解成 } m\ \text{个整理想之积的方法数}\qquad(\text{因子次序不同看作是不同的分解}),
+  \]
+  \[
+    \mu(\mathfrak{a})=\begin{cases}
+      1, & \text{若}\ \mathfrak{a}=O_K;\\
+      (-1)^r, & \text{若}\ \mathfrak{a}\ \text{为 } r\ \text{个不同素理想之乘积};\\
+      0, & \text{否则}.
+    \end{cases}
+  \]
+  求证：
+  \begin{align*}
+    &\text{(a) } \sum_{\mathfrak{a}}\mu(\mathfrak{a})N(\mathfrak{a})^{-s}=\zeta_K(s)^{-1},\qquad
+    \sum_{\mathfrak{a}}\widetilde{d}_m(\mathfrak{a})N(\mathfrak{a})^{-s}=\zeta_K(s)^m,\\
+    &\sum_{\mathfrak{a}}d_m(\mathfrak{a})N(\mathfrak{a})^{-s}=\zeta_K(s)\zeta_K(s-m),\qquad
+    \sum_{\mathfrak{a}}\varphi(\mathfrak{a})N(\mathfrak{a})^{-s}=\zeta_K(s-1)/\zeta_K(s);\\
+    &\text{(b) } \sum_{\mathfrak{B}\mid\mathfrak{a}}\varphi(\mathfrak{B})=N(\mathfrak{a}),\qquad
+    \sum_{\mathfrak{B}\mid\mathfrak{a}}\frac{\mu(\mathfrak{B})}{N(\mathfrak{B})}=\frac{\varphi(\mathfrak{a})}{N(\mathfrak{a})}.
+  \end{align*}
+  \item 对于数域 $K$ 中每个整理想 $\mathfrak{a}$, 定义
+  \[
+    \Lambda_K(\mathfrak{a})=\begin{cases}
+      \log N(\mathfrak{p}), & \text{如果}\ \mathfrak{a}=\mathfrak{p}^m,\ m\geqslant 1,\ \mathfrak{p}\ \text{为素理想};\\
+      0, & \text{否则}.
+    \end{cases}
+  \]
+  求证当 $\operatorname{Re}(s)>1$ 时
+  \[
+    \sum_{\mathfrak{a}}\Lambda_K(\mathfrak{a})N(\mathfrak{a})^{-s}=-\zeta_K'(s)/\zeta_K(s),
+  \]
+  其中 $\zeta_K'$ 表示函数 $\zeta_K(s)$ 的导函数. 特别对于通常的 Mangoldt 函数 $\Lambda(n)$, 我们有
+  \[
+    \sum_{n=1}^{\infty}\Lambda(n)n^{-s}=-\zeta'(s)/\zeta(s)\qquad(\operatorname{Re}(s)>1).
+  \]
+\end{Exercises}

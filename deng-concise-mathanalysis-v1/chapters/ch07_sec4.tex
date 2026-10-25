@@ -1,0 +1,318 @@
+\section{定积分的计算}\label{sec:7-4}
+
+微积分基本定理把计算定积分化为求被积函数的一个原函数，即求不定积分．如果永远都这样做，有时会变得很麻烦，甚至不可能计算出积分值（例如原函数不能用初等函数表示）．求不定积分有换元积分法与分部积分法，因此我们要把不定积分的这两种方法移植到定积分来．
+
+\begin{theorem}[定积分换元法则]\label{thm:7-13}
+若 $f(x)$ 在 $[a,b]$ 连续．作变换 $x = \varphi(t)$，其中 $\varphi(t)$ 满足：
+\begin{enumerate}[(i)]
+\item $\varphi(\alpha) = a$，$\varphi(\beta) = b$，且当 $t \in [\alpha,\beta]$ 时，$\varphi(t) \in [a,b]$；
+\item $\varphi(t)$ 在 $[\alpha,\beta]$ 有连续微商 $\varphi'(t)$，
+\end{enumerate}
+则
+\[
+\int_a^b f(x)\,dx = \int_\alpha^\beta f(\varphi(t))\varphi'(t)\,dt.
+\]
+\end{theorem}
+
+\begin{proof}
+由 $f(x)$ 在 $[a,b]$ 连续，$f(\varphi(t))\varphi'(t)$ 在 $[\alpha,\beta]$ 连续，知等式两边的定积分有意义．根据连续函数的原函数存在，可设 $f(x)$ 在 $[a,b]$ 的一个原函数为 $F(x)$，这时
+\[
+\frac{d F(\varphi(t))}{dt} = F'(\varphi(t))\varphi'(t) = f(\varphi(t))\varphi'(t),
+\]
+也就是说 $F(\varphi(t))$ 是 $f(\varphi(t))\varphi'(t)$ 在 $[\alpha,\beta]$ 的原函数．运用牛顿---莱布尼茨公式，便得到
+\begin{align*}
+\int_a^b f(x)\,dx &= F(b) - F(a) \\
+&= F(\varphi(\beta)) - F(\varphi(\alpha)) \\
+&= \int_\alpha^\beta f(\varphi(t))\varphi'(t)\,dt.
+\end{align*}
+这就是所要证明的．
+\end{proof}
+
+注意到当 $x = \varphi(t)$ 时，$dx = d\varphi(t) = \varphi'(t)dt$，则上式是说，在定积分 $\int_a^b f(x)\,dx$ 中，可以作任何变量代换 $x = \varphi(t)$，只要在被积表达式中作微分运算即可，但要记得在代换过程中，积分上下限要作相应的改变．
+
+\begin{example}
+求 $\displaystyle \int_0^a \sqrt{a^2 - x^2}\,dx$ ($a > 0$)．
+\end{example}
+
+\begin{proof}[解]
+令 $x = a\sin t$，则要 $x$ 从 $0$ 变到 $a$，只需 $t$ 从 $0$ 变到 $\frac{\pi}{2}$．因此
+\begin{align*}
+\int_0^a \sqrt{a^2 - x^2}\,dx &= \int_0^{\frac{\pi}{2}}\sqrt{a^2 - a^2\sin^2 t}\,d(a\sin t) = \int_0^{\frac{\pi}{2}}a^2\sqrt{\cos^2 t}\cos t\,dt \\
+&= a^2\int_0^{\frac{\pi}{2}}\cos^2 t\,dt = a^2\int_0^{\frac{\pi}{2}}\frac{1 + \cos 2t}{2}\,dt \\
+&= \frac{a^2}{2}\left(t + \frac{1}{2}\sin 2t\right)\bigg|_0^{\frac{\pi}{2}} = \frac{\pi}{4}a^2.
+\end{align*}
+\end{proof}
+
+我们看到，利用定积分换元公式时，只要随之改变积分限，最后不必像不定积分那样再将变量还原．
+
+\begin{example}
+证明 $\displaystyle \int_0^{\frac{\pi}{2}}\sin^n x\,dx = \int_0^{\frac{\pi}{2}}\cos^n x\,dx$．
+\end{example}
+
+\begin{proof}
+作变换 $x = \frac{\pi}{2} - t$，则当 $x = 0$ 时，$t = \frac{\pi}{2}$；当 $x = \frac{\pi}{2}$ 时，$t = 0$．因此
+\begin{align*}
+\int_0^{\frac{\pi}{2}}\sin^n x\,dx &= \int_{\frac{\pi}{2}}^0 \sin^n\left(\frac{\pi}{2} - t\right)d\left(\frac{\pi}{2} - t\right) \\
+&= -\int_{\frac{\pi}{2}}^0 \cos^n t\,dt = \int_0^{\frac{\pi}{2}}\cos^n x\,dx.
+\end{align*}
+\end{proof}
+
+\begin{example}
+若 $f(x)$ 在对称区间 $[-a,a]$ 连续，则
+\begin{enumerate}[(i)]
+\item 当 $f(x)$ 为偶函数时，有 $\displaystyle \int_{-a}^a f(x)\,dx = 2\int_0^a f(x)\,dx$；
+\item 当 $f(x)$ 为奇函数时，有 $\displaystyle \int_{-a}^a f(x)\,dx = 0$．
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(i) $\displaystyle \int_{-a}^a f(x)\,dx = \int_{-a}^0 f(x)\,dx + \int_0^a f(x)\,dx$．
+
+对右端第一项，作变换 $x = -t$，则当 $x = -a$ 时，$t = a$；当 $x = 0$ 时，$t = 0$．又由 $f(x)$ 是偶函数知 $f(-t) = f(t)$，故
+\[
+\int_{-a}^0 f(x)\,dx = -\int_a^0 f(-t)\,dt = -\int_a^0 f(t)\,dt = \int_0^a f(t)\,dt.
+\]
+代回上式便得
+\[
+\int_{-a}^a f(x)\,dx = 2\int_0^a f(x)\,dx.
+\]
+此式有明显的几何意义（见图~\ref{fig:7-14}）．
+
+(ii) 可类似证明．其几何意义可从图~\ref{fig:7-15} 看出，奇、偶函数的这种积分性质是经常要用的，例如
+\[
+\int_{-1}^1 x\sqrt{1 - x^2}\,dx = 0,
+\]
+\[
+\int_{-\pi}^\pi \sin mx\sin nx\,dx = 2\int_0^\pi \sin mx\sin nx\,dx,
+\]
+\[
+\int_{-\pi}^\pi \sin mx\cos nx\,dx = 0,
+\]
+等等．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.9\textwidth]{fig7-14.png}
+\figcap{图 7-14}\label{fig:7-14}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.85\textwidth]{fig7-15.png}
+\figcap{图 7-15}\label{fig:7-15}
+\end{minipage}
+\end{figure}
+
+\begin{example}
+证明：若 $f(x)$ 是一个以 $T$ 为周期的连续函数，则对任意常数 $a$，有
+\[
+\int_a^{a+T}f(x)\,dx = \int_0^T f(x)\,dx.
+\]
+\end{example}
+
+\begin{proof}
+由于
+\[
+\int_a^{a+T}f(x)\,dx = \int_a^0 f(x)\,dx + \int_0^T f(x)\,dx + \int_T^{a+T}f(x)\,dx,
+\]
+只需证明第一项与第三项可以相消．事实上，在第三个积分中令 $x = t + T$，则
+\[
+\int_T^{a+T}f(x)\,dx = \int_0^a f(t + T)\,dt = \int_0^a f(t)\,dt = -\int_a^0 f(t)\,dt,
+\]
+这就是说第一项与第三项的确可以相消，从而
+\[
+\int_a^{a+T}f(x)\,dx = \int_0^T f(x)\,dx.
+\]
+\end{proof}
+
+此例证明，周期函数在任何两个长度为周期 $T$ 的区间上的积分值相等，这在几何上也是明显的．
+
+\begin{example}
+求 $\displaystyle \int_0^\pi \frac{x\sin x}{1 + \cos^2 x}\,dx$．
+\end{example}
+
+\begin{proof}[解]
+被积函数的原函数是很难求出来的，因此，尝试用换元法把它简化．事实上，
+\[
+\int_0^\pi \frac{x\sin x}{1 + \cos^2 x}\,dx = \int_0^{\frac{\pi}{2}}\frac{x\sin x}{1 + \cos^2 x}\,dx + \int_{\frac{\pi}{2}}^\pi \frac{x\sin x}{1 + \cos^2 x}\,dx.
+\]
+在等式右边第二个积分中，令 $x = \pi - t$，则
+\begin{align*}
+\int_{\frac{\pi}{2}}^\pi \frac{x\sin x}{1 + \cos^2 x}\,dx &= -\int_{\frac{\pi}{2}}^0 \frac{(\pi - t)\sin(\pi - t)}{1 + \cos^2(\pi - t)}\,dt \\
+&= \pi\int_0^{\frac{\pi}{2}}\frac{\sin t}{1 + \cos^2 t}\,dt - \int_0^{\frac{\pi}{2}}\frac{t\sin t}{1 + \cos^2 t}\,dt,
+\end{align*}
+代入原式，得
+\begin{align*}
+\int_0^\pi \frac{x\sin x}{1 + \cos^2 x}\,dx &= \pi\int_0^{\frac{\pi}{2}}\frac{\sin x}{1 + \cos^2 x}\,dx \\
+&= -\pi\arctan(\cos x)\bigg|_0^{\frac{\pi}{2}} = \frac{\pi^2}{4}.
+\end{align*}
+这里，我们实际上并未求出 $\frac{x\sin x}{1 + \cos^2 x}$ 的原函数，而只是用定积分换元法则，把不易计算的项消去了．由此可见，不要简单地认为定积分换元法与不定积分换元法的作用是相同的．
+\end{proof}
+
+下面讲述定积分的分部积分法．
+
+\begin{theorem}[定积分分部积分法]\label{thm:7-14}
+若函数 $u(x)$、$v(x)$ 在 $[a,b]$ 有连续的微商 $u'(x)$、$v'(x)$，则有分部积分公式
+\[
+\int_a^b u(x)v'(x)\,dx = u(x)v(x)\bigg|_a^b - \int_a^b v(x)u'(x)\,dx.
+\]
+\end{theorem}
+
+\begin{proof}
+由乘积的微商公式
+\[
+(u(x)v(x))' = u(x)v'(x) + v(x)u'(x),
+\]
+两边在 $[a,b]$ 积分，再用牛顿---莱布尼茨公式，便得
+\[
+\int_a^b u(x)v'(x)\,dx + \int_a^b v(x)u'(x)\,dx = \int_a^b [u(x)v(x)]'\,dx = u(x)v(x)\bigg|_a^b,
+\]
+移项便得所要证明的公式．
+\end{proof}
+
+这公式可以写成
+\[
+\int_a^b u(x)\,dv(x) = u(x)v(x)\bigg|_a^b - \int_a^b v(x)\,du(x).
+\]
+
+\begin{example}
+计算 $\displaystyle I = \int_0^1 x\ln(1 + x)\,dx$．
+\end{example}
+
+\begin{proof}[解]
+\begin{align*}
+I &= \int_0^1 \ln(1 + x)\,d\left(\frac{x^2}{2}\right) \\
+&= \frac{x^2}{2}\ln(1 + x)\bigg|_0^1 - \int_0^1 \frac{x^2}{2}\,d\ln(1 + x) \\
+&= \frac{1}{2}\ln 2 - \frac{1}{2}\int_0^1 \frac{x^2}{1 + x}\,dx \\
+&= \frac{1}{2}\ln 2 - \frac{1}{2}\int_0^1 \left(x - 1 + \frac{1}{1 + x}\right)dx \\
+&= \frac{1}{2}\ln 2 - \frac{1}{2}\left[\frac{x^2}{2} - x + \ln(1 + x)\right]\Bigg|_0^1 \\
+&= \frac{1}{4}.
+\end{align*}
+\end{proof}
+
+\begin{example}
+计算 $\displaystyle I_n = \int_0^{\frac{\pi}{2}}\sin^n x\,dx$ （$n = 0, 1, 2, \cdots$）．
+\end{example}
+
+\begin{proof}[解]
+\[
+I_0 = \int_0^{\frac{\pi}{2}}dx = \frac{\pi}{2},
+\]
+\[
+I_1 = \int_0^{\frac{\pi}{2}}\sin x\,dx = -\cos x\bigg|_0^{\frac{\pi}{2}} = 1.
+\]
+只需讨论 $n \geqslant 2$ 的情形．由分部积分公式
+\begin{align*}
+I_n &= \int_0^{\frac{\pi}{2}}\sin^{n-1}x\,d(-\cos x) \\
+&= (-\cos x)\sin^{n-1}x\bigg|_0^{\frac{\pi}{2}} + \int_0^{\frac{\pi}{2}}\cos x\,d\sin^{n-1}x \\
+&= (n - 1)\int_0^{\frac{\pi}{2}}\sin^{n-2}x\cos^2 x\,dx \\
+&= (n - 1)\int_0^{\frac{\pi}{2}}\sin^{n-2}x(1 - \sin^2 x)\,dx \\
+&= (n - 1)I_{n-2} - (n - 1)I_n,
+\end{align*}
+移项，得到一个递推公式
+\[
+I_n = \frac{n-1}{n}I_{n-2} \quad (n \geqslant 2).
+\]
+\begin{enumerate}[(i)]
+\item 当 $n$ 为偶数 $2k$ 时，则
+\begin{align*}
+I_{2k} &= \frac{2k-1}{2k}I_{2k-2} = \frac{2k-1}{2k}\cdot\frac{2k-3}{2k-2}I_{2k-4} = \cdots \\
+&= \frac{(2k-1)(2k-3)\cdots 5\cdot 3\cdot 1}{(2k)(2k-2)\cdots 6\cdot 4\cdot 2}I_0 \\
+&= \frac{(2k-1)(2k-3)\cdots 5\cdot 3\cdot 1}{(2k)(2k-2)\cdots 6\cdot 4\cdot 2}\cdot\frac{\pi}{2}, \quad k = 1, 2, \cdots.
+\end{align*}
+\item 当 $n$ 为奇数 $2k+1$ 时，则
+\begin{align*}
+I_{2k+1} &= \frac{(2k)(2k-2)(2k-4)\cdots 6\cdot 4\cdot 2}{(2k+1)(2k-1)(2k-3)\cdots 7\cdot 5\cdot 3}I_1 \\
+&= \frac{(2k)(2k-2)(2k-4)\cdots 6\cdot 4\cdot 2}{(2k+1)(2k-1)(2k-3)\cdots 7\cdot 5\cdot 3}, \qquad k = 1, 2, \cdots.
+\end{align*}
+\end{enumerate}
+由例~2 知
+\[
+\int_0^{\frac{\pi}{2}}\cos^n x\,dx = \int_0^{\frac{\pi}{2}}\sin^n x\,dx,
+\]
+因此有一样的计算公式，例如由 $\sin x$ 的对称性，
+\[
+\int_0^\pi \sin^4 x\,dx = 2\int_0^{\frac{\pi}{2}}\sin^4 x\,dx,
+\]
+再用公式得
+\[
+\int_0^\pi \sin^4 x\,dx = 2\frac{3\cdot 1}{4\cdot 2}\frac{\pi}{2} = \frac{3}{8}\pi.
+\]
+\end{proof}
+
+\begin{xiti}
+\item 计算下列定积分：
+\begin{ziti}
+\item $\displaystyle \int_1^2 \frac{(x+1)(x^2-3)}{3x^2}\,dx$；
+\item $\displaystyle \int_0^1 \frac{x^2+1}{x^4+1}\,dx$；
+\item $\displaystyle \int_{-\frac{1}{5}}^{\frac{1}{5}} x\sqrt{2 - 5x}\,dx$；
+\item $\displaystyle \int_4^9 \left(\sqrt{x} + \frac{1}{\sqrt{x}}\right)dx$；
+\item $\displaystyle \int_0^1 \sqrt{4 - x^2}\,dx$；
+\item $\displaystyle \int_0^a x^2 \sqrt{a^2 - x^2}\,dx$；
+\item $\displaystyle \int_0^{\frac{\pi}{2}}\sin mx\cos nx\,dx$；
+\item $\displaystyle \int_0^1 \frac{dx}{(x^2 - x + 1)^{3/2}}$；
+\item $\displaystyle \int_0^3 \frac{x\,dx}{1 + \sqrt{1 + x}}$；
+\item $\displaystyle \int_0^4 x(x + \sqrt{x})\,dx$；
+\item $\displaystyle \int_1^{\frac{\pi}{2}}\frac{\cos x}{1 + \sin^2 x}\,dx$；
+\item $\displaystyle \int_0^1 \mathrm{e}^{\sqrt{x}}\,dx$；
+\item $\displaystyle \int_0^1 x\arctan x\,dx$；
+\item $\displaystyle \int_0^{2\pi} x^2 \cos^2 x\,dx$；
+\item $\displaystyle \int_{-\pi}^\pi x^2 \cos^2 x\,dx$；
+\item $\displaystyle \int_0^{\sqrt{\ln 2}} x^3 \mathrm{e}^{-x^2}\,dx$；
+\item $\displaystyle \int_{-\pi}^\pi \sin mx\cos nx\,dx$；
+\item $\displaystyle \int_0^a x^2 \sqrt{\frac{a - x}{a + x}}\,dx$ ($a > 0$)；
+\item $\displaystyle \int_a^{2a}\frac{\sqrt{x^2 - a^2}}{x^4}\,dx$；
+\item $\displaystyle \int_0^{\frac{1}{\sqrt{5}}} x^3(1 - 5x^2)^{10}\,dx$．
+\end{ziti}
+
+\item 计算下列积分：
+\begin{ziti}
+\item $\displaystyle \int_0^{\frac{\pi}{2}}\sin^9 x\,dx$；
+\item $\displaystyle \int_0^\pi \sin^5 x\,dx$；
+\item $\displaystyle \int_0^{2\pi}\cos^6 x\,dx$；
+\item $\displaystyle \int_0^{\frac{3}{2}\pi}\cos^7 x\,dx$；
+\item $\displaystyle \int_0^a (a^2 - x^2)^n\,dx$；
+\item $\displaystyle \int_0^1 (1 - x^2)^6\,dx$．
+\end{ziti}
+
+\item 证明连续的奇函数的一切原函数皆为偶函数，连续的偶函数的原函数中有且只有一个为奇函数．
+
+\item 设 $f(x)$ 在所示区间上是连续函数，证明：
+\begin{ziti}
+\item $\displaystyle \int_0^{\frac{\pi}{2}} f(\sin x)\,dx = \int_0^{\frac{\pi}{2}} f(\cos x)\,dx$；
+\item $\displaystyle \int_0^\pi x f(\sin x)\,dx = \frac{\pi}{2}\int_0^\pi f(\sin x)\,dx$；
+\item $\displaystyle \int_1^a f\left(x^2 + \frac{a^2}{x^2}\right)\frac{dx}{x} = \int_1^{a^2} f\left(x + \frac{a^2}{x}\right)\frac{dx}{2x}$；
+\item $\displaystyle \int_0^a x^3 f(x^2)\,dx = \frac{1}{2}\int_0^{a^2} x f(x)\,dx \quad (a > 0)$．
+\end{ziti}
+
+\item 计算积分 $\displaystyle \int_0^{\frac{\pi}{2}}\frac{\sin x}{\cos x + \sin x}\,dx$．
+
+\item 利用分部积分法证明：
+\[
+\int_0^x f(u)(x - u)\,du = \int_0^x \left(\int_0^u f(t)\,dt\right)du.
+\]
+
+\item 设 $f''(x)$ 在 $[a,b]$ 连续，且 $f(a) = f(b) = 0$，求证：
+\begin{ziti}
+\item $\displaystyle \int_a^b f(x)\,dx = \frac{1}{2}\int_a^b f''(x)(x - a)(x - b)\,dx$；
+\item $\displaystyle \left|\int_a^b f(x)\,dx\right| \leqslant \frac{(b - a)^3}{12}\max_{a \leqslant x \leqslant b}|f''(x)|$．
+\end{ziti}
+
+\item 设 $f(x)$ 在 $x > 0$ 时连续，对任意 $a, b > 0$，积分值
+\[
+\int_a^{ab} f(x)\,dx
+\]
+与 $a$ 无关，求证：$f(x) = \frac{c}{x}$（$c$ 为常数）．
+
+\item 设 $f(x)$ 在任一有限区间上可积分，且
+\[
+\lim_{x \to +\infty}f(x) = l.
+\]
+求证：
+\[
+\lim_{x \to +\infty}\frac{1}{x}\int_0^x f(t)\,dt = l.
+\]
+\end{xiti}

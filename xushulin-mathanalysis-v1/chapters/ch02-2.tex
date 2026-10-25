@@ -1,0 +1,791 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S2.2  函数极限的性质
+%  源：原书印刷页 99-115（PDF 物理页 105-121）
+%  约定：全西文半角标点；单一落盘出口 write_tex；display 数学环境无空行；
+%        原生 TikZ 矢量制图；定理/定义/例/练习题/思考题全量高保真收录
+% ====================================================================
+\section{函数极限的性质}\label{sec:2.2}
+
+与数列极限一样, 函数极限有惟一性定理、局部有界性、局部保号性、保不等式性、夹逼定理、极限的四则运算法则. 此外, 还有复合函数求极限的定理. 这些性质对求函数的极限又有很大的作用.
+
+\begin{theorem}[极限的惟一性]\label{thm:2.2.1}
+如果函数 $f(x)$ 在 $x_{0}(x_{0}^{\pm},\allowbreak \pm\infty, \infty)$ 处有极限 $a$ (实数、 $+\infty,\allowbreak -\infty$), 则极限惟一.
+\end{theorem}
+
+\begin{proof}
+\textit{证法 1}\quad 设 $a, b \in \mathbb{R}$ 都为 $f(x)$ 当 $x \to x_0$ 时的极限, 则 $\forall \varepsilon > 0$,
+\[
+\exists\,\delta_{1}>0,\text{ s.t. 当 } 0<|x-x_{0}|<\delta_{1} \text{ 时, 有 } |f(x)-a|<\frac{\varepsilon}{2},
+\]
+\[
+\exists\,\delta_{2}>0,\text{ s.t. 当 } 0<|x-x_{0}|<\delta_{2} \text{ 时, 有 } |f(x)-b|<\frac{\varepsilon}{2}.
+\]
+于是, 当 $0<|x-x_0|<\delta=\min\{\delta_1,\delta_2\}$ 时, 有
+\begin{align*}
+0\leqslant |a-b| &= |(f(x)-a)-(f(x)-b)| \\
+&\leqslant |f(x)-a|+|f(x)-b| < \frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+令 $\varepsilon \to 0^{+}$, 得到 $0 \leqslant |a - b| \leqslant 0$, 故 $|a - b| = 0$, 即 $a = b$.
+
+此证法不能推广到其他情形.
+
+\textit{证法 2 (反证法)}\quad 反设 $f(x)$ 在 $x_{0}$ 处有两个不同的极限 $a, b$ ($a \neq b$). 取 $a$ 的开邻域 $V(a)$, $b$ 的开邻域 $V(b)$, 使得 $V(a) \cap V(b) = \varnothing$. 于是, 存在 $x_{0}$ 的去心开邻域 $U_{1}^{\circ}(x_{0})$, 当 $x \in U_{1}^{\circ}(x_{0})$ 时, $f(x) \in V(a)$; 存在 $x_{0}$ 的去心开邻域 $U_{2}^{\circ}(x_{0})$, 当 $x \in U_{2}^{\circ}(x_{0})$ 时, 有 $f(x) \in V(b)$. 因此, 当 $x \in U_{1}^{\circ}(x_{0}) \cap U_{2}^{\circ}(x_{0})$ 时, 有
+\[
+f(x)\in V(a)\cap V(b)=\varnothing,
+\]
+矛盾.
+\end{proof}
+
+\begin{definition}\label{def:2.2.1}
+设 $f: X \to \mathbb{R}$ 为实值函数. 如果存在 $M \geqslant 0$, s.t. $|f(x)| \leqslant M$, $\forall x \in X$, 则称 $f(x)$ 在 $X$ 上有界; 如果存在 $B \in \mathbb{R}$, s.t. $f(x) \leqslant B$, $\forall x \in X$, 则称 $f(x)$ 在 $X$ 上有上界; 如果存在 $A \in \mathbb{R}$, s.t. $f(x) \geqslant A$, $\forall x \in X$, 则称 $f(x)$ 在 $X$ 上有下界 $A$. 显然,
+\[
+f(x) \text{ 在 } X \text{ 上有界} \iff f(x) \text{ 在 } X \text{ 上既有上界又有下界}.
+\]
+如: $|\sin x|\leqslant 1$, $\forall x\in\mathbb{R}$, 故 $\sin x$ 在 $\mathbb{R}$ 上有界; $e^{x}>0$, 故有下界 $0$, 但它无上界.
+\end{definition}
+
+\begin{theorem}[局部有界性]\label{thm:2.2.2}
+如果 $f(x)$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处有有限极限, 则 $f(x)$ 在 $x_{0}(x_{0}^{\pm},\allowbreak \pm\infty,\allowbreak \infty)$ 的某去心开邻域 (附近) 中有界.
+\end{theorem}
+
+\begin{proof}
+设 $\lim\limits_{x \to x_0} f(x) = a \in \mathbb{R}$, 取 $\varepsilon_0 = 1$, 则有 $x_0$ 的去心开邻域 $U^\circ(x_0)$, 当 $x \in U^\circ(x_0)$ 时, 有
+\[
+|f(x)-a|<\varepsilon_{0}=1,
+\]
+所以
+\[
+|f(x)|=|(f(x)-a)+a|\leqslant|f(x)-a|+|a|<1+|a|.
+\]
+这就证明了 $f(x)$ 在 $x_{0}$ 的去心开邻域 $U^{\circ}(x_{0})$ 中有界.
+\end{proof}
+
+\begin{theorem}[局部保号性]\label{thm:2.2.3}
+设 $f(x)$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处有有限极限 $a > 0$ (或 $<0$), 则 $\forall r \in (0, a)$ (或 $r \in (a, 0)$), 存在 $x_{0}$ 的去心开邻域 $U^{\circ}(x_{0})$, s.t. $\forall x \in U^{\circ}(x_{0})$ 有
+\[
+f(x)>r>0 \quad (\text{或 } f(x)<r<0).
+\]
+\end{theorem}
+
+\begin{proof}
+设 $a > 0$, $\forall r \in (0, a)$, 令 $\varepsilon = a - r > 0$. 由 $\lim\limits_{x \to x_0} f(x) = a$, 故存在 $x_0$ 的去心开邻域 $U^\circ(x_0)$, 当 $x \in U^\circ(x_0)$ 时, 有
+\[
+f(x)>a-\varepsilon=a-(a-r)=r>0.
+\]
+$a<0$ 的情形可类似证明, 或用 $-f(x)$ 代替 $f(x)$.
+\end{proof}
+
+\begin{theorem}[保不等式性]\label{thm:2.2.4}
+设 $f(x), g(x)$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 均有极限 (实数, $+\infty, -\infty$), 且在 $x_{0}$ 的去心开邻域 $U^{\circ}(x_{0})$ 内有 $f(x) \leqslant g(x)$, 则
+\[
+\lim_{x\to x_{0}}f(x)\leqslant\lim_{x\to x_{0}}g(x).
+\]
+\end{theorem}
+
+\begin{proof}
+\textit{证法 1}\quad 设 $\lim\limits_{x \to x_0} f(x) = a \in \mathbb{R}$, $\lim\limits_{x \to x_0} g(x) = b \in \mathbb{R}$, 则 $\forall \varepsilon > 0$, 存在 $x_0$ 的去心开邻域 $U_1^\circ(x_0) \subset U^\circ(x_0)$, 当 $x \in U_1^\circ(x_0)$ 时, 有 $a - \varepsilon < f(x)$; 存在 $x_0$ 的去心开邻域 $U_2^\circ(x_0) \subset U^\circ(x_0)$, 当 $x \in U_2^\circ(x_0)$ 时有 $g(x) < b + \varepsilon$. 因此当 $x \in U_1^\circ(x_0) \cap U_2^\circ(x_0)$ 时, 有
+\[
+a-\varepsilon<f(x)\leqslant g(x)<b+\varepsilon,
+\]
+所以 $a < b + 2\varepsilon$. 令 $\varepsilon \to 0^{+}$, 得到 $a \leqslant b$.
+
+其他情形为 $\lim\limits_{x \to x_0} f(x) = -\infty \leqslant \lim\limits_{x \to x_0} g(x)$; $\lim\limits_{x \to x_0} f(x) = +\infty = \lim\limits_{x \to x_0} g(x)$; $\lim\limits_{x \to x_0} f(x) = -\infty = \lim\limits_{x \to x_0} g(x)$; 以及 $\lim\limits_{x \to x_0} f(x) \leqslant +\infty = \lim\limits_{x \to x_0} g(x)$.
+
+\textit{证法 2 (反证法)}\quad 反设 $\lim\limits_{x\to x_{0}}f(x)=a>b=\lim\limits_{x\to x_{0}}g(x)$, 则存在 $a$ 的开邻域 $V(a)$ 以及 $b$ 的开邻域 $V(b)$, s.t. $V(a)\cap V(b)=\varnothing$. 于是, 存在 $x_{0}$ 的去心开邻域 $U_{1}^{\circ}(x_{0})\subset U^{\circ}(x_{0})$, 当 $x\in U_{1}^{\circ}(x_{0})$ 时, 有 $f(x)\in V(a)$; 存在 $x_{0}$ 的去心开邻域 $U_{2}^{\circ}(x_{0})\subset U^{\circ}(x_{0})$, 当 $x\in U_{2}^{\circ}(x_{0})$ 时, 有 $g(x)\in V(b)$. 则当 $x\in U_{1}^{\circ}(x_{0})\cap U_{2}^{\circ}(x_{0})=U_{3}^{\circ}(x_{0})$, 有
+\[
+g(x)<f(x).
+\]
+这与已知 $f(x) \leqslant g(x)$ 相矛盾.
+\end{proof}
+
+\begin{theorem}[夹逼定理]\label{thm:2.2.5}
+设 $f(x), g(x)$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 有极限 $a$ (实数, $+\infty, -\infty$), 且在 $x_{0}$ 某去心开邻域 $U^{\circ}(x_{0})$ 内有
+\[
+f(x)\leqslant h(x)\leqslant g(x),
+\]
+那么
+\[
+\lim_{x\to x_{0}}h(x)=a.
+\]
+\end{theorem}
+
+\begin{proof}
+\textit{证法 1}\quad 当 $x_{0}\in\mathbb{R}, a\in\mathbb{R}, U^{\circ}(x_{0})=U^{\circ}(x_{0},\delta_{0})$ 时, $\forall\varepsilon>0$, 由 $\lim\limits_{x\to x_{0}}f(x)=\lim\limits_{x\to x_{0}}g(x)=a$, 可知:
+\begin{align*}
+\exists\,\delta_1 \in (0, \delta_0),&\text{ 当 } 0 < |x - x_0| < \delta_1 \text{ 时, 有 } a - \varepsilon < f(x); \\
+\exists\,\delta_{2}\in(0,\delta_{0}),&\text{ 当 } 0<|x-x_{0}|<\delta_{2} \text{ 时, 有 } g(x)<a+\varepsilon.
+\end{align*}
+于是, 当 $0<|x-x_0|<\delta=\min\{\delta_1,\delta_2\}$ 时, 有
+\[
+a-\varepsilon<f(x)\leqslant h(x)\leqslant g(x)<a+\varepsilon,
+\]
+所以 $\lim\limits_{x\to x_0}h(x)=a$.
+
+其他情形类似证明.
+
+\textit{证法 2 (统一描述)}\quad 对 $a$ 的任何开邻域 $V(a)$, 因为 $\lim\limits_{x\to x_0}f(x)=\lim\limits_{x\to x_0}g(x)=a$, 所以存在 $x_0$ 的去心开邻域 $U_1^\circ(x_0)\subset U^\circ(x_0)$, 当 $x\in U_1^\circ(x_0)$ 时, 有 $f(x)\in V(a)$; 存在 $x_0$ 的去心开邻域 $U_2^\circ(x_0)\subset U^\circ(x_0)$, 当 $x\in U_2^\circ(x_0)$ 时, 有 $g(x)\in V(a)$. 于是, 当 $x\in U_1^\circ(x_0)\cap U_2^\circ(x_0)=U_3^\circ(x_0)$ 时, 由于 $f(x)\leqslant h(x)\leqslant g(x)$, 有
+\[
+h(x)\in[f(x),g(x)]\subset V(a),
+\]
+从而 $\lim\limits_{x\to x_{0}}h(x)=a$.
+\end{proof}
+
+\begin{remark}\label{rem:2.2.1}
+夹逼定理中, 如果 $a=\infty$, 则结论未必成立. 反例: $f(x)=-\frac{1}{(x-x_{0})^{2}}$, $h(x)=0$, $g(x)=\frac{1}{(x-x_{0})^{2}}$.
+\end{remark}
+
+\begin{theorem}[极限的四则运算法则]\label{thm:2.2.6}
+设 $f(x), g(x)$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处有有限极限, 则 $f \pm g$, $f \cdot g$ 也在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处有有限极限. 又如果 $\lim\limits_{x \to x_{0}} g(x) \neq 0$, 则 $\frac{f}{g}$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处也有有限极限, 且有下列运算公式:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x \to x_0} (f(x) \pm g(x)) = \lim\limits_{x \to x_0} f(x) \pm \lim\limits_{x \to x_0} g(x)$;
+  \item $\lim\limits_{x \to x_0} (f(x) \cdot g(x)) = \lim\limits_{x \to x_0} f(x) \cdot \lim\limits_{x \to x_0} g(x)$; 特别地, $\lim\limits_{x \to x_0} c f(x) = c \lim\limits_{x \to x_0} f(x)$;
+  \item $\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \frac{\lim\limits_{x \to x_0} f(x)}{\lim\limits_{x \to x_0} g(x)} \quad \left(\lim\limits_{x \to x_0} g(x) \neq 0\right)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+设 $\lim\limits_{x\to x_0}f(x)=a$, $\lim\limits_{x\to x_0}g(x)=b$.
+
+(1) $\forall \varepsilon > 0$, 存在 $x_0$ 的去心开邻域 $U^\circ(x_0)$, 当 $x \in U^\circ(x_0)$ 时, 有 $|f(x) - a| < \frac{\varepsilon}{2}$, $|g(x) - b| < \frac{\varepsilon}{2}$, 因此
+\begin{align*}
+|(f(x)\pm g(x))-(a\pm b)| &= |(f(x)-a)\pm(g(x)-b)| \\
+&\leqslant |f(x)-a|+|g(x)-b|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,
+\end{align*}
+于是
+\[
+\lim_{x\to x_{0}}(f(x)\pm g(x))=a\pm b=\lim_{x\to x_{0}}f(x)\pm\lim_{x\to x_{0}}g(x).
+\]
+
+(2) $\forall\varepsilon>0$, 存在 $x_{0}$ 的去心开邻域 $U_{i}^{\circ}(x_{0})\ (i=1,2,3)$, s.t.
+\begin{align*}
+\text{当 } x \in U_{1}^{\circ}(x_{0}) \text{ 时},&\quad |g(x)| \leqslant M; \\
+\text{当 } x \in U_{2}^{\circ}(x_{0}) \text{ 时},&\quad |f(x)-a| < \frac{\varepsilon}{M+|a|+1}; \\
+\text{当 } x \in U_3^\circ(x_0) \text{ 时},&\quad |g(x)-b| < \frac{\varepsilon}{M+|a|+1}.
+\end{align*}
+于是, 当 $x \in U^{\circ}(x_{0}) = U_{1}^{\circ}(x_{0}) \cap U_{2}^{\circ}(x_{0}) \cap U_{3}^{\circ}(x_{0})$ 时, 有
+\begin{align*}
+|f(x)g(x)-ab| &= |(f(x)-a)g(x)+a(g(x)-b)| \\
+&\leqslant |g(x)||f(x)-a|+|a||g(x)-b| \\
+&\leqslant M\cdot\frac{\varepsilon}{M+|a|+1}+|a|\frac{\varepsilon}{M+|a|+1} < \varepsilon,
+\end{align*}
+所以
+\[
+\lim_{x\to x_{0}}f(x)g(x)=ab=\lim_{x\to x_{0}}f(x)\cdot\lim_{x\to x_{0}}g(x).
+\]
+特别地, 当 $g(x) \equiv c$ 为常数函数时, 就有 $\lim\limits_{x \to x_0} c f(x) = c \lim\limits_{x \to x_0} f(x)$.
+
+(3) $\forall\varepsilon>0$, 由 $\lim\limits_{x\to x_0}g(x)=b\neq0$ 可知, $\lim\limits_{x\to x_0}|g(x)|=|b|$, 且存在 $x_0$ 的去心开邻域 $U^\circ(x_0)$, 当 $x\in U^\circ(x_0)$ 时, 有 $|g(x)|>\frac{|b|}{2}$, $|g(x)-b|<\frac{b^2}{2}\varepsilon$. 于是
+\[
+\left|\frac{1}{g(x)}-\frac{1}{b}\right|=\frac{|g(x)-b|}{|b||g(x)|}\leqslant\frac{2}{b^2}\cdot\frac{b^2}{2}\varepsilon=\varepsilon,
+\]
+所以
+\[
+\lim_{x\to x_{0}}\frac{1}{g(x)}=\frac{1}{b}.
+\]
+再根据 (2) 得到
+\[
+\lim_{x\to x_{0}}\frac{f(x)}{g(x)}=\lim_{x\to x_{0}}\left(f(x)\cdot\frac{1}{g(x)}\right)=a\cdot\frac{1}{b}=\frac{a}{b}=\frac{\lim\limits_{x\to x_{0}}f(x)}{\lim\limits_{x\to x_{0}}g(x)}.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:2.2.2}
+类似定理~\ref{thm:1.2.7}, 读者可给出函数极限的相应定理.
+\end{remark}
+
+\begin{theorem}[复合函数的极限]\label{thm:2.2.7}
+设函数 $f(u)$ 在 $u_{0}(u_{0}^{\pm}, \pm\infty, \infty)$ 处有极限, 又 $u=\varphi(x)$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处有极限, 且当 $x \to x_{0}, x \neq x_{0}$ 时, $\varphi(x) \to u_{0}, \varphi(x) \neq u_{0}$, 则复合函数 $f\circ\varphi(x) = f(\varphi(x))$ 在 $x_{0}(x_{0}^{\pm}, \pm\infty, \infty)$ 处也有极限, 且
+\[
+\lim_{x\to x_{0}}f(\varphi(x))=\lim_{u\to u_{0}}f(u).
+\]
+特别地, 如果 $f(u)$ 在 $u_{0} \in \mathbb{R}$ 处连续, 即 $\lim\limits_{u \to u_0} f(u) = f(u_{0})$, 则
+\[
+\lim_{x\to x_{0}}f(\varphi(x))=\lim_{u\to u_{0}}f(u)=f(u_{0})=f\left(\lim_{x\to x_{0}}\varphi(x)\right).
+\]
+这表明 $f$ 与 $\lim$ 可交换, 或极限运算 $\lim$ 可搬到复合函数里.
+\end{theorem}
+
+\begin{proof}
+设 $x_{0} \in \mathbb{R}$, $u_{0} \in \mathbb{R}$, $\lim\limits_{u \to u_{0}} f(u) = a \in \mathbb{R}$, 则 $\forall \varepsilon > 0$, $\exists\,\delta > 0$, 当 $0 < |u - u_{0}| < \delta$ 时,
+\[
+|f(u)-a|<\varepsilon.
+\]
+对同样的 $\delta>0$, 因 $\lim\limits_{x\to x_0}\varphi(x)=u_0,\ \varphi(x)\neq u_0$, 故 $\exists\,\sigma>0$, 当 $0<|x-x_0|<\sigma$ 时,
+\[
+0<|\varphi(x)-u_{0}|<\delta,
+\]
+所以
+\[
+|f(\varphi(x))-a|<\varepsilon,
+\]
+\[
+\lim_{x\to x_{0}}f(\varphi(x))=a=\lim_{u\to u_{0}}f(u).
+\]
+其他情形类似证明. 请读者用统一描述论证.
+\end{proof}
+
+\begin{remark}\label{rem:2.2.3}
+定理~\ref{thm:2.2.7} 中, $\varphi(x)\neq u_{0}$ 这一条件不可删去.
+
+反例: 设
+\[
+f(u)=\begin{cases}
+1, & u\neq 0, \\
+0, & u=0,
+\end{cases}
+\]
+则 $\lim\limits_{u\to 0}f(u)=1$. 再令 $\varphi(x)=0$, 则 $\lim\limits_{x\to x_0}\varphi(x)=0$. 于是
+\[
+\lim_{x\to x_{0}}f(\varphi(x))=\lim_{x\to x_{0}}f(0)=\lim_{x\to x_{0}}0=0 \neq 1=\lim_{u\to 0}1=\lim_{u\to 0}f(u).
+\]
+\end{remark}
+
+\begin{example}\label{ex:2.2.1}
+求极限:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x \to \frac{\pi}{4}} (x \cdot \tan x - 1)$;
+  \item $\lim\limits_{x\to -1}\left(\frac{1}{x+1}-\frac{3}{x^{3}+1}\right)$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) $\lim\limits_{x \to \frac{\pi}{4}} (x \cdot \tan x - 1) = \lim\limits_{x \to \frac{\pi}{4}} \left( x \cdot \frac{\sin x}{\cos x} - 1 \right) = \frac{\pi}{4} \cdot \frac{\sin \frac{\pi}{4}}{\cos \frac{\pi}{4}} - 1 = \frac{\pi}{4} - 1$.
+
+(2) 因为 $\lim\limits_{x\to -1}(x+1)=0$, $\lim\limits_{x\to -1}(x^3+1)=0$, 所以这里不能直接用极限的四则运算法则, 通常称这种类型的极限为 ``$\infty-\infty$'' 型:
+\begin{align*}
+\lim_{x\to -1}\left(\frac{1}{x+1}-\frac{3}{x^{3}+1}\right)
+&=\lim_{x\to -1}\frac{x^{2}-x+1-3}{x^{3}+1} \\
+&=\lim_{x\to -1}\frac{(x+1)(x-2)}{(x+1)(x^2-x+1)} \\
+&=\lim_{x\to -1}\frac{x-2}{x^2-x+1}=\frac{-1-2}{1+1+1}=-1.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:2.2.2}
+求 $\lim\limits_{x\to 0}x\left[\frac{1}{x}\right]$.
+\end{example}
+
+\begin{solution}
+当 $x>0$ 时, 有
+\[
+1-x=x\left(\frac{1}{x}-1\right)<x\left[\frac{1}{x}\right]\leqslant x\cdot\frac{1}{x}=1,
+\]
+根据 $\lim\limits_{x\to 0^{+}}(1-x)=1-0=1=\lim\limits_{x\to 0^{+}}1$ 及夹逼定理知,
+\[
+\lim_{x\to 0^{+}}x\left[\frac{1}{x}\right]=1.
+\]
+当 $x<0$ 时, 有
+\[
+1=x\cdot\frac{1}{x}\leqslant x\left[\frac{1}{x}\right]<x\left(\frac{1}{x}-1\right)=1-x,
+\]
+根据 $\lim\limits_{x\to 0^{-}}1=1=1-0=\lim\limits_{x\to 0^{-}}(1-x)$ 及夹逼定理知,
+\[
+\lim_{x\to 0^{-}}x\left[\frac{1}{x}\right]=1.
+\]
+综合上述得到 $\lim\limits_{x\to 0}x\left[\frac{1}{x}\right]=1$.
+\end{solution}
+
+\begin{example}\label{ex:2.2.3}
+证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x\to x_0}a^x=a^{x_0}\ (a>0)$;
+  \item $\lim\limits_{x \to x_0} \log_a x = \log_a x_0\ (x_0 > 0)$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) 上节已证 $\lim\limits_{x\to 0} a^{x}=1=a^{0}$. 于是
+\[
+\lim_{x\to x_{0}}a^{x}=\lim_{x\to x_{0}}\left(a^{x_{0}}\cdot a^{x-x_{0}}\right)=a^{x_{0}}\lim_{x\to x_{0}}a^{x-x_{0}} \xlongequal{\text{定理~\ref{thm:2.2.7}}} a^{x_{0}}\cdot a^{0}=a^{x_{0}}.
+\]
+
+(2) 上节已证 $\lim\limits_{x\to 1}\log_{a}x=0=\log_{a}1$. 于是
+\begin{align*}
+\lim_{x\to x_{0}}\log_{a}x &= \lim_{x\to x_{0}}\log_{a}\left(x_{0}\cdot\frac{x}{x_{0}}\right)=\lim_{x\to x_{0}}\left(\log_{a}x_{0}+\log_{a}\frac{x}{x_{0}}\right) \\
+&= \log_{a}x_{0}+0=\log_{a}x_{0}.
+\end{align*}
+或应用 (1) 及定理 2.4.4 推得.
+\end{proof}
+
+\begin{example}\label{ex:2.2.4}
+证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x \to x_0} x^n = x_0^n,\ n \in \mathbb{N}$;
+  \item $\lim\limits_{x\to+\infty}x^{n}=+\infty,\ \lim\limits_{x\to\infty}x^{n}=\infty,\ \lim\limits_{x\to\infty}x^{2n}=+\infty,\ n\in\mathbb{N}$;
+  \item 设 $P(x)=a_{0}x^{n}+a_{1}x^{n-1}+\cdots+a_{n-1}x+a_{n}$, $Q(x)=b_{0}x^{m}+b_{1}x^{m-1}+\cdots+b_{m-1}x+b_{m}$ 都为多项式函数 ($n, m \in \mathbb{N} \cup \{0\}$), 则 $\lim\limits_{x \to x_0} P(x) = P(x_0)$. 当 $Q(x_0) \neq 0$ 时, $\lim\limits_{x \to x_0} \frac{P(x)}{Q(x)} = \frac{P(x_0)}{Q(x_0)}$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) $\forall\varepsilon>0$, 取 $0<\delta<\min\left\{1,\frac{\varepsilon}{nM^{n-1}}\right\}$, 其中 $M=\max\{|x_0-1|,|x_0+1|\}$, 当 $|x-x_0|<\delta$ 时, 有
+\begin{align*}
+|x^{n}-x_{0}^{n}| &= |(x-x_{0})(x^{n-1}+x^{n-2}x_{0}+\cdots+x_{0}^{n-1})| \\
+&\leqslant |x-x_{0}|(|x|^{n-1}+|x|^{n-2}|x_{0}|+\cdots+|x_{0}|^{n-1}) \\
+&< \delta(M^{n-1}+M^{n-2}\cdot M+\cdots+M^{n-1}) \\
+&= nM^{n-1}\delta < nM^{n-1}\cdot\frac{\varepsilon}{nM^{n-1}}=\varepsilon,
+\end{align*}
+所以 $\lim\limits_{x\to x_{0}}x^{n}=x_{0}^{n}$.
+
+或者先用 $\varepsilon\text{-}\delta$ 法证明 $\lim\limits_{x\to x_0}x=x_0$, 再用定理~\ref{thm:2.2.6} 中极限的乘法定理及数学归纳法得到 $\lim\limits_{x\to x_0}x^n=x_0^n$.
+
+(2) $\forall A>0$, 取 $\Delta>A^{\frac{1}{n}}$, 当 $x>\Delta$ 时, 有
+\[
+x^{n}>\Delta^{n}>A,
+\]
+因此 $\lim\limits_{x\to+\infty}x^{n}=+\infty$. 其他类似证明.
+
+(3) 应用定理~\ref{thm:2.2.6} 得到
+\begin{align*}
+\lim_{x\to x_{0}}\frac{P(x)}{Q(x)} &= \lim_{x\to x_{0}}\frac{a_{0}x^{n}+a_{1}x^{n-1}+\cdots+a_{n-1}x+a_{n}}{b_{0}x^{m}+b_{1}x^{m-1}+\cdots+b_{m-1}x+b_{m}} \\
+&= \frac{a_{0}x_{0}^{n}+a_{1}x_{0}^{n-1}+\cdots+a_{n-1}x_{0}+a_{n}}{b_{0}x_{0}^{m}+b_{1}x_{0}^{m-1}+\cdots+b_{m-1}x_{0}+b_{m}} \\
+&= \frac{P(x_{0})}{Q(x_{0})} \quad (Q(x_0)\neq 0),
+\end{align*}
+即有理函数 $\frac{P(x)}{Q(x)}$ 在点 $x_{0}$ ($Q(x_{0})\neq 0$) 处连续.
+\end{proof}
+
+\begin{example}\label{ex:2.2.5}
+设 $a_{0} \neq 0, b_{0} \neq 0$. 对有理函数证明:
+\[
+\lim_{x\to\infty}\frac{P(x)}{Q(x)} = \lim_{x\to\infty}\frac{a_0x^n+a_1x^{n-1}+\cdots+a_{n-1}x+a_n}{b_0x^m+b_1x^{m-1}+\cdots+b_{m-1}x+b_m} = \begin{cases}
+0, & n<m, \\
+\frac{a_0}{b_0}, & n=m, \\
+\infty, & n>m.
+\end{cases}
+\]
+\end{example}
+
+\begin{proof}
+\begin{align*}
+\text{原式} &= \lim_{x\to\infty}x^{n-m}\frac{a_{0}+\frac{a_{1}}{x}+\cdots+\frac{a_{n-1}}{x^{n-1}}+\frac{a_{n}}{x^{n}}}{b_{0}+\frac{b_{1}}{x}+\cdots+\frac{b_{m-1}}{x^{m-1}}+\frac{b_{m}}{x^{m}}} \\
+&= \begin{cases}
+0, & n<m, \\
+\frac{a_{0}}{b_{0}}, & n=m, \\
+\infty, & n>m.
+\end{cases}
+\end{align*}
+类似地, 有
+\[
+\lim_{x\to+\infty}\frac{a_{0}x^{n}+a_{1}x^{n-1}+\cdots+a_{n-1}x+a_{n}}{b_{0}x^{m}+b_{1}x^{m-1}+\cdots+b_{m-1}x+b_{m}} = \begin{cases}
+0, & n<m, \\
+\frac{a_0}{b_0}, & n=m, \\
++\infty, & n>m \text{ 且 } \frac{a_0}{b_0}>0, \\
+-\infty, & n>m \text{ 且 } \frac{a_0}{b_0}<0.
+\end{cases}
+\]
+\end{proof}
+
+\begin{example}\label{ex:2.2.6}
+证明:
+\begin{align*}
+\lim_{x\to x_0} \tan x &= \tan x_0, \quad x_0 \neq k\pi + \frac{\pi}{2},\ k \in \mathbb{Z}; \\
+\lim_{x\to x_0} \cot x &= \cot x_0, \quad x_0 \neq k\pi,\ k \in \mathbb{Z}; \\
+\lim_{x\to x_0} \sec x &= \sec x_0, \quad x_0 \neq k\pi + \frac{\pi}{2},\ k \in \mathbb{Z}; \\
+\lim_{x\to x_0} \csc x &= \csc x_0, \quad x_0 \neq k\pi,\ k \in \mathbb{Z}.
+\end{align*}
+\end{example}
+
+\begin{proof}
+由例~\ref{ex:2.1.19} 知, $\lim\limits_{x\to x_0}\sin x=\sin x_0$, $\lim\limits_{x\to x_0}\cos x=\cos x_0$. 再由极限的四则运算定理~\ref{thm:2.2.6} 得到:
+\begin{align*}
+\lim_{x\to x_{0}}\tan x &= \lim_{x\to x_{0}}\frac{\sin x}{\cos x}=\frac{\sin x_{0}}{\cos x_{0}}=\tan x_{0}, \\
+\lim_{x\to x_{0}}\cot x &= \lim_{x\to x_{0}}\frac{\cos x}{\sin x}=\frac{\cos x_{0}}{\sin x_{0}}=\cot x_{0}, \\
+\lim_{x\to x_{0}}\sec x &= \lim_{x\to x_{0}}\frac{1}{\cos x}=\frac{1}{\cos x_{0}}=\sec x_{0}, \\
+\lim_{x\to x_{0}}\csc x &= \lim_{x\to x_{0}}\frac{1}{\sin x}=\frac{1}{\sin x_{0}}=\csc x_{0}.
+\end{align*}
+\end{proof}
+
+\begin{example}[两个重要极限之一]\label{ex:2.2.7}
+\[
+\lim_{x\to 0}\frac{\sin x}{x}=1.
+\]
+\end{example}
+
+\begin{proof}
+由引理~\ref{lem:2.1.1}(1) 可知,
+\[
+\sin x < x < \tan x, \quad x \in \left(0, \frac{\pi}{2}\right),
+\]
+故
+\[
+1 < \frac{x}{\sin x} < \frac{1}{\cos x},
+\]
+\[
+1 > \frac{\sin x}{x} > \cos x, \quad x \in \left(0, \frac{\pi}{2}\right).
+\]
+显然, 当 $x \in \left(-\frac{\pi}{2}, 0\right)$ 时, 也有
+\[
+1 > \frac{\sin x}{x} > \cos x.
+\]
+于是, $\forall\varepsilon>0$, 取 $0<\delta\leqslant\min\left\{\frac{\pi}{2}, \sqrt{2\varepsilon}\right\}$, 当 $0<|x-0|<\delta$ 时, 有
+\[
+\left|\frac{\sin x}{x}-1\right| < 1-\cos x=2\sin^{2}\frac{x}{2}\leqslant 2\left(\frac{x}{2}\right)^{2}=\frac{x^{2}}{2}<\frac{\delta^{2}}{2}\leqslant\varepsilon.
+\]
+根据函数极限的定义推得
+\[
+\lim_{x\to 0}\frac{\sin x}{x}=1.
+\]
+由此还可看出,
+\[
+|\cos x-1|=2\sin^{2}\frac{x}{2}\leqslant 2\cdot\left(\frac{x}{2}\right)^{2}=\frac{x^{2}}{2}<\frac{\delta^{2}}{2}\leqslant\varepsilon,
+\]
+因此 $\lim\limits_{x\to 0}\cos x=1=\cos 0$.
+\end{proof}
+
+\begin{example}\label{ex:2.2.8}
+半径为 $r$ 的圆的面积 $S$ 视作该圆内接正 $n$ 边形的面积 $S_{n}$ 的极限, 即
+\begin{align*}
+S &= \lim_{n\to+\infty}S_n = \lim_{n\to+\infty}n\cdot\frac{1}{2}\cdot r\cos\frac{\pi}{n}\cdot 2r\sin\frac{\pi}{n} \\
+&= \lim_{n\to+\infty}\pi r^2\frac{\sin\frac{2\pi}{n}}{\frac{2\pi}{n}}=\pi r^2.
+\end{align*}
+\end{example}
+
+\begin{definition}\label{def:2.2.2}
+如果 $\lim\limits_{x\to x_0}\alpha(x)=0$, 则称 $\alpha(x)$ 为 $x \to x_{0}$ 时的无穷小量.
+$\sin x, x^{\alpha}\ (\alpha > 0), 1-\cos x, \tan x-\sin x$ 均为 $x\to 0$ 时的无穷小量. 如果两个无穷小量 $\alpha(x)$ 与 $\beta(x)$ ($x\to x_{0}$) 满足 $\lim\limits_{x\to x_{0}}\frac{\alpha(x)}{\beta(x)}=1$, 则称 $\alpha(x)$ 与 $\beta(x)$ 为 $x\to x_{0}$ 时的等价无穷小量, 并记作 $\alpha(x)\sim\beta(x)$ ($x\to x_{0}$). 显然, $\sin x\sim x$ ($x\to 0$).
+\end{definition}
+
+\begin{example}\label{ex:2.2.9}
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x\to 0}\frac{\tan x}{x}=\lim\limits_{x\to 0}\frac{\sin x}{x}\cdot\frac{1}{\cos x}=1$, 即 $\tan x\sim x\ (x\to 0)$;
+  \item $\lim\limits_{x\to 0}\frac{1-\cos x}{\frac{x^{2}}{2}}=1$, 即 $1-\cos x \sim \frac{x^2}{2}\ (x\to 0)$;
+  \item $\lim\limits_{x\to 0}\frac{\tan x-\sin x}{\frac{x^{3}}{2}}=\lim\limits_{x\to 0}\frac{\sin x}{x}\cdot\frac{1-\cos x}{\frac{x^{2}}{2}}\cdot\frac{1}{\cos x}=1$, 即 $\tan x-\sin x\sim\frac{x^{3}}{2}\ (x\to 0)$;
+  \item $\lim\limits_{x \to \pi} \frac{\sin x}{\pi - x} = \lim\limits_{x \to \pi} \frac{\sin(\pi - x)}{\pi - x} = 1$, 即 $\sin x \sim \pi - x\ (x \to \pi)$.
+\end{enumerate}
+\end{example}
+
+\begin{example}[两个重要极限之二]\label{ex:2.2.10}
+\[
+\lim_{x\to\infty}\left(1+\frac{1}{x}\right)^{x}=e.
+\]
+\end{example}
+
+\begin{proof}
+当 $x>0$ 时,
+\begin{align*}
+\frac{\left(1+\frac{1}{[x]+1}\right)^{[x]+1}}{1+\frac{1}{[x]+1}} &= \left(1+\frac{1}{[x]+1}\right)^{[x]} \leqslant \left(1+\frac{1}{x}\right)^{x} \\
+&\leqslant \left(1+\frac{1}{[x]}\right)^{[x]+1} = \left(1+\frac{1}{[x]}\right)^{[x]}\left(1+\frac{1}{[x]}\right).
+\end{align*}
+因为
+\[
+\lim_{x\to+\infty}\frac{\left(1+\frac{1}{[x]+1}\right)^{[x]+1}}{1+\frac{1}{[x]+1}}=e, \quad \lim_{x\to+\infty}\left(1+\frac{1}{[x]}\right)^{[x]}\left(1+\frac{1}{[x]}\right)=e,
+\]
+根据函数极限的夹逼定理知,
+\[
+\lim_{x\to+\infty}\left(1+\frac{1}{x}\right)^{x}=e.
+\]
+由以上讨论及复合函数的极限定理~\ref{thm:2.2.7}, 可知
+\begin{align*}
+\lim_{x\to-\infty}\left(1+\frac{1}{x}\right)^{x} &\xlongequal{y=-x-1} \lim_{y\to+\infty}\left(1-\frac{1}{y+1}\right)^{-y-1} = \lim_{y\to+\infty}\left(\frac{y}{y+1}\right)^{-y-1} \\
+&= \lim_{y\to+\infty}\left(1+\frac{1}{y}\right)^{y}\left(1+\frac{1}{y}\right)=e(1+0)=e.
+\end{align*}
+于是, 从定理~\ref{thm:2.1.2} 得到
+\[
+\lim_{x\to\infty}\left(1+\frac{1}{x}\right)^{x}=e.
+\]
+\end{proof}
+
+\begin{example}\label{ex:2.2.11}
+证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x\to 0}(1+x)^{\frac{1}{x}}=e$;
+  \item $\lim\limits_{x \to \infty} \left(1 + \frac{k}{x}\right)^x = e^k,\ k \in \mathbb{N}$;
+  \item $\lim\limits_{x \to \infty} \left(1 - \frac{1}{x}\right)^x = e^{-1}$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) $\lim\limits_{x\to 0}(1+x)^{\frac{1}{x}} \xlongequal{y = \frac{1}{x}} \lim\limits_{y \to \infty} \left(1 + \frac{1}{y}\right)^{y} = e$.
+
+(2) $\lim\limits_{x \to \infty} \left(1 + \frac{k}{x}\right)^x = \lim\limits_{x \to \infty} \left[\left(1 + \frac{k}{x}\right)^{\frac{x}{k}}\right]^k = e^k$.
+
+(3) 
+\begin{align*}
+\lim_{x\to\infty}\left(1-\frac{1}{x}\right)^{x} &= \lim_{x\to\infty}\frac{1}{\left(\frac{x}{x-1}\right)^{x}} = \lim_{x\to\infty}\frac{1}{\left(1+\frac{1}{x-1}\right)^{x-1}\left(1+\frac{1}{x-1}\right)} \\
+&= \frac{1}{e(1+0)}=e^{-1}.
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{thm:2.2.8}
+\begin{enumerate}[label=(\arabic*)]
+  \item 设 $\lim\limits_{x \to x_0} f(x) = a > 0$, $\lim\limits_{x \to x_0} g(x) = b$, 则 $\lim\limits_{x \to x_0} f(x)^{g(x)} = a^b$. 如果 $x_0$ 换为 $x_0^\pm, \pm \infty, \infty$, 结论仍成立.
+  \item 设 $\lim\limits_{n\to+\infty}a_n=a>0$, $\lim\limits_{n\to+\infty}b_n=b$, 则 $\lim\limits_{n\to+\infty}a_n^{b_n}=a^b$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 根据复合函数极限、函数极限的四则运算定理及例~\ref{ex:2.2.3}, 有
+\begin{align*}
+\lim_{x\to x_{0}}f(x)^{g(x)} &= \lim_{x\to x_{0}}e^{g(x)\ln f(x)} = e^{\lim\limits_{x\to x_{0}}g(x)\ln f(x)} \\
+&= e^{b\ln a} = e^{\ln a^{b}} = a^{b}.
+\end{align*}
+
+(2)
+\[
+\lim_{n\to+\infty}a_{n}^{b_{n}} = \lim_{n\to+\infty}e^{b_{n}\ln a_{n}} = e^{\lim\limits_{n\to+\infty} b_{n}\ln a_{n}} = e^{b\ln a}=e^{\ln a^{b}}=a^{b}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:2.2.12}
+证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{n\to+\infty}\left(1+\frac{1}{n^2}\right)^n=1$;
+  \item $\lim\limits_{n \to +\infty} \left(1 + \frac{k}{n}\right)^n = e^k$;
+  \item $\lim\limits_{n \to +\infty} \left(1 + \frac{1}{n} - \frac{1}{n^2}\right)^n = e$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) $\lim\limits_{n \to +\infty} \left(1 + \frac{1}{n^2}\right)^n = \lim\limits_{n \to +\infty} \left[\left(1 + \frac{1}{n^2}\right)^{n^2}\right]^{\frac{1}{n}} \xlongequal{\text{定理~\ref{thm:2.2.8}(2)}} e^0 = 1$.
+
+或者由
+\[
+1<\left[\left(1+\frac{1}{n^{2}}\right)^{n^{2}}\right]^{\frac{1}{n}} < e^{\frac{1}{n}}=\sqrt[n]{e}\to 1 \quad (n\to+\infty)
+\]
+及夹逼定理知, $\lim\limits_{n\to+\infty}\left(1+\frac{1}{n^{2}}\right)^{n}=1$.
+
+(2)
+\begin{align*}
+\lim_{n\to+\infty}\left(1+\frac{k}{n}\right)^{n} &= \begin{cases}
+\lim\limits_{n\to+\infty}\left[\left(1+\frac{k}{n}\right)^{\frac{n}{k}}\right]^{k} \xlongequal{\text{定理~\ref{thm:2.2.8}(2)}} e^{k}, & k\neq 0, \\
+\lim\limits_{n\to+\infty}\left(1+\frac{0}{n}\right)^{n}=\lim\limits_{n\to+\infty}1=1=e^{0}, & k=0
+\end{cases} \\
+&= e^k.
+\end{align*}
+
+(3)
+\begin{align*}
+\lim_{n\to+\infty}\left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{n} &= \lim_{n\to+\infty}\left[\left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{\frac{1}{\frac{1}{n}-\frac{1}{n^{2}}}}\right]^{n\left(\frac{1}{n}-\frac{1}{n^{2}}\right)} \\
+&= \lim_{n\to+\infty}\left[\left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{\frac{1}{\frac{1}{n}-\frac{1}{n^{2}}}}\right]^{\left(1-\frac{1}{n}\right)} \\
+&\xlongequal{\text{定理~\ref{thm:2.2.8}(2)}} e^{1-0}=e.
+\end{align*}
+或者由
+\begin{align*}
+e &= \frac{e}{(1+0)^{2}} \leftarrow \frac{\left(1+\frac{n-1}{n^{2}}\right)^{\frac{n^{2}}{n-1}}}{\left(1+\frac{n-1}{n^{2}}\right)^{2}} = \left(1+\frac{n-1}{n^{2}}\right)^{\frac{n^{2}}{n-1}-2} \\
+&\leqslant \left(1+\frac{n-1}{n^{2}}\right)^{\frac{n^{2}}{n-1}-\frac{n}{n-1}} = \left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{n} < \left(1+\frac{1}{n}\right)^{n} \to e \quad (n\to+\infty)
+\end{align*}
+及夹逼定理得到 $\lim\limits_{n\to+\infty}\left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{n}=e$.
+\end{proof}
+
+下面的例~\ref{ex:2.2.13} 是几个重要的常用极限.
+
+\begin{example}\label{ex:2.2.13}
+证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x\to 0}\frac{\ln(1+x)}{x}=1$, 即 $\ln(1+x)\sim x\ (x\to 0)$; $\lim\limits_{x\to 0}\frac{\log_{a}(1+x)}{x}=\log_{a}e=\frac{1}{\ln a}$, 即 $\log_{a}(1+x)\sim\frac{x}{\ln a}\ (x\to 0)$, 其中 $a>0, a\neq 1$;
+  \item $\lim\limits_{x \to 0} \frac{a^x - 1}{x} = \ln a$, 即 $a^x - 1 \sim x \ln a\ (x \to 0)$, 其中 $a > 0$; 特别地, $\lim\limits_{x \to 0} \frac{e^x - 1}{x} = 1$, 即 $e^x - 1 \sim x\ (x \to 0)$;
+  \item $\lim\limits_{n\to+\infty}\left(\frac{a_{1}^{\frac{1}{n}}+a_{2}^{\frac{1}{n}}+\cdots+a_{m}^{\frac{1}{n}}}{m}\right)^{n}=\sqrt[m]{a_{1}a_{2}\cdots a_{m}}\ (a_i>0, i=1,\cdots,m)$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) $\lim\limits_{x\to 0}\frac{\ln(1+x)}{x}=\lim\limits_{x\to 0}\ln(1+x)^{\frac{1}{x}}=\ln\lim\limits_{x\to 0}(1+x)^{\frac{1}{x}}=\ln e=1$.
+\[
+\lim_{x\to 0}\frac{\log_{a}(1+x)}{x}=\lim_{x\to 0}\log_{a}(1+x)^{\frac{1}{x}}=\log_{a}\lim_{x\to 0}(1+x)^{\frac{1}{x}}=\log_{a}e=\frac{1}{\ln a}.
+\]
+或者
+\[
+\lim_{x\to 0}\frac{\log_{a}(1+x)}{x}=\lim_{x\to 0}\frac{\ln(1+x)}{x\ln a}=\frac{1}{\ln a}\lim_{x\to 0}\frac{\ln(1+x)}{x}=\frac{1}{\ln a}\cdot 1=\frac{1}{\ln a}.
+\]
+
+(2) 令 $y=a^x-1$, 则 $x=\log_a(1+y)$, 当 $x\to 0$ 时 $y\to 0$:
+\[
+\lim_{x\to 0}\frac{a^x-1}{x} \xlongequal{y=a^x-1} \lim_{y\to 0}\frac{y}{\log_a(1+y)}=\lim_{y\to 0}\frac{1}{\frac{\log_a(1+y)}{y}}=\frac{1}{\frac{1}{\ln a}}=\ln a.
+\]
+
+(3) 
+\begin{align*}
+&\lim_{n\to+\infty}\left(\frac{a_{1}^{\frac{1}{n}}+\cdots+a_{m}^{\frac{1}{n}}}{m}\right)^{n} = \lim_{x\to 0}\left(\frac{a_{1}^{x}+\cdots+a_{m}^{x}}{m}\right)^{\frac{1}{x}} \\
+&\xlongequal{1^{\infty} \text{ 型}} \lim_{x\to 0}\left\{\left[1+\frac{(a_{1}^{x}-1)+\cdots+(a_{m}^{x}-1)}{m}\right]^{\frac{m}{(a_{1}^{x}-1)+\cdots+(a_{m}^{x}-1)}}\right\}^{\frac{(a_{1}^{x}-1)+\cdots+(a_{m}^{x}-1)}{mx}} \\
+&\xlongequal{\text{定理~\ref{thm:2.2.8}(1) 及本例(2)}} e^{\frac{\ln a_{1}+\cdots+\ln a_{m}}{m}}=e^{\ln\sqrt[m]{a_{1}\cdots a_{m}}}=\sqrt[m]{a_{1}\cdots a_{m}}.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:2.2.14}
+证明:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x\to+\infty}\frac{a^x}{x^x}=0\ (a>1)$;
+  \item $\lim\limits_{x \to +\infty} \frac{x^k}{a^x} = 0\ (a > 1)$;
+  \item $\lim\limits_{x \to +\infty} \frac{\ln x}{x^k} = 0\ (k > 0)$.
+\end{enumerate}
+当 $x \to +\infty$ 时, 趋于 $+\infty$ 的级别 $x^{x}$ 最高, $a^{x}$ 次之 ($a > 1$), $x^{\alpha}$ 再次之 ($\alpha > 0$), $\ln x$ 最低.
+\end{example}
+
+\begin{proof}
+(1) $\forall\varepsilon>0$, 取 $\Delta=\max\left\{2a,\log_{\frac{1}{2}}\varepsilon\right\}$, 当 $x>\Delta$ 时, 有
+\[
+\left|\frac{a^{x}}{x^{x}}-0\right|=\left(\frac{a}{x}\right)^{x}\leqslant\left(\frac{1}{2}\right)^{x}\leqslant\left(\frac{1}{2}\right)^{\Delta}\leqslant\varepsilon,
+\]
+所以 $\lim\limits_{x\to+\infty}\frac{a^{x}}{x^{x}}=0$. 或者由 $0 < \frac{a^{x}}{x^{x}} = \left( \frac{a}{x} \right)^{x} \leqslant \left( \frac{1}{2} \right)^{x} \to 0\ (x \to +\infty)$ 及夹逼定理知, $\lim\limits_{x \to +\infty} \frac{a^{x}}{x^{x}} = 0$.
+
+(2) 由
+\begin{align*}
+0<\frac{x^{k}}{a^{x}} &\leqslant\frac{([x]+1)^{k}}{a^{[x]}}=\frac{([x]+1)^{k}}{a^{[x]+1}}\cdot a \xrightarrow{\text{例~\ref{ex:1.2.5}(7)}} 0\cdot a \\
+&= 0 \quad (x\to+\infty, \text{ 故 } [x]\to+\infty)
+\end{align*}
+及函数的夹逼定理推得 $\lim\limits_{x\to+\infty}\frac{x^{k}}{a^{x}}=0$.
+
+(3) 由复合函数的极限定理知,
+\[
+\lim_{n\to+\infty}\frac{\ln n}{n}=\lim_{n\to+\infty}\ln\sqrt[n]{n}=\ln\left(\lim_{n\to+\infty}\sqrt[n]{n}\right)=\ln 1=0.
+\]
+或者, $\forall\varepsilon>0$, 由于 $\lim\limits_{n\to\infty}\sqrt[n]{n}=1$, 故 $\exists\,N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+0<\sqrt[n]{n}-1<e^{\varepsilon}-1.
+\]
+所以
+\[
+1<\sqrt[n]{n}<e^{\varepsilon}, \quad 0<\frac{\ln n}{n}=\ln\sqrt[n]{n}<\ln e^{\varepsilon}=\varepsilon,
+\]
+\[
+\lim_{n\to+\infty}\frac{\ln n}{n}=0.
+\]
+再由
+\begin{align*}
+0<\frac{\ln x}{x} &< \frac{\ln([x]+1)}{[x]}=\frac{\ln([x]+1)}{[x]+1}\cdot\left(1+\frac{1}{[x]}\right)\to 0\cdot(1+0) \\
+&= 0 \quad (x\to+\infty, \text{ 故 } [x]\to+\infty)
+\end{align*}
+及函数的夹逼定理得到 $\lim\limits_{x\to+\infty}\frac{\ln x}{x}=0$.
+
+于是, 当 $k>0$ 时, 有
+\[
+\lim_{x\to+\infty}\frac{\ln x}{x^k}=\lim_{x\to+\infty}\frac{\frac{1}{k}\ln x^k}{x^k}=\frac{1}{k}\cdot 0=0.
+\]
+\end{proof}
+
+\begin{example}\label{ex:2.2.15}
+证明: $\lim\limits_{x \to 0^+} x^k \ln x = 0\ (k > 0)$.
+\end{example}
+
+\begin{proof}
+\[
+\lim_{x\to 0^{+}}x^{k}\ln x = \lim_{x\to 0^{+}}\frac{-\ln\frac{1}{x}}{\left(\frac{1}{x}\right)^{k}} \xlongequal{y=\frac{1}{x}} -\lim_{y\to+\infty}\frac{\ln y}{y^{k}}=0.
+\]
+\end{proof}
+
+% ====================================================================
+% 练习题 2.2
+% ====================================================================
+\begin{exblock}{练习题 2.2}
+\item 计算下列极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x \to 0} \frac{1 + x - 2x^{3}}{1 + x^{4}}$;
+    \item $\lim\limits_{x \to 1} \frac{x^2 - 2x + 1}{x^3 - x}$;
+    \item $\lim\limits_{x \to 0} \frac{\sqrt{1+x}-1}{x-1}$;
+    \item $\lim\limits_{x \to 0} \frac{\sqrt{1+x} - \sqrt{1-x}}{x}$;
+    \item $\lim\limits_{x \to 1} \frac{x^m - 1}{x - 1}$;
+    \item $\lim\limits_{x \to 1} \frac{x^m - 1}{x^n - 1}$;
+    \item $\lim\limits_{x \to 0} \frac{(1+x)^{\frac{1}{m}} - 1}{x}$;
+    \item $\lim\limits_{x \to 1} \frac{x + x^{2} + \cdots + x^{m} - m}{x - 1}$;
+    \item $\lim\limits_{x \to 0} \frac{(1+mx)^n - (1+nx)^m}{x^2}$;
+    \item $\lim\limits_{x \to 0} \frac{(1+nx)^{\frac{1}{m}} - (1+mx)^{\frac{1}{n}}}{x}$;
+    \item $\lim\limits_{x \to 0} \frac{\sqrt{a^2 + x} - a}{x}\ (a > 0)$;
+    \item $\lim\limits_{x \to +\infty} \frac{(3x + 1)^{70}(8x - 5)^{20}}{(5x - 1)^{90}}$;
+    \item $\lim\limits_{x \to 1} \frac{\sqrt[m]{x} - 1}{\sqrt[n]{x} - 1}\ (m, n \in \mathbb{N})$;
+    \item $\lim\limits_{x\to 0}\frac{\sqrt[m]{1+\alpha x}\sqrt[n]{1+\beta x}-1}{x}$;
+    \item $\lim\limits_{x \to 0} \frac{\sqrt{1+x} - \sqrt{1-x}}{\sqrt[3]{1+x} - \sqrt[3]{1-x}}$;
+    \item $\lim\limits_{x\to\infty}\left(\sqrt{(a+x)(b+x)}-\sqrt{(a-x)(b-x)}\right)$;
+    \item $\lim\limits_{x \to 1} \left( \frac{m}{1 - x^m} - \frac{n}{1 - x^n} \right)\ (m, n \in \mathbb{N})$;
+    \item $\lim\limits_{x \to a} \frac{(x^n - a^n) - na^{n-1}(x - a)}{(x - a)^2}\ (n \in \mathbb{N})$;
+    \item $\lim\limits_{x \to 1} \frac{x^{n+1} - (n+1)x + n}{(x-1)^2}\ (n \in \mathbb{N})$;
+    \item $\lim\limits_{x \to 1} \frac{(1-\sqrt{x})(1-\sqrt[3]{x}) \cdots (1-\sqrt[n]{x})}{(1-x)^{n-1}}\ (n \in \mathbb{N})$.
+  \end{enumerate}
+
+\item 设 $\lim\limits_{x\to x_0}f(x)=a$, $\lim\limits_{x\to x_0}g(x)=b$.
+  \begin{enumerate}[label=(\arabic*)]
+    \item 若 $a > b$, 则在某 $U^{\circ}(x_{0})$ 内有 $f(x) > g(x)$;
+    \item 若在某 $U^{\circ}(x_{0})$ 内有 $f(x)<g(x)$, 问: 是否必有 $a<b$? 说明理由.
+  \end{enumerate}
+
+\item 求下列极限 ($n\in\mathbb{N}$):
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x \to 2^{+}} \frac{[x]^{2} - 4}{x^{2} - 4}$;
+    \item $\lim\limits_{x \to 2^{-}} \frac{[x]^{2} + 4}{x^{2} + 4}$;
+    \item $\lim\limits_{x \to 1^-} \frac{[4x]}{1+x}$;
+    \item $\lim\limits_{x \to 0^-} \frac{|x|}{x} \cdot \frac{1}{1 + x^n}$;
+    \item $\lim\limits_{x\to 0^{+}}\frac{|x|}{x}\frac{1}{1+x^{n}}$;
+    \item $\lim\limits_{x \to 0} \frac{\sqrt[n]{1+x}-1}{x}$;
+    \item $\lim\limits_{x \to \infty} \frac{[x]}{x}$;
+    \item $\lim\limits_{x \to +\infty} \frac{\sqrt{x + \sqrt{x + \sqrt{x}}}}{\sqrt{x + 1}}$.
+  \end{enumerate}
+
+\item 设 $P(x)=a_{1}x+a_{2}x^{2}+\cdots+a_{n}x^{n}$. 证明:
+  \[
+  \lim_{x\to 0}\frac{\sqrt[m]{1+P(x)}-1}{x}=\frac{a_{1}}{m},
+\]
+  其中 $n, m \in \mathbb{N}$.
+
+\item 定出常数 $a$ 与 $b$, 使得下列等式成立:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x \to \infty} \left( \frac{x^{2} + 1}{x + 1} - ax - b \right) = 0$;
+    \item $\lim\limits_{x \to +\infty} (\sqrt{x^2 - x + 1} - ax - b) = 0$;
+    \item $\lim\limits_{x \to -\infty} (\sqrt{x^2 - x + 1} - ax - b) = 0$.
+  \end{enumerate}
+
+\item 求下列极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x \to 0} \frac{\sin ax}{\sin bx}\ (b \neq 0)$;
+    \item $\lim\limits_{x \to 0} \frac{\sin(\sin x)}{x}$;
+    \item $\lim\limits_{h\to 0}\frac{\sin(x+h)-\sin x}{h}$;
+    \item $\lim\limits_{x \to +\infty} \left( \frac{1 + x}{3 + x} \right)^x$;
+    \item $\lim\limits_{x \to 0} \frac{\sin x^3}{\sin^2 x}$;
+    \item $\lim\limits_{x \to 0} \frac{\arctan x}{x}$;
+    \item $\lim\limits_{x \to +\infty} x \sin \frac{1}{x}$;
+    \item $\lim\limits_{x \to a} \frac{\sin^2 x - \sin^2 a}{x - a}$;
+    \item $\lim\limits_{x \to 0} \frac{\sin 4x}{\sqrt{x+1}-1}$;
+    \item $\lim\limits_{x \to 0} \frac{\sqrt{1 - \cos x^2}}{1 - \cos x}$.
+  \end{enumerate}
+
+\item 求下列极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{n \to +\infty} \sin(\pi\sqrt{n^2+1})$;
+    \item $\lim\limits_{n \to +\infty} \sin^2(\pi\sqrt{n^2+n})$.
+  \end{enumerate}
+
+\item 
+  \begin{enumerate}[label=(\arabic*)]
+    \item 证明: $\forall k \in \mathbb{N}$, 有 $\lim\limits_{x \to +\infty} \left[ \sin \sqrt{x + k} - \sin \sqrt{x} \right] = 0$;
+    \item 设常数 $a_{1}, a_{2}, \cdots, a_{n}$ 满足 $a_{1} + a_{2} + \cdots + a_{n} = 0$, 证明:
+    \[
+    \lim_{x\to+\infty}\sum_{k=1}^{n}a_{k}\sin\sqrt{x+k}=0.
+\]
+  \end{enumerate}
+
+\item 证明:
+  \[
+  \lim_{n\to+\infty}\left(\cos\frac{x}{2}\cos\frac{x}{4}\cdots\cos\frac{x}{2^n}\right)=\begin{cases}
+  \frac{\sin x}{x}, & x\neq 0, \\
+  1, & x=0.
+\end{cases}
+\]
+
+\item 计算极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x \to 0} (1 - 2x)^{\frac{1}{x}}$;
+    \item $\lim\limits_{x \to +\infty} \left( \frac{x+a}{x-a} \right)^x$;
+    \item $\lim\limits_{x \to 0} \left( \frac{1 + \tan x}{1 + \sin x} \right)^{\frac{1}{\sin x}}$;
+    \item $\lim\limits_{x \to 0} \left( \frac{\cos x}{\cos 2x} \right)^{\frac{1}{x^2}}$;
+    \item $\lim\limits_{x \to \frac{\pi}{4}}(\tan x)^{\tan 2x}$;
+    \item $\lim\limits_{x \to \frac{\pi}{2}}(\sin x)^{\tan x}$;
+    \item $\lim\limits_{x \to +\infty} \left( \sin \frac{1}{x} + \cos \frac{1}{x} \right)^x$;
+    \item $\lim\limits_{x \to 0^+} (\cos \sqrt{x})^{\frac{1}{x}}$;
+    \item $\lim\limits_{n\to+\infty}\cos^{n}\frac{x}{\sqrt{n}}$;
+    \item $\lim\limits_{x \to 0} \left(2e^{\frac{x}{1+x}} - 1\right)^{\frac{x^2 + 1}{x}}$;
+    \item $\lim\limits_{x \to a} \left( \frac{\sin x}{\sin a} \right)^{\frac{1}{x - a}},\ a \neq k\pi,\ k \in \mathbb{Z}$;
+    \item $\lim\limits_{n \to +\infty} \sqrt{2} \cdot \sqrt[4]{2} \cdot \sqrt[8]{2} \cdots \sqrt[2^n]{2}$;
+    \item $\lim\limits_{x\to 0}\frac{(1+x)^{\mu}-1}{x}$ (令 $(1+x)^{\mu}=e^{y}$).
+  \end{enumerate}
+
+\item 设 $x_{n}=\underbrace{\sin\cdots\sin}_{n\text{次}}\alpha$. 证明: $\lim\limits_{n\to+\infty}x_{n}=0$.
+\end{exblock}
+
+% ====================================================================
+% 思考题 2.2
+% ====================================================================
+\begin{exblock}{思考题 2.2}
+\item 证明: $\lim\limits_{n \to +\infty} n \sin(2\pi n! e) = 2\pi$ (提示: $e = 1 + \sum\limits_{k=1}^{n} \frac{1}{k!} + \frac{\theta_n}{n! n},\ \frac{n}{n+1} < \theta_n < 1$).
+\item 证明: $\lim\limits_{n\to+\infty}\left\{[(n+1)!]^{\frac{1}{n+1}}-(n!)^{\frac{1}{n}}\right\}=\frac{1}{e}$.
+\item 设 $|x| < 1$. 证明:
+\[
+\lim_{n\to+\infty}\left(1+\frac{1+x+x^2+\cdots+x^n}{n}\right)^n=e^{\frac{1}{1-x}}.
+\]
+\item 设 $f$ 与 $g$ 为两个周期函数, 且 $\lim\limits_{x \to +\infty} [f(x) - g(x)] = 0$, 证明: $f = g$.
+\end{exblock}

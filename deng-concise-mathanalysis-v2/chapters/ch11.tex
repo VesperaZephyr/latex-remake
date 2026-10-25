@@ -1,0 +1,997 @@
+% !TeX program = xelatex
+% 第十一章 广义积分
+\chapter{广义积分}
+
+积分区间为无限，或被积函数无界，按定积分的定义，这两种情形的积分都是没有意义的．本章的目的是把定积分的概念推广到这两种情形，引入收敛与发散的概念．人们发现，它们在形式上和无穷级数十分类似，所不同的只是这里用的是连续变量而级数中用的是离散变量．掌握这两者之间的共同点与差异，应是学习本章内容所特别需要注意的地方．
+
+\section{无穷限广义积分}
+
+\subsection{无穷限积分的概念}
+
+在本教程上册中我们考虑过，把一个质量为 $m$ 的物体（例如火箭）自地面送到离地面高度为 $h$ 处克服重力所作的功．设地球质量为 $M$，半径为 $R$，则由万有引力定律知，地球对物体的引力为
+\[
+f=G\frac{Mm}{x^{2}},
+\]
+其中 $x$ 为地球中心到物体的距离，$G$ 为引力常数．利用
+\[
+G\cdot\frac{Mm}{R^{2}}=mg,
+\]
+可得
+\[
+G=\frac{R^{2}g}{M},
+\]
+其中 $g$ 是重力加速度，$g\approx 9.8\ \mathrm{m}/\mathrm{s}^{2}$．
+
+于是，将质量为 $m$ 的物体从 $x=R$ 送到 $x=R+h$ 所需作的功 $W$ 可写成定积分
+\[
+W_{h}=\int_{R}^{R+h}G\cdot\frac{Mm}{x^{2}}\dd x=mgR^{2}\left(\frac{1}{R}-\frac{1}{R+h}\right)
+\]
+为了使物体（火箭）脱离地球引力范围，则所作的功为
+\[
+\begin{aligned}
+W&=\lim_{h\to+\infty}W_{h}=\lim_{h\to+\infty}\int_{R}^{R+h}R^{2}g\,\frac{m}{x^{2}}\dd x\\
+&=\lim_{h\to+\infty}mgR^{2}\left(\frac{1}{R}-\frac{1}{R+h}\right)=mgR.
+\end{aligned}
+\]
+记 $b=R+h$，则 $h\to+\infty$ 等价于 $b\to+\infty$．因此上式可以写成
+\[
+W=\lim_{b\to+\infty}\int_{R}^{b}mgR^{2}\,\frac{\dd x}{x^{2}}=mgR.
+\]
+
+这里很自然就会把极限 $\displaystyle\lim_{b\to+\infty}\int_{R}^{b}\frac{\dd x}{x^{2}}$ 看作积分 $\displaystyle\int_{R}^{+\infty}\frac{\dd x}{x^{2}}$．这个积分区间是无穷的，但积分值是一个数．这就是本节要讨论的\emph{无穷限广义积分}．
+
+顺便指出，如果物体以初速度 $v_{0}$ 向上发射，它的动能为 $\dfrac{1}{2}mv_{0}^{2}$．只有这个动能超过 $W=mgR$，物体才有可能脱离地球引力范围，由此从
+\[
+\frac{1}{2}mv_{0}^{2}=mgR,
+\]
+将 $g\approx 9.81\ \mathrm{m}/\mathrm{s}^{2}$，$R\approx 6371\ \mathrm{km}=6371\times 10^{3}\ \mathrm{m}$ 代入，求得 $v_{0}=11.2\ \mathrm{km}/\mathrm{s}$．这就是物体从地面脱离地球引力范围所必需具有的最小初速度，称为第二宇宙速度．
+
+回到积分 $\displaystyle\int_{R}^{+\infty}\frac{\dd x}{x^{2}}$ 的讨论．这个无穷限的积分，从黎曼积分分割、求和、取极限来定义是没有意义的．但对于任意的 $b>R>0$，$\displaystyle\int_{R}^{b}\frac{\dd x}{x^{2}}$ 都有意义．因此自然就把这个无穷积分看成有穷积分的极限
+\[
+\int_{R}^{+\infty}\frac{\dd x}{x^{2}}=\lim_{b\to+\infty}\int_{R}^{b}\frac{\dd x}{x^{2}}.
+\]
+其几何意义就是在曲线 $y=\dfrac{1}{x^{2}}$ 之下，$x$ 轴之上，直线 $x=R$ 之右向无穷延伸的区域之面积．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.6,baseline=(current bounding box.center)]
+  \def\f(#1){6/(#1)^2}
+  \def\Rv{2.2}
+  \def\Av{6}
+  % axes
+  \draw[{-Latex}] (0,0) -- (7,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,0) -- (0,5.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % shaded area under the curve from R to A
+  \draw[pattern=north east lines] (\Rv,0) -- (\Rv,{\f(\Rv)})
+    plot[domain=\Rv:\Av,smooth,variable=\x] (\x,{\f(\x)}) -- (\Av,0) -- cycle;
+  % curve
+  \draw[thick,domain=1.1:6.6,smooth,variable=\x] plot(\x,{\f(\x)});
+  % thick end bars
+  \draw[very thick] (\Rv,0) -- (\Rv,{\f(\Rv)});
+  \draw[very thick] (\Av,0) -- (\Av,{\f(\Av)});
+  % labels
+  \node[below] at (\Rv,0) {$R$};
+  \node[below] at (\Av,0) {$A$};
+  \node at (3.9,1.9) {$y=\dfrac{1}{x^{2}}$};
+\end{tikzpicture}\caption{\relax}\label{fig:11-1}
+\end{figure}
+
+但如果把函数 $\dfrac{1}{x^{2}}$ 用 $\dfrac{1}{x}$ 来代替，考虑
+\[
+\lim_{b\to+\infty}\int_{R}^{b}\frac{\dd x}{x}=\lim_{b\to+\infty}\left(\ln b-\ln R\right)=+\infty
+\]
+这个极限是 $+\infty$，也就是说 $\displaystyle\int_{R}^{+\infty}\frac{\dd x}{x}$ 不是一个数．同级数
+\[
+\sum_{n=1}^{\infty}\frac{1}{n}=\lim_{N\to+\infty}\sum_{n=1}^{N}\frac{1}{n}=+\infty
+\]
+相比较，我们自然认为无穷限积分 $\displaystyle\int_{R}^{+\infty}\frac{\dd x}{x}$ 发散．
+
+\begin{definition}\label{def:11-1}
+设函数 $f(x)$ 在 $[a,+\infty)$ 有定义，并且在任意有限区间 $[a,A]$ 上可积．若极限
+\[
+\lim_{A\to+\infty}\int_{a}^{A}f(x)\dd x=I
+\]
+存在，则称此极限值为 $f(x)$ 在无穷区间 $[a,+\infty)$ 上的\emph{广义积分}，记为
+\[
+\int_{a}^{+\infty}f(x)\dd x=I=\lim_{A\to+\infty}\int_{a}^{A}f(x)\dd x.
+\]
+这时也称积分 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 是\emph{收敛}的．若极限
+\[
+\lim_{A\to+\infty}\int_{a}^{A}f(x)\dd x
+\]
+不存在，则称积分 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 是\emph{发散}的．这时还使用记号 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$，但它并不表示一个数．
+\end{definition}
+
+类似地又可以定义积分
+\[
+\int_{-\infty}^{a}f(x)\dd x=\lim_{A\to-\infty}\int_{A}^{a}f(x)\dd x.
+\]
+当 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 与 $\displaystyle\int_{-\infty}^{a}f(x)\dd x$ 都收敛时，我们就说 $\displaystyle\int_{-\infty}^{+\infty}f(x)\dd x$ 收敛，并且定义
+\[
+\int_{-\infty}^{+\infty}f(x)\dd x=\int_{-\infty}^{a}f(x)\dd x+\int_{a}^{+\infty}f(x)\dd x.
+\]
+显然，右边这两个数的和是与 $a$ 的选择无关的．事实上，
+\[
+\begin{aligned}
+\int_{-\infty}^{a}f(x)\dd x+\int_{a}^{+\infty}f(x)\dd x
+&=\int_{-\infty}^{b}f(x)\dd x+\int_{b}^{a}f(x)\dd x+\int_{a}^{b}f(x)\dd x+\int_{b}^{+\infty}f(x)\dd x\\
+&=\int_{-\infty}^{b}f(x)\dd x+\int_{b}^{+\infty}f(x)\dd x.
+\end{aligned}
+\]
+若 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 与 $\displaystyle\int_{-\infty}^{a}f(x)\dd x$ 中有一个发散，则称 $\displaystyle\int_{-\infty}^{+\infty}f(x)\dd x$ 是发散的．显然
+\[
+\int_{-\infty}^{+\infty}f(x)\dd x=\lim_{\substack{A^{\prime}\to-\infty\\ A\to+\infty}}\int_{A^{\prime}}^{A}f(x)\dd x.
+\]
+必须注意的是，这里 $A^{\prime}\to-\infty$ 与 $A\to+\infty$ 两者之间是独立变化的．
+
+\begin{example}\label{ex:11-1-1}
+求 $\displaystyle\int_{0}^{+\infty}\frac{\dd x}{1+x^{2}}$．
+\end{example}
+
+\begin{proof}[解]
+$\displaystyle\int_{0}^{A}\frac{\dd x}{1+x^{2}}=\arctan x\Big|_{0}^{A}=\arctan A\to\frac{\pi}{2}\ (A\to+\infty)$，因此
+\[
+\int_{0}^{+\infty}\frac{\dd x}{1+x^{2}}=\frac{\pi}{2}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:11-1-2}
+讨论 $\displaystyle\int_{a}^{+\infty}\frac{\dd x}{x^{p}}$（其中 $a>0$）的收敛性，其中 $p$ 为任意实数．
+\end{example}
+
+\begin{proof}[解]
+若 $p\neq 1$，则
+\[
+\int_{a}^{A}\frac{\dd x}{x^{p}}=\frac{x^{1-p}}{1-p}\bigg|_{a}^{A}=\frac{1}{1-p}\left(A^{1-p}-a^{1-p}\right)=I_{p}(A).
+\]
+显然
+\[
+\lim_{A\to+\infty}I_{p}(A)=\begin{cases}
++\infty, & \text{当 }p<1,\\[3pt]
+\dfrac{a^{1-p}}{p-1}, & \text{当 }p>1.
+\end{cases}
+\]
+若 $p=1$，则
+\[
+\int_{a}^{A}\frac{\dd x}{x}=\ln A-\ln a\to+\infty\quad(A\to+\infty).
+\]
+故积分 $\displaystyle\int_{a}^{+\infty}\frac{\dd x}{x^{p}}$ 当 $p>1$ 时收敛，当 $p\leqslant 1$ 时发散．
+\end{proof}
+
+\begin{example}\label{ex:11-1-3}
+讨论 $\displaystyle\int_{2}^{+\infty}\frac{\dd x}{x(\ln x)^{q}}$ 的收敛性，其中 $q$ 为实数．
+\end{example}
+
+\begin{proof}[解]
+当 $q\neq 1$ 时，
+\[
+\begin{aligned}
+\int_{2}^{A}\frac{\dd x}{x(\ln x)^{q}}
+&=\frac{1}{1-q}(\ln x)^{1-q}\bigg|_{2}^{A}\\
+&=\frac{1}{1-q}\left[(\ln A)^{1-q}-(\ln 2)^{1-q}\right].
+\end{aligned}
+\]
+由于当 $q>1$ 时，
+\[
+\lim_{A\to+\infty}(\ln A)^{1-q}=0,
+\]
+当 $q<1$ 时，
+\[
+\lim_{A\to+\infty}(\ln A)^{1-q}=+\infty,
+\]
+故当 $q>1$ 时积分收敛，当 $q<1$ 时积分发散．当 $q=1$ 时，由
+\[
+\int_{2}^{A}\frac{\dd x}{x\ln x}=\ln\ln A-\ln\ln 2\to+\infty\quad(A\to+\infty),
+\]
+知积分也发散．总起来说，当 $q>1$ 时，积分收敛；当 $q\leqslant 1$ 时，积分发散．
+\end{proof}
+
+\begin{example}\label{ex:11-1-4}
+计算积分
+\[
+I=\int_{0}^{+\infty}\mathrm{e}^{-ax}\sin bx\dd x,\quad a>0.
+\]
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+I&=\lim_{A\to+\infty}\left(-\frac{1}{a}\int_{0}^{A}\sin bx\dd\mathrm{e}^{-ax}\right)\\
+&=\lim_{A\to+\infty}\left[-\frac{1}{a}\left(\mathrm{e}^{-ax}\sin bx\Big|_{0}^{A}-b\int_{0}^{A}\mathrm{e}^{-ax}\cos bx\dd x\right)\right]\\
+&=-\frac{b}{a^{2}}\lim_{A\to+\infty}\int_{0}^{A}\cos bx\dd\mathrm{e}^{-ax}\\
+&=\lim_{A\to+\infty}\left[-\frac{b}{a^{2}}\left(\mathrm{e}^{-ax}\cos bx\Big|_{0}^{A}+b\int_{0}^{A}\mathrm{e}^{-ax}\sin bx\dd x\right)\right]\\
+&=\frac{b}{a^{2}}-\frac{b^{2}}{a^{2}}\int_{0}^{+\infty}\mathrm{e}^{-ax}\sin bx\dd x=\frac{b}{a^{2}}-\frac{b^{2}}{a^{2}}I,
+\end{aligned}
+\]
+由此得
+\[
+\left(1+\frac{b^{2}}{a^{2}}\right)I=\frac{b}{a^{2}},
+\]
+故
+\[
+I=\frac{b}{a^{2}+b^{2}}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:11-1-5}
+$\displaystyle\int_{0}^{+\infty}\cos x\dd x$ 发散．
+\end{example}
+
+这是因为
+\[
+\int_{0}^{A}\cos x\dd x=\sin A,
+\]
+当 $A\to+\infty$ 时，$\sin A$ 极限不存在，故积分发散．
+
+把无穷限积分和级数作形式上的比较是很有意义的．对应于级数的一般项 $u_{n}$ 在这里是被积函数 $f(x)$，其差别在于 $n$ 是离散变量，而 $x$ 是连续变量．因此对级数是无穷项 $u_{n}$ 的相加 $\displaystyle\sum_{n=1}^{\infty}u_{n}$，对积分则是连续和 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$．但它们收敛发散的定义却是类似的：
+\[
+\begin{aligned}
+\sum_{k=1}^{\infty}u_{k}&=\lim_{n\to+\infty}\sum_{k=1}^{n}u_{k},\\
+\int_{a}^{+\infty}f(x)\dd x&=\lim_{A\to+\infty}\int_{a}^{A}f(x)\dd x,
+\end{aligned}
+\]
+分别是有限和与有限积分的极限．区别在于一个是数列的极限，一个是函数的极限．因此，如果对 $n\to+\infty$ 与 $x\to+\infty$ 有类似的极限定理，则无穷限积分有类似于级数的收敛判别法，但连续量与离散量仍然是有差别的，如级数中有项 $u_{n}$，它前一项为 $u_{n-1}$，而这对连续量就没有．因此，像正项级数的达朗贝尔判别法，在无穷限积分中就没有相应的判别法．又如在级数中可以证明，$\displaystyle\sum_{n=1}^{\infty}u_{n}$ 收敛的必要条件是 $u_{n}\to 0$，在无穷限积分中就无法证明类似的结论：$\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛的必要条件是 $f(x)\to 0\ (x\to+\infty)$（以后将看到，这是不正确的）．但无穷限积分有时较无穷级数容易处理，这是因为无穷限积分许多时候能够计算出来，而级数计算就困难得多．
+
+级数和积分还有其它密切关系，在讲正项级数积分收敛判别法时证明了：若在 $[1,+\infty)$，$f(x)\geqslant 0$、单调下降、连续，则级数 $\displaystyle\sum_{n=1}^{\infty}f(n)$ 收敛当且仅当
+\[
+\lim_{A\to+\infty}\int_{1}^{A}f(x)\dd x
+\]
+存在．现在就可以改述为：$\displaystyle\sum_{n=1}^{\infty}f(n)$ 收敛当且仅当 $\displaystyle\int_{1}^{+\infty}f(x)\dd x$ 收敛．在这里 $f(x)$ 单调下降的条件是重要的．在这个条件下，许多对级数成立的判别法对积分也有类似的结果．
+
+根据无穷限积分的定义，容易看出以下的简单性质：
+
+$1^{\circ}$ 若 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛，$k$ 是常数，则 $\displaystyle\int_{a}^{+\infty}kf(x)\dd x$ 也收敛，且
+\[
+\int_{a}^{+\infty}kf(x)\dd x=k\int_{a}^{+\infty}f(x)\dd x.
+\]
+
+$2^{\circ}$ 若 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$，$\displaystyle\int_{a}^{+\infty}g(x)\dd x$ 收敛，则 $\displaystyle\int_{a}^{+\infty}\left[f(x)\pm g(x)\right]\dd x$ 也收敛，且
+\[
+\int_{a}^{+\infty}\left[f(x)\pm g(x)\right]\dd x=\int_{a}^{+\infty}f(x)\dd x\pm\int_{a}^{+\infty}g(x)\dd x.
+\]
+
+把函数极限存在的柯西原理，翻译为无穷限积分的语言，便得
+
+\begin{theorem}[无穷限积分的柯西收敛原理]\label{thm:11-1}
+广义积分 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛的充分必要条件是对任给 $\varepsilon>0$，存在 $A>0$，当 $A^{\prime},A^{\prime\prime}>A$ 时，有
+\[
+\left|\int_{A^{\prime\prime}}^{A^{\prime}}f(x)\dd x\right|<\varepsilon.
+\]
+\end{theorem}
+
+和无穷级数相仿，有下面的定理．
+
+\begin{theorem}\label{thm:11-2}
+若 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛，且 $f(x)$ 在任意有限区间 $[a,A]$ 可积，则 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛．
+\end{theorem}
+
+请读者把定理~\ref{thm:11-2} 的证明写出来．
+
+类似地，称无穷限积分 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ \emph{绝对收敛}，如果 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛；称 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ \emph{条件收敛}，如果 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 发散，而 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛．定理~\ref{thm:11-2} 说的是：绝对收敛的无穷限积分必收敛．请读者举例说明定理~\ref{thm:11-2} 的逆命题是不成立的．
+
+\subsection{无穷限积分的收敛判别法}
+
+\begin{theorem}[比较判别法]\label{thm:11-3}
+设 $f(x)$ 在 $[a,+\infty)$ 有定义且在任何有限区间 $[a,A]$ 可积，
+
+（i）若存在数 $B$，当 $x\geqslant B$ 时，
+\[
+\left|f(x)\right|\leqslant\varphi(x),
+\]
+而 $\displaystyle\int_{a}^{+\infty}\varphi(x)\dd x$ 收敛，则 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛．若
+\[
+\left|f(x)\right|\geqslant\varphi(x)>0\quad(\text{当 }x>B),
+\]
+$\displaystyle\int_{a}^{+\infty}\varphi(x)\dd x$ 发散，则 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 发散．
+
+（ii）若 $\varphi(x)>0$，且
+\[
+\lim_{x\to+\infty}\frac{\left|f(x)\right|}{\varphi(x)}=l,
+\]
+则当 $0\leqslant l<+\infty$ 时，由 $\displaystyle\int_{a}^{+\infty}\varphi(x)\dd x$ 收敛可以推出 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛；当 $0<l\leqslant+\infty$ 时，由 $\displaystyle\int_{a}^{+\infty}\varphi(x)\dd x$ 发散可以推出 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 发散．
+\end{theorem}
+
+\begin{proof}
+（i）设 $\left|f(x)\right|\leqslant\varphi(x)\ (x>B)$，$\displaystyle\int_{a}^{+\infty}\varphi(x)\dd x$ 收敛．这时，任给 $\varepsilon>0$，存在 $A$（不妨认为 $A>B$），当 $A^{\prime}$，$A^{\prime\prime}>A$ 时，有
+\[
+\left|\int_{A^{\prime}}^{A^{\prime\prime}}\varphi(x)\dd x\right|<\varepsilon,
+\]
+从而
+\[
+\left|\int_{A^{\prime}}^{A^{\prime\prime}}\left|f(x)\right|\dd x\right|\leqslant\left|\int_{A^{\prime}}^{A^{\prime\prime}}\varphi(x)\dd x\right|<\varepsilon.
+\]
+由柯西收敛原理知 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛．另一部分可由已证的部分用反证法推出．
+
+（ii）利用极限的性质，结论很容易由（i）推得．
+\end{proof}
+
+特别地，取 $\displaystyle\varphi(x)=\frac{C}{x^{p}}$ 作比较的标准，便可得下面的判别法．
+
+\begin{theorem}\label{thm:11-4}
+设函数 $f(x)$ 定义在 $[a,+\infty)$ 并在任意有限区间 $[a,A]$ 可积．
+
+（i）若存在 $p>1$，$B>a$，使得
+\[
+\left|f(x)\right|\leqslant\frac{C}{x^{p}},\ \text{当 }x>B,
+\]
+其中 $C$ 是常数，则 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛；若存在 $p\leqslant 1$，及 $B>a$，使得
+\[
+\left|f(x)\right|\geqslant\frac{C}{x^{p}},\ \text{当 }x>B,
+\]
+其中 $C>0$ 是常数，则 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 发散．
+
+（ii）若
+\[
+\lim_{x\to+\infty}x^{p}\left|f(x)\right|=\lim_{x\to+\infty}\frac{\left|f(x)\right|}{\dfrac{1}{x^{p}}}=l,
+\]
+则当 $0\leqslant l<+\infty$，$p>1$ 时，$\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛；当 $0<l\leqslant+\infty$，$p\leqslant 1$ 时，$\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 发散．
+\end{theorem}
+
+类似于级数的讨论，定理~\ref{thm:11-4} 表明，要判别积分 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 是否收敛，关键是看当 $x\to+\infty$ 时，$f(x)\to 0$ 的速度．当它是某个 $\dfrac{1}{x^{p}}(p>1)$ 的同阶或是比之高阶的无穷小量时，则 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛；当它是某个 $\dfrac{1}{x^{p}}(p\leqslant 1)$ 的同阶或是比之低阶的无穷小量时，则 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 发散．看 $f(x)\to 0\ (x\to+\infty)$ 的阶，是判断无穷限积分 $\displaystyle\int_{a}^{+\infty}\left|f(x)\right|\dd x$ 收敛性的最重要的方法．
+
+\begin{example}\label{ex:11-1-6}
+判断积分 $\displaystyle\int_{1}^{+\infty}\frac{\arctan x}{x}\dd x$ 的收敛性．
+\end{example}
+
+\begin{proof}[解]
+由于
+\[
+\lim_{x\to+\infty}\frac{\dfrac{\arctan x}{x}}{\dfrac{1}{x}}=\frac{\pi}{2},
+\]
+而 $\dfrac{\arctan x}{x}\geqslant 0\ (x\in[1,+\infty))$，根据定理~\ref{thm:11-4}（这时 $p=1$，$l=\dfrac{\pi}{2}$）知积分发散．
+\end{proof}
+
+\begin{example}\label{ex:11-1-7}
+判断积分 $\displaystyle\int_{0}^{+\infty}x^{\alpha}\mathrm{e}^{-x}\dd x$ 的收敛性，其中 $\alpha\geqslant 0$ 是实数．
+\end{example}
+
+\begin{proof}[解]
+根据洛必达法则可以证明
+\[
+\lim_{x\to+\infty}\frac{x^{\alpha}\mathrm{e}^{-x}}{\dfrac{1}{x^{2}}}=0,
+\]
+根据定理~\ref{thm:11-4}（这时 $p=2$，$l=0$）知积分收敛．
+\end{proof}
+
+\begin{example}\label{ex:11-1-8}
+讨论积分 $\displaystyle\int_{2}^{+\infty}\frac{\dd x}{x^{\alpha}\ln x}$ 的收敛性，其中 $\alpha$ 是实数．
+\end{example}
+
+\begin{proof}[解]
+由于
+\[
+\lim_{x\to+\infty}x^{p}\frac{1}{x^{\alpha}\ln x}=\lim_{x\to+\infty}x^{p-\alpha}\frac{1}{\ln x}=\begin{cases}
++\infty, & p>\alpha,\\
+0, & p<\alpha,\\
+0, & p=\alpha,
+\end{cases}
+\]
+因此，只要 $\alpha>1$，便可选 $p=\alpha>1$ 使上述极限为 $0$，故积分收敛．只要 $\alpha<1$，可取 $1>p>\alpha$ 使上述极限为 $+\infty$，故积分发散．当 $\alpha=1$ 时，积分化为
+\[
+\int_{2}^{+\infty}\frac{\dd x}{x\ln x}=\lim_{A\to+\infty}\ln\ln x\Big|_{2}^{A}=+\infty,
+\]
+故积分发散．结论：$\alpha>1$ 时积分收敛；$\alpha\leqslant 1$ 时积分发散．
+\end{proof}
+
+上述的比较定理，大多用于判断积分的绝对收敛．对非绝对收敛的积分，为判别其收敛性，需要更精细一些的判别法，这同级数的情形是类似的．为了得到类似于级数的狄利克雷判别法和阿贝尔判别法，我们需要一个代替级数的阿贝尔变换的工具，这就是下面要讲的积分第二中值定理．
+
+\begin{theorem}[积分第二中值定理]\label{thm:11-5}
+设 $f(x)$ 在 $[a,b]$ 上可积，而 $g(x)$ 在 $[a,b]$ 上单调，则在 $[a,b]$ 存在 $\xi$，使得
+\begin{equation}
+\int_{a}^{b}f(x)g(x)\dd x=g(a)\int_{a}^{\xi}f(x)\dd x+g(b)\int_{\xi}^{b}f(x)\dd x.
+\tag{1}
+\end{equation}
+特别地，如果 $g(x)$ 单调上升且 $g(a)\geqslant 0$，那么存在 $\xi\in[a,b]$，使得
+\begin{equation}
+\int_{a}^{b}f(x)g(x)\dd x=g(b)\int_{\xi}^{b}f(x)\dd x.
+\tag{2}
+\end{equation}
+如果 $g(x)$ 单调下降且 $g(b)\geqslant 0$，那么存在 $\xi\in[a,b]$ 使得
+\begin{equation}
+\int_{a}^{b}f(x)g(x)\dd x=g(a)\int_{a}^{\xi}f(x)\dd x.
+\tag{3}
+\end{equation}
+\end{theorem}
+
+在定理证明之前，我们看看定理的一个几何解释．设 $f(x)\equiv 1$，这时（1）化为
+\[
+\int_{a}^{b}g(x)\dd x=g(a)(\xi-a)+g(b)(b-\xi).
+\]
+如图~\ref{fig:11-2} 所示，其含义为当 $g(x)$ 在 $[a,b]$ 单调上升时，一定存在 $\xi$，使 $g(x)$ 下面的曲边梯形的面积，等于底为 $\xi-a$ 高为 $g(a)$ 的矩形面积加上底为 $b-\xi$ 高为 $g(b)$ 的矩形面积，或说在 $[a,b]$ 中必存在 $\xi$，使两块带阴影的图形面积相等．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.6,baseline=(current bounding box.center)]
+  \def\gv(#1){3.6-2.4*((5.6-(#1))/4)^2}
+  \def\av{1.6}
+  \def\xv{3.1}
+  \def\bv{5.6}
+  % axes
+  \draw[{-Latex}] (0,0) -- (6.8,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,0) -- (0,4.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % region between curve and level g(a) over [a,xi]
+  \draw[pattern=horizontal lines] (\av,{\gv(\av)})
+    plot[domain=\av:\xv,smooth,variable=\x] (\x,{\gv(\x)}) -- (\xv,{\gv(\av)}) -- cycle;
+  % region between level g(b) and curve over [xi,b]
+  \draw[pattern=north east lines] (\xv,{\gv(\xv)})
+    plot[domain=\xv:\bv,smooth,variable=\x] (\x,{\gv(\x)}) -- (\bv,{\gv(\bv)}) -- (\xv,{\gv(\bv)}) -- cycle;
+  % curve
+  \draw[thick,domain=\av:\bv,smooth,variable=\x] plot(\x,{\gv(\x)});
+  % solid vertical at xi, dashed verticals at a and b
+  \draw[very thick] (\xv,{\gv(\av)}) -- (\xv,{\gv(\bv)});
+  \draw[dashed] (\av,0) -- (\av,{\gv(\av)});
+  \draw[dashed] (\bv,0) -- (\bv,{\gv(\bv)});
+  % labels
+  \node[below] at (\av,0) {$a$};
+  \node[below] at (\xv,0) {$\xi$};
+  \node[below] at (\bv,0) {$b$};
+  \node[left] at (0,{\gv(\av)}) {$g(a)$};
+  \node[left] at (0,{\gv(\bv)}) {$g(b)$};
+\end{tikzpicture}\caption{\relax}\label{fig:11-2}
+\end{figure}
+
+\begin{proof}
+我们先证明公式（2）．
+
+现在假设的条件是 $f(x)$ 在 $[a,b]$ 可积，$g(x)$ 在 $[a,b]$ 单调上升，$g(x)\geqslant g(a)\geqslant 0\ (\forall x\in[a,b])$．因此 $g(x)$ 在 $[a,b]$ 上可积，从而 $f(x)g(x)$ 在 $[a,b]$ 上可积．令
+\[
+F(x)=\int_{x}^{b}f(t)\dd t,
+\]
+则由第七章知，$F(x)$ 是 $[a,b]$ 上的连续函数，这时 $F(x)$ 在 $[a,b]$ 有最大值和最小值．记
+\[
+M=\max_{a\leqslant x\leqslant b}F(x),\quad m=\min_{a\leqslant x\leqslant b}F(x).
+\]
+如果 $g(b)=0$，则 $g(x)=0$ 对任意 $x\in[a,b]$．这时结论显然．因此不妨设 $g(b)>0$．根据连续函数介值定理，为证明（2），只需证明
+\begin{equation}
+m\leqslant\frac{1}{g(b)}\int_{a}^{b}f(x)g(x)\dd x\leqslant M
+\tag{4}
+\end{equation}
+便可以了．下面就来估计
+\[
+\int_{a}^{b}f(x)g(x)\dd x,
+\]
+证明它满足（4）式．我们的方法是把这个积分写成一个和式，然后对这个和式用阿贝尔变换．
+
+给 $[a,b]$ 一个分法：$a=x_{0}<x_{1}<x_{2}<\cdots<x_{n}=b$．记 $\Delta x_{i}=x_{i}-x_{i-1}$，$\omega_{i}$ 是 $g(x)$ 在 $[x_{i-1},x_{i}]$ 的振幅，则
+\[
+\begin{aligned}
+\int_{a}^{b}f(x)g(x)\dd x&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}f(x)g(x)\dd x\\
+&=\sum_{i=1}^{n}g(x_{i})\int_{x_{i-1}}^{x_{i}}f(x)\dd x+\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}f(x)\left[g(x)-g(x_{i})\right]\dd x\\
+&=\sigma+\rho.
+\end{aligned}
+\]
+我们来证明，当 $\lambda=\max\limits_{1\leqslant i\leqslant n}\{\Delta x_{i}\}\to 0$ 时，$\rho\to 0$．事实上，由于 $f(x)$ 在 $[a,b]$ 有界：$\left|f(x)\right|\leqslant L$，知
+\[
+\begin{aligned}
+\left|\rho\right|&=\left|\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}f(x)\left[g(x)-g(x_{i})\right]\dd x\right|\\
+&\leqslant\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}\left|f(x)\right|\left|g(x)-g(x_{i})\right|\dd x\\
+&\leqslant L\sum_{i=1}^{n}\omega_{i}\Delta x_{i}\to 0\ (\lambda\to 0).
+\end{aligned}
+\]
+这样就证明了
+\[
+\int_{a}^{b}f(x)g(x)\dd x=\lim_{\lambda\to 0}\sigma.
+\]
+要证（4）式，化成了要证
+\[
+mg(b)\leqslant\sigma\leqslant Mg(b).
+\]
+事实上，注意到 $F(x_{n})=F(b)=0$，有
+\[
+\begin{aligned}
+\sigma&=\sum_{i=1}^{n}g(x_{i})\left[F(x_{i-1})-F(x_{i})\right]\\
+&=\sum_{i=1}^{n}g(x_{i})F(x_{i-1})-\sum_{i=1}^{n}g(x_{i})F(x_{i})\\
+&=g(x_{1})F(x_{0})+\sum_{i=2}^{n}g(x_{i})F(x_{i-1})-\sum_{i=1}^{n-1}g(x_{i})F(x_{i})\\
+&=g(x_{1})F(x_{0})+\sum_{i=1}^{n-1}\left[g(x_{i+1})-g(x_{i})\right]F(x_{i}).
+\end{aligned}
+\]
+因为 $g(x_{1})\geqslant g(x_{0})=g(a)\geqslant 0$，$g(x_{i+1})-g(x_{i})\geqslant 0$，所以
+\[
+\begin{aligned}
+m\left\{g(x_{1})+\sum_{i=1}^{n-1}\left[g(x_{i+1})-g(x_{i})\right]\right\}&\leqslant\sigma\\
+&\leqslant M\left\{g(x_{1})+\sum_{i=1}^{n-1}\left[g(x_{i+1})-g(x_{i})\right]\right\},
+\end{aligned}
+\]
+即
+\[
+mg(b)\leqslant\sigma\leqslant Mg(b)
+\]
+对 $[a,b]$ 的任意分法皆成立．令 $\lambda\to 0$ 得
+\[
+m\leqslant\frac{1}{g(b)}\int_{a}^{b}f(x)g(x)\dd x\leqslant M.
+\]
+由连续函数的介值定理，知存在 $\xi\in[a,b]$，使
+\[
+F(\xi)=\frac{1}{g(b)}\int_{a}^{b}f(x)g(x)\dd x
+\]
+即
+\[
+\int_{a}^{b}f(x)g(x)\dd x=g(b)\int_{\xi}^{b}f(x)\dd x,
+\]
+这就是（2）．
+
+现在用（2）证明（1）．设 $g(x)$ 单调上升，令 $\psi(x)=g(x)-g(a)$，则 $\psi(x)$ 在 $[a,b]$ 单调上升，$\psi(a)\geqslant 0$．对 $\psi$ 用公式（2），存在 $\xi\in[a,b]$，使
+\[
+\int_{a}^{b}f(x)\left[g(x)-g(a)\right]\dd x=\left[g(b)-g(a)\right]\int_{\xi}^{b}f(x)\dd x,
+\]
+移项便得
+\[
+\int_{a}^{b}f(x)g(x)\dd x=g(a)\int_{a}^{\xi}f(x)\dd x+g(b)\int_{\xi}^{b}f(x)\dd x,
+\]
+这就是（1）．（3）的证明类似（2）的证明，定理~\ref{thm:11-5} 证完．
+\end{proof}
+
+现在我们就可以给出无穷限广义积分收敛的狄利克雷判别法与阿贝尔判别法了．
+
+\begin{theorem}[狄利克雷判别法]\label{thm:11-6}
+若 $\displaystyle\int_{a}^{A}f(x)\dd x$ 有界，即存在 $M>0$，使
+\[
+\left|\int_{a}^{A}f(x)\dd x\right|\leqslant M,\quad\forall A>a,
+\]
+$g(x)$ 单调且当 $x\to+\infty$ 时 $g(x)$ 趋向于 $0$，则积分 $\displaystyle\int_{a}^{+\infty}f(x)g(x)\dd x$ 收敛．
+\end{theorem}
+
+\begin{proof}
+用柯西收敛原理与第二积分中值定理证明．事实上，任给 $\varepsilon>0$，存在 $A$，当 $x>A$ 时，有
+\[
+\left|g(x)\right|<\varepsilon.
+\]
+因此当 $A^{\prime}>A$，$A^{\prime\prime}>A$ 时，有
+\[
+\begin{aligned}
+\left|\int_{A^{\prime}}^{A^{\prime\prime}}f(x)g(x)\dd x\right|
+&=\left|g(A^{\prime})\int_{A^{\prime}}^{\xi}f(x)\dd x+g(A^{\prime\prime})\int_{\xi}^{A^{\prime\prime}}f(x)\dd x\right|\\
+&\leqslant\varepsilon\left(\left|\int_{A^{\prime}}^{\xi}f(x)\dd x\right|+\left|\int_{\xi}^{A^{\prime\prime}}f(x)\dd x\right|\right)\leqslant 4M\varepsilon,
+\end{aligned}
+\]
+其中用到了
+\[
+\left|\int_{A^{\prime}}^{\xi}f(x)\dd x\right|=\left|\int_{a}^{\xi}f(x)\dd x-\int_{a}^{A^{\prime}}f(x)\dd x\right|\leqslant 2M
+\]
+等等．由柯西收敛原理知 $\displaystyle\int_{a}^{b}f(x)g(x)\dd x$ 收敛．
+\end{proof}
+
+\begin{theorem}[阿贝尔判别法]\label{thm:11-7}
+若 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛，$g(x)$ 在 $[a,+\infty)$ 单调有界，则 $\displaystyle\int_{a}^{+\infty}f(x)g(x)\dd x$ 收敛．
+\end{theorem}
+
+\begin{proof}
+设
+\[
+\left|g(x)\right|\leqslant K,\quad\forall x\in[a,+\infty).
+\]
+已知任给 $\varepsilon>0$，存在 $A>0$，只要 $A^{\prime}$，$A^{\prime\prime}>A$，有
+\[
+\left|\int_{A^{\prime}}^{\xi}f(x)\dd x\right|<\varepsilon,\quad\left|\int_{\xi}^{A^{\prime\prime}}f(x)\dd x\right|<\varepsilon,
+\]
+其中 $\xi$ 在 $A^{\prime}$ 与 $A^{\prime\prime}$ 之间．这样，只要 $A^{\prime}$，$A^{\prime\prime}>A$，有
+\[
+\left|\int_{A^{\prime}}^{A^{\prime\prime}}f(x)g(x)\dd x\right|=\left|g(A^{\prime})\int_{A^{\prime}}^{\xi}f(x)\dd x+g(A^{\prime\prime})\int_{\xi}^{A^{\prime\prime}}f(x)\dd x\right|\leqslant 2K\varepsilon
+\]
+由柯西收敛原理知 $\displaystyle\int_{a}^{b}f(x)g(x)\dd x$ 收敛．
+\end{proof}
+
+\begin{example}\label{ex:11-1-9}
+证明 $\displaystyle\int_{1}^{+\infty}\frac{\sin x}{x}\dd x$ 收敛但不是绝对收敛．
+\end{example}
+
+\begin{proof}[证明]
+由于
+\[
+\left|\int_{0}^{A}\sin x\dd x\right|=\left|1-\cos A\right|\leqslant 2,
+\]
+$\dfrac{1}{x}$ 单调下降，且 $\dfrac{1}{x}\to 0\ (x\to+\infty)$．因此，用狄利克雷判别法知 $\displaystyle\int_{1}^{+\infty}\frac{\sin x}{x}\dd x$ 收敛．注意到
+\[
+\frac{\left|\sin x\right|}{x}\geqslant\frac{\sin^{2}x}{x}=\frac{1}{2x}-\frac{\cos 2x}{2x},
+\]
+同样应用狄利克雷判别法知 $\displaystyle\int_{1}^{+\infty}\frac{\cos 2x}{2x}\dd x$ 收敛，但已知 $\displaystyle\int_{1}^{+\infty}\frac{\dd x}{2x}$ 发散，因此 $\displaystyle\int_{1}^{+\infty}\frac{\sin^{2}x}{x}\dd x$ 发散．用比较定理知 $\displaystyle\int_{1}^{+\infty}\frac{\left|\sin x\right|}{x}\dd x$ 发散．这就证明了 $\displaystyle\int_{1}^{+\infty}\frac{\sin x}{x}\dd x$ 收敛但非绝对收敛．
+\end{proof}
+
+\begin{example}\label{ex:11-1-10}
+问 $\displaystyle\int_{1}^{+\infty}\sin x^{2}\dd x$ 是否收敛？
+\end{example}
+
+\begin{proof}[解]
+由狄利克雷判别法易知
+\[
+\int_{1}^{+\infty}\frac{\sin x}{\sqrt{x}}\dd x
+\]
+收敛，故当 $A\to+\infty$ 时，
+\[
+\int_{1}^{A}\sin x^{2}\dd x=\int_{1}^{A^{2}}\frac{\sin u}{2\sqrt{u}}\dd u
+\]
+极限存在，即 $\displaystyle\int_{1}^{+\infty}\sin x^{2}\dd x$ 收敛，且
+\[
+\int_{1}^{+\infty}\sin x^{2}\dd x=\frac{1}{2}\int_{1}^{+\infty}\frac{\sin x}{\sqrt{x}}\dd x.
+\]
+\end{proof}
+
+例~\ref{ex:11-1-10} 说明，由 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛，不能推出 $f(x)\to 0\ (x\to+\infty)$．
+
+\begin{example}\label{ex:11-1-11}
+证明 $\displaystyle\int_{1}^{+\infty}\frac{\sin x\arctan x}{\sqrt{x}}\dd x$ 收敛．
+\end{example}
+
+\begin{proof}[证明]
+已知 $\displaystyle\int_{1}^{+\infty}\frac{\sin x}{\sqrt{x}}\dd x$ 收敛，$\arctan x$ 在 $[1,+\infty)$ 单调有界，由阿贝尔判别法知
+\[
+\int_{1}^{+\infty}\frac{\sin x\arctan x}{\sqrt{x}}\dd x
+\]
+收敛．
+\end{proof}
+
+\begin{xiti}
+\item 求下列无穷积分的值：
+\begin{ziti}
+\item $\displaystyle\int_{2}^{+\infty}\frac{\dd x}{x^{2}-1}$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\dd x}{x(1+x^{2})}$；
+\item $\displaystyle\int_{0}^{+\infty}x\mathrm{e}^{-ax^{2}}\dd x$ $(a>0)$；
+\item $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax}\sin bx\dd x$ $(a>0)$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\sqrt{x}}{1+x^{2}}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\dd x}{\left(x^{2}+p\right)\left(x^{2}+q\right)}$ $(p,q>0)$．
+\end{ziti}
+\item 讨论下列积分的收敛性：
+\begin{ziti}
+\item $\displaystyle\int_{0}^{+\infty}\frac{\dd x}{\sqrt[3]{x^{4}+1}}$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{x\arctan x}{1+x^{3}}\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\sin\frac{1}{x^{2}}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\dd x}{1+x\left|\sin x\right|}$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{x}{1+x^{2}\sin^{2}x}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{x^{m}}{1+x^{n}}\dd x$ $(n,m>0)$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{x^{2}\dd x}{x^{4}-x^{2}+1}$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\dd x}{x\sqrt[3]{1+x^{2}}}$；
+\item $\displaystyle\int_{0}^{+\infty}x^{p}\mathrm{e}^{-x}\dd x$ $(p\geqslant 0)$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\ln x}{x^{p}}\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\ln^{n}x}{x^{2}}\dd x$（$n$ 是正整数）；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\sin^{2}x}{x}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\cos ax}{1+x^{n}}\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\left[\ln\left(1+\frac{1}{x}\right)-\frac{1}{1+x}\right]\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\ln\left(\cos\frac{1}{x}+\sin\frac{1}{x}\right)\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{1}{x^{2}}\ln\left(1-\frac{\sin^{2}x}{2}\right)^{-1}\dd x$．
+\end{ziti}
+\item 讨论下列无穷积分的收敛性（包括绝对收敛或条件收敛）：
+\begin{ziti}
+\item $\displaystyle\int_{1}^{+\infty}\frac{\cos^{2}x}{x}\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\cos x}{x}\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\cos x}{x^{p}}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\sqrt{x}\cos x}{x+100}\dd x$；
+\item $\displaystyle\int_{2}^{+\infty}\frac{\ln\ln x}{\ln x}\sin x\dd x$．
+\end{ziti}
+\item 设 $f(x)\leqslant h(x)\leqslant g(x)$，$a\leqslant x<+\infty$，$h(x)$ 在任意有限区间 $[a,A]$ 可积，又 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 和 $\displaystyle\int_{a}^{+\infty}g(x)\dd x$ 收敛．求证 $\displaystyle\int_{a}^{+\infty}h(x)\dd x$ 收敛．
+\item 证明定理~\ref{thm:11-2}，并举例说明其逆是不成立的．
+\item 若 $f(x)$ 在 $[a,+\infty)$ 上单调下降，且积分 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 收敛，求证：$\lim\limits_{x\to+\infty}xf(x)=0$．
+\item 设 $f(x)$ 在 $[0,+\infty)$ 上一致连续，并且积分 $\displaystyle\int_{0}^{+\infty}f(x)\dd x$ 收敛．证明 $\lim\limits_{x\to+\infty}f(x)=0$．如果仅仅知道积分 $\displaystyle\int_{0}^{+\infty}f(x)\dd x$ 收敛，以及 $f(x)$ 在 $[a,+\infty)$ 连续，$f(x)\geqslant 0$，是否仍有 $\lim\limits_{x\to+\infty}f(x)=0$？
+\item 设 $\displaystyle\int_{a}^{+\infty}f(x)\dd x$ 与 $\displaystyle\int_{a}^{+\infty}f'(x)\dd x$ 收敛，求证：
+\[
+\lim_{x\to+\infty}f(x)=0.
+\]
+\item 设 $f(x)$ 单调下降趋于零，$f'(x)$ 在 $[0,+\infty)$ 连续．求证：
+\[
+\int_{0}^{+\infty}f'(x)\sin^{2}x\dd x
+\]
+收敛．
+\item 设 $f(x)$ 和 $g(x)$ 是定义在 $[a,+\infty)$ 上的函数，且在任何有限区间 $[a,A]$ 可积．证明：若 $\displaystyle\int_{a}^{+\infty}f^{2}(x)\dd x$ 与 $\displaystyle\int_{a}^{+\infty}g^{2}(x)\dd x$ 收敛，则 $\displaystyle\int_{a}^{+\infty}\left[f(x)+g(x)\right]^{2}\dd x$ 与 $\displaystyle\int_{a}^{+\infty}f(x)g(x)\dd x$ 也收敛．
+\item 证明：
+\begin{ziti}
+\item 设 $f(x)$ 在 $[0,+\infty)$ 连续，且 $\lim\limits_{x\to+\infty}f(x)=k$，则
+\[
+\int_{0}^{+\infty}\frac{f(ax)-f(bx)}{x}\dd x=\left[f(0)-k\right]\ln\frac{b}{a}\quad(b>a>0).
+\]
+\item 若上述条件 $\lim\limits_{x\to+\infty}f(x)=k$ 改为 $\displaystyle\int_{a}^{+\infty}\frac{f(x)}{x}\dd x$ 存在 $(a>0)$，则
+\[
+\int_{0}^{+\infty}\frac{f(ax)-f(bx)}{x}\dd x=f(0)\ln\frac{b}{a}\quad(b>a>0).
+\]
+\end{ziti}
+\end{xiti}
+
+\section{瑕积分}
+
+\subsection{瑕积分的概念}
+
+按黎曼积分的定义，在 $[a,b]$ 无界的函数其积分是不存在的．因此，对无界函数，其积分要用新的方法定义．我们在这里并不讨论一般的无界函数的积分，而只讨论这样的情形：函数只在区间中一点的附近无界．我们不妨假设它就是区间左端点，这时假设 $f(x)$ 在 $(a,b]$ 有定义，对任意的 $\eta>0$（充分小，使 $a+\eta<b$），$f(x)$ 在 $[a+\eta,b]$ 可积，但 $f(x)$ 在 $(a,a+\eta]$ 无界．我们把 $a$ 称为将要讨论的广义积分的\emph{瑕点}．由于积分对区间的可加性，我们的讨论显然适用于 $[a,b]$ 有有限个瑕点的情形．
+
+例如，考虑积分
+\[
+\int_{0}^{1}\frac{\dd x}{\sqrt{x}},
+\]
+被积函数 $\dfrac{1}{\sqrt{x}}$ 在任意 $[\eta,1]$（$\eta>0$）是可积的，但它在 $(0,\eta)$ 无界，因此，$0$ 是一个（唯一的一个）瑕点．一个很直观且自然的积分定义是把它看成 $[\eta,1]$ 上的积分当 $\eta\to 0^{+}$ 时的极限：
+\[
+\begin{aligned}
+\int_{0}^{1}\frac{\dd x}{\sqrt{x}}&=\lim_{\eta\to 0^{+}}\int_{\eta}^{1}\frac{\dd x}{\sqrt{x}}\\
+&=\lim_{\eta\to 0^{+}}2\sqrt{x}\Big|_{\eta}^{1}=\lim_{\eta\to 0^{+}}\left(2-2\sqrt{\eta}\right)=2.
+\end{aligned}
+\]
+这个积分值的几何意义显然是 $y=\dfrac{1}{\sqrt{x}}$ 下方、$x$ 轴上方并位于 $y$ 轴与 $x=1$ 之间的开口区域的面积．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.6,baseline=(current bounding box.center)]
+  \def\gh(#1){1.6/sqrt(#1)}
+  \def\etav{0.5}
+  % axes
+  \draw[{-Latex}] (0,0) -- (3.6,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,0) -- (0,4.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % shaded area under the curve from eta to 1
+  \draw[pattern=north east lines] (\etav,0) -- (\etav,{\gh(\etav)})
+    plot[domain=\etav:1,smooth,variable=\x] (\x,{\gh(\x)}) -- (1,0) -- cycle;
+  % curve
+  \draw[thick,domain=0.32:3.4,smooth,variable=\x] plot(\x,{\gh(\x)});
+  % thick vertical at x=1
+  \draw[very thick] (1,0) -- (1,{\gh(1)});
+  % ticks
+  \draw (2,0) -- (2,0.08) node[below] at (2,-0.05) {$2$};
+  \draw (0,{\gh(1)}) -- (0.08,{\gh(1)}) node[left] at (-0.05,{\gh(1)}) {$1$};
+  \draw (0,3.2) -- (0.08,3.2) node[left] at (-0.05,3.2) {$2$};
+  % labels
+  \node[below] at (\etav,0) {$\eta$};
+  \node[below] at (1,0) {$1$};
+  \node[right] at (0.55,2.9) {$y=\dfrac{1}{\sqrt{x}}$};
+\end{tikzpicture}\caption{\relax}\label{fig:11-3}
+\end{figure}
+
+\begin{definition}\label{def:11-2}
+设函数 $f(x)$ 在区间 $(a,b]$ 有定义且在任意区间 $[a+\eta,b]$ 可积（其中 $\eta>0$），在 $(a,a+\eta]$ 无界，若极限
+\[
+\lim_{\eta\to 0^{+}}\int_{a+\eta}^{b}f(x)\dd x
+\]
+存在，则称瑕积分 $\displaystyle\int_{a}^{b}f(x)\dd x$ 是收敛的，且积分值等于极限值，并用符号 $\displaystyle\int_{a}^{b}f(x)\dd x$ 表示这个积分值：
+\[
+\int_{a}^{b}f(x)\dd x=\lim_{\eta\to 0^{+}}\int_{a+\eta}^{b}f(x)\dd x.
+\]
+若上述极限不存在，则称瑕积分 $\displaystyle\int_{a}^{b}f(x)\dd x$ 发散．
+\end{definition}
+
+发散的积分虽也用 $\displaystyle\int_{a}^{b}f(x)\dd x$ 表示，但它不是一个数值．
+
+如果 $f(x)$ 在 $[a,b]$ 有界可积，那么
+\[
+\int_{a}^{b}f(x)\dd x=\lim_{\eta\to 0^{+}}\int_{a+\eta}^{b}f(x)\dd x
+\]
+永远成立．这是因为定积分作为下限的函数是连续的，因此我们的瑕积分定义包含了原来的积分定义，是原来定义的推广．
+
+如果 $b$ 是瑕点，那么自然定义
+\[
+\int_{a}^{b}f(x)\dd x=\lim_{\eta\to 0^{+}}\int_{a}^{b-\eta}f(x)\dd x.
+\]
+如果 $c$（$a<c<b$）是瑕点，若 $\displaystyle\int_{a}^{c}f(x)\dd x$ 和 $\displaystyle\int_{c}^{b}f(x)\dd x$ 都收敛，那么定义
+\[
+\int_{a}^{b}f(x)\dd x=\int_{a}^{c}f(x)\dd x+\int_{c}^{b}f(x)\dd x.
+\]
+这时 $\displaystyle\int_{a}^{b}f(x)\dd x$ 收敛；否则 $\displaystyle\int_{a}^{b}f(x)\dd x$ 发散．
+
+\begin{example}\label{ex:11-2-1}
+研究积分 $\displaystyle\int_{a}^{b}\frac{\dd x}{(x-a)^{p}}$ 的收敛性．
+\end{example}
+
+\begin{proof}[解]
+当 $p\leqslant 0$ 时，这是正常积分．当 $p>0$ 时是瑕积分，$a$ 是瑕点．若 $p\neq 1$，则
+\[
+\begin{aligned}
+\int_{a+\eta}^{b}\frac{\dd x}{(x-a)^{p}}
+&=\frac{1}{1-p}(x-a)^{1-p}\bigg|_{a+\eta}^{b}\\
+&=\frac{1}{1-p}\left[(b-a)^{1-p}-\eta^{1-p}\right]\\
+&\xrightarrow{(\eta\to 0^{+})}\begin{cases}
+\dfrac{1}{1-p}(b-a)^{1-p}, & \text{当 }1-p>0\text{，即 }p<1,\\[4pt]
+\infty, & \text{当 }1-p<0\text{，即 }p>1.
+\end{cases}
+\end{aligned}
+\]
+当 $p=1$ 时，
+\[
+\int_{a+\eta}^{b}\frac{\dd x}{(x-a)}=\ln(b-a)-\ln\eta\to+\infty\ (\eta\to 0^{+}).
+\]
+故当 $p<1$ 时，积分收敛，$p\geqslant 1$ 时，积分发散．同样知，积分 $\displaystyle\int_{a}^{b}\frac{\dd x}{(b-x)^{p}}$ 当 $p<1$ 时收敛，当 $p\geqslant 1$ 时发散．
+\end{proof}
+
+\begin{example}\label{ex:11-2-2}
+判断积分 $\displaystyle\int_{-1}^{1}\frac{\dd x}{\sqrt{1-x^{2}}}$ 的收敛性．
+\end{example}
+
+\begin{proof}[解]
+这里有两个瑕点 $x=-1,1$．先考虑
+\[
+\int_{0}^{1-\eta}\frac{\dd x}{\sqrt{1-x^{2}}}=\arcsin x\Big|_{0}^{1-\eta}=\arcsin(1-\eta)\to\frac{\pi}{2}\ (\eta\to 0^{+}).
+\]
+这时积分 $\displaystyle\int_{0}^{1}\frac{\dd x}{\sqrt{1-x^{2}}}$ 收敛．由于被积函数是偶函数，故
+\[
+\int_{-1}^{0}\frac{\dd x}{\sqrt{1-x^{2}}}=\int_{0}^{1}\frac{\dd x}{\sqrt{1-x^{2}}}=\frac{\pi}{2}.
+\]
+即 $\displaystyle\int_{-1}^{0}\frac{\dd x}{\sqrt{1-x^{2}}}$ 也收敛．于是积分 $\displaystyle\int_{-1}^{1}\frac{\dd x}{\sqrt{1-x^{2}}}$ 收敛，并且
+\[
+\int_{-1}^{1}\frac{\dd x}{\sqrt{1-x^{2}}}=\pi.
+\]
+\end{proof}
+
+对收敛的瑕积分，一样有线性性质，也可以有换元法与分部积分法．
+
+\begin{theorem}[柯西收敛原理]\label{thm:11-8}
+设瑕积分 $\displaystyle\int_{a}^{b}f(x)\dd x$ 只有唯一的瑕点 $a$，则 $\displaystyle\int_{a}^{b}f(x)\dd x$ 收敛的充分必要条件是任给 $\varepsilon>0$，存在 $\eta>0$，当 $0<\eta^{\prime}$，$\eta^{\prime\prime}<\eta$ 时，有
+\[
+\left|\int_{a+\eta^{\prime}}^{a+\eta^{\prime\prime}}f(x)\dd x\right|<\varepsilon.
+\]
+\end{theorem}
+
+有柯西收敛原理后，便知对瑕积分可以引进绝对收敛与条件收敛的概念，并推知，绝对收敛的瑕积分必收敛，但反之不然．
+
+\subsection{瑕积分的收敛判别法}
+
+瑕积分与无穷限积分之间有着密切的联系．设 $\displaystyle\int_{a}^{b}f(x)\dd x$ 有唯一的瑕点 $a$．作变换 $y=\dfrac{1}{x-a}$，就有
+\[
+\int_{a}^{b}f(x)\dd x=\int_{\frac{1}{b-a}}^{+\infty}f\!\left(a+\frac{1}{y}\right)\frac{\dd y}{y^{2}},
+\]
+由此知，瑕积分 $\displaystyle\int_{a}^{b}f(x)\dd x$ 收敛，当且仅当等式右边的无穷限积分收敛．
+
+下面对应于无穷限积分的结果，列出瑕积分的收敛判别法，而不加以证明．读者可以利用无穷积分的结果（以及上述两种积分的联系）或方法给出证明．
+
+\begin{theorem}[比较判别法]\label{thm:11-9}
+设瑕积分 $\displaystyle\int_{a}^{b}f(x)\dd x$ 只有唯一的瑕点 $a$．
+
+（i）若存在数 $\delta>0$，使得
+\[
+\left|f(x)\right|\leqslant\varphi(x),\ \text{当 }a<x<a+\delta,
+\]
+而 $\displaystyle\int_{a}^{b}\varphi(x)\dd x$ 收敛，则 $\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 收敛．若 $\left|f(x)\right|\geqslant\varphi(x)>0$，当 $a<x<a+\delta$，而 $\displaystyle\int_{a}^{b}\varphi(x)\dd x$ 发散，则 $\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 发散．
+
+（ii）若 $\varphi(x)>0$ 且
+\[
+\lim_{x\to a^{+}}\frac{\left|f(x)\right|}{\varphi(x)}=l,
+\]
+则当 $0\leqslant l<+\infty$ 时，由 $\displaystyle\int_{a}^{b}\varphi(x)\dd x$ 收敛，可推出 $\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 收敛；当 $0<l\leqslant+\infty$ 时，由 $\displaystyle\int_{a}^{b}\varphi(x)\dd x$ 发散，可推出 $\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 发散．
+\end{theorem}
+
+\begin{theorem}\label{thm:11-10}
+设瑕积分 $\displaystyle\int_{a}^{b}f(x)\dd x$ 只有唯一的瑕点 $a$．
+
+（i）若存在 $p<1$ 与 $\delta>0$，使得
+\[
+\left|f(x)\right|\leqslant\frac{c}{(x-a)^{p}},\ \text{当 }a<x<a+\delta,
+\]
+其中 $c$ 是常数，则 $\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 收敛．若存在 $p\geqslant 1$ 及 $\delta>0$，使得
+\[
+\left|f(x)\right|\geqslant\frac{c}{(x-a)^{p}},\ \text{当 }a<x<a+\delta,
+\]
+其中 $c$ 是正常数，则 $\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 发散．
+
+（ii）若
+\[
+\lim_{x\to a^{+}}(x-a)^{p}\left|f(x)\right|=\lim_{x\to a^{+}}\frac{\left|f(x)\right|}{\dfrac{1}{(x-a)^{p}}}=l,
+\]
+则当 $0\leqslant l<+\infty$，$p<1$ 时，$\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 收敛；当 $0<l\leqslant+\infty$，$p\geqslant 1$ 时，$\displaystyle\int_{a}^{b}\left|f(x)\right|\dd x$ 发散．
+\end{theorem}
+
+\begin{example}\label{ex:11-2-3}
+讨论 $\displaystyle\int_{0}^{1}x^{\alpha}\ln x\dd x$ 的收敛性，其中 $\alpha$ 是实数．
+\end{example}
+
+\begin{proof}[解]
+由于 $\lim\limits_{x\to 0^{+}}\ln x=-\infty$，知当 $\alpha\leqslant 0$ 时这是瑕积分，瑕点为 $x=0$．当 $\alpha>0$ 时，由于
+\[
+\lim_{x\to 0^{+}}x^{\alpha}\ln x=0,
+\]
+知积分是正常积分．
+
+当 $\alpha<-1$ 时，取 $\alpha^{\prime}$ 使 $\alpha<\alpha^{\prime}<-1$，则
+\[
+\lim_{x\to 0^{+}}\frac{x^{\alpha}\ln x}{x^{\alpha^{\prime}}}=\lim_{x\to 0^{+}}x^{\alpha-\alpha^{\prime}}\ln x=-\infty,
+\]
+由 $\displaystyle\int_{0}^{1}x^{\alpha^{\prime}}\dd x$ 发散，知积分 $\displaystyle\int_{0}^{1}x^{\alpha}\ln x\dd x$ 发散．
+
+当 $-1<\alpha\leqslant 0$ 时，取 $\alpha^{\prime\prime}$ 使 $-1<\alpha^{\prime\prime}<\alpha$，则
+\[
+\lim_{x\to 0^{+}}\frac{x^{\alpha}\ln x}{x^{\alpha^{\prime\prime}}}=\lim_{x\to 0^{+}}x^{\alpha-\alpha^{\prime\prime}}\ln x=0.
+\]
+由 $\displaystyle\int_{0}^{1}x^{\alpha^{\prime\prime}}\dd x$ 收敛，知 $\displaystyle\int_{0}^{1}x^{\alpha}\ln x\dd x$ 当 $-1<\alpha\leqslant 0$ 时收敛．
+
+当 $\alpha=-1$ 时，
+\[
+\int_{\eta}^{1}\frac{\ln x}{x}\dd x=\frac{1}{2}(\ln x)^{2}\bigg|_{\eta}^{1}=-\frac{1}{2}(\ln\eta)^{2}\to-\infty\ (\eta\to 0^{+}),
+\]
+故积分发散．
+
+总起来说，积分 $\displaystyle\int_{0}^{1}x^{\alpha}\ln x\dd x$ 当 $\alpha>-1$ 时收敛，当 $\alpha\leqslant -1$ 时发散．
+\end{proof}
+
+\begin{theorem}[狄利克雷判别法]\label{thm:11-11}
+设积分 $\displaystyle\int_{a}^{b}f(x)g(x)\dd x$ 有唯一的瑕点 $a$，$\displaystyle\int_{a+\eta}^{b}f(x)\dd x$ 是 $\eta$ 的有界函数，$g(x)$ 单调且当 $x\to a$ 时趋向于零，那么积分 $\displaystyle\int_{a}^{b}f(x)g(x)\dd x$ 收敛．
+\end{theorem}
+
+\begin{theorem}[阿贝尔判别法]\label{thm:11-12}
+设 $\displaystyle\int_{a}^{b}f(x)g(x)\dd x$ 有唯一的瑕点 $a$，$\displaystyle\int_{a}^{b}f(x)\dd x$ 收敛，$g(x)$ 单调有界，则 $\displaystyle\int_{a}^{b}f(x)g(x)\dd x$ 收敛．
+\end{theorem}
+
+\begin{example}\label{ex:11-2-4}
+讨论积分 $\displaystyle\int_{0}^{1}\frac{\sin\dfrac{1}{x}}{x^{r}}\dd x$ $(r>0)$ 的收敛性．
+\end{example}
+
+\begin{proof}[解]
+当 $0<r<1$ 时，$\left|\dfrac{\sin\dfrac{1}{x}}{x^{r}}\right|\leqslant\dfrac{1}{x^{r}}$，积分绝对收敛．而
+\[
+\left|\int_{\eta}^{1}\frac{1}{x^{2}}\sin\frac{1}{x}\dd x\right|=\left|\cos 1-\cos\frac{1}{\eta}\right|\leqslant 2,
+\]
+\[
+\int_{0}^{1}\frac{1}{x^{r}}\sin\frac{1}{x}\dd x=\int_{0}^{1}x^{2-r}\,\frac{1}{x^{2}}\sin\frac{1}{x}\dd x,
+\]
+当 $2-r>0$ 时，$x^{2-r}$ 单调，且 $x^{2-r}\to 0\ (x\to 0^{+})$，故由狄利克雷判别法知积分收敛．当 $r=2$ 时，
+\[
+\int_{\eta}^{1}\frac{1}{x^{2}}\sin\frac{1}{x}\dd x=\cos 1-\cos\frac{1}{\eta},
+\]
+当 $\eta\to 0^{+}$ 时，极限不存在，故发散．
+
+当 $r>2$ 时，积分 $\displaystyle\int_{0}^{1}\dfrac{1}{x^{r}}\sin\dfrac{1}{x}\dd x$ 发散．因为如果不然，设 $\displaystyle\int_{0}^{1}\dfrac{1}{x^{r}}\sin\dfrac{1}{x}\dd x$ 收敛，而 $x^{r-2}$ 在 $[0,1]$ 单调有界，根据阿贝尔判别法知
+\[
+\int_{0}^{1}x^{r-2}\,\frac{1}{x^{r}}\sin\frac{1}{x}\dd x=\int_{0}^{1}\frac{1}{x^{2}}\sin\frac{1}{x}\dd x
+\]
+收敛，这是不可能的．故 $\displaystyle\int_{0}^{1}\dfrac{1}{x^{r}}\sin\dfrac{1}{x}\dd x$ 发散．
+
+总起来说，积分 $\displaystyle\int_{0}^{1}\dfrac{1}{x^{r}}\sin\dfrac{1}{x}\dd x$ 当 $0<r<2$ 时收敛，当 $r\geqslant 2$ 时发散．
+
+其实这个题目还可以通过换元来研究：
+\[
+\int_{0}^{1}\frac{1}{x^{r}}\sin\frac{1}{x}\dd x=\int_{1}^{+\infty}\frac{\sin x}{x^{2-r}}\dd x,
+\]
+显然当 $2-r>0$ 即 $r<2$ 时收敛，当 $r\geqslant 2$ 时发散．
+\end{proof}
+
+\begin{xiti}
+\item 下列积分是否收敛？若收敛求其值．
+\begin{ziti}
+\item $\displaystyle\int_{0}^{\frac{1}{2}}\cot x\dd x$；
+\item $\displaystyle\int_{0}^{1}\ln x\dd x$；
+\item $\displaystyle\int_{0}^{a}\frac{\dd x}{\sqrt{a-x}}$；
+\item $\displaystyle\int_{0}^{1}\sqrt{\frac{x}{1-x}}\dd x$．
+\end{ziti}
+\item 讨论下列积分的收敛性：
+\begin{ziti}
+\item $\displaystyle\int_{0}^{1}\frac{\sin x}{x^{\frac{3}{2}}}\dd x$；
+\item $\displaystyle\int_{0}^{1}\frac{\dd x}{\sqrt[3]{x^{2}(1-x)}}$；
+\item $\displaystyle\int_{0}^{1}\frac{\ln x}{1-x^{2}}\dd x$；
+\item $\displaystyle\int_{0}^{\frac{\pi}{2}}\frac{\dd x}{\sin^{2}x\cos^{2}x}$；
+\item $\displaystyle\int_{0}^{1}\left|\ln x\right|^{p}\dd x$；
+\item $\displaystyle\int_{0}^{\frac{\pi}{2}}\frac{1-\cos x}{x^{m}}\dd x$；
+\item $\displaystyle\int_{0}^{1}\frac{\dd x}{\ln x}$；
+\item $\displaystyle\int_{0}^{\pi}\frac{\dd x}{\sqrt{\sin x}}$；
+\item $\displaystyle\int_{0}^{1}x^{\alpha}\ln x\dd x$；
+\item $\displaystyle\int_{0}^{1}\frac{x^{p-1}-x^{q-1}}{\ln x}\dd x$；
+\item $\displaystyle\int_{0}^{\frac{\pi}{2}}\sqrt{\tan x}\dd x$；
+\item $\displaystyle\int_{0}^{\frac{\pi}{2}}\cos x\ln\sin x\dd x$．
+\end{ziti}
+\item 判别下列积分的敛散性：
+\begin{ziti}
+\item $\displaystyle\int_{1}^{+\infty}\ln\left(1-\frac{1}{x^{2}}\right)^{-1}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}x^{p-1}\mathrm{e}^{-x}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\left(\arctan x\right)^{q}}{x^{p}}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\ln(1+x)}{x^{p}}\dd x$；
+\item $\displaystyle\int_{1}^{+\infty}\frac{\dd x}{x^{p}\ln^{q}x}$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\dd x}{x^{p}+x^{q}}$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\dd x}{\sqrt[3]{x(x-1)^{2}(x-2)}}$；
+\item $\displaystyle\int_{-\infty}^{0}\mathrm{e}^{x}\ln\left|x\right|\dd x$．
+\end{ziti}
+\item 讨论下列积分的收敛性与绝对收敛性：
+\begin{ziti}
+\item $\displaystyle\int_{0}^{+\infty}\sin x^{2}\dd x$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\sin x^{p}}{x^{q}}\dd x$，其中 $p>0$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{x^{p}\sin x}{1+x^{q}}\dd x$ $(q\geqslant 0)$；
+\item $\displaystyle\int_{0}^{+\infty}\frac{\sin\left(x+\dfrac{1}{x}\right)}{x^{n}}\dd x$．
+\end{ziti}
+\item 计算下列瑕积分的值：
+\begin{ziti}
+\item $\displaystyle\int_{0}^{1}(\ln x)^{n}\dd x$；
+\item $\displaystyle\int_{0}^{1}\frac{x^{n}}{\sqrt{1-x}}\dd x$．
+\end{ziti}
+\item 证明积分 $\displaystyle A=\int_{0}^{\frac{\pi}{2}}\ln(\sin x)\dd x$ 收敛，并求其值．
+\item 利用上题结果，证明：
+\begin{ziti}
+\item $\displaystyle\int_{0}^{\pi}\theta\ln(\sin\theta)\dd\theta=\frac{-\pi^{2}}{2}\ln 2$；
+\item $\displaystyle\int_{0}^{\pi}\frac{\theta\sin\theta}{1-\cos\theta}\dd\theta=2\pi\ln 2$；
+\item $\displaystyle\int_{0}^{\frac{\pi}{2}}\sin^{2}\theta\ln(\sin\theta)\dd\theta=\frac{\pi}{4}\left(\frac{1}{2}-\ln 2\right)$；
+\item $\displaystyle\int_{0}^{1}\frac{\ln(1+x)}{1+x^{2}}\dd x=\frac{\pi}{8}\ln 2$．
+\end{ziti}
+\item 证明不等式：
+\begin{ziti}
+\item $\displaystyle\frac{1}{2}\left(1-\frac{1}{\mathrm{e}}\right)<\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\dd x<1+\frac{1}{2\mathrm{e}}$；
+\item $\displaystyle\frac{\pi}{2\sqrt{2}}<\int_{0}^{1}\frac{\dd x}{\sqrt{1-x^{4}}}<\frac{\pi}{2}$．
+\end{ziti}
+\end{xiti}

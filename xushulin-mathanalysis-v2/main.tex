@@ -1,0 +1,61 @@
+% !TeX program = xelatex
+% ==================================================================
+%  徐森林、薛春华《数学分析》（第二册）
+%  按《中文数学书籍 LaTeX 重排规范》v2.1 重排
+%  编译：xelatex -> biber -> xelatex x3（见 tools/build.py）
+% ==================================================================
+\documentclass[
+  BookTitleCN     = {数学分析},
+  BookTitleCNSub  = {第二册},
+  AuthorCN        = {徐森林\quad 薛春华},
+  Publisher       = {清华大学出版社},
+  Year            = {2006},
+  ISBN            = {978-7-302-13141-0},
+  Biblatex        = true,
+  BibStyle        = numeric,
+  BibSorting      = none,
+  BibFile         = refs,
+  StartPage       = 1
+]{zhmbook}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\input{chapters/preface}
+
+\tableofcontents
+
+\mainmatter
+
+% 本书为《数学分析》第二册，正文起自第 7 章，
+% 将章计数器设为 6，使首个 \chapter 自增后为「第 7 章」。
+% 正文起始页码设为 1，与原书对齐。
+\setcounter{chapter}{6}
+\setcounter{page}{1}
+
+% 第 7 章（已完成）
+\input{chapters/ch07}
+
+% 第 8 章（进行中）
+\input{chapters/ch08}
+
+% 第 9 章（已完成）
+\input{chapters/ch09}
+
+% 第 10 章（进行中：§10.1 已完成）
+\input{chapters/ch10}
+
+% 第 11 章（已完成）
+% 在第 9、10 章尚未载入的过渡期，将第 11 章前的章计数器设为 10
+\setcounter{chapter}{10}
+\input{chapters/ch11}
+
+\backmatter
+% 原书参考文献表列出全部 9 条（其中部分在正文未被直接引用），
+% 故用 \nocite{*} 强制排入，避免 biblatex 因无引用而输出空表。
+\nocite{*}
+\makebibliography
+
+\end{document}

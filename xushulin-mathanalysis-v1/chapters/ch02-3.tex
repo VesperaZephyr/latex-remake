@@ -1,0 +1,368 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S2.3  无穷小 (大) 量的数量级
+%  源：原书印刷页 115–124（PDF 物理页 121–130）
+%  底本：高清影印比对校订
+%  规范：全西文半角标点配合；原生 TikZ 插图；单一落盘出口 _texout.py
+% ====================================================================
+\section{无穷小(大)量的数量级}\label{sec:2.3}
+
+上一节已涉及到无穷小量及等价无穷小量. 这一节将详细讨论无穷小(大)量以及它们的数量级.
+
+\begin{definition}\label{def:2.3.1}
+如果当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x) \to 0$, 则称当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x)$ 为\textbf{无穷小量}或\textbf{无穷小}, 记作 $f(x) = o(1)\ (x \to x_0(x_0^{\pm}, \pm\infty, \infty))$, 即
+\[
+\lim_{x\to x_0}\frac{f(x)}{1} = \lim_{x\to x_0} f(x) = 0.
+\]
+如果当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时 $f(x) \to \infty$, 则称当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x)$ 为\textbf{无穷大量}或\textbf{无穷大}.
+
+简言之, 极限为 $0(\infty)$ 的变量称为无穷小(大)量.
+\end{definition}
+
+\begin{example}\label{ex:2.3.1}
+\begin{center}
+\begin{tabular}{ll}
+\quad\textbf{无穷小量} & \quad\textbf{无穷大量} \\[
+1mm]
+$\sin x\ (x \to 0)$ & \\
+$\tan x\ (x \to 0)$ & \\
+$x^\alpha\ (\alpha > 0, x \to 0^+)$ & $\dfrac{1}{x^\alpha}\ (\alpha > 0, x \to 0^+)$ \\[2.5mm]
+$(x - x_0)^\alpha\ (\alpha > 0, x \to x_0^+)$ & $\dfrac{1}{(x - x_0)^\alpha}\ (\alpha > 0, x \to x_0^+)$ \\[2.5mm]
+$(x - x_0)^n\ (n \in \mathbb{N}, x \to x_0)$ & $\dfrac{1}{(x - x_0)^n}\ (n \in \mathbb{N}, x \to x_0)$ \\[2.5mm]
+$a^x - 1\ (a > 0, x \to 0)$ & \\
+$1 - \cos x\ (x \to 0)$ 等 & \\[2.5mm]
+$\dfrac{1}{x^\alpha}\ (\alpha > 0, x \to +\infty)$ & $x^\alpha\ (\alpha > 0, x \to +\infty)$ \\[2.5mm]
+$\dfrac{1}{x^n}\ (n \in \mathbb{N}, x \to \infty)$ & $x^n\ (n \in \mathbb{N}, x \to \infty)$ \\[2.5mm]
+$\dfrac{1}{x^{1/3}}\ (x \to \infty)$ & $x^{1/3}\ (x \to \infty)$ \\[2.5mm]
+$\dfrac{1}{x^{1/2}}\ (x \to +\infty)$ & $x^{1/2}\ (x \to +\infty)$ \\[2.5mm]
+$a^x\ (a > 1, x \to -\infty)$ & $a^{-x}\ (a > 1, x \to -\infty)$ \\[2.5mm]
+$a^x\ (0 < a < 1, x \to +\infty)$ & $a^{-x}\ (0 < a < 1, x \to +\infty)$ \\[2.5mm]
+$q^n\ (|q| < 1, n \to +\infty)$ & $\left(\dfrac{1}{q}\right)^n\ (|q| < 1, n \to +\infty)$ \\[2.5mm]
+$n^{-\alpha}\ (\alpha > 0, n \to +\infty)$ & $n^\alpha\ (\alpha > 0, n \to +\infty)$
+\end{tabular}
+\end{center}
+此外, 当 $x \to +\infty$ 时, $\ln x, x^\alpha\ (\alpha > 0), a^x\ (a > 1), x^x$ 均为无穷大量.
+\end{example}
+根据定理 1.2.7(7) 及注 2.2.2 知, 当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x)$ 为无穷小量 $\iff$ 当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $\frac{1}{f(x)}$ 为无穷大量(其中 $f(x) \neq 0$).
+两个无穷小量之和仍为无穷小量, 两个无穷小量之积仍为无穷小量. 根据数学归纳法推得有限个无穷小量的和仍为无穷小量, 有限个无穷小量之积仍为无穷小量.
+\begin{definition}\label{def:2.3.2}
+设当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x)$ 与 $g(x)$ 都为无穷小(大)量, 且当 $x \neq x_0$ 时, $g(x) \neq 0$.
+\begin{enumerate}[label=(\arabic*)]
+  \item 如果 $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)} = 0$, 则称当 $x \to x_0$ 时, $f(x)$ 是比 $g(x)$ \textbf{高(低)阶(级)}的无穷小(大)量, 记作
+  \[
+  f(x) = o(g(x))\quad (x \to x_0).
+\]
+  \item 如果 $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)} = a \neq 0$, 则称当 $x \to x_0$ 时, $f(x)$ 与 $g(x)$ 是\textbf{同阶(级)无穷小(大)量}或\textbf{数量级是相同的}, 并且记作
+  \[
+  f(x) = O^*(g(x))\quad (x \to x_0).
+\]
+  \item 如果 $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)} = 1$, 则称当 $x \to x_0$ 时, $f(x)$ 与 $g(x)$ 是\textbf{等价无穷小(大)量}, 记作
+  \[
+  f(x) \sim g(x)\quad (x \to x_0).
+\]
+  显然, 等价无穷小(大)量必为同阶无穷小(大)量, 但反之并不成立.
+  \item 设 $\alpha > 0$, 如果 $\lim\limits_{x\to x_0}\frac{|f(x)|}{|x - x_0|^\alpha} = a \neq 0$, 则称当 $x \to x_0$ 时, $f(x)$ 是 $\alpha$ \textbf{阶(级)无穷小量}. 如果 $\lim\limits_{x\to\infty}\frac{|f(x)|}{\frac{1}{|x|^\alpha}} = a \neq 0$, 则称当 $x \to \infty$ 时, $f(x)$ 是 $\alpha$ \textbf{阶(级)无穷小量}.
+\end{enumerate}
+
+当 $\alpha = n \in \mathbb{N}$ 时, 有时用 $\lim\limits_{x\to x_0}\frac{f(x)}{(x - x_0)^n} = a \neq 0$, $\lim\limits_{x\to\infty}\frac{f(x)}{\frac{1}{x^n}} = a \neq 0$ 代替上述的
+\[
+\lim_{x\to x_0}\frac{|f(x)|}{|x - x_0|^\alpha} = a \neq 0,\quad \lim_{x\to\infty}\frac{|f(x)|}{\frac{1}{|x|^\alpha}} = a \neq 0.
+\]
+类似地, 如果 $\lim\limits_{x\to x_0}\frac{|f(x)|}{\frac{1}{|x - x_0|^\alpha}} = a \neq 0$, 则称当 $x \to x_0$ 时, $f(x)$ 是 $\alpha$ \textbf{阶无穷大量}. 如果 $\lim\limits_{x\to\infty}\frac{|f(x)|}{|x|^\alpha} = a \neq 0$, 则称当 $x \to \infty$ 时, $f(x)$ 是 $\alpha$ \textbf{阶(级)无穷大量}.
+
+值得注意, 并不是任何无穷大量都能确定其阶数的. 例如, $\lim\limits_{x\to+\infty}\frac{x^x}{x^\alpha} = \lim\limits_{x\to+\infty} x^{x-\alpha} = +\infty$, 对任何 $\alpha \in \mathbb{R}$ 都成立, 所以, $x^x$ 不是 $\alpha$ 阶的无穷大量.
+\end{definition}
+
+\begin{theorem}\label{thm:2.3.1}
+当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x), g(x)$ 为无穷小(大)量. 则
+\begin{enumerate}[label=(\arabic*)]
+  \item $f(x)$ 与 $g(x)$ 为同阶无穷小(大)量, 即 $f(x) = O^*(g(x))\ (x \to x_0)$.
+  \item 由 (1) 可得, 存在实数 $K, L > 0$ 及 $x_0$ 的去心邻域 $U^\circ(x_0)$, s.t.
+  \[
+  0 < K \leqslant \left|\frac{f(x)}{g(x)}\right| \leqslant L,\quad \forall x \in U^\circ(x_0).
+\]
+  \item 由 (2) 可得, 存在实数 $L > 0$ 及 $x_0$ 的去心开邻域 $U^\circ(x_0)$, s.t.
+  \[
+  \left|\frac{f(x)}{g(x)}\right| \leqslant L,\quad \forall x \in U^\circ(x_0).
+\]
+  此时, 记 $f(x) = O(g(x))\ (x \to x_0)$. 特别 $f$ 在 $U^\circ(x_0)$ 内有界, 记作 $f(x) = O(1)\ (x \to x_0)$, 即
+  \[
+  \left|\frac{f(x)}{1}\right| \leqslant L,\quad \forall x \in U^\circ(x_0).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (2) 因为 $f(x) = O^*(g(x))\ (x \to x_0)$, 所以
+\[
+\lim_{x\to x_0}\frac{f(x)}{g(x)} = a \neq 0,\quad \lim_{x\to x_0}\left|\frac{f(x)}{g(x)}\right| = |a| > 0.
+\]
+取 $\varepsilon = \frac{|a|}{2}$, 则 $\exists U^\circ(x_0)$, s.t.
+\[
+0 < K = \frac{|a|}{2} = |a| - \frac{|a|}{2} < \left|\frac{f(x)}{g(x)}\right| < |a| + \frac{|a|}{2} = \frac{3}{2}|a| = L,\quad \forall x \in U^\circ(x_0).
+\]
+
+(2) $\Rightarrow$ (3) 显然.
+\end{proof}
+
+\begin{theorem}[等价代换]\label{thm:2.3.2}
+设 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $f(x), g(x), f_1(x), g_1(x)$ 都是无穷小(大)量, 且 $f(x) \sim f_1(x)\ (x \to x_0), g(x) \sim g_1(x)\ (x \to x_0)$, 则 $\lim\limits_{x\to x_0}\frac{f(x)}{g(x)}, \lim\limits_{x\to x_0}\frac{f_1(x)}{g_1(x)}$, 只要其中一个极限存在, 那么另一个也存在, 且两个极限相等.
+\end{theorem}
+
+\begin{proof}
+不妨设第二个极限存在, 则
+\[
+\lim_{x\to x_0}\frac{f(x)}{g(x)} = \lim_{x\to x_0}\left[\frac{f(x)}{f_1(x)}\cdot\frac{f_1(x)}{g_1(x)}\cdot\frac{g_1(x)}{g(x)}\right] = \lim_{x\to x_0}\frac{f_1(x)}{g_1(x)}.
+\]
+\end{proof}
+
+\S2.2 节中已证明了, 当 $x \to 0$ 时,
+\[
+\sin x \sim x,\quad 1 - \cos x \sim \frac{x^2}{2},\quad \tan x \sim x,\quad \ln(1+x) \sim x,\quad \tan x - \sin x \sim \frac{x^3}{2}.
+\]
+当 $x \to +\infty$ 时, $\ln x, x^k\ (k > 0), a^x\ (a > 1), x^x$ 是一个比一个更高阶的无穷大量, 记作
+\[
+\ln x = o(x^k),\quad x^k = o(a^x),\quad a^x = o(x^x).
+\]
+\[
+\frac{1}{n!} = o(q^n)\ (n \to +\infty),\quad |q| < 1.
+\]
+
+\begin{example}\label{ex:2.3.2}
+应用等价代换求下列极限:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x\to0}\frac{\tan ax^2}{1-\cos x}\ (a \neq 0)$;
+  \item $\lim\limits_{x\to0}\frac{\sin(\sin x^3)}{\sqrt{1+x^2}-1}$;
+  \item $\lim\limits_{x\to0}\frac{\tan x-\sin x}{\sin x^3}$;
+  \item $\lim\limits_{x\to0}\frac{\arctan x}{\sin 4x}$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) $\lim\limits_{x\to0}\frac{\tan ax^2}{1-\cos x} = \lim\limits_{x\to0}\frac{ax^2}{\frac{x^2}{2}} = 2a$.
+
+(2) $\lim\limits_{x\to0}\frac{\sin(\sin x^3)}{\sqrt{1+x^2}-1} = \lim\limits_{x\to0}\frac{(\sqrt{1+x^2}+1)\sin x^3}{x^2} = \lim\limits_{x\to0}\frac{(\sqrt{1+x^2}+1)x^3}{x^2} = \lim\limits_{x\to0}x(\sqrt{1+x^2}+1) = 0\cdot 2 = 0$.
+
+(3) $\lim\limits_{x\to0}\frac{\tan x-\sin x}{\sin x^3} = \lim\limits_{x\to0}\frac{\frac{x^3}{2}}{x^3} = \frac{1}{2}$.
+
+或者,
+\[
+\begin{aligned}
+\lim_{x\to0}\frac{\tan x-\sin x}{\sin x^3} &= \lim_{x\to0}\frac{\left(\frac{1}{\cos x}-1\right)\sin x}{x^3} = \lim_{x\to0}\frac{1}{\cos x}\frac{(1-\cos x)x}{x^3} \\
+&= \frac{1}{1}\lim_{x\to0}\frac{\frac{x^2}{2}\cdot x}{x^3} = \frac{1}{2}.
+\end{aligned}
+\]
+
+(4) $\lim\limits_{x\to0}\frac{\arctan x}{\sin 4x} = \lim\limits_{x\to0}\frac{\arctan x}{4x} = \frac{1}{4}\lim\limits_{y\to0}\frac{y}{\tan y} = \frac{1}{4}\lim\limits_{y\to0}\frac{y}{y} = \frac{1}{4}$.
+\end{solution}
+
+\begin{example}\label{ex:2.3.3}
+设 $f(x) \sim g(x)\ (x \to x_0)$ (等价无穷小量), 则
+\[
+\ln[1+f(x)] \sim \ln[1+g(x)]\quad (x \to x_0).
+\]
+\end{example}
+
+\begin{proof}
+由 $\ln(1+x) \sim x\ (x \to 0)$, 有
+\[
+\lim_{x\to x_0}\frac{\ln[1+f(x)]}{\ln[1+g(x)]} = \lim_{x\to x_0}\frac{f(x)}{g(x)} = 1,
+\]
+即
+\[
+\ln[1+f(x)] \sim \ln[1+g(x)]\quad (x \to x_0).
+\]
+\end{proof}
+
+\begin{example}\label{ex:2.3.4}
+等价代换适用于 $\cdot, \div$, 幂次, 但不适用于 $+,-$. 如 $x^3+x \sim x\ (x \to 0)$, 但
+\[
+1 = \lim_{x\to0}\frac{(x^3+x)-x}{x^3} \neq \lim_{x\to0}\frac{x-x}{x^3} = \lim_{x\to0} 0 = 0.
+\]
+\end{example}
+
+\begin{example}\label{ex:2.3.5}
+设 $\alpha(x) \to 0\ (x \to x_0), \alpha(x) \neq 0$, 则当 $x \to x_0$ 时,
+\begin{enumerate}[label=(\arabic*)]
+  \item $o(\alpha(x)) + o(\alpha(x)) = o(\alpha(x))$;
+  \item $\beta(x)\cdot o(\alpha(x)) = o(\alpha(x)\beta(x))$, 其中 $\beta(x)$ 有界, 并且 $\beta(x) \neq 0$;
+  \item $[o(\alpha(x))]^k = o([\alpha(x)]^k)\ (k > 0)$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) 因为
+\[
+\lim_{x\to x_0}\frac{o_1(\alpha(x)) + o_2(\alpha(x))}{\alpha(x)} = \lim_{x\to x_0}\frac{o_1(\alpha(x))}{\alpha(x)} + \lim_{x\to x_0}\frac{o_2(\alpha(x))}{\alpha(x)} = 0 + 0 = 0,
+\]
+所以,
+\[
+o_1(\alpha(x)) + o_2(\alpha(x)) = o(\alpha(x))\quad (x \to x_0).
+\]
+
+(2) 因为
+\[
+\lim_{x\to x_0}\frac{\beta(x)\cdot o(\alpha(x))}{\alpha(x)\beta(x)} = \lim_{x\to x_0}\frac{o(\alpha(x))}{\alpha(x)} = 0,
+\]
+故
+\[
+\beta(x)\cdot o(\alpha(x)) = o(\alpha(x)\beta(x))\quad (x \to x_0).
+\]
+
+(3) 由
+\[
+\lim_{x\to x_0}\frac{[o(\alpha(x))]^k}{[\alpha(x)]^k} = \lim_{x\to x_0}\left[\frac{o(\alpha(x))}{\alpha(x)}\right]^k = 0^k = 0
+\]
+得到
+\[
+[o(\alpha(x))]^k = o([\alpha(x)]^k)\quad (x \to x_0).
+\]
+\end{proof}
+
+\begin{example}\label{ex:2.3.6}
+求下列无穷小量或无穷大量的阶(级):
+\begin{enumerate}[label=(\arabic*)]
+  \item $x^2 + x + \sqrt{x}\ (x \to 0^+)$;
+  \item $x^2 + x + \sqrt{x}\ (x \to +\infty)$;
+  \item $\dfrac{x^2 + x - 2}{(x^2 - 1)^2}\ (x \to 1)$;
+  \item $\sqrt{2x^2 + 1}\ (x \to +\infty)$;
+  \item $\sqrt{x + \sqrt{x + \sqrt{x}}}\ (x \to +\infty)$;
+  \item $\sqrt{x + \sqrt{x + \sqrt{x}}}\ (x \to 0^+)$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) 因
+\[
+\lim_{x\to0^+}\frac{x^2+x+\sqrt{x}}{x^{1/2}} = \lim_{x\to0^+}(x^{3/2} + x^{1/2} + 1) = 0 + 0 + 1 = 1,
+\]
+故当 $x \to 0^+$ 时, $x^2 + x + \sqrt{x}$ 为 $\frac{1}{2}$ 阶无穷小量.
+
+(2) 由
+\[
+\lim_{x\to+\infty}\frac{x^2+x+\sqrt{x}}{x^2} = \lim_{x\to+\infty}\left(1 + \frac{1}{x} + x^{-3/2}\right) = 1 + 0 + 0 = 1
+\]
+得到, 当 $x \to +\infty$ 时, $x^2 + x + \sqrt{x}$ 为 2 阶无穷大量.
+
+(3) 从
+\[
+\begin{aligned}
+\lim_{x\to1}\frac{\frac{x^2+x-2}{(x^2-1)^2}}{\frac{1}{x-1}} &= \lim_{x\to1}\frac{\frac{(x+2)(x-1)}{(x+1)^2(x-1)^2}}{\frac{1}{x-1}} = \lim_{x\to1}\frac{x+2}{(x+1)^2} \\
+&= \frac{1+2}{(1+1)^2} = \frac{3}{4}
+\end{aligned}
+\]
+知, 当 $x \to 1$ 时, $\frac{x^2+x-2}{(x^2-1)^2}$ 为 1 阶无穷大量.
+
+(4) 因为
+\[
+\lim_{x\to+\infty}\frac{\sqrt{2x^2+1}}{x} = \lim_{x\to+\infty}\sqrt{2 + \frac{1}{x^2}} = \sqrt{2+0} = \sqrt{2},
+\]
+所以, 当 $x \to +\infty$ 时, $\sqrt{2x^2+1}$ 为 1 阶无穷大量.
+
+(5) 由
+\[
+\lim_{x\to+\infty}\frac{\sqrt{x+\sqrt{x+\sqrt{x}}}}{\sqrt{x}} = \lim_{x\to+\infty}\sqrt{1 + \sqrt{\frac{1}{x} + \frac{1}{x^{3/2}}}} = \sqrt{1 + \sqrt{0+0}} = 1
+\]
+推得, 当 $x \to +\infty$ 时, $\sqrt{x + \sqrt{x + \sqrt{x}}}$ 为 $\frac{1}{2}$ 阶无穷大量.
+
+(6) 从
+\[
+\lim_{x\to0^+}\frac{\sqrt{x+\sqrt{x+\sqrt{x}}}}{x^{1/8}} = \lim_{x\to0^+}\sqrt{x^{3/4} + \sqrt{x^{1/2} + 1}} = \sqrt{0 + \sqrt{0+1}} = 1
+\]
+知, 当 $x \to 0^+$ 时, $\sqrt{x + \sqrt{x + \sqrt{x}}}$ 为 $\frac{1}{8}$ 阶无穷小量.
+\end{proof}
+
+\begin{remark}\label{rem:2.3.1}
+从例 \ref{ex:2.3.6} 可以看出, 当 $x \to +\infty$ 时, 函数 $\sqrt{x + \sqrt{x + \sqrt{x}}}$ 无穷大量的阶是高幂次项 $\sqrt{x} = x^{1/2}$ 的指数 $\frac{1}{2}$; 而当 $x \to 0^+$ 时无穷小量的阶是低幂次项 $\sqrt{\sqrt{\sqrt{x}}} = x^{1/8}$ 的指数 $\frac{1}{8}$.
+\end{remark}
+
+\begin{exblock}{练习题 2.3}
+\item 证明下列各式:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $2x - x^2 = O^*(x)\ (x \to 0)$;
+    \item $x\sin\sqrt{x} \sim x^{3/2}\ (x \to 0^+)$;
+    \item $2x^3 + x^2 = O^*(x^3)\ (x \to \infty)$;
+    \item $x\sin\sqrt{x} = o(x^{5/4})\ (x \to 0^+)$;
+    \item $\sqrt{1+x} - 1 = o(1)\ (x \to 0)$;
+    \item $\sqrt{1+x} - 1 \sim \frac{x}{2}\ (x \to 0)$;
+    \item $\frac{1}{1+\alpha(x)} = 1 - \alpha(x) + o(\alpha(x))\ (x \to x_0)$, 其中 $\alpha(x) = o(1)\ (x \to x_0)$;
+    \item $(1+x)^n = 1 + nx + o(x)\ (x \to 0), n \in \mathbb{N}$;
+    \item $(1+x)^n = 1 + nx + O^*(x^2)\ (x \to 0), n \in \mathbb{N}$;
+    \item $\sqrt{x + \sqrt{x + \sqrt{x}}} \sim \sqrt{x}\ (x \to +\infty)$.
+  \end{enumerate}
+
+\item 确定 $\alpha$ 的值, 使下列函数与 $x^\alpha$ 当 $x \to 0$ 时为同阶无穷小量:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\sin 2x - 2\sin x$;
+    \item $\frac{1}{1+x} - (1-x)$;
+    \item $\sqrt{1+\tan x} - \sqrt{1-\sin x}$;
+    \item $\sqrt[5]{3x^2 - 4x^3}$.
+  \end{enumerate}
+
+\item 确定 $\alpha$ 的值, 使下列函数与 $x^\alpha$ 当 $x \to \infty$ 时为同阶无穷大量:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\sqrt{x^2 + x^5}$;
+    \item $x + x^2(2 + x^{-1}\sin x)$;
+    \item $\sqrt{x + \sqrt{x + \sqrt{x}}}$;
+    \item $\frac{2x^5}{x^3 - 3x + 1}$.
+  \end{enumerate}
+
+\item 求下列无穷小或无穷大的阶:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $x - 5x^3 + x^{10}\ (x \to 0)$;
+    \item $x - 5x^3 + x^{10}\ (x \to +\infty)$;
+    \item $x^3 - 3x + 2\ (x \to 1)$;
+    \item $\sqrt{x\sin x}\ (x \to 0)$;
+    \item $\sqrt{1+x} - \sqrt{1-x}\ (x \to 0)$;
+    \item $\sqrt{x^2 + \sqrt[3]{x}}\ (x \to +\infty)$;
+    \item $\frac{x+1}{x^4+1}\ (x \to +\infty)$;
+    \item $\frac{2x^5}{x^3 - 3x + 1}\ (x \to +\infty)$;
+    \item $\frac{1}{\sin\pi x}\ (x \to 1)$;
+    \item $\sin\left(\sqrt{1+\sqrt{1+\sqrt{x}}} - \sqrt{2}\right)\ (x \to 0^+)$;
+    \item $\sqrt{x + \sqrt{x + \sqrt{x + \sqrt{x}}}}\ (x \to +\infty)$;
+    \item $\sqrt{x + \sqrt{x + \sqrt{x + \sqrt{x}}}}\ (x \to 0^+)$;
+    \item $(1+x)(1+x^2)\cdots(1+x^n)\ (x \to +\infty)$;
+    \item $x^3 - 3x + 2\ (x \to 1)$;
+    \item $\ln x\ (x \to 1)$;
+    \item $e^x - e\ (x \to 1)$;
+    \item $\sqrt[3]{1 - \sqrt{x}}\ (x \to 1)$;
+    \item $x^x - 1\ (x \to 1)$.
+  \end{enumerate}
+
+\item 用等价无穷小替换求下列极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x\to+\infty}\frac{x\arctan\frac{1}{x}}{x-\cos x}$;
+    \item $\lim\limits_{x\to0}\frac{\sqrt{1+x^2}-1}{1-\cos x}$;
+    \item $\lim\limits_{x\to0}\frac{x\tan^4 x}{\sin^3(1-\cos x)}$;
+    \item $\lim\limits_{x\to0}\frac{\sqrt{1+x^4}-1}{1-\cos^2 x}$;
+    \item $\lim\limits_{x\to0}\frac{\tan(\tan x)}{\sin x}$;
+    \item $\lim\limits_{x\to0}\frac{(e^x-1)^2(\sqrt{1+x^2}-1)^3}{x^5\sin^3 x}$;
+    \item $\lim\limits_{x\to0}\frac{\sqrt[n]{1+x+x^2}-1}{\sin 2x},\ n \in \mathbb{N}$.
+  \end{enumerate}
+
+\item 设 $f(x) \neq 0, g(x) \neq 0, f(x) \sim g(x)\ (x \to x_0)$. 证明:
+  \[
+  f(x) - g(x) = o(f(x)),\quad f(x) - g(x) = o(g(x)).
+\]
+\end{exblock}
+
+\begin{exblock}{思考题 2.3}
+\item 设 $\lim\limits_{x\to0} f(x) = 0$, 且 $f(x) - f\left(\frac{x}{2}\right) = o(x)\ (x \to 0)$. 证明: $f(x) = o(x)\ (x \to 0)$.
+
+\item 设函数 $f, g: [a, +\infty) \to \mathbb{R}$ 满足:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $g(x+T) > g(x)$, $\forall x \geqslant a$, 其中 $T > 0$ 为常数;
+    \item 函数 $f, g$ 在 $[a, +\infty)$ 的任何有限子区间上有界;
+    \item $\lim\limits_{x\to+\infty} g(x) = +\infty$.
+  \end{enumerate}
+  证明: 若
+  \[
+  \lim_{x\to+\infty}\frac{f(x+T) - f(x)}{g(x+T) - g(x)} = A,
+\]
+  那么
+  \[
+  \lim_{x\to+\infty}\frac{f(x)}{g(x)} = A.
+\]
+
+\item 函数列 $f_n: (0, +\infty) \to \mathbb{R}\ (n = 1, 2, 3, \cdots)$, 对 $\forall n \in \mathbb{N}$, $f_n$ 都是无穷大 $(x \to +\infty)$. 证明: 存在 $(0, +\infty)$ 上的一个函数 $f$, 当 $x \to +\infty$ 时, $f$ 是比 $f_n$ 更高阶的无穷大, $n \in \mathbb{N}$.
+\end{exblock}

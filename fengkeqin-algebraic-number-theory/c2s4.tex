@@ -1,0 +1,374 @@
+% ============ 第二章 §4 Kronecker-Weber 定理 (原书 pp.88-95) ============
+\section{Kronecker-Weber 定理}\label{sec:ch2-s4}
+
+我们知道,分圆域 $\Q(\zeta_m)$ 均是 Abel 数域,因此分圆域的每个子域也是 Abel 数域.Kronecker 和 Weber 证明了上述命题的逆也是对的,即:每个 Abel 数域均是某个分圆域的子域.我们不打算证明这个很不平凡的结果,而只讲述一个特殊情形,即证明每个二次域均是分圆域的子域,然后介绍 Abel 域中的互反律.
+
+\subsection{二次域是分圆域的子域}\label{sec:ch2-s4-1}
+
+二次域 $K=\Q(\sqrt{d})$ 是除了 $\Q$ 本身之外最简单的 Abel 数域,其伽罗瓦群 $\Gal(K/\Q)$ 是 $2$ 元群.对于二次域 $K$,我们可以用明显的方式证明 $K$ 是分圆域 $\Q(\zeta_m)$ 的子域,其中 $m=|d(K)|$.证明的工具是 Gauss 和.
+
+设 $p$ 为奇素数,对于每个 $\alpha\in\Z$,$p\nmid a$,我们曾经定义过 Legendre 符号:
+\[
+  \left(\frac{a}{p}\right)=\begin{cases}
+    1, & \text{如果 } a \text{ 为模 } p \text{ 的二次剩余;}\\
+    -1, & \text{如果 } a \text{ 为模 } p \text{ 的非二次剩余.}
+  \end{cases}
+\]
+事实上,$\left(\dfrac{a}{p}\right)$ 显然只依赖于 $a$ 的模 $p$ 同余类,从而我们定义了映射:
+\[
+  \Big(\frac{\cdot}{p}\Big)\colon(\Z/p\Z)^\times\to\{\pm 1\},\qquad \bar{a}\mapsto\Big(\frac{a}{p}\Big).
+\]
+熟知 $(\Z/p\Z)^\times$ 为 $p-1$ 阶乘法循环群,即 $(\Z/p\Z)^\times=\langle\overline{g}\rangle$,其中 $g$ 是模 $p$ 的一个原根.于是当 $a\equiv g^{2t}\ (\mathrm{mod}\ p)$($0\leqslant t\leqslant\frac{p-3}{2}$)时,$\left(\dfrac{a}{p}\right)=1$,而当 $a\equiv g^{2t+1}\ (\mathrm{mod}\ p)$($0\leqslant t\leqslant\frac{p-3}{2}$)时,$\left(\dfrac{a}{p}\right)=-1$.由此不难看出,映射 $\left(\dfrac{\cdot}{p}\right)\colon(\Z/p\Z)^\times\to\{\pm 1\}$ 是乘法群的满同态,即
+\[
+  \Big(\frac{ab}{p}\Big)=\Big(\frac{a}{p}\Big)\Big(\frac{b}{p}\Big).
+\]
+设 $\zeta_p=\mathrm{e}^{2\pi\mathrm{i}/p}$,定义
+\[
+  G_p(r)=\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)\zeta_p^{ra}\quad (0\leqslant r\leqslant p-1),
+\]
+称作是对于 Legendre 符号 $\left(\dfrac{\cdot}{p}\right)$ 的 \emph{Gauss 和}.显然 $G_p(r)\in\Q(\zeta_p)$.
+
+\begin{theorem}\label{thm:2.15}
+设 $p$ 为奇素数,则
+
+(a) $G_p(0)=0$;
+
+(b) $G_p(r)=\left(\dfrac{r}{p}\right)G_p(1)$($1\leqslant r\leqslant p-1$);
+
+(c) $G_p(1)^2=\left(\dfrac{-1}{p}\right)p$.
+\end{theorem}
+
+\begin{proof}
+(a) 由于 $\left(\dfrac{a}{p}\right)$($1\leqslant a\leqslant p-1$)恰好有一半为 $1$ 一半为 $-1$,因此
+\[
+  G_p(0)=\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)=0.
+\]
+
+(b) 令 $rr'\equiv 1\ (\mathrm{mod}\ p)$,则
+\[
+  \Big(\frac{r'}{p}\Big)\Big(\frac{r}{p}\Big)=\Big(\frac{rr'}{p}\Big)=\Big(\frac{1}{p}\Big)=1,
+\]
+从而 $\left(\dfrac{r'}{p}\right)=\left(\dfrac{r}{p}\right)$.于是
+\begin{align*}
+  G_p(r)&=\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)\zeta_p^{ar}
+  =\sum_{a=1}^{p-1}\Big(\frac{ar'}{p}\Big)\zeta_p^{arr'}
+  =\sum_{a=1}^{p-1}\Big(\frac{r'}{p}\Big)\Big(\frac{a}{p}\Big)\zeta_p^a\\
+  &=\Big(\frac{r'}{p}\Big)\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)\zeta_p^a
+  =\Big(\frac{r}{p}\Big)G_p(1).
+\end{align*}
+
+(c)
+\begin{align*}
+  G_p(1)^2&=\sum_{a=1}^{p-1}\sum_{b=1}^{p-1}\Big(\frac{ab}{p}\Big)\zeta_p^{a+b}
+  =\sum_{a=1}^{p-1}\sum_{c=1}^{p-1}\Big(\frac{a\cdot ac}{p}\Big)\zeta_p^{a+ac}\\
+  &=\sum_{a=1}^{p-1}\sum_{c=1}^{p-1}\Big(\frac{c}{p}\Big)\zeta_p^{a(1+c)}\\
+  &=\Big(\frac{-1}{p}\Big)(p-1)+\sum_{c=1}^{p-2}\Big(\frac{c}{p}\Big)\sum_{a=1}^{p-1}\zeta_p^{a(1+c)}\\
+  &=\Big(\frac{-1}{p}\Big)(p-1)-\sum_{c=1}^{p-2}\Big(\frac{c}{p}\Big)
+  =\Big(\frac{-1}{p}\Big)p.
+\end{align*}
+\end{proof}
+
+\begin{theorem}[\emph{二次互反律}]\label{thm:2.16}
+设 $p$ 和 $q$ 是不同的奇素数,则
+
+(a) $p\nmid a$ 时,$\left(\dfrac{a}{p}\right)\equiv a^{\frac{p-1}{2}}\ (\mathrm{mod}\ p)$;
+
+(b) $\left(\dfrac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=\begin{cases}1, & \text{若 } p\equiv 1\ (\mathrm{mod}\ 4),\\ -1, & \text{若 } p\equiv 3\ (\mathrm{mod}\ 4);\end{cases}$
+
+(c) $\left(\dfrac{p}{q}\right)\left(\dfrac{q}{p}\right)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}$;
+
+(d) $\left(\dfrac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}=\begin{cases}1, & \text{若 } p\equiv\pm 1\ (\mathrm{mod}\ 8),\\ -1, & \text{若 } p\equiv\pm 3\ (\mathrm{mod}\ 8).\end{cases}$
+\end{theorem}
+
+\begin{proof}
+(a) 若 $a\equiv g^{2t}\ (\mathrm{mod}\ p)$,则
+\[
+  a^{\frac{p-1}{2}}\equiv(g^{2t})^{\frac{p-1}{2}}=(g^{p-1})^t\equiv 1=\Big(\frac{a}{p}\Big)\ (\mathrm{mod}\ p).
+\]
+若 $a\equiv g^{2t+1}\ (\mathrm{mod}\ p)$,则
+\[
+  a^{\frac{p-1}{2}}\equiv(g^{p-1})^t\cdot g^{\frac{p-1}{2}}\equiv -1=\Big(\frac{a}{p}\Big)\ (\mathrm{mod}\ p).
+\]
+因此当 $p\nmid a$ 时,总有 $\left(\dfrac{a}{p}\right)\equiv a^{\frac{p-1}{2}}\ (\mathrm{mod}\ p)$.
+
+(b) 从 (a) 我们知道,$\left(\dfrac{-1}{p}\right)\equiv(-1)^{\frac{p-1}{2}}\ (\mathrm{mod}\ p)$.但是同余式两边均为 $\pm 1$,而 $p\geqslant 3$.因此只能是 $\left(\dfrac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}$.
+
+(c) 我们在 $\F_q$ 的代数闭包 $\Omega_q$ 中取一个 $p$ 次本原单位根 $w$(即 $w$ 是多项式 $x^{p-1}+x^{p-2}+\cdots+x+1\in\F_q[x]$ 在 $\Omega_q$ 中的一个根).于是可以定义取值于 $\Omega_q$ 中的 Gauss 和:
+\[
+  \tau_p(r)=\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)w^{ar}\in\Omega_q\quad (0\leqslant r\leqslant p-1).
+\]
+与在 $\C$ 中的情形一样,可以得到:
+\[
+  \tau_p(r)=\Big(\frac{r}{p}\Big)\tau_p(1)\quad (1\leqslant r\leqslant p-1),\qquad
+  \tau_p^2(1)=\Big(\frac{-1}{p}\Big)p.
+\]
+但是现在 $\Omega_q$ 为特征 $q$ 的域,所以
+\[
+  \tau_p(1)^q=\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)^qw^{aq}
+  =\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)w^{aq}
+  =\tau_p(q)=\Big(\frac{q}{p}\Big)\tau_p(1).
+\]
+于是在 $\Omega_q$ 中我们有
+\begin{align*}
+  \Big(\frac{q}{p}\Big)&=\tau_p(1)^{q-1}
+  =\Big(\Big(\frac{-1}{p}\Big)p\Big)^{\frac{q-1}{2}}
+  =(-1)^{\frac{p-1}{2}\frac{q-1}{2}}p^{\frac{q-1}{2}}\\
+  &=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}\Big(\frac{p}{q}\Big).
+\end{align*}
+注意这是 $\Omega_q$ 中的等式,即
+\[
+  \Big(\frac{q}{p}\Big)\equiv(-1)^{\frac{p-1}{2}\frac{q-1}{2}}\Big(\frac{p}{q}\Big)\ (\mathrm{mod}\ q).
+\]
+但是同余式两边均为 $\pm 1$,而 $q\geqslant 3$.因此
+\[
+  \Big(\frac{q}{p}\Big)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}\Big(\frac{p}{q}\Big),
+\]
+即 $\left(\dfrac{q}{p}\right)\left(\dfrac{p}{q}\right)=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}$.
+
+(d) 定义
+\[
+  \theta\colon(\Z/8\Z)^\times\to\{\pm 1\},\qquad \theta(a)=(-1)^{\frac{a^2-1}{8}}.
+\]
+直接验证 $\theta$ 是乘法群的满同态,即 $\theta(ab)=\theta(a)\theta(b)$.在 $\F_p$ 的代数闭包 $\Omega_p$ 中取一个 $8$ 次本原单位根 $w$,于是 $w^4=-1$.定义取值于 $\Omega_p$ 的 Gauss 和:
+\begin{align*}
+  \tau_8(r)&=\sum_{a=1,3,5,7}\theta(a)w^{ar}\\
+  &=w^r+w^{7r}-w^{3r}-w^{5r}\quad (0\leqslant r\leqslant 7).
+\end{align*}
+利用 $\theta$ 为同态,可以与上面一样地证得在 $\Omega_p$ 中有
+\[
+  \tau_8(r)=\theta(r)\tau_8(1)\quad (r=1,3,5,7),
+\]
+\[
+  \tau_8(1)^p=\tau_8(p)=\theta(p)\tau_8(1).
+\]
+但是
+\[
+  \tau_8(1)=w+w^7-w^3-w^5=2(w-w^3),\qquad \tau_8(1)^2=8.
+\]
+从而在 $\Omega_p$ 中有
+\[
+  (-1)^{\frac{p^2-1}{8}}=\theta(p)=\tau_8(1)^{p-1}=8^{\frac{p-1}{2}}
+  =\Big(\frac{8}{p}\Big)=\Big(\frac{2}{p}\Big),
+\]
+即 $\left(\dfrac{2}{p}\right)\equiv(-1)^{\frac{p^2-1}{8}}\ (\mathrm{mod}\ p)$,从而 $\left(\dfrac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}$.
+\end{proof}
+
+\begin{theorem}\label{thm:2.17}
+设 $K=\Q(\sqrt{d})$($d\in\Z$ 无平方因子),$L=\Q(\zeta_{|d(K)|})$,则 $K\subseteq L$,并且 $L$ 是包含 $K$ 的最小分圆域.
+\end{theorem}
+
+\begin{proof}
+先证 $K$ 是分圆域 $L$ 的子域.
+
+如果 $d=\pm p_1\cdots p_s$,其中 $p_1,\cdots,p_s$ 是不同的奇素数.记
+\[
+  p_i^*=\Big(\frac{-1}{p_i}\Big)p_i=(-1)^{\frac{p_i-1}{2}}p_i\quad (1\leqslant i\leqslant s),
+\]
+则 $d=\pm p_1^*\cdots p_s^*$.由于 $p_i^*\equiv 1\ (\mathrm{mod}\ 4)$($1\leqslant i\leqslant s$),可知当 $d=p_1^*\cdots p_s^*$ 时,$d(K)=d$;而当 $d=-p_1^*\cdots p_s^*$ 时,$d(K)=4d$.对于 $d=p_1^*\cdots p_s^*$,由于 Gauss 和 $G_{p_i}(1)\in\Q(\zeta_{p_i})$ 并且 $G_{p_i}(1)=\pm\sqrt{p_i^*}$(定理 \ref{thm:2.15},(c)),从而 $\sqrt{p_i^*}\in\Q(\zeta_{p_i})$($1\leqslant i\leqslant s$),于是
+\begin{align*}
+  \Q(\sqrt{d})&=\Q(\sqrt{p_1^*\cdots p_s^*})
+  \subseteq\Q(\sqrt{p_1^*},\cdots,\sqrt{p_s^*})\\
+  &\subseteq\Q(\zeta_{p_1},\cdots,\zeta_{p_s})=\Q(\zeta_{p_1\cdots p_s})=L.
+\end{align*}
+类似地,如果 $d=-p_1^*\cdots p_s^*$,则
+\begin{align*}
+  \Q(\sqrt{d})&\subseteq\Q(\sqrt{-1},\sqrt{p_1^*},\cdots,\sqrt{p_s^*})
+  \subseteq\Q(\zeta_4,\zeta_{p_1},\cdots,\zeta_{p_s})\\
+  &=\Q(\zeta_{4p_1\cdots p_s})=L.
+\end{align*}
+如果 $d=\pm 2p_1^*\cdots p_s^*$,则 $|d(K)|=8p_1\cdots p_s$,而
+\begin{align*}
+  \Q(\sqrt{d})&\subseteq\Q(\sqrt{\pm 2},\sqrt{p_1^*},\cdots,\sqrt{p_s^*})
+  \subseteq\Q(\zeta_8,\zeta_{p_1},\cdots,\zeta_{p_s})\\
+  &=\Q(\zeta_{8p_1\cdots p_s})=L.
+\end{align*}
+这就证明了,在任何情形下均有 $K=\Q(\sqrt{d})\subseteq\Q(\zeta_{|d(K)|})=L$.
+
+再证 $L$ 的极小性,即如果 $\Q(\sqrt{d})\subseteq\Q(\zeta_m)$,要证 $|d(K)|\mid m$.
+
+如果 $d=p_1^*\cdots p_s^*$,则 $p_i$ 在 $\Q(\sqrt{d})$ 中分歧,从而也在 $\Q(\zeta_m)$ 中分歧.由判别式定理即知 $p_i\mid m$.于是 $|d(K)|=p_1\cdots p_s\mid m$.如果 $d=-p_1^*\cdots p_s^*$,则 $|d(K)|=4p_1\cdots p_s$.于是除了 $p_i$($1\leqslant i\leqslant s$)之外,$2$ 也在 $\Q(\sqrt{d})$ 中分歧.从而 $2\mid m$.但是 $2$ 在 $\Q(\zeta_{2p_1\cdots p_s})=\Q(\zeta_{p_1\cdots p_s})$ 中不分歧,从而 $4\mid m$.因此 $|d(K)|=4p_1\cdots p_s\mid m$.最后,若 $d=\pm 2p_1^*\cdots p_s^*$,与上面一样可证 $p_1\cdots p_s\mid m$.从而
+\[
+  \Q(\sqrt{\pm 2})\subseteq\Q(\sqrt{d},\sqrt{p_1^*},\cdots,\sqrt{p_s^*})
+  \subseteq\Q(\zeta_m,\zeta_{p_1},\cdots,\zeta_{p_s})=\Q(\zeta_m).
+\]
+易知包含 $\Q(\sqrt{\pm 2})$ 的最小分圆域为 $\Q(\zeta_8)$,从而 $8\mid m$.于是 $|d(K)|=8p_1\cdots p_s\mid m$.
+\end{proof}
+
+\begin{remark}
+(1) 我们在上面是利用高斯和
+\[
+  \pm\sqrt{p^*}=\sum_{a=1}^{p-1}\Big(\frac{a}{p}\Big)\zeta_p^a
+\]
+证明了 $\Q(\sqrt{p^*})\subseteq\Q(\zeta_p)$.这种证明叫作是构造性的,即把 $\sqrt{p^*}$ 具体表达成 $\Q(\zeta_p)$ 中的元素.我们也可像第 3.4 小节末尾的例子中那样,利用伽罗瓦理论来非构造性地证明 $\Q(\zeta_p)$ 有惟一的二次子域,然后用判别式定理推出这个二次子域就是 $\Q(\sqrt{p^*})$.
+
+(2) 我们还可用二次域和分圆域的素理想分解性质来证明高斯的二次互反律:
+\[
+  \Big(\frac{p}{q}\Big)\Big(\frac{q}{p}\Big)=(-1)^{\frac{p-1}{2}\frac{q-1}{2}},
+\]
+其中 $p$ 和 $q$ 是不同的奇素数.这个互反律可写成
+
+(a) 若 $p\equiv 1\ (\mathrm{mod}\ 4)$,或 $q\equiv 1\ (\mathrm{mod}\ 4)$,则 $\left(\dfrac{p}{q}\right)=\left(\dfrac{q}{p}\right)$;
+
+(b) 若 $p\equiv q\equiv 3\ (\mathrm{mod}\ 4)$,则 $\left(\dfrac{p}{q}\right)=-\left(\dfrac{q}{p}\right)$.
+
+我们只证明 (a),可以相仿地证明 (b).设 $p\equiv 1\ (\mathrm{mod}\ 4)$,于是 $\Q(\zeta_p)$ 有二次子域 $\Q(\sqrt{p})$:
+\[
+  \begin{array}{c}
+    \Q(\zeta_p)\\
+    \mid\\
+    \Q(\sqrt{p})\\
+    \mid\\
+    \Q
+  \end{array}
+\]
+考虑 $q$ 在 $\Q(\zeta_p)$ 和 $\Q(\sqrt{p})$ 中的分解.设 $K_D$ 是 $q$ 在 $\Q(\zeta_p)$ 中的分解域,则 $[K_D:\Q]=g$,$g=\frac{p-1}{f}$,$f$ 为 $q\ (\mathrm{mod}\ p)$ 的阶.于是
+\begin{align*}
+  2\mid g&\iff 2f\mid p-1\iff f\mid\frac{p-1}{2}\\
+  &\iff q\text{ 属于 }(\Z/p\Z)^\times\text{ 的惟一的 }\frac{p-1}{2}\text{ 阶子群}\\
+  &\qquad (\text{即由平方元素组成的子群})\\
+  &\iff\Big(\frac{q}{p}\Big)=1.
+\end{align*}
+另一方面,
+\begin{align*}
+  \Big(\frac{p}{q}\Big)=1&\iff q\text{ 在 }\Q(\sqrt{p})\text{ 中分裂}\\
+  &\iff\Q(\sqrt{p})\subseteq K_D\ (\text{因为 }K_D\text{ 是 }q\text{ 在 }\Q(\zeta_p)\text{ 中的最大分裂域})\\
+  &\iff[\Q(\sqrt{p}):\Q]\mid[K_D:\Q]\\
+  &\iff 2\mid g,
+\end{align*}
+因此,$\left(\dfrac{p}{q}\right)=1\iff\left(\dfrac{q}{p}\right)=1$,即 $\left(\dfrac{p}{q}\right)=\left(\dfrac{q}{p}\right)$.
+
+反过来,由 Legendre 符号的二次互反律也可得到二次域中素理想分解的一种"互反律"(详见习题 1).
+\end{remark}
+
+\subsection{Abel 数域的导子和互反律}\label{sec:ch2-s4-2}
+
+本小节讲述 Abel 数域 $K$ 的素理想分解,这是伽罗瓦扩张 $K/\Q$ 的特殊情形,即伽罗瓦群 $\Gal(K/\Q)$ 是 Abel 群.我们基于如下重要结果:
+
+\emph{Kronecker-Weber 定理} 每个 Abel 数域都是某个分圆域的子域.
+
+从引理 \ref{lem:ch2-17} 的 (a) 容易看出,一些 Abel 数域的合成仍是 Abel 数域,所以存在 $\Q$ 的最大 Abel 扩域 $\Q^{ab}$.而上述定理也可叙述成:所有分圆域的合成即是 $\Q$ 的最大 Abel 扩域(这是 $\Q$ 的无限扩张),即 $\Q^{ab}=\bigcup_{m\geqslant 3}\Q(\zeta_m)$.也就是说:$\Q^{ab}$ 是将复值周期函数 $\mathrm{e}^{2\pi\mathrm{i}x}$ 在所有有理点 $x$ 处的值添加到 $\Q$ 上而得到的无限次扩域:
+\[
+  \Q^{ab}=\Q(\mathrm{e}^{2\pi\mathrm{i}x}:x\in\Q).
+\]
+这个定理是由 Kronecker 和 Weber 在 19 世纪末证明的,它是 20 世纪 20 年代建立的类域论的简单推论.虽然有比较初等的证明,但要用到希尔伯特关于分歧群和分歧域的精细理论.我们略去这个定理的证明.Kronecker 还进一步猜想,对于虚二次域 $K$,$K$ 的最大 Abel 扩域是将某种复值双周期函数(椭圆模函数)在全部有理点处的值添加到 $K$ 上而得到的扩域.这就是所谓的"Kronecker 青春之梦(Jugendtraum)".在 1920 年日本数学家高木贞治(Takagi)建立了类域论之后,人们才证明了这个"梦"的真实性.希尔伯特第 $12$ 问题为:对于任意的数域 $K$,如何具体构作出 $K$ 的最大 Abel 扩域 $K^{ab}$?这是个十分困难的问题.除了 $\Q$ 和虚二次域之外,目前对其他数域这个问题均尚未解决.
+
+本小节我们利用 Kronecker-Weber 定理来研究 Abel 数域的素理想分解规律.
+
+设 $K$ 为 Abel 数域.根据 Kronecker-Weber 定理,$K$ 是某个分圆域的子域.如果 $K\subseteq\Q(\zeta_m)$,$K\subseteq\Q(\zeta_n)$,则
+\[
+  K\subseteq\Q(\zeta_m)\cap\Q(\zeta_n)=\Q(\zeta_{(m,n)}).
+\]
+这就表明存在一个最小的分圆域 $\Q(\zeta_m)$($m\not\equiv 2\ (\mathrm{mod}\ 4)$),使得 $K\subseteq\Q(\zeta_m)$.
+
+\emph{定义.} 设 $K$ 为 Abel 数域.若 $\Q(\zeta_m)$($m\not\equiv 2\ (\mathrm{mod}\ 4)$)为包含 $K$ 的最小分圆域,我们称 $m$ 为 Abel 数域 $K$ 的\emph{导子}(conductor, führer),并且表示成 $\mathfrak{f}(K)$.
+
+\begin{definition}\label{def:ch2-6}
+对于每个 $n$ 次伽罗瓦数域 $K$,如果素数 $p$ 在 $K$ 中的分解为 $pO_K=(\mathfrak{p}_1\cdots\mathfrak{p}_g)^e$,$efg=n$,我们称 $p$ 在 $K$ 中的分解型式为 $(e,f,g)$.如果 $p$ 在 $K$ 中不分歧,即 $e=1$,我们也称 $p$ 在 $K$ 中的分解型式为 $(f,g)$.
+\end{definition}
+
+\begin{theorem}[\emph{Abel 数域中的互反律}]\label{thm:2.18}
+设 $K$ 是 Abel 数域,$\mathfrak{f}(K)$ 为它的导子,$p$ 和 $p'$ 是两个素数,并且
+\[
+  (p,\mathfrak{f}(K))=(p',\mathfrak{f}(K))=1.
+\]
+如果 $p\equiv p'\ (\mathrm{mod}\ \mathfrak{f}(K))$,则 $p$ 和 $p'$ 在 $K$ 中有相同的分解型式.
+\end{theorem}
+
+\begin{proof}
+根据定义,$K\subseteq L=\Q(\zeta_{\mathfrak{f}(K)})$.令 $G=\Gal(L/\Q)$,则 $G$ 自然同构于 $(\Z/\mathfrak{f}(K)\Z)^\times$:
+\begin{align*}
+  \varphi\colon\Gal(L/\Q)&\xrightarrow{\sim}(\Z/\mathfrak{f}(K)\Z)^\times,\qquad
+  \sigma_a\mapsto a\ (\mathrm{mod}\ \mathfrak{f}(K)),\\
+  &\qquad\qquad (a,\mathfrak{f}(K))=1,
+\end{align*}
+其中 $\sigma_a$ 表示 $L$ 中自同构 $\zeta_{\mathfrak{f}(K)}\mapsto\zeta_{\mathfrak{f}(K)}^a$.令 $N$ 为 $K$ 的固定子群,则
+\[
+  \Gal(K/\Q)\cong G/N\cong(\Z/\mathfrak{f}(K)\Z)^\times/\varphi(N).
+\]
+如果 $(p,\mathfrak{f}(K))=1$,则素数 $p$ 在 $L$ 中从而也在 $K$ 中不分歧.于是
+\[
+  pO_K=\mathfrak{p}_1\cdots\mathfrak{p}_g,\qquad f=f(\mathfrak{p}_i\mid p),\qquad fg=n,\qquad I_{\mathfrak{p}}=\{1\}.
+\]
+$D_{\mathfrak{p}}$ 为 $f$ 阶循环群并且 $D_{\mathfrak{p}}$ 由 Frobenius 自同构 $\tau_p=\left(\dfrac{K/\Q}{\mathfrak{p}}\right)$ 所生成.我们已经证明过,$\sigma_p$ 是 Frobenius 自同构 $\left(\dfrac{L/\Q}{\mathfrak{p}}\right)$,并且 $\sigma_p|_K=\tau_p$.由于 $\tau_p$ 的阶为 $f$,于是 $f$ 是满足 $\sigma_p^f|_K=(\sigma_p|_K)^f=1\in\Gal(K/\Q)$ 的最小正整数,利用同构 $\varphi$ 便知 $f$ 是满足 $\overline{p}^f\in\varphi(N)$ 的最小正整数,其中 $\overline{p}$ 表示 $p$ 的模 $\mathfrak{f}(K)$ 同余类.令
+\[
+  \varphi(N)=\{\bar{a}_1,\cdots,\bar{a}_t\},\qquad t=|N|=[L:K],\quad a_i\in\Z,
+\]
+则 $f$ 即是使得
+\[
+  p^f\equiv a\ (\mathrm{mod}\ \mathfrak{f}(K))\quad \text{对于某个 }a\in\{a_1,\cdots,a_t\}
+\]
+\begin{sloppypar}
+成立的最小正整数 $f$.从这一种刻画方式不难看出,$f$ 只与 $p$ 的模 $\mathfrak{f}(K)$ 同余类有关,因此当 $p\equiv p'\ (\mathrm{mod}\ \mathfrak{f}(K))$ 时,$p$ 和 $p'$ 有相同的 $f$,从而有相同的分解型式 $(f,g)$,$fg=n$.
+\end{sloppypar}
+\end{proof}
+
+\begin{example}\label{ex:ch2-s4-2-1}
+分圆域 $L=\Q(\omega)$,$\omega=\zeta_{17}$ 是 $16$ 次循环域,
+\[
+  G=\Gal(L/\Q)=\langle\sigma_3\rangle.
+\]
+令 $K$ 为 $L$ 的惟一的 $4$ 次循环子域,则 $K$ 的固定子群为
+\[
+  N=\{\sigma_1,\sigma_{3^4},\sigma_{3^8},\sigma_{3^{12}}\}
+  =\{\sigma_1,\sigma_{-4},\sigma_{-1},\sigma_4\}.
+\]
+于是由伽罗瓦理论不难看出
+\[
+  K=\Q(\varepsilon),\qquad \varepsilon=\omega+\omega^{-1}+\omega^4+\omega^{-4}.
+\]
+当素数 $p\neq 17$ 时, $p$ 在 $K$ 中不分歧. 根据上述定理的证明即知:
+
+(i) $p$ 在 $K$ 中惯性
+\[
+  \iff f=4
+  \iff\text{ 满足 }p^f\equiv 3^0,3^4,3^8,3^{12}\ (\mathrm{mod}\ 17)\text{ 的最小正整数 }f\text{ 为 }4,
+\]
+\[
+  \iff p\equiv 3^{\pm 1},3^{\pm 3},3^{\pm 5},3^{\pm 7}
+  \equiv\pm 3,\pm 5,\pm 6,\pm 7\ (\mathrm{mod}\ 17).
+\]
+
+(ii) $pO_K=\mathfrak{p}_1\mathfrak{p}_2$
+\begin{align*}
+  &\iff f=2
+  \iff\text{满足 }p^f\equiv 3^0,3^4,3^8,3^{12}\ (\mathrm{mod}\ 17)\text{ 的最小正整数 }f\text{ 为 }2\\
+  &\iff p\equiv 3^{\pm 2},3^{\pm 6}\equiv\pm 2,\pm 9\ (\mathrm{mod}\ 17).
+\end{align*}
+
+(iii) $pO_K=\mathfrak{p}_1\mathfrak{p}_2\mathfrak{p}_3\mathfrak{p}_4$(完全分裂)
+\[
+  \iff p\equiv 3^0,3^4,3^8,3^{12}\equiv\pm 1,\pm 4\ (\mathrm{mod}\ 17).
+\]
+\end{example}
+
+\begin{remark}
+(1) 定理 \ref{thm:2.18} 和上面的例子表明,在 Abel 数域 $K$ 中,具有同样分解型式的素数集合是公差为 $\mathfrak{f}(K)$ 的一些算术级数之并.这就自然产生如下的问题:对于每个正整数 $k$ 和与 $k$ 互素的整数 $l$,算术级数 $l+nk$($n\in\Z$)中是否存在着无限多个素数?利用解析工具可以证明,当 $(k,l)=1$ 时,存在无限多个素数 $p$ 使得 $p\equiv l\ (\mathrm{mod}\ k)$.而且,对于 $\varphi(k)$ 个不同的 $l$ 值,$(k,l)=1$,全体素数在相应的公差为 $k$ 的 $\varphi(k)$ 个不同的算术级数中分布是均匀的.确切地说,如果以 $\pi(x)$ 表示不超过 $x$ 的素数的个数,以 $\pi(x,l,k)$ 表示算术级数 $l+nk$($n\in\Z$)中不超过 $x$ 的素数的个数,则对于每个 $l$,$(l,k)=1$,均有
+\[
+  \lim_{x\to\infty}\frac{\pi(x,l,k)}{\pi(x)}=\frac{1}{\varphi(k)}.
+\]
+比如对于上面的例子,即对于 $4$ 次循环域 $\Q(\omega+\omega^{-1}+\omega^4+\omega^{-4})$,$\omega=\zeta_{17}$,则在 $K$ 中惯性的素数,在 $K$ 中完全分裂的素数,以及在 $K$ 中分解成两个素理想之积的素数,其在全体素数中所占的比例为
+\[
+  \frac{8}{16}:\frac{4}{16}:\frac{4}{16}=\frac{1}{2}:\frac{1}{4}:\frac{1}{4}.
+\]
+
+(2) 二次域中的互反律可以从二次互反律(定理 \ref{thm:2.16})推出(习题 1).对于任意的数域扩张 $L/K$ 应当有什么样的一般互反律?这是 Hilbert 著名的 $23$ 个问题当中的一个.随着类域论的建立,Artin 和 Hasse 等人在一般互反律方面作了许多深刻的工作.Artin 将一般互反律看作是类域论的核心.
+\end{remark}
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 试用二次互反律(定理 \ref{thm:2.16})证明下列二次域中素理想分解的互反律:设 $K=\Q(\sqrt{d})$,$p$ 和 $p'$ 为素数,并且 $(p,d(K))=(p',d(K))=1$,则当 $p\equiv p'\ (\mathrm{mod}\ d(K))$ 时,$p$ 和 $p'$ 在 $K$ 中或者均是惯性,或者均是完全分裂.
+  \item 设 $p$ 为素数,$n\mid(p-1)$,$K$ 是分圆域 $\Q(\zeta_p)$ 的惟一 $n$ 次子域,对于每个素数 $q\neq p$,设 $q$ 在 $K$ 中素理想分解型式为 $(f,g)$,$fg=n$,求证 $f$ 是使 $q^f$ 为模 $p$ 的 $n$ 次剩余的最小正整数($a$ 叫作是模 $p$ 的 $n$ 次剩余,是指存在 $b\in\Z$,使得 $a\equiv b^n\ (\mathrm{mod}\ p)$).
+  \item 设 $f(x)=x^3+px+q$ 是 $\Q[x]$ 中三次不可约多项式,$\alpha$ 是 $f(x)$ 的一个根,$K=\Q(\alpha)$.
+        (a) 求证 $K$ 是三次循环域的充要条件是 $-4p^3-27q^2$ 为某个有理数的平方;
+        (b) 设 $\alpha$ 为 $f(x)=x^3-3x+1$ 的一个根.求证 $K=\Q(\alpha)$ 是三次循环域.试问域 $K$ 的导子 $\mathfrak{f}(K)$ 是多少?
+  \item 求 Abel 域 $\Q(\sqrt{2},\sqrt{5})$ 和 $\Q(\sqrt{-1},\sqrt{7})$ 的导子.
+  \item 设 $F(x)$ 是 $\Z[x]$ 中的 $n$ 次首 $1$ 多项式,$\alpha$ 是 $F(x)$ 的一个根.如果 $\Q(\alpha)/\Q$ 为伽罗瓦扩张,我们称 $F(x)$ 是 $\Q$ 上的正规多项式.又若 $\Q(\alpha)$ 是 Abel 数域,则称 $F(x)$ 是 $\Q$ 上的 Abel 多项式.求证:
+        (a) 如果 $F(x)$ 是 $\Q$ 上的正规多项式,则存在正整数 $N$,使得对于每个素数 $p>N$,$F(x)$ 在有限域 $\F_p$ 上均分解成次数相同的一些不可约多项式之积,换句话说,当 $p>N$ 时,
+        \[
+          F(x)\equiv F_1(x)F_2(x)\cdots F_g(x)\ (\mathrm{mod}\ p),
+        \]
+        其中 $F_i(x)$($1\leqslant i\leqslant g$)均是 $\F_p[x]$ 中次数为 $f=n/g$ 的不可约多项式.这时,我们称 $(f,g)$ 为 $F(x)$ 在有限域 $\F_p$ 上的分解型式;
+        (b) 如果 $F(x)$ 是 $\Q$ 上的 Abel 多项式,则存在正整数 $N$ 和 $n$,使得对于任意两个素数 $p_1$ 和 $p_2$,只要 $p_1>N$,$p_2>N$,并且 $p_1\equiv p_2\ (\mathrm{mod}\ n)$,那么 $F(x)$ 在域 $\F_{p_1}$ 和 $\F_{p_2}$ 中就有同样的分解型式.
+  \item (a) 求证 $f(x)=x^3+x^2-2x-1$ 是 $\Q$ 上的 Abel 多项式,并且上题 (b) 中的 $N$ 和 $n$ 均可取为 $7$;
+        (b) 求证:当素数 $p\equiv\pm 1\ (\mathrm{mod}\ 7)$ 时,$f(x)$ 在域 $\F_p$ 中有 $3$ 个不同的根;当素数 $p\equiv\pm 2,\pm 3\ (\mathrm{mod}\ 7)$ 时,$f(x)$ 为 $\F_p$ 上的不可约多项式;最后,$f(x)$ 在 $\F_7$ 中有一个重数为 $3$ 的根.
+\end{Exercises}

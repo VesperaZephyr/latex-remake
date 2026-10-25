@@ -1,0 +1,69 @@
+% !TeX program = xelatex
+% 《数学分析简明教程（上册）第二版》邓东皋 尹小玲 —— LaTeX 重排
+\documentclass{dengbook}
+\usepackage{esint}
+
+% 书签 PDF 字符串中剔除 ctex/hyperref 注入的 \leavevmode@ifvmode 与 \kern 记号，
+% 消除 "Token not allowed in a PDF string" 警告；不影响正文与书签显示。
+\makeatletter
+\pdfstringdefDisableCommands{%
+  \let\leavevmode\@empty
+  \let\leavevmode@ifvmode\@empty
+  \let\kern\@gobble
+  \let\hspace\@gobble
+  \def\,{ }%
+  \def\;{ }%
+  \def\:{ }%
+  \def\!{}%
+}
+\makeatother
+
+% 封面信息
+\newcommand{\booktitle}{数学分析简明教程}
+
+\begin{document}
+
+% ---------- 前置部分 ----------
+\frontmatter
+\pagestyle{empty}
+
+% 扉页（简化重排封面）
+\begin{titlepage}
+  \centering
+  \vspace*{2.2cm}
+  {\zihao{2}\headfont 普\hspace{0.3em}通\hspace{0.3em}高\hspace{0.3em}等\hspace{0.3em}教\hspace{0.3em}育\hspace{0.3em}十\hspace{0.3em}一\hspace{0.3em}五\hspace{0.3em}国\hspace{0.3em}家\hspace{0.3em}级\hspace{0.3em}规\hspace{0.3em}划\hspace{0.3em}教\hspace{0.3em}材}\\[3cm]
+  {\zihao{1}\headfont 数学分析简明教程}\\[1.2cm]
+  {\zihao{3}\headfont 第二版\hspace{2em}上册}\\[2.5cm]
+  {\zihao{4}\songfont 邓东皋\hspace{1em}尹小玲\hspace{1em}编著}\\[4cm]
+  {\zihao{4}\headfont 高等教育出版社}\\[0.4cm]
+  {\small HIGHER EDUCATION PRESS}
+  \vfill
+  {\small 本书为教材重排版（LaTeX 重新录入），版式参照原书设计}\\
+  {\small 重排日期：\today}
+\end{titlepage}
+
+\include{chapters/frontmatter}
+
+\makeatletter
+\renewcommand{\contentsname}{目\hspace{2em}录}
+\makeatother
+\begingroup
+\pagestyle{empty}
+\tableofcontents
+\clearpage
+\endgroup
+
+% ---------- 正文 ----------
+\mainmatter
+\pagestyle{fancy}
+\include{chapters/ch01}
+\include{chapters/ch02}
+\include{chapters/ch03}
+\include{chapters/ch04}
+\include{chapters/ch05}
+\include{chapters/ch06}
+\include{chapters/ch07}
+\include{chapters/ch08}
+\include{chapters/ch09}
+
+\end{document}

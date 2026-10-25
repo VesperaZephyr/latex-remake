@@ -1,0 +1,959 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S12.3  一般级数
+%  源：原书印刷页 37-53（PDF 物理页 43-59）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch12_12_3_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误见 tools/_make_ch12_3a.py 头部说明
+% ==================================================================
+\section{一般级数}\label{sec:12.3}
+
+如果级数 $\sum_{n=1}^{\infty}a_{n}$ 的通项 $a_{n}$ 可正可负时, 称它为一般级数. 例如: $\sum_{n=1}^{\infty}\frac{\sin nx}{n}$, $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=1-\frac{1}{2}+\frac{1}{3}-\cdots+(-1)^{n-1}\frac{1}{n}+\cdots$ 都为一般级数.
+
+对于一般级数, 可以用级数收敛的定义及级数的 Cauchy 收敛判别法（收敛准则）来判定其敛散性.
+
+这一节我们将给出一般级数的几种特殊判别法: Leibniz 判别法, Dirichlet 判别法, Abel 判别法等.
+
+\begin{theorem}[Leibniz 判别法]\label{thm:12.3.1}
+如果 $\{a_{n}\}$ 单调减趋于 $0$, 则交错级数 $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$（$a_{n}\geqslant0$）收敛.
+
+设 $S_{n}$ 为级数 $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$ 的第 $n$ 个部分和, 则 $\{S_{2k}\}$ 单调增趋于 $S$, $\{S_{2k-1}\}$ 单调减趋于 $S$. 于是, 用 $S_{n}$ 作为 $S=\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$ 的近似值, 其绝对误差为
+\[
+  |S_{n}-S|\leqslant a_{n+1}.
+\]
+\end{theorem}
+
+\begin{proof}
+因为 $\{a_{n}\}$ 单调减趋于 $0$, 故 $a_{n}-a_{n+1}\geqslant0$, 从而
+\[
+  S_{2k}=(a_{1}-a_{2})+(a_{3}-a_{4})+\cdots+(a_{2k-3}-a_{2k-2})+(a_{2k-1}-a_{2k})
+  =S_{2k-2}+(a_{2k-1}-a_{2k})\geqslant S_{2k-2}.
+\]
+这就表明 $\{S_{2k}\}$ 单调增.
+
+另一方面, 由
+\[
+  S_{2k}=a_{1}-(a_{2}-a_{3})-\cdots-(a_{2k-2}-a_{2k-1})-a_{2k}<a_{1}
+\]
+知 $\{S_{2k}\}$ 有上界 $a_{1}$. 因此, $\{S_{2k}\}$ 收敛于实数 $S$. 又
+\[
+  \lim_{k\to+\infty}S_{2k+1}=\lim_{k\to+\infty}(S_{2k}+a_{2k+1})=S+0=S.
+\]
+根据\extref{定理 1.1.1}, $\{S_{n}\}$ 收敛, 即 $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$ 收敛, 记 $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}=\lim\limits_{n\to+\infty}S_{n}=S$.
+
+从
+\[
+  S_{2k-1}=S_{2k-3}-(a_{2k-2}-a_{2k-1})\leqslant S_{2k-3}
+\]
+知 $\{S_{2k-1}\}$ 单调减, 由上段的结论可知它趋于 $S$. 于是,
+\[
+  |S_{n}-S|\leqslant|S_{n}-S_{n+1}|=a_{n+1}.
+\]
+\end{proof}
+
+$\{a_{n}\}$ 单调减趋于 $0$ 的交错级数 $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$ 常称为 Leibniz 级数.
+
+为给出 Dirichlet 判别法与 Abel 判别法, 我们先证两个引理.
+
+\begin{lemma}[分部求和法]\label{lem:12.3.1}
+设 $S_{k}=a_{1}+\cdots+a_{k}\ (k=1,2,\cdots)$, 则有
+\[
+  \sum_{k=1}^{n}a_{k}b_{k}=\sum_{k=1}^{n-1}S_{k}(b_{k}-b_{k+1})+S_{n}b_{n}.
+\]
+\end{lemma}
+
+\begin{proof}
+设 $S_{0}=0$, 则 $a_{k}=S_{k}-S_{k-1}$, $k=1,2,\cdots$. 于是,
+\[
+\begin{aligned}
+  \sum_{k=1}^{n}a_{k}b_{k}
+  &=\sum_{k=1}^{n}(S_{k}-S_{k-1})b_{k}
+   =\sum_{k=1}^{n}S_{k}b_{k}-\sum_{k=1}^{n}S_{k-1}b_{k}\\
+  &=\sum_{k=1}^{n-1}S_{k}b_{k}-\sum_{k=1}^{n-1}S_{k}b_{k+1}+S_{n}b_{n}
+   =\sum_{k=1}^{n-1}S_{k}(b_{k}-b_{k+1})+S_{n}b_{n}.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{lemma}[Abel 引理]\label{lem:12.3.2}
+(1) 设 $b_{1}\geqslant b_{2}\geqslant\cdots\geqslant b_{n}\geqslant0$,
+\[
+  m\leqslant S_{k}=\sum_{l=1}^{k}a_{l}\leqslant M\quad(k=1,2,\cdots,n),
+\]
+则有
+\[
+  b_{1}m\leqslant\sum_{k=1}^{n}a_{k}b_{k}\leqslant b_{1}M.
+\]
+
+(2) 设 $b_{1}\geqslant b_{2}\geqslant\cdots\geqslant b_{n}$ 或 $b_{1}\leqslant b_{2}\leqslant\cdots\leqslant b_{n}$, 记 $S_{k}=\sum_{l=1}^{k}a_{l}$, 如果 $|S_{k}|\leqslant M$, $k=1,\cdots,n$, 则
+\[
+  \Bigl|\sum_{k=1}^{n}a_{k}b_{k}\Bigr|\leqslant M\bigl(|b_{1}|+2|b_{n}|\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+(1) 由引理 12.3.1 及 $b_{1}\geqslant b_{2}\geqslant\cdots\geqslant b_{n}\geqslant0$, $b_{k}-b_{k+1}\geqslant0\ (k=1,2,\cdots,n-1)$, 有
+\[
+  \sum_{k=1}^{n}a_{k}b_{k}
+  =\sum_{k=1}^{n-1}S_{k}(b_{k}-b_{k+1})+S_{n}b_{n}
+  \leqslant M\sum_{k=1}^{n-1}(b_{k}-b_{k+1})+Mb_{n}=Mb_{1}.
+\]
+同理,
+\[
+  mb_{1}\leqslant\sum_{k=1}^{n}a_{k}b_{k}.
+\]
+结合上面的不等式得到
+\[
+  mb_{1}\leqslant\sum_{k=1}^{n}a_{k}b_{k}\leqslant Mb_{1}.
+\]
+
+(2) 由分部求和公式得
+\[
+\begin{aligned}
+  \Bigl|\sum_{k=1}^{n}a_{k}b_{k}\Bigr|
+  &=\Bigl|\sum_{k=1}^{n-1}S_{k}(b_{k}-b_{k+1})+S_{n}b_{n}\Bigr|
+   \leqslant\sum_{k=1}^{n-1}|S_{k}|\,|b_{k}-b_{k+1}|+|S_{n}|\,|b_{n}|\\
+  &\leqslant M\Bigl(\sum_{k=1}^{n-1}|b_{k}-b_{k+1}|+|b_{n}|\Bigr)
+   =M\bigl(|b_{1}-b_{n}|+|b_{n}|\bigr)
+   \leqslant M\bigl(|b_{1}|+2|b_{n}|\bigr).
+\end{aligned}
+\]
+\end{proof}
+
+从 Abel 引理立即有下面的结论.
+
+\begin{theorem}[Dirichlet 判别法]\label{thm:12.3.2}
+设
+(1) $\{b_{n}\}$ 单调趋于 $0$;
+(2) $S_{k}=a_{1}+\cdots+a_{k}$, $|S_{k}|\leqslant M$, $k=1,2,\cdots$, 即 $\sum_{n=1}^{\infty}a_{n}$ 的部分和有界.
+则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{theorem}
+
+\begin{proof}
+证法 1 由条件 (2) 知, $-M\leqslant S_{k}\leqslant M$, $k=1,2,\cdots$, 于是
+\[
+  -M-S_{n}\leqslant S_{n+p}-S_{n}=a_{n+1}+\cdots+a_{n+p}\leqslant M-S_{n},
+  \quad\forall p\in\mathbb{N}.
+\]
+由条件 (1), 且不妨设 $\{b_{n}\}$ 单调减（$\{b_{n}\}$ 单调增时用 $\{-b_{n}\}$ 代替 $\{b_{n}\}$）趋于 $0$, 即 $b_{n}\geqslant0$. 根据 Abel 引理 \ref{lem:12.3.2}(1), 有
+\[
+  (-M-S_{n})b_{n+1}\leqslant a_{n+1}b_{n+1}+\cdots+a_{n+p}b_{n+p}\leqslant(M-S_{n})b_{n+1},
+\]
+所以,
+\[
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}b_{k}\Bigr|
+  \leqslant\max\{|-M-S_{n}|,\,|M-S_{n}|\}\,b_{n+1}\leqslant 2Mb_{n+1}.
+\]
+因为 $\{b_{n}\}$ 单调趋于 $0$, 所以 $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, $b_{n+1}<\frac{\varepsilon}{2M+1}$, 于是
+\[
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}b_{k}\Bigr|<2M\cdot\frac{\varepsilon}{2M+1}<\varepsilon.
+\]
+根据级数的 Cauchy 收敛准则（定理~\ref{thm:12.1.1}）, $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+
+证法 2 由条件 (2) 知, $|S_{k}|\leqslant M$, $k=1,2,\cdots$. 再由 $\{b_{n}\}$ 单调减及 Abel 引理 \ref{lem:12.3.2}(2) 得到
+\[
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}\Bigr|=|S_{n+p}-S_{n}|\leqslant|S_{n+p}|+|S_{n}|\leqslant 2M,
+\]
+\[
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}b_{k}\Bigr|\leqslant 2M\bigl(|b_{n+1}|+2|b_{n+p}|\bigr).
+\]
+因为 $\{b_{n}\}$ 趋于 $0$, 所以 $\forall\varepsilon>0$, $\exists N=N(\varepsilon)\in\mathbb{N}$, 当 $n>N$ 时, $|b_{n}|<\frac{\varepsilon}{6M+1}$. 于是
+\[
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}b_{k}\Bigr|
+  \leqslant 2M\bigl(|b_{n+1}|+2|b_{n+p}|\bigr)
+  <2M\cdot\frac{3\varepsilon}{6M+1}<\varepsilon.
+\]
+根据级数的 Cauchy 收敛准则（定理~\ref{thm:12.1.1}）, $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{proof}
+
+\begin{theorem}[Abel 判别法]\label{thm:12.3.3}
+设
+(1) $\{b_{n}\}$ 单调有界;
+(2) $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{theorem}
+
+\begin{proof}
+证法 1 由于 $\{b_{n}\}$ 单调有界, 故 $\{b_{n}\}$ 收敛, 记 $\lim\limits_{n\to+\infty}b_{n}=b$. 不妨设 $\{b_{n}\}$ 单调减, 则 $b_{n}\geqslant b$. 令 $b_{n}'=b_{n}-b$, 则 $\{b_{n}'\}$ 单调减趋于 $0$.
+
+又因 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 故部分和有界, 根据 Dirichlet 判别法（定理~\ref{thm:12.3.2}）知 $\sum_{n=1}^{\infty}a_{n}b_{n}'$ 收敛. 从而,
+\[
+  \sum_{n=1}^{\infty}a_{n}b_{n}
+  =\sum_{n=1}^{\infty}a_{n}(b_{n}'+b)
+  =\sum_{n=1}^{\infty}a_{n}b_{n}'+b\sum_{n=1}^{\infty}a_{n}
+\]
+也收敛.
+
+证法 2 由条件 $|b_{n}|\leqslant B$, $\forall n\in\mathbb{N}$. 又因 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 故根据级数的 Cauchy 收敛准则（定理~\ref{thm:12.1.1}）, $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  |\widetilde{S}_{p}|<\frac{\varepsilon}{2B+1},\quad\forall p\in\mathbb{N},
+\]
+其中 $\widetilde{S}_{p}=a_{n+1}+\cdots+a_{n+p}$, 则 $\{\widetilde{S}_{p}\}\ (p\in\mathbb{N})$ 有界, 且
+\[
+  -\frac{\varepsilon}{2B+1}<\widetilde{S}_{p}=a_{n+1}+\cdots+a_{n+p}<\frac{\varepsilon}{2B+1}.
+\]
+又因 $\{b_{n}\}$ 单调有界. 不妨设 $\{b_{n}\}$ 单调减（否则用 $\{-b_{n}\}$ 代替）, 且以 $0$ 为下界（否则用 $\{b_{n}+B\}$ 代替）. 根据 Abel 引理 \ref{lem:12.3.2}(1) 得到
+\[
+  -\frac{\varepsilon}{2B+1}b_{n+1}\leqslant a_{n+1}b_{n+1}+\cdots+a_{n+p}b_{n+p}
+  \leqslant\frac{\varepsilon}{2B+1}b_{n+1},
+\]
+所以,
+\[
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}b_{k}\Bigr|
+  \leqslant\frac{\varepsilon}{2B+1}\cdot b_{n+1}
+  \leqslant\frac{\varepsilon}{2B+1}\cdot B<\varepsilon.
+\]
+根据级数的 Cauchy 收敛准则（定理~\ref{thm:12.1.1}）, $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+
+证法 3 由条件 $|b_{n}|\leqslant B$, $\forall n\in\mathbb{N}$. 又因 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 故 $\forall\varepsilon>0$, 根据级数的 Cauchy 收敛准则（定理~\ref{thm:12.1.1}）, $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  |a_{n+1}+\cdots+a_{n+l}|<\frac{\varepsilon}{3B+1},\quad\forall l\in\mathbb{N}.
+\]
+根据 Abel 引理 \ref{lem:12.3.2}(2) 得到
+\[
+\begin{aligned}
+  \Bigl|\sum_{k=n+1}^{n+p}a_{k}b_{k}\Bigr|
+  &\leqslant\frac{\varepsilon}{3B+1}\bigl(|b_{n+1}|+2|b_{n+p}|\bigr)
+   \leqslant\frac{\varepsilon}{3B+1}\cdot 3B<\varepsilon.
+\end{aligned}
+\]
+再根据级数的 Cauchy 收敛准则（定理~\ref{thm:12.1.1}）, $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{proof}
+
+\begin{remark}\label{rem:12.3.1}
+Leibniz 判别法（定理~\ref{thm:12.3.1}）是 Dirichlet 判别法（定理~\ref{thm:12.3.2}）的特殊情形. 事实上, 由于 $\sum_{n=1}^{\infty}(-1)^{n-1}$ 的部分和 $\sum_{k=1}^{n}(-1)^{k-1}$ 满足 $\bigl|\sum_{k=1}^{n}(-1)^{k-1}\bigr|\leqslant2$, 即部分和有界. 又因为 $\{a_{n}\}$ 单调减趋于 $0$, 根据 Dirichlet 判别法知, $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$ 收敛.
+\end{remark}
+
+\begin{example}\label{ex:12.3.1}
+证明: $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}$ 与 $\sum_{n=2}^{\infty}\frac{(-1)^{n}}{\ln n}$ 收敛.
+\end{example}
+
+\begin{proof}
+因为 $\bigl\{\frac{1}{n}\bigr\}$ 与 $\bigl\{\frac{1}{\ln n}\bigr\}$ 都单调减趋于 $0$, 所以根据 Leibniz 判别法知, $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}$ 与 $\sum_{n=2}^{\infty}\frac{(-1)^{n}}{\ln n}$ 都收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.3.2}
+研究 $\sum_{n=1}^{\infty}\frac{\cos nx}{n}$ 的敛散性（此级数既非正项级数又非 Leibniz 级数）.
+\end{example}
+
+\begin{proof}
+解 设 $a_{n}=\cos nx$, $b_{n}=\frac{1}{n}$, $n=1,2,\cdots$. 显然, $\{b_{n}\}$ 单调减趋于 $0$, 而
+\[
+\begin{aligned}
+  |S_{n}|
+  &=|\cos x+\cos 2x+\cdots+\cos nx|
+   =\Bigl|\frac{1}{2\sin\frac{x}{2}}\sum_{k=1}^{n}2\sin\frac{x}{2}\cos kx\Bigr|\\
+  &=\Bigl|\frac{1}{2\sin\frac{x}{2}}\sum_{k=1}^{n}\bigl[\sin\bigl(k+\tfrac{1}{2}\bigr)x-\sin\bigl(k-\tfrac{1}{2}\bigr)x\bigr]\Bigr|
+   =\Bigl|\frac{\sin\bigl(n+\tfrac{1}{2}\bigr)x-\sin\frac{x}{2}}{2\sin\frac{x}{2}}\Bigr|
+   \leqslant\Bigl|\frac{1}{\sin\frac{x}{2}}\Bigr|,
+\end{aligned}
+\]
+其中 $x\neq 2m\pi$, $m\in\mathbb{Z}$. 此时, $S_{n}=\sum_{k=1}^{n}a_{k}$ 有界. 根据 Dirichlet 判别法（定理~\ref{thm:12.3.2}）, 当 $x\neq 2m\pi\ (m\in\mathbb{Z})$ 时收敛; 当 $x=2m\pi\ (m\in\mathbb{Z})$ 时, $\sum_{n=1}^{\infty}\frac{\cos n(2m\pi)}{n}=\sum_{n=1}^{\infty}\frac{1}{n}$ 发散.
+\end{proof}
+
+\begin{example}\label{ex:12.3.3}
+研究级数 $\sum_{n=1}^{\infty}\frac{\cos 3n}{n}\bigl(1+\frac{1}{n}\bigr)^{n}$ 的敛散性.
+\end{example}
+
+\begin{proof}
+解 由例 \ref{ex:12.3.2}, $\sum_{n=1}^{\infty}\frac{\cos 3n}{n}$ 收敛, $\bigl(1+\frac{1}{n}\bigr)^{n}$ 单调增有上界 $3$（或 $\mathrm{e}$）. 根据 Abel 判别法知, $\sum_{n=1}^{\infty}\frac{\cos 3n}{n}\bigl(1+\frac{1}{n}\bigr)^{n}$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.3.4}
+研究级数 $\sum_{n=1}^{\infty}(-1)^{n}\frac{\sin^{2}n}{n}$ 的敛散性.
+\end{example}
+
+\begin{proof}
+解 由 Leibniz 判别法知, $\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}$ 收敛. 再根据例 \ref{ex:12.3.2},
+\[
+  \sum_{n=1}^{\infty}(-1)^{n}\frac{\cos 2n}{n}
+  =\sum_{n=1}^{\infty}\frac{\cos n(2+\pi)}{n}\ \text{收敛}
+  \quad(\text{因}\ 2+\pi\neq 2m\pi,\ m\in\mathbb{Z}).
+\]
+于是,
+\[
+  \sum_{n=1}^{\infty}(-1)^{n}\frac{\sin^{2}n}{n}
+  =\sum_{n=1}^{\infty}(-1)^{n}\frac{1-\cos 2n}{2n}
+  =\frac{1}{2}\biggl[\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}
+  -\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}\cos 2n\biggr]
+\]
+是收敛的.
+
+但是,
+\[
+  \sum_{n=1}^{\infty}\Bigl|(-1)^{n}\frac{\sin^{2}n}{n}\Bigr|
+  =\sum_{n=1}^{\infty}\frac{\sin^{2}n}{n}
+  =\frac{1}{2}\sum_{n=1}^{\infty}\frac{1-\cos 2n}{n}
+\]
+是发散的.
+
+（反证）假设 $\sum_{n=1}^{\infty}\frac{1-\cos 2n}{n}$ 是收敛的, 则由例 \ref{ex:12.3.2} 及定理~\ref{thm:12.1.3} 推得
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n}
+  =\sum_{n=1}^{\infty}\biggl(\frac{1-\cos 2n}{n}+\frac{\cos 2n}{n}\biggr)
+\]
+也收敛. 这与例 \ref{ex:12.2.1} 中 $\sum_{n=1}^{\infty}\frac{1}{n}$ 发散相矛盾.
+\end{proof}
+
+\begin{example}\label{ex:12.3.5}
+(1) 设 $\{a_{n}\}$ 为单调减的正数列, 如果 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 则 $a_{n}=o\bigl(\frac{1}{n}\bigr)$;
+
+(2) 举出例子: $a_{n}\geqslant0$, $\{a_{n}\}$ 单调减且 $a_{n}=o\bigl(\frac{1}{n}\bigr)$, $n\to+\infty$, 但 $\sum_{n=1}^{\infty}a_{n}$ 发散;
+
+(3) 举出例子: $a_{n}\geqslant 0$, $\sum_{n=1}^{\infty}a_{n}$ 收敛, 但 $a_{n}\neq o\bigl(\frac{1}{n}\bigr)$, $n\to+\infty$.
+\end{example}
+
+\begin{proof}
+证明 (1) 因为 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 根据级数的 Cauchy 收敛准则, $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  |a_{n+1}+\cdots+a_{n+p}|<\frac{\varepsilon}{2},\quad\forall p\in\mathbb{N}.
+\]
+特别取 $p=n$, 并由 $\{a_{n}\}$ 单调减得到
+\[
+  na_{2n}\leqslant a_{n+1}+\cdots+a_{2n}<\frac{\varepsilon}{2},
+\]
+\[
+  0\leqslant 2na_{2n}<2\cdot\frac{\varepsilon}{2}=\varepsilon,
+\]
+\[
+  \lim_{n\to+\infty}2na_{2n}=0.
+\]
+又因为
+\[
+  0\leqslant(2n+1)a_{2n+1}\leqslant 2na_{2n}+a_{2n+1}\to 0+0=0\quad(n\to+\infty),
+\]
+所以
+\[
+  \lim_{n\to+\infty}(2n+1)a_{2n+1}=0.
+\]
+根据\extref{定理 1.1.1} 得到
+\[
+  \lim_{n\to+\infty}\frac{a_{n}}{1/n}=\lim_{n\to+\infty}na_{n}=0,
+  \quad\text{即}\ a_{n}=o\Bigl(\frac{1}{n}\Bigr),\ n\to+\infty.
+\]
+
+(2) 显然,
+\[
+  a_{n}=\frac{1}{(n+1)\ln(n+1)}=o\Bigl(\frac{1}{n}\Bigr)\quad(n\to+\infty),
+\]
+且 $\{a_{n}\}$ 单调减, $a_{n}\geqslant0$. 但是, $\sum_{n=1}^{\infty}\frac{1}{(n+1)\ln(n+1)}$ 发散.
+
+(3) 设
+\[
+  a_{n}=\left\{\begin{array}
+{ll}
+    0, & n\neq m^{2},\\[2pt]
+    \dfrac{1}{m^{2}}, & n=m^{2},
+\end{array}\right.\quad m=1,2,\cdots
+\]
+或
+\[
+  a_{n}=\left\{\begin{array}
+{ll}
+    \displaystyle\frac{1}{2^{n}}, & n\neq m^{2},\\[6pt]
+    \displaystyle\frac{1}{m^{2}}, & n=m^{2},
+\end{array}\right.\quad m=1,2,\cdots.
+\]
+则 $a_{n}\geqslant0$（后者 $a_{n}>0$）, $\sum_{n=1}^{\infty}a_{n}$ 收敛, 但 $a_{n}\neq o\bigl(\frac{1}{n}\bigr)$, $n\to+\infty$.
+\end{proof}
+% ===== PART-B =====
+
+% ===== PART-B =====
+% ---------- 绝对收敛与条件收敛 ----------
+
+\begin{theorem}\label{thm:12.3.4}
+$\sum_{n=1}^{\infty}|a_{n}|$ 收敛蕴涵 $\sum_{n=1}^{\infty}a_{n}$ 收敛. 反之不真.
+\end{theorem}
+
+\begin{proof}
+因为 $\sum_{n=1}^{\infty}|a_{n}|$ 收敛, 故由级数的 Cauchy 收敛准则, $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  |a_{n+1}|+\cdots+|a_{n+p}|<\varepsilon,\quad\forall p\in\mathbb{N},
+\]
+则
+\[
+  |a_{n+1}+\cdots+a_{n+p}|\leqslant|a_{n+1}|+\cdots+|a_{n+p}|<\varepsilon.
+\]
+再由级数的 Cauchy 收敛准则, $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+但反之不真. 反例: $\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}$.
+\end{proof}
+
+\begin{definition}\label{def:12.3.1}
+如果 $\sum_{n=1}^{\infty}|a_{n}|$ 收敛, 则称级数 $\sum_{n=1}^{\infty}a_{n}$ 绝对收敛. 根据定理~\ref{thm:12.3.4}, 绝对收敛的级数 $\sum_{n=1}^{\infty}a_{n}$, 它本身必收敛. 如果 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 而 $\sum_{n=1}^{\infty}|a_{n}|$ 发散, 则称级数 $\sum_{n=1}^{\infty}a_{n}$ 是条件收敛的.
+
+例如: $\sum_{n=1}^{\infty}\frac{(-1)^{[\sqrt{n}]}}{n^{2}}$, $\sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}}$ 都是绝对收敛的. 而 $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}$, $\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}\sin^{2}n$（例 \ref{ex:12.3.4}）都是条件收敛的.
+\end{definition}
+
+\begin{definition}\label{def:12.3.2}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为一般级数, 令
+\[
+  a_{n}^{+}=\left\{\begin{aligned}
+    &a_{n}, & a_{n}\geqslant0,\\
+    &0, & a_{n}<0,
+  \end{aligned}\right.
+  \qquad
+  a_{n}^{-}=\left\{\begin{aligned}
+    &0, & a_{n}\geqslant0,\\
+    &-a_{n}, & a_{n}<0,
+  \end{aligned}\right.
+\]
+则 $\sum_{n=1}^{\infty}a_{n}^{+}$, $\sum_{n=1}^{\infty}a_{n}^{-}$ 都是正项级数, 且
+\[
+  \sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}(a_{n}^{+}-a_{n}^{-}),
+  \qquad
+  \sum_{n=1}^{\infty}|a_{n}|=\sum_{n=1}^{\infty}(a_{n}^{+}+a_{n}^{-}).
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:12.3.5}
+(1) $\sum_{n=1}^{\infty}a_{n}$ 绝对收敛 $\Leftrightarrow$ $\sum_{n=1}^{\infty}a_{n}^{+}$ 与 $\sum_{n=1}^{\infty}a_{n}^{-}$ 都收敛;
+
+(2) $\sum_{n=1}^{\infty}a_{n}$ 条件收敛 $\Rightarrow$ $\sum_{n=1}^{\infty}a_{n}^{+}=\sum_{n=1}^{\infty}a_{n}^{-}=+\infty$, 但反之不真.
+\end{theorem}
+
+\begin{proof}
+(1) 易见, $|a_{n}|=a_{n}^{+}+a_{n}^{-}$, $a_{n}^{+}\leqslant|a_{n}|$, $a_{n}^{-}\leqslant|a_{n}|$,
+\[
+  \sum_{n=1}^{N}|a_{n}|=\sum_{n=1}^{N}a_{n}^{+}+\sum_{n=1}^{N}a_{n}^{-}.
+\]
+因此,
+$\sum_{n=1}^{N}|a_{n}|$ 有上界 $\Leftrightarrow$ $\sum_{n=1}^{N}a_{n}^{+}$ 与 $\sum_{n=1}^{N}a_{n}^{-}$ 同时有上界.
+
+即
+$\sum_{n=1}^{\infty}|a_{n}|$ 收敛 $\Leftrightarrow$ $\sum_{n=1}^{\infty}a_{n}^{+}$ 与 $\sum_{n=1}^{\infty}a_{n}^{-}$ 同时收敛.
+
+此时,
+\[
+  \sum_{n=1}^{\infty}|a_{n}|=\sum_{n=1}^{\infty}(a_{n}^{+}+a_{n}^{-})
+  =\sum_{n=1}^{\infty}a_{n}^{+}+\sum_{n=1}^{\infty}a_{n}^{-},
+\]
+\[
+  \sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}(a_{n}^{+}-a_{n}^{-})
+  =\sum_{n=1}^{\infty}a_{n}^{+}-\sum_{n=1}^{\infty}a_{n}^{-}.
+\]
+
+(2) 因为 $\sum_{n=1}^{\infty}a_{n}$ 条件收敛, 即 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 但 $\sum_{n=1}^{\infty}|a_{n}|$ 发散. 根据 (1), $\sum_{n=1}^{\infty}a_{n}^{+}$ 与 $\sum_{n=1}^{\infty}a_{n}^{-}$ 至少有一个发散. （反证）假设有一个收敛, 一个发散, 则
+\[
+  \sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}a_{n}^{+}-\sum_{n=1}^{\infty}a_{n}^{-}
+\]
+发散, 这与已知 $\sum_{n=1}^{\infty}a_{n}$ 收敛相矛盾. 这就证明了 $\sum_{n=1}^{\infty}a_{n}^{+}$ 与 $\sum_{n=1}^{\infty}a_{n}^{-}$ 都发散, 即
+\[
+  \sum_{n=1}^{\infty}a_{n}^{+}=\sum_{n=1}^{\infty}a_{n}^{-}=+\infty.
+\]
+但反之不真. 例如: $a_{n}=(-1)^{n}$,
+\[
+  a_{n}^{+}=\left\{\begin{matrix}
+    1, & n=2k,\\
+    0, & n=2k-1,
+  \end{matrix}\right.
+  \qquad
+  a_{n}^{-}=\left\{\begin{matrix}
+    0, & n=2k,\\
+    1, & n=2k-1.
+  \end{matrix}\right.
+\]
+$\sum_{n=1}^{\infty}a_{n}^{+}=\sum_{n=1}^{\infty}a_{n}^{-}=+\infty$, 而 $\sum_{n=1}^{\infty}a_{n}$ 不收敛, 当然它也不是条件收敛的.
+\end{proof}
+
+\begin{theorem}[绝对收敛级数的特性]\label{thm:12.3.6}
+绝对收敛级数中交换任意（或无穷）多项的次序所得的新级数仍然绝对收敛, 其和不变.
+\end{theorem}
+
+\begin{proof}
+第 1 步, 先设 $\sum_{n=1}^{\infty}a_{n}$ 为收敛的正项级数. 交换任意项的次序后所得新级数为 $\sum_{n=1}^{\infty}b_{n}$. 因此, 新级数的部分和 $\sum_{n=1}^{N}b_{n}$ 是从 $\sum_{n=1}^{\infty}a_{n}$ 中挑出来的有限项构成的和. 于是, 有
+\[
+  \sum_{n=1}^{N}b_{n}\leqslant\sum_{n=1}^{\infty}a_{n}<+\infty,
+\]
+即 $\sum_{n=1}^{\infty}b_{n}$ 的部分和有界, 故由定理~\ref{thm:12.2.1} 知, $\sum_{n=1}^{\infty}b_{n}$ 收敛, 且 $\sum_{n=1}^{\infty}b_{n}\leqslant\sum_{n=1}^{\infty}a_{n}$. 反之, $\sum_{n=1}^{\infty}a_{n}$ 也可看作 $\sum_{n=1}^{\infty}b_{n}$ 交换任意项的次序得到的新级数. 于是, 又有
+\[
+  \sum_{n=1}^{\infty}a_{n}\leqslant\sum_{n=1}^{\infty}b_{n}.
+\]
+综上得到 $\sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}b_{n}$.
+
+第 2 步, 再考虑一般的绝对收敛级数 $\sum_{n=1}^{\infty}a_{n}$. 由定理~\ref{thm:12.3.5}(1),
+\[
+  \sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}a_{n}^{+}-\sum_{n=1}^{\infty}a_{n}^{-}.
+\]
+设交换 $\sum_{n=1}^{\infty}a_{n}$ 的任意项次序所得新级数为 $\sum_{n=1}^{\infty}b_{n}$. 显然, $\sum_{n=1}^{\infty}b_{n}^{+}$, $\sum_{n=1}^{\infty}b_{n}^{-}$ 分别是由 $\sum_{n=1}^{\infty}a_{n}^{+}$, $\sum_{n=1}^{\infty}a_{n}^{-}$ 交换任意项次序所得的新级数. 由于 $\sum_{n=1}^{\infty}a_{n}^{+}$, $\sum_{n=1}^{\infty}a_{n}^{-}$ 都是正项级数, 根据第 1 步知, $\sum_{n=1}^{\infty}b_{n}^{+}=\sum_{n=1}^{\infty}a_{n}^{+}$, $\sum_{n=1}^{\infty}b_{n}^{-}=\sum_{n=1}^{\infty}a_{n}^{-}$, 并且都是收敛的. 再由定理~\ref{thm:12.3.5}(1),
+\[
+  \sum_{n=1}^{\infty}b_{n}=\sum_{n=1}^{\infty}b_{n}^{+}-\sum_{n=1}^{\infty}b_{n}^{-}
+  =\sum_{n=1}^{\infty}a_{n}^{+}-\sum_{n=1}^{\infty}a_{n}^{-}=\sum_{n=1}^{\infty}a_{n}
+\]
+收敛, 且其和不变.
+\end{proof}
+
+\begin{example}\label{ex:12.3.6}
+举例说明: 对于条件收敛级数, 交换它的任意多项的次序, 定理~\ref{thm:12.3.6} 中的结论不成立.
+\end{example}
+
+\begin{proof}
+解 反例: $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}$ 是条件收敛的, $a_{n}=\frac{(-1)^{n-1}}{n}$,
+\[
+  a_{n}^{+}=\left\{\begin{matrix}
+    \dfrac{1}{2k-1}, & n=2k-1,\\[6pt]
+    0, & n=2k,
+  \end{matrix}\right.
+  \qquad
+  a_{n}^{-}=\left\{\begin{matrix}
+    0, & n=2k-1,\\[6pt]
+    \dfrac{1}{2k}, & n=2k.
+  \end{matrix}\right.
+\]
+\[
+  \sum_{n=1}^{\infty}a_{n}^{+}=\sum_{k=1}^{\infty}\frac{1}{2k-1}=+\infty,
+  \qquad
+  \sum_{n=1}^{\infty}a_{n}^{-}=\sum_{k=1}^{\infty}\frac{1}{2k}=+\infty.
+\]
+从
+\[
+\begin{aligned}
+  S&=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}
+     +\frac{1}{7}-\frac{1}{8}+\frac{1}{9}-\frac{1}{10}+\frac{1}{11}-\frac{1}{12}+\cdots\\
+  +\Bigr)\ \frac{1}{2}S&=\ \ \ \ \ \ \frac{1}{2}\ \ \ \ -\frac{1}{4}\ \ \ \ +\frac{1}{6}\ \ \ \ -\frac{1}{8}\ \ \ \ +\frac{1}{10}\ \ \ \ -\frac{1}{12}+\cdots\\
+  \hline
+  \frac{3}{2}S&=1\ \ \ \ +\frac{1}{3}-\frac{1}{2}+\frac{1}{5}\ \ \ \ +\frac{1}{7}-\frac{1}{4}
+     +\frac{1}{9}\ \ \ \ +\frac{1}{11}-\frac{1}{6}+\cdots
+\end{aligned}
+\]
+可看出上述级数是由原级数 $\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n}$ 交换了无穷多项的次序得到的. 它的和为 $\frac{3}{2}S$, 与原级数的和 $S$ 不相等.
+\end{proof}
+
+更一般地, 有下面的 Riemann 定理.
+
+\begin{theorem}[条件收敛级的特性, Riemann]\label{thm:12.3.7}
+设级数 $\sum_{n=1}^{\infty}a_{n}$ 条件收敛, 则适当交换其项的次序, 可使其收敛于任一事先指定的实数 $S$, 也可使其发散.
+\end{theorem}
+
+\begin{proof}
+(1) 设 $|S|<+\infty$.
+
+因为 $\sum_{n=1}^{\infty}a_{n}$ 条件收敛, 由定理~\ref{thm:12.3.5}(2) 知, $\sum_{n=1}^{\infty}a_{n}^{+}=\sum_{n=1}^{\infty}a_{n}^{-}=+\infty$. 于是, 可取 $n_{1}\in\mathbb{N}$ 使
+\[
+  a_{1}^{+}+a_{2}^{+}+\cdots+a_{n_{1}-1}^{+}\leqslant S
+  <a_{1}^{+}+a_{2}^{+}+\cdots+a_{n_{1}-1}^{+}+a_{n_{1}}^{+}
+\]
+（$n_{1}=1$ 表示 $S<a_{n_{1}}^{+}=a_{1}^{+}$）, 这时, 有
+\[
+  0<(a_{1}^{+}+a_{2}^{+}+\cdots+a_{n_{1}-1}^{+}+a_{n_{1}}^{+})-S\leqslant a_{n_{1}}^{+}.
+\]
+再取 $n_{1}'\in\mathbb{N}$, 使
+\[
+  a_{1}^{+}+\cdots+a_{n_{1}}^{+}-a_{1}^{-}-\cdots-a_{n_{1}'-1}^{-}-a_{n_{1}'}^{-}
+  <S\leqslant a_{1}^{+}+\cdots+a_{n_{1}}^{+}-a_{1}^{-}-\cdots-a_{n_{1}'-1}^{-},
+\]
+这时, 有
+\[
+  0<S-\biggl(\sum_{k=1}^{n_{1}}a_{k}^{+}-\sum_{k=1}^{n_{1}'}a_{k}^{-}\biggr)\leqslant a_{n_{1}'}^{-}.
+\]
+再取 $n_{2}\in\mathbb{N}$, 使
+\[
+  \sum_{k=1}^{n_{1}}a_{k}^{+}-\sum_{k=1}^{n_{1}'}a_{k}^{-}+\sum_{k=n_{1}+1}^{n_{2}-1}a_{k}^{+}
+  \leqslant S
+  <\sum_{k=1}^{n_{1}}a_{k}^{+}-\sum_{k=1}^{n_{1}'}a_{k}^{-}+\sum_{k=n_{1}+1}^{n_{2}}a_{k}^{+}.
+\]
+于是, 有
+\[
+  0<\sum_{k=1}^{n_{1}}a_{k}^{+}-\sum_{k=1}^{n_{1}'}a_{k}^{-}
+  +\sum_{k=n_{1}+1}^{n_{2}}a_{k}^{+}-S\leqslant a_{n_{2}}^{+}.
+\]
+依次类推, 可得到一无穷级数, 它是由原级数交换无穷多项的次序得到的新级数. 下面证该级数收敛于 $S$. 事实上, 总有
+\[
+  0<\biggl(\sum_{k=1}^{n_{1}}a_{k}^{+}-\sum_{k=1}^{n_{1}'}a_{k}^{-}
+  +\cdots+\sum_{k=n_{l-1}+1}^{n_{l}}a_{k}^{+}\biggr)-S\leqslant a_{n_{l}}^{+},
+\]
+\[
+  0<S-\biggl(\sum_{k=1}^{n_{1}}a_{k}^{+}-\sum_{k=1}^{n_{1}'}a_{k}^{-}
+  +\cdots+\sum_{k=n_{l-1}+1}^{n_{l}}a_{k}^{+}
+  -\sum_{k=n_{l-1}'+1}^{n_{l}'}a_{k}^{-}\biggr)\leqslant a_{n_{l}'}^{-}.
+\]
+由于 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 根据定理~\ref{thm:12.1.2}, $\lim\limits_{n\to+\infty}a_{n}=0$, 从而有
+\[
+  \lim_{l\to+\infty}a_{n_{l}}^{+}=0=\lim_{l\to+\infty}a_{n_{l}'}^{-}.
+\]
+这就证明了
+\[
+  (a_{1}^{+}+\cdots+a_{n_{1}}^{+})-(a_{1}^{-}+\cdots+a_{n_{1}'}^{-})
+  +(a_{n_{1}+1}^{+}+\cdots+a_{n_{2}}^{+})-(a_{n_{1}'+1}^{-}+\cdots+a_{n_{2}'}^{-})+\cdots
+\]
+的和为 $S$. 由于上述级数的每个括号内有相同的符号, 根据定理~\ref{thm:12.1.5}, 打开括号后的级数也收敛, 且和仍为 $S$.
+
+(2) $S=+\infty$.
+
+取 $n_{1}\in\mathbb{N}$, 使 $\sum_{k=1}^{n_{1}}a_{k}^{+}>1$. 再取 $n_{2}$ 使 $\sum_{k=1}^{n_{1}}a_{k}^{+}-a_{1}^{-}+\sum_{k=n_{1}+1}^{n_{2}}a_{k}^{+}>2$, $\cdots$, 依次可取 $n_{l}$ 使 $\sum_{k=1}^{n_{1}}a_{k}^{+}-a_{1}^{-}+\sum_{k=n_{1}+1}^{n_{2}}a_{k}^{+}-a_{2}^{-}+\cdots-a_{l-1}^{-}+\sum_{k=n_{l-1}+1}^{n_{l}}a_{k}^{+}>l$. 由于 $\lim\limits_{n\to+\infty}a_{n}^{-}=0$, 故当 $l$ 充分大时, 有 $0\leqslant a_{n_{l}-1}^{-}<\frac{1}{2}$. 于是, 由数列极限为 $+\infty$ 的定义知, 适当交换原级数项的次序可使得到的新级数发散到 $+\infty$.
+
+类似可作新级数使其发散到 $-\infty$. 也可作新级数使其部分和无极限.
+\end{proof}
+
+让我们用一个例子来重温一下上述的 Riemann 定理 \ref{thm:12.3.7}.
+
+\begin{example}\label{ex:12.3.7}
+将级数
+\[
+  1-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{4}}
+  +\frac{1}{\sqrt{5}}-\frac{1}{\sqrt{6}}+\cdots
+\]
+的项重新安排如下: 先依次取 $p$ 个正项, 接着依次取 $q$ 个负项, 再接着依次取 $p$ 个正项, 如此下去. 证明: 所得新级数收敛的充分必要条件是 $p=q$; 当 $p>q$ 时, 新级数发散到 $+\infty$; 当 $p<q$ 时, 新级数发散到 $-\infty$.
+\end{example}
+
+\begin{proof}
+证明 由\extref{例 1.4.2} 知, 级数
+\[
+  1+\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{3}}+\cdots+\frac{1}{\sqrt{n}}+\cdots
+  =\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}=\sum_{n=1}^{\infty}\frac{1}{n^{\frac{1}{2}}}
+\]
+发散. 再由 Leibniz 判别法知
+\[
+  1-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{4}}+\cdots
+  +(-1)^{n-1}\frac{1}{\sqrt{n}}+\cdots
+  =\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt{n}}
+\]
+收敛, 因而它是条件收敛的级数.
+
+设重排以后的新级数为 $\sum_{n=1}^{\infty}a_{n}$. 对于任给的正整数 $N$, 记 $m=\bigl[\frac{N}{p+q}\bigr]$, 则当 $N\to+\infty$ 时有 $m\to+\infty$, 且 $m(p+q)\leqslant N<(m+1)(p+q)$. 将 $\sum_{n=1}^{\infty}a_{n}$ 的部分和写成
+\[
+  \sum_{n=1}^{N}a_{n}=\sum_{n=1}^{m(p+q)}a_{n}+\sum_{n=m(p+q)+1}^{N}a_{n}.
+\]
+因为 $N-m(p+q)<p+q$, 这说明等式右端第 2 个和式的项数不超过 $p+q$. 所以, 当 $N\to+\infty$ 时, 有
+\[
+\begin{aligned}
+  \biggl|\sum_{n=m(p+q)+1}^{N}a_{n}\biggr|
+  &\leqslant\sum_{n=m(p+q)+1}^{N}|a_{n}|
+   \leqslant(p+q)\frac{1}{\sqrt{m(p+q)}}
+   =\frac{\sqrt{p+q}}{\sqrt{m}}\to 0
+\end{aligned}
+\]
+（$N\to+\infty$, $m\to+\infty$）. 于是,\[
+\begin{aligned}
+  \sum_{n=1}^{\infty}a_{n}
+  &=\lim_{N\to+\infty}\sum_{n=1}^{N}a_{n}
+   =\lim_{m\to+\infty}\sum_{n=1}^{m(p+q)}a_{n}\\
+  &=\lim_{m\to+\infty}\biggl(\sum_{n=1}^{mp}\frac{1}{\sqrt{2n-1}}
+   -\sum_{n=1}^{mq}\frac{1}{\sqrt{2n}}\biggr)\\
+  &=\lim_{m\to+\infty}\Bigl\{\bigl[\sqrt{2mp}+\bigl(1-\tfrac{1}{\sqrt{2}}\bigr)\beta
+   +O\bigl(\tfrac{1}{\sqrt{m}}\bigr)\bigr]
+   -\bigl[\sqrt{2mq}+\tfrac{1}{\sqrt{2}}\beta+O\bigl(\tfrac{1}{\sqrt{m}}\bigr)\bigr]\Bigr\}\\
+  &=\lim_{m\to+\infty}\bigl[\sqrt{2m}\,(\sqrt{p}-\sqrt{q})
+   +(1-\sqrt{2})\beta+O\bigl(\tfrac{1}{\sqrt{m}}\bigr)\bigr]\\
+  &=\left\{\begin{matrix}
+    (1-\sqrt{2})\beta, & \text{当}\ p=q\ \text{时},\\
+    +\infty, & \text{当}\ p>q\ \text{时},\\
+    -\infty, & \text{当}\ p<q\ \text{时}.
+  \end{matrix}\right.
+\end{aligned}
+\]
+其中第 3 个等式是在引理 \ref{lem:12.3.3} 中取 $f(x)=\frac{1}{\sqrt{x}}$, 立即可得
+\[
+  \sum_{k=1}^{n}\frac{1}{\sqrt{k}}=2\sqrt{n}+\beta+O\Bigl(\frac{1}{\sqrt{n}}\Bigr),
+  \quad n\to+\infty,
+\]
+这里 $\beta$ 为某个常数. 于是,
+\[
+\begin{aligned}
+  \sum_{n=1}^{mp}\frac{1}{\sqrt{2n-1}}
+  &=\sum_{n=1}^{2mp}\frac{1}{\sqrt{n}}-\frac{1}{\sqrt{2}}\sum_{n=1}^{mp}\frac{1}{\sqrt{n}}\\
+  &=\bigl[2\sqrt{2mp}+\beta+O\bigl(\tfrac{1}{\sqrt{2mp}}\bigr)\bigr]
+   -\frac{1}{\sqrt{2}}\bigl[2\sqrt{mp}+\beta+O\bigl(\tfrac{1}{\sqrt{mp}}\bigr)\bigr]\\
+  &=\sqrt{2mp}+\bigl(1-\tfrac{1}{\sqrt{2}}\bigr)\beta+O\bigl(\tfrac{1}{\sqrt{m}}\bigr),
+\end{aligned}
+\]
+\[
+\begin{aligned}
+  \sum_{n=1}^{mq}\frac{1}{\sqrt{2n}}
+  &=\frac{1}{\sqrt{2}}\sum_{n=1}^{mq}\frac{1}{\sqrt{n}}
+   =\frac{1}{\sqrt{2}}\biggl[2\sqrt{mq}+\beta+O\biggl(\frac{1}{\sqrt{mq}}\biggr)\biggr]\\
+  &=\sqrt{2mq}+\frac{1}{\sqrt{2}}\beta+O\biggl(\frac{1}{\sqrt{m}}\biggr).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:12.3.3}
+设 $a\in\mathbb{N}$, 当 $x\geqslant a$ 时函数 $f$ 非负单调减, 则极限
+\[
+  \lim_{n\to+\infty}\biggl(\sum_{k=a}^{n}f(k)-\int_{a}^{n}f(x)\,\mathrm{d}x\biggr)=\alpha
+\]
+存在, 且 $0\leqslant\alpha\leqslant f(a)$. 更进一步, 如果 $\lim\limits_{x\to+\infty}f(x)=0$, 则
+\[
+  \biggl|\sum_{k=a}^{[\xi]}f(k)-\int_{a}^{\xi}f(x)\,\mathrm{d}x-\alpha\biggr|
+  \leqslant f(\xi-1),
+\]
+其中 $\xi\geqslant a+1$.
+
+(1) 取 $f(x)=\frac{1}{\sqrt{x}}$, $a=1$, $\alpha=\beta+2$ 得到
+\[
+\begin{aligned}
+  \biggl|\sum_{k=1}^{n}\frac{1}{\sqrt{k}}-2\sqrt{n}-\beta\biggr|
+  &=\biggl|\sum_{k=1}^{n}\frac{1}{\sqrt{k}}-2\sqrt{n}+2-\alpha\biggr|\\
+  &=\biggl|\sum_{k=1}^{n}\frac{1}{\sqrt{k}}-\int_{1}^{n}\frac{\mathrm{d}x}{\sqrt{x}}-\alpha\biggr|
+   \leqslant\frac{1}{\sqrt{n-1}},
+\end{aligned}
+\]
+即
+\[
+  \sum_{k=1}^{n}\frac{1}{\sqrt{k}}=2\sqrt{n}+\beta+O\Bigl(\frac{1}{\sqrt{n}}\Bigr),
+  \quad n\to+\infty.
+\]
+
+(2) 取 $f(x)=\frac{1}{x}$, $a=1$, $\alpha=C$ 得到
+\[
+  \biggl|\sum_{k=1}^{n}\frac{1}{k}-\ln n-C\biggr|
+  =\biggl|\sum_{k=1}^{n}\frac{1}{k}-\ln n-\alpha\biggr|
+  \leqslant\frac{1}{n-1},
+\]
+即
+\[
+  \sum_{k=1}^{n}\frac{1}{k}=\ln n+C+O\Bigl(\frac{1}{n}\Bigr),
+  \quad n\to+\infty,
+\]
+这里的常数 $C$ 称为 Euler 常数（参阅\extref{定理 1.4.2}(4)）. 可证 $C=0.57721\cdots$.
+\end{lemma}
+
+\begin{proof}
+证明 令
+\[
+  g(\xi)=\sum_{k=a}^{[\xi]}f(k)-\int_{a}^{\xi}f(x)\,\mathrm{d}x,
+\]
+这里 $a\in\mathbb{N}$, 有
+\[
+\begin{aligned}
+  g(n)-g(n+1)
+  &=-f(n+1)+\int_{n}^{n+1}f(x)\,\mathrm{d}x\\
+  &\geqslant-f(n+1)+f(n+1)=0.
+\end{aligned}
+\]
+另一方面,
+\[
+  g(n)=\sum_{k=a}^{n-1}\biggl(f(k)-\int_{k}^{k+1}f(x)\,\mathrm{d}x\biggr)+f(n)
+  \geqslant\sum_{k=a}^{n-1}(f(k)-f(k))+f(n)=f(n)\geqslant0.
+\]
+这说明 $\{g(n)\}$ 是一个非负单调减的数列且有下界 $0$. 因此,
+$\alpha=\lim\limits_{n\to+\infty}g(n)
+=\lim\limits_{n\to+\infty}\bigl[\sum_{k=a}^{n}f(k)-\int_{a}^{n}f(x)\,\mathrm{d}x\bigr]$
+存在且有限. 由于 $0\leqslant g(n)\leqslant g(a)=f(a)$, 故 $0\leqslant\alpha\leqslant f(a)$.
+
+如果进一步假定 $\lim\limits_{x\to+\infty}f(x)=0$, 则
+\[
+\begin{aligned}
+  g(\xi)-\alpha
+  &=\sum_{k=a}^{[\xi]}f(k)-\int_{a}^{\xi}f(x)\,\mathrm{d}x
+   -\lim_{n\to+\infty}\biggl[\sum_{k=a}^{n}f(k)-\int_{a}^{n}f(x)\,\mathrm{d}x\biggr]\\
+  &=\sum_{k=a}^{[\xi]}f(k)-\int_{a}^{[\xi]}f(x)\,\mathrm{d}x
+   -\int_{[\xi]}^{\xi}f(x)\,\mathrm{d}x
+   -\lim_{n\to+\infty}\biggl[\sum_{k=a}^{n}f(k)-\int_{a}^{n}f(x)\,\mathrm{d}x\biggr]\\
+  &=-\int_{[\xi]}^{\xi}f(x)\,\mathrm{d}x
+   -\lim_{n\to+\infty}\biggl(\sum_{k=[\xi]+1}^{n}f(k)-\int_{[\xi]}^{n}f(x)\,\mathrm{d}x\biggr)\\
+  &=-\int_{[\xi]}^{\xi}f(x)\,\mathrm{d}x
+   +\lim_{n\to+\infty}\sum_{k=[\xi]+1}^{n}\int_{k-1}^{k}\bigl[f(x)-f(k)\bigr]\,\mathrm{d}x\\
+  &\leqslant\lim_{n\to+\infty}\sum_{k=[\xi]+1}^{n}\int_{k-1}^{k}\bigl[f(k-1)-f(k)\bigr]\,\mathrm{d}x
+   =f([\xi])\leqslant f(\xi-1).
+\end{aligned}
+\]
+类似地, 有
+\[
+\begin{aligned}
+  g(\xi)-\alpha
+  &=-\int_{[\xi]}^{\xi}f(x)\,\mathrm{d}x
+   +\lim_{n\to+\infty}\sum_{k=[\xi]+1}^{n}\int_{k-1}^{k}\bigl[f(x)-f(k)\bigr]\,\mathrm{d}x\\
+  &\geqslant-\int_{[\xi]}^{\xi}f(x)\,\mathrm{d}x
+   \geqslant-\bigl(\xi-[\xi]\bigr)f\bigl([\xi]\bigr)
+   \geqslant-f\bigl([\xi]\bigr)\geqslant-f(\xi-1).
+\end{aligned}
+\]
+至此, 我们已经证得了
+\[
+  \biggl|\sum_{k=a}^{[\xi]}f(k)-\int_{a}^{\xi}f(x)\,\mathrm{d}x-\alpha\biggr|
+  =|g(\xi)-\alpha|\leqslant f(\xi-1).
+\]
+\end{proof}
+
+\begin{example}\label{ex:12.3.8}
+(1) 取 $f(x)=\frac{1}{\sqrt{x}}$, $a=1$, $\alpha=\beta+2$ 得到
+\[
+\begin{aligned}
+  \biggl|\sum_{k=1}^{n}\frac{1}{\sqrt{k}}-2\sqrt{n}-\beta\biggr|
+  &=\biggl|\sum_{k=1}^{n}\frac{1}{\sqrt{k}}-2\sqrt{n}+2-\alpha\biggr|\\
+  &=\biggl|\sum_{k=1}^{n}\frac{1}{\sqrt{k}}-\int_{1}^{n}\frac{\mathrm{d}x}{\sqrt{x}}-\alpha\biggr|
+   \leqslant\frac{1}{\sqrt{n-1}},
+\end{aligned}
+\]
+即
+\[
+  \sum_{k=1}^{n}\frac{1}{\sqrt{k}}=2\sqrt{n}+\beta+O\Bigl(\frac{1}{\sqrt{n}}\Bigr),
+  \quad n\to+\infty.
+\]
+
+(2) 取 $f(x)=\frac{1}{x}$, $a=1$, $\alpha=C$ 得到
+\[
+  \biggl|\sum_{k=1}^{n}\frac{1}{k}-\ln n-C\biggr|
+  =\biggl|\sum_{k=1}^{n}\frac{1}{k}-\ln n-\alpha\biggr|
+  \leqslant\frac{1}{n-1},
+\]
+即
+\[
+  \sum_{k=1}^{n}\frac{1}{k}=\ln n+C+O\Bigl(\frac{1}{n}\Bigr),
+  \quad n\to+\infty,
+\]
+这里的常数 $C$ 称为 Euler 常数（参阅\extref{定理 1.4.2}(4)）. 可证 $C=0.57721\cdots$.
+\end{example}
+
+\begin{exblock}{练习题 12.3}
+\begin{enumerate}
+  \item 应用 Cauchy 收敛原理讨论下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{2n-1}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin n}{2^{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{\cos n!}{n(n+1)}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{a\cos n+b\sin n}{n(n+\sin n!)}$.
+  \end{enumerate}
+  \item 应用 Cauchy 收敛原理及 $\bigl|\sum_{n=N+1}^{N+p}(-1)^{n-1}a_{n}\bigr|\leqslant a_{N}$ 证明交错级数的 Leibniz 判别法.
+  \item 设 $a_{n}\leqslant c_{n}\leqslant b_{n}$, $n=1,2,\cdots$, 如果 $\sum_{n=1}^{\infty}a_{n}$, $\sum_{n=1}^{\infty}b_{n}$ 都是收敛级数. 证明: $\sum_{n=1}^{\infty}c_{n}$ 也收敛. 如果 $\sum_{n=1}^{\infty}a_{n}$, $\sum_{n=1}^{\infty}b_{n}$ 都发散, 结论如何?
+  \item 在交错级数的 Leibniz 判别法中, 如果去掉 $\{a_{n}\}$ 单调减这个条件, 结论可能不成立. 试以下例
+  \[
+    \sum_{n=3}^{\infty}\frac{1}{\sqrt{\bigl[\frac{n+1}{2}\bigr]+(-1)^{n}}}
+    =\frac{1}{\sqrt{2}-1}-\frac{1}{\sqrt{2}+1}
+    +\frac{1}{\sqrt{3}-1}-\frac{1}{\sqrt{3}+1}+\cdots
+\]
+  说明之.
+  \item 讨论下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{\sqrt{n}}{n+1}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{\sqrt[n]{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\sin\frac{1}{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}$.
+  \end{enumerate}
+  \item 设 $\{a_{n}\}$ 单调减趋于 $0$, 讨论级数 $\sum_{n=1}^{\infty}a_{n}\cos nx$, $\sum_{n=1}^{\infty}a_{n}\sin nx$ 的敛散性.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 为一个收敛级数, 如果 $\lim\limits_{n\to+\infty}\frac{b_{n}}{a_{n}}=1$, 能否断言 $\sum_{n=1}^{\infty}b_{n}$ 也为收敛级数? 请研究级数:
+  \[
+    \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt{n}},
+    \qquad
+    \sum_{n=1}^{\infty}\biggl\{\frac{(-1)^{n-1}}{\sqrt{n}}+\frac{1}{n}\biggr\}.
+\]
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 应用分部求和公式证明:
+  \[
+    \lim_{n\to+\infty}\frac{a_{1}+2a_{2}+\cdots+na_{n}}{n}=0.
+\]
+  \item 下列级数, 哪些是绝对收敛的? 哪些是条件收敛的?
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^{a}}$, $a>1$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2^{n}}\cos nx$;
+    \item $\displaystyle\sum_{n=2}^{\infty}(-1)^{n}\frac{1}{n\ln n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{\frac{1}{2}n(n-1)}\frac{n^{10}}{a^{n}}$, $a>1$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{n-1}{n+1}\frac{1}{\sqrt[3]{n}}$;
+    \item $\displaystyle\sum_{n=2}^{\infty}\frac{\sin\frac{n\pi}{4}}{\ln n}$.
+  \end{enumerate}
+  \item 讨论下列级数的绝对收敛性与条件收敛性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{p+\frac{1}{n}}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{\cos 2n}{n^{p}}$.
+  \end{enumerate}
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 条件收敛, 证明:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}a_{n}^{+}=\sum_{n=1}^{\infty}a_{n}^{-}=+\infty$, 逆命题是否成立?
+    \item 记 $S_{N}^{+}=\sum_{n=1}^{N}a_{n}^{+}$, $S_{N}^{-}=\sum_{n=1}^{N}a_{n}^{-}$, 则
+          $\displaystyle\lim_{N\to+\infty}\frac{S_{N}^{+}}{S_{N}^{-}}=1$.
+  \end{enumerate}
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 12.3}
+\begin{enumerate}
+  \item 讨论下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\sin\bigl(\pi\sqrt{n^{2}+1}\bigr)$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\biggl(1+\frac{1}{2}+\cdots+\frac{1}{n}\biggr)\frac{\sin nx}{n}$.
+  \end{enumerate}
+  \item 设级数 $\sum_{n=1}^{\infty}\frac{a_{n}}{n^{\alpha}}$ 收敛, 则 $\forall\beta>\alpha$, 级数 $\sum_{n=1}^{\infty}\frac{a_{n}}{n^{\beta}}$ 也收敛.
+  \item 设 $\lim\limits_{n\to+\infty}n\bigl(\frac{a_{n}}{a_{n+1}}-1\bigr)=\lambda>0$, 则交错级数 $\sum_{n=1}^{\infty}(-1)^{n-1}a_{n}$ 收敛.
+  \item 设 $a>0$, $b>0$. 应用 Raabe 判别法证明: 当 $b-1>a$ 时, 级数
+  \[
+    1+\sum_{n=1}^{\infty}\frac{a(a+1)\cdots(a+n-1)}{b(b+1)\cdots(b+n-1)}
+\]
+  收敛, 其和为 $\frac{b-1}{b-a-1}$. 当 $b-1\leqslant a$ 时, 收敛情况如何?
+  \item 设 $\{a_{n}\}$ 为正的单调增数列, 证明: 级数 $\sum_{n=1}^{\infty}\bigl(\frac{a_{n+1}}{a_{n}}-1\bigr)$ 收敛 $\Leftrightarrow$ $\{a_{n}\}$ 有界.
+  \item 应用 Leibniz 判别法证明:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{[\sqrt{n}]}}{n}$ 收敛;
+    \item $\displaystyle 1-\frac{1}{3}\biggl(1+\frac{1}{2}\biggr)
+          +\frac{1}{5}\biggl(1+\frac{1}{2}+\frac{1}{3}\biggr)
+          -\frac{1}{7}\biggl(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}\biggr)+\cdots$ 收敛.
+  \end{enumerate}
+  \item 讨论下列级数的绝对收敛性与条件收敛性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=2}^{\infty}\ln\biggl(1+\frac{(-1)^{n}}{n^{p}}\biggr)$, $p>0$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}
+          \biggl(\frac{1\cdot 3\cdot 5\cdot\cdots\cdot(2n-1)}
+          {2\cdot 4\cdot 6\cdot\cdots\cdot(2n)}\biggr)^{p}$;
+    \item $\displaystyle\frac{1}{1^{p}}-\frac{1}{2^{q}}+\frac{1}{3^{p}}-\frac{1}{4^{q}}
+          +\frac{1}{5^{p}}-\frac{1}{6^{q}}+\cdots$.
+  \end{enumerate}
+  \item 若将级数
+  \[
+    1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\frac{1}{5}-\frac{1}{6}+\cdots
+\]
+  的项重新这样安排: 先依次取 $p$ 个正项, 接着依次取 $q$ 个负项, 再接着依次取 $p$ 个正项, 如此继续下去. 应用公式
+  $1+\frac{1}{2}+\cdots+\frac{1}{n}=\ln n+C+o(1)$（参阅\extref{定理 1.4.2}(5) 证明）证明所得新级数的和为
+  \[
+    \ln 2+\frac{1}{2}\ln\frac{p}{q}.
+\]
+  \item 将级数
+  \[
+    1-\frac{1}{2^{\alpha}}+\frac{1}{3^{\alpha}}-\frac{1}{4^{\alpha}}
+    +\frac{1}{5^{\alpha}}-\frac{1}{6^{\alpha}}+\cdots,\quad 0<\alpha<1
+\]
+  的项重新安排如下: 先依次取 $p$ 个正项, 接着依次取 $q$ 个负项, 再接着依次取 $p$ 个正项, 如此继续下去. 证明: 所得新级数收敛 $\Leftrightarrow p=q$; 当 $p>q$ 时, 新级数发散到 $+\infty$; 当 $p<q$ 时, 新级数发散到 $-\infty$.
+  \item 如果改变调和级数
+  \[
+    1+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{n}+\cdots
+\]
+  中某些项的符号, 使得 $p$ 个正项后, 跟 $q$ 个负项, 但不改变原来的次序. 证明: 新得的级数仅当 $p=q$ 时收敛.
+  \item 设 $S_{n}=q\cos\alpha+q^{2}\cos 2\alpha+\cdots+q^{n}\cos n\alpha
+        =\sum_{k=1}^{n}q^{k}\cos k\alpha$.
+  \begin{enumerate}
+    \item 证明:
+    \[
+      2qS_{n}\cos\alpha
+      =\bigl[q^{n+1}\cos(n+1)\alpha+S_{n}-q\cos\alpha\bigr]
+      +\bigl[q^{2}+q^{2}S_{n}-q^{n+2}\cos n\alpha\bigr];
+\]
+    \item $\displaystyle\sum_{k=1}^{\infty}q^{k}\cos k\alpha
+          =\lim_{n\to+\infty}S_{n}
+          =\frac{q\cos\alpha-q^{2}}{1+q^{2}-2q\cos\alpha}$, $|q|<1$;
+    \item 利用复数和式 $\displaystyle\sum_{k=0}^{n}z^{k}=\frac{1-z^{n+1}}{1-z}$,
+          取实部推得 (1) 与 (2).
+  \end{enumerate}
+  \item 证明:
+  \[
+    1+\frac{1}{2}+\biggl(\frac{1}{3}-1\biggr)+\frac{1}{4}+\frac{1}{5}
+    +\biggl(\frac{1}{6}-\frac{1}{2}\biggr)+\frac{1}{7}+\frac{1}{8}
+    +\biggl(\frac{1}{9}-\frac{1}{3}\biggr)+\cdots=\ln 3.
+\]
+  \item 设 $S_{n}(x)=\sum_{k=1}^{n}\frac{\sin kx}{k}$.
+  \begin{enumerate}
+    \item 证明: $\displaystyle S_{n}'(x)=\frac{\sin\bigl(n+\frac{1}{2}\bigr)x}{2\sin\frac{x}{2}}-\frac{1}{2}$,
+    \[
+      S_{n}(x)=-\frac{1}{2}\int_{x}^{\pi}\frac{1}{\sin\frac{t}{2}}
+      \sin\bigl(n+\tfrac{1}{2}\bigr)t\,\mathrm{d}t+\frac{1}{2}(\pi-x);
+\]
+    \item $\displaystyle S(x)=\sum_{k=1}^{\infty}\frac{\sin kx}{k}
+          =\left\{\begin{array}
+{ll}
+            0, & x=0,\\[
+2pt]
+            \dfrac{\pi-x}{2}, & 0<x\leqslant\pi.
+\end{array}\right.$
+          （对照例 \ref{ex:16.1.2}）.
+  \end{enumerate}
+  \item 设级数 $\sum_{n=1}^{\infty}a_{n}$ 的前 $n$ 项和 $S_{n}$ 分成两项, 即 $S_{n}=S_{n}^{+}+S_{n}^{-}$, 其中 $S_{n}^{+}$ 与 $S_{n}^{-}$ 分别为正项之和与负项之和. 如果 $\sum_{n=1}^{\infty}a_{n}$ 条件收敛, 证明: $\lim\limits_{n\to+\infty}\frac{S_{n}^{+}}{S_{n}^{-}}=-1$.
+  \item 举出一个发散的交错级数, 使其通项趋于 $0$. 考察级数
+  \[
+    1-\frac{1}{2}+\frac{1}{3^{2}}-\frac{1}{4}+\frac{1}{5^{2}}-\cdots
+    +\frac{1}{(2n-1)^{2}}-\frac{1}{2n}+\cdots.
+\]
+  \item 设 $a_{n}>0$, $a_{n}>a_{n+1}$（$n=1,2,\cdots$）, 且 $\lim\limits_{n\to+\infty}a_{n}=0$. 证明: 级数
+  \[
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{a_{1}+a_{2}+\cdots+a_{n}}{n}
+\]
+  是收敛的.
+\end{enumerate}
+\end{exblock}

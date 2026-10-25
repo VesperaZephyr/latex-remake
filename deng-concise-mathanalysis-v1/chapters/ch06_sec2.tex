@@ -1,0 +1,1387 @@
+\section{换元积分法与分部积分法}\label{sec:6.2}
+
+本节中我们再介绍两种重要的积分方法：换元积分法和分部积分法．
+
+\subsection{换元积分法}
+
+求不定积分是求微商的逆运算．相应于求复合函数微商的链式法则，从逆运算的观点看，就是求不定积分的换元法则．它有两种不同的用法，我们把它写成两个换元法则．
+
+\begin{theorem}[第一换元法或凑微分法]\label{thm:6-3}
+设
+\begin{equation}
+\int g(u)\mathrm{d}u = G(u) + c,\tag*{(1)}
+\end{equation}
+且 $u = \varphi(x)$ 可微，则
+\begin{equation}
+\int g(\varphi(x))\varphi'(x)\mathrm{d}x = G(\varphi(x)) + c.\tag*{(2)}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+只需证明 (2) 的右端的微商等于左端的被积函数．事实上，应用复合函数微商法则，由 (1)，有
+\[
+\left[G\big(\varphi(x)\big)\right]' = G'\big(\varphi(x)\big)\varphi'(x) = g\big(\varphi(x)\big)\varphi'(x).
+\]
+定理 6.3 证毕．
+\end{proof}
+
+这定理的应用方法是，为了计算一个 $x$ 的函数的不定积分，你只需把被积表达式写成
+\[
+g\big(\varphi(x)\big)\varphi'(x)\mathrm{d}x = g\big(\varphi(x)\big)\mathrm{d}\varphi(x),
+\]
+那就可以把它化为求 $g(u)$ 的不定积分，即
+\[
+\int g\big(\varphi(x)\big)\varphi'(x)\mathrm{d}x
+= \int g\big(\varphi(x)\big)\mathrm{d}\varphi(x)
+= \int g(u)\mathrm{d}u = G(u) + c = G\big(\varphi(x)\big) + c.
+\]
+之所以称为凑微分法，是因为上述过程完全是在被积表达式中进行微分运算，不过在过去求微分时，那个中间变量是很明显的，而现在求积分时，那个中间变量就不大容易看出，这就需要``凑''了．例如，
+\begin{align*}
+\int\sin x\cos x\mathrm{d}x &= \int\sin x\mathrm{d}\sin x = \frac{1}{2}\sin^{2}x + c\text{；}\\
+\int\sin x\cos x\mathrm{d}x &= \int-\cos x\mathrm{d}\cos x = -\frac{1}{2}\cos^{2}x + c\text{；}\\
+\int\sin x\cos x\mathrm{d}x &= \frac{1}{2}\int\sin 2x\mathrm{d}x
+= \frac{1}{4}\int\sin 2x\mathrm{d}2x = -\frac{1}{4}\cos 2x + c\text{．}
+\end{align*}
+这里中间变量分别取为 $u = \sin x$，$u = \cos x$ 和 $u = 2x$．从表面上看，结果似乎不一样，但实际上它们最多相差一个常数，这是因为
+\[
+\frac{1}{2}\sin^{2}x = \frac{1}{2}\big(1 - \cos^{2}x\big)
+= \frac{1}{2} - \frac{1}{2}\cos^{2}x
+= \frac{1}{2} - \frac{1}{4}\big(1 + \cos 2x\big)
+= \frac{1}{4} - \frac{1}{4}\cos 2x\;.
+\]
+计算过程表明，求积分要比求微分复杂得多，灵活得多．由于在积分过程中实际上是作了变换（又称变量代换）$u = \varphi(x)$，使积分化为
+\[
+\int f(x)\mathrm{d}x = \int g(u)\mathrm{d}u,
+\]
+故又称为换元法．像上面这样一些简单的变换，一般并不需要写出，即使是复杂一些的，当熟练以后也可不写出来，而是直接凑微分．
+
+\begin{example}\label{ex:6-2-1}
+求 $\displaystyle\int\frac{\mathrm{d}x}{a^{2}+x^{2}}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int\frac{\mathrm{d}x}{a^{2}+x^{2}}
+= \frac{1}{a}\int\frac{\mathrm{d}\frac{x}{a}}{1+\left(\frac{x}{a}\right)^{2}}
+= \frac{1}{a}\arctan\frac{x}{a} + c.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-2}
+求 $\displaystyle\int\frac{\mathrm{d}x}{x^{2}-a^{2}}$．
+\end{example}
+
+\begin{proof}[解]
+\begin{align*}
+\int\frac{\mathrm{d}x}{x^{2}-a^{2}}
+&= \frac{1}{2a}\int\frac{a-x+a+x}{(x-a)(x+a)}\mathrm{d}x\\
+&= \frac{1}{2a}\int\left(\frac{1}{x-a}-\frac{1}{x+a}\right)\mathrm{d}x\\
+&= \frac{1}{2a}\int\frac{\mathrm{d}(x-a)}{x-a}-\frac{1}{2a}\int\frac{\mathrm{d}(x+a)}{x+a}\\
+&= \frac{1}{2a}\ln|x-a|-\frac{1}{2a}\ln|x+a|+c
+= \frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|+c.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:6-2-3}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{a^{2}-x^{2}}}\quad(a > 0)$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int\frac{\mathrm{d}x}{\sqrt{a^{2}-x^{2}}}
+= \int\frac{\mathrm{d}\frac{x}{a}}{\sqrt{1-\left(\frac{x}{a}\right)^{2}}}
+= \arcsin\frac{x}{a} + c.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-4}
+求 $\displaystyle\int\sec x\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解法 1]
+\[
+\int\sec x\mathrm{d}x
+= \int\sec x\,\frac{\sec x+\tan x}{\sec x+\tan x}\mathrm{d}x
+= \int\frac{\mathrm{d}(\sec x+\tan x)}{\sec x+\tan x}
+= \ln\left|\sec x+\tan x\right|+c.
+\]
+\end{proof}
+
+\begin{proof}[解法 2]
+\[
+\int\sec x\mathrm{d}x = \int\frac{\cos x}{\cos^{2}x}\mathrm{d}x = \int\frac{\mathrm{d}\sin x}{1-\sin^{2}x}\;,
+\]
+由例~\ref{ex:6-2-2} 知
+\[
+\int\sec x\mathrm{d}x
+= -\frac{1}{2}\ln\left|\frac{\sin x-1}{\sin x+1}\right|+c
+= \frac{1}{2}\ln\left|\frac{1+\sin x}{1-\sin x}\right|+c.
+\]
+\end{proof}
+
+\begin{proof}[解法 3]
+\begin{align*}
+&\int\sec x\mathrm{d}x\\
+={}& \int\frac{\mathrm{d}x}{\cos^{2}\frac{x}{2}-\sin^{2}\frac{x}{2}}
+= 2\int\frac{\sec^{2}\frac{x}{2}\mathrm{d}\frac{x}{2}}{1-\tan^{2}\frac{x}{2}}\\
+={}& 2\int\frac{\mathrm{d}\tan\frac{x}{2}}{1-\tan^{2}\frac{x}{2}}
+= -\ln\left|\frac{\tan\frac{x}{2}-1}{\tan\frac{x}{2}+1}\right|+c\\
+={}& \ln\left|\frac{\tan\frac{x}{2}+\tan\frac{\pi}{4}}{1-\tan\frac{x}{2}\tan\frac{\pi}{4}}\right|+c
+= \ln\left|\tan\left(\frac{x}{2}+\frac{\pi}{4}\right)\right|+c.
+\end{align*}
+\end{proof}
+
+上面三种解法得到三种形式不同的结果，请读者验证，它们互相之间只相差一个常数．
+
+\begin{example}\label{ex:6-2-5}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x(1-x)}}$．
+\end{example}
+
+\begin{proof}[解法 1]
+\[
+\int\frac{\mathrm{d}x}{\sqrt{x(1-x)}}
+= \int\frac{\mathrm{d}x}{\sqrt{x-x^{2}}}
+= \int\frac{\mathrm{d}\left(x-\frac{1}{2}\right)}{\sqrt{\frac{1}{4}-\left(x-\frac{1}{2}\right)^{2}}},
+\]
+由例~\ref{ex:6-2-3} 得
+\[
+\int\frac{\mathrm{d}x}{\sqrt{x(1-x)}}
+= \arcsin\frac{x-\frac{1}{2}}{\frac{1}{2}}+c
+= \arcsin(2x-1)+c.
+\]
+\end{proof}
+
+\begin{proof}[解法 2]
+\[
+\int\frac{\mathrm{d}x}{\sqrt{x(1-x)}}
+= \int\frac{2\mathrm{d}\sqrt{x}}{\sqrt{1-(\sqrt{x})^{2}}}
+= 2\arcsin\sqrt{x}+c\;.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-6}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x}(1+x)}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int\frac{\mathrm{d}x}{\sqrt{x}(1+x)}
+= \int 2\frac{\mathrm{d}\sqrt{x}}{1+x}
+= 2\int\frac{\mathrm{d}\sqrt{x}}{1+(\sqrt{x})^{2}}
+= 2\arctan\sqrt{x}+c.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-7}
+求 $\displaystyle\int\frac{\mathrm{d}x}{1+\mathrm{e}^{x}}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int\frac{\mathrm{d}x}{1+\mathrm{e}^{x}}
+= \int\frac{\mathrm{e}^{-x}}{1+\mathrm{e}^{-x}}\mathrm{d}x
+= -\int\frac{\mathrm{d}\mathrm{e}^{-x}}{1+\mathrm{e}^{-x}}
+= -\int\frac{\mathrm{d}(1+\mathrm{e}^{-x})}{1+\mathrm{e}^{-x}}
+= -\ln\left|1+\mathrm{e}^{-x}\right|+c.
+\]
+\end{proof}
+
+回忆第一换元法，我们有公式
+\[
+\int g\big(\varphi(x)\big)\varphi'(x)\mathrm{d}x = \int g(u)\mathrm{d}u = G\big(\varphi(x)\big)+c.
+\]
+在那里，把求 $g\big(\varphi(x)\big)\varphi'(x)$ 的不定积分化为求 $g(u)$ 的原函数 $G(u)$，从而求得 $g\big(\varphi(x)\big)\varphi'(x)$ 的一个原函数 $F(x)=G\big(\varphi(x)\big)$．现在我们反过来看，如果要求的是 $g(x)$ 的原函数，但不好求，我们用 $x=\varphi(t)$ 作变换，化成好求的积分，这就是第二换元积分法．
+
+\begin{theorem}[第二换元法]\label{thm:6-4}
+设 $x = \varphi(t)$ 有连续的微商且 $\varphi'(t) \neq 0$．若
+\begin{equation}
+\int g\big(\varphi(t)\big)\varphi'(t)\mathrm{d}t = G(t) + c,\tag*{(3)}
+\end{equation}
+则
+\begin{equation}
+\int g(x)\mathrm{d}x = G\big(\varphi^{-1}(x)\big) + c.\tag*{(4)}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+只需证明 (4) 式右端的微商等于左端的被积函数．由于 $\varphi'(t) \neq 0$，$\varphi(t)$ 连续且严格单调，故有反函数 $t = \varphi^{-1}(x)$ 存在，且 $\dfrac{\mathrm{d}t}{\mathrm{d}x} = \dfrac{1}{\varphi'(t)}$，于是
+\[
+\frac{\mathrm{d}}{\mathrm{d}x}G\big(\varphi^{-1}(x)\big)
+\overset{t=\varphi^{-1}(x)}{=} \frac{\mathrm{d}G}{\mathrm{d}t}\frac{\mathrm{d}t}{\mathrm{d}x}
+= g\big(\varphi(t)\big)\varphi'(t)\frac{1}{\varphi'(t)}
+= g\big(\varphi(t)\big) \overset{t=\varphi^{-1}(x)}{=} g(x).
+\]
+定理 6.4 证毕．
+\end{proof}
+
+定理 6.4 的应用方法是，$g(x)$ 的不定积分不好求，我们引入变量代换 $x = \varphi(t)$，化成了求 $g\big(\varphi(t)\big)\varphi'(t)$ 的不定积分，积出来以后再用 $t = \varphi^{-1}(x)$ 代回去便可，即
+\begin{align*}
+\int g(x)\mathrm{d}x &\overset{x=\varphi(t)}{=} \int g\big(\varphi(t)\big)\mathrm{d}\varphi(t)\\
+&= \int g\big(\varphi(t)\big)\varphi'(t)\mathrm{d}t = G(t)+c
+\overset{t=\varphi^{-1}(x)}{=} G\big(\varphi^{-1}(x)\big)+c.
+\end{align*}
+
+\begin{example}\label{ex:6-2-8}
+求 $\displaystyle\int\sqrt{a^{2}-x^{2}}\,\mathrm{d}x\quad(a > 0)$．
+\end{example}
+
+\begin{proof}[解]
+令 $x = a\sin t$，$|t| < \dfrac{\pi}{2}$，则 $\mathrm{d}x = a\cos t\,\mathrm{d}t$．
+\[
+\begin{aligned}
+\int\sqrt{a^{2}-x^{2}}\mathrm{d}x
+&= \int a\cos t\cdot a\cos t\mathrm{d}t
+= a^{2}\int\cos^{2}t\mathrm{d}t
+= \frac{a^{2}}{2}\int(1+\cos 2t)\mathrm{d}t\\
+&= \frac{a^{2}}{2}\left(t+\frac{1}{2}\sin 2t\right)+c
+= \frac{a^{2}}{2}\big(t+\sin t\cos t\big)+c.
+\end{aligned}
+\]
+为了较方便地代回原变量 $x$，作辅助三角形如图~\ref{fig:6-2} 所示，则
+\[
+\begin{aligned}
+\int\sqrt{a^{2}-x^{2}}\mathrm{d}x
+&= \frac{a^{2}}{2}\big(t+\sin t\cos t\big)+c
+= \frac{a^{2}}{2}\left(\arcsin\frac{x}{a}+\frac{x}{a}\cdot\frac{\sqrt{a^{2}-x^{2}}}{a}\right)+c\\
+&= \frac{a^{2}}{2}\arcsin\frac{x}{a}+\frac{x}{2}\sqrt{a^{2}-x^{2}}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=0.55\textwidth]{fig6-2.png}
+\figcap{图 6-2}\label{fig:6-2}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=0.55\textwidth]{fig6-3.png}
+\figcap{图 6-3}\label{fig:6-3}
+\end{minipage}
+\end{figure}
+
+\begin{example}\label{ex:6-2-9}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}\quad(a > 0)$．
+\end{example}
+
+\begin{proof}[解]
+令 $x = a\tan t$，$|t| < \dfrac{\pi}{2}$，则 $\mathrm{d}x = a\sec^{2}t\,\mathrm{d}t$（见图~\ref{fig:6-3}）．
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}
+&= \int\frac{a\sec^{2}t}{a\sec t}\mathrm{d}t
+= \int\sec t\mathrm{d}t
+= \ln|\tan t+\sec t|+c\\
+&= \ln\left|\frac{x}{a}+\frac{\sqrt{a^{2}+x^{2}}}{a}\right|+c
+= \ln\left|x+\sqrt{a^{2}+x^{2}}\right|+c_{1}.
+\end{aligned}
+\]
+其中 $c_{1} = c - \ln a$．
+\end{proof}
+
+\begin{example}\label{ex:6-2-10}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x^{2}-a^{2}}}\quad(a > 0)$．
+\end{example}
+
+\begin{proof}[解]
+令 $x = a\sec t$，$0 < t < \dfrac{\pi}{2}$，则 $\mathrm{d}x = a\sec t\tan t\,\mathrm{d}t$．
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}-a^{2}}}
+&= \int\frac{a\sec t\tan t}{a\tan t}\mathrm{d}t
+= \int\sec t\mathrm{d}t
+= \ln|\tan t+\sec t|+c\\
+&= \ln\left|\frac{\sqrt{x^{2}-a^{2}}}{a}+\frac{x}{a}\right|+c
+= \ln\left|x+\sqrt{x^{2}-a^{2}}\right|+c_{1}.
+\end{aligned}
+\]
+其中 $c_{1} = c - \ln a$（见图~\ref{fig:6-4}）．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.3\textwidth]{fig6-4.png}
+\figcap{图 6-4}\label{fig:6-4}
+\end{figure}
+
+总结上面几例，我们利用三角公式，对一些无理式作了如下代换：
+
+对于 $\sqrt{a^{2}-x^{2}}$，令 $x = a\sin t$，$\left|t\right| < \dfrac{\pi}{2}$；
+
+对于 $\sqrt{x^{2}+a^{2}}$，令 $x = a\tan t$，$\left|t\right| < \dfrac{\pi}{2}$；
+
+对于 $\sqrt{x^{2}-a^{2}}$，令 $x = a\sec t$，$0 < t < \dfrac{\pi}{2}$．
+
+目的在于消去根号．因为它们比较典型，故特别称之为三角代换．
+
+除三角代换外，也可用其他的代换消去根号．
+
+\begin{example}\label{ex:6-2-11}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x}+\sqrt[3]{x}}$．
+\end{example}
+
+\begin{proof}[解]
+令 $x = t^{6}$，则 $\mathrm{d}x = 6t^{5}\mathrm{d}t$，
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{\sqrt{x}+\sqrt[3]{x}}
+&= \int\frac{6t^{5}\mathrm{d}t}{t^{3}+t^{2}}
+= 6\int\frac{t^{3}}{t+1}\mathrm{d}t
+= 6\int\frac{t^{3}+1-1}{t+1}\mathrm{d}t\\
+&= 6\int\left(t^{2}-t+1-\frac{1}{t+1}\right)\mathrm{d}t\\
+&= 6\left(\frac{1}{3}t^{3}-\frac{1}{2}t^{2}+t-\ln|t+1|\right)+c\\
+&= 2x^{\frac{1}{2}}-3x^{\frac{1}{3}}+6x^{\frac{1}{6}}-6\ln\left|x^{\frac{1}{6}}+1\right|+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-12}
+求 $\displaystyle\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}$．
+\end{example}
+
+\begin{proof}[解法 1]
+用三角代换．令 $x = \sec t$，$0 < t < \dfrac{\pi}{2}$，则 $\mathrm{d}x = \sec t\tan t\,\mathrm{d}t$，
+\[
+\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}
+= \int\frac{\sec t\tan t}{\sec^{2}t\tan t}\mathrm{d}t
+= \int\cos t\mathrm{d}t
+= \sin t + c
+= \frac{\sqrt{x^{2}-1}}{x}+c\,.
+\]
+\end{proof}
+
+\begin{proof}[解法 2]
+作倒代换 $x = \dfrac{1}{t}$，则 $\mathrm{d}x = -\dfrac{1}{t^{2}}\mathrm{d}t$，
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}
+&= \int\frac{t^{2}}{\sqrt{\frac{1}{t^{2}}-1}}\cdot\frac{-1}{t^{2}}\mathrm{d}t
+= -\int\frac{|t|}{\sqrt{1-t^{2}}}\mathrm{d}t
+= -\operatorname{sgn}t\int\frac{1}{2}\frac{\mathrm{d}t^{2}}{\sqrt{1-t^{2}}}\\
+&= \operatorname{sgn}t\int\frac{\mathrm{d}(1-t^{2})}{2\sqrt{1-t^{2}}}
+= \sqrt{1-t^{2}}\operatorname{sgn}t+c
+= \frac{\sqrt{x^{2}-1}}{|x|}\operatorname{sgn}x+c
+= \frac{\sqrt{x^{2}-1}}{x}+c\,.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[解法 3]
+用凑微分法．
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}
+&= -\int\frac{\mathrm{d}\frac{1}{x}}{|x|\sqrt{1-\frac{1}{x^{2}}}}
+= -\frac{1}{2}\operatorname{sgn}x\int\frac{\mathrm{d}\frac{1}{x^{2}}}{\sqrt{1-\frac{1}{x^{2}}}}\\
+&= \operatorname{sgn}x\int\frac{\mathrm{d}\left(1-\frac{1}{x^{2}}\right)}{2\sqrt{1-\frac{1}{x^{2}}}}
+= \operatorname{sgn}x\sqrt{1-\frac{1}{x^{2}}}+c
+= \frac{\sqrt{x^{2}-1}}{x}+c\,.
+\end{aligned}
+\]
+\end{proof}
+
+在前面的例子中，有几个积分是经常要遇到的，我们把它们写出来，作为公式用．
+
+(1)
+\[
+\int\frac{\mathrm{d}x}{x^{2}-a^{2}} = \frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|+c;
+\]
+
+(2)
+\[
+\int\frac{\mathrm{d}x}{x^{2}+a^{2}} = \frac{1}{a}\arctan\frac{x}{a}+c;
+\]
+
+(3)
+\[
+\int\frac{\mathrm{d}x}{\sqrt{a^{2}-x^{2}}} = \arcsin\frac{x}{a}+c;
+\]
+
+(4)
+\[
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}\pm a^{2}}} = \ln\left|x+\sqrt{x^{2}\pm a^{2}}\right|+c;
+\]
+\[
+\int\sec x\mathrm{d}x = \ln|\sec x+\tan x|+c.
+\]
+
+\subsection{分部积分法}
+
+我们从复合函数微分法得出了换元积分法，下面要从乘积的微分法导出分部积分公式．
+
+设 $u$、$v$ 是 $x$ 的可微函数，则
+\[
+\mathrm{d}(uv) = v\mathrm{d}u + u\mathrm{d}v,
+\]
+故
+\[
+\int u\mathrm{d}v = uv - \int v\mathrm{d}u,
+\]
+或
+\[
+\int uv'\,\mathrm{d}x = uv - \int vu'\,\mathrm{d}x.
+\]
+因此，若 $uv'$ 和 $vu'$ 中有一个有原函数，则另一个也有原函数，且上述等式成立．
+
+\begin{theorem}[分部积分公式]\label{thm:6-5}
+设 $u(x)$，$v(x)$ 可导，若 $v(x)u'(x)$ 存在原函数，则 $u(x)v'(x)$ 也存在原函数，且
+\[
+\int u(x)v'(x)\mathrm{d}x = u(x)v(x)-\int v(x)u'(x)\mathrm{d}x,
+\]
+或
+\[
+\int u(x)\mathrm{d}v(x) = u(x)v(x)-\int v(x)\mathrm{d}u(x).
+\]
+\end{theorem}
+
+分部积分法是用于乘积的积分，应用的关键是如何确定函数 $u(x)$ 和 $v(x)$．下面通过例子说明．
+
+\begin{example}\label{ex:6-2-13}
+求 $\displaystyle\int x\cos x\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int x\cos x\mathrm{d}x = \int x\mathrm{d}\sin x = x\sin x-\int\sin x\mathrm{d}x = x\sin x+\cos x+c.
+\]
+这里我们取 $u(x) = x$，$v(x) = \sin x$，则分部积分一次可使 $x$ 的次幂降 1，最后化为三角函数的积分而计算出结果．如果我们取 $v(x) = \dfrac{1}{2}x^{2}$，$u(x) = \cos x$，则
+\[
+\int x\cos x\mathrm{d}x = \frac{1}{2}\int\cos x\mathrm{d}x^{2}
+= \frac{1}{2}x^{2}\cos x-\frac{1}{2}\int x^{2}\mathrm{d}\cos x
+= \frac{1}{2}x^{2}\cos x+\frac{1}{2}\int x^{2}\sin x\mathrm{d}x.
+\]
+结果，分部积分一次，$x$ 的次幂反而增加 1，积分不是简化，而是更复杂了．因此必须掌握如何正确地选取因子作为 $u(x)$．
+\end{proof}
+
+\begin{example}\label{ex:6-2-14}
+求 $\displaystyle\int\arcsin x\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+\int\arcsin x\mathrm{d}x
+&= x\arcsin x-\int x\mathrm{d}\arcsin x
+= x\arcsin x-\int\frac{x}{\sqrt{1-x^{2}}}\mathrm{d}x\\
+&= x\arcsin x+\int\frac{\mathrm{d}(1-x^{2})}{2\sqrt{1-x^{2}}}
+= x\arcsin x+\sqrt{1-x^{2}}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-15}
+求 $\displaystyle\int x^{2}\ln x\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+\int x^{2}\ln x\mathrm{d}x
+&= \frac{1}{3}\int\ln x\mathrm{d}x^{3}
+= \frac{1}{3}x^{3}\ln x-\frac{1}{3}\int x^{3}\mathrm{d}\ln x\\
+&= \frac{1}{3}x^{3}\ln x-\frac{1}{3}\int x^{2}\mathrm{d}x
+= \frac{1}{3}x^{3}\ln x-\frac{1}{9}x^{3}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-16}
+求 $\displaystyle\int x^{2}\mathrm{e}^{-x}\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+\int x^{2}\mathrm{e}^{-x}\mathrm{d}x
+&= -\int x^{2}\mathrm{d}\mathrm{e}^{-x}
+= -x^{2}\mathrm{e}^{-x}+\int\mathrm{e}^{-x}\mathrm{d}x^{2}
+= -x^{2}\mathrm{e}^{-x}+2\int x\mathrm{e}^{-x}\mathrm{d}x
+= -x^{2}\mathrm{e}^{-x}-2\int x\mathrm{d}\mathrm{e}^{-x}\\
+&= -x^{2}\mathrm{e}^{-x}-2\left(x\mathrm{e}^{-x}-\int\mathrm{e}^{-x}\mathrm{d}x\right)\\
+&= -x^{2}\mathrm{e}^{-x}-2x\mathrm{e}^{-x}-2\mathrm{e}^{-x}+c
+= -\mathrm{e}^{-x}\big(x^{2}+2x+2\big)+c.
+\end{aligned}
+\]
+\end{proof}
+
+这里连用了两次分部积分公式，使 $x$ 逐次降幂，最后求出不定积分．有时分部积分后会遇到原来要求的不定积分，这时可通过移项，求出所要求的积分．
+
+\begin{example}\label{ex:6-2-17}
+求 $\displaystyle\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+\int\mathrm{e}^{ax}\cos bx\mathrm{d}x
+&= \frac{1}{a}\int\cos bx\mathrm{d}\mathrm{e}^{ax}
+= \frac{1}{a}\mathrm{e}^{ax}\cos bx-\frac{1}{a}\int\mathrm{e}^{ax}\mathrm{d}\cos bx\\
+&= \frac{1}{a}\mathrm{e}^{ax}\cos bx+\frac{b}{a}\int\mathrm{e}^{ax}\sin bx\mathrm{d}x
+= \frac{1}{a}\mathrm{e}^{ax}\cos bx+\frac{b}{a^{2}}\int\sin bx\mathrm{d}\mathrm{e}^{ax}\\
+&= \frac{1}{a}\mathrm{e}^{ax}\cos bx+\frac{b}{a^{2}}\left(\mathrm{e}^{ax}\sin bx-\int\mathrm{e}^{ax}\mathrm{d}\sin bx\right)\\
+&= \frac{1}{a}\mathrm{e}^{ax}\cos bx+\frac{b}{a^{2}}\mathrm{e}^{ax}\sin bx-\frac{b^{2}}{a^{2}}\int\mathrm{e}^{ax}\cos bx\mathrm{d}x,
+\end{aligned}
+\]
+移项即得
+\[
+\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x
+= \frac{a\cos bx+b\sin bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+c.
+\]
+\end{proof}
+
+这里我们取 $u(x) = \cos bx$，读者不妨试试，若取 $u(x) = \mathrm{e}^{ax}$，会是怎样的情形．用完全类似的方法可以求得
+\[
+\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x
+= \frac{a\sin bx-b\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+c.
+\]
+一般地，下列类型的不定积分总是用分部积分法求积：
+\[
+\int P(x)\sin bx\mathrm{d}x,\quad \int P(x)\cos bx\mathrm{d}x,
+\]
+\[
+\int P(x)\arcsin x\mathrm{d}x,\quad \int P(x)\arctan x\mathrm{d}x,
+\]
+\[
+\int P(x)\mathrm{e}^{ax}\mathrm{d}x,\quad \int P(x)\ln^{m}x\mathrm{d}x,
+\]
+\[
+\int P(\sin x)\mathrm{e}^{ax}\mathrm{d}x,\quad \int P(\cos x)\mathrm{e}^{ax}\mathrm{d}x,
+\]
+其中 $m$ 是正整数，$a$，$b$ 是常数，$P(x)$ 是多项式．但是分部积分法的应用并不限于此，有些积分既可用换元法，又可用分部积分法．此外分部积分还常用来导出递推公式．
+
+\begin{example}\label{ex:6-2-18}
+求 $\displaystyle\int\sqrt{a^{2}-x^{2}}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+在例~\ref{ex:6-2-8} 中已用三角代换求过，下面用分部积分法求积．
+\[
+\begin{aligned}
+\int\sqrt{a^{2}-x^{2}}\mathrm{d}x
+&= \int\frac{a^{2}-x^{2}}{\sqrt{a^{2}-x^{2}}}\mathrm{d}x
+= a^{2}\int\frac{\mathrm{d}x}{\sqrt{a^{2}-x^{2}}}-\int\frac{x^{2}}{\sqrt{a^{2}-x^{2}}}\mathrm{d}x\\
+&= a^{2}\arcsin\frac{x}{a}-\frac{1}{2}\int\frac{x\mathrm{d}x^{2}}{\sqrt{a^{2}-x^{2}}}
+= a^{2}\arcsin\frac{x}{a}+\int x\mathrm{d}\sqrt{a^{2}-x^{2}}\\
+&= a^{2}\arcsin\frac{x}{a}+x\sqrt{a^{2}-x^{2}}-\int\sqrt{a^{2}-x^{2}}\mathrm{d}x,
+\end{aligned}
+\]
+移项即得
+\[
+\int\sqrt{a^{2}-x^{2}}\mathrm{d}x
+= \frac{a^{2}}{2}\arcsin\frac{x}{a}+\frac{x}{2}\sqrt{a^{2}-x^{2}}+c.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-19}
+求 $\displaystyle I_{n} = \int\sin^{n}x\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+I_{n} &= \int\sin^{n}x\mathrm{d}x
+= \int-\sin^{n-1}x\mathrm{d}\cos x
+= -\sin^{n-1}x\cos x+\int(n-1)\cos^{2}x\sin^{n-2}x\mathrm{d}x\\
+&= -\sin^{n-1}x\cos x+(n-1)\int\sin^{n-2}x\big(1-\sin^{2}x\big)\mathrm{d}x\\
+&= -\sin^{n-1}x\cos x+(n-1)I_{n-2}-(n-1)I_{n}.
+\end{aligned}
+\]
+移项得
+\[
+I_{n} = -\frac{1}{n}\sin^{n-1}x\cos x+\frac{n-1}{n}I_{n-2}\quad(n \geqslant 2),
+\]
+\[
+I_{0} = \int\mathrm{d}x = x+c,\qquad I_{1} = \int\sin x\mathrm{d}x = -\cos x+c.
+\]
+利用这组公式易得
+\[
+I_{3} = \int\sin^{3}x\mathrm{d}x
+= -\frac{1}{3}\sin^{2}x\cos x+\frac{2}{3}I_{1}
+= -\frac{1}{3}\sin^{2}x\cos x-\frac{2}{3}\cos x+c.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-20}
+求 $\displaystyle I_{n} = \int\frac{\mathrm{d}x}{\left(x^{2}+a^{2}\right)^{n}}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+I_{n} &= \int\frac{\mathrm{d}x}{\left(x^{2}+a^{2}\right)^{n}}
+= \frac{1}{a^{2}}\int\frac{a^{2}+x^{2}-x^{2}}{\left(x^{2}+a^{2}\right)^{n}}\mathrm{d}x
+= \frac{1}{a^{2}}I_{n-1}-\frac{1}{a^{2}}\int\frac{x^{2}\mathrm{d}x}{\left(x^{2}+a^{2}\right)^{n}}\\
+&= \frac{1}{a^{2}}I_{n-1}-\frac{1}{2a^{2}}\frac{1}{1-n}\int x\mathrm{d}\frac{1}{\left(x^{2}+a^{2}\right)^{n-1}}\\
+&= \frac{1}{a^{2}}I_{n-1}-\frac{1}{2a^{2}(1-n)}\frac{x}{\left(x^{2}+a^{2}\right)^{n-1}}
++\frac{1}{2a^{2}(1-n)}I_{n-1}\\
+&= \frac{1}{2a^{2}(n-1)}\frac{x}{\left(x^{2}+a^{2}\right)^{n-1}}
++\frac{2n-3}{2a^{2}(n-1)}I_{n-1},
+\end{aligned}
+\]
+\[
+I_{1} = \int\frac{\mathrm{d}x}{x^{2}+a^{2}} = \frac{1}{a}\arctan\frac{x}{a}+c.
+\]
+利用上述结果可得
+\[
+\begin{aligned}
+I_{2} &= \frac{1}{2a^{2}}\frac{x}{x^{2}+a^{2}}+\frac{1}{2a^{2}}I_{1}
+= \frac{1}{2a^{2}}\frac{x}{x^{2}+a^{2}}+\frac{1}{2a^{3}}\arctan\frac{x}{a}+c.\\
+I_{3} &= \frac{1}{4a^{2}}\frac{x}{\left(x^{2}+a^{2}\right)^{2}}+\frac{3}{4a^{2}}I_{2}
+= \frac{x}{4a^{2}\left(x^{2}+a^{2}\right)^{2}}
++\frac{3}{4a^{2}}\left[\frac{x}{2a^{2}\left(x^{2}+a^{2}\right)}+\frac{1}{2a^{3}}\arctan\frac{x}{a}\right]+c.
+\end{aligned}
+\]
+\end{proof}
+
+前面介绍了两种重要的积分方法，利用它们可以求出许多初等函数的不定积分．但是要灵活地运用这些方法，它不像求导数那样简单和易掌握．另外，任一初等函数总可按一定的步骤求得它的导函数，且导函数仍是初等函数．而求初等函数的积分不仅无一定的步骤可循，更有所不同的是初等函数的原函数有可能不再是初等函数，这时我们也说积分积不出来．例如
+\[
+\int\mathrm{e}^{-x^{2}}\mathrm{d}x,\qquad \int\frac{\sin x}{x}\mathrm{d}x,\qquad \int\sin x^{2}\mathrm{d}x
+\]
+便是如此．下面我们就来讨论一些特殊类型的函数，它们的原函数必是初等函数，并且可以按一定的步骤积出来．
+
+\subsection{有理函数的积分}
+
+两个多项式的商称为有理函数，记为
+\[
+R(x) = \frac{P_{n}(x)}{Q_{m}(x)},
+\]
+其中 $P_{n}(x)$ 和 $Q_{m}(x)$ 分别是 $n$ 次和 $m$ 次多项式．当 $n < m$ 时称为真分式．
+
+若 $R(x)$ 不是真分式时，可以用多项式除法将其表为一个多项式与真分式之和，例如：
+\[
+\frac{x^{5}+x^{3}+x^{2}+1}{x^{2}-1} = x^{3}+2x+1+\frac{2(x+1)}{x^{2}-1}.
+\]
+因此，有理函数的积分归结为多项式的积分和有理真分式的积分，而多项式的积分是简单的，所以下面不妨假定 $\dfrac{P_{n}(x)}{Q_{m}(x)}$ 是真分式．
+
+任一真分式理论上都可分解为下列四种简单分式之和：
+\[
+\frac{A}{x-a};\qquad \frac{A}{(x-a)^{n}};\qquad \frac{Bx+C}{x^{2}+px+q};\qquad \frac{Bx+C}{\left(x^{2}+px+q\right)^{n}},
+\]
+其中 $p^{2}-4q < 0$，$n = 2,3,\cdots$．这是因为，根据代数基本定理，分母 $Q_{m}(x)$ 总可以分解成
+\[
+Q_{m}(x) = \prod_{i=1}^{k}\big(x-a_{i}\big)^{j_{i}}\prod_{i=1}^{s}\big(x^{2}+p_{i}x+q_{i}\big)^{l_{i}},
+\]
+而这时，真分式 $\dfrac{P_{n}(x)}{Q_{m}(x)}$ 就一定可以分解为
+\[
+\begin{aligned}
+\frac{P_{n}(x)}{Q_{m}(x)}
+&= \frac{A_{1}^{(1)}}{x-a_{1}}+\frac{A_{2}^{(1)}}{\left(x-a_{1}\right)^{2}}+\cdots+\frac{A_{j_{1}}^{(1)}}{\left(x-a_{1}\right)^{j_{1}}}+\cdots+\\
+&\quad \frac{A_{1}^{(k)}}{x-a_{k}}+\frac{A_{2}^{(k)}}{\left(x-a_{k}\right)^{2}}+\cdots+\frac{A_{j_{k}}^{(k)}}{\left(x-a_{k}\right)^{j_{k}}}+\\
+&\quad \frac{M_{1}^{(1)}x+N_{1}^{(1)}}{x^{2}+p_{1}x+q_{1}}+\frac{M_{2}^{(1)}x+N_{2}^{(1)}}{\left(x^{2}+p_{1}x+q_{1}\right)^{2}}+\cdots+\\
+&\quad \frac{M_{l_{1}}^{(1)}x+N_{l_{1}}^{(1)}}{\left(x^{2}+p_{1}x+q_{1}\right)^{l_{1}}}+\cdots+\\
+&\quad \frac{M_{1}^{(s)}x+N_{1}^{(s)}}{x^{2}+p_{s}x+q_{s}}+\frac{M_{2}^{(s)}x+N_{2}^{(s)}}{\left(x^{2}+p_{s}x+q_{s}\right)^{2}}+\cdots+\\
+&\quad \frac{M_{l_{s}}^{(s)}x+N_{l_{s}}^{(s)}}{\left(x^{2}+p_{s}x+q_{s}\right)^{l_{s}}}.
+\end{aligned}
+\]
+这个事实是不难证明的，具体分解可通过待定系数法进行，下面将举例说明实际上是如何分解的．因此，如果上述四种简单分式的不定积分都能求出，则有理函数的不定积分必能积出来，也就是说有理函数的不定积分必能用初等函数表示．下面逐个求积．
+
+(1)
+\[
+\int\frac{A}{x-a}\mathrm{d}x = A\ln|x-a|+c;
+\]
+
+(2)
+\[
+\int\frac{A}{(x-a)^{n}}\mathrm{d}x = \frac{A}{1-n}(x-a)^{1-n}+c,\quad n = 2,3,\cdots;
+\]
+
+(3) 只要求 $\displaystyle\int\frac{x+b}{x^{2}+px+q}\,\mathrm{d}x$ 即可．
+\[
+\begin{aligned}
+\int\frac{x+b}{x^{2}+px+q}\mathrm{d}x
+&= \frac{1}{2}\int\frac{(2x+p)+(2b-p)}{x^{2}+px+q}\mathrm{d}x
+= \frac{1}{2}\int\frac{2x+p}{x^{2}+px+q}\mathrm{d}x+\frac{2b-p}{2}\int\frac{\mathrm{d}x}{x^{2}+px+q}\\
+&= \frac{1}{2}\int\frac{\mathrm{d}\big(x^{2}+px+q\big)}{x^{2}+px+q}
++\frac{2b-p}{2}\int\frac{\mathrm{d}\left(x+\frac{p}{2}\right)}{\left(x+\frac{p}{2}\right)^{2}+\left(q-\frac{p^{2}}{4}\right)}\\
+&= \frac{1}{2}\ln\left|x^{2}+px+q\right|
++\frac{2b-p}{2}\cdot\frac{1}{\sqrt{q-\frac{p^{2}}{4}}}\arctan\frac{x+\frac{p}{2}}{\sqrt{q-\frac{p^{2}}{4}}}+c.
+\end{aligned}
+\]
+
+(4) 只要求 $\displaystyle\int\frac{x+b}{\left(x^{2}+px+q\right)^{n}}\,\mathrm{d}x$ 即可．
+\[
+\begin{aligned}
+\int\frac{x+b}{\left(x^{2}+px+q\right)^{n}}\mathrm{d}x
+&= \frac{1}{2}\int\frac{(2x+p)+(2b-p)}{\left(x^{2}+px+q\right)^{n}}\mathrm{d}x\\
+&= \frac{1}{2}\int\frac{\mathrm{d}\big(x^{2}+px+q\big)}{\left(x^{2}+px+q\right)^{n}}
++\frac{2b-p}{2}\int\frac{\mathrm{d}x}{\left[\left(x+\frac{p}{2}\right)^{2}+\left(q-\frac{p^{2}}{4}\right)\right]^{n}}\\
+&= \frac{1}{2(1-n)}\frac{1}{\left(x^{2}+px+q\right)^{n-1}}
++\frac{2b-p}{2}\int\frac{\mathrm{d}u}{\left(u^{2}+a^{2}\right)^{n}};
+\end{aligned}
+\]
+其中 $u = x+\dfrac{p}{2}$，$a = \sqrt{q-\dfrac{p^{2}}{4}}$．前面例~\ref{ex:6-2-20} 中已用分部积分法求出了
+\[
+I_{n} = \int\frac{\mathrm{d}u}{\left(u^{2}+a^{2}\right)^{n}}
+\]
+的递推式．这样我们已经在理论上说明了有理函数的积分必可积出来．事实上我们也已经给出了具体的求积步骤和方法．至于如何将真分式分解为简单分式之和，我们将举例说明．
+
+\begin{example}\label{ex:6-2-21}
+求 $\displaystyle\int\frac{\mathrm{d}x}{(x+1)(x+2)^{2}}$．
+\end{example}
+
+\begin{proof}[解]
+设
+\[
+\frac{1}{(x+1)(x+2)^{2}} = \frac{A}{x+1}+\frac{B}{x+2}+\frac{C}{(x+2)^{2}},
+\]
+其中 $A$，$B$，$C$ 是待定系数．下面介绍两种确定待定系数的方法．
+
+方法 1（比较系数法）\quad 在等式右边通分后，令等式两边的分子相等得
+\[
+A(x+2)^{2}+B(x+1)(x+2)+C(x+1) = 1.
+\]
+比较两端 $x$ 同次幂的系数得线性方程组
+\[
+\begin{cases}
+A+B = 0,\\
+4A+3B+C = 0,\\
+4A+2B+C = 1.
+\end{cases}
+\]
+解得 $A = 1$，$B = -1$，$C = -1$．
+
+方法 2（取特殊值法）\quad 在等式两边同乘以 $x+1$ 后令 $x \to -1$，得
+\[
+A = \lim_{x\to-1}\frac{1}{(x+2)^{2}} = 1.
+\]
+等式两边同乘以 $(x+2)^{2}$ 后，令 $x \to -2$ 得
+\[
+C = \lim_{x\to-2}\frac{1}{x+1} = -1.
+\]
+令 $x = 0$ 得 $\dfrac{1}{4} = A+\dfrac{B}{2}+\dfrac{C}{4}$，将 $A$，$C$ 的值代入，即得 $B = -1$．于是
+\[
+\frac{1}{(x+1)(x+2)^{2}} = \frac{1}{x+1}-\frac{1}{x+2}-\frac{1}{(x+2)^{2}},
+\]
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{(x+1)(x+2)^{2}}
+&= \int\frac{\mathrm{d}x}{x+1}-\int\frac{\mathrm{d}x}{x+2}-\int\frac{\mathrm{d}x}{(x+2)^{2}}\\
+&= \ln|x+1|-\ln|x+2|+\frac{1}{x+2}+c
+= \ln\left|\frac{x+1}{x+2}\right|+\frac{1}{x+2}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-22}
+求 $\displaystyle\int\frac{2x+2}{(x-1)\left(x^{2}+1\right)^{2}}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+设
+\[
+\frac{2x+2}{(x-1)\left(x^{2}+1\right)^{2}} = \frac{A}{x-1}+\frac{Bx+C}{x^{2}+1}+\frac{Dx+E}{\left(x^{2}+1\right)^{2}},
+\]
+仍用两种方法确定待定系数 $A$，$B$，$C$，$D$，$E$．
+
+方法 1（比较系数法）\quad 通分后，令等式两边的分子相等得
+\[
+A\big(x^{2}+1\big)^{2}+(Bx+C)(x-1)\big(x^{2}+1\big)+(Dx+E)(x-1) = 2x+2.
+\]
+比较两端 $x$ 同次幂的系数得线性方程组
+\[
+\begin{cases}
+A+B = 0,\\
+-B+C = 0,\\
+2A+B-C+D = 0,\\
+-B+C-D+E = 2,\\
+A-C-E = 2.
+\end{cases}
+\]
+解得 $A = 1$，$B = -1$，$C = -1$，$D = -2$，$E = 0$．
+
+方法 2（取特殊值法）\quad 等式两边同乘以 $x-1$ 后，令 $x \to 1$ 得
+\[
+A = \lim_{x\to1}\frac{2x+2}{\left(x^{2}+1\right)^{2}} = 1.
+\]
+等式两边同乘以 $\big(x^{2}+1\big)^{2}$ 后，令 $x \to \mathrm{i}$（虚数 $\mathrm{i} = \sqrt{-1}$）得
+\[
+D\mathrm{i}+E = \lim_{x\to\mathrm{i}}\frac{2x+2}{x-1} = \frac{2(\mathrm{i}+1)}{\mathrm{i}-1} = -2\mathrm{i},
+\]
+故 $D = -2$，$E = 0$．等式两边乘以 $x$ 后，令 $x \to \infty$ 得
+\[
+A+B = 0,
+\]
+故 $B = -A = -1$．最后在等式中令 $x = 0$，得 $C = -1$．于是
+\[
+\begin{aligned}
+&\int\frac{2x+2}{(x-1)\left(x^{2}+1\right)^{2}}\mathrm{d}x
+= \int\left(\frac{1}{x-1}-\frac{x+1}{x^{2}+1}-\frac{2x}{\left(x^{2}+1\right)^{2}}\right)\mathrm{d}x\\
+&= \ln|x-1|-\int\left(\frac{x}{x^{2}+1}+\frac{1}{x^{2}+1}\right)\mathrm{d}x-\int\frac{\mathrm{d}x^{2}}{\left(x^{2}+1\right)^{2}}\\
+&= \ln|x-1|-\frac{1}{2}\ln\left(x^{2}+1\right)-\arctan x+\frac{1}{x^{2}+1}+c.
+\end{aligned}
+\]
+\end{proof}
+
+上面介绍的两种分解真分式的方法，有时计算很繁，这时可利用拼凑的技巧进行分解，可能还更简单．
+
+\begin{example}\label{ex:6-2-23}
+求 $\displaystyle\int\frac{x^{3}+x^{2}+2}{\left(x^{2}+2\right)^{2}}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\begin{aligned}
+x^{3}+x^{2}+2 &= x^{3}+2x-2x+x^{2}+2
+= x\big(x^{2}+2\big)-2x+x^{2}+2
+= \big(x^{2}+2\big)(x+1)-2x.\\
+\int\frac{x^{3}+x^{2}+2}{\left(x^{2}+2\right)^{2}}\mathrm{d}x
+&= \int\left(\frac{x+1}{x^{2}+2}-\frac{2x}{\left(x^{2}+2\right)^{2}}\right)\mathrm{d}x\\
+&= \int\frac{x\mathrm{d}x}{x^{2}+2}+\int\frac{\mathrm{d}x}{x^{2}+2}-\int\frac{\mathrm{d}x^{2}}{\left(x^{2}+2\right)^{2}}\\
+&= \frac{1}{2}\ln\left|x^{2}+2\right|+\frac{1}{\sqrt{2}}\arctan\frac{x}{\sqrt{2}}+\frac{1}{x^{2}+2}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\subsection{三角函数有理式的积分}
+
+有理函数 $R(x)$ 是两个多项式的商，也就是变量 $x$ 和常数经有限次的四则运算所得的式子．类似地，三角函数和常数经有限次的四则运算所得的式子就称为三角函数有理式．因为 $\tan x$，$\cot x$，$\sec x$ 和 $\csc x$ 都是 $\sin x$ 和 $\cos x$ 的有理式，故三角函数有理式记为 $R(\sin x,\cos x)$．例如
+\[
+1+\frac{\sin x}{1+\cos x},\qquad \frac{1}{5+4\sin 2x},\qquad \frac{\sqrt{2}\cot^{2}x}{1+\sin^{2}x}
+\]
+都是三角函数有理式，而
+\[
+\frac{x+\sin x}{\cos x},\qquad \sin\sqrt{1+\sin x}
+\]
+就不是三角函数有理式了．
+
+既然三角函数有理式的定义如此类似有理函数的定义，设想能否存在变换，将三角函数有理式的积分化为有理函数的积分呢？如果这样的变换存在，那么三角函数有理式的积分就必定能积出来，也就是说其原函数必能用初等函数表示．
+
+因为
+\[
+\sin x = 2\sin\frac{x}{2}\cos\frac{x}{2} = \frac{2\tan\frac{x}{2}}{1+\tan^{2}\frac{x}{2}},
+\]
+\[
+\cos x = \cos^{2}\frac{x}{2}-\sin^{2}\frac{x}{2} = \frac{1-\tan^{2}\frac{x}{2}}{1+\tan^{2}\frac{x}{2}}.
+\]
+令 $\tan\dfrac{x}{2} = t$，则 $x = 2\arctan t$，$\mathrm{d}x = \dfrac{2}{1+t^{2}}\mathrm{d}t$，所以
+\[
+\int R(\sin x,\cos x)\mathrm{d}x
+= \int R\left(\frac{2t}{1+t^{2}},\frac{1-t^{2}}{1+t^{2}}\right)\frac{2}{1+t^{2}}\mathrm{d}t.
+\]
+可见，这样的变换的确存在．变换 $\tan\dfrac{x}{2} = t$ 称为\emph{万能变换}，所谓``万能''，是指凡三角函数有理式的积分都能通过该变换化为有理函数的积分．但后面将会看到，有时这一方法并不是最简单的．
+
+\begin{example}\label{ex:6-2-24}
+求 $\displaystyle\int\frac{\mathrm{d}x}{5-3\cos x}$．
+\end{example}
+
+\begin{proof}[解]
+令 $\tan\dfrac{x}{2} = t$，则
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{5-3\cos x}
+&= \int\frac{1}{5-3\dfrac{1-t^{2}}{1+t^{2}}}\cdot\frac{2}{1+t^{2}}\mathrm{d}t
+= \int\frac{\mathrm{d}t}{4t^{2}+1}\\
+&= \frac{1}{2}\arctan 2t+c
+= \frac{1}{2}\arctan\left(2\tan\frac{x}{2}\right)+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-25}
+求 $\displaystyle\int\frac{\mathrm{d}x}{a\sin x+b\cos x}$．
+\end{example}
+
+\begin{proof}[解]
+这是三角函数有理式的积分，用万能代换必能积出来，下面给出另一种解法．记
+\[
+\cos\alpha = \frac{a}{\sqrt{a^{2}+b^{2}}},\qquad \sin\alpha = \frac{b}{\sqrt{a^{2}+b^{2}}},
+\]
+则
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{a\sin x+b\cos x}
+&= \frac{1}{\sqrt{a^{2}+b^{2}}}\int\frac{\mathrm{d}x}{\sin x\cos\alpha+\cos x\sin\alpha}
+= \frac{1}{\sqrt{a^{2}+b^{2}}}\int\frac{\mathrm{d}x}{\sin(x+\alpha)}\\
+&= \frac{1}{\sqrt{a^{2}+b^{2}}}\int\csc(x+\alpha)\,
+\frac{\csc(x+\alpha)-\cot(x+\alpha)}{\csc(x+\alpha)-\cot(x+\alpha)}\mathrm{d}x\\
+&= \frac{1}{\sqrt{a^{2}+b^{2}}}\int
+\frac{\mathrm{d}\big(\csc(x+\alpha)-\cot(x+\alpha)\big)}{\csc(x+\alpha)-\cot(x+\alpha)}\\
+&= \frac{1}{\sqrt{a^{2}+b^{2}}}\ln\big|\csc(x+\alpha)-\cot(x+\alpha)\big|+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-26}
+求 $\displaystyle\int\frac{\mathrm{d}x}{1+\cos x}$．
+\end{example}
+
+\begin{proof}[解法 1]
+这是三角函数有理式的积分，用万能代换必能积出来，留给读者完成．
+\end{proof}
+
+\begin{proof}[解法 2]
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{1+\cos x}
+&= \int\frac{1-\cos x}{\sin^{2}x}\mathrm{d}x
+= \int\csc^{2}x\mathrm{d}x-\int\frac{\mathrm{d}\sin x}{\sin^{2}x}\\
+&= -\cot x+\frac{1}{\sin x}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[解法 3]
+\[
+\int\frac{\mathrm{d}x}{1+\cos x}
+= \int\frac{\mathrm{d}x}{2\cos^{2}\frac{x}{2}}
+= \tan\frac{x}{2}+c.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-27}
+求 $\displaystyle\int\frac{\mathrm{d}x}{1+2\sin 2x}$．
+\end{example}
+
+\begin{proof}[解]
+因为 $\sin x$ 可以用 $\tan\dfrac{x}{2}$ 的有理式表示，所以 $\sin 2x$ 可以用 $\tan x$ 的有理式表示，故令 $\tan x = t$，则
+\[
+\sin 2x = \frac{2t}{1+t^{2}},\qquad \mathrm{d}x = \frac{1}{1+t^{2}}\mathrm{d}t.
+\]
+\[
+\begin{aligned}
+\int\frac{\mathrm{d}x}{1+2\sin 2x}
+&= \int\frac{1}{1+2\dfrac{2t}{1+t^{2}}}\cdot\frac{1}{1+t^{2}}\mathrm{d}t
+= \int\frac{\mathrm{d}t}{1+t^{2}+4t}\\
+&= \int\frac{\mathrm{d}(t+2)}{(t+2)^{2}-3}
+= \frac{1}{2\sqrt{3}}\ln\left|\frac{t+2-\sqrt{3}}{t+2+\sqrt{3}}\right|+c\\
+&= \frac{1}{2\sqrt{3}}\ln\left|\frac{\tan x+2-\sqrt{3}}{\tan x+2+\sqrt{3}}\right|+c.
+\end{aligned}
+\]
+\end{proof}
+
+从上面几个例子可见，三角函数有理式的积分，其方法是非常灵活的，可以利用三角公式恒等变形，也可根据被积函数的特点选择变换．并不是所有的三角函数有理式的积分都非用万能代换不可，而且万能代换也并不总是给出最简单的方法．一般地，可有下列一些变换：
+
+对于积分 $\int R(\sin^{2}x,\cos^{2}x)\,\mathrm{d}x$，可令 $\tan x = t$；
+
+对于积分 $\int R(\sin x)\cos x\,\mathrm{d}x$，可令 $\sin x = t$；
+
+对于积分 $\int R(\cos x)\sin x\,\mathrm{d}x$，可令 $\cos x = t$．
+
+\begin{example}\label{ex:6-2-28}
+求 $\displaystyle\int\frac{\sin 2x}{\sin^{2}x+\cos x}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\int\frac{\sin 2x}{\sin^{2}x+\cos x}\mathrm{d}x
+= \int\frac{2\cos x}{1-\cos^{2}x+\cos x}\sin x\,\mathrm{d}x,
+\]
+故令 $\cos x = t$，
+\[
+\begin{aligned}
+\text{原式} &= \int\frac{2t}{t^{2}-t-1}\mathrm{d}t
+= \int\frac{2t-1}{t^{2}-t-1}\mathrm{d}t+\int\frac{\mathrm{d}t}{\left(t-\frac{1}{2}\right)^{2}-\frac{5}{4}}\\
+&= \ln\left|t^{2}-t-1\right|+\frac{1}{\sqrt{5}}\ln\left|\frac{t-\frac{1}{2}-\frac{\sqrt{5}}{2}}{t-\frac{1}{2}+\frac{\sqrt{5}}{2}}\right|+c\\
+&= \ln\left|t^{2}-t-1\right|+\frac{1}{\sqrt{5}}\ln\left|\frac{2t-1-\sqrt{5}}{2t-1+\sqrt{5}}\right|+c\\
+&= \ln\left|\cos^{2}x-\cos x-1\right|+\frac{1}{\sqrt{5}}\ln\left|\frac{2\cos x-1-\sqrt{5}}{2\cos x-1+\sqrt{5}}\right|+c.
+\end{aligned}
+\]
+\end{proof}
+
+此外还可利用其他的一些技巧．
+
+\begin{example}\label{ex:6-2-29}
+求 $\displaystyle I = \int\frac{\sin x}{a\sin x+b\cos x}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解]
+记 $\displaystyle J = \int\frac{\cos x}{a\sin x+b\cos x}\,\mathrm{d}x$，则
+\[
+aI+bJ = \int\mathrm{d}x = x+c_{1},
+\]
+\[
+\begin{aligned}
+bI-aJ &= \int\frac{b\sin x-a\cos x}{a\sin x+b\cos x}\mathrm{d}x
+= -\int\frac{\mathrm{d}(a\sin x+b\cos x)}{a\sin x+b\cos x}\\
+&= -\ln|a\sin x+b\cos x|+c_{2}.
+\end{aligned}
+\]
+解联立方程组即得
+\[
+I = \frac{1}{a^{2}+b^{2}}\big(ax-b\ln|a\sin x+b\cos x|\big)+c,
+\]
+\[
+J = \frac{1}{a^{2}+b^{2}}\big(bx+a\ln|a\sin x+b\cos x|\big)+c.
+\]
+\end{proof}
+
+\subsection{某些无理函数的积分}
+
+(1) $\displaystyle\int R\left(x,\sqrt[n]{\frac{ax+b}{cx+d}}\right)\mathrm{d}x$ 型，其中 $n > 1$，$ad-bc \neq 0$．
+
+为了消去根号，令 $\sqrt[n]{\dfrac{ax+b}{cx+d}} = t$，得
+\[
+x = \frac{b-\mathrm{d}t^{n}}{ct^{n}-a},\qquad
+\mathrm{d}x = \frac{n(ad-bc)t^{n-1}}{\left(ct^{n}-a\right)^{2}}\mathrm{d}t,
+\]
+故
+\[
+\int R\left(x,\sqrt[n]{\frac{ax+b}{cx+d}}\right)\mathrm{d}x
+= \int R\left(\frac{b-\mathrm{d}t^{n}}{ct^{n}-a},t\right)\frac{n(ad-bc)}{\left(ct^{n}-a\right)^{2}}t^{n-1}\mathrm{d}t.
+\]
+显然等式右边是有理函数的积分，因此必可积出来．
+
+\begin{example}\label{ex:6-2-30}
+求 $\displaystyle\int\frac{1}{x}\sqrt{\frac{x+2}{x-2}}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解法 1]
+令 $\sqrt{\dfrac{x+2}{x-2}} = t$，则 $x = \dfrac{2(t^{2}+1)}{t^{2}-1}$，$\mathrm{d}x = \dfrac{-8t}{(t^{2}-1)^{2}}\mathrm{d}t$．
+\[
+\begin{aligned}
+\text{原式} &= \int\frac{-4t^{2}}{\left(t^{2}+1\right)\left(t^{2}-1\right)}\mathrm{d}t
+= -2\int\frac{t^{2}+1+t^{2}-1}{\left(t^{2}+1\right)\left(t^{2}-1\right)}\mathrm{d}t
+= -2\int\left(\frac{1}{t^{2}-1}+\frac{1}{t^{2}+1}\right)\mathrm{d}t\\
+&= -\ln\left|\frac{t-1}{t+1}\right|-2\arctan t+c\\
+&= -\ln\left|\frac{\sqrt{\frac{x+2}{x-2}}-1}{\sqrt{\frac{x+2}{x-2}}+1}\right|-2\arctan\sqrt{\frac{x+2}{x-2}}+c\\
+&= \ln\left|\frac{\sqrt{x+2}+\sqrt{x-2}}{\sqrt{x+2}-\sqrt{x-2}}\right|-2\arctan\sqrt{\frac{x+2}{x-2}}+c\\
+&= \ln\left|x+\sqrt{x^{2}-4}\right|-2\arctan\sqrt{\frac{x+2}{x-2}}+c_{1}.
+\end{aligned}
+\]
+此题亦可用三角代换来求．
+\end{proof}
+
+\begin{proof}[解法 2]
+根据 $\dfrac{1}{x}\sqrt{\dfrac{x+2}{x-2}} = \dfrac{1}{x}\cdot\dfrac{x+2}{\sqrt{x^{2}-4}}$，令 $x = 2\sec t$，则 $\mathrm{d}x = 2\sec t\tan t\,\mathrm{d}t$，
+\[
+\begin{aligned}
+\int\frac{1}{x}\sqrt{\frac{x+2}{x-2}}\mathrm{d}x
+&= \int\frac{1}{2\sec t}\cdot\frac{2(\sec t+1)}{2\tan t}\cdot 2\sec t\tan t\,\mathrm{d}t\\
+&= \int(\sec t+1)\mathrm{d}t
+= \ln|\sec t+\tan t|+t+c\\
+&= \ln\left|\frac{x}{2}+\frac{\sqrt{x^{2}-4}}{2}\right|+\arctan\frac{\sqrt{x^{2}-4}}{2}+c\\
+&= \ln\left|x+\sqrt{x^{2}-4}\right|+\arctan\frac{\sqrt{x^{2}-4}}{2}+c_{1}.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[解法 3]
+凑微分法．
+\[
+\begin{aligned}
+\int\frac{1}{x}\sqrt{\frac{x+2}{x-2}}\mathrm{d}x
+&= \int\frac{1}{x}\cdot\frac{x+2}{\sqrt{x^{2}-4}}\mathrm{d}x
+= \int\frac{\mathrm{d}x}{\sqrt{x^{2}-4}}+2\int\frac{\mathrm{d}x}{x\sqrt{x^{2}-4}}\\
+&= \ln\left|x+\sqrt{x^{2}-4}\right|+2\int\frac{\mathrm{d}x}{x^{2}\sqrt{1-\left(\frac{2}{x}\right)^{2}}}\\
+&= \ln\left|x+\sqrt{x^{2}-4}\right|-\int\frac{\mathrm{d}\frac{2}{x}}{\sqrt{1-\left(\frac{2}{x}\right)^{2}}}
+= \ln\left|x+\sqrt{x^{2}-4}\right|-\arcsin\frac{2}{x}+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-31}
+求 $\displaystyle\int\frac{\mathrm{d}x}{\sqrt[3]{(x-1)(x+1)^{2}}}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\frac{1}{\sqrt[3]{(x-1)(x+1)^{2}}} = \frac{1}{\sqrt[3]{\frac{x-1}{x+1}}\,(x+1)},
+\]
+令 $\sqrt[3]{\dfrac{x-1}{x+1}} = t$，则 $x = \dfrac{t^{3}+1}{1-t^{3}}$，$\mathrm{d}x = \dfrac{6t^{2}}{\left(1-t^{3}\right)^{2}}\mathrm{d}t$，因此
+\[
+\begin{aligned}
+&\int\frac{\mathrm{d}x}{\sqrt[3]{(x-1)(x+1)^{2}}}
+= \int\frac{\mathrm{d}x}{\sqrt[3]{\frac{x-1}{x+1}}\,(x+1)}
+= \int\frac{3t}{1-t^{3}}\mathrm{d}t\\
+&= 3\int\frac{t-t^{2}+t^{2}}{1-t^{3}}\mathrm{d}t
+= 3\int\frac{t}{t^{2}+t+1}\mathrm{d}t+3\int\frac{t^{2}}{1-t^{3}}\mathrm{d}t\\
+&= \frac{3}{2}\int\frac{2t+1-1}{t^{2}+t+1}\mathrm{d}t-\ln\left|1-t^{3}\right|\\
+&= \frac{3}{2}\int\frac{\mathrm{d}\big(t^{2}+t+1\big)}{t^{2}+t+1}
+-\frac{3}{2}\int\frac{\mathrm{d}t}{\left(t+\frac{1}{2}\right)^{2}+\frac{3}{4}}-\ln\left|1-t^{3}\right|\\
+&= \frac{3}{2}\ln\left|t^{2}+t+1\right|-\sqrt{3}\arctan\frac{t+\frac{1}{2}}{\frac{\sqrt{3}}{2}}-\ln\left|1-t^{3}\right|+c\\
+&= \frac{3}{2}\ln\left|\frac{\sqrt[3]{1-t^{3}}}{1-t}\right|-\sqrt{3}\arctan\frac{2t+1}{\sqrt{3}}+c\\
+&= \frac{3}{2}\ln\left|\frac{\sqrt[3]{1-\frac{x-1}{x+1}}}{1-\sqrt[3]{\frac{x-1}{x+1}}}\right|-\sqrt{3}\arctan\frac{2\sqrt[3]{\frac{x-1}{x+1}}+1}{\sqrt{3}}+c\\
+&= \frac{3}{2}\ln\left|\frac{\sqrt[3]{2}}{\sqrt[3]{x+1}-\sqrt[3]{x-1}}\right|-\sqrt{3}\arctan\frac{2\sqrt[3]{\frac{x-1}{x+1}}+1}{\sqrt{3}}+c.
+\end{aligned}
+\]
+\end{proof}
+
+(2) $\displaystyle\int R(x,\sqrt{ax^{2}+bx+c})\,\mathrm{d}x$ 型，其中 $a > 0$ 时，$b^{2}-4ac \neq 0$，或 $a < 0$ 时，$b^{2}-4ac > 0$．
+
+根据 $ax^{2}+bx+c = a\left[\left(x+\dfrac{b}{2a}\right)^{2}+\dfrac{4ac-b^{2}}{4a^{2}}\right]$，令
+\[
+u = x+\frac{b}{2a},\qquad k = \sqrt{\left|\frac{4ac-b^{2}}{4a^{2}}\right|},
+\]
+则
+\[
+\sqrt{ax^{2}+bx+c} = \sqrt{a\big(u^{2}\pm k^{2}\big)}.
+\]
+当 $4ac-b^{2} > 0$ 时取正号，$4ac-b^{2} < 0$ 时取负号．于是积分转化为类型
+\[
+\int R\left(u,\sqrt{u^{2}\pm k^{2}}\right)\mathrm{d}u
+\]
+或
+\[
+\int R\left(u,\sqrt{k^{2}-u^{2}}\right)\mathrm{d}u
+\]
+的积分，分别作三角代换
+\[
+u = k\tan t,\qquad u = k\sec t,\qquad u = k\sin t,
+\]
+则又可化为三角函数有理式的积分，从而必可积出来．
+
+此外，当 $b^{2}-4ac > 0$ 时，方程 $ax^{2}+bx+c = 0$ 有两个实根 $\alpha$，$\beta$．则
+\[
+R\big(x,\sqrt{ax^{2}+bx+c}\big)
+= R\big(x,\sqrt{a(x-\alpha)(x-\beta)}\big)
+= R\left(x,\ (x-\beta)\sqrt{\frac{a(x-\alpha)}{x-\beta}}\right).
+\]
+这就是情形 (1) 的积分，所以作变换 $\sqrt{\dfrac{x-\alpha}{x-\beta}} = t$ 也能积出来．
+
+\begin{example}\label{ex:6-2-32}
+求 $\displaystyle\int\frac{4x-3}{\sqrt{x^{2}-2x}}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解法 1]
+\[
+\int\frac{4x-3}{\sqrt{x^{2}-2x}}\mathrm{d}x
+= \int\frac{4(x-1)+1}{\sqrt{(x-1)^{2}-1}}\mathrm{d}x,
+\]
+令 $x-1 = \sec t$，则 $\mathrm{d}x = \sec t\tan t\,\mathrm{d}t$，
+\[
+\begin{aligned}
+\text{原式} &= \int\frac{4\sec t+1}{\tan t}\sec t\tan t\,\mathrm{d}t
+= \int\big(4\sec^{2}t+\sec t\big)\mathrm{d}t\\
+&= 4\tan t+\ln|\sec t+\tan t|+c
+= 4\sqrt{x^{2}-2x}+\ln\left|x-1+\sqrt{x^{2}-2x}\right|+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[解法 2]
+\[
+\begin{aligned}
+\int\frac{4x-3}{\sqrt{x^{2}-2x}}\mathrm{d}x
+&= \int\frac{4x-4+1}{\sqrt{x^{2}-2x}}\mathrm{d}x
+= 2\int\frac{\mathrm{d}\big(x^{2}-2x\big)}{\sqrt{x^{2}-2x}}+\int\frac{\mathrm{d}x}{\sqrt{x^{2}-2x}}\\
+&= 4\sqrt{x^{2}-2x}+\int\frac{\mathrm{d}x}{\sqrt{(x-1)^{2}-1}}
+= 4\sqrt{x^{2}-2x}+\ln\left|x-1+\sqrt{x^{2}-2x}\right|+c.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6-2-33}
+求 $\displaystyle\int(x+1)\sqrt{x^{2}-2x+5}\,\mathrm{d}x$．
+\end{example}
+
+\begin{proof}[解法 1]
+原式 $= \displaystyle\int(x+1)\sqrt{(x-1)^{2}+4}\,\mathrm{d}x$．令
+\[
+x-1 = 2\tan t,\qquad \mathrm{d}x = 2\sec^{2}t\,\mathrm{d}t,
+\]
+则
+\[
+\begin{aligned}
+\text{原式} &= \int 2(\tan t+1)\cdot 2\sec t\cdot 2\sec^{2}t\,\mathrm{d}t
+= 8\int\tan t\sec^{3}t\,\mathrm{d}t+8\int\sec^{3}t\,\mathrm{d}t\\
+&= 8\int\sec^{2}t\,\mathrm{d}\sec t+8\int\sec^{3}t\,\mathrm{d}t
+= \frac{8}{3}\sec^{3}t+8\int\sec^{3}t\,\mathrm{d}t.
+\end{aligned}
+\]
+因为
+\[
+\begin{aligned}
+\int\sec^{3}t\mathrm{d}t
+&= \int\sec t\,\mathrm{d}\tan t
+= \sec t\tan t-\int\tan^{2}t\sec t\,\mathrm{d}t\\
+&= \sec t\tan t-\int\big(\sec^{3}t-\sec t\big)\mathrm{d}t
+= \sec t\tan t+\ln|\sec t+\tan t|-\int\sec^{3}t\,\mathrm{d}t,
+\end{aligned}
+\]
+所以
+\[
+\int\sec^{3}t\,\mathrm{d}t = \frac{1}{2}\big[\sec t\tan t+\ln|\sec t+\tan t|\big]+c.
+\]
+从而
+\[
+\begin{aligned}
+\text{原式} &= \frac{8}{3}\sec^{3}t+4\sec t\tan t+4\ln|\sec t+\tan t|+c\\
+&= \frac{8}{3}\left(\frac{\sqrt{x^{2}-2x+5}}{2}\right)^{3}
++4\cdot\frac{\sqrt{x^{2}-2x+5}}{2}\cdot\frac{x-1}{2}
++4\ln\left|\frac{x-1}{2}+\frac{\sqrt{x^{2}-2x+5}}{2}\right|+c\\
+&= \frac{1}{3}\big(x^{2}-2x+5\big)^{\frac{3}{2}}+(x-1)\sqrt{x^{2}-2x+5}
++4\ln\left|x-1+\sqrt{x^{2}-2x+5}\right|+c'.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[解法 2]
+\[
+\begin{aligned}
+&\int(x+1)\sqrt{x^{2}-2x+5}\,\mathrm{d}x\\
+={}& \int\left(\frac{2x-2}{2}+2\right)\sqrt{x^{2}-2x+5}\,\mathrm{d}x\\
+={}& \frac{1}{2}\int\sqrt{x^{2}-2x+5}\,\mathrm{d}\big(x^{2}-2x\big)
++2\int\sqrt{(x-1)^{2}+4}\,\mathrm{d}(x-1)\\
+={}& \frac{1}{3}\big(x^{2}-2x+5\big)^{\frac{3}{2}}
++2\int\sqrt{(x-1)^{2}+4}\,\mathrm{d}(x-1),
+\end{aligned}
+\]
+而
+\[
+\begin{aligned}
+&\int\sqrt{(x-1)^{2}+4}\,\mathrm{d}(x-1)
+= \int\frac{(x-1)^{2}+4}{\sqrt{(x-1)^{2}+4}}\,\mathrm{d}(x-1)\\
+={}& \frac{1}{2}\int\frac{x-1}{\sqrt{(x-1)^{2}+4}}\,\mathrm{d}(x-1)^{2}
++4\int\frac{\mathrm{d}(x-1)}{\sqrt{(x-1)^{2}+4}}\\
+={}& \int(x-1)\,\mathrm{d}\sqrt{(x-1)^{2}+4}
++4\ln\left|x-1+\sqrt{(x-1)^{2}+4}\right|\\
+={}& (x-1)\sqrt{x^{2}-2x+5}-\int\sqrt{(x-1)^{2}+4}\,\mathrm{d}(x-1)
++4\ln\left|x-1+\sqrt{x^{2}-2x+5}\right|.
+\end{aligned}
+\]
+故
+\[
+\int\sqrt{(x-1)^{2}+4}\,\mathrm{d}(x-1)
+= \frac{1}{2}(x-1)\sqrt{x^{2}-2x+5}
++2\ln\left|x-1+\sqrt{x^{2}-2x+5}\right|+c_{1}.
+\]
+于是
+\[
+\begin{aligned}
+\text{原式} &= \frac{1}{3}\big(x^{2}-2x+5\big)^{\frac{3}{2}}
++(x-1)\sqrt{x^{2}-2x+5}
++4\ln\left|x-1+\sqrt{x^{2}-2x+5}\right|+c.
+\end{aligned}
+\]
+\end{proof}
+
+至此，我们已经介绍了两种重要的积分方法——换元积分法和分部积分法．进一步讨论了几种特殊类型函数的积分（有理函数、三角函数有理式以及某些无理函数的积分），按照一定的步骤，必能求出它们的原函数．也就是说它们的原函数必能用初等函数表示．但是我们并不希望读者在求这些类型的不定积分时，总是按部就班地去做，而应在熟练的基础上灵活应用，尽可能用简单的方法．事实上，在上面举的各例中，许多都给出了灵活、简便的方法．读者必须通过大量的求积练习，才能较好地掌握积分的方法和技巧．
+
+\begin{xiti}
+\item 用凑微分法求下列不定积分：
+\begin{ziti}
+\item $\displaystyle\int\frac{\mathrm{d}x}{5x-6}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{x(1+2x)}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x+1}+\sqrt{x-1}}$；
+\item $\displaystyle\int\left(\frac{1}{\sqrt{3-x^{2}}}+\frac{1}{\sqrt{1-3x^{2}}}\right)\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{2+3x^{2}}$；
+\item $\displaystyle\int\mathrm{e}^{-\frac{x}{2}}\mathrm{d}x$；
+\item $\displaystyle\int x\mathrm{e}^{-x^{2}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{e}^{x}}{1+\mathrm{e}^{x}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\mathrm{e}^{x}+\mathrm{e}^{-x}+2}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\mathrm{e}^{x}+\mathrm{e}^{-x}}$；
+\item $\displaystyle\int\tan x\,\mathrm{d}x$；
+\item $\displaystyle\int\tan^{5}x\sec^{2}x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{1-2\sin x}{\cos^{2}x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{A\sin^{2}x+B\cos^{2}x}$；
+\item $\displaystyle\int\cos^{5}x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{1+\sin x}$；
+\item $\displaystyle\int\frac{\cos 2x}{\sin x\cos x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\sin x\cos x}{1+\sin^{4}x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x}{4+x^{2}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x}{4+x^{4}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{5-4x}{3x-2}\,\mathrm{d}x$；
+\item $\displaystyle\int\sin 2x\cos 3x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{(\ln x)^{2}}{x}\,\mathrm{d}x$；
+\item $\displaystyle\int\sin\frac{1}{x}\cdot\frac{\mathrm{d}x}{x^{2}}$；
+\item $\displaystyle\int\frac{(\arcsin x)^{2}}{\sqrt{1-x^{2}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\arctan x}{1+x^{2}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x}\sqrt{1+\sqrt{x}}}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x}(1+x)}$；
+\item $\displaystyle\int\frac{\mathrm{e}^{x}}{\sqrt{1-\mathrm{e}^{2x}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\sqrt{1+\sin x}\,\mathrm{d}x$．
+\end{ziti}
+\item 用换元积分法求下列不定积分：
+\begin{ziti}
+\item $\displaystyle\int\sqrt{x^{2}-a^{2}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x^{2}}{\sqrt{4-x^{2}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x}{\sqrt{5+x-x^{2}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\sqrt{2+x-x^{2}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\left(x^{2}+a^{2}\right)^{3/2}}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{x+\sqrt{x^{2}-1}}$；
+\item $\displaystyle\int\mathrm{e}^{\sqrt{x+1}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\sqrt{x+1}-1}{\sqrt{x+1}+1}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\sqrt{x}}{1+\sqrt[3]{x}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x}{1+\sqrt{x}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x^{5}}{\sqrt{1-x^{2}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x^{2}+2}{(x+1)^{3}}\,\mathrm{d}x$．
+\end{ziti}
+\item 用分部积分法求下列不定积分：
+\begin{ziti}
+\item $\displaystyle\int x^{2}\cos x\,\mathrm{d}x$；
+\item $\displaystyle\int x^{3}\ln x\,\mathrm{d}x$；
+\item $\displaystyle\int\ln x\,\mathrm{d}x$；
+\item $\displaystyle\int\arctan x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\arcsin x}{\sqrt{1-x}}\,\mathrm{d}x$；
+\item $\displaystyle\int x\arctan x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\ln x}{x^{3}}\,\mathrm{d}x$；
+\item $\displaystyle\int\cos(\ln x)\,\mathrm{d}x$；
+\item $\displaystyle\int\sec^{5}x\,\mathrm{d}x$；
+\item $\displaystyle\int x\ln\frac{1+x}{1-x}\,\mathrm{d}x$；
+\item $\displaystyle\int x\sin^{2}x\,\mathrm{d}x$；
+\item $\displaystyle\int x\cos^{2}x\,\mathrm{d}x$；
+\item $\displaystyle\int\left[\ln(\ln x)+\frac{1}{\ln x}\right]\mathrm{d}x$；
+\item $\displaystyle\int\frac{x\mathrm{e}^{x}}{(x+1)^{2}}\,\mathrm{d}x$；
+\item $\displaystyle\int(\arcsin x)^{2}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x}{\sin^{2}x}\,\mathrm{d}x$；
+\item $\displaystyle\int\ln\big(x+\sqrt{1+x^{2}}\big)\,\mathrm{d}x$；
+\item $\displaystyle\int\sqrt{x}\ln^{2}x\,\mathrm{d}x$．
+\end{ziti}
+\item 求下列不定积分的递推公式：
+\begin{ziti}
+\item $I_{n} = \displaystyle\int x^{n}\mathrm{e}^{kx}\,\mathrm{d}x$；
+\item $I_{n} = \displaystyle\int(\ln x)^{n}\,\mathrm{d}x$；
+\item $I_{n} = \displaystyle\int\tan^{n}x\,\mathrm{d}x$；
+\item $I_{n} = \displaystyle\int(\arcsin x)^{n}\,\mathrm{d}x$．
+\end{ziti}
+\item 求下列有理函数的积分：
+\begin{ziti}
+\item $\displaystyle\int\frac{x^{5}+x^{4}-8}{x^{3}-x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{(x+1)(x^{2}+1)}$；
+\item $\displaystyle\int\frac{x^{2}}{1-x^{4}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{1+x^{3}}$；
+\item $\displaystyle\int\frac{x-2}{x^{2}-7x+12}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x+4}{(x^{2}-1)(x+2)}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{1+x^{4}}$；
+\item $\displaystyle\int\frac{2x-3}{x^{2}+2x+1}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{x^{2}+4x+2}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{8-2x-x^{2}}$．
+\end{ziti}
+\item 求下列三角函数有理式的积分：
+\begin{ziti}
+\item $\displaystyle\int\frac{\mathrm{d}x}{4+5\cos x}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{5+4\sin 2x}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{2+\sin^{2}x}$；
+\item $\displaystyle\int\frac{\sec x\,\mathrm{d}x}{(1+\sec x)^{2}}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{1+\tan x}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{(2+\cos x)\sin x}$；
+\item $\displaystyle\int\frac{\sin x\cos x}{\sin x+\cos x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\sin^{3}x}{1+\cos^{2}x}\,\mathrm{d}x$；
+\item $\displaystyle\int\tan^{3}x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sin^{2}x\cos x}$；
+\item $\displaystyle\int\frac{\cos x}{\sin x+2\cos x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\sin^{2}x}{1+\cos^{2}x}\,\mathrm{d}x$．
+\end{ziti}
+\item 求下列无理函数的积分：
+\begin{ziti}
+\item $\displaystyle\int\frac{\mathrm{d}x}{x(1+2\sqrt{x}+\sqrt[3]{x})}$；
+\item $\displaystyle\int\frac{\sqrt{x+1}-\sqrt{x-1}}{\sqrt{x+1}+\sqrt{x-1}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{x\sqrt{x^{2}+2x+2}}$；
+\item $\displaystyle\int x\sqrt{x^{2}-2x+2}\,\mathrm{d}x$；
+\item $\displaystyle\int\sqrt{\frac{1-x}{1+x}}\,\frac{\mathrm{d}x}{x^{2}}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{x^{2}+x}}$；
+\item $\displaystyle\int\frac{x^{2}\,\mathrm{d}x}{\sqrt{1+x-x^{2}}}$；
+\item $\displaystyle\int\sqrt{x^{2}+x+1}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{x\sqrt[4]{1+x^{4}}}$；
+\item $\displaystyle\int\frac{x\,\mathrm{d}x}{\sqrt[4]{x^{3}(1-x)}}$．
+\end{ziti}
+\item 求下列不定积分：
+\begin{ziti}
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sqrt{(x-a)(b-x)}}$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{x^{2}\sqrt{\alpha x^{2}+\beta}}$；
+\item $\displaystyle\int x\mathrm{e}^{x}\sin x\,\mathrm{d}x$；
+\item $\displaystyle\int x\mathrm{e}^{x}\cos x\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\sin(x+a)\sin(x+b)}$；
+\item $\displaystyle\int\tan x\tan(x+\alpha)\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x^{3}\arccos x}{\sqrt{1-x^{2}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\tan x}{1+\tan x+\tan^{2}x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x\mathrm{e}^{x}}{\sqrt{1+\mathrm{e}^{x}}}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{x+\sin x}{1+\cos x}\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{1-\tan x}{1+\tan x}\,\mathrm{d}x$；
+\item $\displaystyle\int\mathrm{e}^{\sin x}\sin 2x\,\mathrm{d}x$；
+\item $\displaystyle\int\arctan\big(1+\sqrt{x}\big)\,\mathrm{d}x$；
+\item $\displaystyle\int\frac{\mathrm{d}x}{\left(1+2^{x}\right)^{4}}$．
+\end{ziti}
+\end{xiti}

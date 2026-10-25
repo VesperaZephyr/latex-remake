@@ -1,0 +1,265 @@
+\section{定积分在物理中的应用初步}\label{sec:7-5}
+
+微积分基本定理与不定积分的计算方法说明，一个物理问题或其他实际问题，只要化成了求一个函数的定积分，我们便有办法去解决了．因此应用的关键是把问题化成求一个函数的定积分．在实际问题中，被积函数并不是现成的，要根据问题的物理意义或有关的物理定律，才能求得出来．
+
+定积分解决的是连续量连续变化的积累或连续作用的总和，这个积累或总和表现出来的是一个量，我们把它记为 $A$．这种量的特点是：
+\begin{enumerate}[(1)]
+\item 它总是与自变量变化的一个区间 $[a,b]$ 联系着．
+\item 这个量对区间具有“可加性”，也就是说，如果把区间分成若干个部分区间：
+\[
+[x_{i-1}, x_i], \qquad i = 1, 2, \cdots, n,
+\]
+那么，量 $A$ 就等于那些对应于各部分区间的部分量 $\Delta A_i$ ($i = 1, 2, \cdots, n$) 的总和，即
+\[
+A = \sum_{i=1}^n \Delta A_i.
+\]
+\end{enumerate}
+
+因此，用定积分解决问题的步骤是：
+
+第一步：把所要求的量对应的自变量变化区间 $[a,b]$ 找出来．给 $[a,b]$ 以分法
+\[
+a = x_0 < x_1 < \cdots < x_n = b.
+\]
+
+第二步：把量 $A$ 对应于部分区间 $[x_{i-1}, x_i]$ 的部分量 $\Delta A_i$ 取出来．一般来说，由于 $A$ 依赖于区间 $[a,b]$ 是连续变化的，$A$ 不能一下求出来，部分量 $\Delta A_i$ 也同样求不出来，这时就要作近似代替，把 $\Delta A_i$ 写成某个函数 $f$ 在区间 $[x_{i-1}, x_i]$ 中某点的值乘以区间长度 $\Delta x_i$，即
+\[
+\Delta A_i \approx f(\xi_i)\Delta x_i.
+\]
+求和，便得到 $A$ 的近似
+\[
+A = \sum_{i=1}^n \Delta A_i \approx \sum_{i=1}^n f(\xi_i)\Delta x_i.
+\]
+
+第三步：令 $\lambda = \max_{1 \leqslant i \leqslant n}|\Delta x_i| \to 0$ 取极限，得到
+\[
+A = \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i = \int_a^b f(x)\,dx.
+\]
+这就把量 $A$ 表示成一个函数 $f(x)$ 的定积分．
+
+上述的步骤中，关键的一步是“近似代替”：
+\[
+\Delta A_i \approx f(\xi_i)\Delta x_i.
+\]
+读者自然会问，你怎么知道你的近似代替当 $\lambda \to 0$ 时，会变成精确的：
+\[
+A = \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i.
+\]
+通常，可检验的一种办法是，如果近似代替中的函数 $f(x)$ 在 $[a,b]$ 连续，并且有
+\[
+m_i \Delta x_i \leqslant \Delta A_i \leqslant M_i \Delta x_i,
+\]
+其中 $M_i$ 与 $m_i$ 分别是 $f(x)$ 在 $[x_{i-1}, x_i]$ 的最大值与最小值，那么，你的近似代替是可行的．事实上根据函数的一致连续性知，任给 $\varepsilon > 0$，存在 $\delta > 0$，只要 $\lambda < \delta$，有
+\[
+M_i - m_i < \frac{\varepsilon}{b - a}, \qquad i = 1, 2, \cdots, n,
+\]
+从而
+\begin{align*}
+\left|A - \sum_{i=1}^n f(\xi_i)\Delta x_i\right| &= \left|\sum_{i=1}^n \Delta A_i - \sum_{i=1}^n f(\xi_i)\Delta x_i\right| \\
+&\leqslant \sum_{i=1}^n |\Delta A_i - f(\xi_i)\Delta x_i| \leqslant \sum_{i=1}^n (M_i - m_i)\Delta x_i \\
+&< \frac{\varepsilon}{b - a}\sum_{i=1}^n \Delta x_i = \varepsilon.
+\end{align*}
+
+既然关键在于近似代替，我们还可以把上述过程用更简单的办法说明．若用函数 $A(x)$ 表示量 $A$ 对应于变动区间 $[a,x]$ ($a \leqslant x \leqslant b$) 的部分量，则显然
+\[
+A(a) = 0, \qquad A(b) = A(b) - A(a) = A.
+\]
+给 $x$ 以改变量 $dx$，我们把相应于区间 $[x, x + dx]$ 的部分量记作 $\Delta A$，如果根据实际问题找到的 $\Delta A$ 的近似代替 $f(x)dx$，正好是 $\Delta A$ 的线性主要部分，那么 $f(x)dx$ 就是函数 $A(x)$ 的微分，即
+\[
+f(x)\,dx = dA = A'(x)\,dx,
+\]
+于是由牛顿---莱布尼茨公式知
+\[
+\int_a^b f(x)\,dx = \int_a^b A'(x)\,dx = A(x)\bigg|_a^b = A(b) - A(a) = A,
+\]
+这表明整体量 $A$ 可以表示成定积分
+\[
+A = \int_a^b f(x)\,dx,
+\]
+其中 $f(x)$ 是我们根据实际问题写出来的．通常我们把 $dA$ 称作微元．只要“微元” $dA = f(x)dx$ 确实是函数 $A(x)$ 的微分，并且 $f(x)$ 在 $[a,b]$ 可积，那么，上面的讨论都是成立的．
+
+如前面所述，由于整体量是待求的，部分量 $A(x)$ 是未知的，因此很难断定我们写出来的微元 $f(x)dx$ 到底是不是 $A(x)$ 的微分，换句话说，很难断定 $f(x)dx$ 是不是 $\Delta A$ 的主要部分．但这时，大多可以根据具体问题的物理意义判断．一般说来，要多实践，积累经验，仔细分析．通常把 $\Delta A$ 的主部 $dA$ 求出来的过程称为微元法．
+
+下面通过一些具体例子解释这种方法．一些进一步的应用，留到下一章讲述．
+
+\begin{example}
+设有矩形水闸，长为 $l$，高为 $h$．当水面与水闸上沿相齐时，问水闸受到的总压力是多少？
+\end{example}
+
+\begin{proof}[解]
+根据阿基米德原理，水下一点所受到的压力（单位面积所受到的力）与水的深度成正比．对水闸来说，从上到下，压力是连续变化的，这是个连续量作用的总和问题，可以用定积分解决．
+
+如图~\ref{fig:7-16}，取 $x$ 轴垂直向下，记 $P(x)$ 为对应于 $[0,x]$ 这部分水闸所受到的压力．给 $x$ 以改变量 $dx$，则对应于 $[x, x + dx]$ 这部分水闸所受的压力 $\Delta P$，等于水的深度乘以面积 $l\,dx$．由于在这时，水的深度变化很小，我们用上沿的深度 $x$ 近似，便得
+\[
+\Delta P \approx dP = x l\,dx.
+\]
+因此
+\[
+P = P(h) - P(0) = \int_0^h l x\,dx.
+\]
+用牛顿---莱布尼茨公式计算便得
+\[
+P = \frac{l}{2}x^2\bigg|_0^h = \frac{l}{2}h^2.
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.75\textwidth]{fig7-16.png}
+\figcap{图 7-16}\label{fig:7-16}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.75\textwidth]{fig7-17.png}
+\figcap{图 7-17}\label{fig:7-17}
+\end{minipage}
+\end{figure}
+
+\begin{example}
+如例~1，只是闸门是半径为 $R$ 的半圆（见图~\ref{fig:7-17}）．
+\end{example}
+
+\begin{proof}[解]
+如上例，则圆的方程为 $x^2 + y^2 = R^2$ 且
+\[
+dP = x\,dA,
+\]
+其中 $dA$ 是对应于 $[x, x + dx]$ 的小曲边梯形的面积，用小矩形面积来近似，它等于
+\[
+dA = 2\sqrt{R^2 - x^2}\,dx,
+\]
+因此
+\[
+dP = 2x\sqrt{R^2 - x^2}\,dx.
+\]
+故总压力
+\begin{align*}
+P &= \int_0^R 2x\sqrt{R^2 - x^2}\,dx \\
+&= -\int_0^R \sqrt{R^2 - x^2}\,d(R^2 - x^2) \\
+&= -\frac{2}{3}(R^2 - x^2)^{\frac{3}{2}}\bigg|_0^R = \frac{2}{3}R^3.
+\end{align*}
+\end{proof}
+
+\begin{example}
+求均匀棒对延长线上一质点的引力．
+\end{example}
+
+\begin{proof}[解]
+从万有引力定律知，质量为 $m_1$，$m_2$ 的两质点间的引力，其方向沿着两质点的联线，其大小与两质点质量的乘积成正比，与两质点间距离 $r$ 的平方成反比，即
+\[
+F = \mu\frac{m_1 m_2}{r^2},
+\]
+其中 $\mu > 0$ 是引力常数．
+
+取坐标如图~\ref{fig:7-18}，质点位于原点，设质点的质量为 $m$，棒长为 $2L$，质量为 $M$，质点与棒的近端距离为 $a$．设想棒由无数“质点”聚成，每个质点与 $m$ 的引力都可以求出来，但质点从 $a$ 逐步过渡到 $a + 2L$ 时，它们与 $m$ 的距离是连续变化的，从而引力也是连续变化的，把这些连续变化的引力累加起来，便是一个连续量作用的总和问题，可以用定积分解决．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig7-18.png}
+\figcap{图 7-18}\label{fig:7-18}
+\end{figure}
+
+分割区间 $[a, a + 2L]$，任取一份 $[x, x + dx]$．这一小段棒可近似看作一个质点，其质量为 $\frac{M}{2L}dx$，质点位于 $x$ 处，由万有引力定律知，这一小段对质点 $m$ 的引力为
+\[
+dF = \mu\frac{m}{x^2}\left(\frac{M}{2L}dx\right) = \frac{\mu M m}{2L x^2}dx.
+\]
+从 $a$ 至 $a + 2L$ 累加起来，便把棒对质点的引力化为定积分
+\[
+F = \int_a^{a+2L}\frac{\mu M m}{2L}\frac{dx}{x^2},
+\]
+再用牛顿---莱布尼茨公式，得到
+\[
+F = -\frac{\mu M m}{2L}\frac{1}{x}\bigg|_a^{a+2L} = \frac{\mu M m}{a(2L + a)}.
+\]
+它并不等于把棒的质量 $M$ 集中到棒的质心 $a + L$ 上对 $m$ 所得的引力
+\[
+\frac{\mu M m}{(a + L)^2}.
+\]
+如果棒是不均匀的，设其线密度为 $\rho(x)$，则
+\[
+dF = \mu\frac{m}{x^2}\rho(x)dx,
+\]
+从而
+\[
+F = \int_a^{a+2L}\frac{\mu m}{x^2}\rho(x)\,dx.
+\]
+\end{proof}
+
+\begin{example}
+棒与质点同上，但质点位于棒的垂直平分线上．
+\end{example}
+
+\begin{proof}[解]
+取坐标系如图~\ref{fig:7-19}，原点在棒的中心，设质点 $m$ 与棒的垂直距离为 $a$．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig7-19.png}
+\figcap{图 7-19}\label{fig:7-19}
+\end{figure}
+
+此例与上例不同，上例中棒上各小段对质点 $m$ 的引力虽然大小不同，但方向是一样的，都沿着 $x$ 轴，方向朝着棒，因此可以将引力的微元相加，得到棒对点的引力．现在情况完全不一样了，棒上各小段对质点的引力不仅大小不同，而且方向也不一样．这样，各小段对质点的引力就不能像上例那样来相加，而必须用向量的加法，也就是说，应把每一小段对质点的引力分解为 $x$ 分量与 $y$ 分量，然后按分量相加，得到总引力的 $x$ 分量与 $y$ 分量．所幸本题中质点 $m$ 与棒的位置有对称性，关于原点对称的两段对 $m$ 的引力在 $x$ 轴方向的投影互相抵消，因而总引力的 $x$ 分量为 $0$．故我们只需求引力在 $y$ 轴方向的叠加．总引力方向沿 $y$ 轴，其大小为
+\[
+dF = \mu\frac{m\frac{M}{2L}dx}{(\sqrt{x^2 + a^2})^2}\cos\theta = \mu\frac{Mm}{2L(x^2 + a^2)}\frac{a}{\sqrt{x^2 + a^2}}dx
+\]
+的叠加，即
+\[
+F = \int_{-L}^L \frac{\mu M m a}{2L}\frac{dx}{(x^2 + a^2)^{\frac{3}{2}}} = 2\int_0^L \frac{\mu M m a}{2L}\frac{dx}{(x^2 + a^2)^{\frac{3}{2}}}.
+\]
+为计算积分，作变量替换 $x = a\tan t$，则
+\[
+\int_0^L \frac{dx}{(x^2 + a^2)^{\frac{3}{2}}} = \int_0^{\arctan\frac{L}{a}}\frac{\cos t}{a^2}\,dt = \frac{1}{a^2}\sin t\bigg|_0^{\arctan\frac{L}{a}} = \frac{1}{a^2}\frac{L}{\sqrt{a^2 + L^2}},
+\]
+故引力大小为
+\[
+F = \frac{\mu M m}{a\sqrt{a^2 + L^2}}.
+\]
+当然，我们也可以求质点 $m$ 在其他位置时的引力，但这时就必须分别把引力对 $x$ 轴与 $y$ 轴的分量进行叠加，将总引力的两个分量分别用积分表示出来，情况比这里讨论的要复杂得多，我们就不赘述了．
+\end{proof}
+
+\begin{example}
+半径为 $R$ 的半球形水池，其中充满了水，要把池中的水完全吸尽，需做多少功？
+\end{example}
+
+\begin{proof}[解]
+取坐标如图~\ref{fig:7-20}，球心在原点，容易看出，图中圆周的方程为 $x^2 + y^2 = R^2$．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.4\textwidth]{fig7-20.png}
+\figcap{图 7-20}\label{fig:7-20}
+\end{figure}
+
+分割区间 $[0,R]$，考虑一小段 $[x, x + dx]$，相应的水层重量近似等于以 $y = \sqrt{R^2 - x^2}$ 为底半径，以 $dx$ 为高的薄圆柱形水层的重量
+\[
+\rho\pi y^2\,dx = \rho\pi(R^2 - x^2)\,dx,
+\]
+其中 $\rho$ 表示水的比重．把这一层水吸出水面，经过的距离为 $x$，因此需做功
+\[
+dw = x\left[\rho\pi(R^2 - x^2)\,dx\right] = \rho\pi(R^2 - x^2)x\,dx.
+\]
+加起来，便把总功表成定积分
+\[
+w = \int_0^R \rho\pi(R^2 - x^2)x\,dx = \frac{\rho}{4}\pi R^4.
+\]
+如取 $\rho = 1\,000\text{ kg/m}^3$，则上述功的单位为 $\text{kg}\cdot\text{m}$．
+\end{proof}
+
+从以上各例看出，一些连续量的叠加、积累、作用的总和问题，通常都可以用定积分解决．值得指出的是，这里都只有“一维”问题才能用定积分，“高维”问题要等以后讲多元函数积分（重积分）后才能解决．但即使高维积分，其计算最后仍然归结为一元定积分．当然，即使是“一维”问题，这里也只有几个典型例子，定积分的许多几何应用与物理应用将放到下一章叙述．
+
+\begin{xiti}
+\item 有一薄板 $\frac{x^2}{a^2} + \frac{y^2}{b^2} \leqslant 1$ ($a > b$)，长轴沿铅直方向一半浸入水中，求水对板的压力．
+
+\item 修建大桥桥墩时要先下围囹．设一圆柱形围囹的直径为 $20\text{ m}$，水深 $27\text{ m}$，围囹高出水面 $3\text{ m}$，要把水抽尽，计算克服重力所做的功．
+
+\item 某水库的闸门是一梯形，上底 $6\text{ m}$，下底 $2\text{ m}$，高 $10\text{ m}$，求水灌满时闸门所受的力．设水的比重为 $1\,000\text{ kg/m}^3$．
+
+\item 半径为 $r$ 的球沉入水中，它与水面相接，球的比重为 $1$，现将球从水中取出，要作多少功？
+
+\item 把弹簧拉长所需的力与弹簧的伸长成正比．已知 $1\text{ kg}$ 的力能使弹簧伸长 $1\text{ cm}$，问把弹簧拉长 $10\text{ cm}$ 要作多少功？
+
+\item 有一长为 $a$ 的细棒，它在各点处的线密度与相距某一端点的距离平方成正比，求此细棒的平均密度．
+\end{xiti}

@@ -1,0 +1,409 @@
+% ============ §10 General valuations (原书 pp.71-78) ============
+\section{General valuations}\label{sec:10}\index{valuations, section 10}
+
+An integral domain $R$ is a \emph{valuation ring}\index{valuation ring} if every element $x$ of its
+field of fractions $K$ satisfies
+\[
+  x \notin R \Rightarrow x^{-1} \in R;
+\]
+if we write $R^{-1}$ for the set of inverses of non-zero elements of $R$ then this
+condition can be expressed as $R \cup R^{-1} = K$. We also say that $R$ is a
+\emph{valuation ring of $K$}. The case $R = K$ is the \emph{trivial} valuation ring.
+
+If $R$ is a valuation ring then for any two ideals $I, J$ of $R$ either $I \subset J$
+or $J \subset I$ must hold; indeed, if $x \in I$ and $x \notin J$ then for any $0 \neq y \in J$ we
+have $x/y \notin R$, so that $y/x \in R$ and $y = x(y/x) \in I$, therefore $J \subset I$. Thus the
+ideals of $R$ form a totally ordered set. In particular, since $R$ has only one
+maximal ideal, $R$ is a local ring. We write $m$ for the maximal ideal of $R$.
+Then as one sees easily,
+\[
+  K - R = \{x \in K^* \mid x^{-1} \in m\},
+\]
+where we write $K^*$ for the multiplicative group $K - \{0\}$. Thus $R$ is determined by $R$
+and $m$.
+
+If $R$ is a valuation ring of a field $K$ then any ring $R'$ with $R \subset R' \subset K$ is
+obviously also a valuation ring, and in fact we have the following stronger
+statement.
+
+\begin{theorem}\label{thm:10.1}
+Let $R \subset R' \subset K$ be as above, let $m$ be the maximal ideal of $R$
+and $p$ that of $R'$, and suppose that $R \neq R'$. Then
+\begin{enumerate}[(i)]
+  \item $p \subset m \subset R \subset R'$ and $p \neq m$.
+  \item $p$ is a prime ideal of $R$ and $R' = R_p$.
+  \item $R/p$ is a valuation ring of the field $R'/p$.
+  \item Given any valuation ring $\bar{S}$ of the field $R'/p$, let $S$ be its inverse image
+        in $R'$. Then $S$ is a valuation ring having the same field of fractions $K$ as $R'$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $x \in p$ then $x^{-1} \notin R'$, so $x^{-1} \notin R$ and hence $x \in m$; $x$ is not a unit of $R$,
+so that $x \in m$. Also, since $R \neq R'$ we have $p \neq m$.
+
+(ii) We know that $p \subset R$, so that $p = p \cap R$, and this is a prime ideal of $R$.
+Since $R - p \subset R' - p = \{\text{units of } R'\}$ we have $R_p \subset R'$, and moreover by
+construction, the maximal ideal of $R_p$ is contained in the maximal ideal $p$ of
+$R'$. Thus by (i), $R_p = R'$.
+
+(iii) Write $\varphi\colon R' \to R'/p$ for the natural map; then for $x \in R' - p$, if $x \in R$
+we have $\varphi(x) \in R/p$, and if $x \notin R$ we have $\varphi(x)^{-1} = \varphi(x^{-1}) \in R/p$, and
+therefore $R/p$ is a valuation ring of $R'/p$.
+
+(iv) Note that $p \subset S$ and $S/p = \bar{S}$, so that if $x \in R'$ and $x \notin S$ then $x$ is
+a unit of $R'$, and $\varphi(x) \notin \bar{S}$. Thus $\varphi(x^{-1}) = \varphi(x)^{-1} \in \bar{S}$, and hence $x^{-1} \in S$.
+If on the other hand $x \in K - R'$ then $x^{-1} \in p \subset S$, so that we have proved
+that $S \cup S^{-1} = K$.
+\end{proof}
+
+The valuation ring $S$ in (iv) is called the \emph{composite} of $R'$ and $\bar{S}$. According
+to (iii), every valuation ring of $K$ contained in $R'$ is obtained as the
+composite of $R'$ and a valuation ring of $R'/p$.
+
+Quite generally, we write $m_R$ for the maximal ideal of a local ring $R$. If $R$
+and $S$ are local rings with $R \supset S$ and $m_R \cap S = m_S$ we say that $R$ \emph{dominates} $S$,\index{domination}
+and write $R \ge S$. If $R \ge S$ and $R \neq S$, we write $R > S$.
+
+\begin{theorem}\label{thm:10.2}
+Let $K$ be a field, $A \subset K$ a subring, and $p$ a prime ideal of $A$.
+Then there exists a valuation ring $R$ of $K$ satisfying
+\[
+  R \supset A \quad \text{and} \quad m_R \cap A = p.
+\]
+\end{theorem}
+
+\begin{proof}
+Replacing $A$ by $A_p$ we can assume that $A$ is a local ring with $p = m_A$.
+Now write $\mathcal{F}$ for the set of all subrings $B$ of $K$ containing $A$ and such that
+$1 \notin pB$. Now $A \in \mathcal{F}$, and if $\mathcal{F}_0 \subset \mathcal{F}$ is a subset totally ordered by inclusion
+then the union of all the elements of $\mathcal{F}_0$ is again an element of $\mathcal{F}$, so that, by
+Zorn's lemma, $\mathcal{F}$ has an element $R$ which is maximal for inclusion. Since
+$pR \neq R$ there is a maximal ideal $m$ of $R$ containing $pR$. Then $R \subset R_m \in \mathcal{F}$, so
+that $R = R_m$, and $R$ is local. Also $p \subset m$ and $p$ is a maximal ideal of $A$, so that
+$m \cap A = p$. Thus it only remains to prove that $R$ is a valuation ring of $K$. If
+$x \in K$ and $x \notin R$ then since $R[x] \notin \mathcal{F}$ we have $1 \in pR[x]$, and there
+exists a relation of the form
+\[
+  1 = a_0 + a_1x + \cdots + a_nx^n \quad \text{with } a_i \in pR.
+\]
+Since $1 - a_0$ is a unit of $R$ we can modify this to get a relation
+\[
+  (*) \quad 1 = b_1x + \cdots + b_nx^n \quad \text{with } b_i \in m.
+\]
+Among all such relations, choose one for which $n$ is as small as possible.
+Similarly, if $x^{-1} \notin R$ we can find a relation
+\[
+  (**) \quad 1 = c_1x^{-1} + \cdots + c_mx^{-m} \quad \text{with } c_i \in m,
+\]
+and choose one for which $m$ is as small as possible. If $n \ge m$ we multiply
+$(**)$ by $b_nx^n$ and subtract from $(*)$, and obtain a relation of the form $(*)$
+but with a strictly smaller degree $n$, which is a contradiction; if $n < m$ then
+we get the same contradiction on interchanging the roles of $x$ and $x^{-1}$.
+Thus if $x \notin R$ we must have $x^{-1} \in R$.
+\end{proof}
+
+\begin{theorem}\label{thm:10.3}
+A valuation ring is integrally closed.
+\end{theorem}
+
+\begin{proof}
+Let $R$ be a valuation ring of a field $K$, and let $x \in K$ be integral over $R$,
+so that $x^n + a_1x^{n-1} + \cdots + a_n = 0$ with $a_i \in R$. If $x \notin R$ then $x^{-1} \in m_R$, but then
+\[
+  1 + a_1x^{-1} + \cdots + a_nx^{-n} = 0,
+\]
+and we get $1 \in m_R$, which is a contradiction. Hence $x \in R$.
+\end{proof}
+
+\begin{theorem}\label{thm:10.4}
+Let $K$ be a field, $A \subset K$ a subring, and let $B$ be the integral
+closure of $A$ in $K$. Then $B$ is the intersection of all the valuation rings of $K$
+containing $A$.
+\end{theorem}
+
+\begin{proof}
+Write $B'$ for the intersection of all valuation rings of $K$ containing
+$A$, so that by the previous theorem we have $B' \supset B$. To prove the opposite
+inclusion it is enough to show that for any element $x \in K$ which is not inte-
+gral over $A$ there is a valuation ring of $K$ containing $A$ but not $x$. Set
+$x^{-1} = y$. The ideal $yA[y]$ of $A[y]$ does not contain $1$: for if $1 = a_1y +
+a_2y^2 + \cdots + a_ny^n$ with $a_i \in A$ then $x$ would be integral over $A$, contradicting
+the assumption. Therefore there is a maximal ideal $p$ of $A[y]$ containing
+$yA[y]$, and by Theorem 2 there exists a valuation ring $R$ of $K$ such that
+$R \supset A[y]$ and $m_R \cap A[y] = p$. Now $y = x^{-1} \in m_R$, so that $x \notin R$.
+\end{proof}
+
+Let $K$ be a field and $A \subset K$ a subring. If a valuation ring $R$ of $K$ contains $A$
+we say that $R$ has a \emph{centre} in $A$,\index{centre} and the prime ideal $m_R \cap A$ of $A$ is called the
+\emph{centre of $R$ in $A$}. The set of valuation rings of $K$ having a centre in $A$ is called
+the \emph{Zariski space}\index{Zariski space} or the \emph{Zariski Riemann surface} of $K$ over $A$, and written
+$\Zar(K, A)$. We will treat $\Zar(K, A)$ as a topological space, introducing a
+topology as follows.
+
+For $x_1, \ldots, x_n \in K$, set $U(x_1, \ldots, x_n) = \Zar(K, A[x_1, \ldots, x_n])$. Then since
+\[
+  U(x_1, \ldots, x_n) \cap U(y_1, \ldots, y_m) = U(x_1, \ldots, x_n, y_1, \ldots, y_m),
+\]
+the collection $\mathcal{B} = \{U(x_1, \ldots, x_n) \mid n \ge 0 \text{ and } x_i \in K\}$ is the basis for
+the open sets of a topology on $\Zar(K, A)$. That is, we take as open sets the
+subsets of $\Zar(K, A)$ which can be written as a union of elements of $\mathcal{B}$.
+As in the case of $\Spec$, this topology is called the \emph{Zariski topology}.
+
+\begin{theorem}\label{thm:10.5}
+$\Zar(K, A)$ is quasi-compact.
+\end{theorem}
+
+\begin{proof}
+It is enough to prove that if $\mathcal{A}$ is a family of closed sets of $\Zar(K, A)$
+having the finite intersection property (that is, the intersection of any finite
+number of elements of $\mathcal{A}$ is non-empty) then the intersection of all the
+elements of $\mathcal{A}$ is non-empty. By Zorn's lemma there exists a maximal family
+of closed sets $\mathcal{A}'$ having the finite intersection property and containing $\mathcal{A}$.
+Since it is then enough to show that the intersection of all the elements of
+$\mathcal{A}'$ is non-empty, we can take $\mathcal{A} = \mathcal{A}'$. Then it is easy to see that $\mathcal{A}$ has the
+following properties:
+\begin{enumerate}[($\alpha$)]
+  \item $F_1, \ldots, F_r \in \mathcal{A} \Rightarrow F_1 \cap \cdots \cap F_r \in \mathcal{A}$,
+  \item $Z_1, \ldots, Z_r$ are closed sets and $Z_1 \cup \cdots \cup Z_r \in \mathcal{A} \Rightarrow Z_i \in \mathcal{A}$ for some $i$;
+  \item if a closed set $F$ contains an element of $\mathcal{A}$ then $F \in \mathcal{A}$.
+\end{enumerate}
+For a subset $F \subset \Zar(K, A)$ we write $F^c$ to denote the complement of $F$.
+If $F \in \mathcal{A}$ and $F^c = \bigcup_n U_n$ then $F = \bigcap_n U_n^c$, and moreover if $U(x_1, \ldots, x_n)^c =
+\bigcup_{i=1}^{n} U(x_i)^c \in \mathcal{A}$ then by ($\alpha$) above one of the $U(x_i)^c$ must belong to $\mathcal{A}$.
+Hence the intersection of all the elements of $\mathcal{A}$ is the same thing as the
+intersection of the sets of the form $U(x)^c$ belonging to $\mathcal{A}$. Set
+\[
+  \Gamma = \{y \mid U(y^{-1})^c \in \mathcal{A}\}.
+\]
+Now since the condition for $R \in \Zar(K, A)$ to belong to $U(y^{-1})^c$ is that
+$y \in m_R$, the intersection of all the elements of $\mathcal{A}$ is equal to
+\[
+  \{R \in \Zar(K, A) \mid m_R \supset \Gamma\}.
+\]
+Write $I$ for the ideal of $A[\Gamma]$ generated by $\Gamma$. If $1 \notin I$ then by Theorem 2, the
+above set is non-empty, as required to prove. But if $1 \in I$ then there is a
+finite subset $\{y_1, \ldots, y_n\} \subset \Gamma$ such that $1 \in \sum y_iA[y_1, \ldots, y_n]$; but then
+$U(y_1^{-1})^c \cap \cdots \cap U(y_n^{-1})^c = \emptyset$, which contradicts the finite intersection
+property of $\mathcal{A}$.
+\end{proof}
+
+When $K$ is an algebraic function field over an algebraically closed field $k$
+of characteristic $0$ (that is, $K$ is a finitely generated extension of $k$), Zariski
+gave a classification of valuation rings of $K$ containing $k$, and using this and
+the compactness result above, he succeeded in giving an algebraic proof in
+characteristic $0$ of the resolution of singularities of algebraic varieties of
+dimension $2$ and $3$. However, Hironaka's general proof of resolution of
+singularities in characteristic $0$ in all dimensions was obtained by other
+methods, without the use of valuation theory.
+
+As we saw at the beginning of this section, the ideals of $R$ form a totally
+ordered set under inclusion. This holds not just for ideals, but for all $R$-
+modules contained in $K$. In particular, if we set
+\[
+  G = \{xR \mid x \in K \text{ and } x \neq 0\},
+\]
+then $G$ is a totally ordered set under inclusion; we will, however, give $G$ the
+opposite order to that given by inclusion. That is, we define $\le$ by
+\[
+  xR \le yR \iff xR \supset yR.
+\]
+Moreover, $G$ is an Abelian group with product $(xR) \cdot (yR) = xyR$. In general,
+an Abelian group $H$ written additively, together with a total order relation
+$\le$ is called an \emph{ordered group}\index{ordered group} if the axiom
+\[
+  x \ge y, \; z \ge t \Rightarrow x + z \ge y + t
+\]
+holds. This axiom implies
+\[
+  \text{(1) } x > 0, \; y > 0 \Rightarrow x + y > 0, \qquad \text{and} \qquad \text{(2) } x > y \Rightarrow -y > -x.
+\]
+We make an ordered set $H \cup \{\infty\}$ by adding to $H$ an element $\infty$ bigger
+than all the elements of $H$, and fix the conventions $\infty + \alpha = \infty$ for $\alpha \in H$
+and $\alpha + \infty = \infty$. A map $v\colon K \to H \cup \{\infty\}$ from a field $K$ to $H \cup \{\infty\}$
+is called an \emph{additive valuation}\index{additive valuation} or just a \emph{valuation} of $K$ if it satisfies the
+conditions
+\begin{enumerate}[(1)]
+  \item $v(xy) = v(x) + v(y)$;
+  \item $v(x + y) \ge \min\{v(x), v(y)\}$;
+  \item $v(x) = \infty \iff x = 0$.
+\end{enumerate}
+If we write $K^*$ for the multiplicative group of $K$ then $v$ defines a
+homomorphism $K^* \to H$; the image is a subgroup of $H$, called the \emph{value group} of $v$. We also set
+\[
+  R_v = \{x \in K \mid v(x) \ge 0\} \quad \text{and} \quad m_v = \{x \in K \mid v(x) > 0\},
+\]
+obtaining a valuation ring $R_v$ of $K$ with $m_v$ as its maximal ideal, and call $R_v$ the
+\emph{valuation ring of $v$}, and $m_v$ the \emph{valuation ideal} of $v$. Conversely, if $R$ is a
+valuation ring of $K$, then the group $G = \{xR \mid x \in K^*\}$ described above is an
+ordered group, and we obtain an additive valuation of $K$ with value group
+$G$ by defining $v\colon K \to G \cup \{\infty\}$ by $v(0) = \infty$ and $v(x) = xR$ for $x \in K^*$ (there
+is no real significance in whether or not we rewrite the multiplication in
+$G$ additively); the valuation ring of $v$ is $R$. The additive valuation corres-
+ponding to a valuation ring $R$ is not quite unique, but if $v$ and $v'$ are
+additive valuations of $K$ with value groups $H$ and $H'$ and both having
+valuation ring $R$ then there exists an order-isomorphism
+$\varphi\colon H \to H'$ such that $v' = \varphi v$ (prove this!). Thus we can think of valuation rings and
+additive valuations as being two aspects of the same thing.
+
+We now give some examples of ordered groups:
+\begin{enumerate}[(1)]
+  \item the additive group of real numbers $\R$ (this is isomorphic to the
+        multiplicative group of positive reals), or any subgroup of this;
+  \item the group $\Z$ of rational integers;
+  \item the direct product $\Z^n$ of $n$ copies of $\Z$, with lexicographical order, that is
+        \[
+          (a_1, \ldots, a_n) < (b_1, \ldots, b_n) \iff \text{the first non-zero element of}
+        \]
+        \[
+          b_1 - a_1, \ldots, b_n - a_n \text{ is positive}
+        \]
+\end{enumerate}
+
+An ordered group $G$ is said to be \emph{Archimedean}\index{Archimedean ordered group} if it is order-isomorphic to
+a suitable subgroup of $\R$. The name is explained by the following theorem:
+the condition in it is known as the Archimedean axiom. (Note that our
+usage is completely unrelated to that in number theory, where non-
+Archimedean fields are p-adic fields, as opposed to subfields of $\R$ and $\C$ with
+the usual `Archimedean' metrics.)
+
+\begin{theorem}\label{thm:10.6}
+Let $G$ be an ordered group; then $G$ is Archimedean if and
+only if the following condition holds:
+\[
+  \text{if } a, b \in G \text{ with } a > 0, \text{ there exists a natural number } n \text{ such that } na > b.
+\]
+\end{theorem}
+
+\begin{proof}
+The condition is obviously necessary, and we prove sufficiency. If
+$G = \{0\}$ then we can certainly embed $G$ in $\R$. Suppose that $G \neq \{0\}$.
+Fix some $0 < \alpha \in G$. For any $\beta \in G$, there is a well-defined largest integer
+$n$ such that $n\alpha \le \beta$ (if $\beta \ge 0$ this is clear by assumption; if $\beta < 0$, let $m$ be
+the smallest integer such that $-\beta \le m\alpha$, and set $n = -m$). Let this be $n_0$.
+Now set $\beta_1 = \beta - n_0\alpha$ and let $n_1$ be the largest integer $n$ such that $n\alpha \le 10\beta_1$;
+we have $0 \le n_1 < 10$. Set $\beta_2 = 10\beta_1 - n_1\alpha$ and let $n_2$ be the largest integer
+$n$ such that $n\alpha \le 10\beta_2$. Continuing in the same way, we find integers $n_0$,
+$n_1, n_2, \ldots$, and set $\varphi(\beta) = \alpha_0$, where $\alpha_0$ is the real number given by the decimal
+expression $n_0 + 0.n_1n_2n_3\cdots$. Then it can easily be checked that $\varphi\colon G \to \R$
+is order-preserving, in the sense that $\beta < \beta'$ implies $\varphi(\beta) < \varphi(\beta')$.
+
+We also see that $\varphi$ is injective. For this, we only need to observe that
+if $\beta < \beta'$ then there exists a natural number $r$ such that $\alpha < 10^r(\beta' - \beta)$;
+the details are left to the reader.
+
+Finally we show that $\varphi$ is a group homomorphism. For $\beta \in G$, we write
+$n/10^r$ with $n \in \Z$ to denote the number obtained by taking the first $r$
+decimal places of $\varphi(\beta)$; the numerator $n$ is determined by the property that
+$n\alpha \le 10^r\beta < (n + 1)\alpha$. For $\beta' \in G$, if $n'\alpha \le 10^r\beta' < (n' + 1)\alpha$ then we have
+\[
+  (n + n')\alpha \le 10^r(\beta + \beta') < (n + n' + 2)\alpha,
+\]
+and hence
+\[
+  \varphi(\beta + \beta') - (n + n') \cdot 10^{-r} < 2 \cdot 10^{-r},
+\]
+so that
+\[
+  |\varphi(\beta + \beta') - \varphi(\beta) - \varphi(\beta')| \le 4 \cdot 10^{-r},
+\]
+and since $r$ is arbitrary, $\varphi(\beta + \beta') = \varphi(\beta) + \varphi(\beta')$.
+\end{proof}
+
+A non-zero group $G$ order-isomorphic to a subgroup of $\R$ is said to have
+\emph{rank 1}.\index{rank (of an ordered group)} The \emph{rational rank} of an ordered group $G$ of rank $1$ is the maximum
+number of elements of $G$ (viewed as a subgroup of $\R$) which are linearly
+independent over $\Z$. For example, the additive group $G = \Z + \Z\sqrt{2} \subset \R$ is
+an ordered group of rank $1$ and rational rank $2$.
+
+\begin{theorem}\label{thm:10.7}
+Let $R$ be a valuation ring having value group $G$. Then $G$ has
+rank $1 \iff R$ has Krull dimension $1$.
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) Since $G \neq 0$, $R$ is not a field. Suppose that $p$ is a prime ideal of $R$
+distinct from $m_R$. Let $\xi \in m_R$ be such that $\xi \notin p$, and set $v(\xi) = x$, where $v$ is the
+additive valuation corresponding to $R$. Suppose that $0 \neq \eta \in p$, and set $\psi =
+v(\eta)$; then $\psi \in G$ and $x > 0$, so that $nx > \psi$ for some sufficiently large natural
+number $n$. This means that $\xi^n/\eta \in R$, so that $\xi^n \in \eta R \subset p$; then since $p$ is prime
+we have $\xi \in p$, which is a contradiction. Therefore $p = (0)$. The only prime
+ideals of $R$ are $m_R$ and $(0)$, which means $\dim R = 1$.
+
+($\Leftarrow$) If $0 \neq \eta \in m_R$ then $m_R$ is the unique prime ideal containing $\eta R$, and
+hence $\sqrt{\eta R} = m_R$. Thus for any $\xi \in m_R$ there exists a natural number $n$ such
+that $\xi^n \in \eta R$. From this one sees easily that $G$ satisfies the Archimedean
+axiom.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:10}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:10.1-ex}
+In a valuation ring any finitely generated ideal is principal.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.2-ex}
+If $R$ is a valuation ring then an $R$-module $M$ is flat if and only if it is torsion-
+free (that is, $a \neq 0, x \neq 0 \Rightarrow ax \neq 0$ for $a \in R, x \in M$).
+\end{exercise}
+
+\begin{exercise}\label{ex:10.3-ex}
+In Theorem~\ref{thm:10.4}, if $A$ is a local ring then $B$ is the intersection of the
+valuation rings of $K$ dominating $A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.4-ex}
+If $R$ is a valuation ring of Krull dimension $\ge 2$ then the formal power series
+ring $R[[X]]$ is not integrally closed ([B5], Ex. 27, p.~76 and Seidenberg~\cite{Sd1}).
+\end{exercise}
+
+\begin{exercise}\label{ex:10.5-ex}
+If $R$ is a valuation ring of Krull dimension $1$ and $K$ its field of fractions then
+there do not exist any rings intermediate between $R$ and $K$. In other words
+$R$ is maximal among proper subrings of $K$. Conversely if a ring $R$, not a
+field, is a maximal proper subring of a field $K$ then $R$ is a valuation ring of
+Krull dimension $1$.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.6-ex}
+If $v$ is an additive valuation of a field $K$, and if $\alpha, \beta \in K$ are such that
+$v(\alpha) \neq v(\beta)$ then $v(\alpha + \beta) = \min\{v(\alpha), v(\beta)\}$.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.7-ex}
+If $v$ is an additive valuation of a field $K$ and $\alpha_1, \ldots, \alpha_n \in K$ are such that
+$\alpha_1 + \cdots + \alpha_n = 0$ then there exist two indices $i, j$ such that $i \neq j$ and
+$v(\alpha_i) = v(\alpha_j)$.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.8-ex}
+Let $K \subset L$ be algebraic field extension of degree $[L:K] = n$, and let $S$ be
+a valuation ring of $L$; set $R = S \cap K$. Write $k, k'$ for the residue fields of $S$
+and $R$, and set $[k:k'] = f$. Now let $G$ be the value group of $S$, and let $G'$ be
+the image of $K^*$ under the valuation map $L^* \to G$; set $[G:G'] = e$. Then
+$ef \le n$. (The numbers $f$ and $e$ are called the \emph{degree} and the \emph{ramification}
+\emph{index} of the valuation ring extension $S/R$.)
+\end{exercise}
+
+\begin{exercise}\label{ex:10.9-ex}
+Let $L, K, S$ and $R$ be as in the previous question, and let $S_1 \neq S$ be a
+valuation ring of $L$ such that $S_1 \cap K = R$. Then neither of $S$ or $S_1$ contains
+the other.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.10-ex}
+Let $A$ be an integral domain with field of fractions $K$, and let $H$ be an
+ordered group. If a map $v\colon A \to H \cup \{\infty\}$ satisfies conditions (1), (2) and (3)
+of an additive valuation (on elements of $A$), then $v$ can be extended
+uniquely to an additive valuation $K \to H \cup \{\infty\}$.
+\end{exercise}
+
+\begin{exercise}\label{ex:10.11-ex}
+Let $k$ be a field, $X$ and $Y$ indeterminates, and suppose that $\alpha$ is a positive
+irrational number. Then the map $v\colon k[X, Y] \to \R \cup \{\infty\}$ defined by
+taking $\sum c_{nm}X^nY^m$ (with $c_{nm} \in k$) into $v(\sum c_{nm}X^nY^m) = \min\{n +
+m\alpha \mid c_{nm} \neq 0\}$ determines a valuation of $k(X, Y)$ with value group
+$\Z + \Z\alpha$.
+\end{exercise}

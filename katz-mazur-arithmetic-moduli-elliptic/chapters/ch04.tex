@@ -1,0 +1,677 @@
+% ==============================================================================
+% ch04.tex -- Chapter 4: The Formalism of Moduli Problems
+%   Source: book pp. 107--128 (physical pp. 118--139)
+% ==============================================================================
+\chapter{The formalism of moduli problems}
+\label{ch:4}
+
+% ------------------------------------------------------------------------------
+% Section 4.1
+% ------------------------------------------------------------------------------
+\section{The category $\Ell$}
+\label{sec:4.1}
+
+Consider the category $\Ell$ whose objects are elliptic curves
+\begin{equation}\label{eq:4.1.1}
+\begin{tikzcd}[row sep=small, column sep=small]
+E \arrow[d] \\
+S
+\end{tikzcd}
+\end{equation}
+over variable base-schemes, and whose morphisms are cartesian squares of elliptic curves
+\begin{equation}\label{eq:4.1.2}
+\begin{tikzcd}[row sep=small, column sep=small]
+E_1 \arrow[r, "\alpha"] \arrow[d, "\pi_1"'] & E \arrow[d, "\pi"] \\
+S_1 \arrow[r, "f"'] & S\rlap{,}
+\end{tikzcd}
+\end{equation}
+i.e., commutative squares such that the induced morphism of $S_1$-schemes
+\begin{equation}\label{eq:4.1.3}
+E_1 \xrightarrow{\ (\alpha, \pi_1)\ } E \underset{S}{\times} S_1
+\end{equation}
+is an isomorphism of elliptic curves over $S_1$. This category $\Ell$ is the ``modular stack'' of Deligne-Rapoport (cf.\ \cite{DeRa}).
+
+% ------------------------------------------------------------------------------
+% Section 4.2
+% ------------------------------------------------------------------------------
+\section{Moduli problems}
+\label{sec:4.2}
+
+A contravariant functor $\mathcal{P}$ from $\Ell$ to $\Sets$ is called a moduli problem for elliptic curves. Given an elliptic curve $E/S$, an element of the set $\mathcal{P}(E/S)$ is called a ``level $\mathcal{P}$ structure'' on $E/S$. The moduli problem $\mathcal{P}$ is said to be relatively representable over $\Ell$ if for every elliptic curve $E/S$, the functor on $(\Sch/S)$ defined by
+\[
+T \longmapsto \mathcal{P}(E_T/T)
+\]
+is representable by an $S$-scheme denoted $\mathcal{P}_{E/S}$.
+
+% ------------------------------------------------------------------------------
+% Section 4.3
+% ------------------------------------------------------------------------------
+\section{Representable moduli problems}
+\label{sec:4.3}
+
+The moduli problem $\mathcal{P}$ is said to be representable if it is representable as a functor on $\Ell$, i.e., if there exists an elliptic curve over a scheme
+\[
+\begin{tikzcd}[row sep=small, column sep=small]
+\mathbf{E} \arrow[d] \\
+\Mfrak(\mathcal{P})
+\end{tikzcd}
+\]
+together with a functorial isomorphism
+\[
+\mathcal{P}(E/S) \ \simeq \ \Hom_{\Ell}(E/S, \mathbf{E}/\Mfrak(\mathcal{P})).
+\]
+If the moduli problem $\mathcal{P}$ is representable, the scheme $\Mfrak(\mathcal{P})$ is easily seen to represent the functor on $(\Sch)$
+\begin{equation}\label{eq:4.3.1}
+\begin{aligned}
+S \longmapsto {} & \text{isomorphism classes of pairs } (E/S, \alpha) \\
+& \text{with } E \text{ an elliptic curve over } S \text{ and} \\
+& \alpha \in \mathcal{P}(E/S) \text{ a ``level } \mathcal{P} \text{ structure'' on } E/S.
+\end{aligned}
+\end{equation}
+Conversely, if this moduli problem on $(\Sch)$ is representable by a scheme $\Mfrak(\mathcal{P})$ with universal object $(\mathbf{E}/\Mfrak(\mathcal{P}), \alpha)$ and if $\mathcal{P}$ is rigid \ref{sec:4.4}, then $\mathcal{P}$ is easily seen to be represented by the object $\mathbf{E}/\Mfrak(\mathcal{P})$ of $\Ell$.
+
+\kmeqitem\label{item:4.3.2}
+Any representable moduli problem $\mathcal{P}$ is relatively representable over $\Ell$; indeed for any $E/S$ we have a natural isomorphism of $S$-schemes
+\begin{equation}\label{eq:4.3.3}
+\mathcal{P}_{E/S} \ \simeq \ \Isom_{S \times \Mfrak(\mathcal{P})}(\mathrm{pr}_1^*(\mathbf{E}), \mathrm{pr}_2^*(\mathbf{E})).
+\end{equation}
+
+\kmeqitem\label{item:4.3.4}
+If $\mathcal{P}$ is representable, and $\mathcal{P}'$ is relatively representable, then the product, or ``simultaneous'', moduli problem
+\[
+E/S \longmapsto \mathcal{P}(E/S) \times \mathcal{P}'(E/S)
+\]
+is representable; indeed if $\mathbf{E}/\Mfrak(\mathcal{P})$ represents $\mathcal{P}$, then we have
+\[
+\Mfrak(\mathcal{P}, \mathcal{P}') = \mathcal{P}'_{\mathbf{E}/\Mfrak(\mathcal{P})}.
+\]
+
+\kmeqitem\label{item:4.3.5}
+Any particular elliptic curve $E/S$ tautologically defines a representable moduli problem, namely
+\[
+\Hom_{\Ell}(\quad, E/S),
+\]
+the moduli problem of ``$E/S$-structures'' on variable elliptic curves $E_1/S_1$
+\[
+\begin{aligned}
+E_1/S_1 \longmapsto {} & \text{pairs } (f, \alpha) \text{ where } f : S_1 \to S \\
+& \text{is a morphism and where} \\
+& \alpha : E_1 \xrightarrow{\ \sim\ } f^*(E) \text{ is an isomorphism} \\
+& \text{of elliptic curves over } S_1.
+\end{aligned}
+\]
+
+% ------------------------------------------------------------------------------
+% Section 4.4
+% ------------------------------------------------------------------------------
+\section{Rigid moduli problems}
+\label{sec:4.4}
+
+A moduli problem $\mathcal{P}$ is said to be rigid if for any elliptic curve $E/S$ and any level $\mathcal{P}$ structure $\alpha \in \mathcal{P}(E/S)$ on $E/S$, the pair $(E/S, \alpha)$ has no non-trivial automorphism (i.e., the group $\Aut(E/S)$ acts freely on the set $\mathcal{P}(E/S)$, for every $E/S$). Any representable moduli problem is rigid (as is visible from the explicit description above of representable problems)!
+
+% ------------------------------------------------------------------------------
+% Section 4.5
+% ------------------------------------------------------------------------------
+\section{Geometric properties of moduli problems}
+\label{sec:4.5}
+
+Let P be a property of morphisms of schemes. A moduli problem $\mathcal{P}$ is said to be ``of type P'' over $\Ell$ if it is relatively representable over $\Ell$ and if for every $E/S$, the morphism of schemes
+\[
+\begin{tikzcd}[row sep=small, column sep=small]
+\mathcal{P}_{E/S} \arrow[d] \\
+S
+\end{tikzcd}
+\]
+has property P. For example, to say that $\mathcal{P}$ is etale over $\Ell$ means that it is relatively representable, locally of finite presentation, and that for every elliptic curve $E/S$ and every closed subscheme $S_0 \subset S$ defined by a nilpotent ideal, the natural map
+\[
+\mathcal{P}(E/S) \longrightarrow \mathcal{P}(E \underset{S}{\times} S_0/S_0)
+\]
+is bijective (i.e., ``level $\mathcal{P}$ structures don't see nilpotents'').
+
+The representable moduli problems
+\[
+\left\{
+\begin{array}{@{}l@{}}
+\text{Weierstrass with } \Delta = 1 \quad \ref{item:2.2.7} \\
+\text{Legendre} \quad \ref{item:2.2.9} \\
+\text{naive level three} \quad \ref{item:2.2.11}
+\end{array}
+\right.
+\]
+are each etale over $\Ell$, and the disjoint union of the last two is etale and surjective over $\Ell$.
+
+% ------------------------------------------------------------------------------
+% Section 4.6
+% ------------------------------------------------------------------------------
+\section{Some examples}
+\label{sec:4.6}
+
+The basic example of a moduli problem $\mathcal{P}$ etale over $\Ell$ is provided by the ``naive'' level $N$ moduli problem ($N \ge 1$ arbitrary)
+\[
+E/S \longmapsto \text{the set of } S\text{-group-scheme isomorphisms}
+\]
+\[
+(\Z/N\Z)^2 \xrightarrow{\ \sim\ } E[N].
+\]
+The corresponding $S$-scheme $\mathcal{P}_{E/S}$ is concentrated over $S[1/N]$, over which it is a finite etale $\GL(2, \Z/N\Z)$-torsor.
+
+\kmeqitem\label{item:4.6.1}
+We have already seen explicitly \ref{item:2.2.11} that for $N = 3$ the naive level $N$ moduli problem is representable, and its representing scheme is a smooth affine connected curve over $\Z[1/3]$.
+
+\kmeqitem\label{item:4.6.2}
+Another example of a moduli problem $\mathcal{P}$ which is etale over $\Ell$ is the Legendre moduli problem \ref{item:2.2.9}
+\[
+\begin{aligned}
+E/S \longmapsto {} & \text{pairs } (\phi_2, \omega) \text{ consisting of an } S\text{-group-scheme} \\
+& \text{isomorphism } \phi_2 : (\Z/2\Z)^2 \xrightarrow{\ \sim\ } E[2] \text{ together} \\
+& \text{with an } S\text{-basis } \omega \text{ of } \underline{\omega}_{E/S} \text{ for which the} \\
+& \text{adapted } x \text{ satisfies } x(P_2) = 0,\ x(Q_2) = 1.
+\end{aligned}
+\]
+The corresponding $S$-scheme $\mathcal{P}_{E/S}$ is concentrated over $S[1/2]$, over which it is a finite etale $\GL(2,\Z/2\Z) \times \{\pm 1\}$ torsor.
+
+% ------------------------------------------------------------------------------
+% Section 4.7
+% ------------------------------------------------------------------------------
+\section{A basic result: representability and rigidity}
+\label{sec:4.7}
+
+\begin{pscholie}{4.7.0}\label{thm:4.7.0}
+Let $\mathcal{P}$ be relatively representable and affine over $\Ell$; then a necessary and sufficient condition that $\mathcal{P}$ be representable is that $\mathcal{P}$ be rigid.
+\end{pscholie}
+
+\begin{proof}
+As already pointed out above \ref{sec:4.4}, any representable problem is automatically rigid. Conversely, suppose $\mathcal{P}$ is rigid, relatively representable and affine. We must show it is represented, by an
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E},\ \alpha_{\mathrm{univ}} \in \mathcal{P}(\mathbf{E}/\Mfrak(\mathcal{P})) \\[2pt]
+\big\downarrow\!\big\downarrow \\[2pt]
+\Mfrak(\mathcal{P})
+\end{array}
+\]
+where $\Mfrak(\mathcal{P})$ is an affine $\Z$-scheme. For this, it suffices to show that $\mathcal{P}$ is separately representable over both $\Z[1/2]$ and over $\Z[1/3]$, (the rigidity of $\mathcal{P}$ will then provide a unique isomorphism between the restrictions to $\Z[1/6]$ of the representing objects, giving a representing object over $\Z$ by ``recollement'').
+
+To show the representability separately over $\Z[1/2]$ and $\Z[1/3]$, we will make use of the Legendre and of the naive level three moduli problems discussed in \ref{sec:4.6} above. To clarify the argument, we will axiomatize it.
+
+Let $N \ge 1$ be an integer, $G$ a finite group, and $\mathcal{S}$ a relatively representable and affine moduli problem on \Ell which satisfies the following axioms:
+\begin{enumerate}[1)]
+\item $\mathcal{S}$ is representable, by an affine $\Z[1/N]$-scheme
+\item $G$ operates upon $\mathcal{S}$, in such a way that for every elliptic curve $E/S$ with $S$ a $\Z[1/N]$-scheme, the $S$-scheme $\mathcal{S}_{E/S}$ is a finite etale $G$-torsor.
+\end{enumerate}
+We claim that over $\Z[1/N]$, $\mathcal{P}$ is represented by the affine $\Z[1/N]$-scheme
+\[
+\Mfrak(\mathcal{P}, \mathcal{S})/G.
+\]
+Once we have verified this claim, we simply apply it successively with $(N = 2$, $\mathcal{S} = \text{Legendre problem}$, $G = \GL(2, \Z/2\Z) \times \{\pm 1\})$ and with $(N = 3$, $\mathcal{S} = \text{naive level three problem}$, $G = \GL(2, \F_3))$.
+
+To prove the claim, we argue as follows. Because $\mathcal{S}$ is representable, and $\mathcal{P}$ is relatively representable, the simultaneous problem $(\mathcal{P}, \mathcal{S})$ is representable, by
+\[
+\Mfrak(\mathcal{P}, \mathcal{S}) = \mathcal{P}_{\mathbf{E}/\Mfrak(\mathcal{S})}.
+\]
+Because $\Mfrak(\mathcal{S})$ is affine, and $\mathcal{P}$ is affine over \Ell, the scheme $\Mfrak(\mathcal{P}, \mathcal{S})$ is affine over $\Mfrak(\mathcal{S})$, hence absolutely affine. Let $G$ operate upon $\Mfrak(\mathcal{P}, \mathcal{S})$ through its action on $\mathcal{S}$.
+
+Consider the universal curve
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E}; \ (\alpha_{\mathrm{univ}}, \beta_{\mathrm{univ}}) \in (\mathcal{P} \times \mathcal{S})(\mathbf{E}/\Mfrak(\mathcal{P}, \mathcal{S})) \\[2pt]
+\big\downarrow \\[2pt]
+\Mfrak(\mathcal{P}, \mathcal{S}).
+\end{array}
+\]
+We will descend $(\mathbf{E}, \alpha_{\mathrm{univ}})$ to $\Mfrak(\mathcal{P}, \mathcal{S})/G$. To do this, we argue as follows.
+
+The action of $g \in G$ on $\Mfrak(\mathcal{P}, \mathcal{S})$ is defined as follows; the curve
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E}, \text{ with } (\alpha_{\mathrm{univ}}, g\beta_{\mathrm{univ}}) \\[2pt]
+\big\downarrow \\[2pt]
+\Mfrak(\mathcal{P}, \mathcal{S})
+\end{array}
+\]
+is an elliptic curve with $(\mathcal{P}, \mathcal{S})$-structure over $\Mfrak(\mathcal{P}, \mathcal{S})$, so it is ``classified'' by a unique morphism
+\[
+g : \Mfrak(\mathcal{P}, \mathcal{S}) \longrightarrow \Mfrak(\mathcal{P}, \mathcal{S}),
+\]
+for which we have an isomorphism
+\[
+g^*(\mathbf{E}, \alpha_{\mathrm{univ}}, \beta_{\mathrm{univ}}) \xrightarrow{\ \theta(g)\ } (\mathbf{E}, \alpha_{\mathrm{univ}}, g\beta_{\mathrm{univ}})
+\]
+over $\Mfrak(\mathcal{P}, \mathcal{S})$. Forgetting $\beta_{\mathrm{univ}}$, $\theta(g)$ defines an $\Mfrak(\mathcal{P}, \mathcal{S})$-isomorphism
+\[
+\theta(g) : g^*(\mathbf{E}, \alpha_{\mathrm{univ}}) \xrightarrow{\ \sim\ } (\mathbf{E}, \alpha_{\mathrm{univ}}).
+\]
+Because the moduli problem $\mathcal{P}$ is rigid, the object $(\mathbf{E}, \alpha_{\mathrm{univ}})$ has no non-trivial automorphisms. Therefore $\theta(g)$ is the unique $\Mfrak(\mathcal{P}, \mathcal{S})$-isomorphism between $g^*(\mathbf{E}, \alpha_{\mathrm{univ}})$ and $(\mathbf{E}, \alpha_{\mathrm{univ}})$. By uniqueness, $\theta(g)$ must be compatible with composition of elements of $G$, (i.e., $g \mapsto \theta(g)$ is a one-cocycle).
+
+By axiom 2) and the rigidity of $\mathcal{P}$, $G$ operates freely on $\Mfrak(\mathcal{P}, \mathcal{S})$. Because $\Mfrak(\mathcal{P}, \mathcal{S})$ is affine, the quotient $\Mfrak(\mathcal{P}, \mathcal{S})/G$ exists, and the projection
+\[
+\begin{array}{@{}c@{}}
+\Mfrak(\mathcal{P}, \mathcal{S}) \\[2pt]
+\big\downarrow \\[2pt]
+\Mfrak(\mathcal{P}, \mathcal{S})/G
+\end{array}
+\]
+is a finite etale $G$-torsor \cite[III, 2, 6.1]{DeGa} \cite[III, Exp.~V, 4.1]{SGA}.
+
+Because $g \mapsto \theta(g)$ is compatible with composition, $\theta$ is descent data for $(\mathbf{E}, \alpha_{\mathrm{univ}})$ relative to this projection. Because $\mathbf{E}$ is projective, via $\Gamma^{-1}(0)$, it descends, and because $\mathcal{P}$ is relatively affine, $\alpha_{\mathrm{univ}}$ descends \cite[I, Exp.~VIII, 7.8, 1.2 and 1.7]{SGA}. Thus we obtain an object
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E}_0,\ \alpha_{\mathrm{univ},0} \in \mathcal{P}(\mathbf{E}_0/(\Mfrak(\mathcal{P}, \mathcal{S})/G)) \\[2pt]
+\big\downarrow\!\big\downarrow \\[2pt]
+\Mfrak(\mathcal{P}, \mathcal{S})/G,
+\end{array}
+\]
+whose pull-back to $\Mfrak(\mathcal{P}, \mathcal{S})$ is the original $(\mathbf{E}, \alpha_{\mathrm{univ}})$.
+
+It remains to show that $(\mathbf{E}_0, \alpha_{\mathrm{univ},0})$ over $\Mfrak(\mathcal{P}, \mathcal{S})/G$ does in fact represent $\mathcal{P}$ over $\Z[1/N]$. Let $S$ be a $\Z[1/N]$-scheme, and $(E/S, \alpha \in \mathcal{P}(E/S))$ an elliptic curve over $S$ with level $\mathcal{P}$-structure. We must show that it is induced from $(\mathbf{E}_0, \alpha_{\mathrm{univ},0})$ by a unique map $S \to \Mfrak(\mathcal{P}, \mathcal{S})/G$. For this, consider the finite etale $G$-torsor over $S$
+\[
+\begin{array}{@{}c@{}}
+\mathcal{S}_{E/S} \\[2pt]
+\big\downarrow \\[2pt]
+S,
+\end{array}
+\]
+over which $E$ acquires its universal level $\mathcal{S}$-structure $\beta_{\mathrm{univ}}$. The classifying map for $(E \underset{S}{\times} \mathcal{S}_{E/S}, \alpha, \beta_{\mathrm{univ}})$ is a map
+\[
+\mathcal{S}_{E/S} \xrightarrow{\ f\ } \Mfrak(\mathcal{P}, \mathcal{S})
+\]
+which is (tautologically) $G$-equivariant. Passing to quotients by $G$ yields a map $f_0$ which sits in a commutative diagram
+\[
+\begin{tikzcd}[column sep=small, row sep=small]
+\mathcal{S}_{E/S} \arrow[r, "f"] \arrow[d] & \Mfrak(\mathcal{P}, \mathcal{S}) \arrow[d] \\
+S \arrow[r, "f_0"'] & \Mfrak(\mathcal{P}, \mathcal{S})/G.
+\end{tikzcd}
+\]
+Because the vertical arrows are finite etale $G$-torsors, the $G$-equivariance of $f$ guarantees that this diagram is cartesian.
+
+We must show that a), $f_0^*(\mathbf{E}_0, \alpha_{\mathrm{univ},0})$ is isomorphic to $(E, \alpha)$, and that b), $f_0$ is the unique map of $S$ to $\Mfrak(\mathcal{P}, \mathcal{S})/G$ for which this is true. To establish a), we note that because $\mathcal{P}$ is rigid, and $\pi$ is etale and surjective, it suffices to show that on $\mathcal{S}_{E/S}$, $\pi^*f_0^*(\mathbf{E}_0, \alpha_{\mathrm{univ},0})$ is isomorphic to $\pi^*(E, \alpha)$. But this is clear from the commutativity of the above diagram, and the definition of $f$.
+
+To show the uniqueness of $f_0$ we argue as follows. Let
+\[
+h_0 : S \longrightarrow \Mfrak(\mathcal{P}, \mathcal{S})/G
+\]
+be any morphism for which $h_0^*(\mathbf{E}_{\mathrm{univ},0}, \alpha_{\mathrm{univ},0}) \xrightarrow{\ \sim\ } (E/S, \alpha)$, and denote by $X$ the fiber-product
+\[
+\begin{tikzcd}[column sep=small, row sep=small]
+X \arrow[r] \arrow[d] & \Mfrak(\mathcal{P}, \mathcal{S}) \arrow[d] \\
+S \arrow[r, "h_0"'] & \Mfrak(\mathcal{P}, \mathcal{S})/G.
+\end{tikzcd}
+\]
+Then $X/S$ is a $G$-torsor, and the pull-back to $X$ of $(E/S, \alpha)$ acquires an $\mathcal{S}$-structure $\beta$. The resulting $G$-equivariant $S$-morphism which classifies this $\mathcal{S}$-structure
+\[
+X \longrightarrow \Mfrak(\mathcal{P}, \mathcal{S})
+\]
+is necessarily an isomorphism (being a $G$-map between $G$-torsors). Therefore we have a cartesian diagram of $G$-torsors
+\[
+\begin{tikzcd}[column sep=small, row sep=small]
+\mathcal{S}_{E/S} \arrow[r, "h"] \arrow[d] & X \arrow[d] \\
+S \arrow[r, "h_0"'] & \Mfrak(\mathcal{P}, \mathcal{S})/G
+\end{tikzcd}
+\]
+and an isomorphism $h^*(\mathbf{E}_{\mathrm{univ}}, \alpha_{\mathrm{univ}}, \beta_{\mathrm{univ}}) \cong (E, \alpha, \beta_{\mathrm{univ}})$ over $\mathcal{S}_{E/S}$. Therefore $h = f$, since both classify $(E, \alpha, \beta_{\mathrm{univ}})$ over $\mathcal{S}_{E/S}$. From the equality $h = f$, we deduce $h_0\pi = f_0\pi$, whence $h_0 = f_0$ because $\pi$ is etale and surjective.
+\end{proof}
+
+\begin{customcor}{4.7.1}\label{cor:4.7.1}
+Any relatively representable moduli problem $\mathcal{P}$ which is affine and etale over \Ell, and rigid, is representable by a smooth affine curve over $\Z$.
+\end{customcor}
+
+\begin{proof}
+By \ref{thm:4.7.0}, $\mathcal{P}$ is representable by an affine, and we have
+\[
+\begin{aligned}
+\Mfrak(\mathcal{P}) \otimes \Z[1/2] & = \Mfrak(\mathcal{P}, \text{Legendre})\Big/
+\begin{array}{@{}c@{}}
+\text{a finite group} \\
+\text{acting freely}
+\end{array} \\[4pt]
+\Mfrak(\mathcal{P}) \otimes \Z[1/3] & = \Mfrak(\mathcal{P}, \text{naive level } 3)\Big/
+\begin{array}{@{}c@{}}
+\text{a finite group} \\
+\text{acting freely.}
+\end{array}
+\end{aligned}
+\]
+Therefore it suffices to prove that $\Mfrak(\mathcal{P}, \text{Legendre})$ is a smooth curve over $\Z[1/2]$, and that $\Mfrak(\mathcal{P}, \text{naive level } 3)$ is a smooth curve over $\Z[1/3]$. By hypothesis, $\mathcal{P}$ is etale over \Ell, so that the morphisms
+\[
+\begin{array}{@{}c@{}}
+\Mfrak(\mathcal{P}, \text{Legendre}) \\ \big\downarrow \\ \Mfrak(\text{Legendre})
+\end{array}
+\qquad
+\begin{array}{@{}c@{}}
+\Mfrak(\mathcal{P}, \text{naive level } 3) \\ \big\downarrow \\ \Mfrak(\text{naive level } 3)
+\end{array}
+\]
+are etale. This reduces us to checking that $\Mfrak(\text{Legendre})$ and $\Mfrak(\text{naive level three})$ are both smooth curves over $\Z$, a fact which is obvious by inspection of their explicit defining equations \ref{item:2.2.9}, \ref{item:2.2.11}.
+\end{proof}
+
+\begin{customcor}{4.7.2}\label{cor:4.7.2}
+For $N \ge 3$, the naive level $N$ moduli problems of \ref{sec:4.6} is representable, by a smooth affine curve $Y(N)$ over $\Z[1/N]$.
+\end{customcor}
+
+\begin{proof}
+This results from \ref{cor:4.7.1} above, thanks to the rigidity \ref{cor:2.7.2} and the relative representability \ref{thm:3.7.1} of naive level $N$ structures.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 4.8
+% ------------------------------------------------------------------------------
+\section{Another example}
+\label{sec:4.8}
+
+Another example of a moduli problem which is affine and etale over \Ell is the problem, for any $N \ge 1$,
+\[
+E/S \longmapsto \text{the set of } S\text{-group-scheme homomorphisms}
+\]
+\[
+\mu_N \longrightarrow E[N],
+\]
+which is relatively represented by the affine $S$-scheme
+\[
+\Hom_{S\text{-gp}}(\mu_N, E[N]).
+\]
+To see that this $S$-scheme is etale, simply apply Cartier duality to view it as
+\[
+\Hom_{S\text{-gp}}(E[N], \Z/N\Z),
+\]
+which is etale over $S$ simply because $\Z/N\Z$ is etale over $S$.
+
+% ------------------------------------------------------------------------------
+% Section 4.9
+% ------------------------------------------------------------------------------
+\section{Yet another example}
+\label{sec:4.9}
+
+Yet another example of a moduli problem which is affine and etale over \Ell is the subfunctor of the above problem defined by
+\[
+\begin{aligned}
+E/S \longmapsto {} & \text{the set } \Incl_{S\text{-gp}}(\mu_N, E[N]) \\
+& \text{of } S\text{-group-scheme inclusions } \mu_N \hookrightarrow E[N], \\
+& \text{i.e., homomorphisms which are f.p.p.f. injective.}
+\end{aligned}
+\]
+By Cartier duality, we may view this as the subfunctor
+\[
+\Hom\,\mathrm{Surj}_{S\text{-gp}}(E[N], \Z/N\Z)
+\]
+of $\Hom_{S\text{-gp}}(E[N], \Z/N\Z)$ consisting of the (f.p.p.f)-surjective homomorphisms from $E[N]$ to $\Z/N\Z$. To show that this subfunctor is affine and etale over $S$, it suffices to show that it is represented by an open and closed subscheme of $\Hom_{S\text{-gp}}(E[N], \Z/N\Z)$. This results from (1) and (2) of the following lemma, applied to the universal homomorphism $E[N] \to \Z/N\Z$ over the scheme $\Hom_{S\text{-gp}}(E[N], \Z/N\Z)$.
+
+% ------------------------------------------------------------------------------
+% Section 4.10
+% ------------------------------------------------------------------------------
+\section{Lemmas on group-schemes}
+\label{sec:4.10}
+
+\begin{plemnum}{4.10.0}\label{lem:4.10.0}
+Let $T$ be a scheme, $G$ and $H$ two finite locally free commutative $T$-group-schemes, and $f : G \to H$ a $T$-homomorphism. Then
+\begin{enumerate}[(1)]
+\item The conditions ``$f$ is a closed immersion'' and ``$f$ is f.p.p.f. surjective'' are each represented by open subschemes of $T$.
+\item If $H$ is etale, the condition ``$f$ is f.p.p.f. surjective'' is represented by a closed subscheme of $T$.
+\item If $H$ is etale, the condition ``$f = 0$'' is represented by an open and closed subscheme of $T$.
+\end{enumerate}
+\end{plemnum}
+
+\begin{proof}
+In (1), it suffices to prove the first statement, because the two conditions are interchanged by Cartier duality. Everything being of finite presentation over $T$, we reduce easily to the case when $T$ is noetherian. Let $\cG$ and $\cH$ be the locally free coherent sheaves of $\cO_T$-algebras corresponding to $G$ and $H$ respectively. Then $f$ corresponds to an $\cO_T$-linear map of sheaves
+\[
+\cH \longrightarrow \cG
+\]
+whose cokernel we denote $\cK$:
+\[
+\cH \longrightarrow \cG \longrightarrow \cK \longrightarrow 0.
+\]
+Then $\cK$ is a coherent sheaf (given with a presentation by locally free ones), and its formation commutes with arbitrary change of base $T' \to T$. The condition ``$f$ is a closed immersion'' is represented by the open subscheme of $T$ where the coherent sheaf $\cK$ vanishes.
+
+To prove (2), we may again reduce to the case when $T$ is noetherian. By (1), we know the problem in question is represented by an open subscheme $U$ of $T$. To show that $U$ is closed, it suffices to show that it is stable under specialization. This reduces us to the case $T = \Spec(A)$ with $A$ complete noetherian local. Because $A$ is a complete noetherian local ring, $G$ has a canonical structure of extension
+\[
+0 \longrightarrow G^0 \longrightarrow G \longrightarrow G^{\mathrm{et}} \longrightarrow 0
+\]
+of finite flat $A$-groups with $G^0$ connected, and $G^{\mathrm{et}}$ etale. The morphism $f : G \to H$ must factor through $G^{\mathrm{et}}$. This reduces us to the induced map $\tilde{f} : G^{\mathrm{et}} \to H$, i.e., to the case when $G$ and $H$ are both etale, in which case the assertion is obvious.
+
+To prove (3), notice first that for any two morphisms between finite locally free $T$-schemes, the locus where they coincide is represented by the closed subscheme of $T$ where their matrices agree entry by entry. In particular, ``$f = 0$'' is represented by a closed subscheme $Z$ of $T$, defined locally on $T$ by finitely many equations. Again reducing easily to the case $T$ noetherian, it suffices to show that $Z$ is stable by generalization. This reduces us to the case of $T$ the spectrum of a complete noetherian local ring $A$, then just as above in case (2) to the case where both $G$ and $H$ are etale, and once again the assertion is obvious in this case.
+\end{proof}
+
+\begin{pcor}{4.10.1}\label{cor:4.10.1}
+Let $T$ be a scheme, $G$ and $H$ two finite locally free commutative $T$-groups, $f : G \to H$ a $T$-homomorphism. If $H$ is etale, then there exists a unique finite etale locally free $T$-group-scheme $H' \subset H$ such that $f$ factors through $H'$ and such that the induced map $f : G \to H'$ is f.p.p.f. surjective.
+\end{pcor}
+
+\begin{proof}
+One reduces easily to the case when $T$ is noetherian (everything given or to be constructed being of finite presentation over $T$). By etale descent, it suffices to prove the existence and uniqueness of $H'$ locally (etale) on $T$, so we may further suppose $H$ constant, and $T$ connected. Pick any geometric point $\Spec(\overline{k}) \to T$ of $T$, and let $H' \subset H$ be the constant subgroup-scheme with fiber $H'(\overline{k}) = \text{image } f : G(\overline{k}) \to H(\overline{k})$. This $H'$ is the unique candidate which ``works'' at the given geometric point. Applying (3) to the composite $G \to H \to H/H'$, we see this composite $G \to H/H'$ vanishes everywhere on $T$, i.e., $G$ factors through $H'$. Apply (1), (2) to $G \to H'$, we see that $G \to H'$ is f.p.p.f. surjective.
+\end{proof}
+
+Returning to the moduli problem
+\[
+E/S \longmapsto \Incl_{S\text{-gp}}(\mu_N, E[N]).
+\]
+which we now know to be affine and etale over \Ell, we remark that for $N \ge 4$ this problem is also rigid (by \ref{cor:2.7.4}), hence \ref{cor:4.7.1} representable by an elliptic curve
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E} \\ \big\downarrow \\ Y(\mu_N)
+\end{array}
+\]
+over a $Y(\mu_N)$ which is a smooth curve over $\Z$.
+
+% ------------------------------------------------------------------------------
+% Section 4.11
+% ------------------------------------------------------------------------------
+\section{Modular families}
+\label{sec:4.11}
+
+A family of elliptic curves $E/M$ is called a modular family if the moduli problem $\mathcal{P}$ it represents is etale over \Ell. A collection of modular families $E_i/M_i$ is said to cover \Ell if their corresponding moduli problems $\mathcal{P}^{(i)}$ satisfy the condition that for any elliptic curve $E/S$, the morphism of schemes
+\[
+\begin{array}{@{}c@{}}
+\coprod_i \mathcal{P}^{(i)}_{E/S} \\ \big\downarrow \\ S
+\end{array}
+\]
+is etale and surjective.
+
+For example, if $N$ and $M$ are relatively prime integers both $\ge 3$, the two modular families carried by $Y(N)$ and by $Y(M)$ cover \Ell. Similarly, for any $N \ge 4$ the single modular family carried by $Y(\mu_N)$ covers the ``open set'' of \Ell consisting of those $E/S$ whose fibers at all geometric points of $S$ of characteristic dividing $N$ are ordinary elliptic curves.
+
+% ------------------------------------------------------------------------------
+% Section 4.12
+% ------------------------------------------------------------------------------
+\section{More geometric properties of moduli problems}
+\label{sec:4.12}
+
+Let Q be any property of schemes which is local for the etale topology (e.g., being regular of given dimension,\footnote{See Notes Added in Proof.} being smooth over $\Z$, being normal, ...). We say that a relatively representable moduli problem $\mathcal{P}$ has property Q if, for every modular family $E/M$, the scheme
+\[
+\mathcal{P}_{E/M}
+\]
+has property Q. Clearly it is sufficient to check for $E/M$ running over a collection of modular families which cover \Ell. If $\mathcal{P}$ is representable, then $\mathcal{P}$ has property Q if and only if the scheme $\Mfrak(\mathcal{P})$ has property Q.
+
+For example, if $E/M$ is any modular family, then $M$ is a smooth curve over $\Z$ (because this is true by inspection for the problems \ref{item:2.2.9} and \ref{item:2.2.11}).
+
+Similarly, if P is a property of morphisms of schemes which is local on the base for the etale topology, and stable by arbitrary change of base, then a relatively representable moduli problem $\mathcal{P}$ is ``of type P'' over \Ell if and only if for some collection of modular families $E_i/M_i$ which cover \Ell, the morphisms of schemes
+\[
+\begin{array}{@{}c@{}}
+\mathcal{P}_{E_i/M_i} \\ \big\downarrow \\ M_i
+\end{array}
+\]
+are all of type P.
+
+\begin{plemnum}{4.12.1}\label{lem:4.12.1}
+Let $\mathcal{P}$ be a relatively representable moduli problem on \Ell. If $\mathcal{P}$ is finite and flat over \Ell, then there exists an integer $d \ge 0$ such that $\mathcal{P}$ is finite and locally free of degree $d$.
+\end{plemnum}
+
+\begin{proof}
+The representable problems \ref{item:2.2.7}, \ref{item:2.2.9} and \ref{item:2.2.11} are each visibly represented by connected schemes. Applying $\mathcal{P}$ to these universal families yields ``candidate'' degrees $d_6$, $d_2$, $d_3$ such that for any $E/S$, and $n = 6, 2, 3$, $\mathcal{P}_{E/S}$ becomes finite locally free of rank $d_n$ over $S[1/n]$ when we invert $n = 6, 2, 3$ respectively. Taking for $E/S$ the universal family of smooth Weierstrass cubics, whose $S$ is faithfully flat over $\Z$, we may infer that $d_6 = d_2 = d_3$, and this common value is the desired ``$d$.''
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 4.13
+% ------------------------------------------------------------------------------
+\section{The category $(\mathrm{Ell}/R)$}
+\label{sec:4.13}
+
+For any ring $R$, we denote by $(\mathrm{Ell}/R)$ the category of elliptic curves over variable $R$-schemes, with morphisms the cartesian squares whose bottom arrow is $R$-linear. A contravariant functor from $(\mathrm{Ell}/R)$ to \Sets is called a moduli problem ``over $R$'', or an ``$R$-moduli problem'', or a moduli problem ``for elliptic curves over $R$-schemes.''
+
+All the preceding notions concerning relatively representable and representable moduli problems carry over mutatis mutandis to the case of $R$-moduli problems.
+
+There is a natural ``forget $R$''-functor
+\[
+(\mathrm{Ell}/R) \longrightarrow \Ell,
+\]
+by means of which any moduli problem $\mathcal{P}$ on \Ell gives rise to a moduli problem $\mathcal{P} \otimes R$ on $(\mathrm{Ell}/R)$. If $\mathcal{P}$ is relatively representable, by morphisms, one for each $E/S$,
+\[
+\begin{array}{@{}c@{}}
+\mathcal{P}_{E/S} \\ \big\downarrow \\ S,
+\end{array}
+\]
+then $\mathcal{P} \otimes R$ is relatively representable (by the same morphisms, for each $E/S/R$). If $\mathcal{P}$ is representable, by
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E} \\ \big\downarrow \\ \Mfrak(\mathcal{P}),
+\end{array}
+\]
+then $\mathcal{P} \otimes R$ is representable, by
+\[
+\begin{array}{@{}c@{}}
+\mathbf{E} \otimes R \\ \big\downarrow \\ \Mfrak(\mathcal{P}) \otimes R,
+\end{array}
+\]
+i.e., for representable problems $\mathcal{P}$ we have
+\[
+\Mfrak(\mathcal{P} \otimes R) = \Mfrak(\mathcal{P}) \otimes R.
+\]
+
+% ------------------------------------------------------------------------------
+% Section 4.14
+% ------------------------------------------------------------------------------
+\section{Moduli problems of finite level}
+\label{sec:4.14}
+
+\kmeqitem\label{item:4.14.1}
+Let us denote by \FLFG the category whose objects are finite locally free commutative group-schemes $G$ over variable base-schemes $S$ and whose morphisms are cartesian squares of group-schemes
+\[
+\begin{tikzcd}[column sep=small, row sep=small]
+G_1 \arrow[r, "\alpha"] \arrow[d, "\pi_1"'] & G \arrow[d, "\pi"] \\
+S_1 \arrow[r, "f"'] & S,
+\end{tikzcd}
+\]
+i.e., commutative squares such that the induced map
+\[
+G_1 \xrightarrow{\ (\alpha, \pi_1)\ } G \underset{S}{\times} S_1
+\]
+is an isomorphism of $S_1$-group-schemes.
+
+Just as with \Ell, we have the notion of a moduli problem $\cF$ on \FLFG, namely a contravariant functor
+\[
+\cF : \FLFG \longrightarrow \Sets.
+\]
+We say that $\cF$ is relatively representable if for every $G/S$, the functor on $(\Sch/S)$
+\[
+T \longmapsto \cF(G \underset{S}{\times} T/T)
+\]
+is representable by an $S$-scheme, noted $\cF_{G/S}$.
+
+\kmeqitem\label{item:4.14.2}
+For any integer $N \ge 1$, there is an obvious functor ``kernel of $N$''
+\[
+\Ell \longrightarrow \FLFG
+\]
+\[
+E/S \longmapsto E[N]/S.
+\]
+By composition, any moduli problem $\cF$ on \FLFG gives rise to a moduli problem $\mathcal{P} = \cF \circ [N]$ on \Ell, defined by
+\[
+\mathcal{P}(E/S) = \cF(E[N]/S).
+\]
+Clearly, if $\cF$ is relatively representable, then $\mathcal{P} = \cF \circ [N]$ is relatively representable, by
+\[
+\mathcal{P}_{E/S} = \cF_{E[N]/S}.
+\]
+
+\kmeqitem\label{item:4.14.3}
+We say that a relatively representable $\mathcal{P}$ on \Ell is of level (dividing) $N$ if there exist a relatively representable problem $\cF$ on \FLFG such that $\mathcal{P} = \cF \circ [N]$. We say that $\mathcal{P}$ is of finite level if it is of level $N$ for some $N \ge 1$. For example, the basic problems $[\Gamma(N)]$, $[\mathrm{bal}\ \Gamma_1(N)]$, $[\Gamma_1(N)]$, $[\Gamma_0(N)]$, are all of level $N$ in this sense.
+
+% ------------------------------------------------------------------------------
+% Appendix A.4
+% ------------------------------------------------------------------------------
+\kmappendix{More on rigidity and representability}
+\label{sec:A.4}
+
+\kmitem\label{item:A.4.1}
+Let $R$ be a ring, $\mathcal{P}$ a moduli problem on $(\mathrm{Ell}/R)$, and $\widetilde{\mathcal{P}}$ the contravariant functor on $(\Sch/R)$ defined by (cf.\ \ref{eq:4.3.1})
+\begin{equation}\label{eq:A.4.1.1}
+\begin{aligned}
+S/R \longmapsto {} & \text{isomorphism classes of pairs } (E/S, \alpha) \text{ with } E \text{ an} \\
+& \text{elliptic curve over } S \text{ and } \alpha \in \mathcal{P}(E/S) \text{ a ``level } \mathcal{P} \\
+& \text{structure'' on } E/S.
+\end{aligned}
+\end{equation}
+It is a tautology that
+\begin{equation}\label{eq:A.4.1.2}
+\mathcal{P} \text{ is representable} \Longleftrightarrow
+\left\{
+\begin{aligned}
+& \widetilde{\mathcal{P}} \text{ is representable} \\
+& \text{and } \mathcal{P} \text{ is rigid.}
+\end{aligned}
+\right.
+\end{equation}
+However, it is not in general true that
+\[
+\widetilde{\mathcal{P}} \text{ representable} \Longrightarrow \mathcal{P} \text{ rigid.}
+\]
+Here is a simple counterexample, due to Ofer Gabber. At the expense of Zariski-localizing on $\Spec(R)$, we may suppose that there exists an elliptic curve over $R$. Fix one, say $E/R$, and define a moduli problem $\mathcal{P}$ on $(\mathrm{Ell}/R)$ by defining
+\begin{equation}\label{eq:A.4.1.3}
+\mathcal{P}(E/S) = \left\{
+\begin{aligned}
+& \text{the set with one element, if } E/S \text{ is} \\
+& S\text{-isomorphic to } E_S/S, \text{ the empty set,} \\
+& \text{if not.}
+\end{aligned}
+\right.
+\end{equation}
+This $\mathcal{P}$ is not rigid (because the automorphism $-1$ acts trivially), but the associated functor $\widetilde{\mathcal{P}}$ is visibly representable (by $\Spec(R)$ itself!).
+
+In the positive direction, we have the following result, which is well known to the specialists but for which we know no reference.
+
+\begin{pprop}{A.4.2}\label{prop:A.4.2}
+Let $R$ be a ring, and $\mathcal{P}$ a moduli problem on $(\mathrm{Ell}/R)$. Suppose that for every $R$-scheme $S$ and for every elliptic curve $E/S$, the contravariant functor on $(\Sch/S)$ defined by (cf.\ \ref{sec:4.2})
+\[
+T \longmapsto \mathcal{P}(E_T/T)
+\]
+is an etale sheaf on $(\Sch/S)$. (N.B. This condition is automatically satisfied if $\mathcal{P}$ is relatively representable.) Then the following conditions are equivalent.
+\begin{enumerate}[(1)]
+\item $\widetilde{\mathcal{P}}$ is representable.
+\item $\widetilde{\mathcal{P}}$ is representable, and $\mathcal{P}$ is rigid.
+\item $\mathcal{P}$ is representable.
+\end{enumerate}
+\end{pprop}
+
+\begin{proof}
+That (2) $\Longleftrightarrow$ (3) is just ``mise pour memoire.'' We must prove that (1) $\Longrightarrow$ (2). We argue by contradiction. Suppose that $\mathcal{P}$ is not rigid. Then there exists an $E/S/R$, an element $\alpha \in \mathcal{P}(E/S)$, and an automorphism $g \ne \mathrm{id}$ of $E/S$ such that $g^*(\alpha) = \alpha$. Because $g \ne \mathrm{id}$, there exists, (by rigidity \ref{thm:2.4.2}), a geometric point $s$ of $S$, say $s : \Spec(k) \to S$ such that on the elliptic curve $E_s/k$, the induced automorphism $g_s$ is not the identity. Because $g^*(\alpha) = \alpha$ in $\mathcal{P}(E/S)$, it follows by functoriality that $g_s^*(\alpha_s) = \alpha_s$ in $\mathcal{P}(E_s/k)$.
+
+By \ref{cor:2.7.2}, the non-trivial automorphism $g_s$ is of finite order, say of order $d \ge 2$. Let $K$ be an extension field of $k$, and $L/K$ a galois extension with galois group $\Z/d\Z$. (For example, take $L = k(X_1, \cdots, X_d)$, with $\Z/d\Z$ acting by cyclic permutation of the variables, and $K$ the field of invariants.) Fix a generator $\tau$ of the galois group $\Z/d\Z$.
+
+Let us denote by $E_1/K$ the elliptic curve over $K$ obtained from $E_s/k$ by the extension of scalars $k \to K$, by $g_1 \in \Aut(E_1/K)$ the automorphism of exact order $d$ deduced from $g_s$ by extension of scalars, and by $\alpha_1 \in \mathcal{P}(E_1/K)$ the element deduced from $\alpha_s \in \mathcal{P}(E_s/k)$ by extension of scalars. Thus $g_1^*(\alpha_1) = \alpha_1$.
+
+Now consider the ``twist'' of $E_1/K$ by the cyclic extension $L/K$, via the automorphism $g_1$. This ``twist'' is the $K$-elliptic curve $E_2/K$ deduced from the $L$-elliptic curve $E_1 \underset{\Spec(K)}{\times} \Spec(L)$ by descent, via the semi-linear action of $\Gal(L/K)$ under which the chosen generator $\tau$ acts by $(g_1, \Spec(\tau))$.
+
+The two curves $E_1/K$ and $E_2/K$ become isomorphic over $L$, by an $L$-isomorphism
+\[
+E_1 \underset{\Spec(K)}{\times} \Spec(L) \simeq E_2 \underset{\Spec(K)}{\times} \Spec(L),
+\]
+under which $(g_1, \Spec(\tau)) \cong (\mathrm{id}, \Spec(\tau))$.
+
+Consider the element $\alpha_1 \otimes L \in \mathcal{P}(E_1 \underset{K}{\otimes} L/L)$, deduced from $\alpha_1 \in \mathcal{P}(E_1/K)$ by the extension of scalars $K \hookrightarrow L$. Because it is ``defined over $K$,'' this element is invariant under $(\mathrm{id}, \Spec(\tau))$, and by hypothesis it is invariant under $(g_1, \mathrm{id})$. Therefore this element $\alpha_1 \otimes L$ is invariant under $(g_1, \Spec(\tau))$. By means of the above $L$-isomorphism of $E_1 \underset{K}{\otimes} L$ with $E_2 \underset{K}{\otimes} L$, this element $\alpha_1 \otimes L$ gives rise to an element, say $\beta$, in $\mathcal{P}(E_2 \underset{K}{\otimes} L/L)$, which is invariant under $(\mathrm{id}, \Spec(\tau))$. Because the functor on $(\Sch/K)$ defined by
+\[
+T \longmapsto \mathcal{P}((E_2)_T/T)
+\]
+is assumed to be an etale sheaf, we have
+\[
+\Bigl(\mathcal{P}(E_2 \underset{K}{\otimes} L/L)\Bigr)^{\Gal(L/K)} \xleftarrow{\ \sim\ } \mathcal{P}(E_2/K).
+\]
+Therefore our element $\beta$ comes from a unique element, say $\alpha_2$, of $\mathcal{P}(E_2/K)$.
+
+By construction, the two pairs
+\[
+(E_1/K, \alpha_1), \quad (E_2/K, \alpha_2)
+\]
+become isomorphic after the extension of scalars $K \hookrightarrow L$. We claim that they are not $K$-isomorphic. Granting this, they provide two distinct elements of $\widetilde{\mathcal{P}}(K)$ which become equal in $\widetilde{\mathcal{P}}(L)$. Therefore $\widetilde{\mathcal{P}}$ cannot be representable as a contravariant functor on $(\Sch/R)$, since for any scheme $X$, and any field extension $K \hookrightarrow L$, the map $X(K) \to X(L)$ is always injective.
+
+It remains to explain why $(E_1/K, \alpha_1)$ and $(E_2/K, \alpha_2)$ are not $K$-isomorphic. Indeed, we will see that $E_1/K$ and $E_2/K$ are not $K$-isomorphic as elliptic curves. By general descent theory, given $E_1/K$, the $K$-isomorphism classes of $L/K$ forms of $E_1/K$ are in bijective correspondence with the galois cohomology set
+\[
+H^1(\Gal(L/K), \Aut(E_1 \underset{K}{\otimes} L/L)).
+\]
+Because $E_1 \underset{K}{\otimes} L = E_s \otimes L$ is obtained by field extension from a curve over an algebraically closed field, it follows easily from rigidity \ref{thm:2.4.2} that every $L$-automorphism (or $L$-endomorphism, for that matter) is obtained from a $k$-automorphism (or $k$-endomorphism) of $E_s/k$. Therefore we have $\Aut(E_s/k) \xrightarrow{\ \sim\ } \Aut(E_1 \underset{K}{\otimes} L/L)$, and consequently $\Gal(L/K)$ operates trivially on $\Aut(E_1 \underset{K}{\otimes} L/L)$. Thus we may rewrite the $H^1$ as the set of conjugacy classes of homomorphisms from $\Gal(L/K)$ to $\Aut(E_s/k)$, with the trivial homomorphism corresponding to $E_1/K$ itself. The curve $E_2/K$ is represented by the conjugacy class of the homomorphism sending the chosen generator $\tau$ of $\Gal(L/K) \simeq \Z/d\Z$ to the element $g_s \in \Aut(E_s/k)$ of exact order $d$. Because $d \ge 2$, the element $g_s$ is not conjugate in $\Aut(E_s/k)$ to the identity, whence $E_2$ is not $K$-isomorphic to $E_1$.
+\end{proof}

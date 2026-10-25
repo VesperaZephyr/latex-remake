@@ -1,0 +1,891 @@
+\section{换元积分法、分部积分法}\label{sec:5.2}
+
+利用积分公式与积分的简单性质, 虽然能求出许多简单函数的原函数, 但是, 仅这一点点知识是很不够的, 还必须学会更多的计算原函数的方法和技巧, 换元 (变量代换) 积分法与分部积分法是两种重要的方法.
+
+\begin{theorem}[换元 (变量代换) 积分法]\label{thm:5.2.1}
+设 $g(u)$ 在 $[\alpha,\beta]$ 上有定义, $u=\varphi(x)$ 在 $[a,b]$ 上可导, 且 $\alpha\leqslant\varphi(x)\leqslant\beta$, $x\in[a,b]$. 并记
+\[
+f(x)=g(\varphi(x))\varphi'(x),\quad x\in[a,b].
+\]
+(1) 如果 $g(u)$ 在 $[\alpha,\beta]$ 上存在原函数 $G(u)$, 则 $f(x)$ 在 $[a,b]$ 上也存在原函数 $F(x)=G(\varphi(x))$. 于是
+\begin{align*}
+\int f(x)\mathrm{d}x&\xlongequal{\text{凑}}\int g(\varphi(x))\varphi'(x)\mathrm{d}x
+\xlongequal{u=\varphi(x)}\int g(u)\mathrm{d}u\\
+&=G(u)+C=G(\varphi(x))+C.
+\end{align*}
+(2) 如果 $\varphi'(x)\neq 0$, $x\in[a,b]$, 则上述可逆, 即当 $f(x)$ 在 $[a,b]$ 上存在原函数 $F(x)$ 时, $g(u)$ 在 $[\alpha,\beta]$ 上也存在原函数 $G(u)$, 且
+\[
+G(u)=F(\varphi^{-1}(u))+C,
+\]
+即
+\begin{align*}
+\int g(u)\mathrm{d}u&\xlongequal{u=\varphi(x)}\int g(\varphi(x))\varphi'(x)\mathrm{d}x\\
+&=\int f(x)\mathrm{d}x=F(x)+C\\
+&\xlongequal{x=\varphi^{-1}(u)}F(\varphi^{-1}(u))+C.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+(1) 由复合函数求导法知,
+\begin{align*}
+\left[G(\varphi(x))\right]'&=G'(\varphi(x))\varphi'(x)\\
+&=g(\varphi(x))\varphi'(x)=f(x),
+\end{align*}
+所以, $G(\varphi(x))$ 为 $f(x)$ 的一个原函数.
+
+(2) 在 $\varphi'(x)\neq 0$ 的条件下, $u=\varphi(x)$ 有反函数 $x=\varphi^{-1}(u)$, 且
+\[
+x'(u)=\frac{1}{\varphi'(x)}.
+\]
+于是, 有
+\begin{align*}
+\left[F(\varphi^{-1}(u))\right]'
+&\xlongequal{x=\varphi^{-1}(u)}F'(x)x'(u)=f(x)\frac{1}{\varphi'(x)}\\
+&=g(\varphi(x))\varphi'(x)\frac{1}{\varphi'(x)}\\
+&=g(\varphi(x))=g(u),
+\end{align*}
+即 $F(\varphi^{-1}(u))$ 为 $g(u)$ 的一个原函数.
+\end{proof}
+
+换元 (变量代换) 积分法对应着复合函数的导数公式.
+
+定理~\ref{thm:5.2.1}(1) 阐述了通过凑的方法可将一个不易积的不定积分 $\int f(x)\mathrm{d}x$ 化为一个较易积的不定积分 $\int g(\varphi(x))\varphi'(x)\mathrm{d}x=\int g(u)\mathrm{d}u$.
+
+定理~\ref{thm:5.2.1}(2) 则通过主动做一个变量代换 $u=\varphi(x)$, 将不易积的不定积分 $\int g(u)\mathrm{d}u$ 化为一个较易积的不定积分 $\int g(\varphi(x))\varphi'(x)\mathrm{d}x=\int f(x)\mathrm{d}x$. 换元 (变量代换) 关键在于变量代换 $u=\varphi(x)$.
+
+\begin{theorem}[分部积分法]\label{thm:5.2.2}
+设 $u(x)$ 与 $v(x)$ 可导,\linebreak[4]不定积分 $\int u'(x)v(x)\mathrm{d}x$ 存在, 则 $\int u(x)v'(x)\mathrm{d}x$ 也存在, 且有
+\[
+\int u(x)v'(x)\mathrm{d}x=u(x)v(x)-\int u'(x)v(x)\mathrm{d}x,
+\]
+也可写作
+\[
+\int u(x)\mathrm{d}v(x)=u(x)v(x)-\int v(x)\mathrm{d}u(x).
+\]
+\end{theorem}
+
+\begin{proof}
+由乘积的求导公式得到
+\begin{gather*}
+[u(x)v(x)]'=u'(x)v(x)+u(x)v'(x),\\
+u(x)v'(x)=[u(x)v(x)]'-u'(x)v(x).
+\end{gather*}
+由此立知, 不定积分 $\int u'(x)v(x)\mathrm{d}x$ 存在, 则 $\int u(x)v'(x)\mathrm{d}x$ 也存在, 且有
+\begin{align*}
+\int u(x)v'(x)\mathrm{d}x&=\int\left\{[u(x)v(x)]'-u'(x)v(x)\right\}\mathrm{d}x\\
+&=u(x)v(x)-\int u'(x)v(x)\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+分部积分法对应着 $u$ 与 $v$ 之积 $uv$ 的导数公式 $(uv)'=u'v+uv'$ (导性).
+
+从定理~\ref{thm:5.2.2} 可以看到, 一个不易积的不定积分 $\int uv'(x)\mathrm{d}x$ 通过分部积分法, 分出一部分 $uv$, 化为一个较易积的不定积分 $\int u'(x)v(x)\mathrm{d}x$.
+
+\begin{example}\label{ex:5.2.1}
+应用换元 (变量代换) 积分法求下列不定积分:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\int\tan x\,\mathrm{d}x$;
+  \item $\int x\mathrm{e}^{x^{2}}\mathrm{d}x$;
+  \item $\int\frac{\mathrm{d}x}{ax+b}$ ($a\neq 0$);
+  \item $\int\frac{\mathrm{d}x}{a^{2}+x^{2}}$ ($a>0$);
+  \item $\int\frac{\mathrm{d}x}{x^{2}-a^{2}}$ ($a>0$);
+  \item $\int\frac{x}{x^{2}-a^{2}}\mathrm{d}x$;
+  \item $\int\frac{x}{x^{2}+a^{2}}\mathrm{d}x$;
+  \item $\int\frac{\mathrm{d}x}{\sqrt{a^{2}-x^{2}}}$ ($a>0$);
+  \item $\int\frac{\ln x}{x}\mathrm{d}x$;
+  \item $\int\frac{\arcsin x}{\sqrt{1-x^{2}}}\mathrm{d}x$;
+  \item $\int\cos^{2}x\,\mathrm{d}x$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1)
+\begin{align*}
+\int\tan x\,\mathrm{d}x&=\int\frac{\sin x}{\cos x}\mathrm{d}x=-\int\frac{\mathrm{d}\cos x}{\cos x}
+\xlongequal{u=\cos x}-\int\frac{\mathrm{d}u}{u}\\
+&=-\ln|u|+C\xlongequal{u=\cos x}-\ln|\cos x|+C.
+\end{align*}
+(2)
+\begin{align*}
+\int x\mathrm{e}^{x^{2}}\mathrm{d}x&=\frac{1}{2}\int\mathrm{e}^{x^{2}}\mathrm{d}x^{2}
+\xlongequal{t=x^{2}}\frac{1}{2}\int\mathrm{e}^{t}\mathrm{d}t\\
+&=\frac{1}{2}\mathrm{e}^{t}+C=\frac{1}{2}\mathrm{e}^{x^{2}}+C.
+\end{align*}
+(3)
+\begin{align*}
+\int\frac{\mathrm{d}x}{ax+b}&=\frac{1}{a}\int\frac{\mathrm{d}(ax+b)}{ax+b}
+\xlongequal{t=ax+b}\frac{1}{a}\int\frac{\mathrm{d}t}{t}\\
+&=\frac{1}{a}\ln|t|+C=\frac{1}{a}\ln|ax+b|+C.
+\end{align*}
+(4)
+\[
+\int\frac{\mathrm{d}x}{a^{2}+x^{2}}=\frac{1}{a}\int\frac{\mathrm{d}\left(\frac{x}{a}\right)}{1+\left(\frac{x}{a}\right)^{2}}
+=\frac{1}{a}\arctan\frac{x}{a}+C.
+\]
+(5)
+\begin{align*}
+\int\frac{\mathrm{d}x}{x^{2}-a^{2}}&=\frac{1}{2a}\int\left(\frac{1}{x-a}-\frac{1}{x+a}\right)\mathrm{d}x\\
+&=\frac{1}{2a}\left[\int\frac{\mathrm{d}(x-a)}{x-a}-\int\frac{\mathrm{d}(x+a)}{x+a}\right]\\
+&=\frac{1}{2a}\left[\ln|x-a|-\ln|x+a|\right]+C\\
+&=\frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right|+C.
+\end{align*}
+(6)
+\[
+\int\frac{x}{x^{2}-a^{2}}\mathrm{d}x=\frac{1}{2}\int\frac{\mathrm{d}(x^{2}-a^{2})}{x^{2}-a^{2}}
+=\frac{1}{2}\ln|x^{2}-a^{2}|+C.
+\]
+(7)
+\[
+\int\frac{x}{x^{2}+a^{2}}\mathrm{d}x=\frac{1}{2}\int\frac{\mathrm{d}(x^{2}+a^{2})}{x^{2}+a^{2}}
+=\frac{1}{2}\ln(x^{2}+a^{2})+C.
+\]
+(8)
+\[
+\int\frac{\mathrm{d}x}{\sqrt{a^{2}-x^{2}}}=\int\frac{\mathrm{d}\left(\frac{x}{a}\right)}{\sqrt{1-\left(\frac{x}{a}\right)^{2}}}
+=\arcsin\frac{x}{a}+C\quad (a>0).
+\]
+(9)
+\[
+\int\frac{\ln x}{x}\mathrm{d}x=\int\ln x\,\mathrm{d}\ln x=\frac{\ln^{2}x}{2}+C.
+\]
+(10)
+\[
+\int\frac{\arcsin x}{\sqrt{1-x^{2}}}\mathrm{d}x=\int\arcsin x\,\mathrm{d}\arcsin x=\frac{(\arcsin x)^{2}}{2}+C.
+\]
+(11)
+\begin{align*}
+\int\cos^{2}x\,\mathrm{d}x&=\frac{1}{2}\int(\cos 2x+1)\mathrm{d}x
+=\frac{1}{4}\int\cos 2x\,\mathrm{d}(2x)+\frac{1}{2}\int\mathrm{d}x\\
+&=\frac{1}{4}\sin 2x+\frac{x}{2}+C.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:5.2.2}
+求 $\int\sec x\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}[解法 1]
+\begin{align*}
+\int\sec x\,\mathrm{d}x&=\int\frac{\mathrm{d}x}{\cos x}=\int\frac{\cos x}{\cos^{2}x}\mathrm{d}x
+=\int\frac{\mathrm{d}\sin x}{1-\sin^{2}x}\\
+&\xlongequal{\text{例}~\ref{ex:5.2.1}(5)}\frac{1}{2}\ln\frac{1+\sin x}{1-\sin x}+C.
+\end{align*}
+或进一步地, 有
+\begin{align*}
+\frac{1}{2}\ln\frac{1+\sin x}{1-\sin x}+C&=\frac{1}{2}\ln\frac{(1+\sin x)^{2}}{1-\sin^{2}x}+C\\
+&=\frac{1}{2}\ln\left(\frac{1+\sin x}{\cos x}\right)^{2}+C=\ln\left|\frac{1+\sin x}{\cos x}\right|+C\\
+&=\ln|\sec x+\tan x|+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 2]
+\begin{align*}
+\int\sec x\,\mathrm{d}x&=\int\frac{\sec x(\sec x+\tan x)}{\sec x+\tan x}\mathrm{d}x
+=\int\frac{\mathrm{d}(\sec x+\tan x)}{\sec x+\tan x}\\
+&=\ln|\sec x+\tan x|+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 3]
+\begin{align*}
+\int\sec x\,\mathrm{d}x&=\int\frac{\mathrm{d}x}{\cos x}=\int\frac{\mathrm{d}x}{\cos^{2}\frac{x}{2}-\sin^{2}\frac{x}{2}}\\
+&=\int\frac{\sec^{2}\frac{x}{2}}{1-\tan^{2}\frac{x}{2}}\mathrm{d}x
+=2\int\frac{\mathrm{d}\tan\frac{x}{2}}{1-\tan^{2}\frac{x}{2}}\\
+&\xlongequal[\text{例}~\ref{ex:5.2.1}(5)]{t=\tan\frac{x}{2}}\ln\left|\frac{1+\tan\frac{x}{2}}{1-\tan\frac{x}{2}}\right|+C.
+\end{align*}
+或进一步地, 有
+\begin{align*}
+\ln\left|\frac{1+\tan\frac{x}{2}}{1-\tan\frac{x}{2}}\right|+C
+&=\ln\left|\frac{\cos\frac{x}{2}+\sin\frac{x}{2}}{\cos\frac{x}{2}-\sin\frac{x}{2}}\right|+C
+=\ln\left|\frac{\left(\cos\frac{x}{2}+\sin\frac{x}{2}\right)^{2}}{\cos^{2}\frac{x}{2}-\sin^{2}\frac{x}{2}}\right|+C\\
+&=\ln\left|\frac{1+\sin x}{\cos x}\right|+C=\ln|\sec x+\tan x|+C.
+\end{align*}
+\end{solution}
+
+同样方法可求
+\begin{align*}
+\int\csc x\,\mathrm{d}x&=-\ln\left|\frac{1+\cos x}{\sin x}\right|+C\\
+&=-\ln|\csc x+\cot x|+C=-\ln\left|\cot\frac{x}{2}\right|+C.\quad (\text{留作习题.})
+\end{align*}
+
+\begin{example}\label{ex:5.2.3}
+求 $\int\frac{\mathrm{d}x}{\sqrt{x^{2}-a^{2}}}$.
+\end{example}
+
+\begin{solution}[解法 1]
+如图~\ref{fig:5.2.1} 所示.
+\begin{align*}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}-a^{2}}}
+&\xlongequal{x=a\sec t}\int\frac{a\sec t\tan t}{a\tan t}\mathrm{d}t
+=\int\sec t\,\mathrm{d}t\\
+&\xlongequal{\text{例}~\ref{ex:5.2.2}}\ln|\sec t+\tan t|+C_{1}\\
+&=\ln\left|\frac{x}{a}+\frac{\sqrt{x^{2}-a^{2}}}{a}\right|+C_{1}
+=\ln\left|x+\sqrt{x^{2}-a^{2}}\right|+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 2]
+当 $x>a$ 时, 令 $x=a\cosh t$, $t>0$, 则
+\begin{align*}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}-a^{2}}}
+&\xlongequal{x=a\cosh t}\int\frac{a\sinh t}{a\sinh t}\mathrm{d}t\\
+&=\int\mathrm{d}t=t+C_{1}\\
+&=\ln\left|\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^{2}-1}\right|+C_{1}\\
+&=\ln\left|x+\sqrt{x^{2}-a^{2}}\right|+C,
+\end{align*}
+其中
+\begin{gather*}
+x=a\cosh t=a\frac{\mathrm{e}^{t}+\mathrm{e}^{-t}}{2},\\
+(\mathrm{e}^{t})^{2}-2\frac{x}{a}\mathrm{e}^{t}+1=0,\\
+\mathrm{e}^{t}=\frac{2\frac{x}{a}+2\sqrt{\left(\frac{x}{a}\right)^{2}-1}}{2}=\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^{2}-1},\\
+t=\ln\left|\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^{2}-1}\right|.
+\end{gather*}
+显然, 对 $x<-a$, 上述结果也是成立的.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.1cm,y=1.1cm,>=Stealth]
+  \draw[thick] (0,0) -- (2.4,0) node[midway,below] {$\sqrt{x^{2}-a^{2}}$};
+  \draw[thick] (0,0) -- (2.4,2.0);
+  \draw[thick] (2.4,0) -- (2.4,2.0) node[midway,right] {$x$};
+  \draw (2.15,0) -- (2.15,0.25) -- (2.4,0.25);
+  \draw (0.5,0) arc (0:39.8:0.5);
+  \node at (0.62,0.18) {$t$};
+  \node[above] at (1.2,1.05) {$a$};
+  \node[right] at (3.0,1.7) {$\sec t=\frac{x}{a}$};
+  \node[right] at (3.0,1.1) {$\tan t=\frac{\sqrt{x^{2}-a^{2}}}{a}$};
+\end{tikzpicture}
+\caption{}\label{fig:5.2.1}
+\end{figure}
+
+做变量代换 $x=a\sec t$ 与 $x=a\cosh t$ 都是为了将 $\sqrt{x^{2}-a^{2}}$ 中的根号去掉, 然后化为一个易积的不定积分或已有结果的不定积分.
+
+\begin{example}\label{ex:5.2.4}
+求 $\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}$ ($a>0$).
+\end{example}
+
+\begin{solution}[解法 1]
+读者一定还记得例~\ref{ex:3.1.6}(2) 中, 有
+\[
+\left(\ln(x+\sqrt{x^{2}+a^{2}})\right)'=\frac{1}{\sqrt{x^{2}+a^{2}}},
+\]
+故
+\[
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}=\ln(x+\sqrt{x^{2}+a^{2}})+C.
+\]
+\end{solution}
+
+\begin{solution}[解法 2]
+如图~\ref{fig:5.2.2} 所示. 如果事先不知道解法 1 中的导数公式, 可以进行变量代换 $x=a\tan t$ 得到
+\begin{align*}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}&=\int\frac{a\sec^{2}t}{a\sec t}\mathrm{d}t=\int\sec t\,\mathrm{d}t=\int\frac{\mathrm{d}t}{\cos t}\\
+&=\ln|\sec t+\tan t|+C_{1}\\
+&=\ln\left|\frac{x}{a}+\frac{\sqrt{x^{2}+a^{2}}}{a}\right|+C_{1}\\
+&=\ln(x+\sqrt{x^{2}+a^{2}})+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 3]
+\begin{align*}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}
+&\xlongequal{x=a\sinh t}\int\frac{a\cosh t}{a\cosh t}\mathrm{d}t=\int\mathrm{d}t\\
+&=t+C_{1}=\operatorname{arcsinh}\frac{x}{a}+C_{1}\\
+&=\ln\left(\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^{2}+1}\right)+C_{1}\\
+&=\ln\left(x+\sqrt{x^{2}+a^{2}}\right)+C.
+\end{align*}
+其中 $\frac{x}{a}=\sinh t=\frac{\mathrm{e}^{t}-\mathrm{e}^{-t}}{2}$, $(\mathrm{e}^{t})^{2}-2\frac{x}{a}\mathrm{e}^{t}-1=0$. 由于 $\mathrm{e}^{t}>0$, 故
+\begin{gather*}
+\mathrm{e}^{t}=\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^{2}+1},\\
+\operatorname{arcsinh}\frac{x}{a}=t=\ln\left[\frac{x}{a}+\sqrt{\left(\frac{x}{a}\right)^{2}+1}\right].
+\end{gather*}
+\end{solution}
+
+\begin{solution}[解法 4]
+做变量代换 $\sqrt{x^{2}+a^{2}}=t-x$, 即 $x=\frac{t^{2}-a^{2}}{2t}$, 则
+\begin{align*}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}
+&=\int\frac{1}{t-\frac{t^{2}-a^{2}}{2t}}\cdot\frac{2t^{2}-(t^{2}-a^{2})}{2t^{2}}\mathrm{d}t=\int\frac{\mathrm{d}t}{t}\\
+&=\ln|t|+C=\ln(x+\sqrt{x^{2}+a^{2}})+C.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.1cm,y=1.1cm,>=Stealth]
+  \draw[thick] (0,0) -- (2.4,0) node[midway,below] {$a$};
+  \draw[thick] (0,0) -- (2.4,2.0);
+  \draw[thick] (2.4,0) -- (2.4,2.0) node[midway,right] {$\sqrt{x^{2}+a^{2}}$};
+  \draw (2.15,0) -- (2.15,0.25) -- (2.4,0.25);
+  \draw (0.5,0) arc (0:39.8:0.5);
+  \node at (0.62,0.18) {$t$};
+  \node[above] at (0.85,1.35) {$x$};
+  \node[right] at (3.0,1.7) {$\tan t=\frac{x}{a}$};
+  \node[right] at (3.0,1.1) {$\sec t=\frac{\sqrt{x^{2}+a^{2}}}{a}$};
+\end{tikzpicture}
+\caption{}\label{fig:5.2.2}
+\end{figure}
+
+\begin{example}\label{ex:5.2.5}
+求 $\int\sqrt{a^{2}-x^{2}}\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}
+如图~\ref{fig:5.2.3} 所示.
+\begin{align*}
+\int\sqrt{a^{2}-x^{2}}\,\mathrm{d}x
+&\xlongequal{x=a\sin t}\int a\cos t\,\mathrm{d}(a\sin t)=a^{2}\int\cos^{2}t\,\mathrm{d}t\\
+&=\frac{a^{2}}{2}\int(1+\cos 2t)\mathrm{d}t=\frac{a^{2}}{2}\left(t+\frac{1}{2}\sin 2t\right)+C\\
+&=\frac{a^{2}}{2}(t+\sin t\cos t)+C\\
+&=\frac{a^{2}}{2}\left(\arcsin\frac{x}{a}+\frac{x}{a}\cdot\frac{\sqrt{a^{2}-x^{2}}}{a}\right)+C\\
+&=\frac{1}{2}\left(a^{2}\arcsin\frac{x}{a}+x\sqrt{a^{2}-x^{2}}\right)+C.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.1cm,y=1.1cm,>=Stealth]
+  \draw[thick] (0,0) -- (2.6,0) node[midway,below] {$\sqrt{a^{2}-x^{2}}$};
+  \draw[thick] (0,0) -- (2.6,2.2);
+  \draw[thick] (2.6,0) -- (2.6,2.2) node[midway,right] {$x$};
+  \draw (2.35,0) -- (2.35,0.25) -- (2.6,0.25);
+  \draw (0.55,0) arc (0:40.2:0.55);
+  \node at (0.68,0.2) {$t$};
+  \node[above] at (1.3,1.15) {$a$};
+\end{tikzpicture}
+\caption{}\label{fig:5.2.3}
+\end{figure}
+
+\begin{example}\label{ex:5.2.6}
+求 $\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{3/2}}$ ($a>0$).
+\end{example}
+
+\begin{solution}[解法 1]
+如图~\ref{fig:5.2.4} 所示.
+\begin{align*}
+\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{3/2}}
+&\xlongequal{x=a\tan t}\int\frac{a\sec^{2}t}{a^{3}\sec^{3}t}\mathrm{d}t
+=\frac{1}{a^{2}}\int\cos t\,\mathrm{d}t=\frac{1}{a^{2}}\sin t+C\\
+&=\frac{x}{a^{2}\sqrt{x^{2}+a^{2}}}+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 2]
+由分部积分法得到
+\begin{align*}
+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}
+&=\frac{x}{\sqrt{x^{2}+a^{2}}}-\int x\left(-\frac{1}{2}\right)(x^{2}+a^{2})^{-\frac{3}{2}}\cdot 2x\,\mathrm{d}x\\
+&=\frac{x}{\sqrt{x^{2}+a^{2}}}+\int\frac{(x^{2}+a^{2})-a^{2}}{(x^{2}+a^{2})^{3/2}}\mathrm{d}x\\
+&=\frac{x}{\sqrt{x^{2}+a^{2}}}+\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}-a^{2}\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{3/2}},
+\end{align*}
+移项化简得
+\[
+\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{3/2}}=\frac{x}{a^{2}\sqrt{x^{2}+a^{2}}}+C.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.1cm,y=1.1cm,>=Stealth]
+  \draw[thick] (0,0) -- (2.4,0) node[midway,below] {$a$};
+  \draw[thick] (0,0) -- (2.4,2.0);
+  \draw[thick] (2.4,0) -- (2.4,2.0) node[midway,right] {$x$};
+  \draw (2.15,0) -- (2.15,0.25) -- (2.4,0.25);
+  \draw (0.5,0) arc (0:39.8:0.5);
+  \node at (0.62,0.18) {$t$};
+  \node[above] at (0.85,1.35) {$\sqrt{x^{2}+a^{2}}$};
+\end{tikzpicture}
+\caption{}\label{fig:5.2.4}
+\end{figure}
+
+\begin{example}\label{ex:5.2.7}
+求 $\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{2}}$ ($a>0$).
+\end{example}
+
+\begin{solution}[解法 1]
+如图~\ref{fig:5.2.5} 所示.
+\begin{align*}
+\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{2}}
+&\xrightarrow{x=a\tan t}\int\frac{a\sec^{2}t}{a^{4}\sec^{4}t}\mathrm{d}t=\frac{1}{a^{3}}\int\cos^{2}t\,\mathrm{d}t\\
+&=\frac{1}{2a^{3}}\int(1+\cos 2t)\mathrm{d}t=\frac{1}{2a^{3}}(t+\sin t\cos t)+C\\
+&=\frac{1}{2a^{3}}\left(\arctan\frac{x}{a}+\frac{x}{\sqrt{x^{2}+a^{2}}}\cdot\frac{a}{\sqrt{x^{2}+a^{2}}}\right)+C\\
+&=\frac{1}{2a^{3}}\left(\arctan\frac{x}{a}+\frac{ax}{x^{2}+a^{2}}\right)+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 2]
+由
+\begin{align*}
+\int\frac{\mathrm{d}x}{x^{2}+a^{2}}&\xlongequal{\text{分部积分}}\frac{x}{x^{2}+a^{2}}-\int\frac{-2x}{(x^{2}+a^{2})^{2}}\mathrm{d}x\\
+&=\frac{x}{x^{2}+a^{2}}+2\int\frac{(x^{2}+a^{2})-a^{2}}{(x^{2}+a^{2})^{2}}\mathrm{d}x\\
+&=\frac{x}{x^{2}+a^{2}}+2\int\frac{\mathrm{d}x}{x^{2}+a^{2}}-2a^{2}\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{2}},
+\end{align*}
+得到
+\begin{align*}
+\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{2}}&=\frac{1}{2a^{2}}\cdot\frac{x}{x^{2}+a^{2}}+\frac{1}{2a^{2}}\int\frac{\mathrm{d}x}{x^{2}+a^{2}}\\
+&=\frac{x}{2a^{2}(x^{2}+a^{2})}+\frac{1}{2a^{3}}\arctan\frac{x}{a}+C.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.1cm,y=1.1cm,>=Stealth]
+  \draw[thick] (0,0) -- (2.4,0) node[midway,below] {$a$};
+  \draw[thick] (0,0) -- (2.4,2.0);
+  \draw[thick] (2.4,0) -- (2.4,2.0) node[midway,right] {$x$};
+  \draw (2.15,0) -- (2.15,0.25) -- (2.4,0.25);
+  \draw (0.5,0) arc (0:39.8:0.5);
+  \node at (0.62,0.18) {$t$};
+  \node[above] at (0.95,1.45) {$\sqrt{x^{2}+a^{2}}$};
+\end{tikzpicture}
+\caption{}\label{fig:5.2.5}
+\end{figure}
+
+\begin{example}\label{ex:5.2.8}
+求 $\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}$.
+\end{example}
+
+\begin{solution}[解法 1]
+如图~\ref{fig:5.2.6} 所示.
+\begin{align*}
+\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}
+&\xlongequal{x=\sec t}\int\frac{\sec t\tan t}{\sec^{2}t\tan t}\mathrm{d}t\\
+&=\int\cos t\,\mathrm{d}t=\sin t+C\\
+&=\frac{\sqrt{x^{2}-1}}{x}+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 2]
+\begin{align*}
+\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}&=\int\frac{\mathrm{d}x}{x^{3}\sqrt{1-\frac{1}{x^{2}}}}
+=\int\frac{1}{x}\cdot\frac{-1}{\sqrt{1-\frac{1}{x^{2}}}}\mathrm{d}\left(\frac{1}{x}\right)\\
+&\xlongequal{u=\frac{1}{x}}\int\frac{-u}{\sqrt{1-u^{2}}}\mathrm{d}u=\sqrt{1-u^{2}}+C\\
+&=\sqrt{1-\left(\frac{1}{x}\right)^{2}}+C=\frac{\sqrt{x^{2}-1}}{x}+C.
+\end{align*}
+或
+\begin{align*}
+\int\frac{\mathrm{d}x}{x^{2}\sqrt{x^{2}-1}}&=\int\frac{1}{x^{3}}\cdot\frac{\mathrm{d}x}{\sqrt{1-\frac{1}{x^{2}}}}
+=\frac{1}{2}\int\frac{1}{\sqrt{1-\frac{1}{x^{2}}}}\mathrm{d}\left(1-\frac{1}{x^{2}}\right)\\
+&\xlongequal{u=1-\frac{1}{x^{2}}}\int\frac{\mathrm{d}u}{2\sqrt{u}}=\sqrt{u}+C\\
+&=\sqrt{1-\frac{1}{x^{2}}}+C=\frac{\sqrt{x^{2}-1}}{x}+C.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.4cm,y=1.4cm,>=Stealth]
+  \draw[thick] (0,0) -- (2.0,0) node[midway,below] {$1$};
+  \draw[thick] (0,0) -- (2.0,1.7);
+  \draw[thick] (2.0,0) -- (2.0,1.7) node[midway,right] {$\sqrt{x^{2}-1}$};
+  \draw (1.75,0) -- (1.75,0.25) -- (2.0,0.25);
+  \draw (0.5,0) arc (0:40.4:0.5);
+  \node at (0.62,0.18) {$t$};
+  \node[above] at (0.75,1.25) {$x$};
+\end{tikzpicture}
+\caption{}\label{fig:5.2.6}
+\end{figure}
+
+\begin{example}\label{ex:5.2.9}
+求 $\int\frac{\mathrm{d}u}{\sqrt{u}+\sqrt[3]{u}}$.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+\int\frac{\mathrm{d}u}{\sqrt{u}+\sqrt[3]{u}}&\xlongequal{u=x^{6}}\int\frac{6x^{5}}{x^{3}+x^{2}}\mathrm{d}x
+=6\int\frac{x^{3}}{x+1}\mathrm{d}x\\
+&=6\int\left(x^{2}-x+1-\frac{1}{x+1}\right)\mathrm{d}x\\
+&=6\left(\frac{x^{3}}{3}-\frac{x^{2}}{2}+x-\ln|x+1|\right)+C\\
+&=2\sqrt{u}-3\sqrt[3]{u}+6\sqrt[6]{u}-6\ln(\sqrt[6]{u}+1)+C.
+\end{align*}
+\end{solution}
+
+除了换元 (变量代换) 积分法外, 还有一种重要的分部积分法, 它有 4 种不同的类型: 升幂、降幂、循环、递推.
+
+\begin{example}\label{ex:5.2.10}
+利用升幂的方法求下列不定积分:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\int x^{2}\arctan x\,\mathrm{d}x$;
+  \item $\int\arctan x\,\mathrm{d}x$;
+  \item $\int\frac{\ln x}{x^{2}}\mathrm{d}x$;
+  \item $\int\ln x\,\mathrm{d}x$;
+  \item $\int x\ln^{2}x\,\mathrm{d}x$;
+  \item $\int x^{3}\ln x\,\mathrm{d}x$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1)
+\begin{align*}
+\int x^{2}\arctan x\,\mathrm{d}x&=\frac{1}{3}\int\arctan x\,\mathrm{d}x^{3}
+=\frac{1}{3}\left(x^{3}\arctan x-\int\frac{x^{3}}{1+x^{2}}\mathrm{d}x\right)\\
+&=\frac{1}{3}\left[x^{3}\arctan x-\int\left(x-\frac{x}{1+x^{2}}\right)\mathrm{d}x\right]\\
+&=\frac{1}{3}\left[x^{3}\arctan x-\int x\,\mathrm{d}x+\frac{1}{2}\int\frac{\mathrm{d}(1+x^{2})}{1+x^{2}}\right]\\
+&=\frac{1}{3}x^{3}\arctan x-\frac{x^{2}}{6}+\frac{1}{6}\ln(1+x^{2})+C,
+\end{align*}
+其中 $x^{2}\arctan x$ 中的 $x^{2}$ 升幂为 $\mathrm{d}x^{3}$ 中的 $x^{3}$. 通过分部积分将一个不易算的积分\linebreak[4]$\int x^{2}\arctan x\,\mathrm{d}x$ 化为一个易算的积分 $\int\frac{x^{3}}{1+x^{2}}\mathrm{d}x$.
+
+(2)
+\begin{align*}
+\int\arctan x\,\mathrm{d}x&=x\arctan x-\int\frac{x}{1+x^{2}}\mathrm{d}x=x\arctan x-\frac{1}{2}\int\frac{\mathrm{d}(1+x^{2})}{1+x^{2}}\\
+&=x\arctan x-\frac{1}{2}\ln(1+x^{2})+C.
+\end{align*}
+其中 $\arctan x=x^{0}\arctan x$ 中的 $x^{0}$ 已经升幂为 $\mathrm{d}x$ 中的 $x=x^{1}$.
+
+(3)
+\begin{align*}
+\int\frac{\ln x}{x^{2}}\mathrm{d}x&=-\int\ln x\,\mathrm{d}\left(\frac{1}{x}\right)=-\frac{\ln x}{x}+\int\frac{1}{x}\cdot\frac{1}{x}\mathrm{d}x\\
+&=-\frac{\ln x}{x}-\frac{1}{x}+C.
+\end{align*}
+(4)
+\begin{align*}
+\int\ln x\,\mathrm{d}x&=x\ln x-\int x\cdot\frac{1}{x}\mathrm{d}x=x\ln x-\int\mathrm{d}x\\
+&=x\ln x-x+C.
+\end{align*}
+(5)
+\begin{align*}
+\int x\ln^{2}x\,\mathrm{d}x&=\frac{1}{2}\int\ln^{2}x\,\mathrm{d}x^{2}=\frac{1}{2}\left(x^{2}\ln^{2}x-\int x^{2}\cdot 2\ln x\cdot\frac{1}{x}\mathrm{d}x\right)\\
+&=\frac{x^{2}}{2}\ln^{2}x-\int x\ln x\,\mathrm{d}x=\frac{x^{2}}{2}\ln^{2}x-\frac{1}{2}\int\ln x\,\mathrm{d}x^{2}\\
+&=\frac{x^{2}}{2}\ln^{2}x-\frac{1}{2}\left(x^{2}\ln x-\int x^{2}\cdot\frac{1}{x}\mathrm{d}x\right)\\
+&=\frac{x^{2}}{2}\ln^{2}x-\frac{x^{2}}{2}\ln x+\frac{x^{2}}{4}+C.
+\end{align*}
+(6)
+\begin{align*}
+\int x^{3}\ln x\,\mathrm{d}x&=\int\ln x\,\mathrm{d}\frac{x^{4}}{4}=\frac{x^{4}}{4}\ln x-\int\frac{x^{4}}{4}\cdot\frac{1}{x}\mathrm{d}x\\
+&=\frac{x^{4}}{4}\ln x-\frac{1}{4}\int x^{3}\mathrm{d}x\\
+&=\frac{x^{4}}{4}\ln x-\frac{x^{4}}{16}+C.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:5.2.11}
+利用降幂的方法求下列不定积分:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\int x\cos x\,\mathrm{d}x$;
+  \item $\int x^{2}\mathrm{e}^{-x}\mathrm{d}x$;
+  \item $\int x^{2}\sin x\,\mathrm{d}x$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1)
+\begin{align*}
+\int x\cos x\,\mathrm{d}x&=\int x\,\mathrm{d}\sin x=x\sin x-\int\sin x\,\mathrm{d}x\\
+&=x\sin x+\cos x+C,
+\end{align*}
+其中 $x\cos x$ 中的 $x$ 降幂为 $\sin x=x^{0}\sin x$ 中的 $x^{0}$. 通过分部积分将一个不易算的积分 $\int x\cos x\,\mathrm{d}x$ 化为一个易算的积分 $\int\sin x\,\mathrm{d}x$.
+
+(2)
+\begin{align*}
+\int x^{2}\mathrm{e}^{-x}\mathrm{d}x&=-\int x^{2}\mathrm{d}\mathrm{e}^{-x}=-x^{2}\mathrm{e}^{-x}+\int\mathrm{e}^{-x}\cdot 2x\,\mathrm{d}x\\
+&=-x^{2}\mathrm{e}^{-x}-2\int x\,\mathrm{d}\mathrm{e}^{-x}\\
+&=-x^{2}\mathrm{e}^{-x}-2\left(x\mathrm{e}^{-x}-\int\mathrm{e}^{-x}\mathrm{d}x\right)\\
+&=-x^{2}\mathrm{e}^{-x}-2x\mathrm{e}^{-x}-2\mathrm{e}^{-x}+C\\
+&=-\mathrm{e}^{-x}(x^{2}+x+2)+C.
+\end{align*}
+(3)
+\begin{align*}
+\int x^{2}\sin x\,\mathrm{d}x&=-\int x^{2}\mathrm{d}\cos x=-x^{2}\cos x+\int 2x\cos x\,\mathrm{d}x\\
+&=-x^{2}\cos x+2\int x\,\mathrm{d}\sin x\\
+&=-x^{2}\cos x+2\left(x\sin x-\int\sin x\,\mathrm{d}x\right)\\
+&=-x^{2}\cos x+2x\sin x+2\cos x+C.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:5.2.12}
+利用循环的方法求 $I=\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x$, $J=\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}[解法 1]
+当 $a\neq 0$ 时,
+\begin{align*}
+I&=\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x=\frac{1}{a}\int\cos bx\,\mathrm{d}\mathrm{e}^{ax}
+=\frac{1}{a}\left(\mathrm{e}^{ax}\cos bx+b\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x\right)\\
+&=\frac{1}{a}\mathrm{e}^{ax}\cos bx+\frac{b}{a}J,\\
+J&=\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x=\frac{1}{a}\int\sin bx\,\mathrm{d}\mathrm{e}^{ax}
+=\frac{1}{a}\left(\mathrm{e}^{ax}\sin bx-b\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x\right)\\
+&=\frac{1}{a}\mathrm{e}^{ax}\sin bx-\frac{b}{a}I.
+\end{align*}
+由此得到
+\[
+\begin{cases}
+aI-bJ=\mathrm{e}^{ax}\cos bx,\\
+bI+aJ=\mathrm{e}^{ax}\sin bx.
+\end{cases}
+\]
+解此方程得
+\begin{gather*}
+I=\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x=\frac{b\sin bx+a\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+C_{1},\\
+J=\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x=\frac{a\sin bx-b\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+C_{2}.
+\end{gather*}
+注意 $a=0$, $b\neq 0$ 时, 上述公式仍成立. 当 $a=b=0$ 时,
+\[
+I=\int\mathrm{d}x=x+C_{1},\quad J=\int 0\,\mathrm{d}x=C_{2}.
+\]
+\end{solution}
+
+\begin{solution}[解法 2]
+当 $a\neq 0$ 时,
+\begin{align*}
+I&=\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x=\frac{1}{a}\int\cos bx\,\mathrm{d}\mathrm{e}^{ax}\\
+&=\frac{1}{a}\left(\mathrm{e}^{ax}\cos bx+b\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x\right)\\
+&=\frac{1}{a}\left(\mathrm{e}^{ax}\cos bx+\frac{b}{a}\int\sin bx\,\mathrm{d}\mathrm{e}^{ax}\right)\\
+&=\frac{1}{a}\mathrm{e}^{ax}\cos bx+\frac{b}{a^{2}}\left(\mathrm{e}^{ax}\sin bx-b\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x\right)\\
+&=\frac{b\sin bx+a\cos bx}{a^{2}}\mathrm{e}^{ax}-\frac{b^{2}}{a^{2}}\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x\\
+&=\frac{b\sin bx+a\cos bx}{a^{2}}\mathrm{e}^{ax}-\frac{b^{2}}{a^{2}}I,
+\end{align*}
+由于右边出现 $I$ (循环), 移项化简得
+\begin{align*}
+I&=\int\mathrm{e}^{ax}\cos bx\,\mathrm{d}x=\frac{a^{2}}{a^{2}+b^{2}}\cdot\frac{b\sin bx+a\cos bx}{a^{2}}\mathrm{e}^{ax}+C_{1}\\
+&=\frac{b\sin bx+a\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+C_{1}.
+\end{align*}
+同理可得
+\[
+J=\frac{a\sin bx-b\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+C_{2}.
+\]
+或者, 当 $b\neq 0$ 时,
+\begin{align*}
+J&=\int\mathrm{e}^{ax}\sin bx\,\mathrm{d}x=\frac{1}{b}(aI-\mathrm{e}^{ax}\cos bx)\\
+&=\frac{1}{b}\cdot\frac{ab\sin bx+a^{2}\cos bx-a^{2}\cos bx-b^{2}\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+\frac{a}{b}C_{1}\\
+&=\frac{a\sin bx-b\cos bx}{a^{2}+b^{2}}\mathrm{e}^{ax}+C_{2}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:5.2.13}
+求 $\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x$ ($a>0$).
+\end{example}
+
+\begin{solution}[解法 1]
+应用分部积分得到
+\begin{align*}
+\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x&=x\sqrt{x^{2}+a^{2}}-\int x\cdot\frac{2x}{2\sqrt{x^{2}+a^{2}}}\mathrm{d}x\\
+&=x\sqrt{x^{2}+a^{2}}-\int\frac{(x^{2}+a^{2})-a^{2}}{\sqrt{x^{2}+a^{2}}}\mathrm{d}x\\
+&=x\sqrt{x^{2}+a^{2}}-\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x+a^{2}\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}},
+\end{align*}
+这就出现了循环, 由此解得
+\begin{align*}
+\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x&=\frac{x}{2}\sqrt{x^{2}+a^{2}}+\frac{a^{2}}{2}\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}\\
+&=\frac{x}{2}\sqrt{x^{2}+a^{2}}+\frac{a^{2}}{2}\ln(x+\sqrt{x^{2}+a^{2}})+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 2]
+\begin{align*}
+\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x&\xlongequal{x=a\sinh u}\int\sqrt{a^{2}\sinh^{2}u+a^{2}}\,a\cosh u\,\mathrm{d}u\\
+&=\int a^{2}\cosh^{2}u\,\mathrm{d}u=a^{2}\int\frac{1+\cosh 2u}{2}\mathrm{d}u\\
+&=\frac{a^{2}}{2}\left(u+\frac{\sinh 2u}{2}\right)+C_{1}\\
+&=\frac{a^{2}}{2}(\sinh u\cosh u+u)+C_{1}\\
+&=\frac{x}{2}\sqrt{x^{2}+a^{2}}+\frac{a^{2}}{2}\ln\left(x+\sqrt{x^{2}+a^{2}}\right)+C.
+\end{align*}
+\end{solution}
+
+\begin{solution}[解法 3]
+\begin{align*}
+\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x&\xlongequal{x=a\tan t}\int\sqrt{a^{2}\tan^{2}t+a^{2}}\,a\sec^{2}t\,\mathrm{d}t\\
+&=a^{2}\int\frac{\mathrm{d}t}{\cos^{3}t}=a^{2}\int\frac{\cos t}{(1-\sin^{2}t)^{2}}\mathrm{d}t
+=a^{2}\int\frac{\mathrm{d}\sin t}{(1-\sin^{2}t)^{2}}\\
+&\xlongequal{u=\sin t}a^{2}\int\frac{\mathrm{d}u}{(1-u^{2})^{2}}=\frac{a^{2}}{4}\int\left(\frac{1}{1-u}+\frac{1}{1+u}\right)^{2}\mathrm{d}u\\
+&=\frac{a^{2}}{4}\int\left[\frac{1}{(1-u)^{2}}+\frac{2}{(1-u)(1+u)}+\frac{1}{(1+u)^{2}}\right]\mathrm{d}u\\
+&=\frac{a^{2}}{4}\int\left[\frac{1}{(1-u)^{2}}+\frac{1}{1-u}+\frac{1}{1+u}+\frac{1}{(1+u)^{2}}\right]\mathrm{d}u\\
+&=\frac{a^{2}}{4}\left(\frac{1}{1-u}+\ln\left|\frac{1+u}{1-u}\right|-\frac{1}{1+u}\right)+C_{1}\\
+&=\frac{a^{2}}{4}\left(\frac{2u}{1-u^{2}}+\ln\left|\frac{1+u}{1-u}\right|\right)+C_{1}\\
+&=\frac{a^{2}}{4}\left(\frac{2\sin t}{1-\sin^{2}t}+\ln\frac{1+\sin t}{1-\sin t}\right)+C_{1}\\
+&=\frac{1}{2}a\tan t\cdot\frac{a}{\cos t}+\frac{a^{2}}{4}\ln\frac{1+\frac{x}{\sqrt{x^{2}+a^{2}}}}{1-\frac{x}{\sqrt{x^{2}+a^{2}}}}+C_{1}\\
+&=\frac{x}{2}\sqrt{x^{2}+a^{2}}+\frac{a^{2}}{4}\ln\frac{\sqrt{x^{2}+a^{2}}+x}{\sqrt{x^{2}+a^{2}}-x}+C_{1}\\
+&=\frac{x}{2}\sqrt{x^{2}+a^{2}}+\frac{a^{2}}{4}\ln\frac{(x+\sqrt{x^{2}+a^{2}})^{2}}{a^{2}}+C_{1}\\
+&=\frac{x}{2}\sqrt{x^{2}+a^{2}}+\frac{a^{2}}{2}\ln(x+\sqrt{x^{2}+a^{2}})+C.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:5.2.14}
+利用递推的方法求下面积分.
+\[
+I_{n}=\int\sin^{n}x\,\mathrm{d}x,\quad J_{n}=\int\cos^{n}x\,\mathrm{d}x,\quad n\in\mathbb{N}.
+\]
+\end{example}
+
+\begin{solution}
+\begin{align*}
+I_{n}&=\int\sin^{n}x\,\mathrm{d}x=-\int\sin^{n-1}x\,\mathrm{d}\cos x\\
+&\xlongequal{\text{分部积分}}-\sin^{n-1}x\cos x+\int(n-1)\sin^{n-2}x\cos^{2}x\,\mathrm{d}x\\
+&=-\sin^{n-1}x\cos x+(n-1)\int\sin^{n-2}x(1-\sin^{2}x)\mathrm{d}x\\
+&=-\sin^{n-1}x\cos x+(n-1)I_{n-2}-(n-1)I_{n}.
+\end{align*}
+由此得到递推公式
+\[
+I_{n}=\int\sin^{n}x\,\mathrm{d}x=-\frac{1}{n}\sin^{n-1}x\cos x+\frac{n-1}{n}I_{n-2}.
+\]
+\begin{align*}
+J_{n}&=\int\cos^{n}x\,\mathrm{d}x=\int\cos^{n-1}x\,\mathrm{d}\sin x\\
+&\xlongequal{\text{分部积分}}\cos^{n-1}x\sin x+(n-1)\int\cos^{n-2}x(1-\cos^{2}x)\mathrm{d}x\\
+&=\cos^{n-1}x\sin x+(n-1)J_{n-2}-(n-1)J_{n}.
+\end{align*}
+同样, 由此得到递推公式
+\[
+J_{n}=\int\cos^{n}x\,\mathrm{d}x=\frac{1}{n}\cos^{n-1}x\sin x+\frac{n-1}{n}J_{n-2}.
+\]
+从第一个递推公式得到,
+\begin{align*}
+I_{4}&=\int\sin^{4}x\,\mathrm{d}x=-\frac{1}{4}\sin^{3}x\cos x+\frac{3}{4}I_{2}\\
+&=-\frac{1}{4}\sin^{3}x\cos x+\frac{3}{4}\left(-\frac{1}{2}\sin x\cos x+\frac{1}{2}I_{0}\right)\\
+&=-\frac{1}{4}\sin^{3}x\cos x-\frac{3}{8}\sin x\cos x+\frac{3}{8}x+C.
+\end{align*}
+\end{solution}
+
+\begin{exblock}{练习题 5.2}
+  \item 应用换元积分法求下列不定积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int\frac{\mathrm{d}x}{(a+bx)^{2}}$ ($a,b$ 为常数, $ab\neq 0$);
+    \item $\int\frac{x^{2}+2}{(x+1)^{3}}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{2x+1}$;
+    \item $\int(1+x)^{n}\mathrm{d}x$;
+    \item $\int\left(\frac{1}{\sqrt{3-x^{2}}}+\frac{1}{\sqrt{1-3x^{2}}}\right)\mathrm{d}x$;
+    \item $\int 2^{2x+3}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\sqrt{x}(1+x)}$;
+    \item $\int\frac{\mathrm{d}x}{\sqrt[3]{7-5x}}$;
+    \item $\int\frac{x}{\sqrt{1-x^{2}}}\mathrm{d}x$;
+    \item $\int\frac{x}{4+x^{2}}\mathrm{d}x$;
+    \item $\int\frac{x^{4}}{(1-x^{5})^{3}}\mathrm{d}x$;
+    \item $\int\frac{x^{3}}{x^{8}-2}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{x(1+x)}$;
+    \item $\int\frac{2x-3}{x^{2}-3x+8}\mathrm{d}x$;
+    \item $\int\cos(3x+4)\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\sin^{2}\left(2x+\frac{\pi}{4}\right)}$;
+    \item $\int\frac{\mathrm{d}x}{1+\cos x}$;
+    \item $\int\frac{\mathrm{d}x}{1+\sin x}$;
+    \item $\int\csc x\,\mathrm{d}x$;
+    \item $\int\cot x\,\mathrm{d}x$;
+    \item $\int\cos^{5}x\,\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\sin x}$;
+    \item $\int\frac{\mathrm{d}x}{\sin x\cos x}$;
+    \item $\int\frac{1}{x^{2}}\sin\frac{1}{x}\mathrm{d}x$;
+    \item $\int\frac{(\arctan x)^{2}}{1+x^{2}}\mathrm{d}x$;
+    \item $\int\cos ax\sin bx\,\mathrm{d}x$;
+    \item $\int\cos ax\cos bx\,\mathrm{d}x$;
+    \item $\int\sin ax\sin bx\,\mathrm{d}x$;
+    \item $\int\sin^{5}x\,\mathrm{d}x$;
+    \item $\int\sin^{4}x\,\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\cos x+\sin x}$;
+    \item $\int\frac{\mathrm{d}x}{a\cos x+b\sin x}$;
+    \item $\int\frac{\cos x}{\sqrt{2+\cos 2x}}\mathrm{d}x$;
+    \item $\int\frac{\cos x\sin x}{1+\sin^{4}x}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{1+\varepsilon\cos x}$ ($\varepsilon\in(0,1)$);
+    \item $\int\frac{\mathrm{d}x}{2-\sin^{2}x}$;
+    \item $\int\frac{\cos x\sin x}{a^{2}\cos^{2}x+b^{2}\sin^{2}x}\mathrm{d}x$;
+    \item $\int\frac{\cos x+\sin x}{\sqrt[3]{\sin x}-\cos x}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\cosh x}$;
+    \item $\int\frac{\mathrm{d}x}{x\ln x(\ln\ln x)}$;
+    \item $\int\frac{\ln^{2}x}{x}\mathrm{d}x$;
+    \item $\int x\mathrm{e}^{-x^{2}}\mathrm{d}x$;
+    \item $\int\frac{\ln x}{x\sqrt{1+\ln x}}\mathrm{d}x$;
+    \item $\int\frac{x^{3}}{1-x^{2}}\mathrm{d}x$;
+    \item $\int\mathrm{e}^{\sqrt{x}}\mathrm{d}x$;
+    \item $\int x^{3}\mathrm{e}^{-x^{2}}\mathrm{d}x$;
+    \item $\int\frac{x\,\mathrm{d}x}{\sqrt{1+x^{2}}+(1+x^{2})^{3/2}}$;
+    \item $\int\frac{\mathrm{d}x}{x\sqrt{x^{2}+1}}$;
+    \item $\int\frac{x^{2}}{\sqrt{x^{2}+a^{2}}}\mathrm{d}x$;
+    \item $\int\arctan\sqrt{x}\,\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\mathrm{e}^{x}+\mathrm{e}^{-x}}$;
+    \item $\int\frac{x^{\frac{n}{2}}}{\sqrt{1+x^{n+2}}}\mathrm{d}x$;
+    \item $\int\frac{\sqrt{x}}{1-\sqrt[3]{x}}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{(x^{2}+a^{2})^{\frac{3}{2}}}$;
+    \item $\int\frac{\sqrt{x+1}-1}{\sqrt{x+1}+1}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{\cos^{4}x}$;
+    \item $\int\sin^{4}x\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 应用分部积分法求下列不定积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int\arcsin x\,\mathrm{d}x$;
+    \item $\int\ln x\,\mathrm{d}x$;
+    \item $\int x^{2}\cos x\,\mathrm{d}x$;
+    \item $\int\frac{\ln x}{x^{3}}\mathrm{d}x$;
+    \item $\int\ln^{2}x\,\mathrm{d}x$;
+    \item $\int x\arctan x\,\mathrm{d}x$;
+    \item $\int(\arcsin x)^{2}\mathrm{d}x$;
+    \item $\int\sec^{3}x\,\mathrm{d}x$;
+    \item $\int x\arcsin x\,\mathrm{d}x$;
+    \item $\int\left(\ln\ln x+\frac{1}{\ln x}\right)\mathrm{d}x$;
+    \item $\int\arctan x\,\mathrm{d}x$;
+    \item $\int x^{2}\arccos x\,\mathrm{d}x$;
+    \item $\int x^{2}\cos x\,\mathrm{d}x$;
+    \item $\int\frac{x}{\cos^{2}x}\mathrm{d}x$;
+    \item $\int\frac{\arctan x}{x^{2}}\mathrm{d}x$;
+    \item $\int x^{2}\cosh x\,\mathrm{d}x$;
+    \item $\int\cos(\ln x)\mathrm{d}x$;
+    \item $\int\sin(\ln x)\mathrm{d}x$;
+    \item $\int\sqrt{x}\ln^{2}x\,\mathrm{d}x$;
+    \item $\int\ln(x+\sqrt{1+x^{2}})\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 根据公式 $\cosh^{2}t-\sinh^{2}t=1$, 用变量代换 $x=a\sinh t$ 或 $x=a\cosh t$ 求下列不定积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int\frac{\mathrm{d}x}{\sqrt{x^{2}+a^{2}}}$;
+    \item $\int\sqrt{x^{2}+a^{2}}\,\mathrm{d}x$;
+    \item $\int(x^{2}+a^{2})^{-\frac{3}{2}}\mathrm{d}x$;
+    \item $\int\frac{x^{2}}{\sqrt{x^{2}-a^{2}}}\mathrm{d}x$;
+    \item $\int\sqrt{x^{2}-a^{2}}\,\mathrm{d}x$;
+    \item $\int\frac{x\ln(x+\sqrt{1+x^{2}})}{\sqrt{1+x^{2}}}\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 求函数 $f(x)$, 设
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f'(x^{2})=\frac{1}{x}$ ($x>0$);
+    \item $f'(\sin^{2}x)=\cos^{2}x$.
+  \end{enumerate}
+
+  \item 求不定积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int\left(1-\frac{2}{x}\right)^{2}\mathrm{e}^{x}\mathrm{d}x$;
+    \item $\int\frac{x\mathrm{e}^{x}}{(1+x)^{2}}\mathrm{d}x$;
+    \item $\int\arctan(1+\sqrt{x})\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 求下列不定积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int[f(x)]^{\alpha}f'(x)\mathrm{d}x$ ($\alpha\neq -1$);
+    \item $\int\frac{f'(x)}{1+[f(x)]^{2}}\mathrm{d}x$;
+    \item $\int\frac{f'(x)}{f(x)}\mathrm{d}x$;
+    \item $\int\mathrm{e}^{f(x)}f'(x)\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 计算: (1) $\int xf''(x)\mathrm{d}x$; (2) $\int\mathrm{e}^{\sin x}\sin 2x\,\mathrm{d}x$.
+
+  \item 设 $P$ 为 $n$ 次多项式, 试通过 $P$ 的各阶导数来表示不定积分 $\int P(x)\mathrm{e}^{ax}\mathrm{d}x$.
+
+  \item 推导出不定积分 $\int\ln^{n}x\,\mathrm{d}x$ 的递推公式, $n\in\mathbb{N}$.
+
+  \item 设 $I_{n}=\int\tan^{n}x\,\mathrm{d}x$, $n=2,3,\cdots$. 证明: 递推公式 $I_{n}=\frac{1}{n-1}\tan^{n-1}x-I_{n-2}$.
+
+  \item 设 $I(m,n)=\int\cos^{m}x\sin^{n}x\,\mathrm{d}x$, 则当 $m+n\neq 0$ 时, 证明: 递推公式
+  \begin{align*}
+  I(m,n)&=\frac{\cos^{m-1}x\sin^{n+1}x}{m+n}+\frac{m-1}{m+n}I(m-2,n)\\
+  &=-\frac{\cos^{m+1}x\sin^{n-1}x}{m+n}+\frac{n-1}{m+n}I(m,n-2),\quad n,m=2,3,\cdots.
+\end{align*}
+
+  \item 应用题 10 中的递推公式计算:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int\tan^{3}x\,\mathrm{d}x$;
+    \item $\int\tan^{4}x\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 应用题 11 中的递推公式计算:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int\cos^{2}x\sin^{4}x\,\mathrm{d}x$;
+    \item $\int\cos^{4}x\sin^{2}x\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 导出下列不定积分对于正整数 $n$ 的递推公式:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $I_{n}=\int x^{n}\mathrm{e}^{kx}\,\mathrm{d}x$;
+    \item $I_{n}=\int\ln^{n}x\,\mathrm{d}x$;
+    \item $I_{n}=\int(\arcsin x)^{n}\mathrm{d}x$;
+    \item $I_{n}=\int\mathrm{e}^{x}\sin^{n}x\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 应用题 14 中的递推公式计算:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int x^{3}\mathrm{e}^{2x}\mathrm{d}x$;
+    \item $\int\ln^{3}x\,\mathrm{d}x$;
+    \item $\int(\arcsin x)^{3}\mathrm{d}x$;
+    \item $\int\mathrm{e}^{x}\sin^{3}x\,\mathrm{d}x$.
+  \end{enumerate}
+\end{exblock}

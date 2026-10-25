@@ -1,0 +1,445 @@
+% ============ §25 Derivations and differentials (原书 pp.190-198) ============
+\section{Derivations and differentials}\label{sec:25}\index{derivation, section 25}\index{Kähler differentials, module of, section 25}\index{0-smooth, section 25}\index{0-unramified, section 25}\index{0-étale, section 25}\index{Hochschild formula, section 25}
+
+Let $A$ be a ring and $M$ an $A$-module. A \emph{derivation} from $A$ to $M$ is a map
+$D\colon A \to M$ satisfying $D(a + b) = Da + Db$ and $D(ab) = bDa + aDb$; the set of all
+these is written $\Der(A, M)$. It becomes an $A$-module in a natural way, with
+$D + D'$ and $aD$ defined by $(D + D')a = Da + D'a$ and $(aD)b = a(Db)$.
+
+If $A$ is a $k$-algebra via a ring homomorphism $f\colon k \to A$, we say that $D$ is
+a \emph{$k$-derivation}, or a derivation \emph{over $k$}, if $D \circ f = 0$; the set of all
+$k$-derivations of $A$ into $M$ is written $\Der_k(A, M)$. It is an $A$-submodule of
+$\Der(A, M)$. Since $1 \cdot 1 = 1$, for any $D \in \Der(A, M)$ we have
+$D(1) = D(1) + D(1)$, so that $D(1) = 0$, and so viewing $A$ as $\mathbb{Z}$-algebra we have
+$\Der(A, M) = \Der_{\mathbb{Z}}(A, M)$.
+
+In the particular case $M = A$, we write $\Der_k(A)$ for $\Der_k(A, A)$. If $D$,
+$D' \in \Der_k(A)$, we can compose $D$ and $D'$ as maps $A \to A$, and it is easy to see
+that the bracket $[D, D'] = DD' - D'D$ is again an element of $\Der_k(A)$, and that
+$\Der_k(A)$ becomes a Lie algebra with this bracket.
+
+Quite generally, for $D \in \Der(A, M)$ and $a \in A$ one sees at once that
+$D(a^n) = na^{n-1}Da$. Hence if $A$ is a ring of characteristic $p$ we have
+$D(a^p) = 0$. Also, in general we have a Leibnitz formula for powers of $D$,
+\[
+  D^n(ab) = \sum_{i=0}^n \binom{n}{i} D^i a \cdot D^{n-i} b;
+\]
+if $A$ has characteristic $p$ then this reduces to $D^p(ab) = D^pa \cdot b + a \cdot
+D^pb$, so that also $D^p \in \Der(A)$.
+
+Let $k$ be a ring, $B$ a $k$-algebra, and $N$ an ideal of $B$ with $N^2 = 0$; set
+$A = B/N$. The $B$-module $N$ can in fact be viewed as an $A$-module. In this
+situation, we say that $B$ is an \emph{extension} of the $k$-algebra $A$ by the $A$-module
+$N$; (note that $B$ does not contain $A$, so that this is a different usage of
+extension). We write this extension as usual in the form of an exact sequence
+\[
+  0 \to N \to B \to A \to 0.
+\]
+We say that this extension is \emph{split}, or is the \emph{trivial extension}, if there exists
+a $k$-algebra homomorphism $\sigma\colon A \to B$ such that $f\sigma = 1$ (the identity map
+of $A$). Then we can identify $A$ and $\sigma(A)$, and we have $B = A \oplus N$ as a
+$k$-module. Conversely, starting from any $k$-algebra $A$ and an $A$-module $N$, we
+can make the direct sum $A \oplus N$ of $k$-modules into a trivial extension of $A$
+by $N$, by defining the product
+\[
+  (a, x)(a', x') = (aa', ax' + a'x) \quad \text{for } a, a' \in A \text{ and } x, x' \in N.
+\]
+In this book, we will write $A \ltimes N$ for this algebra.
+
+In general, given a commutative diagram in the category of $k$-algebras
+\[
+\begin{tikzcd}
+B \arrow[r, "f"] & A \\
+& C \arrow[ul, "g"'] \arrow[u, "h"']
+\end{tikzcd}
+\]
+where we think of $f$ as being fixed, we say that $h$ is a \emph{lifting} of $g$ to $B$.
+Write $N$ for the ideal $\Ker f$ of $B$. If $h'\colon C \to B$ is another lifting of $g$, then
+$h - h'$ is a map from $C$ to $N$. If $N^2 = 0$ then $N$ is an $f(\bar{B})$-module, and
+moreover, by means of $g\colon C \to f(B) \subset A$, we can consider $N$ as a $C$-module.
+Then it is easy to see that $h - h'\colon C \to N$ is a $k$-derivation of $C$ to the
+$C$-module $N$. Conversely, if $D \in \Der_k(C, N)$ then $h + D$ is another lifting of $g$
+to $B$.
+
+Let $k$ be a ring and $A$ a $k$-algebra, and write $\mathcal{M}_A$ for the category of
+$A$-modules. We have a covariant functor $M \mapsto \Der_k(A, M)$ from $\mathcal{M}_A$ to
+itself, which turns out to be a representable functor. In other words, there
+exists an $A$-module $\Omega$ and a derivation $d \in \Der_k(A, \Omega)$ with the following
+universal property: for any $A$-module $M$ and any $D \in \Der_k(A, M)$, there exists
+a unique $A$-linear map $f\colon \Omega \to M$ such that $D = f \circ d$. We are now going
+to prove this. Firstly, define $\mu\colon A \otimes_k A \to A$ by
+\[
+  \mu(x \otimes y) = xy;
+\]
+then $\mu$ is a homomorphism of $k$-algebras. Set
+\[
+  I = \Ker \mu, \quad \Omega_{A/k} = I/I^2 \quad \text{and} \quad B = (A \otimes_k A)/I^2;
+\]
+then $\mu$ induces $\bar{\mu}\colon B \to A$, and
+\[
+  0 \to \Omega_{A/k} \to B \xrightarrow{\bar{\mu}} A \to 0
+\]
+is an extension of the $k$-algebra $A$ by $\Omega_{A/k}$; this extension splits, and in
+fact defining $\iota_i\colon A \to B$ for $i = 1, 2$ by
+\[
+  \iota_1(a) = a \otimes 1 \mod I^2 \quad \text{and} \quad \iota_2(a) = 1 \otimes a \mod I^2,
+\]
+we get two liftings of $1_A\colon A \to A$. Hence $d = \iota_1 - \iota_2$ is a derivation of
+$A$ to $\Omega_{A/k}$. Now we prove that the pair $(\Omega_{A/k}, d)$ satisfies the
+conditions for the above $(\Omega, d)$. If $D \in \Der_k(A, M)$ and we define
+$\varphi\colon A \otimes_k A \to A \ltimes M$ by $\varphi(x \otimes y) = (xy, xDy)$ then
+$\varphi$ is a homomorphism of $k$-algebras, and
+\[
+  \varphi\Big(\sum x_i \otimes y_i\Big) = 0 \Rightarrow \sum x_iy_i = 0
+      \Rightarrow \varphi\Big(\sum x_i \otimes y_i\Big) = \Big(0, \sum x_iDy_i\Big),
+\]
+hence $\varphi$ maps $I$ into $M$. Now $M^2 = 0$, so that we finally get
+$f\colon I/I^2 = \Omega_{A/k} \to M$. For $a \in A$ we have
+\begin{align*}
+  f(da) &= f(1 \otimes a - a \otimes 1 \mod I^2) = \varphi(1 \otimes a) - \varphi(a \otimes 1) \\
+        &= Da - a \cdot D(1) = Da,
+\end{align*}
+so that $D = f \circ d$. Moreover, $\Omega_{A/k}$ has the $A$-module structure induced by
+multiplication by $a \otimes 1$ in $A \otimes_k A$ (or multiplication by $1 \otimes a$; since
+$a \otimes 1 - 1 \otimes a \in I$, they both come to the same thing); thus if
+$\omega = \sum x_i \otimes y_i \mod I^2 \in \Omega_{A/k}$ then
+$a\omega = \sum ax_i \otimes y_i \mod I^2$, and $f(a\omega) = \sum ax_iDy_i =
+a f(\omega)$, so that $f$ is $A$-linear. We have
+\[
+  a \otimes a' = (a \otimes 1)(1 \otimes a' - a' \otimes 1) + aa' \otimes 1,
+\]
+so that if $\omega = \sum x_i \otimes y_i \in I$ then $\omega \mod I^2 = \sum x_i\,dy_i$.
+Hence $\Omega_{A/k}$ is generated as an $A$-module by $\{da \mid a \in A\}$, so that the
+uniqueness of a linear map $f\colon \Omega_{A/k} \to M$ satisfying $D = f \circ d$ is
+obvious.
+
+The $A$-module $\Omega_{A/k}$, which we have just obtained, is called the \emph{module of
+differentials}\index{module of differentials} of $A$ over $k$, or the \emph{module of K\"ahler differentials}, and for
+$a \in A$ the element $da \in \Omega_{A/k}$ is called the \emph{differential} of $a$. We can write
+$d_{A/k}$ for $d$ to be more specific. From the definition, we see that
+\[
+  \Der_k(A, M) \cong \Hom_A(\Omega_{A/k}, M).
+\]
+
+\begin{example*}
+If $A$ is generated as a $k$-algebra by a subset $U \subset A$ then $\Omega_{A/k}$ is
+generated as an $A$-module by $\{da \mid a \in U\}$. Indeed, if $a \in A$ then there
+exist $a_i \in U$ and a polynomial $f(X) \in k[X_1, \ldots, X_n]$ such that
+$a = f(a_1, \ldots, a_n)$, and then from the definition of derivation we have
+\[
+  da = \sum_i f_i(a_1, \ldots, a_n)da_i, \quad \text{where } f_i = \partial f/\partial X_i.
+\]
+In particular, if $A = k[X_1, \ldots, X_n]$ then $\Omega_{A/k} = AdX_1 + \cdots + AdX_n$, and
+$dX_1, \ldots, dX_n$ are linearly independent over $A$; this follows at once from the
+fact that there are $D_i \in \Der_k(A)$ such that $D_iX_j = \delta_{ij}$.
+\end{example*}
+
+We say that a $k$-algebra $A$ is \emph{0-smooth}\index{0-smooth} (over $k$) if it has the following
+property: for any $k$-algebra $C$, any ideal $N$ of $C$ satisfying $N^2 = 0$, and any
+$k$-algebra homomorphism $\bar{u}\colon A \to C/N$, there exists a lifting $u\colon A \to C$
+of $\bar{u}$ to $C$, as a $k$-algebra homomorphism. In terms of diagrams, given a
+commutative diagram
+\[
+\begin{tikzcd}
+A \arrow[r, "\bar{u}"] & C/N \\
+k \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+there exists $v$ such that
+\[
+\begin{tikzcd}
+A \arrow[r, "\bar{u}"] \arrow[rd, "v"'] & C/N \\
+k \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+is commutative. Moreover, we say that $A$ is \emph{0-unramified}\index{0-unramified} over $k$ (or \emph{0-neat})
+if there exists at most one such $v$. When $A$ is both 0-smooth and
+0-unramified, that is when for given $\bar{u}$ there exists a unique $v$, we say that
+$A$ is \emph{0-\'etale}\index{0-étale}. The condition for $A$ to be 0-unramified over $k$ is that
+$\Omega_{A/k} = 0$: sufficiency is obvious, and if we recall that in the construction of
+$\Omega_{A/k}$ we had $d = \iota_1 - \iota_2$, necessity is clear.
+
+If $A$ is a ring and $S \subset A$ is a multiplicative set then the localisation $A_S$
+is 0-\'etale over $A$. This follows from the fact (Ex.~\ref{ex:1.1-ex}) that if $x \in C$ is a unit
+modulo a nilpotent ideal, then it is itself a unit. We leave the details to the
+reader.
+
+\begin{theorem}[First fundamental exact sequence]\label{thm:25.1}
+A composite $k \xrightarrow{f} A \xrightarrow{g} B$ of ring homomorphisms leads to an
+exact sequence of $B$-modules
+\[
+  (1) \quad \Omega_{A/k} \otimes_A B \xrightarrow{\alpha} \Omega_{B/k} \to \Omega_{B/A} \to 0,
+\]
+where the maps are given by $\alpha(d_{A/k}a \otimes b) = b\,d_{B/k}g(a)$ and
+$\beta(d_{B/k}b) = d_{B/A}b$ for $a \in A$ and $b \in B$. If moreover $B$ is 0-smooth over
+$A$ then the sequence
+\[
+  (2) \quad 0 \to \Omega_{A/k} \otimes_A B \to \Omega_{B/k} \to \Omega_{B/A} \to 0,
+\]
+obtained from (1) by adding $0 \to$ at the left, is a split exact sequence.
+\end{theorem}
+
+\begin{proof}
+In order for a sequence $N' \xrightarrow{\alpha} N \xrightarrow{\beta} N''$ of $B$-modules to be
+exact, it is sufficient that for every $B$-module $T$, the induced sequence
+\[
+  \Hom_B(N', T) \xleftarrow{\alpha^*} \Hom_B(N, T) \xleftarrow{\beta^*} \Hom_B(N'', T)
+\]
+is exact. Indeed, taking $T = N''$, we get $\alpha^*\beta^*(1_{N''}) = 0$, and therefore
+$\beta\alpha = 0$; and taking $T = N/\Im \alpha$, we see easily that $\Ker \beta = \Im \alpha$. From
+this, to prove that (1) above is exact, it is enough to show that for any $B$-module
+$T$,
+\[
+  (3) \quad \Der_k(A, T) \xleftarrow{} \Der_k(B, T) \xleftarrow{} \Der_B(B, T) \to 0
+\]
+is exact, but this is obvious.
+
+Now suppose that $B$ is 0-smooth over $A$. Choose $D \in \Der_k(A, T)$ and consider
+the commutative diagram
+\[
+\begin{tikzcd}
+A \arrow[r, "\sigma"] \arrow[d, "g"'] & B \ltimes T \arrow[d, "p"] \\
+B \arrow[r, "1_B"'] & B
+\end{tikzcd}
+\quad \text{with } \sigma(a) = (ga, Da).
+\]
+Then by assumption, there exists $\kappa\colon B \to B \ltimes T$ which can be added to
+the diagram, leaving it commutative. If we write $\kappa(b) = (b, D'b)$ then
+$D'\colon B \to T$ is a derivation of $B$ such that $D = D' \circ g$, and $D'$ corresponds to a
+$B$-linear map $\alpha'\colon \Omega_{B/k} \to T$. Now take $T$ to be $\Omega_{A/k} \otimes_A B$,
+and define $D$ by $D(a) = d_{A/k}(a) \otimes 1$, so that $D = D' \circ g$ implies that
+$\alpha'\alpha = 1_T$. Thus (2) is split.
+\end{proof}
+
+Now consider the case $k \to A \xrightarrow{g} B$ when $g$ is surjective; set
+$\Ker g = m$, so $B = A/m$. Then in (1) of the previous theorem we of course have
+$\Omega_{B/A} = 0$, and we want to determine $\Ker \alpha$.
+
+\begin{theorem}[Second fundamental exact sequence]\label{thm:25.2}
+In the above notation, we have an exact sequence
+\[
+  (4) \quad m/m^2 \xrightarrow{\delta} \Omega_{A/k} \otimes_A B \xrightarrow{\alpha} \Omega_{B/k} \to 0
+\]
+where $\delta$ is the $B$-linear map defined by $\delta(x \mod m^2) = d_{A/k}x \otimes 1$. If $B$ is
+0-smooth over $k$ then
+\[
+  (5) \quad 0 \to m/m^2 \to \Omega_{A/k} \otimes_A B \to \Omega_{B/k} \to 0
+\]
+is a split exact sequence.
+\end{theorem}
+
+\begin{proof}
+We once more take an arbitrary $B$-module $T$ and consider
+\[
+  (6) \quad \Hom_B(m/m^2, T) \xleftarrow{\delta^*} \Der_k(A, T) \xleftarrow{\alpha^*} \Der_k(B, T).
+\]
+For $D \in \Der_k(A, T)$, to say that $\delta^*(D) = 0$ is just to say that $D(m) = 0$, so
+that $D$ can be considered as a derivation from $B = A/m$; hence (6) is exact.
+
+If $B$ is 0-smooth over $k$ then the extension
+\[
+  0 \to m/m^2 \to A/m^2 \to B \to 0
+\]
+of the $k$-algebra $B$ by $m/m^2$ splits, that is there exists a homomorphism of
+$k$-algebras $s\colon B \to A/m^2$ such that $\bar{g}s = 1_B$. Now $sg\colon A/m^2 \to A/m^2$ is a
+homomorphism vanishing on $m/m^2$, and $g(1 - sg) = 0$, so that if we set
+$D = 1 - sg$ then $D\colon A/m^2 \to m/m^2$ is a derivation. If $\psi \in \Hom_B(m/m^2, T)$
+then the composite $D'$ of
+\[
+  A \to A/m^2 \xrightarrow{D} m/m^2 \xrightarrow{\psi} T
+\]
+is an element of $\Der_k(A, T)$ satisfying $\delta^*(D') = \psi$. Indeed, for $x \in m$, if we
+let $\bar{x} = x \mod m^2$ then
+\[
+  D'(x) = \psi(D(\bar{x})) = \psi(\bar{x} - sg(\bar{x})) = \psi(\bar{x}).
+\]
+Therefore $\delta^*$ is surjective. If we set $T = m/m^2$ then we see that (5) is a split
+exact sequence.
+\end{proof}
+
+\begin{example*}
+Suppose that $B = k[X_1, \ldots, X_n]/(f_1, \ldots, f_m) = k[x_1, \ldots, x_n]$; then setting
+$A = k[X_1, \ldots, X_n]$ and using the above theorem, we have
+\[
+  \Omega_{B/k} = (\Omega_{A/k} \otimes_A B)/R = F/R
+\]
+where $F$ is the free $B$-module with basis $dX_1, \ldots, dX_n$, and $R$ is the
+submodule of $F$ generated by $df_i = \sum_j (\partial f_i/\partial X_j)dX_j$ for $1 \le i \le m$.
+For example, if $k$ is a field of characteristic $\neq 2$ and
+\[
+  B = k[X, Y]/(X^2 + Y^2) = k[x, y],
+\]
+then $\Omega_{B/k} = Bdx + Bdy$, where the only relation between $dx$ and $dy$ is
+$xdx + ydy = 0$. If $k$ has characteristic $2$ then $\Omega_{B/k}$ is the free $B$-module of
+rank $2$ with basis $dx$, $dy$.
+\end{example*}
+
+\begin{theorem}\label{thm:25.3}
+Suppose that a field $L$ is a separable algebraic extension of a subfield $K$; then
+$L$ is 0-\'etale over $K$. Moreover, for any subfield $k \subset K$ we have
+$\Omega_{L/k} = \Omega_{K/k} \otimes_K L$.
+\end{theorem}
+
+\begin{proof}
+Suppose that $0 \to N \to C \to C/N \to 0$ is an extension of $K$-algebras with
+$N^2 = 0$, and that $\bar{u}\colon L \to C/N$ is a given $K$-algebra homomorphism. If $L'$ is an
+intermediate field $K \subset L' \subset L$ with $L'$ finite over $K$, then, as is well-known in
+field theory, we can write $L' = K(\alpha)$; let $f(X)$ be the minimal polynomial of
+$\alpha$ over $K$ so that $L' \cong K[X]/(f)$, and $f'(\alpha) \neq 0$. Thus to lift
+$\bar{u}|_{L'}\colon L' \to C/N$ to $C$, we need only find an element $y \in C$ satisfying
+$f(y) = 0$ and $y \mod N = \bar{u}(\alpha)$. Now choose some inverse image $Y \in C$ of
+$\bar{u}(\alpha)$; then $f(Y) \mod N = \bar{u}(f(\alpha)) = 0$, so that $f(Y) \in N$. Moreover,
+since $N^2 = 0$, so that for $\eta \in N$ we get
+\[
+  f(Y + \eta) = f(Y) + f'(Y)\eta;
+\]
+but $f'(\alpha)$ is a unit of $L$, so that $\bar{u}(f'(\alpha)) = f'(Y) \mod N$ is a unit of
+$C/N$, and hence $f'(Y)$ is a unit of $C$ by Ex.~\ref{ex:1.1-ex}. Thus if we set
+$\eta = -f(Y)/f'(Y)$ we have $\eta \in N$ and $f(Y + \eta) = 0$. The $K$-algebra
+homomorphism $v\colon L' \to C$ obtained by taking $\alpha$ to $v(\alpha) = y + \eta$ is a
+lifting of $\bar{u}|_{L'}$, and one can see by the construction that $v$ is unique. Thus for
+every $\alpha \in L$ there is a uniquely determined lifting $v_\alpha\colon K(\alpha) \to C$ of
+$\bar{u}|_{K(\alpha)}$, and we can define $v\colon L \to C$ by $v(\alpha) = v_\alpha(\alpha)$. In fact, for
+$\alpha, \beta \in L$ there exists $\gamma \in L$ such that $K(\gamma)$ contains both $\alpha$ and
+$\beta$, and then by uniqueness we have
+\[
+  v_\gamma|_{K(\alpha)} = v_\alpha \quad \text{and} \quad v_\gamma|_{K(\beta)} = v_\beta.
+\]
+The second half comes from $\Omega_{L/K} = 0$ and Theorem~\hyperref[thm:25.1]{1}.
+\end{proof}
+
+We turn now to derivations. As we have seen, if $A$ is a ring of characteristic $p$
+then for $D \in \Der(A)$ we have $D^p \in \Der(A)$. What can we say if $i < p$?
+
+\begin{theorem}\label{thm:25.4}
+Let $K$ be a field of characteristic $p$, and let $0 \ne D \in \Der(K)$.
+\begin{enumerate}[(i)]
+  \item $1, D, D^2, \ldots, D^{p-1}$ are linearly independent over $K$;
+  \item the only way in which $c_0 + c_1D + \cdots + c_{p-1}D^{p-1}$ with $c_i \in K$ can be
+        a derivation is if $c_0 = c_1 = \cdots = c_{p-1} = 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For $a \in K$, write $a_L$ for the operation of multiplying by $a$; then the property
+$D(ax) = D(a) \cdot x + a \cdot Dx$ of a derivation means that $D \circ a_L = D(a)_L + a_L \circ D$.
+We can write the Leibnitz formula as
+\[
+  D^i \circ a_L = aD^i + i \cdot D(a)D^{i-1} + \cdots,
+\]
+our proof exploits this formula.
+
+(i) For some $i < p$ suppose that $1, D, \ldots, D^{i-1}$ are linearly independent
+over $K$, but that $1, D, \ldots, D^i$ are not. Then we can write
+$D^i = c_{i-1}D^{i-1} + \cdots + c_0$, with $c_j \in K$. If we choose some $a \in K$ such that
+$D(a) \ne 0$, then in view of $D^i \circ a_L = c_{i-1}D^{i-1} \circ a_L + \cdots$, we get
+\[
+  aD^i + i \cdot D(a)D^{i-1} + \cdots = c_{i-1}aD^{i-1} + \cdots,
+\]
+where $\cdots$ indicates a linear combination of $1, D, \ldots, D^{i-2}$. Subtracting $a$
+times our original relation from this gives a relation of the form
+\[
+  i \cdot D(a)D^{i-1} = \cdots,
+\]
+and this contradicts the assumption that $1, D, \ldots, D^{i-1}$ are linearly
+independent.
+
+(ii) Suppose that $E = c_iD^i + \cdots + c_1D + c_0$ is a derivation of $K$, with $i < p$
+and $c_i \ne 0$. Then $E(1) = c_0$, so that $c_0 = 0$. Now if $i > 1$ then take $a \in K$
+such that $D(a) \ne 0$, and substitute both sides of $E \circ a_L = c_i a_L \circ D^i + \cdots$ in the
+Leibnitz formula: we get
+\[
+  aE + E(a)_L = ac_iD^i + [i \cdot c_i \cdot D(a) + ac_{i-1}]D^{i-1} + \cdots,
+\]
+but then in view of the linear independence of $1, D, \ldots, D^{p-1}$, the coefficients
+of $D^{i-1}$ on both sides must be equal; therefore $i \cdot c_i \cdot D(a) = 0$, which is a
+contradiction.
+\end{proof}
+
+\begin{remarks}
+(i) The theorem also holds if $\chark K = 0$.
+
+(ii) If $K$ is not a field, this result does not necessarily hold. For example, let
+$k$ be a field of characteristic $p$, and set $A = k[X]/(X^p) = k[x]$, with
+$x^p = 0$; then every derivation of $k[X]$ will take the ideal $(X^p)$ into itself,
+and therefore induces a derivation of $A$. In particular, the derivation
+$X^{p-1} \cdot d/dX$ of $k[X]$ induces $D \in \Der_k(A)$ such that $D(x) = x^{p-1}$, but
+$D^i(x) = i \cdot x^{i-1}x^{p-1} = 0$ if $i > 1$, and therefore for $p > 2$ we have $D^p = 0$.
+\end{remarks}
+
+\begin{theorem}[the Hochschild formula]\label{thm:25.5}
+Let $A$ be a ring of characteristic $p$; then for $a \in A$ and $D \in \Der(A)$ we have
+\[
+  (aD)^p = a^pD^p + (aD)^{p-1}(a) \cdot D.
+\]
+\end{theorem}
+
+\begin{proof}
+Set $E = aD$. Then $E^2 = E \circ a_L \circ D = (aE + E(a))D = a^2D^2 + E(a)D$, and
+proceeding by induction, we get a relation of the form
+\[
+  E^k = a^kD^k + \sum_{i=2}^{k-1} b_{k,i}D^i + E^{k-1}(a)D,
+\]
+where $b_{k,i}$ are elements of $A$ given by a purely formal computation, so that
+\[
+  b_{k,i} = f_{k,i}(a, D(a), D^2(a), \ldots, D^{k-1}(a)),
+\]
+where the $f_{k,i}$ are polynomials with coefficients in $\mathbb{Z}/(p)$ not depending on
+$A$, on $a$ or on $D$. Now to prove our theorem we need only show that $f_{p,i} = 0$
+for $1 < i < p$. Let $k$ be a field of characteristic $p$, and let $x_1, x_2, \ldots$ be a
+countable number of indeterminates over $k$; set $K = k(x_1, x_2, \ldots)$. Define a
+$k$-derivation $D$ of $K$ by $Dx_i = x_{i+1}$. (Since $\Omega_{K/k}$ is the free $K$-module with
+basis $dx_1, dx_2, \ldots$, given any $f_i \in K$ there exists a unique $D \in \Der_k(K)$
+such that $Dx_i = f_i$.) For this $D$, we set $E = x_1D$; then since
+$E^p - x_1^pD^p = b_{p,p-1}D^{p-1} + \cdots + b_{p,2}D^2 + E^{p-1}(a) \cdot D$ is a derivation,
+by the previous theorem we must have $b_{p,i} = 0$ for $1 < i < p$. Therefore
+\[
+  b_{p,i} = f_{p,i}(x_1, x_2, \ldots, x_{p-i+1}) = 0,
+\]
+and this proves that $f_{p,i} = 0$.
+\end{proof}
+
+This formula is known as the Hochschild formula, although it is also reported to
+have been first proved by Serre. Be that as it may, it is an important fact that
+$(aD)^p$ is a linear combination of $D^p$ and $D$.
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:25}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:25.1-ex}
+Let $A$ be a ring, $a, b \in A$ and $D, D' \in \Der(A)$; then
+\[
+  [aD, bD'] = ab[D, D'] + aD(b)D' - bD'(a)D.
+\]
+Hence in order for an $A$-submodule $\mathfrak{g} \subset \Der(A)$ to be closed under
+$[\, , \,]$, it is enough to have $\mathfrak{g} = \sum_{i \in I} AD_i$ with
+$[D_i, D_j] \in \mathfrak{g}$ for all $i, j \in I$.
+\end{exercise}
+
+\begin{exercise}\label{ex:25.2-ex}
+Let $A$ be a ring containing the rational field $\mathbb{Q}$. Suppose that $x \in A$ and
+$D \in \Der(A)$ are such that $Dx = 1$ and $\bigcap_{n} x^nA = (0)$; then $x$ is a non-
+zero-divisor of $A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:25.3-ex}
+Let $A$ be a ring, and $I$ an ideal of $A$; set $\hat{A}$ for the $I$-adic completion of
+$A$. Then for $D \in \Der(A)$ we have $D(I^n) \subset I^{n-1}$ for all $n > 0$, so that $D$
+is $I$-adically continuous, and hence induces a derivation of $\hat{A}$. Also for a
+multiplicative set $S \subset A$, a derivation $D$ induces a derivation of $A_S$ by
+means of $D(a/s) = (D(a) \cdot s - a \cdot D(s))/s^2$.
+\end{exercise}
+
+\begin{exercise}\label{ex:25.4-ex}
+Let $k$ be a ring, $k'$ and $A$ two $k$-algebras, and set $A' = k' \otimes_k A$; let
+$S \subset A$ be a multiplicative set. Then $\Omega_{A_S/k'} = \Omega_{A/k} \otimes_k k' =
+\Omega_{A/k} \otimes_A A'$, and $\Omega_{A_S/k} = \Omega_{A/k} \otimes_A A_S$.
+\end{exercise}
+
+\begin{exercise}\label{ex:25.5-ex}
+Let $A$ be a ring of characteristic $p$, and $x \in A$, $D \in \Der(A)$ elements such
+that $D^p = 0$ and $Dx = 1$; set $A_0 = \{a \in A \mid Da = 0\}$. Then $A_0$ is a subring of
+$A$, and $A = A_0[x] = A_0 + A_0x + \cdots + A_0x^{p-1}$, with $1, x, \ldots, x^{p-1}$ linearly
+independent over $A_0$.
+\end{exercise}

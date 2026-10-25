@@ -1,0 +1,1370 @@
+\section{广义积分}\label{sec:6.5}
+
+在 Riemann 积分中, 积分区间是一个有限的闭区间, 而且 Riemann 可积函数必有界函数. 但是, 对于许多来自数学本身以及其他学科的问题, 这两条限制显得过于苛刻, 因此, 有必要推广已有的积分概念. 如果说将已经详细讨论过的 Riemann 积分称作正常积分, 那么, 下面要推广的积分统称为广义积分或反常积分.
+
+广义积分大致可以分为两大类, 一类是积分区间无界, 简称为无穷积分, 另一类是无界函数的积分, 称为瑕积分.
+
+\begin{definition}\label{def:6.5.1}
+设函数 $f$ 在无穷区间 $[a,+\infty)$ 上有定义, 且在任何有限区间 $[a,u]$ 上 Riemann 可积. 如果存在极限
+\[
+\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x=J,
+\]
+则称此极限 $J$ 为函数 $f$ 在 $[a,+\infty)$ 上的无穷积分, 记作
+\[
+J=\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x=\int_{a}^{+\infty}f(x)\,\mathrm{d}x.
+\]
+几何上, 它为 $x$ 轴, 直线 $x=a$ 与曲线 $y=f(x)$ 所围图形的开口面积 (图~\ref{fig:6.5.1}).
+
+如果 $J$ 为实数, 我们就称无穷积分 $\int_{0}^{+\infty}f(x)\,\mathrm{d}x$ 收敛; 否则, 称 $\int_{0}^{+\infty}f(x)\,\mathrm{d}x$ 发散.
+
+类似地, 可定义
+\[
+\int_{-\infty}^{b}f(x)\,\mathrm{d}x=\lim_{v\to-\infty}\int_{v}^{b}f(x)\,\mathrm{d}x.
+\]
+\[
+\int_{-\infty}^{+\infty}f(x)\,\mathrm{d}x=\int_{-\infty}^{a}f(x)\,\mathrm{d}x+\int_{a}^{+\infty}f(x)\,\mathrm{d}x=\lim_{v\to-\infty}\int_{v}^{a}f(x)\,\mathrm{d}x+\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x,
+\]
+其中 $a$ 为任一实数, $f$ 在任何有限区间 $[v,u]\subset(-\infty,+\infty)$ 上 Riemann 可积. 则当且仅当右边两个无穷积分都收敛时它才是收敛的.
+
+易见, 无穷积分 $\int_{-\infty}^{+\infty}f(x)\,\mathrm{d}x$ 的收敛性与收敛的值都与实数 $a$ 的选取无关.
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.95cm,y=0.80cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (7.3,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=dots,pattern color=black]
+    (1.3,0) -- plot[smooth] coordinates {(1.3,3.45)(1.6,2.95)(1.9,2.55)(2.3,2.15)(2.7,1.85)(3.1,1.60)(3.5,1.40)(3.9,1.24)(4.3,1.11)(4.7,1.00)(5.3,0.86)} -- (5.3,0) -- cycle;
+  \draw[thick] plot[smooth] coordinates {(1.3,3.45)(1.6,2.95)(1.9,2.55)(2.3,2.15)(2.7,1.85)(3.1,1.60)(3.5,1.40)(3.9,1.24)(4.3,1.11)(4.7,1.00)(5.3,0.86)(5.9,0.72)(6.5,0.62)(7.0,0.55)};
+  \node[right] at (4.6,1.62) {$y=f(x)$};
+  \node[below] at (1.3,-0.06) {$a$};
+  \node[below] at (5.3,-0.06) {$u$};
+\end{tikzpicture}
+\caption{}\label{fig:6.5.1}
+\end{figure}
+
+\begin{definition}\label{def:6.5.2}
+设函数 $f$ 在区间 $(a,b]$ 上有定义, 在点 $a$ 的任一右开邻域内无界, 但在任何内闭区间 $[v,b]\subset(a,b]$ 上 Riemann 可积. 如果存在极限
+\[
+\lim_{v\to a^{+}}\int_{v}^{b}f(x)\,\mathrm{d}x=J,
+\]
+则称此极限 $J$ 为无界函数 $f$ 在 $(a,b]$ 上的瑕积分, 记作
+\[
+J=\lim_{v\to a^{+}}\int_{v}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x.
+\]
+几何上, 它为 $x$ 轴, 直线 $x=b$, $x=a$ 与曲线 $y=f(x)$ 所围成图形的开口面积 (图~\ref{fig:6.5.2}).
+
+如果 $J$ 为实数, 则称 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 收敛; 否则, 称 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 发散. 上述点 $a$ 称为 $f$ 的瑕点.
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.85cm,y=0.80cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (7.4,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.0) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=dots,pattern color=black]
+    (2.2,0) -- (2.2,4.0) -- plot[smooth] coordinates {(2.35,3.5)(2.55,2.95)(2.85,2.45)(3.2,2.05)(3.6,1.72)(4.1,1.42)(4.6,1.20)(5.1,1.02)(5.6,0.90)(6.1,0.80)(6.5,0.74)} -- (6.5,0) -- cycle;
+  \draw[thick] plot[smooth] coordinates {(2.25,3.9)(2.45,3.1)(2.75,2.55)(3.1,2.13)(3.5,1.78)(4.0,1.47)(4.5,1.24)(5.0,1.05)(5.5,0.93)(6.0,0.82)(6.5,0.74)};
+  \draw (2.2,0) -- (2.2,4.0);
+  \draw (3.5,0) -- (3.5,1.78);
+  \draw (6.5,0) -- (6.5,0.74);
+  \node[below] at (2.2,-0.06) {$a$};
+  \node[below] at (3.5,-0.06) {$v$};
+  \node[below] at (6.5,-0.06) {$b$};
+  \node[right] at (4.5,1.95) {$y=f(x)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.5.2}
+\end{figure}
+
+类似地, 可定义瑕点为 $b$ 的瑕积分:
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\lim_{u\to b^{-}}\int_{a}^{u}f(x)\,\mathrm{d}x,
+\]
+其中 $f$ 在 $[a,b)$ 上有定义, 在点 $b$ 的任何左开邻域内无界, 但在任何内闭区间 $[a,u]\subset[a,b)$ 上 Riemann 可积 (图~\ref{fig:6.5.3}).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.85cm,y=0.78cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.6,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=dots,pattern color=black]
+    (1.6,0) -- (1.6,1.55) -- plot[smooth] coordinates {(1.9,1.72)(2.3,1.98)(2.7,2.30)(3.1,2.68)(3.5,3.15)(3.9,3.75)(4.2,4.25)} -- (4.2,0) -- cycle;
+  \draw[thick] plot[smooth] coordinates {(1.6,1.55)(1.9,1.72)(2.3,1.98)(2.7,2.30)(3.1,2.68)(3.5,3.15)(3.9,3.75)(4.2,4.3)};
+  \draw (4.2,0) -- (4.2,4.3);
+  \draw (3.3,0) -- (3.3,2.83);
+  \node[below] at (1.6,-0.06) {$a$};
+  \node[below] at (3.3,-0.06) {$u$};
+  \node[rotate=40] at (2.62,2.60) {$y=f(x)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.5.3}
+\end{figure}
+
+如果 $f$ 的瑕点 $c\in(a,b)$, 则定义瑕积分为
+\begin{align*}
+\int_{a}^{b}f(x)\,\mathrm{d}x&=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x\\
+&=\lim_{u\to c^{-}}\int_{a}^{u}f(x)\,\mathrm{d}x+\lim_{v\to c^{+}}\int_{v}^{b}f(x)\,\mathrm{d}x,
+\end{align*}
+其中 $f$ 在 $[a,c)\cup(c,b]$ 上有定义, 在点 $c$ 的任一开邻域内无界, 但在任何 $[a,u]\subset[a,c)$ 与 $[v,b]\subset(c,b]$ 上都 Riemann 可积. 当且仅当上面右边两个瑕积分都收敛时, 左边的瑕积分才是收敛的.
+
+又若 $a$, $b$ 两点都是 $f$ 的瑕点, 而 $f$ 在任何内闭区间 $[u,v]\subset(a,b)$ 上 Riemann 可积, 则瑕积分定义为
+\begin{align*}
+\int_{a}^{b}f(x)\,\mathrm{d}x&=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x\\
+&=\lim_{v\to a^{+}}\int_{v}^{c}f(x)\,\mathrm{d}x+\lim_{u\to b^{-}}\int_{c}^{u}f(x)\,\mathrm{d}x,
+\end{align*}
+其中 $c$ 为 $(a,b)$ 内任一实数. 同样, 当且仅当上面右边两个瑕积分都收敛时, 左边的瑕积分才是收敛的.
+
+显然, 该瑕积分的收敛性和积分值与 $c$ 的选取无关.
+
+如果 $a$, $b$ 中有一个 $-\infty$ 或 $+\infty$, 且 $(a,b)$ 中还有有限个瑕点, 则可将 $(a,b)$ 分成有限部分, 使在每一部分中只含瑕点、$-\infty$, $+\infty$ 之一, 则当且仅当每一部分的积分收敛时, $\int_{a}^{b}f(x)\,\mathrm{d}x$ 才是收敛的.
+
+关于广义积分, 同样有 Newton-Leibniz 公式, 变量代换公式及分部积分公式.
+
+\begin{theorem}\label{thm:6.5.1}
+设函数 $f$ 在 $[a,+\infty)$ 上有定义, 在任何内闭区间 $[a,u]$ 上 Riemann 可积, $f$ 有原函数 $F$, 且 $F(+\infty)=\lim\limits_{u\to+\infty}F(u)$ 存在, 则
+\[
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x=F(+\infty)-F(a).
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x=\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x=\lim_{u\to+\infty}[F(u)-F(a)]=F(+\infty)-F(a).
+\]
+\end{proof}
+
+其他公式读者可自行给出.
+
+\begin{example}\label{ex:6.5.1}
+讨论无穷积分
+\[
+\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{p}}
+\]
+的敛散性.
+\end{example}
+
+\begin{solution}
+\[
+\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{p}}=\lim_{u\to+\infty}\int_{1}^{u}\frac{\mathrm{d}x}{x^{p}}=\begin{cases}
+\lim\limits_{u\to+\infty}\dfrac{1}{1-p}\left(u^{1-p}-1\right), & p\neq1,\\[3mm]
+\lim\limits_{u\to+\infty}\ln u, & p=1
+\end{cases}=\begin{cases}
+\dfrac{1}{p-1}, & p>1,\ \text{收敛},\\[3mm]
++\infty, & p\leqslant1,\ \text{发散}.
+\end{cases}
+\]
+上述极限过程也可简单表达为
+\[
+\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{p}}=\begin{cases}
+\dfrac{1}{1-p}\left(u^{1-p}-1\right)\bigg|_{1}^{+\infty}, & p\neq1,\\[3mm]
+\ln u\bigg|_{1}^{+\infty}, & p=1
+\end{cases}=\begin{cases}
+\dfrac{1}{p-1}, & p>1,\\[3mm]
++\infty, & p\leqslant1.
+\end{cases}
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.5.2}
+讨论下列无穷积分的敛散性.
+\begin{enumerate}[label=(\arabic*)]
+\item $\int_{2}^{+\infty}\dfrac{\mathrm{d}x}{x\left(\ln x\right)^{p}}$;
+\item $\int_{-\infty}^{+\infty}\dfrac{\mathrm{d}x}{1+x^{2}}$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+由于无穷积分是通过变限积分的极限来定义的, 因此有关 Riemann 积分的换元与分部积分法一般都可用到广义 (反常) 积分 (无穷积分与瑕积分) 中来 (请思考理由).
+
+(1)
+\[
+\int_{2}^{+\infty}\frac{\mathrm{d}x}{x\left(\ln x\right)^{p}}=\int_{2}^{+\infty}\frac{\mathrm{d}\left(\ln x\right)}{\left(\ln x\right)^{p}}\xlongequal{t=\ln x}\int_{\ln2}^{+\infty}\frac{\mathrm{d}t}{t^{p}},
+\]
+从例~\ref{ex:6.5.1} 知, 当 $p>1$ 时收敛; 当 $p\leqslant1$ 时发散.
+
+(2)
+\begin{align*}
+\int_{-\infty}^{+\infty}\frac{\mathrm{d}x}{1+x^{2}}&=\int_{-\infty}^{0}\frac{\mathrm{d}x}{1+x^{2}}+\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{2}}\\
+&=\lim_{v\to-\infty}\int_{v}^{0}\frac{\mathrm{d}x}{1+x^{2}}+\lim_{u\to+\infty}\int_{0}^{u}\frac{\mathrm{d}x}{1+x^{2}}\\
+&=\lim_{v\to-\infty}(\arctan0-\arctan v)+\lim_{u\to+\infty}(\arctan u-\arctan0)\\
+&=-\left(-\frac{\pi}{2}\right)+\frac{\pi}{2}=\pi.
+\end{align*}
+上述描述很烦琐, 简化如下:
+\[
+\int_{-\infty}^{+\infty}\frac{\mathrm{d}x}{1+x^{2}}=\arctan x\bigg|_{-\infty}^{+\infty}=\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)=\pi.
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.5.3}
+求极限 $\lim\limits_{n\to+\infty}\sin\dfrac{\pi}{n}\sum\limits_{k=1}^{n}\dfrac{1}{3+\sin\dfrac{k\pi}{n}}$.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+\lim_{n\to+\infty}\sin\frac{\pi}{n}\sum_{k=1}^{n}\frac{1}{3+\sin\frac{k\pi}{n}}&=\lim_{n\to+\infty}\frac{\sin\frac{\pi}{n}}{\frac{\pi}{n}}\frac{\pi}{n}\sum_{k=1}^{n}\frac{1}{3+\sin\frac{k\pi}{n}}\\
+&=\int_{0}^{\pi}\frac{\mathrm{d}x}{3+\sin x}\xlongequal{u=\tan\frac{x}{2}}\int_{0}^{+\infty}\frac{\frac{2\mathrm{d}u}{1+u^{2}}}{3+\frac{2u}{1+u^{2}}}=2\int_{0}^{+\infty}\frac{\mathrm{d}u}{3+2u+3u^{2}}\\
+&=\frac{2}{3}\int_{0}^{+\infty}\frac{\mathrm{d}\left(u+\frac{1}{3}\right)}{\left(u+\frac{1}{3}\right)^{2}+\frac{8}{9}}=\frac{2}{3}\cdot\frac{3}{2\sqrt{2}}\arctan\frac{u+\frac{1}{3}}{\frac{2\sqrt{2}}{3}}\bigg|_{0}^{+\infty}\\
+&=\frac{1}{\sqrt{2}}\left(\frac{\pi}{2}-\arctan\frac{1}{2\sqrt{2}}\right).
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:6.5.4}
+证明: $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{1+x^{4}}=\dfrac{\pi}{2\sqrt{2}}$.
+\end{example}
+
+\begin{proof}[证法 1]
+由例~\ref{ex:3.3.7}, 有
+\begin{align*}
+\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{4}}&=\frac{1}{4\sqrt{2}}\ln\frac{x^{2}+\sqrt{2}x+1}{x^{2}-\sqrt{2}x+1}\bigg|_{0}^{+\infty}+\frac{1}{2\sqrt{2}}\big[\arctan(\sqrt{2}x+1)\\
+&\quad+\arctan(\sqrt{2}x-1)\big]\bigg|_{0}^{+\infty}\\
+&=\frac{1}{2\sqrt{2}}\left(\frac{\pi}{2}+\frac{\pi}{2}-\frac{\pi}{4}+\frac{\pi}{4}\right)=\frac{\pi}{2\sqrt{2}}.
+\end{align*}
+\end{proof}
+
+\begin{proof}[证法 2]
+\begin{align*}
+\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{4}}&\xlongequal[x=\left(\frac{1}{t}-1\right)^{\frac{1}{4}}]{t=\frac{1}{1+x^{4}}}\int_{1}^{0}t\cdot\frac{1}{4}\left(\frac{1}{t}-1\right)^{-\frac{3}{4}}\cdot\frac{-1}{t^{2}}\,\mathrm{d}t\\
+&=\frac{1}{4}\int_{0}^{1}t^{-\frac{1}{4}}(1-t)^{-\frac{3}{4}}\,\mathrm{d}t=\frac{1}{4}\int_{0}^{1}t^{\frac{3}{4}-1}(1-t)^{\frac{1}{4}-1}\,\mathrm{d}t=\frac{1}{4}\mathrm{B}\left(\frac{3}{4},\frac{1}{4}\right)\\
+&=\frac{1}{4}\frac{\Gamma\left(\frac{3}{4}\right)\Gamma\left(\frac{1}{4}\right)}{\Gamma\left(\frac{3}{4}+\frac{1}{4}\right)}=\frac{1}{4}\Gamma\left(\frac{3}{4}\right)\Gamma\left(\frac{1}{4}\right)\xlongequal{\text{余元公式}}\frac{\pi}{4\sin\frac{\pi}{4}}=\frac{\pi}{2\sqrt{2}}.
+\end{align*}
+\end{proof}
+
+注: 这里为了给出一种新的计算方法, 我们不得不借用第 3 册中的 B 函数与 $\Gamma$ 函数的公式:
+\[
+\mathrm{B}(p,q)=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,\mathrm{d}t,
+\]
+\[
+\Gamma(s)=\int_{0}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t,\quad\Gamma(s+1)=s!,\quad\Gamma(1)=1,
+\]
+\[
+\mathrm{B}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)},\quad\text{余元公式}\ \Gamma(s)\Gamma(1-s)=\frac{\pi}{\sin\pi s}.
+\]
+
+\begin{example}\label{ex:6.5.5}
+计算 $I=\int_{0}^{+\infty}\sin ax\,\mathrm{e}^{-bx}\,\mathrm{d}x$, $J=\int_{0}^{+\infty}\cos ax\,\mathrm{e}^{-bx}\,\mathrm{d}x$, $a>0$, $b>0$.
+\end{example}
+
+\begin{solution}
+\[
+I=\int_{0}^{+\infty}\sin ax\,\mathrm{e}^{-bx}\,\mathrm{d}x=\int_{0}^{+\infty}\sin ax\,\mathrm{d}\left(-\frac{\mathrm{e}^{-bx}}{b}\right)
+\]
+\begin{align*}
+&=\frac{-1}{b}\sin ax\,\mathrm{e}^{-bx}\bigg|_{0}^{+\infty}+\frac{a}{b}\int_{0}^{+\infty}\cos ax\,\mathrm{e}^{-bx}\,\mathrm{d}x\\
+&=\frac{a}{b}\int_{0}^{+\infty}\cos ax\,\mathrm{d}\left(-\frac{\mathrm{e}^{-bx}}{b}\right)\\
+&=\frac{a}{b^{2}}\left(-\cos ax\,\mathrm{e}^{-bx}\bigg|_{0}^{+\infty}-a\int_{0}^{+\infty}\sin ax\,\mathrm{e}^{-bx}\,\mathrm{d}x\right),\\
+&=\frac{a}{b^{2}}\left(1-a\int_{0}^{+\infty}\sin ax\,\mathrm{e}^{-bx}\,\mathrm{d}x\right)=\frac{a}{b^{2}}-\frac{a^{2}}{b^{2}}I,
+\end{align*}
+\[
+I=\frac{\frac{a}{b^{2}}}{1+\frac{a^{2}}{b^{2}}}=\frac{a}{a^{2}+b^{2}},
+\]
+\[
+J=\frac{b}{a}I=\frac{b}{a^{2}+b^{2}}.
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.5.6}
+求 Poisson 积分 $(0<r<1)$
+\[
+\int_{-\pi}^{\pi}\frac{1-r^{2}}{1-2r\cos x+r^{2}}\,\mathrm{d}x.
+\]
+\end{example}
+
+\begin{solution}
+\begin{align*}
+&\int_{-\pi}^{\pi}\frac{1-r^{2}}{1-2r\cos x+r^{2}}\,\mathrm{d}x\\
+&\xlongequal{t=\tan\frac{x}{2}}\int_{-\infty}^{+\infty}\frac{1-r^{2}}{1-2r\frac{1-t^{2}}{1+t^{2}}+r^{2}}\frac{2\,\mathrm{d}t}{1+t^{2}}\\
+&=\int_{-\infty}^{+\infty}\frac{2(1-r^{2})}{(1-r)^{2}+(1+r)^{2}t^{2}}\,\mathrm{d}t=2\arctan\frac{1+r}{1-r}t\bigg|_{-\infty}^{+\infty}\\
+&=2\left[\frac{\pi}{2}-\left(-\frac{\pi}{2}\right)\right]=2\pi.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:6.5.7}
+证明: Euler-Poisson 积分
+\[
+\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}
+\]
+(此积分在概率统计中非常重要).
+\end{example}
+
+\begin{proof}
+令 $\varphi(x)=\mathrm{e}^{-x^{2}}-(1-x^{2})$, 则 $\varphi'(x)=2x(1-\mathrm{e}^{-x^{2}})>0$ $(x>0)$, $\varphi$ 严格增, 故 $\mathrm{e}^{-x^{2}}-(1-x^{2})=\varphi(x)>\varphi(0)=0$, $\mathrm{e}^{-x^{2}}>1-x^{2}$ $(x>0)$. 于是, $\mathrm{e}^{-nx^{2}}>(1-x^{2})^{n}$, $x\in(0,1)$. 此外, 由
+\[
+\mathrm{e}^{x^{2}}>1+x^{2},\quad\mathrm{e}^{-x^{2}}<\frac{1}{1+x^{2}},\quad\mathrm{e}^{-nx^{2}}<\frac{1}{\left(1+x^{2}\right)^{n}},\quad x\in(0,+\infty),
+\]
+得到
+\[
+\frac{(2n)!!}{(2n+1)!!}=\int_{0}^{\frac{\pi}{2}}\cos^{2n+1}t\,\mathrm{d}t\xlongequal{x=\sin t}\int_{0}^{1}(1-x^{2})^{n}\,\mathrm{d}x
+\]
+\begin{align*}
+&<\int_{0}^{1}\mathrm{e}^{-nx^{2}}\,\mathrm{d}x<\int_{0}^{+\infty}\mathrm{e}^{-nx^{2}}\,\mathrm{d}x<\int_{0}^{+\infty}\frac{\mathrm{d}x}{(1+x^{2})^{n}}\\
+&\xlongequal{x=\tan t}\int_{0}^{\frac{\pi}{2}}\cos^{2n-2}t\,\mathrm{d}t=\frac{(2n-3)!!}{(2n-2)!!}\frac{\pi}{2},
+\end{align*}
+再由 $\int_{0}^{+\infty}\mathrm{e}^{-nx^{2}}\,\mathrm{d}x\xlongequal{x=\frac{t}{\sqrt{n}}}\int_{0}^{+\infty}\mathrm{e}^{-t^{2}}\frac{\mathrm{d}t}{\sqrt{n}}$ 得到
+\[
+n\left[\frac{(2n)!!}{(2n+1)!!}\right]^{2}<\left(\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x\right)^{2}<n\left[\frac{(2n-3)!!}{(2n-2)!!}\right]^{2}\cdot\frac{\pi^{2}}{4}.
+\]
+根据 Wallis 公式及例~\ref{ex:6.4.5}(2) 推得
+\begin{align*}
+\lim_{n\to+\infty}n\left[\frac{(2n)!!}{(2n+1)!!}\right]^{2}&=\lim_{n\to+\infty}\frac{n}{2n+1}\left[\frac{(2n)!!}{(2n-1)!!}\right]^{2}\cdot\frac{1}{2n+1}\\
+&=\frac{1}{2}\cdot\frac{\pi}{2}=\frac{\pi}{4},
+\end{align*}
+\begin{align*}
+\lim_{n\to+\infty}n\left[\frac{(2n-3)!!}{(2n-2)!!}\right]^{2}\cdot\frac{\pi^{2}}{4}&=\lim_{n\to+\infty}\frac{n\cdot(2n)^{2}}{(2n+1)(2n-1)^{2}}\left[\frac{(2n-1)!!}{(2n)!!}\right]^{2}(2n+1)\cdot\frac{\pi^{2}}{4}\\
+&=\frac{1}{2}\cdot\frac{2}{\pi}\cdot\frac{\pi^{2}}{4}=\frac{\pi}{4}.
+\end{align*}
+由夹逼定理知
+\[
+\left(\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x\right)^{2}=\frac{\pi}{4},\quad\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}.
+\]
+以后应用二重积分或 $\Gamma$ 函数的余元公式也可推得 $\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}$.
+\end{proof}
+
+\begin{example}\label{ex:6.5.8}
+计算瑕积分:
+\begin{enumerate}[label=(\arabic*)]
+\item $\int_{0}^{1}\dfrac{\mathrm{d}x}{\sqrt{1-x^{2}}}$;
+\item $\int_{0}^{1}\dfrac{x^{n}\,\mathrm{d}x}{\sqrt{1-x^{2}}}$, $n\in\mathbb{N}$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) 被积函数 $f(x)=\dfrac{1}{\sqrt{1-x^{2}}}$ 在 $[0,1)$ 上连续, 从而在任何 $[0,u]\subset[0,1)$ 上 Riemann 可积, $x=1$ 为其瑕点. 因此
+\begin{align*}
+\int_{0}^{1}\frac{\mathrm{d}x}{\sqrt{1-x^{2}}}&=\lim_{u\to 1^{-}}\int_{0}^{u}\frac{\mathrm{d}x}{\sqrt{1-x^{2}}}\\
+&=\lim_{u\to 1^{-}}(\arcsin u-\arcsin0)=\arcsin1=\frac{\pi}{2}.
+\end{align*}
+简单表达为
+\[
+\int_{0}^{1}\frac{\mathrm{d}x}{\sqrt{1-x^{2}}}=\arcsin x\bigg|_{0}^{1}=\frac{\pi}{2}-0=\frac{\pi}{2}.
+\]
+(2) $x=1$ 为瑕点. 作变换 $x=\sin t$, 则有
+\begin{align*}
+\int_{0}^{1}\frac{x^{n}\,\mathrm{d}x}{\sqrt{1-x^{2}}}&=\int_{0}^{\frac{\pi}{2}}\frac{\sin^{n}t\cos t}{\sqrt{1-\sin^{2}t}}\,\mathrm{d}t=\int_{0}^{\frac{\pi}{2}}\sin^{n}t\,\mathrm{d}t\\
+&=\begin{cases}
+\dfrac{(n-1)!!}{n!!}\dfrac{\pi}{2}, & n\ \text{为偶数},\\[
+3mm]
+\dfrac{(n-1)!!}{n!!}, & n\ \text{为奇数}.
+\end{cases}
+\end{align*}
+\end{solution}
+\begin{example}\label{ex:6.5.9}
+讨论瑕积分 $\int_{0}^{1}\dfrac{\mathrm{d}x}{x^{p}}$ 的敛散性.
+\end{example}
+\begin{solution}
+当 $p\leqslant0$ 时, 这是正常积分, 视作是收敛的.
+当 $p>0$ 时, 被积函数 $\dfrac{1}{x^{p}}$ 在 $(0,1]$ 上连续, $x=0$ 为其瑕点, 于是,
+\begin{align*}
+\int_{0}^{1}\frac{\mathrm{d}x}{x^{p}}&=\begin{cases}
+\dfrac{1}{1-p}x^{-p+1}\bigg|_{0}^{1}=\dfrac{1}{1-p}, & 0<p<1,\\[3mm]
+\dfrac{1}{1-p}x^{-p+1}\bigg|_{0}^{1}=+\infty, & p>1,\\[3mm]
+\ln x\bigg|_{0}^{1}=+\infty, & p=1
+\end{cases}\\
+&=\begin{cases}
+\dfrac{1}{1-p}, & 0<p<1,\ \text{收敛},\\[3mm]
++\infty, & p\geqslant1,\ \text{发散}.
+\end{cases}
+\end{align*}
+类似地, $\int_{a}^{b}\dfrac{\mathrm{d}x}{(x-a)^{p}}$ 与 $\int_{a}^{b}\dfrac{\mathrm{d}x}{(b-x)^{p}}$ 当 $p<1$ 时收敛; 当 $p\geqslant1$ 时发散.
+考察广义积分
+\[
+\int_{0}^{+\infty}\frac{\mathrm{d}x}{x^{p}}=\int_{0}^{1}\frac{\mathrm{d}x}{x^{p}}+\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{p}},
+\]
+当且仅当 $p<1$ 时, $\int_{0}^{1}\dfrac{\mathrm{d}x}{x^{p}}$ 收敛; 当且仅当 $p>1$ 时, $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x^{p}}$ 收敛. 因此, 右边两个积分对任何 $p$ 不能同时收敛, 故 $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{x^{p}}$ 对任何实数 $p$ 都是发散的.
+\end{solution}
+
+如果只停留在数学概念上, 那么肯定学不深, 钻不透, 也走不远. 因此, 我们有必要来讨论广义积分的一些性质与各种收敛判别法则.
+
+\begin{theorem}[无穷积分收敛的 Cauchy 准则]\label{thm:6.5.2}
+无穷积分 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛 $\Longleftrightarrow\forall\varepsilon>0$, $\exists\Delta>\max\{a,0\}$, 当 $u_{1},u_{2}>\Delta$ 时, 便有
+\[
+\left|\int_{a}^{u_{1}}f(x)\,\mathrm{d}x-\int_{a}^{u_{2}}f(x)\,\mathrm{d}x\right|=\left|\int_{u_{1}}^{u_{2}}f(x)\,\mathrm{d}x\right|<\varepsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+令 $F(u)=\int_{a}^{u}f(x)\,\mathrm{d}x$, 则
+\begin{align*}
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x\ \text{收敛} &\Longleftrightarrow\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x=\lim_{u\to+\infty}F(u)\ \text{存在且有限}\\
+&\xLeftrightarrow[\text{定理~\ref{thm:2.1.4}}]{\text{函数收敛的 Cauchy 准则}}\forall\varepsilon>0,\exists\Delta>\max\{a,0\},\ \text{当}\ u_{1},u_{2}>\Delta\ \text{时, 便有}\\
+&\left|\int_{u_{1}}^{u_{2}}f(x)\,\mathrm{d}x\right|=\left|F(u_{1})-F(u_{2})\right|<\varepsilon.
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:6.5.1}
+设 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 都收敛, $\lambda$, $\mu$ 为任意实常数, 则 $\int_{a}^{+\infty}[\lambda f(x)+\mu g(x)]\,\mathrm{d}x$ 也收敛, 且
+\[
+\int_{a}^{+\infty}\left[\lambda f(x)+\mu g(x)\right]\mathrm{d}x=\lambda\int_{a}^{+\infty}f(x)\,\mathrm{d}x+\mu\int_{a}^{+\infty}g(x)\,\mathrm{d}x.
+\]
+\end{lemma}
+
+\begin{proof}
+\begin{align*}
+\int_{a}^{+\infty}\left[\lambda f(x)+\mu g(x)\right]\mathrm{d}x&=\lim_{u\to+\infty}\int_{a}^{u}\left[\lambda f(x)+\mu g(x)\right]\mathrm{d}x\\
+&=\lim_{u\to+\infty}\left[\lambda\int_{a}^{u}f(x)\,\mathrm{d}x+\mu\int_{a}^{u}g(x)\,\mathrm{d}x\right]\\
+&=\lambda\int_{a}^{+\infty}f(x)\,\mathrm{d}x+\mu\int_{a}^{+\infty}g(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:6.5.2}
+设 $f$ 在任何有限区间 $[v,u]$ 上 Riemann 可积, $a<b$. 则 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 与 $\int_{b}^{+\infty}f(x)\,\mathrm{d}x$ 同敛散. 如果收敛, 则
+\[
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x+\int_{b}^{+\infty}f(x)\,\mathrm{d}x,
+\]
+其中 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 为 Riemann 积分.
+\end{lemma}
+
+\begin{proof}
+设 $a<b<u$, 则由定理~\ref{thm:6.2.4}, 有
+\[
+\int_{a}^{u}f(x)\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x+\int_{b}^{u}f(x)\,\mathrm{d}x.
+\]
+因此, $\lim\limits_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x$ 与 $\lim\limits_{u\to+\infty}\int_{b}^{u}f(x)\,\mathrm{d}x$ 同时存在或同时不存在, 故 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 与 $\int_{b}^{+\infty}f(x)\,\mathrm{d}x$ 同敛散. 当它们收敛时, 有
+\begin{align*}
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x&=\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x=\lim_{u\to+\infty}\left[\int_{a}^{b}f(x)\,\mathrm{d}x+\int_{b}^{u}f(x)\,\mathrm{d}x\right]\\
+&=\int_{a}^{b}f(x)\,\mathrm{d}x+\int_{b}^{+\infty}f(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:6.5.3}
+设 $f$ 在任何有限区间 $[a,u]$ 上 Riemann 可积, 且 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛, 则 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 也收敛, 且有
+\[
+\left|\int_{a}^{+\infty}f(x)\,\mathrm{d}x\right|\leqslant\int_{a}^{+\infty}\left|f(x)\right|\mathrm{d}x.
+\]
+\end{lemma}
+
+\begin{proof}
+由 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛, 根据无穷积分的收敛准则 (定理~\ref{thm:6.5.2}) 的必要性, $\forall\varepsilon>0$, $\exists\Delta>\max\{a,0\}$, 当 $u_{2}\geqslant u_{1}>\Delta$ 时, 总有
+\[
+\left|\int_{u_{1}}^{u_{2}}|f(x)|\,\mathrm{d}x\right|=\int_{u_{1}}^{u_{2}}|f(x)|\,\mathrm{d}x<\varepsilon.
+\]
+于是,
+\[
+\left|\int_{u_{1}}^{u_{2}}f(x)\,\mathrm{d}x\right|\leqslant\int_{u_{1}}^{u_{2}}|f(x)|\,\mathrm{d}x<\varepsilon.
+\]
+再由无穷积分的收敛准则 (定理~\ref{thm:6.5.2}) 的充分性推得 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛.
+
+又因为
+\[
+\left|\int_{a}^{u}f(x)\,\mathrm{d}x\right|\leqslant\int_{a}^{u}\left|f(x)\right|\mathrm{d}x\quad(u>a),
+\]
+令 $u\to+\infty$, 得到
+\[
+\left|\int_{a}^{+\infty}f(x)\,\mathrm{d}x\right|\leqslant\int_{a}^{+\infty}\left|f(x)\right|\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{definition}\label{def:6.5.3}
+设 $f$ 在任何有限区间 $[a,u]$ 上 Riemann 可积, 如果 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛, 则称 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 绝对收敛.
+\end{definition}
+
+引理~\ref{lem:6.5.3} 指出, 若 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 绝对收敛, 则 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 也收敛, 但反之不成立.
+
+反例: 设
+\[
+f(x)=\begin{cases}
+\dfrac{x}{2^{n-2}}-\dfrac{n}{2^{n-3}}, & 2n\leqslant x<2n+\dfrac{1}{2},\\[3mm]
+-\dfrac{x}{2^{n-2}}+\dfrac{2n+1}{2^{n-2}}, & 2n+\dfrac{1}{2}\leqslant x<2n+\dfrac{3}{2},\\[3mm]
+\dfrac{x}{2^{n-2}}-\dfrac{n+1}{2^{n-3}}, & 2n+\dfrac{3}{2}\leqslant x<2n+2,
+\end{cases}
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.78cm,y=0.72cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (8.6,0) node[below] {$x$};
+  \draw[->] (0,-2.7) -- (0,2.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (0,2) {2};
+  \node[left] at (0,1) {1};
+  \node[left] at (0,-1) {-1};
+  \node[left] at (0,-2) {-2};
+  \draw[thick] (0,0) -- (1,2) -- (2,-2) -- (3,1) -- (3.4,0);
+  \draw[thick] (3.75,0.18) -- (3.95,-0.18);
+  \draw[thick] (4.15,0.18) -- (4.35,-0.18);
+  \draw[thick] (4.6,0) -- (5,0.5) -- (6,-0.5) -- (7,0) -- (7.4,0.55);
+  \node[below] at (1,-0.15) {1};
+  \node[below] at (2,-0.15) {2};
+  \node[below] at (3,-0.15) {3};
+  \node[below] at (5,-0.15) {$2n$};
+  \node[below=10pt] at (6,-0.15) {$2n+1$};
+  \node[below] at (7,-0.15) {$2n+2$};
+\end{tikzpicture}
+\caption{}\label{fig:6.5.4}
+\end{figure}
+
+由图~\ref{fig:6.5.4} 立刻知道, $\int_{0}^{+\infty}f(x)\,\mathrm{d}x=0$, $\int_{0}^{+\infty}|f(x)|\,\mathrm{d}x=2\sum\limits_{n=1}^{\infty}\dfrac{1}{n}=+\infty$, 即 $\int_{0}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 但 $\int_{0}^{+\infty}|f(x)|\,\mathrm{d}x$ 发散. 我们称这种收敛但非绝对收敛的无穷积分为条件收敛.
+
+\begin{theorem}[无穷积分的比较判别法]\label{thm:6.5.3}
+设定义在 $[a,+\infty)$ 上的两个函数 $f$ 与 $g$ 都在任何有限区间 $[a,u]$ 上 Riemann 可积, 且满足
+\[
+|f(x)|\leqslant g(x),\quad x\in[a,+\infty).
+\]
+则
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 收敛时, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 必收敛, 当然 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 也收敛;
+\item 当 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 发散时, $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 必发散.
+\end{enumerate}
+(简单说即是, 大的收敛, 小的也收敛; 小的发散, 大的也发散.)
+\end{theorem}
+
+\begin{proof}
+因为 $0\leqslant|f(x)|\leqslant g(x)$, 所以 $\int_{a}^{u}|f(x)|\,\mathrm{d}x$ 与 $\int_{a}^{u}g(x)\,\mathrm{d}x$ 都为 $u$ 的增函数.
+
+(1) 如果 $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 收敛, 则 $\forall u\in[a,+\infty)$, 有 $\int_{a}^{u}g(x)\,\mathrm{d}x\leqslant M$(常数), 从而
+\[
+\int_{a}^{u}|f(x)|\,\mathrm{d}x\leqslant\int_{a}^{u}g(x)\,\mathrm{d}x\leqslant M,\quad\forall u\in[a,+\infty).
+\]
+因此, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x=\lim\limits_{u\to+\infty}\int_{a}^{u}|f(x)|\,\mathrm{d}x$ 存在且有限, 这就证明了 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛.
+
+根据引理~\ref{lem:6.5.3}, $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 也收敛.
+
+(2) 如果 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 发散, 则 $\lim\limits_{u\to+\infty}\int_{a}^{u}|f(x)|\,\mathrm{d}x=+\infty$. 再由
+\[
+\int_{a}^{u}|f(x)|\,\mathrm{d}x\leqslant\int_{a}^{u}g(x)\,\mathrm{d}x
+\]
+得到
+\[
++\infty=\lim_{u\to+\infty}\int_{a}^{u}|f(x)|\,\mathrm{d}x\leqslant\lim_{u\to+\infty}\int_{a}^{u}g(x)\,\mathrm{d}x=\int_{a}^{+\infty}g(x)\,\mathrm{d}x,
+\]
+即
+\[
+\int_{a}^{+\infty}g(x)\,\mathrm{d}x=+\infty,
+\]
+是发散的.
+\end{proof}
+
+由无穷积分的比较判别法可派生出用起来更方便的比较判别法的极限形式.
+
+\begin{theoremp}[无穷积分的比较判别法的极限形式]\label{thm:6.5.3p}
+设 $f$, $g$ 在任何有穷区间 $[a,u]$ 上 Riemann 可积, $g(x)>0$, 且
+\[
+\lim_{x\to+\infty}\frac{|f(x)|}{g(x)}=c,
+\]
+则有
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $0<c<+\infty$ 时, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 同敛散;
+\item 当 $c=0$ 时, $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 收敛蕴涵着 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 也收敛;
+\item 当 $c=+\infty$ 时, $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 发散蕴涵着 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 也发散.
+\end{enumerate}
+\end{theoremp}
+
+\begin{proof}
+(1) 因为 $\lim\limits_{x\to+\infty}\dfrac{|f(x)|}{g(x)}=c\in(0,+\infty)$, 所以 $\exists\Delta>\max\{a,0\}$, 当 $x>\Delta$ 时, 有
+\[
+\frac{3c}{2}=c+\frac{c}{2}>\frac{|f(x)|}{g(x)}>c-\frac{c}{2}=\frac{c}{2}>0,
+\]
+\[
+\frac{3c}{2}g(x)>|f(x)|>\frac{c}{2}g(x).
+\]
+再由定理~\ref{thm:6.5.3} 知, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 同敛散.
+
+(2) 当 $c=0$ 时, 由于 $\lim\limits_{x\to+\infty}\dfrac{|f(x)|}{g(x)}=c=0$, 故对 $\varepsilon_{0}=1$, $\exists\Delta>\max\{a,0\}$, 当 $x>\Delta$ 时, 有
+\[
+\frac{|f(x)|}{g(x)}<\varepsilon_{0}=1,
+\]
+故
+\[
+|f(x)|<g(x).
+\]
+根据定理~\ref{thm:6.5.3}(1) 知, $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 收敛蕴涵着 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛.
+
+(3) 当 $c=+\infty$ 时, 由于 $\lim\limits_{x\to+\infty}\dfrac{|f(x)|}{g(x)}=c=+\infty$, 故对 $A_{0}=1$, $\exists\Delta>\max\{a,0\}$, 当 $x>\Delta$ 时, 有
+\[
+\frac{|f(x)|}{g(x)}>A_{0}=1,
+\]
+故
+\[
+|f(x)|>g(x).
+\]
+根据定理~\ref{thm:6.5.3}(2) 知, $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 发散蕴涵着 $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 发散.
+\end{proof}
+
+\begin{corollary}\label{cor:6.5.1}
+$\left(\text{与}\int_{a}^{+\infty}\dfrac{\mathrm{d}x}{x^{p}}\text{比较}\right)$ 设函数 $f$ 定义于 $[a,+\infty)$ ($a>0$) 上, 且在任何有限区间 $[a,u]$ 上 Riemann 可积, 则有
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $|f(x)|\leqslant\dfrac{1}{x^{p}}$, $x\in[a,+\infty)$, 且 $p>1$ 时, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛;
+\item 当 $|f(x)|\geqslant\dfrac{1}{x^{p}}$, $x\in[a,+\infty)$, 且 $p\leqslant1$ 时, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 发散.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+由定理~\ref{thm:6.5.3} 与例~\ref{ex:6.5.1} 可立即推得.
+\end{proof}
+
+\begin{corollaryp}\label{cor:6.5.1p}
+$\left(\text{与}\int_{a}^{+\infty}\dfrac{\mathrm{d}x}{x^{p}}\text{比较的极限形式}\right)$ 设 $f$ 定义于 $[a,+\infty)$ ($a>0$) 上, 且在任何有限区间 $[a,u]$ 上 Riemann 可积, 且
+\[
+\lim_{x\to+\infty}x^{p}|f(x)|=\lim_{x\to+\infty}\frac{|f(x)|}{\frac{1}{x^{p}}}=\lambda.
+\]
+则有
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $p>1$, $0\leqslant\lambda<+\infty$ 时, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛;
+\item 当 $p\leqslant1$, $0<\lambda\leqslant+\infty$ 时, $\int_{a}^{+\infty}|f(x)|\,\mathrm{d}x$ 发散.
+\end{enumerate}
+\end{corollaryp}
+
+\begin{proof}
+由定理~\ref{thm:6.5.3p} 与例~\ref{ex:6.5.1} 可立即推得.
+\end{proof}
+
+\begin{example}\label{ex:6.5.10}
+讨论 $\int_{a}^{+\infty}\dfrac{\sin x}{1+x^{2}}\,\mathrm{d}x$ 的敛散性.
+\end{example}
+
+\begin{solution}
+由 $\left|\dfrac{\sin x}{1+x^{2}}\right|\leqslant\dfrac{1}{1+x^{2}}$, $x\in[0,+\infty)$ 以及 $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{1+x^{2}}=\dfrac{\pi}{2}$ 收敛, 根据比较判别法知, $\int_{a}^{+\infty}\dfrac{\sin x}{1+x^{2}}\,\mathrm{d}x$ 绝对收敛.
+\end{solution}
+
+\begin{example}\label{ex:6.5.11}
+讨论下列无穷积分的敛散性:
+\begin{enumerate}[label=(\arabic*)]
+\item $\int_{1}^{+\infty}x^{\alpha}\mathrm{e}^{-x}\,\mathrm{d}x$;
+\item $\int_{0}^{+\infty}\dfrac{x^{2}}{\sqrt{x^{5}+1}}\,\mathrm{d}x$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+上面两个无穷积分中的被积函数都是非负的, 故收敛就是绝对收敛.
+
+(1) 因为
+\[
+\lim_{x\to+\infty}\frac{x^{\alpha}\mathrm{e}^{-x}}{\frac{1}{x^{2}}}=\lim_{x\to+\infty}\frac{x^{\alpha+2}}{\mathrm{e}^{x}}\xlongequal{\text{L'Hospital 法则}}0,
+\]
+所以, 由推论~\ref{cor:6.5.1p}(1) 及 $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x^{2}}$ 收敛推得对任何实数 $\alpha$, $\int_{1}^{+\infty}x^{\alpha}\mathrm{e}^{-x}\,\mathrm{d}x$ 收敛.
+
+(2) 因为
+\[
+\lim_{x\to+\infty}\frac{\frac{x^{2}}{\sqrt{x^{5}+1}}}{\frac{1}{x^{\frac{1}{2}}}}=\lim_{x\to+\infty}\frac{x^{\frac{5}{2}}}{\sqrt{x^{5}+1}}=\lim_{x\to+\infty}\frac{1}{\sqrt{1+\frac{1}{x^{5}}}}=\frac{1}{\sqrt{1+0}}=1,
+\]
+所以, 由推论~\ref{cor:6.5.1p}(2) 及 $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x^{\frac{1}{2}}}$ 发散推得 $\int_{0}^{+\infty}\dfrac{x^{2}}{\sqrt{x^{5}+1}}\,\mathrm{d}x$ 是发散的.
+\end{solution}
+
+关于 $\int_{-\infty}^{b}|f(x)|\,\mathrm{d}x$ 的比较判别法也可类似讨论.
+
+下面介绍关于 $\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x$ 敛散性的 Dirichlet 判别法与 Abel 判别法.
+
+\begin{theorem}[无穷积分的 Dirichlet 判别法]\label{thm:6.5.4}
+如果函数 $f$, $g$ 满足:
+\begin{enumerate}[label=(\arabic*)]
+\item $g$ 在 $[a,+\infty)$ 上单调, 且 $\lim\limits_{x\to+\infty}g(x)=0$;
+\item $F(u)=\int_{a}^{u}f(x)\,\mathrm{d}x$ 在 $[a,+\infty)$ 上有界.
+\end{enumerate}
+则 $\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x$ 收敛.
+\end{theorem}
+
+\begin{proof}
+设 $\left|\int_{a}^{u}f(x)\,\mathrm{d}x\right|<M$, $\forall u>a$.
+
+$\forall\varepsilon>0$, 由于 $\lim\limits_{x\to+\infty}g(x)=0$, 则 $\exists\Delta>\max\{a,0\}$, 当 $u_{2}>u_{1}>\Delta$ 时, 有
+\[
+|g(u_{2})|<\frac{\varepsilon}{4M},\quad|g(u_{1})|<\frac{\varepsilon}{4M}.
+\]
+因此, 由一般积分第二中值定理可知, $\exists\xi\in[u_{1},u_{2}]$, s.t.
+\begin{align*}
+\left|\int_{u_{1}}^{u_{2}}f(x)g(x)\,\mathrm{d}x\right|&=\left|g(u_{1})\int_{u_{1}}^{\xi}f(x)\,\mathrm{d}x+g(u_{2})\int_{\xi}^{u_{2}}f(x)\,\mathrm{d}x\right|\\
+&\leqslant|g(u_{1})|\cdot\left|\int_{u_{1}}^{\xi}f(x)\,\mathrm{d}x\right|+|g(u_{2})|\cdot\left|\int_{\xi}^{u_{2}}f(x)\,\mathrm{d}x\right|\\
+&=|g(u_{1})|\cdot\left|\int_{a}^{\xi}f(x)\,\mathrm{d}x-\int_{a}^{u_{1}}f(x)\,\mathrm{d}x\right|\\
+&\quad+|g(u_{2})|\cdot\left|\int_{a}^{u_{2}}f(x)\,\mathrm{d}x-\int_{a}^{\xi}f(x)\,\mathrm{d}x\right|\\
+&<2M\cdot\frac{\varepsilon}{4M}+2M\cdot\frac{\varepsilon}{4M}=\varepsilon.
+\end{align*}
+根据无穷积分的 Cauchy 收敛准则, $\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x$ 收敛.
+\end{proof}
+
+\begin{theorem}[无穷积分的 Abel 判别法]\label{thm:6.5.5}
+如果函数 $f$, $g$ 满足:
+\begin{enumerate}[label=(\arabic*)]
+\item $g$ 在 $[a,+\infty)$ 上单调有界;
+\item $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛.
+\end{enumerate}
+则 $\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x$ 收敛.
+\end{theorem}
+
+\begin{proof}[证法 1]
+设 $|g(x)|<M$, $\forall x\in[a,+\infty)$.
+
+$\forall\varepsilon>0$, 因为 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 故 $\exists\Delta>\max\{a,0\}$, 当 $u_{2}>u_{1}>\Delta$ 时, 有
+\[
+\left|\int_{u_{1}}^{u_{2}}f(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{2M}.
+\]
+因此, 由一般积分第二中值定理可知, $\exists\xi\in[u_{1},u_{2}]$, s.t.
+\begin{align*}
+&\left|\int_{u_{1}}^{u_{2}}f(x)g(x)\,\mathrm{d}x\right|=\left|g(u_{1})\int_{u_{1}}^{\xi}f(x)\,\mathrm{d}x+g(u_{2})\int_{\xi}^{u_{2}}f(x)\,\mathrm{d}x\right|\\
+&\leqslant\left|g(u_{1})\right|\cdot\left|\int_{u_{1}}^{\xi}f(x)\,\mathrm{d}x\right|+\left|g(u_{2})\right|\cdot\left|\int_{\xi}^{u_{2}}f(x)\,\mathrm{d}x\right|\\
+&<M\cdot\frac{\varepsilon}{2M}+M\cdot\frac{\varepsilon}{2M}=\varepsilon.
+\end{align*}
+根据无穷积分的 Cauchy 收敛准则, $\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x$ 收敛.
+\end{proof}
+
+\begin{proof}[证法 2]
+因 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 故 $\int_{a}^{u}f(x)\,\mathrm{d}x$ 在 $[a,+\infty)$ 上有界. 又因为 $g(x)-g(+\infty)$ 在 $[a,+\infty)$ 上单调趋于 $0$ $(x\to+\infty)$, 根据 Dirichlet 判别法知,
+\[
+\int_{a}^{+\infty}f(x)[g(x)-g(+\infty)]\,\mathrm{d}x
+\]
+收敛. 因此,
+\begin{align*}
+\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x=&\int_{a}^{+\infty}f(x)\big[g(x)-g(+\infty)\big]\mathrm{d}x\\
+&+g(+\infty)\int_{a}^{+\infty}f(x)\,\mathrm{d}x
+\end{align*}
+也收敛.
+\end{proof}
+
+\begin{example}\label{ex:6.5.12}
+讨论 $\int_{1}^{+\infty}\dfrac{\sin x}{x^{p}}\,\mathrm{d}x$ 与 $\int_{1}^{+\infty}\dfrac{\cos x}{x^{p}}\,\mathrm{d}x$ 的敛散性.
+\end{example}
+
+\begin{solution}
+(1) 当 $p>1$ 时, 因为
+\[
+\left|\frac{\sin x}{x^{p}}\right|\leqslant\frac{1}{x^{p}},\quad x\in[1,+\infty),
+\]
+而 $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x^{p}}$ 当 $p>1$ 时收敛, 根据比较判别法知, $\int_{1}^{+\infty}\left|\dfrac{\sin x}{x^{p}}\right|\mathrm{d}x$ 收敛, 从而 $\int_{1}^{+\infty}\dfrac{\sin x}{x^{p}}\,\mathrm{d}x$ 绝对收敛.
+
+(2) 当 $0<p\leqslant1$ 时, 因为 $\forall u\geqslant1$, 有
+\[
+\left|\int_{1}^{u}\sin x\,\mathrm{d}x\right|=\left|\cos1-\cos u\right|=2,
+\]
+而 $\dfrac{1}{x^{p}}$ 当 $p>0$ 时单调趋于 $0$ $(x\to+\infty)$, 故由 Dirichlet 判别法推得无穷积分 $\int_{1}^{+\infty}\dfrac{\sin x}{x^{p}}\,\mathrm{d}x$ 当 $p>0$ 时总是收敛的.
+
+另一方面, 由于
+\[
+\left|\frac{\sin x}{x^{p}}\right|\geqslant\frac{\sin^{2}x}{x}=\frac{1-\cos2x}{2x}=\frac{1}{2x}-\frac{\cos2x}{2x},\quad x\in[1,+\infty),
+\]
+其中 $\int_{1}^{+\infty}\dfrac{\cos2x}{2x}\,\mathrm{d}x\xlongequal{t=2x}\dfrac{1}{2}\int_{2}^{+\infty}\dfrac{\cos t}{t}\,\mathrm{d}t$ 满足 Dirichlet 判别法的条件, 它是收敛的. 而 $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{2x}=\dfrac{1}{2}\ln x\bigg|_{1}^{+\infty}=+\infty$ 发散. 因此, 当 $0<p\leqslant1$ 时, 由于 $\int_{1}^{+\infty}\left[\dfrac{1}{2x}-\dfrac{\cos2x}{2x}\right]\mathrm{d}x$ 发散, 因而 $\int_{1}^{+\infty}\left|\dfrac{\sin x}{x^{p}}\right|\mathrm{d}x$ 发散. 故 $\int_{1}^{+\infty}\dfrac{\sin x}{x^{p}}\,\mathrm{d}x$ 当 $0<p\leqslant1$ 时是条件收敛的.
+
+(3) 当 $p\leqslant0$ 时, $\forall n\in\mathbb{N}$, 有
+\[
+\left|\int_{2n\pi}^{2n\pi+\pi}\frac{\sin x}{x^{p}}\,\mathrm{d}x\right|=\int_{2n\pi}^{2n\pi+\pi}\frac{\sin x}{x^{p}}\,\mathrm{d}x\geqslant\int_{0}^{\pi}\sin x\,\mathrm{d}x=2>1=\varepsilon_{0}.
+\]
+综合以上讨论可知, $\int_{1}^{+\infty}\dfrac{\sin x}{x^{p}}\,\mathrm{d}x$ 当 $p>1$ 时绝对收敛; 当 $0<p\leqslant1$ 时条件收敛; 当 $p\leqslant0$ 时发散.
+
+类似地可证 $\int_{1}^{+\infty}\dfrac{\cos x}{x^{p}}\,\mathrm{d}x$ 当 $p>1$ 时绝对收敛; 当 $0<p\leqslant1$ 时条件收敛; 当 $p\leqslant0$ 时发散.
+\end{solution}
+
+\begin{example}\label{ex:6.5.13}
+证明下列无穷积分都是条件收敛的.
+\begin{enumerate}[label=(\arabic*)]
+\item $\int_{1}^{+\infty}\sin x^{2}\,\mathrm{d}x$;
+\item $\int_{1}^{+\infty}\cos x^{2}\,\mathrm{d}x$;
+\item $\int_{1}^{+\infty}x\sin x^{4}\,\mathrm{d}x$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+由
+\[
+\int_{1}^{+\infty}\sin x^{2}\,\mathrm{d}x\xlongequal{t=x^{2}}\int_{1}^{+\infty}\frac{\sin t}{2\sqrt{t}}\,\mathrm{d}t,
+\]
+\[
+\int_{1}^{+\infty}\cos x^{2}\,\mathrm{d}x\xlongequal{t=x^{2}}\int_{1}^{+\infty}\frac{\cos t}{2\sqrt{t}}\,\mathrm{d}t,
+\]
+\[
+\int_{1}^{+\infty}x\sin x^{4}\,\mathrm{d}x\xlongequal{t=x^{4}}\int_{1}^{+\infty}t^{\frac{1}{4}}\sin t\cdot\frac{\mathrm{d}t}{4t^{\frac{3}{4}}}=\int_{1}^{+\infty}\frac{\sin t}{4\sqrt{t}}\,\mathrm{d}t
+\]
+及例~\ref{ex:6.5.12} 立即推得它们都是条件收敛的.
+\end{proof}
+
+以上例~\ref{ex:6.5.13} 中三个无穷积分, 当 $x\to+\infty$ 时, 被积函数并不趋于 $0$, 甚至是无界的 (如 $x\sin x^{4}$), 但无穷积分收敛. 因此, 我们有必要研究 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛与 $\lim\limits_{x\to+\infty}f(x)=0$ 的关系问题.
+
+\begin{example}\label{ex:6.5.14}
+设 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 且 $\lim\limits_{x\to+\infty}f(x)=A\in\mathbb{R}$, 则 $A=0$.
+\end{example}
+
+\begin{proof}
+(反证) 假设 $A\neq0$, 不妨设 $\lim\limits_{x\to+\infty}f(x)=A>0$, 则 $\exists\Delta>\max\{a,0\}$, 当 $x>\Delta$ 时, $f(x)>A-\dfrac{A}{2}=\dfrac{A}{2}$, 从而对 $u>\Delta$(图~\ref{fig:6.5.5}) 有
+\begin{align*}
+\int_{a}^{u}f(x)\,\mathrm{d}x&=\int_{a}^{\Delta}f(x)\,\mathrm{d}x+\int_{\Delta}^{u}f(x)\,\mathrm{d}x>\int_{a}^{\Delta}f(x)\,\mathrm{d}x+\int_{\Delta}^{u}\frac{A}{2}\,\mathrm{d}x\\
+&=\int_{a}^{\Delta}f(x)\,\mathrm{d}x+\frac{A}{2}(u-\Delta)\to+\infty\quad(u\to+\infty),
+\end{align*}
+所以,
+\[
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x=\lim_{u\to+\infty}\int_{a}^{u}f(x)\,\mathrm{d}x=+\infty.
+\]
+这与 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛相矛盾.
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.95cm,y=0.90cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (7.6,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.7) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw (0.2,1) -- (7.2,1);
+  \draw (0.2,2) -- (7.2,2);
+  \draw (0.2,3) -- (7.2,3);
+  \draw (1.2,0) -- (1.2,3.2);
+  \draw (3.0,0) -- (3.0,3.2);
+  \draw (6.4,0) -- (6.4,3.2);
+  \node[left] at (0,1) {$\dfrac{A}{2}$};
+  \node[left] at (0,2) {$A$};
+  \node[left] at (0,3) {$\dfrac{3A}{2}$};
+  \fill[pattern=dots,pattern color=black] (3.0,0) rectangle (6.4,1);
+  \draw[thick] (1.2,1.0) .. controls (1.9,1.06) and (2.3,1.20) .. (3.0,1.35)
+    .. controls (3.7,1.55) and (4.2,2.16) .. (4.65,2.12)
+    .. controls (4.95,2.02) and (5.05,1.92) .. (5.45,2.00)
+    .. controls (5.9,2.06) and (6.1,2.00) .. (6.4,2.00);
+  \node[right] at (3.4,2.45) {$y=f(x)$};
+  \node[below] at (1.2,-0.06) {$a$};
+  \node[below] at (3.0,-0.06) {$\Delta$};
+  \node[below] at (6.4,-0.06) {$u$};
+\end{tikzpicture}
+\caption{}\label{fig:6.5.5}
+\end{figure}
+
+\begin{example}\label{ex:6.5.15}
+设 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, $f$ 在 $[a,+\infty)$ 中一致连续, 则 $\lim\limits_{x\to+\infty}f(x)=0$.
+\end{example}
+
+\begin{proof}
+(反证) 假设 $\lim\limits_{x\to+\infty}f(x)\neq0$, 则 $\exists\varepsilon_{0}>0$, s.t. $\forall\Delta>0$, $\exists x_{1}>\Delta$, 有 $|f(x_{1})|\geqslant\varepsilon_{0}$. 又因为 $f(x)$ 在 $[a,+\infty)$ 上一致连续, 故 $\exists\delta>0$, 当 $|x'-x''|<\delta$ 时, 有
+\[
+|f(x')-f(x'')|<\frac{\varepsilon_{0}}{2}.
+\]
+于是, 当 $x\in[x_{1},x_{1}+\delta]$ 时,
+\[
+|f(x)|=|f(x_{1})-[f(x_{1})-f(x)]|\geqslant|f(x_{1})|-|f(x_{1})-f(x)|>\varepsilon_{0}-\frac{\varepsilon_{0}}{2}=\frac{\varepsilon_{0}}{2}.
+\]
+并且 $f(x)$ 与 $f(x_{1})$ 同号 (否则, $|f(x)-f(x_{1})|>|f(x_{1})|\geqslant\varepsilon_{0}$ 与 $|f(x)-f(x_{1})|<\dfrac{\varepsilon_{0}}{2}$ 矛盾). 如果 $f(x_{1})>0$, 则 $f(x)>0$, 从而
+\[
+f(x)>\frac{\varepsilon_{0}}{2}.
+\]
+故
+\[
+\left|\int_{x_{1}}^{x_{1}+\delta}f(x)\,\mathrm{d}x\right|\geqslant\frac{\varepsilon_{0}}{2}\int_{x_{1}}^{x_{1}+\delta}\mathrm{d}x=\frac{\varepsilon_{0}}{2}\delta.
+\]
+同理, 如果 $f(x_{1})<0$, 则 $f(x)<0$, 也有
+\[
+\left|\int_{x_{1}}^{x_{1}+\delta}f(x)\,\mathrm{d}x\right|=\int_{x_{1}}^{x_{1}+\delta}|f(x)|\,\mathrm{d}x\geqslant\frac{\varepsilon_{0}}{2}\int_{x_{1}}^{x_{1}+\delta}\mathrm{d}x=\frac{\varepsilon_{0}}{2}\delta.
+\]
+这就证明了, 对于 $\dfrac{\varepsilon_{0}}{2}\delta>0$, $\forall\Delta>0$, $\exists x_{1}+\delta>x_{1}>\Delta$, s.t.
+\[
+\left|\int_{x_{1}}^{x_{1}+\delta}f(x)\,\mathrm{d}x\right|\geqslant\frac{\varepsilon_{0}}{2}\delta.
+\]
+根据无穷积分的 Cauchy 准则, $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 发散, 这与题设 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛矛盾.
+\end{proof}
+
+\begin{example}\label{ex:6.5.16}
+设 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, $f$ 在 $[a,+\infty)$ 上连续, 且 $f(x)\geqslant0$, $x\in[a,+\infty)$. 问: 是否有 $\lim\limits_{x\to+\infty}f(x)=0$?
+\end{example}
+
+\begin{solution}
+不一定有 $\lim\limits_{x\to+\infty}f(x)=0$.
+
+反例: 令
+\[
+f(x)=\begin{cases}
+n^{2}\cdot2^{n}\left[x-\left(n-\dfrac{1}{2^{n}n}\right)\right], & x\in\left[n-\dfrac{1}{2^{n}n},n\right],\\[3mm]
+-n^{2}\cdot2^{n}\left[x-\left(n+\dfrac{1}{2^{n}n}\right)\right], & x\in\left[n,n+\dfrac{1}{2^{n}n}\right],\\[3mm]
+0, & x\ \text{为}\ [0,+\infty)\ \text{中的其他点}.
+\end{cases}
+\]
+则 $f(x)\geqslant0$, 且 $\lim\limits_{n\to+\infty}f(n)=\lim\limits_{n\to+\infty}n=+\infty$, 故 $\lim\limits_{x\to+\infty}f(x)\neq0$, 但
+\[
+\int_{a}^{+\infty}f(x)\,\mathrm{d}x=\sum_{n=1}^{\infty}\frac{1}{2^{n}}=1,
+\]
+收敛 (图~\ref{fig:6.5.6}).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.82cm,y=0.60cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (10.6,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.9) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (0,1) {1};
+  \node[left] at (0,2) {2};
+  \node[left] at (0,2.65) {$\vdots$};
+  \node[left] at (0,3.3) {$n$};
+  \draw[thick] (0,0) -- (1.05,0) -- (1.2,1) -- (1.35,0) -- (2.6,0) -- (2.8,2) -- (3.0,0) -- (7.3,0);
+  \draw[thick] (7.3,0) -- (7.65,3.3) -- (8.0,0) -- (10.4,0);
+  \node[below] at (1.2,-0.14) {1};
+  \node[below] at (2.8,-0.14) {2};
+  \node[below] at (7.65,-0.14) {$n$};
+  \node[anchor=north east] at (7.15,-0.32) {$n-\dfrac{1}{2^{n}n}$};
+  \node[anchor=north west] at (8.15,-0.32) {$n+\dfrac{1}{2^{n}n}$};
+  \draw[thin] (7.15,-0.32) -- (7.29,-0.06);
+  \draw[thin] (8.15,-0.32) -- (8.01,-0.06);
+  \draw (7.65,3.3) -- (8.6,3.3);
+  \node[right] at (8.6,3.3) {\small 面积 $S_{n}=\dfrac{1}{2}\cdot n\cdot\dfrac{1}{2^{n-1}n}=\dfrac{1}{2^{n}}$};
+\end{tikzpicture}
+\caption{}\label{fig:6.5.6}
+\end{figure}
+
+类似无穷积分, 关于瑕积分有相应的性质与判别法.
+
+\begin{theorem}[瑕积分收敛的 Cauchy 准则]\label{thm:6.5.6}
+瑕积分 $\int_{a}^{b}f(x)\,\mathrm{d}x$ ($a$ 为瑕点) 收敛 $\Longleftrightarrow\forall\varepsilon>0$, $\exists\delta>0$, 当 $v_{1},v_{2}\in(a,a+\delta)$ 时, 便有
+\[
+\left|\int_{v_{1}}^{b}f(x)\,\mathrm{d}x-\int_{v_{2}}^{b}f(x)\,\mathrm{d}x\right|=\left|\int_{v_{1}}^{v_{2}}f(x)\,\mathrm{d}x\right|<\varepsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+设 $F(v)=\int_{v}^{b}f(x)\,\mathrm{d}x$, 则
+
+$\int_{a}^{b}f(x)\,\mathrm{d}x$ 收敛 $\Longleftrightarrow$ $\lim\limits_{v\to a^{+}}\int_{v}^{b}f(x)\,\mathrm{d}x=\lim\limits_{v\to a^{+}}F(v)$ 存在且有限
+\begin{align*}
+&\xLeftrightarrow{\text{函数收敛的 Cauchy 准则}}\forall\varepsilon>0,\exists\delta>0,\ \text{当}\ v_{1},v_{2}\in(a,a+\delta)\ \text{时, 便有}\\
+&\left|\int_{v_{1}}^{v_{2}}f(x)\,\mathrm{d}x\right|=\left|\int_{a}^{v_{2}}f(x)\,\mathrm{d}x-\int_{a}^{v_{1}}f(x)\,\mathrm{d}x\right|\\
+&=\left|F(v_{2})-F(v_{1})\right|<\varepsilon.
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:6.5.4}
+设函数 $f$, $g$ 的瑕点同为 $a$, $\lambda$ 与 $\mu$ 为常数, 如果瑕积分 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 与 $\int_{a}^{b}g(x)\,\mathrm{d}x$ 都收敛, 则瑕积分 $\int_{a}^{b}[\lambda f(x)+\mu g(x)]\,\mathrm{d}x$ 也收敛 (此时它也许为正常积分, $a$ 未必为瑕点, 如 $k_{1}=k_{2}=0$, 而正常积分视作收敛), 并有
+\[
+\int_{a}^{b}\left[\lambda f(x)+\mu g(x)\right]\mathrm{d}x=\lambda\int_{a}^{b}f(x)\,\mathrm{d}x+\mu\int_{a}^{b}g(x)\,\mathrm{d}x.
+\]
+\end{lemma}
+
+\begin{proof}
+\begin{align*}
+\int_{a}^{b}\left[\lambda f(x)+\mu g(x)\right]\mathrm{d}x&=\lim_{v\to a^{+}}\int_{v}^{b}\left[\lambda f(x)+\mu g(x)\right]\mathrm{d}x\\
+&=\lim_{v\to a^{+}}\left[\lambda\int_{v}^{b}f(x)\,\mathrm{d}x+\mu\int_{v}^{b}g(x)\,\mathrm{d}x\right]\\
+&=\lambda\int_{a}^{b}f(x)\,\mathrm{d}x+\mu\int_{a}^{b}g(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:6.5.5}
+设函数 $f$ 的瑕点为 $a$, 则瑕积分 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 与 $\int_{a}^{c}f(x)\,\mathrm{d}x$ ($c\in(a,b)$) 同敛散. 如果收敛, 则
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x,
+\]
+其中 $\int_{c}^{b}f(x)\,\mathrm{d}x$ 为 Riemann 积分.
+\end{lemma}
+
+\begin{proof}
+设 $a<v<c$, 则
+\[
+\int_{v}^{b}f(x)\,\mathrm{d}x=\int_{v}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\]
+因此, $\lim\limits_{v\to a^{+}}\int_{v}^{b}f(x)\,\mathrm{d}x$ 与 $\lim\limits_{v\to a^{+}}\int_{v}^{c}f(x)\,\mathrm{d}x$ 同时存在或同时不存在. 故瑕积分 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 与 $\int_{a}^{c}f(x)\,\mathrm{d}x$ 同敛散. 当它们收敛时, 有
+\begin{align*}
+\int_{a}^{b}f(x)\,\mathrm{d}x&=\lim_{v\to a^{+}}\int_{v}^{b}f(x)\,\mathrm{d}x=\lim_{v\to a^{+}}\left[\int_{v}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x\right]\\
+&=\int_{a}^{c}f(x)\,\mathrm{d}x+\int_{c}^{b}f(x)\,\mathrm{d}x.
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{lem:6.5.6}
+设函数 $f$ 的瑕点为 $a$, $f$ 在 $(a,b]$ 的任一内闭区间 $[u,b]$ 上 Riemann 可积, 则当 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 收敛时, $\int_{a}^{b}f(x)\,\mathrm{d}x$ 也必收敛, 并有
+\[
+\left|\int_{a}^{b}f(x)\,\mathrm{d}x\right|\leqslant\int_{a}^{b}\left|f(x)\right|\mathrm{d}x.
+\]
+\end{lemma}
+
+\begin{proof}
+由 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 收敛, 根据瑕积分收敛的 Cauchy 准则的必要性知, $\forall\varepsilon>0$, $\exists\delta>0$, 当 $a<v_{1}<v_{2}<a+\delta$ 时, 总有
+\[
+\left|\int_{v_{1}}^{v_{2}}|f(x)|\,\mathrm{d}x\right|=\int_{v_{1}}^{v_{2}}|f(x)|\,\mathrm{d}x<\varepsilon.
+\]
+于是,
+\[
+\left|\int_{v_{1}}^{v_{2}}f(x)\,\mathrm{d}x\right|\leqslant\int_{v_{1}}^{v_{2}}|f(x)|\,\mathrm{d}x<\varepsilon.
+\]
+再由瑕积分收敛的 Cauchy 准则的充分性推得 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 收敛.
+
+又因为
+\[
+\left|\int_{v}^{b}f(x)\,\mathrm{d}x\right|\leqslant\int_{v}^{b}|f(x)|\,\mathrm{d}x\quad(a<v\leqslant b),
+\]
+令 $v\to a^{+}$, 得到
+\[
+\left|\int_{a}^{b}f(x)\,\mathrm{d}x\right|\leqslant\int_{a}^{b}|f(x)|\,\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{definition}\label{def:6.5.4}
+设 $f$ 在任何内闭区间 $[v,b]\subset(a,b]$ 上 Riemann 可积, $a$ 为其瑕点, 如果 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 收敛, 则称 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 绝对收敛. 引理~\ref{lem:6.5.6} 指出 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 也收敛, 但反之不成立. 读者可仿照定义~\ref{def:6.5.3} 中的反例构造瑕积分的反例.
+\end{definition}
+
+我们称收敛而非绝对收敛的瑕积分为条件收敛的.
+
+\begin{theorem}[瑕积分的比较判别法]\label{thm:6.5.7}
+设定义在 $(a,b]$ 上的两个函数 $f$ 与 $g$, 其瑕点同为 $a$, 在任何内闭区间 $[v,b]\subset(a,b]$ 上都 Riemann 可积, 且满足
+\[
+|f(x)|\leqslant g(x),\quad x\in(a,b].
+\]
+则
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $\int_{a}^{b}g(x)\,\mathrm{d}x$ 收敛时, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 必收敛, 当然 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 也收敛;
+\item 当 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 发散时, $\int_{a}^{b}g(x)\,\mathrm{d}x$ 必发散.
+\end{enumerate}
+(简单说即是: 大的收敛, 小的也收敛; 小的发散, 大的也发散.)
+\end{theorem}
+
+\begin{proof}
+因为 $0\leqslant|f(x)|\leqslant g(x)$, 所以 $\int_{v}^{b}|f(x)|\,\mathrm{d}x$ 与 $\int_{v}^{b}g(x)\,\mathrm{d}x$ 都为 $v$ 当 $v\to a^{+}$ 时的增函数.
+
+(1) 如果 $\int_{a}^{b}g(x)\,\mathrm{d}x$ 收敛, 则 $\forall v\in(a,b]$, 有 $\int_{v}^{b}g(x)\,\mathrm{d}x\leqslant M$(常数), 从而
+\[
+\int_{v}^{b}|f(x)|\,\mathrm{d}x\leqslant\int_{v}^{b}g(x)\,\mathrm{d}x\leqslant M,\quad\forall v\in(a,b],
+\]
+$\int_{a}^{b}|f(x)|\,\mathrm{d}x=\lim\limits_{v\to a^{+}}\int_{v}^{b}|f(x)|\,\mathrm{d}x$ 存在且有限, 即 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 收敛.
+
+(2) 如果 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 发散, 则 $\lim\limits_{v\to a^{+}}\int_{v}^{b}|f(x)|\,\mathrm{d}x=\int_{a}^{b}|f(x)|\,\mathrm{d}x=+\infty$, 则由
+\[
+\int_{v}^{b}|f(x)|\,\mathrm{d}x\leqslant\int_{v}^{b}g(x)\,\mathrm{d}x
+\]
+得到
+\[
++\infty=\lim_{v\to a^{+}}\int_{v}^{b}|f(x)|\,\mathrm{d}x\leqslant\lim_{v\to a^{+}}\int_{v}^{b}g(x)\,\mathrm{d}x=\int_{a}^{b}g(x)\,\mathrm{d}x,
+\]
+即
+\[
+\int_{a}^{b}g(x)\,\mathrm{d}x=+\infty,
+\]
+发散.
+\end{proof}
+
+\begin{theoremp}[瑕积分的比较判别法的极限形式]\label{thm:6.5.7p}
+设 $f$, $g$ 在任何有限区间 $[v,b]\subset(a,b]$ 上都 Riemann 可积, $g(x)>0$, 且
+\[
+\lim_{x\to a^{+}}\frac{|f(x)|}{g(x)}=c.
+\]
+则有
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $0<c<+\infty$ 时, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 与 $\int_{a}^{b}g(x)\,\mathrm{d}x$ 同敛散;
+\item 当 $c=0$ 时, $\int_{a}^{b}g(x)\,\mathrm{d}x$ 收敛蕴涵着 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 也收敛;
+\item 当 $c=+\infty$ 时, $\int_{a}^{b}g(x)\,\mathrm{d}x$ 发散蕴涵着 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 也发散.
+\end{enumerate}
+\end{theoremp}
+
+\begin{proof}
+(1) 因为 $\lim\limits_{x\to a^{+}}\dfrac{|f(x)|}{g(x)}=c\in(0,+\infty)$, 故 $\exists\delta>0$, 当 $x\in(a,a+\delta)$ 时, 有
+\[
+\frac{3c}{2}=c+\frac{c}{2}>\frac{|f(x)|}{g(x)}>c-\frac{c}{2}=\frac{c}{2}>0,
+\]
+\[
+\frac{3c}{2}g(x)>|f(x)|>\frac{c}{2}g(x).
+\]
+再由定理~\ref{thm:6.5.7} 知, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 与 $\int_{a}^{b}g(x)\,\mathrm{d}x$ 同敛散.
+
+(2) 当 $c=0$ 时, 由 $\lim\limits_{x\to a^{+}}\dfrac{|f(x)|}{g(x)}=c=0$, 故对 $\varepsilon_{0}=1$, $\exists\delta>0$, 当 $x\in(a,a+\delta)$ 时, 有
+\[
+\frac{|f(x)|}{g(x)}<1,
+\]
+故
+\[
+|f(x)|<g(x).
+\]
+于是, 根据定理~\ref{thm:6.5.7}(1) 知, $\int_{a}^{b}g(x)\,\mathrm{d}x$ 收敛蕴涵着 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 也收敛.
+
+(3) 当 $c=+\infty$ 时, 由于 $\lim\limits_{x\to a^{+}}\dfrac{|f(x)|}{g(x)}=c=+\infty$, 故对 $A_{0}=1$, $\exists\delta>0$, 当 $x\in(a,a+\delta)$ 时, 有
+\[
+\frac{|f(x)|}{g(x)}>A_{0}=1,
+\]
+故
+\[
+|f(x)|>g(x).
+\]
+于是, 根据定理~\ref{thm:6.5.7}(2) 知, $\int_{a}^{b}g(x)\,\mathrm{d}x$ 发散蕴涵着 $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 也发散.
+\end{proof}
+
+\begin{corollary}\label{cor:6.5.2}
+$\left(\text{与}\int_{a}^{b}\dfrac{\mathrm{d}x}{(x-a)^{p}}\text{比较}\right)$ 设 $f$ 定义于 $(a,b]$, $a$ 为其瑕点, 且在任何内闭区间 $[u,b]\subset(a,b]$ 上 Riemann 可积. 则有
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $|f(x)|\leqslant\dfrac{1}{(x-a)^{p}}$ 且 $p<1$ 时, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 收敛;
+\item 当 $|f(x)|\geqslant\dfrac{1}{(x-a)^{p}}$, 且 $p\geqslant1$ 时, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 发散.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+由定理~\ref{thm:6.5.7} 与例~\ref{ex:6.5.9} 可立即推得.
+\end{proof}
+
+\begin{corollaryp}\label{cor:6.5.2p}
+$\left(\text{与}\int_{a}^{b}\dfrac{\mathrm{d}x}{(x-a)^{p}}\text{比较的极限形式}\right)$ 设 $f$ 定义于 $(a,b]$, $a$ 为其瑕点, 且在任何内闭区间 $[u,b]\subset(a,b]$ 上 Riemann 可积. 如果
+\[
+\lim_{x\to a^{+}}(x-a)^{p}|f(x)|=\lim_{x\to a^{+}}\frac{|f(x)|}{\frac{1}{(x-a)^{p}}}=\lambda,
+\]
+则有
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $p<1$, $0\leqslant\lambda<+\infty$ 时, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 收敛;
+\item 当 $p\geqslant1$, $0<\lambda\leqslant+\infty$ 时, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 发散.
+\end{enumerate}
+\end{corollaryp}
+
+\begin{proof}
+由定理~\ref{thm:6.5.7p} 与例~\ref{ex:6.5.9} 可立即推得.
+\end{proof}
+
+\begin{example}\label{ex:6.5.17}
+讨论广义积分
+\[
+\int_{0}^{+\infty}\frac{\ln(1+x)}{x^{p}}\,\mathrm{d}x
+\]
+的敛散性.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+\int_{0}^{+\infty}\frac{\ln(1+x)}{x^{p}}\,\mathrm{d}x&=\int_{0}^{1}\frac{\ln(1+x)}{x^{p}}\,\mathrm{d}x+\int_{1}^{+\infty}\frac{\ln(1+x)}{x^{p}}\,\mathrm{d}x\\
+&=I_{1}+I_{2}.
+\end{align*}
+首先讨论 $I_{1}=\int_{0}^{1}\dfrac{\ln(1+x)}{x^{p}}\,\mathrm{d}x$ 的敛散性, $x=0$ 疑似瑕点.
+
+因为 $\dfrac{\ln(1+x)}{x^{p}}\sim\dfrac{x}{x^{p}}=\dfrac{1}{x^{p-1}}$ $(x\to0^{+})$, 所以, 根据推论~\ref{cor:6.5.2p}, 当 $p-1<1$, 即 $p<2$ 时, $I_{1}$ 收敛; 当 $p-1\geqslant1$, 即 $p\geqslant2$ 时发散.
+
+再来讨论 $I_{2}=\int_{1}^{+\infty}\dfrac{\ln(1+x)}{x^{p}}\,\mathrm{d}x$ 的敛散性.
+
+当 $p\leqslant1$ 时, 由 $\lim\limits_{x\to+\infty}\dfrac{\ln(1+x)}{x^{p}}\Big/\dfrac{1}{x^{p}}=\lim\limits_{x\to+\infty}\ln(1+x)=+\infty$ 及推论~\ref{cor:6.5.1p}(2) 知, $I_{2}$ 发散.
+
+当 $p>1$ 时, 令 $p=1+2\delta$, 则 $\delta>0$, 于是,
+\begin{align*}
+\lim_{x\to+\infty}\frac{\ln(1+x)}{x^{p}}\Big/\frac{1}{x^{1+\delta}}&=\lim_{x\to+\infty}\frac{\ln(1+x)}{x^{\delta}}\\
+&=\lim_{x\to+\infty}\frac{1}{\delta x^{\delta-1}(1+x)}=0.
+\end{align*}
+再由 $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x^{1+\delta}}$ 收敛及推论~\ref{cor:6.5.1p}(1) 立刻知道, $I_{2}$ 收敛.
+
+综合上述讨论, 当且仅当 $1<p<2$ 时, $\int_{0}^{+\infty}\dfrac{\ln(1+x)}{x^{p}}\,\mathrm{d}x$ 收敛.
+\end{solution}
+
+\begin{example}\label{ex:6.5.18}
+证明: 瑕积分 $\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x$ 与 $\int_{0}^{\frac{\pi}{2}}\ln\cos x\,\mathrm{d}x$ 均收敛, 且
+\[
+\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x=\int_{0}^{\frac{\pi}{2}}\ln\cos x\,\mathrm{d}x=-\frac{\pi}{2}\ln2.
+\]
+\end{example}
+
+\begin{proof}[证法 1]
+\begin{align*}
+\int_{0}^{\frac{\pi}{2}}\ln\cos x\,\mathrm{d}x&\xlongequal{t=\frac{\pi}{2}-x}\int_{\frac{\pi}{2}}^{0}\ln\sin t\,(-\mathrm{d}t)=\int_{0}^{\frac{\pi}{2}}\ln\sin t\,\mathrm{d}t\\
+&=\int_{0}^{\frac{\pi}{2}}\ln\left(2\sin\frac{t}{2}\cos\frac{t}{2}\right)\mathrm{d}t=\int_{0}^{\frac{\pi}{2}}\left(\ln2+\ln\sin\frac{t}{2}+\ln\cos\frac{t}{2}\right)\mathrm{d}t\\
+&\xlongequal{u=\frac{t}{2}}\frac{\pi}{2}\ln2+2\left(\int_{0}^{\frac{\pi}{4}}\ln\sin u\,\mathrm{d}u+\int_{0}^{\frac{\pi}{4}}\ln\cos u\,\mathrm{d}u\right)\\
+&\xlongequal{v=\frac{\pi}{2}-u}\frac{\pi}{2}\ln2+2\left[\int_{0}^{\frac{\pi}{4}}\ln\sin u\,\mathrm{d}u+\int_{\frac{\pi}{2}}^{\frac{\pi}{4}}\ln\sin v\,(-\mathrm{d}v)\right]\\
+&=\frac{\pi}{2}\ln2+2\int_{0}^{\frac{\pi}{2}}\ln\sin t\,\mathrm{d}t,
+\end{align*}
+移项化简得
+\[
+\int_{0}^{\frac{\pi}{2}}\ln\cos x\,\mathrm{d}x=\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x=-\frac{\pi}{2}\ln2.
+\]
+\end{proof}
+
+\begin{proof}[证法 2]
+由证法 1, 有
+\begin{align*}
+\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x&=\frac{1}{2}\int_{0}^{\frac{\pi}{2}}(\ln\sin x+\ln\cos x)\,\mathrm{d}x\\
+&=\frac{1}{2}\int_{0}^{\frac{\pi}{2}}\ln\left(\frac{1}{2}\sin2x\right)\mathrm{d}x\\
+&=-\frac{1}{2}\ln2\cdot\frac{\pi}{2}+\frac{1}{2}\int_{0}^{\frac{\pi}{2}}\ln\sin2x\,\mathrm{d}x\\
+&\xlongequal{u=2x}-\frac{\pi}{4}\ln2+\frac{1}{2}\int_{0}^{\pi}\ln\sin u\,\frac{\mathrm{d}u}{2}\\
+&=-\frac{\pi}{4}\ln2+\frac{1}{4}\int_{0}^{\frac{\pi}{2}}\ln\sin u\,\mathrm{d}u+\frac{1}{4}\int_{\frac{\pi}{2}}^{\pi}\ln\sin u\,\mathrm{d}u\\
+&\xlongequal{u=\pi-x}-\frac{\pi}{4}\ln2+\frac{1}{4}\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x+\frac{1}{4}\int_{\frac{\pi}{2}}^{0}\ln\sin x\,(-\mathrm{d}x)\\
+&=-\frac{\pi}{4}\ln2+\frac{1}{2}\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x,
+\end{align*}
+移项化简得
+\[
+\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x=-\frac{\pi}{2}\ln2.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6.5.19}
+设 $f$ 在 $[0,+\infty)$ 上连续, $0<a<b$. 证明:
+\begin{enumerate}[label=(\arabic*)]
+\item 如果 $\lim\limits_{x\to+\infty}f(x)=k$, 则
+\[
+\int_{0}^{+\infty}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x=\left[f(0)-k\right]\ln\frac{b}{a};
+\]
+\item 如果 $\int_{0}^{+\infty}\frac{f(x)}{x}\,\mathrm{d}x$ 收敛, 则
+\[
+\int_{0}^{+\infty}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x=f(0)\ln\frac{b}{a}.
+\]
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1)
+\begin{align*}
+\int_{\varepsilon}^{A}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x&=\int_{\varepsilon}^{A}\frac{f(ax)}{x}\,\mathrm{d}x-\int_{\varepsilon}^{A}\frac{f(bx)}{x}\,\mathrm{d}x\\
+&\xlongequal[{t=bx}]{t=ax}\int_{a\varepsilon}^{aA}\frac{f(t)}{\frac{t}{a}}\frac{\mathrm{d}t}{a}-\int_{b\varepsilon}^{bA}\frac{f(t)}{\frac{t}{b}}\frac{\mathrm{d}t}{b}=\int_{a\varepsilon}^{aA}\frac{f(t)}{t}\,\mathrm{d}t-\int_{b\varepsilon}^{bA}\frac{f(t)}{t}\,\mathrm{d}t\\
+&=\int_{a\varepsilon}^{b\varepsilon}\frac{f(t)}{t}\,\mathrm{d}t-\int_{aA}^{bA}\frac{f(t)}{t}\,\mathrm{d}t\\
+&\xlongequal[{t=Au}]{t=\varepsilon u}\int_{a}^{b}\frac{f(\varepsilon u)}{\varepsilon u}\varepsilon\,\mathrm{d}u-\int_{a}^{b}\frac{f(Au)}{Au}A\,\mathrm{d}u\\
+&=\int_{a}^{b}\frac{\left[f(\varepsilon u)-f(Au)\right]}{u}\,\mathrm{d}u\\
+&\xlongequal[{\exists\xi\in[a,b]}]{\text{积分第一中值定理}}\left[f(\varepsilon\xi)-f(A\xi)\right]\int_{a}^{b}\frac{\mathrm{d}u}{u}=\left[f(\varepsilon\xi)-f(A\xi)\right]\ln\frac{b}{a}.
+\end{align*}
+于是,
+\begin{align*}
+\int_{0}^{+\infty}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x&=\lim_{\substack{\varepsilon\to0^{+}\\ A\to+\infty}}\int_{\varepsilon}^{A}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x\\
+&=\lim_{\substack{\varepsilon\to0^{+}\\ A\to+\infty}}\left[f(\varepsilon\xi)-f(A\xi)\right]\ln\frac{b}{a}=\left[f(0)-f(+\infty)\right]\ln\frac{b}{a}\\
+&=\left(f(0)-k\right)\ln\frac{b}{a}.
+\end{align*}
+(2) 由于 $\int_{0}^{+\infty}\dfrac{f(x)}{x}\,\mathrm{d}x$ 收敛, 故对 $\forall\varepsilon>0$, 有
+\[
+\int_{\varepsilon}^{+\infty}\frac{f(ax)}{x}\,\mathrm{d}x\xlongequal{t=ax}\int_{\varepsilon a}^{+\infty}\frac{f(t)}{\frac{t}{a}}\frac{\mathrm{d}t}{a}=\int_{\varepsilon a}^{+\infty}\frac{f(t)}{t}\,\mathrm{d}t.
+\]
+于是,
+\begin{align*}
+\int_{\varepsilon}^{+\infty}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x&=\int_{\varepsilon a}^{+\infty}\frac{f(t)}{t}\,\mathrm{d}t-\int_{\varepsilon b}^{+\infty}\frac{f(t)}{t}\,\mathrm{d}t\\
+&=\int_{\varepsilon a}^{\varepsilon b}\frac{f(t)}{t}\,\mathrm{d}t\xlongequal{t=\varepsilon x}\int_{a}^{b}\frac{f(\varepsilon x)}{\varepsilon x}\varepsilon\,\mathrm{d}x=\int_{a}^{b}\frac{f(\varepsilon x)}{x}\,\mathrm{d}x\\
+&\xlongequal[{\exists\xi\in[a,b]}]{\text{积分第一中值定理}}f(\varepsilon\xi)\int_{a}^{b}\frac{\mathrm{d}x}{x}=f(\varepsilon\xi)\ln\frac{b}{a}.
+\end{align*}
+再令 $\varepsilon\to0^{+}$, 得到
+\begin{align*}
+\int_{0}^{+\infty}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x&=\lim_{\varepsilon\to0^{+}}\int_{\varepsilon}^{+\infty}\frac{f(ax)-f(bx)}{x}\,\mathrm{d}x\\
+&=\lim_{\varepsilon\to0^{+}}f(\varepsilon\xi)\ln\frac{b}{a}=f(0)\ln\frac{b}{a}.
+\end{align*}
+\end{proof}
+
+\begin{exblock}{练习题 6.5}
+
+  \item 证明: $\lim\limits_{n\to+\infty}\dfrac{\sqrt[n]{n!}}{n}=\dfrac{1}{\mathrm{e}}$.
+
+  (提示: (1) 参阅例~\ref{ex:1.4.11}; (2) 对 $\dfrac{\sum\limits_{k=1}^{n}(\ln k-\ln n)}{n}$ 应用 Stolz 公式; (3) $\lim\limits_{n\to+\infty}\dfrac{1}{n}\sum\limits_{k=1}^{n}\ln\dfrac{k}{n}=\int_{0}^{1}\ln x\,\mathrm{d}x$.)
+
+  \item 在 $[-1,+\infty)$ 上定义函数
+  \[
+  f(x)=\int_{-1}^{x}\frac{\mathrm{e}^{\frac{1}{t}}}{t^{2}\left(1+\mathrm{e}^{\frac{1}{t}}\right)^{2}}\,\mathrm{d}t,
+\]
+  试写出函数 $f$ 的简单表达式.
+
+  \item 计算下列无穷积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{2}^{+\infty}\dfrac{\mathrm{d}x}{x(\ln x)^{p}}$, $p>1$;
+    \item $\int_{0}^{+\infty}\mathrm{e}^{-\sqrt{x}}\,\mathrm{d}x$;
+    \item $\int_{-\infty}^{0}x\mathrm{e}^{x}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}x^{5}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$;
+    \item $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x(1+x)}$;
+    \item $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{1+x^{3}}$;
+    \item $\int_{-\infty}^{+\infty}\dfrac{\mathrm{d}x}{x^{2}+2x+2}$;
+    \item $\int_{-\infty}^{+\infty}\dfrac{\mathrm{d}x}{(x^{2}+x+1)^{2}}$;
+    \item $\int_{0}^{+\infty}x^{n-1}\mathrm{e}^{-x}\,\mathrm{d}x$, $n\in\mathbb{N}$;
+    \item $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{(x^{2}+a^{2})^{n}}$, $n\in\mathbb{N}$;
+    \item $\int_{0}^{+\infty}x^{2n-1}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$, $n\in\mathbb{N}$;
+    \item $\int_{0}^{+\infty}\mathrm{e}^{-ax}\cos bx\,\mathrm{d}x$, 其中 $a$, $b$ 为常数, $a>0$;
+    \item $\int_{0}^{+\infty}\dfrac{1+x^{2}}{1+x^{4}}\,\mathrm{d}x$;
+    \item $\int_{2}^{+\infty}\dfrac{x\ln x}{1-x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}x\mathrm{e}^{-x^{2}}\,\mathrm{d}x$;
+    \item $\int_{-\infty}^{+\infty}x\mathrm{e}^{-x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{\sqrt{\mathrm{e}^{x}}}$;
+    \item $\int_{0}^{+\infty}\mathrm{e}^{-x}\sin x\,\mathrm{d}x$;
+    \item $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x^{2}(1+x)}$;
+    \item $\int_{-\infty}^{+\infty}\dfrac{\mathrm{d}x}{4x^{2}+4x+5}$.
+  \end{enumerate}
+
+  \item 判断下列无穷积分的敛散性:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{\sqrt[3]{x^{4}+1}}$;
+    \item $\int_{1}^{+\infty}\dfrac{x}{1-\mathrm{e}^{x}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{1+\sqrt{x}}$;
+    \item $\int_{1}^{+\infty}\dfrac{x\arctan x}{1+x^{3}}\,\mathrm{d}x$;
+    \item $\int_{1}^{+\infty}\dfrac{\ln(1+x)}{x^{n}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{x^{m}}{1+x^{n}}\,\mathrm{d}x$;
+    \item $\int_{1}^{+\infty}\dfrac{\mathrm{d}x}{x(1+x)^{\frac{1}{3}}}$;
+    \item $\int_{0}^{+\infty}\dfrac{\cos x}{1+x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{x^{3}}{\sqrt{1+x^{7}}}\,\mathrm{d}x$;
+    \item $\int_{1}^{+\infty}\dfrac{x^{2}}{\sqrt{1+x^{6}}}\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 讨论下列无穷积分是绝对收敛还是条件收敛:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{1}^{+\infty}\dfrac{\sin\sqrt{x}}{x}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{\operatorname{sgn}(\sin x)}{1+x^{2}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{\sqrt{x}\cos x}{100+x}\,\mathrm{d}x$;
+    \item $\int_{e}^{+\infty}\dfrac{\ln(\ln x)}{\ln x}\sin x\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 计算下列瑕积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{-1}^{1}\dfrac{\mathrm{d}x}{\sqrt{1-x^{2}}}$;
+    \item $\int_{-1}^{1}\dfrac{\arcsin x}{\sqrt{1-x^{2}}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\mathrm{d}x}{(2-x)\sqrt{1-x}}$;
+    \item $\int_{-1}^{1}\dfrac{\mathrm{d}x}{(2-x^{2})\sqrt{1-x^{2}}}$;
+    \item $\int_{0}^{1}\dfrac{\arcsin\sqrt{x}}{\sqrt{x(1-x)}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}(\ln x)^{n}\,\mathrm{d}x$, $n\in\mathbb{N}$;
+    \item $\int_{0}^{1}\dfrac{(1-x)^{n}}{\sqrt{x}}\,\mathrm{d}x$, $n\in\mathbb{N}$;
+    \item $\int_{0}^{1}\dfrac{x^{n}}{\sqrt{1-x}}\,\mathrm{d}x$, $n\in\mathbb{N}$.
+  \end{enumerate}
+
+  \item 讨论下列瑕积分的敛散性:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{2}\dfrac{\mathrm{d}x}{(x-1)^{2}}$;
+    \item $\int_{0}^{\pi}\dfrac{\sin x}{x^{\frac{3}{2}}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\mathrm{d}x}{\sqrt{x}\ln x}$;
+    \item $\int_{0}^{1}\dfrac{\ln x}{1-x}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\arctan x}{1-x^{3}}\,\mathrm{d}x$;
+    \item $\int_{0}^{\frac{\pi}{2}}\dfrac{1-\cos x}{x^{m}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{1}{x^{\alpha}}\sin\dfrac{1}{x}\,\mathrm{d}x$;
+    \item $\int_{0}^{\frac{\pi}{2}}\mathrm{e}^{-x}\ln x\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\mathrm{d}x}{\sqrt{1-x^{4}}}$;
+    \item $\int_{0}^{1}\dfrac{\mathrm{d}x}{\ln x}$;
+    \item $\int_{0}^{1}\ln x\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\mathrm{d}x}{x(\ln x)^{p}}$.
+  \end{enumerate}
+
+  \item 判断下列广义积分的敛散性:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{+\infty}\dfrac{|\sin x|}{x^{\frac{4}{3}}}\,\mathrm{d}x$;
+    \item $\int_{0}^{+\infty}\dfrac{\mathrm{d}x}{\mathrm{e}^{x}\sqrt{x}}$.
+  \end{enumerate}
+
+  \item (1) 设函数 $f$ 在 $[0,+\infty)$ 上连续且 $f\geqslant0$, $\int_{0}^{+\infty}f(x)\,\mathrm{d}x=0$. 证明: $f=0$.
+
+  (2) 设函数 $f$ 在任何 $[0,A]\subset[0,+\infty)$ 上 Riemann 可积且 $f\geqslant0$, $\int_{0}^{+\infty}f(x)\,\mathrm{d}x=0$. 证明: $f\xrightarrow{\text{a.e.}}0$, $x\in[0,+\infty)$.
+
+  \item 设函数 $f$ 在 $[0,+\infty)$ 上一致连续, 且 $f\geqslant0$, $\int_{0}^{+\infty}f(x)\,\mathrm{d}x$ 收敛. 证明: $\lim\limits_{x\to+\infty}f(x)=0$.
+
+  (此题比例~\ref{ex:6.5.15} 多了条件 $f\geqslant0$, 因此要求给出比例~\ref{ex:6.5.15} 更简单的论述.)
+
+  \item 设 $\int_{0}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 且 $\left|f'(x)\right|<M$(常数), $x>0$. 证明: $\lim\limits_{x\to+\infty}f(x)=0$.
+
+  \item 设 $f$ 与 $g$ 为定义在 $[a,+\infty)$ 上的函数, 对 $\forall u>a$, 它们在 $[a,u]$ 上都 Riemann 可积. 证明: 如果 $\int_{a}^{+\infty}f^{2}(x)\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}g^{2}(x)\,\mathrm{d}x$ 收敛, 则 $\int_{a}^{+\infty}f(x)g(x)\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}[f(x)+g(x)]^{2}\,\mathrm{d}x$ 也都收敛.
+
+  \item 设 $f$, $g$, $h$ 为定义在 $[a,+\infty)$ 上的三个连续函数, 且 $h(x)\leqslant f(x)\leqslant g(x)$. 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 若 $\int_{a}^{+\infty}h(x)\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}g(x)\,\mathrm{d}x$ 都收敛, 则 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 也收敛;
+    \item 若 $\int_{a}^{+\infty}h(x)\,\mathrm{d}x=\int_{a}^{+\infty}g(x)\,\mathrm{d}x=A$, 则 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x=A$.
+  \end{enumerate}
+
+  \item 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{+\infty}\dfrac{1-\mathrm{e}^{-x^{2}}}{x^{2}}\,\mathrm{d}x=\sqrt{\pi}$;
+    \item $\int_{0}^{1}\left[\int_{x}^{\sqrt{x}}\dfrac{\sin t}{t}\,\mathrm{d}t\right]\mathrm{d}x=1-\sin1$;
+    \item $\int_{\frac{\pi}{4}}^{\frac{\pi}{2}}\dfrac{1+\sin x}{1+\cos x}\mathrm{e}^{x}\,\mathrm{d}x=\mathrm{e}^{\frac{\pi}{2}}-(\sqrt{2}-1)\mathrm{e}^{\frac{\pi}{4}}$;
+    \item $\int_{0}^{1}\left(\ln\dfrac{1}{x}\right)^{\frac{1}{2}}\mathrm{d}x=\dfrac{\sqrt{\pi}}{2}$. (提示: 作变换 $u=\left(\ln\dfrac{1}{x}\right)^{\frac{1}{2}}$.)
+  \end{enumerate}
+
+\end{exblock}
+
+\begin{exblock}{思考题 6.5}
+
+  \item 计算下列两个积分的比值:
+  \[
+  \int_{0}^{1}\frac{\mathrm{d}t}{\sqrt{1-t^{4}}},\quad\int_{0}^{1}\frac{\mathrm{d}t}{\sqrt{1+t^{4}}}.
+\]
+
+  \item 令 $\varphi(x)=-\int_{0}^{x}\ln\cos t\,\mathrm{d}t$, $|x|\leqslant\dfrac{\pi}{2}$. 证明:
+  \[
+  \varphi(x)=-x\ln2+2\varphi\left(\frac{\pi}{4}+\frac{x}{2}\right)-2\varphi\left(\frac{\pi}{4}-\frac{x}{2}\right).
+\]
+  并计算 $\varphi\left(\dfrac{\pi}{2}\right)$. 再计算下列积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x$;
+    \item $\int_{0}^{\pi}x\ln\sin x\,\mathrm{d}x$;
+    \item $\int_{0}^{\frac{\pi}{2}}x\cot x\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\ln x}{\sqrt{1-x^{2}}}\,\mathrm{d}x$;
+    \item $\int_{0}^{1}\dfrac{\arcsin x}{x}\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 分别作变换 $x=\tan t$ 与 $x=\dfrac{1}{u}$, 计算无穷积分
+  \[
+  \int_{0}^{+\infty}\frac{\mathrm{d}x}{(1+x^{2})(1+x^{\alpha})},\quad\alpha\in\mathbb{R}.
+\]
+
+  \item 应用 $\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}x=\int_{0}^{\frac{\pi}{2}}\ln\cos x\,\mathrm{d}x=-\dfrac{\pi}{2}\ln2$, 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{\pi}\theta\ln\sin\theta\,\mathrm{d}\theta=-\dfrac{\pi^{2}}{2}\ln2$;
+    \item $\int_{0}^{\pi}\dfrac{\theta\sin\theta}{1-\cos\theta}\,\mathrm{d}\theta=2\pi\ln2$.
+  \end{enumerate}
+
+  \item 举例说明: $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛时, $\int_{a}^{+\infty}f^{2}(x)\,\mathrm{d}x$ 不一定收敛; $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 绝对收敛时, $\int_{a}^{+\infty}f^{2}(x)\,\mathrm{d}x$ 也不一定收敛.
+
+  \item 证明: 若 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 绝对收敛, 且 $\lim\limits_{x\to+\infty}f(x)=0$, 则 $\int_{a}^{+\infty}f^{2}(x)\,\mathrm{d}x$ 必定收敛.
+
+  \item 证明: $f$ 为 $[a,+\infty)$ 上的单调函数, 且 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 则 $\lim\limits_{x\to+\infty}f(x)=0$, 且 $f(x)=o\left(\dfrac{1}{x}\right)$, $x\to+\infty$.
+
+  \item 举例说明: 瑕积分 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 收敛时, $\int_{a}^{b}f^{2}(x)\,\mathrm{d}x$ 不一定收敛; $\int_{a}^{b}f(x)\,\mathrm{d}x$ 绝对收敛时, $\int_{a}^{b}f^{2}(x)\,\mathrm{d}x$ 也不一定收敛.
+
+  \item 证明: 若 $f$ 在 $[a,+\infty)$ 上可导, 且 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 与 $\int_{a}^{+\infty}f'(x)\,\mathrm{d}x$ 都收敛, 则 $\lim\limits_{x\to+\infty}f(x)=0$.
+
+\end{exblock}

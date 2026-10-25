@@ -1,0 +1,104 @@
+% ============ 冯克勤《代数数论》LaTeX 重排 ============
+% 采用 AJbook.cls 模板（李文威《代数学方法》书系模板；定理编号已适配原书）
+% 结构：三部分 9 章 + 结语 + 附录 A/B
+% 编号体系（原书约定，AJbook.cls 已适配）：
+%   - 章：第一章、第二章...（中文数字，见 titles-setup.tex）
+%   - 节：每章内 §1、§2...（每章重置）
+%   - 小节：节内 1.1、1.2...（每节重置）
+%   - 定理/命题：章.序（定理 1.1、1.2...）
+%   - 定义/引理/推论：各自独立，章内连续编号
+%   - 例：小节内编号；注记：不编号
+\documentclass[geometry=a4, fontsetup=font-setup-open.tex, titlesetup=titles-setup, coverpage=cover]{AJbook}
+
+% ============ 宏包 ============
+\usepackage{enumerate}      % 习题编号 [1.] 与子项 [(a)] 等
+\usepackage{chngcntr}       % \counterwithin
+\usepackage{imakeidx}
+\usepackage{hyperref}
+
+% ============ 编号体系 ============
+\counterwithin{section}{chapter}      % 每章 §1 重新开始
+\renewcommand{\thesection}{\arabic{section}}
+
+% 不编号定理（如第九章 Mahler 定理，原书无编号）
+% ntheorem 在 AJbook.cls 的 \AtEndPreamble 中加载，故此处也须用 \AtEndPreamble
+\AtEndPreamble{%
+  \theoremstyle{nonumberplain}%
+  \newtheorem{theoremnonum}{定理}%
+  \theoremstyle{plain}%
+}
+
+% ============ 超链接 ============
+\hypersetup{
+    pdfauthor={冯克勤},
+    pdftitle={代数数论},
+    pdfsubject={数论}
+}
+
+% ============ 自定义命令 ============
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\ann}{\operatorname{ann}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ass}{\operatorname{Ass}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\trdeg}{\operatorname{tr.deg}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Norm}{\mathrm{N}}      % 范 NL/K(a)
+\newcommand{\Tr}{\mathrm{Tr}}       % 迹 TrL/K(a)
+\newcommand{\disc}{\operatorname{disc}}
+\newcommand{\ord}{\operatorname{ord}}
+\providecommand{\blank}{{-}}
+
+% 索引
+\makeindex
+
+% ============ 文档开始 ============
+\begin{document}
+\frontmatter        % 封面(cover.tex) + 目录（模板自动处理）
+
+% 前言与绪论（占位）
+\input{frontmatter}
+
+\mainmatter
+
+% 第一部分：代数理论（第一--三章）
+\part{代数理论}
+
+\input{chapter01}
+\input{chapter02}
+\input{chapter03}
+
+% 第二部分：解析理论（第四--六章）
+\part{解析理论}
+
+\input{chapter04}
+\input{chapter05}
+\input{chapter06}
+
+% 第三部分：局部域理论（第七--九章）
+\part{局部域理论}
+
+\input{chapter07}
+\input{chapter08}
+\input{chapter09}
+
+% ============ 结语与附录 ============
+\input{conclusion}
+\input{appendixA}
+\input{appendixB}
+
+% 索引
+\printindex
+\addcontentsline{toc}{chapter}{索引}
+
+\end{document}

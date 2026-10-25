@@ -1,0 +1,2149 @@
+% !TeX program = xelatex
+% 第十四章 傅里叶级数
+\chapter{傅里叶级数}
+
+上一章引言中提到过，作为表示函数的工具，有两类级数是特别重要的，其中一类是上一章讨论过的幂级数，另一类则是本章要讨论的三角级数．幂级数是非负整幂函数的无穷和，三角级数则是三角函数的无穷和，它的一般形式是
+\[
+\begin{aligned}
+&\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right)\\
+={}&\frac{a_{0}}{2}+\left(a_{1}\cos x+b_{1}\sin x\right)+\left(a_{2}\cos 2x+b_{2}\sin 2x\right)+\cdots\\
+&+\left(a_{n}\cos nx+b_{n}\sin nx\right)+\cdots,
+\end{aligned}
+\]
+其中 $a_{0}$，$a_{n}$，$b_{n}$（$n=1,2,\cdots$）是常数（第一项写成 $\dfrac{a_{0}}{2}$ 的形式，以后将会看到是为了计算方便）．前面已经知道，用幂级数表示的函数，在收敛区间内部必须是无穷次可微的．而用三角级数表示的函数，则可以是不可微的，甚至不连续的函数．因此能用三角级数表示的函数，其范围要比能用幂级数表示的函数广得多．
+
+由于三角函数之间具有"正交性"，因此把函数用三角级数表示出来，可以看作是把函数按三角函数系作正交展开．这是一种崭新的观点，它使读者第一次从经典分析的内容迈向近代分析的理论．
+
+虽然幂级数所表示的函数范围比较狭一些，但由于幂级数比较简单，用起来十分方便，故幂级数与三角级数两者各有所长，希望读者都能掌握．
+
+\section{三角级数与傅里叶级数}
+
+由于任意三角级数
+\[
+\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right)
+\]
+中每一项都是以 $2\pi$ 为周期的函数，因此能用三角级数表示的函数必须是以 $2\pi$ 为周期的函数．以后将会看到，这个限制不是本质的，故现在先假设 $f(x)$ 是周期为 $2\pi$ 的函数．本章主要研究的问题是：
+
+（i）$f(x)$ 满足什么样的条件，可以使某三角级数收敛到它，或者说可以把 $f(x)$ 展开成三角级数？
+
+（ii）当 $f(x)$ 可以展开成三角级数时，各个系数怎么确定？
+
+在研究函数的幂级数展开时，我们碰到过同样的两个问题．当时解决这两个问题的方法是：先考虑问题（ii），假设展开式成立，通过逐项微分，求出系数应满足 $a_{n}=\dfrac{1}{n!}f^{(n)}(0)$．然后回头研究问题（i），把上述系数公式代入幂级数，求出函数与此幂级数部分和之差，看在什么条件下，当 $n\to\infty$ 时，这个差（余项）趋向于 $0$，这样便得到了展开的条件．这个方法，可以在这里借鉴用于解决函数的三角级数展开．
+
+现在我们从问题（ii）着手，我们需要关于周期函数的一个简单性质以及三角函数系的正交性．
+
+\begin{proposition}\label{prop:14-1}
+若 $f(x)$ 是周期为 $T$ 的函数，则对于任意的 $a$，有
+\[
+\int_{a}^{a+T}f(x)\dd x=\int_{0}^{T}f(x)\dd x.
+\]
+\end{proposition}
+
+\begin{proof}
+事实上，
+\[
+\int_{a}^{a+T}f(x)\dd x=\int_{a}^{0}f(x)\dd x+\int_{0}^{T}f(x)\dd x+\int_{T}^{a+T}f(x)\dd x,
+\]
+而对最后一个积分，作变量替换 $x=t+T$，则
+\[
+\int_{T}^{a+T}f(x)\dd x=\int_{0}^{a}f(t+T)\dd t=\int_{0}^{a}f(x)\dd x=-\int_{a}^{0}f(x)\dd x.
+\]
+代回上式便得所求．
+\end{proof}
+
+命题~\ref{prop:14-1} 证明了周期为 $T$ 的函数，在任何长度为 $T$ 的区间上的积分都是相等的，与区间所在的具体位置无关．
+
+称下面的函数集合
+\begin{equation}
+1,\ \cos x,\ \sin x,\ \cos 2x,\ \sin 2x,\ \cdots,\ \cos nx,\ \sin nx,\ \cdots
+\tag{1}
+\end{equation}
+为三角函数系．
+
+\begin{theorem}\label{thm:14-1}
+三角函数系中任意两个不同函数的乘积，在区间 $[-\pi,\pi]$ 上的积分为 $0$，即
+\[
+\begin{aligned}
+&\int_{-\pi}^{\pi}\sin nx\dd x=0,\ \int_{-\pi}^{\pi}\cos nx\dd x=0\quad(n=1,2,\cdots);\\
+&\int_{-\pi}^{\pi}\sin mx\cos nx\dd x=0\quad(m,n=1,2,\cdots);\\
+&\int_{-\pi}^{\pi}\sin mx\sin nx\dd x=0,\ \int_{-\pi}^{\pi}\cos mx\cos nx\dd x=0\quad(m\neq n,\ m,n=1,2,\cdots).
+\end{aligned}
+\]
+\end{theorem}
+
+\begin{proof}
+事实上，当 $m\neq n$ 时，
+\[
+\begin{aligned}
+&\int_{-\pi}^{\pi}\cos mx\cos nx\dd x\\
+={}&\frac{1}{2}\int_{-\pi}^{\pi}\left[\cos(m-n)x+\cos(m+n)x\right]\dd x\\
+={}&\frac{1}{2}\left[\frac{\sin(m-n)x}{m-n}+\frac{\sin(m+n)x}{m+n}\right]\bigg|_{-\pi}^{\pi}=0.
+\end{aligned}
+\]
+其余各式请读者自己证明．
+\end{proof}
+
+显然，根据命题~\ref{prop:14-1}，定理中的积分区间 $[-\pi,\pi]$，可以改为任意长度为 $2\pi$ 的区间，结论不变．特别地，可以改为 $[0,2\pi]$．
+
+定理~\ref{thm:14-1} 所断言的结论，称为三角函数系（1）的正交性．
+
+现在我们在较强的假定下，来回答前面的问题（ii）．和幂级数情形不同的是，在那里用的是逐项微分，在这里用的是逐项积分．
+
+设 $f(x)$ 是以 $2\pi$ 为周期的函数，并且假定 $f(x)$ 在区间 $[-\pi,\pi]$ 可以展开成一致收敛的三角级数
+\begin{equation}
+f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\tag{2}
+\end{equation}
+则
+\begin{equation}
+\left\{\begin{aligned}
+a_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nx\dd x,\quad n=0,1,2,\cdots,\\
+b_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nx\dd x,\quad n=1,2,\cdots.
+\end{aligned}\right.
+\tag{3}
+\end{equation}
+
+事实上，由于（2）中的级数在 $[-\pi,\pi]$ 一致收敛，则在 $[-\pi,\pi]$ 上可逐项积分，再根据定理~\ref{thm:14-1}，知
+\[
+\begin{aligned}
+\int_{-\pi}^{\pi}f(x)\dd x&=\int_{-\pi}^{\pi}\frac{a_{0}}{2}\dd x+\sum_{n=1}^{\infty}\left(a_{n}\int_{-\pi}^{\pi}\cos nx\dd x+b_{n}\int_{-\pi}^{\pi}\sin nx\dd x\right)\\
+&=\frac{a_{0}}{2}\cdot 2\pi,
+\end{aligned}
+\]
+故
+\[
+a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\dd x.
+\]
+在（2）两边同乘 $\cos kx$，则不难看出，这样得到的级数在 $[-\pi,\pi]$ 一致收敛到 $f(x)\cos kx$．在 $[-\pi,\pi]$ 逐项积分，得
+\[
+\begin{aligned}
+&\int_{-\pi}^{\pi}f(x)\cos kx\dd x\\
+={}&\frac{a_{0}}{2}\int_{-\pi}^{\pi}\cos kx\dd x+\sum_{n=1}^{\infty}\left(a_{n}\int_{-\pi}^{\pi}\cos nx\cos kx\dd x+b_{n}\int_{-\pi}^{\pi}\sin nx\cos kx\dd x\right)\\
+={}&a_{k}\int_{-\pi}^{\pi}\cos^{2}kx\dd x=a_{k}\pi,
+\end{aligned}
+\]
+故
+\[
+a_{k}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kx\dd x,\quad k=1,2,\cdots.
+\]
+同理，在（2）中两边同乘 $\sin kx$，再在 $[-\pi,\pi]$ 逐项积分，便得
+\[
+b_{k}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx\dd x,\quad k=1,2,\cdots.
+\]
+这样便证明了（3）．
+
+现在，我们从另一角度来看公式（3）．假设 $f(x)$ 是以 $2\pi$ 为周期的函数，在 $[-\pi,\pi]$ 是黎曼可积的（记住，这时 $\left|f\right|$ 也可积），或 $f(x)$ 在 $[-\pi,\pi]$ 的积分是瑕积分，且 $f(x)$ 在 $[-\pi,\pi]$ 的积分绝对收敛：
+\[
+\int_{-\pi}^{\pi}\left|f(x)\right|\dd x<+\infty.
+\]
+（以后我们用一个名词概括这两种情形：$f(x)$ 在 $[-\pi,\pi]$ 绝对可积），则等式（3）右边的积分均有意义，从而可以得到 $a_{n}$，$b_{n}$．用这些 $a_{n}$，$b_{n}$ 定义的三角级数，自然是与 $f(x)$ 密切相关的，我们因此引入下面的定义．
+
+\begin{definition}\label{def:14-1}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积，则由公式
+\[
+\left\{\begin{aligned}
+a_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nx\dd x,\quad n=0,1,2,\cdots,\\
+b_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nx\dd x,\quad n=1,2,\cdots
+\end{aligned}\right.
+\]
+决定的 $a_{n}$，$b_{n}$，称为 $f(x)$ 的\emph{傅里叶系数}（或简称为傅氏系数），称由这些 $a_{n}$，$b_{n}$ 决定的三角级数
+\[
+\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right)
+\]
+为 $f(x)$ 的\emph{傅里叶级数}（或傅氏级数），记为
+\[
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right).
+\]
+\end{definition}
+
+注意，上式不写成等号，是因为在定义的条件下，$a_{n}$，$b_{n}$ 有意义，因而可以写出右边的三角级数，但这三角级数是否收敛，或即使收敛但是否收敛到 $f(x)$，都是未知的，故写成 $f(x)$ 对应于它，而不能写成等号．不过，前面的讨论告诉我们，如果 $f(x)$ 在 $[-\pi,\pi]$ 能展开成一致收敛的三角级数，则这三角级数必定是 $f(x)$ 的傅里叶级数．现在我们可以看出，把傅氏级数的常数项写成 $\dfrac{a_{0}}{2}$，是为了使（3）中 $a_{0}$ 与 $a_{n}$ 的表达式统一．
+
+\begin{example}\label{ex:14-1-1}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $(-\pi,\pi)$ 内 $f(x)=x$，试求 $f(x)$ 的傅里叶级数．
+\end{example}
+
+\begin{proof}[解]
+$f(x)$ 的图形如图~\ref{fig:14-1}．
+
+由 $f(x)$ 在 $(-\pi,\pi)$ 是奇函数，知 $f(x)\cos nx$ 在 $(-\pi,\pi)$ 也是奇函数，因而 $a_{n}=0$．
+\[
+\begin{aligned}
+b_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}x\sin nx\dd x=\frac{2}{\pi}\int_{0}^{\pi}x\sin nx\dd x\\
+&=\frac{2}{n\pi}\left[-\left.x\cos nx\right|_{0}^{\pi}+\int_{0}^{\pi}\cos nx\dd x\right]\\
+&=\frac{(-1)^{n-1}2}{n},
+\end{aligned}
+\]
+故
+\[
+\begin{aligned}
+f(x)&\sim 2\sum_{n=1}^{\infty}\frac{(-1)^{n-1}\sin nx}{n}\\
+&=2\left(\sin x-\frac{\sin 2x}{2}+\frac{\sin 3x}{3}-\frac{\sin 4x}{4}+\cdots\right).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\u{1.6}
+  \draw[{-Latex}] (-5.6,0) -- (5.6,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-2.4) -- (0,2.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (-3*\u,-\u) -- (-\u,\u);
+  \draw[thick] (-\u,-\u) -- (\u,\u);
+  \draw[thick] (\u,-\u) -- (3*\u,\u);
+  \draw[dashed] (-3*\u,-\u) -- (-3*\u,\u);
+  \draw[dashed] (-\u,-\u) -- (-\u,\u);
+  \draw[dashed] (\u,-\u) -- (\u,\u);
+  \draw[dashed] (3*\u,-\u) -- (3*\u,\u);
+  \foreach \p/\q in {-3/-1,-1/1,-1/-1,1/1,1/-1,3/1}
+    \draw[fill=white] (\p*\u,\q*\u) circle (2.2pt);
+  \node[below] at (-3*\u,0) {$-3\pi$};
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+  \node[below] at (3*\u,0) {$3\pi$};
+  \node[left] at (0,\u) {$\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-1}
+\end{figure}
+
+\begin{example}\label{ex:14-1-2}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $(-\pi,\pi)$ 定义如下：
+\[
+f(x)=\begin{cases}
+-1, & -\pi<x<0,\\
+0, & x=0,\\
+1, & 0<x<\pi,
+\end{cases}
+\]
+试求 $f(x)$ 的傅里叶级数．
+\end{example}
+
+\begin{proof}[解]
+$f(x)$ 的图形如图~\ref{fig:14-2}：
+
+由于 $f(x)$ 在 $(-\pi,\pi)$ 是奇函数，故 $a_{n}=0$．
+\[
+\begin{aligned}
+b_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin nx\dd x=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin nx\dd x\\
+&=\frac{2}{\pi}\int_{0}^{\pi}\sin nx\dd x=-\left.\frac{2\cos nx}{n\pi}\right|_{0}^{\pi}=\frac{2}{n\pi}\left(1-(-1)^{n}\right)\\
+&=\begin{cases}
+\dfrac{4}{n\pi}, & n\ \text{为奇数},\\[4pt]
+0, & n\ \text{为偶数}.
+\end{cases}
+\end{aligned}
+\]
+故
+\[
+\begin{aligned}
+f(x)&\sim\frac{4}{\pi}\sum_{k=1}^{\infty}\frac{\sin(2k-1)x}{2k-1}\\
+&=\frac{4}{\pi}\left(\sin x+\frac{\sin 3x}{3}+\frac{\sin 5x}{5}+\cdots\right).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\u{1.2}
+  \draw[{-Latex}] (-3.2*\u,0) -- (5.2*\u,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-1.8) -- (0,1.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[{{Latex}-{Latex}}] (0,1) -- (\u,1);
+  \draw[{{Latex}-{Latex}}] (2*\u,1) -- (3*\u,1);
+  \draw[{{Latex}-{Latex}}] (4*\u,1) -- (5*\u,1);
+  \draw[{{Latex}-{Latex}}] (-2*\u,-1) -- (-\u,-1);
+  \draw[{{Latex}-{Latex}}] (-\u,-1) -- (0,-1);
+  \draw[{{Latex}-{Latex}}] (\u,-1) -- (2*\u,-1);
+  \draw[{{Latex}-{Latex}}] (3*\u,-1) -- (4*\u,-1);
+  \foreach \p in {-2,-1,0,1,2,3,4,5}
+    {
+      \ifodd\p\relax\draw[fill=white] (\p*\u,1) circle (1.8pt);\draw[fill=white] (\p*\u,-1) circle (1.8pt);
+      \else\draw[fill=white] (\p*\u,1) circle (1.8pt);\draw[fill=white] (\p*\u,-1) circle (1.8pt);\fi
+    }
+  \node[below] at (-2*\u,0) {$-2\pi$};
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+  \node[below] at (2*\u,0) {$2\pi$};
+  \node[below] at (3*\u,0) {$3\pi$};
+  \node[below] at (4*\u,0) {$4\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-2}
+\end{figure}
+
+\begin{example}\label{ex:14-1-3}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $(0,2\pi)$ 内 $f(x)=x^{2}$，试求 $f(x)$ 的傅里叶级数．
+\end{example}
+
+\begin{proof}[解]
+$f(x)$ 的图形如图~\ref{fig:14-3}．
+\[
+\begin{aligned}
+a_{0}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\dd x=\frac{1}{\pi}\int_{0}^{2\pi}f(x)\dd x=\frac{1}{\pi}\int_{0}^{2\pi}x^{2}\dd x\\
+&=\frac{1}{\pi}\left.\frac{x^{3}}{3}\right|_{0}^{2\pi}=\frac{8}{3}\pi^{2}.
+\end{aligned}
+\]
+\[
+\begin{aligned}
+a_{n}&=\frac{1}{\pi}\int_{0}^{2\pi}x^{2}\cos nx\dd x=-\frac{2}{\pi n}\int_{0}^{2\pi}x\sin nx\dd x\\
+&=\frac{2}{\pi n^{2}}\Big[\left.x\cos nx\right]\bigg|_{0}^{2\pi}-\frac{2}{\pi n^{2}}\int_{0}^{2\pi}\cos nx\dd x=\frac{4}{n^{2}}.
+\end{aligned}
+\]
+\[
+\begin{aligned}
+b_{n}&=\frac{1}{\pi}\int_{0}^{2\pi}x^{2}\sin nx\dd x\\
+&=-\frac{1}{n\pi}\Big[x^{2}\cos nx\Big]\bigg|_{0}^{2\pi}+\frac{2}{n\pi}\int_{0}^{2\pi}x\cos nx\dd x\\
+&=-\frac{4\pi}{n}-\frac{2}{n^{2}\pi}\int_{0}^{2\pi}\sin nx\dd x=-\frac{4\pi}{n}.
+\end{aligned}
+\]
+因此
+\[
+f(x)\sim\frac{4\pi^{2}}{3}+4\sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}}-4\pi\sum_{n=1}^{\infty}\frac{\sin nx}{n}.
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\ux{0.42}
+  \def\uy{0.062}
+  \def\T{6.2832}
+  \draw[{-Latex}] (-5.6,0) -- (5.6,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-0.6) -- (0,3.1) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \foreach \k in {-2,-1,0,1}
+    {
+      \draw[thick,domain=0:\T,samples=60,smooth,variable=\t]
+        plot({(2*\k*\T/2+\t)*\ux},{\t*\t*\uy});
+      \draw[fill=white] ({(2*\k*\T/2+\T)*\ux},{\T*\T*\uy}) circle (1.8pt);
+      \draw[dashed] ({(2*\k*\T/2)*\ux},0) -- ({(2*\k*\T/2)*\ux},{\T*\T*\uy});
+    }
+  \draw[dashed] ({(2*1*\T/2+\T)*\ux},0) -- ({(2*1*\T/2+\T)*\ux},{\T*\T*\uy});
+  \node[below] at (-2*\T*\ux,0) {$-4\pi$};
+  \node[below] at (-\T*\ux,0) {$-2\pi$};
+  \node[below] at (\T*\ux,0) {$2\pi$};
+  \node[below] at (2*\T*\ux,0) {$4\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-3}
+\end{figure}
+
+\begin{example}\label{ex:14-1-4}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 上 $f(x)=\left|x\right|$，试求 $f(x)$ 的傅里叶级数．
+\end{example}
+
+\begin{proof}[解]
+$f(x)$ 的图形如图~\ref{fig:14-4}：
+
+由 $f(x)$ 在 $[-\pi,\pi]$ 为偶函数，故 $b_{n}=0$．
+\[
+a_{0}=\frac{2}{\pi}\int_{0}^{\pi}x\dd x=\pi.
+\]
+\[
+\begin{aligned}
+a_{n}&=\frac{2}{\pi}\int_{0}^{\pi}x\cos nx\dd x=-\frac{2}{\pi n}\int_{0}^{\pi}\sin nx\dd x\\
+&=\frac{2}{n^{2}\pi}\left[(-1)^{n}-1\right]=\begin{cases}
+0, & n\ \text{为偶数},\\[4pt]
+-\dfrac{4}{n^{2}\pi}, & n\ \text{为奇数}.
+\end{cases}
+\end{aligned}
+\]
+故
+\[
+\begin{aligned}
+f(x)&\sim\frac{\pi}{2}-\frac{4}{\pi}\sum_{k=1}^{\infty}\frac{\cos(2k-1)x}{(2k-1)^{2}}\\
+&=\frac{\pi}{2}-\frac{4}{\pi}\left(\cos x+\frac{\cos 3x}{3^{2}}+\frac{\cos 5x}{5^{2}}+\cdots\right).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\u{1.3}
+  \draw[{-Latex}] (-4.6*\u,0) -- (4.6*\u,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-0.4) -- (0,2.0) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (-4*\u,0) -- (-3*\u,1.4) -- (-2*\u,0) -- (-\u,1.4) -- (0,0)
+    -- (\u,1.4) -- (2*\u,0) -- (3*\u,1.4) -- (4*\u,0);
+  \node[below] at (-4*\u,0) {$-4\pi$};
+  \node[below] at (-3*\u,0) {$-3\pi$};
+  \node[below] at (-2*\u,0) {$-2\pi$};
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+  \node[below] at (2*\u,0) {$2\pi$};
+  \node[below] at (3*\u,0) {$3\pi$};
+  \node[below] at (4*\u,0) {$4\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-4}
+\end{figure}
+
+\begin{xiti}
+\item 证明：
+\begin{ziti}
+\item $\sin x$，$\sin 2x$，$\cdots$，$\sin nx$，$\cdots$ 是 $[0,\pi]$ 上的正交系；
+\item $\sin x,\ \sin 3x,\ \cdots,\ \sin(2n+1)x,\ \cdots$ 是 $\left[0,\dfrac{\pi}{2}\right]$ 上的正交系；
+\item $1$，$\cos x$，$\cos 2x$，$\cdots$，$\cos nx$，$\cdots$ 是 $[0,\pi]$ 上的正交系；
+\item $1$，$\sin x$，$\sin 2x$，$\cdots$，$\sin nx$，$\cdots$ 不是 $[0,\pi]$ 上的正交系．
+\end{ziti}
+\item 求下列周期为 $2\pi$ 的函数的傅里叶级数：
+\begin{ziti}
+\item 三角多项式 $\displaystyle P_{n}(x)=\sum_{i=0}^{n}\left(a_{i}\cos ix+b_{i}\sin ix\right)$；
+\item $f(x)=x^{3}$ $(-\pi<x<\pi)$；
+\item $f(x)=\cos\dfrac{x}{2}$；
+\item $f(x)=\mathrm{e}^{ax}$ $(-\pi<x<\pi)$；
+\item $f(x)=\left|\sin x\right|$ $(-\pi<x<\pi)$；
+\item $f(x)=x\cos x$ $(-\pi<x<\pi)$；
+\item $f(x)=\begin{cases}x,&-\pi<x<0,\\ 0,&0<x<\pi;\end{cases}$
+\item $f(x)=\pi^{2}-x^{2}$ $(-\pi<x<\pi)$；
+\item $f(x)=\operatorname{sgn}\cos x$；
+\item $f(x)=\dfrac{\pi-x}{2}$ $(0<x<2\pi)$．
+\end{ziti}
+\item 设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积，证明：
+\begin{ziti}
+\item 如果函数 $f(x)$ 在 $[-\pi,\pi]$ 上满足 $f(x+\pi)=f(x)$，则
+\[
+a_{2m-1}=b_{2m-1}=0,\quad m=1,2,\cdots;
+\]
+\item 如果函数 $f(x)$ 在 $[-\pi,\pi]$ 上满足 $f(x+\pi)=-f(x)$，则
+\[
+a_{2m}=b_{2m}=0,\quad m=1,2,\cdots.
+\]
+\end{ziti}
+\end{xiti}
+
+\section{傅里叶级数的收敛性}
+
+现在我们来研究，以 $2\pi$ 为周期在 $[-\pi,\pi]$ 绝对可积的函数 $f(x)$，还需满足什么样的条件，便能保证它可以展开成它的傅里叶级数，或者说，它的傅里叶级数收敛到它．我们的方法是给出其傅里叶级数部分和的一个表达式，然后看这个部分和什么时候收敛到 $f(x)$．
+
+设
+\[
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right).
+\]
+记右边的 $f(x)$ 的傅里叶级数的前 $n$ 项部分和为
+\[
+\begin{aligned}
+S_{n}(x)&=S_{n}(f;x)\\
+&=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right).
+\end{aligned}
+\]
+把 $a_{k}$，$b_{k}$ 的表达式
+\[
+a_{k}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kx\dd x,\quad k=0,1,2,\cdots,
+\]
+\[
+b_{k}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx\dd x,\quad k=1,2,\cdots
+\]
+代进去，得到
+\[
+\begin{aligned}
+&S_{n}(f;x)\\
+={}&\frac{1}{2\pi}\int_{-\pi}^{\pi}f(u)\dd u+\sum_{k=1}^{n}\frac{1}{\pi}\int_{-\pi}^{\pi}f(u)\left[\cos ku\cos kx+\sin ku\sin kx\right]\dd u\\
+={}&\frac{1}{\pi}\int_{-\pi}^{\pi}f(u)\left[\frac{1}{2}+\sum_{k=1}^{n}\cos k(u-x)\right]\dd u.
+\end{aligned}
+\]
+利用以前推导出的恒等式
+\[
+\frac{1}{2}+\sum_{k=1}^{n}\cos kt=\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}},
+\]
+代入上式，得
+\begin{equation}
+S_{n}(f;x)=\frac{1}{\pi}\int_{-\pi}^{\pi}f(u)\frac{\sin\left(n+\dfrac{1}{2}\right)(u-x)}{2\sin\dfrac{u-x}{2}}\dd u.
+\tag{1}
+\end{equation}
+
+这就得到了部分和的一个表达式，称它为函数 $f(x)$ 的\emph{狄利克雷积分}，其中
+\[
+D_{n}(t)=\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}
+\]
+称为\emph{狄利克雷核}．
+
+等式（1）对任意以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积的函数 $f(x)$ 都是成立的．特别地，$f(x)=1$ 时显然其傅里叶系数 $a_{0}=2$，$a_{n}=b_{n}=0$（$n=1,2,\cdots$）．故 $S_{n}(1;x)=1$，把它们代入（1）式，便知
+\[
+1=\frac{1}{\pi}\int_{-\pi}^{\pi}\frac{\sin\left(n+\dfrac{1}{2}\right)(u-x)}{2\sin\dfrac{u-x}{2}}\dd u
+\]
+或
+\begin{equation}
+1=\frac{1}{\pi}\int_{-\pi}^{\pi}\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t
+\tag{2}
+\end{equation}
+对任意 $x$ 与 $n=1,2,\cdots$ 都成立．用狄利克雷核表示，也就是
+\[
+\frac{1}{\pi}\int_{-\pi}^{\pi}D_{n}(t)\dd t=1.
+\]
+在（1）右边的积分中，令 $t=u-x$ 作变量替换，注意到被积函数是以 $2\pi$ 为周期的，根据上一节命题~\ref{prop:14-1}，在长度为 $2\pi$ 的区间上的积分均相等，便有
+\begin{equation}
+\begin{aligned}
+S_{n}(f;x)&=\frac{1}{\pi}\int_{-\pi-x}^{\pi-x}f(x+t)\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t\\
+&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x+t)\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t\\
+&=\frac{1}{\pi}\int_{0}^{\pi}\left[f(x+t)+f(x-t)\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t.
+\end{aligned}
+\tag{3}
+\end{equation}
+
+我们先看 $S_{n}(f;x)$ 是否逐点收敛，即看在什么条件下，对某个 $x_{0}\in[-\pi,\pi]$，是否存在 $S$，使 $S_{n}(f;x_{0})$ 以 $S$ 为极限，或者说
+\[
+S_{n}(f;x_{0})-S\to 0\quad(n\to\infty).
+\]
+在（2）式中，用 $S$ 乘两边，对右边的积分作类似于上面的变量替换，得
+\begin{equation}
+S=\frac{S}{\pi}\int_{-\pi}^{\pi}\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t=\frac{2S}{\pi}\int_{0}^{\pi}\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t.
+\tag{4}
+\end{equation}
+把（3）式（令 $x=x_{0}$）与（4）式相减，有
+\begin{equation}
+\begin{aligned}
+&S_{n}(f;x_{0})-S\\
+={}&\frac{1}{\pi}\int_{0}^{\pi}\left[f(x_{0}+t)+f(x_{0}-t)-2S\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t\\
+={}&\frac{1}{\pi}\int_{0}^{\pi}\varphi_{x_{0}}(t)\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t,
+\end{aligned}
+\tag{5}
+\end{equation}
+其中
+\[
+\varphi_{x_{0}}(t)=f(x_{0}+t)+f(x_{0}-t)-2S.
+\]
+看 $f(x)$ 的傅里叶级数的部分和 $S_{n}(f;x)$ 在 $x_{0}$ 这点是否收敛，化成了能否选择到 $S$，使（5）式中的 $S_{n}(f;x_{0})-S\to 0$（当 $n\to\infty$）．
+
+由 $\varphi_{x_{0}}(t)$ 的形式可以看出，如果 $f(x)$ 在 $x_{0}$ 连续，可以选择 $S=f(x_{0})$．如果 $f(x)$ 在 $x_{0}$ 不连续，但左右极限 $f(x_{0}-0)$ 与 $f(x_{0}+0)$ 都存在，则选择
+\[
+S=\frac{f(x_{0}+0)+f(x_{0}-0)}{2}
+\]
+（当 $f(x)$ 在 $x_{0}$ 连续时，它也就等于 $f(x_{0})$）．对这样选择的 $S$，当 $t\to 0^{+}$ 时，有 $\varphi_{x_{0}}(t)\to 0$．下面我们把（5）中的积分分成两部分：在 $[0,\delta]$ 上的积分与在 $[\delta,\pi]$ 上的积分．为处理后一部分的积分，我们需要下面的引理．
+
+\begin{lemma}[黎曼-勒贝格（Lebesgue，1875---1941）]\label{lem:14-2-1}
+若 $g(t)$ 在 $[a,b]$ 绝对可积，则
+\[
+\lim_{p\to+\infty}\int_{a}^{b}g(t)\sin pt\dd t=0,\qquad\lim_{p\to+\infty}\int_{a}^{b}g(t)\cos pt\dd t=0.
+\]
+\end{lemma}
+
+\begin{proof}
+只证第一个等式，第二个等式可类似证明．
+
+先设 $g(t)$ 在 $[a,b]$ 黎曼可积．首先注意到，对任意的 $\alpha,\beta$，有
+\[
+\left|\int_{\alpha}^{\beta}\sin pt\dd t\right|=\left|\frac{\cos p\alpha-\cos p\beta}{p}\right|\leqslant\frac{2}{p}.
+\]
+给 $[a,b]$ 以分法：
+\[
+a=t_{0}<t_{1}<\cdots<t_{n}=b.
+\]
+记 $m_{k}$ 为 $g(t)$ 在 $[t_{k-1},t_{k}]$ 的下确界，这时
+\[
+\begin{aligned}
+\int_{a}^{b}g(t)\sin pt\dd t&=\sum_{k=1}^{n}\int_{t_{k-1}}^{t_{k}}g(t)\sin pt\dd t\\
+&=\sum_{k=1}^{n}\int_{t_{k-1}}^{t_{k}}\left(g(t)-m_{k}\right)\sin pt\dd t+\sum_{k=1}^{n}\int_{t_{k-1}}^{t_{k}}m_{k}\sin pt\dd t.
+\end{aligned}
+\]
+因此
+\[
+\begin{aligned}
+\left|\int_{a}^{b}g(t)\sin pt\dd t\right|&\leqslant\sum_{k=1}^{n}\int_{t_{k-1}}^{t_{k}}\left|g(t)-m_{k}\right|\dd t+\sum_{k=1}^{n}\left|m_{k}\right|\frac{2}{p}\\
+&\leqslant\sum_{k=1}^{n}\omega_{k}\Delta t_{k}+2\sum_{k=1}^{n}\left|m_{k}\right|\cdot\frac{1}{p},
+\end{aligned}
+\]
+其中 $\omega_{k}$ 为 $g(t)$ 在 $[t_{k-1},t_{k}]$ 的振幅，$\Delta t_{k}=t_{k}-t_{k-1}$．由 $g(t)$ 可积性知，对任给的 $\varepsilon>0$，可以选定分法，使
+\[
+\sum_{k=1}^{n}\omega_{k}\Delta t_{k}<\frac{\varepsilon}{2}.
+\]
+取定分法后，$\displaystyle\sum_{k=1}^{n}\left|m_{k}\right|$ 就是固定的了，只要
+\[
+p>\frac{4}{\varepsilon}\sum_{k=1}^{n}\left|m_{k}\right|,
+\]
+就有
+\[
+\left|\int_{a}^{b}g(t)\sin pt\dd t\right|<\varepsilon,
+\]
+这就在 $g(t)$ 黎曼可积的假设下证明了引理~\ref{lem:14-2-1} 的结论．
+
+再设 $g(t)$ 在 $[a,b]$ 无界，但瑕积分
+\[
+\int_{a}^{b}g(t)\dd t
+\]
+绝对收敛．不妨设瑕积分只有一个瑕点，且就是 $b$．这时，对任给的 $\varepsilon>0$，选 $\eta>0$ 充分小，使得
+\[
+\int_{b-\eta}^{b}\left|g(t)\right|\dd t<\frac{\varepsilon}{2},
+\]
+因此
+\[
+\left|\int_{b-\eta}^{b}g(t)\sin pt\dd t\right|\leqslant\int_{b-\eta}^{b}\left|g(t)\right|\dd t<\frac{\varepsilon}{2},
+\]
+对固定的 $\eta>0$，由于 $g(t)$ 在 $[a,b-\eta]$ 黎曼可积，故存在 $N$，只要 $p>N$，有
+\[
+\left|\int_{a}^{b-\eta}g(t)\sin pt\dd t\right|<\frac{\varepsilon}{2},
+\]
+从而只要 $p>N$，有
+\[
+\left|\int_{a}^{b}g(t)\sin pt\dd t\right|\leqslant\left|\int_{a}^{b-\eta}g(t)\sin pt\dd t\right|+\int_{b-\eta}^{b}\left|g(t)\right|\dd t<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,
+\]
+引理~\ref{lem:14-2-1} 证完．
+\end{proof}
+
+\begin{corollary}\label{cor:14-2-1}
+若 $f(t)$ 以 $2\pi$ 为周期，且在 $[-\pi,\pi]$ 绝对可积，则 $f(x)$ 的傅里叶系数当 $n\to+\infty$ 时趋向于 $0$，即
+\[
+\lim_{n\to+\infty}a_{n}=\lim_{n\to+\infty}b_{n}=0.
+\]
+\end{corollary}
+
+\begin{theorem}[黎曼局部化定理]\label{thm:14-2}
+若函数 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积，则 $f(x)$ 的傅里叶级数在某点 $x_{0}$ 的收敛或发散，只与函数 $f(x)$ 在 $x_{0}$ 附近的性质有关．
+\end{theorem}
+
+把定理的结论说得更清楚一些，是说，$f(x)$ 的傅里叶级数在 $x_{0}$ 的部分和 $S_{n}(f;x_{0})$ 有极限存在或没有极限，只与 $f(x)$ 在 $(x_{0}-\delta,x_{0}+\delta)$ 的性质有关，其中 $\delta>0$ 是一可任意小的正数．
+
+\begin{proof}[定理~\ref{thm:14-2} 的证明]
+对任意正数 $\delta>0$，不妨设 $0<\delta<\pi$，根据等式（3），有
+\begin{equation}
+\begin{aligned}
+&S_{n}(f;x_{0})\\
+={}&\frac{1}{\pi}\int_{0}^{\delta}\left[f(x_{0}+t)+f(x_{0}-t)\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t+\\
+&\frac{1}{\pi}\int_{\delta}^{\pi}\frac{f(x_{0}+t)+f(x_{0}-t)}{2\sin\dfrac{t}{2}}\sin\left(n+\frac{1}{2}\right)t\dd t,
+\end{aligned}
+\tag{6}
+\end{equation}
+由于在 $[\delta,\pi]$ 上 $\dfrac{1}{2\sin\dfrac{t}{2}}$ 连续且有界，因此
+\[
+\frac{f(x_{0}+t)+f(x_{0}-t)}{2\sin\dfrac{t}{2}}
+\]
+在 $[\delta,\pi]$ 绝对可积．根据黎曼-勒贝格引理，知当 $n\to+\infty$ 时，（6）右边的第二个积分趋向于 $0$．这样 $S_{n}(f;x_{0})$ 当 $n\to+\infty$ 时的收敛与发散性与
+\[
+\frac{1}{\pi}\int_{0}^{\delta}\left[f(x_{0}+t)+f(x_{0}-t)\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t
+\]
+完全相同，而最后这个积分完全由 $f(x)$ 在 $[x_{0}-\delta,x_{0}+\delta]$ 的性质决定，定理~\ref{thm:14-2} 证完．
+\end{proof}
+
+很容易再用一次黎曼-勒贝格引理，把上述在 $[0,\delta]$ 的积分再改写一下，我们要证明，$S_{n}(f;x_{0})$ 当 $n\to+\infty$ 时的收敛与发散性，与
+\[
+\frac{1}{\pi}\int_{0}^{\delta}\left[f(x_{0}+t)+f(x_{0}-t)\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{t}\dd t
+\]
+完全相同，事实上由于
+\[
+\begin{aligned}
+\frac{1}{2\sin\dfrac{t}{2}}-\frac{1}{t}&=\frac{t-2\sin\dfrac{t}{2}}{2t\sin\dfrac{t}{2}}\\
+&=\frac{t-2\left[\dfrac{t}{2}+o\left(t^{2}\right)\right]}{2t\sin\dfrac{t}{2}}\to 0\quad(t\to 0),
+\end{aligned}
+\]
+知函数
+\[
+\frac{1}{2\sin\dfrac{t}{2}}-\frac{1}{t}
+\]
+在 $[0,\pi]$ 上有界连续（在 $t=0$ 时补充定义函数值为 $0$）．根据黎曼-勒贝格引理有
+\[
+\frac{1}{\pi}\int_{0}^{\delta}\left[f(x_{0}+t)+f(x_{0}-t)\right]\left[\frac{1}{2\sin\dfrac{t}{2}}-\frac{1}{t}\right]\sin\left(n+\frac{1}{2}\right)t\dd t\to 0\quad(n\to+\infty),
+\]
+故
+\[
+\frac{1}{\pi}\int_{0}^{\delta}\left[f(x_{0}+t)+f(x_{0}-t)\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t
+\]
+的收敛和发散性与
+\[
+\frac{1}{\pi}\int_{0}^{\delta}\left[f(x_{0}+t)+f(x_{0}-t)\right]\frac{\sin\left(n+\dfrac{1}{2}\right)t}{t}\dd t
+\]
+完全相同．再用定理~\ref{thm:14-2} 便得到要证明的结论．
+
+黎曼的局部化定理，揭示了这样一件事实，即 $S_{n}(f;x_{0})$ 收敛与否，同 $f(x)$ 在包含 $x_{0}$ 的一个邻域 $(x_{0}-\delta,x_{0}+\delta)$ 以外的情况完全无关（其中 $\delta>0$ 可任意小），这是十分深刻的结果．事实上，根据定义，$f(x)$ 的傅氏系数 $a_{n}$ 与 $b_{n}$ 是用积分定义的，它取决于 $f(x)$ 在一个周期 $[-\pi,\pi]$ 的整体性质，而 $S_{n}(f;x_{0})$ 是由 $a_{n}$，$b_{n}$ 定义的．因此，表面上看，$S_{n}(f;x_{0})$ 的收敛性应取决于 $f(x)$ 在 $[-\pi,\pi]$ 的整体性质．而黎曼的局部化原理却告诉我们，$S_{n}(f;x_{0})$ 是否收敛，只决定于 $f(x)$ 在 $(x_{0}-\delta,x_{0}+\delta)$ 上的性质（$\delta>0$ 可任意小）．这是表面上完全看不出来的．此事还可以换个角度看，设想有两个以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积的函数 $f(x)$ 与 $g(x)$，这两个函数只在 $[x_{0}-\delta,x_{0}+\delta]$（对某个很小的 $\delta>0$）相等，而在 $[-\pi,\pi]\setminus[x_{0}-\delta,x_{0}+\delta]$ 很不同，则由它们定义的傅里叶系数便可能完全不同．但黎曼局部化定理却揭示，$S_{n}(f;x_{0})$ 与 $S_{n}(g;x_{0})$ 的收敛情形却完全是一样的．如果不是经过上面一连串推理的证明，这当然是不容易想像得到的．
+
+现在我们可以得到傅里叶级数收敛的判别法了．
+
+\begin{theorem}[迪尼判别法]\label{thm:14-3}
+若 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积，且存在 $\delta>0$，使得
+\[
+\int_{0}^{\delta}\frac{\left|\varphi_{x_{0}}(t)\right|}{t}\dd t
+\]
+存在，其中
+\[
+\varphi_{x_{0}}(t)=f(x_{0}+t)+f(x_{0}-t)-2S,
+\]
+则 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $S$，即
+\[
+S_{n}(f;x_{0})\to S\quad(n\to+\infty).
+\]
+\end{theorem}
+
+\begin{proof}
+已知公式（5）
+\[
+S_{n}(f;x_{0})-S=\frac{1}{\pi}\int_{0}^{\pi}\frac{\varphi_{x_{0}}(t)}{2\sin\dfrac{t}{2}}\sin\left(n+\frac{1}{2}\right)t\dd t,
+\]
+由黎曼-勒贝格引理知，只要证明了
+\[
+g(t)=\frac{\varphi_{x_{0}}(t)}{2\sin\dfrac{t}{2}}
+\]
+在 $[0,\pi]$ 绝对可积，便有 $S_{n}(f;x_{0})\to S$（$n\to+\infty$）．而这是不难证明的．事实上，$\varphi_{x_{0}}$ 在 $[0,\pi]$ 绝对可积，而 $\dfrac{1}{2\sin\dfrac{t}{2}}$ 在 $[\delta,\pi]$ 连续有界，但在 $[0,\delta]$，
+\[
+g(t)=\frac{\varphi_{x_{0}}(t)}{t}\cdot\frac{t}{2\sin\dfrac{t}{2}},
+\]
+其中 $\dfrac{\varphi_{x_{0}}(t)}{t}$ 在 $[0,\delta]$ 绝对可积，$\dfrac{t}{2\sin\dfrac{t}{2}}$ 在 $[0,\delta]$ 有界连续（在 $t=0$ 补充定义函数值 $1$），故 $g(t)$ 在 $[0,\delta]$ 绝对可积，从而在 $[0,\pi]$ 绝对可积，定理~\ref{thm:14-3} 证完．
+\end{proof}
+
+有以下两种常见的情形：
+
+（i）$f(x)$ 在 $x_{0}$ 连续，取 $S=f(x_{0})$，则
+\[
+\frac{\varphi_{x_{0}}(t)}{t}=\frac{f(x_{0}+t)-f(x_{0})}{t}+\frac{f(x_{0}-t)-f(x_{0})}{t}.
+\]
+这时只要 $\dfrac{f(x_{0}+t)-f(x_{0})}{t}$，$\dfrac{f(x_{0}-t)-f(x_{0})}{t}$ 在 $[0,\delta]$ 绝对可积，就有 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $f(x_{0})$．注意到此时 $f(x_{0}\pm t)-f(x_{0})\to 0$（$t\to 0$），根据瑕积分的比较判别法知，要 $\dfrac{\varphi_{x_{0}}(t)}{t}$ 在 $[0,\delta]$ 绝对可积，只需 $f(x_{0}\pm t)-f(x_{0})$ 趋于 $0$ 的速度足够快便可．这便是下面的定理~\ref{thm:14-4} 所叙述的．
+
+（ii）$f(x)$ 在 $x_{0}$ 是第一类间断或可去间断，即 $f(x)$ 在 $x_{0}$ 的左右极限 $f(x_{0}+0)$，$f(x_{0}-0)$ 存在．这时，取
+\[
+S=\frac{f(x_{0}+0)+f(x_{0}-0)}{2},
+\]
+则
+\[
+\frac{\varphi_{x_{0}}(t)}{t}=\frac{f(x_{0}+t)-f(x_{0}+0)}{t}+\frac{f(x_{0}-t)-f(x_{0}-0)}{t}.
+\]
+若 $\dfrac{f(x_{0}+t)-f(x_{0}+0)}{t}$，$\dfrac{f(x_{0}-t)-f(x_{0}-0)}{t}$ 分别在 $[0,\delta]$ 绝对可积，则 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $\dfrac{f(x_{0}+0)+f(x_{0}-0)}{2}$．注意到此时
+\[
+f(x_{0}+t)-f(x_{0}+0)\to 0,
+\]
+\[
+f(x_{0}-t)-f(x_{0}-0)\to 0\quad(t\to 0^{+}),
+\]
+根据瑕积分收敛的比较判别法知，要 $\dfrac{\varphi_{x_{0}}(t)}{t}$ 在 $[0,\delta]$ 可积，只需
+\[
+f(x_{0}+t)-f(x_{0}+0)\to 0,
+\]
+\[
+f(x_{0}-t)-f(x_{0}-0)\to 0\quad(\text{当 }t\to 0^{+})
+\]
+足够快便可．
+
+\begin{theorem}[利普希茨（Lipschitz，1832---1903）判别法]\label{thm:14-4}
+若 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积，且在 $x_{0}$ 满足 $\alpha$（$\alpha>0$）阶的利普希茨条件，即存在 $\delta>0$ 与常数 $M$，使得
+\[
+\left|f(x_{0}\pm t)-f(x_{0})\right|\leqslant Mt^{\alpha}\quad(0<t\leqslant\delta)
+\]
+成立，则函数 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $f(x_{0})$．
+\end{theorem}
+
+\begin{proof}
+因为当 $0<t\leqslant\delta$ 时
+\[
+\begin{aligned}
+\left|\frac{\varphi_{x_{0}}}{t}\right|&\leqslant\left|\frac{f(x_{0}+t)-f(x_{0})}{t}\right|+\left|\frac{f(x_{0}-t)-f(x_{0})}{t}\right|\\
+&\leqslant\frac{2Mt^{\alpha}}{t}=\frac{2M}{t^{1-\alpha}},
+\end{aligned}
+\]
+其中 $1-\alpha<1$，由瑕积分的比较判别法与狄尼判别法，知 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $f(x_{0})$．定理~\ref{thm:14-4} 证完．
+\end{proof}
+
+\setcounter{corollary}{0}
+\begin{corollary}\label{cor:14-2-2}
+若 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积，且 $f(x)$ 在 $x_{0}$ 有左右微商 $f_{+}^{\prime}(x_{0})$、$f_{-}^{\prime}(x_{0})$ 存在，则 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $f(x_{0})$．
+\end{corollary}
+
+\begin{proof}
+已知
+\[
+\begin{aligned}
+\lim_{t\to 0^{+}}\frac{f(x_{0}+t)-f(x_{0})}{t}&=f_{+}^{\prime}(x_{0}),\\
+\lim_{t\to 0^{-}}\frac{f(x_{0}+t)-f(x_{0})}{t}&=f_{-}^{\prime}(x_{0}),
+\end{aligned}
+\]
+由极限存在与有界的关系知存在 $\delta>0$，$M>0$，使得
+\[
+\left|\frac{f(x_{0}+t)-f(x_{0})}{t}\right|\leqslant M\quad(\text{当 }\left|t\right|<\delta),
+\]
+即
+\[
+\left|f(x_{0}\pm t)-f(x_{0})\right|\leqslant Mt\quad(\text{当 }0<t<\delta).
+\]
+也就是说 $f(x)$ 在 $x_{0}$ 满足 $1$ 阶的利普希茨条件，故推论~\ref{cor:14-2-2} 的结论成立．
+\end{proof}
+
+上面的讨论可以推广到 $f(x)$ 在 $x_{0}$ 是第一类间断或可去间断的情形．这时如果
+\[
+\begin{aligned}
+\lim_{t\to 0^{+}}\frac{f(x_{0}+t)-f(x_{0}+0)}{t},\\
+\lim_{t\to 0^{+}}\frac{f(x_{0}-t)-f(x_{0}-0)}{-t}
+\end{aligned}
+\]
+存在，即把 $f(x)$ 在 $x_{0}$ 的函数值改为 $f(x_{0}+0)$，则 $f(x)$ 在 $x_{0}$ 有右微商，把 $f(x)$ 在 $x_{0}$ 的函数值改为 $f(x_{0}-0)$，则 $f(x)$ 在 $x_{0}$ 有左微商，那么 $f(x)$ 的傅里叶级数在 $x_{0}$ 收敛到 $\dfrac{f(x_{0}+0)+f(x_{0}-0)}{2}$．证明留给读者．
+
+现在我们引入函数 $f(x)$ 在 $[a,b]$ 逐段可微的概念．若 $[a,b]$ 可分为有限个区间：
+\[
+a=x_{0}<x_{1}<\cdots<x_{n}=b,
+\]
+使得 $f(x)$ 在每个开区间 $(x_{i-1},x_{i})$（$i=1,2,\cdots,n$）均可导，而在区间的端点 $f(x)$ 有左右极限 $f(x_{i}\pm 0)$ 存在（在 $a=x_{0}$ 只有右极限，在 $b=x_{n}$ 只有左极限），并且对 $i=0,1,\cdots,n$
+\[
+\begin{aligned}
+\lim_{t\to 0^{+}}\frac{f(x_{i}+t)-f(x_{i}+0)}{t},\\
+\lim_{t\to 0^{-}}\frac{f(x_{i}+t)-f(x_{i}-0)}{t},
+\end{aligned}
+\]
+存在，则称 $f(x)$ 在 $[a,b]$ 是逐段可微的．
+
+逐段可微的函数图形如图~\ref{fig:14-5}：
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.6,baseline=(current bounding box.center)]
+  \draw[{-Latex}] (-1.2,0) -- (6.2,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-0.6) -- (0,3.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick,domain=-1:1.3,samples=40,smooth,variable=\x] plot(\x,{1+0.6*\x-0.1*\x*\x});
+  \draw[thick] (1.3,1.63) -- (2.2,0.9);
+  \draw[dashed] (1.3,0) -- (1.3,1.63);
+  \draw[dashed] (2.2,0) -- (2.2,2.4);
+  \draw[thick,domain=2.2:3.4,samples=40,smooth,variable=\x] plot(\x,{2.4-0.3*(\x-2.2)*(\x-2.2)});
+  \draw[thick] (3.4,2.0) -- (4.3,1.0);
+  \draw[dashed] (3.4,0) -- (3.4,2.0);
+  \draw[dashed] (4.3,0) -- (4.3,2.6);
+  \draw[thick,domain=4.3:5.6,samples=40,smooth,variable=\x] plot(\x,{1.0+0.6*(\x-4.3)});
+  \draw[fill=white] (1.3,1.63) circle (1.8pt);
+  \draw[fill=white] (2.2,0.9) circle (1.8pt);
+  \draw[fill=black] (2.2,2.4) circle (1.6pt);
+  \draw[fill=white] (3.4,2.0) circle (1.8pt);
+  \draw[fill=black] (3.4,2.6) circle (1.6pt);
+  \draw[fill=white] (4.3,1.0) circle (1.8pt);
+  \draw[fill=black] (4.3,2.6) circle (1.6pt);
+  \draw[fill=black] (5.6,1.78) circle (1.6pt);
+  \node[below] at (-1,0) {$a$};
+  \node[below] at (1.3,0) {$x_{1}$};
+  \node[below] at (2.2,0) {$x_{2}$};
+  \node[below] at (3.4,0) {$x_{3}$};
+  \node[below] at (4.3,0) {$x_{4}$};
+  \node[below] at (5.6,0) {$b$};
+  \node[above] at (3.4,2.7) {$y=f(x)$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-5}
+\end{figure}
+
+综合前面的讨论，我们得到
+
+\begin{theorem}\label{thm:14-5}
+若 $f(x)$ 以 $2\pi$ 为周期，且在 $[-\pi,\pi]$ 逐段可微，则 $f(x)$ 的傅里叶级数在 $f(x)$ 的连续点收敛到 $f(x)$，在 $f(x)$ 的不连续点（第一类间断或可去间断）收敛到 $\dfrac{f(x+0)+f(x-0)}{2}$．
+\end{theorem}
+
+一个有意思的问题是，已知 $f(x)$ 在 $[-\pi,\pi]$ 逐段可微，如果 $f(x)$ 在 $x=-\pi$ 间断，那么 $f(x)$ 的傅里叶级数在 $-\pi$ 应收敛到什么？事实上，它应收敛到
+\[
+\frac{f(-\pi+0)+f(-\pi-0)}{2},
+\]
+注意到 $f(x)$ 是以 $2\pi$ 为周期的，因此
+\[
+\begin{aligned}
+f(-\pi-0)&=\lim_{t\to 0^{-}}f(-\pi+t)\\
+&=\lim_{t\to 0^{-}}f(\pi+t)=f(\pi-0).
+\end{aligned}
+\]
+故 $f(x)$ 的傅里叶级数在 $-\pi$ 应收敛到
+\[
+\frac{f(-\pi+0)+f(\pi-0)}{2},
+\]
+由 $f(x)$ 的周期性知，其傅里叶级数在 $x=\pi$ 也应收敛到同一数
+\[
+\frac{f(-\pi+0)+f(\pi-0)}{2}.
+\]
+
+定理~\ref{thm:14-5} 给出了函数可展开成傅里叶级数的一个充分条件．这个条件看来是相当弱的，只要函数在该点连续且可微（其实根据定理~\ref{thm:14-4}，只要有一点光滑性——满足 $\alpha$ 阶利普希茨条件就够了），其傅里叶级数便收敛到函数本身．甚至对不连续点，只要满足一定的条件，也可收敛到 $\dfrac{f(x+0)+f(x-0)}{2}$．回忆函数能展开成幂级数，在展开区域的内部，函数必须是无穷次可微的．比较起来，能展开成傅里叶级数的函数范围的确广得多．历史上，魏尔斯特拉斯于 $1875$ 年用三角级数
+\[
+f(x)=\sum_{n=0}^{\infty}b^{n}\cos a^{n}\pi x
+\]
+构造了第一个处处连续处处不可微的函数，其中 $a$ 是正奇整数，$0<b<1$，满足 $ab>1+\dfrac{3}{2}\pi$．这类函数在近代概率论、布朗运动、分形理论等研究中有重要的意义．
+
+\begin{example}\label{ex:14-2-1}
+$f(x)$ 以 $2\pi$ 为周期，在 $(-\pi,\pi)$ 定义为
+\[
+f(x)=\begin{cases}
+-1, & -\pi<x<0,\\
+0, & x=0,\\
+1, & 0<x<\pi.
+\end{cases}
+\]
+\end{example}
+
+在上一节中我们得到过它的傅里叶级数
+\[
+f(x)\sim\frac{4}{\pi}\left(\sin x+\frac{\sin 3x}{3}+\frac{\sin 5x}{5}+\cdots\right).
+\]
+由于 $f(x)$ 在 $[-\pi,\pi]$ 逐段可微，
+\[
+f(0)=0=\frac{f(0+0)+f(0-0)}{2},
+\]
+而在 $x=-\pi$ 与 $x=\pi$ 时，有
+\[
+\frac{f(-\pi+0)+f(\pi-0)}{2}=0,
+\]
+根据定理~\ref{thm:14-5}，$f(x)$ 的傅里叶级数收敛，其和函数 $F(x)$ 是以 $2\pi$ 为周期的函数
+\[
+F(x)=\begin{cases}
+f(x), & x\neq k\pi,\\
+0, & x=k\pi
+\end{cases}\quad(k=\pm 1,\pm 2,\cdots),
+\]
+即
+\[
+\frac{4}{\pi}\sum_{k=1}^{\infty}\frac{1}{2k-1}\sin(2k-1)x=\begin{cases}
+f(x), & x\neq k\pi,\\
+0, & x=k\pi
+\end{cases}\quad(k=\pm 1,\pm 2,\cdots).
+\]
+换句话说，只要补充定义 $f(k\pi)=0$（$k=\pm 1,\pm 2,\cdots$），便有
+\[
+F(x)=f(x)=\frac{4}{\pi}\sum_{k=1}^{\infty}\frac{1}{2k-1}\sin(2k-1)x
+\]
+对一切 $x$ 成立．特别地，在 $[-\pi,\pi]$ 有
+\[
+\frac{4}{\pi}\sum_{k=1}^{\infty}\frac{1}{2k-1}\sin(2k-1)x=\begin{cases}
+-1, & -\pi<x<0,\\
+1, & 0<x<\pi,\\
+0, & x=0,\pm\pi.
+\end{cases}
+\]
+图~\ref{fig:14-6} 是级数前 $n$ 项部分和的图形．从图形可以看出，不连续函数是如何展开成它的傅里叶级数的．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.5,baseline=(current bounding box.center)]
+  \def\u{1.6}
+  \def\A{1}
+  % panel macro via explicit four panels
+  \foreach \yy in {0,-3.2,-6.4,-9.6}
+    {
+      \draw[{-Latex}] (-3.6*\u,\yy) -- (3.6*\u,\yy) node[right] {$x$};
+      \draw[{-Latex}] (0,\yy-1.5) -- (0,\yy+1.5) node[above] {$y$};
+      \draw[thick] (-\u,\yy-\A) -- (0,\yy-\A);
+      \draw[thick] (0,\yy+\A) -- (\u,\yy+\A);
+      \draw[thick,dashed] (-\u,\yy+\A) -- (-\u,\yy-\A);
+      \draw[thick,dashed] (\u,\yy+\A) -- (\u,\yy-\A);
+      \draw[thick,dashed] (0,\yy-\A) -- (0,\yy+\A);
+    }
+  % panel 1: n=1
+  \draw[thick,domain=-3.1416:3.1416,samples=120,smooth,variable=\x]
+    plot({\x*\u/3.1416},{0+4/3.1416*sin(deg(\x))});
+  % panel 2: n=3 (two terms)
+  \draw[thick,domain=-3.1416:3.1416,samples=160,smooth,variable=\x]
+    plot({\x*\u/3.1416},{-3.2+4/3.1416*(sin(deg(\x))+sin(deg(3*\x))/3)});
+  % panel 3: n=5 (three terms)
+  \draw[thick,domain=-3.1416:3.1416,samples=200,smooth,variable=\x]
+    plot({\x*\u/3.1416},{-6.4+4/3.1416*(sin(deg(\x))+sin(deg(3*\x))/3+sin(deg(5*\x))/5)});
+  % panel 4: n=9 (five terms)
+  \draw[thick,domain=-3.1416:3.1416,samples=260,smooth,variable=\x]
+    plot({\x*\u/3.1416},{-9.6+4/3.1416*(sin(deg(\x))+sin(deg(3*\x))/3+sin(deg(5*\x))/5+sin(deg(7*\x))/7+sin(deg(9*\x))/9)});
+\end{tikzpicture}\caption{\relax}\label{fig:14-6}
+\end{figure}
+
+\begin{example}\label{ex:14-2-2}
+$f(x)$ 以 $2\pi$ 为周期，在 $(-\pi,\pi)$ 内 $f(x)=x$．在上一节我们曾求得它的傅里叶级数
+\[
+\begin{aligned}
+f(x)&\sim 2\sum_{n=1}^{\infty}\frac{(-1)^{n-1}\sin nx}{n}\\
+&=2\left(\sin x-\frac{\sin 2x}{2}+\frac{\sin 3x}{3}-\frac{\sin 4x}{4}+\cdots\right).
+\end{aligned}
+\]
+\end{example}
+
+由 $f(x)$ 在 $(-\pi,\pi)$ 可微，而在 $x=-\pi,\pi$ 时，有
+\[
+\frac{f(-\pi+0)+f(\pi-0)}{2}=0
+\]
+根据定理~\ref{thm:14-5}，$f(x)$ 的傅里叶级数收敛，其和函数 $F(x)$ 是以 $2\pi$ 为周期的函数，它在 $[-\pi,\pi]$ 可表为
+\[
+F(x)=\begin{cases}
+x, & \left|x\right|<\pi,\\
+0, & x=\pm\pi.
+\end{cases}
+\]
+即
+\[
+2\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}\sin nx=\begin{cases}
+x, & \left|x\right|<\pi,\\
+0, & x=\pm\pi.
+\end{cases}
+\]
+换句话说，只要补充定义 $f((2k+1)\pi)=0$，$k=0,\pm 1,\pm 2,\cdots$，则有
+\[
+F(x)=f(x)=2\sum_{n=1}^{\infty}\frac{(-1)^{n-1}\sin nx}{n}=2\left(\sin x-\frac{\sin 2x}{2}+\frac{\sin 3x}{3}+\cdots\right)
+\]
+对一切 $x$ 成立．
+
+图~\ref{fig:14-7} 和图~\ref{fig:14-8} 分别给出 $f(x)$ 的图形与部分和
+\[
+S_{5}(x)=2\left(\sin x-\frac{\sin 2x}{2}+\frac{\sin 3x}{3}-\frac{\sin 4x}{4}+\frac{\sin 5x}{5}\right)
+\]
+的图形．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\u{1.3}
+  \draw[{-Latex}] (-4.6*\u,0) -- (4.6*\u,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-2.4) -- (0,2.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[{{Latex}-{Latex}}] (-3*\u,-\u) -- (-\u,\u);
+  \draw[{{Latex}-{Latex}}] (-\u,-\u) -- (\u,\u);
+  \draw[{{Latex}-{Latex}}] (\u,-\u) -- (3*\u,\u);
+  \foreach \p in {-3,-1,1,3}
+    \draw[fill=white] (\p*\u,0) circle (2pt);
+  \node[below] at (-2*\u,0) {$-2\pi$};
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+  \node[below] at (2*\u,0) {$2\pi$};
+  \node[below] at (3*\u,0) {$3\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-7}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\u{1.3}
+  \draw[{-Latex}] (-2.2,0) -- (2.2,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-3.4) -- (0,3.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % envelope line y=x
+  \draw[thin] (-\u,-3.1416) -- (\u,3.1416);
+  % partial sum S5
+  \draw[very thick,domain=-3.1416:3.1416,samples=240,smooth,variable=\x]
+    plot({\x*\u/3.1416},{2*(sin(deg(\x))-sin(deg(2*\x))/2+sin(deg(3*\x))/3-sin(deg(4*\x))/4+sin(deg(5*\x))/5)});
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-8}
+\end{figure}
+
+\begin{example}\label{ex:14-2-3}
+$f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 有 $f(x)=x^{2}$，试求其傅里叶展开式．
+\end{example}
+
+\begin{proof}[解]
+先求傅里叶系数．由 $f(x)$ 在 $[-\pi,\pi]$ 是偶函数，知 $b_{n}=0$．
+\[
+a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}x^{2}\dd x=\frac{2}{3}\pi^{2},
+\]
+\[
+\begin{aligned}
+a_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}x^{2}\cos nx\dd x=\frac{2}{n\pi}\int_{0}^{\pi}x^{2}\dd\sin nx\\
+&=-\frac{4}{n\pi}\int_{0}^{\pi}x\sin nx\dd x=\frac{4}{n^{2}\pi}\int_{0}^{\pi}x\dd\cos nx\\
+&=\frac{4\pi\cos n\pi}{n^{2}\pi}=(-1)^{n}\frac{4}{n^{2}}.
+\end{aligned}
+\]
+由于函数处处连续（见图~\ref{fig:14-9}），在 $x\neq(2k+1)\pi$ 时均可微，而在 $x=(2k+1)\pi$ 有左右微商存在，故
+\[
+f(x)=\frac{1}{3}\pi^{2}+4\sum_{n=1}^{\infty}(-1)^{n}\frac{\cos nx}{n^{2}}
+\]
+处处成立，特别地有
+\[
+x^{2}=\frac{1}{3}\pi^{2}+4\sum_{n=1}^{\infty}\frac{(-1)^{n}\cos nx}{n^{2}},\quad x\in[-\pi,\pi],
+\]
+在上式中令 $x=\pi$，得
+\[
+\frac{\pi^{2}}{6}=1+\frac{1}{2^{2}}+\frac{1}{3^{2}}+\frac{1}{4^{2}}+\cdots,
+\]
+令 $x=0$，得
+\[
+\frac{\pi^{2}}{12}=1-\frac{1}{2^{2}}+\frac{1}{3^{2}}-\frac{1}{4^{2}}+\cdots+\frac{(-1)^{n-1}}{n^{2}}+\cdots.
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\u{1.1}
+  \def\c{3.2899}
+  \draw[{-Latex}] (-3.9,0) -- (4.3,0) node[below right] {$x$};
+  \draw[{-Latex}] (0,-0.5) -- (0,4.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[very thick,domain=-6.2832:9.4248,samples=400,smooth,variable=\x]
+    plot({\x*\u/3.1416},{0.4*(\c+4*(-cos(deg(\x))+cos(deg(2*\x))/4-cos(deg(3*\x))/9+cos(deg(4*\x))/16))});
+  \draw[dashed] (-\u,0) -- (-\u,3.9);
+  \draw[dashed] (\u,0) -- (\u,3.9);
+  \draw[dashed] (3*\u,0) -- (3*\u,3.9);
+  \node[below] at (-2*\u,0) {$-2\pi$};
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+  \node[below] at (2*\u,0) {$2\pi$};
+  \node[below] at (3*\u,0) {$3\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-9}
+\end{figure}
+
+\begin{example}\label{ex:14-2-4}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 上有 $f(x)=\left|x\right|$．我们在上一节已求出它的傅里叶级数．由于 $f(x)$ 处处连续，在 $x\neq k\pi$ 时可微，而在 $x=k\pi$（$k=0,\pm 1,\pm 2,\cdots$）时，$f(x)$ 有左右微商存在，故
+\[
+f(x)=\frac{\pi}{2}-\frac{4}{\pi}\sum_{n=1}^{\infty}\frac{\cos(2n-1)x}{(2n-1)^{2}}
+\]
+特别地有
+\[
+\left|x\right|=\frac{\pi}{2}-\frac{4}{\pi}\sum_{n=1}^{\infty}\frac{\cos(2n-1)x}{(2n-1)^{2}},\quad x\in[-\pi,\pi].
+\]
+\end{example}
+
+图~\ref{fig:14-10} 是 $f(x)$ 与
+\[
+S_{5}(x)=\frac{\pi}{2}-\frac{4}{\pi}\left(\cos x+\frac{\cos 3x}{3^{2}}+\frac{\cos 5x}{5^{2}}\right)
+\]
+的图形．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.6,baseline=(current bounding box.center)]
+  \def\u{1.6}
+  \draw[{-Latex}] (-2.6,0) -- (2.6,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-0.5) -- (0,3.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % |x| envelope
+  \draw[thin] (-\u,3.1416) -- (0,0) -- (\u,3.1416);
+  % S5
+  \draw[very thick,domain=-3.1416:3.1416,samples=240,smooth,variable=\x]
+    plot({\x*\u/3.1416},{1.5708-4/3.1416*(cos(deg(\x))+cos(deg(3*\x))/9+cos(deg(5*\x))/25)});
+  \draw[dashed] (-\u,0) -- (-\u,3.1416);
+  \draw[dashed] (\u,0) -- (\u,3.1416);
+  \node[below] at (-\u,0) {$-\pi$};
+  \node[below] at (\u,0) {$\pi$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-10}
+\end{figure}
+
+\begin{example}\label{ex:14-2-5}
+求函数 $f(x)=\cos\alpha x$ 在 $(-\pi,\pi)$ 的傅里叶级数展开式，其中 $\alpha$ 不是整数．
+\end{example}
+
+\begin{proof}[解]
+注意 $f(-\pi+0)=f(\pi-0)=\cos\alpha\pi$，因此可以以 $2\pi$ 为周期把函数延拓到整个数轴上而成为以 $2\pi$ 为周期的函数．这时
+\[
+f(x)=\cos\alpha(x-2m\pi),\quad(2m-1)\pi\leqslant x\leqslant(2m+1)\pi,
+\]
+它在整个数轴上连续，显然 $f(x)$ 在 $(-\pi,\pi)$ 可微，而在 $x=-\pi$，
+\[
+f_{+}^{\prime}(-\pi)=\alpha\sin\alpha\pi,
+\]
+\[
+f_{-}^{\prime}(\pi)=-\alpha\sin\alpha\pi,
+\]
+即左右微商皆存在．由定理~\ref{thm:14-5} 知，$f(x)$ 在整个数轴上可展开成其傅里叶级数．
+
+由于 $f(x)$ 是偶函数，因此 $b_{n}=0$，而
+\[
+a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}\cos\alpha x\dd x=\frac{2}{\pi}\int_{0}^{\pi}\cos\alpha x\dd x=\frac{2\sin\alpha\pi}{\alpha\pi},
+\]
+\[
+\begin{aligned}
+a_{n}&=\frac{2}{\pi}\int_{0}^{\pi}\cos\alpha x\cos nx\dd x\\
+&=\frac{1}{\pi}\int_{0}^{\pi}\left[\cos(\alpha-n)x+\cos(\alpha+n)x\right]\dd x\\
+&=\frac{1}{\pi}\left[\frac{(-1)^{n}\sin\alpha\pi}{\alpha-n}+\frac{(-1)^{n}\sin\alpha\pi}{\alpha+n}\right]\\
+&=(-1)^{n}\frac{2\alpha\sin\alpha\pi}{\pi(\alpha^{2}-n^{2})}\quad(n=1,2,\cdots).
+\end{aligned}
+\]
+因此
+\[
+\begin{aligned}
+\cos\alpha x&=\frac{\sin\alpha\pi}{\pi}\Bigg(\frac{1}{\alpha}-\frac{2\alpha}{\alpha^{2}-1}\cos x+\frac{2\alpha}{\alpha^{2}-2^{2}}\cos 2x-\cdots\\
+&\quad+(-1)^{n}\frac{2\alpha}{\alpha^{2}-n^{2}}\cos nx+\cdots\Bigg),\quad-\pi\leqslant x\leqslant\pi.
+\end{aligned}
+\]
+用这个展开式可以得到 $\cot z$ 与 $\dfrac{1}{\sin z}$ 的展开式．事实上，在 $\cos\alpha x$ 的展开式中令 $x=\pi$，再以 $\sin\alpha\pi$ 除两边，得到
+\[
+\frac{\cos\alpha\pi}{\sin\alpha\pi}=\frac{1}{\pi}\left(\frac{1}{\alpha}+\frac{2\alpha}{\alpha^{2}-1}+\frac{2\alpha}{\alpha^{2}-2^{2}}+\cdots+\frac{2\alpha}{\alpha^{2}-n^{2}}+\cdots\right).
+\]
+此式对 $\alpha$ 为非整数均成立．令 $\alpha\pi=z$，便有
+\[
+\cot z=\frac{1}{z}+\frac{2z}{z^{2}-\pi^{2}}+\frac{2z}{z^{2}-(2\pi)^{2}}+\cdots+\frac{2z}{z^{2}-(n\pi)^{2}}+\cdots
+\]
+对 $z\neq k\pi$ 皆成立．这是 $\cot z$ 的部分分式展开，它是有理函数部分分式展开的推广．
+
+在 $\cos\alpha x$ 的展开式中令 $x=0$，两边再除以 $\sin\alpha\pi$，再令 $\alpha\pi=z$，便得
+\[
+\begin{aligned}
+\frac{1}{\sin z}&=\frac{1}{z}-\frac{2z}{z^{2}-\pi^{2}}+\frac{2z}{z^{2}-(2\pi)^{2}}+\cdots+\frac{(-1)^{n}2z}{z^{2}-(n\pi)^{2}}+\cdots\\
+&=\frac{1}{z}-\left(\frac{1}{z-\pi}+\frac{1}{z+\pi}\right)+\cdots+(-1)^{n}\left(\frac{1}{z-n\pi}+\frac{1}{z+n\pi}\right)+\cdots
+\end{aligned}
+\]
+只要 $z\neq k\pi$（$k=0,\pm 1,\pm 2,\cdots$）即可．
+\end{proof}
+
+比之一般的函数级数，傅里叶级数是有很多特殊性质的，例如关于逐项积分．我们已经知道，一个每一项都连续的函数级数，如果在 $[a,b]$ 一致收敛，则它在 $[a,b]$ 可以逐项积分．而对傅里叶级数，则只要很弱的条件，就能保证逐项积分成立．注意到傅里叶级数一般项的积分为：
+\[
+\begin{aligned}
+&\int_{0}^{x}\left(a_{n}\cos nt+b_{n}\sin nt\right)\dd t\\
+={}&\frac{a_{n}\sin nx+b_{n}\left(1-\cos nx\right)}{n}\\
+={}&\frac{b_{n}}{n}+\frac{a_{n}\sin nx-b_{n}\cos nx}{n},
+\end{aligned}
+\]
+我们便可以写出下面的傅里叶级数逐项积分定理了．
+
+\begin{theorem}\label{thm:14-6}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 内除有限个可去间断点或第一类间断点外是连续的，且
+\begin{equation}
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\tag{7}
+\end{equation}
+则（i）$\displaystyle\sum_{n=1}^{\infty}\frac{b_{n}}{n}$ 收敛；
+\begin{equation}
+\int_{0}^{x}f(t)\dd t-\frac{a_{0}}{2}x=\sum_{n=1}^{\infty}\frac{b_{n}}{n}+\sum_{n=1}^{\infty}\frac{a_{n}\sin nx-b_{n}\cos nx}{n}
+\tag{8}
+\end{equation}
+对一切 $x$ 成立．
+\end{theorem}
+
+\begin{proof}
+不妨设 $f(x)$ 在 $[-\pi,\pi]$ 只有一个第一类间断点 $x_{0}$，这时 $f(x)$ 在 $[-\pi,\pi]$ 有界，因而
+\[
+F(x)=\int_{0}^{x}\left[f(t)-\frac{a_{0}}{2}\right]\dd t
+\]
+在 $[-\pi,\pi]$ 连续，并且在 $x_{0}$ 以外每一点都可微．而在 $x_{0}$ 点，由积分中值定理知
+\[
+\begin{aligned}
+\lim_{\Delta x\to 0^{+}}\frac{F(x_{0}+\Delta x)-F(x_{0})}{\Delta x}&=\lim_{\Delta x\to 0^{+}}\frac{1}{\Delta x}\int_{x_{0}}^{x_{0}+\Delta x}\left(f(t)-\frac{a_{0}}{2}\right)\dd t\\
+&=\lim_{\Delta x\to 0^{+}}f(x_{0}+\theta\Delta x)-\frac{a_{0}}{2}\\
+&=f(x_{0}+0)-\frac{a_{0}}{2}.
+\end{aligned}
+\]
+即 $F(x)$ 在 $x_{0}$ 有右导数：
+\[
+F_{+}^{\prime}(x_{0})=f(x_{0}+0)-\frac{a_{0}}{2}.
+\]
+同理可证，$F(x)$ 在 $x_{0}$ 有左导数，且
+\[
+F_{-}^{\prime}(x_{0})=f(x_{0}-0)-\frac{a_{0}}{2}.
+\]
+这就证明了 $F(x_{0})$ 在 $x_{0}$ 有左、右导数，从而 $F(x)$ 在 $[-\pi,\pi]$ 是逐段可微的．另外，$F(x)$ 是以 $2\pi$ 为周期的周期函数．事实上，
+\[
+\begin{aligned}
+F(x+2\pi)&=\int_{0}^{x+2\pi}\left(f(t)-\frac{a_{0}}{2}\right)\dd t\\
+&=\int_{0}^{x}\left(f(t)-\frac{a_{0}}{2}\right)\dd t+\int_{x}^{x+2\pi}f(t)\dd t-\pi a_{0}\\
+&=\int_{0}^{x}\left(f(t)-\frac{a_{0}}{2}\right)\dd t=F(x).
+\end{aligned}
+\]
+现在，我们已经知道，$F(x)$ 是以 $2\pi$ 为周期的函数，在 $[-\pi,\pi]$ 逐段可微．根据傅里叶级数的展开定理（定理~\ref{thm:14-5}），知 $F(x)$ 可以展开成傅里叶级数
+\[
+F(x)=\frac{A_{0}}{2}+\sum_{n=1}^{\infty}\left(A_{n}\cos nx+B_{n}\sin nx\right),
+\]
+它对所有的 $x$ 成立．
+
+下面我们来计算 $A_{n}$，$B_{n}$．实际上，用分部积分法，当 $n\geqslant 1$ 时，
+\[
+\begin{aligned}
+A_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}F(x)\cos nx\dd x\\
+&=\frac{\sin nx}{n\pi}F(x)\bigg|_{-\pi}^{\pi}-\frac{1}{n\pi}\int_{-\pi}^{\pi}\left(f(x)-\frac{a_{0}}{2}\right)\sin nx\dd x\\
+&=-\frac{b_{n}}{n}.
+\end{aligned}
+\]
+\[
+\begin{aligned}
+B_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}F(x)\sin nx\dd x\\
+&=-\left.\frac{\cos nx}{n\pi}F(x)\right|_{-\pi}^{\pi}+\frac{1}{n\pi}\int_{-\pi}^{\pi}\left(f(x)-\frac{a_{0}}{2}\right)\cos nx\dd x\\
+&=\frac{a_{n}}{n},
+\end{aligned}
+\]
+注意，这里我们用到了 $F(\pi)=F(-\pi)$．把它们代入上式中，得
+\begin{equation}
+F(x)=\int_{0}^{x}f(t)\dd t-\frac{a_{0}}{2}x=\frac{A_{0}}{2}+\sum_{n=1}^{\infty}\frac{a_{n}\sin nx-b_{n}\cos nx}{n}.
+\tag{9}
+\end{equation}
+令 $x=0$，得
+\begin{equation}
+\frac{A_{0}}{2}=\sum_{n=1}^{\infty}\frac{b_{n}}{n},
+\tag{10}
+\end{equation}
+这就证明了 $\displaystyle\sum_{n=1}^{\infty}\frac{b_{n}}{n}$ 收敛，其和为 $\dfrac{A_{0}}{2}$，其中
+\[
+A_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}F(x)\dd x=\frac{1}{\pi}\int_{-\pi}^{\pi}\left[\int_{0}^{x}\left(f(t)-\frac{a_{0}}{2}\right)\dd t\right]\dd x
+\]
+是已知的．把（10）代回（9）中，便有
+\[
+\int_{0}^{x}f(t)\dd t-\frac{a_{0}}{2}x=\sum_{n=1}^{\infty}\frac{b_{n}}{n}+\sum_{n=1}^{\infty}\frac{a_{n}\sin nx-b_{n}\cos nx}{n},
+\]
+这样便结束了定理~\ref{thm:14-6} 的证明．
+\end{proof}
+
+\begin{example}\label{ex:14-2-6}
+上一节习题 2（10）已求得
+\[
+\frac{\pi-x}{2}=\sum_{n=1}^{\infty}\frac{\sin nx}{n}\quad(0<x<2\pi)
+\]
+应用逐项积分定理，便有
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{1-\cos nx}{n^{2}}=\frac{\pi}{2}x-\frac{1}{4}x^{2},\quad 0<x<2\pi.
+\tag{11}
+\end{equation}
+其中
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{1}{2\pi}\int_{0}^{2\pi}\left(\frac{\pi}{2}x-\frac{1}{4}x^{2}\right)\dd x=\frac{\pi^{2}}{6}.
+\tag{12}
+\end{equation}
+代回（11）式，得
+\[
+\frac{\pi^{2}}{6}-\sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}}=\frac{\pi}{2}x-\frac{1}{4}x^{2},\quad 0<x<2\pi.
+\]
+令 $x=\pi$，有
+\[
+\frac{\pi^{2}}{6}-\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}=\frac{\pi^{2}}{2}-\frac{\pi^{2}}{4}=\frac{\pi^{2}}{4},
+\]
+即
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}=\frac{\pi^{2}}{12}.
+\tag{13}
+\end{equation}
+\end{example}
+
+用傅里叶级数的逐项积分定理，我们在（12）、（13）重新计算出例~\ref{ex:14-2-3} 中已求出过的两个数值级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$，$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}$ 的和．
+
+前面关于傅里叶级数收敛性的讨论表明，一个周期为 $2\pi$ 且在 $[-\pi,\pi]$ 绝对可积的函数 $f(x)$，在它的连续点 $x_{0}$，并不能保证其傅里叶级数在 $x_{0}$ 收敛．但在本世纪初，匈牙利数学家费耶（Fej\'er，1880---1959）却发现，如果用部分和的算术平均代替部分和，则函数在 $x_{0}$ 的连续性便可保证其傅里叶级数在 $x_{0}$ 的部分和的算术平均收敛到 $f(x_{0})$．下面先叙述一个更强一些的定理．
+
+\begin{theorem}[费耶]\label{thm:14-7}
+若 $f(x)$ 是以 $2\pi$ 为周期的连续函数：
+\[
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\]
+其中傅里叶级数的部分和记作 $S_{0}(x)=\dfrac{a_{0}}{2}$
+\[
+S_{n}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right)\quad(n\geqslant 1).
+\]
+则
+\[
+\sigma_{n}(x)=\frac{S_{0}(x)+S_{1}(x)+\cdots+S_{n}(x)}{n+1}=\frac{1}{n+1}\sum_{k=0}^{n}S_{k}(x),
+\]
+当 $n\to\infty$ 时在 $[-\pi,\pi]$ 一致收敛到 $f(x)$．
+\end{theorem}
+
+\begin{proof}
+前面我们已经推导过，部分和 $S_{n}(x)$ 有表达式
+\[
+S_{n}(x)=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x+t)\frac{\sin\left(n+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t,
+\]
+因此
+\[
+\sigma_{n}(x)=\frac{1}{(n+1)\pi}\int_{-\pi}^{\pi}f(x+t)\frac{\displaystyle\sum_{k=0}^{n}\sin\left(k+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\dd t.
+\]
+然而
+\[
+\begin{aligned}
+&\frac{1}{(n+1)}\frac{\displaystyle\sum_{k=0}^{n}\sin\left(k+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}}\\
+={}&\frac{1}{2(n+1)\sin\dfrac{t}{2}}\sum_{k=0}^{n}\frac{\cos kt-\cos(k+1)t}{2\sin\dfrac{t}{2}}\\
+={}&\frac{1}{4(n+1)\sin^{2}\dfrac{t}{2}}\left[1-\cos(n+1)t\right]\\
+={}&\frac{1}{2(n+1)}\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2},
+\end{aligned}
+\]
+故
+\[
+\sigma_{n}(x)=\frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}f(x+t)\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t.
+\]
+当 $f(x)=1$ 时，$S_{n}(x)\equiv 1$，代入上式，得
+\[
+1=\frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t,
+\]
+从而
+\[
+f(x)=\frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}f(x)\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t,
+\]
+故
+\[
+\sigma_{n}(x)-f(x)=\frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}\left[f(x+t)-f(x)\right]\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t.
+\]
+对任给 $\varepsilon>0$，由 $f(x)$ 在 $[-\pi,\pi]$ 一致连续，知存在 $\delta>0$（不妨设 $\delta<\pi$），使得只要 $\left|t\right|\leqslant\delta$，有
+\[
+\left|f(x+t)-f(x)\right|<\varepsilon
+\]
+对 $x\in[-\pi,\pi]$ 一致成立，因此
+\[
+\begin{aligned}
+&\left|\sigma_{n}(x)-f(x)\right|\\
+\leqslant{}&\frac{1}{2(n+1)\pi}\int_{-\pi}^{\pi}\left|f(x+t)-f(x)\right|\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t\\
+={}&\frac{1}{2(n+1)\pi}\int_{\left|t\right|\leqslant\delta}\left|f(x+t)-f(x)\right|\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t\\
+&+\frac{1}{2(n+1)\pi}\int_{\delta\leqslant\left|t\right|\leqslant\pi}\left|f(x+t)-f(x)\right|\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t\\
+={}&\mathrm{I}+\mathrm{II},
+\end{aligned}
+\]
+而
+\[
+\begin{aligned}
+\mathrm{I}&\leqslant\frac{\varepsilon}{2(n+1)\pi}\int_{\left|t\right|\leqslant\delta}\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t\\
+&\leqslant\frac{\varepsilon}{2(n+1)\pi}\int_{\left|t\right|\leqslant\pi}\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\dd t=\varepsilon.
+\end{aligned}
+\]
+为估计 $\mathrm{II}$，首先注意到 $f(x)$ 在 $(-\infty,+\infty)$ 有界，即可假设 $\left|f(x)\right|\leqslant M$．其次，很容易证明
+\[
+\left|\sin t\right|\geqslant\frac{2}{\pi}\left|t\right|,\quad\text{当 }-\frac{\pi}{2}\leqslant t\leqslant\frac{\pi}{2},
+\]
+因而
+\[
+\frac{1}{\left|\sin\dfrac{t}{2}\right|}\leqslant\frac{\pi}{2}\frac{2}{\left|t\right|}=\frac{\pi}{\left|t\right|},\quad\text{当 }-\pi\leqslant t\leqslant\pi,
+\]
+由此可得
+\[
+\begin{aligned}
+\mathrm{II}&\leqslant\frac{2M}{2(n+1)\pi}\int_{\delta\leqslant\left|t\right|\leqslant\pi}\frac{\dd t}{\left(\sin\dfrac{t}{2}\right)^{2}}\\
+&\leqslant\frac{M\pi^{2}}{(n+1)\pi}\int_{\left|t\right|\geqslant\delta}\frac{\dd t}{t^{2}}=\frac{2\pi M}{(n+1)\delta}.
+\end{aligned}
+\]
+令 $\displaystyle N=\frac{2\pi M}{\varepsilon\delta}$，则当 $n>N$ 时，有
+\[
+\mathrm{II}<\varepsilon,
+\]
+从而
+\[
+\left|\sigma_{n}(x)-f(x)\right|\leqslant\mathrm{I}+\mathrm{II}<2\varepsilon
+\]
+对一切 $x\in[-\pi,\pi]$ 成立，这就结束了定理~\ref{thm:14-7} 的证明．
+\end{proof}
+
+从定理~\ref{thm:14-7} 的证明过程不难看出，若 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 有界可积，且 $f(x)$ 在 $x_{0}$ 连续，则
+\[
+\sigma_{n}(x_{0})\to f(x_{0})\quad(n\to\infty).
+\]
+请读者把此事实的证明写出来．
+
+记
+\[
+K_{n}(t)=\frac{1}{(n+1)}\sum_{k=0}^{n}\frac{\sin\left(k+\dfrac{1}{2}\right)t}{2\sin\dfrac{t}{2}},
+\]
+称 $K_{n}(t)$ 为\emph{费耶核}．在定理~\ref{thm:14-7} 的证明中已经证明了以下事实：
+
+\begin{ziti}
+\item
+\[
+K_{n}(t)=\frac{1}{2(n+1)}\left(\frac{\sin\dfrac{n+1}{2}t}{\sin\dfrac{t}{2}}\right)^{2}\geqslant 0;
+\]
+\item $\displaystyle\frac{1}{\pi}\int_{-\pi}^{\pi}K_{n}(t)\dd t=1$；
+\item 对任意 $\delta>0$，$\displaystyle\int_{\delta\leqslant\left|t\right|\leqslant\pi}K_{n}(t)\dd t\to 0$（$n\to+\infty$）．
+\end{ziti}
+
+它们实际上就是当 $f(x)$ 连续时保证 $\sigma_{n}(x)$ 一致收敛到 $f(x)$ 的条件．
+
+\begin{xiti}
+\item 将下列函数展成傅里叶级数，并讨论收敛性：
+\begin{ziti}
+\item $f(x)=x\sin x$，$x\in[-\pi,\pi]$；
+\item $f(x)=\begin{cases}x^{2},&x\in[0,\pi],\\ 1,&x\in[-\pi,0).\end{cases}$
+\end{ziti}
+\item 由展开式
+\[
+x=2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin nx}{n}\quad(-\pi<x<\pi),
+\]
+\begin{ziti}
+\item 用逐项积分法求 $x^{2}$，$x^{3}$，$x^{4}$ 在 $(-\pi,\pi)$ 中的傅里叶展开式；
+\item 求级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{4}}$，$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{4}}$ 的和．
+\end{ziti}
+\item
+\begin{ziti}
+\item 在 $(-\pi,\pi)$ 内，求 $f(x)=\mathrm{e}^{x}$ 的傅里叶展开式；
+\item 求级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{1+n^{2}}$ 的和．
+\end{ziti}
+\item 设 $f(x)$ 在 $[-\pi,\pi]$ 上逐段可微，且 $f(-\pi)=f(\pi)$．$a_{n}$，$b_{n}$ 为 $f(x)$ 的傅里叶系数，$a_{n}^{\prime}$，$b_{n}^{\prime}$ 是 $f(x)$ 的导函数 $f^{\prime}(x)$ 的傅里叶系数，证明：
+\[
+a_{0}^{\prime}=0,\quad a_{n}^{\prime}=nb_{n},\quad b_{n}^{\prime}=-na_{n}\quad(n=1,2,\cdots).
+\]
+\item 证明：若三角级数
+\[
+\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right)
+\]
+中的系数 $a_{n}$，$b_{n}$ 满足关系
+\[
+\max\left\{\left|n^{3}a_{n}\right|,\ \left|n^{3}b_{n}\right|\right\}\leqslant M
+\]
+$M$ 为常数，则上述三角级数收敛，且其和函数具有连续的导函数．
+\item 设 $\displaystyle T_{n}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right)$，求证：
+\[
+T_{n}(x)=\frac{1}{2\pi}\int_{-\pi}^{\pi}T_{n}(x+t)\frac{\sin\left(n+\dfrac{1}{2}\right)t}{\sin\dfrac{t}{2}}\dd t.
+\]
+\item 设 $f(x)$ 以 $2\pi$ 为周期，在 $(0,2\pi)$ 上单调递减，且有界，求证：$b_{n}\geqslant 0$（$n>0$）．
+\item 设 $f(x)$ 以 $2\pi$ 为周期，在 $(0,2\pi)$ 上导数 $f^{\prime}(x)$ 单调上升有界．求证：$a_{n}\geqslant 0$（$n>0$）．
+\item 证明：若 $f(x)$ 在 $x_{0}$ 点满足 $\alpha$ 阶的利普希茨条件，则 $f(x)$ 在 $x_{0}$ 点连续．给出一个表明这论断的逆命题不成立的例子．
+\item 设 $f(x)$ 是以 $2\pi$ 为周期的函数，在 $[-\pi,\pi]$ 绝对可积，又设 $S_{n}(x)$ 是 $f(x)$ 的傅里叶级数的前 $n$ 项部分和
+\[
+S_{n}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right),
+\]
+则
+\[
+S_{n}(x)=\frac{4}{\pi}\int_{0}^{\frac{\pi}{2}}\frac{f(x+2t)+f(x-2t)}{2}D_{n}(2t)\dd t,
+\]
+其中 $D_{n}(t)$ 是狄利克雷核．
+\item 设 $f(x)$ 以 $2\pi$ 为周期，在 $(-\infty,\infty)$ 连续，它的傅里叶级数在 $x_{0}$ 点收敛．求证：$S_{n}(x_{0})\to f(x_{0})$（$n\to+\infty$）．
+\item 设 $f(x)$ 以 $2\pi$ 为周期、连续，其傅里叶系数全为 $0$，则 $f(x)\equiv 0$．
+\item 设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 绝对可积．又设 $x_{0}\in(-\pi,\pi)$ 满足
+\[
+\lim_{t\to 0^{+}}\frac{f(x_{0}+t)+f(x_{0}-t)}{2}=L
+\]
+存在．证明 $\displaystyle\lim_{n\to\infty}\sigma_{n}(x_{0})=L$．进一步，若 $f(x)$ 在 $x_{0}$ 点连续，则 $\displaystyle\lim_{n\to\infty}\sigma_{n}(x_{0})=f(x_{0})$，其中 $\displaystyle\sigma_{n}(x)=\frac{1}{n+1}\sum_{k=0}^{n}S_{k}(x)$．
+\end{xiti}
+
+\section{任意区间上的傅里叶级数}
+
+设函数 $f(x)$ 以 $2l$ 为周期，在 $[-l,l]$ 黎曼可积，或在 $[-l,l]$ 作为瑕积分绝对可积．作变换 $x=\dfrac{l}{\pi}t$，则 $\varphi(t)=f\left(\dfrac{l}{\pi}t\right)$ 便是以 $2\pi$ 为周期的函数，它有对应的傅里叶级数
+\[
+\varphi(t)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nt+b_{n}\sin nt\right),
+\]
+其中
+\[
+a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f\left(\frac{l}{\pi}t\right)\cos nt\dd t,\quad n=0,1,2,\cdots,
+\]
+\[
+b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f\left(\frac{l}{\pi}t\right)\sin nt\dd t,\quad n=1,2,3,\cdots.
+\]
+把反变换 $t=\dfrac{\pi}{l}x$ 代回去，便得
+\begin{equation}
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos\frac{n\pi}{l}x+b_{n}\sin\frac{n\pi}{l}x\right),
+\tag{1}
+\end{equation}
+其中
+\begin{equation}
+a_{n}=\frac{1}{l}\int_{-l}^{l}f(x)\cos\frac{n\pi}{l}x\dd x,\quad n=0,1,2,\cdots,
+\tag{2}
+\end{equation}
+\begin{equation}
+b_{n}=\frac{1}{l}\int_{-l}^{l}f(x)\sin\frac{n\pi}{l}x\dd x,\quad n=1,2,3,\cdots.
+\tag{3}
+\end{equation}
+这就是周期为 $2l$ 的函数 $f(x)$ 的傅里叶级数，上两式中由积分表示的 $a_{n}$，$b_{n}$，也称为 $f(x)$ 的傅里叶系数．
+
+上面我们将以 $2l$ 为周期的函数，通过自变量的变换，把它化成以 $2\pi$ 为周期的函数来进行研究．其实，我们也可以沿用研究周期为 $2\pi$ 的函数的傅里叶展开的方法，来研究周期为 $2l$ 的函数的傅里叶展开．事实上，可以证明
+\[
+1,\ \cos\frac{\pi}{l}x,\ \sin\frac{\pi}{l}x,\ \cdots,\ \cos\frac{n\pi}{l}x,\ \sin\frac{n\pi}{l}x,\ \cdots
+\]
+在任意长度为 $2l$ 的区间上是正交的．因此前面两节的推理可以类似地用到周期为 $2l$ 的函数来，从而建立类似的理论．
+
+如果一个函数，只定义在一有限区间 $[a,b]$ 上，它当然不能说是一周期函数，那么能否考虑它的傅里叶级数展开？事实上是可以的，只要把函数按周期延拓到整个数轴便可，下面我们介绍两种延拓的方法．
+
+不妨设 $f(x)$ 定义在 $[0,l]$ 上，因为如果 $f(x)$ 定义在 $[a,b]$ 上，考虑 $\varphi(t)=f(a+t)$，则 $\varphi$ 便定义在 $[0,l]$ 上，其中 $l=b-a$．这时，我们可以考虑两种延拓的方法：第一种，先把 $f(x)$ 用偶函数的定义延拓到 $[-l,l]$，再把 $f(x)$ 按 $2l$ 为周期延拓到整个数轴；第二种，先把 $f(x)$ 按奇函数的定义延拓到 $[-l,l]$，再把 $f(x)$ 按 $2l$ 为周期，延拓到整个数轴．第一种方法称为\emph{偶延拓}，第二种称为\emph{奇延拓}，下面分别详细介绍它们．
+
+设 $f(x)$ 定义在 $[0,l]$，令
+\[
+F_{e}(x)=\begin{cases}
+f(x), & 0\leqslant x\leqslant l,\\
+f(-x), & -l\leqslant x\leqslant 0,
+\end{cases}
+\]
+则 $F_{e}(x)$ 是定义在 $[-l,l]$ 的偶函数（见图~\ref{fig:14-11}），然后根据
+\[
+F_{e}(x+2kl)=F_{e}(x),\quad k=\pm 1,\pm 2,\cdots
+\]
+便可以把 $F_{e}(x)$ 的定义域扩展到整个数轴．这时 $F_{e}(x)$ 便是以 $2l$ 为周期的函数．注意，如果 $f(x)$ 在 $[0,l]$ 是连续的，则 $F_{e}(x)$ 在整个数轴上都是连续的．事实上，我们只要证明 $F_{e}(x)$ 在 $x=0$ 与 $x=\pm l$ 是连续的就足够了．显然
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.6,baseline=(current bounding box.center)]
+  \def\u{2.2}
+  \draw[{-Latex}] (-\u-0.8,0) -- (\u+0.8,0) node[below right] {$x$};
+  \draw[{-Latex}] (0,-0.5) -- (0,2.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick,domain=-\u:\u,samples=120,smooth,variable=\x]
+    plot(\x,{0.6+1.6*cos(90*\x/\u)});
+  \draw[dashed] (-\u,0) -- (-\u,0.6);
+  \draw[dashed] (\u,0) -- (\u,0.6);
+  \node[below] at (-\u,0) {$M_{1}(-l,0)$};
+  \node[below] at (\u-0.15,0) {$M_{2}(l,0)$};
+  \node[right] at (1.4,1.9) {$y=F_{e}(x)$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-11}
+\end{figure}
+
+\[
+\begin{aligned}
+\lim_{x\to 0^{+}}F_{e}(x)&=\lim_{x\to 0^{+}}f(x)=f(0),\\
+\lim_{x\to 0^{-}}F_{e}(x)&=\lim_{x\to 0^{-}}f(-x)=f(0),\\
+F_{e}(l-0)&=\lim_{x\to l^{-}}f(x)=f(l)=F_{e}(l),\\
+F_{e}(l+0)&=F_{e}(-l+0)=\lim_{x\to -l^{+}}F_{e}(x)\\
+=\lim_{x\to -l^{+}}f(-x)&=\lim_{x\to l^{-}}f(x)=f(l)=F_{e}(l).
+\end{aligned}
+\]
+同理
+\[
+F_{e}(-l+0)=F_{e}(-l)=F_{e}(-l-0).
+\]
+下面把 $F_{e}(x)$ 的傅里叶级数写出来．由于 $F_{e}(x)$ 是偶函数，故其傅里叶级数只有余弦项，这就是
+\[
+F_{e}(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}a_{n}\cos\frac{n\pi}{l}x,
+\]
+其中
+\[
+\begin{aligned}
+a_{n}&=\frac{1}{l}\int_{-l}^{l}F_{e}(x)\cos\frac{n\pi}{l}x\dd x=\frac{2}{l}\int_{0}^{l}F_{e}(x)\cos\frac{n\pi}{l}x\dd x\\
+&=\frac{2}{l}\int_{0}^{l}f(x)\cos\frac{n\pi}{l}x\dd x,\quad n=0,1,2,\cdots.
+\end{aligned}
+\]
+如果 $f(x)$ 在 $[0,l]$ 逐段可微，那么上述展开化为等式
+\[
+F_{e}(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}a_{n}\cos\frac{n\pi}{l}x.
+\]
+（注意在 $F_{e}(x)$ 的不连续点 $x_{0}$，上式应理解为 $F_{e}(x_{0})=\dfrac{F_{e}(x_{0}+0)+F_{e}(x_{0}-0)}{2}$）
+
+把它限制在 $[0,l]$，便得
+\[
+f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}a_{n}\cos\frac{n\pi}{l}x,\quad 0\leqslant x\leqslant l.
+\]
+
+下面讨论奇延拓．设 $f(x)$ 定义在 $[0,l]$ 上，令
+\[
+F_{o}(x)=\begin{cases}
+f(x), & 0\leqslant x\leqslant l,\\
+-f(-x), & -l<x<0,
+\end{cases}
+\]
+则 $F_{o}(x)$ 是定义在 $(-l,l)$ 上的奇函数（图~\ref{fig:14-12}）．然后根据
+\[
+F_{o}(x+2kl)=F_{o}(x),\quad k=\pm 1,\pm 2,\cdots,
+\]
+便可把 $F_{o}(x)$ 的定义域扩展到整个数轴．这时 $F_{o}(x)$ 便是以 $2l$ 为周期的函数．注意，和偶延拓不同的是，如果 $f(x)$ 在 $[0,l]$ 是连续的，则 $F_{o}(x)$ 并不一定在整个数轴连续，它可能在 $x=0,\ \pm l,\ \pm 2l,\ \pm 3l,\cdots$ 出现间断．事实上，
+\[
+\lim_{x\to 0^{+}}F_{o}(x)=\lim_{x\to 0^{+}}f(x)=f(0),
+\]
+而 $\displaystyle\lim_{x\to 0^{-}}F_{o}(x)=\lim_{x\to 0^{-}}\left[-f(-x)\right]=-f(0)$．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.7,baseline=(current bounding box.center)]
+  \draw[{-Latex}] (-2.7,0) -- (2.7,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-2.4) -- (0,2.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (0,0.7) -- (2,2);
+  \draw[thick] (-2,-2) -- (0,-0.7);
+  \draw[fill=white] (0,-0.7) circle (1.4pt);
+  \draw[dashed] (2,0) -- (2,2);
+  \draw[dashed] (-2,0) -- (-2,-2);
+  \node[below] at (2,0) {$l$};
+  \node[below] at (-2,0) {$-l$};
+  \node[above right] at (1.8,2) {$F_{o}(x)$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-12}
+\end{figure}
+
+因此，当且仅当 $f(0)=0$ 时，奇延拓才保存了 $F_{o}(x)$ 在 $x=0$ 处的连续性：
+\[
+F_{o}(0+0)=F_{o}(0-0)=f(0)=0.
+\]
+类似地，
+\[
+F_{o}(l-0)=\lim_{x\to l^{-}}F_{o}(x)=\lim_{x\to l^{-}}f(x)=f(l),
+\]
+\[
+F_{o}(l+0)=\lim_{x\to -l^{+}}F_{o}(x)=\lim_{x\to -l^{+}}\left[-f(-x)\right]=-f(l).
+\]
+因此，只有当 $f(l)=0$ 时，才保存了 $F_{o}(x)$ 在 $x=l$ 的连续性：
+\[
+F_{o}(l-0)=F_{o}(l+0)=f(l)=0.
+\]
+同样的结论适用于 $x=\pm kl$ 的其他点．
+
+由于 $F_{o}(x)$ 是奇函数，故 $F_{o}(x)$ 的傅里叶级数只有正弦项，这就是
+\[
+F_{o}(x)\sim\sum_{n=1}^{\infty}b_{n}\sin\frac{n\pi}{l}x,
+\]
+其中
+\[
+\begin{aligned}
+b_{n}&=\frac{1}{l}\int_{-l}^{l}F_{o}(x)\sin\frac{n\pi}{l}x\dd x=\frac{2}{l}\int_{0}^{l}F_{o}(x)\sin\frac{n\pi}{l}x\dd x\\
+&=\frac{2}{l}\int_{0}^{l}f(x)\sin\frac{n\pi}{l}x\dd x,\quad n=1,2,\cdots.
+\end{aligned}
+\]
+如果 $f(x)$ 在 $[0,l]$ 逐段可微，那么上述展开化成等式
+\[
+F_{o}(x)=\sum_{n=1}^{\infty}b_{n}\sin\frac{n\pi}{l}x.
+\]
+但这里值得指出的是，上式在 $F_{o}(x)$ 的不连续点 $x_{0}$，应理解为 $F_{o}(x_{0})=\dfrac{F_{o}(x_{0}+0)+F_{o}(x_{0}-0)}{2}$．特别地，在 $x=\pm kl$（$k=0,1,2,\cdots$），上式应理解为 $F_{o}(\pm kl)=0$．把上式限制在 $[0,l]$，便有
+\[
+f(x)=\sum_{n=1}^{\infty}b_{n}\sin\frac{n\pi}{l}x,\quad 0\leqslant x\leqslant l.
+\]
+（类似地，在 $f(x)$ 的不连续点，应用 $\dfrac{f(x+0)+f(x-0)}{2}$ 代替 $f(x)$）．
+
+\begin{example}\label{ex:14-3-1}
+将函数 $f(x)=\dfrac{x^{2}}{4}-\dfrac{\pi x}{2}$ 在 $[0,\pi]$ 按余弦展开．
+\end{example}
+
+\begin{proof}[解]
+根据偶延拓计算傅里叶系数
+\[
+a_{0}=\frac{2}{\pi}\int_{0}^{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\dd x=-\frac{\pi^{2}}{3},
+\]
+\[
+\begin{aligned}
+a_{n}&=\frac{2}{\pi}\int_{0}^{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\cos nx\dd x\\
+&=\frac{2}{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\frac{\sin nx}{n}\bigg|_{0}^{\pi}
++\frac{2}{n\pi}\left(\frac{x}{2}-\frac{\pi}{2}\right)\frac{\cos nx}{n}\bigg|_{0}^{\pi}\\
+&=\frac{1}{n^{2}},
+\end{aligned}
+\]
+因此
+\[
+\frac{x^{2}}{4}-\frac{\pi x}{2}=-\frac{\pi^{2}}{6}+\sum_{n=1}^{\infty}\frac{\cos nx}{n^{2}},\quad 0\leqslant x\leqslant\pi.
+\]
+这和 \S\,2 中例~\ref{ex:14-2-6} 的结果相同．
+\end{proof}
+
+\begin{example}\label{ex:14-3-2}
+将函数 $f(x)=\dfrac{x^{2}}{4}-\dfrac{\pi x}{2}$ 在 $[0,\pi]$ 按正弦展开．
+\end{example}
+
+\begin{proof}[解]
+根据奇延拓计算傅里叶系数
+\[
+\begin{aligned}
+b_{n}&=\frac{2}{\pi}\int_{0}^{\pi}f(x)\sin nx\dd x=\frac{2}{\pi}\int_{0}^{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\sin nx\dd x\\
+&=\frac{2}{\pi}\left(\frac{x^{2}}{4}-\frac{\pi x}{2}\right)\left(-\frac{\cos nx}{n}\right)\bigg|_{0}^{\pi}
++\frac{1}{n\pi}\int_{0}^{\pi}(x-\pi)\cos nx\dd x\\
+&=\frac{(-1)^{n}\pi}{2n}+\frac{1}{n^{2}\pi}(x-\pi)\sin nx\bigg|_{0}^{\pi}
+-\frac{1}{n^{2}\pi}\int_{0}^{\pi}\sin nx\dd x\\
+&=\frac{(-1)^{n}\pi}{2n}+\frac{1}{n^{3}\pi}\cos nx\bigg|_{0}^{\pi}\\
+&=\frac{(-1)^{n}\pi}{2n}+\frac{1}{n^{3}\pi}\left((-1)^{n}-1\right),\ n=1,2,\cdots.
+\end{aligned}
+\]
+因此
+\[
+\frac{x^{2}}{4}-\frac{\pi x}{2}=\pi\sum_{n=1}^{\infty}\frac{(-1)^{n}}{2n}\sin nx-\frac{2}{\pi}\sum_{n=1}^{\infty}\frac{\sin(2n-1)x}{(2n-1)^{3}}.
+\]
+\end{proof}
+
+\begin{xiti}
+\item 将下列函数在指定区间上展开为傅里叶级数，并讨论其收敛性：
+\begin{ziti}
+\item 设 $f(x)$ 以 $2l$ 为周期，在区间 $(0,2l)$ 展开
+\[
+f(x)=\begin{cases}
+A, & 0<x<l,\\
+0, & l\leqslant x<2l;
+\end{cases}
+\]
+\item 设 $f(x)$ 以 $\pi$ 为周期，$f(x)=x\cos x$，$\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)$；
+\item 设 $f(x)$ 以 $l$ 为周期，$f(x)=x$，$(0,l)$；
+\item 设 $f(x)$ 以 $3$ 为周期，$f(x)=\begin{cases}x,&0\leqslant x\leqslant 1,\\ 1,&1<x<2,\\ 3-x,&2\leqslant x\leqslant 3.\end{cases}$
+\end{ziti}
+\item 求下列周期函数的傅里叶级数：
+\begin{ziti}
+\item $f(x)=\left|\cos x\right|$；
+\item $f(x)=x-[x]$．
+\end{ziti}
+\item 把下列函数在指定区间上展开为余弦级数：
+\begin{ziti}
+\item $f(x)=\sin x$，$0\leqslant x\leqslant\pi$；
+\item $f(x)=\begin{cases}1-x,&0<x\leqslant 2,\\ x-3,&2<x<4.\end{cases}$
+\end{ziti}
+\item 把下列函数在指定区间上展开为正弦级数：
+\begin{ziti}
+\item $f(x)=\cos\dfrac{x}{2}$，$0\leqslant x\leqslant\pi$；
+\item $f(x)=x^{2}$，$0\leqslant x\leqslant 2$．
+\end{ziti}
+\item 把函数 $f(x)=(x-1)^{2}$ 在 $(0,1)$ 上展开成余弦级数，并推出
+\[
+\pi^{2}=6\left(1+\frac{1}{2^{2}}+\frac{1}{3^{2}}+\cdots\right).
+\]
+\item 将函数 $f(x)$ 分别作奇延拓和偶延拓后，求函数的傅里叶级数，其中
+\[
+f(x)=\begin{cases}
+1, & 0<x<\dfrac{\pi}{2},\\[4pt]
+\dfrac{1}{2}, & x=\dfrac{\pi}{2},\\[4pt]
+0, & \dfrac{\pi}{2}<x\leqslant\pi.
+\end{cases}
+\]
+\item 应当如何把给定在区间 $\left(0,\dfrac{\pi}{2}\right)$ 的可积函数延拓到区间 $(-\pi,\pi)$ 内，使得它在 $(-\pi,\pi)$ 中对应的傅里叶级数为：
+\begin{ziti}
+\item $f(x)\sim\displaystyle\sum_{n=1}^{\infty}a_{2n-1}\cos(2n-1)x$；
+\item $f(x)\sim\displaystyle\sum_{n=1}^{\infty}b_{2n-1}\sin(2n-1)x$．
+\end{ziti}
+\end{xiti}
+
+\section{傅里叶级数的平均收敛性}
+
+在前面我们讨论了一个以 $2\pi$ 为周期的函数 $f(x)$ 何时能展开成它的傅里叶级数的问题，也就是说，$f(x)$ 对应地有
+\[
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\]
+何时下面的等式
+\[
+f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right)
+\]
+成立？这里的等式成立，是指部分和
+\[
+S_{n}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right)
+\]
+当 $n\to\infty$ 时收敛到 $f(x)$（或 $\dfrac{f(x+0)+f(x-0)}{2}$）．所谓收敛，到现在为止，我们讲了两种．一种称为逐点收敛，即 $S_{n}(x)$ 在 $[-\pi,\pi]$ 的每一点都收敛到 $f(x)$，其含意是说，任给 $x\in[-\pi,\pi]$，任给 $\epsilon>0$，存在 $N$，当 $n>N$ 时，有
+\[
+\left|S_{n}(x)-f(x)\right|<\epsilon.
+\]
+另一种称为一致收敛，即 $S_{n}(x)$ 在 $[-\pi,\pi]$ 一致收敛到 $f(x)$，其含义是说，任给 $\epsilon>0$，存在 $N$（与 $x$ 无关），只要 $n>N$，有
+\[
+\sup_{-\pi\leqslant x\leqslant\pi}\left|S_{n}(x)-f(x)\right|<\epsilon
+\]
+成立．这两种收敛的意思是不相同的．因此为了保证它们成立，所加的条件也是不同的．当然，后者要比前者强得多．在本节我们引进一种新的收敛意义，它其实是更适合于研究傅里叶级数展开的，并且也更接近于近代数学的观点．
+
+这里涉及的问题是，一个在 $[-\pi,\pi]$ 上定义的函数 $f(x)$，如何用一串函数序列 $\left\{S_{n}(x)\right\}$ 去逼近它，使得逼近的误差收敛于零．逐点收敛的意思是说，对每一点 $x\in[-\pi,\pi]$，逐点逼近的误差都收敛于零．一致收敛的意思是说，逼近的误差一致趋向于 $0$，或等价于，用 $S_{n}(x)$ 与 $f(x)$ 的差的绝对值的"最大值"
+\[
+\sup_{-\pi\leqslant x\leqslant\pi}\left|S_{n}(x)-f(x)\right|
+\]
+来衡量 $S_{n}(x)$ 对 $f(x)$ 的逼近程度，在这种逼近意义下的误差趋向于零．由此可见，不同的收敛意义，其实都来源于对逼近程度的不同定义．
+
+一个数 $a$，我们用另一个数 $\alpha$ 去逼近它，其逼近程度自然用 $a$ 与 $\alpha$ 之差的绝对值 $\left|a-\alpha\right|$ 去衡量．如果三维空间的一个向量 $\bm{a}=(a_{1},a_{2},a_{3})$，我们用另一个向量 $\bm{\alpha}=(\alpha_{1},\alpha_{2},\alpha_{3})$ 去逼近它，如何去刻画逼近的程度？这时刻画就可以有很多种了．例如可以用各分量的最大误差
+\[
+\rho_{1}=\sup_{1\leqslant i\leqslant 3}\left|a_{i}-\alpha_{i}\right|
+\]
+来刻画，也可以用各分量的误差之和
+\[
+\rho_{2}=\sum_{i=1}^{3}\left|a_{i}-\alpha_{i}\right|
+\]
+来刻画，还可以用均方误差
+\[
+\rho_{3}=\left(\sum_{i=1}^{3}\left|a_{i}-\alpha_{i}\right|^{2}\right)^{\frac{1}{2}}
+\]
+来刻画．而最后这种刻画，说的实际上就是三维空间中，这两个向量 $\bm{a}$ 与 $\bm{\alpha}$ 的距离．由于函数是定义在一个区间上（例如 $[-\pi,\pi]$）的，对应的函数值有无穷多，因此，这种均方误差便应该是通过积分来给出的：
+\[
+\rho=\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|S_{n}(x)-f(x)\right|^{2}\dd x\right)^{\frac{1}{2}}.
+\]
+故本节要研究的问题是，在什么条件下，有
+\begin{equation}
+\lim_{n\to\infty}\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}=0
+\tag{1}
+\end{equation}
+成立？其中 $f(x)$ 是以 $2\pi$ 为周期的函数，而 $S_{n}(x)$ 是它的傅里叶级数部分和．如果（1）式成立，则说 $f(x)$ 的傅里叶级数平均收敛到它自己．
+
+为了解决这个问题，我们需要对 $f(x)$ 作些新的假设．
+
+设 $f(x)$ 是以 $2\pi$ 为周期的函数．进一步，假设 $f(x)$ 在 $[-\pi,\pi]$ 黎曼可积，或作为瑕积分在 $[-\pi,\pi]$，它的平方可积，即无论在哪种情况，都有
+\[
+\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x
+\]
+存在，这时，我们统称 $f(x)$ 在 $[-\pi,\pi]$ 平方可积．利用不等式
+\[
+\left|f(x)\right|\leqslant\frac{1+\left|f(x)\right|^{2}}{2},
+\]
+便可断言，若 $f(x)$ 在 $[-\pi,\pi]$ 平方可积，则 $f(x)$ 在 $[-\pi,\pi]$ 绝对可积．因此，如果 $f(x)$ 以 $2\pi$ 为周期，且在 $[-\pi,\pi]$ 平方可积，则它有傅里叶级数
+\[
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right).
+\]
+这样，（1）中的积分便是有意义的．
+
+为了回答（1）中等式是否成立这个问题，我们需要平方可积函数的下述两条性质．
+
+\textbf{性质 1}\quad 若 $f(x)$，$g(x)$ 在 $[-\pi,\pi]$ 平方可积，则 $f(x)g(x)$ 在 $[-\pi,\pi]$ 可积，且
+\[
+\begin{aligned}
+&\left|\int_{-\pi}^{\pi}f(x)g(x)\dd x\right|\leqslant\int_{-\pi}^{\pi}\left|f(x)g(x)\right|\dd x\\
+\leqslant{}&\left(\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\left(\int_{-\pi}^{\pi}\left|g(x)\right|^{2}\dd x\right)^{\frac{1}{2}}.
+\end{aligned}
+\]
+最后这个不等式称为柯西不等式．
+
+\begin{proof}
+第一个不等式成立是显然的，故只要证明第二个不等式．根据黎曼积分的性质以及不等式
+\[
+\left|f(x)g(x)\right|\leqslant\frac{\left|f(x)\right|^{2}+\left|g(x)\right|^{2}}{2},
+\]
+便知 $f(x)g(x)$ 在 $[-\pi,\pi]$ 绝对可积．考虑 $\lambda$ 的函数
+\[
+\begin{aligned}
+\psi(\lambda)&=\int_{-\pi}^{\pi}\left[\lambda\left|f(x)\right|+\left|g(x)\right|\right]^{2}\dd x\\
+&=\lambda^{2}\int_{-\pi}^{\pi}\left|f\right|^{2}\dd x+2\lambda\int_{-\pi}^{\pi}\left|fg\right|\dd x+\int_{-\pi}^{\pi}\left|g\right|^{2}\dd x.
+\end{aligned}
+\]
+由 $\psi(\lambda)\geqslant 0$，等式右边恒非负，因此，用二次函数的判别式便得
+\[
+\left(2\int_{-\pi}^{\pi}\left|fg\right|\dd x\right)^{2}-4\int_{-\pi}^{\pi}\left|f\right|^{2}\dd x\int_{-\pi}^{\pi}\left|g\right|^{2}\dd x\leqslant 0,
+\]
+移项便得到我们所要求的不等式．
+\end{proof}
+
+\textbf{性质 2}\quad 若 $f(x)$，$g(x)$ 在 $[-\pi,\pi]$ 平方可积，则 $f(x)+g(x)$ 在 $[-\pi,\pi]$ 平方可积，且
+\[
+\begin{aligned}
+&\left(\int_{-\pi}^{\pi}\left|f(x)+g(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+\leqslant{}&\left(\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x\right)^{\frac{1}{2}}+\left(\int_{-\pi}^{\pi}\left|g(x)\right|^{2}\dd x\right)^{\frac{1}{2}}.
+\end{aligned}
+\]
+
+\begin{proof}
+事实上，利用性质 1，有
+\[
+\begin{aligned}
+\int_{-\pi}^{\pi}(f+g)^{2}\dd x&=\int_{-\pi}^{\pi}\left|f\right|^{2}\dd x+2\int_{-\pi}^{\pi}fg\dd x+\int_{-\pi}^{\pi}\left|g\right|^{2}\dd x\\
+&\leqslant\int_{-\pi}^{\pi}\left|f\right|^{2}\dd x+2\left(\int_{-\pi}^{\pi}\left|f\right|^{2}\dd x\right)^{\frac{1}{2}}\left(\int_{-\pi}^{\pi}\left|g\right|^{2}\dd x\right)^{\frac{1}{2}}+\int_{-\pi}^{\pi}\left|g\right|^{2}\dd x\\
+&=\left[\left(\int_{-\pi}^{\pi}\left|f\right|^{2}\dd x\right)^{\frac{1}{2}}+\left(\int_{-\pi}^{\pi}\left|g\right|^{2}\dd x\right)^{\frac{1}{2}}\right]^{2},
+\end{aligned}
+\]
+这就是所要证明的不等式．
+\end{proof}
+
+现在考虑三角函数系
+\[
+\frac{1}{2},\cos x,\sin x,\cos 2x,\sin 2x,\cdots,\cos nx,\sin nx,\cdots,
+\]
+它的前 $2n+1$ 个函数的线性组合
+\[
+T_{n}(x)=\frac{\alpha_{0}}{2}+\sum_{k=1}^{n}\left(\alpha_{k}\cos kx+\beta_{k}\sin kx\right),
+\]
+称为 $n$ 阶三角多项式，其中 $\alpha_{0}$，$\alpha_{k}$，$\beta_{k}$（$k=1,2,\cdots,n$）是常数．
+
+设 $f(x)$ 是以 $2\pi$ 为周期的函数，在 $[-\pi,\pi]$ 平方可积．我们研究用三角多项式来逼近（近似）$f(x)$．衡量逼近程度的是前面引入的均方误差
+\[
+\Delta_{n}=\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T_{n}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}.
+\]
+固定 $n$，当 $\alpha_{0},\alpha_{k},\beta_{k}$（$k=1,2,\cdots,n$）改变时，$\Delta_{n}$ 也随之改变．一个有意义的问题是，当 $\alpha_{0}$，$\alpha_{k}$，$\beta_{k}$（$k=1,2,\cdots,n$）取什么值时，使得 $\Delta_{n}$ 取最小值？
+
+利用三角函数系的正交性，可以求出 $\Delta_{n}$ 的表达式：
+\[
+\begin{aligned}
+\Delta_{n}^{2}&=\frac{1}{2\pi}\left[\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x-2\int_{-\pi}^{\pi}f(x)T_{n}(x)\dd x+\int_{-\pi}^{\pi}\left|T_{n}(x)\right|^{2}\dd x\right]\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x\\
+&\quad-\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\left[\frac{\alpha_{0}}{2}+\sum_{k=1}^{n}\left(\alpha_{k}\cos kx+\beta_{k}\sin kx\right)\right]\dd x\\
+&\quad+\frac{1}{2\pi}\int_{-\pi}^{\pi}\left[\frac{\alpha_{0}}{2}+\sum_{k=1}^{n}\left(\alpha_{k}\cos kx+\beta_{k}\sin kx\right)\right]^{2}\dd x\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x-\frac{\alpha_{0}a_{0}}{2}-\sum_{k=1}^{n}\left(\alpha_{k}a_{k}+\beta_{k}b_{k}\right)\\
+&\quad+\frac{\alpha_{0}^{2}}{4}+\frac{1}{2}\sum_{k=1}^{n}\left(\alpha_{k}^{2}+\beta_{k}^{2}\right),
+\end{aligned}
+\]
+其中 $a_{0}$，$a_{k}$，$b_{k}$（$k=1,2,\cdots,n$）是函数 $f(x)$ 的傅里叶系数：
+\[
+a_{k}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kx\dd x,\ k=0,1,2,\cdots,
+\]
+\[
+b_{k}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx\dd x,\quad k=1,2,\cdots.
+\]
+在上述 $\Delta_{n}^{2}$ 的表达式中进行配方，得
+\[
+\begin{aligned}
+\Delta_{n}^{2}&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x\\
+&\quad+\frac{1}{2}\left[-\alpha_{0}a_{0}+\frac{\alpha_{0}^{2}}{2}-2\sum_{k=1}^{n}\left(\alpha_{k}a_{k}+\beta_{k}b_{k}\right)+\sum_{k=1}^{n}\left(\alpha_{k}^{2}+\beta_{k}^{2}\right)\right]\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x\\
+&\quad+\frac{1}{2}\left\{\frac{\left(a_{0}-\alpha_{0}\right)^{2}}{2}+\sum_{k=1}^{n}\left[\left(a_{k}-\alpha_{k}\right)^{2}+\left(b_{k}-\beta_{k}\right)^{2}\right]\right\}\\
+&\quad-\frac{a_{0}^{2}}{4}-\frac{1}{2}\sum_{k=1}^{n}\left(a_{k}^{2}+b_{k}^{2}\right).
+\end{aligned}
+\]
+由此看出，对固定的 $n$，当
+\[
+\alpha_{k}=a_{k},\quad k=0,1,2,\cdots,n,
+\]
+\[
+\beta_{k}=b_{k},\quad k=1,2,\cdots,n
+\]
+时，即 $T_{n}$ 取函数 $f(x)$ 傅里叶级数的 $n$ 阶部分和 $S_{n}(x)$ 时，$\Delta_{n}$ 最小．这样，我们证明了下面的定理．
+
+\begin{theorem}\label{thm:14-8}
+若 $f(x)$ 是以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积的函数，则在所有 $n$ 阶三角多项式 $T_{n}(x)$ 中，当 $T_{n}(x)$ 取 $f(x)$ 的傅里叶级数的 $n$ 阶部分和 $S_{n}(x)$ 时，$f(x)$ 与 $T_{n}(x)$ 的均方误差最小，即
+\begin{equation}
+\begin{aligned}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x&=\min_{\left\{T_{n}\right\}}\Delta_{n}^{2}\\
+&=\min_{\left\{T_{n}\right\}}\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T_{n}(x)\right|^{2}\dd x,
+\end{aligned}
+\tag{2}
+\end{equation}
+其中最小值是对所有 $n$ 阶三角多项式取的，而
+\[
+S_{n}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right)
+\]
+是 $f(x)$ 的傅里叶级数的 $n$ 阶部分和，并且
+\begin{equation}
+\begin{aligned}
+&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x\\
+={}&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x-\left[\frac{a_{0}^{2}}{4}+\frac{1}{2}\sum_{k=1}^{n}\left(a_{k}^{2}+b_{k}^{2}\right)\right].
+\end{aligned}
+\tag{3}
+\end{equation}
+\end{theorem}
+
+进一步，我们还有
+
+\begin{theorem}[贝塞尔（Bessel，1784---1846）不等式]\label{thm:14-9}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积，则 $f(x)$ 的傅里叶系数 $a_{k}$，$b_{k}$ 满足
+\begin{equation}
+\frac{a_{0}^{2}}{2}+\sum_{k=1}^{\infty}\left(a_{k}^{2}+b_{k}^{2}\right)\leqslant\frac{1}{\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x.
+\tag{4}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+注意到定理~\ref{thm:14-8} 中（3）式的左方永远是非负的，便知对任意 $n$，有
+\[
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x-\left[\frac{a_{0}^{2}}{4}+\frac{1}{2}\sum_{k=1}^{n}\left(a_{k}^{2}+b_{k}^{2}\right)\right]\geqslant 0,
+\]
+即
+\begin{equation}
+\frac{a_{0}^{2}}{2}+\sum_{k=1}^{n}\left(a_{k}^{2}+b_{k}^{2}\right)\leqslant\frac{1}{\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x.
+\tag{5}
+\end{equation}
+由于不等式的右边是与 $n$ 无关的数，这说明（4）中左边的正项无穷级数的部分和有界，因而收敛．在（5）中令 $n\to\infty$ 取极限，便得（4）式，定理~\ref{thm:14-9} 证完．
+\end{proof}
+
+现在我们可以来回答本节开头提出的问题了：在什么条件下，有
+\[
+\lim_{n\to\infty}\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}=0
+\]
+成立？事实上，根据定理~\ref{thm:14-8}，假如我们能够证明，任给 $\epsilon>0$，存在三角多项式 $T_{m}(x)$，使得
+\begin{equation}
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\epsilon,
+\tag{6}
+\end{equation}
+则便有
+\[
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\epsilon,
+\]
+而且由于 $m$ 变大时，不等式左边的值是变小的（这可以从（2）式看出，也可以从（3）式看出），因此当 $n>m$ 时，便有
+\[
+\begin{aligned}
+&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x\\
+\leqslant{}&\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{m}(x)\right|^{2}\dd x<\epsilon.
+\end{aligned}
+\]
+而是否存在 $T_{m}(x)$ 使（6）式成立，当 $f(x)$ 是连续时，可由定理~\ref{thm:14-7}（费耶定理）推出．而在 $f(x)$ 平方可积时，可以通过连续函数来平均逼近，这就是我们解决问题的线索．下面把它们逐步严格地写出来．
+
+\begin{lemma}\label{lem:14-4-1}
+设 $f(x)$ 在区间 $[a,b]$ 上黎曼可积，则对任给 $\epsilon>0$，存在 $[a,b]$ 上的连续函数 $g(x)$，使得
+\[
+\int_{a}^{b}\left|f(x)-g(x)\right|^{2}\dd x<\epsilon,
+\]
+且 $g(a)=f(a)$，$g(b)=f(b)$．
+\end{lemma}
+
+\begin{proof}
+任给 $\epsilon>0$，已知存在 $[a,b]$ 的分划：
+\[
+a=x_{0}<x_{1}<\cdots<x_{n}=b,
+\]
+使得
+\[
+\sum_{i=1}^{n}\left(M_{i}-m_{i}\right)\Delta x_{i}<\frac{\epsilon}{2M},
+\]
+其中
+\[
+\begin{gathered}
+M_{i}=\sup_{x_{i-1}\leqslant x\leqslant x_{i}}f(x),\quad m_{i}=\inf_{x_{i-1}\leqslant x\leqslant x_{i}}f(x),\\
+M=\sup_{x\in[a,b]}\left|f(x)\right|,\quad\Delta x_{i}=x_{i}-x_{i-1}.
+\end{gathered}
+\]
+构造折线性函数
+\[
+\begin{gathered}
+g(x)=\frac{f(x_{i})-f(x_{i-1})}{x_{i}-x_{i-1}}(x-x_{i-1})+f(x_{i-1}),\\
+x_{i-1}\leqslant x\leqslant x_{i},\quad i=1,2,\cdots,n.
+\end{gathered}
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.7,baseline=(current bounding box.center)]
+  \draw[{-Latex}] (-0.5,0) -- (5.3,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-0.6) -- (0,3.3) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick,smooth] plot coordinates {(1,1.1) (1.7,1.75) (2.35,1.5) (3.05,2.65) (3.75,2.05) (4.5,2.15)};
+  \draw[thin] plot coordinates {(1,1.1) (1.7,1.75) (2.35,1.5) (3.05,2.65) (3.75,2.05) (4.5,2.15)};
+  \draw[dashed] (1.7,0) -- (1.7,1.75);
+  \draw[dashed] (2.35,0) -- (2.35,1.5);
+  \draw[dashed] (3.05,0) -- (3.05,2.65);
+  \draw[dashed] (3.75,0) -- (3.75,2.05);
+  \draw[dashed] (4.5,0) -- (4.5,2.15);
+  \node[below] at (1,0) {$a$};
+  \node[below] at (3.05,0) {$x_{i-1}$};
+  \node[below] at (3.75,0) {$x_{i}$};
+  \node[below] at (4.5,0) {$b$};
+\end{tikzpicture}\caption{\relax}\label{fig:14-13}
+\end{figure}
+
+则显然 $g(x)$ 在 $[a,b]$ 连续，且 $g(a)=f(a)$，$g(b)=f(b)$，
+\[
+\begin{aligned}
+\int_{a}^{b}\left|f(x)-g(x)\right|^{2}\dd x&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}\left|f(x)-g(x)\right|^{2}\dd x\\
+&\leqslant\sum_{i=1}^{n}\left(M_{i}-m_{i}\right)^{2}\Delta x_{i}\leqslant 2M\sum_{i=1}^{n}\left(M_{i}-m_{i}\right)\Delta x_{i}<\epsilon,
+\end{aligned}
+\]
+引理~\ref{lem:14-4-1} 证完．
+\end{proof}
+
+\begin{theorem}\label{thm:14-10}
+设 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积，则对任给 $\epsilon>0$，存在三角多项式 $T(x)$，使得
+\[
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\epsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+（i）先设 $f(x)$ 在 $[-\pi,\pi]$ 黎曼可积，且 $f(\pi)=f(-\pi)$，由引理~\ref{lem:14-4-1} 知对任给的 $\epsilon>0$，存在 $[-\pi,\pi]$ 上的连续函数 $g(x)$，满足 $g(\pi)=g(-\pi)$，且
+\[
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-g(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\frac{\epsilon}{2}.
+\]
+由定理~\ref{thm:14-7}（费耶定理），知有 $g(x)$ 的傅里叶级数部分和的算术平均 $\sigma_{m}(x)$，使得
+\[
+\left|g(x)-\sigma_{m}(x)\right|<\frac{\epsilon}{2}
+\]
+对 $x\in[-\pi,\pi]$ 同时成立．因此
+\[
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|g(x)-\sigma_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\frac{\epsilon}{2},
+\]
+从而根据性质 2，有
+\[
+\begin{aligned}
+&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-\sigma_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+\leqslant{}&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-g(x)\right|^{2}\dd x\right)^{\frac{1}{2}}+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|g(x)-\sigma_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+<&\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon,
+\end{aligned}
+\]
+而显然 $\sigma_{m}(x)$ 是一 $m$ 阶三角多项式，这就是定理所要证明的．
+
+（ii）设 $f(x)$ 无界，不妨假设 $f(x)$ 在 $[-\pi,\pi]$ 只有一个瑕点 $\pi$．这时，由于 $f(x)$ 在 $[-\pi,\pi]$ 平方可积，则任给 $\epsilon>0$，存在 $\eta>0$，使
+\[
+\left(\frac{1}{2\pi}\int_{\pi-\eta}^{\pi}\left|f(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\frac{\epsilon}{2}.
+\]
+令
+\[
+f_{1}(x)=\begin{cases}
+f(x), & \text{当 } x\in[-\pi,\pi-\eta],\\
+0, & \text{当 } x\in(\pi-\eta,\pi],
+\end{cases}
+\]
+\[
+f_{2}(x)=\begin{cases}
+0, & \text{当 } x\in[-\pi,\pi-\eta),\\
+f(x), & \text{当 } x\in[\pi-\eta,\pi],
+\end{cases}
+\]
+则
+\[
+f(x)=f_{1}(x)+f_{2}(x),
+\]
+且 $f_{1}(x)$ 在 $[-\pi,\pi]$ 黎曼可积，由（i）知存在三角多项式 $T_{m}(x)$，使
+\[
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f_{1}(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\frac{\epsilon}{2},
+\]
+因此
+\[
+\begin{aligned}
+&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+={}&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f_{1}(x)+f_{2}(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+\leqslant{}&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f_{1}(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f_{2}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+\leqslant{}&\frac{\epsilon}{2}+\left(\frac{1}{2\pi}\int_{\pi-\eta}^{\pi}\left|f(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon.
+\end{aligned}
+\]
+定理~\ref{thm:14-10} 证完．
+\end{proof}
+
+\begin{theorem}\label{thm:14-11}
+若 $f(x)$ 是以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积的函数，则 $f(x)$ 的傅里叶级数的部分和 $S_{n}(x)$ 在 $[-\pi,\pi]$ 平均收敛到 $f(x)$，即
+\[
+\lim_{n\to\infty}\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}=0.
+\]
+\end{theorem}
+
+\begin{proof}
+根据定理~\ref{thm:14-10}，任给 $\epsilon>0$，存在 $m$ 阶三角多项式 $T_{m}(x)$，使得
+\[
+\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\epsilon.
+\]
+由定理~\ref{thm:14-8} 知，只要 $n>m$，有
+\[
+\begin{aligned}
+&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{n}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+\leqslant{}&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-S_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}\\
+\leqslant{}&\left(\frac{1}{2\pi}\int_{-\pi}^{\pi}\left|f(x)-T_{m}(x)\right|^{2}\dd x\right)^{\frac{1}{2}}<\epsilon,
+\end{aligned}
+\]
+定理~\ref{thm:14-11} 证完．
+\end{proof}
+
+定理~\ref{thm:14-11} 回答了本节开始提出的问题，答案为：只要 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积，则其傅里叶级数部分和 $S_{n}(x)$ 便平均收敛到 $f(x)$．$f(x)$ 在 $[-\pi,\pi]$ 平方可积，这已经是最弱的条件了，因此，这个答案已经是很完美的了．
+
+\begin{corollary}[帕塞瓦尔（Paseval，1755---1836）等式]\label{cor:14-4-1}
+若 $f(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积，则
+\[
+\frac{a_{0}^{2}}{2}+\sum_{k=1}^{\infty}\left(a_{k}^{2}+b_{k}^{2}\right)=\frac{1}{\pi}\int_{-\pi}^{\pi}\left|f(x)\right|^{2}\dd x.
+\]
+\end{corollary}
+
+\begin{proof}
+在定理~\ref{thm:14-8} 的（3）式中，令 $n\to\infty$ 取极限，由定理~\ref{thm:14-11} 知左边的极限为零，便得推论所需要的结论．
+\end{proof}
+
+\begin{xiti}
+\item 若 $f(x)$，$g(x)$ 以 $2\pi$ 为周期，在 $[-\pi,\pi]$ 平方可积，
+\[
+f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\]
+\[
+g(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(\alpha_{n}\cos nx+\beta_{n}\sin nx\right),
+\]
+则
+\[
+\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)g(x)\dd x=\frac{a_{0}\alpha_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\alpha_{n}+b_{n}\beta_{n}\right).
+\]
+\item 设 $f(x)$ 在 $[0,l]$ 上平方可积，求证：
+\[
+\frac{2}{l}\int_{0}^{l}f^{2}(x)\dd x=\frac{1}{2}a_{0}^{2}+\sum_{n=1}^{\infty}a_{n}^{2},
+\]
+其中
+\[
+a_{n}=\frac{2}{l}\int_{0}^{l}f(x)\cos\frac{n\pi x}{l}\dd x.
+\]
+\end{xiti}

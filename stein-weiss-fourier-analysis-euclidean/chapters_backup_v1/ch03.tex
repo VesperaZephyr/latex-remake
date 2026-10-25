@@ -1,0 +1,341 @@
+\chapter{The Theory of \texorpdfstring{$H^{p}$}{Hp} Spaces on Tubes}
+\label{ch:hp-tubes}
+
+In this chapter we study the boundary behavior and representation of holomorphic functions of several complex variables in certain domains known as tube domains. The classical theory of $H^p$ spaces on the upper half-plane $\mathbb{R}_+^2 = \{x + iy : y > 0\}$ asserts that if $F(z) = F(x + iy)$ is analytic and satisfies
+\[
+\sup_{y > 0} \int_{-\infty}^\infty |F(x + iy)|^p\,dx \leq M < \infty,
+\]
+then $F(x + iy)$ has nontangential limits $F(x)$ almost everywhere as $y \to 0$, $F \in L^p(\mathbb{R})$, and $F$ can be recovered from its boundary value via the Cauchy or Poisson integral formulas.
+
+Our goal is to generalize this theory to functions of $n$ complex variables $z = x + iy \in \mathbb{C}^n$, where $x, y \in E_n$. A \emph{tube domain} over a base domain $B \subset E_n$ is the set $T_B = E_n + i B = \{z = x + iy \in \mathbb{C}^n : x \in E_n, y \in B\}$. Particularly important are tubes over proper convex open cones $B = \Gamma \subset E_n$.
+
+\section{Introductory Remarks}
+
+Let $B$ be an open connected subset of $E_n$. The set $T_B = \{z = x + iy : x \in E_n, y \in B\}$ is called the \emph{tube over $B$}. A function $F(z) = F(z_1, z_2, \dots, z_n)$ defined on $T_B$ is \emph{holomorphic} (or analytic) if it is complex-differentiable with respect to each variable $z_j = x_j + i y_j$ in $T_B$. This is equivalent to saying that the Cauchy--Riemann equations hold:
+\begin{equation}\label{eq:c3-1-1}
+\frac{\partial F}{\partial \bar{z}_j} = \frac{1}{2} \left( \frac{\partial F}{\partial x_j} + i \frac{\partial F}{\partial y_j} \right) = 0, \quad j = 1, 2, \dots, n.
+\end{equation}
+Writing $F = u + iv$ where $u = \text{Re}\,F$ and $v = \text{Im}\,F$, \eqref{eq:c3-1-1} is equivalent to the system of real partial differential equations:
+\begin{equation}\label{eq:c3-1-2}
+\frac{\partial u}{\partial x_j} = \frac{\partial v}{\partial y_j}, \quad \frac{\partial u}{\partial y_j} = -\frac{\partial v}{\partial x_j}, \quad j = 1, 2, \dots, n.
+\end{equation}
+It follows immediately from \eqref{eq:c3-1-2} that both $u$ and $v$ are harmonic functions of $2n$ real variables $(x, y) = (x_1, \dots, x_n, y_1, \dots, y_n)$ in $T_B$:
+\begin{equation}\label{eq:c3-1-3}
+\Delta_{(x,y)} u = \sum_{j=1}^n \left( \frac{\partial^2 u}{\partial x_j^2} + \frac{\partial^2 u}{\partial y_j^2} \right) = 0.
+\end{equation}
+Moreover, for each fixed $y \in B$, $\Delta_x u(x, y) = \Delta_y u(x, y)$, and similarly for $v$.
+
+For $0 < p < \infty$, the space $H^p(T_B)$ consists of all holomorphic functions $F$ on $T_B$ such that
+\begin{equation}\label{eq:c3-1-4}
+\|F\|_{H^p(T_B)} = \sup_{y \in B} \left( \int_{E_n} |F(x + iy)|^p\,dx \right)^{1/p} < \infty.
+\end{equation}
+For $p = \infty$, $H^\infty(T_B)$ is the space of all bounded holomorphic functions on $T_B$, with norm
+\begin{equation}\tag{1.4$'$}\label{eq:c3-1-4p}
+\|F\|_{H^\infty(T_B)} = \sup_{z \in T_B} |F(z)| < \infty.
+\end{equation}
+
+When $n = 1$ and $B = (0, \infty) \subset \mathbb{R}$, $T_B$ is the upper half-plane $E_2^+ = \{x + iy : y > 0\}$. In this case, the Cauchy kernel $C(z) = i/(2\pi z)$ and the Poisson kernel $P(x, y) = \frac{1}{\pi} \frac{y}{x^2 + y^2}$ are related by
+\begin{equation}\label{eq:c3-1-5}
+\frac{i}{\pi z} = P(x, y) + i Q(x, y), \quad Q(x, y) = \frac{1}{\pi} \frac{x}{x^2 + y^2},
+\end{equation}
+where $Q(x, y)$ is the conjugate Poisson kernel. For $F \in H^p(E_2^+)$, Cauchy's integral theorem yields
+\begin{equation}\label{eq:c3-1-6}
+F(z) = \frac{1}{2\pi i} \int_{-\infty}^\infty \frac{F(t)}{t - z}\,dt, \quad \text{Im}\,z > 0,
+\end{equation}
+and
+\begin{equation}\tag{1.6$'$}\label{eq:c3-1-6p}
+0 = \frac{1}{2\pi i} \int_{-\infty}^\infty \frac{F(t)}{t - \bar{z}}\,dt, \quad \text{Im}\,z > 0.
+\end{equation}
+Subtracting \eqref{eq:c3-1-6p} from \eqref{eq:c3-1-6} gives the Poisson integral representation:
+\begin{equation}\label{eq:c3-1-7}
+F(x + iy) = \int_{-\infty}^\infty P(x - t, y) F(t)\,dt.
+\end{equation}
+
+\section{The \texorpdfstring{$H^2$}{H2} Theory}
+
+The space $H^2(T_B)$ admits a particularly clean and elegant characterization via the Fourier transform, generalizing the celebrated Paley--Wiener theorem.
+
+Let $F \in H^2(T_B)$. For each fixed $y \in B$, $F(\,\cdot\, + iy) \in L^2(E_n)$. Let $\hat{F}_y(t)$ denote its Fourier transform with respect to $x$:
+\begin{equation}\label{eq:c3-2-1}
+\hat{F}_y(t) = \int_{E_n} F(x + iy) e^{-2\pi i x \cdot t}\,dx.
+\end{equation}
+By the Cauchy--Riemann equations, differentiating under the integral sign gives
+\begin{equation}\label{eq:c3-2-2}
+\frac{\partial \hat{F}_y}{\partial y_j}(t) = -2\pi t_j \hat{F}_y(t), \quad j = 1, 2, \dots, n.
+\end{equation}
+Integrating this system of differential equations yields $\hat{F}_y(t) = e^{-2\pi y \cdot t} g(t)$ for some function $g$ independent of $y$.
+
+\begin{theorem}\label{thm:c3-2-3}
+Let $B \subset E_n$ be a connected open set. A holomorphic function $F$ on $T_B$ belongs to $H^2(T_B)$ if and only if there exists a measurable function $g$ on $E_n$ such that
+\[
+F(x + iy) = \int_{E_n} g(t) e^{-2\pi y \cdot t} e^{2\pi i x \cdot t}\,dt,
+\]
+where $e^{-2\pi y \cdot t} g(t) \in L^2(E_n)$ for all $y \in B$, and
+\[
+\sup_{y \in B} \int_{E_n} |g(t)|^2 e^{-4\pi y \cdot t}\,dt < \infty.
+\]
+\end{theorem}
+
+\begin{corollary}\label{cor:c3-2-4}
+If $B$ contains an open ball and $\sup_{y \in B} \int |g(t)|^2 e^{-4\pi y \cdot t}\,dt < \infty$, then the convex hull of $B$, denoted by $\text{ch}(B)$, satisfies the same property, and $F$ extends holomorphically to $T_{\text{ch}(B)}$.
+\end{corollary}
+
+Writing the representation of $F$ in full,
+\begin{equation}\label{eq:c3-2-5}
+F(x + iy) = \int_{E_n} g(t) e^{-2\pi y \cdot t} e^{2\pi i x \cdot t}\,dt,
+\end{equation}
+
+\begin{corollary}\label{cor:c3-2-6}
+The space $H^2(T_B)$ is a Hilbert space with inner product
+\begin{equation}\label{eq:c3-2-7}
+\langle F, G \rangle = \int_{E_n} g(t) \overline{h(t)}\,dt,
+\end{equation}
+where $g$ and $h$ are the Fourier spectral functions of $F$ and $G$.
+\end{corollary}
+
+\begin{equation}\label{eq:c3-2-8}
+|F(x + iy)| \leq C_B (\text{dist}(y, \partial B))^{-n/2} \|F\|_{H^2(T_B)}.
+\end{equation}
+
+\begin{corollary}\label{cor:c3-2-9}
+Convergence in $H^2(T_B)$ implies uniform convergence on compact subsets of $T_B$.
+\end{corollary}
+
+\begin{corollary}\label{cor:c3-2-10}
+For any $z \in T_B$, the evaluation linear functional $F \mapsto F(z)$ is bounded on $H^2(T_B)$. Consequently, there exists a unique reproducing kernel (the Bergman kernel) $K(z, w)$ such that
+\[
+F(z) = \int_{T_B} F(w) K(z, w)\,dw.
+\]
+\end{corollary}
+
+\begin{theorem}\label{thm:c3-2-11}
+If $B$ is a convex cone, then $H^2(T_B)$ has nontangential boundary limits $F(x) = \lim_{y \to 0, y \in B} F(x + iy)$ almost everywhere on $E_n$, and $F(\,\cdot\, + iy) \to F$ in $L^2(E_n)$ norm.
+\end{theorem}
+
+\begin{lemma}\label{lem:c3-2-12}
+Let $\Gamma$ be an open convex cone in $E_n$. The dual cone $\Gamma^*$ is defined by
+\begin{equation}\label{eq:c3-2-13}
+\Gamma^* = \{t \in E_n : t \cdot y \geq 0 \text{ for all } y \in \Gamma\}.
+\end{equation}
+If $\Gamma$ is non-empty and does not contain an entire straight line, then $\Gamma^*$ has non-empty interior.
+\end{lemma}
+
+\section{Tubes Over Cones}
+
+An open set $\Gamma \subset E_n$ is a \emph{cone} with vertex at the origin if $y \in \Gamma$ implies $\lambda y \in \Gamma$ for all $\lambda > 0$. A cone $\Gamma$ is \emph{proper} if its closure contains no non-zero linear subspace.
+
+\begin{theorem}\label{thm:c3-3-1}
+Let $\Gamma$ be an open, convex, proper cone in $E_n$. For $z = x + iy \in T_\Gamma$, the Cauchy kernel of $T_\Gamma$ is given by
+\begin{equation}\label{eq:c3-3-2}
+C(z) = \int_{\Gamma^*} e^{2\pi i z \cdot t}\,dt = \int_{\Gamma^*} e^{-2\pi y \cdot t} e^{2\pi i x \cdot t}\,dt.
+\end{equation}
+The integral converges absolutely for every $z \in T_\Gamma$ and defines a holomorphic function on $T_\Gamma$.
+\end{theorem}
+
+\begin{equation}\label{eq:c3-3-3}
+C(x + iy) = \overline{C(-x + iy)}.
+\end{equation}
+
+\begin{corollary}\label{cor:c3-3-4}
+The Poisson kernel of the tube domain $T_\Gamma$ is defined by
+\begin{equation}\label{eq:c3-3-5}
+P(x, y) = \frac{|C(x + iy)|^2}{C(2iy)}.
+\end{equation}
+\end{corollary}
+
+\begin{theorem}\label{thm:c3-3-6}
+The Poisson kernel $P(x, y)$ on $T_\Gamma$ satisfies:
+\begin{enumerate}
+\item[(i)] $P(x, y) > 0$ for all $x \in E_n$ and $y \in \Gamma$;
+\item[(ii)] $\int_{E_n} P(x, y)\,dx = 1$ for all $y \in \Gamma$;
+\item[(iii)] For every $\delta > 0$, $\lim_{y \to 0, y \in \Gamma} \int_{|x| \geq \delta} P(x, y)\,dx = 0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:c3-3-7}
+If $f \in L^p(E_n)$, $1 \leq p < \infty$, the Poisson integral
+\begin{equation}\label{eq:c3-3-8}
+u(x, y) = \int_{E_n} P(x - t, y) f(t)\,dt
+\end{equation}
+satisfies $\|u(\,\cdot\,, y) - f\|_p \to 0$ as $y \to 0$ within any compact subcone of $\Gamma$.
+\end{corollary}
+
+\begin{theorem}\label{thm:c3-3-9}
+Let $F \in H^2(T_\Gamma)$ where $\Gamma$ is an open convex proper cone. Then the spectral function $g$ in Theorem~\ref{thm:c3-2-3} vanishes almost everywhere outside the dual cone $\Gamma^*$:
+\begin{equation}\label{eq:c3-3-10}
+g(t) = 0 \quad \text{a.e. for } t \notin \Gamma^*.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:c3-3-11}
+F(x + iy) = \int_{\Gamma^*} g(t) e^{-2\pi y \cdot t} e^{2\pi i x \cdot t}\,dt,
+\end{equation}
+and
+\begin{equation}\label{eq:c3-3-12}
+F(z) = \int_{E_n} C(z - t) F(t)\,dt, \quad z \in T_\Gamma.
+\end{equation}
+\end{theorem}
+
+\section{The Paley--Wiener Theorem}
+
+We now establish the generalized Paley--Wiener theorem for tube domains, which characterizes holomorphic functions of exponential type in terms of the support of their Fourier transforms.
+
+\begin{theorem}[Paley--Wiener]\label{thm:c3-4-1}
+Let $K \subset E_n$ be a compact convex set with support function $H_K(y) = \sup_{t \in K} (y \cdot t)$. An entire function $F(z)$ on $\mathbb{C}^n$ satisfies the growth condition
+\[
+|F(z)| \leq A e^{2\pi H_K(y)}, \quad z = x + iy \in \mathbb{C}^n,
+\]
+and has $F(\,\cdot\, + iy) \in L^2(E_n)$ uniformly in $y$, if and only if $F$ is the Fourier--Laplace transform of a function $g \in L^2(E_n)$ supported in $K$:
+\[
+F(z) = \int_K g(t) e^{2\pi i z \cdot t}\,dt.
+\]
+\end{theorem}
+
+\begin{lemma}\label{lem:c3-4-2}
+Let $F$ be an entire function of $n$ complex variables. If $F \in L^2(E_n)$ on every real affine subspace, then the Cauchy formula holds across all coordinate directions.
+\end{lemma}
+
+\begin{lemma}\label{lem:c3-4-3}
+Let $g \in L^1(E_n)$ have compact support $K$. Then its Fourier transform $\hat{g}(z)$ extends to an entire function on $\mathbb{C}^n$ satisfying $|\hat{g}(z)| \leq \|g\|_1 e^{2\pi H_K(y)}$.
+\end{lemma}
+
+\begin{lemma}\label{lem:c3-4-4}
+If $F \in H^2(T_\Gamma)$ and $F$ extends holomorphically across the boundary to an open neighborhood of $\overline{T_\Gamma}$, then
+\begin{equation}\label{eq:c3-4-5}
+\int_{E_n} |F(x)|^2\,dx = \int_{\Gamma^*} |g(t)|^2\,dt.
+\end{equation}
+\end{lemma}
+
+\begin{equation}\label{eq:c3-4-6}
+|g(t)| \leq C e^{-2\pi \text{dist}(t, \partial \Gamma^*) |y|}.
+\end{equation}
+
+\begin{lemma}\label{lem:c3-4-7}
+Let $\Gamma$ be a proper open cone. There exists a constant $M > 0$ such that for all $t \in \Gamma^*$,
+\begin{equation}\label{eq:c3-4-8}
+\int_\Gamma e^{-2\pi y \cdot t}\,dy \leq \frac{M}{|t|^n}.
+\end{equation}
+\end{lemma}
+
+\begin{equation}\tag{4.8$'$}\label{eq:c3-4-8p}
+\int_{\Gamma^*} e^{-2\pi y \cdot t}\,dt \leq \frac{M'}{|y|^n}.
+\end{equation}
+
+\begin{theorem}\label{thm:c3-4-9}
+Every $F \in H^2(T_\Gamma)$ is the Cauchy integral of its boundary function $F(x) = \lim_{y \to 0, y \in \Gamma} F(x + iy)$:
+\begin{equation}\label{eq:c3-4-10}
+F(z) = \int_{E_n} C(z - t) F(t)\,dt.
+\end{equation}
+\end{theorem}
+
+\begin{lemma}\label{lem:c3-4-11}
+The Cauchy kernel satisfies $C(z) \in H^2(T_\Gamma)$ as a function of $z$, for each fixed parameter point.
+\end{lemma}
+
+\begin{equation}\label{eq:c3-4-12}
+\lim_{y \to 0, y \in \Gamma} \int_{E_n} |C(x + iy - t) - C(x - t)|^2\,dx = 0.
+\end{equation}
+
+\section{The \texorpdfstring{$H^p$}{Hp} Theory}
+
+We now turn to the general $H^p$ theory for $p > 0$ on tube domains $T_\Gamma$ over proper convex open cones $\Gamma$. We shall use the notation for nontangential limits in each variable that was introduced in Section~3 of Chapter~II: a function $u$ has the nontangential limit $l$ in each variable at $x \in E_n$ if $u(\zeta)$ tends to $l$ as $\zeta$ tends to $x$ within the Cartesian product
+\[
+\gamma_\alpha(x) = \Gamma_{\alpha_1}(x_1) \times \Gamma_{\alpha_2}(x_2) \times \cdots \times \Gamma_{\alpha_n}(x_n) \subset T_\Gamma
+\]
+for each $n$-tuple $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_n)$ of positive real numbers.
+
+\begin{theorem}\label{thm:c3-5-1}
+Suppose $F$ belongs to $H^p(T_\Gamma)$, $p > 0$, where $\Gamma$ is the first octant in $E_n$. Then
+\begin{enumerate}
+\item[(a)] $F$ has a nontangential limit $F(x)$ in each variable at almost every $x \in E_n$; in particular, $\lim_{y \in \Gamma, y \to 0} F(x + iy) = F(x)$ exists for almost every $x \in E_n$;
+\item[(b)] $\int_{E_n} |F(x + iy) - F(x)|^p\,dx$ tends to zero as $y \in \Gamma$ tends to $0 \in E_n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Let us fix $(\zeta_2, \dots, \zeta_n) = (\xi_2 + i\eta_2, \dots, \xi_n + i\eta_n)$, $\eta_2, \dots, \eta_n > 0$, and consider the function $g$ of one complex variable defined by letting $g(\zeta_1) = F(\zeta_1, \zeta_2, \dots, \zeta_n)$ whenever $\zeta_1 = \xi_1 + i\eta_1$ belongs to the upper half-plane $E_2^+$. We first show that $g$ belongs to $H^p(E_2^+)$. Since $|F|^p$ is subharmonic, applying the mean value property in each of the variables $\zeta_2, \dots, \zeta_n$ gives
+\[
+\begin{aligned}
+|F(\zeta_1, \zeta_2, \dots, \zeta_n)|^p &\leq \frac{1}{\pi\eta_2^2} \int_{|w_2 - \zeta_2| < \eta_2} |F(\zeta_1, w_2, \dots, \zeta_n)|^p\,du_2 dv_2 \\
+&\leq \frac{1}{\pi\eta_2^2} \int_0^{2\eta_2} \int_{-\infty}^\infty |F(\zeta_1, w_2, \dots, \zeta_n)|^p\,du_2 dv_2.
+\end{aligned}
+\]
+Repeating this argument for $\zeta_3, \dots, \zeta_n$ we obtain
+\[
+\begin{aligned}
+|F(\zeta)|^p &\leq \pi^{1-n}(\eta_2 \cdots \eta_n)^{-2} \\
+&\times \int_0^{2\eta_n} \cdots \int_0^{2\eta_2} \left(\int_{E_{n-1}} |F(\zeta_1, w_2, \dots, w_n)|^p\,du_2 \cdots du_n\right) dv_2 \cdots dv_n.
+\end{aligned}
+\]
+Now integrating both sides of this inequality with respect to $\xi_1$ we have
+\[
+\begin{aligned}
+\int_{-\infty}^\infty |g(\xi_1 + i\eta_1)|^p\,d\xi_1 &\leq \pi^{1-n}(\eta_2 \cdots \eta_n)^{-2} \int_0^{2\eta_n} \cdots \int_0^{2\eta_2} \left(\int_{E_n} |F(u + iv)|^p\,du\right) dv_2 \cdots dv_n \\
+&\leq \pi^{1-n}(\eta_2 \cdots \eta_n)^{-2} \|F\|_p^p (2\eta_2 \cdots 2\eta_n) = A_1 < \infty.
+\end{aligned}
+\]
+This shows that $g$ is a member of $H^p(E_2^+)$.
+
+For $\zeta = (\zeta_1, \zeta_2, \dots, \zeta_n)$ in $T_\Gamma$ we let $s(\zeta) = |F(\zeta)|^{p/2}$. Applying the same argument to $\zeta_2, \dots, \zeta_n$ we obtain
+\begin{equation}\label{eq:c3-5-2}
+s(\xi + i[\varepsilon + \eta]) = s(\xi_1 + i[\varepsilon_1 + \eta_1], \dots, \xi_n + i[\varepsilon_n + \eta_n]) \leq \int_{E_n} s(t + i\varepsilon) \mathcal{P}(\xi - t, \eta)\,dt
+\end{equation}
+for all $\varepsilon = (\varepsilon_1, \dots, \varepsilon_n)$ in $\Gamma$. The fact that $F$ belongs to $H^p(T_\Gamma)$ implies that the family $\{f_\varepsilon\}$, where $f_\varepsilon(t) = s(t + i\varepsilon)$ for $\varepsilon \in \Gamma$, is uniformly bounded in the $L^2$ norm (in fact $\|f_\varepsilon\|_2^2 \leq \|F\|_p^p$). Thus, by the weak compactness of the unit sphere of $L^2(E_n)$, there is a sequence $\varepsilon^{(k)} \to 0$ in $\Gamma$ such that $f_{\varepsilon^{(k)}}$ converges weakly to a function $f \in L^2(E_n)$, and it follows from \eqref{eq:c3-5-2} that
+\begin{equation}\label{eq:c3-5-3}
+s(\xi + i\eta) \leq \int_{E_n} f(t) \mathcal{P}(\xi - t, \eta)\,dt = m(\xi + i\eta).
+\end{equation}
+Since $m(\xi + i\eta)$ is the iterated Poisson integral of a function in $L^2(E_n)$ it is nontangentially bounded in each variable at almost every $x \in E_n$ (see the argument following Corollary~3.23 in the second chapter). Because of \eqref{eq:c3-5-3}, the same must be true of $s(\xi + i\eta) = |F(\xi + i\eta)|^{p/2}$; hence $F$ is nontangentially bounded in each variable a.e., and part (a) is a consequence of Theorem~3.24 of Chapter~II.
+
+Part (b) now follows easily. If we let $M = M^{(n)} M^{(n-1)} \cdots M^{(1)} f$ be the $n$-fold iterate of the one-dimensional maximal functions corresponding to the variables $x_1, x_2, \dots, x_n$, it then follows that $m(x + iy) \leq A(Mf)(x)$ for all $x + iy \in T_\Gamma$, where $A$ is a constant depending only on the dimension; consequently,
+\begin{equation}\label{eq:c3-5-4}
+|F(x + iy)|^p \leq \{A(Mf)(x)\}^2.
+\end{equation}
+By part (a) we have established the almost everywhere convergence $\lim_{y \in \Gamma, y \to 0} |F(x + iy) - F(x)| = 0$; it follows from inequality \eqref{eq:c3-5-4} that this convergence is dominated almost everywhere by a constant times $\{(Mf)(x)\}^2$, since
+\[
+|F(x + iy) - F(x)|^p \leq 2^p (|F(x + iy)|^p + |F(x)|^p) \leq 2^{p+1}\{A(Mf)(x)\}^2.
+\]
+Since $f \in L^2(E_n)$ it follows from (3.20), Chapter~II, that $Mf \in L^2$. Part (b) is, therefore, an immediate consequence of the Lebesgue dominated convergence theorem.
+\end{proof}
+
+\begin{theorem}\label{thm:c3-5-5}
+Let $F \in H^p(T_\Gamma)$ with $p > 0$. Then $\log |F(z)|$ has a least harmonic majorant on $T_\Gamma$, and $|F(x + iy)|^p$ is subharmonic on $T_\Gamma$.
+\end{theorem}
+
+\begin{theorem}\label{thm:c3-5-6}
+Let $F$ be holomorphic on $T_\Gamma$. Then $F \in H^p(T_\Gamma)$ if and only if $|F(x + iy)|^p$ has a harmonic majorant on $T_\Gamma$ of the form of a Poisson integral of a function in $L^1(E_n)$.
+\end{theorem}
+
+\begin{equation}\label{eq:c3-5-7}
+\sup_{y \in \Gamma'} \|F(\,\cdot\, + iy)\|_p \leq C_{\Gamma'} \|F\|_{H^p(T_\Gamma)}.
+\end{equation}
+
+\begin{equation}\label{eq:c3-5-8}
+\int_{E_n} \log^+ |F(x + iy)|\,dx \leq M < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c3-5-9}
+\lim_{y \to 0, y \in \Gamma'} \int_{E_n} |F(x + iy) - F(x)|^p\,dx = 0.
+\end{equation}
+
+\section{Further Results}
+
+\begin{enumerate}
+\item[6.1.] \textbf{Tube domains over non-convex bases.} By Bochner's tube theorem, any function holomorphic on a tube domain $T_B$ extends holomorphically to the tube $T_{\text{ch}(B)}$ over the convex hull of $B$.
+
+\item[6.2.] \textbf{Reproducing kernels and the Bergman projection.} The Bergman kernel $K(z, w)$ on $T_\Gamma$ defines an orthogonal projection from $L^2(T_\Gamma)$ onto the closed subspace $H^2(T_\Gamma)$.
+
+\item[6.3.] \textbf{The Cauchy--Szeg\H{o} projection.} For $T_\Gamma$, the operator
+\[
+(\mathcal{S}f)(x) = \lim_{y \to 0, y \in \Gamma} \int_{E_n} C(x + iy - t) f(t)\,dt
+\]
+defines an orthogonal projection of $L^2(E_n)$ onto the subspace $H^2(E_n)$ of boundary values of $H^2(T_\Gamma)$ functions.
+
+\item[6.4.] \textbf{The Siegel upper half-space and Cayley transform.} When $\Gamma$ is the light cone or forward cone, the tube domain $T_\Gamma$ is biholomorphically equivalent via a generalized Cayley transform to the matrix ball or Siegel domain of type II.
+
+\item[6.5.] \textbf{Hardy spaces for $0 < p < 1$.} The nontangential boundary convergence of Theorem~\ref{thm:c3-5-1} remains valid for all $p > 0$. The proof uses the subharmonicity of $|F|^p$ and the harmonic majorant characterization.
+
+\item[6.6.] \textbf{The Hilbert transform in several variables.} The relation between real and imaginary parts of boundary values of holomorphic functions on $T_\Gamma$ leads to systems of conjugate harmonic functions and higher-dimensional Hilbert transforms.
+\end{enumerate}
+
+\bibnoteshead
+
+The basic results of the classical theory of $H^p$ spaces can be found in Zygmund~\cite{Zygmund1}, Chapter~VII. The $H^2$ theory over tubes was first studied by Bochner, to whom the basic result, Theorem~2.3, is due (see Bochner~\cite{Bochner8}). Many of the results included in Sections~2, 3 and 5 are presented in Stein, G.~Weiss and M.~Weiss~\cite{SteinWeissWeiss1}. The Cauchy kernel associated with a convex cone was introduced by Bochner (see~\cite{Bochner1}); he also calculated this kernel explicitly for cones corresponding to the classical domains. For other extensions of the Paley--Wiener theorem to $n$-dimensions see Plancherel and Polya~\cite{PlancherelPolya1} and Stein~\cite{Stein1}. The notion of curvilinear restricted convergence described in (6.5) was developed by Calder\'on and Zygmund~\cite{CalderonZygmund1}. The basic results concerning the Hilbert transform are presented in Titchmarsh~\cite{Titchmarsh2} and Zygmund~\cite{Zygmund1}. For earlier papers dealing with $H^p$ theory of several complex variables see Bochner~\cite{Bochner2}, Zygmund~\cite{Zygmund3} and Bochner~\cite{Bochner5}. For an introduction to the theory of convex sets see Valentine~\cite{Valentine1} and Rockafellar~\cite{Rockafellar1}.

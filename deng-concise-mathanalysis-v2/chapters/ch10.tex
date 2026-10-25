@@ -1,0 +1,1794 @@
+% !TeX program = xelatex
+% 第十章 数项级数
+\chapter{数项级数}
+
+本章是无穷级数理论的第一章，讲述无穷级数理论的基本概念与基本知识，是无穷级数理论的基础．直观地说，无穷级数就是无穷个数相加，能加出一个数来的级数叫收敛级数，加不出一个数来的级数叫发散级数．因此，收敛与发散是两个最基本的概念．如何判定一个级数收敛或发散是本章的主要内容．无穷级数是无穷项的和，比较有限和与无限和的共同点与差异，是级数理论研究的基本问题，在整个级数理论的学习过程中都应注意到这一点．
+
+\section{级数问题的提出}
+
+在本教程的上册中，读者学习了一元函数的微积分，但落实下来能计算的，只是初等函数．我们已能计算一切初等函数的微分，也能计算很多初等函数的积分．对非初等函数，我们只接触过分段函数，这只是很少一部分非初等函数．而实际问题中大量存在着的现象，却要用更一般的非初等函数才能描述，这就需要我们提供一个表示非初等函数的工具．依靠这个工具，我们不仅能够计算它的函数值，至少还能计算它的微商与积分，以及研究它的各种性质．无穷多个函数相加，是一种最容易想到的表示函数的工具．例如
+\[
+1+x+x^{2}+x^{3}+\cdots+x^{n}+\cdots,
+\]
+或
+\[
+\sin x+\frac{\sin 2x}{2}+\frac{\sin 3x}{3}+\cdots+\frac{\sin nx}{n}+\cdots.
+\]
+这是用无穷个初等函数相加表示的函数．下面我们再从一个简单的例子，说明这种表示的好处．
+
+有许多实际问题都可化成求解下面的微分方程：
+\[
+xy''+y'+xy=0,
+\]
+其中 $x$ 是自变量，$y$ 是未知函数，$y'=\dfrac{dy}{dx}$．这是一个二阶变系数的微分方程．用大家过去学过的方法是很难求解的．现在，我们试用待定系数法求这方程的解．
+
+假设它的解是一个待定系数的多项式
+\[
+y=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+\cdots+a_{n}x^{n}.
+\]
+经过简单的计算就可知道（留作习题），除了得到所有的系数 $a_{0},a_{1},a_{2},a_{3},\cdots,a_{n}$ 必须为 $0$ 外，即 $y=0$ 的显然解外，得不到任何结果.
+
+现在我们设想方程的解不是这样的多项式，而是无限项相加的``无穷级数''：
+\[
+y=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+\cdots+a_{n}x^{n}+\cdots,
+\]
+其中 $a_{0},a_{1},\cdots,a_{n},\cdots$ 是待定的系数. 结果会是怎样的呢? 我们试着去计算一下.
+
+对 $y$ 进行微分：
+\[
+\begin{aligned}
+y'&=a_{1}+2a_{2}x+3a_{3}x^{2}+4a_{4}x^{3}+\cdots+na_{n}x^{n-1}+\cdots,\\
+y''&=2a_{2}+3\cdot2a_{3}x+4\cdot3a_{4}x^{2}+5\cdot4a_{5}x^{3}+\cdots\\
+&\quad +n(n-1)a_{n}x^{n-2}+\cdots.
+\end{aligned}
+\]
+把它们代入方程
+\[
+\begin{array}{rccccccl}
+xy''=&&2a_{2}x+&3\cdot2a_{3}x^{2}+&4\cdot3a_{4}x^{3}+&5\cdot4a_{5}x^{4}+&\cdots\\
+y'= &a_{1}+&2a_{2}x+&3a_{3}x^{2}+&4a_{4}x^{3}+&5a_{5}x^{4}+&\cdots\\
++\ )\quad xy=&&a_{0}x+&a_{1}x^{2}+&a_{2}x^{3}+&a_{3}x^{4}+&\cdots\\ \hline
+0=&a_{1}+&&(a_{0}+4a_{2})x+(a_{1}+9a_{3})x^{2}+(a_{2}+16a_{4})x^{3}+\cdots
+\end{array}
+\]
+比较系数得到递推公式如下：
+\[
+\left\{
+\begin{aligned}
+&a_{1}=0,\\
+&a_{0}+4a_{2}=0,\\
+&a_{1}+9a_{3}=0,\\
+&a_{2}+16a_{4}=0,\\
+&\cdots\cdots\\
+&a_{2k-1}+(2k+1)^{2}a_{2k+1}=0,\\
+&a_{2k}+(2k+2)^{2}a_{2k+2}=0,\\
+&\cdots\cdots.
+\end{aligned}
+\right.
+\]
+由此解得
+\[
+a_{1}=0,\quad a_{3}=0,\quad a_{5}=0,\cdots,\quad a_{2k+1}=0,\cdots.
+\]
+设 $a_{0}=c$（常数），则
+\[
+a_{2}=-\frac{c}{4},\quad a_{4}=-\frac{a_{2}}{16}=\frac{c}{16\cdot4},\cdots,
+\]
+\[
+a_{2k}=(-1)^{k}\frac{c}{(2\cdot4\cdot6\cdots(2k))^{2}}=\frac{(-1)^{k}c}{2^{2k}(k!)^{2}},\cdots.
+\]
+结果得到
+\[
+y=c\left[1-\left(\frac{x}{2}\right)^{2}+\frac{1}{(2!)^{2}}\left(\frac{x}{2}\right)^{4}-\frac{1}{(3!)^{2}}\left(\frac{x}{2}\right)^{6}+\cdots+\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{x}{2}\right)^{2k}+\cdots\right],
+\]
+这就是方程的一个解．它不是一个初等函数．但是，现在用无穷级数把它表示出来了．我们由此就可计算它的函数值，并研究其性质．以后我们会知道，它是一种称为贝塞尔（Bessel，$1784$—$1846$）函数中的一员（$0$ 阶贝塞尔函数）．还有许多类似的函数，如拉盖尔（Laguerre）函数、勒让德（Legendre，$1752$—$1833$）函数、高斯（Gauss，$1777$—$1855$）几何函数等等，它们和初等函数一起，构成人们描述世界的``函数库''．
+
+对上述的演算过程，很自然会提出下面的问题：
+\begin{enumerate}[label=（\arabic*）]
+\item 无穷多项相加究竟是什么意思？加得起来吗？
+\item 对这种无穷项相加的``无穷级数''，它的运算规律与``有限和''有什么异同？
+\end{enumerate}
+
+我们在演算中，没有理会这两个问题，而把``无穷和''完全看成与``有限和''一样地进行运算（并项、求微分等），这种运算通常叫做\emph{形式运算}．
+
+无穷级数的历史，和微积分的历史一样长，甚至更长一些．早期微积分的结果，很多是依赖无穷级数的形式运算得到的（例如推导 $(x^{\alpha})'=\alpha x^{\alpha-1}$）．微积分在应用到力学、天文、物理等方面时，无穷级数更是常用的工具．由于当时所解决的问题比较直观，许多结果可以直接检验，所以人们一直停留在这种形式运算的水平上，而不去深究无穷级数的概念与理论．直到 $19$ 世纪初，由于应用的深入与广泛，得到的结果也不是那样直观和容易验证，同时在形式运算中还出现了许多矛盾，使得前面提到的两个问题变得尖锐起来了．形式运算中出现的矛盾，可以举一个简单的例子说明如下：
+
+无穷项相加所成的无穷级数
+\[
+1-1+1-1+1-1+\cdots,
+\]
+如果把它写成
+\[
+(1-1)+(1-1)+(1-1)+\cdots,
+\]
+则其和为 $0$. 如果把它写成
+\[
+1-(1-1)-(1-1)-(1-1)-\cdots,
+\]
+则其和为 $1$.
+
+一个级数只能有一个``和''，这就推出了 $0=1$ 的荒谬结论．这个例子表明，``无穷和''与``有限和''有本质的区别．把``有限和''的运算规律无条件地应用到``无穷和''上去，有可能导致错误．这就要求人们去搞清楚无穷级数``和''的概念，以及在运算规律方面与有限和的异同．这就是下面要讲述的级数的一般理论的内容．
+
+\begin{xiti}
+\item 证明：若微分方程 $xy''+y'+xy=0$ 有多项式解
+\[
+y=a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{n}x^{n},
+\]
+则必有 $a_{i}=0\,(i=1,2,\cdots,n)$.
+\item 试确定系数 $a_{0},a_{1},\cdots,a_{n},\cdots$，使 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 满足勒让德方程
+\[
+(1-x^{2})y''-2xy'+l(l+1)y=0.
+\]
+\end{xiti}
+
+\section{数项级数的收敛性及其基本性质}
+
+无穷项函数相加，对每一个固定的 $x$，每一项便变成一个数．因此，我们从无穷个数相加谈起．这种级数称为\emph{数项级数}，或简称为\emph{无穷级数}．下面先给出一个准确的定义．
+
+设有数列
+\[
+u_{1},u_{2},\cdots,u_{n},\cdots,
+\]
+用加号把这一些数依次连接起来所得到的式子
+\[
+u_{1}+u_{2}+u_{3}+\cdots+u_{n}+\cdots
+\]
+称为\emph{无穷级数}，简称\emph{级数}．上式也记为
+\[
+\sum_{n=1}^{\infty}u_{n}\quad\text{或}\quad\sum_{k=1}^{\infty}u_{k},
+\]
+其中 $u_{1},u_{2},\cdots$ 分别称为级数 $\sum_{k=1}^{\infty}u_{k}$ 的第一项、第二项、…、第 $n$ 项，$u_{n}$ 称为级数的\emph{通项}或简称为\emph{项}.
+
+上面说的级数只是写成无穷个数相加的形式，但究竟能否加得起来呢？或者说，能否加出一个``和数''来呢？这个``和数''的确切意义又是什么呢？
+
+无穷个数相加，只能看成有限个数愈加愈多时的极限，因此我们引入一个新的数列：
+\[
+\begin{aligned}
+&S_{1}=u_{1},\\
+&S_{2}=u_{1}+u_{2},\\
+&S_{3}=u_{1}+u_{2}+u_{3},\\
+&\cdots\cdots\\
+&S_{n}=u_{1}+u_{2}+\cdots+u_{n},\\
+&\cdots\cdots
+\end{aligned}
+\]
+或简记为 $S_{n}=\sum_{k=1}^{n}u_{k}$，$S_{n}$ 称为级数的前 $n$ 项\emph{部分和}或简称为\emph{部分和}，数列 $\{S_{n}\}$ 称为级数的\emph{部分和数列}.
+
+\begin{definition}\label{def:10-1}
+若级数 $\sum_{k=1}^{\infty}u_{k}$ 的部分和数列 $\{S_{n}\}$ 有极限存在（设为 $S$），则称级数 $\sum_{k=1}^{\infty}u_{k}$ \emph{收敛}，$S$ 称为级数的\emph{和}，记作
+\[
+\sum_{k=1}^{\infty}u_{k}=S,
+\]
+此时也称级数 $\sum_{k=1}^{n}u_{k}$ 收敛到 $S$. 若部分和数列 $\{S_{n}\}$ 没有极限存在，则称该级数\emph{发散}，此时它没有和.
+\end{definition}
+
+注意，根据我们以前的约定，数列极限存在是指极限为一个数．因此当部分和数列趋于无穷 $(S_{n}\to\infty)$ 时，级数发散．
+
+从定义看出，研究无穷级数的收敛问题，化成了研究部分和数列是否有极限存在的问题．这样，我们就可以用学过的数列极限的知识来研究无穷级数．在进入一般讨论之前，我们先来看几个例子．
+
+\begin{example}\label{ex:10-2-1}
+讨论级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)}$ 的收敛性.
+\end{example}
+
+\begin{proof}
+前 $n$ 项部分和为
+\[
+\begin{aligned}
+S_{n}&=\frac{1}{1\cdot2}+\frac{1}{2\cdot3}+\cdots+\frac{1}{n(n+1)}\\
+&=\left(1-\frac{1}{2}\right)+\left(\frac{1}{2}-\frac{1}{3}\right)+\cdots+\left(\frac{1}{n}-\frac{1}{n+1}\right)\\
+&=1-\frac{1}{n+1}.
+\end{aligned}
+\]
+因为
+\[
+\lim_{n\to\infty}S_{n}=\lim_{n\to\infty}\left(1-\frac{1}{n+1}\right)=1,
+\]
+所以级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)}$ 收敛，其和为 $1$，即
+\[
+\sum_{n=1}^{\infty}\frac{1}{n(n+1)}=1.
+\]
+\end{proof}
+
+\begin{example}\label{ex:10-2-2}
+讨论级数 $\displaystyle\sum_{n=1}^{\infty}\ln\left(1+\frac{1}{n}\right)$ 的收敛性.
+\end{example}
+
+\begin{proof}
+前 $n$ 项部分和
+\[
+S_{n}=\sum_{k=1}^{n}\ln\left(1+\frac{1}{k}\right)=\sum_{k=1}^{n}\left[\ln(k+1)-\ln k\right]=\ln(n+1)\to\infty\quad(\text{当 }n\to\infty),
+\]
+因此，级数 $\displaystyle\sum_{n=1}^{\infty}\ln\left(1+\frac{1}{n}\right)$ 发散.
+\end{proof}
+
+\begin{example}[几何级数]\label{ex:10-2-3}
+讨论几何级数
+\[
+\sum_{n=1}^{\infty}ar^{n-1}=a+ar+ar^{2}+\cdots+ar^{n-1}+\cdots\quad(a\neq0)
+\]
+的收敛性，其中 $r$ 为公比.
+\end{example}
+
+当 $|r|\neq1$ 时，级数的前 $n$ 项部分和为
+\[
+S_{n}=a+ar+\cdots+ar^{n-1}=a\,\frac{1-r^{n}}{1-r}.
+\]
+当 $|r|<1$ 时，有
+\[
+\lim_{n\to\infty}S_{n}=\lim_{n\to\infty}\left(\frac{a}{1-r}-\frac{ar^{n}}{1-r}\right)=\frac{a}{1-r}.
+\]
+此时级数收敛，其和为 $\dfrac{a}{1-r}$，即
+\[
+a+ar+\cdots+ar^{n-1}+\cdots=\frac{a}{1-r}\quad(|r|<1),
+\]
+这是中学学习过的.
+
+当 $|r|>1$ 时，由 $\displaystyle\lim_{n\to\infty}\frac{r^{n}}{1-r}=\infty$，知 $\lim_{n\to\infty}S_{n}=\infty$，级数发散.
+
+当 $r=1$ 时，$S_{n}=na\to\infty$（当 $n\to\infty$），级数发散．
+
+当 $r=-1$ 时，$S_{1}=a$，$S_{2}=0$，$S_{3}=a$，$S_{4}=0$，$\cdots$，当 $a\neq0$ 时，极限不存在，这是因为 $\lim_{k\to\infty}S_{2k}=0$，$\lim_{k\to\infty}S_{2k-1}=a$，两个子数列的极限不相等．因此级数发散.
+
+特别地，当 $a=1$ 时，级数就是
+\[
+1-1+1-1+\cdots=\sum_{n=1}^{\infty}(-1)^{n-1}.
+\]
+这是 \S1 中讨论过的级数，它发散，因此没有和．故说它的和既等于 $1$ 又等于 $0$ 的推理，前提是不正确的.
+
+综合起来，对几何级数，得到的结论是：$\sum_{n=1}^{\infty}ar^{n-1}$ 当 $|r|<1$ 时收敛，当 $|r|\geq1$ 时发散.
+
+\begin{example}\label{ex:10-2-4}
+在第八章 \S1，我们曾得到公式
+\[
+\mathrm{e}=1+1+\frac{1}{2!}+\frac{1}{3!}+\cdots+\frac{1}{n!}+\frac{\mathrm{e}^{\theta}}{(n+1)!},
+\]
+其中 $0<\theta<1$．由
+\[
+0<\frac{\mathrm{e}^{\theta}}{(n+1)!}<\frac{3}{n+1},
+\]
+知 $\displaystyle\lim_{n\to\infty}\frac{\mathrm{e}^{\theta}}{(n+1)!}=0$，故
+\[
+\mathrm{e}=1+1+\frac{1}{2!}+\frac{1}{3!}+\cdots+\frac{1}{n!}+\cdots=\sum_{n=0}^{\infty}\frac{1}{n!},
+\]
+这样就把 $\mathrm{e}$ 用一个无穷级数表示出来.
+\end{example}
+
+有了这个级数后，$\mathrm{e}$ 这个无理数、超越数，就十分容易计算了．只要有个简单的计算器，从 $1/2$ 开始，后一项总是前一项（例如 $n$）除以 $n+1$，然后再加起来，便可以计算到任意精确度．读者不妨拿个计算器算一算．
+
+从数列极限的理论，很容易得到下列关于级数的简单性质.
+
+\begin{theorem}\label{thm:10-1}
+若级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛，$c$ 为任一常数，则级数 $\sum_{n=1}^{\infty}cu_{n}$ 也收敛，且
+\[
+\sum_{n=1}^{\infty}cu_{n}=c\sum_{n=1}^{\infty}u_{n}.
+\]
+\end{theorem}
+
+\begin{proof}
+设 $S_{n}=u_{1}+u_{2}+\cdots+u_{n}$，则由假设知
+\[
+\lim_{n\to\infty}S_{n}=S,
+\]
+$S$ 为一有限数．设级数 $\sum_{n=1}^{\infty}cu_{n}$ 的前 $n$ 项部分和为 $\sigma_{n}$，则
+\[
+\begin{aligned}
+\sigma_{n}&=cu_{1}+cu_{2}+\cdots+cu_{n}\\
+&=c(u_{1}+u_{2}+\cdots+u_{n})\to cS\quad(n\to\infty).
+\end{aligned}
+\]
+因此 $\sum_{n=1}^{\infty}cu_{n}$ 收敛，且其和为 $cS=c\sum_{n=1}^{\infty}u_{n}$.
+\end{proof}
+
+易知，若级数 $\sum_{n=1}^{\infty}u_{n}$ 发散，$c\neq0$，则级数 $\sum_{n=1}^{\infty}cu_{n}$ 也发散.
+
+\begin{theorem}\label{thm:10-2}
+若级数 $\sum_{n=1}^{\infty}u_{n}$、$\sum_{n=1}^{\infty}v_{n}$ 收敛，则级数 $\sum_{n=1}^{\infty}(u_{n}\pm v_{n})$ 也收敛，且 $\displaystyle\sum_{n=1}^{\infty}(u_{n}\pm v_{n})=\sum_{n=1}^{\infty}u_{n}\pm\sum_{n=1}^{\infty}v_{n}$.
+\end{theorem}
+
+定理~\ref{thm:10-2} 可用数列极限的运算法则证明，我们把它留给读者作为一个习题.
+
+\begin{theorem}\label{thm:10-3}
+任意改变级数有限项的数值，不改变级数的收敛性.
+\end{theorem}
+
+\begin{proof}
+设原级数为 $\sum_{n=1}^{\infty}u_{n}$，任意改变其有限项的数值后所得之新级数为 $\sum_{n=1}^{\infty}v_{n}$．因改变数值的只有有限项，故存在 $N$，使得当 $n>N$ 后，$u_{n}=v_{n}$．记 $w_{n}=u_{n}-v_{n}$，则
+\[
+\begin{aligned}
+\sum_{n=1}^{\infty}w_{n}&=\sum_{n=1}^{\infty}(u_{n}-v_{n})\\
+&=(u_{1}-v_{1})+\cdots+(u_{N}-v_{N})+0+0+0\cdots.
+\end{aligned}
+\]
+显然这级数是收敛的．因此，根据
+\[
+\sum_{n=1}^{\infty}v_{n}=\sum_{n=1}^{\infty}\left[u_{n}-(u_{n}-v_{n})\right]=\sum_{n=1}^{\infty}(u_{n}-w_{n})
+\]
+与定理~\ref{thm:10-2}，当 $\sum_{n=1}^{\infty}u_{n}$ 收敛时，$\sum_{n=1}^{\infty}v_{n}$ 也收敛；当 $\sum_{n=1}^{\infty}u_{n}$ 发散时，$\sum_{n=1}^{\infty}v_{n}$ 也发散.
+
+定理~\ref{thm:10-3} 证完.
+\end{proof}
+
+定理~\ref{thm:10-3} 说明，考虑一级数是否收敛，可以不管它前面有限项的数值．甚至把前面的有限项去掉（即把它们变成 $0$），并不改变级数的敛散性．
+
+\begin{theorem}[收敛的必要条件]\label{thm:10-4}
+若级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛，则一般项 $u_{n}$ 趋向于 $0$，即 $\lim\limits_{n\to\infty}u_{n}=0$.
+\end{theorem}
+
+\begin{proof}
+设 $\sum_{n=1}^{\infty}u_{n}=S$，其部分和为 $S_{n}=\sum_{k=1}^{n}u_{k}$，则
+\[
+\begin{aligned}
+\lim_{n\to\infty}u_{n}&=\lim_{n\to\infty}(S_{n}-S_{n-1})\\
+&=\lim_{n\to\infty}S_{n}-\lim_{n\to\infty}S_{n-1}\\
+&=S-S=0.
+\end{aligned}
+\]
+\end{proof}
+
+本定理可以用来判断级数的发散性．例如级数 $\sum_{n=1}^{\infty}(-1)^{n-1}$ 发散，因为它的一般项 $u_{n}=(-1)^{n-1}$ 不趋向于 $0$．又如级数
+\[
+\sum_{n=1}^{\infty}\frac{n}{n+1}=\frac{1}{2}+\frac{2}{3}+\cdots+\frac{n}{n+1}+\cdots
+\]
+发散，因为一般项 $\dfrac{n}{n+1}$ 的极限是 $1$，不为 $0$.
+
+值得指出的是，$\lim\limits_{n\to\infty}u_n=0$ 仅仅是级数 $\sum_{n=1}^{\infty}u_n$ 收敛的必要条件，而不是充分条件．换句话说，从 $\lim\limits_{n\to\infty}u_n=0$ 不能断定级数 $\sum_{n=1}^{\infty}u_n$ 一定收敛．例如前面例~\ref{ex:10-2-2} 中的级数
+\[
+\sum_{n=1}^{\infty}\ln\left(1+\frac{1}{n}\right),
+\]
+我们知道它是发散的，但它的一般项趋向于 $0$：
+\[
+\lim_{n\to\infty}\ln\left(1+\frac{1}{n}\right)=0
+\]
+
+现在来看级数和数列的关系．根据定义，看一个级数 $\sum_{n=1}^{\infty}u_{n}$ 是否收敛，就看它的部分和数列 $S_{n}=\sum_{k=1}^{n}u_{k}$ 是否有极限．这就把级数的问题完全化归数列来研究．反过来，任意给定一个数列 $\{S_{n}\}$，我们也可以作出一个级数，它的部分和数列恰恰就是 $\{S_{n}\}$，实际上只要取
+\[
+\begin{aligned}
+&u_{1}=S_{1},u_{2}=S_{2}-S_{1},u_{3}=S_{3}-S_{2},\cdots,\\
+&u_{n}=S_{n}-S_{n-1},\cdots,
+\end{aligned}
+\]
+则级数
+\[
+\begin{aligned}
+&S_{1}+(S_{2}-S_{1})+(S_{3}-S_{2})+\cdots+(S_{n}-S_{n-1})+\cdots\\
+={}&S_{1}+\sum_{n=2}^{\infty}(S_{n}-S_{n-1})
+\end{aligned}
+\]
+的部分和数列就是 $\{S_{n}\}$，这样，也就把数列极限的问题化归级数来研究.
+
+这样，读者很自然会问，既然两者等价，为什么还要研究级数？事实上，在级数理论中，我们看它有没有极限的这个数列（部分和数列 $\{S_{n}\}$），是有特殊构造的．它是由一项一项加起来的．因此，``项''应该是级数理论的着眼点．如果一个定理，条件是加在部分和的，那它是一个数列的定理．而当定理的条件落实到项时（例如前面的定理~\ref{thm:10-4}：若级数的一般项不趋向于 $0$，则级数发散），就是一个级数的定理．故我们后面研究的思路是：从过去学过的数列极限理论出发，从级数的部分和入手，最后落实到项．以后我们将会看到，一些级数的项是十分简单的，例如一般项为 $a_{n}x^{n}$ 或 $a_{n}\cos nx+b_{n}\sin nx$，但它们加起来所表示的函数却可以极其复杂，这就是级数的威力所在．
+
+\begin{xiti}
+\item 求下列级数的和：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(5n-4)(5n+1)}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{4n^{2}-1}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{2^{n-1}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{2n-1}{2^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}r^{n}\sin nx$，$|r|<1$;
+\item $\displaystyle\sum_{n=1}^{\infty}r^{n}\cos nx$，$|r|<1$.
+\end{ziti}
+\item 讨论下列级数的敛散性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n}{2n-1}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{1}{2^{n}}+\frac{1}{3^{n}}\right)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\cos\frac{\pi}{2n+1}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(3n-2)(3n+1)}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt{n(n+1)}(\sqrt{n}+\sqrt{n+1})}$.
+\end{ziti}
+\item 证明定理~\ref{thm:10-2}.
+\item 设级数 $\sum_{n=1}^{\infty}u_{n}$ 各项是正的，把级数的项经过组合而得到新级数 $\sum_{n=1}^{\infty}U_{n}$，即 $U_{n+1}=u_{k_{n}+1}+u_{k_{n}+2}+\cdots+u_{k_{n+1}}$，$n=0,1,2,\cdots$，其中 $k_{0}=0,k_{0}<k_{1}<k_{2}<\cdots<k_{n}<k_{n+1}<\cdots$．若 $\sum_{n=1}^{\infty}U_{n}$ 收敛，证明原来的级数也收敛．
+\end{xiti}
+
+\section{正项级数}
+
+``由简到繁''是研究问题的原则，因此我们先从最简单的级数着手．最简单的级数就是本节要讨论的正项级数．
+
+\begin{definition}\label{def:10-2}
+若级数的每一项都是非负的，则称此级数为\emph{正项级数}.
+\end{definition}
+
+\begin{theorem}\label{thm:10-5}
+正项级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛的充分必要条件是部分和数列 $\{S_{n}\}$ 有上界.
+\end{theorem}
+
+\begin{proof}
+必要性. 按定义，级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛，部分和数列有极限存在，因此必有上界.
+
+充分性．由 $u_n\geq0$，知部分和数列 $\{S_n\}$ 单调上升，它有上界则必有极限存在，因此级数收敛.
+\end{proof}
+
+\begin{example}\label{ex:10-3-1}
+证明``$p$ 级数''
+\[
+\sum_{n=1}^{\infty}\frac{1}{n^{p}}=1+\frac{1}{2^{p}}+\frac{1}{3^{p}}+\cdots+\frac{1}{n^{p}}+\cdots
+\]
+当 $p>1$ 时收敛，当 $p\leq1$ 时发散.
+\end{example}
+
+\begin{proof}
+先证明 $p=1$ 时级数发散. 由定理~\ref{thm:10-5}，只需证明部分和数列无上界．对任意正整数 $n(\geqslant2)$，都有正整数 $k$，使 $2^k\leqslant n<2^{k+1}$．这时把部分和的项从第二项起依次按 $1,2,4,8,\cdots,2^{k-1}$ 项组合起来，便得
+\[
+\begin{aligned}
+S_{n}&=1+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{n}\\
+&=1+\frac{1}{2}+\left(\frac{1}{3}+\frac{1}{4}\right)+\left(\frac{1}{5}+\frac{1}{6}+\frac{1}{7}+\frac{1}{8}\right)+\cdots+\\
+&\quad\left(\frac{1}{2^{k-1}+1}+\frac{1}{2^{k-1}+2}+\cdots+\frac{1}{2^{k-1}+2^{k-1}}\right)+\frac{1}{2^{k}+1}+\cdots+\frac{1}{n}\\
+&\geqslant\frac{1}{2}+\frac{1}{2}+\left(\frac{1}{4}+\frac{1}{4}\right)+\left(\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}\right)+\cdots+\left(\underbrace{\frac{1}{2^{k}}+\cdots+\frac{1}{2^{k}}}_{2^{k-1}\ \text{个}}\right)\\
+&=\frac{k+1}{2},
+\end{aligned}
+\]
+$k$ 可以取任意大，因而 $S_{n}$ 无上界．故 $p=1$ 时，级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 发散（级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 也称为\emph{调和级数}）．
+
+当 $p<1$ 时，由于对任意正整数 $k$，有
+\[
+\frac{1}{k^{p}}\geqslant\frac{1}{k},
+\]
+因此
+\[
+\sum_{k=1}^{n}\frac{1}{k^{p}}\geq\sum_{k=1}^{n}\frac{1}{k},
+\]
+右边的部分和数列无上界推出左边也无上界，故 $\sum_{n=1}^{\infty}\frac{1}{n^{p}}$ 在 $p<1$ 也发散.
+
+当 $p>1$ 时，设 $2^{k}\leqslant n<2^{k+1}$，类似于前面的做法，有
+\[
+\begin{aligned}
+S_{n}&=1+\frac{1}{2^{p}}+\frac{1}{3^{p}}+\cdots+\frac{1}{n^{p}}\\
+&=1+\left(\frac{1}{2^{p}}+\frac{1}{3^{p}}\right)+\left(\frac{1}{4^{p}}+\frac{1}{5^{p}}+\frac{1}{6^{p}}+\frac{1}{7^{p}}\right)+\cdots+\\
+&\quad\left[\frac{1}{(2^{k-1})^{p}}+\frac{1}{(2^{k-1}+1)^{p}}+\cdots+\frac{1}{(2^{k}-1)^{p}}\right]+\\
+&\quad\frac{1}{(2^{k})^{p}}+\frac{1}{(2^{k}+1)^{p}}+\cdots+\frac{1}{n^{p}}\\
+&\leqslant1+\frac{2}{2^{p}}+\frac{4}{4^{p}}+\cdots+\frac{2^{k-1}}{(2^{k-1})^{p}}+\frac{2^{k}}{(2^{k})^{p}}\\
+&=1+\frac{1}{2^{p-1}}+\left(\frac{1}{2^{p-1}}\right)^{2}+\cdots+\left(\frac{1}{2^{p-1}}\right)^{k-1}+\left(\frac{1}{2^{p-1}}\right)^{k}\\
+&=\frac{1-\left(\frac{1}{2^{p-1}}\right)^{k+1}}{1-\frac{1}{2^{p-1}}}\leqslant\frac{1}{1-\frac{1}{2^{p-1}}}=\frac{2^{p-1}}{2^{p-1}-1}
+\end{aligned}
+\]
+（这里用到了 $\frac{1}{2^{p-1}}<1$ 当 $p>1$）. 这就证明了部分和数列有上界，故 $\sum_{n=1}^{\infty}\frac{1}{n^{p}}$ 当 $p>1$ 时收敛.
+\end{proof}
+
+\begin{theorem}[比较判别法]\label{thm:10-6}
+设有两个正项级数
+\[
+\sum_{n=1}^{\infty}u_{n}=u_{1}+u_{2}+\cdots,\qquad
+\sum_{n=1}^{\infty}v_{n}=v_{1}+v_{2}+\cdots,
+\]
+若对充分大的 $n$（即存在 $N$，当 $n>N$ 时）有
+\[
+u_{n}\leqslant cv_{n},
+\]
+其中 $c>0$ 与 $n$ 无关，则
+\begin{ziti}
+\item 当 $\sum_{n=1}^{\infty}v_{n}$ 收敛时，$\sum_{n=1}^{\infty}u_{n}$ 收敛；
+\item 当 $\sum_{n=1}^{\infty}u_{n}$ 发散时，$\sum_{n=1}^{\infty}v_{n}$ 发散.
+\end{ziti}
+\end{theorem}
+
+\begin{proof}
+由定理~\ref{thm:10-3}，不妨假定 $u_{n}\leqslant cv_{n}$ 从 $n=1$ 开始成立．记
+\[
+S_{n}=\sum_{k=1}^{n}u_{k}=u_{1}+u_{2}+\cdots+u_{n},\qquad
+\sigma_{n}=\sum_{k=1}^{n}v_{k}=v_{1}+v_{2}+\cdots+v_{n},
+\]
+因此
+\[
+S_{n}\leqslant c\sigma_{n}\quad(n=1,2,\cdots).
+\]
+故当 $\{\sigma_n\}$ 有上界时，$S_n$ 有上界，当 $\{S_n\}$ 无上界时，$\{\sigma_n\}$ 无上界．由定理~\ref{thm:10-5} 便推出定理~\ref{thm:10-6} 的结论．
+\end{proof}
+
+\begin{theorem}[比较判别法的极限形式]\label{thm:10-7}
+设给定两正项级数 $\sum_{n=1}^{\infty}u_{n}$ 与 $\sum_{n=1}^{\infty}v_{n}$．若
+\[
+\lim_{n\to\infty}\frac{u_{n}}{v_{n}}=l,
+\]
+则
+\begin{ziti}
+\item 当 $0<l<+\infty$ 时，$\sum_{n=1}^{\infty}u_{n}$ 与 $\sum_{n=1}^{\infty}v_{n}$ 同时收敛或同时发散；
+\item 当 $l=0$ 时，由 $\sum_{n=1}^{\infty}v_{n}$ 收敛可推出 $\sum_{n=1}^{\infty}u_{n}$ 收敛；
+\item 当 $l=+\infty$ 时，由 $\sum_{n=1}^{\infty}u_{n}$ 收敛可推出 $\sum_{n=1}^{\infty}v_{n}$ 收敛.
+\end{ziti}
+\end{theorem}
+
+\begin{proof}
+（1）由 $l>0$，取 $\varepsilon=\dfrac{l}{2}$，知存在 $N$，当 $n>N$ 时，有
+\[
+\frac{l}{2}=l-\frac{l}{2}<\frac{u_{n}}{v_{n}}<l+\frac{l}{2}=\frac{3}{2}l,
+\]
+因此
+\[
+\frac{l}{2}v_{n}<u_{n}<\frac{3l}{2}v_{n}.
+\]
+用比较判别法便得所要求的结论.
+
+（2）、（3）可类似地证明，请读者把证明写出来.
+\end{proof}
+
+我们从无穷小量比较的观点来看一看定理~\ref{thm:10-7}. 由级数收敛的必要条件，不妨假定 $u_{n}\to0$，$v_{n}\to0$．定理~\ref{thm:10-7} 中（1）、（2）的条件说，若 $u_{n}$ 是 $v_{n}$ 的同阶无穷小量或 $u_{n}$ 是较 $v_{n}$ 高阶的无穷小量，则由 $\sum_{n=1}^{\infty}v_{n}$ 收敛可推出 $\sum_{n=1}^{\infty}u_{n}$ 收敛．换句话说，如果级数 $\sum_{n=1}^{\infty}v_{n}$ 收敛，而 $u_{n}$ 是 $v_{n}$ 的同阶无穷小量或 $u_{n}$ 是较 $v_{n}$ 高阶的无穷小量，则 $\sum_{n=1}^{\infty}u_{n}$ 收敛．回忆在无穷小量比较时讲述的（本书上册第三章 \S5），两个无穷小量的比较，是指它们趋向于零的速度快慢的比较．同阶无穷小量趋向于零的快慢是差不多的，高阶无穷小量趋向于零的速度则快得多．因此定理~\ref{thm:10-7} 可解释为，一个正项级数，其一般项趋向于 $0$ 的速度愈快，级数收敛的可能性就愈大．其实，这一点，直观上也是不难理解的．一个正项的无穷级数，其部分和是单调上升的．如果部分和有界，则级数收敛，如果部分和无界，则部分和趋向于 $+\infty$，实际上，部分和的极限就是一般项的累加．一般项趋向于零的速度愈快，它累加为有穷的可能性就愈大．
+
+把定理~\ref{thm:10-7} 和 $p$ 级数结合起来，把 $\dfrac{1}{n}$ 作为标准的无穷小量，若 $u_{n}\geqslant0$ 是 $p$ 阶的无穷小，则当 $p>1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛；当 $p\leqslant1$ 时，级数发散.
+
+\begin{example}\label{ex:10-3-2}
+级数 $\displaystyle\sum_{n=1}^{\infty}\frac{2n^{2}-1}{n^{4}+n+3}$ 收敛. 因为
+\[
+\lim_{n\to+\infty}\frac{\frac{2n^{2}-1}{n^{4}+n+3}}{\frac{1}{n^{2}}}=2,
+\]
+而 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 是收敛的.
+\end{example}
+
+\begin{example}\label{ex:10-3-3}
+正项级数 $\displaystyle\sum_{n=1}^{\infty}\sin\frac{\pi}{n}$ 发散. 这是因为
+\[
+\lim_{n\to\infty}\frac{\sin\frac{\pi}{n}}{\frac{1}{n}}=\pi,
+\]
+而调和级数是发散的.
+\end{example}
+
+现在回头看 \S2 的例~\ref{ex:10-2-2}，$\sum_{n=1}^{\infty}\ln\left(1+\frac{1}{n}\right)$ 发散．因为 $\ln\left(1+\frac{1}{n}\right)$ 与 $\dfrac{1}{n}$ 是同阶无穷小量．
+
+\begin{theorem}[比较判别法的另一形式]\label{thm:10-8}
+设给定两正项级数 $\sum_{n=1}^{\infty}u_{n}$ 与 $\sum_{n=1}^{\infty}v_{n}$. 若当 $n$ 充分大后，有
+\[
+\frac{u_{n+1}}{u_{n}}\leqslant\frac{v_{n+1}}{v_{n}},
+\]
+则由 $\sum_{n=1}^{\infty}v_{n}$ 收敛可推出 $\sum_{n=1}^{\infty}u_{n}$ 收敛；由 $\sum_{n=1}^{\infty}u_{n}$ 发散可推出 $\sum_{n=1}^{\infty}v_{n}$ 发散.
+\end{theorem}
+
+\begin{proof}
+设当 $n\geqslant N$ 时，$\dfrac{u_{n+1}}{u_{n}}\leqslant\dfrac{v_{n+1}}{v_{n}}$．则当 $n>N$ 时，有
+\[
+\frac{u_{n}}{u_{N}}=\frac{u_{n}}{u_{n-1}}\,\frac{u_{n-1}}{u_{n-2}}\cdots\frac{u_{N+1}}{u_{N}}\leqslant\frac{v_{n}}{v_{n-1}}\,\frac{v_{n-1}}{v_{n-2}}\cdots\frac{v_{N+1}}{v_{N}}=\frac{v_{n}}{v_{N}}.
+\]
+因此
+\[
+u_{n}\leqslant\frac{u_{N}}{v_{N}}v_{n}\quad(\text{当 }n>N),
+\]
+其中 $c=\dfrac{u_{N}}{v_{N}}$ 是与 $n$ 无关的常数，由定理~\ref{thm:10-6} 便推出定理~\ref{thm:10-8} 的结论.
+\end{proof}
+
+从无穷小量的观点看，$\dfrac{u_{n+1}}{u_{n}}$ 的大小，也是刻画 $u_{n}\to0$ 速度快慢的量．这个量愈小，$u_{n}\to0$ 的速度愈快．这样看，定理~\ref{thm:10-8} 也是十分直观的.
+
+取几何级数作标准，便得下面的判别法.
+
+\begin{theorem}[达朗贝尔判别法]\label{thm:10-9}
+设正项级数 $\sum_{n=1}^{\infty}u_{n}$ 的每一项都不为 $0$，且满足
+\[
+\lim_{n\to\infty}\frac{u_{n+1}}{u_{n}}=l,
+\]
+则
+\begin{ziti}
+\item 当 $l<1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛；
+\item 当 $l>1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 发散.
+\end{ziti}
+\end{theorem}
+
+\begin{proof}
+（1）当 $l<1$ 时，取 $\varepsilon_{0}>0$，使 $r=l+\varepsilon_{0}<1$．对这个 $\varepsilon_{0}>0$，存在 $N$，当 $n\geqslant N$ 时，有
+\[
+\frac{u_{n+1}}{u_{n}}<l+\varepsilon_{0}=r,
+\]
+从而
+\[
+\frac{u_{n}}{u_{N}}=\frac{u_{n}}{u_{n-1}}\cdot\frac{u_{n-1}}{u_{n-2}}\cdots\frac{u_{N+1}}{u_{N}}\leqslant r^{n-N}=\frac{1}{r^{N}}r^{n},
+\]
+即
+\[
+u_{n}\leqslant\frac{u_{N}}{r^{N}}r^{n}\quad(\text{当 }n>N),
+\]
+已知 $\sum_{n=1}^{\infty}r^{n}$ 收敛，由比较判别法知 $\sum_{n=1}^{\infty}u_{n}$ 收敛.
+
+(2) 当 $l>1$ 时，取 $\varepsilon_{1}>0$ 使得 $l-\varepsilon_{1}=r>1$．这时存在 $N$，当 $n\geqslant N$ 时，有
+\[
+\frac{u_{n+1}}{u_{n}}>l-\varepsilon_{1}>1,
+\]
+即
+\[
+u_{n+1}>u_{n}\quad(\text{当 }n\geqslant N),
+\]
+从而得到
+\[
+u_{n}\geqslant u_{N}>0
+\]
+故一般项 $u_{n}$ 不趋向于 $0$，级数发散．定理~\ref{thm:10-9} 证完．
+\end{proof}
+
+值得指出的是，在（1）的证明中，我们得到
+\[
+\frac{u_{n+1}}{u_{n}}<r=\frac{r^{n+1}}{r^{n}}\quad(\text{当 }n\geqslant N),
+\]
+其中 $0<r<1$. 本来用定理~\ref{thm:10-8} 的结果，便可结束（1）的证明. 在这里我们没有用定理~\ref{thm:10-8} 的结果，而用了定理~\ref{thm:10-8} 的证明方法，目的只是希望读者更熟悉这个方法而已.
+
+注意，当 $l=1$ 时，不能确定级数的敛散性．事实上，收敛级数 $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 和发散级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 都满足 $\lim\limits_{n\to\infty}\frac{u_{n+1}}{u_{n}}=1$．其实，这一点是不难理解的．达朗贝尔判别法是用几何级数 $\sum_{n=1}^{\infty}r^{n}$ 作标准．$l<1$ 是说，存在 $r_{0}=l+\epsilon<1$，使 $u_{n}$ 趋向于零的速度较 $r_{0}^{n}$ 还快，故 $\sum_{n=1}^{\infty}u_{n}$ 收敛．$l>1$ 是说，存在 $r_{1}=l-\epsilon_{1}>1$，使 $u_{n}$ 趋向于 $\infty$ 较 $r_{1}^{n}$ 还快．因此 $u_{n}$ 不趋向于 $0$，故 $\sum_{n=1}^{\infty}u_{n}$ 发散．而 $\sum_{n=1}^{\infty}\frac{1}{n}$，$\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 都不满足这两点，故无法用达朗贝尔判别法判别，其根源在于选几何级数作收敛发散的标准，显得太粗糙了些．
+
+\begin{example}\label{ex:10-3-4}
+级数 $\displaystyle\sum_{n=1}^{\infty}\frac{100^{n}}{n!}$ 收敛. 这是因为
+\[
+\lim_{n\to\infty}\frac{u_{n+1}}{u_{n}}=\lim_{n\to\infty}\frac{100^{n+1}}{(n+1)!}\ \frac{n!}{100^{n}}=\lim_{n\to\infty}\frac{100}{n+1}=0.
+\]
+\end{example}
+
+\begin{example}\label{ex:10-3-5}
+级数 $\displaystyle\sum_{n=1}^{\infty}\frac{n!}{n^{n}}$ 收敛. 这是因为
+\[
+\begin{aligned}
+\lim_{n\to\infty}\frac{u_{n+1}}{u_{n}}&=\lim_{n\to\infty}\frac{(n+1)!}{(n+1)^{n+1}}\ \frac{n^{n}}{n!}=\lim_{n\to\infty}\left(\frac{n}{n+1}\right)^{n}\\
+&=\lim_{n\to\infty}\left(1-\frac{1}{n+1}\right)^{n}\\
+&=\lim_{n\to\infty}\left(1-\frac{1}{n+1}\right)^{n+1}\left(1-\frac{1}{n+1}\right)^{-1}\\
+&=\frac{1}{\mathrm{e}}<1.
+\end{aligned}
+\]
+\end{example}
+
+\begin{theorem}[柯西判别法]\label{thm:10-10}
+设正项级数 $\sum_{n=1}^{\infty}u_{n}$ 满足
+\[
+\lim_{n\to\infty}\sqrt[n]{u_{n}}=l,
+\]
+则
+\begin{ziti}
+\item 当 $l<1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛；
+\item 当 $l>1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 发散.
+\end{ziti}
+\end{theorem}
+
+这个定理的证明比定理~\ref{thm:10-9} 的证明还简单，请读者把它写出来.
+
+\begin{example}\label{ex:10-3-6}
+讨论 $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{1+x^{2n}}$ 的收敛性，其中 $x>0$.
+\end{example}
+
+\begin{proof}[解]
+注意
+\[
+\lim_{n\to\infty}\sqrt[n]{1+x^{2n}}=\max(1,x^{2})
+\]
+（用两边夹的极限不等式证明），则
+\[
+\lim_{n\to\infty}\sqrt[n]{u_{n}}=\frac{x}{\max(1,x^{2})}<1\quad(\text{当 }x\neq1),
+\]
+故当 $x\neq1$ 时级数收敛，当 $x=1$ 时，级数显然发散.
+\end{proof}
+
+下面我们选用 $p$ 级数作比较的标准，看能否得到较达朗贝尔判别法稍为精细而又应用方便的判别法.
+
+根据定理~\ref{thm:10-8} 与 $\sum_{n=1}^{\infty}\frac{1}{n^{p}}\,(p>1)$ 收敛，如果存在 $p>1$，使当 $n$ 充分大时，有
+\[
+\frac{u_{n+1}}{u_{n}}\leqslant\left(\frac{n}{n+1}\right)^{p}
+\]
+或
+\[
+\frac{u_{n}}{u_{n+1}}\geqslant\left(\frac{n+1}{n}\right)^{p}=\left(1+\frac{1}{n}\right)^{p}
+\]
+成立，则正项级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛．在应用中，找到这样的 $p>1$，验证上式成立是困难的．我们把它简化一下，为此需要一个引理．
+
+\begin{lemma*}
+对任意 $r>p>1$，存在 $N$，使当 $n>N$ 时，有
+\[
+1+\frac{r}{n}>\left(1+\frac{1}{n}\right)^{p}.
+\]
+\end{lemma*}
+
+\begin{proof}
+容易证明
+\[
+\lim_{x\to0}\frac{(1+x)^{p}-1}{x}=p.
+\]
+因此
+\[
+\lim_{n\to\infty}\frac{\left(1+\frac{1}{n}\right)^{p}-1}{\frac{1}{n}}=p.
+\]
+由 $p<r$，知存在 $N$，使当 $n>N$ 时，有
+\[
+\left(1+\frac{1}{n}\right)^{p}-1<\frac{r}{n},
+\]
+这就是引理所要证明的．
+\end{proof}
+
+用引理便得下面的判别法.
+
+\begin{theorem}[拉阿比（Raabe）判别法]\label{thm:10-11}
+设正项级数 $\sum_{n=1}^{\infty}u_{n}$ 的项满足
+\[
+\lim_{n\to\infty}n\left(\frac{u_{n}}{u_{n+1}}-1\right)=S,
+\]
+则
+\begin{ziti}
+\item 当 $S>1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛；
+\item 当 $S<1$ 时，级数 $\sum_{n=1}^{\infty}u_{n}$ 发散.
+\end{ziti}
+\end{theorem}
+
+\begin{proof}
+（1）由 $S>1$ 知存在 $\varepsilon_{0}>0$，使得 $S-\varepsilon_{0}>1$．记 $r=S-\varepsilon_{0}>1$．则存在 $N_{1}$，使当 $n>N_{1}$ 时，有
+\[
+n\left(\frac{u_{n}}{u_{n+1}}-1\right)>S-\varepsilon_{0}=r,
+\]
+即
+\[
+\frac{u_{n}}{u_{n+1}}\geqslant1+\frac{r}{n}.
+\]
+取 $p$ 使得 $r>p>1$. 由引理知存在 $N_{2}$，使当 $n>N_{2}$ 时，有
+\[
+1+\frac{r}{n}\geqslant\left(1+\frac{1}{n}\right)^{p}.
+\]
+故当 $n>N=\max(N_1,N_2)$ 时，有
+\[
+\frac{u_{n}}{u_{n+1}}\geqslant1+\frac{r}{n}\geqslant\left(1+\frac{1}{n}\right)^{p}=\frac{\frac{1}{n^{p}}}{\frac{1}{(n+1)^{p}}}.
+\]
+由定理~\ref{thm:10-8} 与 $\sum_{n=1}^{\infty}\frac{1}{n^{p}}$ ($p>1$) 收敛，知 $\sum_{n=1}^{\infty}u_{n}$ 收敛.
+
+（2）当 $S<1$，知存在 $\varepsilon_{1}>0$，使 $S+\varepsilon_{1}<1$．这时，存在 $N$，当 $n>N$，有
+\[
+n\left(\frac{u_{n}}{u_{n+1}}-1\right)<S+\varepsilon_{1}<1.
+\]
+因此
+\[
+\frac{u_{n}}{u_{n+1}}\leqslant1+\frac{1}{n}\quad(\text{当 }n>N),
+\]
+或
+\[
+\frac{u_{n+1}}{u_{n}}\geqslant\frac{\frac{1}{n+1}}{\frac{1}{n}}\quad(\text{当 }n>N).
+\]
+由定理~\ref{thm:10-8} 与 $\sum_{n=1}^{\infty}\frac{1}{n}$ 发散，知 $\sum_{n=1}^{\infty}u_{n}$ 发散．定理~\ref{thm:10-11} 证完.
+\end{proof}
+
+注意，在拉阿比判别法中，极限值 $S>1$ 时级数收敛，$S<1$ 时级数发散．这和达朗贝尔判别法不同，在那里，$l<1$ 时级数收敛，$l>1$ 时级数发散．实际上，这是毫不奇怪的，因为在拉阿比判别法中，我们把 $u_{n}$ 放到了分子，$u_{n+1}$ 放到了分母：$n\left(\frac{u_{n}}{u_{n+1}}-1\right)\to S$，和达朗贝尔判别法的 $\dfrac{u_{n+1}}{u_{n}}$ 刚巧倒了过来．读者很容易证明，拉阿比判别法包含了达朗贝尔判别法．
+
+\begin{example}\label{ex:10-3-7}
+研究级数
+\[
+1'+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}\frac{1}{2n+1}
+\]
+的收敛性.
+\end{example}
+
+\begin{proof}[解]
+由
+\[
+\frac{u_{n+1}}{u_{n}}=\frac{\frac{(2n+1)!!}{(2n+2)!!}\frac{1}{2n+3}}{\frac{(2n-1)!!}{(2n)!!}\frac{1}{2n+1}}=\frac{(2n+1)^{2}}{(2n+2)(2n+3)}\to1\quad(n\to\infty),
+\]
+知不能用达朗贝尔判别法．根据
+\[
+\begin{aligned}
+n\left(\frac{u_{n}}{u_{n+1}}-1\right)&=n\left[\frac{(2n+2)(2n+3)}{(2n+1)^{2}}-1\right]\\
+&=n\frac{6n+5}{(2n+1)^{2}}\to\frac{3}{2}>1,
+\end{aligned}
+\]
+用拉阿比判别法知级数收敛.
+\end{proof}
+
+类似于对达朗贝尔判别法的讨论，如果
+\[
+\lim_{n\to\infty}n\left(\frac{u_{n}}{u_{n+1}}-1\right)=1,
+\]
+则无法确定 $\sum_{n=1}^{\infty}u_{n}$ 的敛散性. 例如 $\sum_{n=3}^{\infty}\frac{1}{n(\ln n)^{q}}$，这时需要寻找别的方法来判别其收敛性.
+
+关于拉阿比判别法，我们想做一点说明．这个判别法，思想来源于用 $p$ 级数 $\sum_{n=1}^{\infty}\frac{1}{n^{p}}$ 作标准，用比较判别法来判别级数的收敛性．事实上，如同前面讲的，如果把这定理叙述为：若存在 $p>1$，使得
+\begin{equation}
+\frac{u_{n}}{u_{n+1}}\geqslant\left(1+\frac{1}{n}\right)^{p},
+\tag{1}
+\end{equation}
+则级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛；若 $\frac{u_{n}}{u_{n+1}}\leq1+\frac{1}{n}$，则级数 $\sum_{n=1}^{\infty}u_{n}$ 发散．这也可以称为一个定理了．但实际上，这样叙述的定理不好用，因为给定 $\sum_{n=1}^{\infty}u_{n}$，你不知道用什么办法找出合适的 $p$．但像本书前面所述，如果用了引理：若 $r>p>1$，则当 $n$ 充分大时，有
+\begin{equation}
+\left(1+\frac{r}{n}\right)>\left(1+\frac{1}{n}\right)^{p},
+\tag{2}
+\end{equation}
+就可以把上述定理改写成拉阿比判别法．而例~\ref{ex:10-3-7} 告诉我们，拉阿比判别法就很好用了．由此读者应体会到，如何运用学过的知识，如 (2)，改造已有的粗糙的想法，如 (1)，得到数学上更有意义的结果，这是我们应从中学到的思考数学问题的方法.
+
+\begin{theorem}[柯西积分判别法]\label{thm:10-12}
+若 $f(x)\geq0$ 在 $[1,+\infty)$ 连续，单调下降，$u_{n}=f(n)$，则正项级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛的充分必要条件是极限
+\[
+\lim_{x\to+\infty}\int_{1}^{x}f(t)\dd t
+\]
+存在.
+\end{theorem}
+
+\begin{proof}
+由于 $f(x)\geqslant0$，知 $F(x)=\displaystyle\int_{1}^{x}f(t)\dd t$ 单调上升．因此，极限
+\[
+\lim_{x\to+\infty}F(x)=\lim_{x\to+\infty}\int_{1}^{x}f(t)\dd t
+\]
+存在，当且仅当 $F(x)$ 有界.
+
+充分性．设 $\displaystyle\lim_{x\to+\infty}\int_{1}^{x}f(t)\dd t$ 存在，则存在 $M>0$，使得
+\[
+\int_{1}^{x}f(t)\dd t\leqslant M\quad(\forall x\in[1,+\infty)).
+\]
+这时
+\[
+\begin{aligned}
+S_{n}&=u_{1}+u_{2}+\cdots+u_{n}\\
+&=f(1)+f(2)+\cdots+f(n)\\
+&\leqslant f(1)+\int_{1}^{2}f(t)\dd t+\int_{2}^{3}f(t)\dd t+\cdots+\int_{n-1}^{n}f(t)\dd t\\
+&=f(1)+\int_{1}^{n}f(t)\dd t\leqslant f(1)+M,
+\end{aligned}
+\]
+即部分和数列有上界，因此 $\sum_{n=1}^{\infty}u_{n}$ 收敛.
+
+必要性. 设 $\sum_{n=1}^{\infty}u_{n}$ 收敛. 这时 $S_{n}=\sum_{k=1}^{n}u_{k}\leq M$ ($\forall n$). 对任意 $x$，令 $n=[x]+1$，有
+\[
+\begin{aligned}
+\int_{1}^{x}f(t)\dd t&\leqslant\int_{1}^{n}f(t)\dd t\\
+&=\int_{1}^{2}f(t)\dd t+\int_{2}^{3}f(t)\dd t+\cdots+\int_{n-1}^{n}f(t)\dd t\\
+&\leqslant f(1)+f(2)+\cdots+f(n-1)\\
+&=u_{1}+u_{2}+\cdots+u_{n-1}\leqslant M,
+\end{aligned}
+\]
+故极限
+\[
+\lim_{x\to+\infty}\int_{1}^{x}f(t)\dd t
+\]
+存在、定理~\ref{thm:10-12} 证完.
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.62,baseline=(current bounding box.center)]
+  \def\f(#1){5.6/(#1+0.35)}
+  % axes
+  \draw[{-Latex}] (0,0) -- (8.2,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,0) -- (0,5.6);
+  \node[below left] at (0,0) {$O$};
+  % solid (lower-sum) bars
+  \foreach \k in {1,...,6}{
+    \draw[pattern=north east lines] (\k,0) rectangle (\k+1,{\f({\k+1})});
+    \draw[thick] (\k,0) -- (\k,{\f({\k+1})});
+  }
+  % dashed (upper-sum) outlines
+  \foreach \k in {1,...,6}{
+    \draw[dashed] (\k,{\f({\k+1})}) -- (\k,{\f({\k})}) -- (\k+1,{\f({\k})}) -- (\k+1,{\f({\k+1})});
+  }
+  % curve
+  \draw[thick,domain=1:6.8,smooth,variable=\x] plot(\x,{\f(\x)}) node[above right] {$y=f(x)$};
+  % ticks and labels
+  \foreach \k in {1,...,6}{
+    \draw (\k,0.08) -- (\k,-0.08) node[below] {$\k$};
+    \node[right] at (\k+0.12,{\f({\k+1})/2+0.35}) {$u_{\k}$};
+  }
+\end{tikzpicture}
+\caption{\relax}
+\label{fig:10-1}
+\end{figure}
+
+柯西积分判别法有一几何解释，见图~\ref{fig:10-1}. 积分 $\displaystyle\int_{1}^{n}f(t)\dd t$ 表示在曲线 $y=f(x)$ 下方对应区间 $[1,n]$ 部分的曲边梯形面积. 这面积夹在它的上和与下和之间：
+\[
+f(2)+f(3)+\cdots+f(n)\leqslant\int_{1}^{n}f(t)\dd t\leqslant f(1)+f(2)+\cdots+f(n-1),
+\]
+即
+\[
+u_{2}+u_{3}+\cdots+u_{n}\leqslant\int_{1}^{n}f(t)\dd t\leqslant u_{1}+u_{2}+\cdots+u_{n-1}.
+\]
+因此，部分和 $u_1+\cdots+u_n$ 有界，当且仅当 $\displaystyle\int_1^n f(t)\dd t$ 有界．
+
+用积分判别法可以给出 $p$ 级数收敛性的简单证明．这时 $f(x)=\frac{1}{x^{p}}$，$p>0$．它在 $[1,+\infty)$ 非负，单调下降且连续，$f(n)=\frac{1}{n^{p}}$．当 $0<p<\infty$，$p\neq1$ 时，
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\int_{1}^{x}\frac{\dd t}{t^{p}}&=\lim_{x\to+\infty}\frac{1}{1-p}(x^{1-p}-1)\\
+&=\begin{cases}
++\infty, & \text{当 }0<p<1,\\[2pt]
+\dfrac{1}{p-1}, & \text{当 }1<p<\infty,
+\end{cases}
+\end{aligned}
+\]
+以及当 $p=1$ 时，
+\[
+\lim_{x\to+\infty}\int_{1}^{x}\frac{1}{t}\dd t=\lim_{x\to+\infty}\ln x=+\infty.
+\]
+从而知 $\sum_{n=1}^{\infty}\frac{1}{n^{p}}$ 当 $0<p\leq1$ 时发散，当 $p>1$ 时收敛.
+
+\begin{example}\label{ex:10-3-8}
+讨论 $\displaystyle\sum_{n=3}^{\infty}\frac{1}{n(\ln n)^{q}}$ 的收敛性，其中 $q>0$.
+\end{example}
+
+\begin{proof}[解]
+取 $f(x)=\dfrac{1}{x(\ln x)^q}$，$q>0$. 它在 $[3,+\infty)$ 非负，单调下降，连续. $f(n)=\dfrac{1}{n(\ln n)^q}$. 当 $q\neq1$ 时，已知
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\int_{3}^{x}\frac{\dd t}{t(\ln t)^{q}}&=\lim_{x\to+\infty}\frac{1}{1-q}\left((\ln x)^{1-q}-(\ln 3)^{1-q}\right)\\
+&=\begin{cases}
++\infty, & \text{当 }0<q<1,\\[2pt]
+\dfrac{1}{q-1}(\ln 3)^{1-q}, & \text{当 }q>1.
+\end{cases}
+\end{aligned}
+\]
+而当 $q=1$ 时，
+\[
+\lim_{x\to+\infty}\int_{3}^{x}\frac{\dd t}{t\ln t}=\lim_{x\to+\infty}\left(\ln\ln x-\ln\ln 3\right)=+\infty.
+\]
+故 $\displaystyle\sum_{n=3}^{\infty}\frac{1}{n(\ln n)^{q}}$ 当 $q>1$ 时收敛，当 $0<q\leqslant1$ 时发散.
+\end{proof}
+
+过去研究极限和积分等，总是用离散量去逼近连续量．现在有了微积分，有了连续量的运算体系，却可以反过来用连续量来研究离散量．定理~\ref{thm:10-12} 与例~\ref{ex:10-3-8} 是这方面的第一个例子．事实上，我们很容易计算连续量的叠加
+\[
+\int_{1}^{+\infty}\frac{\dd t}{t^{p}}=\lim_{x\to+\infty}\int_{1}^{x}\frac{\dd t}{t^{p}}=\frac{1}{p-1}\quad(p>1),
+\]
+\[
+\int_{3}^{+\infty}\frac{\dd t}{t(\ln t)^{q}}=\lim_{x\rightarrow+\infty}\int_{3}^{x}\frac{\dd t}{t(\ln t)^{q}}=\frac{(\ln 3)^{1-q}}{q-1}\quad(q>1),
+\]
+但至今还不知如何计算
+\[
+\sum_{n=1}^{\infty}\frac{1}{n^{p}},\quad\sum_{n=3}^{\infty}\frac{1}{n(\ln n)^{q}}\quad(p,q>1),
+\]
+只能通过积分来估计后面两个级数的部分和．以后读者会看到很多这样的例子．人们总是以为，离散量有最小单位，可以数，因此总是比较简单的．其实不然，这里的例子就表明，连续量的叠加比离散量的叠加，其计算与处理，有时要容易得多.
+
+\begin{xiti}
+\item 判别下列级数的收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt{n^{2}+n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(2n-1)2^{2n-1}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n-\sqrt{n}}{2n-1}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\sin\frac{\pi}{2^n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{1+a^{n}}\ (a>1)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\sqrt[n]{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{1}{2n+1}\right)^{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\left[\ln(n+1)\right]^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{2+(-1)^{n}}{2^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}2^{n}\sin\frac{\pi}{3^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}(3+(-1)^n)^{n}\sin\frac{\pi}{5^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin 2^{\frac{1}{n}}}{n!}$;
+\item $\displaystyle\sum_{n=1}^{\infty}n\left(1-\cos\frac{1}{n}\right)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\cos\frac{1}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}\ln\left(1+\frac{1}{\sqrt{n}}\right)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\ln(1+n)}{n^{2}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\sin\frac{1}{n}\arcsin\frac{1}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}n\arctan\frac{\pi}{2^n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\sqrt{1+\frac{1}{n}}-1\right)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left[\left(1+\frac{1}{n^{2}}\right)^{2}-1\right]$.
+\end{ziti}
+\item 判别下列级数的敛散性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{n}}{n!}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n\ln n}{2^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n!\,2^{n}}{n^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n!\,3^{n}}{n^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n!\,\mathrm{e}^{n}}{n^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{2}}{\left(n+\frac{1}{n}\right)^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{2n+1}{3n-2}\right)^{\frac{n}{2}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{n}}{\left(3n^{2}+n\right)^{\frac{n+1}{2}}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{(1+x)(1+x^{2})\cdots(1+x^{n})}\ (x\geqslant0)$;
+\item $\dfrac{3}{1}+\dfrac{3\cdot5}{1\cdot4}+\dfrac{3\cdot5\cdot7}{1\cdot4\cdot7}+\dfrac{3\cdot5\cdot7\cdot9}{1\cdot4\cdot7\cdot10}+\cdots$
+\end{ziti}
+\item 判别级数的敛散性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{\ln n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(\ln n)^{\ln n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{2^{\ln n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{3^{\ln n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{3^{\sqrt{n}}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n}{3^{\sqrt{n}}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\ln n}{n^{p}}$ ($p$ 是任意实数);
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{n^{p}\ln n}$ ($p$ 是任意实数).
+\end{ziti}
+\item 利用泰勒公式估算无穷小量的阶，从而判别下列级数的收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\left[e-\left(1+\frac{1}{n}\right)^{n}\right]^{p}$;
+\item $\displaystyle\sum_{n=3}^{\infty}\left[\ln\frac{1}{\cos\frac{\pi}{n}}\right]^p$
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\sqrt{n+1}-\sqrt{n}\right)^{p}\ln\frac{n-1}{n+1}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\sqrt{n+a}-\sqrt[4]{n^{2}+n+b}\right)$.
+\end{ziti}
+\item 讨论下列级数的收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{n(\ln n)^{p}}$;
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{n\cdot\ln n\cdot\ln\ln n}$;
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{n(\ln n)^{1+\sigma}\ln\ln n}\ (\sigma>0)$;
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{n(\ln n)^{p}(\ln\ln n)^{q}}.$
+\end{ziti}
+\item 利用拉阿比判别法研究下列级数的收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\left[\frac{(2n-1)!!}{(2n)!!}\right]^{p}$ ($p$ 是实数);
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\alpha(\alpha+1)\cdots(\alpha+n-1)}{n!}\frac{1}{n^{\beta}}\quad(\alpha>0,\beta>0)$
+\end{ziti}
+\item 已知两正项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 和 $\sum_{n=1}^{\infty}v_{n}$ 发散，问 $\sum_{n=1}^{\infty}\max(u_{n},v_{n})$，$\sum_{n=1}^{\infty}\min(u_{n},v_{n})$ 两级数的收敛性如何？
+\item 若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，证明：$\lim\limits_{n\to\infty}\dfrac{a_{1}+2a_{2}+\cdots+na_{n}}{n}=0$
+\item 设
+\[
+\begin{cases}
+a_{n}=\dfrac{1}{n^{2}}, & n\neq k^{2},\ k=1,2,\cdots,\\[6pt]
+a_{k^{2}}=\dfrac{1}{k^{2}}, & k=1,2,\cdots,
+\end{cases}
+\]
+求证：（1）$\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛；（2）$\lim\limits_{n\to\infty}na_{n}\neq0$.
+\item 设 $a_n>0$，且 $\lim\limits_{n\to\infty}\dfrac{a_{n+1}}{a_n}=l$，求证 $\lim\limits_{n\to\infty}\sqrt[n]{a_n}=l$．反之是否成立？
+\item 利用级数收敛的必要条件证明：
+\begin{ziti}
+\item $\displaystyle\lim_{n\to\infty}\frac{n^n}{(n!)^2}=0$;
+\item $\displaystyle\lim_{n\to\infty}\frac{(2n)!}{a^{n!}}=0$ $(a>1)$.
+\end{ziti}
+\item 设 $a_n\geq0$，且数列 $\{na_n\}$ 有界，证明级数 $\displaystyle\sum_{n=1}^{\infty}a_n^2$ 收敛.
+\item 设正项级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，证明 $\sum_{n=1}^{\infty}\sqrt{a_{n}a_{n+1}}$ 也收敛.
+\item 设 $\lim\limits_{n\to\infty}a_n=l$，求证：
+\begin{ziti}
+\item 当 $l>1$ 时，$\displaystyle\sum_{n=1}^{+\infty}\frac{1}{n^{a_{n}}}$ 收敛；
+\item 当 $l<1$ 时，$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{a_{n}}}$ 发散.
+\end{ziti}
+问 $l=1$ 时会有什么结论？
+\end{xiti}
+
+\section{一般项级数}
+
+\subsection{交错级数}
+
+一般的无穷级数，它的项不一定都是正的或都是负的，我们统称为一般项级数．仍然按先简后繁的原则，先研究一类特殊的一般项级数，它的项正负相间，称为交错级数．这类级数总可以写成
+\[
+\sum_{n=1}^{\infty}(-1)^{n-1}u_{n}=u_{1}-u_{2}+u_{3}-u_{4}+\cdots+(-1)^{n-1}u_{n}+\cdots
+\]
+的形式，其中 $u_{n}>0\,(n=1,2,\cdots)$
+
+对于交错级数，有一个简单而又常用的判别法.
+
+\begin{theorem}[莱布尼茨判别法]\label{thm:10-13}
+设交错级数
+\[
+\sum_{n=1}^{\infty}(-1)^{n-1}u_{n}\quad(u_{n}>0,n=1,2,\cdots)
+\]
+中的数列 $\{u_{n}\}$ 单调下降趋向于 $0$，则交错级数收敛.
+\end{theorem}
+
+\begin{proof}
+考虑级数 $\sum_{n=1}^{\infty}(-1)^{n-1}u_{n}$ 的部分和数列 $\{S_{n}\}$ 的偶数指标所构成的子数列 $S_{2n}=\sum_{k=1}^{2n}(-1)^{k-1}u_{k}$. 这时
+\[
+S_{2(n+1)}=S_{2n}+(u_{2n+1}-u_{2n+2})\geqslant S_{2n},
+\]
+这说明 $\{S_{2n}\}$ 是单调上升的，而
+\[
+S_{2n}=u_{1}-(u_{2}-u_{3})-\cdots-(u_{2n-2}-u_{2n-1})-u_{2n}\leqslant u_{1},
+\]
+这就证明了 $\{S_{2n}\}$ 有上界．由单调上升有上界的数列必有极限存在，知
+\[
+\lim_{n\to\infty}S_{2n}=S.
+\]
+根据
+\[
+S_{2n+1}=S_{2n}+u_{2n+1}
+\]
+以及 $u_{2n+1}\rightarrow0$，知
+\[
+\lim_{n\to\infty}S_{2n+1}=\lim_{n\to\infty}S_{2n}+\lim_{n\to\infty}u_{2n+1}=S.
+\]
+于是我们证得级数部分和数列 $\{S_n\}$ 的偶数指标构成的子数列 $\{S_{2n}\}$ 与奇数指标构成的子数列 $\{S_{2n+1}\}$ 极限都存在，且相等，故 $\{S_n\}$ 极限存在，即级数收敛．定理~\ref{thm:10-13} 证完．
+\end{proof}
+
+根据定理~\ref{thm:10-13} 知，级数
+\[
+\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots+\frac{(-1)^{n-1}}{n}+\cdots
+\]
+收敛.
+
+\subsection{柯西收敛原理与绝对收敛}
+
+回到一般项级数．这时部分和数列没有什么单调性了．但对一般的数列，我们曾经叙述过其极限存在的充分必要条件，即柯西准则．它断言，数列 $\{S_{n}\}$ 有极限存在的充分必要条件是：对任意给定的 $\varepsilon>0$，存在 $N$，只要 $n$，$m>N$，有
+\[
+|S_{m}-S_{n}|<\varepsilon.
+\]
+在这里，不妨设 $m>n$，记 $m=n+p$，则 $p$ 是任意正整数，上面的充分必要条件又可叙述为：对任意给定的 $\varepsilon>0$，存在 $N$，只要 $n>N$，对任意的正整数 $p$，均有
+\[
+|S_{n+p}-S_{n}|<\varepsilon.
+\]
+如果 $S_{n}$ 是级数 $\sum_{n=1}^{\infty}u_{n}$ 的部分和，$S_{n}=\sum_{k=1}^{n}u_{k}$，则
+\[
+S_{n+p}-S_{n}=u_{n+1}+u_{n+2}+\cdots+u_{n+p}.
+\]
+这样便得到下面的级数收敛的柯西原理.
+
+\begin{theorem}[柯西收敛原理]\label{thm:10-14}
+级数 $\sum_{n=1}^{\infty}u_n$ 收敛的充分必要条件是：对任给的 $\varepsilon>0$，存在 $N$，只要 $n>N$，对任意正整数 $p$，有
+\[
+|u_{n+1}+u_{n+2}+\cdots+u_{n+p}|<\varepsilon.
+\]
+\end{theorem}
+
+用柯西收敛原理可以给出定理~\ref{thm:10-13} 的另一个证明. 事实上，当 $p$ 是奇数时，
+\[
+\begin{aligned}
+&u_{n+1}-u_{n+2}+u_{n+3}-\cdots-u_{n+p-1}+u_{n+p}\\
+={}&(u_{n+1}-u_{n+2})+(u_{n+3}-u_{n+4})+\cdots+(u_{n+p-2}-u_{n+p-1})+u_{n+p}\\
+\geqslant{}&0,\\
+&u_{n+1}-u_{n+2}+u_{n+3}-\cdots-u_{n+p-1}+u_{n+p}\\
+={}&u_{n+1}-(u_{n+2}-u_{n+3})-\cdots-(u_{n+p-1}-u_{n+p})\\
+\leqslant{}&u_{n+1}.
+\end{aligned}
+\]
+而
+\[
+|u_{n+1}-u_{n+2}+u_{n+3}-\cdots+u_{n+p}|\leqslant u_{n+1}.
+\]
+因此
+
+类似地，当 $p$ 为偶数时，也有
+\[
+|u_{n+1}-u_{n+2}+u_{n+3}-\cdots-u_{n+p}|\leqslant u_{n+1}.
+\]
+由 $u_n \to 0$ 知对任给的 $\varepsilon>0$，存在 $N$，只要 $n>N$，有 $u_{n+1}<\varepsilon$．从而对任意正整数 $p$，有
+\[
+u_{n+1}-u_{n+2}+u_{n+3}-\cdots+(-1)^{p-1}u_{n+p}\leqslant u_{n+1}<\varepsilon.
+\]
+这就给出了定理~\ref{thm:10-13} 的另一个证明.
+
+用柯西收敛原理还可以验证级数的发散性．根据否定判断的陈述，便知级数 $\sum_{n=1}^{\infty}u_{n}$ 发散的充分必要条件是：存在 $\varepsilon_{0}>0$，对任意 $N$，存在 $n>N$ 以及存在正整数 $p$，使得
+\[
+|u_{n+1}+u_{n+2}+\cdots+u_{n+p}|\geqslant\varepsilon_{0}.
+\]
+
+\begin{example}\label{ex:10-4-2-1}
+用柯西收敛原理证明调和级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ 发散.
+\end{example}
+
+\begin{proof}
+对任意正整数 $n$，只要取 $p=n$，便有
+\[
+\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}\geqslant\underbrace{\frac{1}{2n}+\cdots+\frac{1}{2n}}_{n\ \text{项}}=\frac{1}{2},
+\]
+因此存在 $\varepsilon_{0}=\dfrac{1}{2}>0$，对任意 $N$，取 $n=N+1$，取 $p=n$，有
+\[
+\left|\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}\right|\geqslant\frac{1}{2},
+\]
+故 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ 发散.
+\end{proof}
+
+由柯西收敛原理可以得到下面的判别法.
+
+\begin{theorem}\label{thm:10-15}
+若级数 $\sum_{n=1}^{\infty}|u_{n}|$ 收敛，则 $\sum_{n=1}^{\infty}u_{n}$ 收敛.
+\end{theorem}
+
+\begin{proof}
+这是由于
+\[
+|u_{n+1}+u_{n+2}+\cdots+u_{n+p}|\leqslant|u_{n+1}|+|u_{n+2}|+\cdots+|u_{n+p}|,
+\]
+用柯西收敛原理（定理~\ref{thm:10-14}），便证得定理~\ref{thm:10-15}.
+\end{proof}
+
+由于级数 $\sum_{n=1}^{\infty}|u_{n}|$ 是 $\sum_{n=1}^{\infty}u_{n}$ 每项取绝对值而得到的，因此是正项级数. 这样，就把一些级数的收敛性判别化为判别正项级数的收敛性.
+
+\begin{example}\label{ex:10-4-2-2}
+讨论级数 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^{2}}$ 的收敛性.
+\end{example}
+
+\begin{proof}[解]
+由于
+\[
+\left|\frac{\sin nx}{n^{2}}\right|\leqslant\frac{1}{n^{2}},
+\]
+而级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 收敛，根据正项级数的收敛判别法知 $\sum_{n=1}^{\infty}\dfrac{|\sin nx|}{n^{2}}$ 收敛．由定理~\ref{thm:10-15} 推出 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^{2}}$ 对任意 $x$ 收敛.
+\end{proof}
+
+注意，定理~\ref{thm:10-15} 的逆定理是不成立的，即由 $\sum_{n=1}^{\infty}|u_n|$ 发散，并不能推出 $\sum_{n=1}^{\infty}u_n$ 发散．事实上，取交错级数
+\[
+\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n}=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots+(-1)^{n-1}\frac{1}{n}+\cdots,
+\]
+它是收敛的，但每项取绝对值后所得级数
+\[
+\sum_{n=1}^{\infty}\left|(-1)^{n-1}\frac{1}{n}\right|=1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{n}+\cdots,
+\]
+却是发散的.
+
+这样，我们引进绝对收敛与条件收敛的概念.
+
+\begin{definition}\label{def:10-3}
+若级数 $\sum_{n=1}^{\infty}|u_{n}|$ 收敛，则称级数 $\sum_{n=1}^{\infty}u_{n}$ 是\emph{绝对收敛}的；若级数 $\sum_{n=1}^{\infty}u_{n}$ 收敛，但级数 $\sum_{n=1}^{\infty}|u_{n}|$ 发散，则称级数 $\sum_{n=1}^{\infty}u_{n}$ 是\emph{条件收敛}的.
+\end{definition}
+
+定理~\ref{thm:10-15} 说，绝对收敛的级数必是收敛的.
+
+上面的例子说明，级数 $\sum_{n=1}^{\infty}(-1)^{n-1}\dfrac{1}{n}$ 是条件收敛级数.
+
+由于 $\sum_{n=1}^{\infty}|u_{n}|$ 是正项级数，上一节中有关正项级数的收敛判别法都可以用来判别一般项级数的绝对收敛性．例如，我们有
+
+\begin{theorem}[达朗贝尔判别法]\label{thm:10-16}
+若
+\[
+\lim_{n\to\infty}\frac{|u_{n+1}|}{|u_{n}|}=l,
+\]
+则
+\begin{ziti}
+\item 当 $l<1$ 时级数 $\sum_{n=1}^{\infty}u_{n}$ 绝对收敛；
+\item 当 $l>1$ 时级数 $\sum_{n=1}^{\infty}u_{n}$ 发散.
+\end{ziti}
+\end{theorem}
+
+定理的证明是不难的．事实上，在（1）的情形，由正项级数的达朗贝尔判别法知 $\sum_{n=1}^{\infty}|u_{n}|$ 收敛，由定理~\ref{thm:10-15} 推出 $\sum_{n=1}^{\infty}u_{n}$ 绝对收敛．但（2）的证明不能用正项级数的达朗贝尔判别法的结果，而只能用其证明的方法：由 $l>1$，推出 $u_{n}$ 不趋于 $0$，故 $\sum_{n=1}^{\infty}u_{n}$ 发散.
+
+类似地，读者可给出绝对收敛的柯西判别法．
+
+\begin{example}\label{ex:10-4-2-3}
+讨论级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n2^{n}}$ 的收敛性.
+\end{example}
+
+\begin{proof}[解]
+根据
+\[
+\frac{|u_{n+1}|}{|u_{n}|}=\frac{|x|^{n+1}}{(n+1)2^{n+1}}\cdot\frac{n\cdot2^{n}}{|x|^{n}}=\frac{|x|}{2}\cdot\frac{n}{n+1},
+\]
+知
+\[
+\lim_{n\to\infty}\frac{|u_{n+1}|}{|u_n|}=\frac{|x|}{2}.
+\]
+因此，根据定理~\ref{thm:10-16}，当 $\dfrac{|x|}{2}<1$ 即 $|x|<2$ 时，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n2^n}$ 绝对收敛；当 $\dfrac{|x|}{2}>1$ 即 $|x|>2$ 时，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n2^n}$ 发散．当 $|x|=2$ 时，不能用定理~\ref{thm:10-16} 判断．但这时有已知的结果：当 $x=2$ 时，原级数化为 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$，因此发散；当 $x=-2$ 时，原级数化为 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{1}{n}$，级数收敛．
+
+结论：级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n2^{n}}$ 在 $-2\leq x<2$ 收敛，在其他地方发散.
+\end{proof}
+
+\subsection{狄利克雷判别法与阿贝尔判别法}
+
+对一般项的收敛级数，现在按收敛性把它们分成了两类：绝对收敛级数与条件收敛级数．对绝对收敛级数，判别其是否收敛，归结为正项级数．以前我们说过，正项级数的收敛性，本质上取决于一般项趋向于 $0$ 的快慢．至于一般项级数，其一般项趋向于 $0$ 的速度也许较慢，使得其绝对值构成的级数发散，但由于项中有正负号可以互相抵消，使原来级数仍可能条件收敛．因此，讨论级数的条件收敛性，需要比较精细的判别法．到目前为止，除了交错级数外，还没有介绍较为一般的判别法．下面我们将用柯西收敛原理推出两个判别法，其精细之处体现在下面的阿贝尔变换上．
+
+\subsubsection*{阿贝尔变换}
+
+设有两组数 $a_{k}$，$b_{k}$（$k=1,2,\cdots,m$）．为了求和数
+\[
+\sum_{k=1}^{m}a_{k}b_{k}=a_{1}b_{1}+a_{2}b_{2}+\cdots+a_{m}b_{m},
+\]
+引入
+\[
+\begin{aligned}
+&B_{1}=b_{1},B_{2}=b_{1}+b_{2},B_{3}=b_{1}+b_{2}+b_{3},\cdots,\\
+&B_{m}=b_{1}+b_{2}+\cdots+b_{m}.
+\end{aligned}
+\]
+这样
+\[
+b_{1}=B_{1},b_{2}=B_{2}-B_{1},\cdots,b_{m}=B_{m}-B_{m-1}.
+\]
+把它代入和式，得
+\[
+\begin{aligned}
+\sum_{k=1}^{m}a_{k}b_{k}&=a_{1}B_{1}+a_{2}(B_{2}-B_{1})+a_{3}(B_{3}-B_{2})+\cdots+a_{m}(B_{m}-B_{m-1})\\
+&=(a_{1}-a_{2})B_{1}+(a_{2}-a_{3})B_{2}+\cdots+(a_{m-1}-a_{m})B_{m-1}+a_{m}B_{m}\\
+&=\sum_{k=1}^{m-1}(a_{k}-a_{k+1})B_{k}+a_{m}B_{m}.
+\end{aligned}
+\]
+这个变换式
+\[
+\sum_{k=1}^{m}a_{k}b_{k}=\sum_{k=1}^{m-1}(a_{k}-a_{k+1})B_{k}+a_{m}B_{m}
+\]
+就称为\emph{阿贝尔变换}，或\emph{和差变换}．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.55,baseline=(current bounding box.center)]
+  \def\a(#1){6.2-0.75*(#1)}   % heights a_1>...>a_6
+  \def\bwid{1.7}
+  % axes
+  \draw[{-Latex}] (0,0) -- (11.2,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,0) -- (0,6.2);
+  \node[below left] at (0,0) {$O$};
+  % bars
+  \foreach \k in {1,...,6}{
+    \pgfmathsetmacro{\xstart}{(\k-1)*\bwid}
+    \pgfmathsetmacro{\xend}{\k*\bwid}
+    \draw[thick] (\xstart,0) rectangle (\xend,{\a({\k})});
+    \node[right] at (\xstart+0.15,{\a({\k})/2}) {$b_{\k}$};
+    \draw (\xend,-0.1) -- (\xend,0.1) node[below] {$B_{\k}$};
+    \draw[dashed] (0,{\a({\k})}) -- (\xend,{\a({\k})});
+    \node[left] at (0,{\a({\k})}) {$\k$};
+  }
+\end{tikzpicture}
+\caption{\relax}
+\label{fig:10-2}
+\end{figure}
+
+上述阿贝尔变换，有一个简单的几何解释．为简单起见，设 $a_{k}\geqslant0$，$b_{k}\geqslant0$（$k=1,2,3,\cdots,6$），且 $a_{k}$ 单调下降．这时，$\sum_{k=1}^{6}a_{k}b_{k}$ 在图~\ref{fig:10-2} 中表示以 $b_{k}$ 为底，$a_{k}$ 为高的六个矩形的面积和．这正是此图中大阶梯形的面积，它显然等于以 $B_{6}=b_{1}+b_{2}+\cdots+b_{6}$ 为底，$a_{6}$ 为高的矩形面积，以及以 $B_{k}=b_{1}+\cdots+b_{k}$ 为底，$a_{k}-a_{k+1}$ 为高（$k=1,2,\cdots,5$）的五个``扁''矩形的面积之和．可见，阿贝尔变换在几何上看，只是把大阶梯形面积化成两种不同方向的矩形和而已．
+
+由阿贝尔变换可以得到下面的阿贝尔引理.
+
+\begin{lemma}[阿贝尔引理]\label{lem:10-4-1}
+设
+\begin{enumerate}[label=(\roman*)]
+\item $\{a_{k}\}\,(k=1,2,\cdots,m)$ 单调（单调上升或单调下降）；
+\item $B_{k}=\sum_{i=1}^{k}b_{i}\,(k=1,2,\cdots,m)$ 有界，即存在 $M>0$，使得
+\[
+|B_{k}|\leqslant M\quad(k=1,2,\cdots,m)
+\]
+\end{enumerate}
+则
+\[
+\left|\sum_{k=1}^{m}a_{k}b_{k}\right|\leqslant M\left(|a_{1}|+2|a_{m}|\right).
+\]
+\end{lemma}
+
+\begin{proof}
+由阿贝尔变换与 $B_{k}$ 有界知
+\[
+\begin{aligned}
+\left|\sum_{k=1}^{m}a_{k}b_{k}\right|&=\left|\sum_{k=1}^{m-1}(a_{k}-a_{k+1})B_{k}+a_{m}B_{m}\right|\\
+&\leqslant\sum_{k=1}^{m-1}|a_{k}-a_{k+1}|\,|B_{k}|+|a_{m}|\,|B_{m}|\\
+&\leqslant M\Big(\sum_{k=1}^{m-1}|a_{k}-a_{k+1}|+|a_{m}|\Big).
+\end{aligned}
+\]
+注意到 $a_{k}$ 单调，则每个 $(a_{k}-a_{k+1})(k=1,2,\cdots,m-1)$ 同号，因此
+\[
+\sum_{k=1}^{m-1}|a_{k}-a_{k+1}|=\left|\sum_{k=1}^{m-1}(a_{k}-a_{k+1})\right|=|a_{1}-a_{m}|,
+\]
+从而
+\[
+\left|\sum_{k=1}^{m}a_{k}b_{k}\right|\leqslant M\left(|a_{1}-a_{m}|+|a_{m}|\right)\leqslant M\left(|a_{1}|+2|a_{m}|\right),
+\]
+引理~\ref{lem:10-4-1} 证完.
+\end{proof}
+
+\begin{theorem}[狄利克雷判别法]\label{thm:10-17}
+设
+\begin{enumerate}[label=(\roman*)]
+\item 级数 $\displaystyle\sum_{n=1}^{\infty}b_{n}$ 的部分和 $B_{n}=\sum_{k=1}^{n}b_{k}$ 有界，即存在 $M>0$，使得 $|B_{n}|\leq M\,(n=1,2,\cdots)$;
+\item 数列 $\{a_{n}\}$ 单调趋向于 $0$，
+\end{enumerate}
+则级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{theorem}
+
+\begin{proof}
+用柯西收敛原理与阿贝尔引理证明．由 $a_{n}\to0$ 知，任给 $\varepsilon>0$，存在 $N$，当 $n>N$ 时，有 $|a_{n}|<\varepsilon$．而显然
+\[
+|b_{n+1}+\cdots+b_{n+k}|=|B_{n+k}-B_{n}|\leqslant2M.
+\]
+故只要 $n>N$，对任意正整数 $p$，有
+\[
+\left|\sum_{k=n+1}^{n+p}a_{k}b_{k}\right|\leqslant2M\left(|a_{n+1}|+2|a_{n+p}|\right)<6M\varepsilon,
+\]
+故级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{proof}
+
+\begin{theorem}[阿贝尔判别法]\label{thm:10-18}
+设
+\begin{enumerate}[label=(\roman*)]
+\item 级数 $\displaystyle\sum_{n=1}^{\infty}b_{n}$ 收敛；
+\item 数列 $\{a_{n}\}$ 单调有界，
+\end{enumerate}
+则级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{theorem}
+
+\begin{proof}
+用柯西收敛原理与阿贝尔引理证明．设 $|a_{n}|\leqslant K$．由 $\sum_{n=1}^{\infty}b_{n}$ 收敛，知任给 $\varepsilon>0$，存在 $N$，当 $n>N$ 时，对任意正整数 $p$，有
+\[
+|b_{n+1}+b_{n+2}+\cdots+b_{n+p}|<\varepsilon.
+\]
+因此只要 $n>N$，对任意正整数 $p$，有
+\[
+\left|\sum_{k=n+1}^{n+p}a_{k}b_{k}\right|<\varepsilon\left(|a_{n+1}|+2|a_{n+p}|\right)\leqslant3K\varepsilon,
+\]
+故级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{proof}
+
+阿贝尔判别法可以用下面简单的话来帮助记忆：一个收敛级数各项乘以单调有界的因子后仍然是收敛的.
+
+用狄利克雷判别法可以推出交错级数的莱布尼茨判别法，请读者把证明写出来.
+
+\begin{example}\label{ex:10-4-3-1}
+讨论级数
+\[
+\sum_{n=1}^{\infty}\frac{\sin nx}{n}=\sin x+\frac{\sin 2x}{2}+\frac{\sin 3x}{3}+\cdots+\frac{\sin nx}{n}+\cdots
+\]
+的敛散性.
+\end{example}
+
+\begin{proof}[解]
+当 $x$ 等于 $\pi$ 的整数倍时，$\sin nx=0\ (n=1,2,\cdots)$．即级数每一项均为 $0$，级数当然收敛.
+
+下面设 $x$ 不等于 $\pi$ 的整数倍，这时 $\sin x\neq0$．用三角函数积化和差的公式：
+\[
+\begin{aligned}
+2\sin\frac{x}{2}\sin x&=\cos\frac{x}{2}-\cos\frac{3}{2}x,\\
+2\sin\frac{x}{2}\sin 2x&=\cos\frac{3}{2}x-\cos\frac{5}{2}x,\\
+2\sin\frac{x}{2}\sin 3x&=\cos\frac{5}{2}x-\cos\frac{7}{2}x,\\
+&\cdots\\
+2\sin\frac{x}{2}\sin nx&=\cos\frac{2n-1}{2}x-\cos\frac{2n+1}{2}x
+\end{aligned}
+\]
+加起来便得
+\[
+2\sin\frac{x}{2}\sum_{k=1}^{n}\sin kx=\cos\frac{x}{2}-\cos\frac{2n+1}{2}x
+\]
+因此
+\[
+\left|\sum_{k=1}^{n}\sin kx\right|\leqslant\frac{\left|\cos\frac{x}{2}\right|+\left|\cos\frac{2n+1}{2}x\right|}{2\left|\sin\frac{x}{2}\right|}\leqslant\frac{1}{\left|\sin\frac{x}{2}\right|}
+\]
+对 $n=1,2,\cdots$ 均成立．注意到 $\dfrac{1}{n}$ 单调下降趋向于 $0$，由狄利克雷判别法知 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}$ 收敛．
+
+结果证明了 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}$ 对一切 $x$ 收敛.
+\end{proof}
+
+同理可证，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{\cos nx}{n}$ 当 $x$ 不等于 $2\pi$ 的整数倍，即 $x\neq2m\pi$（$m$ 为整数）时，则级数收敛；当 $x$ 为 $2\pi$ 的整数倍即 $x=2m\pi$（$m$ 为整数）时，$\cos nx=1$，这时级数化为 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$，显然发散.
+
+\begin{example}\label{ex:10-4-3-2}
+若级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 收敛，则 $\sum_{n=1}^{\infty}\dfrac{u_{n}}{n}$，$\sum_{n=1}^{\infty}\dfrac{u_{n}}{\sqrt{n}}$，$\sum_{n=1}^{\infty}\dfrac{n}{n+1}u_{n}$ 都收敛. 这只要应用阿贝尔判别法即得.
+\end{example}
+
+\begin{xiti}
+\item 讨论下列级数的收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{\sqrt{n}}{n+100}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\ln n}{n}\sin\frac{n\pi}{2}$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{1+\frac{1}{2}+\cdots+\frac{1}{n}}{n}$;
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{(-1)^{n}}{\sqrt{n}+(-1)^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\sin(\pi\sqrt{n^{2}+1})$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{\frac{n(n-1)}{2}}}{3^{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{p}}\ (p>0)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{3^{n}}\sin\frac{n\pi}{2}$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{\cos 2n}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{\sin^{2}n}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\sin\frac{x}{n}\quad(x\neq0)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}n}{(n+1)^{2}}$;
+\item $\dfrac{1}{\sqrt{2}-1}-\dfrac{1}{\sqrt{2}+1}+\dfrac{1}{\sqrt{3}-1}-\dfrac{1}{\sqrt{3}+1}+\cdots+\dfrac{1}{\sqrt{n}-1}-\dfrac{1}{\sqrt{n}+1}+\cdots$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\frac{a}{1+a^n}\quad(a>0)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin\left(n+\frac{1}{n}\right)}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin n\sin n^{2}}{n}$
+\end{ziti}
+\item 讨论下列级数是否绝对收敛或条件收敛：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n+x}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin(2^{n}x)}{n!}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}\quad(0<x<\pi)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\cos nx}{n^{p}}\quad(0<x<\pi)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}\ln n}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{[3+(-1)^{n}]^{n}}{5^{n}}\sin n$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\sqrt[n]{n}\sin\frac{1}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}\left(1+\frac{1}{n}\right)^{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{p}+\frac{1}{n}}\quad(p>0)$;
+\item $\displaystyle\sum_{n=2}^{\infty}\frac{(-1)^{n}}{[n+(-1)^{n}]^{p}}\quad(p>0)$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{p}+\frac{1}{n}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{2^{n}\sin^{2n}x}{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{x}{a_{n}}\right)^{n}$，$\lim\limits_{n\to\infty}a_n=a>0$;
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}r^{n+\sqrt{n}}\quad(r>0)$;
+\item $\displaystyle\sum_{n=1}^{\infty}n!\left(\frac{x}{n}\right)^{n}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\ln\left[1+\frac{(-1)^n}{n^p}\right]$，其中 $p>0$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{[\sqrt{n}+(-1)^{n-1}]^{p}}$;
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin\frac{n}{4}\pi}{n^{p}+\sin\frac{n}{4}\pi}$.
+\end{ziti}
+\item 利用柯西收敛原理判别下列级数的敛散性：
+\begin{ziti}
+\item $a_{0}+a_{1}q+a_{2}q^{2}+\cdots+a_{n}q^{n}+\cdots,\ |q|<1,\ |a_{n}|\leqslant A\ (n=0,1,2,\cdots)$;
+\item $1+\dfrac{1}{2}-\dfrac{1}{3}+\dfrac{1}{4}+\dfrac{1}{5}-\dfrac{1}{6}+\cdots$
+\end{ziti}
+\item 求证：若级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}\,(a_{n}\geqslant0)$ 收敛，则级数 $\sum_{n=1}^{\infty}a_{n}^{2}$ 收敛．但反之不成立，请举出例子.
+\item 若级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，且 $\lim\limits_{n\to\infty}\dfrac{b_{n}}{a_{n}}=1$，问是否能断定 $\sum_{n=1}^{\infty}b_{n}$ 也收敛？研究例子
+\[
+a_{n}=\frac{(-1)^{n}}{\sqrt{n}},\quad b_{n}=a_{n}+\frac{1}{n}.
+\]
+\item 证明：若级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$（A）及 $\sum_{n=1}^{\infty}b_{n}$（B）都收敛，且 $a_{n}\leqslant c_{n}\leqslant b_{n}\ (n=1,2,\cdots)$，则级数 $\sum_{n=1}^{\infty}c_{n}$（C）也收敛．若级数（A）与（B）都发散，问级数（C）的收敛性如何？
+\item 证明：若 $\displaystyle\sum_{n=1}^{\infty}\frac{a_{n}}{n^{x_{0}}}$ 收敛，则当 $x>x_{0}$ 时，$\sum_{n=1}^{\infty}\frac{a_{n}}{n^{x}}$ 也收敛．若 $\sum_{n=1}^{\infty}\frac{a_{n}}{n^{x_{0}}}$ 发散，则当 $x<x_{0}$ 时，$\sum_{n=1}^{\infty}\frac{a_{n}}{n^{x}}$ 也发散.
+\item 求证：若数列 $\{na_n\}$ 有极限，$\sum_{n=1}^{\infty}n(a_n-a_{n-1})$ 收敛，则 $\sum_{n=1}^{\infty}a_n$ 也收敛.
+\item 求证：若 $\displaystyle\sum_{n=1}^{\infty}(a_{n}-a_{n-1})$ 绝对收敛，$\sum_{n=1}^{\infty}b_{n}$ 收敛，则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\item 求证：若级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}^{2}$ 和 $\sum_{n=1}^{\infty}b_{n}^{2}$ 都收敛，则级数
+\[
+\sum_{n=1}^{\infty}|a_{n}b_{n}|,\quad\sum_{n=1}^{\infty}(a_{n}+b_{n})^{2},\quad\sum_{n=1}^{\infty}\frac{|a_{n}|}{n}
+\]
+也收敛.
+\item 设正项数列 $\{x_{n}\}$ 单调上升且有界，求证：
+\[
+\sum_{n=1}^{\infty}\left(1-\frac{x_{n}}{x_{n+1}}\right)
+\]
+收敛.
+\item 对数列 $\{a_{n}\}$，$\{b_{n}\}$，定义 $S_{n}=\sum_{k=1}^{n}a_{k}$，$\Delta b_{k}=b_{k+1}-b_{k}$，求证：
+\begin{ziti}
+\item 如果 $\{S_{n}\}$ 有界，$\displaystyle\sum_{n=1}^{\infty}|\Delta b_{n}|$ 收敛，且 $b_{n}\to0\,(n\to\infty)$，则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛，且有
+\[
+\sum_{n=1}^{\infty}a_{n}b_{n}=-\sum_{n=1}^{\infty}S_{n}\cdot\Delta b_{n};
+\]
+\item 如果 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}|\Delta b_{n}|$ 都收敛，则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛.
+\end{ziti}
+\item 设 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，且 $\lim\limits_{n\to\infty}na_{n}=0$，求证
+\[
+\sum_{n=1}^{\infty}n(a_{n}-a_{n+1})
+\]
+收敛，并且
+\[
+\sum_{n=1}^{\infty}n(a_{n}-a_{n+1})=\sum_{n=1}^{\infty}a_{n}.
+\]
+\item 下列命题，对的请给予证明，错的请举出反例：
+\begin{ziti}
+\item 若 $a_{n}>0$，则 $a_{1}-a_{1}+a_{2}-a_{2}+a_{3}-a_{3}+\cdots$ 收敛；
+\item 若 $a_{n}\to0$，则 $a_{1}-a_{1}+a_{2}-a_{2}+a_{3}-a_{3}+\cdots$ 收敛；
+\item 若 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，则 $\sum_{n=1}^{\infty}(-1)^{n}a_{n}$ 收敛；
+\item 若 $\displaystyle\sum_{n=1}^{\infty}a_{n}^{2}$ 收敛，则 $\sum_{n=1}^{\infty}a_{n}^{3}$ 绝对收敛；
+\item 若 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 发散，则 $a_{n}$ 不趋于 $0$;
+\item 若 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，$b_{n}\to1$，则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛；
+\item 若 $\displaystyle\sum_{n=1}^{\infty}|a_{n}|$ 收敛，$b_{n}\to1$，则 $\sum_{n=1}^{\infty}a_{n}b_{n}$ 收敛；
+\item 若 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，则 $\sum_{n=1}^{\infty}a_{n}^{2}$ 收敛；
+\item 若 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，$a_{n}>0$，则 $\lim\limits_{n\to\infty}na_{n}=0$.
+\end{ziti}
+\item 求下列极限（其中 $p>1$）：
+\begin{ziti}
+\item $\displaystyle\lim_{n\to\infty}\left[\frac{1}{(n+1)^{p}}+\frac{1}{(n+2)^{p}}+\cdots+\frac{1}{(2n)^{p}}\right]$；
+\item $\displaystyle\lim_{n\to\infty}\left(\frac{1}{p^{n+1}}+\frac{1}{p^{n+2}}+\cdots+\frac{1}{p^{2n}}\right)$.
+\end{ziti}
+\item 若正项级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，$a_{n+1}\leqslant a_{n}\,(n=1,2,\cdots)$，求证：$\lim\limits_{n\to\infty}na_{n}=0$.
+\end{xiti}
+
+\section{无穷级数与代数运算}
+
+如果无穷级数收敛，则它有一个和．但这是无穷项的和，它同有限和比较，在代数运算性质方面是否一样呢？
+
+有限和的运算性质，主要包括：
+\begin{enumerate}[label=(\arabic*),leftmargin=3.2em,itemsep=2pt,topsep=2pt]
+\item 结合律 $(a+b)+c=a+(b+c)$；
+\item 交换律 $a+b=b+a$；
+\item 分配律 $(a+b)(c+d)=ac+ad+bc+bd$.
+\end{enumerate}
+这些性质对收敛的无穷级数是否成立呢？
+
+先看结合律．这条规律说，在求和过程中可以任意``加括弧''．这一点，对发散级数是不能随意作的，我们已经看过例子：
+\[
+1-1+1-1+1-1+\cdots,
+\]
+适当加括弧可使其和为 $0$，也可使其和为 $1$．但对收敛级数来说却是可以任意``加括弧''进行运算的．
+
+怎样描写``加括弧''呢？
+
+\begin{theorem}\label{thm:10-19}
+若级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 收敛，其和为 $S$，$0=p_{0}<p_{1}<p_{2}<\cdots<p_{k}<p_{k+1}<\cdots$ 是任一严格上升的正整数数列，$\lim\limits_{k\to\infty}p_{k}=+\infty$，则级数
+\begin{equation}
+\begin{aligned}
+\sum_{k=0}^{\infty}\left(\sum_{j=p_{k}+1}^{p_{k+1}}u_{j}\right)
+=\left(u_{1}+\cdots+u_{p_{1}}\right)+\left(u_{p_{1}+1}+\cdots+u_{p_{2}}\right)+\\
+\cdots+\left(u_{p_{k}+1}+\cdots+u_{p_{k+1}}\right)+\cdots
+\end{aligned}
+\tag{1}
+\end{equation}
+也收敛，且其和仍为 $S$.
+\end{theorem}
+
+\begin{proof}
+设 $S_{n}=\sum_{k=1}^{n}u_{k}$ 是级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 的部分和，则按假设 $S_{n}\to S\,(n\to\infty)$．不难看出，(1) 的前 $k$ 项部分和为
+\[
+\begin{aligned}
+&\left(u_{1}+\cdots+u_{p_{1}}\right)+\left(u_{p_{1}+1}+\cdots+u_{p_{2}}\right)+\\
+&\qquad\cdots+\left(u_{p_{k-1}+1}+\cdots+u_{p_{k}}\right)=S_{p_{k}},
+\end{aligned}
+\]
+正好是 $\{S_{n}\}$ 的子数列．根据子数列的性质知 $S_{p_{k}}\to S\,(k\to\infty)$．这就证明了级数 (1) 收敛，且其和为 $S$，定理 10.19 证完．
+\end{proof}
+
+定理 10.19 表明，收敛级数可以任意``加括弧''，且其和不变．但注意不能随便``去括弧''．例如
+\[
+\begin{aligned}
+&0+0+\cdots+0+\cdots\\
+={}&\left(1-1\right)+\left(1-1\right)+\left(1-1\right)+\cdots,
+\end{aligned}
+\]
+它不等于
+\[
+1-1+1-1+1-1+\cdots.
+\]
+
+下面看交换律．无穷和与有穷和在这里有了差别，我们的结论将是：对绝对收敛级数来说，各项相加的次序是可以任意改变的，也就是说，交换律成立．对条件收敛级数来说，各项相加的次序是不能随便改变的，即交换律是不成立的．
+
+如何表示无穷项相加的次序的改变？注意这时不增加项，也不减少项，只是交换了相加的次序．若 $k\to j_{k}$ 是正整数到正整数的一个一一对应，则称 $\displaystyle\sum_{k=1}^{\infty}u_{j_{k}}$ 是 $\sum_{n=1}^{\infty}u_{n}$ 的一个\emph{重排}．级数的重排的确就是加法次序的一种改变，既不增加项，也不减少项．注意，要把这里的 $u_{j_{k}}$ 同子数列表示中的 $u_{j_{k}}$ 区别开来．在子数列的情形，$j_{k}$ 是正整数的严格递增子列：$j_{1}<j_{2}<j_{3}<\cdots$，这时，一般来说，$j\to j_{k}$ 不是正整数集间的一一对应．例如 $\{u_{k}\}$ 的子列 $\{u_{2k}\}$，$k\to j_{k}$ 只是正整数集到偶数集的对应．而对于 $\sum_{k=1}^{\infty}u_{j_{k}}$ 是 $\sum_{n=1}^{\infty}u_{n}$ 的重排，则 $k\to j_{k}$ 是正整数的一一对应．
+
+为了使读者熟悉重排这个概念，我们叙述一个简单的命题：
+\begin{proposition*}
+若 $u_{n}\to0\,(n\to\infty)$，而 $k\to j_{k}$ 是正整数集间的一一对应，则 $u_{j_{k}}\to0\,(k\to\infty)$.
+\end{proposition*}
+其证明是简单的．已知任给 $\varepsilon>0$，存在 $N$，当 $n>N$ 时，有 $\left|u_{n}\right|<\varepsilon$．令
+\[
+m=\max\left\{i\mid j_{i}=k,\,k=1,2,\cdots,N\right\},
+\]
+则当 $k>m$ 后，$\{u_{j_{k}}\mid k>m\}$ 中不再含有 $u_{1},u_{2},\cdots,u_{N}$，故有 $\left|u_{j_{k}}\right|<\varepsilon$，即 $u_{j_{k}}\to0\,(k\to\infty)$（这一点从极限的几何解释看是十分明显的，图~\ref{fig:10-3}）.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1]
+  % 数轴
+  \draw[-Latex] (-3.2,0) -- (4.4,0) node[below left] {$x$};
+  \fill (0,0) circle (1.2pt) node[below left] {$O$};
+  % 邻域端点的大括号
+  \node[scale=1.7] at (-1.5,0.18) {$($};
+  \node[scale=1.7] at (1.5,0.18) {$)$};
+  % u_m 在 O 与 ) 之间
+  \fill (0.75,0) circle (1.2pt) node[above] {$u_{m}$};
+  % 右侧各点
+  \fill (2.3,0) circle (1.2pt) node[above] {$u_{N}$};
+  \fill (3.0,0) circle (1.2pt) node[above] {$u_{2}$};
+  \fill (3.7,0) circle (1.2pt) node[above] {$u_{1}$};
+  % 下方 ε 标注
+  \draw[<->] (-1.5,-0.6) -- (0,-0.6);
+  \node at (-0.75,-0.95) {$-\varepsilon$};
+  \draw[<->] (0,-0.6) -- (1.5,-0.6);
+  \node at (0.75,-0.95) {$\varepsilon$};
+\end{tikzpicture}
+\caption{\relax}
+\label{fig:10-3}
+\end{figure}
+
+加法的交换律，对收敛级数来说，并不是恒成立的．只有对绝对收敛级数才肯定成立．
+
+\begin{theorem}\label{thm:10-20}
+若级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 绝对收敛，其和为 $S$，而 $\sum_{k=1}^{\infty}u_{j_{k}}$ 是 $\sum_{n=1}^{\infty}u_{n}$ 的任意一个重排，则 $\sum_{k=1}^{\infty}u_{j_{k}}$ 也绝对收敛，且其和仍为 $S$.
+\end{theorem}
+
+\begin{proof}
+先证绝对收敛性．已知 $\displaystyle\sum_{n=1}^{\infty}\left|u_{n}\right|$ 的部分和有界，即 $\sum_{k=1}^{n}\left|u_{k}\right|\leqslant M\,(n=1,2,\cdots)$．则对任意 $m$，有
+\[
+\sum_{k=1}^{m}\left|u_{j_{k}}\right|\leqslant\sum_{k=1}^{n_{m}}\left|u_{k}\right|\leqslant M,
+\]
+其中
+\[
+n_{m}=\max\left(j_{1},j_{2},\cdots,j_{m}\right).
+\]
+故 $\displaystyle\sum_{k=1}^{\infty}u_{j_{k}}$ 绝对收敛．
+
+下面证明 $\displaystyle\sum_{k=1}^{\infty}u_{j_{k}}$ 的和为 $S$．已知对任给 $\varepsilon>0$，存在 $N$，当 $n>N$ 时，有
+\[
+\left|\sum_{k=1}^{n}u_{k}-S\right|<\varepsilon,
+\]
+且对任意正整数 $p$，有
+\[
+\left|u_{n+1}\right|+\left|u_{n+2}\right|+\cdots+\left|u_{n+p}\right|<\varepsilon.
+\]
+令 $m=\max\left\{i\mid j_{i}=k,\,k=1,2,\cdots,N+1\right\}$，则当 $n>m$ 时，$\sum_{k=1}^{n}u_{j_{k}}$ 中包含了全部 $u_{1},u_{2},\cdots,u_{N+1}$ 作为它的项，可能还有其他的项 $u_{i}$，但其下标 $i>N+1$．记这些 $u_{i}$ 的和为 $q$，则
+\[
+\sum_{k=1}^{n}u_{j_{k}}=\sum_{k=1}^{N+1}u_{k}+q,
+\]
+故
+\[
+\left|\sum_{k=1}^{n}u_{j_{k}}-S\right|\leqslant\left|\sum_{k=1}^{N+1}u_{k}-S\right|+\left|q\right|<2\varepsilon,
+\]
+这就证明了 $\displaystyle\sum_{k=1}^{\infty}u_{j_{k}}=S$，定理 10.20 证完．
+\end{proof}
+
+上述性质，条件收敛级数是不具有的．我们甚至有下面的令人乍一听来有点出乎意外的结果．
+
+\begin{theorem}[黎曼]\label{thm:10-21}
+若 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 条件收敛，则
+\begin{ziti}
+\item 适当重排，可使新级数发散；
+\item 对任意实数 $\sigma$，可找到 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 的适当重排，使其和为 $\sigma$.
+\end{ziti}
+\end{theorem}
+
+这定理说明，对任一条件收敛的级数，可适当重排，使之收敛到任一事先给定的实数，或发散．这一点初看起来是不易想像的．但当读者学了后面的证明后，就会觉得这是极其自然的了．为证明定理，先给出一个引理．令
+\[
+u_{n}^{+}=\frac{u_{n}+\left|u_{n}\right|}{2}=\begin{cases}u_{n},&\text{当 }u_{n}\geqslant 0,\\[2pt]0,&\text{当 }u_{n}<0,\end{cases}
+\]
+\[
+u_{n}^{-}=\frac{u_{n}-\left|u_{n}\right|}{2}=\begin{cases}u_{n},&\text{当 }u_{n}<0,\\[2pt]0,&\text{当 }u_{n}\geqslant 0.\end{cases}
+\]
+这时，级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}^{+}$，$\sum_{n=1}^{\infty}u_{n}^{-}$ 分别是由 $\sum_{n=1}^{\infty}u_{n}$ 中正的项与负的项组成的级数，显然
+\[
+u_{n}=u_{n}^{+}+u_{n}^{-},
+\]
+而
+\[
+\left|u_{n}\right|=u_{n}^{+}-u_{n}^{-}.
+\]
+
+\begin{lemma}\label{lem:10-5-1}
+若 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 条件收敛，则 $\sum_{n=1}^{\infty}u_{n}^{+}$，$\sum_{n=1}^{\infty}u_{n}^{-}$ 发散，并且分别发散到 $+\infty$ 与 $-\infty$.
+\end{lemma}
+
+\begin{proof}[引理 1 的证明]
+已知 $\displaystyle\sum_{n=1}^{\infty}u_{n}$ 收敛，$\sum_{n=1}^{\infty}|u_{n}|$ 发散，而 $u_{n}^{\pm}=\dfrac{u_{n}\pm|u_{n}|}{2}$，故 $\sum_{n=1}^{\infty}u_{n}^{+}$，$\sum_{n=1}^{\infty}u_{n}^{-}$ 发散．根据 $u_{n}^{+}\geqslant0$，$u_{n}^{-}\leqslant0$，知 $\sum_{n=1}^{\infty}u_{n}^{+}=+\infty$，$\sum_{n=1}^{\infty}u_{n}^{-}=-\infty$．
+\end{proof}
+
+由 $0\leqslant u_{n}^{+}\leqslant|u_{n}|$，$0\leqslant-u_{n}^{-}\leqslant|u_{n}|$ 及正项级数的比较判别法，容易给出绝对收敛级数必收敛的另外一个证明．
+
+\begin{proof}[定理 10.21 的证明]
+显然 $u_{n}^{+}\to0$，$u_{n}^{-}\to0$，而根据引理 $\displaystyle\sum_{n=1}^{\infty}u_{n}^{+}=+\infty$，$\sum_{n=1}^{\infty}u_{n}^{-}=-\infty$．
+
+(1) 在 $\displaystyle\sum_{n=1}^{\infty}u_{n}^{+}$ 中依顺序取 $n_{1}$ 项，使其和大于 $1$．然后在 $\sum_{n=1}^{\infty}u_{n}^{-}$ 中取一项，再在 $\sum_{n=1}^{\infty}u_{n}^{+}$ 剩下的项中依顺序取足够多的项，使与前面的项加起来其和大于 $2$（由 $\sum_{n=1}^{\infty}u_{n}^{+}=+\infty$ 知这是办得到的）．设这时连前面取出来的项共有 $n_{2}$ 项．再取 $\sum_{n=1}^{\infty}u_{n}^{-}$ 中的下一项，接着在 $\sum_{n=1}^{\infty}u_{n}^{+}$ 剩下的项中依顺序取足够多的项，使与前面的项加起来其和大于 $3$．设这时连前面取出来的项共有 $n_{3}$ 项……如此下去，得到的重排级数是发散的，因为新级数的部分和 $t_{n}$ 满足
+\[
+t_{n_{k}}>k,
+\]
+\[
+t_{n_{k}+1}=t_{n_{k}}+u_{k}^{-},
+\]
+而
+\[
+t_{n_{k}+1}\leqslant t_{n}\leqslant t_{n_{k+1}}\quad\text{当 }n_{k}+1\leqslant n\leqslant n_{k+1},
+\]
+由此知 $t_{n}\to+\infty$．
+
+(2) 不妨设 $\sigma>0$．
+
+先依次取 $\displaystyle\sum_{n=1}^{\infty}u_{n}^{+}$ 中的若干项，使其和 $t_{n_{1}}$ 刚巧大于或等于 $\sigma$（刚巧的意思指：$t_{n_{1}}\geqslant\sigma$，但 $t_{n_{1}-1}<\sigma$）．然后依次在 $\sum_{n=1}^{\infty}u_{n}^{-}$ 中取足够多的项，使与前面的项相加，其和 $t_{n_{2}}$ 刚巧小于 $\sigma$．回头来再取 $\sum_{n=1}^{\infty}u_{n}^{+}$ 中足够多的项，使与前面的项相加，其和 $t_{n_{3}}$ 刚巧大于或等于 $\sigma$．再取 $\sum_{n=1}^{\infty}u_{n}^{-}$ 后面的项……这样便得到 $\sum_{n=1}^{\infty}u_{n}$ 的重排，记为 $\sum_{n=1}^{\infty}b_{n}$．显然 $b_{n}\to0$．记重排后级数 $\sum_{n=1}^{\infty}b_{n}$ 的部分和为 $t_{n}=\sum_{k=1}^{n}b_{k}$，则前面构造的数列 $\{t_{n_{k}}\}$ 刚好是 $\{t_{n}\}$ 的子数列．由
+\[
+\left|t_{n_{k}}-\sigma\right|\leqslant\left|t_{n_{k}}-t_{n_{k}-1}\right|=\left|b_{n_{k}}\right|\to0\quad(k\to\infty),
+\]
+知 $t_{n_{k}}\to\sigma\,(k\to\infty)$．
+
+而根据前述构造，当 $n_{k}\leqslant n<n_{k+1}$ 时，$t_{n}$ 夹在 $t_{n_{k+1}}$ 与 $t_{n_{k}}$ 之间，故 $t_{n}\to\sigma$，这就证明了 $\displaystyle\sum_{n=1}^{\infty}b_{n}$ 收敛到 $\sigma$．定理 10.21 证完．
+\end{proof}
+
+定理 10.20、10.21 表明，对绝对收敛的级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$，有 $\sum_{n=1}^{\infty}u_{n}^{+}<\infty$，$\sum_{n=1}^{\infty}(-u_{n}^{-})<\infty$，且不管你怎样交换 $\sum_{n=1}^{\infty}u_{n}$ 各项求和的次序，它的收敛性与和都是``绝对''不变的．它是一种``真正的和''，不是由于正负互相抵消才``加得起来的''．这就给出了名词``绝对收敛''的一种新的含义（过去的含义是：每项的绝对值构成的级数收敛）．而条件收敛级数则不然，这时 $\sum_{n=1}^{\infty}u_{n}^{+}=+\infty$，$\sum_{n=1}^{\infty}u_{n}^{-}=-\infty$．因此它的收敛是靠了正负项排列的适当抵消才收敛的．不同排列可以收敛到完全不同的数．因此这种和不是``绝对''的．
+
+最后来看分配律，也就是说看两个无穷和的乘积．
+
+给定两个收敛级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$，$\sum_{n=1}^{\infty}v_{n}$．仿照有限和乘积的规则，把所有可能的对应项乘积 $u_{i}v_{k}$（$i,k=1,2,\cdots$）写出来，列成下表：
+\[
+\begin{array}{cccccc}
+u_{1}v_{1}&u_{1}v_{2}&u_{1}v_{3}&u_{1}v_{4},&\cdots\\[6pt]
+u_{2}v_{1}&u_{2}v_{2}&u_{2}v_{3}&u_{2}v_{4},&\cdots\\[6pt]
+u_{3}v_{1}&u_{3}v_{2}&u_{3}v_{3}&u_{3}v_{4},&\cdots\\[6pt]
+\cdots\cdots\\[6pt]
+u_{i}v_{1}&u_{i}v_{2}&u_{i}v_{3}&u_{i}v_{4},&\cdots\\[6pt]
+\cdots\cdots
+\end{array}
+\]
+这些乘积可以按许多方式将它们排列成数列，然后把它们加起来，构成无穷级数．最常见的排列方式有两种，一种是按斜对角线：
+\[
+\begin{array}{cccc}
+u_{1}v_{1}&u_{1}v_{2}&u_{1}v_{3}&u_{1}v_{4},\cdots\\
+u_{2}v_{1}&u_{2}v_{2}&u_{2}v_{3}&u_{2}v_{4},\cdots\\
+u_{3}v_{1}&u_{3}v_{2}&u_{3}v_{3}&u_{3}v_{4},\cdots\\
+u_{4}v_{1}&u_{4}v_{2}&u_{4}v_{3}&u_{4}v_{4},\cdots
+\end{array}
+\]
+得到
+\[
+u_{1}v_{1}+u_{1}v_{2}+u_{2}v_{1}+u_{1}v_{3}+u_{2}v_{2}+u_{3}v_{1}+\cdots.
+\]
+另一种是按正方形方法：
+\[
+\begin{array}{l}\hline u_{1}v_{1}\\ \hline u_{2}v_{1}\\ \hline u_{3}v_{1}\\ \hline u_{4}v_{1}\\ \hline\cdots\cdots\end{array}
+\begin{array}{l}u_{1}v_{2}\\ u_{2}v_{2}\\ u_{3}v_{2}\\ u_{4}v_{2}\end{array}
+\begin{array}{l}u_{1}v_{3}\\ u_{2}v_{3}\\ u_{3}v_{3}\\ u_{4}v_{3}\end{array}
+\begin{array}{l}u_{1}v_{4},\quad\cdots\\ u_{2}v_{4},\quad\cdots\\ u_{3}v_{4},\quad\cdots\\ u_{4}v_{4},\quad\cdots\end{array}
+\]
+得到
+\[
+u_{1}v_{1}+u_{1}v_{2}+u_{2}v_{2}+u_{2}v_{1}+u_{1}v_{3}+u_{2}v_{3}+u_{3}v_{3}+u_{3}v_{2}+u_{3}v_{1}+\cdots.
+\]
+一般说来，不同排列对级数的收敛性与和是有影响的，但在原来两个级数绝对收敛的条件下，则不同排列对级数的收敛性与和没有影响．
+
+\begin{theorem}[柯西]\label{thm:10-22}
+若级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}$，$\sum_{n=1}^{\infty}v_{n}$ 均绝对收敛，其和分别为 $s$ 与 $t$，则它们各项之积 $u_{i}v_{k}$（$i,k=1,2,\cdots$）按任何方式排列所构成的级数也绝对收敛，且其和为 $st$.
+\end{theorem}
+
+\begin{proof}
+把 $u_{i}v_{k}$ 按某种方式排列所得的新级数记为 $\displaystyle\sum_{n=1}^{\infty}w_{n}$，考虑正项级数 $\sum_{n=1}^{\infty}\left|w_{n}\right|$，其部分和记为 $\sigma_{n}^{*}$．这时
+\[
+\sigma_{n}^{*}=\sum_{k=1}^{n}\left|w_{k}\right|=\sum_{k=1}^{n}\left|u_{n_{k}}v_{m_{k}}\right|,
+\]
+记
+\[
+N=\max\left(n_{1},n_{2},\cdots,n_{n},m_{1},m_{2},\cdots,m_{n}\right),
+\]
+则 $\sigma_{n}^{*}$ 中所有的项 $u_{n}v_{m}$ 都包含在 $\{u_{i}v_{k}\mid 1\leqslant i,k\leqslant N\}$ 中．因此
+\[
+\sigma_{n}^{*}=\sum_{k=1}^{n}\left|u_{n_{k}}v_{m_{k}}\right|\leqslant\left(\sum_{k=1}^{N}\left|u_{k}\right|\right)\left(\sum_{k=1}^{N}\left|v_{k}\right|\right),
+\]
+而右边两个因子都是有界的，
+\[
+\sum_{k=1}^{N}\left|u_{k}\right|\leqslant M,\qquad\sum_{k=1}^{N}\left|v_{k}\right|\leqslant C,
+\]
+故 $\{\sigma_{n}^{*}\}$ 有界．这就证明了 $\displaystyle\sum_{n=1}^{\infty}w_{n}$ 绝对收敛．根据定理~\ref{thm:10-20}，知不论如何重排 $\sum_{n=1}^{\infty}w_{n}$ 所得的级数也绝对收敛，且其和不变．
+
+为了证明这个和等于 $st$，我们只需取一种排列方式证明即可．考虑用正方形法排列所得的级数 $\displaystyle\sum_{n=1}^{\infty}w_{n}'$．记它的部分和为 $q_{n}$．已知 $\sum_{n=1}^{\infty}w_{n}'$ 绝对收敛，因此知 $\{q_{n}\}$ 有极限存在．我们的目的是要证明这极限等于 $st$．考虑 $\{q_{n}\}$ 的一个子数列 $\{q_{n^{2}}\}$，
+\[
+q_{n^{2}}=\left(\sum_{i=1}^{n}u_{i}\right)\left(\sum_{k=1}^{n}v_{k}\right)\to st\quad(\text{当 }n\to\infty),
+\]
+因此 $q_{n}\to st\,(n\to\infty)$．这就证明了 $\displaystyle\sum_{n=1}^{\infty}w_{n}'$ 收敛到 $st$．定理 10.22 证完．
+\end{proof}
+
+\begin{example}\label{ex:10-5-1}
+级数
+\[
+1+x+x^{2}+\cdots+x^{n}+\cdots=\frac{1}{1-x}
+\]
+在 $|x|<1$ 时绝对收敛．将这个级数自乘，按斜对角线法排列并项，可得
+\[
+1+2x+3x^{2}+\cdots+nx^{n-1}+\cdots=\frac{1}{(1-x)^{2}}
+\]
+在 $|x|<1$ 时成立.
+\end{example}
+
+综合本节结果，可以看出，对绝对收敛级数来说，有限和的运算规律：结合律、交换律、分配律等都是成立的．但对条件收敛级数来说，则有些成立，有些不成立，读者用起来时，要注意区分．
+
+\begin{xiti}
+\item 不用柯西准则，求证：如果 $\displaystyle\sum_{n=1}^{\infty}|a_{n}|$ 收敛，则 $\sum_{n=1}^{\infty}a_{n}$ 也收敛.
+\item 设 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，求证：将相邻奇偶项交换后所成的级数收敛，且具有相同的和数.
+\item 求证：由级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt{n}}$ 重排所得的级数
+\[
+1+\frac{1}{\sqrt{3}}-\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{5}}+\frac{1}{\sqrt{7}}-\frac{1}{\sqrt{4}}+\cdots
+\]
+发散.
+\item 证明：若 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 条件收敛，则可把级数重排，使新级数部分和数列有一子数列趋向于 $+\infty$，有一子数列趋向 $-\infty$.
+\item 已知 $H_{n}=1+\dfrac{1}{2}+\cdots+\dfrac{1}{n}=c+\ln n+r_{n}$，$c$ 是欧拉常数，$\lim\limits_{n\to\infty}r_{n}=0$，求证：
+\begin{ziti}
+\item $\dfrac{1}{2}+\dfrac{1}{4}+\cdots+\dfrac{1}{2m}=\dfrac{1}{2}\ln m+\dfrac{1}{2}c+\dfrac{1}{2}r_{m}$；
+\item 若把级数 $1-\dfrac{1}{2}+\dfrac{1}{3}-\dfrac{1}{4}+\cdots$ 的各项重排，而使依次 $p$ 个正项的一组与依次 $q$ 个负项的一组相交替，则新级数的和为 $\ln 2+\dfrac{1}{2}\ln\dfrac{p}{q}$.
+\end{ziti}
+\item 求证：级数 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}$ 的平方（柯西乘积）是收敛的.
+\item 令 $\displaystyle e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}$，求证 $e^{x+y}=e^{x}\cdot e^{y}$.
+\item 证明：若级数的项加括号后所成的级数收敛，并且在同一个括号内项的符号相同，那么去掉括号后，此级数亦收敛；并由此考察级数
+\[
+\sum_{n=1}^{\infty}\frac{(-1)^{[\sqrt{n}]}}{n}
+\]
+的收敛性.
+\end{xiti}

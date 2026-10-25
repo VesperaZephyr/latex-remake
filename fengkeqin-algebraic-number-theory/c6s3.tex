@@ -1,0 +1,415 @@
+% ============ 第六章 §3 分圆域的类数公式, Kummer 的结果 (原书 pp.222-234) ============
+\section{分圆域的类数公式, Kummer 的结果}\label{sec:ch6-s3}
+
+我们已经说过多次, 在历史上是 Kummer 研究 Fermat 猜想导致对分圆域的类数作深入的研究, 这是代数数论的一个重要的源头. Kummer 关于分圆域类数问题的最主要研究结果为
+
+（I）以 $h_p$ 表示分圆域 $\Q(\zeta_p)$ 的类数（$p$ 为奇素数）. 如果 $p\nmid h_p$, 则 Fermat 方程 $x^p+y^p=z^p$ 没有非平凡的有理整数解.
+
+（II）以 $h_p^+$ 表示 $\Q(\zeta_p)$ 的极大实子域 $\Q(\zeta_p+\zeta_p^{-1})$ 的类数, 则 $h_p^+\mid h_p$. 整数 $h_p^+$ 和 $h_p^-=h_p/h_p^+$ 分别叫作是类数 $h_p$ 的第二因子和第一因子.
+
+（III）$p\mid h_p\Leftrightarrow p\mid h_p^-\Leftrightarrow p$ 至少除尽 Bernoulli 数 $B_2,B_4,\cdots,B_{p-3}$ 中一个的分子.
+
+我们在第三章的末尾已经谈到（I）, 并且对于 Fermat 方程的第一种情形给出了证明. 本小节的目的是讲述（II）和（III）, 这就依赖于分圆域的类数公式. 为了简单起见, 我们只考虑分圆域 $K=\Q(\zeta_p)$（$p$ 为奇素数）. 这时 $w_K=2p$. 于是由定理 \ref{thm:6.2} 给出:
+
+\begin{theorem}\label{thm:6.4}
+设 $h_p$ 和 $h_p^+$ 分别是 $\Q(\zeta_p)$ 和 $\Q(\zeta_p+\zeta_p^{-1})$ 的类数, $R_p$ 和 $R_p^+$ 分别是它们的 regulator, 则
+
+(a)
+\[
+  R_p^+h_p^+=\prod_{\substack{\chi\neq\chi_0\\ \chi(-1)=1}}\left|\sum_{k=1}^{(p-1)/2}\chi(k)\log\sin\frac{k\pi}{p}\right|,
+\]
+其中 $\chi$ 过模 $p$ 的 $\frac{p-3}{2}$ 个非主偶特征.
+
+(b)
+\[
+  \begin{aligned}
+    \frac{R_ph_p}{R_p^+h_p^+}&=p^{-\frac{p-3}{2}}\prod_{\chi(-1)=-1}\left|\sum_{k=1}^{p-1}\chi(k)k\right|\\
+    &=p\prod_{\chi(-1)=-1}\frac{1}{|\chi(2)-2|}\left|\sum_{k=1}^{(p-1)/2}\chi(k)\right|,
+  \end{aligned}
+\]
+其中 $\chi$ 过模 $p$ 的 $\frac{p-1}{2}$ 个奇特征.
+\end{theorem}
+
+我们在第三章证明了 $R_p=R_p^+\cdot 2^{\frac{p-3}{2}}$, 从而由定理 \ref{thm:6.4} 的 (b) 立刻得到
+
+\begin{corollarynonum}
+\[
+  h_p^-=(2p)^{-\frac{p-3}{2}}\prod_{\chi(-1)=-1}\left|\sum_{k=1}^{p-1}\chi(k)k\right|
+  =2^{-\frac{p-3}{2}}\cdot p\prod_{\chi(-1)=-1}\left(\frac{1}{|\chi(2)-2|}\left|\sum_{k=1}^{(p-1)/2}\chi(k)\right|\right).
+\]
+\end{corollarynonum}
+
+现在我们用类数公式证明
+
+\begin{theorem}\label{thm:6.5}
+$h_p^-\in\Z$.
+\end{theorem}
+
+\begin{proof}
+模 $p$ 的 $p-1$ 个 D-特征形成一个循环群, 其生成元为 $\chi$, $\chi(g^t)=\zeta_{p-1}^t\ (0\leqslant t\leqslant p-2)$, 其中 $g$ 是模 $p$ 的一个原根. 于是, 模 $p$ 的全部奇特征为 $\{\chi^{2l+1}\mid 0\leqslant l\leqslant\frac{p-3}{2}\}$. 特别地, $\prod_{k=1}^{p-1}\chi(k)k$ 均是分圆域 $\Q(\zeta_{p-1})$ 中的整数, 从而
+\[
+  B=\prod_{\chi(-1)=-1}\sum_{k=1}^{p-1}\chi(k)k
+\]
+也是 $\Q(\zeta_{p-1})$ 中整数, 即 $B\in\Z[\zeta_{p-1}]$. 如果我们能够证明 $(2p)^{\frac{p-3}{2}}\mid B$, 则 $(2p)^{-\frac{p-3}{2}}B$ 为整数. 但是
+\[
+  (2p)^{-\frac{p-3}{2}}B=\pm h_p^-=\pm h_p/h_p^+\in\Q.
+\]
+这就表明 $h_p/h_p^+\in\Z$, 即 $h_p^-\in\Z$. 因此我们只需证明在 $\Z[\zeta_{p-1}]$ 中 $(2p)^{\frac{p-3}{2}}\mid B$ 即可.
+
+以 $g_s$ 表示 $g^s$ 对于模 $p$ 的最小正剩余, 则
+\begin{align*}
+  \sum_{k=1}^{p-1}\chi^{2l+1}(k)k&=\sum_{s=0}^{p-2}\chi^{2l+1}(g^s)g_s
+  =\sum_{s=0}^{p-2}g_s\zeta_{p-1}^{(2l+1)s}=F(\zeta_{p-1}^{2l+1}),
+\end{align*}
+其中
+\[
+  F(x)=\sum_{s=0}^{p-2}g_sx^s\in\Z[x].
+\]
+于是
+\[
+  B=F(\zeta_{p-1})F(\zeta_{p-1}^3)\cdots F(\zeta_{p-1}^{p-2}).
+\]
+我们现在分两步证明 $(2p)^{\frac{p-3}{2}}\mid B$.
+
+（I）证明 $2^{\frac{p-3}{2}}\mid B$: 当 $2\nmid k$ 时, 在 $\Q(\zeta_{p-1})$ 中,
+\begin{align*}
+  F(\zeta_{p-1}^k)&=\sum_{s=0}^{(p-3)/2}\left(g_s\zeta_{p-1}^{ks}+g_{\frac{p-1}{2}+s}\zeta_{p-1}^{k(\frac{p-1}{2}+s)}\right)\\
+  &=\sum_{s=0}^{(p-3)/2}\left(g_s-g_{\frac{p-1}{2}+s}\right)\zeta_{p-1}^{ks}\\
+  &=\sum_{s=0}^{(p-3)/2}\zeta_{p-1}^{ks}\left(g_s-(p-g_s)\right)\\
+  &\equiv\sum_{s=0}^{(p-3)/2}\zeta_{p-1}^{ks}\pmod{2}.
+\end{align*}
+从而
+\begin{align*}
+  F(\zeta_{p-1}^k)(1-\zeta_{p-1}^k)&\equiv\sum_{s=0}^{(p-3)/2}\zeta_{p-1}^{ks}(1-\zeta_{p-1}^k)\\
+  &=1-\zeta_{p-1}^{k\cdot\frac{p-1}{2}}=2\equiv 0\pmod{2}.
+\end{align*}
+于是
+\[
+  2^{\frac{p-1}{2}}\Big|\prod_{s=0}^{(p-3)/2}F(\zeta_{p-1}^{2s+1})(1-\zeta_{p-1}^{2s+1})
+  =B(1-\zeta_{p-1})(1-\zeta_{p-1}^3)\cdots(1-\zeta_{p-1}^{p-2}).
+\]
+但是
+\[
+  \prod_{k=1}^{p-2}(1-\zeta_{p-1}^k)=(x^{p-1}-1)'\Big|_{x=1}=p-1;
+\]
+\[
+  \prod_{k=1}^{(p-3)/2}(1-\zeta_{p-1}^{2k})=(x^{\frac{p-1}{2}}-1)'\Big|_{x=1}=\frac{p-1}{2}.
+\]
+从而 $(1-\zeta_{p-1})(1-\zeta_{p-1}^3)\cdots(1-\zeta_{p-1}^{p-2})=(p-1)\big/\frac{p-1}{2}=2$, 这就证明了 $2^{\frac{p-3}{2}}\mid B$.
+
+（II）证明 $p^{\frac{p-3}{2}}\mid B$: 我们需要考虑 $p$ 在分圆域 $\Q(\zeta_{p-1})$ 中的素理想分解. 由于 $p$ 对于模 $(p-1)$ 的阶为 $1$, 从而由分圆域中素理想分解规律（第二章）可知 $p$ 在 $K=\Q(\zeta_{p-1})$ 中完全分裂, 即
+\[
+  pO_K=\mathfrak{p}_1\cdots\mathfrak{p}_g,\qquad g=\varphi(p-1).
+\]
+取 $\mathfrak{p}=\mathfrak{p}_i$, 则
+
+(a) $0,1,\zeta_{p-1},\cdots,\zeta_{p-1}^{p-2}$ 两两模 $\mathfrak{p}$ 不同余（若 $\zeta_{p-1}^i-\zeta_{p-1}^j\in\mathfrak{p}$, $0\leqslant i<j\leqslant p-2$, 则 $1-\zeta_{p-1}^{j-i}\in\mathfrak{p}$. 但是 $\sum_{k=1}^{p-2}(1-\zeta_{p-1}^k)=p-1$, 于是 $p-1\in\mathfrak{p}\mid p$, 这显然不可能）. 由于 $N(\mathfrak{p})=p^f=p$, 从而 $\{0,1,\zeta_{p-1},\zeta_{p-1}^2,\cdots,\zeta_{p-1}^{p-2}\}$ 就是 $\Z[\zeta_{p-1}]$ 模 $\mathfrak{p}$ 的完全代表系.
+
+(b) $1-\zeta_{p-1}^kg\in\mathfrak{p}_i$（对某个 $i$, $1\leqslant i\leqslant g$）$\Leftrightarrow(k,p-1)=1$.
+
+这是因为: 由于 $0\equiv 1-g^{p-1}=\prod_{k=1}^{p-2}(1-\zeta_{p-1}^kg)\ (\mathrm{mod}\ p)$, 从而对于每个 $\mathfrak{p}\mid p$, 均有一个 $1-\zeta_{p-1}^kg$, 使得 $1-\zeta_{p-1}^kg\in\mathfrak{p}$. 根据 (a) 可知, 对于每个固定的 $\mathfrak{p}$, 也只有一个这样的 $1-\zeta_{p-1}^kg$. 进而, 若 $(k,p-1)=d$, 则
+\[
+  1\equiv\zeta_{p-1}^kg\ (\mathrm{mod}\ \mathfrak{p})\Rightarrow\mathfrak{p}\mid g^{\frac{p-1}{d}}-1\Rightarrow p\mid g^{\frac{p-1}{d}}-1
+  \Rightarrow p-1\Big|\frac{p-1}{d}\Rightarrow d=1.
+\]
+从而若 $1-\zeta_{p-1}^kg\in\mathfrak{p}$, 则必然 $(k,p-1)=1$. 但是满足 $(k,p-1)=1$, $1\leqslant k\leqslant p-1$ 的 $1-\zeta_{p-1}^kg$ 共有 $\varphi(p-1)$ 个, 而 $\mathfrak{p}_i$ 也是 $\varphi(p-1)=g$ 个. 这就表明对于每个 $(k,p-1)=1$ 的 $k$, 均恰好有一个 $p$ 在 $\Q(\zeta_{p-1})$ 中的素理想因子 $\mathfrak{p}$, 使得 $1-\zeta_{p-1}^kg\in\mathfrak{p}$. 我们不妨对 $p$ 的素理想因子重新加以标记, 使得
+\[
+  (p)=\prod_{\substack{1\leqslant k\leqslant p-1\\ (k,p-1)=1}}\mathfrak{p}_k,\qquad\mathfrak{p}_k\mid(1-\zeta_{p-1}^kg).
+\]
+现在回到我们的问题上来, 即要证 $p^{\frac{p-3}{2}}\mid B$. 在 $\Z[\zeta_{p-1}]$ 中,
+\begin{align*}
+  F(\zeta_{p-1}^k)(1-g\zeta_{p-1}^k)&\equiv\sum_{s=0}^{p-2}(g\zeta_{p-1}^k)^s(1-g\zeta_{p-1}^k)\\
+  &=1-(g\zeta_{p-1}^k)^{p-1}\equiv 1-g^{p-1}\equiv 0\pmod{p}.
+\end{align*}
+当 $(k,p-1)>1$ 时, 由 (b) 知对每个 $l$, $(l,p-1)=1$, 均有 $\mathfrak{p}_l\nmid(1-g\zeta_{p-1}^k)$. 从而 $p\mid F(\zeta_{p-1}^k)$. 而当 $(k,p-1)=1$ 时, 如果 $(l,p-1)=1$, $l\neq k$, 则也有 $\mathfrak{p}_l\nmid(1-g\zeta_{p-1}^k)$. 于是
+\[
+  p\mathfrak{p}_k^{-1}=\prod_{\substack{1\leqslant l\leqslant p-1\\ (l,p-1)=1\\ l\neq k}}\mathfrak{p}_l\Big|F(\zeta_{p-1}^k).
+\]
+从而 $B=F(\zeta_{p-1})F(\zeta_{p-1}^3)\cdots F(\zeta_{p-1}^{p-2})$ 可被
+\[
+  p^{\frac{p-1}{2}}\prod_{(k,p-1)=1}\mathfrak{p}_k^{-1}=p^{\frac{p-3}{2}}
+\]
+除尽. 这就完全证明了定理.
+\end{proof}
+
+为了介绍 Kummer 的结果（III）, 我们需要关于 Bernoulli 数的一些重要的性质. 我们在第四章中给出了 Bernoulli 数 $B_n$, 广义 Bernoulli 数 $B_{n,\chi}$ 和 Bernoulli 多项式 $B_n(x)$ 的定义. 它们之间有如下的关系:
+\[
+  B_n(x)=\sum_{i=0}^{n}\binom{n}{i}B_ix^{n-i},
+\]
+\[
+  B_{n,\chi}=f^{n-1}\sum_{a=1}^{f}\chi(a)B_n\left(\frac{a}{f}\right)\qquad(\chi\ \text{为模 } f\ \text{的 D-特征}),
+\]
+\[
+  B_n=B_{n,\chi_0}\qquad(\text{当 } n\geqslant 2\ \text{时}).
+\]
+
+\begin{lemma}\label{lem:ch6-9}
+设 $\chi$ 为模 $f$ 的 D-特征.
+
+(a) 对于每个正整数 $F\equiv 0\ (\mathrm{mod}\ f)$, 均有
+\[
+  B_{n,\chi}=F^{n-1}\sum_{a=1}^{F}\chi(a)B_n\left(\frac{a}{F}\right).
+\]
+(b) (von Staudt-Clausen) 设 $n$ 为正偶数, 则
+\[
+  B_n+\sum_{p-1\mid n}\frac{1}{p}\in\Z.
+\]
+(c) 设 $n$ 为正偶数并且 $n\leqslant p-3$（$p$ 为奇素数）, 则
+\[
+  \sum_{a=1}^{p-1}a^n\equiv pB_n\pmod{p^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+(a) 根据定义我们有
+\[
+  \sum_{n=0}^{\infty}B_n(x)\frac{t^n}{n!}=\frac{te^{xt}}{e^t-1},\qquad
+  \sum_{n=0}^{\infty}B_{n,\chi}\frac{t^n}{n!}=\sum_{a=1}^{f}\frac{\chi(a)te^{at}}{e^{ft}-1},
+\]
+从而
+\begin{align*}
+  \sum_{n=0}^{\infty}F^{n-1}\sum_{a=1}^{F}\chi(a)B_n\left(\frac{a}{F}\right)\frac{t^n}{n!}
+  &=\sum_{a=1}^{F}\chi(a)\frac{te^{(a/F)Ft}}{e^{Ft}-1}
+  =\sum_{b=1}^{f}\sum_{c=0}^{g-1}\chi(b)\frac{te^{(b+cf)t}}{e^{fgt}-1}\\
+  &=\sum_{b=1}^{f}\chi(b)\frac{te^{bt}}{e^{ft}-1}
+  =\sum_{n=0}^{\infty}B_{n,\chi}\frac{t^n}{n!},
+\end{align*}
+由此即得 (a).
+
+(b) 我们只需证明: 对每个素数 $p$ 均有 $p\nmid pB_n$ 的分母, 并且
+\begin{equation}\tag{*}
+  pB_n\equiv\begin{cases}
+    -1\ (\mathrm{mod}\ p), & \text{当 } p-1\mid n\ \text{时};\\
+    0\ (\mathrm{mod}\ p), & \text{当 } p-1\nmid n\ \text{时}.
+  \end{cases}
+\end{equation}
+设 $n=2m$. 当 $m=1$ 时, $B_2=\frac{1}{6}=1-\frac{1}{2}-\frac{1}{3}$, 易知 (*) 式对于 $m=1$ 成立. 现在对 $m$ 归纳. 假设 (*) 式对于 $n=2,4,\cdots,2m-2$ 均成立, 由 (a)（$f=1$, $F=p$）, 我们有
+\begin{align*}
+  pB_{2m}&=pB_{2m,\chi_0}=p^{2m}\sum_{a=1}^{p}B_{2m}\left(\frac{a}{p}\right)\\
+  &=p^{2m}\sum_{a=1}^{p}\sum_{j=0}^{2m}\binom{2m}{j}B_j\left(\frac{a}{p}\right)^{2m-j}\\
+  &=\sum_{a=1}^{p}\sum_{j=0}^{2m}\binom{2m}{j}(pB_j)a^{2m-j}p^{j-1}\qquad(\text{再利用归纳假设})\\
+  &\equiv\sum_{a=1}^{p}\left(pB_0a^{2m}p^{-1}+2mpB_1a^{2m-1}+pB_{2m}p^{2m-1}\right)\ (\mathrm{mod}\ p).
+\end{align*}
+由于 $B_0=1$, $B_1=-\frac{1}{2}$, $2mpB_1=-mp\equiv 0\ (\mathrm{mod}\ p)$, 于是由上式可知
+\[
+  (1-p^{2m-1})pB_{2m}\equiv\sum_{a=1}^{p}a^{2m}\equiv
+  \begin{cases}
+    p-1\pmod{p}, & \text{若 } (p-1)\mid 2m;\\
+    0\pmod{p}, & \text{若 } (p-1)\nmid 2m.
+  \end{cases}
+\]
+由于 $1-p^{2m-1}\equiv 1\ (\mathrm{mod}\ p)$, 这就表明 $pB_{2m}\in\Z/p\Z$, 并且
+\[
+  pB_{2m}\equiv\begin{cases}
+    -1\ (\mathrm{mod}\ p), & \text{若 } (p-1)\mid 2m;\\
+    0\ (\mathrm{mod}\ p), & \text{若 } (p-1)\nmid 2m.
+  \end{cases}
+\]
+
+(c) 因为
+\begin{align*}
+  \sum_{n=0}^{\infty}(B_n(k)-B_n(0))\frac{t^n}{n!}&=\frac{t(e^{kt}-1)}{e^t-1}\\
+  &=t(1+e^t+e^{2t}+\cdots+e^{(k-1)t})\\
+  &=t+t\sum_{n=0}^{\infty}(1+2^n+\cdots+(k-1)^n)\frac{t^n}{n!}.
+\end{align*}
+从而当 $n,k\geqslant 1$ 时,
+\begin{align*}
+  \sum_{a=1}^{k-1}a^n&=\frac{1}{n+1}(B_{n+1}(k)-B_{n+1}(0))\\
+  &=\frac{1}{n+1}(B_{n+1}(k)-B_{n+1}).
+\end{align*}
+从而
+\begin{align*}
+  \sum_{a=1}^{p-1}a^n&=\frac{1}{n+1}(B_{n+1}(p)-B_{n+1})\\
+  &=\frac{1}{n+1}\sum_{k=0}^{n}\binom{n+1}{k}B_kp^{n+1-k}\\
+  &\equiv\frac{1}{n+1}\binom{n+1}{n}B_np\equiv pB_n\pmod{p^2}.
+\end{align*}
+\end{proof}
+
+现在我们讲述 Kummer 的结果（III）.
+
+\begin{theorem}\label{thm:6.6}
+$p\mid h_p^-\Leftrightarrow$ 存在 $k\in\{2,4,\cdots,p-3\}$, 使得 $p$ 除尽 $B_k$ 的分子.
+\end{theorem}
+
+\begin{proof}
+我们在定理 \ref{thm:6.5} 的证明中曾经得到如下的理想恒等式:
+\[
+  (h_p^-)=\left(\frac{B}{p^{(p-3)/2}}\right)=\prod_{k=1,3,\cdots,p-2}\frac{F(\zeta_{p-1}^k)\mathfrak{p}_k}{p}
+\]
+（其中 $(k,p-1)>1$ 时规定 $\mathfrak{p}_k=1$）.
+
+于是
+\begin{align*}
+  p\mid h_p^-=\pm B/p^{(p-3)/2}&\Leftrightarrow\mathfrak{p}_{p-2}\mid p^{-(p-3)/2}B\\
+  &\Leftrightarrow\ \text{存在 } k\in\{1,3,\cdots,p-2\},\ \text{使得 } \mathfrak{p}_{p-2}\mid F(\zeta_{p-1}^k)\mathfrak{p}_kp^{-1}\\
+  &\qquad(\text{因为 } F(\zeta_{p-1}^k)\mathfrak{p}_k\mathfrak{p}^{-1}\ \text{为整理想})\\
+  &\Leftrightarrow\ \text{存在 } k\in\{1,3,\cdots,p-2\},\ \text{使得 } \mathfrak{p}_{p-2}^2\mid F(\zeta_{p-1}^k)\mathfrak{p}_k\\
+  &\Leftrightarrow\ \text{存在 } k\in\{1,3,\cdots,p-4\},\ \text{使得 } \mathfrak{p}_{p-2}^2\mid F(\zeta_{p-1}^k)\tag{1}
+\end{align*}
+最后一式是因为 $\zeta_{p-1}^{p-2}g\equiv 1\ (\mathrm{mod}\ \mathfrak{p}_{p-2})$, 从而
+\[
+  F(\zeta_{p-1}^{p-2})\equiv\sum_{s=0}^{p-2}(\zeta_{p-1}^{p-2}g)^s\equiv p-1\equiv -1\ (\mathrm{mod}\ \mathfrak{p}_{p-2}),
+\]
+因此 $\mathfrak{p}_{p-2}^2\nmid F(\zeta_{p-1}^{p-2})\mathfrak{p}_{p-2}$.
+
+现在我们取模 $p$ 原根 $g$, 使得 $g^{p-1}\equiv 1\ (\mathrm{mod}\ p^2)$（设 $g_0$ 为任一模 $p$ 原根, 则 $g_0+lp\ (l\in\Z)$ 均为模 $p$ 原根. 取 $l$ 使得 $g_0^{p-2}l\equiv\frac{g_0^{p-1}-1}{p}\ (\mathrm{mod}\ p)$, 则 $g=g_0+lp$ 即为所求）. 这时
+\[
+  0\equiv 1-g^{p-1}=\prod_{k=0}^{p-2}(1-\zeta_{p-1}^kg)\ (\mathrm{mod}\ p^2).
+\]
+与定理 \ref{thm:6.5} 证明中所作的一样, 可以得到: 当 $(k,p-1)=1$ 时, $\mathfrak{p}_k^2\mid 1-\zeta_{p-1}^kg$. 特别取 $k=p-2$, 则 $\zeta_{p-1}\equiv g\ (\mathrm{mod}\ \mathfrak{p}_{p-2}^2)$. 于是
+\[
+  F(\zeta_{p-1}^k)=\sum_{s=0}^{p-2}g_s\zeta_{p-1}^{sk}\equiv\sum_{s=0}^{p-2}g_sg^{sk}\quad(\mathrm{mod}\ \mathfrak{p}_{p-2}^2).
+\]
+从而
+\begin{equation}\tag{2}
+  \mathfrak{p}_{p-2}^2\mid F(\zeta_{p-1}^k)\Leftrightarrow\sum_{s=0}^{p-2}g_sg^{sk}\equiv 0\pmod{p^2}.
+\end{equation}
+但是 $g_s\equiv g^s+pa_s\ (\mathrm{mod}\ p^2)$, $0\leqslant s\leqslant p-2$, $a_s\in\Z$. 升到 $k+1$ 次幂（$k=1,3,\cdots,p-4$）, 则
+\begin{align*}
+  g_s^{k+1}&\equiv g^{(k+1)s}+(k+1)g^{sk}pa_s\\
+  &\equiv g^{s(k+1)}+(k+1)g^{sk}(g_s-g^s)\\
+  &\equiv(k+1)g_sg^{sk}-kg^{s(k+1)}\pmod{p^2}.\tag{3}
+\end{align*}
+由于 $k+1\leqslant p-3$, 因此 $g^{k+1}\not\equiv 1\ (\mathrm{mod}\ p)$ 而 $g^{p-1}\equiv 1\ (\mathrm{mod}\ p^2)$, 从而
+\[
+  \sum_{s=0}^{p-2}g^{s(k+1)}=\frac{g^{(p-1)(k+1)}-1}{g^{k+1}-1}\equiv 0\ (\mathrm{mod}\ p^2).
+\]
+于是由 (3) 式可知
+\[
+  \sum_{n=0}^{p-1}n^{k+1}=\sum_{s=0}^{p-2}g_s^{k+1}\equiv(k+1)\sum_{s=0}^{p-2}g_sg^{sk}\pmod{p^2}.
+\]
+再由 (1) 和 (2) 式即知
+\[
+  p\mid h_p^-\Leftrightarrow\ \text{存在 } k\in\{2,4,\cdots,p-3\},\ \text{使得 } p^2\mid\sum_{n=1}^{p-1}n^k.
+\]
+但是由引理 \ref{lem:ch6-9} 知道 $p\nmid B_k$ 的分母（因为 $k\leqslant p-3$, $(p-1)\nmid k$）并且 $\sum_{n=1}^{p-1}n^k\equiv pB_k\ (\mathrm{mod}\ p^2)$, 从而 $p^2\mid\sum_{n=1}^{p-1}n^k\Leftrightarrow p\mid B_k$ 的分子. 这就给出最后结果:
+\[
+  p\mid h_p^-\Leftrightarrow\ \text{存在 } k\in\{2,4,\cdots,p-3\},\ \text{使得 } p\mid B_k\ \text{的分子}.
+\]
+\end{proof}
+
+\begin{remark}
+(1) 定理 \ref{thm:6.6} 相当于 Kummer 结果（III）的一半. 另一半是 $p\mid h_p^-\Leftrightarrow p\mid h_p=h_p^-h_p^+$, 这相当于说: $p\mid h_p^+\Rightarrow p\mid h_p^-$. 为了证明这一点我们需要局部域的进一步的知识. 事实上 Vandiver 猜想: 对每个奇素数 $p$ 均有 $p\nmid h_p^+$. 这个猜想对于 $p<125000$ 均已验证是对的. 但是目前人们还不清楚对于每个奇素数 $p$ 这是否均成立.
+
+(2) 如果 $p\nmid h_p$（即 $p\nmid h_p^-$）, Kummer 称这种 $p$ 为正规素数, 而当 $p\mid h_p$ 时称 $p$ 为不正规素数. Kummer 本人计算了在 $100$ 以内只有 $3$ 个不正规素数: $p=37,59$ 和 $67$. 从 Fermat 猜想的角度看（$p$ 正规则 $x^p+y^p=z^p$ 无非平凡整数解）, 自然希望正规素数愈多愈好. 但是目前人们反而证明了不正规素数有无穷多个, 而正规素数是否有无穷多个, 现在既没有被肯定也没有被否定. 虽然通过大量的计算（Wagstaff 于 $1978$ 年计算出 $125000$ 以内的全部不正规素数）人们倾向于认为正规素数也有无穷多个, 甚至于从概率论上的考虑, 猜想: 正规素数和不正规素数的比例分别各占 $e^{-1/2}\approx 61\%$ 和 $1-e^{-1/2}\approx 39\%$.
+
+(3) Kummer 当年通过手算发现: 当 $p\to+\infty$ 时, $h_p^+$ 增长较慢, 但是 $h_p^-$ 增长飞快. 由于 $h_p=h_p^+h_p^-$, 自然会提出如下的问题:
+
+(A) 类数为 $1$ 的分圆域是否只有有限多个？
+
+(B) 当 $p\to+\infty$ 时, $h_p^+$ 和 $h_p^-$ 的性状如何？
+
+$1976$ 年, Masley 和 Montgomery 完全解决了问题 (A). 他们证明了: 分圆域 $\Q(\zeta_m)$ 的类数 $h_m=1\Leftrightarrow m=3,4,5,7,8,9,11,12,13,15,16,17,19,20,21,24,25,27,28,32,33,35,36,40,44,45,48,60,84$（共 $29$ 个）. 证明中综合性地利用了代数工具和解析工具. Washington 将证明作了更好的整理, 写成书 ``Introduction to Cyclotomic Fields'' 的第 $11$ 章. 差不多与此同时, Masley（$1976$ 年）决定出 $h_m\leqslant 10751$ 的全部 $m(!)$. 如果 $h_m=2\Leftrightarrow m=39,56$; $h_m=3\Leftrightarrow m=23,52,72$ 等等.
+
+至于问题 (B), 关于 $h_p^+$ 的性状是一个很难的数论问题. 其困难主要来自于很难求 $\Q(\zeta_p)$ 的基本单位系, 从而不知道 regulator 值. 目前人们甚至猜不出 $h_p^+$（$p\to+\infty$ 时）的发展规律. Masley 猜想 $h_p^+<p$, 但是 $1982$ 年 Washington 在广义 Riemann 猜想之下证明了对于 $p=11290018777$, 这个猜想是不对的. 对于 $h_p^-$, Kummer 有如下一个著名猜想:
+\[
+  h_p^-\sim 2p\left(\frac{p}{4\pi^2}\right)^{\frac{p-1}{4}}=2p\left(\frac{p}{39.4784\cdots}\right)^{\frac{p-1}{4}}\qquad(\text{当 } p\to+\infty\ \text{时}).
+\]
+这一猜想至今未能证明.
+
+下面是对于 $p\leqslant 127$ 的 $h_p^+$ 和 $h_p^-$ 值. （如果广义 Riemann 猜想成立, 可以证明对于每个素数 $p<163$, 均有 $h_p^+=1$. 但是已知 $h_{163}^+=4$.）
+
+\begin{center}
+\begin{tabular}{|c|ccccccccccccccc|}
+\hline
+$p$ & 3 & 5 & 7 & 11 & 13 & 17 & 19 & 23 & 29 & 31 & 37 & 41 & 43 & 47 & 53 \\
+\hline
+$h_p^+$ & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+$h_p^-$ & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 3 & 8 & 9 & 37 & $11^2$ & 211 & $5\cdot139$ & 4889 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccccc|}
+\hline
+$p$ & 59 & 61 & 67 & 71 & 73 & 79 \\
+\hline
+$h_p^+$ & 1 & 1 & 1 & 1 & 1 & 1 \\
+\hline
+$h_p^-$ & $3\cdot59\cdot233$ & $41\cdot1861$ & $67\cdot12739$ & $7^2\cdot79241$ & $89\cdot134353$ & $5\cdot53\cdot377911$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccc|}
+\hline
+$p$ & 83 & 89 & 97 & 101 \\
+\hline
+$h_p^-$ & $3\cdot279405653$ & $113\cdot118401449$ & $577\cdot3457\cdot206209$ & $5^5\cdot101\cdot601\cdot18701$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|ccc|}
+\hline
+$p$ & 103 & 107 & 109 \\
+\hline
+$h_p^-$ & $5\cdot103\cdot1021\cdot17247691$ & $3\cdot743\cdot9859\cdot2886593$ & $17\cdot1009\cdot9431866153$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cc|}
+\hline
+$p$ & 113 & 127 \\
+\hline
+$h_p^-$ & $2^3\cdot17\cdot11853470598257$ & $5\cdot13\cdot43\cdot547\cdot883\cdot3079\cdot626599$ \\
+\hline
+\end{tabular}
+\end{center}
+
+分圆域（及其子域）的类数, 类群和单位群结构, 以及其他数论性质的研究, 一直是代数数论一个富有成果的分支, 并且与模形式理论, 代数几何（特别是椭圆曲线的算术理论）, $p$-adic 分析, 代数 $K$-理论以及群表示理论交织在一起, 构成当前数学研究中极为活跃的边缘性领域. 目前关于分圆域的近代理论已有两种好的参考书（见附录 B）.
+\end{remark}
+
+\begin{Exercises}
+\item 求证:
+\begin{enumerate}[(a)]
+  \item 如果 $\chi$ 为模 $m$ 偶特征, 且 $\chi\neq\chi_0$, 则 $\sum_{k=1}^{m-1}\chi(k)k=0$;
+  \item 如果 $\chi$ 为模 $m$ 奇特征, 则 $\sum_{k=1}^{m-1}\chi(k)\log\sin\frac{k\pi}{m}=0$.
+\end{enumerate}
+
+\item 设 $K$ 是分圆域 $\Q(\zeta_p)$ 的子域（$p$ 为奇素数）, $n=[K:\Q]$, 求证 $|d(K)|=p^{n-1}$. 又若 $K$ 为虚域, 则 $|d(K_+)|=p^{n/2-1}$.
+
+\item (a) 设 $K$ 是分圆域 $\Q(\zeta_p)$ 的二次子域（$p$ 为奇素数）, 则 $K$ 为实二次域 $\Leftrightarrow p\equiv 1\ (\mathrm{mod}\ 4)$;
+
+(b) 更一般地, 设 $K$ 是分圆域 $\Q(\zeta_p)$ 的 $n$ 次子域（$p$ 为奇素数）. 求证 $p\equiv 1\ (\mathrm{mod}\ n)$, 并且: $K$ 为实域 $\Leftrightarrow p\equiv 1\ (\mathrm{mod}\ 2n)$.
+
+\item 用二次域的类数解析公式计算 $\Q(\sqrt{3})$, $\Q(\sqrt{6})$, $\Q(\sqrt{-6})$, $\Q(\sqrt{-23})$ 的类数.
+
+\item 在实二次域 $K$ 中, 求证
+\[
+  V=\prod_{1\leqslant k<|d(K)|/2}\left(\sin\frac{k\pi}{|d(K)|}\right)^{\chi_K(k)}
+\]
+是 $K$ 中单位. 进而, 如果以 $U_0$ 表示单位群 $U(K)$ 中由 $V$ 和 $-1$ 生成的乘法子群, 求证: $h(K)=[U(K):U_0]$.
+
+\item 对于虚二次域 $K=\Q(\sqrt{-d})$, $d>3$, $D=|d(K)|$. 求证:
+\begin{enumerate}[(a)]
+  \item $h(K)\leqslant\frac{1}{D}\sum_{\substack{1\leqslant k<D/2\\ (k,D)=1}}(D-2k)=\frac{\varphi(D)}{2}-\frac{2}{D}\sum_{\substack{1\leqslant k<D/2\\ (k,D)=1}}k$;
+  \item 当 $-d\equiv 1\ (\mathrm{mod}\ 4)$ 时, $h(K)<d/4$;
+
+  当 $-d\equiv 2$ 或者 $3\ (\mathrm{mod}\ 4)$ 时, $h(K)<d/2$.
+\end{enumerate}
+
+\item 设 $p$ 为奇素数并且 $p\equiv 1\ (\mathrm{mod}\ 4)$. $\varepsilon>1$ 为实二次域 $K=\Q(\sqrt{p})$ 的基本单位. 求证:
+\begin{enumerate}[(a)]
+  \item $\eta=\prod_{\substack{0<b<p\\ \left(\frac{b}{p}\right)=-1}}\sin\frac{\pi b}{p}\Bigg/\prod_{\substack{0<a<p\\ \left(\frac{a}{p}\right)=1}}\sin\frac{\pi a}{p}$ 为 $K$ 中单位;
+  \item $\eta=\varepsilon^{2h(K)}$ 或者 $\eta=\varepsilon^{-2h(K)}$;
+  \item $\varepsilon\geqslant\frac{1}{2}(1+\sqrt{5})$;
+  \item $\prod_{1\leqslant m<p}\sin\frac{\pi m}{p}=\frac{p}{2^{p-1}}$;
+  \item $h(K)<p$.
+\end{enumerate}
+
+\item 以 $g_s$ 表示 $g^s$ 模 $p$ 的最小非负剩余, 其中 $p$ 为素数而 $g$ 是模 $p$ 的一个原根, $m=\frac{p-1}{2}$. $h_p^-$ 为分圆域 $\Q(\zeta_p)$ 的类数第一因子. 求证:
+\[
+  h_p^-=(2p)^{-(m-1)}\left|\det\left(g_{m+i+j}-g_{i+j}\right)_{0\leqslant i,j<m-1}\right|.
+\]
+
+\item 计算 $h_7^-$.
+
+\item 证明: $p=37$ 为非正规素数.
+\end{Exercises}

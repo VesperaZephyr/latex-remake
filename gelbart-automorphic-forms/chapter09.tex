@@ -1,0 +1,1686 @@
+\chapter{The Trace Formula for \texorpdfstring{$\GL(2)$}{GL(2)}}
+
+\label{ch:9}
+
+In this section we give a complete treatment of the Selberg trace formula for $\GL(2)$. Our proof is adapted from \cite{JacquetLanglands} and \cite{Arthur} and since it is entirely functional analytic it differs substantially from the proof found in \cite{DufloLabesse}.
+
+In Section~\ref{ch:10} the trace formula will be applied to the study of automorphic forms. For further applications (as well as some historical background) the reader is referred to the ``Notes and References'' at the end of this section and Section~\ref{ch:10}.
+
+\section{Motivation}\label{sec:9a}
+
+Roughly speaking, the Selberg trace formula is an analogue for $\GL(2)$ of certain features of abelian harmonic analysis. In representation theoretic terms these may be explained as follows.
+
+\subsection{The Real Situation}
+
+Let $G$ denote (for the moment only) the additive group of $\R$. Let $\Gamma$ denote the discrete subgroup $\Z$ and $R$ the regular representation of $G$ in $\bL^2(\Gamma \backslash G)$.
+
+For $f \in C_c^\infty(G)$ define
+
+\[
+R(f)h(y) = \int_G f(x)(R(x)h)(y)\dd x
+\]
+
+so that for $h \in \bL^2(\Gamma \backslash G)$
+
+\[
+\begin{aligned}
+(R(f)h)(x) &= \int_G f(y)h(y + x)\dd y\\
+&= \int_G f(-x + y)h(y)\dd y.
+\end{aligned}
+\]
+
+Then
+
+\begin{equation}\label{eq:9.1}
+R(f)h(x) = \int_{\Gamma \backslash G} K(x, y)h(y)\dd y,\tag{9.1}
+\end{equation}
+
+where
+
+\begin{equation}\label{eq:9.2}
+K(x, y) = \sum_{\gamma \in \Gamma} f(-x + \gamma + y).\tag{9.2}
+\end{equation}
+
+Since $\Gamma \backslash G$ is compact, the fact that $f$ has compact support implies that this last sum is finite. Hence the kernel $K(x,y)$ is smooth, the integral operator $R(f)$ is of trace class, and
+
+\begin{equation}\label{eq:9.3}
+\tr R(f) = \int_{\Gamma \backslash G} K(x, x)\dd x = \sum_{\gamma \in \Gamma} f(\gamma)\tag{9.3}
+\end{equation}
+
+(at least when $f$ is of the form $f_1 * f_2$).
+
+A ``first form'' of the Selberg trace formula for $\GL(2)$ amounts to an analogue of \eqref{eq:9.3} with $G = \GL(2,\A)$ and $\Gamma = \GL(2,\Q)$. This formula is difficult to establish because $\Gamma \backslash G$ is no longer compact. However the restriction of $R(f)$ to the discrete spectrum of $R$ does still possess a trace and an analogue of \eqref{eq:9.3} for $\GL(2)$ is possible.
+
+By analogy with the abelian case the hope is that an explicit trace formula of the type just described could be used to further analyze (the decomposition of) $R$.
+
+Indeed if $G = \R$ the Poisson summation formula tells us that
+
+\[
+\sum_{\gamma \in \Gamma} f(\gamma) = \sum_{k \in \Z} \hat{f}(k)
+\]
+
+thus that
+
+\begin{equation}\label{eq:9.4}
+\tr R(f) = \sum \hat{f}(k).\tag{9.4}
+\end{equation}
+
+On the other hand, we also have
+
+\begin{equation}\label{eq:9.5}
+\tr R(f) = \sum m_j \hat{f}(j)\tag{9.5}
+\end{equation}
+
+if $\bR = \bigoplus_j m_j R_j$, and $R_j$ denotes the unitary representation $e^{ijx}I$ of $G$ occurring in $\bR$ with multiplicity $m_j$.
+
+Now equating \eqref{eq:9.4} and \eqref{eq:9.5} yields the formula
+
+\begin{equation}\label{eq:9.6}
+\sum m_j \hat{f}(j) = \sum \hat{f}(k) = \tr R(f).\tag{9.6}
+\end{equation}
+
+This formula reflects the fact that each $R_j$ occurs exactly once in $R$. Any analogue of it in a non-compact setting would be highly desirable and for $\GL(2)$ would constitute a ``second'' (and much more explicit) form of the trace formula.
+
+\subsection{The Case of Compact Quotient}
+
+Suppose $G$ is a semi-simple Lie group and $\Gamma$ a discrete subgroup of $G$ such that the quotient space
+
+\[
+\bX = \Gamma \backslash \bG
+\]
+
+is compact. Let $R$ denote the unitary representation of $G$ in $L^2(X)$ given by right translation. Then if $f(g)$ is any continuous compactly supported function on $G$ it is easy to show that the operator $R(f) = \int f(g)R(g)\dd g$ is compact. Indeed a trivial computation shows that $R(f)$ is an integral operator in (the compact space) $X$ with kernel
+
+\begin{equation}\label{eq:9.7}
+K(x, y) = \sum_{\gamma \in \Gamma} f(x^{-1}\gamma y).\tag{9.7}
+\end{equation}
+
+(Cf. \eqref{eq:9.1} and \eqref{eq:9.2}.) Consequently (by Lemma~\ref{lem:5.3}) we may write
+
+\begin{equation}\label{eq:9.8}
+\bR(g) = \oplus m_j \bR_j\tag{9.8}
+\end{equation}
+
+where $m_j < \infty$ (and $R_j$ runs through the equivalence classes of unitary representations of $G$ which occur in $R$). To obtain further information concerning this decomposition we obviously need some analogues of \eqref{eq:9.3}--\eqref{eq:9.6}.
+
+Let $\chi_j(g)$ denote the character of $R_j(g)$. Then $\chi_j(g)$ is the locally integrable central function on $G$ with the property that
+
+\begin{equation}\label{eq:9.9}
+\tr(R_j(f)) = \int_G f(g)\chi_j(g)\dd g.\tag{9.9}
+\end{equation}
+
+The existence of such functions (and in particular the existence of a trace for $R_j(f)$) is a consequence of the general theory of Harish-Chandra. From \eqref{eq:9.8} it follows that
+
+\begin{equation}\label{eq:9.10}
+\sum m_j \hat{f}(j) = \tr R(f)\tag{9.10}
+\end{equation}
+
+where
+
+\[
+\hat{f}(j) = \int_G f(g)\chi_j(g)\dd g
+\]
+
+(cf. \eqref{eq:9.5}).
+
+On the other hand, from the explicit realization of $R(f)$ as an integral operator with kernel \eqref{eq:9.7}, it follows that
+
+\begin{equation}\label{eq:9.11}
+\tr R(f) = \int_{\Gamma \backslash G} \sum_{\gamma \in \Gamma} f(x^{-1}\gamma x)\dd x\tag{9.11}
+\end{equation}
+
+(at least when $f = f_1 * f_2$; cf. \eqref{eq:9.3}).
+
+So equating \eqref{eq:9.10} and \eqref{eq:9.11} we have
+
+\begin{equation}\label{eq:9.12}
+\begin{aligned}
+\int_{\Gamma \backslash G} \sum f(x^{-1}\gamma x)\dd x &= \tr(R(f))\\
+&= \sum m_j \hat{f}(j).
+\end{aligned}\tag{9.12}
+\end{equation}
+
+For pedagogical purposes we shall refer to \eqref{eq:9.11} as (the first form of) the Selberg trace formula. Some elementary manipulations yield the result
+
+\begin{equation}\label{eq:9.13}
+\tr R(f) = \sum_{\{\gamma\}} \vol(\Gamma(\gamma) \backslash G(\gamma)) \int_{G(\gamma) \backslash G} f(x^{-1}\gamma x)\dd x\tag{9.13}
+\end{equation}
+
+where $\Gamma(\gamma)$ and $G(\gamma)$ denote the centralizers of $\gamma$ in $\Gamma$ and $G$ and $\{\gamma\}$ denotes a set of representatives of classes of $\gamma$ in $\Gamma$. The ``trace formula'' we shall establish below will be an analogue of this last formula. However our interest will be in the non-compact case $G = \GL(2,\A)$, $\Gamma = \GL(2,\Q)$.
+
+Because $\Gamma \backslash G$ is compact in \eqref{eq:9.12} the formula \eqref{eq:9.13} makes it feasible to explicitly determine (some of) the multiplicities $m_j$. Indeed the right side of \eqref{eq:9.13} is a sum of distributions
+
+\begin{equation}\label{eq:9.14}
+I_\gamma: f \to \vol(\cdot) \int_{G(\gamma) \backslash G} f(x^{-1}\gamma x)\dd x\tag{9.14}
+\end{equation}
+
+which are invariant in the sense that
+
+\[
+\mathbf{I}_\gamma(f^y) = \mathbf{I}_\gamma(f)
+\]
+
+if $f^y(x) = f(y^{-1}xy)$. So let $\{\chi\}$ denote the collection of characters of all the irreducible unitary representations of $G$. Each $\chi$ defines a basic invariant distribution on $G$ through the formula
+
+\[
+f \to \chi(f) = \int_G \chi(g)f(g)\dd g
+\]
+
+and one expects to be able to find (for each $\gamma$) a measure $m_\gamma(\chi)$ on $\{\chi\}$ such that
+
+\begin{equation}\label{eq:9.15}
+I_\gamma(f) = \int_{\{\chi\}} \chi(f)\dd m_\gamma(\chi).\tag{9.15}
+\end{equation}
+
+Assuming this is possible one obtains from \eqref{eq:9.13} and \eqref{eq:9.12} the formula
+
+\begin{equation}\label{eq:9.16}
+\sum m_j \chi_j(f) = \sum_{\{\gamma\}} \int_{\{\chi\}} \chi(f)\dd m_\gamma(\chi).\tag{9.16}
+\end{equation}
+
+The formula \eqref{eq:9.16} might be called the ``second'' or ``explicit'' form of the trace formula. If its usefulness is not already apparent let us indicate at least one immediate application. Suppose $\chi_\ell$ is the character of a discrete series representation of $G$, i.e. the representation $R_\ell$ occurs discretely in $L^2(G)$, or what amounts to the same thing, the matrix coefficients
+
+\[
+f_\ell(g) = (R_\ell(g)u, v)
+\]
+
+are square-integrable on $G$. Suppose also that $f_\ell(g)$ is actually integrable as well as square integrable. (For $\SL(2,\R)$, this is automatic for all but finitely many discrete series representations.) Then \eqref{eq:9.16} is still valid with $f_\ell$ in place of $f$. But $\chi_j(f_\ell) = 0$ if $\ell \neq j$. So making this replacement in \eqref{eq:9.16} one obtains the identity
+
+\begin{equation}\label{eq:9.17}
+m_j = \sum_{\{\gamma\}} \int_{\{\chi\}} \chi(f)\dd m_\gamma(\chi)\tag{9.17}
+\end{equation}
+
+i.e. one obtains an explicit formula for the multiplicity of $R_\ell$ in $R$ (hence also a formula for the dimension of a certain space of automorphic forms by a generalization of the ``duality theorem'' of Section~\ref{ch:2}).
+
+As already indicated, the analogue of \eqref{eq:9.12} is non-trivial if $\Gamma \backslash G$ is not compact and it is this ``first'' form of the trace formula that will henceforth concern us for $\GL(2)$.
+
+\subsection{The Situation for \texorpdfstring{$\GL(2)$}{GL(2)}}
+
+As in Section~\ref{ch:8}, $Z_\infty^{+}$ will denote the group
+
+\[
+\{z \in Z_\infty: z = \begin{bmatrix} r & 0 \\ 0 & r \end{bmatrix}, r > 0\},
+\]
+
+$\bX$ the homogeneous space $Z_\infty^{+}\bG_\Q \backslash \bG_\A$, and $R$ the unitary representation of $\bG_\A$ in $\bL^2(\bX)$ given by
+
+\[
+R(x)h(y) = h(yx).
+\]
+
+In Section~\ref{ch:8} we explained how the theory of Eisenstein series yields the decomposition
+
+\[
+\bR = \bR_0^{+} \oplus \bR_1
+\]
+
+where the spectrum of $R_0^{+}$ is discrete and the spectrum of $R_1$ is continuous. In fact the theory of Eisenstein series constructs $R_1$ explicitly as a direct integral of certain ``principal series'' representations $R(x,z)$. (Cf. Theorem~\ref{thm:8.8}.) This same theory however tells us little about which representations occur in $R_0^{+}$ and it is at this problem that the Selberg trace formula is directed.
+
+Suppose we regard $R$ as a representation of the group algebra $L^1(Z_\infty^{+} \backslash G_A)$ by defining $R(f)$, as usual, by
+
+\[
+R(f)h(y) = \int_{Z_\infty^{+} \backslash G_A} f(x)(R(x)h)(y)\dd x.
+\]
+
+Then for all $h \in L^2(Z_\infty^{+}G_Q \backslash G_A)$,
+
+\begin{equation}\label{eq:9.18}
+(R(f)h)(y) = \int_X K(x, y)h(x)\dd x\tag{9.18}
+\end{equation}
+
+where
+
+\begin{equation}\label{eq:9.19}
+K(x, y) = \sum_{\gamma \in \bG_\Q} f(x^{-1}\gamma y).\tag{9.19}
+\end{equation}
+
+In Subsection B below we shall prove that $R_0^{+}(f)$ (not $R(f)!$) is of trace class for suitably regular $f$. The trace formula will then amount to finding a useful expression for this trace by realizing $R_0^{+}(f)$ as an integral operator with kernel $K_0^{+}(x,y)$ whose trace is simply the integral of this kernel ``over the diagonal.''
+
+Note that $K_0^{+} = K - K_1$ where $K_1$ is the kernel of $R_1(f)$, the restriction of $R(f)$ to the subspace $L_1^2(E)$. Therefore
+
+\[
+\begin{aligned}
+\tr(R_0^{+}(f)) &= \int_X K_0^{+}(x, x)\dd x\\
+&= \int_X \{K(x, x) - K_1(x, x)\}\dd x
+\end{aligned}
+\]
+
+and the theory of Eisenstein series enters because the kernel $K_1$ is described explicitly in terms of Eisenstein series! (Cf. Theorem~\ref{thm:8.8} again.)
+
+To obtain a more useful form of the trace formula (still however a ``first'' form of the formula!) one has to break up $K(x,x)$ and $K_1(x,x)$ into a number of terms and then evaluate the integrals which result from regrouping these terms in some sensible fashion. This will be done in Subsection C.
+
+It must be emphasized that although the form of the trace formula ultimately given in Theorem~\ref{thm:9.22} is sufficient for many purposes (in particular for the applications described in Section~\ref{ch:10}) it falls far short of an ``explicit'' trace formula analogous to either the Poisson summation formula (for the real line) or formula \eqref{eq:9.16} (for the case of compact quotient).
+
+\section{The Trace of \texorpdfstring{$\bR_0^{+}(f)$}{R0+(f)}}\label{sec:9b}
+
+The burden of this subsection is to prove that $R_0^{+}(f)$ is an integral operator of trace class for suitably regular $f$ and that its trace is given by the integral of its kernel over the diagonal. This is the content of Theorem~\ref{thm:9.7} which constitutes a preliminary form of (the first form of) the Selberg trace formula.
+
+THROUGHOUT THE REMAINDER OF SECTION 9 THE FOLLOWING ASSUMPTION WILL BE IN FORCE:
+
+\begin{assumption}\label{ass:9.1}
+
+The function $f$ is the convolution of two bi-$K$-finite functions $f'$ and $f''$ in $C_c^\infty(Z_\infty^{+} \backslash G_A)$.
+
+\end{assumption}
+
+Recall that
+
+\[
+\bR_0^{+}(f) = \bR(f) - \bR_1(f)
+\]
+
+where $R_1(f) = R(f)E_1E_1^{*}$ (Theorem~\ref{thm:8.8}). To exhibit $R_0^{+}(f)$ as an integral operator in $L^2(X)$ it therefore suffices to separately analyze $R(f)$ and $R_1(f)$. But the operator $R(f)$ is given a priori as an integral operator with kernel
+
+\begin{equation}\label{eq:9.20}
+K(x, y) = \sum_{\gamma \in \bG_\Q} f(x^{-1}\gamma y).\tag{9.20}
+\end{equation}
+
+Furthermore this kernel is a smooth function on $\bX \times \bX$ since for $x, y$ lying in compact subsets of $\bX$ the sum in \eqref{eq:9.20} is actually finite. Thus it remains only to analyze $R_1(f)$.
+
+The kernel of $R_1(f)$ being non-trivial to describe we shall first introduce certain $R$-invariant subspaces $L_1^2(T)$ of $L_1^2(E)$. Then we shall obtain a formula for the kernel of $R_1(f)$ restricted to each $L_1^2(T)$ and ``sum up'' the resulting integral operators to describe $R_1(f)$ itself.
+
+Fix $T$ an arbitrary positive number and let $\hat{L}_1^2(T)$ denote the subspace of $\hat{L}_1^2(E) = \bigoplus_{(r)} \hat{L}_1^2(E, r)$ consisting of functions whose projection onto any of the summands $L_1^2(E, r)$ has (compact) support in $[-iT, iT]$. Then the image
+
+\[
+\bL_1^2(T) = \bE_1(\hat{\bL}_1^2(T))
+\]
+
+is an $R$-invariant subspace of $L^2(X)$ and the integral operator $R_1(f,T)$ corresponding to it is defined by the composition of $R(f)$ with the projection $E_{1,T}E_{1,T}^{*}$ of $L^2(X)$ onto $L_1^2(T)$.
+
+To describe the kernel of $R_1(f, T)$ we need to fix an orthonormal basis $\{\phi_j\}_{j \in I}$ for $H$ which is compatible with the decomposition $H = \oplus(r)$. We denote by $R_{ij}(f, z)$ the matrix coefficient $(R(f, z)\phi_j, \phi_i)$ of $R(f, z)$ and define $K_1(x, y, f, z)$ on $X \times X$ by
+
+\begin{equation}\label{eq:9.21}
+K_1(x, y, f, z) = \frac{1}{4\pi} \sum_{i, j \in I} R_{ij}(f, z)E(x, \phi_i, z)\overline{E(y, \phi_j, z)}\tag{9.21}
+\end{equation}
+
+Note that since $f$ is bi-$K$-finite, $R_{ij}(f,z)$ vanishes for all but finitely many $i, j$. Thus the sum defining $K_1(x,y,f,z)$ is actually finite.
+
+\begin{lemma}\label{lem:9.2}
+
+$\bR_1(f, T)$ is an integral operator on $L^2(X)$ with (continuous) kernel
+
+That is,
+
+\[
+\begin{aligned}
+K_1^T(x, y, f) &= \int_{-iT}^{iT} K_1(x, y, f, z)\dd|z|.\\
+R_1(f, T)h(x) &= \int_X K_1^T(x, y, f)h(y)\dd y
+\end{aligned}
+\]
+
+for all $h \in C_c^\infty(X)$.
+
+\end{lemma}
+
+\begin{proof}
+
+This lemma follows from Lemmas \ref{lem:8.6}, \ref{lem:8.11} and the intertwining relation \eqref{eq:8.44}. Indeed, those identities imply
+
+\[
+\begin{aligned}
+(R_1(f, T)h)(x) &= R(f)E_{1,T}E_{1,T}^{*}h(x)\\
+&= R(f)\left\{\frac{1}{2\pi}\int_{-iT}^{iT} E(x, E_{1,T}^{*}h(z), z)\dd|z|\right\}\\
+&= \frac{1}{2\pi}\int_{-iT}^{iT} E(x, R(f, z)E_{1,T}^{*}h(z), z)\dd|z|\\
+&= \frac{1}{2\pi}\int_{-iT}^{iT} E\left(x, \sum_{j \in I}(E_{1,T}^{*}h(z), \phi_j)R(f, z)\phi_j, z\right)\dd|z|\\
+&= \frac{1}{2\pi}\int_{-iT}^{iT} E\left(x, \sum_j (E_{1,T}^{*}h(z), \phi_j)\sum_i (R(f, z)\phi_j, \phi_i)\phi_i, z\right)\dd|z|\\
+&= \frac{1}{2\pi}\int_{-iT}^{iT} \sum_{i, j \in I}(E_{1,T}^{*}h(z), \phi_j)R_{ij}(f, z)E(x, \phi_i, z)\dd|z|\\
+&= \int_{-iT}^{iT} \frac{1}{4\pi}\sum_{i, j}\left(\int_X h(y)\overline{E(y, \phi_j, z)}\dd y\right)R_{ij}(f, z)E(x, \phi_i, z)\dd|z|\\
+&= \int_X \left(\int_{-iT}^{iT} \frac{1}{4\pi}\sum_{i, j} R_{ij}(f, z)E(x, \phi_i, z)\overline{E(y, \phi_j, z)}\right)h(y)\dd y,
+\end{aligned}
+\]
+
+as desired.
+
+\end{proof}
+
+The problem of describing the kernel of $R_1(f)$ is now surmounted by the following lemma.
+
+\begin{lemma}\label{lem:9.3}
+
+Given any Siegel domain $\gamma(c)$, there exist constants $C$ and $M$ such that
+
+\begin{equation}\label{eq:9.22}
+\int_{-i\infty}^{i\infty} |K_1(x, y, f, z)|\dd|z| \leq Ce^{-M\bH(x)}e^{-M\bH(y)}\tag{9.22}
+\end{equation}
+
+for all $x, y \in \gamma(c)$.
+
+\end{lemma}
+
+\begin{proof}
+
+From Schwartz' Lemma (and some straightforward manipulation) it follows that, for $z \in i\R$,
+
+\begin{equation}\label{eq:9.23}
+|K_1(x, y, f, z)| \leq K_1(x, x, {}^{1}f, z)^{1/2}K_1(y, y, {}^{2}f, z)^{1/2}.\tag{9.23}
+\end{equation}
+
+Here ${}^{1}f = f' * (f')^{*}$ and ${}^{2}f = (f'')^{*} * f''$ if $f = f' * f''$. (Recall that $f^{*}(y) = f(y^{-1})$.) Therefore, to prove this lemma, it suffices to establish \eqref{eq:9.22} for $f = {}^{1}f$ (or ${}^{2}f$) and $y = x$. (Using \eqref{eq:9.23} simply apply Cauchy-Schwartz to the integral in \eqref{eq:9.22}!)
+
+But by Lemma~\ref{lem:9.2},
+
+\[
+\int_{-iT}^{iT} K_1(x, x, {}^{1}f, z)\dd|z|
+\]
+
+is the value on the diagonal of the kernel of $R_1({}^{1}f, T)$. Since $R_1({}^{1}f, T)$ is the restriction to $L_1^2(T)$ of the positive semi-definite operator $R({}^{1}f)$, its kernel can be bounded on the diagonal by the kernel of $R({}^{1}f)$, i.e.
+
+\[
+\int_{-iT}^{iT} K_1(x, x, {}^{1}f, z)\dd|z| \leq K(x, x),
+\]
+
+where
+
+\[
+K(x, x) = \sum_{\gamma \in \bG_\Q} {}^{1}f(x^{-1}\gamma x).
+\]
+
+But $|K(x,x)|$, in turn, may be bounded in $\gamma(c)$ by some $Ce^{-M\bH(x)}$, and this bound is independent of $T$. (\cite{HarishChandra2}, p.~9.) Therefore, since $|K_1(x,x,{}^{1}f,z)| = K_1(x,x,{}^{1}f,z)$, the lemma follows.
+
+\end{proof}
+
+\begin{proposition}\label{prop:9.4}
+
+$\bR_1(f)$ is an integral operator with kernel
+
+\begin{equation}\label{eq:9.24}
+K_1(x, y) = \int_{-i\infty}^{i\infty} K_1(x, y, f, z)\dd|z|\tag{9.24}
+\end{equation}
+
+\end{proposition}
+
+\begin{proof}
+
+Lemmas \ref{lem:9.2} and \ref{lem:9.3}.
+
+\end{proof}
+
+\begin{corollary}\label{cor:9.5}
+
+$\bR_0^{+}(f)$ is an integral operator in $\bL_0^2(\bX)$ with kernel $K_0^{+}(x, y) = K(x, y) - K_1(x, y)$.
+
+\end{corollary}
+
+\begin{proposition}\label{prop:9.6}
+
+The operator $\bR_0^{+}(f)$ possesses a trace. (Remember we are assuming $f$ satisfies Assumption~\ref{ass:9.1}.)
+
+\end{proposition}
+
+\begin{proof}
+
+For any $h \in C_c^\infty(Z_\infty^{+} \backslash G_A)$ it is known that $R_0(h)$ is of Hilbert-Schmidt type, i.e. $\sum_i \|R_0(h)\phi_i\|^2 < \infty$ for any complete orthonormal system $\phi_i$ in $L_0^2(X)$. This ``refinement'' of Lemma~\ref{lem:5.2} is an immediate consequence of the estimate \eqref{eq:5.4}. Indeed \eqref{eq:5.4} implies that $R_0(h)\phi(x) = (k_x, \phi)$, with $k_x \in L_0^2(X)$ and $\|k_x\|_2 < c$ (some constant independent of $\phi$). So if $k(x, y) = k_x(y)$,
+
+\[
+R_0(h)\phi(x) = \int_X k(x, y)\phi(y)\dd y
+\]
+
+with $k(x, y) \in L^2(X \times X)$. Thus $R_0(h)$ is Hilbert-Schmidt by a standard theorem of functional analysis.
+
+Now recall that $f = f' * f''$ with both $f'$ and $f''$ in $C_c^\infty(Z_\infty^{+} \backslash G_A)$. Therefore $R_0(f)$ is of trace class (being the product of two Hilbert-Schmidt operators) and it remains only to see that $R_0^{+}(f)$ is also. But this is immediate from Theorem~\ref{thm:8.8}. Indeed the $K$-finiteness of $f$ implies that all but finitely many of the summands
+
+\[
+\int_X f(x)\bD_\chi(x)\Id\dd x
+\]
+
+of $R_0^{+}(f)$ coincide with the zero operator. Thus $R_0^{+}(f)$ is of finite rank let alone trace class!
+
+\end{proof}
+
+\begin{theorem}\label{thm:9.7}
+
+The kernel $\bK_0^{+}(x, y)$ is integrable ``over the diagonal'' and its integral equals the trace of $\bR_0^{+}(f)$. That is
+
+\begin{equation}\label{eq:9.25}
+\tr(R_0^{+}(f)) = \int_X K_0^{+}(x, x)\dd x.\tag{9.25}
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+
+If we had already shown $K_0^{+}(x,y)$ to be continuous the conclusion above would be an immediate consequence of the well-known lemma which asserts that if a trace class operator is represented by a continuous square-integrable kernel on $X \times X$ then the kernel is integrable on $X$ and its integral gives the trace of this operator. Since we have not already shown $K_0^{+}(x,y)$ to be continuous we shall proceed more deviously as follows.
+
+Observe first that $K_0^{+}(x,y)$ is at least continuous in $x$ and $y$ separately. Indeed since $K(x,y)$ is continuous, it suffices to deal with $K_1(x,y)$. From the proof of Lemma~\ref{lem:9.3}, recall that
+
+\[
+|K_1(x, y, f, z)| \leq K_1(x, x, {}^{1}f, z)^{1/2}K_1(y, y, {}^{2}f, z)^{1/2},
+\]
+
+so from Lemma~\ref{lem:9.3} itself it follows that (for $y$ in any Siegel domain)
+
+\[
+\int_{\substack{z \in i\R\\ |z| > T}} |K_1(x, y, f, z)|\dd|z| \leq Ce^{-M\bH(y)}\left(\int |K_1(x, x, {}^{1}f, z)|\dd|z|\right)^{1/2}.
+\]
+
+This means that for any fixed $x$, the integral defining $K_1(x,y)$ converges uniformly for $y$ in compact subsets of $X$. Therefore this integral defines a continuous function of $y$ (and a similar argument works for $x$).
+
+Now let $H'(,)$ and $H''(,)$ denote the kernels representing the Hilbert-Schmidt operators $R_0^{+}(f')$ and $R_0^{+}(f'')$. According to a well-known principle from functional analysis, the function
+
+\[
+H(x, y) = \int_X H'(x, v)H''(v, y)\dd v
+\]
+
+is defined almost everywhere and determines the Hilbert-Schmidt kernel of $R_0^{+}(f)$. Moreover,
+
+\[
+\tr R_0^{+}(f) = \int_X H(x, x)\dd x.
+\]
+
+Therefore to prove the theorem it will suffice to construct $H'$ and $H''$ such that $H(x, x) = K_0(x, x)$ for almost all $x$.
+
+Actually, since $K_0(x,y)$ must a priori equal $H(x,y)$ almost everywhere on $X \times X$, and since $K_0(x,y)$ has just been seen to be separately continuous in $x$ and $y$, it will suffice to find $H'$ and $H''$ so that $H(x,y)$ too is separately continuous.
+
+So recall again that for any $K$-finite $f \in C_c^\infty(Z_\infty^{+} \backslash G_A)$ and Siegel domain $\gamma(c)$, there exist $C$ and $M$ so that
+
+\begin{equation}\label{eq:9.26}
+\left|\sum_{\gamma \in \bG_\Q} f(x^{-1}\gamma v)\right| \leq Ce^{-M\bH(x)}, \quad x, v \in \gamma(c).\tag{9.26}
+\end{equation}
+
+For any fixed $x$ it follows that the linear form on $H_0^{+} = L_0^2(X) \oplus (\oplus D_\chi)$ defined by
+
+\[
+\phi \mapsto \int_X \sum_{\gamma \in \bG_\Q} f(x^{-1}\gamma v)\phi(v)\dd v
+\]
+
+is continuous. Hence there is a unique function $h_x'(v)$ in $H_0^{+}$ such that
+
+\[
+\int_X \sum_{\gamma \in \bG_\Q} f(x^{-1}\gamma v)\phi(v)\dd v = \int_X h_x'(v)\phi(x)\dd v,
+\]
+
+for all $\phi \in H_0^{+}$, i.e.
+
+\[
+H'(x, v) = h_x'(v)
+\]
+
+is a Hilbert-Schmidt kernel for $R_0^{+}(f')$ on $L^2(X)$.
+
+In a similar way the Hilbert-Schmidt kernel $H''(v,y)$ of $R_0^{+}(f'')$ may be introduced so that $H''(v,y)$ also belongs to $H_0^{+}$ for each $y$. Setting
+
+\[
+H(x, y) = \int_X H'(x, v)H''(v, y)\dd v
+\]
+
+then describes the desired Hilbert-Schmidt kernel of $R_0^{+}(f)$. Indeed from \eqref{eq:9.26} and the dominated convergence theorem comes the required conclusion that $H(x,y)$ is continuous in $x$ for any fixed $y$ (and similarly in $y$ for any fixed $x$).
+
+This completes the proof of Theorem~\ref{thm:9.7}.
+
+\end{proof}
+
+\section{A Second Form of the Trace Formula}\label{sec:9c}
+
+Recall that for $f$ satisfying Assumption~\ref{ass:9.1} the trace of $R_0^{+}(f)$ exists and equals
+
+\[
+\int_X K_0^{+}(x, x)\dd x
+\]
+
+where $K_0^{+}(x,x) = K(x,x) - K_1(x,x)$,
+
+\begin{equation}\label{eq:9.27}
+K(x, y) = \sum_{\gamma \in \bG_\Q} f(x^{-1}\gamma y)\tag{9.27}
+\end{equation}
+
+and $K_1(x,y)$ is described by \eqref{eq:9.21} and \eqref{eq:9.24}.
+
+A ``second form'' of the trace formula (Theorem~\ref{thm:9.22}) will now be obtained by
+
+\begin{enumerate}[(i)]
+
+\item breaking $K(x,x)$ up into elliptic and parabolic parts;
+
+\item writing $K_1(x,x)$ as the sum of a part ``at infinity'' plus its complement;
+
+\item regrouping these terms in a meaningful way;
+
+\item and integrating the resulting components.
+
+\end{enumerate}
+
+The work involved will be tedious but the plan of attack is quite simple.
+
+\subsection{Conjugacy Classes in \texorpdfstring{$\bG_{\Q}$}{G-Q}}
+
+We shall say that $\gamma \in \bG_\Q$ is parabolic if it is $\bG_\Q$-conjugate to some element of $B_\Q$ and elliptic otherwise. The set of all elliptic elements in $\bG_\Q$ will be denoted by $\bG_e$. The parabolic conjugacy classes may be classified as follows.
+
+If $\mu = \begin{bmatrix} \mu_1 & 0 \\ 0 & \mu_2 \end{bmatrix}$ belongs to $A_\Q$ we say that $\mu$ is regular if $\mu_1 \neq \mu_2$ and singular otherwise. The singular elements of $A_\Q$ then coincide with $Z_\Q$. The set of regular elements in $A_\Q$ will be denoted by $A_r$. Note that
+
+\[
+\begin{bmatrix} \mu_1 & n \\ 0 & \mu_2 \end{bmatrix} = \mu\begin{bmatrix} 1 & n\mu_1^{-1} \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} 1 & \frac{n}{\mu_1 - \mu_2} \\ 0 & 1 \end{bmatrix}^{-1}\mu\begin{bmatrix} 1 & \frac{n}{\mu_1 - \mu_2} \\ 0 & 1 \end{bmatrix}
+\]
+
+if $\mu = \begin{bmatrix} \mu_1 & 0 \\ 0 & \mu_2 \end{bmatrix} \in A_r$. It follows that every parabolic $\gamma$ in $\bG_\Q$ is conjugate either to some
+
+(1) $\mu \in Z_\Q$;
+
+(2) $\mu \in A_r$; or
+
+(3) $\mu\nu$, with $\mu \in Z_\Q$ and $\nu \neq e$ in $N_\Q$. Thus $A_r$ and $Z_\Q N_\Q$ describe the parabolic conjugacy classes in $\bG_\Q$.
+
+We shall now decompose $K(x,x)$ by replacing the sum over $\bG_\Q$ in \eqref{eq:9.27} by a sum over the various orbits of $\bG_\Q$ defined by conjugation.
+
+If $H$ is any $\Q$-subgroup of $\GL(2)$ let $H(\gamma)$ denote the centralizer of $\gamma$ in $H$. If $\{G_e\}$ denotes a fixed set of representatives of $\bG_\Q$-conjugacy classes in $\bG_\Q$ then $K(x, x)$ may be expressed as a sum of the following terms:
+
+\begin{enumerate}[(i)]
+
+\item the elliptic contribution
+
+\begin{equation}\label{eq:9.28}
+I_e(x, f) = \sum_{\gamma \in \{G_e\}}\sum_{\delta \in \bG(\gamma)_\Q \backslash \bG_\Q} f(x^{-1}\delta^{-1}\gamma\delta x);\tag{9.28}
+\end{equation}
+
+\item the singular contribution
+
+\begin{equation}\label{eq:9.29}
+I_S(x, f) = \sum_{\mu \in Z_\Q} f(\mu);\tag{9.29}
+\end{equation}
+
+\item the contribution from $A_r$:
+
+\begin{equation}\label{eq:9.30}
+\sum_{\delta \in N(A)_\Q \backslash \bG_\Q}\quad \sum_{\mu \in A_r} f(x^{-1}\delta^{-1}\mu\delta x)\tag{9.30}
+\end{equation}
+
+where $N(A)$ denotes the normalizer of $A$; and
+
+\item the contribution from $Z_\Q \setminus N_\Q$:
+
+\begin{equation}\label{eq:9.31}
+\sum_{\delta \in B_\Q \backslash \bG_\Q}\quad \sum_{\mu \in Z_\Q}\quad \sum_{\substack{\nu \in N_\Q\\ \nu \neq e}} f(x^{-1}\delta^{-1}\mu\nu\delta x).\tag{9.31}
+\end{equation}
+
+\end{enumerate}
+
+The last three terms above comprise the parabolic part of $K(x,x)$. In describing the contribution from $A_r$ alone we have used the fact that $\delta^{-1}\mu\delta = \delta_1^{-1}\mu_1\delta_1$ (with $\mu, \mu_1$ in $A_r$) implies $\delta = y\delta_1$ for some $y \in N(A)_\Q$. Similarly for \eqref{eq:9.31} we used the fact that $\delta^{-1}\mu\nu\delta = \delta_1^{-1}\mu_1\nu_1\delta_1$ implies $\delta = b\delta_1$ for some $b \in B_\Q$.
+
+\subsection{Truncating \texorpdfstring{$\bK_1(x,x)$}{K1(x,x)} and \texorpdfstring{$\bK(x,x)$}{K(x,x)}}
+
+To analyze $K_1(x,x)$ and to further decompose and rearrange $K(x,x)$ the following lemma will be crucial.
+
+\begin{lemma}\label{lem:9.8}
+
+There exists a constant $c_1 > 1$ with the property that $y \in B_\Q$ if and only if $H(yx) > \log c_1$ for all $x \in G_A$ such that $H(x) > \log c_1$.
+
+\end{lemma}
+
+\begin{proof}
+
+If ``only if'' direction is trivial. Indeed $H\left(\begin{bmatrix} \alpha & 0 \\ 0 & \beta \end{bmatrix}\right) = 1$ for all rational $\alpha, \beta$ and therefore any $c_1 > 1$ will do.
+
+Now choose $c_1 > 1$ so that $H(wn) < \log c_1$ for all $n \in N_A$ (recall that $w = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$). Then for the ``if'' part suppose $y \notin B_\Q$. By Bruhat's decomposition
+
+\[
+\gamma = bwn_\gamma \quad \text{with} \quad b \in B_\Q \quad \text{and} \quad n_\gamma \in N_\Q.
+\]
+
+So if $x = nah_tkz$ (cf. \eqref{eq:8.8}),
+
+\[
+wn_\gamma x = wn_\gamma nah_tkz = (h_t^{-1}a^{-1})wn_1kz
+\]
+
+where
+
+\[
+n_1 = h_t^{-1}a^{-1}n_\gamma nah_t
+\]
+
+belongs to $N_A$. Therefore
+
+\[
+H(\gamma x) = H(wn_\gamma x) = H(h_t^{-1})H(wn_1),
+\]
+
+which implies $H(\gamma x) < \log c_1$, a contradiction.
+
+\end{proof}
+
+To explain the significance of this lemma it is necessary to introduce the set
+
+\[
+S(c) = \{x \in \bG_\A: H(x) \geq \log c\}.
+\]
+
+This set is a kind of extended Siegel domain. Its projection onto $X$ is the set of points in the fundamental domain which are sufficiently close to infinity (in the upper half plane these points comprise a vertical strip truncated from below at some fixed positive height). From reduction theory (cf. \cite{Godement3}) it is known that
+
+\begin{enumerate}[(i)]
+
+\item for some $c > 0$, $\bG_\A = \bG_\Q S(c)$; and
+
+\item for any $c > 0$, the set of $\gamma \in \bG_\Q$ such that $S(c) \cap \gamma S(c) \neq \varnothing$ is finite modulo $B_\Q$.
+
+\end{enumerate}
+
+Lemma~\ref{lem:9.8} is important precisely because for $\varepsilon > c_1$ the set $S(\varepsilon)$ is particularly well-suited to the further analysis of $K_1(x, y)$.
+
+Indeed suppose $\varepsilon > c_1$. If we let $\chi_\varepsilon(x)$ denote the characteristic function of $S(\varepsilon)$ then by (ii) above the series
+
+\begin{equation}\label{eq:9.32}
+\sum_{\delta \in B_\Q \backslash \bG_\Q} E^0(\delta x, \phi, z)\chi_\varepsilon(\delta x)\tag{9.32}
+\end{equation}
+
+is a finite sum for $x \in S(c)$. In particular \eqref{eq:9.32} defines a function on $Z_\infty^{+}B_Q \backslash G_A$ which we shall denote by $E_\varepsilon'(x, \phi, z)$. The point is that Lemma~\ref{lem:9.8} above implies that
+
+\[
+E_\varepsilon'(x, \phi, z) = E^0(x, \phi, z)
+\]
+
+for all $x \in S(\varepsilon)$. Here, as always, $E^0$ denotes the ``constant term'' of $E$.)
+
+Using $E_\varepsilon'(x,\phi,z)$ we introduce the ``adjusted'' kernel
+
+\begin{equation}\label{eq:9.33}
+K'(x, f, \varepsilon) = \frac{1}{4\pi}\int_{-i\infty}^{i\infty}\sum_{i, j} R_{ij}(z, f)E_\varepsilon'(x, \phi_i, z)\overline{E_\varepsilon'(x, \phi_j, z)}\dd|z|.\tag{9.33}
+\end{equation}
+
+This is the ``part at infinity'' of $K_1(x,x)$. Its ``complement'' is
+
+\begin{equation}\label{eq:9.34}
+K''(x, f, \varepsilon) = K_1(x, x) - K'(x, f, \varepsilon).\tag{9.34}
+\end{equation}
+
+Note that the right hand side of \eqref{eq:9.33} does converge. In fact from Lemma~\ref{lem:9.8} it follows that
+
+\begin{equation}\label{eq:9.35}
+K'(x, f, \varepsilon) = \sum_{\delta \in B_\Q \backslash \bG_\Q}\int_{-i\infty}^{i\infty}\frac{1}{4\pi}\sum_{i, j} R_{ij}(z, f)E^0(x\delta, \phi_i, z)\overline{E^0(x\delta, \phi_j, z)}\dd|z|\chi_\varepsilon(x\delta).\tag{9.35}
+\end{equation}
+
+Therefore the absolute value of $K'(x, f, \varepsilon)$ is bounded above (in any $S(c)$) by $Ce^{-M\bH(x)}$ by Lemma~\ref{lem:9.3} (recall that $E^0(x, \phi, z)$ is obtained by integrating $E(xn, \phi, z)$ over the compact set $N_\Q \setminus N_\A$).
+
+\begin{remark*}
+
+We introduce these functions because $K(x,x)$ is not integrable over $X$ yet $K''(x,f,\varepsilon)$ is. Thus $K'(x,f,\varepsilon)$ isolates the ``bad part'' of $K(x,x)$.
+
+\end{remark*}
+
+Now let us re-examine the (non-integrable) contributions of $A_r$ and $A_sN_\Q$ to the parabolic part of $K(x, x)$. Since $A_\Q$ is of index two in $N(A)_\Q$ the contribution from $A_r$ becomes
+
+\[
+\frac{1}{2}\sum_{\delta \in A_\Q \backslash \bG_\Q}\quad \sum_{\mu \in A_r} f(x^{-1}\delta^{-1}\mu\delta x)
+\]
+
+which we decompose as the sum of
+
+\begin{equation}\label{eq:9.36}
+J_r(x, f, \varepsilon) = \frac{1}{2}\sum_{\mu \in A_r}\sum_{\delta \in A_\Q \backslash \bG_\Q} f(x^{-1}\delta^{-1}\mu\delta x)(\chi_\varepsilon(\delta x) + \chi_\varepsilon(w\delta x))\tag{9.36}
+\end{equation}
+
+and
+
+\begin{equation}\label{eq:9.37}
+I_r(x, f, \varepsilon) = \frac{1}{2}\sum\sum f(x^{-1}\delta^{-1}\mu\delta x)(1 - \chi_\varepsilon(\delta x) - \chi_\varepsilon(w\delta x)).\tag{9.37}
+\end{equation}
+
+Similarly we express the contribution from $Z_\Q N_\Q$ as the sum of
+
+\begin{equation}\label{eq:9.38}
+J_s(x, f, \varepsilon) = \sum_{\mu \in Z_\Q}\sum_{\delta \in B_\Q \backslash \bG_\Q}\sum_{\substack{\nu \in N_\Q\\ \nu \neq e}} f(x^{-1}\delta^{-1}\mu\nu\delta x)\chi_\varepsilon(\delta x)\tag{9.38}
+\end{equation}
+
+and
+
+\begin{equation}\label{eq:9.39}
+I_S(x, f, \varepsilon) = \sum\sum\sum f(x^{-1}\delta^{-1}\mu\nu\delta x)(1 - \chi_\varepsilon(\delta x)).\tag{9.39}
+\end{equation}
+
+Recalling that $K_0^{+}(x, x) = K(x, x) - K_1(x, x)$ we finally rewrite $K_0^{+}(x, x)$ as the sum of
+
+\begin{equation}\label{eq:9.40}
+\begin{aligned}
+&I_e(x, f) &&\text{(the elliptic term)},\\
+&I_s(x, f) &&\text{(the singular term)},\\
+&J_r(x, f, \varepsilon) + J_s(x, f, \varepsilon) - K'(x, f, \varepsilon) &&\text{(the first parabolic term)},\\
+&I_r(x, f, \varepsilon) + I_s(x, f, \varepsilon) &&\text{(the second parabolic term)},
+\end{aligned}\tag{9.40}
+\end{equation}
+
+and
+
+\[
+-K''(x, f, \varepsilon) \quad \text{(the third parabolic term)}.
+\]
+
+This then is the desired decomposition and rearrangement of the kernel $K_0^{+}(x,x)$. The $\varepsilon$-neighborhood of infinity $S(\varepsilon)$ was used to separate the integrable and non-integrable parts of $K(x,x)$ and $K_1(x,x)$.
+
+\subsection{Plan of Attack}
+
+Our final form for the trace formula will arise from evaluating the integral (over $X$) of each of the five terms of \eqref{eq:9.39}. Precisely because of how we have defined and grouped the components $K'$, $K''$, $J_r$, $I_r$, $J_s$, and $I_s$, it will turn out that each of the five terms of \eqref{eq:9.39} (and not just their sum) is integrable. Indeed the non-integrable parts of $K(x, x)$ and $K_1(x, x)$ have been isolated in the first parabolic term and essentially cancel each other out there. Our plan of attack is simply to deal with each of these five terms individually.
+
+\subsection{The Elliptic and Singular Terms}
+
+The elliptic term $I_e(x,f)$ is given by the series
+
+\[
+\sum_{\gamma \in \bG_e} f(x^{-1}\gamma x).
+\]
+
+To prove that $I_e(x,f)$ is integrable it will therefore suffice to prove that the function
+
+\[
+F(x) = \sum_{\gamma \in \bG_e} |f(x^{-1}\gamma x)| \quad (x \in Z_\infty^{+}\bG_\Q \backslash \bG_\A)
+\]
+
+is compactly supported.
+
+\begin{lemma}\label{lem:9.9}
+
+Suppose $C$ is a compact subset of $G_A$ modulo $Z_\infty^{+}$. Then there exists a number $d_C$ with the following property: If $\gamma$ in $\bG_\Q$ is such that
+
+\[
+x^{-1}\gamma x \in C
+\]
+
+for some $x \in \bG_\A$ with $H(x) > \log d_C$ then $\gamma \in B_\Q$.
+
+\end{lemma}
+
+\begin{proof}
+
+If $x = nak$, then the hypothesis $x^{-1}\gamma x \in C$ implies that
+
+\begin{equation}\label{eq:9.41}
+a^{-1}n^{-1}\gamma na \in C'\tag{9.41}
+\end{equation}
+
+where $C' = KCK$. But
+
+\[
+\begin{bmatrix} \mu_1 & * \\ 0 & \mu_2 \end{bmatrix}^{-1}\begin{bmatrix} a & b \\ c & d \end{bmatrix}\begin{bmatrix} \mu_1 & * \\ 0 & \mu_2 \end{bmatrix} = \begin{bmatrix} * & * \\ \frac{\mu_1 c}{\mu_2} & * \end{bmatrix}
+\]
+
+if $\gamma = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$. Consequently \eqref{eq:9.41} implies that $|c\mu_1\mu_2^{-1}|$ must be bounded, i.e.
+
+\[
+|c| < M\left|\frac{\mu_1}{\mu_2}\right|^{-1}.
+\]
+
+Therefore if $\left|\frac{\mu_1}{\mu_2}\right|^{-1}$ is sufficiently small, i.e. if $H(x) = \log\left|\frac{\mu_1}{\mu_2}\right|^{1/2}$ is sufficiently large, $c$ must be zero (which means $\gamma = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ belongs to $B_\Q$).
+
+\end{proof}
+
+From this lemma it follows immediately that $F(x) = \sum_{\gamma \in \bG_e}|f(x^{-1}\gamma x)|$ is compactly supported and hence that $I_e(x, f)$ is (absolutely) integrable. Furthermore its integral over $X$ equals
+
+\[
+\begin{aligned}
+&\int_{Z_\infty^{+}\bG_\Q \backslash \bG_\A}\sum_{\gamma \in \{G_e\}}\sum_{\delta \in \bG(\gamma)_\Q \backslash \bG_\Q} f(x^{-1}\delta^{-1}\gamma\delta x)\dd x\\
+&= \sum_{\gamma \in \{G_e\}}\int_{Z_\infty^{+}\bG(\gamma)_\Q \backslash \bG_\A} f(x^{-1}\gamma x)\dd x.
+\end{aligned}
+\]
+
+Therefore
+
+\[
+\int I_e(x, f)\dd x = \sum_{\gamma \in \{G_e\}}\operatorname{meas}(Z_\infty^{+}G(\gamma)_\Q \backslash G(\gamma)_\A)\int_{G(\gamma)_\A \backslash G_\A} f(x^{-1}\gamma x)\dd x.
+\]
+
+As for the singular term, there is little to say except that $X$ has finite measure. Summing up, we have:
+
+\begin{proposition}[\normalfont (Contribution of the elliptic and singular terms to the Trace Formula.)]\label{prop:9.10}
+
+The terms $I_e(x,f)$ and $I_s(x,f)$ are integrable over $X$ and their integral equals
+
+\[
+\operatorname{meas}(Z_\infty^{+}G_Q \backslash G_A)\sum_{\mu \in Z_\Q} f(\mu) + \sum_{\gamma \in \{G_e\}}\operatorname{meas}(Z_\infty^{+}G(\gamma)_\Q \backslash G(\gamma)_\A)\int_{G(\gamma)_\A \backslash G_\A} f(x^{-1}\gamma x)\dd x
+\]
+
+\end{proposition}
+
+\subsection{The First Parabolic Term}
+
+This term equals
+
+\begin{equation}\label{eq:9.42}
+J_r(x, f, \varepsilon) + J_s(x, f, \varepsilon) - K'(x, f, \varepsilon).\tag{9.42}
+\end{equation}
+
+Although each expression in \eqref{eq:9.42} is non-integrable over $X$ (in fact isolates the ``bad part'' of either $K(x,x)$ or $K_1(x,x)$) the sum of these three expressions is integrable and its integral approaches 0 as $\varepsilon \to 0$. To see this we need to fiddle a bit with $J_r(x, f, \varepsilon)$ and $J_S(x, f, \varepsilon)$.
+
+Recall first that
+
+\[
+J_r(x, f, \varepsilon) = \frac{1}{2}\sum_{\mu \in A_r}\sum_{\delta \in A_\Q \backslash \bG_\Q} f(x^{-1}\delta^{-1}\mu\delta x)(\chi_\varepsilon(\delta x) + \chi_\varepsilon(w\delta x)).
+\]
+
+Since $w$ normalizes $A_r$, it is easy to show that
+
+\[
+\begin{aligned}
+J_r(x, f, \varepsilon) &= \sum_{\mu \in A_r}\sum_{\delta \in A_\Q \backslash \bG_\Q} f(x^{-1}\delta^{-1}\mu\delta x)\chi_\varepsilon(x\delta)\\
+&= \sum_{\mu \in A_r}\sum_{\delta \in N_Q A_Q \backslash \bG_\Q}\sum_{\nu \in N_\Q} f(x^{-1}\delta^{-1}\mu\nu\delta x)\chi_\varepsilon(x\delta)
+\end{aligned}
+\]
+
+\[
+\left(\text{since } \begin{bmatrix} 1 & n \\ 0 & 1 \end{bmatrix}^{-1}\begin{bmatrix} a_1 & 0 \\ 0 & a_2 \end{bmatrix}\begin{bmatrix} 1 & n \\ 0 & 1 \end{bmatrix} = \begin{bmatrix} a_1 & 0 \\ 0 & a_2 \end{bmatrix}\begin{bmatrix} 1 & \frac{n(a_1 - a_2)}{a_1} \\ 0 & 1 \end{bmatrix}\right). \quad \text{On the}
+\]
+
+other hand $J_s(x, f, \varepsilon)$ is the difference of
+
+\[
+\sum_{\mu \in Z_\Q}\sum_{\delta \in B_\Q \backslash \bG_\Q}\sum_{\nu \in N_\Q} f(x^{-1}\delta^{-1}\mu\nu\delta x)\chi_\varepsilon(x\delta)
+\]
+
+and
+
+\begin{equation}\label{eq:9.43}
+\sum_{\mu \in Z_\Q}\sum_{\delta \in B_\Q \backslash \bG_\Q} f(x^{-1}\delta^{-1}\mu\delta x)\chi_\varepsilon(x\delta).\tag{9.43}
+\end{equation}
+
+\begin{lemma}\label{lem:9.11}
+
+The integral (over $X$) of the absolute value of \eqref{eq:9.43} approaches 0 as $\varepsilon \to \infty$.
+
+\end{lemma}
+
+\begin{proof}
+
+The integral of the absolute value of \eqref{eq:9.42} is bounded by
+
+\[
+\sum_{\mu \in Z_\Q}\int_{Z_\infty^{+}B_\Q \backslash \bG_\A} |f(x^{-1}\mu x)|\chi_\varepsilon(x)\dd x
+\]
+
+which (by \eqref{eq:8.11}) equals
+
+\[
+\sum_{\mu \in Z_\Q} c_G\left(\int_{\log \varepsilon} e^{-2t}\dd t\right)\left(\int_{N_Q \backslash N_A}\int_K |f(k^{-1}n^{-1}\mu nk)|\dd n\dd k\right).
+\]
+
+Since the support of $f$ is compact modulo $Z_\infty^{+}$, the double integral above is non zero for only finitely many $\mu \in Z_\Q$ ($N_\Q \setminus N_\A$ is compact!). Thus the lemma follows immediately.
+
+\end{proof}
+
+\begin{remark}\label{rem:9.12}
+
+In the sequel we shall encounter several terms which (like \eqref{eq:9.43}) depend on $\varepsilon$ and approach 0 (in $L^1$-norm) as $\varepsilon \to \infty$. Since $\varepsilon$ was chosen arbitrarily larger than the $c_1$ of Lemma~\ref{lem:9.8}, such terms contribute nothing to the final trace formula and therefore can be (and will be) discarded.
+
+\end{remark}
+
+From Lemma~\ref{lem:9.11} it follows that
+
+\begin{equation}\label{eq:9.44}
+J_r(x, f, \varepsilon) + J_s(x, f, \varepsilon) = \sum_{\mu \in A_\Q}\sum_{\delta \in B_\Q \backslash \bG_\Q}\left(\sum_{\nu \in N_\Q} f(x^{-1}\delta^{-1}\mu\nu\delta x)\right)\chi_\varepsilon(x\delta)\tag{9.44}
+\end{equation}
+
+modulo an expression whose integral over $X$ approaches 0 as $\varepsilon \to \infty$. Before putting this expression together with $-K'(x, f, \varepsilon)$ let us further refine \eqref{eq:9.44}.
+
+Note that (for each $y \in G_A$ and $\mu \in A_\Q$) the function
+
+\[
+u \to f\left(y^{-1}\mu\begin{bmatrix} 1 & u \\ 0 & 1 \end{bmatrix}y\right)
+\]
+
+is of Schwartz-Bruhat type on $A$. Thus we might hope to apply Poisson summation to the inner sum in \eqref{eq:9.44}. To this end, fix once and for all a non-trivial unitary character $\tau$ of $\Q \backslash \A$. For each $\xi \in \A$ define
+
+\[
+\hat{f}(\xi) = \hat{f}(\xi, \mu, y) = \int_\A f\left(y^{-1}\mu\begin{bmatrix} 1 & u \\ 0 & 1 \end{bmatrix}y\right)\tau(\xi u)\dd u.
+\]
+
+\begin{lemma}\label{lem:9.13}
+
+Modulo a function whose integral over $X$ approaches 0 as $\varepsilon \to \infty$,
+
+\[
+J_r(x, f, \varepsilon) + J_s(x, f, \varepsilon) = \sum_{\delta \in B_\Q \setminus \bG_\Q}\sum_{\mu \in A_\Q} \hat{f}(0, \mu, \delta x)\chi_\varepsilon(\delta x).
+\]
+
+\end{lemma}
+
+\begin{proof}
+
+By Poisson summation on $A$,
+
+\[
+\left\{\sum_{\nu \in N_\Q} f(x^{-1}\delta^{-1}\mu\nu\delta x)\right\}\chi_\varepsilon(\delta x) = \hat{f}(0, \mu, \delta x)\chi_\varepsilon(\delta x) + \sum_{\xi \in \Q^{\times}} \hat{f}(\xi, \mu, \delta x)\chi_\varepsilon(\delta x).
+\]
+
+Therefore by \eqref{eq:9.44} it will suffice to prove that the integral (over $X$) of
+
+\[
+\sum_{\delta \in B_\Q \backslash \bG_\Q}\sum_{\mu \in A_\Q}\sum_{\xi \in \Q^{\times}} \hat{f}(\xi, \mu, \delta x)\chi_\varepsilon(\delta x)
+\]
+
+approaches 0 as $\varepsilon \to +\infty$. But this latter integral is bounded by
+
+\[
+\int_{Z_\infty^{+}B_\Q \backslash \bG_\A}\left(\sum_{\mu \in A_\Q}\sum_{\xi \in \Q^{\times}} |\hat{f}(\xi, \mu, x)|\right)\chi_\varepsilon(x)\dd x
+\]
+
+which in turn equals
+
+\[
+c_G\int_\omega\int_{\log \varepsilon}^{\infty}\int_K \sum_{\mu \in A_\Q}\sum_{\xi \in \Q^{\times}} |\hat{f}(\xi, \mu, vh_tk)|e^{-2t}\dd v\dd t\dd k
+\]
+
+with $\omega$ a relatively compact fundamental domain for $B_\Q$ in $N_A A_A^1$. So making the change of variables $v \to h_tvh_t^{-1}$ (recall that $d(ana^{-1}) = \delta_B(a)dn$) allows us to bound the integral in question by
+
+\begin{equation}\label{eq:9.45}
+c_G\int_{\omega \times K}\int_{\log \varepsilon}^{\infty}\sum_{\mu \in A_\Q}\sum_{\xi \in \Q^{\times}} |\hat{f}(\xi, \mu, h_tk)|\dd v\dd t\dd k.\tag{9.45}
+\end{equation}
+
+(Observe that $h_t^{-1}vh_t$ is contained in $\omega$ for $t > 0$.) Now since $f$ is of compact support there are only finitely many $\mu \in A_\Q$ such that $\hat{f}(\xi, \mu, vk) \neq 0$. For the same reason it follows that for any $N > 0$ there is a constant $C_N$ such that
+
+\[
+\sum_{\xi \in \Q^{\times}}\sum_{\mu \in A_\Q} |\hat{f}(e^{2t}\xi, \mu, vk)| \leq C_Ne^{-2tN}
+\]
+
+for all $(v, k)$ in $\omega \times K$. (Recall that $\hat{f}(\xi, \mu, vk)$ is continuous in $vk$.)
+
+Finally observe that $\hat{f}(\xi, \mu, h_tvk) = e^{2t}\hat{f}(e^{2t}\xi, \mu, vk)$. This implies that \eqref{eq:9.45} is bounded by
+
+\begin{equation}\label{eq:9.46}
+C_N'\int_{\log \varepsilon}^{\infty} e^{2t}e^{-2Nt}\dd t\tag{9.46}
+\end{equation}
+
+with $C_N'$ some constant depending on $c_G$ (and the measure of $N_Q A_Q \setminus N_A A_A^1$). So since \eqref{eq:9.46} clearly approaches 0 as $N$ approaches $\infty$ the lemma is proved.
+
+\end{proof}
+
+Recall that our goal is to show that $J_r(x,f,\varepsilon) + J_S(x,f,\varepsilon) - K'(x,f,\varepsilon)$ contributes nothing to the trace formula, i.e. that the integral of this expression approaches 0 as $\varepsilon \to \infty$. Thus we need (finally) to deal with the contribution from $-K'(x,f,\varepsilon)$.
+
+By definition,
+
+\[
+K'(x, f, \varepsilon) = \frac{1}{4\pi}\int_{-i\infty}^{i\infty}\sum_{i, j} R_{ij}(f, z)E_\varepsilon'(x, \phi_i, z)\overline{E_\varepsilon'(x, \phi_j, z)}\dd|z|.
+\]
+
+But by \eqref{eq:9.35} and \eqref{eq:8.44} (which says that $R(f,z)$ and $E$ commute)
+
+\[
+K'(x, f, \varepsilon) = \frac{1}{4\pi}\sum_{\delta \in B_\Q \backslash \bG_\Q}\int_{-i\infty}^{i\infty}\sum_j E^0(x\delta, R(f, z)\phi_j, z)\overline{E^0(x\delta, \phi_j, z)}\dd|z|\chi_\varepsilon(x\delta)
+\]
+
+So substituting for $E^0$ the expression \eqref{eq:8.28} it follows that $K'(x, f, \varepsilon)$ is the sum of the four terms
+
+\[
+\frac{1}{4\pi}\sum_{\delta \in B_\Q \backslash \bG_\Q}\int_{-i\infty}^{i\infty}\left\{\sum_j R(f, z)\phi_j(\delta x)\overline{\phi_j(\delta x)}\right\}\dd|z|e^{2H(\delta x)}\chi_\varepsilon(\delta x),\tag{i}
+\]
+
+\[
+\frac{1}{4\pi}\sum_{\delta}\int_{-i\infty}^{i\infty}\left\{\sum_j (M(z)R(f, z)\phi_j)(\delta x)\overline{(M(z)\phi_j)(\delta x)}\right\}\dd|z|e^{2H(\delta x)}\chi_\varepsilon(\delta x),\tag{ii}
+\]
+
+\[
+\frac{1}{4\pi}\sum_{\delta}\int_{-i\infty}^{i\infty}\left\{\sum_j (M(z)R(f, z)\phi_j)(\delta x)\overline{\phi_j(\delta x)}e^{-2zH(\delta x)}\right\}\dd|z|e^{2H(\delta x)}\chi_\varepsilon(\delta x)\tag{iii}
+\]
+
+and
+
+\[
+\frac{1}{4\pi}\sum_{\delta}\int_{-i\infty}^{i\infty}\left\{\sum_j R(f, z)\phi_j(x\delta)\overline{M(z)\phi_j(\delta x)}e^{2zH(\delta x)}\right\}\dd|z|e^{2H(\delta x)}\chi_\varepsilon(\delta x).\tag{iv}
+\]
+
+Of course to justify this last step we do have to prove that each of the integrals (i)--(iv) is finite. But since they all are rather similar it will suffice to deal with the first.
+
+\begin{lemma}\label{lem:9.14}
+
+For any $y \in G_A$,
+
+\[
+\int_{-i\infty}^{i\infty}\left\{\sum_j (R(f, z)\phi_j)(y)\overline{\phi_j(y)}\right\}\dd|z|
+\]
+
+is finite.
+
+\end{lemma}
+
+\begin{proof}
+
+Recall that (by Lemma~\ref{lem:8.1}) $R(x,z)$ acts on functions in $N_A A_Q A_\infty^{+} \backslash G_A$ through the formula
+
+\[
+R(x, z)\phi(y) = \phi(yx) = e^{(z+1)H(yx)}e^{-(z+1)H(y)}.
+\]
+
+Therefore
+
+\[
+\begin{aligned}
+R(f, z)\phi(x) &= \int_{Z_\infty^{+} \backslash G_A} f(y)R(y, z)\phi(x)\dd y\\
+&= \int_{Z_\infty^{+} \backslash G_A} f(x^{-1}y)\phi(y)e^{(z+1)H(y)}e^{-(z+1)H(x)}\dd y\\
+&= c_Ge^{-(z+1)H(x)}\int_{N_A}\sum_{\mu \in A_\Q}\int_{-\infty}^{\infty}\int_K f(x^{-1}n\mu h_tk)\phi(k)e^{(z-1)t}\dd n\dd t\dd k\\
+&= c_G\int_K P(f, z, x, k)\phi(k)\dd k \quad \text{(by \eqref{eq:8.11})}
+\end{aligned}
+\]
+
+where
+
+\[
+P(f, z, x, y) = e^{-(z+1)H(x)}\sum_{\mu \in A_\Q}\int_{N_A}\int_{-i\infty}^{\infty} f(x^{-1}n\mu h_ty)e^{(z-1)t}\dd n\dd t.
+\]
+
+Keep in mind that $f$ is compactly supported modulo $Z_\infty^{+}$ and $P(f,z,x,y)$ is a continuous function on the compact space $(N_A A_Q A_\infty^{+} \backslash G_A) \times (N_A A_Q A_\infty^{+} \backslash G_A)$. Thus $R(f,z)$ is a Hilbert-Schmidt operator on $H$ with continuous kernel $P(f,z,x,y)$.
+
+On the other hand it is also clear from the formula for $P(f, z, x, y)$ that for fixed $x, y$, and $f$, $P(f, z, x, y)$ is a Schwartz-Bruhat function of $z$ in $i\R$ (it is the Fourier transform of a compactly supported function!). Therefore the integral
+
+\[
+\int_{-i\infty}^{i\infty}P(f, z, x, y)\dd|z|
+\]
+
+is certainly finite. The lemma then follows from the well-known fact that
+
+\[
+\sum_j R(f, z)\phi_j(x)\overline{\phi_j(y)}
+\]
+
+also defines a Hilbert-Schmidt kernel for $R(f, z)$ (which coincides with $P(f, z, x, y)$ since both kernels are continuous in $x$ and $y$).
+
+\end{proof}
+
+We shall now use the identity
+
+\[
+K'(x, f, \varepsilon) = \text{(i)} + \text{(ii)} + \text{(iii)} + \text{(iv)}
+\]
+
+to show that $J_S + J_r - K'$ contributes nothing to the trace formula.
+
+We deal first with (i) and (ii). From the proof of the last lemma it follows that
+
+\[
+\text{(i)} = \frac{1}{4\pi}\sum_{\delta \in B_\Q \backslash \bG_\Q}\int_{-i\infty}^{i\infty}\sum_{\mu \in A_\Q}\int_{N_A}\int_{-\infty}^{\infty} f(x^{-1}\delta^{-1}n\mu h_t\delta x)e^{-(z+1)t}\dd t\dd n\dd|z|\chi_\varepsilon(\delta x).
+\]
+
+Thus by Fourier inversion
+
+\[
+\text{(i)} = \frac{1}{2}\sum_{\delta \in B_\Q \backslash \bG_\Q}\sum_{\mu \in A_\Q}\left(\int_{N_A} f(x^{-1}\delta^{-1}n\mu\delta x)\dd n\right)\chi_\varepsilon(\delta x).
+\]
+
+Similarly (ii) is given by the same expression, since $\{M(z)\phi_j\}_j$ is again an orthonormal basis for $H$ and $M(z)$ intertwines $R(f,z)$ with $R(f,-z)$. The result is that the contributions from (i) and (ii) exactly cancel the contributions from $J_r(x,f,\varepsilon)$ and $J_S(x,f,\varepsilon)$ (cf. Lemma~\ref{lem:9.13}). Therefore it remains only to prove:
+
+\begin{lemma}\label{lem:9.15}
+
+The integrals of (iii) and (iv) over $X$ approach 0 as $\varepsilon \to +\infty$.
+
+\end{lemma}
+
+\begin{proof}
+
+Let $h_\varepsilon(x)$ denote the function defined by (iii) say. If $\gamma(c)$ is a fundamental domain for $Z_\infty^{+}G_Q$ in $G_A$ then the integral of $h_\varepsilon(x)$ over $X$ is bounded by
+
+\[
+c_G\int_{\log c}^{\infty}\left|\int_{N_Q \backslash N_A}\int_K h_\varepsilon(nh_tk)\dd n\dd k\right|e^{2t}\dd t.
+\]
+
+But by the definition of the inner product in $H$ this last integral equals
+
+\[
+\frac{1}{4\pi}\int_{\log \varepsilon}^{\infty}\left|\int_{-i\infty}^{i\infty}\sum_j (M(z)R(f, z)\phi_j, \phi_j)e^{-2zt}\dd|z|\right|\dd t.
+\]
+
+So since the $K$-finiteness of $f$ implies that the function
+
+\[
+(M(z)R(f, z)\phi_j, \phi_j) \quad (z \in i\R)
+\]
+
+is identically zero for all but finitely many $j$, the contour of integration above can be changed to a line $\{z : \operatorname{Re}(z) = \delta, \delta > 0\}$. From this the desired conclusion follows for (iii) and a similar argument applies to (iv).
+
+\end{proof}
+
+Summing up the results of this subsection we have:
+
+\begin{proposition}[\normalfont (Contribution of the first parabolic term to the trace formula.)]\label{prop:9.16}
+
+The first parabolic term contributes nothing to the trace formula.
+
+\end{proposition}
+
+\begin{proof}
+
+The integral (over $X$) of this term depends on $\varepsilon$ and approaches 0 as $\varepsilon \to \infty$. Since the trace of $R_0^{+}(f)$ is independent of $\varepsilon$ the proposition is obvious.
+
+\end{proof}
+
+\subsection{The Second Parabolic Term}
+
+This term equals
+
+\[
+I_r(x, f, \varepsilon) + I_s(x, f, \varepsilon)
+\]
+
+where $I_r$ and $I_s$ are defined by \eqref{eq:9.37} and \eqref{eq:9.39}. From some (at first formal) manipulations it will follow that both $I_r$ and $I_s$ are integrable over $X$ (hence the notation $I$). Our task will be to evaluate their integral.
+
+We deal first with $I_r(x, f, \varepsilon)$. Applying the usual integration technique yields the identity
+
+\[
+\begin{aligned}
+\int_X I_r(x, f, \varepsilon)\dd x &= \frac{1}{2}\sum_{\mu \in A_r}\int_{Z_\infty^{+}A_\Q \backslash \bG_\A} f(x^{-1}\mu x)(1 - \chi_\varepsilon(x) - \chi_\varepsilon(wx))\dd x\\
+&= \frac{c_G}{2}\sum_{\mu \in A_r}\int_{A_\Q \backslash B_A^1}\int_K f(k^{-1}b^{-1}\mu bk)\int_{-\infty}^{\infty} 1 - \chi_\varepsilon(bh_t) - \chi_\varepsilon(wbh_t)\dd t\dd b\dd k
+\end{aligned}
+\]
+
+since on $B_A^1$ the modular function $\delta_B$ is trivial.
+
+On the other hand it is easy to see that if $b \in B_A^1$ then $1 - \chi_\varepsilon(bh_t) - \chi_\varepsilon(wbh_t)$ is precisely the characteristic function of the compact interval $[H(wn) - \log\varepsilon, \log\varepsilon]$. This implies that $I_r(x, f, \varepsilon)$ is integrable (since $f$ is of compact support). It also implies that the integral of $I_r(x, f, \varepsilon)$ equals
+
+\begin{equation}\label{eq:9.47}
+(\log\varepsilon)c_G\sum_{\mu \in A_r}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)H(wn)\dd n\dd k\tag{9.47}
+\end{equation}
+
+\begin{equation}\label{eq:9.48}
+- \frac{c_G}{2}\sum_{\mu \in A_r}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)H(wn)\dd n\dd k.\tag{9.48}
+\end{equation}
+
+Observe that the $\varepsilon$-dependence of $I_r(x, f, \varepsilon)$ has been isolated entirely in the term \eqref{eq:9.47} and then in a quite transparent fashion. This is significant because $\tr(R_0^{+}(f))$ does not depend on $\varepsilon$. Therefore \eqref{eq:9.47} will have to cancel out with another $\varepsilon$-term sooner or later. The term \eqref{eq:9.48} on the other hand, represents half of the parabolic contribution of $K(x, x)$ to the trace formula. As such it should not be expected to cancel out.
+
+Now we deal similarly with $I_S(x, f, \varepsilon)$. Since $1 - \chi_\varepsilon(bh_t)$ is the characteristic function of $(-\infty, \log\varepsilon]$,
+
+\[
+\begin{aligned}
+\int_X I_S(x, f, \varepsilon)\dd x &= \sum_{\mu \in Z_\Q}\int_{Z_\infty^{+}B_\Q \backslash \bG_\A}\sum_{\substack{\nu \in N_\Q\\ \nu \neq e}} f(x^{-1}\mu\nu x)(1 - \chi_\varepsilon(x))\dd x\\
+&= c_G\sum_{\mu \in Z_\Q}\int_{-\infty}^{\infty} e^{-2t}\int_K \sum_{\nu \neq e} f(k^{-1}h_t^{-1}\mu\nu h_tk)(1 - \chi_\varepsilon(h_t))\dd t\dd k\\
+&= c_G\sum_{\mu \in Z_\Q}\int_K\int_{-\infty}^{\log\varepsilon} e^{-2t}\sum_{\nu \neq e} f(k^{-1}h_t^{-1}\mu\nu h_tk)\dd t\dd k.
+\end{aligned}
+\]
+
+But for large negative values of $t$ (and all but finitely many $\mu \in Z_\Q$, $\nu \in N_\Q$) $h_t^{-1}\mu\nu h_t$ cannot lie within the support of $f$. Therefore $I_S(x, f, \varepsilon)$ is indeed integrable over $X$. Its integral is the value at zero of the entire function
+
+\[
+I_\varepsilon(z) = c_G\sum_{\mu \in Z_\Q}\int_K\int_{-\infty}^{\log\varepsilon}\sum_{\nu \neq e} e^{-2t(1+z)}f(k^{-1}h_t^{-1}\mu\nu h_tk)\dd t\dd k.
+\]
+
+To write $I_\varepsilon(0)$ in a more convenient form we need to observe that the only orbit of $A$ acting in $N - \{e\}$ (by conjugation) is the orbit of
+
+\[
+\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix} = n_0.
+\]
+
+The isotropy group of this matrix being $Z$ we may write
+
+\begin{equation}\label{eq:9.49}
+I_\varepsilon(z) = \sum_{\mu \in Z_\Q}\tilde{\theta}(\mu, z, f) - \sum_{\mu \in Z_\Q}c_G\int_{Z_\infty^{+}A_\Q \backslash A_\A}\int_K\left(\sum_{\nu \in N_\Q} f(k^{-1}a^{-1}\mu\nu ak)\left|\frac{a_1}{a_2}\right|^{-(1+z)}\chi_\varepsilon(a)\dd a\dd k\right)\tag{9.49}
+\end{equation}
+
+where
+
+\begin{equation}\label{eq:9.50}
+\tilde{\theta}(\mu, z, f) = c_G\int_{Z_\infty^{+}Z_\Q \backslash A_\A}\int_K f(k^{-1}a^{-1}\mu n_0ak)\left|\frac{a_1}{a_2}\right|^{-(1+z)}\dd a\dd k.\tag{9.50}
+\end{equation}
+
+This expression for $I_\varepsilon(z)$ is desirable because it shoves the $\varepsilon$-dependence of $I_\varepsilon(z)$ entirely into \eqref{eq:9.49}. Consequently one knows a priori that \eqref{eq:9.49} must either go to zero as $\varepsilon \to \infty$ or cancel with some contribution from $-K''(x, f, \varepsilon)$. Actually in this case an argument involving Poisson summation (similar to the argument used to prove Lemma~\ref{lem:9.13}) shows that \eqref{eq:9.49} equals
+
+\begin{equation}\label{eq:9.51}
+-\sum_{\mu \in Z_\Q}c_G\int_{Z_\infty^{+}A_\Q \backslash A_\A}\int_K \hat{f}(0, \mu, k)\left|\frac{a_1}{a_2}\right|^{-z}\chi_\varepsilon(a)\dd a\dd k\tag{9.51}
+\end{equation}
+
+\begin{equation}\label{eq:9.52}
++ \sum_{\mu \in Z_\Q}c_G\int_{Z_\infty^{+}A_\Q \backslash A_\A}\int_K f(\mu)\left|\frac{a_1}{a_2}\right|^{-(z+1)}\chi_\varepsilon(a)\dd a\dd k\tag{9.52}
+\end{equation}
+
+plus an entire function of $z$ whose value at 0 approaches zero as $\varepsilon \to \infty$.
+
+Now for $\operatorname{Re}(z) > 0$, the integral in \eqref{eq:9.51} converges and equals
+
+\[
+-(c_G)\frac{\varepsilon^{-z}}{z}(\log\varepsilon)\int_K \hat{f}(0, \mu, k)\dd k.
+\]
+
+On the other hand, the integral in \eqref{eq:9.52} converges for $\operatorname{Re}(z) > -1$ and in this range equals (some multiple of)
+
+\[
+-\frac{(\varepsilon)^{-(1+z)}}{(1+z)}(\log\varepsilon)(c_G)
+\]
+
+(which obviously approaches 0 at $z = 0$ as $\varepsilon \to \infty$). Consequently we can conclude that:
+
+\begin{enumerate}[(1)]
+
+\item the integral defining $\tilde{\theta}(\mu, z, f)$ is absolutely convergent for $\operatorname{Re}(z) > 0$
+
+\item $\theta(\mu, z, f)$ can be analytically continued to a meromorphic function on $\C$ whose only singularities are poles at $z = 0$ and $z = -1$;
+
+\item modulo a term which approaches 0 as $\varepsilon \to \infty$,
+
+\[
+I_\varepsilon(0) = \lim_{z \to 0}\sum_{\mu \in Z_\Q}\left\{\tilde{\theta}(\mu, z, f) - (c_G)(\log\varepsilon)\frac{\varepsilon^{-z}}{z}\int_K \hat{f}(0, \mu, k)\dd k\right\}
+\]
+
+\end{enumerate}
+
+Summing up then, we have:
+
+\begin{proposition}[\normalfont (Contribution of the second parabolic term to the Trace Formula.)]\label{prop:9.17}
+
+\[
+\begin{aligned}
+\int_X \{I_r(x, f, \varepsilon) + I_S(x, f, \varepsilon)\}\dd x &= \frac{c_G}{2}\sum_{\mu \in A_r}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)H(wn)\dd n\dd k\\
+&\quad + \sum_{\mu \in Z_\Q}\lim_{z \to 0}\frac{\dd}{\dd z}\{z\tilde{\theta}(\mu, z, f)\}\\
+&\quad + (\log\varepsilon)c_G\sum_{\mu \in A_\Q}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)\dd n\dd k.
+\end{aligned}
+\]
+
+\end{proposition}
+
+\begin{proof}
+
+Put together (3) above with \eqref{eq:9.47} and \eqref{eq:9.48}.
+
+\end{proof}
+
+As already remarked, since the last expression in Proposition~\ref{prop:9.17} depends on $\varepsilon$, it must cancel out with some contribution from the third parabolic term $-K''(x, f, \varepsilon)$.
+
+\subsection{The Third Parabolic Term}
+
+To calculate
+
+\[
+\int_X K''(x, f, \varepsilon)\dd x
+\]
+
+let us recall the functions
+
+\[
+E_\varepsilon'(x, \phi, z) = \sum_{\delta \in B_\Q \backslash \bG_\A} E^0(\delta x, \phi, z)\chi_\varepsilon(\delta x)
+\]
+
+and
+
+\begin{equation}\label{eq:9.53}
+K_1(z, f, x) = \frac{1}{4\pi}\sum_{i, j} R_{ij}(f, z)E(x, \phi_i, z)\overline{E(x, \phi_j, z)}.\tag{9.53}
+\end{equation}
+
+Setting
+
+\begin{equation}\label{eq:9.54}
+E_\varepsilon''(x, \phi, z) = E(x, \phi, z) - E_\varepsilon'(x, \phi, z)\tag{9.54}
+\end{equation}
+
+one can define $K_\varepsilon'(z, f, x)$ and $K_\varepsilon''(z, f, x)$ by replacing $E$ in the expression for $K_1(z, f, x)$ above by $E_\varepsilon'$ and $E_\varepsilon''$. Then
+
+\begin{equation}\label{eq:9.55}
+K_1(x, x) = \int_{-i\infty}^{i\infty} K_1(z, f, x)\dd|z|,\tag{9.55}
+\end{equation}
+
+\[
+K'(x, f, \varepsilon) = \int_{-i\infty}^{i\infty} K_\varepsilon'(z, f, x)\dd|z|,
+\]
+
+and
+
+\begin{equation}\label{eq:9.56}
+K''(x, f, \varepsilon) = \int_{-i\infty}^{i\infty}\{K_1(z, f, x) - K_\varepsilon'(z, f, x)\}\dd|z|.\tag{9.56}
+\end{equation}
+
+All these functions are slowly increasing on any Siegel set.
+
+Recall also that for any $t > 0$,
+
+\[
+S(t) = \{x \in \bG_\A: H(x) > \log t\}.
+\]
+
+With $c_1$ equal to the constant of Lemma~\ref{lem:9.8}, fix $t > c_1$.
+
+Denote by $S(t)^{*}$ the projection of $S(t)$ onto $X$ and the closure of the complement of $S(t)^{*}$ in $X$ by $G(t)$. Certainly $G(t)$ is compact, so $K''(x, f, \varepsilon)$ is integrable on $G(t)$, and
+
+\[
+\int_X K''(x, f, \varepsilon)\dd x = \lim_{t \to +\infty}\int_{G(t)} K''(x, f, \varepsilon)\dd x.
+\]
+
+If we substitute the expression \eqref{eq:9.56} for $K''(x, f, \varepsilon)$ and use the relation \eqref{eq:9.54} we conclude that the integral over $X$ of $K''(x, f, \varepsilon)$ is
+
+\[
+\begin{aligned}
+&\lim_{t \to +\infty}\int_{-i\infty}^{i\infty}\int_{G(t)} K_\varepsilon''(z, f, x)\dd x\dd|z|\\
+&+ \lim_{t \to +\infty}\int_{-i\infty}^{i\infty}\int_{G(t)} \frac{1}{4\pi}\sum_{i, j} R_{ij}(f, z)\\
+&\quad\times\left\{E_\varepsilon'(x, \phi_i, z)E_\varepsilon''(x, \phi_j, z) + E_\varepsilon''(x, \phi_i, z)E_\varepsilon'(x, \phi_j, z)\right\}\dd x\dd|z|.
+\end{aligned}
+\]
+
+\begin{lemma}\label{lem:9.18}
+
+For any $i, j$,
+
+\[
+\int_{G(t)} E_\varepsilon'(x, \phi_i, z)\overline{E_\varepsilon''(x, \phi_j, z)}\dd x = 0.
+\]
+
+\end{lemma}
+
+\begin{proof}
+
+First note that since $E(x, \phi_j, z)$ is an automorphic form, the integrand above really is integrable over $X$. Its integral equals
+
+\[
+\begin{aligned}
+&\int_{Z_\infty^{+}B_\Q \backslash \bG_\A} E^0(x, \phi_i, z)\overline{E_\varepsilon''(x, \phi_j, z)}\chi_\varepsilon(x)\dd x\\
+&= \int_{Z_\infty^{+}N_A B_Q \backslash \bG_\A} E^0(x, \phi_i, z)\chi_\varepsilon(x)\int_{N_Q \backslash N_A}\overline{E_\varepsilon''(nx, \phi_j, z)}\dd n\dd x.
+\end{aligned}
+\]
+
+But for $x \in S(\varepsilon)$, $E_\varepsilon'(x, \phi_j, z) = E^0(x, \phi_j, z)$. Therefore the constant term of $E_\varepsilon''(x, \phi_j, z)$ is zero. Similarly, using the assumption that $t > c_1$, one can show that the integral of $E_\varepsilon'(x, \phi_i, z)\overline{E_\varepsilon''(x, \phi_j, z)}$ over $S(t)^{*}$ also is zero, whence the lemma.
+
+\end{proof}
+
+From Lemma~\ref{lem:9.18} it follows that to evaluate the contribution from $K''(x, f, \varepsilon)$ we need only evaluate
+
+\[
+\lim_{t \to +\infty}\int_{-i\infty}^{i\infty}\int_{G(t)} K_\varepsilon''(z, f, x)\dd x\dd|z|
+\]
+
+which in turn equals
+
+\begin{equation}\label{eq:9.57}
+\frac{1}{4\pi}\sum_{i, j}\int_{-i\infty}^{i\infty} R_{ij}(z, f)\left\{\int_X E_\varepsilon''(x, \phi_i, z)\overline{E_\varepsilon''(x, \phi_j, z)}\dd x\right\}\dd|z|.\tag{9.57}
+\end{equation}
+
+Fortunately, from the theory of Eisenstein series, we have:
+
+\begin{lemma}\label{lem:9.19}
+
+For any $i, j$ and $z \in i\R^{\times}$,
+
+\[
+\int_X E_\varepsilon''(x, \phi_i, z)\overline{E_\varepsilon''(x, \phi_j, z)}\dd x
+\]
+
+is the sum of
+
+\[
+2(\log\varepsilon)(\phi_i, \phi_j) - \frac{1}{2}\left\{(M(-z)\frac{\dd}{\dd z}(M(z))\phi_i, \phi_j) - (\phi_i, M(-z)\frac{\dd}{\dd z}(M(z))\phi_j)\right\}
+\]
+
+and
+
+\[
+\frac{1}{2z}\left\{\varepsilon^{2z}(\phi_i, M(z)\phi_j) - \varepsilon^{-2z}(M(z)\phi_i, \phi_j)\right\}
+\]
+
+\end{lemma}
+
+The proof of this result is to be found in Sections 4 and 6 of \cite{Langlands5}. Applying it to \eqref{eq:9.57} yields at last:
+
+\begin{proposition}[\normalfont (Contribution of the third parabolic term to the Trace Formula.)]\label{prop:9.20}
+
+\[
+\begin{aligned}
+-\int_X K''(x, f, \varepsilon)\dd x &= -\frac{\log\varepsilon}{2\pi}\int_{-i\infty}^{i\infty}\tr(R(f, z))\dd|z|\\
+&\quad + \frac{1}{4\pi}\int_{-i\infty}^{i\infty}\tr M(-z)\frac{\dd}{\dd z}(M(z))R(f, z)\dd|z|\\
+&\quad - \frac{1}{4}\tr\{M(0)R(f, 0)\}
+\end{aligned}
+\]
+
+plus an expression which approaches 0 as $\varepsilon \to \infty$.
+
+\end{proposition}
+
+\begin{remark}\label{rem:9.21}
+
+The ``final form'' of the trace formula is now close at hand. Indeed since $\varepsilon$ was assumed to be arbitrarily larger than $c_1$, the contributions from the elliptic, singular, or parabolic terms which depended on $\varepsilon$ but approached 0 as $\varepsilon$ approached $\infty$ can be (and have been) discarded. On the other hand, since $\tr(R_0^{+}(f))$ does not depend on $\varepsilon$, those $\varepsilon$-dependent terms which remain must (and do) cancel each other out. In particular, the first expression in Proposition~\ref{prop:9.20} cancels with the $\varepsilon$-dependent contribution from the second parabolic term (Proposition~\ref{prop:9.17}). (This follows from substituting for $\tr(R(f, z))$ the integral of the kernel $P(f, z, x, x)$ described in the proof of Lemma~\ref{lem:9.14}.)
+
+\end{remark}
+
+\subsection{Final Form of the Trace Formula}
+
+Putting together Remark~\ref{rem:9.21} with Propositions \ref{prop:9.10}, \ref{prop:9.16}, 9.17, and 9.20, we conclude that the trace of $R_0^{+}(f)$ equals the sum of
+
+\[
+\operatorname{measure}(Z_\infty^{+}G_Q \backslash G_A)\sum_{\mu \in Z_\Q} f(\mu),
+\]
+
+\[
+\begin{aligned}
+&\sum_{\gamma \in \{G_e\}}\operatorname{measure}(Z_\infty^{+}G(\gamma)_\Q \backslash G(\gamma)_\A)\int_{G(\gamma)_\A \backslash G_\A} f(x^{-1}\gamma x)\dd x,\\
+&\qquad - \frac{c_G}{2}\sum_{\mu \in A_r}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)H(wn)\dd n\dd k
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+&\sum_{\mu \in Z_\Q}\lim_{z \to 0}\frac{\dd}{\dd z}\{z\tilde{\theta}(\mu, z, f)\},\\
+&- \frac{1}{4\pi}\int_{-i\infty}^{i\infty}\tr\left\{M(-z)\frac{\dd}{\dd z}(M(z))R(f, z)\right\}\dd|z|
+\end{aligned}
+\]
+
+and
+
+\[
+-\frac{1}{4}\tr M(0)R(f, 0).
+\]
+
+In applying this formula it is often convenient to rewrite some of the terms above as ``local integrals'' as follows.
+
+Recall that $H\left(\begin{bmatrix} a_1 & 0 \\ 0 & a_2 \end{bmatrix}\right) = \log\left|\frac{a_1}{a_2}\right|^{1/2}$. Therefore if we set
+
+\[
+\lambda(n) = \left|\frac{a_1}{a_2}\right|^{1/2}
+\]
+
+whenever $wn = n'\begin{pmatrix} a_1 & 0 \\ 0 & a_2 \end{pmatrix}k'$, the third term in the formula for the trace of $R_0^{+}(f)$ becomes
+
+\[
+\begin{aligned}
+&- \frac{c_G}{2}\sum_{\mu \in A_r}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)\log\lambda(n)\dd n\dd k\\
+&= - \frac{c_G}{2}\sum_{\mu \in A_r}\sum_{p\,(\text{prime})}\int_{N_A}\int_K f(k^{-1}n^{-1}\mu nk)\log\lambda(n_p)\dd n\dd k\\
+&= - \frac{c_G}{2}\sum_{\mu \in A_r}\sum_{p\,(\text{prime})}\int_{N_p}\int_{K_p} f_p(k_p^{-1}n_p^{-1}\mu n_pk_p)\log\lambda(n_p)\dd n_p\dd k_p\\
+&\quad\times\left(\prod_{w \neq p}\int_{N_w}\int_{K_w} f_w(k_w^{-1}n_w^{-1}\mu n_wk_w)\dd n_w\dd k_w\right)
+\end{aligned}
+\]
+
+since $\log\lambda(n) = \sum_p \log\lambda(n_p)$. (We are assuming that $f$ is of the form $\prod_p f_p$ with $f_\infty \in C_c^\infty(Z_\infty^{+} \backslash G_\infty)$, $f_p \in C_c^\infty(G_p)$ for all finite $p$, and $f_p$ the characteristic function of $K_p$ for almost every finite $p$.)
+
+To deal with the fourth term, recall that
+
+\[
+\tilde{\theta}(\mu, f, z) = c_G\int_{Z_\infty^{+}Z_\Q \backslash A_\A}\int_K f(k^{-1}a^{-1}\mu n_0ak)\left|\frac{a_1}{a_2}\right|^{-(1+z)}\dd a\dd k,
+\]
+
+where $n_0 = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$ and $a = \begin{bmatrix} a_1 & 0 \\ 0 & a_2 \end{bmatrix}$. Now for each prime $p$, set
+
+\[
+\tilde{\theta}(\mu, f_p, z) = \frac{1}{L(1 + z, 1_p)}\int_{Z_p \backslash A_p}\int_{K_p} f_p(h_p^{-1}a_p^{-1}\mu n_0a_pk_p)\left|\frac{(a_p)_1}{(a_p)_2}\right|^{-(1+z)}\dd a_p\dd k_p,
+\]
+
+where $a_p = \begin{bmatrix} (a_p)_1 & 0 \\ 0 & (a_p)_2 \end{bmatrix}$ and $1_p$ is the trivial character of $\Q_p^{\times}$. Then
+
+\[
+\lim_{z \to 0}\frac{\dd}{\dd z}\{z\tilde{\theta}(\mu, f, z)\} = \lim_{z \to 0}\frac{\dd}{\dd z}\left\{c_G\prod_p zL(1 + z, 1_p)\theta(\mu, f_p, z)\right\}.
+\]
+
+But $L(1 + z, 1) = \prod_p L(1 + z, 1_p)$, so the Laurent expansion of $\prod_p L(1 + z, 1_p)$ about $z = 0$ is
+
+\[
+\frac{\lambda_{-1}}{s} + \lambda_0 + \cdots .
+\]
+
+Therefore, the fourth term in the formula for the trace of $R_0^{+}(f)$ reads
+
+\[
+\sum_{\mu \in Z_\Q}c_G\left[\lambda_0\prod_p\theta(0, f_p, \mu) + \lambda_{-1}\left\{\sum_p \theta'(0, f_p, \mu)\prod_{w \neq p}\theta(0, f_w, \mu)\right\}\right].
+\]
+
+Summing up, we have:
+
+\begin{theorem}[\normalfont (The Selberg Trace Formula.)]\label{thm:9.22}
+
+The trace of $R_0^{+}(f)$ is given by the sum of the following terms:
+
+\begin{enumerate}[(i)]
+
+\item
+
+\[
+\operatorname{meas}(Z_\infty^{+}G_Q \backslash G_A)\sum_{\mu \in Z_\Q} f(\mu),
+\]
+
+\item
+
+\[
+\sum_{\gamma \in \{G_e\}}\operatorname{meas}(Z_\infty^{+}G(\gamma)_\Q \backslash G(\gamma)_\A)\int_{G(\gamma)_\A \backslash G_\A} f(x^{-1}\gamma x)\dd x,
+\]
+
+\item
+
+\[
+-\frac{c_G}{2}\sum_{\mu \in A_r}\sum_p\left\{D(\mu, f_p)\prod_{w \neq p}F_{f_w}^{\A}(\mu)\right\},
+\]
+
+\item
+
+\[
+c_G\sum_{\mu \in Z_\Q}\lambda_0\prod_p\theta(0, f_p, \mu) + \lambda_{-1}\sum_p\theta'(0, f_p, \mu)\prod_{w \neq p}\theta(0, f_w, \mu)
+\]
+
+\item
+
+\[
+\frac{1}{4\pi}\int_{-i\infty}^{i\infty}\tr\left\{M(-z)\frac{\dd}{\dd z}(M(z))R(f, z)\right\}\dd|z|, \quad \text{and}
+\]
+
+\item
+
+\[
+-\frac{1}{4}\tr(M(0)R(f, 0)).
+\]
+
+\end{enumerate}
+
+Here
+
+\[
+D(\mu, f_p) = \int_{N_p}\int_{K_p} f_p(k^{-1}n^{-1}\mu nk)\log\lambda(n)\dd n\dd k,
+\]
+
+\[
+F_{f_w}^{\A}(\mu) = \int_{N_w}\int_{K_w} f_w(k^{-1}n^{-1}\mu nk)\dd n\dd k,
+\]
+
+\[
+\theta(z, f_w, \mu) = \frac{1}{L(1 + z, 1_p)}\int_{Z_p \backslash A_p}\int_{K_p} f(k^{-1}a^{-1}\mu n_0ak)\left|\frac{a_1}{a_2}\right|^{-(1+z)}\dd a\dd k
+\]
+
+$\theta'(0, f_p, \mu)$ is the derivative of $\theta(z, f_p, \mu)$ at 0, and $\lambda_{-1}$ and $\lambda_0$ are the first two terms of the Laurent expansion of $L(1 + z, 1)$ about $z = 0$.
+
+\end{theorem}
+
+\begin{remark}\label{rem:9.23}
+
+The contributions to the trace formula from the singular and elliptic conjugacy classes are reminiscent of the formulas which obtain in the case of compact quotient. Indeed, suppose $G$ is an algebraic reductive group which is defined over $\Q$ and such that
+
+\[
+\bX = Z_\infty^{+}\bG_\Q \backslash \bG_\A
+\]
+
+is compact. (Examples of such groups arise from the multiplicative groups of the quaternion algebras considered in Section~\ref{ch:10}.) Let $R(g)$ as usual denote the natural representation of $\bG_\A$ in $L^2(X)$ and let $f(g)$ be (essentially) arbitrary in $C_c^\infty(Z_\infty^{+} \backslash G_A)$. Then the trace of $R(f)$ exists and equals
+
+\[
+\sum_{\{\gamma\}}\operatorname{meas}(Z_\infty^{+}G(\gamma)_\Q \backslash G(\gamma)_\A)\int_{G(\gamma)_\A \backslash G_\A} f(x^{-1}\gamma x)\dd x
+\]
+
+the summation extending over a complete set of representatives of the conjugacy classes in $\bG_\Q$.
+
+The new features in the case of non-compact quotient (in particular $\GL(2)$) are obviously the contributions from the parabolic conjugacy classes and Eisenstein series (which reflect the fact that some part of the spectrum, namely the continuous spectrum, has been cut away). These latter contributions (i.e. (iii)--(vi) in Theorem~\ref{thm:9.22}) are not as gruesome as they might appear to be (see Remark 9.26 below). Nevertheless it is a happy circumstance that for quite general $f$ these terms actually vanish. Indeed, suppose $f_v$ is such that
+
+\[
+\int_{N_v}\int_{K_v} f_v(k^{-1}ank)\dd n\dd k = 0
+\]
+
+for all $a = \begin{bmatrix} a_1 & 0 \\ 0 & a_2 \end{bmatrix}$ in $A_v$. (A well-known example of such an $f_v$ is any $K_v$-finite matrix coefficient of a supercuspidal representation of $G_v$.) Then it can be shown that (in the terminology of Theorem~\ref{thm:9.22})
+
+\[
+F_{f_v}^{\A}(\mu) = 0 = \theta(0, f_v, \mu)
+\]
+
+for all $\mu$, and $\tr(R(f, z)) = 0$. Consequently the trace formula simplifies considerably:
+
+\end{remark}
+
+\begin{corollary}\label{cor:9.24}
+
+Suppose $f = \prod f_p$, and suppose that for at least two primes $p$,
+
+\[
+\int_{N_p}\int_{K_p} f_p(k^{-1}ank)\dd n\dd k = 0.
+\]
+
+Then
+
+\[
+\begin{aligned}
+\tr R_0^{+}(f) &= \operatorname{meas}(Z_\infty^{+}G_\Q \backslash G_\A)\sum f(\mu)\\
+&\quad + \sum_{\gamma \in \{G_e\}}\operatorname{meas}(Z_\infty^{+}G(\gamma)_\Q \backslash G(\gamma)_\A)\int_{G(\gamma)_\A \backslash G_\A} f(x^{-1}\gamma x)\dd x.
+\end{aligned}
+\]
+
+\end{corollary}
+
+This simple consequence of the trace formula will be seen to have powerful applications to number theory in Section~\ref{ch:10}.
+
+\begin{remark}[\normalfont (Concerning an Explicit Trace Formula.)]\label{rem:9.25}
+
+One of the fundamental problems of harmonic analysis on groups is to find the Fourier transforms of certain naturally defined invariant distributions. Let us recall that a distribution $T$ is invariant on $G$ if $T(f^y) = T(f)$ for every $f \in C_c^\infty(G)$, and $y \in G$, where $f^y(x) = f(y^{-1}xy)$. The basic invariant distributions on $G$ are the characters of irreducible representations of $G$; these distributions are basic because (like $e^{ixy}$ for $\R$) they are eigen-distributions for the center of the universal enveloping algebra of $G$.
+
+The basic problem just alluded to amounts to finding a linear functional on the space of invariant eigendistributions which reproduces $T(f)$. For example, if $T$ is the distribution described by
+
+\[
+R: f \to f(e),
+\]
+
+then a solution to this problem is ``simply'' the Plancherel formula for $G$. On the other hand, if
+
+\[
+T(f) = \tr R_0^{+}(f),
+\]
+
+this problem amounts to finding an explicit form of the trace formula analogous to \eqref{eq:9.16} in the case of compact quotient. To resolve it one needs to individually analyze the distributions described by (i)--(vi) in Theorem~\ref{thm:9.22}. (WARNING: although the sum of these terms defines an invariant distribution each term individually need not be invariant.)
+
+It turns out that each of the terms (i), (ii), and (vi) are invariant but that (iii), (v) and (vi) are not. Of course the distributions (vi) and (vii) are already expressed in terms of characters (involving the representations $R(x, z)$) so we need only consider the remaining terms (i)--(iv). Of these, the simplest to deal with are (i) and (ii). In (iii) and (iv) one is reduced to considering the local distributions
+
+\[
+f \to D(\mu, f_p),
+\]
+
+\[
+f \to F_{f_p}^{\A}(\mu)
+\]
+
+and
+
+\[
+f \to \theta(0, f_p, \mu) \quad \text{or} \quad \theta'(0, f_p, \mu).
+\]
+
+The first of these distributions is non-invariant but can certainly be ``inverted'' in the real case. Indeed if $p = \infty$, $\lambda(n) = (1 + x^2)^{-\frac{1}{2}}$ if $n = \begin{bmatrix} 1 & x \\ 0 & 1 \end{bmatrix}$. In the p-adic case, $\lambda(n) = \max\{1, |x|^{-1}\}$. Although the requisite computations have yet to be done in this case they almost surely can be, given our current knowledge of $\GL(2)$ over the p-adics.
+
+The distribution $F_{f_p}^{\A}(\mu)$ is invariant and well studied and its ``Fourier transform'' is concentrated entirely on principal series representations. The distributions involving $\theta(0, \mu, f_p)$, on the other hand, are considerably more difficult to deal with. In the generality of an arbitrary reductive group the investigation of almost all these distributions remains an essentially open area for research. Initial results in the rank one case have been obtained recently by \cite{SallyWarner} and \cite{Arthur2}.
+
+\end{remark}
+
+\section*{Notes and References}
+
+\addcontentsline{toc}{subsection}{Notes and References}
+
+As the name implies, the Selberg trace formula was introduced by \cite{Selberg} in 1956. The first complete (published) proof however appeared only recently. In \cite{DufloLabesse} a complete proof is given for $\operatorname{PGL}(2)$. In \cite{JacquetLanglands} a proof for $\GL(2)$ more along the original lines of Selberg's approach is sketched. A complete proof for arbitrary reductive groups of rank one (along these same lines) is the subject matter of [Arthur
+
+We have included a complete proof for $\GL(2)$ because all the main ideas of the rank one proof already appear and then more clearly (for some people).
+
+If the reader wishes to compare our Theorem~\ref{thm:9.22} with the trace formula described on p.~516 of \cite{JacquetLanglands} he should keep in mind that our term (iv) may be expressed as the sum of invariant and non-invariant expressions (which correspond respectively to Jacquet-Langlands' (vii) and (viii)). Furthermore, in Jacquet-Langlands' term (iv), there is a misprint: $c$ should read $c/2$. Their terms (ii) and (iii) correspond to our (ii) but reflect the fact that they are working over an arbitrary global field. This generality requires little additional work. (Since elliptic conjugacy classes in $\bG_F$ are indexed by quadratic extensions of $F$ the two terms for Jacquet-Langlands' elliptic contribution reflect the fact that (in the case of nonzero characteristic) some of these extensions are separable and others are not.)
+
+\begin{sloppypar}
+
+Explicit forms of the trace formula in the case of compact quotient are described in \cite{GelfandGraevPyatetskiiShapiro}. In the case of non-compact quotients the complexity of such a formula has already been noted. Nevertheless for some applications a compromise is still sufficient for dramatic results. The case in point is the computation of the trace of the classical Hecke operators $T(p)$ (acting on $S_k(\Gamma_0(N))$). The application of the trace formula to this problem was carried out by Selberg in his original paper and is described in representation theoretic language in \cite{DufloLabesse}. The idea is basically the following.
+
+\end{sloppypar}
+
+Using harmonic analysis on $\GL(2)$ over local fields (in particular the reals) one can show that there is a function
+
+\[
+f = \prod_{p \leq \infty} f_p
+\]
+
+in $C_c^\infty(Z_\infty^{+} \backslash G_A)$ such that $R_0^{+}(f)$ annihilates the orthocomplement of (the image of) $S_k(\SL(2,\Z))$ in $L^2(X)$ but on $S_k(\SL(2,\Z))$ coincides with the familiar action of $p^{k/2 - 1}T(p)$. (Cf. Lemma~\ref{lem:3.7}; the crucial part is the choice of $f_\infty$.) The point is that for this choice of $f$
+
+\[
+\tr R_0^{+}(f) = \tr\left\{p^{k/2 - 1}T(p)\right\}
+\]
+
+so the computation of the trace of $T(p)$ is reduced to ``inverting'' $\tr R_0^{+}(f)$ for a very special choice of $f$. The ensuing computations are by no means trivial but they are possible.
+
+The result is the ``classical formula of Eichler-Selberg'' described on p.~283 of \cite{DufloLabesse}. A special case of this formula, corresponding to $p = 1$, essentially gives the dimension of $S_k(\Gamma_0(N))$. Although dimension formulas of this type are entirely classical (by Riemann-Roch; see for example \cite{Shimura}) the formulas for the trace of $T(p)$ represent a real triumph for Selberg's theory.
+
+Further applications of explicit (or semi-explicit) forms of the trace formula are described or referred to in \cite{GelfandGraevPyatetskiiShapiro}, \cite{DufloLabesse}, \cite{Labesse}, and \cite{JacquetLanglands}. If one wants to use the trace formula to prove directly that a given representation of $\GL(2, \A)$ occurs in $L^2(X)$ (without examining its L-function) it seems (unfortunately) that one has to have still more explicit p-adic information than is at present available.

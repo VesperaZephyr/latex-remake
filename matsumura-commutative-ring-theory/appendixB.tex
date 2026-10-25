@@ -1,0 +1,491 @@
+% ============ Appendix B. Some homological algebra (原书 pp.274-282) ============
+\chapter*{Appendix B}
+\addcontentsline{toc}{chapter}{Appendix B: Some homological algebra}
+\markboth{Appendix B}{Some homological algebra}
+\renewcommand{\thetheorem}{B\arabic{theorem}}
+\setcounter{theorem}{0}
+
+\vspace*{-0.5cm}
+\begin{center}
+  {\Large\bfseries Some homological algebra}
+\end{center}
+\vspace{0.3cm}
+
+Let $A$ be a ring; by a map from an $A$-module into another we mean an
+$A$-linear map.
+
+\medskip
+\noindent\textbf{Complexes}
+
+By a complex we mean a sequence
+\[
+  \cdots \to K_{n+1} \xrightarrow{d_{n+1}} K_n \xrightarrow{d_n} K_{n-1} \to \cdots
+\]
+of $A$-modules and $A$-linear maps such that $d_{n-1} \circ d_n = 0$ for every $n$.
+This complex is written $K_\bullet$. Since $\Im(d_{n+1}) \subset \Ker(d_n)$ we can define
+$H_n(K_\bullet) = \Ker(d_n)/\Im(d_{n+1})$ to be the \emph{homology} of $K_\bullet$ in dimension $n$. To
+say that $H_n(K_\bullet) = 0$ for all $n$ is to say that $K_\bullet$ is exact. We also consider
+complexes in which the indices go the other way, $\cdots \to K^n \to K^{n+1} \to \cdots$,
+and for these we write $K^\bullet$ for the complex, and
+$H^n(K^\bullet) = \Ker(d_n)/\Im(d_{n-1})$ for the \emph{cohomology} of $K^\bullet$ in dimension $n$.
+From now on we often omit the indices, writing $d$ for $d_n$. We call $d$ the
+\emph{differential} of the complex $K_\bullet$.
+
+A morphism $f\colon K_\bullet \to K'_\bullet$ of complexes is a family $f = (f_n)_{n \in \mathbb{Z}}$ of
+$A$-linear maps $f_n\colon K_n \to K'_n$ satisfying $d' \circ f_n = f_{n-1} \circ d$, or in other
+words a commutative diagram
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & K_n \arrow[r] \arrow[d, "f_n"] & K_{n-1} \arrow[r] \arrow[d, "f_{n-1}"] & K_{n-2} \arrow[r] \arrow[d, "f_{n-2}"] & \cdots \\
+\cdots \arrow[r] & K'_n \arrow[r] & K'_{n-1} \arrow[r] & K'_{n-2} \arrow[r] & \cdots
+\end{tikzcd}
+\]
+In an obvious way, $f$ induces a linear map $H_n(K_\bullet) \to H_n(K'_\bullet)$ between the
+homology modules in each dimension; this is often written $f_{n*}$, or simply $f$
+if there is no fear of confusion. If $f, g\colon K_\bullet \to K'_\bullet$ are two morphisms we say
+that $f$ and $g$ are \emph{homotopic} (denoted $f \sim g$) if for each $n$ there is a linear map
+$h_n\colon K_n \to K'_{n+1}$ such that
+\[
+  f_n - g_n = d'h_n + h_{n-1}d.
+\]
+If this happens then $f$ and $g$ induce the same map $H_n(K_\bullet) \to H_n(K'_\bullet)$ on
+homology. Two complexes $K_\bullet$ and $K'_\bullet$ are said to be \emph{homotopy equivalent} if
+there exist morphisms $f\colon K_\bullet \to K'_\bullet$ and $g\colon K'_\bullet \to K_\bullet$ such that $gf \sim 1$,
+and $fg \sim 1_{K'}$, where $1$ denotes the identity map $K_\bullet \to K_\bullet$. Homotopy
+equivalent complexes have the same homology.
+
+A sequence of complexes
+\[
+  0 \to K'_\bullet \xrightarrow{f} K_\bullet \xrightarrow{g} K''_\bullet \to 0
+\]
+is said to be \emph{exact} if
+\[
+  0 \to K'_n \xrightarrow{f_n} K_n \xrightarrow{g_n} K''_n \to 0
+\]
+is exact for every $n$. In this case, a connecting homomorphism
+$\delta_n\colon H_n(K''_\bullet) \to H_{n-1}(K'_\bullet)$ is defined as follows: for $\zeta \in H_n(K''_\bullet)$, choose
+$x \in \Ker d''_n$ representing $\zeta$, and take $y \in K_n$ such that $g(y) = x$; then since
+$g(dy) = 0$ there is a well-determined $z \in K'_{n-1}$ for which $f_{n-1}(z) = dy$, and
+$dz = 0$. The class $\xi \in H_{n-1}(K')$ represented by $z$ can easily be seen to depend
+only on $\zeta$, and $\delta_n$ is defined by $\delta_n(\zeta) = \xi$. The following sequence is then
+exact:
+\[
+  \cdots \to H_n(K'_\bullet) \xrightarrow{f} H_n(K_\bullet) \xrightarrow{g} H_n(K''_\bullet)
+      \xrightarrow{\delta_n} H_{n-1}(K'_\bullet) \to \cdots
+\]
+The proof does not require anything new, and is well-known, so that we omit
+it; this should be thought of as a fundamental theorem of homology theory.
+The above sequence is called the \emph{homology long exact sequence} of the short exact
+sequence $0 \to K'_\bullet \to K_\bullet \to K''_\bullet \to 0$.
+
+\medskip
+\noindent\textbf{Double complexes}
+
+A double complex of $A$-modules is a doubly indexed family
+$K_{\bullet\bullet} = (K_{pq})_{p, q \in \mathbb{Z}}$ of $A$-modules, with two sets of $A$-linear maps
+$d'\colon K_{pq} \to K_{p-1,q}$ and $d''\colon K_{pq} \to K_{p,q-1}$ for which $d'd' = 0$, $d''d'' = 0$ and
+$d'd'' = d''d'$. Given a double complex $K_{\bullet\bullet}$, if we set
+\[
+  K_n = \bigoplus_{p + q = n} K_{pq}
+\]
+and define $d_n\colon K_n \to K_{n-1}$ by
+\[
+  dx = d'x + (-1)^p d''x \quad \text{if } x \in K_{pq},
+\]
+then since $dd = 0$, the $\{K_n\}$ form an ordinary complex with differential $d$. The
+homology of this complex is called the homology of $K_{\bullet\bullet}$, and written
+$H_\bullet(K_{\bullet\bullet})$, or simply $H(K)$.
+
+To treat homology and cohomology in a unified manner, we fix the following
+convention on raising and lowering indices: $K_{pq} = K^{-p,-q} = K^{p,q} = K^{-p,-q}$.
+For example, given a double complex $(K^{pq})$ with
+$d'\colon K^{pq} \to K^{p+1,q}$ and $d''\colon K^{pq} \to K^{p,q+1}$, we think of $K^{pq}$ as
+$K_{-p,-q}$, and set
+\[
+  K^n = \bigoplus_{p + q = n} K^{pq}.
+\]
+
+The basic technique for studying the homology of double complexes is spectral
+sequences, but we leave this to specialist texts, and only consider here the
+extreme cases which we will use later.
+
+We can fix the first index $p$ in $K_{\bullet\bullet}$ getting a complex $K_{p\bullet}$:
+\[
+  \cdots \to K_{p,q+1} \xrightarrow{d''} K_{pq} \xrightarrow{d''} K_{p,q-1} \to \cdots
+\]
+Similarly, for fixed $q$, $d'$ defines a complex $K_{\bullet q}$.
+
+Now suppose that $K_{\bullet\bullet}$ satisfies the condition $K_{pq} = 0$ if $p$ or $q < 0$ (a
+first quadrant double complex). We set $H_0(K_{p\bullet}) = K_{p0}/d''K_{p1} = X_p$; then
+$d'$ induces a map $X_p \to X_{p-1}$, making the $X_p$ into a complex $X_\bullet$. Similarly,
+$d''$ makes the $H_q(K_{\bullet q}) = Y_q$ into a complex $Y_\bullet$. In this notation we have
+the following theorem.
+
+\begin{theorem}\label{thm:B1}
+Suppose that the double complex $K_{\bullet\bullet}$ satisfies the conditions
+\[
+  K_{pq} = 0 \quad \text{for } p \text{ or } q < 0,
+\]
+and
+\[
+  H_q(K_{p\bullet}) = 0 \quad \text{for } q > 0 \text{ and all } p.
+\]
+Then in the above notation we have
+\[
+  H_n(K) \cong H_n(X_\bullet) \quad \text{for all } n.
+\]
+If in addition we have $H_p(K_{\bullet q}) = 0$ for $p > 0$ and all $q$ then
+\[
+  H_n(X_\bullet) = H_n(K) = H_n(Y_\bullet).
+\]
+\end{theorem}
+
+\begin{proof}[Sketch proof]
+Write $a_{ij}$ to denote an element of $K_{ij}$. We define a map
+$\Phi\colon K_n \to X_n$ by taking $a = \sum_{i=0}^{n} a_{n-i,i} \in K_n$ into $\varphi(a_{n0}) \in X_n$, where
+$\varphi\colon K_{n0} \to X_n$ denotes the canonical map. Then $\Phi$ is a morphism of
+complexes, and we prove that it induces an isomorphism on homology.
+
+Let $x \in X_n$ with $d'x = 0$. We can take $a_{n0}$ such that $x = \varphi(a_{n0})$, and
+then since $\varphi(d'a_{n0}) = d'x = 0$ there exists $a_{n-1,1}$ such that
+$d'a_{n0} = d''a_{n-1,1}$. In turn, since
+$d''(d'a_{n-1,1}) = d'(d''a_{n-1,1}) = d'd'a_{n0} = 0$ and since $H_1(K_{n-2,\bullet}) = 0$ there
+exists $a_{n-2,2}$ such that $da_{n-1,1} = d''a_{n-2,2}$; then proceeding as before, we can
+choose $a_{n-i,i}$ for $0 \le i \le n$ such that $d'a_{n-i,i} = d''a_{n-i-1,i+1}$ for
+$0 \le i < n$. Then for a suitable choice of signs,
+$a = \sum_i a_{n-i,i} \in K_n$ satisfies $da = 0$ and $\Phi(a) = x$, and this proves that
+$\Phi$ induces a surjection $H_n(K) \to H_n(X_\bullet)$. The proof that this is also
+injective is similar. The second part follows by symmetry from the first.
+\end{proof}
+
+Dually, we have the following theorem for cohomology.
+
+\begin{theorem}\label{thm:B2}
+Suppose that the double complex $K^{\bullet\bullet}$ satisfies
+\[
+  K^{pq} = 0 \quad \text{for } p \text{ or } q < 0
+\]
+and
+\[
+  H^q(K^{p\bullet}) = 0 \quad \text{for } q > 0 \text{ and all } p.
+\]
+Then making $X^p = \Ker(d''\colon K^{p0} \to K^{p1})$ into a complex $X^\bullet$ by means of
+$d'$, we have
+\[
+  H^n(K) \cong H^n(X^\bullet),
+\]
+If in addition $H^p(K^{\bullet q}) = 0$ for $p > 0$ and all $q$ then
+\[
+  H^n(Y^\bullet) \cong H^n(K) \cong H^n(X^\bullet),
+\]
+where $Y^\bullet$ is the complex made from $Y^q = \Ker(d'\colon K^{0q} \to K^{1q})$.
+\end{theorem}
+
+\begin{proof}
+We leave the proof as a suitable exercise for the reader.
+\end{proof}
+
+\medskip
+\noindent\textbf{Projective and injective modules}
+
+An $A$-module $P$ is said to be \emph{projective} if it satisfies the following condition:
+for any surjection $f\colon M \to N$ and any map $g\colon P \to N$, there exists a lifting
+$h\colon P \to M$ such that $g = fh$. A free module is projective, and we can
+characterise projective modules as direct summands of free modules. Indeed, if
+we express a projective module $P$ as a quotient $P = F/G$ of a free module $F$
+then the identity map $P \to P$ has a lifting such that $P \to F \to P$ is the identity
+map, and then $F \cong P \oplus G$. Reversing the arrows and replacing surjection by
+injection in the definition of projective module, we get the definition of
+\emph{injective} module. There is no dual notion to that of a free module, so that
+injective modules do not have any very simple characterisation, but we can
+easily prove the following theorem using Zorn's lemma.
+
+\begin{theorem}\label{thm:B3}
+A necessary and sufficient condition for an $A$-module $I$ to be injective is that
+for any ideal $\mathfrak{a}$ of $A$, and any map $\varphi\colon \mathfrak{a} \to I$, it is possible to extend
+$\varphi$ to a map from the whole of $A$ to $I$.
+\end{theorem}
+
+Any $A$-module can be written as a quotient of a projective module (take for
+example a free module). Dually to this, any module can be embedded into an
+injective module; the proof of this is a little tricky, and we leave it to more
+specialist textbooks. Given a module $M$, consider a surjection
+$P_0 \to M$ from a projective module $P_0$ to $M$; letting $K_1$ be the kernel, we get an
+exact sequence $0 \to K_1 \to P_0 \to M \to 0$. In the same way, we construct for $K_1$
+an exact sequence $0 \to K_2 \to P_1 \to K_1 \to 0$ with $P_1$ projective, and proceeding as
+before we get exact sequences $0 \to K_i \to P_{i-1} \to K_{i-1} \to 0$ for $i = 1, 2, \ldots$ with
+$P_i$ projective. The resulting complex
+\[
+  P_\bullet\colon \cdots \to P_n \to P_{n-1} \to \cdots \to P_1 \to P_0 \to 0
+\]
+is called a \emph{projective resolution} of $M$. Since by construction this becomes an exact
+sequence on replacing the final $P_0 \to 0$ by $P_0 \to M \to 0$, we have $H_n(P_\bullet) = 0$
+for $n > 0$ and $H_0(P_\bullet) = M$. In the case that $A$ is Noetherian and $M$ is finite,
+we can take $P_0$ to be a free module of finite rank, and then $K_1$ is again
+finitely generated. Proceeding in the same way, we see that $M$ has a projective
+resolution in which each $P_n$ is a finite free module.
+
+Dually, for any $A$-module $M$ there exists an exact sequence of the form
+$0 \to M \to Q^0 \to Q^1 \to \cdots$ with each $Q^n$ an injective module. The complex
+$Q^\bullet\colon 0 \to Q^0 \to Q^1 \to \cdots$ is called an \emph{injective resolution} of $M$; it
+satisfies $H^0(Q^\bullet) = M$ and $H^n(Q^\bullet) = 0$ for $n > 0$.
+
+If $f\colon M \to N$ is a map of $A$-modules and $P_\bullet$, $P'_\bullet$ are projective
+resolutions of $M$ and $N$ then there exists a morphism of complexes
+$\varphi\colon P_\bullet \to P'_\bullet$ for which $f\varepsilon = \varepsilon'\varphi_0$, that is, a commutative diagram
+\[
+\begin{tikzcd}
+\cdots \arrow[r] & P_1 \arrow[r] \arrow[d, "\varphi_1"] & P_0 \arrow[r] \arrow[d, "\varphi_0"] & M \arrow[r] \arrow[d, "f"] & 0 \\
+\cdots \arrow[r] & P'_1 \arrow[r] & P'_0 \arrow[r] & N \arrow[r] & 0
+\end{tikzcd}
+\]
+The existence of $\varphi_0, \varphi_1, \ldots$ can easily be proved successively, using the fact
+that the $P_n$ are projective and the exactness of the lower sequence. Up to
+homotopy, this $\varphi$ is unique, that is if $\varphi$ and $\psi$ both have the given property
+then $\varphi \sim \psi$. We leave the proof of this to the reader. From this it follows
+that any two projective resolutions of $M$ are homotopy equivalent. Exactly the
+same thing holds for injective resolutions.
+
+\medskip
+\noindent\textbf{The Tor functors}
+
+Let $M$ and $N$ be $A$-modules and $P_\bullet$, $Q_\bullet$ projective resolutions of $M$ and
+$N$, respectively. We write $P_\bullet \otimes N$ for the complex obtained by tensoring
+$P_\bullet$ through with $N$:
+\[
+  P_\bullet \otimes N\colon \cdots \to P_1 \otimes N \to P_0 \otimes N \to 0.
+\]
+The complex $M \otimes Q_\bullet$ is constructed similarly. Moreover, we can define a
+double complex $K_{\bullet\bullet}$ by $K_{pq} = P_p \otimes_A Q_q$, with the obvious definitions of
+$d'$, $d''$. Each $P_p$ is a direct summand of a free module, and is therefore flat
+(that is performing $\otimes P_p$ takes exact sequences into exact sequences). Thus
+$H_q(K_{p\bullet}) = H_q(P_p \otimes Q_\bullet) = 0$ for $q > 0$, and
+$H_0(K_{p\bullet}) = H_0(P_p \otimes Q_\bullet) = P_p \otimes N$. In exactly the same way,
+$H_p(K_{\bullet q}) = 0$ for $p > 0$ and $H_0(K_{\bullet q}) = M \otimes Q_q$, and therefore by
+Theorem~\hyperref[thm:B1]{B1} $H_n(P_\bullet \otimes N) \cong H_n(K_{\bullet\bullet}) \cong H_n(M \otimes Q_\bullet)$. This
+module (defined uniquely up to isomorphism) is written $\Tor^A_n(M, N)$; it is
+independent of the choice of the projective resolutions of $M$ and $N$ chosen,
+since if $P_\bullet$ and $P'_\bullet$ are two projective resolutions, we have $P_\bullet \sim P'_\bullet$, and
+therefore $P_\bullet \otimes N \sim P'_\bullet \otimes N$.
+
+The Tor functors have the following properties, (all of which can be proved
+directly from the definition):
+\begin{enumerate}[(1)]
+  \item $\Tor^A_0(M, N) = M \otimes_A N$;
+  \item if $M$ is flat then $\Tor^A_n(M, N) = 0$ for any $N$ and $n > 0$;
+  \item $\Tor^A_n(M, N) \cong \Tor^A_n(N, M)$;
+  \item $\Tor^A_n(M, N)$ is a covariant functor in both of its entries, and each short
+        exact sequence $0 \to M' \to M \to M'' \to 0$ leads to a long exact sequence
+        \[
+          \cdots \to \Tor^A_n(M', N) \to \Tor^A_n(M, N) \to \Tor^A_n(M'', N)
+          \to \Tor^A_{n-1}(M', N) \to \cdots \to \Tor^A_0(M'', N)
+          \to M' \otimes N \to M \otimes N \to M'' \otimes N \to 0.
+        \]
+  \item If $(N_\lambda, f_{\mu\lambda})$ is a direct system of $A$-modules then
+        \[
+          \Tor^A_n(M, \varinjlim N_\lambda) = \varinjlim \Tor^A_n(M, N_\lambda).
+        \]
+\end{enumerate}
+
+\medskip
+\noindent\textbf{The Ext functors}
+
+Let $M$ and $N$ be $A$-modules. The functor $\Hom_A(M, -)$ is left-exact, that is it
+takes an exact sequence $0 \to N' \to N \to N'' \to 0$ into an exact sequence
+$0 \to \Hom_A(M, N') \to \Hom_A(M, N) \to \Hom_A(M, N'')$; and $M$ is projective if and
+only if $\Hom_A(M, -)$ is exact. In addition, $\Hom_A(-, N)$ is left-exact, in the sense
+that it takes an exact sequence $0 \to M' \to M \to M'' \to 0$ into an exact sequence
+$0 \to \Hom_A(M'', N) \to \Hom_A(M, N) \to \Hom_A(M', N)$, and $N$ is injective if and
+only if $\Hom_A(-, N)$ is exact.
+
+Choose a projective resolution $P_\bullet$ of $M$ and an injective resolution $Q_\bullet$ of $N$;
+we define a double complex $K^{\bullet\bullet}$ by $K^{pq} = \Hom_A(P_p, Q^q)$, and construct
+the two complexes
+\[
+  \Hom_A(M, Q^\bullet)\colon 0 \to \Hom_A(M, Q^0) \to \Hom_A(M, Q^1) \to \cdots
+\]
+and
+\[
+  \Hom_A(P_\bullet, N)\colon 0 \to \Hom_A(P_0, N) \to \Hom_A(P_1, N) \to \cdots.
+\]
+Then by Theorem~\hyperref[thm:B2]{B2} we get
+\[
+  H^n(\Hom_A(M, Q^\bullet)) \cong H^n(K^{\bullet\bullet}) \cong H^n(\Hom_A(P_\bullet, N)).
+\]
+Identifying these three, we write $\Ext^n_A(M, N)$. As with Tor, this does not depend
+on the choice of $P_\bullet$ and $Q^\bullet$.
+
+The main properties of the Ext functors are as follows:
+\begin{enumerate}[(1)]
+  \item $\Ext^0_A(M, N) = \Hom_A(M, N)$,
+  \item If $M$ is projective, or if $N$ is injective, then $\Ext^n_A(M, N) = 0$ for $n > 0$;
+  \item $\Ext^n_A(M, N)$ is a contravariant functor in $M$ and a covariant functor
+        in $N$. A short exact sequence $0 \to M' \to M \to M'' \to 0$ gives rise to
+        a long exact sequence
+        \[
+          0 \to \Hom_A(M'', N) \to \Hom_A(M, N) \to \Hom_A(M', N)
+          \to \Ext^1_A(M'', N) \to \Ext^1_A(M, N) \to \Ext^1_A(M', N)
+          \to \Ext^2_A(M'', N) \to \cdots,
+        \]
+        and a short exact sequence $0 \to N' \to N \to N'' \to 0$ gives rise to a long
+        exact sequence
+        \[
+          0 \to \Hom_A(M, N') \to \Hom_A(M, N) \to \Hom_A(M, N'')
+          \to \Ext^1_A(M, N') \to \Ext^1_A(M, N) \to \Ext^1_A(M, N'')
+          \to \Ext^2_A(M, N') \to \cdots;
+        \]
+  \item $M$ is projective $\iff \Ext^1_A(M, N) = 0$ for all $N$,
+        and
+        \[
+          N \text{ is injective } \iff \Ext^1_A(M, N) = 0 \text{ for all } M.
+        \]
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Projective and injective dimensions}
+
+If $M$ is an $A$-module for which there exists a projective resolution $P_\bullet$ with
+$P_n = 0$ for $n > d$, but such that $P_d \ne 0$ for any choice of projective resolution
+$P_\bullet$, then we say that $M$ has \emph{projective dimension} $d$, and write
+$\projdim M = d$. If there is no such $d$ then we write $\projdim M = \infty$. The
+\emph{injective dimension} $\injdim M$ is defined in the same way using injective
+resolutions. Clearly $\projdim M = 0$ if and only if $M$ is projective, and
+$\injdim M = 0$ if and only if $M$ is injective.
+
+For a projective resolution $P_\bullet$ of $M$ and some $i > 0$, let $K_i$ denote the image of
+$P_i \to P_{i-1}$; then $\cdots \to P_n \to P_{n-1} \to \cdots \to P_i \to 0$ is a projective
+resolution of $K_i$, so that for $n > i$ we have $\Ext^n_A(M, N) = \Ext^{n-i}_A(K_i, N)$.
+Now if $\Ext^{d+1}_A(M, N) = 0$ for all $N$, we have $\Ext^1_A(K_d, N) = 0$ for all $N$, and
+hence $K_d$ is projective, so that $0 \to K_d \to P_{d-1} \to \cdots \to P_0 \to 0$ is also
+a projective resolution of $P_0$, and $\projdim M \le d$. Conversely, if
+$\projdim M \le d$ then obviously $\Ext^n_A(M, N) = 0$ for $n > d$.
+
+Similarly, $\injdim N \le d \iff \Ext^{d+1}_A(M, N) = 0$ for all $M$.
+
+\medskip
+\noindent\textbf{Derived functors}
+
+As we have just seen, the definition of functors like Tor and Ext can be given
+using a resolution of just one entry. For instance, write $T$ for the functor
+$\Hom_A(-, N)$, and let $P_\bullet$ be a projective resolution of a given module $M$;
+construct the complex $T(P_\bullet)\colon \cdots \to T(P_n) \to T(P_{n-1}) \to \cdots \to T(P_0) \to 0$,
+and take the cohomology $H^n(T(P_\bullet))$. Setting $R^nT(M) = H^n(T(P_\bullet))$ defines
+a functor $R^nT$ in $M$, which we call the \emph{right derived functor} of the left exact
+functor $T$. In the present case we have $R^nT = \Ext^n_A(-, N)$, but we can in
+general define the right derived functor of a left exact contravariant functor
+in the same way.
+
+The right derived functor is uniquely determined by the following three
+properties: (1) $R^0T = T$, (2) if $M$ is projective then $R^nT(M) = 0$ for all $n > 0$,
+and (3) a short exact sequence $0 \to M' \to M \to M'' \to 0$ gives rise to a `natural'
+long exact sequence
+\[
+  0 \to T(M'') \to T(M) \to T(M')
+  \to R^1T(M'') \to R^1T(M) \to R^1T(M')
+  \to R^2T(M'') \to \cdots
+\]
+(For the meaning of `natural' see a textbook on homological algebra.) For a
+left exact covariant functor, we have to replace `projective' by `injective' in
+the above. For right exact functors we can define a \emph{left derived functor} by
+taking a projective resolution in the covariant case and an injective resolution
+in the contravariant case.
+
+\medskip
+\noindent\textbf{Injective hull}
+
+Let $L$ be an $A$-module and $M \subset L$ a submodule; we say that $L$ is an
+\emph{essential extension} of $M$ if $N \cap M \ne 0$ for every non-zero submodule $N \subset L$,
+or equivalently if
+\[
+  0 \ne x \in L \Rightarrow \text{there exists } a \in A \text{ such that } 0 \ne ax \in M.
+\]
+
+\begin{theorem}\label{thm:B4}
+An $A$-module $M$ is injective if and only if it has no essential extensions
+except $M$ itself.
+\end{theorem}
+
+We leave the proof to the reader. Now suppose that $M$ is a given $A$-module,
+and choose an injective module $I$ with $M \subset I$. If we let $E$ be a maximal
+element among all essential extensions of $M$ in $I$ then by the above theorem
+$E$ is injective. An injective module $E$ such that $M \subset E$ is an essential
+extension is called an \emph{injective hull} of $M$, and written $E(M)$ or $E_A(M)$; this
+notion plays an important role in \S\ref{sec:18}. If $E$ and $E'$ are injective hulls of
+$M$ then it is easy to see that there is an isomorphism $\varphi\colon E \to E'$ which
+fixes the elements of $M$, although $\varphi$ itself is not necessarily unique.
+
+Let $M$ be an $A$-module. Take an injective hull $I^0$ of $M$, and set
+$K^1 = I^0/M$. Take an injective hull $I^1$ of $K^1$, and set $K^2 = I^1/K^1$.
+Proceeding in the same way we obtain an injective resolution
+$0 \to I^0 \to I^1 \to I^2 \to \cdots$ of $M$, which is called a \emph{minimal injective
+resolution} of $M$.
+
+The following two propositions are both famous and useful; the proofs are easy.
+
+\medskip
+\noindent\textbf{The five lemma.} Let
+\[
+\begin{tikzcd}
+A \arrow[r] \arrow[d, "f_1"] & B \arrow[r] \arrow[d, "f_2"] & C \arrow[r] \arrow[d, "f_3"] & D \arrow[r] \arrow[d, "f_4"] & E \arrow[d, "f_5"] \\
+A' \arrow[r] & B' \arrow[r] & C' \arrow[r] & D' \arrow[r] & E'
+\end{tikzcd}
+\]
+be a commutative diagram of modules with exact rows. Then
+\begin{enumerate}[(1)]
+  \item $f_2$ surjective, and $f_1$ and $f_4$ injective $\Rightarrow f_3$ is injective;
+  \item $f_4$ injective, and $f_2$ and $f_5$ surjective $\Rightarrow f_3$ is surjective.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{The snake lemma.} Let
+\[
+\begin{tikzcd}
+A \arrow[r] \arrow[d, "\alpha"] & B \arrow[r] \arrow[d, "\beta"] & C \arrow[r] \arrow[d, "\gamma"] & 0 \\
+0 \arrow[r] & A' \arrow[r] & B' \arrow[r] & C'
+\end{tikzcd}
+\]
+be a commutative diagram of modules with exact rows. Then there exists an
+exact sequence of the form
+\[
+  \Ker(\alpha) \to \Ker(\beta) \to \Ker(\gamma) \xrightarrow{\delta}
+  \Coker(\alpha) \to \Coker(\beta) \to \Coker(\gamma).
+\]
+
+\medskip
+\noindent\textbf{Tensor product of complexes}
+
+Given two complexes of $A$-modules $K_\bullet$ and $L_\bullet$ the tensor product
+$K_\bullet \otimes_A L_\bullet$ is defined as follows: firstly, set
+\[
+  (K \otimes L)_n = \bigoplus_{p + q = n} K_p \otimes_A L_q,
+\]
+and define the differential $d$ by setting
+\[
+  d(x \otimes y) = dx \otimes y + (-1)^p x \otimes dy
+\]
+for $x \in K_p$ and $y \in L_q$. In other words, $K \otimes L$ is the (single) complex obtained
+from the double complex $W_{\bullet\bullet}$, where $W_{pq} = K_p \otimes L_q$.
+
+There is an isomorphism of complexes $K \otimes L \cong L \otimes K$ obtained by sending
+$x \otimes y$ into $(-1)^{pq}y \otimes x$ for $x \otimes y \in K_p \otimes L_q$. For a third complex of
+$A$-modules $M$, the associative law holds:
+\[
+  (K \otimes L) \otimes M = K \otimes (L \otimes M).
+\]
+Hence the tensor product $K^{(1)} \otimes \cdots \otimes K^{(r)}$ of a finite number of complexes
+can be defined by induction. This is used in \S\ref{sec:16}.
+
+The information on homological algebra given above should be adequate for
+the purpose of reading this book. However, a student intending to become a
+specialist in algebra or geometry will require rather more detailed knowledge,
+including the theory of spectral sequences. We mention here just three
+representative references, two books by the originators of homological algebra
+and category theory:
+\begin{quote}
+  H.~Cartan and S.~Eilenberg, \emph{Homological Algebra}, Princeton, 1956,\\
+  S.~MacLane, \emph{Homology}, Springer, 1963,
+\end{quote}
+together with A.~Grothendieck's paper
+\begin{quote}
+  \emph{Sur quelques points d'alg\`ebre homologique}, T\^ohoku Math.~J.~9 (1957), 119--221.
+\end{quote}

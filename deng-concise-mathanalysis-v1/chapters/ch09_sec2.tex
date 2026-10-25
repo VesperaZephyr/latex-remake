@@ -1,0 +1,103 @@
+\section{实数闭区间的紧致性}
+
+实数闭区间具有一种称为紧致性的性质，它可由下面的定义、定理给出．
+
+\begin{definition}\label{def:9.2}
+设 $E$ 是一个由实数开区间构成的集合，$S$ 是一个实数子集，如果对任意 $x \in S$，有区间 $(a, b) \in E$，使得 $x \in (a, b)$，则称 $E$ 是 $S$ 的一个覆盖．
+\end{definition}
+
+$E$ 是 $S$ 的覆盖，用集合的符号可写成
+\[
+S \subset \bigcup_{E_a \in E} E_a.
+\]
+如果 $E$ 由有限个区间组成，则称这是有限覆盖．
+
+\begin{theorem}[博雷尔（Borel，1871—1956）有限覆盖定理]\label{thm:9.2}
+实数闭区间 $[a, b]$ 的任一个覆盖 $E$，必存在有限的子覆盖．
+\end{theorem}
+
+这定理是说，若 $[a, b]$ 有一个覆盖 $E$，则存在 $E$ 的有限子集（有限个开区间），它本身已构成了 $[a, b]$ 的一个覆盖．
+
+定理~\ref{thm:9.2} 说的就是闭区间的紧致性．
+
+下面我们用第三章 §4 中的区间套定理证明定理~\ref{thm:9.2}．
+
+\begin{proof}[定理~\ref{thm:9.2} 的证明]
+用反证法．设 $E$ 是 $[a, b]$ 的一个覆盖，它没有 $E$ 的有限的子覆盖．记 $a_1 = a$，$b_1 = b$．用 $[a_1, b_1]$ 的中点二等分 $[a_1, b_1]$，则至少有一个闭子区间没有 $E$ 的有限子覆盖，记它为 $[a_2, b_2]$．再用 $[a_2, b_2]$ 的中点二等分 $[a_2, b_2]$，则至少有一个闭子区间没有 $E$ 的有限子覆盖，记为 $[a_3, b_3]$．如此继续下去，便得到一个区间序列 $\{[a_n, b_n]\}$，它满足 $[a_{n+1}, b_{n+1}] \subset [a_n, b_n]$，并且 $b_n - a_n = \dfrac{b_1 - a_1}{2^{n-1}} \to 0$，因此它是一个区间套，根据定理~\ref{thm:3-16}，知存在唯一的 $r$ 属于每个 $[a_n, b_n]$，且 $\lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n = r$．由 $r \in [a, b]$，知存在区间 $(\alpha, \beta) \in E$，使 $r \in (\alpha, \beta)$．因此只要取 $n$ 充分大，便有
+\[
+[a_n, b_n] \subset (\alpha, \beta).
+\]
+这就是说，$[a_n, b_n]$ 被 $E$ 中的一个区间盖住，即 $[a_n, b_n]$ 有 $E$ 的有限子覆盖，和 $[a_n, b_n]$ 的构造矛盾，定理~\ref{thm:9.2} 证完．
+\end{proof}
+
+值得指出的是，定理~\ref{thm:9.2} 中假设 $[a, b]$ 是闭区间，如果把这条件改为开区间，则相应的定理不成立．事实上取开区间集 $\left\{ \left( \frac{1}{n}, 1 \right) \;\middle|\; n = 1, 2, \cdots \right\}$，它构成开区间 $(0, 1)$ 的覆盖，但它没有有限的子覆盖．这也说明，开区间不具有紧致性．
+
+区间套定理实际上也是实数闭区间紧致性的另一种描述（$[a, b]$ 中的任一区间套必“套出”唯一的属于 $[a, b]$ 的一点）．它和有限覆盖定理是等价的．前面我们是用区间套定理来证明有限覆盖定理．下面我们用有限覆盖定理来证明区间套定理．用反证法．若不然，设存在区间套 $\{[a_n, b_n]\}$，有
+\[
+\bigcap_{n=1}^{\infty} [a_n, b_n] = \varnothing.
+\]
+记开区间
+\[
+(\alpha_n, \beta_n) = (a_1 - 1, a_n), \quad ({\alpha_n}', \beta_n') = (b_n, b_1 + 1)
+\]
+即
+\[
+(\alpha_n, \beta_n) \cup ({\alpha_n}', \beta_n') = (a_1 - 1, b_1 + 1) \setminus [a_n, b_n].
+\]
+这时 $E = \{(\alpha_n, \beta_n), ({\alpha_n}', \beta_n') \mid n = 1, 2, \cdots\}$ 构成了 $[a_1, b_1]$ 的覆盖．由有限覆盖定理，存在 $N$，使得
+\[
+\bigcup_{n=1}^{N} \left( (\alpha_n, \beta_n) \cup ({\alpha_n}', \beta_n') \right) \supset [a_1, b_1],
+\]
+这就推出，当 $n > N$ 时，$[a_n, b_n]$ 是空集，这是不可能的．矛盾，故有
+\[
+\bigcap_{n=1}^{\infty} [a_n, b_n] \neq \varnothing,
+\]
+即存在 $r$ 使
+\[
+r \in \bigcap_{n=1}^{\infty} [a_n, b_n].
+\]
+$r$ 的唯一性证明由区间套性质本身可推得．这样，区间套定理便由有限覆盖定理推出．
+
+实数系闭区间的紧致性，还有另一个等价描述．这便是下面的波尔察诺－魏尔斯特拉斯紧致性定理．
+
+任给一个数列 $\{x_n\}$，我们不改变数列的次序，按一定的规则从 $x_n$ 中抽取一部分，得到一个新的数列，称为 $\{x_n\}$ 的一个子数列．把这句话严格化，就是记 $x_n = f(n)$，这是定义域为正整数的一个函数，取一个定义域为正整数取值也是正整数的函数 $g(k) = n_k$，它是严格递增的（相当于不改变原来数列的次序），则复合函数 $x_{n_k} = f(n_k) = f(g(k))$ 便是 $\{x_n\}$ 的一个子数列．例如 $\{x_{2k}\}$，$\{x_{2k+1}\}$，$\{x_{3k}\}$，$\{x_{k^2}\}$ 等等，都是 $\{x_n\}$ 的子数列，这时相应的 $n_k = 2k$，$2k+1$，$3k$，$k^2$ 等等．
+
+一个显然的结果是：若 $\lim\limits_{n \to \infty} x_n = a$，$\{x_{n_k}\}$ 是 $\{x_n\}$ 的子数列，则 $\lim\limits_{k \to \infty} x_{n_k} = a$．事实上，由 $n_1 \geqslant 1$，$n_{k+1} > n_k$，便可证明 $n_k \geqslant k$，故当 $k \to \infty$ 时 $n_k \to \infty$，由复合函数极限便知 $\lim\limits_{k \to \infty} x_{n_k} = a$．
+
+用这个结果便很容易证明 $x_n = (-1)^{n-1}$ 没有极限，这是因为
+\[
+\lim_{k \to \infty} x_{2k+1} = 1 \neq \lim_{k \to \infty} x_{2k} = -1.
+\]
+
+\begin{theorem}[波尔察诺－魏尔斯特拉斯紧致性定理]\label{thm:9.3}
+有界数列必有收敛子数列．
+\end{theorem}
+
+定理说，如果数列 $\{x_n\}$ 在闭区间 $[a, b]$ 内，即满足 $a \leqslant x_n \leqslant b$（对任意 $n$）（有上界 $b$ 与下界 $a$），则 $\{x_n\}$ 必有收敛子数列．
+
+\begin{proof}[定理~\ref{thm:9.3} 的证明]
+用区间套定理证明．设数列 $\{x_n\}$ 有界：$a \leqslant x_n \leqslant b$（任意 $n$）．记 $a_1 = a$，$b_1 = b$，二等分 $[a_1, b_1]$，则必有一子区间包含 $\{x_n\}$ 的无限项，记为 $[a_2, b_2]$．再二等分 $[a_2, b_2]$，必有一子区间 $[a_3, b_3]$ 包含 $\{x_n\}$ 的无限多项，如此继续下去，得闭区间序列 $\{[a_n, b_n]\}$，它构成一区间套．因此，存在 $r$ 满足 $a_n \leqslant r \leqslant b_n$（任意 $n$）且 $r = \lim\limits_{n \to \infty} a_n = \lim\limits_{n \to \infty} b_n$．选定 $x_{n_1} \in [a_1, b_1]$，再选 $n_2 > n_1$ 使 $x_{n_2} \in [a_2, b_2]$，这是办得到的，因 $[a_2, b_2]$ 包含数列 $\{x_n\}$ 的无限多项，再取 $n_3 > n_2$，使 $x_{n_3} \in [a_3, b_3] \cdots$，这样便得到 $\{x_n\}$ 的子数列 $\{x_{n_k}\}$：$a_k \leqslant x_{n_k} \leqslant b_k$．令 $k \to \infty$ 取极限，便得 $\lim\limits_{k \to \infty} x_{n_k} = r$，定理证完．
+\end{proof}
+
+很容易用定理~\ref{thm:9.3} 证明区间套定理，希望读者自己把证明写出来．
+
+定理~\ref{thm:9.2}、\ref{thm:9.3} 与区间套定理都是实数闭区间紧致性的等价描述，前面我们已说明它们是可以互相推导的．
+
+\begin{xiti}
+\item 利用有限覆盖定理~\ref{thm:9.2} 证明紧致性定理~\ref{thm:9.3}．
+\item 利用紧致性定理证明单调有界数列必有极限．
+\item 用区间套定理证明单调有界数列必有极限．
+\item 试分析区间套定理的条件：若将闭区间列改为开区间列，结果怎样？若将条件 $[a_1, b_1] \supset [a_2, b_2] \supset \cdots$ 去掉或将条件 $b_n - a_n \to 0$ 去掉，结果怎样？试举例说明．
+\item 若 $\{x_n\}$ 无界，且非无穷大量，则必存在两个子列 $x_{n_k} \to \infty$，$x_{m_k} \to a$（$a$ 为有限数）．
+\item 有界数列 $\{x_n\}$ 若不收敛，则必存在两个子列 $x_{n_k} \to a$，$x_{m_k} \to b$（$a \neq b$）．
+\item 求证：数列 $\{a_n\}$ 有界的充要条件是，$\{a_n\}$ 的任何子数列 $\{a_{n_k}\}$ 都有收敛的子数列．
+\item 设 $f(x)$ 在 $[a, b]$ 上定义，且在每一点处函数的极限存在，求证：$f(x)$ 在 $[a, b]$ 上有界．
+\item 设 $f(x)$ 在 $[a, b]$ 无界，求证：存在 $c \in [a, b]$，对任给 $\delta > 0$，函数 $f(x)$ 在 $(c - \delta, c + \delta) \cap [a, b]$ 上无界．
+\item 设 $f(x)$ 是 $(a, b)$ 上的凸函数，且有上界，求证：$\lim\limits_{x \to a^+} f(x)$，$\lim\limits_{x \to b^-} f(x)$ 存在．
+\item 设 $f(x)$ 在 $[a, b]$ 上只有第一类间断点，定义
+\[
+\omega(x) = |f(x+0) - f(x-0)|.
+\]
+求证：任意 $\varepsilon > 0$，$\omega(x) \geqslant \varepsilon$ 的点 $x$ 只有有限多个．
+\item 设 $f(x)$ 在 $[0, +\infty)$ 上连续且有界，对任意 $a \in (-\infty, +\infty)$，$f(x) = a$ 在 $[0, +\infty)$ 上只有有限个根或无根，求证：$\lim\limits_{x \to +\infty} f(x)$ 存在．
+\end{xiti}

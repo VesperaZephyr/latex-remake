@@ -1,0 +1,62 @@
+% !TeX program = xelatex
+% ==================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  按《中文数学书籍 LaTeX 重排规范》v2.1 重排
+%  编译：xelatex -> biber -> xelatex x3（见 tools/build.py）
+% ==================================================================
+\documentclass[
+  BookTitleCN     = {数学分析},
+  BookTitleCNSub  = {第一册},
+  AuthorCN        = {徐森林\quad 薛春华},
+  Publisher       = {清华大学出版社},
+  Year            = {2005},
+  ISBN            = {7-302-11746-2},
+  Biblatex        = true,
+  BibStyle        = numeric,
+  BibSorting      = none,
+  BibFile         = refs,
+  StartPage       = 1
+]{zhmbook}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\input{chapters/preface}
+
+\tableofcontents
+
+\mainmatter
+
+% 本书为《数学分析》第一册，正文起自第 1 章，
+% 将章计数器设为 0，使首个 \chapter 自增后为「第 1 章」。
+% 正文起始页码设为 1，与原书对齐（PDF 物理页 = 印刷页 + 6）。
+\setcounter{chapter}{0}
+\setcounter{page}{1}
+
+% 第 1 章 数列极限（§1.1–§1.6 + 复习题 1）
+\input{chapters/ch01}
+
+% 第 2 章 函数极限与连续（§2.1–§2.5 + 复习题 2）
+\input{chapters/ch02}
+
+% 第 3 章 一元函数的导数、微分中值定理（§3.1–§3.6 + 复习题 3）
+\input{chapters/ch03}
+
+% 第 4 章 Taylor 公式（§4.1–§4.2 + 复习题 4）
+\input{chapters/ch04}
+
+% 第 5 章 不定积分（§5.1–§5.3 + 复习题 5）
+\input{chapters/ch05}
+
+% 第 6 章 Riemann 积分（§6.1–§6.6 + 复习题 6）
+\input{chapters/ch06}
+
+\backmatter
+% 原书正文未标注文献引用角标，书末参考文献列出 9 条，
+% 故以 \nocite{*} 令 Biber 全量输出，条目顺序由 BibSorting=none 锁定为原书顺序。
+\nocite{*}
+\makebibliography
+
+\end{document}

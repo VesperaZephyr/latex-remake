@@ -1,0 +1,762 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S14.1  幂级数的重要性质
+%  源：原书印刷页 129-145（PDF 物理页 135-151）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch14_14_1_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  插图：图 14.1.1 原生 TikZ（禁用位图）
+%  已订正的 OCR 错误与原书照录清单见 tools/_make_ch14_1a.py 头部说明
+% ==================================================================
+\section{幂级数的重要性质}\label{sec:14.1}
+
+函数项级数中, 有一种简单且使用起来又方便的特殊函数项级数——幂级数. 幂级数的一般形状如下:
+\[
+  \sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}=a_{0}+a_{1}(x-x_{0})+\cdots+a_{n}(x-x_{0})^{n}+\cdots,
+\]
+其中 $a_{n}\in\mathbb{R}$, $n=1,2,\cdots$. 如果上式中 $a_{n+1}=a_{n+2}=\cdots=0$, 它就退化为一个 $n$ 次多项式. 因此, 多项式可以视作一种特殊的幂级数.
+
+为讨论简单起见, 我们往往令 $x_{0}=0$, 只讨论形如
+\[
+  \sum_{n=1}^{\infty}a_{n}x^{n}=a_{0}+a_{1}x+\cdots+a_{n}x^{n}+\cdots
+\]
+的幂级数. 一般的情形只需作变换 $y=x-x_{0}$ 就行了.
+
+首先关心的是 $\sum_{n=1}^{\infty}a_{n}x^{n}$ 的收敛点集. 与一般的函数项级数不同, 幂级数的收敛点集一定是一个区间 (可退化为一个点).
+
+\begin{theorem}\label{thm:14.1.1}
+设 $\sum_{n=1}^{\infty}a_{n}(x-x_{0})^{n}$ 为幂级数, $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}$, $R=\frac{1}{\alpha}=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}}$. 则:
+
+(1) 当 $R=0$ ($\alpha=+\infty$) 时, 幂级数仅在 $x=x_{0}$ 这一点绝对收敛;
+
+(2) 当 $R=+\infty$ ($\alpha=0$) 时, 幂级数在 $(-\infty,+\infty)$ 上绝对收敛;
+
+(3) 当 $0<R<+\infty$, 时, 幂级数在 $(x_{0}-R,x_{0}+R)$ 中绝对收敛. 而在 $[x_{0}-R,x_{0}+R]$ 外 (即 $(-\infty,x_{0}-R)\cup(x_{0}+R,+\infty)$ 内) 发散.
+\end{theorem}
+
+\begin{proof}
+因为
+\[
+  \lim_{n\to+\infty}\sqrt[n]{|a_{n}(x-x_{0})^{n}|}=\lim_{n\to+\infty}\sqrt[n]{|a_{n}|}\cdot|x-x_{0}|=\alpha\cdot|x-x_{0}|=\frac{|x-x_{0}|}{R}.
+\]
+根据数项级数的 Cauchy 判别法的极限形式得到:
+
+(1) 当 $R=0$ ($\alpha=+\infty$) 时, 则 $\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}(x-x_{0})^{n}|}=+\infty>1$, $\sum_{n=1}^{\infty}a_{n}(x-x_{0})^{n}$ 发散, 因此幂级数仅当 $x=x_{0}$ 时收敛 (也是绝对收敛).
+
+(2) 当 $R=+\infty$ ($\alpha=0$) 时, 则 $\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}(x-x_{0})^{n}|}=0<1$, 幂级数在 $(-\infty,+\infty)$ 上绝对收敛.
+
+(3) 当 $0<R=\frac{1}{\alpha}<+\infty$ 时, 则 $\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}(x-x_{0})^{n}|}=\frac{|x-x_{0}|}{R}<1$, 即 $|x-x_{0}|<R$ 或 $x\in(x_{0}-R,x_{0}+R)$ 时, 幂级数绝对收敛. 而当 $\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}(x-x_{0})^{n}|}=\frac{|x-x_{0}|}{R}>1$, 即 $|x-x_{0}|>R$ 或 $x\in(-\infty,x_{0}-R)\cup(x_{0}+R,+\infty)$ 时, 幂级数发散.
+\end{proof}
+
+\begin{definition}\label{def:14.1.1}
+称定理~\ref{thm:14.1.1} 中的 $R$ 为幂级数的收敛半径, $(x_{0}-R,x_{0}+R)$ 为幂级数的收敛区间.
+\end{definition}
+
+定理~\ref{thm:14.1.1} 实际上给出了计算收敛半径 $R$ 的公式. 为叙述简单起见, 下面只讨论 $x_{0}=0$ 的情形, 一般情形是完全类似的.
+
+\begin{example}\label{ex:14.1.1}
+计算下列幂级数的收敛半径、收敛区间、收敛点集:
+
+(1) $\sum_{n=1}^{\infty}x^{n}$;
+
+(2) $\sum_{n=1}^{\infty}nx^{n}$;
+
+(3) $\sum_{n=1}^{\infty}\frac{x^{n}}{n!}$;
+
+(4) $\sum_{n=1}^{\infty}n^{n}x^{n}$.
+\end{example}
+
+\begin{proof}
+(1) $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim\limits_{n\to+\infty}\sqrt[n]{1}=\lim\limits_{n\to+\infty}1=1$, 收敛半径 $R=\frac{1}{\alpha}=1$, 收敛区间为 $(-R,R)=(-1,1)$. 由于 $\sum_{n=1}^{\infty}(-1)^{n}$ 与 $\sum_{n=1}^{\infty}1^{n}=\sum_{n=1}^{\infty}1$ 都发散, 故收敛点集也为 $(-R,R)=(-1,1)$.
+
+(2) $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim\limits_{n\to+\infty}\sqrt[n]{|n|}=\lim\limits_{n\to+\infty}\sqrt[n]{n}=1$, 而
+\[
+  \sum_{n=1}^{\infty}n(-1)^{n}\quad\text{与}\quad\sum_{n=1}^{\infty}n\cdot1^{n}=\sum_{n=1}^{\infty}n
+\]
+都发散, 故收敛半径 $R=\frac{1}{\alpha}=1$, 收敛区间与收敛点集都为 $(-1,1)$.
+
+(3) $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim\limits_{n\to+\infty}\sqrt[n]{\frac{1}{n!}}$ (见\extref{例 1.1.9}), 收敛半径为 $+\infty$, 收敛区间与收敛点集都为 $(-\infty,+\infty)$.
+
+(4) $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim\limits_{n\to+\infty}\sqrt[n]{|n^{n}|}=\lim\limits_{n\to+\infty}n=+\infty$, 所以 $R=0$, 收敛半径为 $0$, 收敛区间为 $(-0,0)=\emptyset$, 收敛点集为 $\{0\}$.
+\end{proof}
+
+\begin{example}\label{ex:14.1.2}
+计算幂级数 $\sum_{k=0}^{\infty}2^{k}x^{2k}$ 的收敛半径、收敛区间、收敛点集.
+\end{example}
+
+\begin{proof}
+显然,
+\[
+  a_{n}=\begin{cases}
+    2^{k}, & n=2k,\\
+    0, & n=2k+1,
+\end{cases}
+\]
+则
+\[
+  \alpha=\lim_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim_{n\to+\infty}\sqrt[2k]{2^{k}}=\lim_{n\to+\infty}\sqrt{2}=\sqrt{2},
+\]
+幂级数的收敛半径为 $R=\frac{1}{\alpha}=\frac{1}{\sqrt{2}}$, 收敛区间为 $(-R,R)=\left(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right)$.
+
+又因为
+\[
+  \sum_{k=0}^{\infty}2^{k}\left(\frac{1}{\sqrt{2}}\right)^{2k}=\sum_{k=0}^{\infty}1=+\infty,\quad\sum_{k=0}^{\infty}2^{k}\left(-\frac{1}{\sqrt{2}}\right)^{2k}=\sum_{k=0}^{\infty}1=+\infty,
+\]
+所以, 幂级数的收敛点集为 $\left(-\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}\right)$.
+\end{proof}
+
+\begin{example}\label{ex:14.1.3}
+计算下列幂级数的收敛半径、收敛区间、收敛点集:
+
+(1) $\sum_{n=1}^{\infty}\frac{x^{n}}{n}$;
+
+(2) $\sum_{n=1}^{\infty}\frac{x^{n}}{n^{2}}$.
+\end{example}
+
+\begin{proof}
+(1) $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim\limits_{n\to+\infty}\frac{1}{\sqrt[n]{n}}=1$, 而
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}\ \text{收敛},\quad\sum_{n=1}^{\infty}\frac{1^{n}}{n}=\sum_{n=1}^{\infty}\frac{1}{n}=+\infty,
+\]
+因此, 幂级数的收敛半径为 $1$, 收敛区间为 $(-1,1)$, 收敛点集为 $[-1,1)$.
+
+(2) $\alpha=\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=\lim\limits_{n\to+\infty}\sqrt[n]{\frac{1}{n^{2}}}=\lim\limits_{n\to+\infty}\frac{1}{(\sqrt[n]{n})^{2}}=1$, 而 $\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}$ 与 $\sum_{n=1}^{\infty}\frac{1^{n}}{n^{2}}=\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 都绝对收敛, 因此, 幂级数的收敛半径为 $1$, 收敛区间为 $(-1,1)$, 收敛点集为 $[-1,1]$.
+\end{proof}
+
+注意, 例~\ref{ex:14.1.3} 表明, 收敛区间与收敛点集不一定相同, 但是, 收敛区间一定是收敛点集的子集.
+
+\begin{example}\label{ex:14.1.4}
+求广义幂级数 $\sum_{n=0}^{\infty}\frac{1}{2n+1}\left(\frac{1-x}{1+x}\right)^{n}$ 的收敛点集.
+\end{example}
+
+\begin{proof}
+设 $t=\frac{1-x}{1+x}$, 显然幂级数
+\[
+  \sum_{n=0}^{\infty}\frac{t^{n}}{2n+1}
+\]
+的收敛半径
+\[
+  R=\frac{1}{\alpha}=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{\frac{1}{2n+1}}}=\frac{1}{\lim\limits_{n\to+\infty}\left(\sqrt[2n+1]{\frac{1}{2n+1}}\right)^{\frac{2n+1}{n}}}=1.
+\]
+当 $t=-1$ 时, 由 Leibniz 判别法知, $\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}$ 收敛;
+
+当 $t=1$ 时, $\sum_{n=0}^{\infty}\frac{1^{n}}{2n+1}=\sum_{n=0}^{\infty}\frac{1}{2n+1}$ 发散.
+
+因此, 幂级数 $\sum_{n=0}^{\infty}\frac{t^{n}}{2n+1}$ 的收敛点集为 $[-1,1)$. 解不等式 $-1\leqslant t<1$, 即
+\[
+  -1\leqslant\frac{1-x}{1+x}<1,
+\]
+得 $x>0$. 于是, 广义幂级数 $\sum_{n=0}^{\infty}\frac{1}{2n+1}\left(\frac{1-x}{1+x}\right)^{n}$ 的收敛点集为 $(0,+\infty)$.
+\end{proof}
+
+从定理~\ref{thm:14.1.1} 立即得到下面的定理.
+
+\begin{theorem}[Abel]\label{thm:14.1.2}
+如果幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在点 $x=x_{0}$ ($x_{0}\neq0$) 处收敛, 则它必在区间 $|x|<|x_{0}|$ 中绝对收敛. 如果 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在点 $x=x_{1}$ 处发散, 则它必在 $|x|>|x_{1}|$ 发散.
+\end{theorem}
+
+\begin{proof}
+证法 1 设幂级数 $\sum_{n=1}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$, 由题设 $|x_{0}|\leqslant R$, 因而 $(-|x_{0}|,|x_{0}|)\subset(-R,R)$, 故 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $(-|x_{0}|,|x_{0}|)$ 中绝对收敛.
+
+因为 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x=x_{1}$ 处发散, 故 $x_{1}\notin(-R,R)$, 且 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $|x|>|x_{1}|$ 处发散 (\cref{fig:14.1.1}).
+
+证法 2 因为 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{0}$ 处收敛, 故 $a_{n}x_{0}^{n}\to0$ ($n\to+\infty$), 从而 $\{a_{n}x_{0}^{n}\}$ 有界, 记 $|a_{n}x_{0}^{n}|\leqslant M$, $\forall n\in\mathbb{N}$. 对 $|x|<|x_{0}|$, 有
+\[
+  |a_{n}x^{n}|=|a_{n}x_{0}^{n}|\cdot\left|\frac{x}{x_{0}}\right|^{n}\leqslant M\cdot\left|\frac{x}{x_{0}}\right|^{n}.
+\]
+再从 $\sum_{n=0}^{\infty}\left|\frac{x}{x_{0}}\right|^{n}$ 收敛与级数的比较判别法~\ref{thm:12.2.3}(1) 得到 $\sum_{n=0}^{\infty}|a_{n}x^{n}|$ 收敛.
+
+如果 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{1}$ 处发散, 则它必在 $|x|>|x_{1}|$ 发散. (反证) 假设 $\sum_{n=1}^{\infty}a_{n}x^{n}$ 收敛, 由上知 $\sum_{n=0}^{\infty}a_{n}x_{1}^{n}$ 收敛, 这与已知 $\sum_{n=0}^{\infty}a_{n}x_{1}^{n}$ 发散相矛盾.
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=latex, scale=1.10]
+    \fill[black!7] (-2.60,0) rectangle (2.60,0.42);
+    \draw[->] (-5.40,0) -- (5.60,0) node[below] {$x$};
+    \node[below left] at (-5.10,0) {$O$};
+    % 端点
+    \draw (-2.60,0.08) -- (-2.60,0.34);
+    \draw (2.60,0.08) -- (2.60,0.34);
+    \node[above] at (0,0.44) {收敛区间 $(-R,R)$};
+    \node[below] at (-2.60,0) {$-R$};
+    \node[below] at (2.60,0) {$R$};
+    % x_0（收敛，落在区间内）
+    \fill (1.40,0) circle (1.6pt);
+    \node[below] at (1.40,0) {$x_{0}$};
+    % x_1（发散，落在区间外）
+    \draw[fill=white] (4.20,0) circle (1.6pt);
+    \node[below] at (4.20,0) {$x_{1}$};
+    \node[above] at (-4.10,0.30) {$|x|>|x_{1}|$ 发散};
+    \node[above] at (0.30,0.20) {$|x|<|x_{0}|$ 绝对收敛};
+  \end{tikzpicture}
+  \caption{收敛区间与内外的敛散性}\label{fig:14.1.1}
+\end{figure}
+
+\begin{remark}\label{rem:14.1.1}
+设 $\lim\limits_{n\to+\infty}\left|\frac{a_{n+1}}{a_{n}}\right|=\alpha$, 根据 $d'$Alembert 判别法的极限形式,
+\[
+  \lim_{n\to+\infty}\left|\frac{a_{n+1}x^{n+1}}{a_{n}x^{n}}\right|=\lim_{n\to+\infty}\left|\frac{a_{n+1}}{a_{n}}\right|\cdot|x|=\alpha|x|\begin{cases}
+    <1\Leftrightarrow|x|<\frac{1}{\alpha}, & \text{幂级数绝对收敛},\\
+    >1\Leftrightarrow|x|>\frac{1}{\alpha}, & \text{幂级数发散}.
+\end{cases}
+\]
+根据定理~\ref{thm:14.1.1}, 该幂级数的收敛半径
+\[
+  R=\frac{1}{\alpha}=\frac{1}{\lim\limits_{n\to+\infty}\left|\frac{a_{n+1}}{a_{n}}\right|}.
+\]
+\end{remark}
+
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$, 它在区间 $(-R,R)$ 内确定了一个和函数 $S(x)$. 为了研究 $S(x)$ 在 $(-R,R)$ 内的性质, 首先要知道 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在它的收敛区间内是否一致收敛. 一般来说答案是否定的. 例~\ref{ex:13.2.6} 表明幂级数 $\sum_{n=0}^{\infty}x^{n}$ 在收敛区间 $(-1,1)$ 中就不一致收敛. 但是, 我们有下面的结论.
+
+\begin{theorem}\label{thm:14.1.3}
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R>0$, 则 $\forall r\in(0,R)$, 该幂级数在 $[-r,r]$ 中绝对且一致收敛.
+\end{theorem}
+
+\begin{proof}
+因 $r\in(0,R)$, 故由定理~\ref{thm:14.1.1} 知 $\sum_{n=0}^{\infty}a_{n}r^{n}$ 绝对收敛, 即 $\sum_{n=0}^{\infty}|a_{n}|r^{n}$ 收敛. 又当 $x\in[-r,r]$ 时,
+\[
+  |a_{n}x^{n}|\leqslant|a_{n}|r^{n}.
+\]
+根据 Weierstrass 判别法, $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[-r,r]$ 中绝对且一致收敛.
+\end{proof}
+
+下面的定理保证了幂级数在收敛区间内连续, 且对幂级数可逐项求导, 因而它具有任意阶导数, 即它是 $C^{\infty}$ 函数. 还可对幂级数逐项积分.
+
+\begin{theorem}[幂级数的重要性性质]\label{thm:14.1.4}
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$, 其和函数为 $S(x)$, 则:
+
+(1) $S(x)$ 在 $(-R,R)$ 中连续;
+
+(2) $S(x)$ 在 $(-R,R)$ 中可导, 且可逐项求导, 即
+\[
+  S'(x)=\left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)'=\sum_{n=0}^{\infty}(a_{n}x^{n})'=\sum_{n=1}^{\infty}na_{n}x^{n-1},
+\]
+逐项求导后的幂级数收敛半径仍为 $R$;
+
+(3) $S(x)$ 在 $(-R,R)$ 中有任意阶导数, 且
+\[
+  S^{(k)}(x)=\left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)^{(k)}=\sum_{n=0}^{\infty}(a_{n}x^{n})^{(k)}=\sum_{n=k}^{\infty}n(n-1)\cdots(n-k+1)a_{n}x^{n-k},
+\]
+其收敛半径仍为 $R$;
+
+(4) $\forall x\in(-R,R)$, 可逐项积分, 即
+\[
+  \int_{0}^{x}S(t)\mathrm{d}t=\int_{0}^{x}\left(\sum_{n=0}^{\infty}a_{n}t^{n}\right)\mathrm{d}t=\sum_{n=0}^{\infty}\frac{a_{n}}{n+1}x^{n+1},
+\]
+且其收敛半径仍为 $R$.
+\end{theorem}
+
+\begin{proof}
+(1) $\forall x_{0}\in(-R,R)$, 即 $|x_{0}|<R$. 取 $r$ 使 $|x_{0}|<r<R$, 由定理~\ref{thm:14.1.3}, $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[-r,r]$ 中一致收敛. 因而, 由定理~\ref{thm:13.2.1}, $S(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[-r,r]$ 中连续, $S(x)$ 在 $x_{0}$ 处连续. 再由 $x_{0}$ 在 $(-R,R)$ 中任取推得 $S(x)$ 在 $(-R,R)$ 中连续.
+
+(2) 因
+\[
+  \lim_{n\to+\infty}\sqrt[n]{|na_{n}|}=\lim_{n\to+\infty}\sqrt[n]{n}\cdot\sqrt[n]{|a_{n}|}=\lim_{n\to+\infty}\sqrt[n]{|a_{n}|},
+\]
+故幂级数 $\sum_{n=1}^{\infty}na_{n}x^{n-1}$ 的收敛半径仍为 $R$. 而 $\forall x_{0}\in(-R,R)$, 取 $r\in(0,R)$, 使 $|x_{0}|<r$.
+
+根据定理~\ref{thm:14.1.3}, $\sum_{n=1}^{\infty}na_{n}x^{n-1}$ 在 $[-r,r]$ 中一致收敛. 于是, 由定理~\ref{thm:13.2.4}, 幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[-r,r]$ 中可逐项求导, 即在 $[-r,r]$ 上有
+\[
+  S'(x)=\left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)'=\sum_{n=0}^{\infty}(a_{n}x^{n})'=\sum_{n=1}^{\infty}na_{n}x^{n-1},
+\]
+所以 $S(x)$ 在 $x_{0}$ 处可导. 由于 $x_{0}\in(-R,R)$ 任取, 故 $S(x)$ 在 $(-R,R)$ 中可导.
+
+(3) 反复应用 (2) 知, $S(x)$ 在 $(-R,R)$ 中有任意阶导数, 且
+\[
+  \begin{aligned}
+    S^{(k)}(x)&=\left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)^{(k)}=\sum_{n=0}^{\infty}(a_{n}x^{n})^{(k)}\\
+    &=\sum_{n=k}^{\infty}a_{n}n(n-1)\cdots(n-k+1)x^{n-k}.
+  \end{aligned}
+\]
+
+(4) 因为
+\[
+  \lim_{n\to+\infty}\sqrt[n]{\left|\frac{a_{n}}{n+1}\right|}=\lim_{n\to+\infty}\frac{\sqrt[n]{|a_{n}|}}{(n+1)^{\frac{1}{n}}}=\lim_{n\to+\infty}\sqrt[n]{|a_{n}|}=\frac{1}{R},
+\]
+故 $\sum_{n=0}^{\infty}\frac{a_{n}}{n+1}x^{n+1}$ 的收敛半径仍为 $R$.
+
+$\forall x\in(-R,R)$, 由定理~\ref{thm:14.1.3}, $\sum_{n=0}^{\infty}a_{n}t^{n}$ 在 $[-|x|,|x|]$ 中一致收敛, 故根据定理~\ref{thm:13.2.3p}, 可逐项积分, 即
+\[
+  \begin{aligned}
+    \int_{0}^{x}S(t)\mathrm{d}t&=\int_{0}^{x}\left(\sum_{n=0}^{\infty}a_{n}t^{n}\right)\mathrm{d}t=\sum_{n=0}^{\infty}\int_{0}^{x}a_{n}t^{n}\mathrm{d}t=\sum_{n=0}^{\infty}a_{n}\frac{t^{n+1}}{n+1}\bigg|_{0}^{x}\\
+    &=\sum_{n=0}^{\infty}\frac{a_{n}}{n+1}x^{n+1}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:14.1.5}
+求幂级数 $\sum_{n=1}^{\infty}nx^{n}$ 的和函数. 由此证明:
+\[
+  \sum_{n=1}^{\infty}\frac{n}{2^{n}}=2,\quad\sum_{n=1}^{\infty}\frac{n}{3^{n}}=\frac{3}{4}.
+\]
+\end{example}
+
+\begin{proof}
+由例~\ref{ex:14.1.1}(2) 知, 幂级数 $\sum_{n=1}^{\infty}nx^{n}$ 的收敛半径为 $R=1$. 为了求出它的和, 对幂级数
+\[
+  \sum_{n=0}^{\infty}x^{n}=\frac{1}{1-x}\quad(|x|<1)
+\]
+逐项求导就有
+\[
+  \sum_{n=1}^{\infty}nx^{n-1}=\sum_{n=1}^{\infty}(x^{n})'=\left(\sum_{n=1}^{\infty}x^{n}\right)'=\left(\frac{1}{1-x}\right)'=\frac{1}{(1-x)^{2}}.
+\]
+因而,
+\[
+  \sum_{n=1}^{\infty}nx^{n}=\frac{x}{(1-x)^{2}},\quad|x|<1.
+\]
+上式中分别取 $x=\frac{1}{2}$, $\frac{1}{3}$ 可得
+\[
+  \sum_{n=1}^{\infty}\frac{n}{2^{n}}=\sum_{n=1}^{\infty}n\left(\frac{1}{2}\right)^{n}=\frac{\frac{1}{2}}{\left(1-\frac{1}{2}\right)^{2}}=2,
+\]
+\[
+  \sum_{n=1}^{\infty}\frac{n}{3^{n}}=\sum_{n=1}^{\infty}n\left(\frac{1}{3}\right)^{n}=\frac{\frac{1}{3}}{\left(1-\frac{1}{3}\right)^{2}}=\frac{3}{4}.
+\]
+
+我们也可用初等方法求此和 (参阅例~\ref{ex:12.1.4}): 令
+\[
+  \begin{aligned}
+    S_{\infty}&=\sum_{n=1}^{\infty}nx^{n}=x+2x^{2}+3x^{3}+\cdots+nx^{n}+\cdots\\
+    xS_{\infty}&=\sum_{n=1}^{\infty}nx^{n+1}=x^{2}+2x^{3}+\cdots+(n-1)x^{n}+nx^{n+1}+\cdots\\
+    (1-x)S_{\infty}&=\sum_{n=1}^{\infty}x^{n}=x+x^{2}+x^{3}+\cdots+x^{n}+\cdots=\frac{x}{1-x},
+  \end{aligned}
+\]
+所以
+\[
+  S=\frac{x}{(1-x)^{2}},\quad|x|<1.
+\]
+\end{proof}
+
+\begin{example}\label{ex:14.1.6}
+求 $\sum_{n=1}^{\infty}\frac{x^{n}}{n(n+1)}$, $\sum_{n=1}^{\infty}\frac{1}{n(n+1)}$, $\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n(n+1)}$.
+\end{example}
+
+\begin{proof}
+令 $f(x)=\sum_{n=1}^{\infty}\frac{x^{n+1}}{n(n+1)}$, 易见 $R=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{n(n+1)}}=1$, 且由 $|x|\leqslant1$ 时
+\[
+  \left|\frac{x^{n+1}}{n(n+1)}\right|\leqslant\frac{1}{n(n+1)},
+\]
+及 $\sum_{n=1}^{\infty}\frac{1}{n(n+1)}=\sum_{n=1}^{\infty}\left(\frac{1}{n}-\frac{1}{n+1}\right)$ 收敛, 根据 Weierstrass 判别法知, $\sum_{n=1}^{\infty}\frac{x^{n+1}}{n(n+1)}$ 在 $[-1,1]$ 上一致收敛. 于是, 由定理~\ref{thm:14.1.4}(3), 有
+\[
+  f'(x)=\left(\sum_{n=1}^{\infty}\frac{x^{n+1}}{n(n+1)}\right)'=\sum_{n=1}^{\infty}\left(\frac{x^{n+1}}{n(n+1)}\right)'=\sum_{n=1}^{\infty}\frac{x^{n}}{n},
+\]
+\[
+  f''(x)=\left(f'(x)\right)'=\left(\sum_{n=1}^{\infty}\frac{x^{n}}{n}\right)'=\sum_{n=1}^{\infty}\left(\frac{x^{n}}{n}\right)'=\sum_{n=1}^{\infty}x^{n-1}=\frac{1}{1-x},\quad x\in(-1,1).
+\]
+因此, 当 $x\in(-1,1)$ 时, 有
+\[
+  \begin{aligned}
+    f'(x)&=\int_{0}^{x}f''(t)\mathrm{d}t+f'(0)=\int_{0}^{x}\frac{\mathrm{d}t}{1-t}+0\\
+    &=-\left.\ln(1-t)\right|_{0}^{x}=-\left.\ln(1-x)\right.,
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    f(x)&=\int_{0}^{x}f'(t)\mathrm{d}t+f(0)=-\int_{0}^{x}\ln(1-t)\mathrm{d}t+0\\
+    &=\int_{0}^{x}\ln(1-t)\mathrm{d}(1-t)=(1-t)\ln(1-t)\bigg|_{0}^{x}-\int_{0}^{x}(1-t)\cdot\frac{-1}{1-t}\mathrm{d}t\\
+    &=(1-x)\ln(1-x)+\int_{0}^{x}\mathrm{d}t=(1-x)\ln(1-x)+x.
+  \end{aligned}
+\]
+注意, 当 $x\neq0$ 时, $\frac{f(x)}{x}=\frac{(1-x)\ln(1-x)+x}{x}=\frac{(1-x)\ln(1-x)}{x}+1$, 由此得到
+\[
+  \sum_{n=1}^{\infty}\frac{x^{n}}{n(n+1)}=\begin{cases}
+    \dfrac{(1-x)\ln(1-x)}{x}+1, & x\in(-1,0)\cup(0,1),\\
+    \displaystyle\sum_{n=1}^{\infty}\frac{0^{n}}{n(n+1)}=0, & x=0.
+\end{cases}
+\]
+当 $x=1$ 时,
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n(n+1)}=\lim_{n\to+\infty}\sum_{k=1}^{n}\left(\frac{1}{k}-\frac{1}{k+1}\right)=\lim_{n\to+\infty}\left(1-\frac{1}{n+1}\right)=1-0=1,
+\]
+而由 Abel 第二定理~\ref{thm:14.1.5}
+\[
+  \lim_{x\to1^{-}}\left[\frac{(1-x)\ln(1-x)}{x}+1\right],
+\]
+当 $x=-1$ 时,
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n}}{n(n+1)}\xlongequal{\text{Abel 第二定理}}\lim_{x\to(-1)^{+}}\left[\frac{(1-x)\ln(1-x)}{x}+1\right]=\frac{2\ln2}{-1}+1=1-2\ln2.
+\]
+\end{proof}
+
+\begin{example}\label{ex:14.1.7}
+将 $\ln(1+x)$ 与 $\arctan x$ 展开成幂级数.
+\end{example}
+
+\begin{proof}
+显然,
+\[
+  \frac{1}{1+x}=\frac{1}{1-(-x)}=\sum_{n=0}^{\infty}(-x)^{n}=\sum_{n=0}^{\infty}(-1)^{n}x^{n},\quad x\in(-1,1),
+\]
+该幂级数的收敛半径为
+\[
+  R=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{|(-1)^{n}|}}=1,
+\]
+收敛区间为 $(-1,1)$.
+
+由 $0$ 到 $x$ 逐项积分得
+\[
+  \begin{aligned}
+    \ln(1+x)&=\int_{0}^{x}\frac{\mathrm{d}t}{1+t}=\int_{0}^{x}\sum_{n=0}^{\infty}(-1)^{n}t^{n}\mathrm{d}t=\sum_{n=0}^{\infty}(-1)^{n}\int_{0}^{x}t^{n}\mathrm{d}t=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{n+1}x^{n+1}\\
+    &=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^{n},\quad x\in(-1,1).
+  \end{aligned}
+\]
+当 $x=1$ 时, 由 Leibniz 判别法知 $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}\cdot1^{n}$ 收敛, 再由 Abel 第二定理~\ref{thm:14.1.5} 知,
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln2.
+\]
+当 $x=-1$ 时,
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}(-1)^{n}=\sum_{n=1}^{\infty}\frac{-1}{n}
+\]
+发散. 因此,
+\[
+  \ln(1+x)=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^{n},\quad x\in(-1,1].
+\]
+
+再逐项积分等式
+\[
+  \frac{1}{1+x^{2}}=\frac{1}{1-(-x^{2})}=\sum_{n=0}^{\infty}(-x^{2})^{n}=\sum_{n=0}^{\infty}(-1)^{n}x^{2n},\quad x\in(-1,1).
+\]
+即得 $\arctan x$ 的展开式:
+\[
+  \begin{aligned}
+    \arctan x&=\int_{0}^{x}\frac{\mathrm{d}t}{1+t^{2}}=\int_{0}^{x}\sum_{n=0}^{\infty}(-1)^{n}t^{2n}\mathrm{d}t=\sum_{n=0}^{\infty}(-1)^{n}\int_{0}^{x}t^{2n}\mathrm{d}t\\
+    &=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1},\quad x\in(-1,1),
+  \end{aligned}
+\]
+其中 $\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1}$ 的收敛半径为
+\[
+  R=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}}=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[2n]{|(-1)^{n}|}}=1,
+\]
+收敛区间为 $(-1,1)$.
+
+类似上述应用 Leibniz 判别法与 Abel 第二定理知,
+\[
+  \arctan x=\sum_{n=1}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1},\quad x\in[-1,1].
+\]
+收敛点集为 $[-1,1]$. 并且
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n}}{2n+1}=\arctan1=\frac{\pi}{4}.
+\]
+
+$\sum_{n=0}^{\infty}(-1)^{n}x^{n}$ 在 $x=-1,1$ 处发散. 收敛点集为 $(-1,1)$;
+
+$\sum_{n=0}^{\infty}\frac{(-1)^{n-1}}{n}x^{n}$ 在 $x=-1$ 处发散, 而在 $x=1$ 处收散. 收敛点集为 $(-1,1]$;
+
+$\sum_{n=0}^{\infty}(-1)^{n}x^{2n}$ 在 $x=-1,1$ 处发散. 收敛点集为 $(-1,1)$;
+
+$\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1}$ 在 $x=-1,1$ 处都收敛. 收敛点集为 $[-1,1]$.
+
+这几个例子表明, 幂级数通过逐项求导或逐项积分, 端点处的敛散性可能会改变.
+\end{proof}
+
+在收敛区间的两端点处, 和函数有如下性质.
+
+%  第二部分：定理 14.1.5 起（生成脚本 tools/_make_ch14_1b.py）
+% ==================================================================
+
+% ===== PART-B =====
+
+\begin{theorem}[Abel 第二定理]\label{thm:14.1.5}
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$, 如果在 $x=R$ 处, 该级数收敛, 则其和函数 $S(x)$ 在 $x=R$ 处左连续; 如果该级数在 $x=-R$ 处收敛, 则 $S(x)$ 在 $x=-R$ 处右连续.
+\end{theorem}
+
+\begin{proof}
+设 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x=R$ 处收敛, 即 $\sum_{n=0}^{\infty}a_{n}R^{n}$ 收敛. 由于 $\left(\frac{x}{R}\right)^{n}$ 对 $[0,R]$ 中的每个 $x$ 关于 $n$ 单调, 且在 $[0,R]$ 中一致有界: $\left|\left(\frac{x}{R}\right)^{n}\right|\leqslant1$. 根据函数项级数的 Abel 判别法~\ref{thm:13.1.5}, 得
+\[
+  \sum_{n=0}^{\infty}a_{n}x^{n}=\sum_{n=0}^{\infty}a_{n}R^{n}\cdot\left(\frac{x}{R}\right)^{n}
+\]
+在 $[0,R]$ 上一致收敛, 故 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[0,R]$ 上连续. 特别在 $x=R$ 处左连续.
+
+定理的另一半可类似证明.
+\end{proof}
+
+\begin{example}\label{ex:14.1.8}
+应用 Abel 第二定理证明:
+
+(1) $\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\ln2$;
+
+(2) $\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}=\frac{\pi}{4}$.
+\end{example}
+
+\begin{proof}
+(1) 由例~\ref{ex:14.1.7}, 有
+\[
+  \ln(1+x)=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^{n},\quad x\in(-1,1).
+\]
+根据数项级数的 Leibniz 判别法, 右边的幂级数在 $x=1$ 处的数项级数收敛, 故由 Abel 第二定理~\ref{thm:14.1.5} 得
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}=\lim_{x\to1^{-}}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}x^{n}=\lim_{x\to1^{-}}\ln(1+x)=\ln(1+1)=\ln2.
+\]
+
+(2) 由例~\ref{ex:14.1.7}, 有
+\[
+  \arctan x=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1},\quad x\in(-1,1).
+\]
+根据数项级数的 Leibniz 判别法, 右边的幂级数在 $x=1$, $x=-1$ 处的数项级数收敛, 故由 Abel 第二定理~\ref{thm:14.1.5} 得
+\[
+  \sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}=\lim_{x\to1^{-}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1}=\lim_{x\to1^{-}}\arctan x=\arctan1=\frac{\pi}{4}
+\]
+或
+\[
+  \begin{aligned}
+    \sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}(-1)^{2n+1}&=\lim_{x\to(-1)^{+}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}x^{2n+1}=\lim_{x\to(-1)^{+}}\arctan x\\
+    &=\arctan(-1)=-\frac{\pi}{4},
+  \end{aligned}
+\]
+\[
+  \sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n+1}=\frac{\pi}{4}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:14.1.9}
+应用 Abel 第二定理证明:
+\[
+  \sum_{n=0}^{\infty}\frac{(-1)^{n}}{3n+1}=\frac{1}{3}\left(\ln2+\frac{\pi}{\sqrt{3}}\right).
+\]
+\end{example}
+
+\begin{proof}
+考虑幂级数
+\[
+  S(x)=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{3n+1}x^{3n+1}.
+\]
+显然, 该幂级数的收敛半径为
+\[
+  R=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}}=\frac{1}{\lim\limits_{n\to+\infty}\sqrt[3n+1]{\left|\frac{(-1)^{n}}{3n+1}\right|}}=1,
+\]
+收敛区间为 $(-1,1)$.
+
+根据数项级数的 Leibniz 判别法, 右边的幂级数在 $x=1$ 处的数项级数收敛, 故由 Abel 第二定理~\ref{thm:14.1.5} 得
+\[
+  \begin{aligned}
+    \sum_{n=0}^{\infty}\frac{(-1)^{n}}{3n+1}&=\lim_{x\to1^{-}}\sum_{n=0}^{\infty}\frac{(-1)^{n}}{3n+1}x^{3n+1}=\lim_{x\to1^{-}}S(x)=\lim_{x\to1^{-}}[S(x)-S(0)]\\
+    &\xlongequal{\text{Newton-Leibniz 公式}}\lim_{x\to1^{-}}\int_{0}^{x}S'(t)\mathrm{d}t=\lim_{x\to1^{-}}\int_{0}^{x}\left[\sum_{n=0}^{\infty}\frac{(-1)^{n}}{3n+1}t^{3n+1}\right]'\mathrm{d}t\\
+    &=\lim_{x\to1^{-}}\int_{0}^{x}\sum_{n=0}^{\infty}(-t^{3})^{n}\mathrm{d}t=\int_{0}^{1}\frac{\mathrm{d}t}{1+t^{3}}=\int_{0}^{1}\frac{1}{3}\left(\frac{1}{1+t}+\frac{2-t}{t^{2}-t+1}\right)\mathrm{d}t\\
+    &=\int_{0}^{1}\frac{1}{3}\left[\frac{1}{1+t}-\frac{1}{2}\frac{2t-1}{t^{2}-t+1}+\frac{2}{1+\frac{4}{3}(t-\frac{1}{2})^{2}}\right]\mathrm{d}t\\
+    &=\frac{1}{3}\left[\ln(1+t)-\frac{1}{2}\ln(t^{2}-t+1)+\sqrt{3}\arctan\frac{2}{\sqrt{3}}\left(t-\frac{1}{2}\right)\right]\Bigg|_{0}^{1}\\
+    &=\frac{1}{3}\left(\ln2+2\sqrt{3}\arctan\frac{1}{\sqrt{3}}\right)=\frac{1}{3}\left(\ln2+2\sqrt{3}\cdot\frac{\pi}{6}\right)=\frac{1}{3}\left(\ln2+\frac{\pi}{\sqrt{3}}\right).
+  \end{aligned}
+\]
+\end{proof}
+
+Abel 第二定理的逆定理是否成立? 即若 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$ (不失一般性, 设 $R=1$), 且 $\lim\limits_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A\in\mathbb{R}$, 是否能断言 $\sum_{n=0}^{\infty}a_{n}=\sum_{n=0}^{\infty}a_{n}\cdot1^{n}=A$?
+
+反例: 幂级数 $\sum_{n=0}^{\infty}(-1)^{n}x^{n}$ 的收敛半径为 $1$, 且
+\[
+  \sum_{n=0}^{\infty}(-1)^{n}x^{n}=\sum_{n=0}^{\infty}(-x)^{n}=\frac{1}{1-(-x)}=\frac{1}{1+x},\quad x\in(-1,1),
+\]
+\[
+  \lim_{x\to1^{-}}\sum_{n=0}^{\infty}(-1)^{n}x^{n}=\lim_{x\to1^{-}}\frac{1}{1+x}=\frac{1}{2},
+\]
+但 $\sum_{n=0}^{\infty}(-1)^{n}=\sum_{n=0}^{\infty}(-1)^{n}\cdot1^{n}$ 显然是发散的.
+
+如果给幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的系数 $a_{n}$ 加上适当条件, 则 Abel 第二定理的逆定理可成立.
+
+\begin{theorem}[Tauber]\label{thm:14.1.6}
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $1$, 且 $\lim\limits_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A\in\mathbb{R}$. 如果
+\[
+  a_{n}=o\left(\frac{1}{n}\right)\quad(n\to+\infty),
+\]
+则 $\sum_{n=0}^{\infty}a_{n}=\sum_{n=0}^{\infty}a_{n}\cdot1^{n}=A$.
+\end{theorem}
+
+\begin{proof}
+由题设, $a_{n}=o\left(\frac{1}{n}\right)$ ($n\to+\infty$), 即 $\lim\limits_{n\to+\infty}na_{n}=\lim\limits_{n\to+\infty}\frac{a_{n}}{\frac{1}{n}}=0$. 令
+\[
+  \delta_{n}=\sup_{k\geqslant n}|ka_{k}|,\quad n=0,1,2,\cdots,
+\]
+则当 $n\to+\infty$ 时, $\{\delta_{n}\}$ 单调减趋于 $0$. 再由 $\lim\limits_{N\to+\infty}\sum_{n=0}^{N}a_{n}x^{n}=A\in\mathbb{R}$, 故 $\forall\varepsilon>0$, $\exists\eta>0$, 当 $0<1-x<\eta$ 时, 有
+\[
+  \left|\sum_{n=0}^{\infty}a_{n}x^{n}-A\right|<\varepsilon.
+\]
+今取 $N_{0}\in\mathbb{N}$, 使得 $\frac{\varepsilon}{N_{0}}<\eta$ 且 $\delta_{N_{0}+1}<\varepsilon^{2}$. 由此, $\forall N>N_{0}$, 必有 $\frac{\varepsilon}{N}<\frac{\varepsilon}{N_{0}}<\eta$, $\delta_{N+1}\leqslant\delta_{N_{0}+1}<\varepsilon^{2}$. 再取 $x=1-\frac{\varepsilon}{N}$ (即 $\varepsilon=N(1-x)$), 则 $0<1-x=\frac{\varepsilon}{N}<\eta$, 因而,
+\[
+  \left|\sum_{n=0}^{\infty}a_{n}x^{n}-A\right|<\varepsilon.
+\]
+此时, 还有
+\[
+  \begin{aligned}
+    \left|\sum_{n=0}^{N}a_{n}(1-x^{n})\right|&\leqslant\sum_{n=0}^{N}|a_{n}||1-x^{n}|\leqslant\sum_{n=0}^{N}n|a_{n}|(1-x)\\
+    &\leqslant\delta_{0}N(1-x)=\delta_{0}\varepsilon,
+  \end{aligned}
+\]
+且
+\[
+  \left|\sum_{n=N+1}^{\infty}a_{n}x^{n}\right|\leqslant\sum_{n=N+1}^{\infty}\frac{|na_{n}|}{n}x^{n}\leqslant\frac{\delta_{N+1}}{N+1}\frac{x^{N+1}}{1-x}\leqslant\frac{\delta_{N+1}}{N(1-x)}<\frac{\varepsilon^{2}}{\varepsilon}=\varepsilon.
+\]
+于是
+\[
+  \begin{aligned}
+    \left|\sum_{n=0}^{N}a_{n}-A\right|&=\left|\sum_{n=0}^{N}a_{n}(1-x^{n})-\sum_{n=N+1}^{\infty}a_{n}x^{n}+\left(\sum_{n=0}^{\infty}a_{n}x^{n}-A\right)\right|\\
+    &\leqslant\left|\sum_{n=0}^{N}a_{n}(1-x^{n})\right|+\left|\sum_{n=N+1}^{\infty}a_{n}x^{n}\right|+\left|\sum_{n=0}^{\infty}a_{n}x^{n}-A\right|\\
+    &<\delta_{0}\varepsilon+\varepsilon+\varepsilon=(2+\delta_{0})\varepsilon.
+  \end{aligned}
+\]
+这就证明了 $\sum_{n=0}^{\infty}a_{n}=\lim\limits_{N\to+\infty}\sum_{n=0}^{N}a_{n}=A$.
+\end{proof}
+
+另一个简单的充分条件是只要 $a_{n}\geqslant0$ 就能保证 Abel 第二定理的逆定理成立.
+
+\begin{theorem}\label{thm:14.1.7}
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $1$, 且 $\lim\limits_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A\in\mathbb{R}$. 如果 $a_{n}\geqslant0$, $n=0,1,2,\cdots$, 则 $\sum_{n=0}^{\infty}a_{n}=\sum_{n=0}^{\infty}a_{n}\cdot1^{n}=A$.
+\end{theorem}
+
+\begin{proof}
+设 $0<x<1$, 因为
+\[
+  \sum_{n=0}^{\infty}a_{n}x^{n}\leqslant\sum_{n=0}^{\infty}a_{n}1^{n}=\sum_{n=0}^{\infty}a_{n},
+\]
+所以
+\[
+  A=\lim_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}\leqslant\sum_{n=0}^{\infty}a_{n}.
+\]
+另一方面, 对 $\forall N\in\mathbb{N}$,
+\[
+  \sum_{n=0}^{N}a_{n}=\lim_{x\to1^{-}}\sum_{n=0}^{N}a_{n}x^{n}\leqslant\lim_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A.
+\]
+于是
+\[
+  \sum_{n=0}^{\infty}a_{n}=\lim_{N\to+\infty}\sum_{n=0}^{N}a_{n}\leqslant A.
+\]
+综合上述, 有
+\[
+  \sum_{n=0}^{\infty}a_{n}=A.
+\]
+\end{proof}
+
+最后, 我们来讨论两个幂级数的相加, 相减以及相乘.
+
+\begin{theorem}\label{thm:14.1.8}
+设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$, $\sum_{n=0}^{\infty}b_{n}x^{n}$ 的收敛半径分别为 $R_{1}$ 与 $R_{2}$, 令 $R=\min\{R_{1},R_{2}\}$, 则在 $(-R,R)$ 中有:
+
+(1)
+\[
+  \sum_{n=0}^{\infty}a_{n}x^{n}\pm\sum_{n=0}^{\infty}b_{n}x^{n}=\sum_{n=0}^{\infty}(a_{n}\pm b_{n})x^{n};
+\]
+
+(2)
+\[
+  \left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)\left(\sum_{n=0}^{\infty}b_{n}x^{n}\right)=\sum_{n=0}^{\infty}c_{n}x^{n},\quad \text{其中 }c_{n}=\sum_{k=0}^{n}a_{k}b_{n-k},\ n=0,1,2,\cdots
+\]
+\end{theorem}
+
+\begin{proof}
+(1) 由题设, $\forall x\in(-R,R)$, 有
+\[
+  \begin{aligned}
+    \sum_{n=0}^{\infty}(a_{n}\pm b_{n})x^{n}&=\lim_{n\to+\infty}\sum_{k=0}^{n}(a_{k}\pm b_{k})x^{k}=\lim_{n\to+\infty}\left(\sum_{k=0}^{n}a_{k}x^{k}+\sum_{k=0}^{n}b_{k}x^{k}\right)\\
+    &=\sum_{k=0}^{\infty}a_{k}x^{k}\pm\sum_{k=0}^{\infty}b_{k}x^{k}=\sum_{n=0}^{\infty}a_{n}x^{n}\pm\sum_{n=0}^{\infty}b_{n}x^{n}.
+  \end{aligned}
+\]
+
+(2) 因为 $\forall x\in(-R,R)$, $\sum_{n=0}^{\infty}a_{n}x^{n}$ 与 $\sum_{n=0}^{\infty}b_{n}x^{n}$ 都绝对收敛, 故根据两级数乘法的 Cauchy 定理~\ref{thm:12.4.1}, 立即有
+\[
+  \begin{aligned}
+    \left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)\left(\sum_{n=0}^{\infty}b_{n}x^{n}\right)&=\sum_{n=0}^{\infty}\sum_{k=0}^{n}(a_{k}x^{k})(b_{n-k}x^{n-k})\\
+    &=\sum_{n=0}^{\infty}\left(\sum_{k=0}^{n}a_{k}b_{n-k}\right)x^{n}.
+  \end{aligned}
+\]
+\end{proof}
+
+作为定理~\ref{thm:14.1.8}(2) 与 Abel 第二定理的应用, 我们有下面的结果.
+
+\begin{theorem}\label{thm:14.1.9}
+设 $\sum_{n=0}^{\infty}a_{n}$ 与 $\sum_{n=0}^{\infty}b_{n}$ 为两个收敛级数, 如果它们的 Cauchy 乘积 $\sum_{n=0}^{\infty}c_{n}$ ($c_{n}=\sum_{k=0}^{n}a_{k}b_{n-k}$) 也收敛, 则
+\[
+  \sum_{n=0}^{\infty}c_{n}=\left(\sum_{n=0}^{\infty}a_{n}\right)\left(\sum_{n=0}^{\infty}b_{n}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+因为 $\sum_{n=0}^{\infty}a_{n}$, $\sum_{n=0}^{\infty}b_{n}$ 与 $\sum_{n=0}^{\infty}c_{n}$ 是三个收敛级数, 所以根据 Abel 定理~\ref{thm:14.1.2} 知, 由它们所产生的三个幂级数
+\[
+  \sum_{n=0}^{\infty}a_{n}x^{n},\quad\sum_{n=0}^{\infty}b_{n}x^{n},\quad\sum_{n=0}^{\infty}c_{n}x^{n}
+\]
+的收敛半径 $R$ 都不小于 $1$. 再由定理~\ref{thm:14.1.8}(2), 有
+\[
+  \left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)\left(\sum_{n=0}^{\infty}b_{n}x^{n}\right)=\sum_{n=0}^{\infty}c_{n}x^{n}.
+\]
+在上式两端令 $x\to1^{-}$, 并根据 Abel 第二定理~\ref{thm:14.1.5} 即得
+\[
+  \begin{aligned}
+    \left(\sum_{n=0}^{\infty}a_{n}\right)\left(\sum_{n=0}^{\infty}b_{n}\right)&=\lim_{x\to1^{-}}\left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)\left(\sum_{n=0}^{\infty}b_{n}x^{n}\right)\\
+    &=\lim_{x\to1^{-}}\sum_{n=0}^{\infty}c_{n}x^{n}=\sum_{n=0}^{\infty}c_{n}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{exblock}{练习题 14.1}
+\begin{enumerate}
+  \item 求下列幂级数的收敛半径，并研究它们在收敛区间端点的性质:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{(-x)^{n}}{3^{n-1}\sqrt{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin n}{n}x^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{n^{2}}x^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{2}+\cdots+\frac{1}{n}\right)x^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{a^{n}}{n}+\frac{b^{n}}{n^{2}}\right)x^{n}$, $a>0$, $b>0$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n}{\mathrm{e}}\right)^{n}x^{n}$.
+  \end{enumerate}
+  \item 求下列广义幂级数的收敛点集:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=0}^{\infty}\frac{1}{2n+1}\left(\frac{1-x}{1+x}\right)^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{-n^{2}}\mathrm{e}^{-nx}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{1}{x}\right)^{n}\sin\frac{\pi}{2^{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\sin\frac{1}{3n}\right)(x^{2}+x+1)^{n}$;
+    \item $\displaystyle\sum_{n=0}^{\infty}\frac{1}{\sqrt{n+1}}\left(\frac{1}{2x}\right)^{n}$.
+  \end{enumerate}
+  \item 设 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 与 $\sum_{n=0}^{\infty}b_{n}x^{n}$ 的收敛半径分别为 $R_{1}$ 与 $R_{2}$. 证明:
+
+  (1) $\sum_{n=0}^{\infty}(a_{n}+b_{n})x^{n}$ 的收敛半径 $R\geqslant\min\{R_{1},R_{2}\}$;
+
+  (2) $\sum_{n=0}^{\infty}(a_{n}b_{n})x^{n}$ 的收敛半径 $R\geqslant R_{1}R_{2}$;
+
+  (3) 举例说明在 (1) 中 $R>\min\{R_{1},R_{2}\}$ 与在 (2) 中 $R>R_{1}R_{2}$ 的情形都是可能发生的.
+  \item 求下列幂级数在区间 $(-1,1)$ 上的和:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=0}^{\infty}\frac{1}{2n+1}x^{2n+1}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{2n+1}}{2n+1}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n(n+1)}$.
+  \end{enumerate}
+  \item 证明下列等式在区间 $(-1,1)$ 中成立:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=0}^{\infty}(n+1)(n+2)x^{n}=\frac{2}{(1-x)^{3}}$;
+    \item $\displaystyle\sum_{n=0}^{\infty}n^{3}x^{n}=\frac{x+4x^{2}+x^{3}}{(1-x)^{4}}$;
+    \item $\displaystyle\sum_{n=0}^{\infty}\frac{1}{3!}(n+1)(n+2)(n+3)x^{n}=\frac{1}{(1-x)^{4}}$.
+  \end{enumerate}
+  \item 证明: 广义幂级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1^{n}+2^{n}+\cdots+50^{n}}{n^{2}}\left(\frac{1-x}{1+x}\right)^{n}$ 的收敛点集为 $\left[\frac{49}{51},\frac{51}{49}\right]$.
+  \item 设 $a_{n}\geqslant0$, $\sum_{n=1}^{\infty}a_{n}$ 收敛, $b_{m}=\sum_{n=1}^{\infty}\left(1+\frac{1}{n^{m}}\right)^{n}a_{n}$. 证明: 幂级数 $\sum_{m=1}^{\infty}b_{m}x^{m}$ 的收敛半径 $R$ 满足不等式: $\frac{1}{\mathrm{e}}\leqslant R\leqslant1$.
+  \item 幂级数 $\displaystyle\sum_{n=2}^{\infty}\frac{\left(1+2\cos\frac{n\pi}{4}\right)^{n}}{n\ln n}x^{n}$ 的收敛点集为 $\left[-\frac{1}{3},\frac{1}{3}\right]$.
+  \item 证明: $\displaystyle\sum_{n=1}^{\infty}n^{n^{2}}x^{n^{3}}$ 的收敛点集为 $(-1,1)$.
+  \item 证明: $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n^{2}}}{2^{n}}$ 的收敛点集为 $[-1,1]$.
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 14.1}
+\begin{enumerate}
+  \item 求级数 $\dfrac{1}{2}-\dfrac{1}{5}+\dfrac{1}{8}-\dfrac{1}{11}+\cdots$ 的和.
+  \item 证明:
+
+  (1) $\displaystyle1-\frac{1}{5}+\frac{1}{9}-\frac{1}{13}+\cdots=\frac{1}{4\sqrt{2}}(\pi+2\ln(\sqrt{2}+1))$;
+
+  (2) $\displaystyle1+\frac{1}{2}-\frac{1}{3}-\frac{1}{4}+\frac{1}{5}+\frac{1}{6}-\frac{1}{7}-\frac{1}{8}+\cdots=\frac{\pi}{4}+\frac{1}{2}\ln2$;
+
+  (3) $\displaystyle1+\sum_{n=1}^{\infty}\frac{(2n-1)!!}{(2n)!!}\frac{1}{(2n+1)^{2}}=\frac{\pi}{2}\ln2$.
+  \item 设
+  \[
+    l=\liminf_{n\to+\infty}\left|\frac{a_{n}}{a_{n+1}}\right|,\quad L=\limsup_{n\to+\infty}\left|\frac{a_{n}}{a_{n+1}}\right|.
+\]
+  如果幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$, 证明: $l\leqslant R\leqslant L$.
+  \item 设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$, 且 $a_{n}\geqslant0$.
+
+  (1) 证明: $\displaystyle\lim_{x\to R^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=\sum_{n=0}^{\infty}a_{n}R^{n}$;
+
+  (2) 由 (1) 证明: $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}=+\infty$.
+  \item 设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $1$, 且 $\lim\limits_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A$. 如果 $a_{n}\geqslant0$ ($n=0,1,2,\cdots$), 证明: $\sum_{n=0}^{\infty}a_{n}=A$. 问: 条件 ``$a_{n}\geqslant0$'' 删去, 结论是否仍正确?
+  \item 设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $1$, $a_{n}=o\left(\frac{1}{n^{1+\alpha}}\right)$ ($n\to+\infty$), 其中 $\alpha>0$, 且 $\lim\limits_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A$, 证明: $\sum_{n=0}^{\infty}a_{n}=A$.
+  \item 设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $1$, $a_{n}=o\left(\frac{1}{n}\right)$ ($n\to+\infty$), 且 $\lim\limits_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=A$, 证明: $\sum_{n=0}^{\infty}a_{n}=A$.
+  \item 设数列 $\{a_{n}\}$ 满足: $\lim\limits_{n\to+\infty}\sqrt[n]{|a_{n}|}=1$, 证明: $\lim\limits_{n\to+\infty}\sqrt[n]{|S_{n}|}=1$, 其中 $S_{n}=\sum_{k=0}^{n}a_{k}$ 为 $\sum_{n=0}^{\infty}a_{n}$ 的部分和.
+
+  (提示: 设幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$ 与 $\sum_{n=0}^{\infty}S_{n}x^{n}$ 的收敛半径分别为 $R$ 与 $R_{1}$, 应用 $\sum_{n=0}^{\infty}x^{n}\cdot\sum_{n=0}^{\infty}a_{n}x^{n}=\sum_{n=0}^{\infty}S_{n}x^{n}$. 先证 $R_{1}\geqslant1=R$; 再应用 $(1-x)\cdot\sum_{n=0}^{\infty}S_{n}x^{n}=\sum_{n=0}^{\infty}a_{n}x^{n}$ 证明 $R\geqslant R_{1}$, 从而 $R_{1}=R=1$.)
+\end{enumerate}
+\end{exblock}

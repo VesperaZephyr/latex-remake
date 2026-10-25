@@ -1,0 +1,449 @@
+% ============ 第四章 §1 Dirichlet 级数的一般理论 (原书 pp.132-146) ============
+\section{Dirichlet 级数的一般理论}\label{sec:ch4-s1}
+
+在这一节里我们简略地介绍解析数论的原始思想。
+
+\subsection{Dirichlet 级数环——形式化理论}\label{sec:ch4-s1-1}
+
+数论的一个基本课题是研究各种数论函数的性质。所谓数论函数就是从正整数集合 $P=\{1,2,3,\cdots\}$ 到某个带 $1$ 交换环 $R$ 中的映射 $f\colon P\to R$。如果记 $a_n=f(n)$，则每个取值于环 $R$ 中的数论函数也可看成是 $R$ 中的一个序列 $\{a_1,a_2,\cdots\}$。多数情形下 $R=\Z$，有时 $R$ 也取为有理数域 $\Q$、实数域 $\R$ 或者复数域 $\C$ 等等。下面是一些数论函数的例子。
+
+\begin{example}
+Euler 函数 $\varphi(n)$ 定义为从 $1$ 到 $n$ 之中与 $n$ 互素的整数个数。我们知道 $\varphi(n)=n\cdot\prod_{p\mid n}\left(1-\frac{1}{p}\right)$。
+\end{example}
+
+\begin{example}
+除数函数 $d(n)=\sum_{d\mid n}1$，即 $d(n)$ 为 $n$ 的正因子个数。例如 $d(1)=1$，$d(2)=d(3)=2$，$d(4)=3$，$d(5)=2$ 等等。
+\end{example}
+
+\begin{example}
+函数 $\tau(n)=\sum_{d\mid n}d$，即 $\tau(n)$ 为 $n$ 的全体正因子之和。例如 $\tau(1)=1$，$\tau(2)=1+2=3$，$\tau(3)=1+3=4$，$\tau(4)=1+2+4=7$ 等等。更一般地，我们有 $\sigma_k(n)=\sum_{d\mid n}d^k$。于是 $\sigma_0(n)=d(n)$，$\sigma_1(n)=\tau(n)$。
+\end{example}
+
+\begin{example}
+$\Omega(n)$ 为 $n$ 的素因子个数，$\omega(n)$ 为 $n$ 的不同素因子个数。换句话说，如果 $n=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_r^{\alpha_r}$ 是 $n$ 的素因子分解式，$p_1,\cdots,p_r$ 是不同的素数，$\alpha_i\geqslant 1$（$1\leqslant i\leqslant r$），则 $\Omega(n)=\alpha_1+\alpha_2+\cdots+\alpha_r$，而 $\omega(n)=r$。
+\end{example}
+
+\begin{example}
+$\pi(n)$ 为不超过 $n$ 的素数的个数，即 $\pi(n)=\sum_{p\leqslant n}1$。例如 $\pi(2)=1$，$\pi(10)=4$，$\pi(100)=25$，$\pi(1000)=168,\cdots$。对于每个数域 $K$，以 $\pi(K,n)$ 表示满足 $N(\mathfrak{p})\leqslant n$ 的 $K$ 中素理想 $\mathfrak{p}$ 的个数，这也是数论函数。
+\end{example}
+
+\begin{example}
+Mangoldt 函数（$\log$ 指自然对数）
+\[
+  \Lambda(n)=\begin{cases}
+    \log p, & \text{如果 } n=p^m,\ p\ \text{为素数},\ m\geqslant 1;\\
+    0, & \text{否则}.
+  \end{cases}
+\]
+\end{example}
+
+习题中有数论函数的进一步例子。
+
+\begin{sloppypar}
+许多数论函数之间具有``卷积''关系。设 $f(n)$ 和 $g(n)$ 均是数论函数，并且取值于同一个带 $1$ 交换环 $R$，所谓 $f(n)$ 和 $g(n)$ 的卷积是指一个新的数论函数 $h\colon P\to R$，它在每个 $n$ 处的取值为
+\[
+  h(n)=\sum_{d\mid n}f(d)g(n/d).
+\]
+我们记成 $h=f*g$。例如容易验证：$\{d(n)\}=\{1\}*\{1\}$，$\{\sigma_k(n)\}=\{1\}*\{n^k\}$，$\{\Lambda(n)\}*\{1\}=\{\log n\}$，$\{n\}=\{1\}*\{\varphi(n)\}$ 等等，其中 $\{1\}$ 表示恒等于 $1$ 的函数。
+\end{sloppypar}
+
+对于每个数论函数 $f\colon P\to R$，我们结合一个表达式
+\[
+  F(s)=\sum_{n=1}^{\infty}f(n)/n^s
+  =\frac{f(1)}{1^s}+\frac{f(2)}{2^s}+\cdots+\frac{f(n)}{n^s}+\cdots
+\]
+称作是数论函数 $f$ 的\emph{形式 Dirichlet 级数}，简称作形式 $D$-级数（所谓``形式''一词的含义，即指我们只不过是把级数 $F(s)$ 中的 $s$ 看作是符号而已）。反过来，每个环 $R$ 上的形式 $D$-级数
+\[
+  F(s)=\sum_{n=1}^{\infty}a_n/n^s\qquad(a_n\in R)
+\]
+\begin{sloppypar}
+也对应着一个数论函数 $f\colon P\to R$，$f(n)=a_n$。如果我们定义两个形式 $D$-级数 $\sum_{n=1}^{\infty}a_n/n^s$ 和 $\sum_{n=1}^{\infty}b_n/n^s$ 相等，当且仅当 $a_n=b_n$（$n=1,2,\cdots$），那么数论函数与它的形式 $D$-级数（以及 $R$ 中的序列 $\{a_1,a_2,\cdots\}$）之间建立起一一对应关系。进而，对于两个形式 $D$-级数 $F(s)=\sum_{n=1}^{\infty}a_n/n^s$ 和 $G(s)=\sum_{n=1}^{\infty}b_n/n^s$，我们将它们``形式''地相加和相乘（并且合并同类项），即
+\end{sloppypar}
+\[
+  F(s)+G(s)=\sum_{n=1}^{\infty}(a_n+b_n)/n^s,
+\]
+\begin{align*}
+  F(s)G(s)&=\sum_{r=1}^{\infty}\sum_{k=1}^{\infty}a_rb_k/r^sk^s
+  =\sum_{n=1}^{\infty}\frac{1}{n^s}\sum_{rk=n}a_rb_k\\
+  &=\sum_{n=1}^{\infty}\frac{1}{n^s}\sum_{d\mid n}a_db_{n/d}.
+\end{align*}
+这表明：形式 $D$-级数的形式加法对应着数论函数的通常加法，而形式 $D$-级数的形式乘法恰好对应着数论函数的卷积！以 $D(R)$ 表示带 $1$ 交换环 $R$ 上全体形式 $D$-级数所构成的集合，即
+\[
+  D(R)=\left\{\sum_{n=1}^{\infty}a_n/n^s\;\middle|\;a_n\in R,\ n=1,2,3,\dots\right\}.
+\]
+$D(R)$ 对于形式加法和乘法显然形成带 $1$ 交换环，其零元素和幺元素分别为 $0$ 和 $1$。$D(R)$ 称作是 $R$ 上的\emph{形式 $D$-级数环}。如果以 $R^P$ 表示取值于环 $R$ 的全部数论函数所构成的集合，即
+\[
+  R^P=\{f\colon P\to R\},
+\]
+根据上述对应关系我们就知道，$R^P$ 对于通常加法和卷积乘法也形成带 $1$ 交换环，其零元素是恒为 $0$ 的函数，而幺元素为数论函数 $e(n)$，其中 $e(1)=1$，$e(n)=0$（当 $n\geqslant 2$ 时），称 $(R^P,+,*)$ 为 $R$ 上的\emph{数论函数环}。环 $D(R)$ 和 $R^P$ 是同构的。基于这一同构，$D(R)$ 和 $R^P$ 中任何一个环中的性质都可翻译成另一个环中一个对应的性质。下面就是环 $D(R)$ 中的一些简单性质。
+
+\begin{lemma}\label{lem:ch4-1}
+\begin{enumerate}[(a)]
+  \item 若 $R$ 为整环，则 $D(R)$ 也是整环。
+  \item $\sum_{n=1}^{\infty}a_n/n^s$ 为 $D(R)$ 中的单位 $\Leftrightarrow a_1$ 为 $R$ 中的单位。并且若 $a_1$ 是 $R$ 中的单位，令 $\sum_{n=1}^{\infty}b_n/n^s$ 是 $\sum_{n=1}^{\infty}a_n/n^s$ 的逆元素，则诸系数 $b_n$ 可如下递归地求出：
+  \[
+    b_1=a_1^{-1},\qquad b_n=-a_1^{-1}\sum_{\substack{d\mid n\\ d\neq 1}}a_d\cdot b_{n/d}\quad(n\geqslant 2).
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) 设 $F(s)=\sum_{n=1}^{\infty}a_n/n^s$，$G(s)=\sum_{n=1}^{\infty}b_n/n^s$。如果 $F(s)\neq 0$，$G(s)\neq 0$，则存在 $n_1,n_2$，使得 $a_1=\cdots=a_{n_1-1}=b_1=\cdots=b_{n_2-1}=0$，$a_{n_1}\neq 0$，$b_{n_2}\neq 0$。于是
+\[
+  F(s)G(s)=\left(\sum_{n=n_1}^{\infty}a_n/n^s\right)\cdot\left(\sum_{n=n_2}^{\infty}b_n/n^s\right)=\sum_{n=n_1n_2}^{\infty}c_n/n^s,
+\]
+其中 $c_{n_1n_2}=a_{n_1}b_{n_2}$。由于 $R$ 为整环，从而 $c_{n_1n_2}=a_{n_1}b_{n_2}\neq 0$，于是 $F(s)G(s)\neq 0$，即 $D(R)$ 也是整环。
+
+\begin{sloppypar}
+(b) 如果 $\sum_{n=1}^{\infty}a_n/n^s$ 为环 $D(R)$ 中单位，则存在 $\sum_{n=1}^{\infty}b_n/n^s\in D(R)$，使得 $\left(\sum_{n=1}^{\infty}a_n/n^s\right)\left(\sum_{n=1}^{\infty}b_n/n^s\right)=1$。于是 $1=a_1b_1$，$0=\sum_{d\mid n}a_d\cdot b_{n/d}$（$n\geqslant 2$），从而 $a_1$ 为环 $R$ 中单位，$b_1=a_1^{-1}$。并且当 $n\geqslant 2$ 时 $a_1b_n+\sum_{\substack{d\mid n\\ d\neq 1}}a_d\cdot b_{n/d}=0$，即
+\end{sloppypar}
+\begin{equation}  b_n=-a_1^{-1}\sum_{\substack{d\mid n\\ d\neq 1}}a_d\cdot b_{n/d}.\tag{*}\end{equation}
+反过来，如果 $a_1$ 为 $R$ 中单位，取 $b_1=a_1^{-1}$，然后由 (*) 式递归地求出 $b_n$（$n\geqslant 2$）。不难证明 $\sum_{n=1}^{\infty}b_n/n^s$ 是 $\sum_{n=1}^{\infty}a_n/n^s$ 的逆元素。
+\end{proof}
+
+\begin{sloppypar}
+取 $R=\Z$，恒等于 $1$ 的数论函数所对应的形式 $D$-级数就是著名的 Riemann zeta 函数
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}1/n^s.
+\]
+由引理 \ref{lem:ch4-1} 知它是环 $D(R)$ 中乘法可逆元素。假设其逆为
+\[
+  \zeta^{-1}(s)=\sum_{n=1}^{\infty}\mu(n)/n^s.
+\]
+$\zeta^{-1}(s)$ 对应的数论函数 $\{\mu(n)\}$ 称作是 \emph{Möbius 函数}。将 $\zeta(s)\cdot\zeta^{-1}(s)=1$ 翻译到数论函数环 $\Z^P$ 上就是 $\{1\}*\{\mu(n)\}=e$，这可写成
+\[
+  \sum_{d\mid n}\mu(d)=\begin{cases}
+    1, & n=1\ \text{时};\\
+    0, & n\geqslant 2\ \text{时}.
+  \end{cases}
+\]
+因此我们可递归求出 $\mu(n)$ 的数值：
+\[
+  \mu(1)=1,\qquad \mu(n)=-\sum_{\substack{d\mid n\\ d\neq 1}}\mu(n/d)=-\sum_{\substack{d\mid n\\ d\neq n}}\mu(d).
+\]
+由此可求出 $\mu(2)=-1$，$\mu(3)=-1$，$\mu(4)=0$，$\mu(5)=-1$，$\mu(6)=1$ 等等。但是我们希望能求出 $\mu(n)$ 的明显表达式。这需要新的概念以及环 $R^P$ 和 $D(R)$ 之间的进一步联系。
+\end{sloppypar}
+
+\begin{definition}\label{def:ch4-1}
+数论函数 $f$ 叫作是\emph{积性}的，是指当 $(m,n)=1$ 时，$f(mn)=f(m)f(n)$。$f$ 叫作是\emph{完全积性}的，是指对任何 $m,n\in P$，均有 $f(mn)=f(m)f(n)$。
+\end{definition}
+
+若 $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ 是 $n$ 的素因子分解式，其中 $p_1,\cdots,p_r$ 为不同的素数，$\alpha_i\geqslant 1$。由上述定义不难归纳证出：
+
+(a) 如果 $f$ 是积性数论函数，则 $f(1)=1$ 并且
+\[
+  f(n)=\prod_{i=1}^{r}f(p_i^{\alpha_i});
+\]
+(b) 如果 $f$ 是完全积性数论函数，则
+\[
+  f(n)=\prod_{i=1}^{r}f(p_i)^{\alpha_i}.
+\]
+这表明：每个积性数论函数由它在所有素数幂 $p^{\alpha}$ 处的值所完全决定，而完全积性数论函数由它在所有素数处的取值所完全决定。环 $R^P$ 中的这些事实自然要反映到环 $D(R)$ 中来，这就是：
+
+\begin{lemma}\label{lem:ch4-2}
+设 $F(s)$ 是数论函数 $f(n)$ 的形式 $D$-级数。
+\begin{enumerate}[(a)]
+  \item $f$ 为积性的 $\Leftrightarrow F(s)$ 有如下的 Euler 乘积展开式
+  \[
+    F(s)=\prod_p\left(1+f(p)p^{-s}+f(p^2)p^{-2s}+\cdots+f(p^m)p^{-ms}+\cdots\right)
+    =\prod_p\left(\sum_{m=0}^{\infty}f(p^m)/p^{ms}\right).
+  \]
+  \item $f$ 为完全积性的 $\Leftrightarrow F(s)$ 有如下的 Euler 乘积展开式
+  \[
+    F(s)=\prod_p(1-f(p)p^{-s})^{-1}.
+  \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+（我们在证明中也同时解释如何将上述 Euler 乘积展开式看成是形式 $D$-级数）。对于 (a) 中的 Euler 乘积，$p$ 过全部素数。从而这是无限个形式 $D$-级数
+\[
+  F_p(s)=1+f(p)p^{-s}+f(p^2)p^{-2s}+\cdots+f(p^m)p^{-ms}+\cdots\qquad(p^{-ms}=1/p^{ms})
+\]
+的乘积。对于每个正整数 $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$，乘积 $F(s)$ 中只有一项以 $n^s$ 为分母，那就是在因子 $F_{p_i}(s)$ 中取 $f(p_i^{\alpha_i})p_i^{-\alpha_is}$（$1\leqslant i\leqslant r$），而在其余因子 $F_p(s)$ 中均取第一项 $1$ 然后相乘而得到的 $f(p_1^{\alpha_1})\cdots f(p_r^{\alpha_r})n^{-s}$。用这种方法决定出每项 $c_nn^{-s}$ 的系数 $c_n$，从而 (a) 中的 Euler 乘积 $F(s)$ 可看成是形式 $D$-级数。并且它是 $f$ 的形式 $D$-级数 $\Leftrightarrow f(p_1^{\alpha_1}\cdots p_r^{\alpha_r})=f(p_1^{\alpha_1})\cdots f(p_r^{\alpha_r})\Leftrightarrow f$ 为积性函数。
+
+类似地，在 (b) 中将 $(1-f(p)p^{-s})^{-1}$ 作为可逆元素 $1-f(p)p^{-s}$ 的逆，易知
+\[
+  (1-f(p)p^{-s})^{-1}=1+f(p)p^{-s}+f(p)^2p^{-2s}+\cdots+f(p)^mp^{-ms}+\cdots.
+\]
+从而 $F(s)=\prod_p(1-f(p)p^{-s})^{-1}$ 为 $f$ 的形式 $D$-级数 $\Leftrightarrow f(p_1^{\alpha_1}\cdots p_r^{\alpha_r})=f(p_1)^{\alpha_1}\cdots f(p_r)^{\alpha_r}\Leftrightarrow f$ 是完全积性函数。
+\end{proof}
+
+恒等于 $1$ 的数论函数 $\{1\}$ 显然是完全积性的，从而它的形式 $D$-级数 $\zeta(s)$ 有如下的 Euler 乘积展开式：
+\[
+  \zeta(s)=\sum_{n=1}^{\infty}n^{-s}=\prod_p(1-p^{-s})^{-1}.
+\]
+于是它的逆为
+\[
+  \zeta^{-1}(s)=\sum_{n=1}^{\infty}\mu(n)n^{-s}=\prod_p(1-p^{-s}).
+\]
+由此我们得到 Möbius 函数 $\mu(n)$ 的明显表达式：
+\[
+  \mu(n)=\begin{cases}
+    1, & \text{当 } n=1\ \text{时};\\
+    (-1)^r, & \text{如果 } n\ \text{为 } r\ \text{个不同的素数之乘积};\\
+    0, & \text{否则}.
+  \end{cases}
+\]
+
+\begin{lemma}[\emph{Möbius 反演公式}]\label{lem:ch4-3}
+设 $f$ 和 $g\colon P\to R$ 是两个数论函数，则
+\[
+  f(n)=\sum_{d\mid n}g(d)\ (n=1,2,\dots)
+  \Leftrightarrow g(n)=\sum_{d\mid n}f(d)\mu(n/d)\ (n=1,2,\dots).
+\]
+\end{lemma}
+
+\begin{proof}
+设 $F(s)$ 和 $G(s)$ 分别是 $f$ 和 $g$ 的形式 $D$-级数，则上式左边 $\Leftrightarrow f=g*\{1\}\Leftrightarrow F(s)=G(s)\zeta(s)\Leftrightarrow G(s)=F(s)\zeta^{-1}(s)\Leftrightarrow g=f*\mu\Leftrightarrow$ 上式右边。
+\end{proof}
+
+利用以上这些简单的引理，我们能够求出不少数论函数的形式 $D$-级数。值得注意的是，这些形式 $D$-级数有许多均可用 Riemann zeta 函数 $\zeta(s)$ 表达出来。
+
+\setcounter{example}{0}% 原书例编号分组（数论函数例1-6 后重新从例 1 编号）
+
+\begin{example}
+函数 $\{f(n)=n^k\}$ 的形式 $D$-级数显然是
+\[
+  F(s)=\sum_{n=1}^{\infty}n^k/n^s=\sum_{n=1}^{\infty}1/n^{s-k}=\zeta(s-k).
+\]
+\end{example}
+
+\begin{example}
+对于函数 $\sigma_k(n)=\sum_{d\mid n}d^k$，则 $\sigma_k=\{n^k\}*\{1\}$。因此 $\sigma_k$ 的形式 $D$-级数为 $\zeta(s)\zeta(s-k)$。特别地，除数函数 $d(n)=\sum_{d\mid n}1$ 的形式 $D$-级数为 $\zeta(s)^2$，而函数 $\tau(n)=\sum_{d\mid n}d$ 的形式 $D$-级数为 $\zeta(s)\zeta(s-1)$。
+\end{example}
+
+\begin{example}
+熟知 Euler 函数 $\varphi(n)$ 为积性函数，并且 $\varphi(p^m)=p^m-p^{m-1}$，从而它的形式 $D$-级数为
+\begin{align*}
+  \sum_{n=1}^{\infty}\varphi(n)/n^s
+  &=\prod_p\left(1+\frac{p-1}{p^s}+\frac{p^2-p}{p^{2s}}+\cdots+\frac{p^m-p^{m-1}}{p^{ms}}+\cdots\right)\\
+  &=\prod_p(1-p^{-s})(1-p^{-(s-1)})^{-1}=\zeta(s-1)/\zeta(s).
+\end{align*}
+于是 $\zeta(s-1)=\zeta(s)\cdot\sum_{n=1}^{\infty}\varphi(n)n^{-s}$。由此得到 $\sum_{d\mid n}\varphi(d)=n$。当然我们也可以用初等方法直接证明 $\sum_{d\mid n}\varphi(d)=n$，然后立即得到
+\[
+  \sum_{n=1}^{\infty}\varphi(n)n^{-s}=\zeta(s-1)/\zeta(s).
+\]
+进一步的例子请见习题。
+\end{example}
+
+\begin{sloppypar}
+以上我们通过数论函数与其形式 $D$-级数之间的对应，得到许多数论函数之间的关系和恒等式。但是，作为数论的主要目标是研究各种数论函数 $\{f(n)\}$ 的性状，例如 $f(n)$ 的大小或者其均值 $A(x)=\sum_{n\leqslant x}f(n)$ 的大小等等。为了做到这一点，只研究``形式''$D$-级数就不够了。我们要将数论函数 $f(n)$ 的 $D$-级数 $\sum_{n=1}^{\infty}f(n)n^{-s}$ 看成是 $s\in\C$ 的复变函数，从而引入解析工具。正是在这一点上，Dirichlet 和 Riemann 等人将数论和复变函数论结合起来，开创了一门富有成果的学科——解析数论。
+\end{sloppypar}
+
+\subsection{收敛横坐标——解析工具的引入}\label{sec:ch4-s1-2}
+
+\begin{sloppypar}
+从现在开始，我们将数论函数 $f(n)=a_n$（$a_n\in\C$）的 $D$-级数 $F(s)=\sum_{n=1}^{\infty}a_nn^{-s}$ 看作是复变函数，$s=\sigma+it\in\C$，$\sigma,t\in\R$。下面定理表明 $F(s)$ 的解析性质与数论函数 $f(n)=a_n$ 的部分和 $A(N)=\sum_{n=1}^{N}a_n$ 的大小有密切联系。
+\end{sloppypar}
+
+\begin{theorem}\label{thm:4.1}
+设 $F(s)=\sum_{n=1}^{\infty}a_nn^{-s}$，$a_n\in\C$，$s=\sigma+it\in\C$，$A(N)=\sum_{n=1}^{N}a_n$，则
+\begin{enumerate}[(a)]
+  \item 存在 $\sigma_0$，$-\infty\leqslant\sigma_0\leqslant+\infty$，使得当 $\sigma>\sigma_0$ 时，级数 $F(s)$ 收敛，并且在右半开平面 $\sigma>\sigma_0$ 的每个紧子集内均一致收敛。而当 $\sigma<\sigma_0$ 时级数 $F(s)$ 发散。
+  \item 级数 $F(s)$ 定义出右半开平面 $\sigma>\sigma_0$ 中的正则函数，并且可以逐项微商。
+  \item 如果 $\{A(N)\mid N=1,2,\cdots\}$ 无界，则
+  \[
+    \sigma_0=\inf\{\alpha\mid A(N)=O(N^{\alpha})\}
+    =\varlimsup_{N\to\infty}\log|A(N)|/\log N.
+  \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a)(b) 设 $s_0$ 为某个使级数 $F(s)$ 收敛的点。给了右半平面 $\operatorname{Re}(s)\geqslant\sigma$（$\sigma>\operatorname{Re}(s_0)$）中的一个紧子集 $K$，不难看出，存在 $\varepsilon>0$，使得 $K$ 包含在区域
+\[
+  |\operatorname{Arg}(s-s_0)|\leqslant\frac{\pi}{2}-\varepsilon
+\]
+之中。我们现在证明级数 $F(s)$ 在这个区域中一致收敛。必要时将 $s$ 改成 $s-s_0$，$a_n$ 改成 $a_nn^{s_0}$，我们可以不妨假设 $s_0=0$。这时 $F(0)=\sum_{n=1}^{\infty}a_n$ 收敛。令 $A(M,N)=\sum_{n=M}^{N}a_n$，则对预先给定的 $\varepsilon>0$，存在 $N_0$，使得当 $N>M\geqslant N_0$ 时，$|A(M,N)|\leqslant\varepsilon$。于是
+\begin{align*}
+  \sum_{n=M}^{N}a_nn^{-s}
+  &=\sum_{n=M}^{N}(A(M,n)-A(M,n-1))n^{-s}\\
+  &=\sum_{n=M}^{N-1}A(M,n)[n^{-s}-(n+1)^{-s}]+A(M,N)N^{-s}.
+\end{align*}
+但是
+\[
+  |n^{-s}-(n+1)^{-s}|=\left|s\int_n^{n+1}x^{-(s+1)}\mathrm{d}x\right|
+  \leqslant|s|\int_n^{n+1}x^{-(\sigma+1)}\mathrm{d}x
+  =\frac{|s|}{\sigma}(n^{-\sigma}-(n+1)^{-\sigma}).
+\]
+而在 $|\operatorname{Arg}(s)|\leqslant\frac{\pi}{2}-\varepsilon$ 中 $\frac{|s|}{\sigma}$ 是有界的。从而对于 $\sigma>0$ 有
+\begin{align*}
+  \left|\sum_{n=M}^{N}a_nn^{-s}\right|
+  &\leqslant\sum_{n=M}^{N-1}|A(M,n)|(n^{-\sigma}-(n+1)^{-\sigma})+|A(M,N)|N^{-\sigma}\\
+  &\leqslant C\varepsilon\sum_{n=M}^{N-1}(n^{-\sigma}-(n+1)^{-\sigma})+\varepsilon N^{-\sigma}\\
+  &\leqslant C\varepsilon M^{-\sigma}+\varepsilon N^{-\sigma}\leqslant(C+1)\varepsilon N_0^{-\sigma}.
+\end{align*}
+这就证明了 $F(s)$ 在区域 $|\operatorname{Arg}(s)|\leqslant\frac{\pi}{2}-\varepsilon$ 中从而在 $K$ 中一致收敛。
+
+(c) 令 $\gamma=\inf\{\alpha\mid A(N)=O(N^{\alpha})\}$。先证 $\gamma\leqslant\sigma_0$：对于每个 $\sigma>\sigma_0$，由 (a) 知 $\sum_{n=1}^{\infty}a_nn^{-\sigma}$ 收敛。由于假设 $A(N)=\sum_{n=1}^{N}a_n$ 无界，从而 $\sigma_0\geqslant 0$，于是 $\sigma>0$。因此
+\begin{align*}
+  |A(N)|&=\left|\sum_{n=1}^{N}(a_nn^{-\sigma})n^{\sigma}\right|\\
+  &=\left|\sum_{n=1}^{N}\left(\sum_{m=1}^{n}a_mm^{-\sigma}-\sum_{m=1}^{n-1}a_mm^{-\sigma}\right)n^{\sigma}\right|\\
+  &=\left|\sum_{n=1}^{N-1}\left(\sum_{m=1}^{n}a_mm^{-\sigma}\right)(n^{\sigma}-(n+1)^{\sigma})+\left(\sum_{n=1}^{N}a_nn^{-\sigma}\right)N^{\sigma}\right|\\
+  &\leqslant\sum_{n=1}^{N-1}\left|\sum_{m=1}^{n}a_mm^{-\sigma}\right|((n+1)^{\sigma}-n^{\sigma})+\left|\sum_{n=1}^{N}a_nn^{-\sigma}\right|\cdot N^{\sigma}\\
+  &<C\sum_{n=1}^{N-1}((n+1)^{\sigma}-n^{\sigma})+CN^{\sigma}<2CN^{\sigma}.
+\end{align*}
+从而 $A(N)=O(N^{\sigma})$。由 $\gamma$ 的定义可知 $\gamma\leqslant\sigma$，因此 $\gamma\leqslant\sigma_0$。
+
+反之，如果 $\sigma>\gamma$，则
+\begin{equation}\tag{*}
+  \sum_{n=1}^{N}a_nn^{-\sigma}
+  =\sum_{n=1}^{N-1}A(n)(n^{-\sigma}-(n+1)^{-\sigma})+A(N)N^{-\sigma}.
+\end{equation}
+取 $\alpha$ 使得 $\gamma<\alpha<\sigma$，再取常数 $C$ 使得 $|A(N)|\leqslant CN^{\alpha}$（对于所有的 $N$）。于是
+\[
+  |A(n)(n^{-\sigma}-(n+1)^{-\sigma})|\leqslant Cn^{\alpha}(n^{-\sigma}-(n+1)^{-\sigma})
+  =C\sigma n^{\alpha}\int_n^{n+1}x^{-\sigma-1}\mathrm{d}x<C\sigma n^{\alpha-\sigma-1}.
+\]
+由于 $|A(N)N^{-\sigma}|\leqslant CN^{\alpha-\sigma}\to 0$ 而 $\sum_{n=1}^{\infty}n^{\alpha-\sigma-1}$ 收敛，从而由 (*) 式可知 $\lim_{N\to\infty}\sum_{n=1}^{N}a_nn^{-\sigma}$ 存在。于是 $\sigma_0\leqslant\sigma$，从而 $\sigma_0\leqslant\gamma$。证毕。
+\end{proof}
+
+\begin{remark}
+定理 \ref{thm:4.1} 中的 $\sigma_0$ 称作是级数 $F(s)$ 的\emph{收敛横坐标}。
+\end{remark}
+
+\begin{theorem}[\emph{Landau}]\label{thm:4.2}
+设 $a_n\geqslant 0$（$n=1,2,\cdots$），级数 $F(s)=\sum_{n=1}^{\infty}a_nn^{-s}$ 在半平面 $\operatorname{Re}(s)>c$ 中收敛。如果函数 $F(s)$ 在以 $s=c$ 为中心的一个小圆内解析，则存在 $\varepsilon>0$，使得级数 $\sum_{n=1}^{\infty}a_nn^{-s}$ 在半平面 $\operatorname{Re}(s)>c-\varepsilon$ 内收敛。特别地，若 $\sigma_0$ 为级数 $\sum_{n=1}^{\infty}a_nn^{-s}$ 的收敛横坐标，则函数 $F(s)$ 在 $s=\sigma_0$ 处为奇点。
+\end{theorem}
+
+\begin{proof}
+令 $a=1+c$，由于函数 $F(s)$ 在 $s=a$ 处解析，从而有 Taylor 展开
+\[
+  F(s)=\sum_{k=0}^{\infty}\frac{F^{(k)}(a)}{k!}(s-a)^k,
+\]
+并且此 Taylor 级数在 $a$ 附近绝对收敛。因为 $F(s)$ 在 $c$ 处解析，从而收敛半径超过 $1$。将 $F(s)=\sum_{n=1}^{\infty}a_nn^{-s}$ 逐项微商得到
+\[
+  F^{(k)}(s)=(-1)^k\sum_{n=1}^{\infty}a_n(\log n)^kn^{-s},
+\]
+从而 $F(s)=\sum_{k=0}^{\infty}\sum_{n=1}^{\infty}\frac{(a-s)^k}{k!}a_n(\log n)^kn^{-a}$。因为收敛半径 $>1$，此式对某个 $s=c-\varepsilon$ 成立（$\varepsilon>0$）。而 $a-s=1+\varepsilon$。由于上面二重级数每项均 $\geqslant 0$，从而可变换求和次序，得到
+\begin{align*}
+  F(c-\varepsilon)&=\sum_{n=1}^{\infty}\frac{a_n}{n^a}\sum_{k=1}^{\infty}\frac{((1+\varepsilon)\log n)^k}{k!}\\
+  &=\sum_{n=1}^{\infty}\frac{a_n}{n^a}e^{(1+\varepsilon)\log n}=\sum_{n=1}^{\infty}\frac{a_n}{n^{c-\varepsilon}},
+\end{align*}
+即 $\sum_{n=1}^{\infty}a_nn^{-s}$ 在 $s=c-\varepsilon$ 处收敛，从而由定理 \ref{thm:4.1} 知它在 $\operatorname{Re}(s)>c-\varepsilon$ 中均收敛。
+\end{proof}
+
+\begin{example}
+对于 $a_n=1$（$n=1,2,\cdots$），$A(N)=N\to\infty$。由定理 \ref{thm:4.1}(c) 可知 Riemann zeta 函数 $\zeta(s)=\sum_{n=1}^{\infty}n^{-s}$ 的收敛横坐标为 $\sigma_0=1$，从而级数 $\zeta(s)$ 在右半平面 $\operatorname{Re}(s)>1$ 中定义出一个正则函数。而由定理 \ref{thm:4.2} 知道 $s=1$ 是 $\zeta(s)$ 的奇点。
+\end{example}
+
+\begin{example}
+对于 $a_n=(-1)^n$，$A(N)=\begin{cases}-1, & 2\mid N;\\ 0, & 2\nmid N.\end{cases}$ 从而 $\{A(N)\mid N=1,2,\dots\}$ 无界。由定理 \ref{thm:4.1}(c) 可知级数 $F_2(s)=\sum_{n=1}^{\infty}(-1)^nn^{-s}$ 的收敛横坐标 $\sigma_0=0$。这表明 $F_2(s)$ 在 $s=1$ 处正则。但是
+\begin{align*}
+  F_2(s)&=\sum_{n=1}^{\infty}(-1)^nn^{-s}=-\sum_{n=1}^{\infty}n^{-s}+2\sum_{n=1}^{\infty}(2n)^{-s}\\
+&=-(1-2^{-(s-1)})\zeta(s)\qquad(\operatorname{Re}(s)>1).
+\end{align*}
+而在 $s=1$ 处，$1-2^{-(s-1)}=(s-1)\log 2+O((s-1)^2)$，这就表明 $\zeta(s)$ 在 $s=1$ 处是单极点，并且留数是
+\begin{align*}
+  \underset{s=1}{\operatorname{res}}\zeta(s)&=-F_2(1)/\log 2\\
+  &=-\frac{1}{\log 2}\left(-1+\frac{1}{2}-\frac{1}{3}+\frac{1}{4}-\cdots\right)\\
+  &=\log 2/\log 2=1.
+\end{align*}
+此外，$\zeta(s)$ 在半平面 $\operatorname{Re}(s)>0$ 内的其他奇点只可能是 $s=1+\frac{2\pi in}{\log 2}$（$n\in\Z$）。
+\end{example}
+
+\begin{example}
+令 $w=e^{2\pi i/3}$，$F_3(s)=\sum_{n=1}^{\infty}w^nn^{-s}$，$\overline{F}_3(s)=\sum_{n=1}^{\infty}w^{2n}n^{-s}$。由于 $w+w^2+1+w+w^2+1+\cdots$ 是发散的并且部分和有界，从而 $F_3(s)$ 和 $\overline{F}_3(s)$ 的收敛横坐标均为 $\sigma_0=0$。但是
+\begin{align*}
+  \zeta(s)+F_3(s)+\overline{F}_3(s)&=\sum_{n=1}^{\infty}(1+w^n+w^{2n})n^{-s}\\
+  &=3\cdot\sum_{n=1}^{\infty}(3n)^{-s}=3^{1-s}\zeta(s),
+\end{align*}
+即 $-(1-3^{1-s})\zeta(s)=F_3(s)+\overline{F}_3(s)$。从而 $\zeta(s)$ 除了 $s=1$ 之外在 $\operatorname{Re}(s)>0$ 内的极点只能是 $1+2\pi in/\log 3$。但是 $\log 2/\log 3$ 是无理数，即不存在 $(n,n')\neq(0,0)$，使得
+\[
+  1+2\pi in/\log 2=1+2\pi in'/\log 3,
+\]
+这就表明 $\zeta(s)$ 可用公式
+\[
+  \zeta(s)=-(1-2^{-(s-1)})^{-1}F_2(s)
+\]
+或
+\[
+  \zeta(s)=-(1-3^{-(s-1)})^{-1}(F_3(s)+\overline{F}_3(s))
+\]
+解析延拓到半平面 $\operatorname{Re}(s)>0$ 之中，并且在此区域中只有 $s=1$ 为 $\zeta(s)$ 的奇点（而且是留数为 $1$ 的单极点）。
+\end{example}
+
+\begin{definition}\label{def:ch4-2}
+$D$-级数 $\sum_{n=1}^{\infty}|a_n|n^{-s}$ 的收敛横坐标 $\sigma_1$ 叫作是级数 $\sum_{n=1}^{\infty}a_nn^{-s}$ 的\emph{绝对收敛横坐标}。显然 $\sigma_1\geqslant\sigma_0$。另一方面，可以证明 $\sigma_1\leqslant\sigma_0+1$（习题）。
+\end{definition}
+
+\begin{sloppypar}
+我们在上一小节中看到，当 $\{f(n)=a_n\}$ 为积性函数时，它的形式 $D$-级数（作为环 $D(R)$ 中的元素）可表成 Euler 积的形式。现在我们要证明，当 $R=\C$ 而把它们看成是复变函数时也是相等的。
+\end{sloppypar}
+
+\begin{theorem}\label{thm:4.3}
+设 $f\colon P\to\C$ 是积性数论函数，$\sigma_1$ 为级数 $\sum f(n)n^{-s}$ 的绝对收敛横坐标，则当 $\operatorname{Re}(s)>\sigma_1$ 时，无穷乘积
+\[
+  \prod_p(1+f(p)p^{-s}+\cdots+f(p^m)p^{-ms}+\cdots)
+\]
+绝对收敛，并且等于 $\sum_{n=1}^{\infty}f(n)n^{-s}$。
+\end{theorem}
+
+\begin{proof}
+考虑有限乘积
+\[
+  P(x)=\prod_{p\leqslant x}(1+f(p)p^{-s}+\cdots+f(p^m)p^{-ms}+\cdots).
+\]
+当 $\operatorname{Re}(s)>\sigma_1$ 时，这是有限个绝对收敛级数的乘积，从而展开式逐项可任意交换次序。每项有形式 $f(p_1^{\alpha_1}\cdots p_r^{\alpha_r})(p_1^{\alpha_1}\cdots p_r^{\alpha_r})^{-s}$。从而
+\[
+  P(x)=\sum_{n\in A_x}f(n)n^{-s},\qquad A_x=\{n\mid n\ \text{的素因子均}\leqslant x\}.
+\]
+于是 $\sum_{n=1}^{\infty}f(n)n^{-s}-P(x)=\sum_{n\in B_x}f(n)n^{-s}$，$B_x=\{n\mid n\ \text{有素因子}\ p>x\}$。从而当 $x\to\infty$ 时，
+\[
+  \left|\sum_{n=1}^{\infty}f(n)n^{-s}-P(x)\right|
+  \leqslant\sum_{n\in B_x}|f(n)n^{-s}|
+  \leqslant\sum_{n>x}|f(n)n^{-s}|\to 0.
+\]
+这就表明 $P(x)\to\sum_{n=1}^{\infty}f(n)n^{-s}$。另一方面，从微积分我们知道，无穷乘积 $\prod_{n=1}^{\infty}(1+\alpha_n)$（$\alpha_n\in\C$）的绝对收敛性是 $\sum_{n=1}^{\infty}\alpha_n$ 绝对收敛性的直接推论。在我们这里，由于
+\begin{align*}
+  \sum_{p\leqslant x}|f(p)p^{-s}+\cdots+f(p^m)p^{-ms}+\cdots|
+  &\leqslant\sum_{p\leqslant x}(|f(p)p^{-s}|+\cdots+|f(p^m)p^{-ms}|+\cdots)\\
+  &\leqslant\sum_{n=2}^{\infty}|f(n)n^{-s}|,
+\end{align*}
+这就表明无穷乘积 $\prod_p(1+f(p)p^{-s}+\cdots+f(p^m)p^{-ms}+\cdots)$ 在 $\operatorname{Re}(s)>\sigma_1$ 时是绝对收敛的。
+\end{proof}
+
+\begin{remark}
+(1) 完全类似地，如果 $f(n)$ 是完全积性函数，则当 $\operatorname{Re}(s)>\sigma_1$ 时（$\sigma_1$ 为 $\sum_{n=1}^{\infty}f(n)n^{-s}$ 的绝对收敛横坐标），
+\[
+  \sum_{n=1}^{\infty}f(n)n^{-s}=\prod_p(1-f(p)p^{-s})^{-1}.
+\]
+例如，作为复变函数，当 $\operatorname{Re}(s)>1$ 时，$\zeta(s)=\prod_p(1-p^{-s})^{-1}$，而当 $\operatorname{Re}(s)>2$ 时，
+\[
+  \sum_{n=1}^{\infty}\varphi(n)n^{-s}=\zeta(s-1)/\zeta(s)=\prod_p(1-p^{-s})\cdot(1-p^{1-s})^{-1}
+\]
+等等。
+
+\begin{sloppypar}
+(2) 以上我们是从数论函数 $f(n)=a_n$（或者 $A(N)=\sum_{n=1}^{N}a_n$）的性状来判断级数 $F(s)=\sum_{n=1}^{\infty}f(n)n^{-s}$ 的解析特性。实际上，由 $F(s)$ 的解析特性来判断和估计 $f(n)$ 或者 $A(N)$ 的阶，是解析数论的更重要的课题。解析数论在这一方向上的许多方法和结果也可推广到代数数域中去，但是本书不准备在这方面作深入的探讨。
+\end{sloppypar}
+\end{remark}
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 求证：
+  \begin{enumerate}[(a)]
+    \item $\sum_{n=1}^{\infty}\mu(n)^2n^{-s}=\zeta(s)/\zeta(2s)$；
+    \item $\sum_{n=1}^{\infty}2^{\omega(n)}n^{-s}=\zeta(s)^2/\zeta(2s)$；
+    \item 对于 $n=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$，定义 $\lambda(n)=(-1)^{\alpha_1+\cdots+\alpha_r}$，求证 $\sum_{n=1}^{\infty}\lambda(n)n^{-s}=\zeta(2s)/\zeta(s)$。
+  \end{enumerate}
+  \item 求证：
+  \begin{enumerate}[(a)]
+    \item $\sum_{d\mid n}\lambda(d)=\begin{cases}1, & \text{若 } n\ \text{为完全平方};\\ 0, & \text{否则};\end{cases}$
+    \item $\varphi(n)/n=\sum_{d\mid n}\mu(d)/d$，$n/\varphi(n)=\sum_{d\mid n}\mu^2(d)/\varphi(d)$；
+    \item $\{\lambda(n)\}$ 对于卷积运算的逆元素为 $\{|\mu(n)|\}$；
+    \item $\Lambda(n)=-\sum_{d\mid n}\mu(d)\log d$，其中 $\Lambda(n)$ 为 Mangoldt 函数。
+  \end{enumerate}
+  \item 如果 $f$ 和 $g$ 均为积性数论函数，求证 $f*g$ 也是积性数论函数。对于完全积性函数这一命题是否成立？
+  \item 如果 $f$ 为积性数论函数，则 $\sum_{d\mid n}\mu(d)f(d)=\prod_{p\mid n}(1-f(p))$。
+  \item 令 $\zeta_n=e^{2\pi i/n}$，求证 $\mu(n)=\sum_{\substack{k=1\\ (k,n)=1}}^{n}\zeta_n^k$。
+  \item 假设 $R$ 是任意带 $1$ 交换环，$f\colon\Q\to R$。令
+  \[
+    F(n)=\sum_{k=1}^{n}f(k/n),\qquad \widetilde{F}(n)=\sum_{\substack{k=1\\ (k,n)=1}}^{n}f(k/n).
+  \]
+  求证：$\{\widetilde{F}(n)\}=\{F(n)\}*\{\mu(n)\}$。
+  \item 设 $\sigma_0$ 和 $\sigma_1$ 分别为 $D$-级数 $\sum_{n=1}^{\infty}a_nn^{-s}$（$a_n\in\C$）的收敛横坐标和绝对收敛横坐标。求证 $\sigma_0\leqslant\sigma_1\leqslant\sigma_0+1$，并给出 $\sigma_1=\sigma_0$ 和 $\sigma_1=\sigma_0+1$ 的两个 $D$-级数的例子。
+  \item （惟一性定理）如果 $A(s)=\sum_{n=1}^{\infty}a_nn^{-s}$ 和 $B(s)=\sum_{n=1}^{\infty}b_nn^{-s}$ 在复平面的某个右半平面内定义出同一个复变函数，求证 $a_n=b_n$（$n=1,2,\cdots$）。
+  \item 求证当 $\operatorname{Re}(s)>1$ 时，$-\zeta'(s)/\zeta(s)=\sum_{n=1}^{\infty}\Lambda(n)n^{-s}$，其中 $\Lambda(n)$ 是 Mangoldt 函数。
+\end{Exercises}

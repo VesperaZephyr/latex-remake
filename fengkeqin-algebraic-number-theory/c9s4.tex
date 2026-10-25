@@ -1,0 +1,651 @@
+% ============ 第九章 §4 p 进分析 (原书 pp.355-375) ============
+\section{$p$ 进分析}\label{sec:ch9-s4}
+
+我们学过许多在阿基米德完备域 $\R$ 和 $\C$ 中的分析学知识（微积分、实变函数、复变函数...）. 本节要介绍 $p$ 进分析, 即在特征 $0$ 的非阿局部域（$p$ 进数域 $\Q_p$ 和它的扩域）中对于非阿拓扑的微积分. $p$ 进分析起源于数论, 现在已应用于许多数学学科和物理中. 本节只限于介绍 $p$ 进分析在数论中的某些应用. 我们着重于介绍 $p$ 进分析的主要思想, 就一些基本方面（连续性, 幂级数展开, 解析性, 积分学等）是沿着实分析的思想平行地展开. 但是非阿拓扑具有比三角形不等式更强的``超距''特性: $|x+y|_p\leqslant\max(|x|_p,|y|_p)$, 所以 $p$ 进分析与实分析有很大的区别. 许多结果没有给出完整的证明, 因为与通常的微积分一样, 详细的证明和推导需要繁杂的演算. 我们只想对 $p$ 进分析作一个初步的引导, 有兴趣的读者可进一步参看以下书籍:
+
+$1$. N. Koblitz, \emph{p-adic number, p-adic analysis, and Zeta functions}, GTM 58（第二版）, 1984.
+
+$2$. A. F. Monna, \emph{Analyse non-archim\'edienne}, 1970.
+
+$3$. Y. Amice, \emph{Les nombres p-adiques}, 1975.
+
+$4$. P. Monsky, \emph{p-adic analysis and Zeta functions}, 1970.
+
+关于 $p$ 进分析在分圆域理论中的应用可见
+
+$5$. L. C. Washington, \emph{Introduction to Cyclotomic Fields}, GTM 83, 1982.
+
+我们的基本对象是 $p$ 进数域 $\Q_p$ 和它的所有代数扩张. 所以我们要考虑 $\Q_p$ 的代数闭包 $\Q_p^{\mathrm{ac}}$, 而 $\Q_p$ 的每个代数扩张都是 $\Q_p^{\mathrm{ac}}$ 的子域. 在阿基米德情形, $\Q_{\infty}=\R$ 的代数闭包是 $\R$ 的二次扩域 $\C$, 并且 $\C$ 对复拓扑是完备的. 对于非阿情形, 可以证明 $\Q_p^{\mathrm{ac}}$ 是 $\Q_p$ 的无限次扩张（因为对每个 $n\geqslant 1$, $\Q_p$ 均存在 $n$ 次不分歧扩张）, 并且 $\Q_p^{\mathrm{ac}}$ 对于 $p$ 进拓扑不是完备的. 所以我们还需把 $\Q_p^{\mathrm{ac}}$ 完备化成域 $C_p$, 可以证明 $C_p$ 是代数封闭的, 所以我们的所有活动都在 $C_p$ 中进行, 因为在 $C_p$ 中既可以解代数方程（代数封闭性）又可以取极限（完备性）. $\Q_p$ 中的赋值 $|\cdot|_p$ 和指数赋值 $V_p$ 在 $C_p$ 上有惟一的扩充, 仍记为 $|\cdot|_p$ 和 $V_p$. $C_p$ 起着通常复数域 $\C$ 的作用.
+
+在非阿完备域 $F$（$\Q_p$, $\Q_p$ 的有限扩域或者 $C_p$）中, 柯西序列可以取极限, 并且极限仍属于 $F$. 按照定义, $F$ 中的序列 $a_1,a_2,\cdots,a_n,\cdots$ 叫作是柯西序列, 是指对每个 $\varepsilon>0$, 都有 $N$, 使得当 $n,m\geqslant N$ 时都有 $|a_n-a_m|_p\leqslant\varepsilon$. 但是对于非阿拓扑, 判断柯西序列要更为简单:
+\[
+  a_1,a_2,\cdots,a_n,\cdots\ \text{是柯西序列, 当且仅当对 } n\to\infty\ \text{时 } |a_{n+1}-a_n|\to 0
+\]
+（请大家利用超距性自行证明）. 所以级数 $S_n=\sum_{i=1}^{n}a_i\ (n=1,2,3,\cdots)$ 是收敛的, 当且仅当 $\lim\limits_{n\to\infty}|a_n|_p=0$, 即 $\lim\limits_{n\to\infty}a_n=0$. 在实分析中这显然是不对的.
+
+接下来就要考虑连续函数. 对于实拓扑情形早已熟悉的连续函数, 在非阿拓扑中均需严格审查. 有些基本情形是一致的, 例如: 连续函数之和或乘积仍是连续函数, 多项式为连续函数等等. 但是在第七章已经看到, 对数函数和指数函数在 $\Q_p$ 上就有不同的特性.
+
+设 $S$ 和 $H$ 是完备距离空间, 则函数 $f\colon S\to H$ 叫作在点 $x\in S$ 处连续, 是指对任意 $\varepsilon>0$, 均存在 $\delta>0$, 使得当 $y\in S$, $d_S(x,y)<\delta$ 时便有 $d_H(f(x),f(y))<\varepsilon$. 如果 $f$ 在 $S$ 的每个点均连续, 则 $f$ 就叫从 $S$ 到 $H$ 的连续函数. 这就是连续函数的定义. 但是真正考查函数的连续性, 或者构作出连续函数, 常常用下面更实用的方法.
+
+\begin{lemma}\label{lem:ch9-6}
+设 $S$ 和 $H$ 是完备距离空间, $d_S$ 和 $d_H$ 为它们的距离函数. $A$ 是 $S$ 的一个稠密子集. 如果函数 $f\colon A\to H$ 满足如下性质: 对于每个 $\varepsilon>0$, 均有 $\delta>0$, 使得当 $x,y\in A$, $d_S(x,y)<\delta$ 时就有 $d_H(f(x),f(y))<\varepsilon$, 则 $f$ 可以惟一地扩充成从 $S$ 到 $H$ 的一个连续函数. 即存在惟一的连续函数 $F\colon S\to H$, 使得 $F|_A=f$.
+\end{lemma}
+
+\begin{proof}
+（证明概要）由于 $A$ 是 $S$ 的稠密子集, 对每个 $a\in S$, 存在 $A$ 中序列 $\{a_n\}$, 使得 $\lim a_n=a$. 由假设条件可知 $\{f(a_n)\}$ 是 $H$ 中的柯西序列, 从而 $\lim f(a_n)=\alpha$, 并且 $\alpha\in H$. 我们定义 $F(a)=\alpha$（这要验证 $\alpha$ 不依赖于 $\{a_n\}$ 的选取方式）. 再用标准的方式证明如此定义的 $F\colon S\to H$ 是连续函数并且 $F|_A=f$. 关于惟一性是因为: 若 $F'$ 也有此性质, 则 $F'-F$ 在 $A$ 上取值为 $0$, 从而由 $A$ 在 $S$ 中稠密可知 $F'-F$ 在 $S$ 上也取值为 $0$, 即 $F=F'$.
+\end{proof}
+
+现在我们用这个引理来定义从 $\Z_p$ 到 $\Q_p$（或 $C_p$）的连续函数. 由于 $\Z$ 甚至非负整数集合 $N$ 都是 $\Z_p$ 的稠密子集, 所以从一个满足引理要求的映射 $f\colon\Z\to\Q_p$ 或 $N\to\Q_p$, 便可构作一个连续函数 $F\colon\Z_p\to\Q_p$.
+
+第 $1$ 个例子是指数函数. 即我们想对固定的 $\alpha\in\Q_p$, 试图定义一个连续函数 $f(x)=\alpha^x\ (x\in\Z_p)$, 使得对正整数 $n$, $f(n)=\alpha^n$ 就是 $n$ 个 $\alpha$ 相乘, 而 $\alpha^{-n}=(\alpha^n)^{-1}$, $\alpha^0=1$. 这并不总是可以作出的. 例如取 $\alpha=p$, 对于 $p$ 进拓扑, 则当 $n\to+\infty$ 时, $p^n\to 0$. 但是对 $f(x)=p^x$, $f(p^n)=p^{p^n}\to 0$ 而 $f(0)=p^0=1\neq 0$. 又如对每个整数 $a$, $2\leqslant a\leqslant p-1$, 考虑函数 $f(x)=a^x$, 我们知道 $f(p^n)=a^{p^n}\ (n\to+\infty)$ 极限存在, 并且极限 $\alpha$ 是 $\Z_p$ 中一个 $p-1$ 次单位根, 满足 $\alpha\equiv a\ (\mathrm{mod}\ p)$. 由于 $2\leqslant a\leqslant p-1$, 可知 $\alpha\neq 1=f(0)$.
+
+以下我们设 $V_p$ 是 $\Q_p$ 中标准指数赋值, 即 $V_p(p)=1$ 而 $|\alpha|_p$ 标准化为 $|\alpha|_p=\left(\frac{1}{p}\right)^{V_p(\alpha)}$. 我们知道 $\Z_p$ 有惟一极大理想 $p\Z_p$, 集合 $\Z_p-p\Z_p$ 中的元素都是环 $\Z_p$ 中单位, 叫作 $p$ 进单位, 记 $U_p=\Z_p-p\Z_p$, 这是乘法群. 现在取 $\alpha\in 1+p\Z_p=\{x\in\Z_p\mid V_p(x-1)\geqslant 1\}$, 则
+\[
+  \alpha=1+\beta p\qquad(\beta\in\Z_p).
+\]
+对每个非负整数 $s\in N$, $\alpha^s=(1+\beta p)^s\in 1+p\Z_p$. 于是我们有映射
+\[
+  f\colon N\to 1+p\Z_p,\qquad f(s)=\alpha^s.
+\]
+如果 $s,s'\in N$, 并且 $V_p(s-s')\geqslant M$, 则 $s'=s+p^Ms''\ (s''\in\Z)$. 不妨设 $s'\geqslant s$（即 $s''\geqslant 0$）, 则
+\[
+  V_p(\alpha^s-\alpha^{s'})=V_p(\alpha^s)+V_p\left(1-\alpha^{p^Ms''}\right)
+  \geqslant V_p\left(1-\alpha^{p^Ms''}\right).
+\]
+但是
+\[
+  \alpha^{p^Ms''}=(1+\beta p)^{p^Ms''}\equiv 1\quad(\mathrm{mod}\ p^{M+1}),
+\]
+所以 $V_p(\alpha^s-\alpha^{s'})\geqslant M+1$. 这就表示 $f$ 满足引理 \ref{lem:ch9-6} 中的条件. 于是 $f$ 可定义出 $N$ 的闭包 $\Z_p$ 到 $1+p\Z_p$ 的一个连续函数
+\[
+  f\colon\Z_p\to 1+p\Z_p,\qquad f(s)=\alpha^s
+\]
+（其中 $\alpha\in 1+p\Z_p$）. 由上面推导可知, 对于 $s=a_0+a_1p+\cdots+a_np^n+\cdots$（$0\leqslant a_i\leqslant p-1$）, 如果取正整数 $s'=a_0+a_1p+\cdots+a_{N-1}p^{N-1}$, 则 $\alpha^{s'}$（$s'$ 个 $\alpha$ 相乘）就是 $\alpha^s$ 的近似值, 并且精确到 $p$ 进展开的第 $p^N$ 位. 性质 $\alpha^{s+s'}=\alpha^s\cdot\alpha^{s'}$ 和 $\alpha^{-s}=(\alpha^s)^{-1}$ 在 $s,s'\in N$ 时成立, 由函数的连续性可知在 $\Z_p$ 中也成立.
+
+更一般地, 如果 $\alpha\in U_p$, 则 $\alpha^{p-1}\in 1+p\Z_p$. 我们对每个 $a=0,1,2,\cdots,p-2$, 考虑集合
+\[
+  A_a=a+(p-1)N=\{a+(p-1)n\mid n=0,1,2,\cdots\}.
+\]
+易知每个 $A_a$ 仍是 $\Z_p$ 的稠密子集. 我们考虑函数
+\[
+  f_a\colon A_a\to\Z_p,\qquad
+  f_a(a+(p-1)n)=\alpha^{a+(p-1)n}=\alpha^a\cdot(\alpha^{p-1})^n.
+\]
+如果 $V_p((a+(p-1)n)-(a+(p-1)n'))=V_p((p-1)(n-n'))\geqslant M$, 则 $V_p(n-n')\geqslant M$. 由 $\alpha^{p-1}\in 1+p\Z_p$ 可知 $V_p(f_a(a+(p-1)n)-f_a(a+(p-1)n'))\geqslant M+1$. 于是 $f_a$ 满足引理 \ref{lem:ch9-6} 的条件. 所以对每个 $\alpha\in U_p$, 我们构作了 $p-1$ 个不同的 $p$-adic 连续函数
+\[
+  f_a\colon\Z_p\to\Z_p\qquad(a=0,1,2,\cdots,p-2).
+\]
+$f_a$ 在 $A_a$ 上是通常意义下的指数函数, 即对于 $s\in A_a$, $f_a(s)=\alpha^s$ 为 $s$ 个 $\alpha$ 相乘. 当 $1\leqslant a\leqslant p-2$ 时, 指数函数的性质 $f_a(s+s')=f_a(s)f_a(s')$ 不必成立, 因为当 $s,s'\in A_a$ 时, $s+s'\notin A_a$. 所以虽然 $\alpha^s$ 和 $\alpha^{s'}$ 分别是 $s$ 个和 $s'$ 个 $\alpha$ 相乘, 但是 $\alpha^{s+s'}$ 不是 $s+s'$ 个 $\alpha$ 相乘. 可是当 $a=0$ 时, $f_0(s+s')=f_0(s)f_0(s')$ 在 $A_0$ 上成立, 由连续性可知在 $\Z_p$ 上也成立.
+
+第 $2$ 个例子为 $f(x)=\binom{x}{n}=\frac{1}{n!}x(x-1)\cdots(x-n+1)$. 多项式是从 $\Z_p$ 到 $\Q_p$ 的连续函数. 但是当 $x$ 取正整数值时, $\binom{x}{n}\in\Z\subseteq\Z_p$, 由连续性即知 $\binom{x}{n}$ 实际上是从 $\Z_p$ 到 $\Z_p$ 的连续函数. 这些连续函数在 $p$-adic 分析中起着基本作用. 在实分析中, 闭区间 $[0,1]$ 上的连续函数可以用多项式来逼近, 从而展开为幂级数的形式 $\sum a_nx^n$, 即 $\{x^n\mid n=0,1,2,\cdots\}$ 形成 $[0,1]$ 上连续实函数的一组基. 下面结果表明 $\left\{\binom{x}{n}\mid n=0,1,2,\cdots\right\}$ 是紧集 $\Z_p$ 上连续函数空间的一组基.
+
+\begin{theoremnonum}[\emph{Mahler 定理}]
+设 $K$ 是 $\Q_p$ 的有限扩张, $O_K$ 是 $K$ 的整数环, 即 $O_K=\{x\in K\mid V_p(x)\geqslant 0\}$, 则每个连续函数 $f\colon\Z_p\to O_K$ 都可惟一地表示成
+\[
+  f(x)=\sum_{n\geqslant 0}a_n\binom{x}{n},
+\]
+其中 $a_n\in O_K$, $a_n\to 0$.
+\end{theoremnonum}
+
+\begin{proof}
+当 $x\in\Z_p$ 时, $V_p\left(\binom{x}{n}\right)\geqslant 0$, 而 $a_n\to 0$, 从而 $a_n\binom{x}{n}\to 0$, 所以级数 $f(x)=\sum a_n\binom{x}{n}$ 收敛, 并且是连续函数. 一个初等的演算可推出: 对每个 $m\geqslant 0$,
+\[
+  a_m=\sum_{i=0}^{m}(-1)^{m-i}\binom{m}{i}f(i),
+\]
+由此即证得展开式的惟一性. 证明每个连续函数都可表成定理中形式则比较困难, 此处从略.
+\end{proof}
+
+尽管我们有 Mahler 定理, 但是也像实分析中那样, 常常用幂级数来定义连续函数. 设
+\[
+  f(x)=\sum_{n\geqslant 0}a_nx^n\in C_p[[x]]
+\]
+是系数属于 $C_p$ 的幂级数. 对每个 $\alpha\in C_p$, $\sum a_n\alpha^n$ 收敛当且仅当 $|a_n\alpha^n|_p\to 0$. 和实分析的情形一样, 令 $r=\left(\varlimsup_{n\to\infty}|a_n|_p^{\frac{1}{n}}\right)^{-1}$, 则当 $|\alpha|_p<r$ 时 $\sum a_n\alpha^n$ 收敛, 而当 $|\alpha|_p>r$ 时级数发散, 并且 $f(x)=\sum a_nx^n$ 是开球
+\[
+  D(r^{-})=\{x\in C_p\mid|x|_p<r\}
+\]
+中的连续函数. $r$ 叫作此幂级数的\emph{收敛半径}. 进而, 对于 $f'(x)=\sum_{n\geqslant 1}na_nx^{n-1}$, 由于 $|na_n|_p\leqslant|a_n|_p$, 可知 $f'(x)$ 在 $D(r^{-})$ 中仍是连续函数. 所以 $f(x)$ 在 $D(r^{-})$ 中是无限次可微的解析函数.
+
+现在举两个经典的幂级数的例子.
+
+\begin{example}
+$p$-adic 指数函数
+\[
+  \exp(x)=\sum_{n\geqslant 0}\frac{x^n}{n!}.
+\]
+在复分析的情形, $r=\lim_{n\to\infty}(n!)^{\frac{1}{n}}=+\infty$, 从而 $\exp(x)$ 是整个复平面上的解析函数. 但是对于 $p$-adic 情形, $\left|\frac{1}{n!}\right|_p$ 可以很大. 事实上, 熟知
+\[
+  V_p(n!)=\left[\frac{n}{p}\right]+\left[\frac{n}{p^2}\right]+\cdots<\frac{n}{p-1}.
+\]
+另一方面, 若 $p^a\leqslant n<p^{a+1}$, 则
+\[
+  V_p(n!)>\frac{n}{p}+\frac{n}{p^2}+\cdots+\frac{n}{p^a}-a
+  =\frac{n}{p-1}-a-\frac{np^{-a}}{p-1}
+  >\frac{n-p}{p-1}-\frac{\log n}{\log p},
+\]
+于是
+\[
+  \frac{n-p}{p-1}-\frac{\log n}{\log p}<V_p(n!)<\frac{n}{p-1},
+\]
+即 $\lim_{n\to\infty}\frac{1}{n}V_p(n!)=\frac{1}{p-1}$, 而 $\left|\frac{1}{n!}\right|_p^{\frac{1}{n}}\to p^{-\frac{1}{p-1}}$. 这就表明 $\exp(x)$ 的收敛半径为 $p^{-\frac{1}{p-1}}$（回忆: 我们定义 $|p|_p=\frac{1}{p}$）.
+\end{example}
+
+\begin{example}
+$p$-adic 对数函数
+\[
+  \log_p(1+x)=\sum_{n\geqslant 1}\frac{(-1)^{n+1}}{n}x^n.
+\]
+在实分析中, 它的收敛半径为 $1$, 因为 $\lim n^{\frac{1}{n}}=1$. 对于 $p$-adic 情形, 由于 $n$ 至多被 $\frac{\log n}{\log p}$ 个 $p$ 除尽, 所以 $0\leqslant V_p(n)\leqslant\frac{\log n}{\log p}$, $\lim\frac{1}{n}V_p(n)=0$, 即 $\log_p(1+x)$ 的收敛半径也为 $1$.
+\end{example}
+
+现在把 $\exp$ 和 $\log_p$ 限制在 $\Q_p$ 中, 则 $\exp(x)$ 是 $q\Z_p$ 中的解析函数, 其中
+\[
+  q=\begin{cases}
+    4, & \text{若 } p=2,\\
+    p, & \text{若 } p\geqslant 3,
+  \end{cases}
+\]
+并且 $\exp(q\Z_p)\subseteq 1+p\Z_p$. 而 $\log_p(1+x)$ 是 $p\Z_p$ 中的解析函数, 并且 $\log_p(1+p\Z_p)\subseteq q\Z_p$. 进而, 这两者是互逆的
+\[
+  q\Z_p\xleftrightarrow[\log_p]{\exp}1+p\Z_p,
+\]
+即 $\exp\circ\log_p(1+x)=1+x$（$x\in p\Z_p$）, $\log_p\circ\exp(x)=x$（$x\in q\Z_p$）. 并且加法群 $q\Z_p$ 和乘法群 $1+p\Z_p$ 同构, 因为我们有
+\[
+  \exp(x+y)=\exp(x)\cdot\exp(y)\qquad(x,y\in q\Z_p),
+\]
+\[
+  \log_p[(1+x)(1+y)]=\log_p(1+x)+\log_p(1+y)\qquad(x,y\in p\Z_p).
+\]
+这些公式的证明都可这样来作: 它们在实分析中是对的, 所以作为形式幂级数也是对的, 所以现在在 $p$-adic 的收敛区域内也是对的.
+
+乘法群 $\Q_p^{\times}$ 有如下的直积分解
+\[
+  \Q_p^{\times}=\langle p\rangle\times W\times(1+p\Z_p),\qquad
+  U_p=W\times(1+p\Z_p),
+\]
+其中 $\langle p\rangle$ 是由 $p$ 生成的无限循环群, $W$ 是 $\Z_p$ 中的 $p-1$ 次单位根形成的群. 以 $\zeta$ 表示其中满足 $\zeta\equiv 1\ (\mathrm{mod}\ p)$ 的 $p-1$ 次本原单位根, 则 $\Q_p^{\times}$ 中元素 $\alpha$ 可惟一表示成
+\begin{equation}\tag{1}
+  \alpha=p^n\zeta^i\langle\alpha\rangle
+  \qquad(n\in\Z,\ 0\leqslant i\leqslant p-2,\ \langle\alpha\rangle\in 1+p\Z_p),
+\end{equation}
+其中 $n=V_p(\alpha)$. 我们定义 $\log_p\alpha=\log_p\langle\alpha\rangle$（即规定 $\log_p p=\log_p\zeta=0$）. 这就把 $\log_p$ 定义到整个 $\Q_p^{\times}$ 上, 并且仍满足 $\log_p(\alpha\beta)=\log_p\alpha+\log_p\beta$.
+
+现在对 $\alpha\in U_p$, 可以定义函数
+\[
+  \langle\alpha\rangle^x=\exp(x\log_p\langle\alpha\rangle)=\exp(x\log_p\alpha).
+\]
+由于 $\log_p\alpha\in q\Z_p$, 所以 $\langle\alpha\rangle^x=\exp(x\log_p\alpha)$ 是 $\{x\in C_p\mid|x|_p<qp^{-\frac{1}{p-1}}\}$ 中的连续函数. 当 $n\in\Z$ 时, $\langle\alpha\rangle^n$ 就是通常的意义, 而在 $n\equiv 0\ (\mathrm{mod}\ p-1)$（$p\geqslant 3$）和 $n\equiv 0\ (\mathrm{mod}\ 2)$（$p=2$）时, $\langle\alpha\rangle^n=\alpha^n$.
+
+现在我们看一下黎曼 zeta 函数
+\[
+  \zeta(s)=\sum_{n\geqslant 1}n^{-s}
+\]
+是否有 $p$-adic 的模拟. 当 $s>1$ 时, 此级数对通常的实拓扑是收敛的. 但是对于 $p$-adic 拓扑它是发散的, 因为 $n=p^l$ 时, $V_p(n^{-s})=-sl\to-\infty$（$l\to\infty$ 时）, 即 $|n^{-s}|_p=p^{sl}$ 可以很大. 所以我们把级数中满足 $p\mid n$ 的那些项去掉, 即令
+\[
+  \zeta^*(s)=\sum_{\substack{n\geqslant 1\\ p\nmid n}}n^{-s}
+  =\prod_{\substack{q\\ q\neq p}}(1-q^{-s})^{-1}
+  =(1-p^{-s})\zeta(s)\qquad(s>1),
+\]
+其中 $q$ 过 $p$ 以外的所有素数. 我们来看 $\zeta^*(s)$ 是否有 $p$-adic 模拟. 也就是说, 是否有一个定义在 $\Z_p$ 上的函数, 使得此函数在 $\Z$ 的某个子集上其值与 $\zeta^*(s)$ 相同. 我们在第六章把 $\zeta(s)$ 解析开拓到整个复平面上, 并且它在负整数处的取值是有理数:
+\[
+  \zeta(-2k)=0,\qquad\zeta(1-2k)=-\frac{B_{2k}}{2k}\qquad(k=1,2,\cdots),
+\]
+其中 $B_{2k}$ 为有理数. 于是
+\[
+  \zeta^*(-2k)=0,\qquad
+  \zeta^*(1-2k)=-(1-p^{2k-1})\frac{B_{2k}}{2k}\qquad(k=1,2,\cdots).
+\]
+$19$ 世纪中期, Kummer 研究了 Bernoulli 数 $B_{2k}$ 的如下同余性质: 设 $N\geqslant 1$, $2k\not\equiv 0\ (\mathrm{mod}\ p-1)$, $2k\equiv 2k'\ (\mathrm{mod}\ (p-1)p^N)$, 则
+\[
+  -(1-p^{2k-1})\frac{B_{2k}}{2k}
+  \equiv-(1-p^{2k'-1})\frac{B_{2k'}}{2k'}\ (\mathrm{mod}\ p^{N+1}),
+\]
+并且此式两边的数均属于 $\Z_p$.
+
+现在设 $p\geqslant 5$, 对每个正整数 $a$, $1\leqslant a\leqslant\frac{p-3}{2}$, 定义集合
+\[
+  C_a=\{1-(2a+(p-1)b)\mid b=0,1,2,\cdots\}=1-2a-(p-1)N.
+\]
+每个 $C_a$ 都是 $\Z_p$ 的稠密子集合, $\frac{p-3}{2}$ 个集合 $C_a$ 彼此不相交. 如果我们考虑 $\zeta^*(s)$ 在 $C_a$ 上的限制, 则 Kummer 结果是说: 对每个 $1-2k\in C_a$, $\zeta^*(1-2k)\in\Z_p$, 并且若 $1-2k,1-2k'\in C_a$, $V_p((1-2k)-(1-2k'))=V_p(2k'-2k)\geqslant N$, 则 $V_p(\zeta^*(1-2k)-\zeta^*(1-2k'))\geqslant N+1$. 这正好表明函数 $\zeta^*(s)\colon C_a\to\Z_p$ 满足引理 \ref{lem:ch9-6} 的条件, 从而可以惟一扩充成 $p$-adic 连续函数 $\zeta_p^{(a)}(s)\colon\Z_p\to\Z_p$. 于是我们对每个 $p\geqslant 5$, 有 $\frac{p-3}{2}$ 个 $p$-adic 连续函数 $\zeta_p^{(a)}(s)\ (a=1,2,\cdots,\frac{p-3}{2})$, 其中 $\zeta_p^{(a)}(s)$ 和 $\zeta^*(s)$ 在 $C_a$ 上是同样的函数（取值在 $\Q\cap\Z_p$ 中, $\zeta_p^{(a)}(s)$ 和 $\zeta^*(s)$ 的值分别看成属于 $\Z_p$ 和 $\Q$）. 对于 $p=2$ 和 $3$ 也可作出类似的 $\zeta_p^{(a)}(s)$. 这些函数叫作 $p$-adic zeta 函数, 是 $1964$ 年 Leopoldt 和久保田（Kubota）构作的.
+
+类似地可以构作 $p$-adic $L$-函数. 这里我们只叙述结果.
+
+\begin{theorem}\label{thm:9.17}
+设 $p$ 为素数, $\chi$ 是导子为 $f$ 的本原 Dirichlet 特征, $q=p$（当 $p\geqslant 3$ 时）, $q=4$（当 $p=2$ 时）. 对每个正整数 $F$, $q\mid F$, $f\mid F$, 定义
+\begin{equation}\tag{2}
+  L_p(s,\chi)=\frac{1}{F(s-1)}\sum_{\substack{a=1\\ p\nmid a}}^{F}\chi(a)\langle a\rangle^{1-s}
+  \times\sum_{j\geqslant 0}\binom{1-s}{j}\left(\frac{F}{a}\right)^jB_j\in C_p,
+\end{equation}
+则当 $\chi$ 不是主特征时, $L_p(s,\chi)$ 是 $D=\{s\in C_p\mid|s|_p<qp^{-\frac{1}{p-1}}\}$ 中的解析函数. 当 $\chi$ 是主特征时, $L_p(s,\chi)$ 在 $s=1$ 处为单极点, 留数为 $1-\frac{1}{p}$（即 $\lim_{s\to1}(s-1)L_p(s,\chi)=1-\frac{1}{p}$）, 而在 $s\in D$, $s\neq 1$ 时均解析. 并且对每个正整数 $n$, $(p-1)\mid n$,
+\begin{equation}\tag{3}
+  L_p(1-n,\chi)=-(1-\chi(p)p^{n-1})\frac{B_{n,\chi}}{n}.
+\end{equation}
+\end{theorem}
+
+\begin{remark}
+(1) 我们需要作一些解释. 对于每个模 $f$ 的 Dirichlet 特征 $\chi$, $\chi(a)$ 或为 $0$ 或为 $f$ 次单位根. 由于单位根在 $\Q$ 上是代数元素, 从而在 $\Q_p$ 上也是代数元素, 于是 $\chi(a)$ 可看成 $C_p$ 中元素. (2) 式中的 $\langle a\rangle$ 由 (1) 式定义, 为 $1+p\Z_p$ 中元素, 于是 (2) 式右边（如果收敛的话）属于 $C_p$.
+
+(2) 我们在第六章知道, 对于模 $f$ 的 Dirichlet 本原特征 $\chi$, 通常的 $L$-函数为
+\[
+  L(s,\chi)=\sum_{n\geqslant 1}\chi(n)n^{-s}
+  =\prod_p(1-\chi(p)p^{-s})^{-1}\qquad(s>1).
+\]
+去掉 $p\mid n$ 的求和项, 则有
+\[
+  L^*(s,\chi)=\sum_{\substack{n\geqslant 1\\ p\nmid n}}\chi(n)n^{-s}
+  =\prod_{\substack{q\\ q\neq p}}(1-\chi(q)q^{-s})^{-1}
+  =(1-\chi(p)p^{-s})L(s,\chi).
+\]
+它在负整数处的值为
+\[
+  L^*(1-n,\chi)=-(1-\chi(p)p^{n-1})\frac{B_{n,\chi}}{n}\qquad(n=1,2,\cdots),
+\]
+其中 $B_{n,\chi}$ 是第六章中定义的广义 Bernoulli 数. 所以 $L_p(s,\chi)$ 和 $L^*(s,\chi)$ 在集合 $1-(p-1)N=\{1-(p-1)k\mid k=1,2,\cdots\}$ 上取值相同. 我们称 $L_p(s,\chi)$ 为 $p$-adic $L$-函数.
+\end{remark}
+
+对于通常的 $L$-函数, 第七章给出了计算 $L(1,\chi)$ 的公式, 并且阿贝尔域 $K$ 的类数 $h(K)$ 可以表示成一些 $L(1,\chi)$ 的乘积. 在 $p$-adic 情形有与之类似的下述结果.
+
+\begin{theorem}\label{thm:9.18}
+设 $K$ 为 $n$ 次实阿贝尔域, $\widehat{K}$ 是域 $K$（即伽罗瓦群 $\Gal(K/\Q)$）的特征群, 则
+\begin{equation}\tag{4}
+  \frac{2^{n-1}h(K)R_p(K)}{\sqrt{d(K)}}
+  =\prod_{1\neq\chi\in\widehat{K}}
+  \left(1-\frac{\chi^*(p)}{p}\right)^{-1}L_p(1,\chi^*),
+\end{equation}
+其中 $\chi^*$ 表示与 $\chi$ 对应的本原特征, $R_p(K)$ 与 $R(K)$ 的定义相仿, 但属于 $C_p$, 叫作域 $K$ 的 $p$-adic regulator. 而对于本原的偶特征 $\chi\neq 1$（注意: 对于实阿贝尔域 $K$, $\widehat{K}$ 中的特征均是偶特征）,
+\begin{equation}\tag{5}
+  L_p(1,\chi)=-\left(1-\frac{\chi(p)}{p}\right)
+  \frac{\tau(\chi)}{f}\sum_{a=1}^{f}\overline{\chi}(a)\log_p(1-\zeta^a),
+\end{equation}
+这里 $f$ 为 $\chi$ 的导子, $\zeta$ 是 $C_p$ 中一个 $f$ 次本原单位根, $\log_p$ 是 $p$-adic 对数, $\tau(\chi)=\sum_{a=1}^{f}\chi(a)\zeta^a$ 是高斯和.
+\end{theorem}
+
+代数数域 $K$ 的类数 $h(K)$ 是正整数. 如果用通常的类数公式来计算, 涉及到许多超越数 $\log(1-\zeta^a)$ 和 $R(K)$. 在复数域中按复拓扑计算 $h(K)$ 和它的近似值通常比较困难. 但是用 $p$-adic 类数公式 (4) 和计算 $L(1,\chi)$ 的公式 (5), 则比较容易计算 $h(K)$ 的 $p$-adic 近似值. 比如说要判别是否 $p^l\mid h$, 利用通常的类数公式, 如果只知道 $h$ 的阿基米德近似值, 我们往往得不出任何结论. 但是用 $p$-adic 类数公式, 我们计算时可以把 $V_p(\alpha)\geqslant l$ 的诸项 $\alpha$ 去掉（因为 $p^l\mid\alpha$）, 而看剩下的 $p$-adic 近似值是否被 $p^l$ 除尽. 所以, 用 $p$-adic 类数公式来研究类数整除性是比较方便的. 比如说, 利用 $p$-adic $L$-函数的解析特性和 (4) 式, 可以很容易证明第六章中关于分圆域类数的 Kummer 结果.
+
+现在我们讲述构作 $p$-adic $L$-函数的第 $2$ 种方法: $p$-adic 积分. 这是 Mazur 于 $20$ 世纪 $70$ 年代给出的. 为了叙述简单起见, 我们以 $C_p$ 上的积分为例. 但是首先要回忆一下实数域 $\R$ 上通常的积分是如何定义的.
+
+设 $\mu$ 是 $[0,1]$ 上的一个测度, 这意味着: 对 $[0,1]$ 的每个（可测）子集合 $M$, $\mu(M)$ 是非负实数, 并且满足如下的加性: 若 $M_i\ (i\in I)$ 为 $[0,1]$ 的任意多个（可测）子集合, 并且彼此不相交, 则
+\[
+  \mu\left(\bigcup_{i\in I}M_i\right)=\sum_{i\in I}\mu(M_i).
+\]
+这时, 对于 $[0,1]$ 上任意连续函数 $f(x)$, 我们把 $[0,1]$ 分成一些小的区间 $I_1=[x_0,x_1]$, $I_2=[x_1,x_2]$, $\cdots$, $I_n=[x_{n-1},x_n]$, 其中 $0=x_0<x_1<\cdots<x_n=1$. 取 $x_i'\in[x_{i-1},x_i]\ (1\leqslant i\leqslant n)$, 然后考虑
+\[
+  \sum_{i=1}^{n}f(x_i')\mu(I_i),
+\]
+当区间分得愈来愈细时, 它趋于极限, 这个极限值就是 $f(x)$ 对于测度 $\mu$ 在 $[0,1]$ 上的积分, 表示成 $\int_0^1 f(x)\,\mathrm{d}\mu(x)$.
+
+现在考虑 $\Q_p$, 我们把紧开子集 $\Z_p$ 类比于前面的闭区间 $[0,1]$. 更一般的, 对每个 $a\in\Q_p$, $N\in\Z$, 我们把子集合
+\[
+  a+(p^N)=a+p^N\Z_p=\{x\in\Q_p\mid V_p(x-a)\geqslant N\}
+\]
+叫作是 $\Q_p$ 的一个区间, $N$ 叫作此区间的级别. 例如 $\Z_p=0+(p^0)$. 每个区间都是紧开子集, 下面引理表明它们在 $p$-adic 拓扑中起着基本作用.
+
+\begin{lemma}\label{lem:ch9-7}
+$\Q_p$ 的每个紧开子集都是彼此不相交的有限个区间的并集, 并且可使这些区间有相同的级别.
+\end{lemma}
+
+\begin{proof}
+设 $U$ 为 $\Q_p$ 的一个紧开子集. 由于 $U$ 是开集, 所以对每个 $a\in U$, 都有充分大的 $N_a$, 使得 $a\in a+(p^{N_a})\subseteq U$. 于是 $U$ 被区间族 $\{a+(p^{N_a})\mid a\in U\}$ 所覆盖. 由于 $U$ 是紧的, 所以 $U$ 必被其中有限个区间所覆盖. 设这有限个区间为 $a_i+(p^{N_i})\ (1\leqslant i\leqslant n)$. 记 $N=\max\{N_1,\cdots,N_n\}$. 不难验证, 每个区间 $a_i+(p^{N_i})$ 是 $p^{N-N_i}$ 个区间 $a_i+jp^{N_i}+(p^N)\ (0\leqslant j\leqslant p^{N-N_i}-1)$ 的并集. 于是 $U$ 被有限个级别均为 $N$ 的区间所覆盖. 但是对于任意两个级数为 $N$ 的区间 $a+(p^N)$ 和 $b+(p^N)$, 如果它们有公共元素 $c$, 则 $V_p(a-c)\geqslant N$, $V_p(b-c)\geqslant N$, 从而
+\begin{equation}\tag{6}
+  V_p(a-b)\geqslant\min\{V_p(a-c),V_p(b-c)\}\geqslant N.
+\end{equation}
+所以对每个 $x\in\Q_p$, 由 (6) 式可知
+\[
+  \begin{aligned}
+    x\in b+(p^N)&\Leftrightarrow V_p(x-b)\geqslant N\\
+    &\Leftrightarrow V_p(x-a)\geqslant N\Leftrightarrow x\in a+(p^N).
+  \end{aligned}
+\]
+于是 $a+(p^N)=b+(p^N)$. 这表明级别为 $N$ 的两个区间或者不相交, 或者相等. 所以将覆盖 $U$ 的有限个级别 $N$ 的区间当中去掉重复的区间, 剩下的仍为 $U$ 的覆盖, 并且这些区间彼此不相交.
+\end{proof}
+
+现在于 $\Q_p$ 上引进（$p$-adic）测度概念.
+
+\begin{definition}\label{def:ch9-4}
+设 $X$ 是 $\Q_p$ 的紧开子集, $\mu$ 是一个映射, 它把 $X$ 的每个紧开子集 $U$ 映成 $\Q_p$ 中元素 $\mu(U)$. 我们称 $\mu$ 是 $X$ 上的一个 $p$-adic 分布, 是指满足如下的可加性: 若 $U$ 为有限个紧开子集 $U_i\ (1\leqslant i\leqslant n)$ 的并集, 并且 $U_i$ 彼此不相交, 则
+\[
+  \mu(U)=\sum_{i=1}^{n}\mu(U_i).
+\]
+$X$ 上的 $p$-adic 分布 $\mu$ 叫作是 $p$-adic 测度, 是指存在实数 $B$, 使得对 $X$ 的每个紧开子集 $U$, 均有 $|\mu(U)|_p\leqslant B$.
+\end{definition}
+
+\begin{remark}
+(1) 为了验证 $p$-adic 分布 $\mu$ 是否为测度, 只需对每个 $X$ 中的区间 $I=a+(p^N)$, 验证是否有 $|\mu(I)|_p\leqslant B$ 即可. 因为 $X$ 的每个紧开子集 $U$ 都是有限个区间 $I_i\ (1\leqslant i\leqslant n)$ 的并集, 并且 $I_i$ 彼此不相交. 由 $\mu$ 的可加性即知, 若 $|\mu(I_i)|_p\leqslant B\ (1\leqslant i\leqslant n)$, 则
+\[
+  |\mu(U)|_p=\left|\sum_{i=1}^{n}\mu(I_i)\right|_p
+  \leqslant\max_{1\leqslant i\leqslant n}\{|\mu(I_i)|_p\}\leqslant B.
+\]
+(2) 每个 $N$ 级区间 $a+(p^N)$ 是 $p$ 个彼此不相交的 $N+1$ 级区间 $a+jp^N+(p^{N+1})\ (0\leqslant j\leqslant p-1)$ 的并集. 如果 $\mu$ 满足可加性, 则对每个 $a\in\Q_p$ 和 $N\in\Z$, 都有
+\begin{equation}\tag{7}
+  \mu(a+(p^N))=\sum_{j=0}^{p-1}\mu(a+jp^N+(p^{N+1})).
+\end{equation}
+\end{remark}
+
+利用引理 \ref{lem:ch9-7} 则可得到下面结果.
+
+\begin{theorem}\label{thm:9.19}
+设 $X$ 是 $\Q_p$ 的一个紧开子集, $\mu$ 是把 $X$ 中每个区间 $I$ 映射为 $\Q_p$ 中元素 $\mu(I)$ 的一个映射. 如果 (7) 式对于 $X$ 中每个区间 $a+(p^N)$ 均成立, 则 $\mu$ 可惟一扩充成 $X$ 的一个 $p$-adic 分布. 并且若存在实数 $B$, 使得对 $X$ 中每个区间 $I$, 均有 $|\mu(I)|_p\leqslant B$, 则 $\mu$ 是 $X$ 上的 $p$-adic 测度.
+\end{theorem}
+
+\begin{proof}
+（证明大意）对于 $X$ 的每个紧开子集 $U$, 由引理 \ref{lem:ch9-7} 知 $U$ 是有限个彼此不相交的同级别区间 $I_i\ (1\leqslant i\leqslant n)$ 之并集, 而 $\mu$ 在这些区间 $I_i$ 上已有定义. 我们令 $\mu(U)=\sum_{i=1}^{n}\mu(I_i)$. 如果 (7) 式成立, 则可证明这个定义与 $\{I_1,\cdots,I_n\}$ 的选取方式无关, 从而 $\mu(U)$ 只是 $U$ 的函数. 再由引理 \ref{lem:ch9-7} 可证明 $\mu$ 的可加性和惟一性. 最后的结论在前面注记 (1) 中已作说明.
+\end{proof}
+
+定理 \ref{thm:9.19} 可用来构作 $p$-adic 分布和 $p$-adic 测度.
+
+\begin{example}
+取 $X=\Z_p$, 则 $\Z_p$ 中每个区间有形式 $a+(p^N)$, 其中 $a\in\Z_p$, $N\geqslant 0$. 我们定义
+\[
+  \mu(a+(p^N))=p^{-N}\in C_p.
+\]
+于是 $\mu(\Z_p)=\mu(0+(p^0))=1$, 而所有级别为 $N$ 的区间 $I$ 均有 $\mu(I)=p^{-N}$. 因此
+\[
+  \sum_{j=0}^{p-1}\mu(a+jp^N+(p^{N+1}))
+  =\sum_{j=0}^{p-1}p^{-(N+1)}=p^{-N}.
+\]
+即 (7) 式成立. 由定理 \ref{thm:9.19} 知 $\mu$ 可扩充成 $\Z_p$ 上的一个 $p$-adic 分布, 叫作 Haar 分布, 表示成 $\mu_H$. 当 $N\to+\infty$ 时, $\left|\mu_H(a+(p^N))\right|_p=\left|p^{-N}\right|_p=p^N\to\infty$. 可知 $\mu_H$ 不是 $p$-adic 测度.
+\end{example}
+
+\begin{example}
+对 $\Z_p$ 中一个固定的元素 $a$, 定义如下的 $\mu$: 对 $\Z_p$ 的每个紧开子集 $U$,
+\[
+  \mu(U)=\begin{cases}
+    1, & \text{若 } a\in U,\\
+    0, & \text{否则}.
+  \end{cases}
+\]
+易知这是 $p$ 的 $p$-adic 测度, 叫作 Dirac 测度.
+\end{example}
+
+现在我们给出一批有趣的 $p$-adic 分布和测度.
+
+\begin{example}（Bernoulli 分布）
+我们知道 Bernoulli 数 $B_k$ 可由下式定义:
+\[
+  \frac{x}{e^x-1}=\sum_{k=0}^{\infty}\frac{B_k}{k!}x^k,
+\]
+其中 $B_k\in\Q\subseteq\Q_p$. 而 Bernoulli 多项式 $B_k(t)$ 由下式定义
+\[
+  \frac{xe^{tx}}{e^x-1}=\sum_{k=0}^{\infty}\frac{B_k(t)}{k!}x^k,
+\]
+其中 $B_k(t)\in\Z[t]\subseteq\Z_p[t]$.
+
+例如 $B_0(t)=1$, $B_1(t)=t-\frac{1}{2}$, $B_2(t)=t^2-t+\frac{1}{6}$, $B_3(t)=t^3-\frac{3}{2}t^2+\frac{1}{2}t$, 等等. 易知 $B_k=B_k(0)$. 现在对 $\Z_p$ 中每个区间 $a+(p^N)$（$a\in\Z$, $0\leqslant a\leqslant p^N-1$, $N\geqslant 0$）, 令
+\[
+  \mu_{B,k}(a+(p^N))=p^{N(k-1)}B_k\left(\frac{a}{p^N}\right)
+  \in\Q\subseteq\Q_p\qquad(k=0,1,2,\cdots),
+\]
+这里 $B_k\left(\frac{a}{p^N}\right)$ 是 $B_k(t)$ 在 $t=\frac{a}{p^N}$ 处的值. 我们来验证它满足公式 (7), 即要证
+\[
+  \mu_{B,k}(a+(p^N))
+  =\sum_{b=0}^{p-1}\mu_{B,k}(a+bp^N+(p^{N+1})),
+\]
+而这又相当于
+\[
+  p^{N(k-1)}B_k\left(\frac{a}{p^N}\right)
+  =p^{(N+1)(k-1)}\sum_{b=0}^{p-1}B_k\left(\frac{a+bp^N}{p^{N+1}}\right).
+\]
+令 $\alpha=\frac{a}{p^{N+1}}$, 可知上式相当于
+\begin{equation}\tag{8}
+  B_k(p\alpha)=p^{k-1}\sum_{b=0}^{p-1}B_k\left(\alpha+\frac{b}{p}\right).
+\end{equation}
+由 Bernoulli 多项式的定义知
+\[
+  \begin{aligned}
+    p^{k-1}\sum_{k=0}^{\infty}\frac{x^k}{k!}\sum_{b=0}^{p-1}B_k\left(\alpha+\frac{b}{p}\right)
+    &=p^{k-1}\sum_{b=0}^{p-1}\frac{xe^{\left(\alpha+\frac{b}{p}\right)x}}{e^x-1}\\
+    &=p^{k-1}\frac{xe^{\alpha x}}{e^x-1}\sum_{b=0}^{p-1}e^{\frac{b}{p}x}
+    =p^{k-1}\frac{xe^{\alpha x}}{e^x-1}\cdot\frac{e^x-1}{e^{x/p}-1}\\
+    &=p^k\frac{\left(\frac{x}{p}\right)e^{(p\alpha)x/p}}{e^{x/p}-1}
+    =p^k\sum_{k=0}^{\infty}\frac{B_k(p\alpha)}{k!}\left(\frac{x}{p}\right)^k.
+  \end{aligned}
+\]
+比较上式两边 $x^k$ 的系数就得到 (8) 式. 这就表明, 对每个 $k=0,1,2,\cdots$, $\mu_{B,k}$ 都可以扩充成 $\Z_p$ 上的 $p$-adic 分布, 叫作 Bernoulli 分布. 例如:
+\[
+  \mu_{B,0}(a+(p^N))=p^{-N},
+\]
+从而为 Haar 分布 $\mu_H$;
+\[
+  \mu_{B,1}(a+(p^N))=B_1\left(\frac{a}{p^N}\right)
+  =\frac{a}{p^N}-\frac{1}{2},
+\]
+\[
+  \mu_{B,2}(a+(p^N))=p^NB_2\left(\frac{a}{p^N}\right)
+  =p^N\left(\frac{a^2}{p^{2N}}-\frac{a}{p^N}+\frac{1}{6}\right),
+\]
+其中 $N\geqslant 0$, $a\in\Z$, $0\leqslant a\leqslant p^N-1$.
+\end{example}
+
+不难看出, 所有的 $\mu_{B,k}\ (k\geqslant 0)$ 都不是 $p$-adic 测度. 但是用它们可以构作出一批 $p$-adic 测度来. 首先注意, 若 $\mu_1$ 和 $\mu_2$ 均为 $X$ 上的 $p$-adic 分布, 则对于 $\alpha_1,\alpha_2\in\Q_p$, $\alpha_1\mu_1+\alpha_2\mu_2$ 也是 $X$ 上的 $p$-adic 分布, 其中 $(\alpha_1\mu_1+\alpha_2\mu_2)(U)=\alpha_1\mu_1(U)+\alpha_2\mu_2(U)$.
+
+现在设 $k\geqslant 1$, $\alpha\in\Z$, 使得 $\alpha\neq 1$ 并且 $\alpha\not\equiv 0\ (\mathrm{mod}\ p)$. 对于 $\Z_p$ 的每个紧开子集 $U$, 则 $\alpha U$ 也是紧开子集. 定义
+\begin{equation}\tag{9}
+  \mu_{k,\alpha}(U)=\mu_{B,k}(U)-\alpha^{-k}\mu_{B,k}(\alpha U).
+\end{equation}
+
+\begin{theorem}\label{thm:9.20}
+$\mu_{k,\alpha}$ 是 $\Z_p$ 上的 $p$-adic 测度.
+\end{theorem}
+
+\begin{proof}
+先考虑 $k=1$ 情形, 我们要证对每个区间 $a+(p^N)$（$N\geqslant 0$, $a\in\Z$, $0\leqslant a<p^N$）, $\left|\mu_{1,\alpha}(a+(p^N))\right|_p\leqslant 1$. 以 $[b]_N$ 表示整数 $b$ 模 $p^N$ 的最小非负剩余. 由定义可知
+\[
+  \mu_{1,\alpha}(a+(p^N))
+  =\frac{a}{p^N}-\frac{1}{2}-\alpha^{-1}\left(\frac{[\alpha a]_N}{p^N}-\frac{1}{2}\right)
+\]
+\[
+  \begin{aligned}
+    &=\frac{\alpha^{-1}-1}{2}+\frac{a}{p^N}
+    -\alpha^{-1}\left(\frac{\alpha a}{p^N}-\left[\frac{\alpha a}{p^N}\right]\right)\\
+    &=\frac{1}{\alpha}\left[\frac{\alpha a}{p^N}\right]+\frac{\alpha^{-1}-1}{2}.
+  \end{aligned}
+\]
+由于 $\alpha^{-1}\in\Z_p$, 可知当 $p\geqslant 3$ 时, 上式右边属于 $\Z_p$; 而当 $p=2$ 时, $\alpha^{-1}-1\equiv 0\ (\mathrm{mod}\ 2)$, 从而上式右边也属于 $\Z_2$. 因此 $\left|\mu_{1,\alpha}(a+(p^N))\right|_p\leqslant 1$.
+
+对于 $k\geqslant 2$ 的情形, 下面结果给出 $\mu_{k,\alpha}$ 和 $\mu_{1,\alpha}$ 之间的关系, 它可以看作是通常测度情形公式 $d(x^k)=kx^{k-1}\mathrm{d}x$ 的 $p$-adic 类比.
+
+\begin{lemma}\label{lem:ch9-8}
+以 $d_k$ 表示 Bernoulli 多项式 $B_k(t)$ 所有系数分母的最小公倍数, 则对 $\Z_p$ 的每个区间 $a+(p^N)$, 均有
+\[
+  d_k\mu_{k,\alpha}(a+(p^N))
+  \equiv d_kka^{k-1}\mu_{1,\alpha}(a+(p^N))\ (\mathrm{mod}\ p^N).
+\]
+\end{lemma}
+
+这个引理的证明只是按定义进行 $\mathrm{mod}\ p^N$ 的近似演算, 我们把它留给读者. 由这个引理我们知道,
+\[
+  \left|\mu_{k,\alpha}(a+(p^N))\right|_p
+  \leqslant\max\left\{\left|d_k^{-1}p^N\right|_p,
+  \left|ka^{k-1}\mu_{1,\alpha}(a+(p^N))\right|_p\right\}
+  \leqslant\max\left\{\left|d_k^{-1}\right|_p,1\right\},
+\]
+而右边是只依赖于 $k$ 的常数. 所以每个 $\mu_{k,\alpha}$ 都是 $p$-adic 测度.
+\end{proof}
+
+有了 $X$ 上的 $p$-adic 测度 $\mu$, 我们就可以定义 $X$ 上连续函数对测度 $\mu$ 的 $p$-adic 积分. 对于每个连续函数 $f\colon X\to\Q_p$, 我们作``黎曼和''
+\[
+  \sum_{\substack{0\leqslant a<p^N\\ a+(p^N)\subseteq X}}f(x_{a,N})\mu(a+(p^N)),
+\]
+其中 $x_{a,N}\in a+(p^N)$. 就像通常积分的情形一样, 利用 $\mu$ 是 $p$-adic 测度, 即 $|\mu(a+(p^N))|_p\leqslant B$, 可以证明当 $N\to+\infty$ 时, 上面的求和有 $p$-adic 极限, 并且此极限不依赖于点 $x_{a,N}$ 的选取方式. 这个极限就是 $X$ 上连续函数 $f$ 对于测度 $\mu$ 的 $p$-adic 积分, 表示成 $\int_X f\mu$.
+
+\begin{theorem}\label{thm:9.21}
+对每个 $k\geqslant 1$ 和 $\Z_p$ 的紧开子集 $X$,
+\[
+  \int_X\mu_{k,\alpha}=k\int_Xx^{k-1}\mu_{1,\alpha}.
+\]
+\end{theorem}
+
+\begin{proof}
+由引理 \ref{lem:ch9-8} 可知
+\[
+  \begin{aligned}
+    \int_X\mu_{k,\alpha}
+    &=\sum_{\substack{0\leqslant a<p^N\\ a+(p^N)\subseteq X}}\mu_{k,\alpha}(a+(p^N))\\
+    &\equiv k\sum_{\substack{0\leqslant a<p^N\\ a+(p^N)\subseteq X}}a^{k-1}\mu_{1,\alpha}(a+(p^N))
+    \quad(\mathrm{mod}\ p^{N-V_p(d_k)}).
+  \end{aligned}
+\]
+令 $N\to+\infty$, 即得 $\int_X\mu_{k,\alpha}=k\int_Xx^{k-1}\mu_{1,\alpha}$.
+\end{proof}
+
+作为 $p$-adic 积分的一个应用, 我们现在证明 Bernoulli 数 $B_n$ 的 $3$ 个基本的整除性质. 根据定义有
+\[
+  \mu_{B,k}(\Z_p)=\mu_{B,k}(0+(p^0))=B_k(0)=B_k\qquad(k\geqslant 1),
+\]
+\[
+  \mu_{B,k}(p\Z_p)=\mu_{B,k}(0+(p))=p^{k-1}B_k.
+\]
+于是 $\mu_{B,k}(U_p)=\mu_{B,k}(\Z_p)-\mu_{B,k}(p\Z_p)=(1-p^{k-1})B_k$. 现在取 $\alpha\in\Z$, $\alpha\neq 1$, $\alpha\not\equiv 0\ (\mathrm{mod}\ p)$, 则 $\alpha U_p=U_p$. 于是
+\[
+  \mu_{k,\alpha}(U_p)=\mu_{B,k}(U_p)-\alpha^{-k}\mu_{B,k}(\alpha U_p)
+  =(1-\alpha^{-k})(1-p^{k-1})B_k.
+\]
+由于 $\mu_{k,\alpha}(U_p)=\int_{U_p}\mu_{k,\alpha}=k\int_{U_p}x^{k-1}\mu_{1,\alpha}$, 所以对 $k\geqslant 1$,
+\begin{equation}\tag{10}
+  \frac{1}{\alpha^{-k}-1}\int_{U_p}x^{k-1}\mu_{1,\alpha}
+  =(1-p^{k-1})\left(-\frac{B_k}{k}\right).
+\end{equation}
+特别地, 右边与 $\alpha$ 的选取方式无关.
+
+\begin{theorem}\label{thm:9.22}
+设 $k,k'\geqslant 1$, $p$ 为素数.
+
+(1) 若 $p-1\nmid k$, 则 $\frac{B_k}{k}\in\Z_p$.
+
+(2) 若 $p-1\nmid k$, $k\equiv k'\ (\mathrm{mod}\ (p-1)p^N)$, 则
+\[
+  (1-p^{k-1})\frac{B_k}{k}
+  \equiv(1-p^{k'-1})\frac{B_{k'}}{k'}\ (\mathrm{mod}\ p^{N+1}).
+\]
+(3) 若 $p-1\mid k$ 并且 $k$ 为偶数, 则 $pB_k\equiv -1\ (\mathrm{mod}\ p)$.
+\end{theorem}
+
+\begin{proof}
+(1) 由 $p-1\nmid k$ 可知 $p\geqslant 3$. 取 $\alpha\in\Z$, 使得 $\alpha$ 是模 $p$ 的原根, 即为 $p-1$ 阶乘法循环群 $\F_p^{\times}$ 的生成元. 由 $p-1\nmid k$ 可知 $\alpha^{-k}\not\equiv 1\ (\mathrm{mod}\ p)$. 对 $k=1$, 则 $\frac{B_1}{1}\equiv-\frac{1}{2}\in\Z_p$. 而 $k\geqslant 2$ 时, 由 (10) 式可知
+\begin{equation}\tag{11}
+  \left|\frac{B_k}{k}\right|_p
+  =\left|\frac{1}{\alpha^{-k}-1}\right|_p\cdot
+  \left|\frac{1}{1-p^{k-1}}\right|_p\cdot
+  \left|\int_{U_p}x^{k-1}\mu_{1,\alpha}\right|_p.
+\end{equation}
+当 $x\in U_p$ 时, $\left|x^{k-1}\right|_p=1$. 而对 $U_p$ 的每个紧开子集 $U$, 我们已经证明了 $|\mu_{1,\alpha}(U)|_p\leqslant 1$. 由后面的习题可知 $\left|\int_{U_p}x^{k-1}\mu_{1,\alpha}\right|_p\leqslant 1$. 而 (11) 式右边前两个因子均为 $1$, 于是 $\left|\frac{B_k}{k}\right|_p\leqslant 1$, 即 $\frac{B_k}{k}\in\Z_p$.
+
+(2) 由 (10) 式可知我们需要证明
+\begin{equation}\tag{12}
+  (\alpha^{-k}-1)^{-1}\int_{U_p}x^{k-1}\mu_{1,\alpha}
+  \equiv(\alpha^{-k'}-1)^{-1}\int_{U_p}x^{k'-1}\mu_{1,\alpha}
+  \quad(\mathrm{mod}\ p^{N+1}).
+\end{equation}
+由条件 $p-1\nmid k$ 表明 $p\geqslant 3$. 仍取 $\alpha$ 为模 $p$ 的原根, 则 $\alpha^{-k}-1$, $\alpha^{-k'}-1\in U_p$, 并且由 $k\equiv k'\ (\mathrm{mod}\ (p-1)p^N)$ 可知 $\alpha^{k-k'}\equiv 1\ (\mathrm{mod}\ p^{N+1})$. 于是
+\begin{equation}\tag{13}
+  \begin{aligned}
+    &(\alpha^{-k}-1)^{-1}-(\alpha^{-k'}-1)^{-1}\\
+    &=(\alpha^{-k}-1)^{-1}(\alpha^{-k'}-1)^{-1}(\alpha^{-k'}-\alpha^{-k})
+    \equiv 0\quad(\mathrm{mod}\ p^{N+1}).
+  \end{aligned}
+\end{equation}
+同样地, 当 $x\in U_p$ 时, $x^{k-1}\equiv x^{k'-1}\ (\mathrm{mod}\ p^{N+1})$. 于是
+\begin{equation}\tag{14}
+  \int_{U_p}x^{k-1}\mu_{1,\alpha}
+  \equiv\int_{U_p}x^{k'-1}\mu_{1,\alpha}\quad(\mathrm{mod}\ p^{N+1}).
+\end{equation}
+由 (13) 和 (14) 式即得 (12) 式.
+
+(3) $p=2$ 的情形留给读者. 这里只证 $p\geqslant 3$ 情形. 这次我们取 $\alpha=1+p$, 则
+\[
+  pB_k=\frac{-kp}{\alpha^{-k}-1}(1-p^{k-1})^{-1}\int_{U_p}x^{k-1}\mu_{1,\alpha}.
+\]
+记 $d=V_p(k)$, 则
+\[
+  \alpha^{-k}-1=(1+p)^{-k}-1\equiv -kp\quad(\mathrm{mod}\ p^{d+2}).
+\]
+于是 $-kp/(\alpha^{-k}-1)\equiv 1\ (\mathrm{mod}\ p)$. 又由 $k\geqslant 2$ 可知 $(1-p^{k-1})^{-1}\equiv 1\ (\mathrm{mod}\ p)$. 于是 $pB_k\equiv\int_{U_p}x^{k-1}\mu_{1,\alpha}\ (\mathrm{mod}\ p)$. 对于 $x\in U_p$, 由 $p-1\mid k$ 可知 $x^{k-1}\equiv x^{-1}\ (\mathrm{mod}\ p)$. 从而
+\[
+  pB_k\equiv\int_{U_p}x^{k-1}\mu_{1,\alpha}
+  \equiv\int_{U_p}x^{-1}\mu_{1,\alpha}\quad(\mathrm{mod}\ p).
+\]
+对应于积分 $\int_{U_p}x^{-1}\mu_{1,\alpha}$ 的``黎曼和''为
+\[
+  \begin{aligned}
+    &\sum_{\substack{a=1\\ p\nmid a}}^{p^N-1}a^{-1}\mu_{1,\alpha}(a+(p^N))\\
+    &=\sum_{\substack{a=1\\ p\nmid a}}^{p^N-1}a^{-1}(1-\alpha^{-1})\left(\frac{a}{p^N}-\frac{1}{2}\right)
+    \qquad(\alpha=p+1)\\
+    &=\frac{p}{1+p}\sum_{\substack{a=1\\ p\nmid a}}^{p^N-1}\left(p^{-N}-\frac{1}{2a}\right)\\
+    &\equiv p(p^N-p^{N-1})/p^N\equiv -1\quad(\mathrm{mod}\ p).
+  \end{aligned}
+\]
+于是 $pB_k\equiv -1\ (\mathrm{mod}\ p)$.
+\end{proof}
+
+\begin{remark}
+由定理 \ref{thm:9.22} 的 (1) 和 (3) 可知当 $k$ 为偶数时, $B_k$ 有如下的部分分式展开:
+\[
+  B_k+\sum_{p-1\mid k}\frac{1}{p}\in\Z.
+\]
+\end{remark}
+
+最后我们对本节前部分构作的 $p$-adic zeta 函数 $\zeta_p^{(a)}(s)$（$a=1,2,\cdots,\frac{p-3}{2}$）给出 $p$-adic 积分表达式. 我们知道当 $1-2k\in C_a=1-2a-(p-1)N$ 时, $\zeta_p^{(a)}(1-2k)=-(1-p^{2k-1})\frac{B_{2k}}{2k}$. 对于 $x\in U_p$, 我们有连续函数
+\[
+  f^{(a)}\colon\Z_p\to\Z_p,\qquad f^{(a)}(x)=x^{2a+(p-1)x-1}.
+\]
+于是我们有 $p$-adic 积分
+\[
+  F^{(a)}(s)=\int_{U_p}x^{2a+(p-1)s-1}\mu_{1,\alpha}.
+\]
+又取 $\alpha\in\Z$, $\alpha\neq 1$, $\alpha\not\equiv 0\ (\mathrm{mod}\ p)$, 则 $G^{(a)}(s)=(\alpha^{-(2a+(p-1)s)}-1)^{-1}$ 也是 $\Z_p$ 上连续函数. 但是当 $n\in N$ 时,
+\[
+  F^{(a)}(n)G^{(a)}(n)=(1-p^{l-1})\left(-\frac{B_l}{l}\right)
+  =\zeta_p^{(a)}(1-l),
+\]
+其中 $l=2a+(p-1)n$. 这就表明
+\[
+  \begin{aligned}
+    \zeta_p^{(a)}(1-2a-(p-1)s)&=F^{(a)}(s)G^{(a)}(s)\\
+    &=(\alpha^{-(2a+(p-1)s)}-1)^{-1}\int_{U_p}x^{2a+(p-1)s-1}\mu_{1,\alpha}
+    \qquad(s\in\Z_p).
+  \end{aligned}
+\]
+用类似方法, 我们也可以得到 $p$-adic $L$-函数 $L_p(s,\chi)$ 的 $p$-adic 积分表达式.
+
+综合上述, 我们在本节中介绍了 $p$-adic 分析中的两种方法: 插值方法（由函数在特殊点取值定义 $p$-adic 连续函数和解析函数）和 $p$-adic 积分方法. 这两种方法在现代数论研究中都是基本的 $p$-adic 分析工具.
+
+\begin{Exercises}
+\item 设 $S$ 是 $C_p$ 的子集合, $f,g\colon S\to C_p$ 均是 $p$-adic 连续函数, 求证 $f\pm g$ 和 $fg$ 也是 $p$-adic 连续函数. 又若对每个 $s\in S$, $f(s)\neq 0$, 则 $1/f$ 也是 $p$-adic 连续函数.
+
+\item 设 $a\in\Q_p^{\times}$, $V_p(a)\neq 0$. 证明 $\Z$ 上的函数 $f(n)=a^n$ 不能扩充成 $\Z_p$ 上的 $p$-adic 连续函数. 对于 $a\in U_p$ 但是 $a\not\equiv 1\ (\mathrm{mod}\ p)$, 你是否有办法定义出 $\Z_p$ 上一个 $p$-adic 连续函数 $f$, 使得当 $n\in N$ 时, $f(n)=a^n$（$n$ 个 $a$ 相乘）?
+
+\item 试计算 $p$-adic 对数的近似值
+\[
+  \log_7(-6)\ (\mathrm{mod}\ 7^4),\qquad\log_2 25\ (\mathrm{mod}\ 2^{12}).
+\]
+
+\item （Dieudonn\'e-Dwork）设 $f(x)\in 1+x\Q_p[[x]]$. 求证
+\[
+  f(x)\in 1+x\Z_p[[x]]
+  \Leftrightarrow\frac{f(x^p)}{(f(x))^p}\in 1+p\Z_p[[x]].
+\]
+
+\item （Artin-Hasse）求证 $\exp\left(\sum_{n=0}^{\infty}\frac{x^{p^n}}{p^n}\right)\in\Z_p[[x]]$.
+
+\item 设 $m\in\Z$, $m\geqslant 1$, $S_m(n)=1^m+2^m+\cdots+(n-1)^m$, $B_k$ 为 Bernoulli 数.
+
+(1) $S_m(n)=\frac{1}{m+1}\sum_{k=0}^{m}\binom{m+1}{k}B_kn^{m+1-k}$.
+
+(2) 设 $p$ 是奇素数, $m$ 为偶数, $2\leqslant m\leqslant p-1$, 则 $pB_m\equiv S_m(p)\ (\mathrm{mod}\ p^2)$.
+
+(3) 设 $p$ 为奇素数, 则
+\[
+  S_{\frac{p-1}{2}}\left(\frac{p-1}{2}\right)
+  \equiv 2\left(\left(\frac{2}{p}\right)-2\right)B_{\frac{p+1}{2}}\ (\mathrm{mod}\ p),
+\]
+其中 $\left(\frac{2}{p}\right)$ 为 Legendre 符号, 即 $\left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}$.
+
+\item 设 $\mu$ 为 $\Z_p$ 上的 $p$-adic 分布, $\mu(\Z_p)=1$, 并且具有平移不变性质: 对每个 $a\in\Z_p$ 和 $\Z_p$ 的紧开子集 $U$, $\mu(U)=\mu(a+U)$. 求证 $\mu$ 必为 Haar 分布 $\mu_H$.
+
+\item 若 $\mu$ 是 $\Z_p$ 上的 $p$-adic 分布, $\alpha\in\Z_p$. 对 $\Z_p$ 的每个紧开子集 $U$, 定义 $\mu_1(U)=\mu(\alpha+U)$, $\mu_2(U)=\mu(\alpha U)$. 求证 $\mu_1$ 和 $\mu_2$ 也是 $\Z_p$ 上的 $p$-adic 分布.
+
+\item 设 $X$ 为 $\Z_p$ 的紧开子集, $\mu$ 为 $X$ 上的 $p$-adic 测度, 并且对 $X$ 的每个紧开子集 $U$, 均有 $|\mu(U)|_p\leqslant B$.
+
+(1) 设 $f\colon X\to O_p$ 是 $p$-adic 连续函数. 如果对每个 $x\in X$, 均有 $|f(x)|_p\leqslant A$, 则 $\left|\int_X f\mu\right|_p\leqslant AB$.
+
+(2) 设 $f,g\colon X\to C_p$ 均是 $p$-adic 连续函数. 如果对每个 $x\in X$, 均有 $|f(x)-g(x)|_p\leqslant\varepsilon$, 则 $\left|\int_X f\mu-\int_X g\mu\right|_p\leqslant\varepsilon B$.
+\end{Exercises}

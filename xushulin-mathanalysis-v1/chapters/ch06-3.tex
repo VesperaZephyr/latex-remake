@@ -1,0 +1,834 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》(第一册)
+%  \S6.3  微积分基本定理、微积分基本公式
+%  源: 原书印刷页 371--386(PDF 物理页 377--392)
+%  底本: PaddleOCR-VL-1.6, 见 chapters/_ch06_3_raw.md
+%  约定: 全西文标点; 行间公式用一对方括号; 多行公式用 align 或 aligned;
+%        跨册引用一律用 extref(写作「定理 x.y.z」原文); 数学模式内的中文必须包text
+% ====================================================================
+\section{微积分基本定理、微积分基本公式}\label{sec:6.3}
+
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, 因此 $f$ 在 $[a,b]$ 的任一闭子区间上也 Riemann 可积. 于是, 由
+\[
+\Phi(x)=\int_{a}^{x}f(t)\,\mathrm{d}t,\quad x\in[a,b]
+\]
+定义了一个以积分上限 $x$ 为自变量的函数, 称为\textbf{变上限积分}, 几何上看是变动曲边梯形 $AaxB$ 的面积 (图~\ref{fig:6.3.1}). 在不致混淆时, 记 $\int_{a}^{x}f(t)\,\mathrm{d}t$ 为 $\int_{a}^{x}f(x)\,\mathrm{d}x$, 但应注意的是积分上限的 $x$ 是真正的变量, 而 $f(x)\,\mathrm{d}x$ 中的 $x$ 是积分变量, 它用 $t,\theta,u,\cdots$ 表示都可以.
+
+类似地, 也可定义\textbf{变下限积分}
+\[
+\Psi(x)=\int_{x}^{b}f(t)\,\mathrm{d}t,\quad x\in[a,b].
+\]
+$\Phi$ 与 $\Psi$ 统称为\textbf{变限积分}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.05cm,y=1.00cm,>=Stealth]
+  \draw[->] (-0.6,0) -- (5.5,0) node[below right] {$x$};
+  \draw[->] (0,-0.5) -- (0,4.05) node[left] {$y$};
+  \fill[pattern=north east lines] (1,0) -- (1,2.2)
+    .. controls (1.45,2.80) and (2.50,2.65) .. (3.2,2.28)
+    -- (3.2,0) -- cycle;
+  \draw[thick] (1,2.2) .. controls (1.45,2.80) and (2.50,2.65) .. (3.2,2.28)
+    .. controls (3.75,2.05) and (4.15,2.30) .. (4.6,3.35);
+  \draw (1,0) -- (1,2.2);
+  \draw (3.2,0) -- (3.2,2.28);
+  \draw (4.6,0) -- (4.6,3.35);
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (0.94,2.24) {$A$};
+  \node[right] at (3.26,2.24) {$B$};
+  \node at (2.55,3.05) {$y=f(x)$};
+  \node[below] at (1,-0.10) {$a$};
+  \node[below] at (3.2,-0.10) {$x$};
+  \node[below] at (4.6,-0.10) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.3.1}
+\end{figure}
+
+变限积分所定义的函数有着重要的性质. 由于
+\[
+\int_{x}^{b}f(t)\,\mathrm{d}t=-\int_{b}^{x}f(t)\,\mathrm{d}t,
+\]
+下面只讨论变上限积分.
+
+\begin{theorem}\label{thm:6.3.1}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, 则变上限积分
+\[
+\Phi(x)=\int_{a}^{x}f(t)\,\mathrm{d}t
+\]
+为满足 Lipschitz 条件的函数. 特别地, $\Phi(x)$ 在 $[a,b]$ 上一致连续.
+\end{theorem}
+
+\begin{proof}
+因为 $f$ 在 $[a,b]$ 上 Riemann 可积, 根据定理~\ref{thm:6.1.2} 知, $f$ 在 $[a,b]$ 上必有界, 即 $|f(x)|\leqslant M$, $\forall x_{1},x_{2}\in[a,b]$. 由定理~\ref{thm:6.2.4} 及定理~\ref{thm:6.2.3} 得到
+\begin{align*}
+|\Phi(x_{1})-\Phi(x_{2})|&=\left|\int_{a}^{x_{1}}f(t)\,\mathrm{d}t-\int_{a}^{x_{2}}f(t)\,\mathrm{d}t\right|=\left|\int_{x_{2}}^{x_{1}}f(t)\,\mathrm{d}t\right|\\
+&\leqslant\left|\int_{x_{2}}^{x_{1}}|f(t)|\,\mathrm{d}t\right|\leqslant M|x_{1}-x_{2}|.
+\end{align*}
+这就证明了 $\Phi$ 在 $[a,b]$ 上满足 Lipschitz 条件.
+
+另一方面, $\forall\varepsilon>0$, 取 $\delta\in\left(0,\dfrac{\varepsilon}{M+1}\right)$, 则当 $x_{1},x_{2}\in[a,b]$, $|x_{1}-x_{2}|<\delta$ 时有
+\[
+|\Phi(x_{1})-\Phi(x_{2})|\leqslant M|x_{1}-x_{2}|\leqslant M\delta<M\cdot\frac{\varepsilon}{M+1}<\varepsilon,
+\]
+因此, $\Phi$ 在 $[a,b]$ 上是一致连续的.
+\end{proof}
+
+现在我们来研究积分学的最重要的微积分基本定理与微积分基本公式.
+
+\begin{theorem}[微积分基本定理]\label{thm:6.3.2}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, 且在 $x_{0}\in[a,b]$ 连续, 则
+\[
+\Phi(x)=\int_{a}^{x}f(t)\,\mathrm{d}t
+\]
+在 $x_{0}$ 处可导, 且
+\[
+\Phi'(x_{0})=f(x_{0}).
+\]
+\end{theorem}
+
+\begin{proof}
+$\forall\varepsilon>0$, 因 $f$ 在 $x_{0}$ 连续, 故 $\exists\delta>0$, 当 $|x-x_{0}|<\delta$, $x\in[a,b]$ 时, 有 $|f(x)-f(x_{0})|<\varepsilon$. 于是
+\[
+\begin{aligned}
+\left|\frac{\Phi(x)-\Phi(x_{0})}{x-x_{0}}-f(x_{0})\right|&=\left|\frac{\int_{a}^{x}f(t)\,\mathrm{d}t-\int_{a}^{x_{0}}f(t)\,\mathrm{d}t}{x-x_{0}}-f(x_{0})\right|\\
+&=\left|\frac{\int_{x_{0}}^{x}f(t)\,\mathrm{d}t-\int_{x_{0}}^{x}f(x_{0})\,\mathrm{d}t}{x-x_{0}}\right|=\left|\frac{\int_{x_{0}}^{x}[f(t)-f(x_{0})]\,\mathrm{d}t}{x-x_{0}}\right|\\
+&\leqslant\frac{\int_{x_{0}}^{x}|f(t)-f(x_{0})|\,\mathrm{d}t}{|x-x_{0}|}<\frac{\varepsilon\left|\int_{x_{0}}^{x}\mathrm{d}t\right|}{|x-x_{0}|}=\varepsilon,
+\end{aligned}
+\]
+即 $\Phi(x)$ 在 $x_{0}$ 处可导, 且
+\[
+\Phi'(x_{0})=\lim_{x\to x_{0}}\frac{\Phi(x)-\Phi(x_{0})}{x-x_{0}}=f(x_{0}).
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:6.3.1}
+设 $f$ 在 $[a,b]$ 上连续, $\Phi(x)=\int_{a}^{x}f(t)\,\mathrm{d}t$, $x\in[a,b]$, 则 $\Phi'(x)=f(x)$, 即 $\Phi(x)$ 为 $f(x)$ 在 $[a,b]$ 上的一个原函数. 从而
+\[
+\int f(x)\,\mathrm{d}x=\Phi(x)+C=\int_{a}^{x}f(t)\,\mathrm{d}t+C.
+\]
+\end{corollary}
+
+\begin{proof}[证法 1]
+由定理~\ref{thm:6.3.2} 推得.
+\end{proof}
+
+\begin{proof}[证法 2]
+对 $\forall x\in[a,b]$, 当 $\Delta x\neq 0$ 且 $x+\Delta x\in[a,b]$ 时, 有
+\[
+\begin{aligned}
+&\frac{\Delta\Phi}{\Delta x}=\frac{\Phi(x+\Delta x)-\Phi(x)}{\Delta x}=\frac{1}{\Delta x}\int_{x}^{x+\Delta x}f(t)\,\mathrm{d}t\\
+&\quad\xlongequal{\text{积分第一中值定理}}f(x+\theta\Delta x),\quad 0\leqslant\theta\leqslant 1.
+\end{aligned}
+\]
+由于 $f$ 在点 $x$ 连续, 故有
+\[
+\Phi'(x)=\lim_{\Delta x\to 0}\frac{\Delta\Phi}{\Delta x}=\lim_{\Delta x\to 0}f(x+\theta\Delta x)=f(x).
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:6.3.2}
+设 $f$ 在 $[a,b]$ 上连续, $u(x):(c,d)\to\mathbb{R}$ 与 $v(x):(c,d)\to\mathbb{R}$ 可导, $a\leqslant u(x)\leqslant b$, $a\leqslant v(x)\leqslant b$, 则
+\[
+\left(\int_{v(x)}^{u(x)}f(t)\,\mathrm{d}t\right)'=f(u(x))u'(x)-f(v(x))v'(x).
+\]
+\end{corollary}
+
+\begin{proof}
+应用复合函数求导的链规则, 有
+\begin{align*}
+\left(\int_{v(x)}^{u(x)}f(t)\,\mathrm{d}t\right)'&=\left(\int_{v(x)}^{a}f(t)\,\mathrm{d}t+\int_{a}^{u(x)}f(t)\,\mathrm{d}t\right)'\\
+&=\left(\int_{a}^{u(x)}f(t)\,\mathrm{d}t\right)'-\left(\int_{a}^{v(x)}f(t)\,\mathrm{d}t\right)'\\
+&=\left.\left(\int_{a}^{u}f(t)\,\mathrm{d}t\right)'\right|_{u=u(x)}\cdot u'(x)-\left.\left(\int_{a}^{v}f(t)\,\mathrm{d}t\right)'\right|_{v=v(x)}\cdot v'(x)\\
+&=f(u(x))u'(x)-f(v(x))v'(x).
+\end{align*}
+\end{proof}
+
+\begin{theorem}[微积分基本公式或 Newton-Leibniz 公式]\label{thm:6.3.3}
+设 $f$ 在 $[a,b]$ 上连续, $F$ 为 $f$ 在 $[a,b]$ 上的任一原函数, 即 $F'(x)=f(x)$, $\forall x\in[a,b]$. 则
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}F'(x)\,\mathrm{d}x=F(b)-F(a)=F(x)\Big|_{a}^{b}.
+\]
+\end{theorem}
+
+微积分基本公式是体现导数 (微分) 与积分有着密切联系的重要公式.
+
+\begin{proof}[证法 1]
+设 $\Phi(x)=\int_{a}^{x}f(t)\,\mathrm{d}t$, 则由推论 6.1.1 知,
+\[
+\Phi'(x)=f(x)=F'(x),\quad \forall x\in[a,b].
+\]
+再根据推论 3.2.2 得到 $F(x)=\Phi(x)+C$, 所以,
+\[
+\begin{aligned}
+\int_{a}^{b}f(x)\,\mathrm{d}x&=\int_{a}^{b}f(x)\,\mathrm{d}x-\int_{a}^{a}f(x)\,\mathrm{d}x=\Phi(b)-\Phi(a)\\
+&=(\Phi(b)+C)-(\Phi(a)+C)=F(b)-F(a).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[证法 2]
+因为 $f$ 在 $[a,b]$ 上连续, 从而一致连续, 即 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $x',x''\in[a,b]$ 且 $|x'-x''|<\delta$ 时, 有
+\[
+|f(x')-f(x'')|<\frac{\varepsilon}{b-a}.
+\]
+对上述 $\varepsilon>0$, 及 $[a,b]$ 的任一分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, 当 $\|T\|<\delta$ 与 $\forall\xi_{i}\in[x_{i-1},x_{i}]$ 时, 有
+\begin{align*}
+&\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-[F(b)-F(a)]\right|\\
+&=\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-\sum_{i=1}^{n}[F(x_{i})-F(x_{i-1})]\right|\\
+&=\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-\sum_{i=1}^{n}f(\eta_{i})\Delta x_{i}\right|\\
+&=\left|\sum_{i=1}^{n}[f(\xi_{i})-f(\eta_{i})]\Delta x_{i}\right|\\
+&\leqslant\sum_{i=1}^{n}|f(\xi_{i})-f(\eta_{i})|\Delta x_{i}\\
+&<\frac{\varepsilon}{b-a}\sum_{i=1}^{n}\Delta x_{i}=\frac{\varepsilon}{b-a}(b-a)=\varepsilon,
+\end{align*}
+其中第二个等式是应用了 Lagrange 中值定理, $\exists\eta_{i}\in(x_{i-1},x_{i})$, s. t.
+\[
+F(x_{i})-F(x_{i-1})=F'(\eta_{i})(x_{i}-x_{i-1})=f(\eta_{i})\Delta x_{i}.
+\]
+由上推得 $f$ 在 $[a,b]$ 上 Riemann 可积, 且有
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=F(b)-F(a).
+\]
+\end{proof}
+
+\begin{theorem}[推广的微积分基本公式或推广的 Newton-Leibniz 公式]\label{thm:6.3.4}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, $F$ 在 $[a,b]$ 上连续, 且在 $[a,b]$ 上除有限个点外,
+\[
+F'(x)=f(x)
+\]
+成立. 则
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=F(b)-F(a)=F(x)\Big|_{a}^{b}.
+\]
+\end{theorem}
+
+\begin{proof}
+作 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, 使 $F'(x)=f(x)$ 不成立的点全在上述分点中. 所以, $F'(x)=f(x)$, $\forall x\in(x_{i-1},x_{i})$, 且 $F$ 在 $[x_{i-1},x_{i}]$ 上连续. 由 Lagrange 中值定理知, $\exists\xi_{i}\in(x_{i-1},x_{i})$, s. t.
+\[
+f(\xi_{i})=F'(\xi_{i})=\frac{F(x_{i})-F(x_{i-1})}{x_{i}-x_{i-1}}.
+\]
+由此推得
+\[
+F(x_{i})-F(x_{i-1})=f(\xi_{i})(x_{i}-x_{i-1})=f(\xi_{i})\Delta x_{i}.
+\]
+于是,
+\[
+\begin{aligned}
+\int_{a}^{b}f(x)\,\mathrm{d}x&=\lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}=\lim_{\|T\|\to 0}\sum_{i=1}^{n}[F(x_{i})-F(x_{i-1})]\\
+&=\lim_{\|T\|\to 0}[F(b)-F(a)]=F(b)-F(a).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remark}\label{rem:6.3.1}
+现在我们用定积分与 Newton-Leibniz 公式来描述匀加速运动与例~\ref{ex:5.2.11} 中的半生期问题. 关于匀加速运动有
+\[
+v(t)=\int_{t_{0}}^{t}a\,\mathrm{d}t+v(t_{0})=a(t-t_{0})+v(t_{0}),
+\]
+\[
+\begin{aligned}
+x(t)&=\int_{t_{0}}^{t}[a(t-t_{0})+v(t_{0})]\,\mathrm{d}t+x(t_{0})\\
+&=\frac{a}{2}(t-t_{0})^{2}+v(t_{0})(t-t_{0})+x(t_{0}).
+\end{aligned}
+\]
+关于半生期有
+\[
+\frac{\mathrm{d}m}{m}=-k\,\mathrm{d}t,
+\]
+\[
+\int_{m(0)}^{m(t)}\frac{\mathrm{d}m}{m}=\int_{0}^{t}(-k)\,\mathrm{d}t,
+\]
+\[
+\ln\frac{m(t)}{m(0)}=-kt,
+\]
+\[
+m(t)=m(0)\mathrm{e}^{-kt}.
+\]
+\end{remark}
+
+\begin{example}\label{ex:6.3.1}
+已经知道, 如果 $f(x)$ 连续, 则变上限积分 $\int_{a}^{x}f(t)\,\mathrm{d}t$ 为 $f(x)$ 的一个原函数, 且
+\[
+\int f(x)\,\mathrm{d}x=\int_{a}^{x}f(t)\,\mathrm{d}t+C,
+\]
+还有 Newton-Leibniz 公式
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=F(x)\Big|_{a}^{b}=F(b)-F(a)
+\]
+成立, 其中 $F(x)=\int_{a}^{x}f(t)\,\mathrm{d}t+C$.
+
+值得注意的是,
+\[
+f(x)=\begin{cases}\frac{3}{2}x^{\frac{1}{2}}\sin\frac{1}{x}-x^{-\frac{1}{2}}\cos\frac{1}{x},&x\neq 0,\\0,&x=0\end{cases}
+\]
+有原函数
+\[
+F(x)=\begin{cases}x^{\frac{3}{2}}\sin\frac{1}{x},&x\neq 0,\\0,&x=0.\end{cases}
+\]
+但 $f(x)$ 在 $[0,1]$ 上无界, 根据定理~\ref{thm:6.1.2} 推得它在 $[0,1]$ 上不是 Riemann 可积的, 从而, Newton-Leibniz 公式不成立, 即
+\[
+\int_{0}^{1}f(x)\,\mathrm{d}x\neq F(x)\Big|_{0}^{1}.
+\]
+即使加上 $f(x)$ 在 $[a,b]$ 上 Riemann 可积, 推广的 Newton-Leibniz 公式也未必成立. 如
+\[
+f(x)=0,
+\]
+\[
+F(x)=\begin{cases}1,&x\geqslant 0,\\0,&x<0,\end{cases}
+\]
+则 $F'(x)=0=f(x)$, $\forall x\neq 0$, 且 $f(x)$ 在 $[-1,1]$ 上 Riemann 可积, 但
+\[
+\int_{-1}^{1}f(x)\,\mathrm{d}x=\int_{-1}^{1}0\,\mathrm{d}x=0\neq 1=1-0=F(1)-F(-1).
+\]
+$F(x)$ 在 $0$ 不连续是造成推广的 Newton-Leibniz 公式不成立的主要原因.
+\end{example}
+
+\begin{example}\label{ex:6.3.2}
+应用 Newton-Leibniz 公式计算下列 Riemann 积分:
+
+(1) $\int_{a}^{b}x\,\mathrm{d}x$;\qquad (2) $\int_{a}^{b}x^{2}\,\mathrm{d}x$;\qquad (3) $\int_{a}^{b}\sin x\,\mathrm{d}x$;
+
+(4) $\int_{a}^{b}\mathrm{e}^{x}\,\mathrm{d}x$;\qquad (5) $\int_{0}^{2}x\sqrt{4-x^{2}}\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}
+(1) $\int_{a}^{b}x\,\mathrm{d}x=\left.\frac{x^{2}}{2}\right|_{a}^{b}=\frac{b^{2}-a^{2}}{2}$.
+
+(2) $\int_{a}^{b}x^{2}\,\mathrm{d}x=\left.\frac{x^{3}}{3}\right|_{a}^{b}=\frac{b^{3}-a^{3}}{3}$.
+
+(3) $\int_{a}^{b}\sin x\,\mathrm{d}x=-\cos x\Big|_{a}^{b}=\cos a-\cos b$.
+
+(4) $\int_{a}^{b}\mathrm{e}^{x}\,\mathrm{d}x=\mathrm{e}^{x}\Big|_{a}^{b}=\mathrm{e}^{b}-\mathrm{e}^{a}$.
+
+(5) 由
+\[
+\begin{aligned}
+\int x\sqrt{4-x^{2}}\,\mathrm{d}x&=-\frac{1}{2}\int\sqrt{4-x^{2}}\,\mathrm{d}(4-x^{2})\\
+&=-\frac{1}{3}(4-x^{2})^{\frac{3}{2}}+C
+\end{aligned}
+\]
+得到
+\[
+\int_{0}^{2}x\sqrt{4-x^{2}}\,\mathrm{d}x=-\left.\frac{1}{3}(4-x^{2})^{\frac{3}{2}}\right|_{0}^{2}=\frac{8}{3}.
+\]
+比较例~\ref{ex:6.3.2}(2) 与例~\ref{ex:6.1.13}, 再比较例~\ref{ex:6.3.2}(3) 与例~\ref{ex:6.1.14} 就可知道, 用 Newton-Leibniz 公式计算 Riemann 积分比用定义及定理~\ref{thm:6.1.4} 要简捷得多, 这充分显示了 Newton-Leibniz 公式的强大威力, 也显示了求原函数或求不定积分的重要性.
+\end{solution}
+
+\begin{example}\label{ex:6.3.3}
+设 $m,n=0,1,2,\cdots$, 证明:
+
+(1)
+\[
+\int_{-\pi}^{\pi}\cos mx\cos nx\,\mathrm{d}x=\int_{-\pi}^{\pi}\sin mx\sin nx\,\mathrm{d}x=\begin{cases}0,&m\neq n,\\\pi,&m=n;\end{cases}
+\]
+
+(2) $\int_{-\pi}^{\pi}\sin mx\cos nx\,\mathrm{d}x=0$.
+\end{example}
+
+\begin{proof}
+应用 Newton-Leibniz 公式, 有
+
+(1)
+\[
+\begin{aligned}
+\int_{-\pi}^{\pi}\cos mx\cos nx\,\mathrm{d}x&=\frac{1}{2}\int_{-\pi}^{\pi}[\cos(m+n)x+\cos(m-n)x]\,\mathrm{d}x\\
+&=\begin{cases}\frac{1}{2}\left.\left[\frac{\sin(m+n)x}{m+n}+\frac{\sin(m-n)x}{m-n}\right]\right|_{-\pi}^{\pi}=0,&m\neq n,\\[2mm]\frac{1}{2}\left.\left[\frac{\sin(m+n)x}{m+n}+x\right]\right|_{-\pi}^{\pi}=\frac{1}{2}(0+2\pi)=\pi,&m=n.\end{cases}
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\int_{-\pi}^{\pi}\sin mx\sin nx\,\mathrm{d}x&=\frac{1}{2}\int_{-\pi}^{\pi}[\cos(m-n)x-\cos(m+n)x]\,\mathrm{d}x\\
+&=\begin{cases}\frac{1}{2}\left.\left[\frac{\sin(m-n)x}{m-n}-\frac{\sin(m+n)x}{m+n}\right]\right|_{-\pi}^{\pi}=0,&m\neq n,\\[2mm]\frac{1}{2}\left.\left[x-\frac{\sin(m+n)x}{m+n}\right]\right|_{-\pi}^{\pi}=\frac{1}{2}(2\pi-0)=\pi,&m=n.\end{cases}
+\end{aligned}
+\]
+
+(2)
+\[
+\begin{aligned}
+\int_{-\pi}^{\pi}\sin mx\cos nx\,\mathrm{d}x&=\frac{1}{2}\int_{-\pi}^{\pi}[\sin(m+n)x+\sin(m-n)x]\,\mathrm{d}x\\
+&=\begin{cases}\frac{1}{2}\left.\left[-\frac{\cos(m+n)x}{m+n}-\frac{\cos(m-n)x}{m-n}\right]\right|_{-\pi}^{\pi}=0,&m\neq n,\\[2mm]\frac{1}{2}\left.\left[-\frac{\cos(m+n)x}{m+n}\right]\right|_{-\pi}^{\pi}+0=\frac{1}{2}(0+0)=0,&m=n,\,m+n\neq 0,\\[2mm]0,&m=n=0.\end{cases}
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6.3.4}
+应用 Riemann 积分定义及 Newton-Leibniz 公式计算下面的数列极限:
+
+(1) $\lim\limits_{n\to+\infty}\dfrac{1^{p}+2^{p}+\cdots+n^{p}}{n^{p+1}}$ ($p>-1$);
+
+(2)
+\[
+\lim_{n\to+\infty}\frac{1}{n}\left(1+\sec^{2}\frac{\pi}{4n}+\sec^{2}\frac{2\pi}{4n}+\cdots+\sec^{2}\frac{n\pi}{4n}\right);
+\]
+
+(3)
+\[
+\lim_{n\to+\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{2n}\right).
+\]
+\end{example}
+
+\begin{solution}
+(1)
+\[
+\begin{aligned}
+&\lim_{n\to+\infty}\frac{1^{p}+2^{p}+\cdots+n^{p}}{n^{p+1}}\\
+&=\lim_{n\to+\infty}\frac{1}{n}\left[\left(\frac{1}{n}\right)^{p}+\left(\frac{2}{n}\right)^{p}+\cdots+\left(\frac{n}{n}\right)^{p}\right]\\
+&=\int_{0}^{1}x^{p}\,\mathrm{d}x=\left.\frac{x^{p+1}}{p+1}\right|_{0}^{1}=\frac{1}{p+1},\quad p>-1.
+\end{aligned}
+\]
+参阅例~\ref{ex:1.6.3}(1), 它应用 Stolz 公式对 $p$ 为自然数时求得极限值 $\dfrac{1}{p+1}$.
+
+(2)
+\[
+\begin{aligned}
+&\lim_{n\to+\infty}\frac{1}{n}\left(1+\sec^{2}\frac{\pi}{4n}+\sec^{2}\frac{2\pi}{4n}+\cdots+\sec^{2}\frac{n\pi}{4n}\right)\\
+&=\frac{4}{\pi}\lim_{n\to+\infty}\frac{\pi}{4n}\left(1+\sec^{2}\frac{\pi}{4n}+\sec^{2}\frac{2\pi}{4n}+\cdots+\sec^{2}\frac{n\pi}{4n}\right)\\
+&=\frac{4}{\pi}\int_{0}^{\frac{\pi}{4}}\sec^{2}x\,\mathrm{d}x=\left.\frac{4}{\pi}\tan x\right|_{0}^{\frac{\pi}{4}}=\frac{4}{\pi}(1-0)=\frac{4}{\pi}.
+\end{aligned}
+\]
+
+(3)
+\[
+\begin{aligned}
+&\lim_{n\to+\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{2n}\right)\\
+&=\lim_{n\to+\infty}\frac{1}{n}\left(\frac{1}{1+\frac{1}{n}}+\cdots+\frac{1}{1+\frac{n}{n}}\right)\\
+&=\int_{0}^{1}\frac{\mathrm{d}x}{1+x}=\left.\ln(1+x)\right|_{0}^{1}=\ln 2.
+\end{aligned}
+\]
+另一方法参阅例~\ref{ex:1.4.9}(1).
+\end{solution}
+
+\begin{example}\label{ex:6.3.5}
+设 $f$ 在 $[a,b]$ 上连续可导, $f(a)=0$. 证明:
+
+(1) $\max\limits_{x\in[a,b]}f^{2}(x)\leqslant(b-a)\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x$;
+
+(2) $\int_{a}^{b}f^{2}(x)\,\mathrm{d}x\leqslant\dfrac{(b-a)^{2}}{2}\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x$.
+\end{example}
+
+\begin{proof}
+(1) 由 Cauchy-Schwarz 不等式、$f(a)=0$ 及 Newton-Leibniz 公式得到
+\[
+\begin{aligned}
+f^{2}(x)&=[f(x)-f(a)]^{2}=\left[\int_{a}^{x}f'(t)\,\mathrm{d}t\right]^{2}=\left[\int_{a}^{x}f'(t)\cdot 1\,\mathrm{d}t\right]^{2}\\
+&\leqslant\int_{a}^{x}[f'(x)]^{2}\,\mathrm{d}x\cdot\int_{a}^{x}1^{2}\,\mathrm{d}x=(x-a)\int_{a}^{x}[f'(x)]^{2}\,\mathrm{d}x\\
+&\leqslant(b-a)\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x,\quad\forall x\in[a,b],
+\end{aligned}
+\]
+所以,
+\[
+\max_{x\in[a,b]}f^{2}(x)\leqslant(b-a)\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x.
+\]
+
+(2) 由 (1) 推得了
+\[
+f^{2}(x)\leqslant(x-a)\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x.
+\]
+两边积分得
+\[
+\begin{aligned}
+\int_{a}^{b}f^{2}(x)\,\mathrm{d}x&\leqslant\int_{a}^{b}\left\{\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x\cdot(x-a)\right\}\mathrm{d}x\\
+&=\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x\cdot\int_{a}^{b}(x-a)\,\mathrm{d}x\\
+&=\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x\cdot\left.\frac{(x-a)^{2}}{2}\right|_{a}^{b}\\
+&=\frac{(b-a)^{2}}{2}\int_{a}^{b}[f'(x)]^{2}\,\mathrm{d}x.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6.3.6}
+设 $f$ 在 $[0,+\infty)$ 上连续并恒取正值. 证明:
+\[
+\varphi(x)=\frac{\int_{0}^{x}tf(t)\,\mathrm{d}t}{\int_{0}^{x}f(t)\,\mathrm{d}t}
+\]
+是 $(0,+\infty)$ 上的严格增函数.
+\end{example}
+
+\begin{proof}
+由微积分基本定理得到
+\[
+\begin{aligned}
+\varphi'(x)&=\frac{xf(x)\int_{0}^{x}f(t)\,\mathrm{d}t-f(x)\int_{0}^{x}tf(t)\,\mathrm{d}t}{\left(\int_{0}^{x}f(t)\,\mathrm{d}t\right)^{2}}\\
+&=\frac{f(x)\int_{0}^{x}(x-t)f(t)\,\mathrm{d}t}{\left(\int_{0}^{x}f(t)\,\mathrm{d}t\right)^{2}}>0
+\end{aligned}
+\]
+($f(x)>0$, $x-t>0$, $\forall t\in(0,x)$), 根据定理~\ref{thm:3.5.1}, $\varphi(x)$ 为 $(0,+\infty)$ 上的严格增函数.
+\end{proof}
+
+\begin{example}\label{ex:6.3.7}
+应用微积分基本定理求下列极限:
+
+(1)
+\[
+\lim_{x\to+\infty}\frac{\int_{0}^{x}\sqrt{1+t^{4}}\,\mathrm{d}t}{x^{3}};
+\]
+
+(2)
+\[
+\lim_{x\to+\infty}\frac{\int_{0}^{x}t^{2}\mathrm{e}^{t^{2}}\,\mathrm{d}t}{\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)^{2}};
+\]
+
+(3)
+\[
+\lim_{x\to 0}\frac{\int_{0}^{x}t^{2}\mathrm{e}^{t^{2}}\,\mathrm{d}t}{\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)^{2}}.
+\]
+\end{example}
+
+\begin{solution}
+(1)
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\frac{\int_{0}^{x}\sqrt{1+t^{4}}\,\mathrm{d}t}{x^{3}}&\xlongequal[\text{L'Hospital 法则}]{\frac{\infty}{\infty}}\lim_{x\to+\infty}\frac{\sqrt{1+x^{4}}}{3x^{2}}\\
+&=\lim_{x\to+\infty}\frac{1}{3}\sqrt{\frac{1}{x^{4}}+1}=\frac{1}{3}\sqrt{0+1}=\frac{1}{3}.
+\end{aligned}
+\]
+
+(2)
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\frac{\int_{0}^{x}t^{2}\mathrm{e}^{t^{2}}\,\mathrm{d}t}{\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)^{2}}&\xlongequal{\frac{\infty}{\infty}}\lim_{x\to+\infty}\frac{x^{2}\mathrm{e}^{x^{2}}}{\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)\cdot\mathrm{e}^{x^{2}}}\\
+&=\lim_{x\to+\infty}\frac{x^{2}}{2\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t}=\lim_{x\to+\infty}\frac{2x}{2\mathrm{e}^{x^{2}}}\\
+&=\lim_{x\to+\infty}\frac{x}{\mathrm{e}^{x^{2}}}=\lim_{x\to+\infty}\frac{1}{2x\mathrm{e}^{x^{2}}}=0.
+\end{aligned}
+\]
+
+(3)
+\[
+\begin{aligned}
+\lim_{x\to 0}\frac{\int_{0}^{x}t^{2}\mathrm{e}^{t^{2}}\,\mathrm{d}t}{\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)^{2}}&\xlongequal{\frac{0}{0}}\lim_{x\to 0}\frac{x^{2}\mathrm{e}^{x^{2}}}{2\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)\cdot\mathrm{e}^{x^{2}}}\\
+&=\lim_{x\to 0}\frac{x^{2}}{2\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t}=\lim_{x\to 0}\frac{x}{\mathrm{e}^{x^{2}}}=\frac{0}{\mathrm{e}^{x^{2}}}=0.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.3.8}
+设函数 $f$ 连续可导, $f(1)=1$, 且当 $x\geqslant 1$ 时, 有
+\[
+f'(x)=\frac{1}{x^{2}+f^{2}(x)}.
+\]
+证明: $\lim\limits_{x\to+\infty}f(x)$ 存在, 且 $\lim\limits_{x\to+\infty}f(x)\leqslant 1+\dfrac{\pi}{4}$.
+\end{example}
+
+\begin{proof}
+由于 $f'(x)=\dfrac{1}{x^{2}+f^{2}(x)}>0$, 所以 $f$ 在 $[1,+\infty)$ 上严格增; 且当 $x\geqslant 1$ 时, 有 $f(x)>f(1)=1$, 于是, 由 Newton-Leibniz 公式得到
+\[
+\begin{aligned}
+f(x)&=f(1)+\int_{1}^{x}f'(t)\,\mathrm{d}t=1+\int_{1}^{x}\frac{\mathrm{d}t}{t^{2}+f^{2}(t)}\\
+&<1+\int_{1}^{x}\frac{\mathrm{d}t}{1+t^{2}}=1+\arctan x-\arctan 1\\
+&<1+\frac{\pi}{2}-\frac{\pi}{4}=1+\frac{\pi}{4}.
+\end{aligned}
+\]
+当 $x\to+\infty$ 时, $f$ 递增且有上界 $1+\dfrac{\pi}{4}$. 因此, $\lim\limits_{x\to+\infty}f(x)$ 存在有限, 并且
+\[
+\lim_{x\to+\infty}f(x)\leqslant 1+\frac{\pi}{4}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6.3.9}
+设 $f$ 连续可导, 且 $f(0)=0$, $f(1)=1$. 求证:
+\[
+\int_{0}^{1}|f(x)-f'(x)|\,\mathrm{d}x\geqslant\frac{1}{\mathrm{e}}.
+\]
+\end{example}
+
+\begin{proof}
+从 $\mathrm{e}^{-x}\leqslant 1$, $\forall x\in[0,1]$ 得到
+\[
+\begin{aligned}
+\int_{0}^{1}|f(x)-f'(x)|\,\mathrm{d}x&\geqslant\int_{0}^{1}\mathrm{e}^{-x}|f(x)-f'(x)|\,\mathrm{d}x\\
+&\geqslant\int_{0}^{1}\mathrm{e}^{-x}[f'(x)-f(x)]\,\mathrm{d}x=\int_{0}^{1}[\mathrm{e}^{-x}f(x)]'\,\mathrm{d}x\\
+&\xlongequal{\text{Newton-Leibniz 公式}}\left.\mathrm{e}^{-x}f(x)\right|_{0}^{1}=\mathrm{e}^{-1}\cdot 1-\mathrm{e}^{-0}\cdot 0=\frac{1}{\mathrm{e}}.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:6.3.10}
+设 $f$ 在 $[0,1]$ 上有连续的 1 阶导数, $f(0)=0$, 并且 $0\leqslant f'(x)\leqslant 1$. 求证:
+\[
+\int_{0}^{1}f^{3}(x)\,\mathrm{d}x\leqslant\left(\int_{0}^{1}f(x)\,\mathrm{d}x\right)^{2}.
+\]
+\end{example}
+
+\begin{proof}
+令 $F(t)=\left(\int_{0}^{t}f(x)\,\mathrm{d}x\right)^{2}-\int_{0}^{t}f^{3}(x)\,\mathrm{d}x$, 则 $F(0)=0$,
+\[
+\begin{aligned}
+F'(t)&=2f(t)\int_{0}^{t}f(x)\,\mathrm{d}x-f^{3}(t)\\
+&=f(t)\left[2\int_{0}^{t}f(x)\,\mathrm{d}x-f^{2}(t)\right]=f(t)G(t),
+\end{aligned}
+\]
+其中
+\[
+G(t)=2\int_{0}^{t}f(x)\,\mathrm{d}x-f^{2}(t),\quad G(0)=0-f^{2}(0)=0,
+\]
+\[
+G'(t)=2f(t)-2f(t)f'(t)=2f(t)[1-f'(t)]\geqslant 0
+\]
+(因为 $f'(t)\geqslant 0$, $f(t)$ 单调增, $f(t)\geqslant f(0)=0$), 因此, $G$ 单调增, $G(t)\geqslant G(0)=0$. 由此可知, $F'(t)=f(t)G(t)\geqslant 0$. 这又得出 $F$ 单调增. 特别有
+\[
+\left(\int_{0}^{1}f(x)\,\mathrm{d}x\right)^{2}-\int_{0}^{1}f^{3}(x)\,\mathrm{d}x=F(1)\geqslant F(0)=0,
+\]
+\[
+\int_{0}^{1}f^{3}(x)\,\mathrm{d}x\leqslant\left(\int_{0}^{1}f(x)\,\mathrm{d}x\right)^{2}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:6.3.11}
+证明: $\lim\limits_{n\to+\infty}\int_{0}^{1}\dfrac{x^{n}}{1+x}\,\mathrm{d}x=0$.
+\end{example}
+
+\begin{solution}[证法 1]
+因
+\[
+\begin{aligned}
+0&\leqslant\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x\leqslant\int_{0}^{1}x^{n}\,\mathrm{d}x\xlongequal{\text{Newton-Leibniz 公式}}\left.\frac{x^{n+1}}{n+1}\right|_{0}^{1}\\
+&=\frac{1}{n+1}\to 0\ (n\to+\infty),
+\end{aligned}
+\]
+故由夹逼定理知,
+\[
+\lim_{n\to+\infty}\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x=0.
+\]
+\end{solution}
+
+\begin{solution}[证法 2]
+$\forall\varepsilon>0$, 取 $\delta=\min\left\{\dfrac{\varepsilon}{2},1\right\}$. 固定 $\delta$, 因 $\lim\limits_{n\to+\infty}(1-\delta)^{n}=0$, 故 $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有 $(1-\delta)^{n+1}<\dfrac{\varepsilon}{2}$. 于是,
+\[
+\begin{aligned}
+0&\leqslant\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x=\int_{0}^{1-\delta}\frac{x^{n}}{1+x}\,\mathrm{d}x+\int_{1-\delta}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x\\
+&\leqslant\int_{0}^{1-\delta}x^{n}\,\mathrm{d}x+\int_{1-\delta}^{1}\,\mathrm{d}x\\
+&<(1-\delta)^{n}(1-\delta)+[1-(1-\delta)]=(1-\delta)^{n+1}+\delta\\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,
+\end{aligned}
+\]
+所以,
+\[
+\lim_{n\to+\infty}\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x=0.
+\]
+\end{solution}
+
+\begin{solution}[证法 3]
+\[
+\begin{aligned}
+\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x&=\begin{cases}\int_{0}^{1}\left(x^{n-1}-x^{n-2}+x^{n-3}+\cdots+x^{2}-x+1-\dfrac{1}{1+x}\right)\mathrm{d}x,&n\text{ 为奇数},\\[3mm]\int_{0}^{1}\left(x^{n-1}-x^{n-2}+x^{n-3}+\cdots+x-1+\dfrac{1}{1+x}\right)\mathrm{d}x,&n\text{ 为偶数},\end{cases}\\
+&=\begin{cases}\dfrac{1}{n}-\dfrac{1}{n-1}+\dfrac{1}{n-2}+\cdots+\dfrac{1}{3}-\dfrac{1}{2}+1-\ln 2,&n\text{ 为奇数},\\[3mm]\dfrac{1}{n}-\dfrac{1}{n-1}+\dfrac{1}{n-2}+\cdots+\dfrac{1}{2}-1+\ln 2,&n\text{ 为偶数}.\end{cases}
+\end{aligned}
+\]
+再根据例~\ref{ex:4.1.5} 立即推得
+\[
+\lim_{n\to+\infty}\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x=0.
+\]
+\end{solution}
+
+\begin{remark}\label{rem:6.3.2}
+读者仔细检查下面的证明是否正确.
+\[
+\lim_{n\to+\infty}\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x=\int_{0}^{1}\lim_{n\to+\infty}\frac{x^{n}}{1+x}\,\mathrm{d}x=0,
+\]
+其中
+\[
+\lim_{n\to+\infty}\frac{x^{n}}{1+x}=\begin{cases}0,&0\leqslant x<1,\\\dfrac{1}{2},&x=1.\end{cases}
+\]
+疑问之处是极限号与积分号为什么能交换. 似乎没有足够的理由. 但是, 这样做得到的答案也为 $0$, 也许是一种巧合. 为此, 我们举出极限号与积分号不可变换的例子.
+\end{remark}
+
+\begin{example}\label{ex:6.3.12}
+设
+\[
+f_{n}(x)=\begin{cases}4n^{2}x,&0\leqslant x\leqslant\dfrac{1}{2n},\\-4n^{2}x+4n,&\dfrac{1}{2n}<x\leqslant\dfrac{1}{n},\\0,&x>\dfrac{1}{n},\end{cases}
+\]
+则 $f(x)=\lim\limits_{n\to+\infty}f_{n}(x)=0$. 于是,
+\[
+\begin{aligned}
+\lim_{n\to+\infty}\int_{0}^{1}f_{n}(x)\,\mathrm{d}x&=\lim_{n\to+\infty}\frac{1}{2}\cdot 2n\cdot\frac{1}{n}=1\neq 0=\int_{0}^{1}0\,\mathrm{d}x\\
+&=\int_{0}^{1}\lim_{n\to+\infty}f_{n}(x)\,\mathrm{d}x\quad(\text{图~\ref{fig:6.3.2}}).
+\end{aligned}
+\]
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.00cm,y=1.00cm,>=Stealth]
+  \draw[->] (-0.35,0) -- (6.7,0) node[below right] {$x$};
+  \draw[->] (0,-0.35) -- (0,3.75) node[left] {$y$};
+  \draw[thick] (0,0) -- (1.2,3.0) -- (2.4,0);
+  \draw[thick] (2.4,0) -- (6.0,0);
+  \draw[dotted,thick] (1.2,0) -- (1.2,3.0);
+  \draw[dotted,thick] (0,3.0) -- (1.2,3.0);
+  \draw (2.4,0) -- (2.4,-0.10);
+  \draw (6.0,0) -- (6.0,-0.10);
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (-0.06,3.0) {$2n$};
+  \node[below] at (1.2,-0.14) {$\dfrac{1}{2n}$};
+  \node[below] at (2.5,-0.14) {$\dfrac{1}{n}$};
+  \node[below] at (6.0,-0.14) {$1$};
+\end{tikzpicture}
+\caption{}\label{fig:6.3.2}
+\end{figure}
+
+为了确保极限号与积分号可交换, 我们必须引进函数列一致收敛的概念.
+
+\begin{definition}\label{def:6.3.1}
+设 $X\subsetneqq\mathbb{R}$, $f_{n}:X\to\mathbb{R}$, $n=1,2,\cdots$ 为一个函数列, $f:X\to\mathbb{R}$, 如果 $\forall\varepsilon>0$, $\exists N=N(\varepsilon)\in\mathbb{N}$ ($N(\varepsilon)$ 只与 $\varepsilon$ 有关, 而与 $x\in X$ 无关), 当 $n>N=N(\varepsilon)$ 时, 有
+\[
+|f_{n}(x)-f(x)|<\varepsilon,\quad\forall x\in X,
+\]
+则称 $f_{n}(x)$ 在 $X$ 上一致收敛于 $f(x)$, 记作 $f_{n}(x)\Rightarrow f(x)$ ($n\to+\infty$), $x\in X$.
+\end{definition}
+
+\begin{theorem}\label{thm:6.3.5}
+设 $f_{n}(x)\Rightarrow f(x)$ ($n\to+\infty$), $x\in X$, 如果 $f_{n}(x)$ 在 $x_{0}\in X$ 连续, $n=1,2,\cdots$, 则 $f(x)$ 在 $x_{0}$ 也连续. 特别当 $f_{n}(x)$ 在 $X$ 上为连续函数时, $f(x)$ 在 $X$ 上也为连续函数.
+\end{theorem}
+
+\begin{proof}
+因 $f_{n}(x)\Rightarrow f(x)$ ($n\to+\infty$), $x\in X$, 故 $\exists N=N(\varepsilon)\in\mathbb{N}$, 当 $n>N$ 时, 有 $|f_{n}(x)-f(x)|<\dfrac{\varepsilon}{3}$, $\forall x\in X$. 于是, 对 $N+1$, 由 $f_{N+1}(x)$ 在 $x_{0}\in X$ 连续知, $\exists\delta>0$, 当 $x\in X$, $|x-x_{0}|<\delta$ 时, 有
+\[
+|f_{N+1}(x)-f_{N+1}(x_{0})|<\frac{\varepsilon}{3}.
+\]
+因此,
+\[
+\begin{aligned}
+|f(x)-f(x_{0})|&\leqslant|f(x)-f_{N+1}(x)|+|f_{N+1}(x)-f_{N+1}(x_{0})|\\
+&\quad+|f_{N+1}(x_{0})-f(x_{0})|\\
+&<\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon,
+\end{aligned}
+\]
+即 $\lim\limits_{x\to x_{0}}f(x)=f(x_{0})$, $f$ 在 $x_{0}$ 连续.
+\end{proof}
+
+\begin{theorem}\label{thm:6.3.6}
+设 $f_{n}(x)$ 在 $[a,b]$ 上 Riemann 可积, $f_{n}(x)\Rightarrow f(x)$ ($n\to+\infty$), $x\in[a,b]$, 则 $f(x)$ 在 $[a,b]$ 上也 Riemann 可积, 且
+\[
+\lim_{n\to+\infty}\int_{a}^{b}f_{n}(x)\,\mathrm{d}x=\int_{a}^{b}\lim_{n\to+\infty}f_{n}(x)\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+因为 $f_{n}(x)$ 在 $[a,b]$ 上 Riemann 可积, 根据定理~\ref{thm:6.1.2} 与定理~\ref{thm:6.1.4}(8), $f_{n}(x)$ 在 $[a,b]$ 上有界且几乎处处连续, 即 $D_{\text{不}}^{f_{n}}$ 为零测集. 又因为 $f_{n}(x)\Rightarrow f(x)$ ($n\to+\infty$), $x\in[a,b]$, 根据定理~\ref{thm:6.3.5} 知, $D_{\text{不}}^{f}\subset\bigcup\limits_{n=1}^{\infty}D_{\text{不}}^{f_{n}}$, 再由引理~\ref{lem:6.1.6}(4) 及 (2) 立即推得 $D_{\text{不}}^{f}$ 为零测集.
+
+对 $\forall\varepsilon>0$, 因 $f_{n}(x)\Rightarrow f(x)$ ($n\to+\infty$), $x\in[a,b]$, 故 $\exists N=N(\varepsilon)\in\mathbb{N}$, 当 $n>N=N(\varepsilon)$ 时, 有
+\[
+|f_{n}(x)-f(x)|<\frac{\varepsilon}{b-a},\quad\forall x\in[a,b].
+\]
+于是,
+\[
+f_{N+1}(x)-\frac{\varepsilon}{b-a}<f(x)<f_{N+1}(x)+\frac{\varepsilon}{b-a},
+\]
+$f(x)$ 在 $[a,b]$ 上有界. 从定理~\ref{thm:6.1.4}(8) 得到 $f$ 在 $[a,b]$ 上 Riemann 可积, 进而, 有
+\[
+\begin{aligned}
+&\left|\int_{a}^{b}f_{n}(x)\,\mathrm{d}x-\int_{a}^{b}f(x)\,\mathrm{d}x\right|=\left|\int_{a}^{b}[f_{n}(x)-f(x)]\,\mathrm{d}x\right|\\
+&\leqslant\int_{a}^{b}|f_{n}(x)-f(x)|\,\mathrm{d}x<\frac{\varepsilon}{b-a}\cdot(b-a)=\varepsilon,
+\end{aligned}
+\]
+\[
+\lim_{n\to+\infty}\int_{a}^{b}f_{n}(x)\,\mathrm{d}x=\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}\lim_{n\to+\infty}f_{n}(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+回顾注~\ref{rem:6.3.2}, 由于
+\[
+f(x)=\lim_{n\to+\infty}\frac{x^{n}}{1+x}=\begin{cases}0,&0\leqslant x<1,\\\dfrac{1}{2},&x=1\end{cases}
+\]
+在 $x=1$ 不连续, 因此, 从定理~\ref{thm:6.3.5} 及反证法可以推断 $f_{n}(x)=\dfrac{x^{n}}{1+x}$ 在 $[0,1]$ 上不一致收敛于 $f(x)$. 由此知, 对上述的 $f_{n}$, $f$ 不能应用定理~\ref{thm:6.3.6}. 而 $\lim\limits_{n\to+\infty}\int_{0}^{1}\dfrac{x^{n}}{1+x}\,\mathrm{d}x=\int_{0}^{1}\lim\limits_{n\to+\infty}\dfrac{x^{n}}{1+x}\,\mathrm{d}x$ 只是一种巧合.
+
+例~\ref{ex:6.3.12} 中, $f_{n}(x)$ 在 $[0,1]$ 上连续, 而 $f(x)\equiv 0$ 在 $[0,1]$ 上也连续, 这不能对 $f_{n}(x)$ 在 $[0,1]$ 上是否一致收敛于 $f(x)\equiv 0$ 给出任何信息. 但是, 由\linebreak[4]$\lim\limits_{n\to+\infty}\int_{0}^{1}f_{n}(x)\,\mathrm{d}x\neq\int_{0}^{1}\lim\limits_{n\to+\infty}f_{n}(x)\,\mathrm{d}x$ 与定理~\ref{thm:6.3.6} 表明 $f_{n}(x)$ 在 $[0,1]$ 上不一致收敛于 $f(x)=0$.
+
+\begin{exblock}{练习题 6.3}
+
+  \item 应用 Newton-Leibniz 公式计算下列 Riemann 积分:
+
+  (1) $\int_{-1}^{1}\frac{x^{2}}{1+x^{2}}\,\mathrm{d}x$;\qquad (2) $\int_{0}^{1}\frac{x^{n}}{1+x}\,\mathrm{d}x$;\qquad (3) $\int_{1}^{4}\frac{x+1}{\sqrt{x}}\,\mathrm{d}x$;
+
+  (4) $\int_{0}^{\frac{\pi}{2}}\cos mx\sin nx\,\mathrm{d}x$, $m,n\in\mathbb{Z}$;\qquad (5) $\int_{\mathrm{e}}^{\mathrm{e}^{2}}\frac{\mathrm{d}x}{x\ln x}$;
+
+  (6) $\int_{0}^{1}\frac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{2}\,\mathrm{d}x$;\qquad (7) $\int_{0}^{\frac{\pi}{3}}\tan^{2}x\,\mathrm{d}x$;
+
+  (8) $\int_{4}^{9}\left(\sqrt{x}+\frac{1}{\sqrt{x}}\right)\mathrm{d}x$;\qquad (9) $\int_{\frac{1}{\mathrm{e}}}^{\mathrm{e}}\frac{1}{x}(\ln x)^{2}\,\mathrm{d}x$.
+
+  \item 利用 Riemann 积分求下列极限:
+
+  (1) $\lim\limits_{n\to+\infty}\frac{1}{n}\sum\limits_{k=1}^{n}\sin\frac{k\pi}{n}$;\qquad (2) $\lim\limits_{n\to+\infty}\frac{1}{n^{4}}(1+2^{3}+\cdots+n^{3})$;
+
+  (3) $\lim\limits_{n\to+\infty}n\left[\frac{1}{(n+1)^{2}}+\frac{1}{(n+2)^{2}}+\cdots+\frac{1}{(n+n)^{2}}\right]$;
+
+  (4) $\lim\limits_{n\to+\infty}\left(\frac{n}{n^{2}+1^{2}}+\frac{n}{n^{2}+2^{2}}+\cdots+\frac{n}{n^{2}+n^{2}}\right)$;
+
+  (5) $\lim\limits_{n\to+\infty}\left(\frac{1}{\sqrt{n^{2}}}+\frac{1}{\sqrt{n(n+1)}}+\cdots+\frac{1}{\sqrt{n(2n-1)}}\right)$.
+
+  \item 证明:
+
+  (1) $\int_{0}^{1}\frac{(1+x)^{4}}{1+x^{2}}\,\mathrm{d}x=\frac{22}{3}-\pi$;
+
+  (2) $\int_{0}^{1}\frac{x^{4}(1-x)^{4}}{1+x^{2}}\,\mathrm{d}x=\frac{22}{7}-\pi$.
+
+  \item 设 $f$ 为 $[0,+\infty)$ 上的连续函数, 且它满足 $\int_{0}^{x}f(t)\,\mathrm{d}t=\frac{1}{2}xf(x)$, $x>0$. 证明: $f=cx$, 其中 $c$ 为常数.
+
+  \item 设 $f$ 为 $(0,+\infty)$ 上的连续函数, 且对 $\forall a>0$ 有
+  \[
+  g(x)=\int_{x}^{ax}f(t)\,\mathrm{d}t\equiv\text{常数},\quad x\in(0,+\infty).
+\]
+  证明: $f(x)=\frac{c}{x}$, $x\in(0,+\infty)$, $c$ 为常数.
+
+  \item 应用微积分基本定理求下列极限:
+
+  (1) $\lim\limits_{x\to 0}\frac{1}{x}\int_{0}^{x}\cos t^{2}\,\mathrm{d}t$;
+
+  (2)
+  \[
+  \lim_{x\to+\infty}\frac{\left(\int_{0}^{x}\mathrm{e}^{t^{2}}\,\mathrm{d}t\right)^{2}}{\int_{0}^{x}\mathrm{e}^{2t^{2}}\,\mathrm{d}t}.
+\]
+
+  \item 设 $f$ 为连续可导的函数, 试求
+  \[
+  \frac{\mathrm{d}}{\mathrm{d}x}\int_{a}^{x}(x-t)f'(t)\,\mathrm{d}t.
+\]
+
+  \item 设 $y=f(x)$ 为 $[a,b]$ 上严格增的连续曲线 (图~\ref{fig:6.3.3}). 试分别用 (1) 积分第二中值定理, (2) 连续函数 $F(x)=f(a)(x-a)+(b-x)f(b)$ 的介值定理, 证明: 存在 $\xi\in(a,b)$, 使得图~\ref{fig:6.3.3} 中两阴影部分面积相等.
+
+  \item 设 $f$ 在 $[a,b]$ 上连续且单调增,
+  \[
+  F(x)=\begin{cases}\frac{1}{x-a}\int_{a}^{x}f(t)\,\mathrm{d}t,&x\in(a,b],\\f(a),&x=a.\end{cases}
+\]
+  证明: $F$ 为 $[a,b]$ 上的增函数.
+
+  \item 应用微积分基本定理证明: 连续的奇函数的一切原函数皆为偶函数; 连续的偶函数的原函数中只有一个奇函数 (比较练习题 5.1 中题 5 与题 6).
+
+  \item 设 $f$ 在 $[a,b]$ 上连续, 且 $f(x)>0$. 证明:
+  \[
+  F(x)=\int_{a}^{x}f(t)\,\mathrm{d}t-\int_{x}^{b}\frac{\mathrm{d}t}{f(t)}
+\]
+  在 $(a,b)$ 内有一根且仅有一根.
+\end{exblock}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.10cm,y=1.00cm,>=Stealth]
+  \draw[->] (-0.45,0) -- (5.85,0) node[below right] {$x$};
+  \draw[->] (0,-0.45) -- (0,3.95) node[left] {$y$};
+  \fill[pattern=north east lines] (1.2,1.4) .. controls (2.45,1.52) and (3.25,1.78) .. (3.6,2.2)
+    -- (3.6,1.4) -- cycle;
+  \fill[pattern=dots] (3.6,3.2) -- (5.0,3.2) .. controls (4.62,3.06) and (4.10,2.62) .. (3.6,2.2) -- cycle;
+  \draw[thick] (1.2,1.4) .. controls (2.45,1.52) and (3.25,1.78) .. (3.6,2.2)
+    .. controls (4.05,2.55) and (4.60,3.06) .. (5.0,3.2);
+  \draw (1.2,1.4) -- (3.6,1.4);
+  \draw (1.2,0) -- (1.2,1.4);
+  \draw (3.6,0) -- (3.6,3.2);
+  \draw (3.6,3.2) -- (5.0,3.2);
+  \draw (5.0,0) -- (5.0,3.2);
+  \node[below left] at (0,0) {$O$};
+  \node[below] at (1.2,-0.10) {$a$};
+  \node[below] at (3.6,-0.10) {$\xi$};
+  \node[below] at (5.0,-0.10) {$b$};
+  \node at (2.20,2.10) {$y=f(x)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.3.3}
+\end{figure}
+
+\begin{exblock}{思考题 6.3}
+
+  \item 设函数 $f$ 在 $(-\infty,+\infty)$ 上连续, 并且 $g(x)=f(x)\int_{0}^{x}f(t)\,\mathrm{d}t$ 为 $(-\infty,+\infty)$ 上的减函数. 证明: $f(x)\equiv 0$.
+
+  \item 求出所有 $[0,+\infty)$ 上的正值连续函数 $g(x)$, 使得对 $\forall x>0$ 有
+  \[
+  \frac{1}{2}\int_{0}^{x}[g(t)]^{2}\,\mathrm{d}t=\frac{1}{x}\left(\int_{0}^{x}g(t)\,\mathrm{d}t\right)^{2}.
+\]
+\end{exblock}

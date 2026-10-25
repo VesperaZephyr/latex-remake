@@ -1,0 +1,374 @@
+\section{函数的连续性}\label{sec:3.4}
+
+\subsection*{1. 函数连续的概念}
+
+一个连续量 $y$ 随着另一个连续量 $x$ 连续地变化，在直观上是比较容易理解的．像自由落体的路程 $s$，随着时间 $t$ 连续地变化；空气的密度，随着地面高度连续地变化等等．抽象出来便是函数连续性的概念．我们希望获得这样一个函数连续性的概念，一方面用它可以判定一个函数是否连续，另一方面可以用它研究连续函数的性质．本节的任务就是给出这个概念，并运用它证明，一切初等函数在它的定义域都是连续的．
+
+什么是函数的连续性呢？其实，连续的意思就是不间断．例如一间漆黑的内室，其亮度在开灯前为 $0$，但在某时刻 $t_0$ 开关一打开后，它就具有一个固定的亮度 $L_0$，这时亮度在打开开关的一瞬间有个跳跃，即在那个时刻是间断的（图~\ref{fig:3-7}）．又如 $y = \frac{1}{x}$，很容易看出，它在 $x = 0$ 是断开的（图~\ref{fig:3-8}）．
+
+这样我们看到，函数在一点间断，自然便是不连续．因此，正过来说，函数在这点连续，便是不间断．从上面的例子和图形看出，要函数在该点不间断，只要函数在该点有极限，并且极限值等于函数值．
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.7\textwidth]{fig3-7.png}
+\figcap
+\label{fig:3-7}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.7\textwidth]{fig3-8.png}
+\figcap
+\label{fig:3-8}
+\end{minipage}
+\end{figure}
+
+\begin{definition}\label{def:3-7}
+设 $f(x)$ 在包含 $x_0$ 的一个开区间有定义．如果
+\[
+\lim_{x \to x_0} f(x) = f(x_0),
+\]
+则称 $f(x)$ 在 $x_0$ 点连续．
+\end{definition}
+
+用 $\varepsilon - \delta$ 语言叙述，即：任给 $\varepsilon > 0$，存在 $\delta > 0$，使得当 $|x - x_0| < \delta$ 时，有
+\[
+|f(x) - f(x_0)| < \varepsilon.
+\]
+这里不用 $0 < |x - x_0| < \delta$，因为当 $x = x_0$ 时，$|f(x) - f(x_0)| = 0 < \varepsilon$ 自然成立．
+
+\begin{example}\label{ex:3-4-1}
+证明 $f(x) = \sin x$ 在 $(-\infty, +\infty)$ 连续．
+\end{example}
+
+\begin{proof}
+对任意的 $x_0$，$\sin x_0$ 是有意义的，故只需证明
+\[
+\lim_{x \to x_0} \sin x = \sin x_0.
+\]
+事实上，
+\[
+|\sin x - \sin x_0| = \left|2\cos\frac{x+x_0}{2}\sin\frac{x-x_0}{2}\right| \leqslant 2\left|\sin\frac{x-x_0}{2}\right| \leqslant 2\left|\frac{x-x_0}{2}\right| = |x - x_0|.
+\]
+因此，任给 $\varepsilon > 0$，取 $\delta = \varepsilon$，只要 $|x - x_0| < \delta$，便有
+\[
+|\sin x - \sin x_0| < \varepsilon.
+\]
+由 $x_0$ 的任意性知，$\sin x$ 在 $(-\infty, +\infty)$ 连续．
+\end{proof}
+
+\begin{example}\label{ex:3-4-2}
+常值函数 $f(x) \equiv C$ 在 $(-\infty, +\infty)$ 连续．
+\end{example}
+
+\begin{proof}
+显然，对任给的 $x_0$，$\lim_{x \to x_0} f(x) = \lim_{x \to x_0} C = C = f(x_0)$，故连续．
+\end{proof}
+
+若记 $\Delta x = x - x_0$，$\Delta y = f(x) - f(x_0) = f(x_0 + \Delta x) - f(x_0)$，分别称为自变量的增量与因变量（函数）的增量．则 $x \to x_0$ 等价于 $\Delta x \to 0$．于是定义~\ref{def:3-7} 可以叙述为：
+
+\begin{definition}\label{def:3-8}
+如果当 $\Delta x \to 0$ 时，函数的增量 $\Delta y \to 0$，即
+\[
+\lim_{\Delta x \to 0} \Delta y = 0,
+\]
+则称函数 $y = f(x)$ 在 $x_0$ 连续．
+\end{definition}
+
+如果函数 $f(x)$ 在开区间 $(a, b)$ 内的每一点都连续，则称 $f(x)$ 在开区间 $(a, b)$ 连续．
+
+在区间端点处的连续性，自然用单侧极限来定义：如果 $\lim_{x \to a^+} f(x) = f(a)$，则称 $f(x)$ 在 $x = a$ 右连续；如果 $\lim_{x \to b^-} f(x) = f(b)$，则称 $f(x)$ 在 $x = b$ 左连续．
+
+\begin{definition}\label{def:3-9}
+设 $f(x)$ 在闭区间 $[a, b]$ 有定义．称 $f(x)$ 在闭区间 $[a, b]$ 是连续的，如果 $f(x)$ 在 $(a, b)$ 内每一点都连续，且在 $a$ 点右连续，在 $b$ 点左连续．
+\end{definition}
+
+注意到 $x \to x_0$ 也可以写作 $\lim_{x \to x_0} x = x_0$，因此函数在 $x_0$ 连续的定义
+\[
+\lim_{x \to x_0} f(x) = f(x_0)
+\]
+也可以写作
+\[
+\lim_{x \to x_0} f(x) = f\left(\lim_{x \to x_0} x\right).
+\]
+这就是说，函数极限的运算与函数符号 $f$ 的运算次序可以交换．
+
+若函数 $f(x)$ 在 $x_0$ 点不连续，则称 $x_0$ 为 $f(x)$ 的间断点．
+
+\begin{definition}[间断点的分类]\label{def:3-10}
+设 $x_0$ 是函数 $f(x)$ 的间断点：
+\begin{enumerate}[label=(\arabic*)]
+\item 可去间断点：$f(x)$ 在 $x_0$ 点的极限 $\lim_{x \to x_0} f(x)$ 存在，但函数在该点无定义，或者有定义但 $f(x_0) \neq \lim_{x \to x_0} f(x)$．此时只要补充或改变 $x_0$ 点的定义，使之等于该极限值，函数就成为连续函数．例如
+\[
+f(x) = x\sin\frac{1}{x} \quad (x \neq 0),
+\]
+在 $x = 0$ 无定义，但 $\lim_{x \to 0} x\sin\frac{1}{x} = 0$．若补充定义
+\[
+g(x) = \begin{cases}
+x\sin\frac{1}{x}, & x \neq 0, \\
+0, & x = 0,
+\end{cases}
+\]
+则 $g(x)$ 在 $x_0 = 0$ 点连续（图~\ref{fig:3-9}）．
+\item 第一类间断点：$f(x)$ 在 $x_0$ 点的左、右极限都存在但不相等．有时也把这种间断点称为跳跃间断点．
+例如取整函数 $y = [x]$，在整数点 $x = n$ 处，当 $x \to n^+$ 时，$[x] = n$，故 $\lim_{x \to n^+} [x] = n$；当 $x \to n^-$ 时，$[x] = n - 1$，故 $\lim_{x \to n^-} [x] = n - 1$．$f(n - 0) \neq f(n + 0)$，函数在 $x = n$ 处产生跳跃（图~\ref{fig:3-10}）．
+\item 第二类间断点：$f(x)$ 在 $x_0$ 点的左、右极限至少有一个不存在．
+例如函数 $y = \frac{1}{x}$ 在 $x_0 = 0$ 点，极限为无穷大，属于第二类间断点（无穷型，图~\ref{fig:3-8}）；又如 $y = \sin\frac{1}{x}$ 在 $x_0 = 0$ 点左右极限均振荡不存在（振荡型，图~\ref{fig:3-5}）．
+\end{enumerate}
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.52\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{fig3-9.png}
+\figcap
+\label{fig:3-9}
+\end{minipage}
+\begin{minipage}[t]{0.42\textwidth}
+\centering
+\includegraphics[width=0.8\textwidth]{fig3-10.png}
+\figcap
+\label{fig:3-10}
+\end{minipage}
+\end{figure}
+
+再考虑狄利克雷（Dirichlet）函数
+\[
+D(x) = \begin{cases}
+1, & x \text{ 为有理数}, \\
+0, & x \text{ 为无理数}.
+\end{cases}
+\]
+在任何一点 $x_0$ 附近，都有无穷多个有理数与无理数，故极限 $\lim_{x \to x_0} D(x)$ 处处不存在，因而实数轴上的每一点都是它的第二类间断点．
+
+\subsection*{2. 连续函数的运算法则}
+
+由于函数在一点连续的定义归结为极限等于函数值，故由函数极限的四则运算法则，直接可以得到：
+
+\begin{theorem}\label{thm:3-13}
+若 $f(x)$ 与 $g(x)$ 在 $x_0$ 连续，则 $f(x) \pm g(x)$，$f(x)g(x)$ 在 $x_0$ 连续；当 $g(x_0) \neq 0$ 时，$\frac{f(x)}{g(x)}$ 也在 $x_0$ 连续．
+\end{theorem}
+
+关于复合函数的连续性，有：
+
+\begin{theorem}\label{thm:3-14}
+设函数 $u = g(x)$ 在 $x_0$ 点连续，且 $u_0 = g(x_0)$．若函数 $y = f(u)$ 在 $u_0$ 点连续，则复合函数 $f(g(x))$ 在 $x_0$ 点也连续，即
+\[
+\lim_{x \to x_0} f(g(x)) = f\left(\lim_{x \to x_0} g(x)\right) = f(g(x_0)).
+\]
+\end{theorem}
+
+\begin{proof}
+任给 $\varepsilon > 0$．由于 $f(u)$ 在 $u_0$ 连续，存在 $\eta > 0$，使得当 $|u - u_0| < \eta$ 时，有
+\[
+|f(u) - f(u_0)| < \varepsilon.
+\]
+对上述的 $\eta > 0$，由于 $g(x)$ 在 $x_0$ 连续，故存在 $\delta > 0$，使得当 $|x - x_0| < \delta$ 时，有
+\[
+|g(x) - g(x_0)| < \eta, \quad \text{即 } |u - u_0| < \eta.
+\]
+因此，当 $|x - x_0| < \delta$ 时，便有
+\[
+|f(g(x)) - f(g(x_0))| < \varepsilon.
+\]
+这就证明了 $f(g(x))$ 在 $x_0$ 点连续．
+\end{proof}
+
+\subsection*{3. 初等函数的连续性与闭区间上连续函数的性质}
+
+下面我们要证明本章的一个重要定理．
+
+\begin{theorem}\label{thm:3-15}
+初等函数在其定义域内是连续的．
+\end{theorem}
+
+根据初等函数的构造与前面的两个定理，我们只要证明所有基本初等函数在定义域内是连续的，便证得定理~\ref{thm:3-15}．
+
+（1）常值函数与幂函数．常值函数已证．对于幂函数 $y = x^n$（$n$ 为正整数），显然 $y = x$ 是连续的，由定理~\ref{thm:3-13}，有限个连续函数之积仍连续，故 $x^n$ 连续．进而多项式 $P(x) = a_0 x^n + \cdots + a_n$ 连续，有理分式 $\frac{P(x)}{Q(x)}$ 在 $Q(x) \neq 0$ 处连续．
+
+（2）三角函数．例~\ref{ex:3-4-1} 已证 $\sin x$ 在 $(-\infty, +\infty)$ 连续．同理可证 $\cos x$ 在 $(-\infty, +\infty)$ 连续．由商的连续性定理，$\tan x = \frac{\sin x}{\cos x}$ 在 $x \neq k\pi + \frac{\pi}{2}$ 连续，$\cot x$ 在 $x \neq k\pi$ 连续．
+
+为了讨论反函数（如反三角函数）与指数函数、对数函数的连续性，我们先引入实数系的一个重要性质——区间套定理与介值定理．
+
+设有一列闭区间 $\{[a_n, b_n]\}$，满足：
+\begin{enumerate}[label=(\roman*)]
+\item $[a_{n+1}, b_{n+1}] \subset [a_n, b_n]$ ($n = 1, 2, \cdots$)；
+\item $\lim_{n \to \infty} (b_n - a_n) = 0$．
+\end{enumerate}
+称 $\{[a_n, b_n]\}$ 是一个区间套．
+
+\begin{theorem}[区间套定理]\label{thm:3-16}
+设 $\{[a_n, b_n]\}$ 是一个区间套，则必存在唯一的实数 $r$，使得
+\[
+r \in \bigcap_{n=1}^\infty [a_n, b_n].
+\]
+\end{theorem}
+
+\begin{proof}
+用单调有界原理来证明．已知 $\{a_n\}$ 单调上升，且对任意 $n$ 有 $a_n \leqslant b_1$，故 $\{a_n\}$ 有界，由定理~\ref{thm:3-9}，极限存在，记 $\lim_{n \to \infty} a_n = r$．同理 $\{b_n\}$ 单调下降且有下界，极限存在，记 $\lim_{n \to \infty} b_n = r'$．因为
+\[
+\lim_{n \to \infty} (b_n - a_n) = r' - r = 0,
+\]
+所以 $r = r'$．
+
+因为对每个 $n$ 及任意 $m$，都有 $a_n \leqslant a_{n+m} \leqslant b_{n+m} \leqslant b_n$，令 $m \to \infty$，便得 $a_n \leqslant r \leqslant b_n$，即 $r \in [a_n, b_n]$ 对一切 $n$ 成立，故 $r \in \bigcap_{n=1}^\infty [a_n, b_n]$．
+
+唯一性显然：若另有 $r' \in \bigcap_{n=1}^\infty [a_n, b_n]$，则 $|r - r'| \leqslant b_n - a_n \to 0$ ($n \to \infty$)，故 $r = r'$．
+\end{proof}
+
+\begin{theorem}[零点存在定理]\label{thm:3-17}
+设 $f(x)$ 在 $[a, b]$ 连续，且 $f(a)f(b) < 0$，则在开区间 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+f(\xi) = 0.
+\]
+\end{theorem}
+
+\begin{proof}
+不妨设 $f(a) < 0$，$f(b) > 0$．
+
+记 $[a_1, b_1] = [a, b]$，二等分 $[a_1, b_1]$，分点为 $c_1 = \frac{a_1 + b_1}{2}$．若 $f(c_1) = 0$，则定理已得证．若 $f(c_1) \neq 0$，则 $f(c_1)$ 必与 $f(a_1)$ 或 $f(b_1)$ 异号．取两端点异号的那一半区间记为 $[a_2, b_2]$，则 $f(a_2) < 0$，$f(b_2) > 0$，且 $b_2 - a_2 = \frac{b - a}{2}$．
+
+如此继续下去，若在有限步内分点处的函数值为 $0$，则定理已证；否则得到一个闭区间列 $\{[a_n, b_n]\}$，满足：
+\[
+[a_n, b_n] \subset [a_{n-1}, b_{n-1}], \quad f(a_n) < 0, \quad f(b_n) > 0, \quad b_n - a_n = \frac{b - a}{2^{n-1}} \to 0.
+\]
+由区间套定理（定理~\ref{thm:3-16}），存在唯一的 $\xi \in [a_n, b_n]$ ($n = 1, 2, \cdots$)，使得
+\[
+\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = \xi.
+\]
+由于 $f(x)$ 连续，
+\[
+f(\xi) = \lim_{n \to \infty} f(a_n) \leqslant 0, \quad f(\xi) = \lim_{n \to \infty} f(b_n) \geqslant 0.
+\]
+故必有 $f(\xi) = 0$．又因 $f(a) < 0$，$f(b) > 0$，显然 $\xi \neq a, b$，即 $\xi \in (a, b)$．
+\end{proof}
+
+\begin{corollary}[介值定理]\label{cor:3-6}
+设 $f(x)$ 在 $[a, b]$ 连续，且 $f(a) \neq f(b)$，则对介于 $f(a)$ 与 $f(b)$ 之间的任一数 $C$，在 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+f(\xi) = C.
+\]
+\end{corollary}
+
+\begin{proof}
+设辅助函数 $F(x) = f(x) - C$．显然 $F(x)$ 在 $[a, b]$ 连续，且 $F(a)F(b) < 0$．由定理~\ref{thm:3-17}，存在 $\xi \in (a, b)$ 使 $F(\xi) = 0$，即 $f(\xi) = C$．
+\end{proof}
+
+\begin{theorem}[反函数的连续性]\label{thm:3-18}
+若 $y = f(x)$ 在 $[a, b]$ 连续且严格单调递增，记 $\alpha = f(a)$，$\beta = f(b)$，则其反函数 $x = f^{-1}(y)$ 在 $[\alpha, \beta]$ 上存在、严格单调递增且连续．
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.48\textwidth]{fig3-11.png}
+\figcap
+\label{fig:3-11}
+\end{figure}
+
+\begin{proof}
+由严格单调性，反函数存在且严格单调递增．由介值定理，其值域为 $[\alpha, \beta]$．
+
+下证反函数在每一点 $y_0 \in (\alpha, \beta)$ 连续．设 $x_0 = f^{-1}(y_0) \in (a, b)$．
+
+任给 $\varepsilon > 0$，可设 $\varepsilon$ 充分小使得 $[x_0 - \varepsilon, x_0 + \varepsilon] \subset (a, b)$．记 $y_1 = f(x_0 - \varepsilon)$，$y_2 = f(x_0 + \varepsilon)$．由严格递增性，$y_1 < y_0 < y_2$．取 $\delta = \min\{y_0 - y_1, y_2 - y_0\} > 0$．当 $|y - y_0| < \delta$ 时，有
+\[
+y_1 < y_0 - \delta < y < y_0 + \delta < y_2.
+\]
+由反函数的严格单调递增性，得
+\[
+x_0 - \varepsilon = f^{-1}(y_1) < f^{-1}(y) < f^{-1}(y_2) = x_0 + \varepsilon,
+\]
+即 $|f^{-1}(y) - x_0| < \varepsilon$（见图~\ref{fig:3-11}）．故 $f^{-1}(y)$ 在 $y_0$ 连续．端点处的单侧连续性同理可证．
+\end{proof}
+
+类似地，若 $f(x)$ 严格单调递减且连续，则反函数也存在、严格单调递减且连续．
+
+利用反函数连续性定理，我们继续证明基本初等函数的连续性：
+
+（3）反三角函数．$\sin x$ 在 $[-\frac{\pi}{2}, \frac{\pi}{2}]$ 连续且严格单调递增，故其反函数 $x = \arcsin y$ 在 $[-1, 1]$ 连续．同理可证 $\arccos x$，$\arctan x$，$\operatorname{arccot} x$ 在各自定义域内均连续．
+
+（4）指数函数与对数函数．由重要极限 $\lim_{t \to 0} a^t = 1$（$a > 0$），有
+\[
+|a^x - a^{x_0}| = a^{x_0}|a^{x - x_0} - 1| \to 0 \quad (x \to x_0),
+\]
+故指数函数 $y = a^x$ 在 $(-\infty, +\infty)$ 连续且严格单调．由定理~\ref{thm:3-18}，其反函数——对数函数 $y = \log_a x$ 在 $(0, +\infty)$ 也连续．
+
+（5）一般幂函数 $y = x^\mu$（$x > 0$）．由恒等式 $x^\mu = e^{\mu \ln x}$，由于 $\ln x$ 与指数函数连续，复合函数仍连续，故幂函数在其定义域内连续．
+
+至此，全部基本初等函数的连续性已证，从而定理~\ref{thm:3-15} 获证．
+
+初等函数在其定义域内连续，是一个极其重要的结论．这表明在初等函数的定义域内求极限，只须求函数在该点的函数值即可，即``直接代入法''：
+\[
+\lim_{x \to x_0} f(x) = f(x_0).
+\]
+
+\begin{xiti}
+\item 讨论下列函数在指定点处的连续性：
+\begin{ziti}
+\item $f(x) = \begin{cases} \frac{\sin x}{x}, & x \neq 0, \\ 1, & x = 0 \end{cases}$ 在 $x = 0$；
+\item $f(x) = \begin{cases} \frac{x^2 - 1}{x - 1}, & x \neq 1, \\ 2, & x = 1 \end{cases}$ 在 $x = 1$；
+\item $f(x) = \begin{cases} x \sin\frac{1}{x}, & x \neq 0, \\ 0, & x = 0 \end{cases}$ 在 $x = 0$；
+\item $f(x) = [x]$ 在 $x = 0$ 及 $x = \frac{1}{2}$；
+\item $f(x) = \begin{cases} \frac{1}{1 + e^{1/x}}, & x \neq 0, \\ 0, & x = 0 \end{cases}$ 在 $x = 0$．
+\end{ziti}
+
+\item 求下列函数的间断点，并指出其类型：
+\begin{ziti}
+\item $f(x) = \frac{x}{x^2 - 1}$；
+\item $f(x) = \frac{1}{\ln |x|}$；
+\item $f(x) = \frac{|x|}{x}$；
+\item $f(x) = \sin\frac{1}{x}$；
+\item $f(x) = \frac{1}{1 - e^{\frac{x}{1-x}}}$；
+\item $f(x) = \operatorname{sgn}|x|$；
+\item $f(x) = \operatorname{sgn}(\cos x)$；
+\item $f(x) = \frac{1}{\ln x}$；
+\item $f(x) = \begin{cases} x, & |x| \leqslant 1, \\ 1, & |x| > 1 \end{cases}$；
+\item $f(x) = \begin{cases} \cos\frac{\pi x}{2}, & |x| \leqslant 1, \\ |x - 1|, & |x| > 1 \end{cases}$．
+\end{ziti}
+
+\item 设 $f(x) = \begin{cases} x^2, & x \leqslant 1, \\ ax + b, & x > 1 \end{cases}$，问常数 $a, b$ 应满足什么条件，使得 $f(x)$ 在 $x = 1$ 连续？
+
+\item 证明：若 $f(x)$ 在 $x_0$ 连续，则 $|f(x)|$ 在 $x_0$ 也连续，反之成立吗？
+
+\item 设 $f(x)$ 在 $[a, b]$ 上连续，且仅取有理数值，证明 $f(x)$ 为常值函数．
+
+\item 证明：方程 $x^5 - 3x = 1$ 在区间 $(1, 2)$ 内至少有一个实根．
+
+\item 证明：任何奇数次实系数代数方程 $a_0 x^{2n+1} + a_1 x^{2n} + \cdots + a_{2n+1} = 0$ ($a_0 \neq 0$) 至少有一个实根．
+
+\item 设 $f(x)$ 在 $[0, 1]$ 连续，且 $0 \leqslant f(x) \leqslant 1$，证明存在 $\xi \in [0, 1]$，使得 $f(\xi) = \xi$（不动点原理）．
+
+\item 设 $f(x)$ 在 $[a, b]$ 连续，证明其值域为一个闭区间或退化为一个点．
+
+\item 设 $f(x)$ 在 $(a, b)$ 上连续，且 $\lim_{x \to a^+} f(x)$ 与 $\lim_{x \to b^-} f(x)$ 均存在，证明 $f(x)$ 在 $(a, b)$ 上有界．
+
+\item 若 $f(x)$ 在 $[a, b]$ 连续，$a < x_1 < x_2 < \cdots < x_n < b$，则在 $[x_1, x_n]$ 内至少存在一点 $\xi$，使得
+\[
+f(\xi) = \frac{1}{n}[f(x_1) + f(x_2) + \cdots + f(x_n)].
+\]
+
+\item 研究复合函数 $f \circ g$ 与 $g \circ f$ 的连续性，设
+\begin{ziti}
+\item $f(x) = \operatorname{sgn} x$，$g(x) = 1 + x^2$；
+\item $f(x) = \operatorname{sgn} x$，$g(x) = (1 - x^2)x$．
+\end{ziti}
+
+\item 设 $f(x)$ 在实数轴上连续，且对任意 $x, y \in \mathbb{R}$，满足柯西柯西方程 $f(x + y) = f(x) + f(y)$，证明 $f(x) = cx$，其中 $c = f(1)$．
+
+\item 设 $f(x)$ 在实数轴上连续，且 $f(xy) = f(x)f(y)$，若 $f(x) \not\equiv 0$，证明 $f(x) = x^c$ ($x > 0$)．
+
+\item 证明黎曼函数
+\[
+R(x) = \begin{cases}
+\frac{1}{q}, & x = \frac{p}{q} \text{（既约真分数，} p, q \text{ 为正整数）}, \\
+0, & x = 0, 1 \text{ 或 } (0, 1) \text{ 内的无理数},
+\end{cases}
+\]
+在 $(0, 1)$ 内一切无理点处连续，而在一切有理点处间断．
+
+\item 设 $f(x)$ 在 $[a, b]$ 连续且为单射（即当 $x_1 \neq x_2$ 时 $f(x_1) \neq f(x_2)$），证明 $f(x)$ 在 $[a, b]$ 上必严格单调．
+
+\item 设 $f(x)$ 是定义在 $\mathbb{R}$ 上的连续周期函数，若 $f(x)$ 没有最小正周期，证明 $f(x)$ 必为常值函数．
+\end{xiti}

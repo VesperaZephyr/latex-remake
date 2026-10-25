@@ -1,0 +1,671 @@
+\chapter{The Classical Theory}
+
+\label{ch:1}
+
+This section describes various aspects of Hecke's theory of Dirichlet series attached to cusp forms and some recent refinements of it due to Weil and Atkin-Lehner. These results from the classical theory of automorphic forms play a crucial role in the modern theory. Since we include them primarily to provide a convenient classical reference for our discussion of Jacquet-Langlands' theory no attempt at completeness is made.
+
+\section{Elementary Notions}\label{sec:1a}
+
+Throughout this section we shall be dealing with non co-compact arithmetic subgroups of $\SL(2,\R)$. (The case of compact fundamental domain will be considered in Section~\ref{ch:10}.) In fact, $\Gamma$ will usually denote a congruence subgroup, i.e.\ a subgroup of $\SL(2,\Z)$ which contains the homogeneous principal congruence subgroup
+
+\[
+\Gamma(N) = \left\{\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL(2,\Z): \begin{pmatrix} a & b \\ c & d \end{pmatrix} \equiv \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \ (\mathrm{mod}\ N)\right\}
+\]
+
+for some positive integer $N$. Important examples are $\SL(2,\Z)$ (the ``full congruence subgroup,'' or ``congruence subgroup of level 1'') and ``Hecke's subgroup''
+
+\[
+\Gamma_0(N) = \left\{\begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SL(2,\Z): c \equiv 0 \ (\mathrm{mod}\ N)\right\}.
+\]
+
+By $\GL^+(2,\R)$ we shall denote the group of real $2 \times 2$ matrices with positive determinant. If $g = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ belongs to $\GL^+(2,\R)$, $z$ to $\{\operatorname{Im}(z) > 0\}$, and $k$ is a positive integer, we set
+
+\begin{equation}\label{eq:1.1}
+g(z) = \frac{az + b}{cz + d},\tag{1.1}
+\end{equation}
+
+\begin{equation}\label{eq:1.2}
+j(g,z) = (cz + d)(\det g)^{-1/2},\tag{1.2}
+\end{equation}
+
+and
+
+\begin{equation}\label{eq:1.3}
+f\big|_{[g]_k}(z) = f(gz) j(g,z)^{-k}.\tag{1.3}
+\end{equation}
+
+This last formula defines an operator on the space of all complex-valued functions $f(z)$, $z \in \{\operatorname{Im}(z) > 0\}$.
+
+Two points $z_1, z_2$ will be called equivalent under $\Gamma$ (or $\Gamma$-equivalent) if $\gamma z_1 = z_2$ for some $\gamma \in \Gamma$. A subset $F$ of $\{\operatorname{Im}(z) > 0\}$ is a fundamental domain for $\Gamma$ if $F$ is a connected open subset of $\{\operatorname{Im}(z) > 0\}$ with the property that no two points of $F$ are $\Gamma$-equivalent and each point of $\{\operatorname{Im}(z) > 0\}$ is $\Gamma$-equivalent to some point of the closure of $F$.
+
+A point $s$ in $\R \cup \{\infty\}$ is a cusp of $\Gamma$ if there exists a parabolic element of $\Gamma$ fixing $s$. If $H^*$ denotes the union of $\{\operatorname{Im}(z) > 0\}$ and the cusps of $\Gamma$ then $\Gamma$ also acts on $H^*$; the resulting quotient space possesses a natural (Hausdorff) topology and a complex structure such that $\Gamma \setminus H^*$ is a compact Riemann surface.
+
+The cusps we shall consider may be taken as various rational points on the real axis and $\infty$. Most authors denote the cusp at $\infty$ by $i\infty$ to emphasize that as $z = x + iy$ approaches the cusp in $F$, $x$ is bounded, and $y \to \infty$.
+
+In general, if $\Gamma$ is an arbitrary discrete subgroup of $\SL(2,\R)$, $\Gamma$ is called a Fuchsian group of the first kind if $\Gamma \setminus H^*$ is compact. All Fuchsian groups, and $\Gamma_0(N)$ in particular, have (at most) a finite number of $\Gamma$-inequivalent cusps.
+
+The following definition is valid for $\Gamma$ an arbitrary Fuchsian group of the first kind.
+
+\begin{definition}\label{def:1.1}
+
+A complex-valued function $f(z)$ is called a $\Gamma$-automorphic form of weight $k$ (or an automorphic form of weight $k$ for $\Gamma$) if it is defined in $\{\operatorname{Im}(z) > 0\}$ and satisfies the following conditions:
+
+\begin{enumerate}[(i)]
+
+\item $f\big|_{[\gamma]_k} \equiv f$, i.e.
+
+\[
+f\!\left(\frac{az + b}{cz + d}\right) = (cz + d)^k f(z)
+\]
+
+for all $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \Gamma$: this is the ``automorphy condition'' for $f$;
+
+\item $f$ is holomorphic in $\{\operatorname{Im}(z) > 0\}$; and
+
+\item $f$ is holomorphic at every cusp of $\Gamma$.
+
+\end{enumerate}
+
+The space of such functions will be denoted $M_k(\Gamma)$.
+
+\end{definition}
+
+For congruence subgroups, elements of $M_k(\Gamma)$ are often called modular forms (or modular forms of level $N$ if $\Gamma = \Gamma(N)$).
+
+If $\psi$ is a character modulo $N$ (a character of $(\Z/N\Z)^{\times}$ extended in the obvious way to $\Z$), and $f(z)$ satisfies (in place of (i) above)
+
+\[
+f\!\left(\frac{az + b}{cz + d}\right) = \psi(a)^{-1}(cz + d)^k f(z),
+\]
+
+for all $\gamma \in \Gamma_0(N)$, then $f(z)$ is an automorphic form of weight $k$ and character $\psi$. The space of all such $f(z)$ is denoted $M_k(N, \psi)$.
+
+\begin{remark}[\normalfont (Concerning the notion of regularity at a cusp.)]\label{rem:1.2}
+
+Suppose $s$ is a cusp of $\Gamma$ and $\sigma$ in $\SL(2,\Z)$ maps $\infty$ to $s$. (Such $\sigma$ exist because $\infty$ is $\SL(2,\Z)$-equivalent to all rational points on the real axis.) From Condition (i) of Definition~\ref{def:1.1} it follows that $f|_{[\sigma]_k}$ is invariant under $\rho = \sigma^{-1}\gamma\sigma$, $\gamma \in \Gamma_s$, if
+
+\[
+\Gamma_s = \{\gamma \in \Gamma : \gamma(s) = s\}.
+\]
+
+Indeed,
+
+\[
+\begin{aligned}
+f\big|_{[\sigma]_k}\big|_{[\rho]_k}(z) &= f\big|_{[\sigma\rho]_k}(z) = f\big|_{[\gamma\sigma]_k}(z)\\
+&= f(\gamma\sigma(z)) j(\gamma\sigma, z)^{-k} = f(\gamma(\sigma(z))) j(\gamma, \sigma(z))^{-k} j(\sigma, z)^{-k}\\
+&= f\big|_{[\gamma]_k}(\sigma z) j(\sigma, z)^{-k} = f(\sigma z) j(\sigma, z)^{-k} = f\big|_{[\sigma]_k}(z).
+\end{aligned}
+\]
+
+But each $\rho$ in $\sigma^{-1}\Gamma_s\sigma$ is translation by some $h_1$, since $\sigma^{-1}\Gamma_s\sigma$ fixes $\infty$. Thus if $h$ denotes the smallest positive such $h_1$, and $k$ is even, we at least have
+
+\[
+f\big|_{[\sigma]_k}(z + h) = f\big|_{[\sigma]_k}(z),
+\]
+
+from which it follows that the function
+
+\begin{equation}\label{eq:1.4}
+\hat{f}_s(\zeta) = f\big|_{[\sigma]_k}(z),\tag{1.4}
+\end{equation}
+
+with
+
+\begin{equation}\label{eq:1.5}
+\zeta = e^{2\pi iz/h} \ (\text{the local uniformizing variable at } s)\tag{1.5}
+\end{equation}
+
+is well defined in $|\zeta| < 1$, and holomorphic in the punctured disc (by Condition (ii)). The precise meaning of Condition (iii) then is that $\hat{f}_s(\zeta)$ is regular at $\zeta = 0$ for every cusp $s$.
+
+This notion of regularity at a cusp $s$ (as well as the notion of ``local uniformizing variable'' and ``width'' $h$ of the cusp at $s$) is independent of the choice of $\sigma$. It should also be clear that $f$ is regular at the cusps of $\Gamma$ if and only if $f|_{[\sigma]_k}$ is regular at $\infty$ for all $\sigma \in \SL(2,\Z)$. Thus (for congruence subgroups) Conditions (ii) and (iii) of Definition~\ref{def:1.1} are independent of the group we regard $f$ as being a form for. In particular, if $f$ is a form for $\Gamma'$, and $\Gamma' \subset \Gamma$, then $f$ is also a form for $\Gamma'$.
+
+\end{remark}
+
+When $k$ is odd, some additional remarks are in order. For example, if $k$ is odd, and $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \in \Gamma$, then $M_k(\Gamma)$ is zero. (Indeed Condition (i) of Definition~\ref{def:1.1} implies that $f(z) = -f(z)$.) Thus we assume that $-1 \notin \Gamma$. If $\sigma^{-1}\Gamma_s\sigma$ is generated by $\begin{pmatrix} -1 & -h \\ 0 & -1 \end{pmatrix}$, then $f|_{[\sigma]_k}(z + h) = -f(z)$, so the variable $\zeta$ used to define regularity at $s$ should be $e^{\pi iz/h}$ (and not $e^{2\pi iz/h}$).
+
+\begin{remark}[\normalfont (Concerning the notion of Fourier expansion at a cusp.)]\label{rem:1.3}
+
+Suppose $f \in M_k(\Gamma)$. The fact that $f$ is regular at the cusp $s$ means that $\hat{f}_s(\zeta)$ has a Taylor series at $0$, which series in turn induces the expansion
+
+\begin{equation}\label{eq:1.6}
+f\big|_{[\sigma]_k}(z) = \sum_{n=0}^{\infty} a_n e^{2\pi inz/h}.\tag{1.6}
+\end{equation}
+
+The series \eqref{eq:1.6} converges absolutely and uniformly on compact subsets and is called the Fourier expansion of $f$ at the cusp $s$, its coefficients $a_n$ the Fourier coefficients of $f$ at $s$. As we shall see, this notion of ``Fourier expansion at a cusp'' is crucial to the entire theory of automorphic forms.
+
+If $\Gamma$ is Hecke's subgroup $\Gamma_0(N)$, the Fourier expansion at $\infty$ of any $f$ in $M_k(\Gamma)$ will be of the form
+
+\begin{equation}\label{eq:1.7}
+f(z) = \sum_{n=0}^{\infty} a_n e^{2\pi inz}.\tag{1.7}
+\end{equation}
+
+Henceforth we shall be dealing almost exclusively with Fourier expansions of this type.
+
+\end{remark}
+
+\begin{definition}\label{def:1.4}
+
+A $\Gamma$-automorphic form is a cusp form if it vanishes at every cusp of $\Gamma$, i.e.\ its zeroth Fourier coefficient at each cusp is zero.
+
+\end{definition}
+
+The space of $\Gamma$-cusp forms of weight $k$ will be denoted $S_k(\Gamma)$. In general, from \eqref{eq:1.6} it follows that the zeroth Fourier coefficient of $f$ at $s$ is given by
+
+\begin{equation}\label{eq:1.8}
+a_0(s) = \int_0^1 f\big|_{[\sigma]_k}(hx + iy) \dd x.\tag{1.8}
+\end{equation}
+
+In particular, if $\Gamma = \Gamma_0(N)$,
+
+\[
+a_0 = a_0(\infty) = \int_0^1 f(x + iy) \dd x,
+\]
+
+where $y > 0$ is arbitrary.
+
+\begin{lemma}\label{lem:1.5}
+
+Suppose $f \in M_k(\Gamma)$. Then $f \in S_k(\Gamma)$ if and only if
+
+\begin{equation}\label{eq:1.9}
+y^{k/2}|f(x + iy)| < M\tag{1.9}
+\end{equation}
+
+for some constant $M$ independent of $x$.
+
+\end{lemma}
+
+\begin{proof}
+
+(For convenience, assume $k$ even.) The function $g(z) = (\operatorname{Im}(z))^{k/2} f(z)$ is easily seen to be $\Gamma$-invariant. What has to be shown is that $f(z)$ vanishes at each cusp $s$ of $\Gamma$ if and only if $|g(z)| < M$. But
+
+\[
+f\big|_{[\sigma]_k}(z) = \hat{f}_s(\zeta),
+\]
+
+with $\zeta = e^{2\pi iz/h}$ (as in \eqref{eq:1.4} and \eqref{eq:1.5}), so
+
+\[
+g(\sigma(z)) = \operatorname{Im}(z)^{k/2} \hat{f}_s(\zeta)
+\]
+
+(since $\operatorname{Im}(\sigma(z)) = \operatorname{Im}(z)|j(\sigma, z)|^{-2}$). Therefore, if $f \in S_k(\Gamma)$, $g(w) \to 0$ as $w \to s$ (with respect to the topology of $H^*$). This means that $g$ is a continuous function on the compact space $\Gamma \setminus H^*$ and hence $|g(z)| < M$. Conversely, if $|g(z)| < M$, $\hat{f}_s(\zeta)$ must be holomorphic at $\zeta = 0$, and in fact it must vanish there.
+
+\end{proof}
+
+\begin{corollary}\label{cor:1.6}
+
+If $f(z) = \sum_{n=1}^{\infty} a_n e^{2\pi inz} \in S_k(\Gamma)$, then
+
+\begin{equation}\label{eq:1.10}
+a_n = O(n^{k/2}).\tag{1.10}
+\end{equation}
+
+\end{corollary}
+
+\begin{proof}
+
+Since $\hat{f}_{\infty}(\zeta) = \sum_{n=1}^{\infty} a_n \zeta^n$,
+
+\[
+a_n = \frac{1}{2\pi i} \int \frac{\hat{f}_{\infty}(\zeta)}{\zeta^{n+1}} \dd\zeta,
+\]
+
+where the integral is taken over a small circle of radius $r$ about the origin. But by the lemma, $|\hat{f}_{\infty}(\zeta)| \leq My^{-k/2}$, so taking $y = 1/n$ yields the desired conclusion.
+
+\end{proof}
+
+\begin{remark}[\normalfont (Petersson inner product.)]\label{rem:1.7}
+
+If $f$ and $g$ belong to $S_k(\Gamma)$, we define their scalar product by
+
+\begin{equation}\label{eq:1.11}
+(f, g) = (f, g)_{k,\Gamma} = \iint_F f(z)\overline{g(z)} y^k \frac{\dd x \dd y}{y^2},\tag{1.11}
+\end{equation}
+
+where $z = x + iy$ and $F$ is any fundamental domain for $\Gamma$. This definition is independent of the choice of $F$ since the ``hyperbolic'' measure
+
+\[
+\frac{\dd x \dd y}{y^2}
+\]
+
+(like $f(z)\overline{g(z)} y^k$) is invariant under $\Gamma$. As for convergence of the double integral in \eqref{eq:1.11}, this follows from the fact that
+
+\begin{equation}\label{eq:1.12}
+f(z) \text{ in } S_k(\Gamma) \text{ is } O(e^{-2\pi y/h}) \quad (y \to \infty)\tag{1.12}
+\end{equation}
+
+(cf. \eqref{eq:1.6}).
+
+\end{remark}
+
+Equipped with this inner product, $S_k(\Gamma)$ is a finite-dimensional Hilbert space.
+
+\section{Examples}\label{sec:1b}
+
+\textbf{(i) Ramanujan's Function.} Let $\Delta(z)$ denote the function defined in $\{\operatorname{Im}(z) > 0\}$ by
+
+\[
+e^{2\pi iz} \prod_{n=1}^{\infty} (1 - e^{2\pi inz})^{24}.
+\]
+
+This function was investigated in 1916 by Ramanujan. It is a cusp form of weight 12 for the full modular group, its Fourier expansion (at $\infty$) is
+
+\[
+\Delta(z) = \sum_{n=1}^{\infty} \tau(n) e^{2\pi inz},
+\]
+
+and Ramanujan conjectured
+
+\[
+\tau(n) = O\!\left(n^{11/2 + \varepsilon}\right), \quad \varepsilon > 0.
+\]
+
+\textbf{(ii) Poincar\'e Series.} Suppose $\Gamma$ is a subgroup of finite index in $\SL(2,\Z)$, and $\Gamma_0$ is the infinite cyclic subgroup of translations in $\Gamma$ generated by the least translation $z \to z + q$.
+
+Then for any positive integer $k$, and non-negative integer $\nu$, the Poincar\'e series of weight $k$ and character $\nu$ is defined by the series
+
+\begin{equation}\label{eq:1.13}
+\phi_{\nu}(z) = \sum_{\gamma} e^{2\pi i\nu \frac{\gamma(z)}{q}} (cz + d)^{-2k},\tag{1.13}
+\end{equation}
+
+the summation extending over a set of representatives $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ of $\Gamma_0$ in $\Gamma$. This Poincar\'e series converges absolutely uniformly on compact subsets of $\{\operatorname{Im}(z) > 0\}$ and describes there a $\Gamma$-automorphic form of weight $2k$. In fact, for $\nu \geq 1$, $\phi_{\nu}(z)$ is a cusp form. Furthermore, using the Petersson inner product, it can be shown that every $f$ in $S_{2k}(\Gamma)$ is a linear combination of the Poincar\'e series $\phi_{\nu}(z)$, $\nu \geq 1$.
+
+\textbf{(iii) Analytic Eisenstein Series.} The Poincar\'e series $\phi_0(z)$ is not a cusp form. Indeed, for $\Gamma = \SL(2,\Z)$,
+
+\[
+\phi_0(z) = \sum_{(c,d)} \frac{1}{(cz + d)^{2k}},
+\]
+
+the summation extending over all pairs of integers $(c,d) \neq (0,0)$. The function
+
+\begin{equation}\label{eq:1.14}
+E_k(z) = \frac{1}{2\zeta(2k)} \phi_0(z) \quad (\zeta(s) = \Sigma n^{-s})\tag{1.14}
+\end{equation}
+
+is a modular form of weight $2k$ for $\Gamma$, called the (normalized) Eisenstein series; if $B_n$ denotes the $n$-th Bernoulli number then
+
+\begin{equation}\label{eq:1.15}
+E_k(z) = 1 + \frac{(-1)^k 4k}{B_k} \sum_{n=1}^{\infty} \sigma_{2k-1}(n) e^{2\pi inz}\tag{1.15}
+\end{equation}
+
+describes the Fourier expansion of $E_k(z)$ at $\infty$. (Here
+
+\[
+\sigma_r(n) = \sum_{d|n} d^r.)
+\]
+
+\textbf{(iv) Theta Series.} We give only the simplest example. Suppose $A$ is a positive definite symmetric even integral $r \times r$ matrix. (Even integral means that $a_{ij}$ and $\frac{1}{2}a_{ii}$ are all integral.) Let us also suppose that $A^{-1}$ is even integral. (This last assumption actually implies that $r$ is divisible by 8.)
+
+To $A = (a_{ij})$ we associate the quadratic form $Q(X) = \Sigma a_{ij}x_{ij} = {}^{t}XAX$, and a function
+
+\begin{equation}\label{eq:1.16}
+\theta_Q(z) = \sum_M e^{\pi izQ(M)}\tag{1.16}
+\end{equation}
+
+where $M$ runs through all integral vectors $M = \begin{pmatrix} m_1 \\ \vdots \\ m_r \end{pmatrix}$. The series in \eqref{eq:1.16} defines the theta function associated to the quadratic form $Q$. Using the Poisson summation formula one proves that $\theta_Q(z)$ is a modular form of weight $r/4$ for the full modular group.
+
+The arithmetic significance of this example is the following. Suppose $r = 8k$ and $r(n)$ is the number of ways of expressing $2n$ as $Q(M)$. Clearly
+
+\[
+\theta_Q(z) = \sum_{n=0}^{\infty} r(n) e^{2\pi inz}.
+\]
+
+But $\theta_Q(z) - E_k(z)$ is easily seen to be a cusp form of weight $2k$, so from \eqref{eq:1.10} and \eqref{eq:1.15} we conclude
+
+\[
+r(n,Q) = \frac{4k}{B_k} \sigma_{2k-1}(n) + O(n^k),
+\]
+
+an estimate which becomes an exact formula for $r(n,Q)$ when $k$ is such that $S_{2k}(\Gamma)$ is empty (e.g.\ $k = 2, 4$).
+
+If we drop the assumption that $A^{-1}$ is even integral (so $r$ is not necessarily even let alone divisible by 8!) then the theta-series associated to the quadratic form $Q(X) = {}^{t}XAX$ is still an automorphic form but no longer for the full congruence group and no longer necessarily of integral weight. The classical example here is
+
+\[
+\theta(z) = \sum_{n=-\infty}^{\infty} e^{2\pi in^2 z},
+\]
+
+an automorphic form of ``half-integral weight'' for $\Gamma_0(4)$. (For a theory of forms of half-integral weight see \cite{Shimura2}.)
+
+Further relations between theta-series and automorphic forms, especially from the modern point of view, will be discussed in Section~\ref{ch:10}.
+
+\section{Hecke's Theory}\label{sec:1c}
+
+For our purposes it will be sufficient to sketch Hecke's theory for cusp forms on the special congruence subgroups $\Gamma_0(N)$.
+
+Roughly speaking, Hecke's theory associates to each $f(z) = \sum a_n e^{2\pi inz}$ in $S_k(N,\psi)$ a Dirichlet series $D(s,f) = \sum_{1}^{\infty} a_n n^{-s}$ which is shown to possess an analytic continuation and simple functional equation. The theory also establishes the existence of a basis for $S_k(N,\psi)$ consisting of functions whose Fourier coefficients satisfy certain multiplicative properties of number theoretic interest.
+
+We start by recalling the Hecke operators.
+
+For each prime $p$ we consider the double coset
+
+\[
+\Gamma_0(N) \begin{pmatrix} 1 & 0 \\ 0 & p \end{pmatrix} \Gamma_0(N) = \bigcup_j \Gamma_0(N) \gamma_j = \bigcup_{(a,N)=1} \bigcup_{b=0}^{d-1} \Gamma_0(N) \sigma_a \begin{pmatrix} a & b \\ 0 & d \end{pmatrix}
+\]
+
+\[
+ad = p, \quad a > 0
+\]
+
+where $\sigma_a = \begin{pmatrix} a' & b' \\ 0 & d' \end{pmatrix}$ in $\SL(2,\Z)$ is chosen congruent to $\begin{pmatrix} a & 0 \\ 0 & a^{-1} \end{pmatrix}$ modulo $N$. The $p$-th Hecke operator $T(p)$ is the operator defined on $S_k(N,\psi)$ through the natural action of this double coset. More precisely, from \eqref{eq:1.3}, we put
+
+\[
+\begin{aligned}
+T_k(p)f &= f\big|_{\left[\Gamma_0(N)\begin{pmatrix} 1 & 0 \\ 0 & p \end{pmatrix}\Gamma_0(N)\right]_k}\\
+&= p^{k/2 - 1}\sum_j f\big|_{[\gamma_j]_k}\\
+&= p^{k - 1}\sum_{\substack{a > 0\\ ad = p}}\sum_{b=0}^{d-1} \psi(a) f\!\left(\frac{az + b}{d}\right) d^{-k}
+\end{aligned}
+\]
+
+(On functions, $\sigma_a$ operates as multiplication by $\psi(a)$!).
+
+Now suppose $(p,N) = 1$ and $\psi$ is trivial. Then for all $f, g \in S_k(N,\psi)$,
+
+\begin{equation}\label{eq:1.19}
+(T(p)f, g) = (f, T(p)g),\tag{1.19}
+\end{equation}
+
+i.e.\ $T(p)$ is hermitian with respect to the Petersson inner product.
+
+In general, if $\psi$ is arbitrary, and $p$ is still relatively prime to $N$,
+
+\[
+(T(p)f, g) = \psi(p)(f, T(p)g).
+\]
+
+Moreover, the algebra of operators generated by these $T(p)$ ($(p,N) = 1$) is a commutative algebra of normal operators on $S_k(N,\psi)$ and consequently there exists a basis for $S_k(N,\psi)$ consisting of functions which are simultaneous eigenfunctions for all these $T(p)$. The significance of such eigenfunctions is the following.
+
+Suppose $f(z)$ belongs to $S_k(N,\psi)$ and its Fourier expansion (at $\infty$) is
+
+\[
+f(z) = \sum_{n=1}^{\infty} a(n) e^{2\pi inz}.
+\]
+
+Then if $g(z) = (T(p)f)(z) = \sum_{n=1}^{\infty} a'(n) e^{2\pi inz}$,
+
+\begin{equation}\label{eq:1.20}
+a'(n) = \sum_{d|(n,p)} \psi(d) d^{k-1} a\!\left(\frac{np}{d^2}\right) = a(np) + \psi(p) p^{k-1} a\!\left(\frac{n}{p}\right).\tag{1.20}
+\end{equation}
+
+(where $a(a) = 0$ if $a$ is not an integer). This means that if $f(z)$ is a simultaneous eigenfunction for all $T(p)$, $(p,N) = 1$, i.e.
+
+\[
+T(p)f = \lambda_p f, \text{ say},
+\]
+
+then
+
+\begin{equation}\label{eq:1.21}
+a(np) + \psi(p) p^{k-1} a\!\left(\frac{n}{p}\right) + \lambda_p a(n), \quad \forall (p,N) = 1\tag{1.21}
+\end{equation}
+
+In particular, if $a(1) = 1 = N$, then
+
+\begin{equation}\label{eq:1.22}
+a(p) = \lambda_p\tag{1.22}
+\end{equation}
+
+and the Fourier coefficients of $f(z)$ satisfy the simple multiplicative relation
+
+\begin{equation}\label{eq:1.23}
+a(qp) = a(q) a(p)\tag{1.23}
+\end{equation}
+
+for all primes $p$ and $q$.
+
+The arithmetic interest of relations such as \eqref{eq:1.23} (cf.\ Example B(i)) already makes apparent the power of Hecke's methods.
+
+\begin{remark}\label{rem:1.8}
+
+If $p$ is not relatively prime to $N$ the operator $T(p)$ is not necessarily normal. Therefore, although the algebra generated by all the $T(p)$ on $S_k(N,\psi)$ is still commutative there need not exist a basis for $S_k(N,\psi)$ consisting of simultaneous eigenforms for all the $T(p)$.
+
+\end{remark}
+
+We now introduce the Dirichlet series associated to each $f$ in $S_k(N,\psi)$.
+
+If $f$ has the Fourier expansion
+
+\[
+f(z) = \sum_{n=1}^{\infty} a_n e^{2\pi inz}
+\]
+
+we set
+
+\[
+D(s,f) = \sum_{n=1}^{\infty} a_n n^{-s}.
+\]
+
+This Dirichlet series is (roughly speaking) the Mellin transform of $f$. Indeed, at least formally,
+
+\begin{equation}\label{eq:1.24}
+\int_0^{\infty} f(iy) y^{s-1} \dd y = (2\pi)^{-s} \Gamma(s) D(s,f) = L(s,f).\tag{1.24}
+\end{equation}
+
+If $(r,N) = 1$, and $\chi$ is a primitive character modulo $r$, put
+
+\[
+g(\chi) = \sum_{x=0}^{r-1} \chi(x) e^{2\pi ix/r},
+\]
+
+and
+
+\begin{equation}\label{eq:1.25}
+D(s,f,\chi) = \sum_{n=1}^{\infty} \chi(n) a_n n^{-s},\tag{1.25}
+\end{equation}
+
+\begin{equation}\label{eq:1.26}
+L(s,f,\chi) = (r^2 N)^{s/2} (2\pi)^{-s} \Gamma(s) D(s,f,\chi).\tag{1.26}
+\end{equation}
+
+Then the principal result of Hecke's theory of Dirichlet series associated with cusp forms is contained in:
+
+\begin{theorem}\label{thm:1.9}
+
+\begin{enumerate}[(i)]
+
+\item Each of the Dirichlet series $L(s,f,\chi)$ (associated with $f$ in $S_k(N,\psi)$) converges in some half-plane, can be analytically continued into the whole plane as an entire function which is bounded in vertical strips (BV) and satisfies the functional equation
+
+\begin{equation}\label{eq:1.27}
+L(s,f,\chi) = i^k \psi(r) \chi(N) g(\chi)^2 r^{-1} R(k - s, f|_{[\sigma]_k}, \overline{\chi})\tag{1.27}
+\end{equation}
+
+where $\sigma = \begin{pmatrix} 0 & -1 \\ N & 0 \end{pmatrix}$. (Note that $f|_{[\sigma]_k} = f$ if $N = 1$.)
+
+\item $D(s,f)$ is Eulerian if and only if $f$ is an eigenfunction of $T(p)$ for all $p$; more precisely, $T(p)f = c_p f$ for all $p$ if and only if
+
+\begin{equation}\label{eq:1.28}
+D(s,f) = \sum_{n=1}^{\infty} a_n n^{-s} = \prod_p \left(1 - c_p p^{-s} + \psi(p) p^{k-1-2s}\right)^{-1}.\tag{1.28}
+\end{equation}
+
+(We are assuming here that $f \neq 0$ and $a(1) = 1$; recall also that $\psi(p) = 0$ if $(p,N) \neq 1$.)
+
+\end{enumerate}
+
+\end{theorem}
+
+\begin{corollary}\label{cor:1.10}
+
+Suppose $f_1$ and $f_2$ in $S_k(N,\psi)$ are eigenfunctions of $T(p)$ for all $p$ and suppose $f_1$ and $f_2$ share the same eigenvalues. Then $f_1$ and $f_2$ are multiples of one another.
+
+\end{corollary}
+
+\begin{corollary}[\normalfont (cf.\ Example B(i))]\label{cor:1.11}
+
+Let $\Delta(z)$ again denote the cusp form $\sum_{n=1}^{\infty} \tau(n) e^{2\pi inz}$ of weight 12. Then:
+
+\begin{enumerate}[(i)]
+
+\item $\tau(n)$ is a multiplicative function (i.e.\ $(n,m) = 1$ implies $\tau(n)\tau(m) = \tau(nm)$);
+
+\item
+
+\[
+D(s,\Delta) = \prod_p (1 - \tau(p) p^{-s} + p^{11-2s})^{-1}
+\]
+
+\item $(2\pi)^{-s}\Gamma(s)D(s,\Delta)$ is invariant under $s \to 12 - s$.
+
+\end{enumerate}
+
+\end{corollary}
+
+\begin{proof}
+
+$S_{12}(\SL(2,\Z))$ is one dimensional.
+
+\end{proof}
+
+Property (ii) of Corollary~\ref{cor:1.11} was conjectured by Ramanujan in 1916 and first proved by Mordell in 1920.
+
+Ramanujan's famous conjecture is that
+
+\[
+|\tau(p)| \leq 2p^{11/2}
+\]
+
+for all primes $p$. A generalization of this conjecture (due to Petersson) asserts that if $c_p$ is an eigenvalue of $T(p)$ on $S_k(N,\psi)$ then
+
+\begin{equation}\label{eq:1.29}
+|c_p| \leq 2p^{(k-1)/2}\tag{1.29}
+\end{equation}
+
+for $(p,N) = 1$. Equivalently,
+
+\[
+(1 - c_p p^{-s} + p^{k-1-2s}) = (1 - \varepsilon_p p^{\frac{k-1}{2} - s})\left(1 - \overline{\varepsilon_p} p^{\frac{k-1}{2} - s}\right)
+\]
+
+with $\varepsilon_p$ of absolute value 1 (i.e.\ the roots of the $1 - c_p t + p^{k-1} t^2$ are conjugate). The truth of this conjecture is a consequence of recent work of Deligne ([1] and [2]).
+
+In terms of the Fourier coefficients of $f$ in $S_k(N,\psi)$, \eqref{eq:1.29} asserts that
+
+\[
+a_n = O\!\left(n^{\frac{k-1}{2} + \varepsilon}\right).
+\]
+
+(Cf.\ the estimate \eqref{eq:1.10}.)
+
+Soon we shall see that modular forms are special examples of ``automorphic forms on $\GL(2)$'' and that all parts of Hecke's theory, especially Hecke's operators, are more naturally formulated in terms of the representation theory of this group.
+
+\section{Complements to Hecke's Theory}\label{sec:1d}
+
+Several natural questions are left unanswered by Hecke's work. Two important ones are the following:
+
+(A) Can one characterize the Dirichlet series $L(s,f)$ which arise from forms in $S_k(N,\psi)$? In particular, is there a ``converse'' to Theorem~\ref{thm:1.9}(i)?
+
+(B) (Cf.\ Corollary~\ref{cor:1.10}.) Suppose $f_1$ and $f_2$ in $S_k(N,\psi)$ are eigenfunctions for $T(p)$ for all $(p,N) = 1$ and suppose $f_1$ and $f_2$ share the same eigenvalues for these $T(p)$. Are $f_1$ and $f_2$ then multiples of one another?
+
+We deal first with (A). Suppose $\Sigma a_n n^{-s}$ converges in some half-plane, extends holomorphically to the whole $s$-plane, and satisfies the functional equation
+
+\begin{equation}\label{eq:1.30}
+L(s) = i^k L(k - s)\tag{1.30}
+\end{equation}
+
+(where $L(s) = (2\pi)^{-s}\Gamma(s)\Sigma a_n n^{-s}$). Then from the identity \eqref{eq:1.24} it follows that $L(s)$ is the Mellin transform of some $f$ in $S_k(\SL(2,\Z))$, namely $f(z) = \sum_{n=1}^{\infty} a_n e^{2\pi inz}$, since $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ and $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ generate $\SL(2,\Z)$.
+
+More generally, Hecke showed that if $R(s) = (2\pi)^{-s}\Gamma(s)\Sigma a_n n^{-s}$ satisfies the functional equation $L(s) = CN^{k/2 - s}L(k - s)$, $N > 0$, then $\Sigma a_n n^{-s}$ belongs to some modular form of weight $k$ for the discrete subgroup $\Gamma'$ of $\SL(2,\R)$ generated by $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ and $\begin{pmatrix} 0 & 1 \\ -N & 0 \end{pmatrix}$. The problem is that $\Gamma'$ is rarely a Fuchsian group of the first kind (let alone $\Gamma_0(N)$), because such groups (in general) have too many generators! (For $N = 1$, any form in $S_k(\Gamma_0(N))$ is defined by just two ``functional equations.'' The first, for $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ (periodicity), allows us to associate to $f$ the Dirichlet series $D(s,f)$. The second, for $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$, forces the familiar functional equation \eqref{eq:1.30}.)
+
+A completely satisfactory response to (A) is due to Weil, whose result is the following:
+
+\begin{theorem}\label{thm:1.12}
+
+Fix positive integers $N$ and $k$ and suppose $D(s) = \sum_{n=1}^{\infty} a_n n^{-s}$ satisfies the following conditions:
+
+\begin{enumerate}[(i)]
+
+\item $D(s)$ is absolutely convergent for some $s = k - \delta$, $\delta > 0$;
+
+\item for each primitive character $\chi$ modulo $r$, with $(r,N) = 1$, $R^*(s,\chi) = (2\pi)^{-s}\Gamma(s)\Sigma a_n \chi(n) n^{-s}$ continues to an entire function of $s$, bounded in every vertical strip;
+
+\item $L^*(s,\chi)$ satisfies the functional equation
+
+\[
+L^*(s,\chi) = \chi(N)\psi(r) g(\chi)^2 r^{-1} (r^2 N)^{k/2 - s} L(k - s, \overline{\chi}).
+\]
+
+\end{enumerate}
+
+THEN: $f(z) = \sum_{n=1}^{\infty} a_n e^{2\pi inz}$ belongs to $S_k(N,\psi)$, i.e.\\
+
+$\Sigma a_n n^{-s}$ is the Mellin transform of some $f$ in $S_k(N,\psi)$.
+
+\end{theorem}
+
+The thrust of this theorem is that the Dirichlet series associated to some form in $S_k(N,\psi)$ can be characterized by simultaneously considering several related Dirichlet series. For the obvious reasons we refer to this theorem as ``Weil's converse to Hecke theory.''
+
+We now return to Question (B).
+
+It is easily seen that the answer (in general) to Question (B) is ``no.'' Indeed, two forms for $\Gamma_0(N)$ may well share eigenvalues for all $T(p)$ with $(p,N) = 1$ and yet be linearly independent.
+
+\begin{example}\label{exa:1.13}
+
+The two dimensional space $S_{12}(\Gamma_0(2))$ contains $f_2(z) = \Delta(2z)$ as well as $f_1(z) = \Delta(z)$. These two forms have common eigenvalues for all $T(p)$, $p \neq 2$, but are obviously linearly independent.
+
+\end{example}
+
+Example~\ref{exa:1.13} suggests that we rephrase Question B as follows:
+
+\textbf{Question (B)'.} Suppose $f \in S_k(N,\psi)$. What additional assumptions on $f$ are needed to insure that the Fourier coefficients $a_n$, $(n,N) = 1$, completely determine $f$? If $T(p)f = 0$ for all $(p,N) = 1$, when can we conclude that $f$ is identically zero?
+
+This basic question was probably first seriously attacked by Hecke, who proved that if $\psi$ is a primitive character (i.e.\ its conductor is precisely $N$) then $a_n = 0$ for $(n,N) = 1$ indeed implies $f$ is identically zero. (In this case, every $f$ in $S_k(N,\psi)$ is a ``new form'' in the sense below.)
+
+Note that Example~\ref{exa:1.13} lies outside the scope of this last result of Hecke's. The recent work of Atkin and Lehner, however, deals directly with this example. Since the pathology of this example is precisely what will be of interest to us later on we shall henceforth assume that $\psi = 1$ (mod $N$).
+
+Clearly Example~\ref{exa:1.13} is a special case of the following general phenomenon. Suppose $f$ in $S_k(\Gamma_0(1))$ is an eigenfunction of every $T(p)$. Then $f$ also belongs to $S_k(\Gamma_0(N))$, as does $f\left[\begin{array}{cc} N & 0 \\ 0 & 1 \end{array}\right]_k$, but
+
+\begin{equation}\label{eq:1.31}
+\left[ \begin{array}{cc} N & 0 \\ 0 & 1 \end{array} \right]_k \cdot T(p) = T(p) \cdot \left[ \begin{array}{cc} N & 0 \\ 0 & 1 \end{array} \right]_k\tag{1.31}
+\end{equation}
+
+if $(p,N) = 1$. Therefore the (linearly independent) forms $f(z)$ and $f(Nz)$ both satisfy the equation
+
+\[
+T(p)f = c(p)f
+\]
+
+for all $(p,N) = 1$. The ``explanation'' for this is that neither form genuinely ``belongs'' to $\Gamma_0(N)$. Rather both forms ``come from'' $\Gamma_0(1)$ and are already ``old forms'' on $\Gamma_0(N)$.
+
+To make these notions precise, fix $m$ any proper divisor of $N$ and $d$ any divisor of $\frac{N}{m}$. Then pick a basis $\{g_j\}$ for $S_k(\Gamma_0(m))$ consisting of eigenfunctions for $T(p)$ with $(p,N) = 1$ and let $S_k^-(\Gamma_0(N))$ denote the subspace of $S_k(\Gamma_0(N))$ spanned by functions of the form $g_j(dz)$. This subspace is preserved by all $T(p)$ with $(p,N) = 1$ because of \eqref{eq:1.31}. Similarly its orthocomplement in $S_k(\Gamma_0(N))$ (with respect to the Petersson inner product!) is so preserved. This latter subspace of $S_k(\Gamma_0(N))$ we shall denote by $S_k^+(\Gamma_0(N))$. (Observe that this subspace might be the zero space, as in Example~\ref{exa:1.13}, or the whole space, as in Hecke's case.)
+
+Now pick a basis $\{f_i\}$ for $S_k^+(\Gamma_0(N))$ consisting of eigenfunctions for the $T(p)$ with $(p,N) = 1$ (this is possible since $S_k^+(\Gamma_0(N))$ is preserved by these $T(p)$). Define a new form to be any such $f_i$ and an old class to be the class of forms on $S_k(\Gamma_0(N))$ of the form $f(dz)$ with $f$ a fixed new form on $\Gamma_0(m)$. (Recall $m$ is any proper divisor of $N$ and $d$ any divisor of $N/m$.) Elements of an old class are called old forms.
+
+The significance of new forms is that they are actually eigenfunctions of every $T(p)$. In particular, for new forms in $S_k(\Gamma_0(N))$, the response to Question B is ``yes''!
+
+The complete story on how the eigenvalues of an eigenform for $\{T(p)\}$, $(p,N) = 1$, do (or do not) determine the form (at least for $f$ in $S_k(\Gamma_0(N))$) is contained in the Theorem~\ref{thm:1.14} below. Before stating the theorem, let us agree to call two forms in $S_k(\Gamma_0(N))$ equivalent if they have the same eigenvalues for all $T(p)$ with $(p,N) = 1$.
+
+\begin{theorem}\label{thm:1.14}
+
+\begin{enumerate}[(i)]
+
+\item The space $S_k(\Gamma_0(N))$ has a basis consisting of new forms and old forms;
+
+\item Two elements of this basis are equivalent if and only if these elements are old forms and if and only if they belong to the same old class;
+
+\item Each new form of this basis is an eigenfunction for every $T(p)$ with eigenvalue $0$ if $p^2 | N$ and eigenvalue $\pm p^{k/2 - 1}$ if only $p$ divides $N$.
+
+\end{enumerate}
+
+\end{theorem}
+
+It follows from (iii) that for the subspace of new forms in $S_k(\Gamma_0(N))$ there does exist a basis of forms which are simultaneous eigenfunctions for all the $T(p)$. In particular, if $F(z) = \sum_{n=1}^{\infty} a(n) e^{2\pi inz}$ is such a basis element, and $a(1) = 1$, then
+
+\[
+a(np) - a(n) a(p) + p^{k-1} a\!\left(\frac{n}{p}\right) = 0, \quad \text{if } (p,N) = 1
+\]
+
+and
+
+\[
+a(np) - a(n) a(p) = 0, \quad \text{if } p | N.
+\]
+
+The full thrust of Theorem~\ref{thm:1.14} is best appreciated only after it is reinterpreted (in Section~\ref{ch:5}) in terms of the representation theory of $\GL(2,\A)$.
+
+\section*{Notes and References}
+
+\addcontentsline{toc}{subsection}{Notes and References}
+
+More complete accounts of Hecke's theory can be found in \cite{Shimura}, \cite{Ogg}, and \cite{Gunning}. Shimura's treatise also contains an exhaustive bibliography. The compliments to Hecke's theory just described appear in \cite{Weil} and \cite{AtkinLehner}. Hecke's original papers are collected in \cite{Hecke}. See also \cite{Serre}.
+
+In \cite{Deligne} the Ramanujan-Petersson conjecture is reduced to a famous conjecture of Weil's and in \cite{Deligne2} this conjecture is proved.

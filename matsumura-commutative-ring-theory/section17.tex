@@ -1,0 +1,410 @@
+% ============ §17 Cohen-Macaulay rings (原书 pp.133-138) ============
+\section{Cohen--Macaulay rings}\label{sec:17}\index{Cohen-Macaulay rings, section 17}
+
+\begin{theorem}[Ischebeck]\label{thm:17.1}
+Let $(A, m)$ be a Noetherian local ring, $M$ and $N$
+non-zero finite $A$-modules, and suppose that $\depth M = k$, $\dim N = r$. Then
+\[
+  \Ext^i_A(N, M) = 0 \quad \text{for } i < k - r.
+\]
+\end{theorem}
+
+\begin{proof}
+By induction on $r$; if $r = 0$ then $\Supp(N) = \{m\}$ and the assertion
+holds by Theorem~\ref{thm:16.6}. Suppose $r > 0$. By Theorem~\ref{thm:6.4}, there exists a
+chain
+\[
+  N = N_0 \supset N_1 \supset \cdots \supset N_t = (0) \quad \text{with } N_j/N_{j+1} \cong A/P_j
+\]
+of submodules $N_j$, where $P_j \in \Spec A$. It is easy to see that if $\Ext^i_A
+(N_j/N_{j+1}, M) = 0$ for each $j$ then $\Ext^i_A(N, M) = 0$, and since $\dim N_j/N_{j+1} \le
+\dim N = r$ it is enough to prove that $\Ext^i_A(N, M) = 0$ for $i < k - r$ in the
+case $N = A/P$ with $P \in \Spec A$ and $\dim N = r$. Since $r > 0$ we can take
+an element $x \in m - P$ and get the exact sequence
+\[
+  0 \to N \xrightarrow{x} N \to N' \to 0,
+\]
+where $N' = A/(P, x)$; then $\dim N' < r$ so that by induction we have
+$\Ext^i_A(N', M) = 0$ for $i < k - r + 1$. Thus for $i < k - r$ we have an exact
+sequence
+\[
+  0 \to \Ext^i_A(N, M) \xrightarrow{x} \Ext^i_A(N, M) \to \Ext^{i+1}_A(N', M) = 0.
+\]
+We have $x \in m$ so that by NAK, $\Ext^i_A(N, M) = 0$.
+\end{proof}
+
+\begin{theorem}\label{thm:17.2}
+Let $A$ be a Noetherian local ring, $M$ a finite $A$-module,
+and assume that $P \in \Ass(M)$; then $\dim(A/P) \ge \depth M$.
+\end{theorem}
+
+\begin{proof}
+If $P \in \Ass(M)$ then $\Hom_A(A/P, M) \neq 0$, so that by the previous
+theorem we cannot have $\dim A/P < \depth M$.
+\end{proof}
+
+\begin{definition}
+Let $(A, m, k)$ be a Noetherian local ring, and $M$ a finite
+$A$-module. We say that $M$ is a \emph{Cohen--Macaulay module}\index{Cohen-Macaulay module} (abbreviated to
+CM module) if $M \neq 0$ and $\depth M = \dim M$, or if $M = 0$. If $A$ itself is a
+CM module we say that $A$ is a \emph{CM ring}\index{Cohen-Macaulay ring} or a \emph{Macaulay ring}.
+\end{definition}
+
+\begin{theorem}\label{thm:17.3}
+Let $A$ be a Noetherian local ring and $M$ a finite $A$-module.
+\begin{enumerate}[(i)]
+  \item If $M$ is a CM module then for any $P \in \Ass(M)$ we have
+        $\dim(A/P) = \dim M = \depth M$. Hence $M$ has no embedded associated
+        primes.
+  \item If $a_1, \ldots, a_r \in m$ is an $M$-sequence and we set $M' = M/(a_1, \ldots, a_r)M$ then
+        \[
+          M \text{ is a CM module} \iff M' \text{ is a CM module}.
+        \]
+  \item If $M$ is a CM module then $M_P$ is a CM module over $A_P$ for
+        every $P \in \Spec A$, and if $M_P \neq 0$ then
+        \[
+          \depth (P, M) = \depth_{A_P} M_P.
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Quite generally, we have
+\[
+  \dim M = \sup\{\dim A/P \mid P \in \Ass M\}
+\]
+\[
+  \ge \inf\{\dim A/P \mid P \in \Ass M\} \ge \depth M,
+\]
+so that this is clear.
+
+(ii) By definition $\depth M' = \depth M - r$, and by Ex.~\ref{ex:16.1-ex}, $\dim M' =
+\dim M - r$, so that this is clear.
+
+(iii) It is enough to consider the case $M_P \neq 0$, when $P \supset \ann(M)$. Then
+quite generally we have $\dim M_P \ge \depth M_P \ge \depth(P, M)$, so that we need
+only show that
+\[
+  \dim M_P = \depth (P, M).
+\]
+We prove this by induction on $\depth(P, M)$. If $\depth(P, M) = 0$ then $P$ is
+contained in an associated prime of $M$, but in view of $P \supset \ann(M)$ and
+the fact that by (i) all the associated primes of $M$ are minimal, it follows
+that $P$ is itself an associated prime of $M$; therefore $\dim M_P = 0$. If
+$\depth(P, M) > 0$ then we can take an $M$-regular element $a \in P$, and set
+$M' = M/aM$. Then
+\[
+  \depth (P, M') = \depth (P, M) - 1,
+\]
+$M'$ is a CM module with $M'_P \neq 0$, so that by induction $\dim M'_P =
+\depth(P, M) - 1$; moreover, $a$ is $M_P$-regular as an element of $A_P$, and
+so that using Ex.~\ref{ex:16.1-ex} once more, we have $\dim M_P =
+\dim M'_P + 1$. Putting these together gives $\depth (P, M) = \dim M_P$.
+\end{proof}
+
+\begin{theorem}\label{thm:17.4}
+Let $(A, m)$ be a CM local ring.
+\begin{enumerate}[(i)]
+  \item For a proper ideal $I$ of $A$ we have
+        \[
+          \htop I = \depth (I, A) = \grade I, \quad \text{and} \quad \htop I + \dim A/I = \dim A.
+        \]
+  \item For elements $a_1, \ldots, a_r \in m$ the following four conditions are
+        equivalent:
+        \begin{enumerate}[(1)]
+          \item $a_1, \ldots, a_r$ is an $A$-sequence;
+          \item $\htop(a_1, \ldots, a_i) = i$ for $1 \le i \le r$;
+          \item $\htop(a_1, \ldots, a_r) = r$;
+          \item $a_1, \ldots, a_r$ is part of a system of parameters of $A$.
+        \end{enumerate}
+  \item If $P \subset Q$ are prime ideals of $A$ then
+        \[
+          \htop Q - \htop P = \htop (Q/P).
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(iii) The implication $(1) \Rightarrow (2)$ follows from Theorem~\ref{thm:13.5}, together with
+the fact that from the definition of $A$-sequence we have $0 < \htop(a_1) \le
+\htop(a_1, a_2) \le \cdots \le r$.
+
+$(2) \Rightarrow (3)$ is obvious.
+
+$(3) \Rightarrow (4)$ If $\dim A = r$ this is obvious; if $\dim A > r$ then $m$ is not a minimal
+prime divisor of $(a_1, \ldots, a_r)$, so that we can choose $a_{r+1} \in m$ not contained
+in any minimal prime divisor of $(a_1, \ldots, a_r)$, and then $\htop(a_1, \ldots, a_{r+1}) = r + 1$.
+Proceeding in the same way we arrive at a system of parameters of $A$.
+(Note that so far we have not used the CM assumption.)
+
+$(4) \Rightarrow (1)$ It is enough to show that any system of parameters $x_1, \ldots, x_n$
+($n = \dim A$) is an $A$-sequence. If $P \in \Ass(A)$ then by Theorem 3, (i),
+$\dim A/P = n$, so that $x_1 \notin P$. Thus $x_1$ is $A$-regular. Therefore if we set
+$A' = A/x_1A$ we have by the previous theorem that $A'$ is an $(n - 1)$-
+dimensional CM ring, and the images of $x_2, \ldots, x_n$ form a system of
+parameters of $A'$. Thus by induction on $n$ we see that $x_1, \ldots, x_n$ is an
+$A$-sequence.
+
+(i) If $\htop I = r$ then we can take $a_1, \ldots, a_r \in I$ such that $\htop(a_1, \ldots, a_i) = i$ for
+$1 \le i \le r$. Thus by (iii), $a_1, \ldots, a_r$ is an $A$-sequence. Thus $r \le \grade I$.
+Conversely, if $b_1, \ldots, b_s$ is an $A$-sequence in $I$ then $\htop(b_1, \ldots, b_s) = s \le \htop I$, and
+hence $r \ge \grade I$, so that equality must hold. For the second equality, let
+$S$ be the set of minimal prime divisors of $I$, we have
+\[
+  \htop I = \inf\{\htop P \mid P \in S\}
+\]
+and
+\[
+  \dim(A/I) = \sup\{\dim A/P \mid P \in S\},
+\]
+so it is enough to show that $\htop P = \dim A - \dim A/P$ for every $P \in S$.
+Let $\htop P = r$ and $\dim A = n$. By Theorem 3, (iii), $A_P$ is a CM ring
+and $r = \depth(P, A)$. Now if we take an $A$-sequence $a_1, \ldots, a_r \in P$ then
+by Theorem 3, (ii), $A/(a_1, \ldots, a_r)$ is an $(n - r)$-dimensional CM ring, and from
+the fact that $\htop (a_1, \ldots, a_r) = r = \htop P$ we see that $P$ is a minimal prime
+divisor of $(a_1, \ldots, a_r)$; thus by Theorem 3, (i), $\dim A/P = \dim A/(a_1, \ldots, a_r) =
+n - r$.
+
+(ii) Let $P \subset Q$ be prime ideals of $A$. Then since $A_Q$ is a CM ring, (i)
+above gives $\dim A_Q = \htop QA_Q + \dim A_Q/QA_Q$; in other words $\htop P - \htop Q =
+\htop (Q/P)$.
+\end{proof}
+
+If one system of parameters of a Noetherian local ring $A$ is an $A$-sequence
+then $\depth A = \dim A$, so that $A$ is a CM ring, and therefore, by the above
+theorem, every system of parameters of $A$ is an $A$-sequence.
+
+\begin{theorem}\label{thm:17.5}
+Let $A$ be a Noetherian local ring and $\hat{A}$ its completion;
+then
+\begin{enumerate}[(i)]
+  \item $\depth A = \depth \hat{A}$;
+  \item $A$ is CM $\iff \hat{A}$ is CM.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) This comes for example from the fact that
+\[
+  \Ext^i_A(A/m, A) \otimes_A \hat{A} = \Ext^i_{\hat{A}}(\hat{A}/m\hat{A}, \hat{A}) \quad \text{for all } i.
+\]
+(ii) follows from (i) and the fact that
+$\dim A = \dim \hat{A}$.
+\end{proof}
+
+\begin{definition}
+A proper ideal $I$ in a Noetherian ring $A$ is said to be \emph{unmixed}\index{unmixed ideal}
+if the heights of its prime divisors are all equal. We say that the \emph{unmixedness}
+\emph{theorem} holds for $A$ if for every $r > 0$, every height $r$ ideal $I$ of $A$ generated
+by $r$ elements is unmixed. This includes as the case $r = 0$ the statement
+that $(0)$ is unmixed. By Theorem~\ref{thm:13.5}, if $I$ is an ideal satisfying the
+hypotheses of this proposition, then all the minimal prime divisors of $I$
+have height $r$, so that to say that $I$ is unmixed is to say that $I$ does not
+have embedded prime divisors.
+\end{definition}
+
+A Noetherian ring $A$ is said to be a \emph{CM ring}\index{Cohen-Macaulay ring} if $A_m$ is a CM local
+ring for every maximal ideal $m$ of $A$. By Theorem 3, (iii), a localisation
+$S^{-1}A$ of a CM ring $A$ is again CM.
+
+\begin{theorem}\label{thm:17.6}
+A necessary and sufficient condition for a Noetherian ring
+$A$ to be a CM ring is that the unmixedness theorem holds for $A$.
+\end{theorem}
+
+\begin{proof}
+First suppose that $A$ is a CM ring and that $I = (a_1, \ldots, a_r)$ is an
+ideal of $A$ with $\htop I = r$. We assume that $P$ is an embedded prime divisor
+of $I$ and derive a contradiction. Localising at $P$ we can assume that $A$ is
+a CM local ring; then by Theorem 4, (iii), $a_1, \ldots, a_r$ is an $A$-sequence, and
+hence $A/I$ is also a CM local ring. But then $I$ does not have embedded
+prime divisors, and this is a contradiction. Next we suppose that the
+unmixedness theorem holds for $A$. If $P \in \Spec A$ with $\htop P = r$ then we can
+choose $a_1, \ldots, a_r \in P$ such that
+\[
+  \htop(a_1, \ldots, a_i) = i \quad \text{for } 1 \le i \le r.
+\]
+Then by the unmixedness theorem, all the prime divisors of $(a_1, \ldots, a_i)$
+have height $i$, and therefore do not contain $a_{i+1}$. Hence $a_{i+1}$ is an
+$A/(a_1, \ldots, a_i)$-regular element; in other words, $a_1, \ldots, a_r$ is an $A$-sequence.
+Therefore $\depth A_P = r = \dim A_P$, so that $A_P$ is a CM local ring; $P$ was
+any element of $\Spec A$, so that $A$ is a CM ring.
+\end{proof}
+
+The unmixedness theorem for polynomial rings over a field was a
+brilliant early result of Macaulay in 1916; for regular local rings, the
+unmixedness theorem was proved by I. S. Cohen [1] in 1946. This explains
+the term Cohen--Macaulay. Having come this far, we are now in a position
+to give easy proofs of these two theorems.
+
+\begin{theorem}\label{thm:17.7}
+If $A$ is a CM ring then so is $A[X_1, \ldots, X_n]$.
+\end{theorem}
+
+\begin{proof}
+We need only consider the case $n = 1$. Set $B = A[X]$ and let $P$ be
+a maximal ideal of $B$. Set $P \cap A = m$; then $B_P$ is also a localisation of
+$A_m[X]$, so that replacing $A$ by $A_m$ we have a local CM ring
+$A$ with maximal ideal $m$, and we need only prove that $B_P$ is CM. Setting
+$A/m = k$ we get
+\[
+  B/mB = k[X],
+\]
+so that $P/mB$ is a principal ideal of $k[X]$ generated by an irreducible
+monic polynomial $\bar{\varphi}(X)$. If we let $f(X) \in A[X]$ be a monic polynomial of
+$A[X]$ which reduces to $\varphi(X)$ modulo $mB$ then $P = (m, f)$. We choose a
+system of parameters $a_1, \ldots, a_n$ for $A$, so that $a_1, \ldots, a_n, f$ is a system of
+parameters of $B_P$. Since $B$ is flat over $A$ the $A$-sequence $a_1, \ldots, a_n$ is also
+a $B$-sequence. We set $A/(a_1, \ldots, a_n) = A'$; then the image of $f$ in $A'[X]$ is
+a monic polynomial, and therefore $A'[X]$-regular, so that $a_1, \ldots, a_n, f$ is
+a $B$-sequence, and
+\[
+  \depth B_P \ge \depth (P, B) \ge n + 1 = \dim B_P.
+\]
+Therefore $B_P$ is a CM ring.
+\end{proof}
+
+\begin{remark}
+If $A$ is a CM local ring, then a similar (if anything, rather easier)
+method can be used to prove that $A[[X]]$ is also CM. The statement also
+holds for a non-local CM ring, but the proof is a little more complicated,
+and we leave it to \S23.
+\end{remark}
+
+\begin{theorem}\label{thm:17.8}
+A regular local ring is a CM ring.
+\end{theorem}
+
+\begin{proof}
+Let $(A, m)$ be an $n$-dimensional regular local ring, and $x_1, \ldots, x_n$ a
+regular system of parameters. By Theorems 14.2 and 14.3, $(x_1), (x_1, x_2), \ldots,
+(x_1, \ldots, x_n)$ is a strictly increasing chain of prime ideals; therefore $x_1, \ldots, x_n$
+is an $A$-sequence.
+\end{proof}
+
+\begin{theorem}\label{thm:17.9}
+Any quotient of a CM ring is universally catenary.
+\end{theorem}
+
+\begin{proof}
+Clear from Theorems 7 and 4.
+\end{proof}
+
+\begin{theorem}\label{thm:17.10}
+A necessary and sufficient condition for a Noetherian local
+ring $(A, m, k)$ to be a regular ring is that $\gr_m(A)$ is isomorphic as a graded $k$-
+algebra to a polynomial ring over $k$.
+\end{theorem}
+
+\begin{proof}
+If $A$ is regular, let $x_1, \ldots, x_r$ be a regular system of parameters, that
+is a minimal basis of $m$; then $x_1, \ldots, x_r$ is an $A$-sequence, so that by
+Theorem~\ref{thm:16.2} (see also Theorem~\ref{thm:14.4} for another proof) $\gr_m(A) \cong
+k[X_1, \ldots, X_r]$. Conversely, if $\gr_m(A) \cong k[X_1, \ldots, X_r]$, then comparing
+the homogeneous components of degree $1$, we see that $m/m^2 \cong kX_1
++ \cdots + kX_r$. On the other hand, the homogeneous component of degree $n$
+of $k[X_1, \ldots, X_r]$ is a vector space over $k$ of dimension $\binom{n+r-1}{r-1}$,
+so that the Samuel function is
+\[
+  \chi_A(n) = l(A/m^{n+1}) = \sum_{i=0}^{n} l(m^i/m^{i+1}) = \binom{n+r}{r},
+\]
+and $\dim A = r$. Therefore $A$ is regular.
+\end{proof}
+
+We can also characterise CM local rings in terms of properties of
+multiplicities. Let $A$ be a Noetherian local ring. An ideal of $A$ is said to
+be a \emph{parameter ideal}\index{parameter ideal} if it can be generated by a system of parameters. By
+Theorem~\ref{thm:14.10}, if $q$ is a parameter ideal then $l(A/q) \ge e(q)$. As we are about
+to see, equality here is characteristic of CM rings.
+
+\begin{theorem}\label{thm:17.11}
+The following three conditions on a Noetherian local ring
+$(A, m)$ are equivalent:
+\begin{enumerate}[(1)]
+  \item $A$ is a CM ring;
+  \item $l(A/q) = e(q)$ for any parameter ideal $q$ of $A$;
+  \item $l(A/q) = e(q)$ for some parameter ideal $q$ of $A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1) \Rightarrow (2)$. If $x_1, \ldots, x_d$ is a system of parameters of $A$ and $q =
+(x_1, \ldots, x_d)$ then by Theorem~\ref{thm:16.2}, $\gr_q(A) \cong (A/q)[X_1, \ldots, X_d]$, so that
+as in the proof of the previous theorem, $\chi_A(n) = l(A/q)\binom{n+d}{d}$, so that
+$e(q) = l(A/q)d!$.
+
+$(2) \Rightarrow (3)$ is obvious.
+
+$(3) \Rightarrow (1)$ Suppose that $q = (x_1, \ldots, x_d)$ is a parameter ideal satisfying
+$e(q) = l(A/q)$. We set $B = (A/q)[X_1, \ldots, X_d]$; then there is a homogeneous
+ideal $\mathfrak{b}$ of $B$ such that $\gr_q(A) \cong B/\mathfrak{b}$. We write $\varphi_B(n)$ and $\varphi_{\mathfrak{b}}(n)$ for the Hilbert
+polynomials of $B$ and $\mathfrak{b}$ (see \S\ref{sec:13}); then
+\[
+  l(q^n/q^{n+1}) = \varphi_B(n) - \varphi_{\mathfrak{b}}(n),
+\]
+and for $n \gg 0$ we have $l(q^n/q^{n+1}) = \chi_A(n) - \chi_A(n-1)$. The left-hand side is a
+polynomial in $n$ of degree $d - 1$, and the coefficient of $n^{d-1}$ is $e(q)/(d - 1)!$. By
+hypothesis $e(q) = l(A/q)$, so that $\varphi_{\mathfrak{b}}(n)$ must be a polynomial in $n$ of degree at
+most $d - 2$. However, if $\mathfrak{b} \neq (0)$ then we can take a non-zero homogeneous
+element $f(X) \in \mathfrak{b}$. If $m' \subset q$ and we set $\bar{m} = m/q$ then in $B$ we have
+$\bar{m}^\nu = (0)$, and therefore replacing $f$ by the product of $f$ with a suitable
+element of $\bar{m}$, we can assume that $f \neq 0$ but $\bar{m}f = 0$. Then
+if $f$ has degree $p$,
+\[
+  \varphi_{\mathfrak{b}}(n) \ge \binom{n-p+d-1}{d-1},
+\]
+the length of the homogeneous component of degree $n - p$ in $(A/m)[X_1, \ldots, X_d]$. This
+contradicts $\deg \varphi_{\mathfrak{b}} < d - 1$. Hence $\mathfrak{b} = (0)$, and
+\[
+  \gr_q(A) = B = (A/q)[X_1, \ldots, X_d],
+\]
+so that by Theorem~\ref{thm:16.3}, $\{x_1, \ldots, x_d\}$ is an $A$-sequence. Therefore $A$ is a CM
+ring.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:17}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:17.1-ex}
+\begin{enumerate}[(a)]
+  \item A zero-dimensional Noetherian ring is a CM ring.
+  \item A one-dimensional ring is CM provided that it is reduced ($=$ no
+        nilpotent elements); also, construct an example of a one-dimensional ring
+        which is not CM.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:17.2-ex}
+Let $k$ be a field, $x, y$ indeterminates over $k$, and set
+\[
+  A = k[x^3, x^2y, xy^2, y^3] \subset k[x, y] \quad \text{and} \quad P = (x^3, x^2y, xy^2, y^3)A.
+\]
+Is $R = A_P$ a CM ring? How about
+$k[x^4, x^3y, xy^3, y^4]$?
+\end{exercise}
+
+\begin{exercise}\label{ex:17.3-ex}
+A two-dimensional normal ring is CM.
+\end{exercise}
+
+\begin{exercise}\label{ex:17.4-ex}
+Let $A$ be a CM ring, $a_1, \ldots, a_r$ an $A$-sequence, and set $J = (a_1, \ldots, a_r)$. Then
+for every integer $\nu$ the ring $A/J^\nu$ is CM, and therefore $J^\nu$ is unmixed.
+\end{exercise}
+
+\begin{exercise}\label{ex:17.5-ex}
+Let $A$ be a Noetherian local ring and $P \in \Spec A$. Then
+\begin{enumerate}[(i)]
+  \item $\depth A \le \depth (P, A) + \dim A/P$;
+  \item call $\dim A - \depth A$ the \emph{codepth} of $A$. Then $\codepth A \ge
+        \codepth A_P$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:17.6-ex}
+Let $A$ be a Noetherian ring, $P \in \Spec A$ and set $G = \gr_P(A)$. If $G$ is an
+integral domain then $P^n = P^{(n)}$ for all $n > 0$. (This observation is due to
+Robbiano. One sees from it that if $P$ is a prime ideal generated by an $A$-
+sequence then $P^n = P^{(n)}$.)
+\end{exercise}

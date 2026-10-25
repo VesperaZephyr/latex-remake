@@ -1,0 +1,1141 @@
+% ==============================================================================
+% ch02.tex -- Chapter 2: Review of Elliptic Curves
+%   Source: book pp. 63--99 (physical pp. 74--110)
+% ==============================================================================
+\chapter{Review of Elliptic Curves}
+\label{ch:2}
+
+% ------------------------------------------------------------------------------
+% Section 2.1
+% ------------------------------------------------------------------------------
+\section{The group structure (Compare \cite{De2}.)}
+\label{sec:2.1}
+
+\kmitem\label{item:2.1.1}
+Let $S$ be an arbitrary scheme. An elliptic curve $E/S$ is a proper smooth curve
+\[
+\begin{tikzcd}[row sep=large, column sep=small]
+  & E \arrow[d, "f"] & \\
+  \text{``}0\text{''} & S \arrow[u, bend left=45] &
+\end{tikzcd}
+\]
+with geometrically connected fibers all of genus one, given with a section ``$0$''. For any section $P \in E(S)$, we denote by $\cI(P)$ the ideal sheaf of $P$ viewed as an effective Cartier divisor of degree one in $E$, and by $\cI^{-1}(P)$ the inverse ideal sheaf.
+
+\begin{theorem}[Abel]\label{thm:2.1.2}
+There exists a unique structure of commutative group-scheme on $E/S$ such that for any $S$-scheme $T$, and any three points $P, Q, R$ in $E(T) = E_T(T)$, we have
+\[
+P + Q = R
+\]
+if and only if there exists an invertible sheaf $\cL_0$ on $T$ and an isomorphism of invertible sheaves on $E_T$
+\[
+\cI^{-1}(P) \otimes \cI^{-1}(Q) \otimes \cI(0) \cong \cI^{-1}(R) \otimes f_T^*(\cL_0).
+\]
+\end{theorem}
+
+\begin{proof}
+What must be shown is that the map
+\[
+{\small E(T) \longrightarrow \Pic^{(1)}(E_T/T) \xlongequal{dfn} \begin{array}[t]{@{}l@{}}
+\text{the set of isomorphism classes} \\
+\text{of invertible sheaves } \cL \text{ on } E_T \\
+\text{which are fiber-by-fiber of degree one,} \\
+\text{modulo the equivalence relation} \\
+\cL \sim \cL \otimes f_T^*(\cL_0) \text{ for any invertible} \\
+\text{sheaf } \cL_0 \text{ on } T
+\end{array}}
+\]
+defined by
+\[
+P \longmapsto \text{the class of } \cI^{-1}(P)
+\]
+is bijective. For if this is the case, then given $P, Q \in E(T)$, the invertible sheaf on $E_T$,
+\[
+\cI^{-1}(P) \otimes \cI^{-1}(Q) \otimes \cI(0),
+\]
+which is fiber-by-fiber of degree one, is isomorphic to one of the form
+\[
+\cI^{-1}(R) \otimes f^*(\cL_0)
+\]
+for some unique $R \in E(T)$. Therefore the group-law is unique. To see that it exists, we compose the above bijection with the bijection
+\[
+\begin{aligned}
+\Pic^{(1)}(E_T/T) &\longrightarrow \Pic^{(0)}(E_T/T) \\
+\cL &\longmapsto \cL \otimes \cI(0)
+\end{aligned}
+\]
+to obtain a \emph{bijection of sets}
+\[
+{\small E(T) \xrightarrow{\ \sim\ } \Pic^{(0)}(E_T/T) = \begin{array}[t]{@{}l@{}}
+\text{the abelian group of isomorphism classes} \\
+\text{of invertible sheaves on } E_T \text{ which are} \\
+\text{fiber-by-fiber of degree zero, modulo the} \\
+\text{subgroup of those of the form } f_T^*(\cL_0)
+\end{array}}
+\]
+\[
+P \longmapsto \text{the class of } \cI^{-1}(P) \otimes \cI(0) \text{ in } \Pic^{(0)}(E_T/T)
+\]
+between the set $E(T)$ and the abelian group $\Pic^{(0)}(E_T/T)$. Transporting the group structure to $E(T)$ by this bijection, we obtain an abelian group law on $E(T)$, functorially in $T$, which by its construction does satisfy Abel's theorem.
+
+It remains to verify that the map
+\[
+E(T) = E_T(T) \longrightarrow \Pic^{(1)}(E_T/T)
+\]
+is bijective. Replacing $E/S$ by $E_T/T$, it suffices to treat the case $T = S$. We next claim that the question is Zariski local on $S$, i.e., if we are given $\cL$ and $\cL'$ on $E$, an affine open covering $\{U_i\}$ of $S$, invertible sheaves $\cL_{0,i}$ on $U_i$, and isomorphisms
+\[
+\phi_i : \cL \cong \cL' \otimes f^*(\cL_{0,i}) \quad \text{on } f^{-1}(U_i),
+\]
+then there exists an $\cL_0$ on $S$ and an isomorphism
+\[
+\phi : \cL \cong \cL' \otimes f^*(\cL_0).
+\]
+
+Because $E/S$ is proper and smooth with geometrically connected fibers, we have
+\[
+f_*(\cO_E) = \cO_S,
+\]
+whence
+\[
+f_* f^*(\cL_{0,i}) = \cL_{0,i} \quad \text{on } U_i.
+\]
+Therefore the existence of the isomorphism $\phi_i$ shows that both
+\[
+f_*(\cL^{-1} \otimes \cL'), \quad f_*(\cL \otimes (\cL')^{-1})
+\]
+are invertible sheaves on $\cO_S$, inverse to each other. If we call the second one $\cL_0$, and write
+\[
+\cL'' = \cL' \otimes f^*(\cL_0),
+\]
+we find canonical isomorphisms
+\[
+f_*(\cL^{-1} \otimes \cL'') = \cO_S = f_*(\cL \otimes (\cL'')^{-1}),
+\]
+under which the unit section $1 \in \Gamma(S, \cO_S)$ is the required isomorphism
+\[
+\cL \cong \cL''.
+\]
+
+This reduces us to the case when $S$ is affine. Because $E/S$ is of finite presentation, we reduce easily to the case when $S$ is affine and noetherian (even a finitely generated $\Z$-algebra if we like). We will construct the inverse map.
+
+Let $\cL$ be an invertible sheaf on $E$, fiber-by-fiber of degree one. Then we claim that
+\[
+\begin{array}[t]{@{}l@{}}
+f_* \cL \text{ is an invertible sheaf on } S \text{, of formation compatible with} \\
+\quad \text{arbitrary change of base.}
+\end{array}
+\]
+\[
+R^1 f_* \cL = 0.
+\]
+It suffices to prove that $R^1 f_* \cL = 0$, for then \cite[Mum 4, p.~53]{Mum4} $f_* \cL$ is automatically locally free and of formation compatible with arbitrary change of base, so necessarily of rank one because this is obviously so over an algebraically closed field. Now $R^1 f_* \cL = 0$ because it is of formation compatible with arbitrary change of base (being an $R^1 f_*$ for $f$ proper and flat of relative dimension one) and because over an algebraically closed field, $\mathrm{H}^1(E, \cL) = 0$ for degree $(\cL) > 2g - 2 = 0$. As $R^1 f_* \cL$ is a coherent sheaf on $S$ with all fibers zero, it vanishes by Nakayama's lemma.
+
+Because $f_* \cL$ is invertible on $S$, Zariski locally on $S$ we may pick an $\cO_S$-basis $\ell$ of $f_* \cL$. We claim that, locally over $S$, the pair $(\cL, \ell)$ on $E$ defines an effective Cartier divisor in $E$. We must show that we have an exact sequence
+\[
+0 \longrightarrow \cO \xrightarrow{\ \ell\ } \cL \longrightarrow \cL/\cO \longrightarrow 0
+\]
+with $\cL/\cO$ flat over $S$. This amounts to the statement that the map of invertible sheaves
+\[
+\cO \xrightarrow{\ \ell\ } \cL
+\]
+on $E$ is injective, and remains so after any base change $T \to S$.
+
+For this we are reduced to the case $S = \Spec(k)$ with $k$ a field, and $\ell \in \mathrm{H}^0(E, \cL)$ a $k$-basis, so non-zero, in which case the assertion is obvious.
+
+Therefore $(\cL, \ell)$ defines an effective Cartier divisor in $E/S$. Looking fiber-by-fiber, we see that it is of degree one. By \ref{lem:1.2.7}, any effective Cartier divisor of degree one is a section $P \in E(S)$. One verifies easily that the two maps
+\[
+\begin{tikzcd}[column sep=huge, row sep=small]
+  E(S) \arrow[r, shift left=.6ex] & \Pic^{(1)}(E/S) \arrow[l, shift left=.6ex] \\[-2pt]
+  P \arrow[r, mapsto] & \cI^{-1}(P) \\[2pt]
+  \begin{array}[t]{@{}l@{}}\text{the scheme of zeroes} \\ \text{of a local-on-}S \\ \cO_S\text{-basis of } f_* \cL\end{array} \arrow[r, phantom] & \cL \arrow[l, mapsto]
+\end{tikzcd}
+\]
+are inverse isomorphisms.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 2.2
+% ------------------------------------------------------------------------------
+\section{Generalized Weierstrass equations, and some elementary universal families}
+\label{sec:2.2}
+
+\kmitem\label{item:2.2.1}
+Given an elliptic curve $E/S$, the invertible sheaf $\Omega^1_{E/S}$ is fiber-by-fiber of degree zero, and Serre-Grothendieck duality defines a canonical isomorphism
+\begin{equation}\label{eq:2.2.1.1}
+R^1 f_* \Omega^1_{E/S} \cong \cO_S
+\end{equation}
+of formation compatible with arbitrary change of base. Therefore
+\begin{equation}\label{eq:2.2.1.2}
+\omega_{E/S} \xlongequal{dfn} f_* \Omega^1_{E/S}
+\end{equation}
+is necessarily an invertible sheaf on $S$, of formation compatible with arbitrary change of base.
+
+\kmitem\label{item:2.2.2}
+Zariski locally on $S$, we may choose an $\cO_S$-basis $\omega$ of $\omega_{E/S}$; such an $\omega$ is nothing other than a nowhere-vanishing one-form on $E/S$, i.e., an isomorphism $\cO \cong \Omega^1_{E/S}$. This $\omega$ is necessarily translation-invariant, because the effect of translation on $\omega$ defines a homomorphism of $S$-group-schemes
+\[
+\phi : E \longrightarrow \mathbb{G}_m,
+\]
+which is necessarily constant (because $\phi$ viewed as a function on $E$, is an element of $\mathrm{H}^0(E, \cO_E) = \mathrm{H}^0(S, f_* \cO_E) = \mathrm{H}^0(S, \cO_S)$), so trivial (because a homomorphism).
+
+\kmitem\label{item:2.2.3}
+Zariski locally on $S$, the formal completion $\widehat{E}$ of $E$ along its zero-section ``$0$'' is of the form
+\[
+\widehat{E} \cong \Spf(A[[T]]), \quad S = \Spec(A).
+\]
+Such an isomorphism is called a formal parameter(ization) at zero, and noted simply ``$T$''.
+
+\kmitem\label{item:2.2.4}
+Once we have chosen a formal parameter $T$ at zero, there is a \emph{unique} $\cO_S$-basis $\omega$ of $\omega_{E/S}$ ``adapted to $T$'', i.e., whose formal expansion along the zero-section is
+\[
+\omega = (1 + \text{higher terms}) \cdot dT.
+\]
+Conversely, if we are given an $\cO_S$-basis $\omega$ of $\omega_{E/S}$ on $S$, then locally on $S$ there exists a formal parameter $T$ to which $\omega$ is ``adapted'' as above, and this $T$ is unique up to $T \mapsto T + \text{higher terms}$.
+
+\kmitem\label{item:2.2.5}
+For each integer $n \ge 1$, the invertible sheaf $\cI(0)$ has
+\[
+f_*(\cI^{-n}(0)) = \text{locally free of rank } n \text{ on } S.
+\]
+Once we have chosen an $\cO_S$-basis $\omega$ of $\omega_{E/S}$ over an affine $S = \Spec(A)$, we have
+\[
+f_*(\cI^{-2}(0)) \text{ is free on } 1, x
+\]
+with $x$ uniquely determined up to $x \mapsto x + a$ by the normalization
+\[
+x \sim \frac{1}{T^2}\,(1 + \text{higher terms}),
+\]
+(for any formal parameter $T$ to which $\omega$ is adapted, it doesn't matter which) and
+\[
+f_*(\cI^{-3}(0)) \text{ is free on } 1, x, y
+\]
+with $y$ uniquely determined up to $y \mapsto y + ax + b$ by the normalization
+\[
+y \sim \frac{1}{T^3}\,(1 + \text{higher terms}).
+\]
+We say that such $x, y$ are ``adapted to $\omega$''.
+
+\noindent Then we easily see that
+\begin{align*}
+f_*(\cI^{-4}(0)) &\text{ is free on } 1, x, y, x^2 \\
+f_*(\cI^{-5}(0)) &\text{ is free on } 1, x, y, x^2, xy \\
+f_*(\cI^{-6}(0)) &\text{ is free on } 1, x, y, x^2, xy, x^3 \\
+&\quad \text{or free on } 1, x, y, x^2, xy, y^2,
+\end{align*}
+and that
+\[
+y^2 - x^3 \in f_* \cI^{-5}(0), \text{ which is free on } 1, x, y, x^2, xy.
+\]
+Therefore we obtain a generalized Weierstrass equation
+\begin{equation}\label{eq:2.2.5.1}
+y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6,
+\end{equation}
+and indeed the affine ring
+\[
+\mathrm{H}^0(E - \{0\}; \cO) = \varinjlim_{n} \mathrm{H}^0(E, \cI^{-n}(E))
+\]
+is none other than
+\[
+A[x, y]/(\text{this Weierstrass equation}).
+\]
+
+\noindent When $2$ is invertible in $A$, there is a \emph{unique} choice of $y$ adapted to $\omega$ such that $a_1 = a_3 = 0$. When $3$ is invertible in $A$, there is a unique choice of $x$ adapted to $\omega$ such that $a_2 = 0$.
+
+\kmitem\label{item:2.2.6}
+\emph{Case I. (Weierstrass) $6$ invertible}: once we locally on $S$ pick a basis $\omega$ of $\omega_{E/S}$, we get unique adapted $x, y$ such that $(E, \omega)$ is
+\[
+(2y)^2 = 4x^3 - g_2 x - g_3; \qquad \omega = \frac{-dx}{2y},
+\]
+and $(g_2, g_3)$ are arbitrary in $\Gamma(S, \cO_S)$ such that the cubic is smooth, i.e.,
+\[
+\Delta \xlongequal{dfn} (g_2)^3 - 27(g_3)^2
+\]
+is invertible on $S$. The corresponding Weierstrass family over
+\[
+\Spec(\Z[1/6, g_2, g_3][1/\Delta])
+\]
+is the universal $(E, \omega)$ over a scheme where $6$ is invertible.
+
+\kmitem\label{item:2.2.7}
+\emph{(Weierstrass with $\Delta = 1$)} The same Weierstrass family, over the closed subscheme of equation
+\[
+(g_2)^3 - 27(g_3)^2 = 1
+\]
+is the universal $(E, \omega)$ with $\Delta(E, \omega) = 1$, over a $\Z[1/6]$-algebra.
+
+\kmitem\label{item:2.2.8}
+\emph{Case II. (Legendre) $2$ invertible}: once we locally on $S$ pick a basis $\omega$ of $\omega_{E/S}$, $x$ is free up to $x \mapsto x + a$, but $y$ is specified if we insist $a_1 = a_3 = 0$. The equation is
+\[
+y^2 = x^3 + a_2 x^2 + a_4 x + a_6, \qquad \omega = \frac{-dx}{2y}.
+\]
+The cubic equation
+\[
+x^3 + a_2 x^2 + a_4 x + a_6
+\]
+must define a finite etale covering of $S$ of degree three if our equation is to be smooth over $S$. The automorphism $P \mapsto -P$ of $E$ is given by $(x, y) \mapsto (x, -y)$ (because the function $x - a$ always has two zeroes, and a double pole at infinity). So the points of order two are the origin and the three points with $y = 0$. Let us specify two of these, say $P_2, Q_2$;
+\[
+x(P_2) = e_1, \quad x(Q_2) = e_2.
+\]
+The third is the sum of the first two (the function $y$ has the correct divisor to realize this). So we may eliminate the $x \mapsto x + a$ indeterminacy if we insist that
+\[
+x(P_2) = 0.
+\]
+
+\noindent We may normalize $\omega$ up to $\pm$ if we require that this $x$, already normalized by $x(P_2) = 0$, satisfy
+\[
+x(Q_2) = 1.
+\]
+
+\kmitem\label{item:2.2.9}
+Then the Legendre family
+\[
+y^2 = x(x - 1)(x - \lambda), \qquad \omega = \frac{-dx}{y}
+\]
+over $\Z[1/2, \lambda][1/\lambda(\lambda - 1)]$ is the universal $(E, \omega, P_2, Q_2$ everywhere finite points of order two such that $x(P_2) = 0$, $x(Q_2) = 1)$ over schemes where $2$ is invertible.
+
+\kmitem\label{item:2.2.10}
+\emph{Case III. (Naive level three) $3$ invertible}: again we pick a local on $S$ basis $\omega$ of $\omega_{E/S}$. Now $x$ is unique, $y$ free up to $y \mapsto y + ax + b$, and the equation is
+\[
+y^2 + a_1 xy + a_3 y = x^3 + a_4 x + a_6.
+\]
+By Abel's theorem the points of order three are the nine flex points of this cubic. Suppose given a nowhere-trivial point of order $3$, say $P_3$. Then locally over $S$ there exists a function with a triple zero at $P_3$, and a triple pole at zero, so a linear combination of $1, x, y$. So there is a unique such function of the form $y + ax + b$. Taking this to be $y$, we get an equation of the form
+\[
+y^2 + a_1 xy + a_3 y = x^3.
+\]
+
+\noindent This cubic is smooth if and only if
+\[
+(a_1^3 - 27 a_3) a_3
+\]
+is invertible.
+
+\noindent Now suppose given a second nowhere-trivial point $Q_3$ of order three, which is disjoint from both $P_3 = (0, 0)$ and $-P_3 = (0, -a_3)$. By Abel, $Q_3$ is the triple zero of a unique function of the form
+\[
+y - Ax - B.
+\]
+
+\noindent We claim that $A$ is invertible. For this, it suffices to treat the case when $S$ is a field of characteristic $\ne 3$. Suppose $A = 0$. Then $y - B$ has a triple zero at $Q_3$. This means that when we substitute $y = B$ in the equation for our curve, we get a polynomial in $x$ with a triple zero at $x(Q_3)$:
+\[
+x^3 - (B^2 + a_1 xB + a_3 B) = (x - x(Q_3))^3.
+\]
+Comparing coefficients of $x^2$, we see that $x(Q_3) = 0$, whence $Q_3 = \pm P_3$, contradiction.
+
+\noindent Because $A$ is invertible, there is a \emph{unique} choice of $\omega$ for which $A = 1$. The condition that $y = x + B$ meet our curve triply is that when we substitute $y = x + B$ into its equation, we get a polynomial in $x$ with a triple zero at $x(Q_3) = C$;
+\begin{equation*}\tag{$*$}
+x^3 - \bigl((x + B)^2 + (a_1 x + a_3)(x + B)\bigr) = (x - C)^3.
+\end{equation*}
+Equating coefficients of like powers of $x$, we find
+\[
+\begin{cases}
+3C = 1 + a_1 \\
+-3C^2 = 2B + a_1 B + a_3 \\
+C^3 = B^2 + a_3 B.
+\end{cases}
+\]
+The first two of these formulas define $a_1, a_3$ as polynomials in $B, C$. Subtracting from the third equation the product of the second with $B$, we get
+\[
+C^3 + 3BC^2 + B^2(1 + a_1) = 0,
+\]
+and substituting $1 + a_1 = 3C$ by the first equation we find
+\[
+(C + B)^3 = B^3.
+\]
+
+\kmitem\label{item:2.2.11}
+Thus
+\[
+\begin{cases}
+a_1 = 3C - 1 \\
+a_3 = -3C^2 - B - 3BC,
+\end{cases}
+\]
+and the curve
+\[
+y^2 + a_1 xy + a_3 y = x^3
+\]
+with marked points
+\[
+P_3 = (0, 0), \quad Q_3 = (C, B + C)
+\]
+over the ring
+\[
+\Z[1/3, B, C][1/((a_1^3 - 27a_3) a_3 C)] \big/ \bigl(B^3 = (B + C)^3\bigr)
+\]
+is the universal $(E, \text{non-trivial } P_3, \text{non-trivial } Q_3 \ne \pm P_3)$ over a $\Z[1/3]$-algebra.
+
+% ------------------------------------------------------------------------------
+% Section 2.3
+% ------------------------------------------------------------------------------
+\section{The structure of $[N]$}
+\label{sec:2.3}
+
+\begin{theorem}\label{thm:2.3.1}
+Let $S$ be an arbitrary scheme, $E/S$ an elliptic curve, $N \ge 1$ an integer. Then the $S$-homomorphism ``multiplication by $N$''
+\[
+[N] : E \longrightarrow E
+\]
+is finite locally free of rank $N^2$. If $N$ is invertible on $S$, its kernel $E[N]$ is finite etale over $S$, locally for the etale topology on $S$ isomorphic to $\Z/N\Z \times \Z/N\Z$.
+\end{theorem}
+
+\begin{proof}
+When $S = \Spec(\C)$, the transcendental theory of elliptic functions shows that the complex manifold $E^{\mathrm{an}}$ underlying $E$ is a one-dimensional complex torus, non-canonically of the form $\C/L$ for some lattice $L \subset \C$, say $L = \Z\omega_1 + \Z\omega_2$ with $\operatorname{Im}(\omega_2/\omega_1) > 0$. Then $E[N]$ is visibly the group $\frac{1}{N}L/L$, which is a free $\Z/N\Z$ module of rank two, with basis $\omega_1/N$, $\omega_2/N$. We will ultimately reduce to this case.
+
+Zariski locally on $S$, $E$ is given by a smooth Weierstrass cubic in $\PP^2_S$, with origin $(0, 0, 1)$, and any smooth Weierstrass cubic in $\PP^2_S$ is an elliptic curve over $S$ with origin $(0, 0, 1)$. So by reduction to the universal case, we may suppose that $S$ is the open set in
+\[
+\Spec(\Z[a_1, a_2, a_3, a_4, a_6])
+\]
+over which the cubic
+\[
+y^2 + a_1 xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6
+\]
+is smooth.
+
+In this case, $S$ is a regular scheme, and therefore the total space $E$, being smooth over $S$, is itself regular. We will exploit the fact that any \emph{finite} morphism between regular schemes of the same dimension is automatically flat \cite[V, 3.6]{AK1}.
+
+We first show that $[N] : E \to E$ is finite and flat. It suffices to show that it is finite. Because $E$ is proper over $S$, any $S$-endomorphism of $E$ is proper, so it suffices to show that $[N] : E \to E$ has finite fibers. This in turn may be checked geometric fiber by geometric fiber over $S$, So we are reduced to showing that $[N] : E \to E$ is finite when $E$ is an elliptic curve over an algebraically closed field. Any morphism between proper smooth connected curves over an algebraically closed field is either finite flat or it is constant. If $\operatorname{char}(k)$ does not divide $N$, then $[N]$ is etale (its tangent map at the origin being multiplication by $N$), hence non-constant, hence finite and flat. Therefore $[N] : E \to E$ is finite etale over any algebraically closed field of characteristic prime to $[N]$. Over $S[1/N]$ then, $[N]$ is finite flat and fiber-by-fiber etale, so finite etale. Because $S[1/N]$ is normal and connected, to check that $E[N]$ is a twisted $(\Z/N\Z)^2$ over $S[1/N]$, it suffices to do so at a single geometric point of $S[1/N]$. Take a $\C$-valued point!
+
+We now return to the general case. To show that $[N]$ is always finite flat, we must show that on an elliptic curve $E/k$ with $k$ algebraically closed, $[N]$ is not the zero map. Take an integer $M$, prime to both $N$ and to $\operatorname{char}(k)$. Then $E(k)$ has $M^2$ points of order $M$. Because $(N, M) = 1$, $[N]$ induces an automorphism of these points. Therefore $[N]$ is not the zero map. Therefore $[N]$ is always finite flat. Because $S$ is noetherian, ``finite flat'' is the same as a ``finite locally free.'' Because $S$ is connected the degree of $[N]$ is constant on $S$, so may be computed at any geometric point. Take a $\C$-valued point!
+\end{proof}
+
+\begin{corollary}\label{cor:2.3.2}
+Let $S$ be an arbitrary scheme, $E/S$ an elliptic curve, and $N \ge 1$ an integer. If $E[N]$ is finite etale over $S$ (e.g., if $E[N]$ is $S$-isomorphic to $(\Z/N\Z)^2$), then $N$ is invertible on $S$.
+\end{corollary}
+
+\begin{proof}
+By \ref{thm:2.3.1}, the map $[N] : E \to E$ is an f.p.p.f $E[N]$-torsor. Therefore if $E[N]$ is finite etale over $S$, the map $[N] : E \to E$ is finite etale. Therefore $[N]$ induces an isomorphism on Lie algebras
+\[
+\Lie([N]) : \Lie(E/S) \xrightarrow{\ \sim\ } \Lie(E/S).
+\]
+But $\Lie([N])$ is simply $N$-fold usual addition, i.e., $\Lie([N]) = N$. Thus $\Lie(E/S)$ is an invertible $\cO_S$-module on which multiplication by $N$ is an automorphism.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 2.4
+% ------------------------------------------------------------------------------
+\section{Rigidity (Compare \cite{Mum3})}
+\label{sec:2.4}
+
+\begin{theorem}\label{thm:2.4.1}
+Let $R$ be a ring, $I$ an ideal of $R$, $p$ a prime number. Suppose that the ideal $(I, p)$ is nilpotent. Let
+\[
+f : E_1 \longrightarrow E_2
+\]
+be a homomorphism of elliptic curves over $R$. If $f \equiv 0 \bmod I$, then $f = 0$.
+\end{theorem}
+
+% ==============================================================================
+% Chapter 2, Sections 2.4 (continued) -- 2.9
+% ==============================================================================
+
+% ------------------------------------------------------------------------------
+% Section 2.4 (continued): proof of THEOREM 2.4.1, and THEOREM 2.4.2
+% ------------------------------------------------------------------------------
+\begin{proof}[Proof (Drinfeld)]
+Consider the sequence of ideals in $R$
+\[
+I^{(0)} = I, \quad I^{(1)} = (pI, I^2), \ldots, I^{(n+1)} = \bigl(pI^{(n)}, (I^{(n)})^2\bigr).
+\]
+Clearly, we have $I^{(n)} = 0$ for $n \gg 0$. Working our way from $R/I$ to $R$ through the intermediary $R/I^{(\nu)}$'s, we may assume that
+\[
+I^2 = pI = 0 \quad \text{in } R.
+\]
+Because $[p] : E_1 \to E_1$ is f.p.p.f. surjective, it suffices to show that $pf = 0$, if $f$ is $0$ mod $I$.
+
+Locally on $R$, we may choose a parameter, $X$, for the formal group of $E_2$. In terms of this parameter, we have
+\[
+[p](X) = pX + \text{higher terms} \in (pX, X^2).
+\]
+Now if $B$ is any $R$-algebra, and $P \in E_1(B)$ is any point, then by hypothesis $f(P) \in E_2(B)$ dies in $E_2(B/IB)$. Therefore $f(P)$ lies in the formal group of $E_2$, and its $X$-coordinate lies in $IB$. Because $pI = I^2 = 0$, the shape of $[p](X)$ shows that $p \cdot f(P) = 0$.
+\end{proof}
+
+\begin{theorem}\label{thm:2.4.2}
+Let $S$ be an arbitrary scheme, $E_1$ and $E_2$ two elliptic curves over $S$, and $f : E_1 \to E_2$ an $S$-homomorphism. Then Zariski locally on $S$, either $f = 0$ or $f$ is an isogeny, i.e., $f$ is finite locally free.
+\end{theorem}
+
+\begin{proof}
+The question is Zariski local on $S$, so we may assume $S$ affine, say $S = \Spec(A)$, and $E_1$ and $E_2$ are Weierstrass cubics in $\PP^2_S$. The data $(E_1, E_2, f)$ is of finite presentation over $A$, so we may reduce to the case when $A$ is of finite type over $\Z$.
+
+The general theory of the Hilbert Scheme \cite[p.~22]{Mum3} and \cite[2.8]{AK2} shows that for any two projective $A$-schemes $X, Y$, the functor $\underline{\Hom}_A(X, Y)$ of all scheme-morphisms from $X$ to $Y$ is represented by a separated $A$-scheme (which is a countable disjoint union of projective $A$-schemes). Therefore for any two morphisms $f, g : X \to Y$, the locus ``$f = g$'' is a closed subscheme of $\Spec(A)$. In our situation, then ``$f = 0$'' defines a closed subscheme $Z$ of $\Spec(A)$. We now show that $Z$ is open. For this we must show that $Z$ is stable by generation of $\Spec(A)$. Because $Z$ is closed, it suffices to show that if $x$ is a closed point of $\Spec(A)$ which lies in $Z$, then every generation of $x$ lies in $Z$. This amounts to showing that if $\hat{\cO}$ is the complete local ring of $\Spec(A)$ at a closed point, and if $f$ is zero modulo its maximal ideal $\mathfrak{m}$, then $f$ is zero over $\hat{\cO}$. By passage to the limit, it suffices to show $f$ is zero over the artinian quotients of $\hat{\cO}$. Because $A$ was of finite type over $\Z$, these artinian quotients are finite, so of finite residue characteristic, and so we may apply the previous theorem.
+
+Therefore the condition ``$f = 0$'' defines an open and closed subscheme of $\Spec(A)$, i.e., a union of components. It remains to examine the other components. Over any of these, $f$ is fiber-by-fiber non-zero, hence fiber-by-fiber finite and flat. By the fiber-by-fiber criterion for flatness, it follows that $f$ is flat. Being proper with finite fibers, $f$ is also finite. So $f$ is finite and flat, and, being over a noetherian base, $f$ is finite locally free.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 2.5
+% ------------------------------------------------------------------------------
+\section{Manifestations of autoduality}
+\label{sec:2.5}
+
+\begin{theorem}\label{thm:2.5.1}
+Let $E/S$ be an elliptic curve. The above structure of $S$-group-scheme on $E/S$ is the unique structure of $S$-group-scheme on $E/S$ for which ``$0$'' is the origin. If $E$ and $E'$ are two elliptic curves over $S$, any $S$-morphism $f : E \to E'$ with $f(0) = 0$ is a homomorphism.
+\end{theorem}
+
+\begin{proof}
+Let $K : E \times_S E \to E$ be a structure of $S$-group-scheme on $E/S$, for which ``$0$'' $\in E(S)$ is the identity. We claim
+\[
+K(P, Q) = P + Q
+\]
+for any $P, Q \in E(T)$, $T$ any $S$-scheme. By the base-change $T \to S$, it suffices to treat the case $T = S$. Fix $P \in E(S)$, and consider the $S$-morphism
+\[
+f_P : E \longrightarrow E
+\]
+\[
+f_P(Q) = K(P, Q) - P.
+\]
+We must show that $f_P$ is the identity map.
+
+Visibly $f_P$ is an $S$-automorphism of $E$. Let $g_P$ denote the inverse automorphism. For any $Q \in E(S)$, we have
+\[
+g_P^*(\cI(Q)) = \cI(f_P(Q)).
+\]
+Taking $Q = 0$, we have
+\[
+g_P^*(\cI(0)) = \cI(f_P(0)) = \cI(0).
+\]
+Therefore we have a commutative diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=tiny, every label/.append style={font=\scriptsize}]
+  Q \arrow[d] & E(S) \arrow[r, "f_P"] \arrow[d] & E(S) \arrow[d] & Q \arrow[d] \\
+  \cI^{-1}(Q) \otimes \cI(0) & \Pic^{(0)}(E/S) \arrow[r, "g_P^*"] & \Pic^{(0)}(E/S) & \cI^{-1}(Q) \otimes \cI(0)
+\end{tikzcd}
+\]
+in which the vertical arrows are group isomorphisms, and in which $g_P^*$ is a group automorphism. This shows that $f_P$ is an automorphism of $E$ for its ``Abel's theorem'' group structure.
+
+Viewing $P$ as a variable, i.e., making the f.p.p.f. base change $E \to S$, we may apply rigidity to the homomorphism
+\[
+f_P - \mathrm{id} : E_E \longrightarrow E_E
+\]
+of elliptic curves over the base $E$. This homomorphism is zero for $P = 0$, i.e., over the zero-section of the base $E$. As the zero section meets every connected component of $E$, this implies $f_P = \mathrm{id}$ over all of $E$, in particular for any $P \in E(S)$. Therefore $K(P, Q) = P + Q$ as required.
+
+Suppose we are given an $S$-morphism between elliptic curves over $S$,
+\[
+f : E \longrightarrow E', \quad f(0) = 0.
+\]
+We must show
+\[
+f(P + Q) = f(P) + f(Q)
+\]
+for all $P, Q \in E(T)$, $T$ any $S$-scheme. Making the base-change $T \to S$, we may suppose $T = S$. The question is local on $S$, which we may suppose affine. Because $E, E'$ are of finite presentation over $S$, we may further assume $S = \Spec(A)$ with $A$ a finitely generated $\Z$-algebra. We may replace $A$ by the product of its complete local rings at all closed points (faithful flatness), to reduce to the case $A$ complete noetherian local with finite residue field. By passage to the limit, it suffices to treat the case when $A$ is artin local with finite residue field $k$, of characteristic $p > 0$. Denote by $f_0 : E \otimes k \to E' \otimes k$ the morphism of special fibers, a map of smooth connected curves over a field. So either $f_0 = 0$, or $f_0$ is finite and flat.
+
+If $f_0 = 0$, we claim $f = 0$. Certainly for any $A$-algebra $R$, $f(E(R))$ lies in $\Ker\bigl(E'(R) \to E'(R \otimes_A k)\bigr)$, and this kernel is killed by a fixed power $p^n$ of $p$ independently of $R$, as in Drinfeld's rigidity argument (cf.\ (2.4.7)). Therefore $p^n f = 0$, i.e., $f$ lands in the finite flat group-scheme $E'[p^n]$ of rank $p^{2n}$ over $A$. Taking an $A$-basis of the coordinate ring of $E'[p^{2n}]$, $f$ is given by $p^{2n}$ coordinate functions $f_i \in \mathrm{H}^0(E, \cO_E) \cong A$. Therefore $f$ is a constant map. As $f(0) = 0$, we have $f = 0$.
+
+If $f_0 \ne 0$, then $f_0$ is finite and flat. By the local criterion of flatness, $f$ is flat, and $f$ is finite because it is proper with finite fibers. So $f$ is finite and flat, say locally free of degree $N$. The map
+\[
+f^t = \Pic(f) = f^* : \Pic^{(0)}_{E'/S} \longrightarrow \Pic^{(0)}_{E/S}
+\]
+\[
+\cL \longmapsto f^*(\cL)
+\]
+is certainly a homomorphism of $S$-group-schemes, so via Abel's isomorphism it corresponds to an $S$-homomorphism $f^t : E' \to E$. We claim that the composite
+\[
+E \xrightarrow{\ f\ } E' \xrightarrow{\ f^t\ } E
+\]
+is multiplication by $N$. This amounts to the statement
+\[
+\bigl(\cI^{-1}(P) \otimes \cI(0)\bigr)^{\otimes N} \cong f^*\bigl(\cI^{-1}(f(P)) \otimes \cI(0)\bigr).
+\]
+But
+\[
+\begin{aligned}
+f^*(\cI(f(P))) &= \mathrm{trans}^*_{-P} \cI(f^{-1}(0)) = \cI(P + f^{-1}(0)) \\
+f^*(\cI(0)) &= \cI(f^{-1}(0)),
+\end{aligned}
+\]
+so we need
+\[
+\cI^{-N}(P) \otimes \cI^N(0) \cong \cI^{-1}(P + f^{-1}(0)) \otimes \cI(f^{-1}(0)).
+\]
+This is an equality to be checked in $\Pic^{(0)}(E/S) \cong E(S)$, so we may f.p.p.f. localize on $S$. Because $f^{-1}(0)$ is a subscheme of $E$ finite locally free of rank $N$ over $S$, it is an effective Cartier divisor in $E$, so f.p.p.f. locally on the base it may be written as
+\[
+f^{-1}(0) = [Q_1] + \cdots + [Q_N].
+\]
+So we have
+\[
+\cI(P + f^{-1}(0)) = \tens{i} \cI(P + Q_i)
+\]
+\[
+\cI(f^{-1}(0)) = \tens{i} \cI(Q_i),
+\]
+and we are reduced to showing
+\[
+\bigl(\cI^{-1}(P) \otimes \cI(0)\bigr)^{\otimes N} \cong \bigotimes_{i=1}^{N} \bigl(\cI^{-1}(P + Q_i) \otimes \cI(Q_i)\bigr).
+\]
+In fact, we have, for any point $Q$,
+\[
+\cI^{-1}(P) \otimes \cI(0) \cong \cI^{-1}(P + Q) \otimes \cI(Q),
+\]
+in $\Pic^{(0)}(E/S)$, precisely by Abel's theorem!
+
+Thus we have proven the identity
+\[
+f^t \circ f = \text{multiplication by } N \text{ on } E.
+\]
+Therefore $f^t$ is f.p.p.f. surjective, so by \ref{thm:2.4.2} it is an isogeny. Now consider, for fixed $P$, the morphism $f_P : E \to E'$ defined by
+\[
+f_P(Q) = f(P + Q) - f(P) - f(Q).
+\]
+Composing with the homomorphism $f^t$, we find
+\[
+f^t(f_P(Q)) = N(P + Q) - NP - NQ = 0,
+\]
+i.e., $f_P$ takes values in $\Ker(f^t)$. But $\Ker(f^t)$ is itself finite and flat, so just as above we see that $f_P$ is a constant map to $\Ker(f^t)$. As $f_P(0) = f(P) - f(P) - f(0) = 0$, we have $f_P = 0$, whence $f$ itself is a homomorphism.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 2.6
+% ------------------------------------------------------------------------------
+\section{Hasse's theory (cf.~\cite{H})}
+\label{sec:2.6}
+
+\begin{theorem}\label{thm:2.6.1}
+Let $f : E \to E'$ be a homomorphism of elliptic curves over a connected base $S$. Let $f^t : E' \to E$ be the dual homomorphism
+\[
+\begin{tikzcd}[row sep=large, column sep=huge]
+  f^t = \Pic(f) : \Pic^0_{E'/S} \arrow[r] & \Pic^{(0)}_{E/S} \\
+  E' \arrow[u, phantom, "\wr"] & E \arrow[u, phantom, "\wr"]
+\end{tikzcd}
+\]
+Then the composite $f^t \circ f$ is given by
+\[
+f^t f = \deg(f) \xlongequal{dfn} \begin{cases} N \text{ if } f \text{ is an isogeny of degree } N \\ 0 \text{ if } f = 0. \end{cases}
+\]
+\end{theorem}
+
+\begin{proof}
+We proved this (in the course of proving the preceding theorem) over an artin local $S$, which by rigidity, applied to $f^t f - N$, is sufficient.
+\end{proof}
+
+\begin{customcor}{2.6.1.1}\label{cor:2.6.1.1}
+If $f$ is an isogeny of degree $N$, so is $f^t$ and $f^{tt} = f$.
+\end{customcor}
+
+\begin{proof}
+If $f$ is an isogeny of degree $N$, the formula
+\[
+f^t \circ f = N
+\]
+shows that $f^t$ is f.p.p.f. surjective, so non-zero, so itself an isogeny, so finite locally free of some degree. But
+\[
+\deg(f^t \circ f) = \deg(f^t)\deg(f) = N \deg(f^t)
+\]
+\[
+\deg([N]) = N^2,
+\]
+so $\deg(f^t) = N$. Now consider the composite $ff^t : E' \to E'$. We have
+\[
+ff^t(f(P)) = f(NP) = Nf(P),
+\]
+so that $ff^t - N$ kills the image of $f$. But $f$ is f.p.p.f. surjective, so we conclude
+\[
+ff^t = N.
+\]
+But as $f^t$ is an isogeny of degree $N$, we have
+\[
+f^{tt}f^t = N,
+\]
+whence $f - f^{tt}$ kills the image of $f^t$. As $f^t$ is f.p.p.f. surjective, we conclude $f = f^{tt}$.
+\end{proof}
+
+\begin{theorem}\label{thm:2.6.2}
+Let $f, g : E \to E'$ be homomorphisms of elliptic curves over $S$. Then $(f + g)^t = f^t + g^t$.
+\end{theorem}
+
+\begin{proof}
+View $f, g$, and $f + g$ as $E$-valued points of $E'$ (Hasse's trick!). Making the base change $E \to S$, we are reduced to showing that if $E'/S$ is an elliptic curve, and if $P, Q \in E(S)$, then for line bundle $\cL$ on $E'$ which is fiber-by-fiber of degree zero, we have an isomorphism of line bundles
+\[
+P^*(\cL) \otimes Q^*(\cL) \cong (P + Q)^*(\cL) \otimes 0^*(\cL)
+\]
+on $S$. Clearly the statement is invariant if we replace $\cL$ by $\cL \otimes (\pi^*(\cL_0))$ for $\pi : E' \to S$ the structural map, and $\cL_0$ a line bundle on $S$. So we may assume
+\[
+\cL = \cI^{-1}(R) \otimes \cI(0) \quad \text{for some } R \in E(S).
+\]
+Let $\mathrm{trans}_P : E' \to E'$ be the automorphism $X \mapsto X + P$. Then as morphisms $S \to E$, we have $P = \mathrm{trans}_P \circ 0$, so
+\[
+P^*(\cL) = 0^*(\mathrm{trans}_P^*(\cL)).
+\]
+Therefore we may rewrite the hoped-for isomorphism on $S$
+\[
+P^*(\cL) \otimes Q^*(\cL) \cong (P + Q)^*(\cL) \otimes 0^*(\cL)
+\]
+as an isomorphism
+\[
+\cO_S \cong 0^*\bigl(\mathrm{trans}_P^*(\cL) \otimes \mathrm{trans}_Q^*(\cL) \otimes \mathrm{trans}_{P+Q}^*(\cL^{-1}) \otimes \cL^{-1}\bigr).
+\]
+But $\cL \cong \cI^{-1}(R) \otimes \cI(0)$, so the line bundle on $E$ being pulled back is
+\[
+\begin{aligned}
+&\cI^{-1}(R-P) \otimes \cI(-P) \otimes \cI^{-1}(R-Q) \otimes \cI(-Q) \otimes \cI(R-P-Q) \otimes {}\mkern-4mu \\
+&\qquad \otimes \cI^{-1}(-P-Q) \otimes \cI(R) \otimes \cI^{-1}(0) \\
+&= \bigl(\cI^{-1}(R-P) \otimes \cI^{-1}(R-Q) \otimes \cI(R-P-Q) \otimes \cI(R)\bigr) \otimes {} \\
+&\qquad \otimes \bigl(\cI(-P) \otimes \cI(-Q) \otimes \cI^{-1}(-P-Q) \otimes \cI^{-1}(0)\bigr).
+\end{aligned}
+\]
+By Abel's theorem, the first clump of terms is of the form $\pi^*(\cL_0)$, while the second clump is $\mathrm{trans}_R^*$(the first clump)$^{-1}$, so all in all the expression being pulled back is of the form
+\[
+\pi^*(\cL_0) \otimes \mathrm{trans}_R^*(\pi^*(\cL_0))^{-1} = \pi^*(\cL_0) \otimes \pi^*(\cL_0)^{-1} = \cO_E.
+\]
+\end{proof}
+
+\begin{customcor}{2.6.2.1}\label{cor:2.6.2.1}
+For any integer $N \in \Z$, the transpose of the endomorphism $[N] : E \to E$ is $[N]$ itself.
+\end{customcor}
+
+\begin{proof}
+For $N = 0$, this is obvious. For $N \ne 0$, $[N]$ is an isogeny of degree $N^2$, so $N^t \cdot N = N^2$, whence $(N^t - N)$ kills the image of $[N]$, so $N^t = N$.
+\end{proof}
+
+\begin{customcor}{2.6.2.2}\label{cor:2.6.2.2}
+If $f : E \to E$ is an $S$-endomorphism of an elliptic curve over a connected base $S$, there exists an integer, called $\trace(f)$, such that $f + f^t = \trace(f)$.
+\end{customcor}
+
+\begin{proof}
+$\deg(1+f) = (1+f)^t(1+f) = (1+f^t)(1+f) = 1 + \deg(f) + (f+f^t)$.
+\end{proof}
+
+\begin{theorem}\label{thm:2.6.3}
+If $f : E \to E$ is an $S$-endomorphism of an elliptic curve over a connected base $S$, then:
+\begin{enumerate}
+\item[(1)] Inside $\End(E)$, $f$ is a root of the $\Z$-polynomial
+\[
+X^2 - \trace(f)X + \deg(f) = 0.
+\]
+\item[(2)] We have the inequality
+\[
+(\trace(f))^2 \le 4 \deg(f).
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For (1), we write
+\[
+f^2 - (f^t \cdot f)f + f^t f = 0.
+\]
+For (2), the inequality is equivalent to the assertion that the polynomial
+\[
+X^2 - \tr(f)X + \deg(f)
+\]
+takes only values $\ge 0$ for $X \in \R$, or equivalently for $X \in \Q$, or equivalently that for all integers $n, m \in \Z$, we have
+\[
+n^2 - \tr(f) \cdot nm + \deg(f)m^2 \ge 0.
+\]
+But this last inequality is none other than
+\[
+\deg(n - mf) \ge 0.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:2.6.4}
+If $E$ is an elliptic curve over a finite field $\F_q$,
+\[
+|\#E(\F_q) - (q+1)| \le 2\sqrt{q}.
+\]
+\end{corollary}
+
+\begin{proof}
+Denote by $F$ the Frobenius relative to $\F_q$. Then $1 - F$ is etale, and its kernel is exactly the constant group $E(\F_q)$. Therefore
+\[
+\begin{aligned}
+\#E(\F_q) = \deg(1-F) &= (1-F^t)(1-F) = 1 - \tr(F) + \deg(F) \\
+&= 1 + q - \tr(F),
+\end{aligned}
+\]
+and by the above inequality
+\[
+(\tr(F))^2 \le 4 \deg(F) = 4q.
+\]
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 2.7
+% ------------------------------------------------------------------------------
+\section{Applications to rigidity}
+\label{sec:2.7}
+
+\begin{corollary}\label{cor:2.7.1}
+Let $\epsilon : E \to E$ be an automorphism of an elliptic curve over a connected base $S$. Then $\epsilon$ satisfies an equation
+\[
+X^2 - \tr(\epsilon)X + 1 = 0
+\]
+with $\tr(\epsilon)$ one of the integers $0, \pm 1, \pm 2$.
+\end{corollary}
+
+\begin{proof}
+For an automorphism, $\epsilon$, we have $\deg(\epsilon) = 1$, whence $(\tr(\epsilon))^2 \le 4$ by \eqref{thm:2.6.3}.
+\end{proof}
+
+\begin{corollary}\label{cor:2.7.2}
+(Rigidity of level $N$ structures). Let $\epsilon : E \to E$ be an automorphism of an elliptic curve over a connected base $S$. Let $N \ge 2$ be an integer, $E[N]$ the scheme-theoretic kernel of $N$. Suppose that $\epsilon$ induces the identity automorphism of $E[N]$.
+\begin{enumerate}
+\item[(1)] If $N \ge 3$, then $\epsilon = \mathrm{id}$.
+\item[(2)] If $N = 2$, then $\epsilon = \pm \mathrm{id}$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+By hypothesis, $\epsilon - 1$ kills $E[N]$, so it factors as
+\[
+\epsilon - 1 = g \cdot N
+\]
+for some $g \in \End(E)$. Then
+\[
+\epsilon = 1 + gN,
+\]
+so
+\[
+\begin{cases}
+\trace(\epsilon) = 2 + N \trace(g) \\
+\deg(\epsilon) = 1 + N \trace(g) + N^2 \deg(g).
+\end{cases}
+\]
+But $\deg(\epsilon) = 1$, and $|\trace(\epsilon)| \le 2$. So
+\[
+|N \trace(g)| \le 4,
+\]
+\[
+N \trace(g) = -N^2 \deg(g), \quad \text{i.e.,}
+\]
+\[
+|N^2 \deg(g)| \le 4.
+\]
+If $N \ge 3$, this last inequality gives $|\deg(g)| < 1$, whence $\deg(g) = 0$, i.e., $g = 0$, so $\epsilon = 1$, as required. If $N = 2$, we find either $g = 0$, and $\epsilon = 1$, or $\deg(g) = 1$, $\trace(g) = -2$, whence $\trace(\epsilon) = 2 + N \trace(g) = -2$, and we find
+\[
+(\epsilon + 1)^2 = 0.
+\]
+But either $\epsilon + 1 = 0$, in which case we win, or $\epsilon + 1$ is an isogeny of some non-zero degree, in which case $(\epsilon + 1)^2$ is also an isogeny, so non-zero.
+\end{proof}
+
+\begin{corollary}\label{cor:2.7.3}
+(Rigidity of $\Gamma_1(N)$-structures). Let $\epsilon : E \to E$ be an automorphism of an elliptic curve $E$ over a connected base $S$. Let $N \ge 4$ be an integer and $G \subset E$ a closed subgroup-scheme which is finite locally free over $S$ of rank $N$. If $\epsilon$ induces the identity automorphism of $G$, then $\epsilon = \mathrm{id}$, or: $N = 4$, $G = E[2]$, and $\epsilon = -1$.
+\end{corollary}
+
+\begin{proof}
+As above, $\epsilon - 1$ kills $G$. So if $\epsilon \ne 1$, then $\epsilon - 1$ is an isogeny, whose kernel contains $G$. Therefore its degree is divisible by $N$:
+\[
+\deg(\epsilon - 1) \equiv 0 \ (N),
+\]
+i.e.,
+\[
+(\epsilon^t - 1)(\epsilon - 1) = 1 - \tr(\epsilon) + 1 \equiv 0 \ (N),
+\]
+i.e.,
+\[
+\tr(\epsilon) \equiv 2 \ (N).
+\]
+If $N \ge 5$, this congruence, together with $|\tr(\epsilon)| \le 2$, shows that $\tr(\epsilon) = 2$, whence $\epsilon$ satisfies $(\epsilon - 1)^2 = 0$, and just as above this forces $\epsilon = 1$.
+
+If $N = 4$, we have also to consider the possibility that $\tr(\epsilon) = -2$, in which case $(\epsilon + 1)^2 = 0$, and $\epsilon = -1$. But then $\epsilon - 1 = -2$ kills $G$, so $G \subset E[2]$, whence $G = E[2]$.
+\end{proof}
+
+\begin{corollary}\label{cor:2.7.4}
+Let $\epsilon : E \to E$ be an automorphism of an elliptic curve over a connected base $S$. Let $N \ge 4$ be an integer, and $G = \Z/N\Z \to E$ (resp.\ $G = \mu_N \hookrightarrow E$) a closed subgroup of $E$. If $\epsilon$ induces the identity on $G$, then $\epsilon = \mathrm{id}$.
+\end{corollary}
+
+\begin{proof}
+The only case not covered above is $N = 4$. But neither $\Z/4\Z$ nor $\mu_4$ is killed by $[2]$, so we must have $\epsilon = \mathrm{id}$ in this case as well.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 2.8
+% ------------------------------------------------------------------------------
+\section{Pairings (cf.~\cite{Oda})}
+\label{sec:2.8}
+
+\kmitem\label{item:2.8.1}
+For any $N$-isogeny $\pi$ (always understood to mean: finite locally free of rank $N$) between elliptic curves over an arbitrary base $S$, with dual $N$-isogeny $\pi^t$
+\[
+\begin{tikzcd}[column sep=huge]
+  E \arrow[r, shift left=0.6ex, "\pi"] & E' \arrow[l, shift left=0.6ex, "\pi^t"]
+\end{tikzcd}
+\]
+there is a canonical bilinear pairing of finite locally-free commutative $S$-group-schemes
+\setcounter{equation}{1}
+\begin{equation}\label{eq:2.8.1.2}
+\Ker \pi \times \Ker \pi^t \longrightarrow \mu_N \subset \mathbb{G}_m
+\end{equation}
+denoted
+\begin{equation}\label{eq:2.8.1.3}
+(P, P') \longmapsto \langle P, P' \rangle_\pi
+\end{equation}
+or more simply
+\[
+(P, P') \longmapsto \langle P, P' \rangle
+\]
+if there is no ambiguity about which isogeny $\pi$ is in question. Its definition, the opposite of \cite[pp.~66--67]{Oda}, is as follows on $T$-valued points, $T$ any $S$-scheme.
+
+By base-change $T \to S$, it suffices to define $\langle P, P' \rangle$ when $P, P'$ are $S$-valued points of $\Ker(\pi)$ and of $\Ker(\pi^t)$ respectively. Let $K_E^\times \subset \cO_E^\times$ denote the subsheaf of invertible functions on $E$ which take the value ``$1$'' along the zero-section of $E/S$. As explained in \cite[\S5, esp.~5.2, pp.~186--187]{K5}, we have a natural isomorphism
+\setcounter{equation}{4}
+\begin{equation}\label{eq:2.8.1.5}
+\Pic(E/S) \cong \mathrm{H}^1(E, K^\times),
+\end{equation}
+while
+\begin{equation}\label{eq:2.8.1.6}
+\mathrm{H}^0(E, K^\times) = \{1\}.
+\end{equation}
+By Abel's theorem (cf.\ \ref{sec:2.1}), we may interpret a point $P' \in (\Ker \pi^t)(S)$ as an element $\cL$ of $\Pic^{(0)}(E'/S)$ which lies in the kernel of $\pi^*$:
+\begin{equation}\label{eq:2.8.1.7}
+(\Ker \pi^t)(S) = \Ker\bigl(\pi^* : \Pic(E'/S) \to \Pic(E/S)\bigr).
+\end{equation}
+In terms of a normalized cocycle (i.e., one with values in $K^\times$) for $\cL$ with respect to some open covering $U_i$ of $E'$,
+\[
+f_{i,j} \in \Gamma(U_i \cap U_j, K_E^\times),
+\]
+the triviality of $\pi^*(\cL)$ in $\Pic(E/S)$ means that the normalized cocycle representing $\pi^*(\cL)$ with respect to the open covering $\pi^{-1}(U_i)$ of $E$,
+\[
+f_{i,j} \circ \pi \in \Gamma(\pi^{-1}(U_i \cap U_j), K_E^\times),
+\]
+may be written uniquely in the form
+\[
+f_{i,j} \circ \pi = h_i/h_j,
+\]
+with functions
+\[
+h_i \in \Gamma(\pi^{-1}(U_i), K_E^\times).
+\]
+Now view $P \in (\Ker \pi)(S) \subset E(S)$ as an $S$-morphism
+\[
+S \xrightarrow{\ P\ } E.
+\]
+Over the open covering of $S$ given by the open sets
+\[
+P^{-1}(\pi^{-1}U_i),
+\]
+we have the invertible functions
+\[
+h_i \circ P,
+\]
+which, in view of the relations
+\[
+f_{i,j} \in K^\times, \quad h_i/h_j = f_{i,j} \circ \pi, \quad \pi P = 0,
+\]
+patch together to define a global section
+\[
+\text{``}h(P)\text{''} \in \Gamma(S, \cO_S^\times) = \mathbb{G}_m(S).
+\]
+One then defines (the opposite of \cite[\S5]{K5}),
+\[
+\langle P, P' \rangle_\pi = \text{``}h(P)\text{''}.
+\]
+One verifies easily that this construction defines a bilinear pairing
+\[
+(\Ker \pi)(S) \times (\Ker \pi^t)(S) \longrightarrow \mathbb{G}_m(S).
+\]
+Because $(\Ker \pi)(S)$ is killed by $N$, the pairing lands in $\mu_N(S)$.
+
+\kmitem\label{item:2.8.2}
+According to the fundamental Cartier-Nishi duality theory (cf.~\cite{Oda}), this pairing defines an isomorphism of $S$-group-schemes
+\begin{equation}\label{eq:2.8.2.1}
+\Ker(\pi^t) \xrightarrow{\ \sim\ } \Hom_{S\text{-}\mathrm{gp}}(\Ker(\pi), \mathbb{G}_m)
+\end{equation}
+of $\Ker(\pi^t)$ with the Cartier dual of $\Ker(\pi)$.
+
+\kmitem\label{item:2.8.3}
+One also knows (cf.~\cite{Oda}) that this pairing is alternating, in the sense that
+\[
+(\langle P, P' \rangle_\pi)(\langle P', P \rangle_{\pi^t}) = 1.
+\]
+
+\kmitem\label{item:2.8.4}
+Let $\pi_1$ and $\pi_2$ be composable isogenies of elliptic curves over a base-scheme $S$:
+\[
+\begin{tikzcd}[column sep=large]
+  E_0 \arrow[r, shift left=0.6ex, "\pi_1"] & E_1 \arrow[l, shift left=0.6ex, "\pi_1^t"] \arrow[r, shift left=0.6ex, "\pi_2"] & E_2 \arrow[l, shift left=0.6ex, "\pi_2^t"]
+\end{tikzcd}
+\]
+For any $S$-valued points
+\[
+P_0 \in \Ker(\pi_1), \quad P_2 \in \Ker(\pi_1^t \circ \pi_2^t),
+\]
+we have the formula
+\begin{equation}\label{eq:2.8.4.1}
+\langle P_0, P_2 \rangle_{\pi_2 \circ \pi_1} = \langle P_0, \pi_2^t P_2 \rangle_{\pi_1},
+\end{equation}
+as follows immediately from the above definition of $\langle\ ,\ \rangle$, via the interpretation of $P_2$ as a suitable line bundle on $E_2$.
+
+\kmitem\label{item:2.8.5}
+If we apply the discussion \ref{eq:2.8.1.2} to the $N^2$-isogeny ``multiplication by $N$'', which is self-dual \eqref{cor:2.6.2.1}, we obtain the ``$e_N$-pairing''
+\begin{equation}\label{eq:2.8.5.1}
+\begin{gathered}
+E[N] \times E[N] \longrightarrow \mu_N \\
+(P, Q) \longmapsto \langle P, Q \rangle_N = e_N(P, Q),
+\end{gathered}
+\end{equation}
+which (by \ref{item:2.8.3}) is an alternating\footnote{In fact, $e_N(P,P) = 1$, cf.\ Notes Added in Proof.} autoduality of $E[N]$.
+
+\begin{equation}\label{eq:2.8.5.2}
+\parbox[t]{0.86\linewidth}{\raggedright To eliminate any possibility of sign ambiguity, let us state explicitly that on a complex torus $\C/L$, for any two $N$-division points $\ell_1/N$, $\ell_2/N$, we have the formula}
+\end{equation}
+\begin{equation}\label{eq:2.8.5.3}
+e_N(\ell_1/N, \ell_2/N) = \exp\left(\frac{2\pi i}{N} \cdot \frac{\Image(\overline{\ell}_1 \ell_2)}{A(L)}\right),
+\end{equation}
+where $A(L)$ is the area of a fundamental parallelogram for the lattice $L$.
+
+\kmitem\label{item:2.8.6}
+Let us return to an arbitrary $N$-isogeny
+\[
+\begin{tikzcd}[column sep=huge]
+  E \arrow[r, shift left=0.6ex, "\pi"] & E' \arrow[l, shift left=0.6ex, "\pi^t"]
+\end{tikzcd}
+\]
+We will apply \eqref{eq:2.8.4.1} to the composable isogenies $\pi$ and $\pi^t$. Because $\pi^t \pi = N$ (cf.\ the proof of \ref{thm:2.5.1}) and $(\pi^t)^t = \pi$ by \ref{cor:2.6.2.1}, the identity \eqref{eq:2.8.4.1} becomes
+\begin{equation}\label{eq:2.8.6.1}
+\begin{gathered}
+\text{Let } \pi : E \to E' \text{ be an } N\text{-isogeny of elliptic curves over } S. \text{ For} \\
+P \in (\Ker \pi)(S) \text{ and } Q \in E[N](S), \text{ we have} \\
+e_N(P, Q) = \langle P, \pi Q \rangle_\pi.
+\end{gathered}
+\end{equation}
+
+\kmitem\label{item:2.8.7}
+As a consequence of \eqref{eq:2.8.6.1}, we see that the restriction of the $e_N$-pairing to $\Ker(\pi) \times \Ker(\pi)$ is trivial:
+\begin{equation}\label{eq:2.8.7.1}
+\parbox[t]{0.80\linewidth}{\raggedright any finite locally free subgroup-scheme of $E[N]$ of rank $N$ is isotropic for the $e_N$-pairing.}
+\end{equation}
+
+% ------------------------------------------------------------------------------
+% Section 2.9
+% ------------------------------------------------------------------------------
+\section{Deformation theory (cf.~\cite{SeTa1}, \cite{Dr2}, \cite{K5})}
+\label{sec:2.9}
+
+\begin{theorem}\label{thm:2.9.1}
+(Serre-Tate). Let $R$ be a ring, $I$ an ideal of $R$, $p$ a prime number. Suppose that the ideal $(I, p)$ is nilpotent. Let $N \ge 1$ be an integer divisible by $p$, and denote by $R_0$ the ring $R/I$. Consider the following three categories $\mathcal{C}, \mathcal{B}_N, \mathcal{E}_N$:
+\begin{description}[leftmargin=3.4em, labelindent=0.6em, labelsep=0.5em, itemsep=0.6em]
+\item[$\mathcal{C}$ :] objects are elliptic curves $E/R$, maps are $R$-homomorphisms
+\item[$\mathcal{B}_N$ :] objects are quadruples $(E_0/R_0, G, (\ ,\ ), i)$ where $E_0/R_0$ is an elliptic curve, $G = \cup\, G[N^\nu]$ is an ``$N$-divisible group'' over $R$, $(\ ,\ )$ is a compatible family of alternating autodualities $(\ ,\ )_{N^\nu}$ on the $G[N^\nu]$'s,
+\[
+(NP, NQ)_{N^{\nu-1}} = \bigl((P, Q)_{N^\nu}\bigr)^N
+\]
+for $P, Q$ sections of $G[N^\nu]$, and $i$ is an isomorphism of $N$-divisible groups over $R_0$ between $E_0[N^\infty]$ and $G \tens{R} R_0$ which carries the $e_{N^\nu}$-pairings on the $E_0[N^\nu]$'s to the given pairings $(\ ,\ )_{N^\nu}$ on the $G[N^\nu] \tens{R} R_0$'s. Morphisms are pairs $(f_0, f)$ with $f_0$ an $R_0$-homomorphism of elliptic curves, $f$ an $R$-homomorphism of $N$-divisible groups, such that $f_0$ and $f \tens{R} R_0$ agree (via $i$) on the $N$-divisible groups over $R_0$.
+\item[$\mathcal{E}_N$ :] objects are triples $(E_0/R_0, G, i)$ where $E_0/R_0$ is an elliptic curve, $G/R$ is an $N$-divisible group, and $i$ is an $R_0$-isomorphism $E_0[N^\nu] \xrightarrow{\ \sim\ } G \tens{R} R_0$ of $N$-divisible groups, morphisms are pairs $(f_0, f)$ as in $\mathcal{B}_N$ above.
+\end{description}
+
+There are obvious functors $\mathcal{C} \to \mathcal{B}_N \to \mathcal{E}_N$, defined by
+\[
+\begin{array}{@{}l@{}}
+(E/R) \mapsto (E_0/R_0, E[N^\infty], \{e_{N^\nu}\}, \mathrm{id}), \\
+\quad (E_0/R_0, G, (\ ,\ ), i) \mapsto (E_0/R_0, G, i).
+\end{array}
+\]
+These functors are equivalences of categories.
+\end{theorem}
+
+\begin{proof}
+That the composite $\mathcal{C} \to \mathcal{E}_N$ is an equivalence of categories is the special case ``dimension one'' of the Serre-Tate theorem for abelian schemes (cf.~\cite{Mes} or \cite{K5} for a proof). Therefore $\mathcal{B}_N \to \mathcal{E}_N$ is essentially surjective. But $\mathcal{B}_N \to \mathcal{E}_N$ is visibly fully faithful---morphisms in $\mathcal{B}_N$ ``don't know about $(\ ,\ )$''---hence $\mathcal{B}_N \to \mathcal{E}_N$ is an equivalence also. Therefore $\mathcal{C} \to \mathcal{B}_N$ is also an equivalence.
+\end{proof}
+
+\begin{remark}\label{rem:2.9.2}
+In the literature, the Serre-Tate theorem is usually stated only for $N = p$. This is the essential case, because the prime-to-$p$ part of the $N$-divisible group is ind-etale over any ring $R$ in which $p$ is nilpotent, so contributes nothing to the categories $\mathcal{B}_N$, $\mathcal{E}_N$; in other words, we have a commutative diagram of equivalences for any $N$ divisible by $p$:
+\[
+\begin{tikzcd}[row sep=large, column sep=huge]
+  & \mathcal{C} \arrow[dl, "\sim"] \arrow[d, "\sim"] & \\
+  \mathcal{B}_p \arrow[d, "\sim"] & \mathcal{B}_N \arrow[l, "\sim"] \arrow[d, "\sim"] & \\
+  \mathcal{E}_p & \mathcal{E}_N \arrow[l, "\sim"] &
+\end{tikzcd}
+\]
+\end{remark}
+
+\begin{theorem}\label{thm:2.9.3}
+Let $k$ be an algebraically closed field of characteristic $p > 0$, $E/k$ an elliptic curve. Then the $p$-divisible group of $E$ is, up to $k$-isomorphism, one of the following two $p$-divisible groups:
+\begin{enumerate}
+\item[1)] $\mu_{p^\infty} \times \Q_p/\Z_p$ (``ordinary'')
+\item[2)] the unique 1-parameter formal Lie group over $k$ of height two (``supersingular'').
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Any $p$-divisible group over an algebraically closed field is the product of a $p$-divisible commutative formal Lie group and a finite number of copies of $\Q_p/\Z_p$. So necessarily
+\[
+E[p^\infty] = \hat{E} \times (\Q_p/\Z_p)^a
+\]
+for some integer $a \ge 0$. Because $p : E \to E$ is finite flat of degree $p^2$ (\ref{thm:2.3.1}), we have
+\[
+\mathrm{height}(\hat{E}) + a = 2.
+\]
+If $E$ has height one, then we have $\hat{E} \cong \hat{\mathbb{G}}_m = \mu_{p^\infty}$, because $k$ is algebraically closed of characteristic $p > 0$, and this is case 1). The only other possibility is $\mathrm{height}(\hat{E}) = 2$, $a = 0$. Again one knows that over an algebraically closed $k$ of characteristic $p > 0$, there is up to $k$-isomorphism a unique one-parameter formal Lie group of height two (or indeed of any height).
+\end{proof}
+
+\begin{theorem}\label{thm:2.9.4}
+In every characteristic $p > 0$, the second case occurs, and it occurs only a finite number of times.
+\end{theorem}
+
+\begin{proof}
+Let $k$ be an algebraically closed field of characteristic $p > 0$, and $E/k$ an elliptic curve. The Frobenius morphism
+\[
+F : E \longrightarrow E^{(p)}
+\]
+visibly has degree $p$, so by \eqref{thm:2.6.1} we have
+\[
+F^t F = p.
+\]
+As customary, we denote $F^t : E^{(p)} \to E$ by $V$:
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+  E \arrow[r, "F"] \arrow[rr, bend right=25, "p"'] & E^{(p)} \arrow[r, "V"] & E
+\end{tikzcd}
+\]
+By \eqref{cor:2.6.1.1}, $V$ also has degree $p$. Therefore $\Ker(V)$ in $E^{(p)}$ is either etale, or it is connected, in which case it is equal to $\Ker(F^{(p)})$ in $E^{(p)}$, the unique connected subgroup-scheme of $E/k$ which has rank $p$.
+
+By \eqref{thm:2.9.3}, the curve $E$ is supersingular if and only if $E[p]$ is connected. The short exact sequence of $k$-group-schemes
+\[
+0 \longrightarrow \Ker F \longrightarrow E[p] \xrightarrow{\ F\ } \Ker V \longrightarrow 0
+\]
+shows that $E[p]$ is connected if and only if $\Ker(V)$ is connected. Therefore $E$ is supersingular if and only if $\Ker(V) = \Ker(F^{(p)})$.
+
+To prove that there are only finitely many $k$-isomorphism classes of supersingular $E$, we notice that if $E$ is supersingular, then the two isogenies
+\[
+E^{(p)} \xrightarrow{\ V\ } E
+\]
+\[
+E^{(p)} \xrightarrow{\ F^{(p)}\ } E^{(p^2)}
+\]
+have the same kernels. Therefore we obtain a $k$-isomorphism
+\[
+E \xrightarrow[\ A\ ]{\ \sim\ } E^{(p^2)}
+\]
+sitting in a commutative diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=huge]
+  & E \arrow[dl, "p"] \arrow[dr, "F^2"] & \\
+  E \arrow[rr, "A"'] & & E^{(p^2)}
+\end{tikzcd}
+\]
+Iterating this construction, we obtain for every integer $n \ge 1$ a commutative diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=huge]
+  & E \arrow[dl, "p^n"] \arrow[dr, "F^{2n}"] & \\
+  E \arrow[rr, "A(n)"'] & & E^{(p^{2n})}
+\end{tikzcd}
+\]
+Choose an integer $N \ge 3$ prime to $p$, and an integer $n \ge 1$ such that $p^n \equiv 1$ mod $N$ (for example, if $p \ne 2$, take $N = p - 1$ and $n = 1$, and if $p = 2$ take $N = 3$, $n = 2$). The $k$-group-scheme $E[N]$ is $k$-isomorphic to $(\Z/N\Z)^2$ (by \eqref{thm:2.3.1}, $k$ being algebraically closed). Let us fix a $k$-isomorphism
+\[
+\phi : (\Z/N\Z)^2 \xrightarrow{\ \sim\ } E[N].
+\]
+Then $\phi^{(p^{2n})} = F^{2n} \circ \phi$ is such an isomorphism for $E^{(p^{2n})}$. Because $p^n \equiv 1$ mod $N$, the commutative diagram above shows that
+\[
+\phi^{(p^{2n})} = F^{2n} \circ \phi = A(n) \circ p^n \circ \phi = A(n) \circ \phi.
+\]
+Therefore $A(n)$ defines a $k$-isomorphism
+\[
+(E, \phi) \xrightarrow[\ A(n)\ ]{\ \sim\ } (E^{(p^{2n})}, \phi^{(p^{2n})}).
+\]
+By rigidity of level $N \ge 3$ structures \eqref{cor:2.7.2}, and galois descent, this implies that $(E, \phi)$ is defined over $\F_{p^{2n}}$. In particular, $E$ is definable over $\F_{p^{2n}}$, by a generalized Weierstrass equation \eqref{eq:2.2.5.1} with coefficients in $\F_{p^{2n}}$. Thus there are only finitely many supersingular $E$'s in characteristic $p > 0$.
+
+It remains to show that there exist supersingular elliptic curves in every characteristic. In characteristic 2, the curve $X^3 + Y^3 + Z^3 = 0$ is supersingular. In characteristic $p \ge 3$, a Legendre curve
+\[
+y^2 = x(x-1)(x-\lambda)
+\]
+is supersingular precisely when the Hasse invariant (i.e., the tangent map of $V : E^{(p)} \to E$) vanishes.
+
+A standard calculation \cite[p.~216]{Mum4} shows that for the Legendre family, the Hasse invariant is a polynomial in $\lambda$ of degree $(p-1)/2$. We refer to \cite{Ig1} for Igusa's elegant proof that this polynomial has $(p-1)/2$ distinct roots, all of which are different from $0, 1, \infty$. Thus there are $(p-1)/2$ values of $\lambda$ in characteristic $p \ge 3$ for which the corresponding elliptic curve is supersingular.
+\end{proof}
+
+\begin{remark}\label{rem:2.9.5}
+An alternate approach to showing the existence of supersingular elliptic curves in characteristic $p$ is to construct them explicitly by means of the theory of complex multiplication \cite{Deu}. Let $K$ be a quadratic imaginary field, $\cO_K$ its ring of integers, and $K \hookrightarrow \C$ a complex embedding. Then $\cO_K$ is a lattice in $\C$, and the quotient $\C$ modulo $\cO_K$ is an elliptic curve $E$ over $\C$ with complex multiplication by $\cO_K$. One knows that $E$ is definable over a subfield of $\C$ which is a finite extension of $\Q$, and that over a sufficiently large such finite extension, say $L$, this elliptic curve has ``everywhere good reduction'', i.e., there exists an elliptic curve $E$ over $\cO_L$, the ring of all algebraic integers in $L$, whose complex fiber is the original $E$.
+
+This being the case, for any maximal ideal $\mathfrak{p}$ of $\cO_L$, with residue field $\F_{\mathfrak{p}}$, we may speak of the reduction modulo $\mathfrak{p}$ of $E$, i.e., of the elliptic curve
+\[
+E \tens{\cO_L} \F_{\mathfrak{p}}
+\]
+over the finite field $\F_{\mathfrak{p}}$. Denoting by $p$ the characteristic of $\F_{\mathfrak{p}}$, one knows that $E \otimes \F_{\mathfrak{p}}$ is ordinary if and only if the rational prime $p$ \emph{splits} in the quadratic extension $K/\Q$. Equivalently, $E \otimes \F_{\mathfrak{p}}$ is supersingular if and only if the rational prime $p$ either ramifies or stays prime in $K$.
+
+To obtain a supersingular elliptic curve in a given characteristic $p > 0$, simply take for $K$ the field $\Q(\sqrt{-p})$, a quadratic imaginary field in which $p$ is visibly ramified.
+\end{remark}

@@ -1,0 +1,642 @@
+% ====================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S16.3  Fourier 积分与 Fourier 变换
+%  源：原书印刷页 286–299（PDF 物理页 292–305）
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref；数学模式内的中文必须包 text
+% ====================================================================
+\section{Fourier 积分与 Fourier 变换}\label{sec:16.3}
+
+\S16.1 节已指出, 如果 $f(x)$ 在闭区间 $[-l,l]$ 上满足一定的条件(例如可导), 则它就能在 $[-l,l]$ 上展开为 Fourier 级数:
+\[
+  f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos\frac{n\pi}{l}x+b_{n}\sin\frac{n\pi}{l}x\right),
+\]
+其中
+\[
+  a_{n}=\frac{1}{l}\int_{-l}^{l}f(x)\cos\frac{n\pi}{l}x\mathrm{d}x,\quad n=0,1,2,\cdots,
+\]
+\[
+  b_{n}=\frac{1}{l}\int_{-l}^{l}f(x)\sin\frac{n\pi}{l}x\mathrm{d}x,\quad n=1,2,\cdots.
+\]
+如果 $f(x)$ 定义在整个数轴上, 在任何有限区间中满足收敛定理的条件, 且在 $(-\infty,+\infty)$ 中绝对可积, 则对任何固定的 $x$ 值总能选取充分大的 $l$, 使得 $l>|x|$. 因此, $f(x)$ 总能用上式表示, 但是对于不同的 $x$, 表达式可能不一样.
+
+为了让 $f(x)$ 在 $(-\infty,+\infty)$ 中能有一个统一的表达式, 必须换一种方法考虑.
+
+设 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 对任意实数 $u$, 定义
+\[
+  a(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\cos ut\mathrm{d}t,
+\]
+\[
+  b(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\sin ut\mathrm{d}t.
+\]
+由于 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 根据比较判别法, 上述两个积分都是绝对收敛的. 仿照 Fourier 级数中的做法, 我们称
+\[
+  \int_{0}^{+\infty}\left[a(u)\cos ux+b(u)\sin ux\right]\mathrm{d}u
+\]
+为 $f(x)$ 的 \textbf{Fourier 积分}, 记为
+\[
+  f(x)\sim\int_{0}^{+\infty}\left[a(u)\cos ux+b(u)\sin ux\right]\mathrm{d}u.
+\]
+与 Fourier 级数一样, 右端的积分是否收敛, 如果收敛, 是否收敛到 $f(x)$ 都是不知道的. 为了研究 Fourier 积分的收敛性, 记
+\[
+  S(\lambda,x)=\int_{0}^{\lambda}\left[a(u)\cos ux+b(u)\sin ux\right]\mathrm{d}u,
+\]
+它相当于 Fourier 级数的部分和. 为了说明 $S(\lambda,x)$ 是有意义的, 我们先证明下面的定理.
+
+\begin{theorem}\label{thm:16.3.1}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 则
+\[
+  a(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\cos ut\mathrm{d}t,
+\]
+\[
+  b(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\sin ut\mathrm{d}t
+\]
+都在 $(-\infty,+\infty)$ 中一致连续.
+\end{theorem}
+
+\begin{proof}
+因为 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 故 $\forall\varepsilon>0,\ \exists A>0$, 使得
+\[
+  \int_{-\infty}^{-A}|f(t)|\mathrm{d}t+\int_{A}^{+\infty}|f(t)|\mathrm{d}t<\frac{\pi}{4}\varepsilon.
+\]
+又因 $\cos x$ 在 $(-\infty,+\infty)$ 中一致连续, 故 $\forall\varepsilon>0,\ \exists\eta>0$, 当 $|x'-x''|<\eta$ 时, 有
+\[
+  \left|\cos x'-\cos x''\right|<\frac{\varepsilon}{2}\left(\frac{1}{\pi}\int_{-A}^{A}|f(t)|\mathrm{d}t\right)^{-1}.
+\]
+今取 $\delta=\dfrac{\eta}{A}$, 当 $|u'-u''|<\delta$, $t\in[-A,A]$ 时, 由于
+\[
+  |u't-u''t|=|u'-u''||t|<\delta A=\eta,
+\]
+所以,
+\[
+  |\cos u't-\cos u''t|<\frac{\varepsilon}{2}\left(\frac{1}{\pi}\int_{-A}^{A}|f(t)|\mathrm{d}t\right)^{-1}.
+\]
+于是, 当 $|u'-u''|<\delta$ 时, 有
+\begin{align*}
+  |a(u')-a(u'')|&\leqslant\frac{1}{\pi}\int_{-\infty}^{+\infty}|f(t)||\cos u't-\cos u''t|\mathrm{d}t\\
+  &\leqslant\frac{2}{\pi}\int_{-\infty}^{-A}|f(t)|\mathrm{d}t+\frac{2}{\pi}\int_{A}^{+\infty}|f(t)|\mathrm{d}t+\frac{1}{\pi}\int_{-A}^{A}|f(t)||\cos u't-\cos u''t|\mathrm{d}t\\
+  &<\frac{2}{\pi}\cdot\frac{\pi}{4}\varepsilon+\frac{1}{\pi}\cdot\frac{\varepsilon}{2}\left(\frac{1}{\pi}\int_{-A}^{A}|f(t)|\mathrm{d}t\right)^{-1}\int_{-A}^{A}|f(t)|\mathrm{d}t\\
+  &=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+这就证明了 $a(u)$ 在 $(-\infty,+\infty)$ 中是一致连续的. 同理可证 $b(u)$ 在 $(-\infty,+\infty)$ 中也一致连续.
+\end{proof}
+
+由此可知, $S(\lambda,x)$ 对任何 $\lambda\in(0,+\infty)$ 都是有意义的. 进而, 有
+\begin{align*}
+  S(\lambda,x)&=\int_{0}^{\lambda}[a(u)\cos ux+b(u)\sin ux]\mathrm{d}u\\
+  &=\frac{1}{\pi}\int_{0}^{\lambda}\left(\int_{-\infty}^{+\infty}f(t)\cos ut\mathrm{d}t\cdot\cos ux+\int_{-\infty}^{+\infty}f(t)\sin ut\mathrm{d}t\cdot\sin ux\right)\mathrm{d}u\\
+  &=\frac{1}{\pi}\int_{0}^{\lambda}\left[\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u.
+\end{align*}
+为了研究 $S(\lambda,x)$ 当 $\lambda\to+\infty$ 时的性态, 将 $S(\lambda,x)$ 写成类似于 Fourier 级数中的 Dirichlet 积分那样更为方便.
+
+\begin{theorem}\label{thm:16.3.2}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 上绝对可积, 则 $\forall\lambda>0$, 有
+\[
+  S(\lambda,x)=\frac{1}{\pi}\int_{0}^{+\infty}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t.
+\]
+\end{theorem}
+
+\begin{proof}
+\begin{align*}
+  S(\lambda,x)&=\frac{1}{\pi}\int_{0}^{\lambda}\left[\int_{-\infty}^{+\infty}f(x)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u\\
+  &\xlongequal{\text{积分号可交换}}\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\left[\int_{0}^{\lambda}\cos u(x-t)\mathrm{d}u\right]\mathrm{d}t\\
+  &=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\frac{\sin\lambda(x-t)}{x-t}\mathrm{d}t\\
+  &\xlongequal{s=x-t}\frac{1}{\pi}\int_{-\infty}^{+\infty}f(x-s)\frac{\sin\lambda s}{s}\mathrm{d}s\\
+  &=\frac{1}{\pi}\int_{0}^{+\infty}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t.
+\end{align*}
+需证明积分号可交换, 注意对任何 $\lambda$ 与 $A$, 作为 $t$ 和 $u$ 的二元函数 $f(t)\cos u(x-t)$ 是矩形 $[-A,A]\times[0,\lambda]$ 上的可积函数, 而且对每个 $t\in[-A,A]$, 它作为 $u$ 的函数在 $[0,\lambda]$ 上可积; 对每个 $u\in[0,\lambda]$, 它作为 $t$ 的函数在 $[-A,A]$ 上可积. 于是, 由重积分的知识知,
+\[
+  \int_{0}^{\lambda}\left[\int_{-A}^{A}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u=\int_{-A}^{A}\left[\int_{0}^{\lambda}f(t)\cos u(x-t)\mathrm{d}u\right]\mathrm{d}t.
+\]
+因为 $\int_{-\infty}^{+\infty}|f(t)|\mathrm{d}t<+\infty$, 故对任何固定的 $\lambda>0$ 与 $\varepsilon>0$, 存在 $A_{0}$, 当 $A>A_{0}$ 时, 有
+\[
+  \int_{-\infty}^{-A}|f(t)|\mathrm{d}t+\int_{A}^{+\infty}|f(t)|\mathrm{d}t<\frac{\varepsilon}{\lambda}.
+\]
+于是, 当 $A>A_{0}$ 时,
+\begin{align*}
+  &\left|\int_{0}^{\lambda}\left[\int_{-A}^{A}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u-\int_{0}^{\lambda}\left[\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u\right|\\
+  &\leqslant\int_{0}^{\lambda}\left[\int_{-\infty}^{-A}|f(t)|\mathrm{d}t+\int_{A}^{+\infty}|f(t)|\mathrm{d}t\right]\mathrm{d}u<\frac{\varepsilon}{\lambda}\cdot\lambda=\varepsilon.
+\end{align*}
+这就证明了
+\[
+  \lim_{A\to+\infty}\int_{0}^{\lambda}\left[\int_{-A}^{A}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u=\int_{0}^{\lambda}\left[\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u.
+\]
+由此得到
+\begin{align*}
+  &\int_{-\infty}^{+\infty}\left[\int_{0}^{\lambda}f(t)\cos u(x-t)\mathrm{d}u\right]\mathrm{d}t=\lim_{A\to+\infty}\int_{-A}^{A}\left[\int_{0}^{\lambda}f(t)\cos u(x-t)\mathrm{d}u\right]\mathrm{d}t\\
+  &=\lim_{A\to+\infty}\int_{0}^{\lambda}\left[\int_{-A}^{A}f(t)\cos u(x-t)\mathrm{d}u\right]\mathrm{d}t\\
+  &=\int_{0}^{\lambda}\left[\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t\right]\mathrm{d}u.
+\end{align*}
+\end{proof}
+
+从定理~\ref{thm:16.3.2} 立即可以得到 Fourier 积分的局部化定理.
+
+\begin{theorem}[Fourier 积分的局部化定理]\label{thm:16.3.3}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 则 $f(x)$ 的 Fourier 积分在某点 $x$ 是否收敛以及收敛于什么值, 仅与 $f(x)$ 在点 $x$ 附近的函数值有关.
+\end{theorem}
+
+\begin{proof}
+$\forall\varepsilon>0$, 因为 $f$ 在 $(-\infty,+\infty)$ 中绝对可积, 则 $\exists A_{0}>1$, 使得
+\[
+  \int_{A_{0}}^{+\infty}|f(x+t)+f(x-t)|\mathrm{d}t<\varepsilon.
+\]
+而当 $t>A_{0}$ 时, 有
+\[
+  \left|\frac{\sin\lambda t}{t}\right|\leqslant\frac{1}{t}<\frac{1}{A_{0}}<1,
+\]
+故 $\forall\lambda$, 有
+\[
+  \left|\int_{A_{0}}^{+\infty}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t\right|\leqslant\int_{A_{0}}^{+\infty}|f(x+t)+f(x-t)|\mathrm{d}t<\varepsilon.
+\]
+根据 Riemann-Lebesgue 引理知, 对任何正数 $h<A_{0}$, 有
+\[
+  \lim_{\lambda\to+\infty}\int_{h}^{A_{0}}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t=0.
+\]
+因而,
+\[
+  \lim_{\lambda\to+\infty}\int_{h}^{+\infty}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t=0.
+\]
+这样, 当 $\lambda\to+\infty$ 时, 积分
+\[
+  S(\lambda,x)=\frac{1}{\pi}\int_{0}^{+\infty}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t
+\]
+是否收敛以及收敛于什么值, 完全取决于积分
+\[
+  \frac{1}{\pi}\int_{0}^{h}\left[f(x+t)+f(x-t)\right]\frac{\sin\lambda t}{t}\mathrm{d}t
+\]
+当 $\lambda\to+\infty$ 时的极限情况, 因而仅与 $f$ 在点 $x$ 附近的值有关.
+\end{proof}
+
+关于积分 $\dfrac{1}{\pi}\displaystyle\int_{0}^{h}[f(x+t)+f(x-t)]\dfrac{\sin\lambda t}{t}\mathrm{d}t$ 的收敛情况, 类似于 Fourier 级数的收敛问题的讨论, 可以得到与 Fourier 级数中完全相同的 Dini 判别法及其推论.
+
+\begin{theorem}[Fourier 积分的 Dini 判别法]\label{thm:16.3.4}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 且对某个实数 $s$, 令
+\[
+  \varphi(t)=f(x_{0}+t)+f(x_{0}-t)-2s.
+\]
+如果 $\exists\delta>0$, 使得函数 $\dfrac{\varphi(t)}{t}$ 在 $[0,\delta]$ 上可积或绝对可积, 则 $f(x)$ 的 Fourier 积分在 $x_{0}$ 收敛于 $s$, 即
+\[
+  \frac{1}{\pi}\int_{0}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x_{0}-t)\mathrm{d}t=s.
+\]
+\end{theorem}
+
+\begin{proof}
+由例~\ref{ex:15.3.8} 知,
+\[
+  \frac{2}{\pi}\int_{0}^{+\infty}\frac{\sin\lambda t}{t}\mathrm{d}t=1,\quad\lambda>0.
+\]
+于是, 对任意 $s$, 便有
+\begin{align*}
+  S(\lambda,x_{0})-s&=\frac{1}{\pi}\int_{0}^{+\infty}\left[f(x_{0}+t)+f(x_{0}-t)-2s\right]\frac{\sin\lambda t}{t}\mathrm{d}t\\
+  &=\frac{1}{\pi}\int_{0}^{+\infty}\varphi(t)\frac{\sin\lambda t}{t}\mathrm{d}t=\frac{1}{\pi}\int_{0}^{+\infty}\frac{\varphi(t)}{t}\sin\lambda t\mathrm{d}t.
+\end{align*}
+由 $\dfrac{\varphi(t)}{t}$ 在 $[0,\delta]$ 上可积或绝对可积, 根据 Riemann-Lebesgue 引理知,
+\[
+  \lim_{\lambda\to+\infty}\frac{1}{\pi}\int_{0}^{\delta}\frac{\varphi(t)}{t}\sin\lambda t\mathrm{d}t=0.
+\]
+再由 $f$ 在 $(-\infty,+\infty)$ 中绝对可积, 有
+\[
+  \lim_{\lambda\to+\infty}\int_{\delta}^{+\infty}\frac{f(x_{0}+t)+f(x_{0}-t)}{t}\sin\lambda t\mathrm{d}t=0,
+\]
+并注意到
+\[
+  \lim_{\lambda\to+\infty}\int_{\delta}^{+\infty}\frac{\sin\lambda t}{t}\mathrm{d}t\xlongequal{\theta=\lambda t}\lim_{\lambda\to+\infty}\int_{\delta}^{+\infty}\frac{\sin\theta}{\theta}\mathrm{d}\theta=0
+\]
+立即推得
+\begin{align*}
+  &\frac{1}{\pi}\int_{0}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x_{0}-t)\mathrm{d}t\\
+  &=\lim_{\lambda\to+\infty}\frac{1}{\pi}\int_{0}^{\lambda}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x_{0}-t)\mathrm{d}t\\
+  &=\lim_{\lambda\to+\infty}S(\lambda,x_{0})=\lim_{\lambda\to+\infty}\left[(S(\lambda,x_{0})-s)+s\right]=0+s=s.
+\end{align*}
+\end{proof}
+
+\begin{corollary}\label{cor:16.3.1}
+设 $f(x)$ 是 $(-\infty,+\infty)$ 上的绝对可积的函数. 如果 $f(x)$ 在 $x_{0}$ 附近满足 $\alpha\in(0,1]$ 阶 Lipschitz 条件, 即
+\[
+  |f(x_{0}+t)-f(x_{0}+0)|\leqslant Lt^{\alpha},\quad|f(x_{0}-t)-f(x_{0}-0)|\leqslant Lt^{\alpha},\quad t\in(0,\delta],
+\]
+则当 $f(x)$ 在 $x_{0}$ 处有第一类间断点时, $f(x)$ 的 Fourier 积分在 $x_{0}$ 处收敛于
+\[
+  \frac{1}{2}[f(x_{0}+0)+f(x_{0}-0)].
+\]
+特别当 $f(x)$ 在 $x_{0}$ 处连续时, $f(x)$ 的 Fourier 积分在 $x_{0}$ 处收敛于 $f(x_{0})$.
+\end{corollary}
+
+\begin{proof}
+在定理~\ref{thm:16.3.4} 中, 取 $s=\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$, 于是
+\begin{align*}
+  \frac{\varphi(t)}{t}&=\frac{f(x_{0}+t)+f(x_{0}-t)-2s}{t}\\
+  &=\frac{f(x_{0}+t)-f(x_{0}+0)}{t}+\frac{f(x_{0}-t)-f(x_{0}-0)}{t},\quad\left|\frac{\varphi(t)}{t}\right|\leqslant\frac{2L}{t^{1-\alpha}},\quad 0<t\leqslant\delta.
+\end{align*}
+当 $\alpha=1$ 时, $\dfrac{\varphi(t)}{t}$ 为有界函数; 当 $0<\alpha<1$ 时, $\dfrac{\varphi(t)}{t}$ 在 $[0,\delta]$ 上绝对可积, 所以 Dini 判别法的条件成立.
+\end{proof}
+
+\begin{corollary}\label{cor:16.3.2}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 中绝对可积, 且在 $x_{0}$ 处有广义的左、右导数(特别地, $f(x)$ 在 $x_{0}$ 处有有限导数), 则 $f(x)$ 的 Fourier 积分在 $x_{0}$ 处收敛于 $\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$, 即
+\[
+  \frac{1}{\pi}\int_{0}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x_{0}-t)\mathrm{d}t=\frac{1}{2}\left[f(x_{0}+0)+f(x_{0}-0)\right].
+\]
+如果 $f(x)$ 在 $x_{0}$ 处连续, 则有
+\[
+  f(x_{0})=\frac{1}{\pi}\int_{0}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x_{0}-t)\mathrm{d}t,
+\]
+并称它为 $f(x)$ 的 \textbf{Fourier 积分公式}.
+\end{corollary}
+
+\begin{proof}
+因为 $f(x)$ 在 $x_{0}$ 处有有限的广义单侧导数, 因而, $\exists\delta>0$, 当 $0<t<\delta$ 时便有
+\[
+  |f(x_{0}+t)-f(x_{0}+0)|\leqslant Lt,\quad|f(x_{0}-t)-f(x_{0}-0)|\leqslant Lt,
+\]
+即 $f(x)$ 在 $x_{0}$ 附近满足 $1$ 阶 Lipschitz 条件. 根据推论~\ref{cor:16.3.1} 知, $f(x)$ 在 $x_{0}$ 处的 Fourier 积分收敛于 $\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$.
+\end{proof}
+
+在 Fourier 积分公式
+\[
+  f(x)=\int_{0}^{+\infty}[a(u)\cos ux+b(u)\sin ux]\mathrm{d}u,
+\]
+\[
+  a(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\cos ut\mathrm{d}t,
+\]
+\[
+  b(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\sin ut\mathrm{d}t
+\]
+中, 如果 $f(x)$ 为偶函数, 则
+\[
+  a(u)=\frac{2}{\pi}\int_{0}^{+\infty}f(t)\cos ut\mathrm{d}t,\quad b(u)=0.
+\]
+此时积分公式变为
+\begin{align*}
+  f(x)&=\int_{0}^{+\infty}\left(\frac{2}{\pi}\int_{0}^{+\infty}f(t)\cos ut\mathrm{d}t\right)\cos ux\mathrm{d}u\\
+  &=\frac{2}{\pi}\int_{0}^{+\infty}\cos ux\mathrm{d}u\int_{0}^{+\infty}f(t)\cos ut\mathrm{d}t,
+\end{align*}
+并称它为 \textbf{Fourier 余弦公式}.
+
+如果 $f(x)$ 为奇函数, 则
+\[
+  a(u)=0,\quad b(u)=\frac{2}{\pi}\int_{0}^{+\infty}f(t)\sin ut\mathrm{d}t,
+\]
+积分公式可变为
+\begin{align*}
+  f(x)&=\int_{0}^{+\infty}\left(\frac{2}{\pi}\int_{0}^{+\infty}f(t)\sin ut\mathrm{d}t\right)\sin ux\mathrm{d}u\\
+  &=\frac{2}{\pi}\int_{0}^{+\infty}\sin ux\mathrm{d}u\int_{0}^{+\infty}f(t)\sin ut\mathrm{d}t,
+\end{align*}
+并称它为 \textbf{Fourier 正弦公式}.
+
+如果 $f(x)$ 只是定义在 $[0,+\infty)$ 上的绝对可积函数, 对它既可做偶性延拓, 也可做奇性延拓, 分别得到 $f(x)$ 的 Fourier 余弦公式与 Fourier 正弦公式.
+
+如果令
+\[
+  g(u)=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}f(t)\cos ut\mathrm{d}t,
+\]
+则 Fourier 余弦公式就成为
+\[
+  f(x)=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}g(u)\cos ux\mathrm{d}u.
+\]
+在这两个公式中, $f$ 与 $g$ 以完全相同的形式互相表示. 我们称 $g$ 为 $f$ 的 \textbf{Fourier 余弦变换}, 而后一公式称为该余弦变换的\textbf{反变换公式}.
+
+完全一样, 称
+\[
+  h(u)=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}f(t)\sin ut\mathrm{d}t
+\]
+为 $f(x)$ 的 \textbf{Fourier 正弦变换}, 而
+\[
+  f(x)=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}h(u)\sin ux\mathrm{d}u
+\]
+为该正弦变换的反变换公式.
+
+在给出一般的 Fourier 变换概念之前, 我们先给出 Fourier 积分公式
+\[
+  f(x)=\frac{1}{\pi}\int_{0}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t
+\]
+的复数形式.
+
+由于
+\[
+  \int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t
+\]
+为 $u$ 的偶函数, 故上述 Fourier 积分公式可写成更对称的形式
+\[
+  f(x)=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t.
+\]
+又因为 $\displaystyle\int_{-\infty}^{+\infty}f(t)\sin u(x-t)\mathrm{d}t$ 为 $u$ 的奇函数, 所以
+\[
+  \frac{1}{2\pi}\int_{-\infty}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\sin u(x-t)\mathrm{d}t=0.
+\]
+于是,
+\begin{align*}
+  f(x)&=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\cos u(x-t)\mathrm{d}t+\mathrm{i}\frac{1}{2\pi}\int_{-\infty}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\sin u(x-t)\mathrm{d}t\\
+  &=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\mathrm{d}u\int_{-\infty}^{+\infty}f(t)\mathrm{e}^{\mathrm{i}u(x-t)}\mathrm{d}t,
+\end{align*}
+这就是\textbf{复数形式的 Fourier 积分公式}.
+
+\begin{definition}\label{def:16.3.1}
+设 $f(t)$ 在 $(-\infty,+\infty)$ 上绝对可积, 称
+\[
+  \hat{f}(u)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t)\mathrm{e}^{-\mathrm{i}tu}\mathrm{d}t
+\]
+为 $f(t)$ 的 \textbf{Fourier 变换}, 其中 $u$ 为实数, $\hat{f}(u)$ 为实变量的复函数.
+\end{definition}
+
+从复数形式的 Fourier 积分公式立即可得 Fourier 变换的反变换公式
+\[
+  f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}\hat{f}(u)\mathrm{e}^{\mathrm{i}ux}\mathrm{d}u.
+\]
+如果将 $f(x)$ 的 Fourier 级数也写成复数形式, 则它与这里的 Fourier 变换可以有一个很好的类比.
+
+设
+\[
+  f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\]
+将表达式
+\[
+  \cos nx=\frac{1}{2}\left(\mathrm{e}^{\mathrm{i}nx}+\mathrm{e}^{-\mathrm{i}nx}\right),\quad\sin nx=\frac{1}{2\mathrm{i}}\left(\mathrm{e}^{\mathrm{i}nx}-\mathrm{e}^{-\mathrm{i}nx}\right)
+\]
+代入上式的右端得到
+\begin{align*}
+  &\frac{a_{0}}{2}+\sum_{n=1}^{\infty}(a_{n}\cos nx+b_{n}\sin nx)\\
+  &=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left[\frac{a_{n}}{2}(\mathrm{e}^{\mathrm{i}nx}+\mathrm{e}^{-\mathrm{i}nx})+\frac{b_{n}}{2\mathrm{i}}(\mathrm{e}^{\mathrm{i}nx}-\mathrm{e}^{-\mathrm{i}nx})\right]\\
+  &=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(\frac{a_{n}-\mathrm{i}b_{n}}{2}\mathrm{e}^{\mathrm{i}nx}+\frac{a_{n}+\mathrm{i}b_{n}}{2}\mathrm{e}^{-\mathrm{i}nx}\right)=\sum_{n=-\infty}^{\infty}c_{n}\mathrm{e}^{\mathrm{i}nx},
+\end{align*}
+其中
+\[
+  c_{0}=\frac{a_{0}}{2},
+\]
+\begin{align*}
+  c_{n}&=\frac{1}{2}(a_{n}-\mathrm{i}b_{n})=\frac{1}{2\pi}\left(\int_{-\pi}^{\pi}f(x)\cos nx\mathrm{d}x-\mathrm{i}\int_{-\pi}^{\pi}f(x)\sin nx\mathrm{d}x\right)\\
+  &=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\mathrm{e}^{-\mathrm{i}nx}\mathrm{d}x,
+\end{align*}
+\begin{align*}
+  c_{-n}&=\frac{1}{2}(a_{n}+\mathrm{i}b_{n})=\frac{1}{2\pi}\left(\int_{-\pi}^{\pi}f(x)\cos nx\mathrm{d}x+\mathrm{i}\int_{-\pi}^{\pi}f(x)\sin nx\mathrm{d}x\right)\\
+  &=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\mathrm{e}^{\mathrm{i}nx}\mathrm{d}x.
+\end{align*}
+如果将 $c_{n}$ 记为
+\[
+  \hat{f}(n)=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\mathrm{e}^{-\mathrm{i}nx}\mathrm{d}x,\quad n=0,\pm1,\pm2,\cdots,
+\]
+且设 $f(x)$ 满足收敛定理的条件, 则有
+\[
+  f(x)=\sum_{n=-\infty}^{\infty}\hat{f}(n)\mathrm{e}^{\mathrm{i}nx}.
+\]
+比较 Fourier 变换
+\[
+  \hat{f}(u)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t)\mathrm{e}^{-\mathrm{i}tu}\mathrm{d}t
+\]
+与反变换公式
+\[
+  f(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}\hat{f}(n)\mathrm{e}^{\mathrm{i}ux}\mathrm{d}u,
+\]
+这里的 Fourier 系数公式 $\hat{f}(n)=\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}f(x)\mathrm{e}^{-\mathrm{i}nx}\mathrm{d}x$ 与 Fourier 展开式 $f(x)=\displaystyle\sum_{n=-\infty}^{\infty}\hat{f}(n)\mathrm{e}^{\mathrm{i}nx}$ 便可视作``离散的 Fourier 变换''与``离散的 Fourier 反变换''.
+
+\begin{example}\label{ex:16.3.1}
+设 $f(x)=\begin{cases}1,&|x|\leqslant1,\\0,&|x|>1.\end{cases}$ 试由 $f(x)$ 的 Fourier 积分公式导出等式
+\[
+  \int_{0}^{+\infty}\frac{\sin u\cos ux}{u}\mathrm{d}u=
+  \begin{cases}
+    \dfrac{\pi}{2},&|x|<1,\\[4pt]
+    \dfrac{\pi}{4},&|x|=1,\\[4pt]
+    0,&|x|>1,
+\end{cases}
+\]
+以及
+\[
+  \int_{0}^{+\infty}\frac{\sin u}{u}\mathrm{d}u=\frac{\pi}{2}.
+\]
+\end{example}
+
+\begin{proof}
+因为 $f(x)$ 为偶函数, 所以
+\[
+  a(u)=\frac{2}{\pi}\int_{0}^{+\infty}f(t)\cos ut\mathrm{d}t=\frac{2}{\pi}\int_{0}^{1}\cos ut\mathrm{d}t=\frac{2}{\pi}\frac{\sin u}{u},
+\]
+\[
+  b(u)=0.
+\]
+故对 $f(x)$ 的连续点 $x$, 由 Fourier 积分的余弦公式有
+\[
+  f(x)=\int_{0}^{+\infty}a(u)\cos ux\mathrm{d}u=\frac{2}{\pi}\int_{0}^{+\infty}\frac{\sin u\cos ux}{u}\mathrm{d}u.
+\]
+这样就得到
+\[
+  \int_{0}^{+\infty}\frac{\sin u\cos ux}{u}\mathrm{d}u=
+  \begin{cases}
+    \dfrac{\pi}{2},&|x|<1,\\[4pt]
+    0,&|x|>1.
+\end{cases}
+\]
+在 $x=\pm1$ 处, $f(x)$ 的 Fourier 积分分别收敛于
+\[
+  \frac{1}{2}[f(1+0)+f(1-0)]=\frac{1}{2}[f(-1+0)+f(-1-0)]=\frac{1}{2}.
+\]
+由此得到
+\[
+  \int_{0}^{+\infty}\frac{\sin u\cos ux}{u}\mathrm{d}u=\frac{\pi}{4},\quad x=\pm1.
+\]
+如果取 $x=0$, 就再一次得到(参阅例~\ref{ex:15.3.8})
+\[
+  \int_{0}^{+\infty}\frac{\sin u}{u}\mathrm{d}u=\frac{\pi}{2}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:16.3.2}
+求函数 $f(x)=\mathrm{e}^{-\beta x}\ (\beta>0,\ x>0)$ 的 Fourier 正弦变换与余弦变换, 并由此证明:
+\[
+  \int_{0}^{+\infty}\frac{\cos xu}{\beta^{2}+u^{2}}\mathrm{d}u=\frac{\pi}{2\beta}\mathrm{e}^{-\beta x},\quad x>0,\ \beta>0;
+\]
+\[
+  \int_{0}^{+\infty}\frac{u\sin xu}{\beta^{2}+u^{2}}\mathrm{d}u=\frac{\pi}{2}\mathrm{e}^{-\beta x},\quad x>0,\ \beta>0.
+\]
+\end{example}
+
+\begin{proof}
+因为 $f(x)=\mathrm{e}^{-\beta x}\ (\beta>0,\ x>0)$ 的 Fourier 余弦变换与正弦变换为
+\[
+  g(u)=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}f(t)\cos ut\mathrm{d}t=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}\mathrm{e}^{-\beta t}\cos ut\mathrm{d}t=\sqrt{\frac{2}{\pi}}\frac{\beta}{\beta^{2}+u^{2}}
+\]
+与
+\[
+  h(u)=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}f(t)\sin ut\mathrm{d}t=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}\mathrm{e}^{-\beta t}\sin ut\mathrm{d}t=\sqrt{\frac{2}{\pi}}\frac{u}{\beta^{2}+u^{2}},
+\]
+所以, 分别用反变换公式可得
+\[
+  \mathrm{e}^{-\beta x}=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}g(u)\cos xu\mathrm{d}u=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}\sqrt{\frac{2}{\pi}}\frac{\beta}{\beta^{2}+u^{2}}\cos xu\mathrm{d}u,
+\]
+\[
+  \mathrm{e}^{-\beta x}=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}h(u)\sin xu\mathrm{d}u=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}\sqrt{\frac{2}{\pi}}\frac{u}{\beta^{2}+u^{2}}\sin xu\mathrm{d}u.
+\]
+由此我们就得到两个不容易计算的积分的数值:
+\[
+  \int_{0}^{+\infty}\frac{\cos xu}{\beta^{2}+u^{2}}\mathrm{d}u=\frac{\pi}{2\beta}\mathrm{e}^{-\beta x},\quad x>0,\ \beta>0;
+\]
+\[
+  \int_{0}^{+\infty}\frac{u\sin xu}{\beta^{2}+u^{2}}\mathrm{d}u=\frac{\pi}{2}\mathrm{e}^{-\beta x},\quad x>0,\ \beta>0.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:16.3.1}
+请验证: 对
+\[
+  \int_{0}^{+\infty}\frac{\cos xu}{\beta^{2}+u^{2}}\mathrm{d}u=\frac{\pi}{2\beta}\mathrm{e}^{-\beta x},\quad x>0,\ \beta>0
+\]
+两边关于 $x$ 求导得到
+\[
+  \int_{0}^{+\infty}\frac{u\sin xu}{\beta^{2}+u^{2}}\mathrm{d}u=\frac{\pi}{2}\mathrm{e}^{-\beta x},\quad x>0,\ \beta>0.
+\]
+\end{remark}
+
+\begin{example}\label{ex:16.3.3}
+设
+\[
+  f(x)=\begin{cases}
+    \dfrac{\pi}{2}\sin x,&0\leqslant x\leqslant\pi,\\[4pt]
+    0,&\pi<x<+\infty,
+\end{cases}
+\]
+试解积分方程
+\[
+  \int_{0}^{+\infty}g(u)\sin xu\mathrm{d}u=f(x).
+\]
+\end{example}
+
+\begin{proof}
+将上述方程改写为
+\[
+  \sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}g(u)\sin xu\mathrm{d}u=\sqrt{\frac{2}{\pi}}f(x),
+\]
+因此, $\sqrt{\dfrac{2}{\pi}}f(x)$ 为 $g(u)$ 的 Fourier 正弦变换, 利用反变换公式, 即得
+\begin{align*}
+  g(u)&=\sqrt{\frac{2}{\pi}}\int_{0}^{+\infty}\sqrt{\frac{2}{\pi}}f(x)\sin ux\mathrm{d}x\\
+  &=\frac{2}{\pi}\int_{0}^{\pi}\frac{\pi}{2}\sin x\sin ux\mathrm{d}x=\frac{\sin\pi u}{1-u^{2}}.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:16.3.4}
+设 $f(t)$ 在 $(-\infty,+\infty)$ 上绝对可积, $\lim\limits_{t\to\pm\infty}f(t)=0$, 且 $f(t)$ 可导, 其导函数 $f'(t)$ 在 $(-\infty,+\infty)$ 上绝对可积, 则 $\hat{f}'(x)=\mathrm{i}x\hat{f}(x)$. 进而, 如果 $\lim\limits_{t\to+\infty}f^{(k)}(t)=0$, 且 $f^{(k)}(t)$ 在 $(-\infty,+\infty)$ 上绝对可积, $k=1,2,\cdots,n$, 则
+\[
+  \hat{f}^{(n)}(x)=\left(\mathrm{i}x\right)^{n}\hat{f}(x).
+\]
+\end{example}
+
+\begin{proof}
+由分部积分法,
+\begin{align*}
+  \hat{f}'(x)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f'(t)\mathrm{e}^{-\mathrm{i}tx}\mathrm{d}t\\
+  &=\frac{1}{\sqrt{2\pi}}\left(\left.f(t)\mathrm{e}^{-\mathrm{i}tx}\right|_{-\infty}^{+\infty}+\mathrm{i}x\int_{-\infty}^{+\infty}f(t)\mathrm{e}^{-\mathrm{i}tx}\mathrm{d}t\right)=\mathrm{i}x\hat{f}(x).
+\end{align*}
+反复应用分部积分法得到
+\[
+  \hat{f}^{(n)}(x)=\mathrm{i}x\hat{f}^{(n-1)}(x)=\cdots=(\mathrm{i}x)^{n}\hat{f}(x).
+\]
+\end{proof}
+
+在初等数学中我们知道对数能将乘法运算变为加法运算, 除法运算变为减法运算, 上述例子表明, Fourier 变换能将导数运算(分析运算)转变为用 $\mathrm{i}x$ 相乘(代数运算), 求 $n$ 阶导数就变为乘以 $(\mathrm{i}x)^{n}$.
+
+\begin{example}\label{ex:16.3.5}
+运用例~\ref{ex:16.3.4} 中的方法, 使得解常系数线性微分方程变得容易了. 例如, 考察常系数线性微分方程
+\[
+  a_{n}f^{(n)}(t)+a_{n-1}f^{(n-1)}(t)+\cdots+a_{n}f'(t)+a_{0}f(t)=g(t), % 原书如此: 此处印作 a_n f'(t), 而下文推导式中作 a_1 ix \hat{f}(x)
+\]
+其中 $a_{n},a_{n-1},\cdots,a_{0}$ 为给定的常数, $g(t)$ 为已知函数, 要求它的解, 就可对上述等式两边作 Fourier 变换, 利用 Fourier 变换的线性性质与例~\ref{ex:16.3.4} 中的结论, 即得
+\[
+  a_{n}(\mathrm{i}x)^{n}\hat{f}(x)+a_{n-1}(\mathrm{i}x)^{n-1}\hat{f}(x)+\cdots+a_{1}\mathrm{i}x\hat{f}(x)+a_{0}\hat{f}(x)=\hat{g}(x),
+\]
+于是,
+\[
+  \hat{f}(x)=\frac{\hat{g}(x)}{a_{n}(\mathrm{i}x)^{n}+a_{n-1}(\mathrm{i}x)^{n-1}+\cdots+a_{1}\mathrm{i}x+a_{0}}.
+\]
+右边是已知的, 通过 Fourier 反变换即能求得 $f(t)$.
+\end{example}
+
+Fourier 变换另一个非常有用的性质, 就是将函数的卷积运算转化为乘法运算.
+
+\begin{example}\label{ex:16.3.6}
+称
+\[
+  (f*g)(t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t-u)g(u)\mathrm{d}u
+\]
+为函数 $f$ 与 $g$ 的\textbf{卷积}. 则
+\[
+  (\widehat{f*g})(x)=\hat{f}(x)\hat{g}(x).
+\]
+\end{example}
+
+\begin{proof}
+根据卷积的定义, 有
+\begin{align*}
+  (\widehat{f*g})(x)&=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\left(\int_{-\infty}^{+\infty}f(t-u)g(u)\mathrm{d}u\right)\mathrm{e}^{-\mathrm{i}tx}\mathrm{d}t\\
+  &=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\left(g(u)\int_{-\infty}^{+\infty}f(t-u)\mathrm{e}^{-\mathrm{i}tx}\mathrm{d}t\right)\mathrm{d}u\\
+  &\xlongequal{v=t-u}\frac{1}{2\pi}\int_{-\infty}^{+\infty}\left(g(u)\int_{-\infty}^{+\infty}f(v)\mathrm{e}^{-\mathrm{i}(u+v)x}\mathrm{d}v\right)\mathrm{d}u\\
+  &=\frac{1}{2\pi}\int_{-\infty}^{+\infty}g(u)\mathrm{e}^{-\mathrm{i}ux}\mathrm{d}u\int_{-\infty}^{+\infty}f(v)\mathrm{e}^{-\mathrm{i}vx}\mathrm{d}v=\hat{f}(x)\hat{g}(x).
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:16.3.7}
+设 $g(u)$, $h(u)$ 为已知函数, 求解关于未知函数 $f(u)$ 的卷积型积分方程:
+\[
+  f(u)=g(u)+\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}h(u-t)f(t)\mathrm{d}t,\quad-\infty<u<+\infty.
+\]
+\end{example}
+
+\begin{proof}
+对上述方程两边进行 Fourier 变换得到
+\[
+  \hat{f}(x)=\hat{g}(x)+\hat{h}(x)\hat{f}(x).
+\]
+由此可得, 当 $\hat{h}(x)\neq1,\ \forall x\in(-\infty,+\infty)$ 时, 有
+\[
+  \hat{f}(x)=\frac{\hat{g}(x)}{1-\hat{h}(x)}.
+\]
+再由 $\hat{f}(x)$ 通过 Fourier 反变换即能求得 $f(u)$.
+\end{proof}
+
+卷积运算的重要意义在于它描述了一类重要的物理现象——平移不变的线性系统, 这类系统的输入 $f(t)$ 与输出 $g(t)$ 可用卷积运算来描述:
+\[
+  g(t)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}h(t-u)f(u)\mathrm{d}u=(h*f)(t),
+\]
+其中 $h(t)$ 是由系统确定的函数. 由例~\ref{ex:16.3.6} 知, 输入 $f(t)$ 与输出 $g(t)$ 的 Fourier 变换 $\hat{f}(x)$ 与 $\hat{g}(x)$ 满足
+\[
+  \hat{g}(x)=\hat{h}(x)\hat{f}(x).
+\]
+在通信理论中, 常称一个函数的 Fourier 变换为其\textbf{频谱}, 因此, 对平移不变的线性系统, 其输入与输出的频谱之间的关系式 $\hat{g}(x)=\hat{h}(x)\hat{f}(x)$ 是十分简单的. 所以研究 $\hat{f}(x)$ 与 $\hat{g}(x)$ 之间的关系比直接研究 $f(t)$ 与 $g(t)$ 之间的关系要简单方便得多. 这就是所谓在频率域上考虑问题或\textbf{频谱分析}的方法.
+
+但是, 根据 Fourier 变换的定义, $\hat{f}(x)$, $\hat{h}(x)$ 取决于信号 $f(t)$, $g(t)$ 在实轴 $(-\infty,+\infty)$ 上的整体性质, 因此它不能反映出信号在局部时间范围中的特征, 而在实际问题中, 这却是非常重要的. 例如对地震信号, 人们关心的是在什么位置出现什么样的反射波, 而这正是 Fourier 变换难以弄清的问题. 从 $20$ 世纪 $80$ 年代开始发展起来的\textbf{小波变换}, 一方面继承了 Fourier 变换的许多长处, 同时又在一定程度上克服了 Fourier 变换缺乏局部性的弱点, 对解决实际问题更为有利. 关于小波变换, 有兴趣的读者可参阅有关的专著与文献.
+
+% ----------------------------------------------------------------------
+% 练习题 16.3
+% ----------------------------------------------------------------------
+\begin{exblock}{练习题 16.3}
+\textbf{1.} 用 Fourier 积分表示下列函数:
+\begin{enumerate}
+\item $f(x)=\begin{cases}\operatorname{sgn}x,&|x|\leqslant1,\\0,&|x|>1;\end{cases}$
+\item $f(x)=\begin{cases}\sin x,&|x|\leqslant\pi,\\0,&|x|>\pi;\end{cases}$
+\item $f(x)=\mathrm{e}^{-a|x|},\ a>0.$
+\end{enumerate}
+
+\textbf{2.} 用 Fourier 积分表示函数 $f(x)=\mathrm{e}^{-x}\ (0<x<+\infty)$. \textbf{(1)} 用偶性延拓; \textbf{(2)} 用奇性延拓.
+
+\textbf{3.} 求 $f(x)=\mathrm{e}^{-\frac{x^{2}}{2}}$ 的 Fourier 变换
+\[
+  F(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}f(t)\mathrm{e}^{-\mathrm{i}tx}\mathrm{d}t.
+\]
+
+\textbf{4.} 求下列积分方程的解:
+\begin{enumerate}
+\item $\displaystyle\int_{0}^{+\infty}f(t)\sin xt\,\mathrm{d}t=\mathrm{e}^{-x},\quad x>0;$
+\item $\displaystyle\int_{0}^{+\infty}f(t)\cos xt\,\mathrm{d}t=\frac{1}{1+x^{2}}.$
+\end{enumerate}
+
+\textbf{5.} 证明:
+\[
+  \frac{2}{\pi}\int_{0}^{+\infty}\frac{\sin^{2}t}{t^{2}}\cos 2xt\,\mathrm{d}t=
+  \begin{cases}
+    1-x,&0\leqslant x\leqslant1,\\
+    0,&x>1.
+\end{cases}
+\]
+
+\textbf{6.} 求下列函数的 Fourier 反变换:
+\begin{enumerate}
+\item $F(u)=u\mathrm{e}^{-\beta|u|},\ \beta>0;$
+\item $F(u)=\mathrm{e}^{-\frac{u^{2}}{2}}.$
+\end{enumerate}
+\end{exblock}

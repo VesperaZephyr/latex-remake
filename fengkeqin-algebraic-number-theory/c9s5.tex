@@ -1,0 +1,477 @@
+% ============ 第九章 §5 组合数学 (原书 pp.376-390) ============
+\section{组合数学}\label{sec:ch9-s5}
+
+数论用于组合数学的范围很广, 其功能主要有两个方面: 一个是利用数论工具估计各种组合结构的最佳程度, 判别哪些组合结构是不存在的; 另一个则是利用数论工具具体构作出所需要的组合结构. 本节中我们举两个例子以表明代数数论的这两种功能. 这两个例子是组合设计和 Bent 函数.
+
+\subsection{组合设计}
+
+\begin{definition}\label{def:ch9-5}
+设 $X=\{x_1,\cdots,x_v\}$ 是 $v$ 元集合, $X_1,\cdots,X_b$ 是 $X$ 的 $b$ 个不同的子集合. 我们称这 $b$ 个子集组成一个参数为 $(b,v,k,r)$ 的组合构图, 是指满足以下两个条件（用 $|S|$ 表示集合 $S$ 的元素个数）:
+
+(1) $|X_i|=k\ (1\leqslant i\leqslant b)$, 即每个 $X_i$ 都是 $k$ 元子集;
+
+(2) 每个 $x_i$ 都恰好在 $r$ 个 $X_j$ 之中 $(1\leqslant i\leqslant v)$.
+
+每个子集 $X_j$ 叫作是一个\emph{区组}（block）, $X$ 中元素 $x_i$ 叫作是一个\emph{品种}（variety）. 这种历史上沿用的名称来源于统计学中的试验方案设计.
+\end{definition}
+
+每个区组有 $k$ 个品种, $b$ 个区组共有 $bk$ 个品种, 但是每个品种在其中都出现 $r$ 次. 于是我们得到参数关系
+\begin{equation}\tag{1}
+  vr=bk.
+\end{equation}
+特别当 $v=b$ 时, $k=r$, 这时称作参数为 $(v,k)$ 的对称组合构图.
+
+组合构图只是考虑到各种因素的均衡选择. 如果还要考虑不同因素的交互影响, 便有如下方案:
+
+\begin{definition}\label{def:ch9-6}
+一个参数为 $(b,v,k,r)$ 的组合构图叫作是不完全平衡区组设计（Balanced Incomplete Block Design, 简称作 BIBD）, 是指 $v\geqslant k\geqslant 2$, 并且对 $X$ 中任意两个不同的品种 $x_i$ 和 $x_j$, 它们均恰好同时出现在 $\lambda$ 个区组 $X_j$ 之中.
+\end{definition}
+
+包含品种 $x_1$ 的区组共有 $r$ 个. 而对于其中每个区组, $x_1$ 都与其余 $k-1$ 个品种共处于这个区组. 另一方面, $x_1$ 与 $x_1$ 之外的 $v-1$ 个品种每个都共处于 $\lambda$ 个区组. 于是我们有
+\begin{equation}\tag{2}
+  r(k-1)=\lambda(v-1).
+\end{equation}
+由 (1) 和 (2) 式可知 $b$ 和 $r$ 由参数 $v,k,\lambda$ 所决定, 所以通常对于 BIBD 只列出参数 $(v,k,\lambda)$. 当 $b=v$（从而 $k=r$）时, BIBD 也叫作是对称的, 这时 $k(k-1)=\lambda(v-1)$.
+
+\begin{example}
+令 $X=\F_7=\{0,1,2,3,4,5,6\}$, $X_0=\{0,1,3\}$ 而 $X_i=\{i,1+i,3+i\}=i+X_0\ (0\leqslant i\leqslant 6)$, 即 $7$ 个区组为
+\[
+  X_0=\{0,1,3\},\ X_1=\{1,2,4\},\ X_2=\{2,3,5\},\ X_3=\{3,4,6\},
+\]
+\[
+  X_4=\{4,5,0\},\ X_5=\{5,6,1\},\ X_6=\{6,0,2\}.
+\]
+这是一个对称 BIBD, 参数为
+\[
+  b=v=7\ (\text{7 个品种, 7 个区组}),
+\]
+\[
+  k=r=3\ (\text{每区组有 3 个品种, 每品种在 3 个区组中}),
+\]
+\[
+  \lambda=1\ (\text{任意两个不同品种均恰好同时在一个区组中}).
+\]
+\end{example}
+
+利用有限域上的仿射几何和射影几何, 可以构作出许多 BIBD. 又如: 对每个素数 $p\equiv 3\ (\mathrm{mod}\ 4)$, 取 $X=\F_p$, $X_0=\left\{a\mid 1\leqslant a\leqslant p-1,\ \left(\frac{a}{p}\right)=1\right\}$, 则可以证明
+\[
+  X_i=i+X_0\qquad(0\leqslant i\leqslant p-1)
+\]
+是参数为 $(v,k,\lambda)=\left(p,\frac{p-1}{2},\frac{p-3}{4}\right)$ 的对称 BIBD. 前面的例子就是 $p=7$ 的情形.
+
+现在的问题是: 对于满足条件 $k(k-1)=\lambda(v-1)$ 的正整数 $v,k,\lambda$, 是否一定存在参数为 $(v,k,\lambda)$ 的对称 BIBD? 利用本章第 $3$ 节的二次型结果, 我们还能给出对称 BIBD 存在的另一些必要条件.
+
+设 $X=\{x_1,\cdots,x_v\}$ 为 $v$ 个品种组成的集合, $X_1,\cdots,X_v$ 构成参数为 $(v,k,\lambda)$ 的对称 BIBD. 我们如下定义一个 $v$ 阶实方阵 $C=(c_{ij})\ (1\leqslant i,j\leqslant v)$, 其中
+\[
+  c_{ij}=\begin{cases}
+    1, & \text{若 } x_i\in X_j,\\
+    0, & \text{否则}.
+  \end{cases}
+\]
+令
+\[
+  CC^{\mathrm{T}}=A=(a_{ij}).
+\]
+由对称 BIBD 的定义不难看出
+\[
+  a_{ij}=\sum_{k=1}^{v}c_{ik}c_{jk}=\begin{cases}
+    k, & \text{若 } i=j,\\
+    \lambda, & \text{若 } i\neq j.
+  \end{cases}
+\]
+于是
+\[
+  CC^{\mathrm{T}}=A=
+  \left(\begin{array}{ccc}k& &\\ & \ddots & \lambda\\ \lambda & & k\end{array}\right)
+  =(k-\lambda)I_v+\lambda E_v,
+\]
+其中 $I_v$ 为 $v$ 阶单位方阵, $E_v$ 是 $v$ 阶全 $1$ 方阵. 易算出 $A$ 的行列式为
+\[
+  |A|=(k-\lambda)^{v-1}(k+(v-1)\lambda)=k^2(k-\lambda)^{v-1}.
+\]
+我们以下设 $k>\lambda$（当 $k=\lambda$ 时, 由 $k(k-1)=\lambda(v-1)$ 知 $k=v$, 即 $X_i=X\ (1\leqslant i\leqslant v)$, 这是平凡的区组设计）. 于是
+\[
+  0<k^2(k-\lambda)^{v-1}=|A|=|CC^{\mathrm{T}}|=|C|^2.
+\]
+$v$ 为偶数时, $(k-\lambda)$ 一定为平方数. 所以对 $(v,k,\lambda)$ 为参数的对称 BIBD, 我们有以下两个必要条件:
+
+(A) $k(k-1)=\lambda(v-1)\ (0<\lambda<k<v)$;
+
+(B) 若 $v$ 为偶数, 则 $(k-\lambda)$ 为平方数.
+
+例如: $(v,k,\lambda)=(46,10,2)$ 满足条件 (A), 但是不满足条件 (B), 所以这种参数的对称 BIBD 不存在. 现在我们将方阵 $A=(k-\lambda)I_v+\lambda E_v$ 化成对角阵. 易验证, 令
+\[
+  D=\left(\begin{array}{cccccc}
+    1 & 1 & 1 & \cdots & 1 & 1\\
+    1 & -1 & 0 & \cdots & 0 & 0\\
+    1 & 1 & -2 & \cdots & 0 & 0\\
+    \vdots & \vdots & \vdots & & \vdots & \vdots\\
+    1 & 1 & 1 & \cdots & 1 & -(v-1)
+  \end{array}\right)
+\]
+则
+\[
+  \begin{aligned}
+    &DAD^{\mathrm{T}}=(k-\lambda)DD^{\mathrm{T}}+\lambda DE_vD^{\mathrm{T}}\\
+    &=(k-\lambda)
+    \left(\begin{array}{cccc}v& & &\\ & 2 & &\\ & & 2\cdot 3 &\\ & & & \ddots\\ & & & v(v-1)\end{array}\right)
+    +\lambda
+    \left(\begin{array}{cccc}v^2&0&\cdots&0\\ 0& & &\\ \vdots& & 0&\\ 0& & &\end{array}\right)\\
+    &=
+    \left(\begin{array}{cccc}k^2v& & &\\ & 2(k-\lambda) & &\\ & & 2\cdot 3(k-\lambda) &\\ & & & \ddots\\ & & & (v-1)v(k-\lambda)\end{array}\right)
+    =M.
+  \end{aligned}
+\]
+这就表明 $I_v$（$v$ 阶单位方阵）和对角阵 $M$ 是 $\C$-等价的. 根据第 $9.3$ 节可知, 对每个素数 $p$, 应当
+\[
+  \varepsilon_p(M)=\varepsilon_p(I_v)=1.
+\]
+我们现在计算 $\varepsilon_p(M)$（记 $(a,b)_p$ 为 $(a,b)$）:
+\[
+  \begin{aligned}
+    \varepsilon_p(M)&=\prod_{i=2}^{v}(k^2v,(i-1)i(k-\lambda))\\
+    &\qquad\cdot\prod_{2\leqslant i<j\leqslant v}((i-1)i(k-\lambda),(j-1)j(k-\lambda))\\
+    &=(v,v(k-\lambda)^{v-1})\prod_{2\leqslant i\leqslant v-1}
+    ((i-1)i(k-\lambda),\prod_{i+1\leqslant j\leqslant v}(j-1)j(k-\lambda))\\
+    &=(v,-(k-\lambda)^{v-1})\prod_{2\leqslant i\leqslant v-1}
+    ((i-1)i(k-\lambda),iv(k-\lambda)^{v-i})\\
+    &=(v,-(k-\lambda)^{v-1})\prod_{2\leqslant i\leqslant v-1}
+    [(k-\lambda,i)((i-1)i(k-\lambda),v)\\
+    &\qquad\times((i-1)i(k-\lambda),k-\lambda)^{v-i}]\\
+    &=(v,-(k-\lambda)^{v-1})(k-\lambda,(v-1)!)(v(k-\lambda),v)\\
+    &\qquad\times\prod_{2\leqslant i\leqslant v-1}((i-1)i(k-\lambda),k-\lambda)^{v-i}.
+  \end{aligned}
+\]
+当 $v$ 为偶数时, 条件 (B) 表明 $k-\lambda$ 是完全平方, 由此可算出 $\varepsilon_p(M)=1$. 以下设 $v$ 为奇数, 这时
+\[
+  \begin{aligned}
+    \varepsilon_p(M)&=(v,-1)(k-\lambda,(v-1)!)(-(k-\lambda),v)\\
+    &\qquad\times\prod_{i=2,4,\cdots,v-1}(-(i-1)i,k-\lambda)\\
+    &=(k-\lambda,v!)(k-\lambda,(-1)^{\frac{v-1}{2}}(v-1)!)\\
+    &=(k-\lambda,(-1)^{\frac{v-1}{2}}v).
+  \end{aligned}
+\]
+但是
+\[
+  \begin{aligned}
+    1&=\left(\frac{k-\lambda}{v\lambda}+1,-\frac{k-\lambda}{v\lambda}\right)
+    =\left(\frac{k^2}{v\lambda},-\frac{k-\lambda}{v\lambda}\right)\\
+    &=(v\lambda,-v\lambda(k-\lambda))=(v\lambda,k-\lambda),
+  \end{aligned}
+\]
+因此 $(k-\lambda,v)=(k-\lambda,\lambda)$. 于是
+\[
+  \varepsilon_p(M)=(k-\lambda,(-1)^{\frac{v-1}{2}}\lambda).
+\]
+这就得到第 $3$ 个必要条件, 即若参数 $(v,k,\lambda)$ 的对称 BIBD 存在, 则
+
+(C) 当 $v$ 为奇数时, 对每个素数 $p$, $(k-\lambda,(-1)^{\frac{v-1}{2}}\lambda)_p=1$.
+
+例如对于 $(v,k,\lambda)=(43,7,1)$, 满足条件 (A) 但不满足条件 (C), 因为
+\[
+  (k-\lambda,(-1)^{\frac{v-1}{2}}\lambda)_3=(6,-1)_3=(3,-1)_3
+  =\left(\frac{-1}{3}\right)=-1.
+\]
+所以参数为 $(v,k,\lambda)=(43,7,1)$ 的对称 BIBD 是不存在的.
+
+一类特殊的对称 BIBD 叫作有限射影平面. 改用几何语言, 有限集合 $X$ 中的元素叫作点, $X_1,\cdots,X_v$ 是 $X$ 的子集合, 每个 $X_i$ 叫作是线. 元素 $x_i$ 属于 $X_j$, 叫作``点 $x_i$ 在线 $X_j$ 上''或``线 $X_j$ 过点 $x_i$''.
+
+\begin{definition}\label{def:ch9-7}
+有限集 $X$ 的 $v$ 个子集合 $X_1,\cdots,X_v$ 叫作是一个有限射影平面, 是指它满足以下 $3$ 个条件:
+
+(1) $X$ 的每两个不同点都恰好在一条线上;
+
+(2) 每两条不同的线都恰好有一个公共点;
+
+(3) $X$ 中存在 $4$ 个点, 使其中任 $3$ 点都不共线.
+\end{definition}
+
+可以证明: 所有的线都包含同样多个点. 令 $|X_j|=n+1\ (1\leqslant j\leqslant v)$, 则每个点都恰好在 $n+1$ 条线上. 这就表明这是一个对称的 BIBD, 参数为 $k=n+1$, $\lambda=1$. 于是 $n(n+1)=\lambda(v-1)=v-1$, 所以 $v=n^2+n+1$. 这样的有限射影平面叫作是 $n$ 阶射影平面, 它是参数 $(v,k,\lambda)=(n^2+n+1,n+1,1)$ 的对称 BIBD.
+
+利用有限域可以对任何素数 $p$ 和 $m\geqslant 1$ 构作出 $p^m$ 阶射影平面. 目前也只对这样的阶构作出有限射影平面. 另一方面, 由于 $n$ 阶射影平面是 $(v,k,\lambda)=(n^2+n+1,n+1,1)$ 的对称 BIBD, 条件 (C) 表明（注意 $v=n^2+n+1$ 必为奇数）:
+
+(C$'$) 若对某个素数 $p$, $(n,-1)_p^{\frac{n(n+1)}{2}}=-1$, 则 $n$ 阶射影平面不存在.
+
+即若 $n\equiv 1,2\ (\mathrm{mod}\ 4)$, 并且对某个素数 $p$, $(n,-1)_p=-1$, 则 $n$ 阶射影平面不存在. 特别若 $p\equiv 3\ (\mathrm{mod}\ 4)$, 则 $2p$ 阶射影平面是不存在的（因为 $(2p,-1)_p=-1$）.
+
+由条件 (C$'$) 知阶为 $n=6,14,21,22$ 的射影平面不存在, 而 $n=2,3,4,5,7,8,9,11,13,\cdots$ 的 $n$ 阶射影平面存在. $1987$ 年, 三位数学家借助于计算机证明了 $10$ 阶射影平面不存在. $12$ 阶有限射影平面的存在性至今未解决, 人们倾向于认为: 当 $n\neq p^m$ 时, $n$ 阶射影平面均不存在.
+
+\subsection{Bent 函数}
+
+设 $m$ 和 $n$ 为正整数, 记 $Z_m=\Z/m\Z$. 对于函数
+\[
+  f\colon Z_m^n\to Z_m
+\]
+和 $y=(y_1,\cdots,y_n)\in Z_m^n$, 令 $f$ 的 Fourier 变换为
+\[
+  F(y)=\sum_{x\in Z_m^n}\zeta_m^{f(x)-x\cdot y},
+\]
+其中 $x\cdot y=x_1y_1+\cdots+x_ny_n\in Z_m$. $|F(y)|^2$ 的平均值为
+\[
+  \begin{aligned}
+    \frac{1}{m^n}\sum_{y\in Z_m^n}|F(y)|^2
+    &=\frac{1}{m^n}\sum_{y\in Z_m^n}\sum_{x,x'\in Z_m^n}
+    \zeta_m^{f(x)-f(x')+y(x'-x)}\\
+    &=\frac{1}{m^n}\sum_{x,x'}\zeta_m^{f(x)-f(x')}
+    \sum_{y\in Z_m^n}\zeta_m^{y(x'-x)}
+    =\sum_{x\in Z_m^n}1=m^n.
+  \end{aligned}
+\]
+当 $|F(y)|^2\ (y\in Z_m^n)$ 均相等（从而等于 $m^n$）时, 称 $f$ 为广义 bent 函数. 也就是说,
+
+\begin{definition}\label{def:ch9-8}
+$f\colon Z_m^n\to Z_m$ 叫作参数为 $[m,n]$ 的广义 bent 函数, 是指对每个 $y\in Z_m^n$,
+\[
+  |F(y)|=\left|\sum_{x\in Z_m^n}\zeta_m^{f(x)-x\cdot y}\right|=m^{\frac{n}{2}}.
+\]
+\end{definition}
+
+对于 $m=2$ 情形由 Rothaus 于 $1976$ 年提出这个概念, 叫 bent 函数. 推广到任意 $m$ 是 $1985$ 年的事情（Kumar, Scholtz, Welch, Generalized bent functions and their properties, Jour. Combinatorial Theory (A), 40(1985), 90--107）. 这种函数近年来在通信和密码方面有很多应用. 研究课题是:
+
+(1) 对于哪些 $m$ 和 $n$, 参数为 $[m,n]$ 的广义 bent 函数是存在的？
+
+(2) 如何具体构作出参数为 $[m,n]$ 的广义 bent 函数？
+
+(3) 参数为 $[m,n]$ 的广义 bent 函数共有多少个？如何分类？
+
+我们主要介绍前两个问题. 目前对于 $n$ 为偶数或者 $m\not\equiv 2\ (\mathrm{mod}\ 4)$ 的时候, 均已经具体构作出参数 $[m,n]$ 的广义 bent 函数. 剩下的情形为
+
+(I) $n$ 为奇数并且 $m\equiv 2\ (\mathrm{mod}\ 4)$.
+
+对于这种情形, 利用分圆域的知识可以证明出若存在 $s$ 使得 $2^s\equiv -1\ (\mathrm{mod}\ \frac{m}{2})$, 则参数为 $[m,n]$ 的广义 bent 函数是不存在的. 利用二次域的类数性质还可以得到新的不存在性结果. 现在就介绍这些结果.
+
+先介绍构造性结果. 首先讨论 $n$ 为偶数的情形. 令 $n=2k$. 对于 $x=(x_1,\cdots,x_n)\in Z_m^n$, 我们令
+\[
+  x'=(x_1,\cdots,x_k)\in Z_m^k,\qquad
+  x''=(x_{k+1},\cdots,x_n)\in Z_m^k.
+\]
+
+\begin{theorem}\label{thm:9.23}
+设 $n=2k$, 则对于任意函数 $g\colon Z_m^k\to Z_m$, $f(x)=x'\cdot x''+g(x')\ (x\in Z_m^n)$ 是参数 $[m,n]$ 的广义 bent 函数.
+\end{theorem}
+
+\begin{proof}
+我们要证对每个 $y\in Z_m^n$, $|F(y)|=m^k$. 事实上,
+\[
+  \begin{aligned}
+    F(y)&=\sum_{x\in Z_m^n}\zeta_m^{f(x)-x\cdot y}
+    =\sum_{x',x''\in Z_m^k}\zeta_m^{x'\cdot x''+g(x')-x'\cdot y'-x''\cdot y''}\\
+    &=\sum_{x'}\zeta_m^{g(x')-x'\cdot y'}
+    \sum_{x''}\zeta_m^{x''\cdot(x'-y'')}
+    =m^k\zeta_m^{g(y'')-y''\cdot y'},
+  \end{aligned}
+\]
+所以 $|F(y)|=m^k$.
+\end{proof}
+
+其次考虑 $m\not\equiv 2\ (\mathrm{mod}\ 4)$ 的情形. 首先有
+
+\begin{lemma}\label{lem:ch9-9}
+如果有参数为 $[m,n]$ 和 $[m,n']$ 的广义 bent 函数, 则有参数为 $[m,n+n']$ 的广义 bent 函数.
+\end{lemma}
+
+\begin{proof}
+设 $g$ 和 $g'$ 分别是参数为 $[m,n]$ 和 $[m,n']$ 的广义 bent 函数, 可验证
+\[
+  f(x_1,\cdots,x_{n+n'})=g(x_1,\cdots,x_n)+g'(x_{n+1},\cdots,x_{n+n'})
+\]
+是参数为 $[m,n+n']$ 的广义 bent 函数.
+\end{proof}
+
+于是, 对 $m\not\equiv 2\ (\mathrm{mod}\ 4)$, 为了证明参数 $[m,n]$（对任意 $n\geqslant 1$）广义 bent 函数存在, 我们只需证明参数 $[m,1]$ 广义 bent 函数存在, 即要证存在 $f\colon Z_m\to Z_m$, 使得对每个 $y\in Z_m$,
+\[
+  |F(y)|=\left|\sum_{x\in Z_m}\zeta_m^{f(x)-xy}\right|=\sqrt{m}.
+\]
+对于 $m\not\equiv 2\ (\mathrm{mod}\ 4)$ 我们分几种情形分别考虑.
+
+\begin{theorem}\label{thm:9.24}
+若 $m$ 为奇数, 则存在参数为 $[m,1]$ 的广义 bent 函数.
+\end{theorem}
+
+\begin{proof}
+考虑函数 $f\colon Z_m\to Z_m$, $f(x)=x^2$, 则对 $y\in Z_m$,
+\[
+  \begin{aligned}
+    F(y)&=\sum_{x=0}^{m-1}\zeta_m^{x^2-xy}
+    =\sum_{x=0}^{m-1}\zeta_m^{4x^2-4xy}\qquad(\text{注意 } m\ \text{为奇数})\\
+    &=\sum_{x=0}^{m-1}\zeta_m^{(2x-y)^2-y^2}
+    =\zeta_m^{-y^2}\sum_{x=0}^{m-1}\zeta_m^{x^2}.
+  \end{aligned}
+\]
+于是 $|F(y)|=\left|\sum_x\zeta_m^{x^2}\right|$. 但是
+\[
+  \left|\sum_{x\in Z_m}\zeta_m^{x^2}\right|^2
+  =\sum_{x,y\in Z_m}\zeta_m^{x^2-y^2}
+  =\sum_{x,y\in Z_m}\zeta_m^{(x+y)(x-y)}
+  =\sum_{c,d\in Z_m}\zeta_m^{cd}
+  =m+\sum_{0\neq c\in Z_m}\sum_{d\in Z_m}\zeta_m^{cd}=m.
+\]
+从而 $|F(y)|=\left|\sum_x\zeta_m^{x^2}\right|=\sqrt{m}$, 即 $f$ 是广义 bent 函数.
+\end{proof}
+
+对于 $m\equiv 0\ (\mathrm{mod}\ 4)$ 的情形, 采用精细的组合方法, 也可构作出参数 $[m,1]$ 的广义 bent 函数. 由于我们主要对数论的应用有兴趣, 此处从略. 这样, 对于任意 $n\geqslant 1$ 和 $m\not\equiv 2\ (\mathrm{mod}\ 4)$ 的情形均存在参数 $[m,n]$ 的广义 bent 函数. 从而剩下的情形为 (I), 即 $n$ 为奇数并且 $m\equiv 2\ (\mathrm{mod}\ 4)$. 对这种情形有如下的结果:
+
+\begin{theorem}[1985, Kumar-Scholtz-Welch]\label{thm:9.25}
+设 $n$ 为奇数, $m\equiv 2\ (\mathrm{mod}\ 4)$. 如果存在 $s\geqslant 1$, 使得 $2^s\equiv -1\ (\mathrm{mod}\ \frac{m}{2})$, 则不存在参数 $[m,n]$ 的广义 bent 函数.
+\end{theorem}
+
+\begin{proof}
+由定义知: 若存在参数 $[m,n]$ 的广义 bent 函数 $f$, 则对每个 $y\in Z_m^n$,
+\[
+  \alpha=F(y)=\sum_{x\in Z_m^n}\zeta_m^{f(x)-x\cdot y}\in\Z[\zeta_m]=\Z[\zeta_k],
+\]
+并且 $\alpha\bar{\alpha}=m^n$, 其中 $k=\frac{m}{2}$ 为奇数. 考虑域的扩张
+\[
+  \begin{array}{ccc}
+    L=\Q(\zeta_k) & & P\\
+    \mid & & \mid\\
+    K & & \mathfrak{p}\\
+    \mid & & \mid\\
+    \Q & & p
+  \end{array}
+\]
+则 $L/\Q$ 的伽罗瓦群 $G=\{\sigma_a\mid 1\leqslant a\leqslant k,\ (a,k)=1\}$ 同构于 $(\Z/k\Z)^{\times}$. 由于 $(k,2)=1$, 可知 $2$ 在 $L=\Q(\zeta_k)$ 中不分歧, 于是 $2O_L=P_1\cdots P_g$, 其中 $g=\frac{\varphi(k)}{f}$, 而 $f$ 是满足 $2^f\equiv 1\ (\mathrm{mod}\ k)$ 的最小正整数 $f$. 由假设知存在 $s\geqslant 1$, 使得 $2^s\equiv -1\ (\mathrm{mod}\ k)$. 令 $P=P_1$, $2$ 在 $L$ 中的分解群为
+\[
+  D=\{\sigma\in G\mid\sigma(P)=P\},
+\]
+并且 $D$ 是由 $\sigma_2$ 生成的 $f$ 阶循环群. 由于 $\sigma_2^s=\sigma_{-1}$, 可知 $\sigma_{-1}\in D$, 即 $\sigma_{-1}(P)=P$. 令 $V_P(\alpha)=t\in\Z$, 则
+\[
+  V_P(\bar{\alpha})=V_P(\sigma_{-1}(\alpha))
+  =V_{\sigma_{-1}(P)}(\alpha)=V_P(\alpha)=t.
+\]
+从而 $V_P(\alpha\bar{\alpha})=2t$ 是偶数. 但是 $\alpha\bar{\alpha}=m^n$ 而 $V_P(m^n)=nV_P(2k)=nV_P(2)=n$ 是奇数, 这就导致矛盾. 所以参数 $[m,n]$ 的广义 bent 函数不存在.
+\end{proof}
+
+现在我们把满足 $2^s\equiv -1\ (\mathrm{mod}\ k)$ 的奇数 $k$ 具体刻画出来. $k=1$ 显然满足此条件. 而当 $k\geqslant 3$ 时, 令
+\[
+  k=p_1^{e_1}\cdots p_l^{e_l},
+\]
+其中 $p_1,\cdots,p_l$ 为不同的奇素数, $e_i\geqslant 1\ (1\leqslant i\leqslant l)$. 由中国剩余定理知
+\begin{equation}\tag{3}
+  2^s\equiv -1\ (\mathrm{mod}\ k)
+  \Leftrightarrow 2^s\equiv -1\ (\mathrm{mod}\ p_i^{e_i})\ (1\leqslant i\leqslant l).
+\end{equation}
+我们用 $i(p)$ 表示 $2$ 模 $p$ 的阶, 即 $i(p)$ 是满足 $2^f\equiv 1\ (\mathrm{mod}\ p)$ 的最小正整数 $f$. 易知对每个 $e\geqslant 1$, $2$ 模 $p^e$ 的阶为 $i(p)\cdot p^{\lambda}\ (\lambda\geqslant 0)$. 我们记 $I(p)=V_2(i(p))\ (=V_2(i(p)p^{\lambda}))$. 由初等数论不难证明:
+\[
+  \text{存在 } s\geqslant 1, \text{使得 } 2^s\equiv -1\ (\mathrm{mod}\ k)
+  \Leftrightarrow I(p_i)\ (1\leqslant i\leqslant l)\ \text{是相同的正整数}.
+\]
+当 $p\equiv 3,5,7\ (\mathrm{mod}\ 8)$ 时, 易知 $I(p)$ 分别为 $1,2$ 和 $0$. 由此不难得到
+
+\begin{lemma}\label{lem:ch9-10}
+设 $k$ 为奇数, 则存在 $s\geqslant 1$, 使得 $2^s\equiv -1\ (\mathrm{mod}\ k)$ 当且仅当下列条件之一成立:
+
+(1) $k=\prod_{i=1}^{l}p_i^{e_i}$, $p_i\equiv 1\ (\mathrm{mod}\ 8)\ (1\leqslant i\leqslant l)$, 并且 $I(p_i)\ (1\leqslant i\leqslant l)$ 是同样的正整数;
+
+(2) $k=\prod_{i=1}^{l}p_i^{e_i}$, $p_i\equiv 3\ (\mathrm{mod}\ 8)\ (1\leqslant i\leqslant l)$ 或者 $p_i\equiv 5\ (\mathrm{mod}\ 8)\ (1\leqslant i\leqslant l)$;
+
+(3) $k=\prod_{i=1}^{l}p_i^{e_i}\cdot\prod_{j=1}^{s}p_j'^{f_j}$, $p_i\equiv 3\ (\mathrm{mod}\ 8)\ (1\leqslant i\leqslant l)$, $p_j'\equiv 1\ (\mathrm{mod}\ 8)$ 并且 $I(p_j')=1\ (1\leqslant j\leqslant s)$;
+
+(4) $k=\prod_{i=1}^{l}p_i^{e_i}\cdot\prod_{j=1}^{s}p_j'^{f_j}$, $p_i\equiv 5\ (\mathrm{mod}\ 8)\ (1\leqslant i\leqslant l)$, $p_j'\equiv 1\ (\mathrm{mod}\ 8)$ 并且 $I(p_j')=2\ (1\leqslant j\leqslant s)$.
+\end{lemma}
+
+于是, 当 $k$ 满足上述条件之一时, 对每个奇数 $n$, 参数 $[2k,n]$ 的广义 bent 函数都不存在（包括 $k=1$）.
+
+下面将给出广义 bent 函数不存在的一些新结果. 我们需要作一些准备. 仍设 $k$ 为正奇数, $k\geqslant 3$, $L=\Q(\zeta_k)$, $K$ 是 $2$ 在 $L$ 中的分解域, 对应的分解群 $D$ 是由 $\sigma_2$ 生成的 $f$ 阶循环群, $f$ 是 $2$ 模 $k$ 的阶.
+
+\begin{lemma}\label{lem:ch9-11}
+如果 $\alpha\in O_L$, $\alpha\bar{\alpha}=2^n$, 则存在 $\beta\in O_L$, 使得 $\beta^2\in O_K$ 并且 $\beta\bar{\beta}=2^n$. 进而若 $f$ 为奇数, 则 $\beta\in O_K$.
+\end{lemma}
+
+\begin{proof}
+由于 $\sigma_2$ 固定 $2$ 在 $O_L$ 中的所有素理想因子, 从 $\alpha\bar{\alpha}=2^n$ 可知 $\alpha O_L=\sigma_2(\alpha)O_L$. 所以 $\sigma_2(\alpha)=\alpha\varepsilon$, 其中 $\varepsilon\in U_L$（$O_L$ 的单位群）. 对每个 $\sigma\in G=\Gal(L/\Q)$,
+\[
+  \sigma(\alpha)\overline{\sigma(\alpha)}=\sigma(\alpha\bar{\alpha})=2^n,
+  \qquad\sigma\sigma_2(\alpha)=\sigma(\alpha\varepsilon)=\sigma(\alpha)\sigma(\varepsilon).
+\]
+于是
+\[
+  2^n=\sigma\sigma_2(\alpha)\cdot\overline{\sigma\sigma_2(\alpha)}
+  =\sigma(\alpha)\sigma(\varepsilon)\cdot\overline{\sigma(\alpha)\sigma(\varepsilon)}
+  =2^n\sigma(\varepsilon)\overline{\sigma(\varepsilon)}.
+\]
+即对每个 $\sigma\in G$, $|\sigma(\varepsilon)|=1$. 因此 $\varepsilon$ 是 $L$ 中的单位根, 即 $\varepsilon=\pm\delta$, 其中 $\delta=\zeta_k^i$. 令 $\beta=\alpha\delta^{-1}$, 则 $\beta\bar{\beta}=\alpha\bar{\alpha}=2^n$, 并且
+\[
+  \sigma_2(\beta)=\sigma_2(\alpha)\sigma_2(\delta)^{-1}
+  =\alpha\varepsilon\delta^{-2}=\pm\alpha\delta^{-1}=\pm\beta.
+\]
+于是 $\sigma_2(\beta^2)=\beta^2$. 但是 $\sigma_2$ 是循环群 $D=\Gal(L/K)$ 的生成元, 所以 $\beta^2\in O_K$. 进而若 $f=[L:K]$ 是奇数, 再由 $\beta\in O_L$ 可知 $\beta\in O_K$.
+\end{proof}
+
+\begin{theorem}[\emph{冯克勤}, 1998]\label{thm:9.26}
+设 $p$ 为素数, $p\equiv 7\ (\mathrm{mod}\ 8)$, $k=p^l\ (l\geqslant 1)$, $f$ 为 $2$ 模 $k$ 的阶, $s=\frac{\varphi(p^l)}{2f}\left(=\frac{g}{2}\right)$. 以 $\lambda$ 表示最小奇整数, 使得
+\[
+  x^2+py^2=2^{\lambda+2}
+\]
+有整数解 $(x,y)$, 则对于奇的正整数 $n$, 如果 $\lambda>sn$, 则不存在参数为 $[2k,n]$ 的广义 bent 函数.
+\end{theorem}
+
+\begin{proof}
+如果存在参数为 $[2k,n]$ 的广义 bent 函数, 则对于 $L=\Q(\zeta_k)$, 存在 $\xi\in O_L$, 使得 $\xi\bar{\xi}=(2k)^n=2^np^{ln}$. $p$ 在 $L$ 中完全分歧, $p=P^{\varphi(k)}$, 其中 $P=(1-\zeta_k^i)O_L\ (p\mid i)$.
+\begin{equation}\tag{4}
+  V_P(\xi)=V_P(\bar{\xi})=\frac{1}{2}V_P(\xi\bar{\xi})
+  =\frac{1}{2}V_P(p^{ln})=\frac{ln}{2}\varphi(k).
+\end{equation}
+另一方面, 令
+\[
+  \eta=\prod_{\substack{1\leqslant i<k/2\\ p\nmid i}}(1-\zeta_k^i)^{ln}\in O_L,
+\]
+则 $\eta O_L=P^{\frac{ln\varphi(k)}{2}}$, 因此 $\alpha=\frac{\xi}{\eta}\in O_L$（由 (4) 式）, 并且
+\[
+  \alpha\bar{\alpha}=\xi\bar{\xi}/\eta\bar{\eta}
+  =2^np^{ln}\left(\prod_{\substack{1\leqslant i<k\\ p\nmid i}}(1-\zeta_k^i)\right)^{-ln}
+  =2^n.
+\]
+由于 $p\equiv 7\ (\mathrm{mod}\ 8)$, $\left(\frac{2}{p}\right)=1$, 可知 $2$ 模 $k\ (=p^l)$ 的阶 $f$ 是奇数. 根据引理 \ref{lem:ch9-11} 即知存在 $\beta\in O_K$, 使得 $\beta\bar{\beta}=2^n$, 这里 $K$ 是 $2$ 在 $L$ 中的分解域, $[L:K]=f$ 为奇数. 记 $E=\Q(\sqrt{-p})$ 为 $L$ 的惟一的二次子域. 由于 $[L:K]$ 是奇数, 可知 $E\subseteq K$, 并且 $[K:E]=\frac{1}{2}[K:\Q]=\frac{g}{2}=s$, 而 $s$ 为奇数（因为 $s=\frac{g}{2}\mid\frac{\varphi(p^l)}{2}$, 而 $\frac{\varphi(p^l)}{2}=\frac{p-1}{2}\cdot p^{l-1}$ 是奇数）. 令 $\gamma=N_{K/E}(\beta)\in O_E$, 则
+\[
+  \gamma\bar{\gamma}=N_{K/E}(\beta\bar{\beta})=N_{K/E}(2^n)=2^{sn}.
+\]
+于是 $\gamma=\frac{1}{2}(A+B\sqrt{-p})$, 其中 $A,B\in\Z$, 所以 $A^2+pB^2=4\gamma\bar{\gamma}=2^{sn+2}$.
+
+由 $\lambda$ 的定义即知 $\lambda\leqslant sn$. 因此当 $\lambda>sn$ 时, 不存在参数 $[2p^l,n]$ 的广义 bent 函数.
+\end{proof}
+
+\begin{remark}
+(1) 设 $p$ 为固定的奇素数. 对每个 $l\geqslant 1$, 以 $f_l$ 表示 $2$ 模 $p^l$ 的阶, 而令 $g_l=\varphi(p^l)/f_l$. 不难看出, 如果 $2^{p-1}\not\equiv 1\ (\mathrm{mod}\ p^2)$, 则对每个 $l\geqslant 1$, $f_l=p^{l-1}f_1$, 从而
+\[
+  g_l=\frac{\varphi(p^l)}{f_l}
+  =\frac{p^{l-1}(p-1)}{p^{l-1}f_1}=\frac{p-1}{f_1}.
+\]
+初等数论中已经知道: 在所有奇素数 $p<6\times 10^9$ 当中, 除了 $p=1093$ 和 $3511$ 之外, 均满足 $2^{p-1}\not\equiv 1\ (\mathrm{mod}\ p^2)$. 所以对这些素数 $p$ 我们只需计算 $g_1$, 而对所有 $l\geqslant 1$, $g_l=g_1$, 从而有相同的 $s=\frac{g}{2}$ 值.
+
+(2) 定理 \ref{thm:9.26} 中 $\lambda$ 的定义是初等的, 但是有如下的代数数论意义. 按照定义, $\lambda$ 是最小的奇整数, 使得 $x^2+py^2=2^{\lambda+2}$ 有整数解 $(x,y)=(A,B)$. 这时 $A$ 和 $B$ 必为奇数. 于是 $\delta=\frac{1}{2}(A+B\sqrt{-p})\in O_E$（$E=\Q(\sqrt{-p})$）, 并且 $\delta\bar{\delta}=2^{\lambda}$. 由 $p\equiv 7\ (\mathrm{mod}\ 8)$ 可知 $2$ 在 $E$ 中分裂, 即 $2O_E=P\overline{P}$, $P\neq\overline{P}$. 由 $\lambda$ 的极小性易知 $\delta O_E=P^{\lambda}$ 或者 $\overline{P}^{\lambda}$, 即 $P^{\lambda}$ 是主理想. 换句话说, $\lambda$ 是理想类 $[P]$ 的阶. 从而 $\lambda$ 是域 $E$ 的理想类数 $h(-p)$ 的因子. 由高斯的 genus 理论可知 $h(-p)$ 为奇数. 另一方面, $2^{\lambda+2}=A^2+PB^2>p$, 这给出下界 $\lambda>\frac{\log p}{\log 2}-2$. 特别在 $p\equiv 7\ (\mathrm{mod}\ 8)$, $p\neq 7$ 时, $\lambda\geqslant 3$. 所以当 $h(-p)$ 是素数的时候, $\lambda=h(-p)$.
+\end{remark}
+
+\begin{example}
+$200$ 以内共有 $11$ 个素数 $p\equiv 7\ (\mathrm{mod}\ 8)$. 对于这些素数 $p$, $2s=g$ 的值, $h(-p)$ 以及 $\lambda$ 的值列表如下:
+
+\begin{center}
+\begin{tabular}{|c|ccccccccccc|}
+\hline
+$p$ & 7 & 23 & 31 & 47 & 71 & 79 & 103 & 127 & 151 & 191 & 199\\
+\hline
+$g=2s$ & 2 & 2 & 6 & 2 & 2 & 2 & 2 & 18 & 10 & 2 & 2\\
+\hline
+$h(-p)$ & 1 & 3 & 3 & 5 & 7 & 5 & 5 & 5 & 7 & 13 & 9\\
+\hline
+$\lambda$ & 1 & 3 & 3 & 5 & 7 & 5 & 5 & 5 & 7 & 13 & 9\\
+\hline
+\end{tabular}
+\end{center}
+
+其中 $g=\frac{\varphi(p)}{f}$, 而 $f$ 是 $2$ 模 $p$ 的阶. 类数 $h(-p)$ 可以查表. 而 $\lambda$ 的计算: 对 $p=199$, $\lambda\mid h(-199)=9$, 并且 $\lambda>\frac{\log 199}{\log 2}-2>3$, 于是 $\lambda=9$. 对表中其余 $p$, $h(-p)$ 为素数（或 $1$）, 于是 $\lambda=h(-p)$.
+
+由定理 \ref{thm:9.26} 可知, 对于 $p=23,47,71,79,103,191$ 和 $199$, $s=1$, 所以若奇数 $n$ 小于 $\lambda$, 则对每个 $l\geqslant 1$ 均不存在参数 $[2p^l,n]$ 的广义 bent 函数. 对于 $p=151$, $s=5$, $\lambda=7$, 从而对所有 $l\geqslant 1$, 不存在参数 $[2\cdot 151^l,1]$ 的广义 bent 函数.
+\end{example}
+
+由前面的注记可知定理 \ref{thm:9.26} 有以下的推论.
+
+\begin{corollary}[1]
+设 $p\equiv 7\ (\mathrm{mod}\ 8)$, $p\neq 7$, $2^{p-1}\not\equiv 1\ (\mathrm{mod}\ p^2)$, 并且 $2$ 模 $p$ 的阶为 $f=\frac{p-1}{2}$, 则当奇数 $n$ 小于 $\lambda$ 时, 对每个 $l\geqslant 1$ 均不存在参数 $[2p^l,n]$ 的广义 bent 函数.
+\end{corollary}
+
+\begin{corollary}[2]
+设 $p\equiv 7\ (\mathrm{mod}\ 8)$, $p\neq 7$, $2^{p-1}\not\equiv 1\ (\mathrm{mod}\ p^2)$, 并且 $\Q(\sqrt{-p})$ 的类数 $h(-p)$ 为素数, $f$ 为 $2$ 模 $p$ 的阶, $s=\frac{p-1}{2f}$, 则奇数 $n$ 小于 $h(-p)/s$ 时, 对每个 $l\geqslant 1$ 均不存在参数 $[2\cdot p^l,n]$ 的广义 bent 函数.
+\end{corollary}
+
+根据同样的思想, 对于 $k=p^lq^s$（$p\equiv 3\ (\mathrm{mod}\ 4)$, $q\equiv 5\ (\mathrm{mod}\ 8)$）的某些情形, 也可证明关于广义 bent 函数不存在的新结果.

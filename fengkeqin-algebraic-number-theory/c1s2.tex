@@ -1,0 +1,459 @@
+% ============ 第一章 §2 代数整数环 (原书 pp.18-31) ============
+\section{代数整数环}\label{sec:ch1-s2}
+
+\subsection{代数整数}\label{sec:ch1-s2-1}
+
+在这一节中,我们要把有理数域 $\Q$ 中的整数概念推广到任意代数数域上去.
+
+\begin{definition}\label{def:ch1-1}
+代数数 $\alpha$ 叫作是\emph{代数整数}(简称作整数),如果存在一个系数属于 $\Z$ 的首 $1$ 多项式 $f(x)$,使得 $f(\alpha)=0$.
+\end{definition}
+
+\begin{example}\label{ex:ch1-2-1}
+每个 $n\in\Z$ 均是代数整数,因为它是首 $1$ 多项式 $x-n\in\Z[x]$ 的根.为了明确起见,今后我们将通常 $\Z$ 中的整数称作是\emph{有理整数},以区别于一般的代数整数.
+\end{example}
+
+\begin{example}\label{ex:ch1-2-2}
+$n$ 次单位根是(代数)整数,因为它是首 $1$ 多项式 $x^n-1\in\Z[x]$ 的根.
+\end{example}
+
+\begin{lemma}\label{lem:ch1-7}
+设 $\alpha$ 为代数数,$f(x)$ 为 $\alpha$ 在 $\Q$ 上的极小多项式,则 $\alpha$ 为整数的充要条件是 $f(x)\in\Z[x]$.
+\end{lemma}
+
+\begin{proof}
+由于极小多项式 $f(x)$ 是首 $1$ 的,所以若 $f(x)\in\Z[x]$,则由定义 \ref{def:ch1-1} 和 $f(\alpha)=0$ 即知 $\alpha$ 是整数.反之,如果 $\alpha$ 是整数,则存在首 $1$ 多项式 $g(x)\in\Z[x]$,使得 $g(\alpha)=0$.于是 $f(x)$ 是 $g(x)$ 的首 $1$ 多项式因子,从而由 \S\ref{sec:ch1-s1},习题 10 即知 $f(x)\in\Z[x]$.
+\end{proof}
+
+\begin{corollarynonum}
+$\Q$ 中只有有理整数才是(代数)整数.
+\end{corollarynonum}
+
+\begin{proof}
+如果 $\alpha\in\Q$,$\alpha\notin\Z$,则 $\alpha$ 在 $\Q$ 上的极小多项式 $x-\alpha\notin\Z[x]$,由引理 \ref{lem:ch1-7} 知 $\alpha$ 不是(代数)整数.
+\end{proof}
+
+现在我们来决定二次域中的全部整数.
+
+\begin{theorem}\label{thm:1.7}
+以 $O_K$ 表示二次域 $K=\Q(\sqrt{d})$($d$ 是无平方因子的有理整数)中的全部整数所组成的集合,则当 $d\equiv 2,3\ (\mathrm{mod}\ 4)$ 时,
+\[
+  O_K=\{a+b\sqrt{d}\mid a,b\in\Z\};
+\]
+而当 $d\equiv 1\ (\mathrm{mod}\ 4)$ 时,
+\[
+  O_K=\{a+bw\mid a,b\in\Z\},
+\]
+其中 $w=\frac{1}{2}(1+\sqrt{d})$.换句话说,$O_K=\Z\oplus\Z w=\Z[w]$,其中
+\[
+  w=\begin{cases}
+    \sqrt{d}, & \text{若 } d\equiv 2,3\ (\mathrm{mod}\ 4);\\[2pt]
+    \frac{1}{2}(1+\sqrt{d}), & \text{若 } d\equiv 1\ (\mathrm{mod}\ 4).
+  \end{cases}
+\]
+\end{theorem}
+
+\begin{proof}
+$K$ 中每个二次代数数 $\alpha+\beta\sqrt{d}$($\alpha,\beta\in\Q$,$\beta\neq 0$)的极小多项式为
+\[
+  x^2-2\alpha x+\alpha^2-\beta^2d.
+\]
+因此(引理 \ref{lem:ch1-7}),$\alpha+\beta\sqrt{d}$ 为整数 $\iff 2\alpha$,$\alpha^2-\beta^2d\in\Z$.而当 $\beta=0$ 时,易知这件事也是正确的.
+
+设 $\alpha+\beta\sqrt{d}$($\alpha,\beta\in\Q$)是整数,则 $2\alpha$,$\alpha^2-\beta^2d\in\Z$.于是 $(2\alpha)^2-(2\beta)^2d\in 4\Z$.特别地,$(2\beta)^2d\in\Z$.由于 $d$ 没有平方因子,可知 $2\beta\in\Z$.
+
+当 $d\equiv 2,3\ (\mathrm{mod}\ 4)$ 时,如果 $2\alpha$ 和 $2\beta$ 均为奇数,则
+\[
+  (2\alpha)^2\equiv 1\not\equiv d\equiv (2\beta)^2d\ (\mathrm{mod}\ 4),
+\]
+这与 $(2\alpha)^2-(2\beta)^2d\in 4\Z$ 相矛盾.因此 $2\alpha$ 和 $2\beta$ 必有一为偶数.然后由
+\[
+  (2\alpha)^2\equiv(2\beta)^2d\ (\mathrm{mod}\ 4)
+\]
+和 $d\not\equiv 0\ (\mathrm{mod}\ 4)$,可知另一个亦为偶数.即 $\alpha,\beta\in\Z$.反之,若 $\alpha,\beta\in\Z$,显然 $2\alpha$,$\alpha^2-\beta^2d\in\Z$,从而 $\alpha+\beta\sqrt{d}$ 为整数.这就证明了定理的前半部分.
+
+当 $d\equiv 1\ (\mathrm{mod}\ 4)$ 时,由
+\[
+  (2\alpha)^2\equiv(2\beta)^2d\equiv(2\beta)^2\ (\mathrm{mod}\ 4)
+\]
+可知有理整数 $2\alpha$ 和 $2\beta$ 有相同的奇偶性.于是 $\alpha-\beta\in\Z$,而
+\[
+  \alpha+\beta\sqrt{d}=(\alpha-\beta)+2\beta w
+\]
+(注意 $\sqrt{d}=2w-1$),其中 $\alpha-\beta$,$2\beta\in\Z$.反之,若 $a,b\in\Z$,$b\neq 0$,则
+\[
+  a+bw=a+\frac{b}{2}+\frac{b}{2}\sqrt{d}
+\]
+的极小多项式为
+\[
+  x^2-(2a+b)x+\Big(a+\frac{b}{2}\Big)^2-\frac{b^2}{4}d,
+\]
+其中 $2a+b\in\Z$,
+\[
+  \Big(a+\frac{b}{2}\Big)^2-\frac{b^2}{4}d=a^2+ab+b^2\cdot\frac{1-d}{4}\in\Z.
+\]
+从而 $a+bw$($b\neq 0$)为整数.而 $b=0$ 时这当然也对.这就证明了定理的后半部分.
+\end{proof}
+
+\subsection{代数整数环}\label{sec:ch1-s2-2}
+
+对于二次域 $K$,可以直接验证定理 \ref{thm:1.7} 中求出的整数集合 $O_K$ 事实上是 $K$ 的子环!对于任意的数域 $K$,Dedekind 证明了 $K$ 的整数集合 $O_K$ 也是 $K$ 的子环.换句话说,如果 $\alpha$ 和 $\beta$ 均是 $K$ 中的整数,则 $\alpha\pm\beta$ 和 $\alpha\beta$ 亦是整数.这是一件不平凡的事情($\sqrt{7}$,$\zeta_{89}$,$\sqrt[3]{5}$,$\zeta_{61}$ 显然均是 $K=\Q(\sqrt{7},\sqrt[3]{5},\zeta_{89},\zeta_{61})$ 中的整数,设想一下如何证明 $(\sqrt{7}+\zeta_{89})(\sqrt[3]{5}-\zeta_{61})$ 也是整数!).我们需要给出整数的其他刻画方式.
+
+\begin{theorem}\label{thm:1.8}
+对于 $\alpha\in\C$,下面几个条件彼此等价:
+\begin{enumerate}[(1)]
+  \item $\alpha$ 为(代数)整数;
+  \item 环 $\Z[\alpha]$ 的加法群是有限生成的;
+  \item $\alpha$ 是 $\C$ 的某个非零子环 $R$ 中的元素,并且 $R$ 的加法群是有限生成的;
+  \item 存在有限生成非零加法子群 $A\subset\C$,使得 $\alpha A\subseteq A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (2):如果 $\alpha$ 为整数,由引理 \ref{lem:ch1-7} 知它的极小多项式 $f(x)$ 是系数属于 $\Z$ 的首 $1$ 多项式,即
+\[
+  f(x)=x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0,\quad c_i\in\Z.
+\]
+于是
+\[
+  \alpha^n=-c_{n-1}\alpha^{n-1}-\cdots-c_1\alpha-c_0.
+\]
+由此不难看出(对 $m$ 归纳),每个元素 $\alpha^m$($m\geqslant 0$)均可写成 $1,\alpha,\alpha^2,\cdots,\alpha^{n-1}$ 的 $\Z$-线性组合,于是环 $\Z[\alpha]$ 中的每个元素也都如此.这就表明环 $\Z[\alpha]$ 的加法群是由有限个元素 $1,\alpha,\alpha^2,\cdots,\alpha^{n-1}$ 生成的.
+
+(2) $\Rightarrow$ (3):取 $R=\Z[\alpha]$.
+
+(3) $\Rightarrow$ (4):取 $A=R$.
+
+(4) $\Rightarrow$ (1):设 $\alpha_1,\cdots,\alpha_n$ 生成加法群 $A$.由于 $\alpha A\subseteq A$,每个 $\alpha\alpha_i$ 均可表成 $\alpha_1,\cdots,\alpha_n$ 的 $\Z$-线性组合,我们可以把这写成矩阵形式
+\[
+  \alpha\begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix}
+  =M\begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix},
+\]
+其中 $M$ 是元素属于 $\Z$ 的 $n$ 阶方阵.此方程也可写成
+\[
+  (\alpha I_n-M)\begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix}
+  =\begin{pmatrix}0\\ \vdots\\ 0\end{pmatrix},
+\]
+由于 $A\neq(0)$,从而 $\alpha_1,\cdots,\alpha_n$ 不全为零.由线性代数便知 $|\alpha I_n-M|=0$.但是 $f(x)=|xI_n-M|$ 恰好是系数属于 $\Z$ 的 $n$ 次首 $1$ 多项式,并且 $\alpha$ 是它的根.从而 $\alpha$ 是整数.
+\end{proof}
+
+\begin{theorem}\label{thm:1.9}
+若 $\alpha$ 和 $\beta$ 均是整数,则 $\alpha\pm\beta$,$\alpha\beta$ 也是整数,特别地,数域 $K$ 中全部整数组成的集合 $O_K$ 是 $K$ 的子环.
+\end{theorem}
+
+\begin{proof}
+根据定理 \ref{thm:1.8} (2),环 $\Z[\alpha]$ 和 $\Z[\beta]$ 的加法子群均是有限生成的.设它们分别由 $\{\alpha_1,\cdots,\alpha_n\}$ 和 $\{\beta_1,\cdots,\beta_m\}$ 所生成的,则每个 $\alpha^u$($u\geqslant 0$)均可表为 $\alpha_1,\cdots,\alpha_n$ 的 $\Z$-线性组合,而每个 $\beta^v$($v\geqslant 0$)均可表为 $\beta_1,\cdots,\beta_m$ 的 $\Z$-线性组合.于是 $\alpha^u\beta^v$ 均可表为 $\{\alpha_i\beta_j\mid 1\leqslant i\leqslant n,\ 1\leqslant j\leqslant m\}$ 的 $\Z$-线性组合,从而环 $\Z[\alpha,\beta]$ 中每个元素均是如此,这就表明环 $\Z[\alpha,\beta]$ 的加法群是有限生成的.但是 $\alpha\pm\beta$,$\alpha\beta$ 均是 $\Z[\alpha,\beta]$ 中元素,根据定理 \ref{thm:1.8} (3),可知它们均是整数.
+\end{proof}
+
+今后将 $O_K$ 叫作是数域 $K$ 的\emph{(代数)整数环}.根据引理 \ref{lem:ch1-7} 的推论,可知有理数域 $\Q$ 的整数环就是 $\Z$,而二次域的整数环已由定理 \ref{thm:1.7} 求出.现在我们来求分圆域 $\Q(\zeta_{p^n})$ 的整数环(一般分圆域 $\Q(\zeta_m)$ 的整数环见下一小节).
+
+\begin{theorem}\label{thm:1.10}
+分圆域 $K=\Q(\zeta_{p^n})$ 的整数环是 $\Z[\zeta_{p^n}]$.
+\end{theorem}
+
+\begin{proof}
+令 $\omega=\zeta_{p^n}$,$s=\varphi(p^n)=[K:\Q]$.由于 $\omega$ 为整数,从而由定理 \ref{thm:1.9} 可知 $\Z[\omega]$ 中元素均为整数,即 $\Z[\omega]\subseteq O_K$.为证反包含,我们首先注意,由于 $1,\omega,\cdots,\omega^{s-1}$ 是向量空间 $K$ 的一组基,从而 $K$ 中每个整数 $\alpha$ 均可表成
+\begin{equation}  \alpha=t_0+t_1\omega+\cdots+t_{s-1}\omega^{s-1},\quad t_i\in\Q,\tag{1}\end{equation}
+我们的目的是要证明 $t_i\in\Z$($0\leqslant i\leqslant s-1$).
+
+令 $\Gal(K/\Q)=\{\tau_1,\tau_2,\cdots,\tau_s\}$.将自同构 $\tau_i$ 作用于 (1) 式上,得到
+\[
+  \tau_i(\alpha)=t_0+t_1\tau_i(\omega)+\cdots+t_{s-1}\tau_i(\omega)^{s-1}\quad (1\leqslant i\leqslant s).
+\]
+由 Cramer 法则可得到 $t_j=\gamma_j/\delta$,其中
+\[
+  \delta=\left|(\tau_i(\omega^k))_{\substack{1\leqslant i\leqslant s\\ 0\leqslant k\leqslant s-1}}\right|,
+\]
+而 $\gamma_j$ 是将 $(\tau_1(\alpha),\cdots,\tau_s(\alpha))$ 代替方阵 $(\tau_i(\omega^k))$ 的第 $j$ 列而得到的新方阵的行列式.由于 $\tau_i(\omega^k)$,$\tau_i(\alpha)$ 均是(代数)整数(习题 1),从而 $\gamma_j$ 和 $\delta$ 均是(代数)整数(定理 \ref{thm:1.9}),并且事实上由上一小节的例题(例 \ref{ex:ch1-1-4})知道:
+\[
+  \delta^2=d_K(1,\omega,\cdots,\omega^{s-1})
+  =(-1)^{s(s-1)/2}p^{p^{n-1}(np-n-1)}.
+\]
+令 $\delta^2=d$,则 $\delta\gamma_j=t_j\delta^2=t_jd\in\Q$.但是 $\delta\gamma_j\in O_K$(因为 $\delta$ 和 $\gamma_j$ 均是(代数)整数),因此 $\delta\gamma_j\in O_K\cap\Q=\Z$.于是 $t_jd\in\Z$.令 $t_jd=m_j\in\Z$,则 (1) 式可写成
+\[
+  \alpha=\frac{m_0}{d}+\frac{m_1}{d}\omega+\cdots+\frac{m_{s-1}}{d}\omega^{s-1},\quad m_j\in\Z.
+\]
+经过一个简单的变换,可以将上式改成
+\begin{equation}  \alpha=\frac{m_0'}{d}+\frac{m_1'}{d}(1-\omega)+\cdots+\frac{m_{s-1}'}{d}(1-\omega)^{s-1},\quad m_j'\in\Z.\tag{2}\end{equation}
+我们的目的是要证 $d\mid m_j$($0\leqslant j\leqslant s-1$),易知这等价于要证 $d\mid m_j'$($0\leqslant j\leqslant s-1$).现在假定 $m_j'$($0\leqslant j\leqslant s-1$)不全被 $d$ 除尽.注意 $|d|=p^l$,$l=p^{n-1}(np-n-1)$,从而若 $(m_0',m_1',\cdots,m_{s-1}')=p^\lambda m'$(其中 $m'$ 表示诸 $m_j'$ 的最大公因子,$p\nmid m'$),则必然 $\lambda+1\leqslant l$.于是令 $m_j'=\pm p^\lambda m_j''$($0\leqslant j\leqslant s-1$),则 $(m_0'',m_1'',\cdots,m_{s-1}'')=m'$,$p\nmid(m_0'',m_1'',\cdots,m_{s-1}'')$.从而存在整数 $t$,$0\leqslant t\leqslant s-1$,使得 $p\mid m_j''$($0\leqslant j\leqslant t-1$),但是 $p\nmid m_t''$.于是 (2) 式可改写为
+\begin{equation}  \pm p^{l-\lambda-1}\alpha-\Big(\frac{m_0''}{p}+\frac{m_1''}{p}(1-\omega)+\cdots+\frac{m_{t-1}''}{p}(1-\omega)^{t-1}\Big)
+  =\frac{m_t''}{p}(1-\omega)^t+\cdots+\frac{m_{s-1}''}{p}(1-\omega)^{s-1},\tag{3}\end{equation}
+而 (3) 式左边仍为整数,记为 $\alpha'$.现在利用我们已经证得的公式
+\[
+  \Norm_{K/\Q}(1-\omega)=\prod_{\substack{1\leqslant k\leqslant p^n\\ p\nmid k}}(1-\omega^k)=p.
+\]
+由于 $(1-\omega^k)=(1-\omega)(1+\omega+\cdots+\omega^{k-1})$,从而在环 $\Z[\omega]$ 中 $(1-\omega)\mid(1-\omega^k)$($1\leqslant k\leqslant p^n-1$).于是
+\[
+  (1-\omega)^s\Big|\prod_{\substack{1\leqslant k\leqslant p^n\\ p\nmid k}}(1-\omega^k)=p,
+\]
+因此 $p/(1-\omega)^s\in\Z[\omega]\subseteq O_K$.由于 $t\leqslant s-1$,从而由 (3) 式给出
+\[
+  \alpha'\cdot\frac{p}{(1-\omega)^{t+1}}
+  =\frac{m_t''}{(1-\omega)}+m_{t+1}''+\cdots+m_{s-1}''(1-\omega)^{s-1-t-1}\in O_K.
+\]
+从而 $m_t''/(1-\omega)\in O_K$,于是
+\[
+  \Norm_{K/\Q}\Big(\frac{m_t''}{1-\omega}\Big)=\frac{(m_t'')^s}{p}\in O_K\cap\Q=\Z.
+\]
+但是这与 $p\nmid m_t''$ 相矛盾.这一矛盾表明 $d\mid m_j'$($0\leqslant j\leqslant s-1$),从而 $d\mid m_j$($0\leqslant j\leqslant s-1$),即 $\alpha\in\Z[\omega]$.于是 $O_K\subseteq\Z[\omega]$,从而 $O_K=\Z[\omega]$.
+\end{proof}
+
+\subsection{整基,数域的判别式}\label{sec:ch1-s2-3}
+
+现在进一步研究整数环 $O_K$ 的加法群结构.我们要证明它是秩为 $[K:\Q]$ 的自由 Abel 群.
+
+\begin{definition}\label{def:ch1-2}
+群 $G$ 叫作是秩为 $n$ 的自由 Abel 群,如果它同构于 $n$ 个有理整数加法群 $\Z$ 的直和:$G\cong\Z\oplus\cdots\oplus\Z$($n$ 个).换句话说,即存在 $G$ 中 $n$ 个元素 $\alpha_1,\cdots,\alpha_n$,使得 $G$ 中每个元素均可惟一地表示成
+\[
+  m_1\alpha_1+\cdots+m_n\alpha_n,\quad m_i\in\Z.
+\]
+这可以写成 $G=\Z\alpha_1\oplus\Z\alpha_2\oplus\cdots\oplus\Z\alpha_n$.注意零群 $(0)$ 看成是秩为 $0$ 的自由 Abel 群.
+\end{definition}
+
+\begin{theorem}\label{thm:1.11}
+数域 $K$ 的整数环 $O_K$ 是秩 $n=[K:\Q]$ 的自由 Abel 群.换句话说,存在 $\omega_1,\cdots,\omega_n\in O_K$,使得
+\[
+  O_K=\Z\omega_1\oplus\cdots\oplus\Z\omega_n.
+\]
+\end{theorem}
+
+\begin{proof}
+设 $\alpha_1,\cdots,\alpha_n$ 是向量空间 $K$ 的一组 $\Q$-基.我们可以找到一个有理整数 $0\neq M\in\Z$,使得 $M\alpha_i\in O_K$($1\leqslant i\leqslant n$)(习题 2),于是 $M\alpha_i$($1\leqslant i\leqslant n$)仍是 $K$ 的一组 $\Q$-基,所以我们一开始不妨就假定 $\alpha_i\in O_K$($1\leqslant i\leqslant n$),从而每个整数 $\gamma\in O_K$ 均可写成
+\[
+  \gamma=x_1\alpha_1+\cdots+x_n\alpha_n,\quad x_j\in\Q.
+\]
+令 $\sigma_1,\cdots,\sigma_n$ 是 $K$ 到 $\C$ 中的 $n$ 个嵌入,则
+\[
+  \sigma_i(\gamma)=x_1\sigma_i(\alpha_1)+\cdots+x_n\sigma_i(\alpha_n)\quad (1\leqslant i\leqslant n).
+\]
+像定理 \ref{thm:1.10} 的证明那样,由这些等式可以得出
+\[
+  x_j=\gamma_j/\delta,\quad \delta=|(\sigma_i(\alpha_j))|,\qquad
+  \delta^2=d=d_K(\alpha_1,\cdots,\alpha_n)\in\Z,\quad \gamma_j\in O_K.
+\]
+由于 $\alpha_1,\cdots,\alpha_n$ 是 $\Q$-线性无关的,因此 $d\neq 0$,从而 $\delta\neq 0$,并且 $\delta$ 是(代数)整数,于是 $\gamma_j\delta=x_jd\in\Q\cap O_K=\Z$.令 $\gamma_j\delta=m_j$,则 $x_j=m_j/d$($1\leqslant j\leqslant n$).这就表明
+\[
+  \gamma\in\Z\frac{\alpha_1}{d}\oplus\cdots\oplus\Z\frac{\alpha_n}{d},
+\]
+从而
+\[
+  O_K\subseteq\Z\frac{\alpha_1}{d}\oplus\cdots\oplus\Z\frac{\alpha_n}{d}.
+\]
+但是右边是秩 $n$ 的自由 Abel 群,从而它的子群 $O_K$ 是秩 $\leqslant n$ 的自由 Abel 群(附录 A, (1)).最后,由于 $O_K$ 中存在着 $\Z$-线性无关的 $n$ 个元素 $\alpha_1,\cdots,\alpha_n$,因此加法群 $O_K$ 的秩必然是 $n$,这就完全证明了定理 \ref{thm:1.11}.
+\end{proof}
+
+\begin{definition}\label{def:ch1-3}
+设 $\omega_1,\cdots,\omega_n\in O_K$,如果 $O_K=\Z\omega_1\oplus\cdots\oplus\Z\omega_n$,则称 $\omega_1,\cdots,\omega_n$ 是整数环 $O_K$ 或者数域 $K$ 的一组\emph{整基}.换句话说,$\omega_1,\cdots,\omega_n$ 是 $K$ 或 $O_K$ 的一组整基,当且仅当每个整数 $\alpha\in O_K$ 均可惟一地表示成
+\[
+  \alpha=\lambda_1\omega_1+\cdots+\lambda_n\omega_n,\quad \lambda_i\in\Z.
+\]
+\end{definition}
+
+定理 \ref{thm:1.11} 表明每个数域均存在整基,但是并不是惟一的.例如由定理 \ref{thm:1.7} 可知,对于二次域 $K=\Q(\sqrt{d})$($d\in\Z$,无平方因子),当 $d\equiv 2,3\ (\mathrm{mod}\ 4)$ 时,$\{1,\sqrt{d}\}$ 是域 $K$ 的整基;而当 $d\equiv 1\ (\mathrm{mod}\ 4)$ 时,$\{1,w=(1+\sqrt{d})/2\}$ 是域 $K$ 的整基.另一方面,如果我们令
+\[
+  D=\begin{cases}
+    d, & d\equiv 1\ (\mathrm{mod}\ 4)\text{ 时};\\
+    4d, & d\equiv 2,3\ (\mathrm{mod}\ 4)\text{ 时},
+  \end{cases}
+\]
+不难验证,在任何情形下,$\{1,(D+\sqrt{D})/2\}$ 也是域 $\Q(\sqrt{d})$ 的整基.又由定理 \ref{thm:1.10} 可知,分圆域 $\Q(\omega)$($\omega=\zeta_{p^n}$)的整数环是 $\Z[\omega]$,从而 $1,\omega,\cdots,\omega^{\varphi(p^n)-1}$ 是域 $\Q(\omega)$ 的整基,而 $1,(1-\omega),(1-\omega)^2,\cdots,(1-\omega)^{\varphi(p^n)-1}$ 也是域 $\Q(\omega)$ 的一组整基.
+
+\begin{example}\label{ex:ch1-2-3}
+我们刚刚说过,$\{1,(D+\sqrt{D})/2\}$ 是二次域 $K=\Q(\sqrt{d})$ 的一组整基,其中
+\[
+  D=\begin{cases}
+    d, & d\equiv 1\ (\mathrm{mod}\ 4)\text{ 时};\\
+    4d, & d\equiv 2,3\ (\mathrm{mod}\ 4)\text{ 时}.
+  \end{cases}
+\]
+于是
+\[
+  d(K)=\begin{vmatrix}
+    1 & \dfrac{D+\sqrt{D}}{2}\\[2pt]
+    1 & \dfrac{D-\sqrt{D}}{2}
+  \end{vmatrix}^2=D.
+\]
+\end{example}
+
+\begin{example}\label{ex:ch1-2-4}
+由于 $1,\omega,\omega^2,\cdots,\omega^{\varphi(p^n)-1}$ 是分圆域 $K=\Q(\omega)$($\omega=\zeta_{p^n}$)的一组整基.从而令 $s=\varphi(p^n)=[K:\Q]$,则
+\[
+  d(K)=d_K(1,\omega,\cdots,\omega^{s-1})=(-1)^{s(s-1)/2}p^{p^{n-1}(np-n-1)}.
+\]
+\end{example}
+
+然而在一般情形下,寻求某个数域 $K$ 的整基和计算判别式 $d(K)$ 并不是一件容易的事情.在这方面,下一个引理是有用的.
+
+\begin{lemma}\label{lem:ch1-8}
+设 $\alpha_1,\cdots,\alpha_n\in O_K$.如果
+\begin{enumerate}[(1)]
+  \item $d_K(\alpha_1,\cdots,\alpha_n)=d(K)$;或者
+  \item $d_K(\alpha_1,\cdots,\alpha_n)$ 是无平方因子的非零有理整数,
+\end{enumerate}
+则 $\alpha_1,\cdots,\alpha_n$ 是域 $K$ 的一组整基.
+\end{lemma}
+
+\begin{proof}
+设 $\omega_1,\cdots,\omega_n$ 是域 $K$ 的一组整基,$M$ 是用 $\omega_1,\cdots,\omega_n$ 表示整数 $\alpha_1,\cdots,\alpha_n$ 的有理整系数方阵,则
+\[
+  d_K(\alpha_1,\cdots,\alpha_n)=|M|^2\cdot d_K(\omega_1,\cdots,\omega_n)=|M|^2\cdot d(K).
+\]
+如果 $d_K(\alpha_1,\cdots,\alpha_n)=d(K)$,则 $|M|=\pm1$.如果 $d_K(\alpha_1,\cdots,\alpha_n)$ 是无平方因子的非零有理整数,则 $|M|^2$ 是它的一个正平方因子,从而也必然 $|M|^2=1$,即 $|M|=\pm1$.从而无论在哪种情形下,$M$ 的逆方阵的系数仍属于 $\Z$,即 $\omega_1,\cdots,\omega_n$ 也可表示成 $\alpha_1,\cdots,\alpha_n$ 的 $\Z$-线性组合.这就表明 $\alpha_1,\cdots,\alpha_n$ 是域 $K$ 的一组整基.
+\end{proof}
+
+\begin{example}\label{ex:ch1-2-5}
+$f(x)=x^5-x+1$ 是 $\Q[x]$ 中的不可约多项式(由于 $x^5-x+1\ (\mathrm{mod}\ 5)$ 不可约,从而在 $\Z[x]$ 中不可约,于是在 $\Q[x]$ 中也不可约).令 $\theta$ 是此多项式的一个根,则 $K=\Q(\theta)$ 为五次域.并且 $\theta\in O_K$.由 \S\ref{sec:ch1-s1},习题 6 可算出
+\[
+  d_K(\theta)=d_K(1,\theta,\theta^2,\theta^3,\theta^4)
+  =\Norm_{K/\Q}f'(\theta)=4^4\cdot(-1)^5+5^5=19\cdot151.
+\]
+从而由引理 \ref{lem:ch1-8} (2),可知 $1,\theta,\theta^2,\theta^3,\theta^4$ 是域 $K=\Q(\theta)$ 的一组整基,并且 $O_K=\Z[\theta]$,$d(K)=19\cdot151$.
+\end{example}
+
+为了从一些域的整基得到它们的复合域的整基,有时可以利用下面的引理.
+
+\begin{lemma}\label{lem:ch1-9}
+设 $K$ 和 $L$ 均是数域,$[K:\Q]=m$,$[L:\Q]=n$,$[KL:\Q]=mn$,并且 $(d(K),d(L))=1$,则
+\begin{enumerate}[(1)]
+  \item $O_{KL}=O_KO_L$;
+  \item 若 $\{\alpha_1,\cdots,\alpha_m\}$ 和 $\{\beta_1,\cdots,\beta_n\}$ 分别是 $K$ 和 $L$ 的整基,则 $\{\alpha_i\beta_j\mid 1\leqslant i\leqslant m,\ 1\leqslant j\leqslant n\}$ 是域 $KL$ 的一组整基;
+  \item $d(KL)=d(K)^nd(L)^m$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{sloppypar}
+(1) 和 (2):设 $\{\alpha_1,\cdots,\alpha_m\}$ 和 $\{\beta_1,\cdots,\beta_n\}$ 分别是 $K$ 和 $L$ 的整基,\allowbreak 可知 $KL=\Q(\alpha_1,\cdots,\alpha_m,\beta_1,\cdots,\beta_n)$,\allowbreak 并且 $KL$ 中每个元素均可表成 $\{\alpha_i\beta_j\mid 1\leqslant i\leqslant m,\ 1\leqslant j\leqslant n\}$ 的 $\Q$-线性组合.特别地,每个元素 $\alpha\in O_{KL}$ 均可表示成
+\end{sloppypar}
+\begin{equation}  \alpha=\sum_{i,j}\frac{r_{ij}}{r}\alpha_i\beta_j,\quad r_{ij},r\in\Z,\quad (r,r_{11},r_{12},\cdots,r_{mn})=1.\tag{*}\end{equation}
+我们现在要证明 $r\mid d(K)$.为此,考虑任意一个嵌入 $\sigma_k\colon K\to\C$.它可以用 $[KL:K]=[KL:\Q]/[K:\Q]=mn/m=n$ 种方式扩充成 $KL$ 到 $\C$ 中的嵌入,这 $n$ 个扩充在 $L$ 上的限制是彼此不同的(否则它们在 $KL$ 上就是同样的嵌入了),从而其中恰好有一个扩充是 $L$-嵌入(即它在 $L$ 上的限制为 $L$ 上的恒等自同构).我们将这个扩充仍记为 $\sigma_k$,于是
+\begin{align*}
+  \sigma_k(\alpha)&=\sum_{i,j}\frac{r_{ij}}{r}\sigma_k(\alpha_i)\beta_j=\sum_{i=1}^{m}\sigma_k(\alpha_i)x_i,\\
+  x_i&=\sum_{j=1}^{n}\frac{r_{ij}}{r}\beta_j\quad (1\leqslant i\leqslant m).
+\end{align*}
+将 Cramer 法则用于上面 $m$ 个方程($1\leqslant k\leqslant m$),便解出
+\[
+  x_i=\gamma_i/\delta,\qquad \delta=|\sigma_k(\alpha_i)|,
+\]
+其中 $\delta$ 和 $\gamma_i$ 均为(代数)整数,$\delta^2=d(K)$.于是 $d(K)x_i=\delta\gamma_i$ 为(代数)整数.但是
+\[
+  d(K)x_i=\sum_{j=1}^{n}\frac{d(K)r_{ij}}{r}\beta_j\in L,
+\]
+因此也属于 $O_L$.由于 $\{\beta_1,\cdots,\beta_n\}$ 为 $L$ 的整基,所以 $d(K)r_{ij}/r\in\Z$.由 $(r,r_{11},r_{12},\cdots,r_{mn})=1$ 可知 $d(K)/r\in\Z$,这就证明了 $r\mid d(K)$.完全类似地可证 $r\mid d(L)$,从而 $r\mid(d(K),d(L))=1$,即 $r=\pm1$.于是由 (*) 式即知每个元素 $\alpha\in O_{KL}$ 均可表成 $\{\alpha_i\beta_j\}$ 的 $\Z$-线性组合.由于 $[KL:\Q]=mn=|\{\alpha_i\beta_j\}|$,从而 $\{\alpha_i\beta_j\mid 1\leqslant i\leqslant m,\ 1\leqslant j\leqslant n\}$ 是 $O_{KL}$ 的一组整基,并且由此即得到 $O_{KL}=O_KO_L$.
+
+(3):设 $\sigma_1,\cdots,\sigma_m$ 是 $K$ 到 $\C$ 中的全部嵌入,$\tau_1,\cdots,\tau_n$ 是 $L$ 到 $\C$ 中的全部嵌入.前面我们事实上证明了:对于每一对 $(\sigma_i,\tau_j)$,均存在惟一的嵌入 $\pi_{ij}\colon KL\to\C$,使得 $\pi_{ij}|_K=\sigma_i$,$\pi_{ij}|_L=\tau_j$,于是 $\{\pi_{ij}\mid 1\leqslant i\leqslant m,\ 1\leqslant j\leqslant n\}$ 就是 $KL$ 到 $\C$ 的全部嵌入.因此
+\begin{align*}
+  d(KL)&=\left|(\pi_{ij}(\alpha_\lambda\beta_\mu))_{\substack{1\leqslant i\leqslant m,\ 1\leqslant j\leqslant n\\ 1\leqslant \lambda\leqslant m,\ 1\leqslant \mu\leqslant n}}\right|^2
+  =\left|(\sigma_i(\alpha_\lambda)\tau_j(\beta_\mu))\right|^2\\
+  &=\left|(\sigma_i(\alpha_\lambda))*(\tau_j(\beta_\mu))\right|^2,
+\end{align*}
+其中 $*$ 表示矩阵 $(\sigma_i(\alpha_\lambda))$ 和 $(\tau_j(\beta_\mu))$ 的 Kronecker 积.由于
+\[
+  \left|(\sigma_i(\alpha_\lambda))\right|^2=d(K),\qquad
+  \left|(\tau_j(\beta_\mu))\right|^2=d(L),
+\]
+由 Kronecker 积的行列式公式即知 $d(KL)=d(K)^nd(L)^m$.
+\end{proof}
+
+作为引理 \ref{lem:ch1-9} 的应用,我们来决定一般分圆域 $\Q(\zeta_m)$ 的整数环,整基和判别式.
+
+\begin{theorem}\label{thm:1.12}
+设 $K=\Q(\zeta_m)$,$m=p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_r^{\alpha_r}\not\equiv 2\ (\mathrm{mod}\ 4)$,其中 $p_1,\cdots,p_r$ 是不同的素数,$\alpha_i\geqslant 1$,则
+\begin{enumerate}[(1)]
+  \item $O_K=\Z[\zeta_m]$,从而 $\{1,\zeta_m,\cdots,\zeta_m^{\varphi(m)-1}\}$ 是域 $K$ 的一组整基;
+  \item $d(K)=(-1)^{\varphi(m)/2}m^{\varphi(m)}\Big/\displaystyle\prod_{p\mid m}p^{\varphi(m)/(p-1)}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+我们只证 $r=2$ 的情形,因为一般情形不难由此归纳出来.设 $m=p_1^{\alpha_1}p_2^{\alpha_2}$,$K_1=\Q(\zeta_{p_1^{\alpha_1}})$,$K_2=\Q(\zeta_{p_2^{\alpha_2}})$,则
+\[
+  K_1K_2=\Q(\zeta_{p_1^{\alpha_1}},\zeta_{p_2^{\alpha_2}})=\Q(\zeta_{p_1^{\alpha_1}p_2^{\alpha_2}})=K.
+\]
+由定理 \ref{thm:1.10} 可知
+\[
+  d(K_i)=(-1)^{\varphi(p_i^{\alpha_i})/2}(p_i^{\alpha_i})^{\varphi(p_i^{\alpha_i})}
+  \Big/p_i^{\varphi(p_i^{\alpha_i})/(p_i-1)}\quad (i=1,2),
+\]
+从而 $(d(K_1),d(K_2))=1$.又有
+\[
+  [K:\Q]=\varphi(p_1^{\alpha_1}p_2^{\alpha_2})=\varphi(p_1^{\alpha_1})\varphi(p_2^{\alpha_2})
+  =[K_1:\Q]\cdot[K_2:\Q].
+\]
+因此引理 \ref{lem:ch1-9} 的条件全部满足.从而
+\[
+  O_K=\Z[\zeta_{p_1^{\alpha_1}}]\cdot\Z[\zeta_{p_2^{\alpha_2}}]
+  =\Z[\zeta_{p_1^{\alpha_1}},\zeta_{p_2^{\alpha_2}}]=\Z[\zeta_m],
+\]
+并且
+\[
+  d(K)=d(K_1)^{\varphi(p_2^{\alpha_2})}d(K_2)^{\varphi(p_1^{\alpha_1})}
+  =(-1)^{\varphi(m)/2}m^{\varphi(m)}\Big/\prod_{p\mid m}p^{\varphi(m)/(p-1)}.
+\]
+\end{proof}
+
+以上我们对于二次域和分圆域给出了它们的整基.对于任意数域 $K$,如何有效地给出整数环 $O_K$ 的整基,是人们长期以来所关心的问题.此外,人们对于以下一些特殊类型的整基感兴趣.
+
+\emph{(1) 幂元整基}:如果存在 $\theta\in O_K$,使得 $\{1,\theta,\cdots,\theta^{n-1}\}$($n=[K:\Q]$)是 $n$ 次数域 $K$ 的整基,即 $O_K=\Z[\theta]$,便称域 $K$ 具有\emph{幂元整基}.我们在下一章将看到这种幂元整基对于研究 $O_K$ 中素理想分解所带来的好处.从定理 \ref{thm:1.7} 和定理 \ref{thm:1.12} 可以看出,二次域和分圆域均有幂元整基.而 Dedekind 给出了不具有幂元整基的三次域的例子(习题 3).哪些数域具有幂元整基?这一问题甚至对于循环三次数域也尚不清楚(数域 $K$ 叫作是\emph{循环域},是指 $K/\Q$ 为伽罗瓦扩张,并且其伽罗瓦群是循环群).
+
+\emph{(2) 正规整基}:设 $K/\Q$ 是 $n$ 次伽罗瓦扩张,$\Gal(K/\Q)=\{\sigma_1,\cdots,\sigma_n\}$,如果存在 $\alpha\in O_K$ 使得 $\{\sigma_1(\alpha),\cdots,\sigma_n(\alpha)\}$ 是 $K$ 的整基,则称 $K$ 具有\emph{正规整基}.一个伽罗瓦数域何时具有正规整基,这个问题也有一定的理论价值.不难证明:二次域 $K$ 有正规整基的充要条件是 $d(K)$ 为奇数(习题 10).而分圆域 $\Q(\zeta_n)$ 有正规整基的充要条件是 $n$ 为一些不同的素数之乘积.对于其他类型的数域,能否给出存在正规整基的一个简单的充分必要条件?
+
+\emph{(3) 相对整基}:设 $L/K$ 是数域的 $n$ 次扩张,如果存在 $\alpha_1,\cdots,\alpha_n\in O_L$,使得 $O_L=\alpha_1O_K\oplus\cdots\oplus\alpha_nO_K$,则称 $\{\alpha_1,\cdots,\alpha_n\}$ 为扩张 $L/K$ 的\emph{相对整基}.当 $K=\Q$ 时,这就是通常的整基,我们已经证明了这种情形下(相对)整基是存在的.更一般地,可以证明,如果 $O_K$ 是主理想环,则 $L/K$ 的相对整基必然存在.但是有许多例子表明,如果 $O_K$ 不是主理想环,则 $L/K$ 可以不具有相对整基.对于 $L=\Q(\sqrt{d},\sqrt{e})$,$K=\Q(\sqrt{d})$,$[L:K]=2$ 的情形,关于 $L/K$ 的相对整基问题已有很完整的结果.张贤科对于 $L$ 为循环四次域而 $K$ 为 $L$ 的(惟一)二次子域的情形也给出了完整的答案.
+
+\medskip
+\noindent\emph{第一章小结}
+
+本章从数域的扩张均是单扩张入手,导出对每个数域扩张 $L/K$,$L$ 到 $\C$ 的 $K$-嵌入恰好有 $[L:K]$ 个.然后引出数域 $L$ 的两个不变量 $r_1=r_1(L)$ 和 $r_2=r_2(L)$.接着介绍数域扩张 $L/K$ 的范 $\Norm_{L/K}$ 和迹 $\Tr_{L/K}$,以及 $L$ 中 $n=[L:K]$ 个元素 $\alpha_1,\cdots,\alpha_n$ 的判别式 $d_{L/K}(\alpha_1,\cdots,\alpha_n)$,由它是否为零来判定 $\alpha_1,\cdots,\alpha_n$ 是否为 $L$ 的一组 $K$-基.第 1 节最后证明了每个数域 $K$ 的单位根群 $W_K$ 均是有限循环群.
+
+第 2 节把有理数域 $\Q$ 中的通常整数(即有理整数)概念推广为任意数域 $K$ 中的(代数)整数.证明了 $K$ 中整数全体 $O_K$ 是一个整环.这个证明事实上是近世代数中"模"概念的起源.环 $O_K$ 的加法群结构是秩 $n$ 的自由 Abel 群($n=[K:\Q]$),从而有整基概念.虽然整基 $\alpha_1,\cdots,\alpha_n$ 的选取不是惟一的,但它的判别式 $d_K(\alpha_1,\cdots,\alpha_n)$ 与整基的选取方式无关,从而是域 $K$ 的不变量($d(K)$),并且它是非零有理整数.
+
+对于二次域和分圆域,我们在本章中完全明确地决定了它们的单位根群,伽罗瓦群和整数环(即整基).对于任意数域 $K$,决定一组整基往往不很容易.我们将在第二章用更有效的工具决定纯三次域的一组整基.
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item (a) 如果 $\alpha$ 是(代数)整数,求证 $\alpha$ 的每个共轭元素也是(代数)整数;
+        (b) 设 $L/K$ 是数域的扩张,求证:$\Norm_{L/K}(O_L)\subseteq O_K$,$\Tr_{L/K}(O_L)\subseteq O_K$;
+        (c) 设 $L/K$ 是数域的扩张,$\alpha\in L$,求证:$\alpha\in O_L\iff\alpha$ 在 $K$ 上的极小多项式属于 $O_K[x]$.
+  \item 求证:对于每个代数数 $\alpha$,均存在一个有理整数 $n\in\Z$,$n\neq 0$,使得 $n\alpha$ 是代数整数.
+  \item (Dedekind) (a) 证明 $x^3+x^2-2x+8$ 是 $\Q[x]$ 中的不可约多项式.令 $\theta$ 为此多项式的一个根,$K=\Q(\theta)$;
+        (b) 证明 $d_K(1,\theta,\theta^2)=4\cdot503$;
+        (c) 证明 $\theta'=4/\theta\in O_K$,$\{1,\theta,\theta'\}$ 是域 $K$ 的一组整基,并且 $d(K)=503$;
+        (d) 求证:对于每个 $\alpha\in O_K$,$\{1,\alpha,\alpha^2\}$ 均不可能是域 $K$ 的一组整基.
+        (提示:对每个 $\alpha\in O_K$,证明 $d_K(1,\alpha,\alpha^2)$ 必为偶数.)
+  \item 对于每个数域 $K$,求证 $(-1)^{r_2}d(K)>0$,其中 $r_2$ 表示域 $K$ 的复嵌入的对的数目.
+  \item (Stickelberger) 对于每个数域 $K$,求证 $d(K)\equiv 0$ 或者 $1\ (\mathrm{mod}\ 4)$.
+  \item 设 $\theta$ 是 $f(x)=x^3+5x+4$ 的一个根,$K=\Q(\theta)$,求证 $d(K)=-4\cdot233$.
+  \item 设 $p$ 为奇素数,$\omega=\zeta_p$,$K=\Q(\omega)$,
+        (a) 求证 $K_0=\Q(\omega+\omega^{-1})$ 是 $K$ 的极大实子域(即 $K$ 的每个实子域均是 $K_0$ 的子域),并且 $[K_0:\Q]=(p-1)/2$;
+        (b) 求证 $O_{K_0}=\Z[\omega+\omega^{-1}]$,并且 $\{\omega+\omega^{-1},\omega^2+\omega^{-2},\cdots,\omega^{(p-1)/2}+\omega^{-(p-1)/2}\}$ 是域 $K_0$ 的一组整基;
+        (c) 计算域 $K_0=\Q(\zeta_7+\zeta_7^{-1})$ 的判别式.
+  \item 写出前 $11$ 个分圆多项式 $\Phi_m(x)$($2\leqslant m\leqslant 12$).
+  \item 利用代数整数的性质证明 \S\ref{sec:ch1-s1} 中的习题 10.
+  \item 求证二次域 $K$ 有正规整基的充要条件是 $d(K)$ 为奇数.
+  \item 如果 $n$ 是一些不同的素数之乘积,求证分圆域 $\Q(\zeta_n)$ 有正规整基.
+  \item 求证:一个代数整数 $\alpha$ 是单位根的充分必要条件是它的所有共轭元素的绝对值均是 $1$.如果 $\alpha$ 不是整数,上述命题是否成立?
+  \item 求证 $f(x)=x^3-x-1$ 是 $\Q$ 上的不可约多项式.令 $\alpha$ 为 $f(x)$ 在 $\Q$ 中一个根,证明 $\{1,\alpha,\alpha^2\}$ 是数域 $K=\Q(\alpha)$ 的一组整基.
+  \item 设 $p$ 是奇素数,$\zeta=\mathrm{e}^{2\pi\mathrm{i}/p}$.求证:
+        \[
+          \{\zeta^i+\overline{\zeta}^i\mid 1\leqslant i\leqslant\tfrac{p-1}{2}\}
+        \]
+        是数域 $\Q(\zeta+\overline{\zeta})$ 的一组整基.
+  \item 设 $m$ 和 $n$ 是两个不同的无平方因子整数,并且均不为 $1$,证明:
+        (1) $K=\Q(\sqrt{m},\sqrt{n})$ 是四次域,并且它有 $3$ 个二次子域;
+        (2) 令 $M=\Q(\sqrt{m})$,则 $K$ 中元素 $\alpha$ 是整数,当且仅当 $\Norm_{K/M}(\alpha)$ 和 $\Tr_{K/M}(\alpha)$ 均是整数;
+        (3) 记 $k=\dfrac{mn}{(m,n)^2}$.如果 $m\equiv 3\ (\mathrm{mod}\ 4)$,$n\equiv k\equiv 2\ (\mathrm{mod}\ 4)$,则
+        \[
+          \Big\{1,\sqrt{m},\sqrt{n},\frac{1}{2}(\sqrt{n}+\sqrt{k})\Big\}
+        \]
+        是 $O_K$ 的一组整基,并且 $d(K)=64mnk$;
+        (4) 如果 $m\equiv 1\ (\mathrm{mod}\ 4)$,$n\equiv k\equiv 2$ 或 $3\ (\mathrm{mod}\ 4)$,则
+        \[
+          \Big\{1,\frac{1+\sqrt{m}}{2},\sqrt{n},\frac{\sqrt{n}+\sqrt{k}}{2}\Big\}
+        \]
+        是 $O_K$ 的一组整基,并且 $d(K)=16mnk$;
+        (5) 如果 $m\equiv n\equiv k\equiv 1\ (\mathrm{mod}\ 4)$,则
+        \[
+          \Big\{1,\frac{1}{4}(1+\sqrt{m})(1+\sqrt{k}),\frac{1}{2}(1+\sqrt{m}),\frac{1}{2}(1+\sqrt{n})\Big\}
+        \]
+        是 $O_K$ 的一组整基,并且 $d(K)=mnk$.
+\end{Exercises}

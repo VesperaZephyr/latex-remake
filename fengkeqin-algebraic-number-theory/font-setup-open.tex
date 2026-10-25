@@ -1,0 +1,117 @@
+% Copyright 2018  李文威 (Wen-Wei Li).
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the Creative Commons
+% Attribution 4.0 International (CC BY 4.0)
+% http://creativecommons.org/licenses/by/4.0/
+
+% 目的：字体相关设置，呼叫相关宏包。
+% 将由 AJbook.cls 引入。
+\ProvidesFile{font-setup-open.tex}[2026/03/01 Fandol font setup]
+
+% ------------------------------------------------------------
+% 西文无衬线字体
+% ------------------------------------------------------------
+
+\setsansfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic
+]
+
+% ------------------------------------------------------------
+% 中文字体
+% ------------------------------------------------------------
+
+% 让 ctex 负责设置中文主字体。
+% 下面不要再使用 \setCJKmainfont，否则会产生
+% Redefining CJKfamily `\CJKrmdefault' 警告。
+\usepackage[fontset=fandol]{ctex}
+
+% 西里尔字符（如 Чеботарёв、Боревич）交给 CJK 字体渲染
+\xeCJKDeclareCharClass{CJK}{"0400 -> "04FF}
+
+% ------------------------------------------------------------
+% 中文断行
+% ------------------------------------------------------------
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+
+% ------------------------------------------------------------
+% AJbook 需要的字体切换命令
+% ------------------------------------------------------------
+
+\newcommand{\thmheiti}{\heiti}
+\newcommand{\sectionfont}{\bfseries\heiti}
+\newcommand{\pffont}{\heiti}
+
+% 保持 AJbook 原来的强调方式
+\renewcommand{\em}{\bfseries\heiti}
+
+% ------------------------------------------------------------
+% AJbook 使用的额外 CJK 字体族
+% ------------------------------------------------------------
+
+% 日志显示 AJbook 中直接调用了：
+%
+%   \CJKfamily{song}
+%
+% 因此必须显式定义 song。
+% 中文“斜体”映射到楷体，粗体映射到粗宋。
+\setCJKfamilyfont{song}[
+  BoldFont       = FandolSong-Bold,
+  ItalicFont     = FandolKai-Regular,
+  BoldItalicFont = FandolKai-Regular
+]{FandolSong-Regular}
+
+% 黑体别名
+\setCJKfamilyfont{hei2}[
+  BoldFont       = FandolHei-Bold,
+  ItalicFont     = FandolHei-Regular,
+  BoldItalicFont = FandolHei-Bold
+]{FandolHei-Regular}
+
+% 章节标题字体族
+\setCJKfamilyfont{sectionfont}[
+  BoldFont       = FandolHei-Bold,
+  ItalicFont     = FandolHei-Regular,
+  BoldItalicFont = FandolHei-Bold
+]{FandolHei-Regular}
+
+% 证明字体族
+\setCJKfamilyfont{pffont}[
+  BoldFont       = FandolHei-Bold,
+  ItalicFont     = FandolHei-Regular,
+  BoldItalicFont = FandolHei-Bold
+]{FandolHei-Regular}
+
+% 强调字体族
+\setCJKfamilyfont{emfont}[
+  BoldFont       = FandolHei-Bold,
+  ItalicFont     = FandolHei-Regular,
+  BoldItalicFont = FandolHei-Bold
+]{FandolHei-Regular}
+% ------------------------------------------------------------
+% 让 \textit 中的西文使用斜体，中文使用楷体
+% ------------------------------------------------------------
+
+% 定义专供 \textit 使用的中文楷体族。
+% 明确提供 m/it、b/n、b/it 映射，避免字体形状缺失警告。
+\setCJKfamilyfont{textitkai}[
+  BoldFont       = FandolKai-Regular,
+  ItalicFont     = FandolKai-Regular,
+  BoldItalicFont = FandolKai-Regular
+]{FandolKai-Regular}
+
+% 保存 LaTeX 原有的 \textit
+\NewCommandCopy{\AJoriginaltextit}{\textit}
+
+% 西文仍由原 \textit 排成斜体；
+% 中文切换到上面定义的楷体族。
+\RenewDocumentCommand{\textit}{m}{%
+  \AJoriginaltextit{\CJKfamily{textitkai}#1}%
+}
+
+\endinput

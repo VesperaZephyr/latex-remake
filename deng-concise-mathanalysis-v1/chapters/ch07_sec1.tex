@@ -1,0 +1,267 @@
+\section{定积分的概念}\label{sec:7-1}
+
+我们先从几个例子谈起．
+
+\begin{example}[变力做功]
+设有一质点受到力 $F$ 的作用而在 $x$ 轴上运动，$F$ 的方向与 $x$ 轴平行，其大小与质点所在的位置有关，即是 $x$ 的函数 $f(x)$．问题是，当质点从 $a$ 位移到 $b$ 时，变力 $f(x)$ 作的总功是多少（图~\ref{fig:7-1}）？
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{fig7-1.png}
+\figcap{图 7-1}\label{fig:7-1}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.65\textwidth]{fig7-2.png}
+\figcap{图 7-2}\label{fig:7-2}
+\end{minipage}
+\end{figure}
+
+这个问题是有显然的实际背景的．例如，一个质量为 $m$ 的人造卫星，要把它从地面送上太空，便要计算地心引力对它做的功．如果把铅垂线选作 $x$ 轴，则这时的力为
+\[
+f(x) = -\frac{\mu m}{x^2},
+\]
+我们要计算它对人造卫星所作的功（图~\ref{fig:7-2}）．
+
+中学的物理知识告诉我们，如果物体在位移过程中受一常力作用，而且力的方向与位移的方向相同，则力所作的功等于力乘位移．现在力的大小是随位移变化的，其所作的功应如何计算呢？通常力的大小 $f(x)$ 是随 $x$ 变化的连续量，因此这是个求连续量连续作用的总和问题．
+
+我们试把区间 $[a,b]$ 分成 $n$ 个小区间．设分点为
+\[
+a = x_0 < x_1 < x_2 < \cdots < x_n = b.
+\]
+在第 $i$ 个小区间 $[x_{i-1}, x_i]$ 中，由于区间比较小，可以认为力 $f(x)$ 的变化较小，可以用常力近似代替它．选 $\xi_i \in [x_{i-1}, x_i]$，则质点从 $x_{i-1}$ 到 $x_i$ 过程中，力所作的功 $\Delta w_i$ 可以近似认为是
+\[
+\Delta w_i \approx f(\xi_i)\Delta x_i,
+\]
+其中 $\Delta x_i = x_i - x_{i-1}$ 是质点位移，把它们按 $i$ 加起来
+\[
+\sum_{i=1}^n f(\xi_i)\Delta x_i,
+\]
+便是力所作的总功 $w = \sum_{i=1}^n \Delta w_i$ 的一个近似．设想当分点愈来愈多且愈来愈密时，如果上述和式的极限存在，则这极限便应该是力所作的总功 $w$．记
+\[
+\lambda = \max_{1 \leqslant i \leqslant n}\{\Delta x_i\},
+\]
+则分点愈来愈多与愈来愈密，便可用 $\lambda \to 0$ 来表示．因此，如果极限
+\[
+\lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i
+\]
+存在（是个数），则它便等于力所作的功 $w$，而且显然这极限与愈分愈密的具体分法以及与 $\xi_i$ 的具体取法无关，只要 $\lambda \to 0$ 且 $\xi_i \in [x_{i-1}, x_i]$．
+
+\begin{example}[质点作变速直线运动的路程]
+设质点作变速直线运动，速度为 $v = v(t)$，求质点在时间间隔 $[a,b]$ 内所走过的路程，通常假设 $v(t)$ 是 $t$ 的连续函数，因此这也是一个连续量连续作用的积累问题．
+\end{example}
+
+我们知道，匀速直线运动的路程公式为 $s = vt$．现在速度是连续变化的，怎样求路程呢？用类似于例~1 的办法，先把区间 $[a,b]$ 分细，在小区间中用匀速运动近似变速运动，然后加起来再取极限．
+
+事实上，将区间 $[a,b]$ 任意分成 $n$ 份，设分点为
+\[
+a = t_0 < t_1 < t_2 < \cdots < t_n = b.
+\]
+每个小区间的长度为
+\[
+\Delta t_i = t_i - t_{i-1} \quad (i = 1, 2, \cdots, n).
+\]
+在小区间 $[t_{i-1}, t_i]$ 上，可以认为速度 $v(t)$ 变化很小，可近似地看成匀速运动，即任取 $\xi_i \in [t_{i-1}, t_i]$，用质点在时刻 $\xi_i$ 的速度 $v(\xi_i)$ 去近似代替 $v(t)$，于是质点在 $t_{i-1}$ 至 $t_i$ 所走过的路程 $\Delta s_i$ 有近似值
+\[
+\Delta s_i \approx v(\xi_i)\Delta t_i \quad (i = 1, 2, \cdots, n).
+\]
+对 $i$ 求和，则质点在时间从 $a$ 到 $b$ 所走过的路程
+\begin{align*}
+s &= \Delta s_1 + \Delta s_2 + \cdots + \Delta s_n = \sum_{i=1}^n \Delta s_i \\
+&\approx v(\xi_1)\Delta t_1 + v(\xi_2)\Delta t_2 + \cdots + v(\xi_n)\Delta t_n \\
+&= \sum_{i=1}^n v(\xi_i)\Delta t_i.
+\end{align*}
+记 $\lambda = \max_{1 \leqslant i \leqslant n}|\Delta t_i|$，当 $\lambda \to 0$ 时，则
+\[
+s = \lim_{\lambda \to 0}\sum_{i=1}^n v(\xi_i)\Delta t_i.
+\]
+这样，$s$ 便作为速度 $v(t)$ 的一个和式的极限而被求出来．
+
+\begin{example}[曲边梯形的面积]
+所谓曲边梯形，是指由三条直边及一条曲边所围成的图形，其中两条直边互相平行，第三条直边与它们垂直，叫做底边，第四条边是一段曲线弧，它与任意一条垂直于底边的直线只交于一点．当两条互相平行的直边中有一条或两条缩成一个点时，曲边梯形便“退化”成了曲边三角形．我们就是要求这种图形的面积．设曲边梯形由连续曲线
+\[
+y = f(x) \quad (f(x) \geqslant 0)
+\]
+以及 $x$ 轴、直线 $x = a$，$x = b$ 围成（图~\ref{fig:7-3}），这种图形面积的计算，读者过去是未学过的．
+\end{example}
+
+困难在于有一边是“曲”的．为了克服这一困难，我们用例~1、例~2 的办法，把曲边梯形分细，对每个小曲边梯形，可用小矩形近似代替它，“以直代曲”，然后把小矩形的面积加起来，得到原来曲边梯形面积的近似值，再让分割无限变细，取极限便求得面积的精确值（图~\ref{fig:7-4}）．具体做法是：将区间 $[a,b]$ 任意分成 $n$ 份，设分点为
+\[
+a = x_0 < x_1 < \cdots < x_n = b,
+\]
+每个小区间的长度为
+\[
+\Delta x_i = x_i - x_{i-1}, \qquad i = 1, 2, \cdots, n.
+\]
+任取 $\xi_i \in [x_{i-1}, x_i]$，用底为 $\Delta x_i$ 高为 $f(\xi_i)$ 的小矩形面积近似代替第 $i$ 个小曲边梯形的面积 $\Delta A_i$：
+\[
+\Delta A_i \approx f(\xi_i)\Delta x_i,
+\]
+对 $i$ 求和，便得到整个曲边梯形面积的一个近似
+\begin{align*}
+A &= \Delta A_1 + \Delta A_2 + \cdots + \Delta A_n \\
+&\approx f(\xi_1)\Delta x_1 + f(\xi_2)\Delta x_2 + \cdots + f(\xi_n)\Delta x_n \\
+&= \sum_{i=1}^n f(\xi_i)\Delta x_i.
+\end{align*}
+记 $\lambda = \max_{1 \leqslant i \leqslant n}|\Delta x_i|$，令 $\lambda \to 0$，则
+\[
+A = \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i.
+\]
+这样，曲边梯形的面积便作为函数 $f(x)$ 的一个特定的和式的极限而被求出来．
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{fig7-3.png}
+\figcap{图 7-3}\label{fig:7-3}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{fig7-4.png}
+\figcap{图 7-4}\label{fig:7-4}
+\end{minipage}
+\end{figure}
+
+设想曲边梯形是由线段 $\{(x_0, y) \mid 0 \leqslant y \leqslant f(x_0)\}$ 当 $x_0$ 从 $a$ 变到 $b$ 时扫出来的（图~\ref{fig:7-5}）．如果函数 $f(x)$ 等于常数，这时图形是矩形，面积很易求得．对一般的连续函数 $f(x)$，困难就在于当 $x$ 从 $a$ 变到 $b$ 时，$f(x)$ 也在连续地变化．因此，求曲边梯形的面积，也就是求一个连续量连续变化的“积累”问题，从这个意义来看，例~3 是例~1、例~2 的几何“解释”．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.35\textwidth]{fig7-5.png}
+\figcap{图 7-5}\label{fig:7-5}
+\end{figure}
+
+这些例子，都归结为求某种和式的极限．我们把它概括抽象出来，便得到下面的定积分定义．
+
+\begin{definition}\label{def:7-1}
+设函数 $f(x)$ 在区间 $[a,b]$ 上有定义．用分点
+\[
+a = x_0 < x_1 < x_2 < \cdots < x_n = b
+\]
+将区间任意分成 $n$ 个小区间，小区间的长度为
+\[
+\Delta x_i = x_i - x_{i-1}, \quad i = 1, 2, \cdots, n.
+\]
+记 $\lambda = \max_{1 \leqslant i \leqslant n}\{\Delta x_i\}$，在每个小区间上任取一点 $\xi_i \in [x_{i-1}, x_i]$，作和式
+\[
+\sigma = \sum_{i=1}^n f(\xi_i)\Delta x_i.
+\]
+若当 $\lambda \to 0$ 时，和式 $\sigma$ 的极限存在（设为 $I$），则称 $f(x)$ 在 $[a,b]$ 是可积的，极限值 $I$ 称为 $f(x)$ 在 $[a,b]$ 的定积分，记作
+\[
+\int_a^b f(x)\,dx.
+\]
+概括起来，也就是
+\[
+I = \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i = \int_a^b f(x)\,dx,
+\]
+这里的 $a$，$b$ 分别称为定积分的下限和上限，$[a,b]$ 称为积分区间，$f(x)$ 称为被积函数．
+\end{definition}
+
+定积分的这一定义，在历史上首先是由黎曼（Riemann，1826---1866）给出的，因此这种意义下的定积分也称为黎曼积分，$f(x)$ 在这种意义下的可积也称为黎曼可积．值得指出的是，这里的 $\sigma$ 是由 $[a,b]$ 的分法 $(a = x_0 < x_1 < \cdots < x_n = b)$ 和 $\xi_i$ 的取法决定的，通常称它为 $f(x)$ 的一个黎曼和，一般说来，它并不是 $\lambda$ 的函数，也就是说，当 $\lambda = \max_{1 \leqslant i \leqslant n}\{\Delta x_i\}$ 决定后，它并不唯一决定（对应于 $[a,b]$ 的不同分法与 $\xi_i$ 的不同取法，$\sigma$ 可以取不同的值）．因此当 $\lambda \to 0$ 时的极限为 $I$，严格地说，只能用下面的 $\varepsilon$-$\delta$ 语言给出：
+
+设 $f(x)$ 在 $[a,b]$ 有定义，$I$ 是常数．若对任意给定的 $\varepsilon > 0$，存在 $\delta > 0$，使得对于 $[a,b]$ 的任意分法与 $\xi_i \in [x_{i-1}, x_i]$ 的任意取法，只要 $\lambda = \max_{1 \leqslant i \leqslant n}\{\Delta x_i\} < \delta$，就有
+\[
+|\sigma - I| = \left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| < \varepsilon,
+\]
+则称 $\sum_{i=1}^n f(\xi_i)\Delta x_i$ 的极限为 $I$，即
+\[
+I = \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i.
+\]
+
+有了定积分的概念以后，上面三个例子便可以用定积分来表示．
+
+在例~1 中，变力 $f(x)$ 使质点从 $a$ 位移到 $b$ 时（注意，此时 $f(x)$ 作用的方向与位移的方向重合）所作的功为 $f(x)$ 在 $[a,b]$ 的定积分，即
+\[
+w = \int_a^b f(x)\,dx.
+\]
+
+在例~2 中，作变速直线运动的质点所走过的路程是速度函数 $v(t)$ 在时间区间 $[a,b]$ 上的定积分，即
+\[
+s = \int_a^b v(t)\,dt.
+\]
+
+在例~3 中，曲边梯形
+\[
+\{(x,y) \mid 0 \leqslant y \leqslant f(x), a \leqslant x \leqslant b\}
+\]
+的面积 $A$，便是 $f(x)$ 在 $[a,b]$ 的定积分，即
+\[
+A = \int_a^b f(x)\,dx.
+\]
+这也就是当 $f(x) \geqslant 0$ ($a \leqslant x \leqslant b$) 时，定积分的几何意义．
+
+根据定义，当 $f(x) \leqslant 0$ ($a \leqslant x \leqslant b$) 时，黎曼和
+\[
+\sigma = \sum_{i=1}^n f(\xi_i)\Delta x_i
+\]
+是负的，因此其极限
+\[
+\int_a^b f(x)\,dx
+\]
+与曲边梯形
+\[
+\{(x,y) \mid f(x) \leqslant y \leqslant 0, a \leqslant x \leqslant b\}
+\]
+的面积 $A$ 差一个负号（图~\ref{fig:7-6}）：
+\[
+A = -\int_a^b f(x)\,dx.
+\]
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig7-6.png}
+\figcap{图 7-6}\label{fig:7-6}
+\end{figure}
+
+关于定积分的概念，还有两点需要说明的．第一，定积分是个数，它仅取决于被积函数与积分的上、下限，而与积分变量采用什么字母无关，即有
+\[
+\int_a^b f(x)\,dx = \int_a^b f(t)\,dt = \int_a^b f(u)\,du,
+\]
+这与求和指标选用什么字母无关是一样的道理，如
+\[
+\sum_{i=1}^{100}\frac{1}{i^2} = \sum_{k=1}^{100}\frac{1}{k^2} = \sum_{n=1}^{100}\frac{1}{n^2}.
+\]
+
+第二，原来定义中假定了 $a < b$，如果 $a > b$，则分法应为 $a = x_0 > x_1 > x_2 > \cdots > x_n = b$，定义中其他地方一切不变，仍可定义积分
+\[
+\int_a^b f(x)\,dx.
+\]
+因此，无论 $a$，$b$ 谁大谁小，永远有
+\[
+\int_a^b f(x)\,dx = -\int_b^a f(x)\,dx,
+\]
+当 $a = b$ 时，我们规定
+\[
+\int_a^b f(x)\,dx = 0.
+\]
+
+\begin{xiti}
+\item 已知下列函数在指定区间上可积，用定义求下列积分：
+\begin{ziti}
+\item $\displaystyle \int_a^b x \, dx \quad (0 < a < b)$；
+\item $\displaystyle \int_a^b k \, dx$ （$k$ 是常数）；
+\item $\displaystyle \int_{-1}^2 x^2 \, dx$；
+\item $\displaystyle \int_0^1 a^x \, dx \quad (a \neq 1, a > 0)$．
+\end{ziti}
+
+\item 设 $f(x)$ 在 $[a+c, b+c]$ 可积，证明 $f(x+c)$ 在 $[a, b]$ 上可积，且
+\[
+\int_a^b f(x+c)\,dx = \int_{a+c}^{b+c}f(x)\,dx.
+\]
+
+\item 设
+\[
+f(x) = \begin{cases}
+1, & x = c, \quad c \in (a,b), \\
+0, & x \in [a,c) \cup (c,b],
+\end{cases}
+\]
+求证 $\displaystyle \int_a^b f(x)\,dx = 0$．
+
+\item 若函数 $f(x)$ 在 $[a,b]$ 上可积，其积分是 $I$，今在 $[a,b]$ 内有限个点上改变 $f(x)$ 的值使它成为另一函数 $f^*(x)$，证明 $f^*(x)$ 也在 $[a,b]$ 上可积，并且积分仍为 $I$．
+\end{xiti}

@@ -1,0 +1,574 @@
+% ============ §28 I-smoothness (原书 pp.213-222) ============
+\section{$I$-smoothness}\label{sec:28}\index{I-smooth, section 28}\index{I-unramified, section 28}\index{I-étale, section 28}\index{coefficient field, section 28}\index{quasi-coefficient field, section 28}\index{geometrically regular, section 28}
+
+Let $A$ be a ring, $B$ an $A$-algebra, and $I$ an ideal of $B$; we consider $B$ with the
+$I$-adic topology. We say that $B$ is \emph{$I$-smooth} over $A$ if given an $A$-algebra $C$,
+an ideal $N$ of $C$ satisfying $N^2 = 0$, and an $A$-algebra homomorphism
+$\bar{u}\colon B \to C/N$ which is continuous for the discrete topology of $C/N$ (that is,
+such that $\bar{u}(I^\nu) = 0$ for some $\nu$), then there exists a lifting $u\colon B \to C$ of
+$\bar{u}$ to $C$.
+\[
+\begin{tikzcd}
+B \arrow[r, "\bar{u}"] & C/N \\
+A \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+If $I = (0)$, that is if no continuity condition is imposed on $\bar{u}$, then this is the
+definition of 0-smooth given in \S\ref{sec:25}. Write $f'\colon C \to C/N$ for the natural map;
+then from $f'u(I^\nu) = \bar{u}(I^\nu) = 0$ we have $u(I^\nu) \subset N$, hence
+$u(I^{2\nu}) \subset N^2 = 0$, so that $u\colon B \to C$ (assuming it exists) is continuous for
+the discrete topology of $C$. From this, one sees that if $B$ is $I$-smooth over $A$, and
+instead of the condition $N^2 = 0$ we assume that $C$ is an $N$-adically complete
+ring, then a continuous homomorphism $\bar{u}\colon B \to C/N$ has a lifting $u\colon B \to C$,
+and $u$ is continuous with respect to the $N$-adic topology of $C$; this is because
+we can lift $\bar{u}$ successively to $B \to C/N^i$ for $i = 1, 2, \ldots$, and then $u$ is given
+by $B \to \varprojlim C/N^i = C$.
+
+We now return to the original assumption $N^2 = 0$; we say that $B$ is
+\emph{$I$-unramified} (or $I$-neat) over $A$ if given $C$, $N$ and a continuous
+homomorphism $\bar{u}\colon B \to C/N$, there exists at most one lifting of $\bar{u}$ to $C$. If
+$B$ is both $I$-smooth and $I$-unramified over $A$, we say that $B$ is \emph{$I$-\'etale}.
+These conditions become weaker if we replace $I$ by a larger ideal.
+
+\begin{theorem}[Transitivity]\label{thm:28.1}
+Let $A \to B \xrightarrow{g'} B'$ be ring homomorphisms, and suppose that $g'$ is
+continuous for the $I$-adic topology of $B$ and the $I'$-adic topology of $B'$; if $B$ is
+$I$-smooth over $A$, and $B'$ is $I'$-smooth over $B$ then $B'$ is $I'$-smooth over $A$.
+The same thing holds with $I$-unramified in place of $I$-smooth.
+\end{theorem}
+
+\begin{proof}
+Suppose that $\bar{u}$ is given in the diagram;
+\[
+\begin{tikzcd}
+B' \arrow[r, "\bar{u}"] & C/N \\
+B \arrow[u, "g'"] \arrow[ru, "\overline{ug'}"'] & C \arrow[u] \\
+A \arrow[u] \arrow[ruu] & 
+\end{tikzcd}
+\]
+then since $\bar{u}g'\colon B \to C/N$ is continuous, by the $I$-smoothness of $B$, there
+exists a lifting $w\colon B \to C$. Next by the $I'$-smoothness of $B'$ over $B$, we can
+lift $\bar{u}$ to $v\colon B' \to C$. Also if $B$ is $I$-unramified over $A$, and the map $v$ in
+the diagram exists, then $w = vg'$ is unique, and if in addition $B'$ is
+$I'$-unramified over $B$ then $v$ is unique.
+\end{proof}
+
+\begin{theorem}[Base-change]\label{thm:28.2}
+Let $A$ be a ring, $B$ and $A'$ two $A$-algebras, and set $B' = B \otimes_A A'$. If $B$ is
+$I$-smooth over $A$ then $B'$ is $IB'$-smooth over $A'$. The same thing holds for
+$I$-unramified.
+\end{theorem}
+
+\begin{proof}
+We have the diagram
+\[
+\begin{tikzcd}
+B \arrow[r, "p"] & B' \arrow[r, "\bar{u}"] & C/N \\
+A \arrow[u] \arrow[r] & A' \arrow[u] \arrow[ru, ""] & C \arrow[u]
+\end{tikzcd}
+\]
+where $p$, $q$ are the natural homomorphisms. Then if $\bar{u}$ satisfies
+$\bar{u}(I^\nu B') = 0$, there is a lifting $v\colon B \to C$ of $\bar{u}p$. Then if we define
+$v'\colon B' = B \otimes_A A' \to C$, by $v' = v \otimes_A \mathrm{id}$, this is a lifting of $\bar{u}$ to $C$. For
+unramified, this is clear from the fact that $v'$ is uniquely determined by $v$.
+\end{proof}
+
+\begin{example*}
+Let $k$ be a ring, $(A, m)$ a local ring, $(\hat{A}, \hat{m})$ its completion, and
+$k \to A$ a homomorphism. Then
+\begin{enumerate}[(i)]
+  \item $\hat{A}$ is $\hat{m}$-\'etale over $A$;
+  \item $A$ is $m$-smooth (or $m$-unramified) over $k$ $\iff$ $\hat{A}$ is $\hat{m}$-smooth (or
+        $\hat{m}$-unramified) over $k$.
+\end{enumerate}
+We get a proof at once from the fact that $A/m^\nu \cong \hat{A}/\hat{m}^\nu$ for all $\nu$.
+\end{example*}
+
+\begin{example*}
+Let $A$ be any ring, and set $B = A[X_1, \ldots, X_n]$ and $I = \sum X_iB$; we give $B$
+the $I$-adic topology. Then $B$ is $I$-smooth over $A$.
+\end{example*}
+
+\begin{remark}
+The gap between $I$-smoothness and 0-smoothness has been studied by Tanimoto
+[1], [2]. For instance, if $k$ is a field, then $k[X_1, \ldots, X_n]$ is 0-smooth over
+$k$ only when $\chark k = p$ and $[k : k^p] < \infty$.
+\end{remark}
+
+Let $(A, m, K)$ be a local ring. If $A$ is of characteristic $p$, then also $\chark K = p$;
+moreover, if $\chark K = 0$, then $\chark A = 0$, and $A$ contains the rational number
+field $\mathbb{Q}$. In either of these cases $A$ is said to be \emph{equicharacteristic}, or a
+local ring of \emph{equal characteristic}; this is equivalent to saying that $A$ contains a
+field. If $A$ is not of equal characteristic, then either
+\[
+  \chark A = 0 \text{ and } \chark K = p,
+\]
+or
+\[
+  \chark A = p^n \text{ for some } n > 1 \text{ and } \chark K = p.
+\]
+In this case we say that $A$ is a local ring of \emph{unequal characteristic}.
+
+Let $A$ be an equicharacteristic local ring and let $K'$ be a subfield of $A$. We say
+that $K'$ is a \emph{coefficient field} of $A$ if $K'$ maps isomorphically to $K$ under the
+natural map $A \to A/m = K$, or equivalently, if $A = K' + m$. Moreover, we say that
+$K'$ is a \emph{quasi-coefficient field} of $A$ if $K$ is 0-\'etale over $K'$ (or rather, over
+the image of $K'$ in $K$).
+
+\begin{theorem}\label{thm:28.3}
+Let $(A, m, K)$ be an equicharacteristic local ring. Then
+\begin{enumerate}[(i)]
+  \item $A$ has a quasi-coefficient field;
+  \item if $A$ is complete, it has a coefficient field;
+  \item if the residue field $K$ of $A$ is separable over a subfield $k \subset A$ then
+        $A$ has a quasi-coefficient field $K'$ containing $k$;
+  \item if $K'$ is a quasi-coefficient field of $A$, then there exists a unique
+        coefficient field $K''$ of the completion $\hat{A}$ containing $K'$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(iii) Suppose that $B = \{\tau_1, \tau_2, \ldots\}$ is a differential basis of $K/k$, and for
+each $\tau_i$, choose an inverse image $\xi_i \in A$. Then by
+Theorem~\hyperref[thm:26.8]{26.8}, $\tau_1, \tau_2, \ldots$ are algebraically independent over $k$, so
+that the subring $k[\xi_1, \xi_2, \ldots]$ of $A$ meets $m$ in $(0)$, and hence $A$ contains
+the field $K' = k(\xi_1, \xi_2, \ldots)$. We identify $K'$ with its image $k(B)$ in $K$, so that
+$K$ is clearly 0-\'etale over $K'$, and $K'$ is a quasi-coefficient field, as required.
+
+(i) By assumption $A$ contains a field, so that it contains a perfect field (for
+example, the prime subfield). We need only apply (iii) to this.
+
+(iv) In the diagram
+\[
+\begin{tikzcd}
+K \arrow[r, "\cong"] & \hat{A}/\hat{m} \\
+K' \arrow[u, "\subset"] \arrow[ru, "\subset"'] & \hat{A} \arrow[u, "p"] \\
+& A \arrow[u, "\subset"]
+\end{tikzcd}
+\]
+there exists a unique lifting of the identity map $K \to \hat{A}/\hat{m}$ to $K \to \hat{A}$,
+and its image is the required coefficient field.
+
+(ii) follows from (i) and (iv).
+\end{proof}
+
+The next lemma will be made more precise in Theorem~\hyperref[thm:28.7]{7}.
+
+\begin{lemma}\label{lem:28.1}
+Suppose that $(A, m, K)$ is a Noetherian local ring containing a field $k$. If $A$ is
+$m$-smooth over $k$ then $A$ is regular. The converse holds if the residue field $K$
+is separable over $k$.
+\end{lemma}
+
+\begin{proof}
+Take a perfect subfield $k_1 \subset k$; then $k$ is 0-smooth over $k_1$, so that by
+transitivity, $A$ is also $m$-smooth over $k_1$, so that we can assume that $k$ is a
+perfect field. Also, replacing $A$ by $\hat{A}$, we can assume that $A$ is complete.
+Then $A$ has a coefficient field containing $k$; for ease of notation we write $K$
+for this, and identify it with the residue field. If $\{x_1, \ldots, x_n\}$ is a minimal
+basis of $m$ then as $K$-algebras we have
+\[
+  A/m^2 \cong K[X_1, \ldots, X_n]/(X_1, \ldots, X_n)^2.
+\]
+The composite
+\[
+  A \to A/m^2 \xrightarrow{\cong} K[X_1, \ldots, X_n]/(X)^2 \xrightarrow{\subset} K[X_1, \ldots, X_n]/(X)^2
+\]
+lifts to $A \to K[[X_1, \ldots, X_n]]$, and by Theorem~\hyperref[thm:8.4]{8.4}, this is surjective. Thus
+$\dim A \ge \dim K[[X_1, \ldots, X_n]] = n$, and together with $\embdim A = n$ this
+gives the regularity of $A$.
+
+Conversely, if $A$ is regular and $K$ is separable over $k$, then $A$ has a
+coefficient field $K$ containing $k$. Let $\{x_1, \ldots, x_n\}$ be a regular system of
+parameters of $A$, and define a homomorphism of $K$-algebras
+$\psi\colon K[[X_1, \ldots, X_n]] \to \hat{A}$ by $\psi(X_i) = x_i$; then once more by
+Theorem~\hyperref[thm:8.4]{8.4}, $\psi$ is surjective, and comparing dimensions, we see that
+\[
+  K[[X_1, \ldots, X_n]] = \hat{A}.
+\]
+Therefore $\hat{A}$ is $\hat{m}$-smooth over $K$, and since $K$ is 0-smooth over $k$, we see
+that $\hat{A}$ is $\hat{m}$-smooth over $k$, and therefore $A$ is $m$-smooth over $k$.
+\end{proof}
+
+Let $k \to A \xrightarrow{g} B$ be ring homomorphisms, and let $I$ be an ideal of $B$; we
+consider $B$ in the $I$-adic topology. We say that $B$ is \emph{$I$-smooth over $A$ relative
+to $k$} if the following condition holds: for any $A$-algebra $C$, and an ideal $N$ of
+$C$ such that $N^2 = 0$, given an $A$-algebra homomorphism $\bar{u}\colon B \to C/N$
+satisfying $\bar{u}(I^\nu) = 0$ for sufficiently large $\nu$, if $\bar{u}$ has a lifting
+$v'\colon B \to C$ as a $k$-algebra homomorphism, it also has a lifting $v\colon B \to C$ as an
+$A$-algebra homomorphism.
+
+\begin{theorem}\label{thm:28.4}
+Let $k \to A \xrightarrow{g} B$ and $I \subset B$ be as above; then the following conditions
+are equivalent:
+\begin{enumerate}[(1)]
+  \item $B$ is $I$-smooth over $A$ relative to $k$;
+  \item if $N$ is a $B$-module such that $I^\nu N = 0$ for sufficiently large $\nu$, then
+        $\Der_k(B, N) \to \Der_k(A, N)$ is surjective;
+  \item for every $\nu > 0$, the map $\Omega_{B/k} \otimes_B (B/I^\nu) \to
+        \Omega_{A/k} \otimes_A (B/I^\nu)$ has a left inverse (that is, it maps injectively onto
+        a direct summand).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (2) If $I^\nu N = 0$, set $C = (B/I^\nu) \ltimes N$, and let
+$\bar{u}\colon B \to B/I^\nu = C/N$ be the natural map. Given $D \in \Der_k(A, N)$, define
+$\lambda\colon A \to C$ by $\lambda(a) = (ug(a), D(a))$. If we consider $C$ as an $A$-algebra via
+$\lambda$, then $b \mapsto (u(b), 0) \in C$ is a $k$-algebra homomorphism from $B$ to $C$
+lifting $\bar{u}$, so that by assumption there exists a lifting $v'\colon B \to C$ of $\bar{u}$ as an
+$A$-algebra homomorphism; then writing $v'$ in the form
+\[
+  v'(b) = (u(b), D'(b)), \quad \text{with } D' \in \Der_k(B, N),
+\]
+we have $v'g = \lambda$, so that $D'g = D$.
+
+(2) $\Rightarrow$ (1) Suppose given a commutative diagram
+\[
+\begin{tikzcd}
+B \arrow[r, "\bar{u}"] & C/N \\
+A \arrow[u, "g"] \arrow[ru, ""] & C \arrow[u, "j"]
+\end{tikzcd}
+\]
+with $j$ the natural map, and $\bar{u}(I^\nu) = 0$; if $v\colon B \to C$ is a $k$-algebra
+homomorphism satisfying $jv = \bar{u}$ and $vg = \lambda$, then setting $D = \lambda - vg$, we
+can view $D$ as an element of $\Der_k(A, N)$. By assumption there exists
+$D' \in \Der_k(B, N)$ such that $D = D'g$. Using this, we set $v' = v + D'$; then
+\[
+  v'g = vg + D'g = \lambda - D + D = \lambda, \quad \text{and} \quad jv' = \bar{u}.
+\]
+
+(2) $\Leftrightarrow$ (3) comes from observing the general fact that for a ring $R$, a map
+$\varphi\colon M \to M'$ of $R$-modules has a left inverse if and only if for every $R$-module
+$N$ the induced map
+\[
+  \Hom_R(M', N) \to \Hom_R(M, N)
+\]
+is surjective.
+\end{proof}
+
+\begin{theorem}\label{thm:28.5}
+Let $A$ be a ring, $B$ an $A$-algebra, and $I$ an ideal of $B$; set $\bar{B} = B/I$, and
+assume that $B$ is $I$-smooth over $A$. Then $\Omega_{B/k} \otimes_B \bar{B}$ is projective as
+a $\bar{B}$-module.
+\end{theorem}
+
+\begin{proof}
+It is enough to show that for an exact sequence $L \to M \to 0$ of $\bar{B}$-modules, the
+sequence
+\[
+  \Hom_{\bar{B}}(\Omega_{B/k} \otimes_B \bar{B}, L) \to \Hom_{\bar{B}}(\Omega_{B/k} \otimes_B \bar{B}, M) \to 0
+\]
+is exact, that is that
+\[
+  \Der_k(B, L) \to \Der_k(B, M) \to 0
+\]
+is exact. Set $C = \bar{B} \ltimes L$ and $N = \Ker \varphi$. If we view both $L$ and $N$ as
+ideals of $C$, we have $L^2 = N^2 = 0$ and $C/N \cong \bar{B} \ltimes M$. Now for any
+$D \in \Der_k(B, M)$ we have an $A$-algebra homomorphism $B \to C/N$ given by
+\[
+  b \mapsto (b, D(b)) \in \bar{B} \ltimes M,
+\]
+and lifting this to $B \to C$ is equivalent to lifting $D$ to an element of
+$\Der_k(B, L)$.
+\end{proof}
+
+\begin{lemma}\label{lem:28.2}
+Let $B$ be a ring and $I$ an ideal of $B$, and let $u\colon L \to M$ be a map of
+$B$-modules; assume that $M$ is projective. Suppose also that one of the
+following two conditions hold:
+\begin{enumerate}[(a)]
+  \item $I$ is nilpotent;
+or ($\beta$) $L$ is a finite $B$-module and $I \subset \rad(B)$.
+\end{enumerate}
+Then
+\[
+  u \text{ has a left inverse} \iff \bar{u}\colon L/IL \to M/IM \text{ has a left inverse}.
+\]
+\end{lemma}
+
+\begin{proof}
+($\Leftarrow$) is trivial. To prove ($\Rightarrow$), suppose that $\bar{v}\colon M/IM \to L/IL$ is a
+left inverse of $\bar{u}$. Since $M$ is projective, there is a map $w\colon M \to L$ such
+that the diagram
+\[
+\begin{tikzcd}
+M \arrow[r, "w"] \arrow[d] & L \arrow[d] \\
+M/IM \arrow[r, "\bar{w}"'] & L/IL
+\end{tikzcd}
+\]
+commutes. Set $\tau = uw$. Then $\tau$ induces the identity on $L/IL$, so that
+$L = \tau(L) + IL$, so that by NAK, $L = \tau(L)$. Hence if $L$ is a finite $B$-module,
+then by Theorem~\ref{thm:2.4}, $\tau$ is also injective. Furthermore, if $I^\nu = 0$ we do
+the following: if $x \in \Ker \tau$ then $0 = \bar{\tau}(\bar{x}) = \bar{x} \mod IL$, so that $x \in IL$, and
+we can write $x = \sum a_i y_i$ with $a_i \in I$ and $y_i \in L$. Then
+\[
+  0 = \tau(x) = \sum a_i \tau(y_i) \equiv \sum a_iy_i = x \mod I^2L,
+\]
+so that $x \in I^2L$, and proceeding in the same way we arrive at
+$x \in I^\nu L = 0$. Hence also in this case $\tau$ is an automorphism of $L$, and
+$\tau^{-1}u$ is the required left inverse of $u$.
+\end{proof}
+
+\begin{theorem}\label{thm:28.6}
+Let $k \to A \to B$ be ring homomorphisms, $I$ an ideal of $B$, and suppose that $B$ is
+$I$-smooth over $k$. Set $B_1 = B/I$. Then the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $B$ is $I$-smooth over $A$;
+  \item $\Omega_{A/k} \otimes_A B_1 \to \Omega_{B/k} \otimes_B B_1$ has a $B_1$-linear left inverse.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (2) is contained in Theorem~\hyperref[thm:28.4]{4}. Conversely, suppose that (2)
+holds. For any $\nu > 0$, set $B_\nu = B/I^\nu$; then since $I$-smoothness and
+$I^\nu$-smoothness are the same, by Theorem~\hyperref[thm:28.5]{5}, $\Omega_{B/k} \otimes_B B_\nu$ is a
+projective $B_\nu$-module. Now set $I_1 = I/I^\nu$; then $B_\nu/I_1 = B_1$, and
+$I_1^2 = 0$, so that applying Lemma~\hyperref[lem:28.2]{2}, we see that
+$\Omega_{A/k} \otimes_A B_\nu \to \Omega_{B/k} \otimes_B B_\nu$ has a left inverse. By
+Theorem~\hyperref[thm:28.4]{4}, $B$ is $I$-smooth over $A$ relative to $k$, but since it is also
+$I$-smooth over $k$, it is also $I$-smooth over $A$.
+\end{proof}
+
+\begin{corollary*}
+Let $(A, m, K)$ be a regular local ring containing a field $k$; then
+\[
+  A \text{ is } m\text{-smooth over } k \iff \Omega_k \otimes_k K \to \Omega_A \otimes_A K \text{ is injective}.
+\]
+\end{corollary*}
+
+\begin{proof}
+Let $k_1 \subset k$ be the prime subfield. Then by Lemma~\hyperref[lem:28.1]{1}, $A$ is $m$-smooth
+over $k_1$, so that we need only apply the theorem to $k_1 \to k \to A$.
+\end{proof}
+
+Let $A$ be a Noetherian local ring, and $k \subset A$ a subfield. We say that $A$ is
+\emph{geometrically regular} over $k$ if $A \otimes_k k'$ is a regular ring for every finite
+extension field $k'$ of $k$.
+
+\begin{theorem}\label{thm:28.7}
+Let $(A, m, K)$ be a Noetherian local ring, and $k \subset A$ a subfield; then
+\[
+  A \text{ is } m\text{-smooth over } k \iff A \text{ is geometrically regular over } k.
+\]
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) Let $k'$ be a finite extension field of $k$. Then $A \otimes_k k' = A'$ is
+$mA'$-smooth over $k'$ by base-change. Let $n$ be any maximal ideal of $A'$; then $A'$ is
+a finite $A$-module, hence integral over $A$, so that $n \supset mA'$. Thus if we set
+$A'' = A'_n$ and $m'' = nA''$ then $A' \to A''$ is continuous for the $mA'$-adic topology of
+$A'$ and the $m''$-adic topology of $A''$, but as a localisation $A''$ is 0-\'etale over $A'$,
+so that by Theorem~\hyperref[thm:28.1]{1}, $A''$ is $m''$-smooth over $k'$, and hence by
+Lemma~\hyperref[lem:28.1]{1}, $A'' = A'_n$ is a regular local ring. This is what was required
+to prove.
+
+($\Leftarrow$) According to Lemma~\hyperref[lem:28.1]{1}, there is only a problem if $k$ is of
+characteristic $p$. The proof we now give was discovered in 1977 by G.~Faltings
+[1] while he was still a student.
+
+By the corollary of the previous theorem, we need only prove that
+$\Omega_k \otimes_k K \to \Omega_A \otimes_A K$ is injective. For this, we let
+$x_1, \ldots, x_r \in k$ be $p$-independent elements, and prove that
+$dx_1, \ldots, dx_r \in \Omega_A \otimes_A K$ are linearly independent over $K$. Write $\alpha_i$ for $p$-th
+roots of the $x_i$, and set $k' = k(\alpha_1, \ldots, \alpha_r)$. Then
+\[
+  B = A \otimes_k k' = A[T_1, \ldots, T_r]/(T_1^p - x_1, \ldots, T_r^p - x_r)
+\]
+is a Noetherian local ring; write $n$ for its maximal ideal, and $L$ for the residue
+field $L = B/n$. By Theorem~\hyperref[thm:25.2]{25.2} the sequence
+\[
+  0 \to n/n^2 \to \Omega_{B/k} \otimes_B L \to \Omega_{L/k} \to 0
+\]
+is exact. Similarly,
+\[
+  0 \to m/m^2 \to \Omega_{A/k} \otimes_A K \to \Omega_{K/k} \to 0
+\]
+is exact. Now consider the commutative diagram
+\[
+\begin{tikzcd}
+0 \arrow[r] & n/n^2 \arrow[r] \arrow[d, "\varphi_1"'] & \Omega_{B/k} \otimes_B L \arrow[r] \arrow[d, "\varphi_2"'] & \Omega_{L/k} \arrow[r] \arrow[d, "\varphi_3"'] & 0 \\
+0 \arrow[r] & (m/m^2) \otimes_K L \arrow[r] & \Omega_{A/k} \otimes_A L \arrow[r] & \Omega_{K/k} \otimes_K L \arrow[r] & 0
+\end{tikzcd}
+\]
+where $\varphi_1$, $\varphi_2$ and $\varphi_3$ are the natural maps. Then by the snake lemma, we get a
+long exact sequence of $L$-modules
+\[
+  0 \to \Ker \varphi_1 \to \Ker \varphi_2 \to \Ker \varphi_3
+      \to \Coker \varphi_1 \to \Coker \varphi_2 \to \Coker \varphi_3 \to 0.
+\]
+By assumption $A$ and $B$ are regular local rings of the same dimension, so that
+$\rank m/m^2 = \dim A = \rank n/n^2$, so $\rank \Ker \varphi_1$ and $\rank \Coker \varphi_1$ are
+finite and equal; moreover, since $L$ is a finite extension field of $K$, both
+$\rank \Ker \varphi_3$ and $\rank \Coker \varphi_3$ are finite and equal (the Cartier equality).
+Therefore by the above exact sequence, we get
+\[
+  \rank \Ker \varphi_2 = \rank \Coker \varphi_2.
+\]
+However, $\Coker \varphi_2 = \Omega_{B/A} \otimes_B L$, and by Theorem~\hyperref[thm:25.2]{25.2},
+\[
+  \Omega_{B/A} = BdT_1 + \cdots + BdT_r,
+\]
+so that both of $\Ker \varphi_2$ and $\Coker \varphi_2$ have rank equal to $r$. Now if we set
+$J = (T_1^p - x_1, \ldots, T_r^p - x_r)$ we have an exact sequence
+\[
+  J/J^2 \to \Omega_{A[T_1, \ldots, T_r]/k} \otimes_A B = \Omega_{A/k} \otimes_A B \oplus B dT_i \to \Omega_{B/k} \to 0,
+\]
+and since this remains exact after performing $\otimes_A L$, we see that $\Ker \varphi_2$ is
+generated by $dx_1, \ldots, dx_r$. Therefore $dx_1, \ldots, dx_r \in \Omega_A \otimes_A L$ are
+linearly independent over $L$, so that they must also be linearly independent
+over $K$ as elements of $\Omega_A \otimes_A K$. This is what we had to prove.
+\end{proof}
+
+Let $B$ be an $A$-algebra, $I$ an ideal of $B$, and consider $B$ with the $I$-adic
+topology. Let $N$ be a $B$-module such that $I^\nu N = 0$ for some $\nu > 0$; in what
+follows we will say that a $B$-module with this property is \emph{discrete}. An
+$A$-bilinear map $f\colon B \times B \to N$ will be called a \emph{continuous symmetric
+2-cocycle} if it satisfies the three conditions
+\begin{enumerate}[(a)]
+  \item $xf(y, z) - f(xy, z) + f(x, yz) - f(x, y)z = 0$ for all $x, y, z \in B$,
+  \item[($\beta$)] $f(x, y) = f(y, x)$,
+  \item[($\gamma$)] there exists $\rho \ge \nu$ such that $f(x, y) = 0$ if either $x \in I^\rho$ or $y \in I^\rho$.
+\end{enumerate}
+If this holds, we set $f(1, 1) = \varepsilon$; then substituting $y = z = 1$ in (a) gives
+$x\varepsilon = f(x, 1)$.
+
+Define a product on the $A$-module $C = (B/I^\nu) \oplus N$ by
+\[
+  (x, v)(y, w) = (xy, -f(x, y) + xw + yv)
+\]
+for $x, y \in B$; then $C$ is a commutative ring with unit $(1, \varepsilon)$, and $N$ is an
+ideal of $C$ satisfying $N^2 = 0$. If we define a map $A \to C$ by $a \mapsto (\bar{a}, a\varepsilon)$
+then this is a ring homomorphism, and the diagram
+\[
+\begin{tikzcd}
+B \arrow[r] & B/I^\nu = C/N \\
+A \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+is commutative; then a necessary and sufficient condition for $\bar{u}$ to have a lifting
+to $B \to C$ is that there should exist an $A$-linear map $g\colon B \to N$ such that
+\[
+  (\delta) \quad f(x, y) = xg(y) - g(xy) + g(x)y \quad \text{for all } x, y \in B.
+\]
+For if $g$ exists, then defining $v\colon B \to C$ by $v(x) = (\bar{x}, g(x))$ we find that $v$
+is a lifting of $\bar{u}$, and conversely, if there is a lifting $v$ of $\bar{u}$ one checks easily
+that one can find a $g$ as above.
+
+We say that the 2-cocycle $f$ \emph{splits} if there exists $g$ satisfying ($\delta$). For any
+$A$-linear map $g\colon B \to N$, we write $\delta g$ for the bilinear map
+$B \times B \to N$ given by the right-hand side of ($\delta$); this satisfies (a) and ($\beta$),
+and if $g$ is continuous (that is, $\exists \rho$ such that $g(I^\rho) = 0$), then it also
+satisfies ($\gamma$).
+
+\begin{theorem}\label{thm:28.8}
+Let $A$ be a ring and $B$ an $A$-algebra with an $I$-adic topology.
+\begin{enumerate}[(i)]
+  \item If $B$ is $I$-smooth over $A$ then every continuous symmetric 2-cocycle
+        $f\colon B \times B \to N$ with values in a discrete $B$-module $N$ splits.
+  \item If $B/I^n$ is projective as an $A$-module for infinitely many $n$, and if every
+        continuous symmetric 2-cocycle with values in a discrete $B$-module splits,
+        then $B$ is $I$-smooth over $A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) is what we have just said.
+
+(ii) Suppose that we are given a commutative diagram
+\[
+\begin{tikzcd}
+B \arrow[r, "\bar{u}"] & C/N \\
+A \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+with $N^2 = 0$ and $\bar{u}(I^\nu) = 0$; then in view of $N^2 = 0$, the $C$-module $N$ can be
+viewed as a $C/N$-module, and by means of $\bar{u}$ as a $B$-module; but then
+$I^\nu N = 0$, so that $N$ is a discrete $B$-module. Take an integer $n > \nu$ such that
+$B/I^n$ is projective as an $A$-module. Then $\bar{u}$ can be lifted as a map of $A$-modules
+to $\lambda\colon B \to C$ such that $\lambda(I^n) = 0$. For $x, y \in B$ we set
+\[
+  f(x, y) = \lambda(xy) - \lambda(x)\lambda(y),
+\]
+and since $\lambda$ is a ring homomorphism modulo $N$, we have $f(x, y) \in N$. Now for
+$\xi \in N$ and $x \in B$, by definition we have $\lambda(x) \cdot \xi = x \cdot \xi$ (both sides are
+products evaluated in $C$), and using this one computes the left-hand side of (a) to
+be zero. The symmetry ($\beta$) is obvious. Also $\lambda(I^n) = 0$, so that we also get
+($\gamma$). Thus $f$ is a continuous symmetric 2-cocycle, and hence by assumption
+there is an $A$-linear map $g\colon B \to N$ satisfying
+\[
+  f(x, y) = xg(y) - g(xy) + g(x)y.
+\]
+Now if we set $v = \lambda + g$, we have
+\begin{align*}
+  v(xy) &= \lambda(xy) + g(xy) \\
+        &= \lambda(x)\lambda(y) + f(x, y) + g(xy) \\
+        &= \lambda(x)\lambda(y) + xg(y) + g(x)y \\
+        &= (\lambda(x) + g(x))(\lambda(y) + g(y)) = v(x)v(y),
+\end{align*}
+so that $v$ is an $A$-algebra homomorphism, and is a lifting of $\bar{u}$.
+\end{proof}
+
+\begin{theorem}[([G1], 19.7.1)]\label{thm:28.9}
+Let $(A, m, k)$ and $(B, n, k')$ be Noetherian local rings, and $\varphi\colon A \to B$ a
+local homomorphism; set $B_0 = B \otimes_A k = B/mB$ and $n_0 = n/mB$. Then the
+following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $B$ is $n$-smooth over $A$,
+  \item $B$ is flat over $A$ and $B_0$ is $n_0$-smooth over $k$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+This is an extremely important theorem, but the proof is long and difficult, and
+we refer to [G1] for it. We content ourselves with proving the following
+analogous theorem, which is all that we will need in what follows.
+\end{proof}
+
+\begin{theorem}\label{thm:28.10}
+Let $(A, m, k)$ be a local ring, and $B$ a flat $A$-algebra; suppose that
+$B_0 = B \otimes_A k$ is 0-smooth over $k$. Then $B$ is $mB$-smooth over $A$.
+\end{theorem}
+
+\begin{proof}
+As one sees from the definition of $mB$-smoothness, it is enough to prove that
+$B/m^\nu B$ is 0-smooth over $A/m^\nu$ for every $\nu > 0$. Since $B/m^\nu B$ is flat over
+$A/m^\nu$, we can assume that $m$ is nilpotent. Then a flat $A$-module is free (by
+Theorem~\ref{thm:7.10}), so that $B$ is a projective $A$-module, and hence by
+Theorem~\hyperref[thm:28.8]{8}, we need only show that every symmetric 2-cocycle
+$f\colon B \times B \to N$ with values in a $B$-module $N$ splits. First of all, in the case
+that $N$ satisfies $mN = 0$, then since $f$ is $A$-bilinear $f$ is essentially a
+2-cocycle over $B_0$, that is there is a map $f_0\colon B_0 \times B_0 \to N$ such that
+$f(x, y) = f_0(\bar{x}, \bar{y})$.
+
+Now $B_0$ is 0-smooth over $k$, so that by Theorem~\hyperref[thm:28.8]{8}, $f_0$ splits, that is
+there is a map $g_0\colon B_0 \to N$ such that $f_0 = \delta g_0$. Thus setting
+$g(x) = g_0(\bar{x})$ we get
+\[
+  f = \delta g.
+\]
+In the general case, write $\varphi$ for the natural map $N \to N/mN$, and consider
+$\varphi \circ f$; then this splits, that is there exists $\bar{g}\colon B \to N/mN$ such that
+$\varphi f = \delta \bar{g}$.
+
+Now since $B$ is projective over $A$, we can lift $\bar{g}$ to an $A$-linear map
+$g\colon B \to N$, and then $f - \delta g$ is a 2-cocycle with values in $mN$. Doing the same
+thing once more, we find $h\colon B \to mN$ such that $f - \delta(g + h)$ is a 2-cocycle with
+values in $m^2N$. Proceeding in the same way, since $m$ is nilpotent we finally see
+that $f$ splits.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:28}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:28.1-ex}
+Theorem~\hyperref[thm:28.10]{28.10} also holds on replacing smooth by unramified or \'etale.
+\end{exercise}
+
+\begin{exercise}\label{ex:28.2-ex}
+Let $k$ be a non-perfect field of characteristic $p$, and $a \in k - k^p$; set
+$A = k[X]_{(X^p - a)}$. Then the residue field $k(a^{1/p})$ of $A$ is inseparable over
+$k$. This ring $A$ does not have a coefficient field containing $k$, but is
+0-smooth over $k$.
+\end{exercise}

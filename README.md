@@ -9,8 +9,24 @@ This repository collects high-fidelity LaTeX retypesettings of mathematics textb
 | 目录 / Directory | 书名 / Title | 原作者 / Authors |
 |---|---|---|
 | `atiyah-macdonald/` | Introduction to Commutative Algebra（交换代数导引） | Atiyah & Macdonald |
-| `yosida-functional-analysis/` | Functional Analysis（泛函分析） | K. Yosida |
-| `ahlfors-complex-analysis/` | Complex Analysis（复分析，3rd ed.） | L. Ahlfors |
+| `yosida-functional-analysis/` | Functional Analysis（泛函分析） | Kōsaku Yosida |
+| `ahlfors-complex-analysis/` | Complex Analysis（复分析，3rd ed.） | Lars Ahlfors |
+| `serre-abelian-l-adic/` | Abelian l-Adic Representations and Elliptic Curves（l进表示与椭圆曲线） | Jean-Pierre Serre |
+| `samuel-algebraic-theory-of-numbers/` | Algebraic Theory of Numbers（代数数论） | Pierre Samuel |
+| `katz-mazur-arithmetic-moduli-elliptic/` | Arithmetic Moduli of Elliptic Curves（椭圆曲线的算术模） | Nicholas M. Katz & Barry Mazur |
+| `chandrasekharan-classical-fourier-transforms/` | Classical Fourier Transforms（经典傅里叶变换） | K. Chandrasekharan |
+| `matsumura-commutative-ring-theory/` | Commutative Ring Theory（交换环论） | Hideyuki Matsumura |
+| `gelbart-automorphic-forms/` | Automorphic Forms on Adele Groups（自守形式） | Stephen S. Gelbart |
+| `stein-weiss-fourier-analysis-euclidean/` | Introduction to Fourier Analysis on Euclidean Spaces（欧氏空间上的傅里叶分析） | Elias M. Stein & Guido Weiss |
+| `katz-p-adic-modular-forms/` | p-adic Properties of Modular Schemes and Modular Forms（模格式与模形式的 p 进性质） | Nicholas M. Katz |
+| `seminar-on-complex-multiplication/` | Seminar on Complex Multiplication（复乘讨论班） | Jean-Pierre Serre & John Tate |
+| `fengkeqin-algebraic-number-theory/` | 代数数论 | 冯克勤 |
+| `xushulin-mathanalysis-v1/` | 数学分析（第一册） | 徐森林 & 薛春华 |
+| `xushulin-mathanalysis-v2/` | 数学分析（第二册） | 徐森林 & 薛春华 |
+| `xushulin-mathanalysis-v3/` | 数学分析（第三册） | 徐森林 & 薛春华 |
+| `deng-concise-mathanalysis-v1/` | 数学分析简明教程（上册） | 邓东皋 & 尹小玲 |
+| `deng-concise-mathanalysis-v2/` | 数学分析简明教程（下册） | 邓东皋 & 尹小玲 |
+| `mathanalysis-exam-collection/` | 数学分析试题汇总 | — |
 
 > 更多书籍将逐步加入。/ More books will be added over time.
 

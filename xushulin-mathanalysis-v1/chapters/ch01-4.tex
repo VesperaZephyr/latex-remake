@@ -1,0 +1,796 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S1.4  Cauchy 收敛准则 (原理)、单调数列的极限、数 e
+%  源：原书印刷页 43–59（PDF 物理页 49–65）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch01_4_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref（写作「定理 x.y.z」原文）；数学模式内的中文必须包text
+% ====================================================================
+\section{\texorpdfstring{Cauchy 收敛准则（原理）、单调数列的极限、数 $e = \lim\limits_{n \to +\infty} \left(1 + \frac{1}{n}\right)^n$}{Cauchy 收敛准则 (原理)、单调数列的极限、数 e}}\label{sec:1.4}
+
+实数连续性命题（二）指出单调增（减）有上（下）界的数列 $\{a_{n}\}$ 必收敛. 定理~\ref{thm:1.3.2} 表明单调增（减）无上（下）界的数列, 有 $\lim\limits_{n\to+\infty} a_{n} = +\infty(-\infty)$. 有时讨论一个数列的收敛性比求出它的极限还重要, 事实上, 目前还有不少收敛数列的极限还不能确切地求出. 本节将应用 Cauchy 收敛准则（上节的定理~\ref{thm:1.3.3}：数列 $\{a_{n}\}$ 收敛 $\iff \{a_{n}\}$ 为 Cauchy 数列（基本数列））和单调数列必有极限（推论~\ref{cor:1.3.1}）来讨论数列的极限, 并引进无理数 $e = \lim\limits_{n \to +\infty} \left(1 + \frac{1}{n}\right)^{n}$. 我们先来讨论典型的具体实例.
+
+\begin{example}\label{ex:1.4.1}
+证明数列 $S_{n} = 1 + \frac{1}{2^{2}} + \frac{1}{3^{2}} + \cdots + \frac{1}{n^{2}} = \sum\limits_{k=1}^{n}\frac{1}{k^{2}}$ 收敛.
+\end{example}
+
+\begin{proof}
+因 $S_{n+1} = S_{n} + \frac{1}{(n+1)^2} > S_{n}$，故 $S_{n}$ 严格增. 又因为
+\[
+\begin{aligned}
+S_{n} &= 1 + \frac{1}{2^{2}} + \frac{1}{3^{2}} + \cdots + \frac{1}{n^{2}} \leqslant 1 + \frac{1}{1\cdot2} + \frac{1}{2\cdot3} + \cdots + \frac{1}{(n-1)n} \\
+&= 1 + \left(1 - \frac{1}{2}\right) + \left(\frac{1}{2} - \frac{1}{3}\right) + \cdots + \left(\frac{1}{n-1} - \frac{1}{n}\right) = 2 - \frac{1}{n} < 2,
+\end{aligned}
+\]
+所以, $S_{n}$ 有上界 2. 根据实数连续性命题（二）, 数列 $S_{n}$ 收敛.
+\end{proof}
+
+更一般地, 有下面例题：
+
+\begin{example}\label{ex:1.4.2}
+数列 $S_{n} = 1 + \frac{1}{2^{\alpha}} + \frac{1}{3^{\alpha}} + \cdots + \frac{1}{n^{\alpha}} = \sum\limits_{k=1}^{n}\frac{1}{k^{\alpha}}$，当 $\alpha \leqslant 1$ 时发散；当 $\alpha > 1$ 时收敛.
+\end{example}
+
+\begin{proof}
+当 $\alpha \leqslant 1$ 时, 因 $S_{n+1} = S_{n} + \frac{1}{(n+1)^\alpha} > S_{n}$，故 $S_{n}$ 严格增. 又因为
+\[
+\begin{aligned}
+S_{2^{k}} &= \sum_{n=1}^{2^{k}}\frac{1}{n^{\alpha}} \geqslant \sum_{n=1}^{2^{k}}\frac{1}{n} \\
+&= 1 + \frac{1}{2} + \left(\frac{1}{3} + \frac{1}{4}\right) + \left(\frac{1}{5} + \cdots + \frac{1}{8}\right) + \cdots + \left(\frac{1}{2^{k-1}+1} + \cdots + \frac{1}{2^{k}}\right) \\
+&> 1 + \frac{1}{2} + \left(\frac{1}{4} + \frac{1}{4}\right) + \left(\frac{1}{8} + \frac{1}{8} + \frac{1}{8} + \frac{1}{8}\right) + \cdots + \frac{2^{k-1}}{2^{k}} = 1 + \frac{k}{2},
+\end{aligned}
+\]
+所以, $S_{n}$ 无上界. 根据定理~\ref{thm:1.3.2}, $\lim\limits_{n\to+\infty}S_{n} = \lim\limits_{n\to+\infty}\left(1 + \frac{1}{2^\alpha} + \cdots + \frac{1}{n^\alpha}\right) = +\infty$，即 $S_{n}$ 发散于 $+\infty$.
+
+当 $\alpha > 1$ 时, 因 $S_{n+1} = S_n + \frac{1}{(n+1)^\alpha} > S_n$，$S_n$ 严格增. 又 $\forall n \in \mathbb{N}$，$\exists i \in \mathbb{N} \cup \{0\}$，使得 $2^i \leqslant n < 2^{i+1}$，所以
+\[
+\begin{aligned}
+S_{n} &= \sum_{k=1}^{n}\frac{1}{k^{\alpha}} \leqslant \sum_{k=1}^{2^{i+1}-1}\frac{1}{k^{\alpha}} \\
+&= 1 + \left(\frac{1}{2^{\alpha}} + \frac{1}{3^{\alpha}}\right) + \left(\frac{1}{4^{\alpha}} + \frac{1}{5^{\alpha}} + \frac{1}{6^{\alpha}} + \frac{1}{7^{\alpha}}\right) + \cdots + \left[\frac{1}{(2^{i})^{\alpha}} + \frac{1}{(2^{i}+1)^{\alpha}} + \cdots + \frac{1}{(2^{i}+2^{i}-1)^{\alpha}}\right] \\
+&< 1 + 2 \cdot \frac{1}{2^{\alpha}} + 4 \cdot \frac{1}{4^{\alpha}} + \cdots + 2^{i} \cdot \frac{1}{(2^{i})^{\alpha}} \\
+&= 1 + \frac{1}{2^{\alpha-1}} + \cdots + \frac{1}{(2^{\alpha-1})^i} = \frac{1 - \left(\frac{1}{2^{\alpha-1}}\right)^{i+1}}{1 - \frac{1}{2^{\alpha-1}}} < \frac{1}{1 - \frac{1}{2^{\alpha-1}}},
+\end{aligned}
+\]
+从而 $S_{n}$ 有上界 $\frac{1}{1 - \frac{1}{2^{\alpha-1}}}$. 根据实数连续性命题（二）知, $S_{n} = \sum\limits_{k=1}^{n}\frac{1}{k^{\alpha}}$ 收敛.
+\end{proof}
+
+\begin{remark}\label{rem:1.4.1}
+例~\ref{ex:1.4.2} 中，当 $\alpha > 1$ 时, 证明了 $S_{n} = \sum\limits_{k=1}^{n}\frac{1}{k^{\alpha}}$ 收敛, 但看不出其极限值是什么. 以后, 应用 Fourier 级数可以得到
+\[
+\sum_{n=1}^{\infty}\frac{1}{n^{2}} = \lim_{n\to+\infty}\sum_{k=1}^{n}\frac{1}{k^{2}} = \frac{\pi^{2}}{6},\quad \sum_{n=1}^{\infty}\frac{1}{n^{4}} = \lim_{n\to+\infty}\sum_{k=1}^{n}\frac{1}{k^{4}} = \frac{\pi^{4}}{90}.
+\]
+但一般的 $\sum\limits_{n=1}^{\infty}\frac{1}{n^{\alpha}}\;(\alpha > 1)$ 不一定能明确求出其值!
+\end{remark}
+
+\begin{definition}\label{def:1.4.1}
+设 $\{a_{n}\}$ 为实数列, $S_{n} = \sum\limits_{k=1}^{n} a_{k}$ 为数项（无穷）级数 $\sum\limits_{n=1}^{\infty} a_{n}$ 的第 $n$ 个部分和（它也是数列 $\{a_{n}\}$ 的前 $n$ 项之和）. 如果 $\lim\limits_{n \to +\infty} S_{n} = \lim\limits_{n \to +\infty} \sum\limits_{k=1}^{n} a_{k}$ 存在（实数, $+\infty, -\infty, \infty$）, 记为 $S$, 且称 $S$ 为无穷级数 $\sum\limits_{n=1}^{\infty} a_{n}$ 的和, 即
+\[
+S = \lim_{n\to+\infty}S_{n} = \lim_{n\to+\infty}\sum_{k=1}^{n}a_{k} = \sum_{k=1}^{\infty}a_{k} = \sum_{n=1}^{\infty}a_{n}.
+\]
+如果 $S \in \mathbb{R}$, 则称无穷级数 $\sum\limits_{n=1}^{\infty} a_{n}$ \textbf{收敛}. 否则称其为\textbf{发散}的（发散于 $+\infty, -\infty, \infty$ 或 $\lim\limits_{n \to +\infty} S_{n}$ 不存在）.
+
+由数列的 Cauchy 收敛准则立即有级数的 Cauchy 收敛准则：
+\[
+\sum_{n=1}^{\infty}a_{n}\text{ 收敛} \iff \text{数列 } S_{n} = \sum_{k=1}^{n}a_{k}\text{ 收敛} \iff \forall\varepsilon>0,\ \exists N\in\mathbb{N},\ \text{当 } n>N \text{ 时, 有}
+\]
+\[
+|a_{n+1} + \cdots + a_{n+p}| = |S_{n+p} - S_{n}| < \varepsilon,\quad \forall p\in\mathbb{N}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:1.4.1}
+$\sum\limits_{n=1}^{\infty}a_{n}$ 收敛的必要而不充分条件是 $\lim\limits_{n\to+\infty}a_{n} = 0$.
+\end{theorem}
+
+\begin{proof}[证法 1]
+($\Longrightarrow$) 设 $\sum\limits_{n=1}^{\infty}a_{n}$ 收敛于 $S$, 则
+\[
+\lim_{n\to+\infty}a_{n} = \lim_{n\to+\infty}(S_{n} - S_{n-1}) = \lim_{n\to+\infty}S_{n} - \lim_{n\to+\infty}S_{n-1} = S - S = 0.
+\]
+（反例）反设 $\{a_{n}\}$, $a_{n} = \frac{1}{n}$. 已知 $\lim\limits_{n \to +\infty} a_{n} = \lim\limits_{n \to +\infty} \frac{1}{n} = 0$, 但由例~\ref{ex:1.4.2} 知, $\sum\limits_{n=1}^{\infty} a_{n} = \sum\limits_{n=1}^{\infty} \frac{1}{n}$ 不收敛, 发散于 $+\infty$.
+\end{proof}
+
+\begin{proof}[证法 2]
+($\Longrightarrow$) 设 $\sum\limits_{n=1}^{\infty}a_{n}$ 收敛于 $S$, 根据级数的 Cauchy 收敛准则, 取 $p=1$ 知, $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有 $|a_{n+1}|<\varepsilon$, 所以
+\[
+\lim_{n\to+\infty}a_{n} = \lim_{n\to+\infty}a_{n+1} = 0.
+\]
+\end{proof}
+
+\begin{example}\label{ex:1.4.3}
+设 $|q|<1$, 应用实数连续性命题（二）证明 $\lim\limits_{n\to\infty}q^{n} = 0$.
+\end{example}
+
+\begin{proof}
+因为 $|q|^{n+1} = |q|\cdot|q|^{n} \leqslant |q|^{n}$ 单调减且有下界 0, 根据实数连续性命题（二）知, $|q|^{n}$ 收敛, 记 $\lim\limits_{n\to+\infty}|q|^n = a$. 于是,
+\[
+a = \lim_{n\to+\infty}|q|^{n+1} = \lim_{n\to+\infty}|q|\cdot|q|^{n} = |q|\cdot\lim_{n\to+\infty}|q|^{n} = |q| a,
+\]
+\[
+(1 - |q|)a = 0.
+\]
+再由 $1 - |q| > 0$, 推得 $\lim\limits_{n\to+\infty}|q|^{n} = a = 0$. 应用 $\varepsilon\text{-}N$ 法可知 $\lim\limits_{n\to+\infty}q^n = 0$.
+\end{proof}
+
+\begin{example}\label{ex:1.4.4}
+设 $a_{1} = \sqrt{2}$, $a_{2} = \sqrt{2+\sqrt{2}}$, $a_{3} = \sqrt{2+\sqrt{2+\sqrt{2}}}$, $\cdots$, $a_{n} = \sqrt{2+a_{n-1}}\;(n\geqslant2)$, 求 $\lim\limits_{n\to+\infty}a_n$.
+\end{example}
+
+\begin{solution}
+先证 $\{a_{n}\}$ 严格增, 且以 2 为上界.
+
+（数学归纳法）当 $n=1$ 时, $a_{1} = \sqrt{2} < 2$, 且 $a_{1} = \sqrt{2} < \sqrt{2+\sqrt{2}} = a_{2}$.
+
+假设 $n=k$ 时, $a_{k} < 2$ 且 $a_{k} < a_{k+1}$.
+
+当 $n=k+1$ 时, 由归纳假设得到
+\[
+a_{k+1} = \sqrt{2+a_{k}} < \sqrt{2+2} = 2,\quad a_{k+1} = \sqrt{2+a_{k}} < \sqrt{2+a_{k+1}} = a_{k+2}.
+\]
+根据实数连续性命题（二）, $\{a_{n}\}$ 收敛, 记 $\lim\limits_{n\to+\infty} a_{n} = a$. 则由
+\[
+a_{n} = \sqrt{2+a_{n-1}} \implies a_{n}^{2} = 2 + a_{n-1},
+\]
+两边取极限得
+\[
+a^{2} = \lim_{n\to+\infty}a_{n}^{2} = \lim_{n\to+\infty}(2 + a_{n-1}) = 2 + a,
+\]
+解方程 $(a+1)(a-2) = a^{2} - a - 2 = 0$. 考虑到 $a_{n}>0$, 故 $a = \lim\limits_{n\to+\infty}a_n \geqslant 0$, 因此有 $a - 2 = 0$, 即 $\lim\limits_{n\to+\infty}a_n = a = 2$.
+\end{solution}
+
+\begin{example}\label{ex:1.4.5}
+设 $a>0$, $x_{0}>0$, $x_{n} = \frac{1}{2}\left(x_{n-1} + \frac{a}{x_{n-1}}\right)$, 求 $\lim\limits_{n\to+\infty}x_n$.
+\end{example}
+
+\begin{solution}
+显然 $x_{n}>0$. 因为
+\[
+x_{n} = \frac{1}{2}\left(x_{n-1} + \frac{a}{x_{n-1}}\right) \geqslant \sqrt{x_{n-1}\cdot\frac{a}{x_{n-1}}} = \sqrt{a},\quad n\geqslant1,
+\]
+\[
+x_{n} = \frac{1}{2}\left(x_{n-1} + \frac{a}{x_{n-1}}\right) \leqslant \frac{1}{2}\left(x_{n-1} + \frac{x_{n-1}^{2}}{x_{n-1}}\right) = x_{n-1},\quad n\geqslant2,
+\]
+所以, $\{x_{n}\}$ 单调减有下界 $\sqrt{a}$（或 0）. 根据实数连续性命题（二）知, 记 $\lim\limits_{n\to+\infty}x_{n} = x \geqslant \sqrt{a}$. 于是,
+\[
+x = \lim_{n\to+\infty}x_{n+1} = \lim_{n\to+\infty}\frac{1}{2}\left(x_{n} + \frac{a}{x_{n}}\right) = \frac{1}{2}\left(x + \frac{a}{x}\right),
+\]
+即 $x^{2} = a$, 由 $x \geqslant \sqrt{a} > 0$ 得 $x = \sqrt{a}$.
+\end{solution}
+
+\begin{example}\label{ex:1.4.6}
+设 $a_{1} = 3$, $a_{n+1} = \frac{1}{1+a_{n}}$, $n \in \mathbb{N}$. 求 $\lim\limits_{n \to +\infty} a_{n}$.
+\end{example}
+
+\begin{solution}[解法 1]
+由 $a_{1} = 3, a_{2} = \frac{1}{4}, a_{3} = \frac{4}{5}, a_{4} = \frac{5}{9}$, 并应用数学归纳法易知 $\{a_{2k-1}\}$ 单调减和 $\{a_{2k}\}$ 单调增, 且 $0 < a_{n} < 4$, 根据实数连续性命题（二）, $\{a_{2k-1}\}$ 与 $\{a_{2k}\}$ 均收敛. 记
+\[
+\lim_{k\to+\infty}a_{2k-1} = a,\quad \lim_{k\to+\infty}a_{2k} = b.
+\]
+于是, 对
+\[
+a_{2k} = \frac{1}{1+a_{2k-1}}\quad \text{与}\quad a_{2k+1} = \frac{1}{1+a_{2k}}
+\]
+两边取极限得到
+\[
+\left\{\begin{aligned}
+b &= \lim_{k\to+\infty}a_{2k} = \frac{1}{1+\lim\limits_{k\to+\infty}a_{2k-1}} = \frac{1}{1+a}, \\
+a &= \lim_{k\to+\infty}a_{2k+1} = \frac{1}{1+\lim\limits_{k\to+\infty}a_{2k}} = \frac{1}{1+b},
+\end{aligned}\right.
+\]
+即
+\[
+\left\{\begin{aligned}
+b + ab &= 1, \\
+a + ab &= 1.
+\end{aligned}\right.
+\]
+两式相减得 $a - b = 0$, $a = b$. 根据定理~\ref{thm:1.1.1} 知, $\{a_{n}\}$ 收敛于 $a = b$. 进一步再由
+\[
+a + a^{2} = 1 \implies a^{2} + a - 1 = 0,
+\]
+得到 $a = \frac{-1\pm\sqrt{5}}{2}$. 因 $a_{n}>0$, 故 $a = \lim\limits_{n\to+\infty}a_{n}\geqslant0$, 从而
+\[
+\lim_{n\to+\infty}a_n = a = \frac{\sqrt{5}-1}{2}.
+\]
+\end{solution}
+
+\begin{solution}[解法 2]
+如果 $\{a_{n}\}$ 收敛, 记 $\lim\limits_{n\to+\infty}a_{n} = a$, 则
+\[
+a = \lim_{n\to+\infty}a_{n+1} = \frac{1}{1+\lim\limits_{n\to+\infty}a_n} = \frac{1}{1+a} \implies a^{2} + a - 1 = 0,
+\]
+由 $a_{n}>0$, 故 $a\geqslant0$, 得 $a = \frac{\sqrt{5}-1}{2}$.
+
+在估量出 $\{a_{n}\}$ 的极限为 $a$ 后, 再用 $\varepsilon\text{-}N$ 法证明 $a$ 确实为 $\{a_{n}\}$ 的极限, 这也是求数列极限的常用方法. 依本题为例, $\forall\varepsilon>0$, 取 $N\in\mathbb{N}$, 使得 $N > 1 + \frac{|a_{1}-a|}{\varepsilon a}$，当 $n>N$ 时, 有
+\[
+\begin{aligned}
+|a_{n}-a| &= \left|\frac{1}{1+a_{n-1}} - \frac{1}{1+a}\right| = \frac{|a_{n-1}-a|}{(1+a_{n-1})(1+a)} \\
+&\leqslant \frac{|a_{n-1}-a|}{1+a} \leqslant \cdots \leqslant \left(\frac{1}{1+a}\right)^{n-1}|a_{1}-a| \\
+&= \frac{1}{(1+a)^{n-1}}|a_{1}-a| \leqslant \frac{1}{(n-1)a}|a_{1}-a| \\
+&< \frac{1}{N-1}\frac{|a_{1}-a|}{a} < \varepsilon,
+\end{aligned}
+\]
+所以, $\lim\limits_{n\to+\infty}a_n = a = \frac{\sqrt{5}-1}{2}$.
+\end{solution}
+
+作为实数连续性命题（二）的应用, 下面讨论一个重要极限 $\lim\limits_{n\to+\infty}\left(1+\frac{1}{n}\right)^n$.
+
+\begin{theorem}\label{thm:1.4.2}
+设两个有理数列 $\{e_{n}\}$ 和 $\{e_{n}'\}$：
+\[
+e_{n} = \left(1 + \frac{1}{n}\right)^{n},\quad e_{n}' = \left(1 + \frac{1}{n}\right)^{n+1}.
+\]
+证明：
+\begin{enumerate}
+\item $\{e_{n}\}$ 与 $\{e_{n}'\}$ 均收敛, 且 $\lim\limits_{n\to+\infty}e_n = \lim\limits_{n\to+\infty}e_n'$, 记作 $e$；
+\item $\left(1+\frac{1}{n}\right)^{n} < e < \left(1+\frac{1}{n}\right)^{n+1}$；
+\item $\frac{1}{n+1} < \ln\frac{n+1}{n} < \frac{1}{n},\quad \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n+1} < \ln(n+1) < 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n}$；
+\item $x_{n} = 1 + \frac{1}{2} + \cdots + \frac{1}{n} - \ln n > 0$, 则 $\lim\limits_{n\to+\infty}x_n$ 存在, 记 $C = \lim\limits_{n\to+\infty}x_n \xlongequal{\text{可证}} 0.57721\cdots$（Euler 常数）；
+\item $\lim\limits_{n \to +\infty} \frac{1 + \frac{1}{2} + \cdots + \frac{1}{n}}{\ln n} = 1$；
+\item 设 $y_{n} = 1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!}$, 则 $e > y_{n} > e_{n}$, 且 $\lim\limits_{n\to+\infty}y_{n} = e$；
+\item $e = 1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!} + \frac{\theta_n}{n\cdot n!}$, 其中 $0 < \frac{n}{n+1} < \theta_n \leqslant \frac{n^2+2n}{n^2+2n+1} < 1$；
+\item $e$ 为无理数.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 
+\[
+\begin{aligned}
+e_{n} &= \left(1 + \frac{1}{n}\right)^{n} = 1 \cdot \left(1 + \frac{1}{n}\right)^{n} < \left[\frac{1 + n\left(1 + \frac{1}{n}\right)}{n+1}\right]^{n+1} \\
+&= \left(1 + \frac{1}{n+1}\right)^{n+1} = e_{n+1},
+\end{aligned}
+\]
+即 $\{e_{n}\}$ 严格增. 或者,
+\[
+\begin{aligned}
+e_{n} &= \left(1 + \frac{1}{n}\right)^{n} \xlongequal{\text{二项式定理}} \sum_{k=0}^{n}C_{n}^{k}\frac{1}{n^{k}} \\
+&= 1 + \sum_{k=1}^{n}\frac{n(n-1)\cdots(n-k+1)}{k!}\cdot\frac{1}{n^{k}} \\
+&= 1 + \sum_{k=1}^{n}\frac{1}{k!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\cdots\left(1 - \frac{k-1}{n}\right) \\
+&< 1 + \sum_{k=1}^{n}\frac{1}{k!}\left(1 - \frac{1}{n+1}\right)\left(1 - \frac{2}{n+1}\right)\cdots\left(1 - \frac{k-1}{n+1}\right) \\
+&\quad + \frac{1}{(n+1)!}\left(1 - \frac{1}{n+1}\right)\cdots\left(1 - \frac{n}{n+1}\right) \\
+&= 1 + \sum_{k=1}^{n+1}\frac{(n+1)n(n-1)\cdots(n+1-k+1)}{k!}\cdot\frac{1}{(n+1)^{k}} \\
+&= \left(1 + \frac{1}{n+1}\right)^{n+1} = e_{n+1},
+\end{aligned}
+\]
+即 $\{e_{n}\}$ 严格增. 又
+\[
+\begin{aligned}
+e_{n} &= 1 + \sum_{k=1}^{n}\frac{1}{k!}\left(1 - \frac{1}{n}\right)\cdots\left(1 - \frac{k-1}{n}\right) \\
+&< 1 + \sum_{k=1}^{n}\frac{1}{k!} = 1 + 1 + \sum_{k=2}^{n}\frac{1}{k!} < 1 + 1 + \sum_{k=2}^{n}\frac{1}{(k-1)k} \\
+&= 2 + \sum_{k=2}^{n}\left(\frac{1}{k-1} - \frac{1}{k}\right) = 3 - \frac{1}{n} < 3,
+\end{aligned}
+\]
+即 $\{e_{n}\}$ 有上界 3. 根据实数连续性命题（二）知, $\{e_{n}\}$ 收敛, 记 $\lim\limits_{n\to\infty}e_{n} = e$.
+
+因为
+\[
+\begin{aligned}
+\frac{1}{e_{n}'} &= \frac{1}{\left(1 + \frac{1}{n}\right)^{n+1}} = \left(\frac{n}{n+1}\right)^{n+1} = \left(1 - \frac{1}{n+1}\right)^{n+1} \\
+&= 1 \cdot \left(1 - \frac{1}{n+1}\right)^{n+1} < \left[\frac{1 + (n+1)\left(1 - \frac{1}{n+1}\right)}{n+2}\right]^{n+2} \\
+&= \left(\frac{n+1}{n+2}\right)^{n+2} = \frac{1}{\left(1 + \frac{1}{n+1}\right)^{n+2}} = \frac{1}{e_{n+1}'},
+\end{aligned}
+\]
+等价于 $e_{n}' > e_{n+1}'$, 即 $\{e_{n}'\}$ 严格减. 又 $\{e_{n}'\}$ 有下界 1. 根据实数连续性命题（二）知, $\{e_{n}'\}$ 收敛.
+
+或者
+\[
+\lim_{n\to+\infty}e_{n}' = \lim_{n\to+\infty}\left(1 + \frac{1}{n}\right)^{n+1} = \lim_{n\to+\infty}\left(1 + \frac{1}{n}\right)^{n}\cdot\lim_{n\to+\infty}\left(1 + \frac{1}{n}\right) = e \cdot 1 = e = \lim_{n\to+\infty}e_{n},
+\]
+且 $1 < e \leqslant 3$.
+
+(2) 
+\[
+\left(1 + \frac{1}{n}\right)^{n} < \left(1 + \frac{1}{n+1}\right)^{n+1} \leqslant e \leqslant \left(1 + \frac{1}{n+1}\right)^{n+2} < \left(1 + \frac{1}{n}\right)^{n+1}.
+\]
+
+(3) 由 $\left(1 + \frac{1}{n}\right)^{n} < e < \left(1 + \frac{1}{n}\right)^{n+1}$ 两边取自然对数得
+\[
+n\ln\left(1 + \frac{1}{n}\right) < 1 < (n+1)\ln\left(1 + \frac{1}{n}\right),
+\]
+\[
+\frac{1}{n+1} < \ln\left(1 + \frac{1}{n}\right) < \frac{1}{n},
+\]
+即
+\[
+\frac{1}{n+1} < \ln(n+1) - \ln n < \frac{1}{n}.
+\]
+将上式从 $1$ 到 $n$ 求和, 就得到
+\[
+\frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n+1} < \ln(n+1) < 1 + \frac{1}{2} + \cdots + \frac{1}{n}.
+\]
+
+(4) 由
+\[
+x_{n} = 1 + \frac{1}{2} + \cdots + \frac{1}{n} - \ln n > 1 + \frac{1}{2} + \cdots + \frac{1}{n} - \ln(n+1) > 0
+\]
+可得, $\{x_{n}\}$ 有下界 0. 又因为
+\[
+x_{n+1} - x_{n} = \frac{1}{n+1} - \ln(n+1) + \ln n = \frac{1}{n+1} - \ln\left(1 + \frac{1}{n}\right) < 0,
+\]
+即 $x_{n+1} < x_{n}$, $\{x_{n}\}$ 严格减. 根据实数连续性命题（二）知, $\{x_{n}\}$ 收敛. 记
+\[
+C = \lim_{n\to+\infty}x_n = \lim_{n\to+\infty}\left(\sum_{k=1}^{n}\frac{1}{k} - \ln n\right).
+\]
+
+(5) 由于 $\{x_{n}\}$ 严格减, 且 $\lim\limits_{n\to+\infty}x_{n} = C$, 故
+\[
+\varepsilon_{n} = \left(1 + \frac{1}{2} + \cdots + \frac{1}{n} - \ln n\right) - C > 0,
+\]
+且
+\[
+\lim_{n\to+\infty}\varepsilon_{n} = \lim_{n\to+\infty}(x_{n} - C) = \lim_{n\to+\infty}x_{n} - C = C - C = 0.
+\]
+从而
+\[
+\lim_{n\to+\infty}\frac{1 + \frac{1}{2} + \cdots + \frac{1}{n}}{\ln n} = \lim_{n\to+\infty}\frac{\varepsilon_{n} + \ln n + C}{\ln n} = \lim_{n\to+\infty}\left(\frac{\varepsilon_{n}}{\ln n} + 1 + \frac{C}{\ln n}\right) = 0 + 1 + 0 = 1.
+\]
+
+(6) 因为 $y_{n+1} = y_{n} + \frac{1}{(n+1)!} > y_{n}$, 所以 $\{y_{n}\}$ 严格增. 又
+\[
+\begin{aligned}
+e_{n} &= \left(1 + \frac{1}{n}\right)^{n} = 1 + \sum_{k=1}^{n}\frac{1}{k!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right)\cdots\left(1 - \frac{k-1}{n}\right) \\
+&< 1 + \sum_{k=1}^{n}\frac{1}{k!} = y_{n},
+\end{aligned}
+\]
+且当 $k < n$ 时,
+\[
+\begin{aligned}
+e > e_{n} &> 1 + 1 + \frac{1}{2!}\left(1 - \frac{1}{n}\right) + \frac{1}{3!}\left(1 - \frac{1}{n}\right)\left(1 - \frac{2}{n}\right) + \cdots \\
+&\quad + \frac{1}{k!}\left(1 - \frac{1}{n}\right)\cdots\left(1 - \frac{k-1}{n}\right).
+\end{aligned}
+\]
+固定 $k$, 令 $n \to +\infty$, 得到
+\[
+e \geqslant 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \cdots + \frac{1}{k!} = y_{k},
+\]
+\[
+e \geqslant y_{k} > y_{k-1},\quad k=2,3,\cdots.
+\]
+由此推出
+\[
+e > y_{n} > e_{n}.
+\]
+再由 $\lim\limits_{n\to+\infty}e_n = e$ 及两边夹逼定理立知, $\lim\limits_{n\to+\infty}y_n = e$.
+
+(7) 由 $y_{n} = 1 + \sum\limits_{k=1}^{n}\frac{1}{k!} < e$, 易见, 对任意 $m \in \mathbb{N}$,
+\[
+\begin{aligned}
+\frac{1}{n! n}\cdot\frac{n}{n+1}\cdot\frac{n+3}{n+2} &= \frac{1}{(n+1)!}\left(1 + \frac{1}{n+2}\right) \leqslant y_{n+m} - y_{n} \\
+&= \frac{1}{(n+1)!} + \frac{1}{(n+2)!} + \cdots + \frac{1}{(n+m)!} \\
+&= \frac{1}{(n+1)!}\left[1 + \frac{1}{n+2} + \frac{1}{(n+3)(n+2)} + \cdots + \frac{1}{(n+m)\cdots(n+2)}\right] \\
+&< \frac{1}{(n+1)!}\left[1 + \frac{1}{n+2} + \frac{1}{(n+2)^2} + \cdots + \frac{1}{(n+2)^{m-1}}\right] \\
+&= \frac{1}{(n+1)!}\frac{1 - \left(\frac{1}{n+2}\right)^m}{1 - \frac{1}{n+2}},\quad m=2,3,\cdots.
+\end{aligned}
+\]
+固定 $n$, 令 $m \to +\infty$, 得到
+\[
+\frac{1}{n! n}\cdot\frac{n}{n+1}\cdot\frac{n+3}{n+2} \leqslant e - y_{n} \leqslant \frac{1}{(n+1)!}\frac{n+2}{n+1} = \frac{1}{n! n}\frac{n(n+2)}{(n+1)^{2}}.
+\]
+记 $e - y_{n} = \frac{\theta_{n}}{n! n}$, 则
+\[
+0 < \frac{n}{n+1} < \frac{n}{n+1}\frac{n+3}{n+2} \leqslant \theta_{n} \leqslant \frac{n^{2}+2n}{n^{2}+2n+1} < 1,
+\]
+\[
+e = y_{n} + \frac{\theta_{n}}{n! n} = 1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!} + \frac{\theta_{n}}{n! n}.
+\]
+
+(8) （反证）反设 $e$ 不为无理数, 则 $e$ 为有理数, 记 $e = \frac{m}{n}\;(m, n \in \mathbb{N})$. 由 (7) 得到
+\[
+\frac{m}{n} = e = 1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!} + \frac{\theta_{n}}{n! n}\quad (0 < \theta_{n} < 1),
+\]
+所以
+\[
+n! m = n! n\left(1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!}\right) + \theta_{n}.
+\]
+显然, 左边为自然数, 而右边不为自然数, 矛盾, 从而 $e$ 为无理数. 经过更进一步的研究知 $e = 2.7182818\cdots$.
+\end{proof}
+
+\begin{example}\label{ex:1.4.7}
+设 $n \in \mathbb{N}$. 证明：
+\[
+\frac{k}{n+k} < \ln\left(1 + \frac{k}{n}\right) < \frac{k}{n},\quad k=1, 2, \cdots, n.
+\]
+\end{example}
+
+\begin{proof}
+由定理~\ref{thm:1.4.2}(3), 可得
+\[
+\frac{1}{n+1} < \ln\frac{n+1}{n} < \frac{1}{n},
+\]
+推得
+\[
+\begin{aligned}
+\frac{k}{n+k} &< \frac{1}{n+k} + \frac{1}{n+k-1} + \cdots + \frac{1}{n+1} \\
+&< \ln\frac{n+k}{n+k-1} + \ln\frac{n+k-1}{n+k-2} + \cdots + \ln\frac{n+1}{n} \\
+&< \frac{1}{n+k-1} + \frac{1}{n+k-2} + \cdots + \frac{1}{n} < \frac{k}{n},
+\end{aligned}
+\]
+\[
+\frac{k}{n+k} < \ln\frac{n+k}{n} = \ln\left(1 + \frac{k}{n}\right) < \frac{k}{n}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:1.4.8}
+求下列极限：
+\begin{enumerate}
+\item $\lim\limits_{n \to +\infty} \left(1 - \frac{1}{n}\right)^n$；
+\item $\lim\limits_{n \to +\infty} \left(\frac{n+1}{n+2}\right)^{2n+4}$；
+\item $\lim\limits_{n \to +\infty} \left(1 + \frac{k}{n}\right)^n,\; k \in \mathbb{N}$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) 
+\[
+\begin{aligned}
+\lim_{n\to+\infty}\left(1 - \frac{1}{n}\right)^{n} &= \lim_{n\to+\infty}\left(\frac{n-1}{n}\right)^{n} \\
+&= \lim_{n\to+\infty}\frac{1}{\left(1 + \frac{1}{n-1}\right)^{n-1}\left(1 + \frac{1}{n-1}\right)} = \frac{1}{e\cdot(1 + 0)} = e^{-1}.
+\end{aligned}
+\]
+
+(2) 
+\[
+\lim_{n\to+\infty}\left(\frac{n+1}{n+2}\right)^{2n+4} = \lim_{n\to+\infty}\left[\left(1 - \frac{1}{n+2}\right)^{n+2}\right]^2 = (e^{-1})^2 = e^{-2}.
+\]
+或者
+\[
+\lim_{n\to+\infty}\left(\frac{n+1}{n+2}\right)^{2n+4} = \lim_{n\to+\infty}\frac{1}{\left[\left(1 + \frac{1}{n+1}\right)^{n+1}\right]^{2}\left(1 + \frac{1}{n+1}\right)^{2}} = \frac{1}{e^{2}\cdot(1 + 0)^{2}} = e^{-2}.
+\]
+
+(3) 由
+\[
+\begin{aligned}
+\left(1 + \frac{k}{n}\right)^{n} &= 1 \cdot \left(1 + \frac{k}{n}\right)^{n} < \left[\frac{1 + n\left(1 + \frac{k}{n}\right)}{n+1}\right]^{n+1} \\
+&= \left(\frac{n+1+k}{n+1}\right)^{n+1} = \left(1 + \frac{k}{n+1}\right)^{n+1},
+\end{aligned}
+\]
+推得 $\left(1 + \frac{k}{n}\right)^{n}$ 严格增.
+
+$\forall n \in \mathbb{N}$, $\exists n_1 \in \mathbb{N}$, 使得 $n_1 k < n \leqslant (n_1 + 1)k$. 显然,
+\[
+\begin{aligned}
+\left[\left(1 + \frac{1}{n_{1}}\right)^{n_{1}}\right]^{k} &= \left(1 + \frac{k}{n_{1}k}\right)^{n_{1}k} < \left(1 + \frac{k}{n}\right)^{n} \\
+&\leqslant \left[1 + \frac{k}{(n_{1}+1)k}\right]^{(n_{1}+1)k} = \left[\left(1 + \frac{1}{n_{1}+1}\right)^{n_{1}+1}\right]^{k},
+\end{aligned}
+\]
+又
+\[
+\begin{aligned}
+\lim_{n\to+\infty}\left[\left(1 + \frac{1}{n_{1}}\right)^{n_{1}}\right]^{k} &= \lim_{n_{1}\to+\infty}\left[\left(1 + \frac{1}{n_{1}}\right)^{n_{1}}\right]^{k} = e^{k} \\
+&= \lim_{n_{1}\to+\infty}\left[\left(1 + \frac{1}{n_{1}+1}\right)^{n_{1}+1}\right]^{k} = \lim_{n\to+\infty}\left[\left(1 + \frac{1}{n_{1}+1}\right)^{n_{1}+1}\right]^{k},
+\end{aligned}
+\]
+根据夹逼定理得
+\[
+\lim_{n\to+\infty}\left(1 + \frac{k}{n}\right)^{n} = e^{k}.
+\]
+\end{solution}
+
+\begin{remark}\label{rem:1.4.2}
+如果应用函数的两个重要极限之一 $\lim\limits_{x\to+\infty}\left(1 + \frac{1}{x}\right)^x = e$ 及归结原则（定理 2.1.3），则有
+\[
+\lim_{n\to+\infty}\left(1 + \frac{k}{n}\right)^{n} = \lim_{n\to+\infty}\left[\left(1 + \frac{k}{n}\right)^{\frac{n}{k}}\right]^{k} = e^{k}.
+\]
+\end{remark}
+
+\begin{example}\label{ex:1.4.9}
+求：
+\begin{enumerate}
+\item $\lim\limits_{n\to+\infty}\left(\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{n+n}\right)$；
+\item $\lim\limits_{n\to+\infty}\left[\left(1 + \frac{1}{3} + \frac{1}{5} + \cdots + \frac{1}{2n-1}\right) - \left(\frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2n}\right)\right]$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) 
+\[
+\begin{aligned}
+\lim_{n\to+\infty}\left(\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{n+n}\right) &= \lim_{n\to+\infty}\left[\left(1 + \frac{1}{2} + \cdots + \frac{1}{2n}\right) - \left(1 + \frac{1}{2} + \cdots + \frac{1}{n}\right)\right] \\
+&= \lim_{n\to+\infty}\left[(x_{2n} + \ln 2n) - (x_n + \ln n)\right] \\
+&= \lim_{n\to+\infty}x_{2n} - \lim_{n\to+\infty}x_n + \lim_{n\to+\infty}\ln 2 \\
+&= C - C + \ln 2 = \ln 2.
+\end{aligned}
+\]
+
+(2) 
+\[
+\begin{aligned}
+&\lim_{n\to+\infty}\left[\left(1 + \frac{1}{3} + \frac{1}{5} + \cdots + \frac{1}{2n-1}\right) - \left(\frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2n}\right)\right] \\
+&\quad = \lim_{n\to+\infty}\left[\left(1 + \frac{1}{2} + \cdots + \frac{1}{2n}\right) - 2\left(\frac{1}{2} + \frac{1}{4} + \cdots + \frac{1}{2n}\right)\right] \\
+&\quad = \lim_{n\to+\infty}\left[\left(1 + \frac{1}{2} + \cdots + \frac{1}{2n}\right) - \left(1 + \frac{1}{2} + \cdots + \frac{1}{n}\right)\right] \\
+&\quad \xlongequal{\text{由 (1)}} \ln 2.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:1.4.10}
+证明：$a_{n} = \left(1 + \frac{1}{2}\right)\left(1 + \frac{1}{2^{2}}\right)\cdots\left(1 + \frac{1}{2^{n}}\right)$ 收敛.
+\end{example}
+
+\begin{proof}
+因 $a_{n+1} = a_{n}\left(1 + \frac{1}{2^{n+1}}\right) > a_{n}$，故 $\{a_{n}\}$ 严格增. 又因
+\[
+\begin{aligned}
+a_{n} &= \left(1 + \frac{1}{2}\right)\left(1 + \frac{1}{2^{2}}\right)\cdots\left(1 + \frac{1}{2^{n}}\right) \\
+&\leqslant \left[\frac{\left(1 + \frac{1}{2}\right) + \left(1 + \frac{1}{2^{2}}\right) + \cdots + \left(1 + \frac{1}{2^{n}}\right)}{n}\right]^{n} \\
+&= \left[\frac{n + \frac{1}{2} + \frac{1}{2^{2}} + \cdots + \frac{1}{2^{n}}}{n}\right]^{n} \\
+&= \left(1 + \frac{1 - \frac{1}{2^{n}}}{n}\right)^{n} < \left(1 + \frac{1}{n}\right)^{n} < e\text{ (或 3)},
+\end{aligned}
+\]
+所以, 根据实数连续性命题（二）知, $\{a_{n}\}$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:1.4.11}
+证明：
+\begin{enumerate}
+\item $\left(\frac{n+1}{e}\right)^{n} < n! < e\left(\frac{n+1}{e}\right)^{n+1}$；
+\item $\lim\limits_{n \to +\infty} \frac{n}{\sqrt[n]{n!}} = e$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) 将不等式
+\[
+\left(\frac{n+1}{n}\right)^{n} = \left(1 + \frac{1}{n}\right)^{n} < e < \left(1 + \frac{1}{n}\right)^{n+1} = \left(\frac{n+1}{n}\right)^{n+1}
+\]
+从 1 开始排到 $n$, 有
+\[
+\begin{aligned}
+\frac{2}{1} &< e < \frac{2^2}{1^2}, \\
+\frac{3^2}{2^2} &< e < \frac{3^3}{2^3}, \\
+&\cdots \\
+\frac{(n+1)^n}{n^n} &< e < \frac{(n+1)^{n+1}}{n^{n+1}}.
+\end{aligned}
+\]
+将各式相乘就得到
+\[
+\frac{(n+1)^{n}}{n!} < e^{n} < \frac{(n+1)^{n+1}}{n!},
+\]
+\[
+\left(\frac{n+1}{e}\right)^{n} < n! < e\left(\frac{n+1}{e}\right)^{n+1}.
+\]
+
+(2) 由 (1) 知,
+\[
+\frac{n+1}{e} < \sqrt[n]{n!} < \frac{n+1}{e}\sqrt[n]{n+1},
+\]
+\[
+e\frac{n}{n+1} > \frac{n}{\sqrt[n]{n!}} > e\frac{n}{n+1}\frac{1}{\sqrt[n]{n+1}}.
+\]
+再由 $\lim\limits_{n\to+\infty} e\frac{n}{n+1} = e = \lim\limits_{n\to+\infty} e\frac{n}{n+1}\cdot\frac{1}{\sqrt[n]{n+1}}$ 及夹逼定理, 有
+\[
+\lim_{n\to+\infty}\frac{n}{\sqrt[n]{n!}} = e.
+\]
+或者, 令 $a_{n} = \frac{n^{n}}{n!} > 0$, 则
+\[
+\frac{a_{n+1}}{a_{n}} = \frac{(n+1)^{n+1}}{(n+1)!}\bigg/\frac{n^{n}}{n!} = \left(1 + \frac{1}{n}\right)^{n}.
+\]
+于是,
+\[
+\begin{aligned}
+\lim_{n\to+\infty}\frac{n}{\sqrt[n]{n!}} &= \lim_{n\to+\infty}\sqrt[n]{\frac{n^n}{n!}} = \lim_{n\to+\infty}\sqrt[n]{a_n} = \lim_{n\to+\infty}\sqrt[n]{a_1\cdot\frac{a_2}{a_1}\frac{a_3}{a_2}\cdots\frac{a_n}{a_{n-1}}} \\
+&= \lim_{n\to+\infty}\frac{a_n}{a_{n-1}} = \lim_{n\to+\infty}\frac{a_{n+1}}{a_n} = \lim_{n\to+\infty}\left(1 + \frac{1}{n}\right)^n = e.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:1.4.12}
+证明：$S_{n} = \frac{\sin 1!}{2^{1}} + \frac{\sin 2!}{2^{2}} + \cdots + \frac{\sin n!}{2^{n}}$ 收敛.
+\end{example}
+
+\begin{proof}
+$\forall\varepsilon>0$, 取 $N\in\mathbb{N}$, 使得 $N > \frac{1}{\varepsilon}$. 当 $n>N$ 时, $\forall p\in\mathbb{N}$, 有
+\[
+\begin{aligned}
+|S_{n+p} - S_n| &= \left|\frac{\sin(n+1)!}{2^{n+1}} + \cdots + \frac{\sin(n+p)!}{2^{n+p}}\right| \\
+&\leqslant \left|\frac{\sin(n+1)!}{2^{n+1}}\right| + \cdots + \left|\frac{\sin(n+p)!}{2^{n+p}}\right| \\
+&\leqslant \frac{1}{2^{n+1}} + \cdots + \frac{1}{2^{n+p}} = \frac{1}{2^{n+1}}\cdot\frac{1 - \frac{1}{2^{p}}}{1 - \frac{1}{2}} \\
+&< \frac{1}{2^n} < \frac{1}{n} < \frac{1}{N} < \varepsilon,
+\end{aligned}
+\]
+所以, $\{S_{n}\}$ 为 Cauchy（基本）数列. 根据实数连续性命题（七）, $\{S_{n}\}$ 收敛.
+\end{proof}
+
+更一般地, 有下面结论：
+
+\begin{example}\label{ex:1.4.13}
+设级数 $\sum\limits_{n=1}^{\infty} b_{n}$ 收敛, $|a_{n}| \leqslant b_{n},\;\forall n \in \mathbb{N}$, 则 $\sum\limits_{n=1}^{\infty} a_{n}$ 也收敛.
+\end{example}
+
+\begin{proof}
+$\forall\varepsilon>0$, 因为 $\sum\limits_{n=1}^{\infty}b_{n}$ 收敛, 故由级数的 Cauchy 收敛准则知, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+b_{n+1} + \cdots + b_{n+p} = |b_{n+1} + \cdots + b_{n+p}| < \varepsilon,\quad \forall p\in\mathbb{N}.
+\]
+于是,
+\[
+\begin{aligned}
+|a_{n+1} + \cdots + a_{n+p}| &\leqslant |a_{n+1}| + \cdots + |a_{n+p}| \leqslant b_{n+1} + \cdots + b_{n+p} \\
+&= |b_{n+1} + \cdots + b_{n+p}| < \varepsilon,
+\end{aligned}
+\]
+再根据级数的 Cauchy 收敛准则知, $\sum\limits_{n=1}^{\infty}a_{n}$ 收敛.
+\end{proof}
+
+因为等比级数 $\sum\limits_{n=1}^{\infty} q^{n}\;(|q| < 1)$ 收敛, 故从例~\ref{ex:1.4.13} 立即推得例~\ref{ex:1.4.12} 中 $\{S_{n}\}$ 收敛.
+
+\begin{example}\label{ex:1.4.14}
+设 $\lim\limits_{n\to+\infty} \alpha_n = 0$, 且 $\forall n, p \in \mathbb{N}$, 有 $|a_{n+p} - a_n| \leqslant \alpha_n$, 则 $\{a_n\}$ 收敛.
+\end{example}
+
+\begin{proof}
+$\forall\varepsilon>0$, 因 $\lim\limits_{n\to+\infty}\alpha_n = 0$, 故 $\exists N\in\mathbb{N}$, 当 $n>N$ 时, $0 \leqslant \alpha_n < \varepsilon$. 于是, $\forall p\in\mathbb{N}$, 有
+\[
+|a_{n+p} - a_{n}| \leqslant \alpha_{n} < \varepsilon,
+\]
+根据数列的 Cauchy 收敛准则知, $\{a_{n}\}$ 收敛.
+\end{proof}
+
+由此推得下面的结论：
+
+\begin{example}\label{ex:1.4.15}
+设 $\lim\limits_{n\to+\infty}\alpha_n = 0$, 且 $\forall n, p\in\mathbb{N}$, 有 $|a_{n+1} + \cdots + a_{n+p}| \leqslant \alpha_n$, 则 $\sum\limits_{n=1}^{\infty}a_n$ 收敛.
+\end{example}
+
+\begin{proof}
+令 $S_{n} = a_{1} + \cdots + a_{n}$, 则 $\forall n, p\in\mathbb{N}$, 有
+\[
+|S_{n+p} - S_{n}| = |a_{n+1} + \cdots + a_{n+p}| \leqslant \alpha_{n},
+\]
+故 $\{S_{n}\}$ 收敛, 即 $\sum\limits_{n=1}^{\infty}a_{n}$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:1.4.16}
+应用级数的 Cauchy 收敛准则证明 $\sum\limits_{n=1}^{\infty} \frac{1}{n}$ 发散.
+\end{example}
+
+\begin{proof}
+（反证）反设 $\sum\limits_{n=1}^{\infty}\frac{1}{n}$ 收敛, 则对 $\varepsilon_{0} = \frac{1}{2}$, $\exists N\in\mathbb{N}$, 当 $n\geqslant N$, $\forall p\in\mathbb{N}$ 时, 有
+\[
+\left|\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{n+p}\right| < \varepsilon_{0} = \frac{1}{2}.
+\]
+特别当 $p = n$ 时,
+\[
+\frac{1}{2} = \frac{n}{2n} < \left|\frac{1}{n+1} + \frac{1}{n+2} + \cdots + \frac{1}{2n}\right| < \varepsilon_{0} = \frac{1}{2},
+\]
+矛盾. 从而 $\sum\limits_{n=1}^{\infty} \frac{1}{n}$ 发散.
+\end{proof}
+
+\begin{example}\label{ex:1.4.17}
+应用数列的 Cauchy 收敛准则证明数列 $\{a_{n}\}$, $a_{n} = (-1)^{n-1}$ 不收敛.
+\end{example}
+
+\begin{proof}
+（反证）反设 $a_{n} = (-1)^{n-1}$ 收敛, 根据数列的 Cauchy 收敛准则知, 对 $\varepsilon_{0} = 1$, $\exists N\in\mathbb{N}$, 当 $n>N$, $\forall p\in\mathbb{N}$ 时, 有
+\[
+|1 - (-1)^{p}| = \left|(-1)^{n+p-1} - (-1)^{n-1}\right| = |a_{n+p} - a_{n}| < \varepsilon_{0} = 1.
+\]
+特别当 $p = 2k - 1\;(k \in \mathbb{N})$ 时,
+\[
+2 = 1 - (-1)^{2k-1} < \varepsilon_{0} = 1,
+\]
+矛盾. 从而数列 $\{a_{n}\}$ 不收敛.
+\end{proof}
+
+% ==================== 习题部分 ====================
+
+\begin{exblock}{练习题 1.4}
+\item 证明下列数列收敛：
+\begin{enumerate}
+\item $\left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{2^2}\right)\cdots\left(1 - \frac{1}{2^n}\right),\; n\in\mathbb{N}$；
+\item $\frac{10}{1} \cdot \frac{11}{3} \cdots \frac{n+9}{2n-1},\; n \in \mathbb{N}$.
+\end{enumerate}
+
+\item 设 $0 < a_{n} < 1$ 且 $a_{n+1}(1 - a_{n}) \geqslant \frac{1}{4},\; n \in \mathbb{N}$. 证明：$\{a_{n}\}$ 收敛, 且 $\lim\limits_{n \to +\infty} a_{n} = \frac{1}{2}$.
+
+\item 给定两正数 $x_{0} = a$ 与 $y_{0} = b$, 归纳定义
+\[
+x_{n} = \sqrt{x_{n-1}y_{n-1}},\quad y_{n} = \frac{x_{n-1}+y_{n-1}}{2},\quad n=1, 2, \cdots.
+\]
+证明：数列 $\{x_{n}\}$ 与 $\{y_{n}\}$ 收敛, 且 $\lim\limits_{n\to+\infty}x_{n} = \lim\limits_{n\to+\infty}y_{n}$, 并称此极限为 $a$ 与 $b$ 的算术-几何平均数.
+
+\item $\forall n \in \mathbb{N}$, 用 $x_n$ 表示方程 $x + x^2 + \cdots + x^n = 1$ 在闭区间 $[0,1]$ 上的根. 求极限 $\lim\limits_{n \to \infty} x_n$.
+
+\item 设 $c > 0$, $x_{1} = \sqrt{c}$, $x_{2} = \sqrt{c + \sqrt{c}}$, $\cdots$, $x_{n+1} = \sqrt{c + x_{n}}$. 证明：数列 $\{x_{n}\}$ 收敛, 且 $\lim\limits_{n \to +\infty} x_{n} = \frac{1 + \sqrt{1 + 4c}}{2}$.
+
+\item 设 $x_{1} = c > 0$, 令 $x_{n+1} = c + \frac{1}{x_{n}},\; n\in\mathbb{N}$. 求极限 $\lim\limits_{n\to+\infty}x_n$.
+
+\item 证明：
+\[
+\sqrt{1+\sqrt{1+\sqrt{1+\cdots}}} = \frac{1+\sqrt{5}}{2} = 1 + \frac{1}{1 + \frac{1}{1 + \cdots}}.
+\]
+
+\item 设 $c>0$, $a_{1} = \frac{c}{2}$, $a_{n+1} = \frac{c}{2} + \frac{a_{n}^{2}}{2},\; n=1, 2, \cdots$. 证明：
+\[
+\lim_{n\to+\infty}a_{n} = \left\{\begin{aligned}
+&1 - \sqrt{1-c},& &0 < c \leqslant 1, \\
+&+\infty,& &c > 1.
+\end{aligned}\right.
+\]
+
+\item 设数列 $\{a_{n}\}$ 单调增, $\{b_{n}\}$ 单调减, 且 $\lim\limits_{n\to+\infty}(a_{n}-b_{n}) = 0$. 证明：$\{a_{n}\}$ 与 $\{b_{n}\}$ 都收敛, 且 $\lim\limits_{n\to+\infty}a_{n} = \lim\limits_{n\to+\infty}b_{n}$.
+
+\item 设数列 $\{a_{n}\}$ 满足：存在正数 $M$, $\forall n \in \mathbb{N}$, 有
+\[
+A_{n} = |a_{2}-a_{1}| + |a_{3}-a_{2}| + \cdots + |a_{n}-a_{n-1}| \leqslant M.
+\]
+证明：数列 $\{a_{n}\}$ 与 $\{A_{n}\}$ 都收敛.
+
+\item 应用 Cauchy 收敛准则证明下列数列收敛：
+\begin{enumerate}
+\item $x_{n} = \frac{\cos 1!}{1 \cdot 2} + \frac{\cos 2!}{2 \cdot 3} + \cdots + \frac{\cos n!}{n(n+1)}$；
+\item $x_{n} = 1 + \frac{1}{2^{2}} + \frac{1}{3^{2}} + \cdots + \frac{1}{n^{2}}$；
+\item $x_{n} = \frac{\arctan 1}{1(1+\cos 1!)} + \frac{\arctan 2}{2(2+\cos 2!)} + \cdots + \frac{\arctan n}{n(n+\cos n!)}$.
+\end{enumerate}
+
+\item 应用 $\lim\limits_{n\to+\infty}\left(1+\frac{1}{n}\right)^n = e$ 与 $\lim\limits_{n\to+\infty}\left(1-\frac{1}{n}\right)^n = e^{-1}$, 求下列极限：
+\begin{enumerate}
+\item $\lim\limits_{n\to+\infty}\left(1 + \frac{1}{n-3}\right)^{n}$；
+\item $\lim\limits_{n\to+\infty}\left(1 - \frac{1}{n-2}\right)^{n}$；
+\item $\lim\limits_{n\to+\infty}\left(\frac{1+n}{2+n}\right)^{n}$；
+\item $\lim\limits_{n\to+\infty}\left(1 + \frac{1}{2n^{2}}\right)^{4n^{2}}$；
+\item $\lim\limits_{n \to +\infty} \left(1 + \frac{3}{n}\right)^n$.
+\end{enumerate}
+
+\item $\forall n \in \mathbb{N}$, 证明：
+\begin{enumerate}
+\item $0 < e - \left(1 + \frac{1}{n}\right)^n < \frac{3}{n}$；
+\item $\lim\limits_{n \to +\infty} \left[e - \left(1 + \frac{1}{n}\right)^n\right] = 0$.
+\end{enumerate}
+
+\item 设 $\alpha < 1$, 证明：
+\begin{enumerate}
+\item $0 < n^{\alpha} \left[ e - \left( 1 + \frac{1}{n} \right)^{n} \right] < \frac{e}{n^{1 - \alpha}}$；
+\item $\lim\limits_{n\to+\infty}n^{\alpha}\left[e - \left(1 + \frac{1}{n}\right)^n\right] = 0$.
+\end{enumerate}
+
+\item 
+\begin{enumerate}
+\item 设 $0 < a < b$, $\forall n \in \mathbb{N}$. 证明：
+\[
+b^{n+1} - a^{n+1} < (n+1)b^{n}(b-a),
+\]
+\[
+a^{n+1} > b^{n}[(n+1)a - nb];
+\]
+\item 在 (1) 中, 令 $a = 1 + \frac{1}{n+1}$, $b = 1 + \frac{1}{n}$ 推出 $\left(1+\frac{1}{n}\right)^{n}$ 为严格增的数列；
+\item 在 (1) 中, 令 $a = 1$, $b = 1 + \frac{1}{2n}$ 推出当 $n$ 为偶数时, 有 $\left(1+\frac{1}{n}\right)^{n} < 4$；由此得到 $\forall n\in\mathbb{N}$, 有 $\left(1+\frac{1}{n}\right)^{n} < 4$, 即 4 为该数列的上界, 从而 $\left(1+\frac{1}{n}\right)^{n}$ 收敛.
+\end{enumerate}
+
+\item 应用不等式 $b^{n+1} - a^{n+1} > (n+1)a^{n}(b-a)\;(0 < a < b)$, 证明：数列 $\left(1 + \frac{1}{n}\right)^{n+1}$ 是严格减的, 并由此推出 $\left(1 + \frac{1}{n}\right)^n$ 为有界数列.
+
+\item 证明：$\left(1 + \frac{1}{n}\right)^{n+1} < \frac{3}{n} + \left(1 + \frac{1}{n}\right)^n,\;\forall n\in\mathbb{N}$.
+
+\item 设 $\{a_{n}\}$ 为有界数列. 记
+\[
+\bar{a}_{n} = \sup\{a_{n}, a_{n+1}, \cdots\},\quad \underline{a}_{n} = \inf\{a_{n}, a_{n+1}, \cdots\}.
+\]
+证明：
+\begin{enumerate}
+\item $\forall n \in \mathbb{N}$, 有 $\bar{a}_n \geqslant \underline{a}_n$；
+\item $\{\bar{a}_{n}\}$ 为单调减有界数列；$\{\underline{a}_{n}\}$ 为单调增有界数列, 且 $\forall n, m\in\mathbb{N}$ 有 $\bar{a}_{n} \geqslant \underline{a}_{m}$；
+\item 设 $\bar{a} = \lim\limits_{n \to +\infty} \bar{a}_n$, $\underline{a} = \lim\limits_{n \to +\infty} \underline{a}_n$, 则 $\bar{a} \geqslant \underline{a}$；
+\item $\{a_{n}\}$ 收敛 $\iff \bar{a} = \underline{a}$.
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 1.4}
+\item 设 $a_{1} \geqslant 0$, $a_{n+1} = \frac{3(1 + a_{n})}{3 + a_{n}}$, $n = 1, 2, \cdots$. 证明：$\{a_{n}\}$ 收敛, 且 $\lim\limits_{n \to +\infty} a_{n} = \sqrt{3}$.
+
+\item 设 $a > 0$, $x_{1} > 0$, $x_{n+1} = \frac{x_{n}(x_{n}^{2} + 3a)}{3x_{n}^{2} + a}$, $n = 1, 2, \cdots$. 证明：$\{x_{n}\}$ 收敛, 且 $\lim\limits_{n \to +\infty} x_{n} = \sqrt{a}$.
+
+\item 设 $a>0$, $x_{1} = \sqrt[3]{a}$, $x_{n} = \sqrt[3]{ax_{n-1}}\;(n>1)$. 证明：$\{x_{n}\}$ 收敛, 且 $\lim\limits_{n\to+\infty}x_n = \sqrt{a}$.
+
+\item 设 $0 < a_{1} < b_{1} < c_{1}$. 令
+\[
+a_{n+1} = \frac{3}{\frac{1}{a_{n}} + \frac{1}{b_{n}} + \frac{1}{c_{n}}},\quad b_{n+1} = \sqrt[3]{a_{n} b_{n} c_{n}},\quad c_{n+1} = \frac{a_{n} + b_{n} + c_{n}}{3}.
+\]
+证明：$\{a_{n}\}$, $\{b_{n}\}$, $\{c_{n}\}$ 收敛于同一实数.
+
+\item 设 $a_{n}>0$, $S_{n} = a_{1} + \cdots + a_{n}$, $T_{n} = \frac{a_{1}}{S_{1}} + \cdots + \frac{a_{n}}{S_{n}}$, 且 $\lim\limits_{n\to+\infty}S_{n} = +\infty$. 证明：$\lim\limits_{n\to+\infty}T_{n} = +\infty$.
+
+\item 设 $a_{1} = 1$, $a_{n+1} = \frac{1}{1+a_{n}}$, $n=1, 2, \cdots$. 证明：$\lim\limits_{n\to+\infty}a_n = \frac{\sqrt{5}-1}{2}$（分别应用：(1) 例~\ref{ex:1.4.6} 中的方法；(2) $|x_{n+1+k} - x_{n+1}| \leqslant 2\cdot\left(\frac{4}{9}\right)^{n+1}$ 及 Cauchy 收敛准则）.
+
+\item 设 $a_{n} \geqslant 0$, $S_{n} = \sum\limits_{k=1}^{n} a_{k}$ 收敛于 $S$. 证明：$b_{n} = (1 + a_{1})(1 + a_{2}) \cdots (1 + a_{n})$ 收敛.
+\end{exblock}

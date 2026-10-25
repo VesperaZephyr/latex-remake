@@ -1,0 +1,2078 @@
+% ============================================================
+%  CHAPTER V -- Interpolation of Operators   (printed pp. 177-216)
+%  transcribed from src/ch5.blocks.md (PDF pp. 189-228)
+% ============================================================
+\chapter{Interpolation of Operators}
+
+Let $T$ be a linear operator mapping some linear space $\mathcal{A}$ into
+another linear space $\mathcal{B}$. Suppose $A_{0}$, $A_{1}$ are Banach
+subspaces of $\mathcal{A}$ and $B_{0}$, $B_{1}$ are Banach subspaces of
+$\mathcal{B}$ such that when $T$ is restricted to $A_{i}$ it maps this space
+continuously into $B_{i}$, $i = 0$, 1. When this is the case, it can be shown
+often that there exist infinitely many pairs of ``intermediate'' Banach spaces
+($A$, $B$), with $A \subset \mathcal{A}$ and $B \subset \mathcal{B}$, such that
+$T$ restricted to $A$ is a bounded operator mapping into $B$. General theorems
+of this kind are called interpolation theorems for linear operators and they
+have many important applications in Fourier analysis. We have already
+encountered an example of this situation when $\mathcal{A} = \mathcal{B}$ is
+the space of tempered distributions, $T$ is the Fourier transform,
+$A_{0} = L^{1}(E_{n})$, $B_{0} = L^{\infty}(E_{n})$ and
+$A_{1} = L^{2}(E_{n}) = B_{1}$; it is then true that if $T$ is restricted to
+$L^{p}(E_{n})$, $1 \leq p \leq 2$, it maps this space boundedly into
+$L^{q}(E_{n})$, where $(1/p) + (1/q) = 1$. This follows from a basic
+interpolation theorem concerning $L^{p}$ spaces: the $M$. Riesz interpolation
+theorem. We shall study this theorem and some of its applications in the first
+section of this chapter. There is another type of interpolation theorem in
+which we do not need assumptions as strong as boundedness at the
+``end-points'' $(A_{0}, B_{0})$ and $(A_{1}, B_{1})$; moreover, we can assume
+certain conditions weaker than the linearity of $T$. This theorem, known as the
+Marcinkiewicz theorem, applies to the maximal function operator $f \to m_{f}$
+that was studied in the second chapter. The second section of this chapter is
+devoted to applications of the Marcinkiewicz theorem. This theorem is best
+understood when it is extended to a collection of function spaces that
+includes the $L^{p}$ classes. This collection, the $L(p, q)$ spaces, as well as
+the extended version of the Marcinkiewicz theorem is the subject of the third
+section. In the fourth section we develop an extension of the M. Riesz theorem
+in which the operators vary, in a sufficiently smooth manner, with the
+``intermediate'' pairs of Banach spaces.
+
+\section{The M. Riesz Convexity Theorem and Interpolation of Operators Defined
+on \texorpdfstring{$L^{p}$}{Lp} Spaces}
+
+In the previous chapters we encountered several operators acting on $L^{p}$
+spaces. One class of such operators consists of the convolution operators
+determined by functions in $L^{p}(E_{n})$; that is, if we fix
+$f \in L^{p}(E_{n})$ we obtain the operator $T$ that maps $g \in L^{1}(E_{n})$
+into the function $f * g$. From Theorem~\ref{thm:c1-1-3} of Chapter I we see
+that $T$ is a bounded operator defined on $L^{1}(E_{n})$ having values in
+$L^{p}(E_{n})$; furthermore, the operator norm,
+$\|T\|$,\footnote{If $T$ is a bounded transformation from $L^{r}$ into $L^{s}$
+we shall denote its norm by $\|T\|$. That is,
+$\|T\| = \inf\{k \geq 0 : \|Tf\|_{s} \leq k\|f\|_{r} \text{ for all } f \in L^{r}\}$.}
+does not exceed $\|f\|_{p}$. On the other hand, an immediate application of
+H\"older's inequality shows that $T$ also maps $L^{p'}(E_{n})$ boundedly into
+$L^{\infty}(E_{n})$ when $(1/p) + (1/p') = 1$; as in the last case, the
+operator norm $\|T\|$ does not exceed $\|f\|_{p}$. Since $T$ is defined on
+$L^{1}(E_{n})$ and on $L^{p'}(E_{n})$ there is a natural extension of $T$ to
+all the spaces $L^{r}(E_{n})$ when $1 \leq r \leq p'$: If $g \in L^{r}(E_{n})$
+then we can find $g_{1} \in L^{1}(E_{n})$ and $g_{2} \in L^{p'}(E_{n})$ such
+that $g = g_{1} + g_{2}$ and we can define $Tg$ to be $Tg_{1} + Tg_{2}$ (it is
+clear that $Tg$ does not depend on the particular splitting of $g$ as
+$g = g_{1} + g_{2}$).\footnote{For example, by letting $g_{1}(x) = g(x)$ when
+$|g(x)| \geq 1$ and $g_{1}(x) = 0$ when $|g(x)| < 1$, we obtain such a
+decomposition.} It is natural, therefore, to ask whether $T$ maps $L^{r}(E_{n})$
+boundedly into some space $L^{q}(E_{n})$. We have already stated without proof
+(see \eqref{eq:c1-4-3} in the first chapter) that this is the case when
+$(1/q) = (1/p) + (1/r) - 1$, and $\|T\|$ is, again, less than or equal to
+$\|f\|_{p}$. That is,
+\begin{equation}\label{eq:c5-1-1}
+\|f*g\|_{q}\leq\|f\|_{p}\|g\|_{r}
+\end{equation}
+whenever $f \in L^{p}(E_{n})$ and $g \in L^{r}(E_{n})$. We shall show, in this
+section, that this inequality (known as Young's inequality) follows easily from
+a general result concerning linear operators acting on $L^{p}$-spaces.
+
+This general result can also be applied to the Fourier transform
+$\mathcal{F}$. We have treated $\mathcal{F}$ mostly as a linear operator
+defined on $L^{1}(E_{n})$ and $L^{2}(E_{n})$. Theorem~\ref{thm:c1-1-1}, part
+(a), of the first chapter asserts that the first space is mapped boundedly into
+$L^{\infty}(E_{n})$ with operator norm $\leq 1$, while the Plancherel theorem
+tells us that the second space is mapped onto itself with operator norm equal to
+1. For the same reasons we gave in the previous paragraph, $\mathcal{F}$ has a
+natural extension to the ``intermediate'' spaces $L^{p}(E_{n})$,
+$1 \leq p \leq 2$ (see, also, the remarks made toward the end of Section 2 in
+the first chapter). We shall show that this space is mapped by $\mathcal{F}$
+boundedly into $L^{p'}(E_{n})$, where $(1/p) + (1/p') = 1$, with operator norm
+$\leq 1$. That is, if $f \in L^{p}(E_{n})$, $1 \leq p \leq 2$, then
+$\hat{f} = \mathcal{F}f$ belongs to $L^{p'}(E_{n})$ and
+\begin{equation}\label{eq:c5-1-2}
+\|\hat{f}\|_{p'}\leq\|f\|_{p}.
+\end{equation}
+This result is known as the inequality of Hausdorff-Young.
+
+In order to state the above mentioned general result concerning linear
+operators, the $M$. Riesz convexity theorem, we need to introduce some new
+concepts and notation. Suppose $(M, \mathcal{M}, \mu)$ is a measure
+space.\footnote{$M$ is a set, $\mathcal{M}$ the $\sigma$-algebra of measurable
+subsets of $M$ and $\mu$ is a measure defined on $\mathcal{M}$. We shall
+consider only $\sigma$-finite measure spaces; thus, all the standard results of
+measure theory, such as the Radon-Nikodym theorem and the F. Riesz
+representation theorem, are valid.} We let $L^{p}(M)$, $1 \leq p < \infty$,
+denote the space of all those complex-valued functions $f$ satisfying
+$\|f\|_{p} = (\int_{M}|f|^{p}\,d\mu)^{1/p} < \infty$. As is the case when
+$M = E_{n}$ (see the beginning of Chapter I) we use the same notation,
+$L^{p}(M)$, for the space of equivalence classes obtained by considering two
+such functions to be equivalent when they agree almost everywhere; by defining
+the norm of the class containing the function $f$ to be $\|f\|_{p}$ we then
+obtain a Banach space. The same remarks apply to the space $L^{\infty}(M)$ of
+essentially bounded measurable functions if we define $\|f\|_{\infty}$, for
+$f \in L^{\infty}(M)$, to be the essential supremum of $f$.
+
+If $f$ is a measurable function, a truncation of $f$ is any one of the
+functions $g$ defined by letting $g(x) = f(x)$ if $r_{1} < |f(x)| \leq r_{2}$
+and $g(x) = 0$ otherwise, where $r_{1}$ and $r_{2}$ are nonnegative. Suppose
+$T$ is an operator mapping a linear space $D$ of measurable functions on
+$(M, \mathcal{M}, \mu)$ into measurable functions defined on another measure
+space $(N, \mathcal{N}, \nu)$. We assume that $D$ contains all characteristic
+functions of sets of finite measure and has the property that whenever
+$f \in D$ and $g$ is a truncation of $f$, then $g \in D$. If there exists a
+constant $k > 0$ such that
+\[
+\left(\int_{N}|Tf|^{q}\,d\nu\right)^{1/q}=\|Tf\|_{q}\leq k\|f\|_{p}
+=k\left(\int_{M}|f|^{p}\,d\mu\right)^{1/p}
+\]
+for all $f \in D \cap L^{p}(M)$ we say that $T$ is of type $(p, q)$. The least
+$k$ for which this inequality holds is called the $(p, q)$-norm of $T$.
+
+The M. Riesz convexity theorem can now be formulated in the following way:
+
+\begin{theorem}\label{thm:c5-1-3}
+Suppose a linear operator $T$ is of type $(p_{i}, q_{i})$, with
+$(p_{i}, q_{i})$-norm $k_{i}$, $i = 0$, 1, then $T$ is of type $(p_{t}, q_{t})$
+with $(p_{t}, q_{t})$-norm $k_{t} \leq k_{0}^{1-t}k_{1}^{t}$ provided
+$1/p_{t} = (1 - t)/p_{0} + t/p_{1}$ and $1/q_{t} = (1 - t)/q_{0} + t/q_{1}$,
+with $0 \leq t \leq 1$.
+\end{theorem}
+
+Before proving this theorem we show how the two inequalities, \eqref{eq:c5-1-1}
+and \eqref{eq:c5-1-2}, follow immediately from it. We observed that the
+operator $T : g \to f * g$ is of types $(p_{0}, q_{0}) = (1, p)$ and
+$(p_{1}, q_{1}) = (p', \infty)$ (its domain $D$ includes all the spaces
+$L^{r}(E_{n})$, $1 \leq r \leq p'$); moreover, the $(1, p)$-norm and the
+$(p', \infty)$-norm do not exceed $\|f\|_{p}$. Thus, $T$ is of type
+$(p_{t}, q_{t})$, $0 \leq t \leq 1$, where
+\[
+\frac{1}{p_{t}}=\frac{1-t}{p_{0}}+\frac{t}{p_{1}}=1-t+\frac{t}{p'}=1-\frac{t}{p}
+\]
+and
+\[
+\frac{1}{q_{t}}=\frac{1-t}{q_{0}}+\frac{t}{q_{1}}=\frac{1-t}{p}+\frac{t}{\infty}
+=\frac{1-t}{p}.%
+\footnote{In case $p_{0}$, $p_{1}$, $q_{0}$ or $q_{1}$ is $\infty$ we adopt the
+usual convention: We let $1/\infty = 0$.}
+\]
+
+Putting $r = p_{t}$ and $q = q_{t}$ we then have
+\[
+\frac{1}{q}=\frac{1-t}{p}=\frac{1}{p}+\left(1-\frac{t}{p}\right)-1
+=\frac{1}{p}+\frac{1}{r}-1.
+\]
+Moreover, the $(r, q)$-norm of $T$ does not exceed
+$\|f\|_{p}^{1-t}\|f\|_{p}^{t} = \|f\|_{p}$. But this is precisely inequality
+\eqref{eq:c5-1-1}. Similarly, since the Fourier transform is of types
+$(1, \infty)$ and $(2, 2)$, with norms not larger than 1, an application of
+Theorem~\ref{thm:c5-1-3} with $t = 2/p'$ gives us the Hausdorff-Young inequality
+\eqref{eq:c5-1-2}.
+
+It is often useful to consider the following geometrical interpretation of the
+M. Riesz convexity theorem: Let $Q$ be the square in the plane whose vertices
+are the points $(0, 0)$, $(1, 0)$, $(1, 1)$, and $(0, 1)$. If $T$ is an operator
+satisfying the hypotheses of Theorem~\ref{thm:c5-1-3}, we can associate with
+$T$ the points $x_{0} = (1/p_{0}, 1/q_{0})$ and $x_{1} = (1/p_{1}, 1/q_{1})$ in
+order to indicate that this operator is of types $(p_{0}, q_{0})$ and
+$(p_{1}, q_{1})$. As $t$ ranges from 0 to 1, the point
+$x_{t} = (1/p_{t}, 1/q_{t})$ traverses the line segment joining $x_{0}$ and
+$x_{1}$; Theorem~\ref{thm:c5-1-3} asserts that, for each point
+$(\alpha, \beta)$ of this segment, $T$ is of type $(1/\alpha, 1/\beta)$.
+
+The justification for calling Theorem~\ref{thm:c5-1-3} a convexity theorem is
+that, if $\varphi(t)$ is the logarithm of the $(p_{t}, q_{t})$-norm of $T$,
+then $\varphi$ is a convex function. Moreover, the set of all points
+$(1/p, 1/q)$ such that $T$ is of type $(p, q)$ is a convex set. We shall show
+that Theorem~\ref{thm:c5-1-3} can be derived from a classical result in the
+theory of functions whose conclusion also involves a logarithmically convex
+function. This result, a Phragm\'en-Lindel\"of theorem (see (5.2)
+of Chapter II), is known as the three lines theorem and can be formulated in
+the following way:
+
+\begin{lemma}\label{lem:c5-1-4}
+Suppose $F$ is a bounded continuous complex-valued function on the closed strip
+$S = \{x + iy = z \in \mathbf{C} : 0 \leq x \leq 1\}$ that is analytic in the
+interior of $S$. If $|F(iy)| \leq m_{0}$ and $|F(1 + iy)| \leq m_{1}$ for all
+$y$ then $|F(x + iy)| \leq m_{0}^{1-x}m_{1}^{x}$ for all $z = x + iy \in S$.
+That is, if we define
+$k_{x} = \sup\{|F(x + iy)| : -\infty < y < \infty\}$ for $0 \leq x \leq 1$, then
+$\varphi(x) = \log k_{x}$ is a convex function.
+\end{lemma}
+
+\begin{proof}
+We can obviously assume that $m_{0}$ and $m_{1}$ are positive. Then by
+considering the function whose values are $F(z)/m_{0}^{1-z}m_{1}^{z}$, if
+necessary, we can reduce the problem to the case $m_{0} = 1 = m_{1}$. Thus, we
+can suppose that $|F(iy)| \leq 1$ and $|F(1 + iy)| \leq 1$ for all $y$. We want
+to show that $|F(z)| \leq 1$ for all $z \in S$. If we assume that
+$\lim_{|y| \to \infty}F(x + iy) = 0$ uniformly for $0 \leq x \leq 1$ this
+result follows easily from the maximum principle: for we can then find
+$y_{0} > 0$ such that $|F(x + iy)| \leq 1$ for $|y| \geq y_{0}$, while
+$|F(z)| \leq 1$ on the boundary of the rectangle with vertices $iy_{0}$,
+$1 + iy_{0}$, $1 - iy_{0}$, $-iy_{0}$. In general, we can apply this result to
+the function $F_{n}(z) = F(z)e^{(z^{2}-1)/n}$, $n = 1, 2, \ldots$, and, because
+$F$ is bounded,
+\[
+|F_{n}(z)|=|F(x+iy)|e^{-y^{2}/n}e^{(x^{2}-1)/n}\leq|F(x+iy)|e^{-y^{2}/n}\to0
+\quad\text{as}\quad y\to\infty,
+\]
+uniformly for $0 \leq x \leq 1$, $|F_{n}(iy)| \leq 1$ and
+$|F_{n}(1 + iy)| \leq 1$. Therefore, $|F_{n}(z)| \leq 1$ and letting $n$ tend
+to $\infty$, we obtain the desired inequality.
+\end{proof}
+
+We now pass to the proof of Theorem~\ref{thm:c5-1-3}. In order to do this we
+let $\alpha_{j} = 1/p_{j}$, $\beta_{j} = 1/q_{j}$, $j = 0$, 1,
+$\alpha = 1/p_{t}$ and $\beta = 1/q_{t}$. Consequently, if
+$\alpha(z) = (1 - z)\alpha_{0} + z\alpha_{1}$ and
+$\beta(z) = (1 - z)\beta_{0} + z\beta_{1}$, for $z \in \mathbb{C}$, we have
+$\alpha(j) = \alpha_{j}$, $\beta(j) = \beta_{j}$, $j = 0$, 1, $\alpha(t) = \alpha$
+and $\beta(t) = \beta$.
+
+First, we estimate $\|Tf\|_{q}$ for $f$ a finite linear combination of
+characteristic functions of subsets of $M$ having finite measure. Such a simple
+function, $f$, belongs to the domain of $T$ by definition. Since
+\[
+\|Tf\|_{q}=\sup\left|\int_{N}(Tf)g\,d\nu\right|,
+\]
+where the supremum is taken over all simple functions $g$ satisfying
+$\|g\|_{q'} = 1$, $(1/q) + (1/q') = 1$, it suffices to show that the absolute
+value of each such integral
+\[
+I=\int_{N}(Tf)g\,d\nu
+\]
+is less than or equal to $k_{0}^{1-t}k_{1}^{t}\|f\|_{p}$. Dividing by
+$\|f\|_{p}$, if this norm is not zero, we can reduce the problem further to the
+case $\|f\|_{p} = 1$.
+
+Suppose, then, that $f = \sum_{j=1}^{m}a_{j}\chi_{E_{j}}$ and
+$g = \sum_{k=1}^{n}b_{k}\chi_{F_{k}}$ are simple functions satisfying the above
+conditions. We also assume that $p_{t} < \infty$ and $q_{t} > 1$; thus,
+$\alpha > 0$ and $\beta < 1$. If $a_{j} = |a_{j}|e^{i\theta_{j}}$ and
+$b_{k} = |b_{k}|e^{i\varphi_{k}}$ we define
+\[
+f_{z}=\sum_{j=1}^{m}|a_{j}|^{\alpha(z)/\alpha}e^{i\theta_{j}}\chi_{E_{j}}
+\]
+and
+\[
+g_{z}=\sum_{k=1}^{n}|b_{k}|^{(1-\beta(z))/(1-\beta)}e^{i\varphi_{k}}\chi_{F_{k}}
+\qquad\text{for } z \in \mathbb{C}.
+\]
+
+One then obtains an entire function by putting
+$F(z) = \int_{N}(Tf_{z})g_{z}\,d\nu$, and it follows from the definitions of
+$\alpha(z)$ and $\beta(z)$ that $F(t) = I$. From the linearity of $T$ we see
+that
+\[
+F(z)=\sum_{j,k=1}^{m,n}|a_{j}|^{\alpha(z)/\alpha}|b_{k}|^{(1-\beta(z))/(1-\beta)}\gamma_{jk},
+\]
+where
+$\gamma_{jk} = e^{i(\theta_{j} + \varphi_{k})}\int_{N}(T\chi_{E_{j}})\chi_{F_{k}}\,d\nu$.
+Since each of these summands is bounded in the strip $S$, it follows that the
+entire function $F$ is bounded when restricted to this strip. If we can show
+that $|F(iy)| \leq k_{0}$ and $|F(1 + iy)| \leq k_{1}$ for all $y$, then the
+desired inequality, $|I| \leq k_{0}^{1-t}k_{1}^{t}$, will be an immediate
+consequence of Lemma~\ref{lem:c5-1-4}.
+
+We can obtain these two estimates by first observing that, since
+$\alpha(iy) = \alpha_{0} + iy(\alpha_{1} - \alpha_{0})$ and
+$1 - \beta(iy) = (1 - \beta_{0}) - iy(\beta_{1} - \beta_{0})$, we have
+$|f_{iy}|^{p_{0}} = \bigl|e^{i\arg f}|f|^{iy(\alpha_{1} - \alpha_{0})/\alpha}|f|^{(p/p_{0})}\bigr|^{p_{0}} = |f|^{p}$
+and
+\[
+|g_{iy}|^{q_{0}'}=\bigl|e^{i\arg g}|g|^{-iy(\beta_{1}-\beta_{0})/(1-\beta)}|g|^{(q'/q_{0}')}\bigr|^{q_{0}'}=|g|^{q'}.
+\]
+Thus, applying H\"older's inequality and the fact that $T$ is of type
+$(p_{0}, q_{0})$ with norm $k_{0}$,
+\begin{align*}
+|F(iy)|&\leq\|Tf_{iy}\|_{q_{0}}\|g_{iy}\|_{q_{0}'}
+\leq k_{0}\|f_{iy}\|_{p_{0}}\|g_{iy}\|_{q_{0}'}\\
+&=k_{0}\left(\int_{M}|f|^{p}\,d\mu\right)^{1/p_{0}}
+\left(\int_{N}|g|^{q'}\,d\nu\right)^{1/q_{0}'}\\
+&=k_{0}\|f\|_{p}^{(p/p_{0})}\|g\|_{q'}^{(q'/q_{0}')}=k_{0}.
+\end{align*}
+A similar calculation shows that $|F(1 + iy)| \leq k_{1}$. We can conclude,
+therefore, that $\|Tf\|_{q} \leq k_{0}^{1-t}k_{1}^{t}\|f\|_{p}$ for all simple
+$f$ in $L^{p}(M)$.
+
+In order to establish this inequality for the general
+$f \in D \cap L^{p}(M)$, where $D$ is the domain of $T$, we shall show that we
+can find a sequence $\{f_{n}\}$ of simple functions such that
+$\|f_{n} - f\|_{p} \to 0$ and $(Tf_{n})(x) \to (Tf)(x)$ a.e. as $n \to \infty$.
+If this were the case, an application of Fatou's lemma and the result we just
+obtained for simple functions would give us the inequality
+$\|Tf\|_{q} \leq \lim_{n \to \infty}\|Tf_{n}\|_{q} \leq \lim_{n \to \infty}\{k_{0}^{1-t}k_{1}^{t}\|f_{n}\|_{p}\} = k_{0}^{1-t}k_{1}^{t}\|f\|_{p}$,
+and the theorem would be proved. In order to find such a sequence we can assume
+$f \geq 0$ (for we may consider, separately, the positive and negative parts of
+$\operatorname{Re}\{f\}$ and $\Im\{f\}$.) After relabelling, if necessary, we
+can also assume that $p_{0} \leq p_{1}$. Let $f^{0}$ and $f^{1}$ be the
+truncations of $f$ defined by letting
+\[
+f^{0}(x)=\begin{cases}
+f(x) & \quad\text{when } f(x) > 1,\\
+0 & \quad\text{when } f(x) \leq 1,
+\end{cases}
+\]
+and $f^{1} = f - f^{0}$. Since $(f^{0})^{p_{0}} \leq f^{p}$,
+$(f^{1})^{p_{1}} \leq f^{p}$ and $D$ contains all the truncations of $f$ we
+have $f^{0} \in D \cap L^{p_{0}}(M)$ and $f^{1} \in D \cap L^{p_{1}}(M)$. If
+$\{g_{m}\}$ is an increasing sequence of nonnegative simple functions
+converging to $f$ it follows from the monotone convergence theorem of Lebesgue
+that $\lim_{m \to \infty}\|g_{m} - f\|_{p} = 0$. For the same reason
+$\|g_{m}^{0} - f^{0}\|_{p_{0}}$ and $\|g_{m}^{1} - f^{1}\|_{p_{1}}$ tend to 0
+as $m$ tends to $\infty$, where $g_{m}^{0}$ and $g_{m}^{1}$ are the truncations
+(at 1) obtained from $g_{m}$ in the same way as were $f^{0}$ and $f^{1}$
+obtained from $f$. Since $T$ is of types $(p_{0}, q_{0})$ and $(p_{1}, q_{1})$
+we must have $\|Tg_{m}^{0} - Tf^{0}\|_{q_{0}} \to 0$ and
+$\|Tg_{m}^{1} - Tf^{1}\|_{q_{1}} \to 0$ as $m \to \infty$. Thus, there exists a
+subsequence of $\{Tg_{m}^{0}\}$ converging almost everywhere to $Tf^{0}$.
+Considering only those indices involved in this subsequence we can then find a
+subsequence $\{g_{m}^{1}\}$ such that $Tg_{m}^{1}$ converges almost everywhere
+to $Tf^{1}$. If we now let $f_{n} = g_{m}^{0} + g_{m}^{1}$ we have a sequence
+$\{f_{n}\}$ satisfying the desired properties:
+$\lim_{n \to \infty}\|f_{n} - f\|_{p} = 0$ and
+$\lim(Tf_{n})(x) = (Tf^{0})(x) + (Tf^{1})(x) = (Tf)(x)$ almost everywhere.
+
+We still need to remove the restrictions $\alpha > 0$ and $\beta < 1$. The
+excluded cases, however, are simpler than the ones we have considered. If
+$\alpha = 0$ and $\beta = 1$ then at least one of the pairs $(p_{0}, q_{0})$
+and $(p_{1}, q_{1})$ must be $(\infty, 1)$ and there is nothing to prove. If
+$\alpha > 0$ and $\beta = 1$ then the above proof is still valid if we define
+$g_{z}$ to be $g$ for all $z \in \mathbb{C}$. Similarly, if $\alpha = 0$ and
+$\beta < 1$, putting $f_{z} = f$ allows us to carry out the argument we gave.
+This completes the proof of Theorem~\ref{thm:c5-1-3}.
+
+The M. Riesz convexity theorem is a powerful tool in analysis and, in addition
+to \eqref{eq:c5-1-1} and \eqref{eq:c5-1-2}, many important inequalities can be
+derived from it. In some cases, however, one encounters a family of operators
+$\{T_{t}\}$, $0 \leq t \leq 1$, mapping $L^{p_{t}}(M, d\mu_{t})$ boundedly into
+$L^{q_{t}}(N, d\nu_{t})$, where both the operators and the measures vary in a
+``smooth'' way with $t$. In the fourth section we shall derive an extension of
+Theorem~\ref{thm:c5-1-3} that can be applied to such families of operators. In
+other cases one encounters (not necessarily linear) operators defined on
+$L^{p_{t}}$-spaces, $0 \leq t \leq 1$, that are not of types $(p_{0}, q_{0})$
+and $(p_{1}, q_{1})$, yet they do map $L^{p_{t}}$ boundedly into $L^{q_{t}}$
+when $0 < t < 1$. In the next section we shall show that certain weaker
+conditions at the ``end points'' $(p_{i}, q_{i})$, $i = 0$, 1, are usually
+sufficient in order to guarantee (strong) type $(p_{t}, q_{t})$ for
+$0 < t < 1$.
+
+\section{The Marcinkiewicz Interpolation Theorem}
+
+In the second chapter we introduced the maximal function of Hardy and
+Littlewood, $m_{f}$, of a function $f \in L^{p}(E_{n})$, $1 \leq p \leq \infty$.
+We showed (see Corollary 3.11 of Chapter II) that the operator
+$M$ mapping $f$ into $m_{f}$ is of type $(p, p)$ for $1 < p \leq \infty$. The
+proof of this result depended on two ``end point'' results: One is the easily
+established fact that $M$ is of type $(\infty, \infty)$ with norm 1; the other
+result is Theorem~\ref{thm:c2-3-10} which describes the behavior of $M$
+restricted to $L^{1}(E_{n})$. When $f$ belongs to $L^{1}(E_{n})$ we showed that
+the distribution
+function\footnote{If $(M, \mathcal{M}, \mu)$ is a measure space and $g$ is a
+measurable function on $M$, its distribution function $\lambda$ is defined by
+letting its value at a nonnegative real number $s$ be
+$\lambda(s) = \mu\{x \in M ; |g(x)| > s\}$. In the third section of Chapter II
+we introduced this concept when $M = E_{n}$ and $\mu$ is Lebesgue measure.},
+$\lambda$, of $m_{f}$ satisfies the inequality
+\begin{equation}\label{eq:c5-2-1}
+\lambda(s)\leq\frac{c\|f\|_{1}}{s}
+\end{equation}
+for all $s > 0$, where the constant $c$ is independent of $f$. If there existed
+an integrable function $\varphi$ on $(0, \infty)$ such that
+$\lambda(s) \leq \varphi(s)\|f\|_{1}$, in view of the equality
+$\|m_{f}\|_{1} = \int_{0}^{\infty}\lambda(s)\,ds$ (see (3.9) of
+Chapter II), we could conclude that the operator $M$ is of type $(1, 1)$. But
+\eqref{eq:c5-2-1} cannot be improved for the general function in $L^{1}(E_{n})$
+(this can be easily seen by calculating $m_{f}$ when $f$ is the characteristic
+function of the interval $(0, 1) \subset E_{1}$).
+
+The argument that was used to show that $M$ is of type $(p, p)$,
+$1 < p \leq \infty$, can be extended to a general theorem, the Marcinkiewicz
+interpolation theorem, concerning operators mapping $L^{p}$ spaces into $L^{q}$
+spaces. This result extends the M. Riesz convexity theorem in the sense
+mentioned at the end of Section 1 (that weaker end-point conditions still
+guarantee boundedness for intermediate values, and that operators that are
+somewhat more general than linear are involved); on the other hand, it does not
+apply to all the pairs $(p, q)$ considered in Theorem~\ref{thm:c5-1-3}, and we
+do not obtain similar conclusions concerning the convexity of the norms.
+
+In order to state the Marcinkiewicz theorem we need to introduce some new
+concepts. Suppose $T$ is an operator defined on a linear space $D$ of
+measurable functions on $(M, \mathcal{M}, \mu)$ having values that are
+measurable functions defined on another measure space $(N, \mathcal{N}, \nu)$.
+We say that $T$ is subadditive if
+\begin{equation}\label{eq:c5-2-2}
+|[T(f_{1}+f_{2})](x)|\leq|[Tf_{1}](x)|+|[Tf_{2}](x)|
+\end{equation}
+for almost every $x$ in $N$, whenever $f_{1}$ and $f_{2}$ belong to $D$. If $D$
+contains all finite linear combinations of characteristic functions of sets of
+finite measure and contains all the truncations of its members, we say that $T$
+is of weak type $(p, q)$, $1 \leq p \leq \infty$ and $1 \leq q < \infty$, if
+there exists a constant $k$, independent of $f \in L^{p}(M) \cap D$, such that
+\begin{equation}\label{eq:c5-2-3}
+\lambda(s)\leq\left(\frac{k\|f\|_{p}}{s}\right)^{q},
+\end{equation}
+where $\lambda$ is the distribution function of $Tf$. When $q = \infty$
+inequality \eqref{eq:c5-2-3} is replaced by the condition
+$\|Tf\|_{q} \leq k\|f\|_{p}$. The least $k$ for which these inequalities are
+valid is called the weak $(p, q)$ norm of $T$.
+
+It is easy to see that an operator that is of type $(p, q)$ must be of weak
+type $(p, q)$. When $q = \infty$ this is obvious. Suppose, then, that
+$q < \infty$, $f \in L^{p}(M) \cap D$, $s > 0$ and
+$\lambda(s) = \nu\{x \in N ; |(Tf)(x)| > s\} = \nu(E_{s})$ is the distribution
+function of $Tf$; then
+\[
+s^{q}\lambda(s)=s^{q}\int_{E_{s}}d\nu\leq\int_{E_{s}}|Tf|^{q}\,d\nu
+\leq\|Tf\|_{q}^{q}\leq(k\|f\|_{p})^{q}
+\]
+and we obtain \eqref{eq:c5-2-3} by dividing by $s^{q}$.
+
+The Marcinkiewicz interpolation theorem can now be formulated in the following
+way:
+
+\begin{theorem}\label{thm:c5-2-4}
+Suppose $T$ is a subadditive operator of weak type $(p_{j}, q_{j})$, where
+$1 \leq p_{j} \leq q_{j} \leq \infty$ for $j = 0$, 1 and $q_{0} \neq q_{1}$,
+then $T$ is of type $(p_{t}, q_{t})$ provided
+\[
+\frac{1}{p_{t}}=\frac{1-t}{p_{0}}+\frac{t}{p_{1}}
+\qquad\text{and}\qquad
+\frac{1}{q_{t}}=\frac{1-t}{q_{0}}+\frac{t}{q_{1}},
+\]
+when $0 < t < 1$.
+\end{theorem}
+
+In the next section we shall introduce a class of function spaces (that
+includes the $L^{p}$ spaces) which forms a natural setting for an extension of
+Theorem~\ref{thm:c5-2-4}. Since we will give a proof of this extension in
+Section 3 we do not prove the Marcinkiewicz theorem here. Instead, we devote
+the rest of this section to an important application of this interpolation
+theorem.
+
+In the third chapter we introduced the Hilbert transform and mentioned some of
+its properties (see (6.14) in Chapter III). In particular, we
+stated that it is an operator of type $(p, p)$, $1 < p < \infty$. We shall show
+that this result follows from the Marcinkiewicz theorem by first establishing
+that it is of type $(2, 2)$ and then showing that it is of weak type $(1, 1)$.
+Our previous treatment of this operator was very brief; consequently, we need
+to develop some of its properties further.
+
+Suppose $f \in L^{p}(-\infty, \infty)$, $1 \leq p < \infty$, and is
+real-valued. Then, by Theorems~\ref{thm:c2-2-1} and~\ref{thm:c2-3-16} of the
+second chapter, the Poisson integral of $f$
+\[
+u(x+iy)=u(x,y)=\frac{1}{\pi}\int_{-\infty}^{\infty}f(t)
+\frac{y}{(x-t)^{2}+y^{2}}\,dt
+\]
+is a harmonic function in the upper half-plane $E_{2}^{+}$ such that
+$u(z) = u(x + iy)$ tends to $f(x_{0})$ nontangentially for almost all
+$x_{0} \in (-\infty, \infty)$ and
+\begin{equation}\label{eq:c5-2-5}
+\left(\int_{-\infty}^{\infty}|u(x+iy)|^{p}\,dx\right)^{1/p}\leq\|f\|_{p}
+\end{equation}
+for all $y > 0$.
+
+It is not hard to show that there exists a (unique) harmonic function $v$,
+defined on $E_{2}^{+}$, such that $F = u + iv$ is analytic in this region and
+$\lim_{y \to \infty}v(x + iy) = 0$ for all $x \in (-\infty, \infty)$. This
+function can be obtained by convolving $f$ with the conjugate Poisson kernel
+\[
+Q(x,y)=\frac{1}{\pi}\frac{x}{x^{2}+y^{2}},
+\]
+$-\infty < x < \infty$, $y > 0$ (see (6.13), Chapter III). That is,
+\[
+v(x,y)=v(x+iy)=\frac{1}{\pi}\int_{-\infty}^{\infty}f(t)
+\frac{x-t}{(x-t)^{2}+y^{2}}\,dt
+=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x-t)\frac{t}{t^{2}+y^{2}}\,dt.
+\]
+
+Since
+\[
+P(x,y)+iQ(x,y)=\frac{1}{\pi}\left\{\frac{y}{x^{2}+y^{2}}+i\frac{x}{x^{2}+y^{2}}\right\}
+=\frac{i}{\pi}\frac{1}{x+iy}=\frac{i}{\pi z}
+\]
+is analytic in $E_{2}^{+}$, it follows immediately that so is
+$F(z) = u(z) + iv(z)$. The fact that $v(x + iy)$ tends to 0 as $y \to \infty$
+is obvious.
+
+\begin{lemma}\label{lem:c5-2-6}
+The function $F(z)$, $z = x + iy \in E_{2}^{+}$, has a nontangential limit
+$f(x_{0}) + i\tilde{f}(x_{0})$ at almost every point
+$x_{0} \in (-\infty, \infty)$.
+\end{lemma}
+
+\begin{proof}
+By considering the negative and positive parts of $f$ separately we can reduce
+the problem to the case $f \leq 0$. Thus, $u \leq 0$ and the function
+$G = \exp\{u + iv\} = e^{F}$ has absolute value $e^{u} \leq 1$. By
+Theorem~\ref{thm:c2-2-5} of Chapter II, therefore, $G(z)$ has nontangential
+limits a.e. on the boundary. These limits cannot be 0 on a set of positive
+measure since $u$ is a Poisson integral. Thus, $v(z)$ must have nontangential
+limits modulo $2\pi$ at almost all boundary points
+$x_{0} \in (-\infty, \infty)$. That is, the limit points of $v(z)$, as $z$
+tends nontangentially to $x_{0}$, have the form $a + 2k\pi$, where $k$ is an
+integer. But it is an immediate consequence of the continuity of $v(z)$,
+$z \in E_{2}^{+}$, that, if the values $v(z)$ have two distinct limit points,
+$a$ and $b$, as $z$ approaches $x_{0}$ nontangentially, then all points between
+$a$ and $b$ must also be limit points of this set of values. Hence, $v(z)$ can
+have a nontangential limit modulo $2\pi$ only if it has a nontangential limit.
+This proves the lemma.
+\end{proof}
+
+If, as in Lemma~\ref{lem:c5-2-6}, we let $\tilde{f}(x_{0})$ denote the
+nontangential limit of $v(z)$ we obtain an almost everywhere defined function.
+The mapping $f \to \tilde{f}$ (which we have shown to be defined for all
+$f \in L^{p}(-\infty, \infty)$, $1 \leq p < \infty$) is called the Hilbert
+transform. In the third chapter (see (6.13) in Chapter III) we
+indicated how one can show that the Hilbert transform is of type $(2, 2)$. We
+first observed that, for each $y > 0$,
+\[
+\hat{Q}_{y}(t)=\int_{-\infty}^{\infty}e^{-2\pi itx}Q(x,y)\,dx
+=(-i\operatorname{sgn}t)e^{-2\pi|yt|}.
+\]
+Thus, since $v(\cdot, y)$ is the convolution of $Q(\cdot, y)$ and $f$,
+\[
+\hat{v}_{y}(t)=\int_{-\infty}^{\infty}e^{-2\pi itx}v(x,y)\,dx
+=(-i\operatorname{sgn}t)e^{-2\pi|yt|}\hat{f}(t)
+\]
+for a.e. $t$. By the Plancherel theorem and Fatou's lemma, therefore,
+\begin{align*}
+\|\tilde{f}\|_{2}^{2}&=\int_{-\infty}^{\infty}|\tilde{f}(x)|^{2}\,dx
+\leq\liminf_{y \to 0}\int_{-\infty}^{\infty}|v(x+iy)|^{2}\,dx\\
+&=\liminf_{y \to 0}\int_{-\infty}^{\infty}|\hat{v}_{y}(t)|^{2}\,dt
+\leq\int_{-\infty}^{\infty}|\hat{f}(t)|^{2}\,dt
+=\int_{-\infty}^{\infty}|f(t)|^{2}\,dt=\|f\|_{2}^{2}.
+\end{align*}
+This is the desired inequality showing that the Hilbert transform is of type
+$(2, 2)$:
+\begin{equation}\label{eq:c5-2-7}
+\|\tilde{f}\|_{2}\leq\|f\|_{2}
+\end{equation}
+for all $f \in L^{2}(-\infty, \infty)$.\footnote{A modification of the argument
+shows that inequality \eqref{eq:c5-2-7} can be reversed (thus the Hilbert
+transform is a unitary operator on $L^{2}(-\infty, \infty)$). This question
+will be considered again in a more general context in Chapter VI when we
+introduce the Riesz transforms.}
+
+\begin{lemma}\label{lem:c5-2-8}
+The Hilbert transform is of weak-type $(1, 1)$.
+\end{lemma}
+
+\begin{proof}
+Considering the positive and negative parts of $f \in L^{1}(-\infty, \infty)$
+separately, we can reduce the problem to $f \geq 0$. As before, we put
+\begin{equation}\label{eq:c5-2-9}
+F(z)=F(x+iy)=u(x,y)+iv(x,y)
+=\int_{-\infty}^{\infty}f(t)\{P(x-t,y)+iQ(x-t,y)\}\,dt
+\end{equation}
+for $z \in E_{2}^{+}$. Then, for $s > 0$,
+$w(x, y) = \log|1 + sF(z)|$ is harmonic in $E_{2}^{+}$ and bounded in each
+proper sub-half-space $\{x + iy ; y \geq y_{0} > 0\}$. Thus, by
+Lemma~\ref{lem:c2-2-7} of Chapter II,
+\begin{align*}
+w(x,y)&=\pi\log|1+sF(x+iy)|\\
+&=\int_{-\infty}^{\infty}\frac{(y-\eta)}{(x-\xi)^{2}+(y-\eta)^{2}}
+\log|1+sF(\xi+i\eta)|\,d\xi
+\end{align*}
+whenever $0 < \eta < y$. Letting $\eta \to 0$ and applying
+Lemma~\ref{lem:c5-2-6} together with Fatou's lemma we see that the last
+integral is greater than or equal to
+\[
+\int_{-\infty}^{\infty}\frac{y}{(x-\xi)^{2}+y^{2}}
+\log\sqrt{(1+sf(\xi))^{2}+(s\tilde{f}(\xi))^{2}}\,d\xi.
+\]
+Consequently, multiplying by $y$ and using elementary properties of the
+logarithm function we obtain
+\begin{align*}
+\frac{1}{\pi}\int_{-\infty}^{\infty}&\frac{y^{2}}{(x-\xi)^{2}+y^{2}}
+\log\sqrt{(1+sf(\xi))^{2}+(s\tilde{f}(\xi))^{2}}\,d\xi\\
+&\leq y\log|1+sF(x+iy)|\leq y\log(1+s|F(x+iy)|)\leq ys|F(x+iy)|.
+\end{align*}
+On the other hand, it follows immediately from the representation
+\eqref{eq:c5-2-9} that $\pi yF(x + iy)$ tends to
+$\|f\|_{1} = \int_{-\infty}^{\infty}f(\xi)\,d\xi$ as $y$ tends to $\infty$.
+Thus, letting $y$ tend to $\infty$ in the first and last terms of the above
+inequality we have
+\begin{equation}\label{eq:c5-2-10}
+\int_{-\infty}^{\infty}\log\sqrt{(1+sf(\xi))^{2}+(s\tilde{f}(\xi))^{2}}\,d\xi
+\leq s\|f\|_{1}.
+\end{equation}
+If $E_{\tau} = \{\xi \in (-\infty, \infty) : |\tilde{f}(\xi)| > \tau\}$,
+$\tau > 0$, and $m(E_{\tau})$ denotes the Lebesgue measure of $E_{\tau}$,
+\eqref{eq:c5-2-10} implies
+\[
+(\log s\tau)m(E_{\tau})\leq\int_{E_{\tau}}\log|s\tilde{f}(\xi)|\,d\xi
+\leq\int_{-\infty}^{\infty}\log\sqrt{(1+sf(\xi))^{2}+(s\tilde{f}(\xi))^{2}}\,d\xi
+\leq s\|f\|_{1}.
+\]
+We now choose $s = e/\tau$ and obtain the desired weak type inequality
+\[
+m(E_{\tau})\leq e\|f\|_{1}/\tau.
+\]
+\end{proof}
+
+Theorem~\ref{thm:c5-2-4} can now be applied to the Hilbert transform with
+$p_{0} = 1 = q_{0}$ and $p_{1} = 2 = q_{1}$ and we obtain the fact that there
+exists a constant $A_{p}$, independent of $f \in L^{p}(-\infty, \infty)$,
+$1 < p \leq 2$, such that $\|\tilde{f}\|_{p} \leq A_{p}\|f\|_{p}$. It is not
+hard to see that this inequality is also valid when $2 \leq p < \infty$. First
+we observe that the Hilbert transform, being a limit of convolution operators,
+commutes with translations. The inequality
+\begin{equation}\label{eq:c5-2-11}
+\|\tilde{f}\|_{p}\leq A_{p}\|f\|_{p},
+\end{equation}
+$f \in L^{p}(-\infty, \infty)$, $1 < p < \infty$, is then a consequence of the
+just established fact that it is valid when $1 < p \leq 2$ and
+Theorem~\ref{thm:c1-3-20} of Chapter I.
+
+\section{\texorpdfstring{$L(p,q)$}{L(p,q)} Spaces}
+
+An operator of weak type $(r, p)$ is one that maps an $L^{r}$ space into a
+class of functions $f$ having distribution functions $\lambda$ satisfying
+\begin{equation}\label{eq:c5-3-1}
+\sup_{s>0}\Phi(s)=\sup_{s>0}\{s[\lambda(s)]^{1/p}\}=A<\infty.
+\end{equation}
+This inequality can be restated by saying that the $L^{\infty}$ norm of
+$\Phi$ is finite. We have already observed that
+\begin{equation}\label{eq:c5-3-2}
+\|f\|_{p}=\left(\int_{0}^{\infty}s^{p}\,d\{-\lambda(s)\}\right)^{1/p}
+=\left(p\int_{0}^{\infty}s^{p-1}\lambda(s)\,ds\right)^{1/p}
+\end{equation}
+(see \eqref{eq:c2-3-6} in Chapter II). Thus, $f$ belongs to $L^{p}$ if and only
+if $\Phi$ belongs to $L^{p}(0, \infty)$ with respect to the measure
+$d\nu(s) = [1/\lambda(s)]\,d\{-\lambda(s)\}$. In fact, we have
+\[
+\|f\|_{p}=\left(\int_{0}^{\infty}[\Phi(s)]^{p}\,d\nu(s)\right)^{1/p}.
+\]
+
+Suppose that, instead of the $L^{\infty}$-norm or the $L^{p}$-norm of $\Phi$,
+we considered an $L^{q}$-norm, $1 \leq q < \infty$; that is, we imposed the
+condition
+\begin{equation}\label{eq:c5-3-3}
+\left(\int_{0}^{\infty}[\Phi(s)]^{q}\,d\nu(s)\right)^{1/q}<\infty.
+\end{equation}
+We could then ask whether operators mapping $L^{r}$ spaces into classes of
+functions satisfying \eqref{eq:c5-3-3} can be interpolated. In this section we
+shall study function spaces defined by conditions of this type and shall show
+that they provide a natural setting for the Marcinkiewicz theorem.
+
+The expression occurring in \eqref{eq:c5-3-3} does not define a norm.
+Nevertheless, there are inequalities equivalent to \eqref{eq:c5-3-3} that, in
+most cases, involve the finiteness of a norm. In order to obtain these
+conditions we introduce the nonincreasing rearrangement $f^{*}$ of a measurable
+function $f$ defined on the measure space $(M, \mathcal{M}, \mu)$. If $\lambda$
+denotes the distribution function of $f$, then $f^{*}$ is defined for $t > 0$
+by letting
+\[
+f^{*}(t)=\inf\{s : \lambda(s)\leq t\}.
+\]
+It is clear that the function $\lambda$ is
+nonincreasing\footnote{Since $\{x \in M : |f(x)| > s_{1}\} \subset \{x \in M :
+|f(x)| > s_{2}\}$ when $s_{1} > s_{2}$ and the measure $\mu$ is monotone.}; if
+it were a continuous and strictly decreasing function onto the positive reals
+it would have an inverse function having these same properties. It follows
+immediately from the above definition that, in this case, $f^{*}$ is this
+inverse function. The following series of lemmas are devoted to establishing
+some of the basic properties of the functions $\lambda$ and $f^{*}$. In the
+sequel we shall assume that $\lim_{s \to \infty}\lambda(s) = 0$ and, hence,
+$f^{*}(t) < \infty$ for all $t > 0$.
+
+\begin{lemma}\label{lem:c5-3-4}
+\textup{(i)} $\lambda$ and $f^{*}$ are nonincreasing and continuous on the
+right,
+
+\textup{(ii)} $\lambda(f^{*}(t)) \leq t$ for all $t > 0$;
+
+\textup{(iii)} $f$ and $f^{*}$ have the same distribution function.
+\end{lemma}
+
+\begin{proof}
+The fact that $\lambda$ is nonincreasing was observed above. It is also
+immediate from its definition that $f^{*}$ must also be nonincreasing.
+Continuity on the right for $\lambda$ follows from the continuity from below
+of the measure $\mu$ and the fact that
+\[
+\lim_{s>s_{0},\, s \to s_{0}}\{x \in M : |f(x)| > s\}=\{x \in M : |f(x)| > s_{0}\}.
+\]
+Inequality (ii) follows immediately from this continuity on the right.
+
+In order to show that $f^{*}$ is continuous on the right at $t_{0}$ we first
+observe that this is immediate if $f^{*}(t_{0}) = 0$ (since, in this case,
+$f^{*}(t) = 0$ for $t > t_{0}$ because $f^{*}$ is nonnegative and
+nonincreasing). If $f^{*}(t_{0})$ is positive let $\alpha$ be such that
+$f^{*}(t_{0}) > \alpha > 0$ and $\{\varepsilon_{n}\}$ a sequence of positive
+real numbers decreasing to 0. From the definition of $f^{*}$ we must have
+$\lambda(f^{*}(t_{0}) - \alpha) > t_{0}$. Thus, there exists $n_{0}$ such that
+$\lambda(f^{*}(t_{0}) - \alpha) > t_{0} + \varepsilon_{n}$ for $n \geq n_{0}$.
+But this implies $f^{*}(t_{0}) - \alpha < f^{*}(t_{0} + \varepsilon_{n})$ for
+$n \geq n_{0}$; otherwise, for some $n \geq n_{0}$,
+$f^{*}(t_{0}) - \alpha \geq f^{*}(t_{0} + \varepsilon_{n})$ and, by the
+nonincreasing property of $\lambda$ and (ii), we would have the contradiction
+$\lambda(f^{*}(t_{0}) - \alpha) \leq \lambda(f^{*}(t_{0} + \varepsilon_{n})) \leq t_{0} + \varepsilon_{n}$.
+Thus, since $f^{*}$ is nonincreasing
+$f^{*}(t_{0}) - \alpha < f^{*}(t_{0} + \varepsilon_{n}) \leq f^{*}(t_{0})$ for
+all $n \geq n_{0}$. This shows that $f^{*}$ is continuous on the right.
+
+In order to show property (iii) we first observe that it follows from the
+definition of $f^{*}$ that $f^{*}(t) > s$ if and only if $t < \lambda(s)$.
+Thus, $E_{s}^{*} = \{t > 0 : f^{*}(t) > s\}$ is precisely the interval
+$(0, \lambda(s))$. Property (iii) now follows from the fact that the value of
+the distribution function of $f^{*}$ at $s$ is the Lebesgue measure of the set
+$E_{s}^{*}$.
+\end{proof}
+
+\begin{lemma}\label{lem:c5-3-5}
+Suppose $\{f_{m}\}$ is a sequence of measurable functions such that, for all
+$x \in M$, $|f_{m}(x)| \leq |f_{m+1}(x)|$, $m = 1, 2, 3, \ldots$. If $f$ is a
+measurable function satisfying $|f(x)| = \lim_{m \to \infty}|f_{m}(x)|$ for
+$x \in M$ then
+
+\textup{(i)} for each $s > 0$, $\lambda_{m}(s)$ increases monotonically to
+$\lambda(s)$ as $m$ tends to $\infty$, where $\lambda_{m}$ and $\lambda$ are
+the distribution functions of $f_{m}$ and $f$;
+
+\textup{(ii)} for each $t > 0$, $f_{m}^{*}(t)$ increases monotonically to
+$f^{*}(t)$.
+\end{lemma}
+
+\begin{proof}
+It is clear that
+\[
+E_{s}^{(m)}=\{x \in M : |f_{m}(x)| > s\}\subset E_{s}=\{x \in M : |f(x)| > s\}
+\]
+and $\bigcup_{m=1}^{\infty}E_{s}^{(m)} = E_{s}$. Thus, since the measure $\mu$
+is monotone and continuous from below we must have
+$\lambda_{m}(s) = \mu(E_{s}^{(m)}) \leq \mu(E_{s}) = \lambda(s)$ and
+$\lim_{m \to \infty}\lambda_{m}(s) = \lambda(s)$. This proves (i). It now
+follows from the definition of the nonincreasing rearrangement that
+$f_{m}^{*}(t) \leq f_{m+1}^{*}(t) \leq f^{*}(t)$ for $m = 1, 2, 3, \ldots$.
+Let $l = \lim_{m \to \infty}f_{m}^{*}(t)$. Since $f_{m}^{*}(t) \leq l$ we must
+have $\lambda_{m}(l) \leq \lambda_{m}(f_{m}^{*}(t)) \leq t$ (the last
+inequality being a consequence of part (ii) of Lemma~\ref{lem:c5-3-4}). Thus,
+$\lambda(l) = \lim_{m \to \infty}\lambda_{m}(l) \leq t$ and this implies
+$f^{*}(t) \leq l$. But, from the inequality $f_{m}^{*}(t) \leq f^{*}(t)$ we
+obtain $l \leq f^{*}(t)$. It therefore follows that $l = f^{*}(t)$ and the
+lemma is proved.
+\end{proof}
+
+This lemma is particularly useful in proving other properties of the functions
+$\lambda$ and $f^{*}$ since it allows us to reduce these proofs to the case
+when $f$ is a simple function. The distribution function and the nonincreasing
+rearrangement of such a function is particularly simple to describe. Suppose
+$f = \sum_{j=1}^{n}c_{j}\chi_{E_{j}}$, where $E_{j} \in \mathcal{M}$,
+$\mu(E_{j}) > 0$ and $E_{j} \cap E_{k} = \emptyset$ if $j \neq k$. By
+relabelling, if necessary, we can assume $c_{1} > c_{2} > \cdots > c_{n} >
+c_{n+1} = 0$. Let $d_{j} = \mu(E_{1}) + \cdots + \mu(E_{j})$,
+$1 \leq j \leq n$, and define $d_{0}$ to be 0. Then, the distribution function
+$\lambda$ of $f$ has the form
+\begin{equation}\label{eq:c5-3-6}
+\lambda(s)=\begin{cases}
+d_{j} & \quad\text{if } c_{j+1} \leq s < c_{j},\ 1 \leq j \leq n,\\
+0 & \quad\text{if } c_{1} \leq s.\\
+\end{cases}
+\end{equation}
+It follows that
+\begin{equation}\label{eq:c5-3-7}
+f^{*}(t)=\begin{cases}
+c_{j} & \quad\text{if } d_{j-1} \leq t < d_{j},\ 1 \leq j \leq n,\\
+0 & \quad\text{if } d_{n} \leq t.\\
+\end{cases}
+\end{equation}
+By inspection, therefore, we see that for $p > 0$
+\[
+\sup_{s>0}s[\lambda(s)]^{1/p}=\sup_{1 \leq j \leq n}d_{j}^{1/p}c_{j}
+=\sup_{t>0}t^{1/p}f^{*}(t).
+\]
+
+From this we can easily show that the supremum in \eqref{eq:c5-3-1} can be
+expressed in terms of the nonincreasing rearrangement of the function in
+question:
+
+\begin{lemma}\label{lem:c5-3-8}
+If $f$ is measurable, $\lambda$ is its distribution function and $p > 0$ then
+\eqref{eq:c5-3-1} holds if and only if
+\[
+\sup_{t>0}t^{1/p}f^{*}(t)=A<\infty.
+\]
+\end{lemma}
+
+\begin{proof}
+We have just seen that Lemma~\ref{lem:c5-3-8} is true when $f$ is simple. If
+$f$ is only measurable we can find a sequence $\{f_{m}\}$ of nonnegative simple
+functions that increase monotonically to $|f|$ at all the points of $M$; the
+lemma then follows immediately from Lemma~\ref{lem:c5-3-5}.
+\end{proof}
+
+In view of inequality \eqref{eq:c5-3-3} and the comments made before it, it is
+natural to consider the space $L(p, q)$ of all those measurable functions $f$
+satisfying
+\[
+\|f\|_{pq}^{*}=\left(\frac{q}{p}\int_{0}^{\infty}[t^{1/p}f^{*}(t)]^{q}\frac{dt}{t}\right)^{1/q}<\infty,
+\]
+when $1 \leq p < \infty$, $1 \leq q < \infty$, and
+\[
+\|f\|_{pq}^{*}=\sup_{t>0}t^{1/p}f^{*}(t)<\infty
+\]
+when $1 \leq p \leq \infty$ and $q = \infty$.\footnote{These definitions make
+sense also when $0 < p < 1$ and $0 < q < 1$; however, since we shall be
+interested in converting $L(p, q)$ into a Banach space, we do not consider
+these cases. Moreover, in the above definition we adopt the usual convention
+that $1/\infty = 0$. Observe that we have defined $L(\infty, q)$ only when
+$q = \infty$.}
+
+When $f$ is simple we see immediately from \eqref{eq:c5-3-7} that
+\begin{equation}\label{eq:c5-3-9}
+\|f\|_{p}=\left(\int_{M}|f|^{p}\,d\mu\right)^{1/p}
+=\left(\int_{0}^{\infty}[f^{*}(t)]^{p}\,dt\right)^{1/p}=\|f^{*}\|_{p},
+\qquad 1 \leq p < \infty,
+\end{equation}
+and
+\begin{equation}\label{eq:c5-3-9p}
+\tag{3.9$'$}
+\|f\|_{\infty}=\|f^{*}\|_{\infty}.
+\end{equation}
+From Lemma~\ref{lem:c5-3-5} we obtain the fact that these equalities hold for
+all $f \in L^{p}(M)$, $1 \leq p \leq \infty$. Since
+$\|f\|_{pp}^{*} = (\int_{0}^{\infty}[t^{1/p}f^{*}(t)]^{p}\,(dt/t))^{1/p} = (\int_{0}^{\infty}[f^{*}(t)]^{p}\,dt)^{1/p} = \|f^{*}\|_{p}$
+it follows that $L(p, p) = L^{p}(M)$ and $\|\ \|_{pp}^{*}$ is a norm. In
+general, however, $\|\ \|_{pq}^{*}$ is not a norm since the Minkowski
+inequality may fail. Despite this, we will show that $\|\ \|_{pq}^{*}$ can be
+used in order to introduce a topology on $L(p, q)$ which, in most cases, can be
+shown to be that of a Banach space.
+
+There are several reasons for introducing the constant $q/p$ in the definition
+of $\|\ \|_{pq}^{*}$. One of the consequences of this definition is the fact
+that $\|\chi_{E}\|_{pq}^{*}$ is independent of $q$ whenever $E$ is a measurable
+subset of $M$ of finite measure and $\chi_{E}$ its characteristic function. In
+fact, we have
+\begin{equation}\label{eq:c5-3-10}
+\|\chi_{E}\|_{pq}^{*}=\{\mu(E)\}^{1/p}
+\end{equation}
+for $1 \leq q \leq \infty$. This equality is a reflection of the fact that each
+$L(p, q)$ space, for $p$ fixed, is a ``type of $L^{p}$ space.'' The following
+theorem gives us a precise formulation of this assertion. It also shows that,
+in some sense, $L(p, 1)$ is the ``smallest'' normed linear space for which
+\eqref{eq:c5-3-10} holds, while $L(p, \infty)$ is the ``largest'' such space.
+
+\begin{theorem}\label{thm:c5-3-11}
+If $f \in L(p, q_{1})$ and $q_{1} \leq q_{2}$ then
+\[
+\textup{(i)}\qquad \|f\|_{pq_{2}}^{*}\leq\|f\|_{pq_{1}}^{*};
+\]
+consequently,
+\[
+\textup{(ii)}\qquad L(p,q_{1})\subset L(p,q_{2}).%
+\footnote{In order to obtain this inclusion relation it suffices to show that
+there exists a constant $B$, independent of $f \in L(p, q_{1})$, such that
+$\|f\|_{pq_{2}}^{*} \leq B\|f\|_{pq_{1}}^{*}$. Short proofs establishing this
+inequality can be found. For example:
+$(\int_{0}^{\infty}[t^{1/p}f^{*}(t)]^{q_{2}}\,dt/t)^{q_{1}/q_{2}}
+\leq (\sum_{k=-\infty}^{\infty}[f^{*}(2^{k-1})]^{q_{2}}\int_{2^{k-1}}^{2^{k}}t^{(q_{2}/p)-1}\,dt)^{q_{1}/q_{2}}
+\leq B'\sum_{k=-\infty}^{\infty}[f^{*}(2^{k-1})]^{q_{1}}2^{kq_{1}/p}
+\leq B''\sum_{k=-\infty}^{\infty}\int_{2^{k-2}}^{2^{k-1}}[t^{1/p}f^{*}(t)]^{q_{1}}\,dt/t
+\leq B''\{\|f\|_{pq_{1}}^{*}\}^{q_{1}}$.}
+\]
+
+Suppose $\|\ \|$ is an order preserving norm (we mean by this that
+$\|g\| \leq \|f\|$ whenever $|g(x)| \leq |f(x)|$ a.e.) defined on the simple
+functions on $M$; then
+
+\textup{(iii)} $\|\chi_{E}\| \leq \{\mu(E)\}^{1/p}$ for all $E \in \mathcal{M}$
+implies $\|f\| \leq \|f\|_{p1}^{*}$ for all simple functions $f$;
+
+\textup{(iv)} $\{\mu(E)\}^{1/p} \leq \|\chi_{E}\|$ for all $E \in \mathcal{M}$
+implies $\|f\|_{p\infty}^{*} \leq \|f\|$ for all simple functions $f$.
+\end{theorem}
+
+Inequality (i), however, is more subtle and requires a somewhat more difficult
+proof.
+
+Equality \eqref{eq:c5-3-10} shows that (i) is best possible.
+
+\begin{proof}
+Inequality (i) can be shown in a particularly simple way when $q_{2} = \infty$.
+Since $f^{*}$ is nonincreasing,
+\begin{align*}
+t^{1/p}f^{*}(t)&=f^{*}(t)\left\{(q_{1}/p)\int_{0}^{t}u^{(q_{1}/p)-1}\,du\right\}^{1/q_{1}}\\
+&\leq\left\{(q_{1}/p)\int_{0}^{t}[u^{1/p}f^{*}(u)]^{q_{1}}\frac{du}{u}\right\}^{1/q_{1}}
+\leq\|f\|_{pq_{1}}^{*}.
+\end{align*}
+By taking the supremum of $t^{1/p}f^{*}(t)$, over all $t > 0$, we obtain the
+desired inequality.
+
+When $q_{2} < \infty$, it follows from Lemma~\ref{lem:c5-3-5} that it suffices
+to establish the lemma for $f$ simple. We assume, therefore, that $f^{*}$ has
+the form \eqref{eq:c5-3-7}, in which case
+\[
+\|f\|_{pq}^{*}=\left\{\sum_{j=1}^{n}c_{j}^{q}(d_{j}^{(q/p)}-d_{j-1}^{(q/p)})\right\}^{1/q}.
+\]
+Setting $a_{j} = c_{j}^{q_{2}}$, $b_{j} = d_{j}^{q_{2}/p}$ and
+$\theta = q_{1}/q_{2}$, therefore, our inequality is equivalent to
+\[
+\textup{(a)}\qquad
+\sum_{j=1}^{n}a_{j}(b_{j}-b_{j-1})\leq
+\left\{\sum_{j=1}^{n}a_{j}^{\theta}(b_{j}^{\theta}-b_{j-1}^{\theta})\right\}^{1/\theta},
+\]
+where $a_{1} > a_{2} > \cdots > a_{n} > 0$, $0 = b_{0} < b_{1} < \cdots < b_{n}$
+and $0 < \theta \leq 1$. We shall prove (a) by induction. When $n = 1$ this
+inequality reduces to $a_{1}b_{1} \leq \{a_{1}^{\theta}b_{1}^{\theta}\}^{1/\theta}$,
+which is obviously true.
+
+Assume that (a) is true for $n = N$. We let
+\[
+\varphi(x)=\left\{\sum_{j=1}^{N}a_{j}^{\theta}(b_{j}^{\theta}-b_{j-1}^{\theta})
++x^{\theta}(b_{N+1}^{\theta}-b_{N}^{\theta})\right\}^{1/\theta}
+=(A+x^{\theta}B)^{1/\theta}
+\]
+and
+\[
+l(x)=\sum_{j=1}^{N}a_{j}(b_{j}-b_{j-1})+x(b_{N+1}-b_{N})=A_{1}+xB_{1}
+\qquad\text{for } 0 \leq x \leq a_{N}.
+\]
+We want to show that $\varphi(a_{N+1}) \geq l(a_{N+1})$ whenever
+$0 < a_{N+1} < a_{N}$. By the induction assumption $\varphi(0) \geq l(0)$ and
+$\varphi(a_{N}) \geq l(a_{N})$ (this last inequality reduces to (a) with $b_{N}$
+replaced by $b_{N+1}$). On the other hand, since the derivative
+$\varphi'(x) = B(Ax^{-\theta} + B)^{(1/\theta)-1}$ of $\varphi$ is decreasing on
+the positive real axis, the function $\varphi$ must be concave. Therefore, the
+fact that it dominates the linear function $l$ at the end points 0 and $a_{N}$
+implies that $\varphi(x) \geq l(x)$ for $0 \leq x \leq a_{N}$. This proves part
+(i). Part (ii) is then an immediate consequence.
+
+Since $\|\ \|$ is order preserving it suffices to show (iii) when
+$f = \sum_{j=1}^{n}c_{j}\chi_{E_{j}}$ is a nonnegative simple function. We can
+assume that $c_{1} > c_{2} > \cdots > c_{n} > c_{n+1} = 0$ and the sets
+$E_{1}, \ldots, E_{n}$ are pairwise disjoint. If $k = 1, 2, \ldots, n$ define
+$f_{k} = b_{k}\chi_{F_{k}}$, where $F_{k} = \bigcup_{j=1}^{k}E_{j}$ and
+$b_{k} = c_{k} - c_{k+1}$. Then, clearly,
+\[
+\textup{(b)}\qquad
+f^{*}(t)=\sum_{k=1}^{n}f_{k}^{*}(t)\qquad\text{for } t > 0,
+\]
+and
+\begin{align*}
+\|f\|&\leq\sum_{k=1}^{n}\|f_{k}\|=\sum_{k=1}^{n}b_{k}\|\chi_{F_{k}}\|\\
+&\leq\sum_{k=1}^{n}b_{k}\{\mu(F_{k})\}^{1/p}
+=\sum_{k=1}^{n}\frac{1}{p}\int_{0}^{\infty}t^{1/p}f_{k}^{*}(t)\frac{dt}{t}\\
+&=\frac{1}{p}\int_{0}^{\infty}t^{1/p}\sum_{k=1}^{n}f_{k}^{*}(t)\frac{dt}{t}
+=\frac{1}{p}\int_{0}^{\infty}t^{1/p}f^{*}(t)\frac{dt}{t}=\|f\|_{p1}^{*}.
+\end{align*}
+This proves (iii).
+
+In order to show (iv) we observe that, in terms of the notation developed
+before equality \eqref{eq:c5-3-6}, we have
+\[
+\|f\|_{p\infty}^{*}=\sup_{1 \leq j \leq n}d_{j}^{1/p}c_{j}
+\]
+(this fact follows from the definition of $\|\ \|_{p\infty}^{*}$ and the
+equalities displayed immediately after \eqref{eq:c5-3-7}). Suppose that the
+supremum on the right is assumed at $j = k$; thus,
+\[
+\|f\|_{p\infty}^{*}=d_{k}^{1/p}c_{k}.
+\]
+Let $g = c_{k}\chi_{F_{k}}$. Then $0 \leq g \leq f$ and, thus,
+\[
+\|f\|_{p\infty}^{*}=d_{k}^{1/p}c_{k}=c_{k}\{\mu(F_{k})\}^{1/p}
+\leq c_{k}\|\chi_{F_{k}}\|=\|g\|\leq\|f\|
+\]
+and the theorem is proved.
+\end{proof}
+
+It is useful to associate with each space $L(p, q)$ the point $(1/p, 1/q)$ of
+the square $Q = \{(x_{1}, x_{2}) \in E_{2} : 0 \leq x_{1}, x_{2} \leq 1\}$. As
+a consequence of Theorem~\ref{thm:c5-3-11}, part (ii), we see that if
+$x_{1} = 1/p$ is fixed and $x_{2} = 1/q$ is allowed to vary from 1 to 0 we
+obtain the points associated with an increasing family of function spaces. When
+we reach the diagonal $\{(x_{1}, x_{2}) \in Q : x_{1} = x_{2}\}$ of the square
+$Q$, the associated space is $L^{p}$ (see \eqref{eq:c5-3-9}). In view of the
+definition of a weak type operator that was made in Section 2, it is natural to
+refer to $L(p, \infty)$, the largest of the spaces encountered in this manner,
+as weak $L^{p}$. The justification for this terminology is that the inequality
+\eqref{eq:c5-2-3} that was used in the definition of an operator of weak type
+$(r, p)$ is, by Lemma~\ref{lem:c5-3-8}, equivalent to
+\[
+\|Tf\|_{p\infty}^{*}\leq k\|f\|_{r}.
+\]
+Since $\|f\|_{r} = \|f\|_{rr}^{*}$ and $r \geq 1$, it follows from inequality
+(i) of Theorem~\ref{thm:c5-3-11} that $\|f\|_{r} \leq \|f\|_{r1}^{*}$. Thus, an
+operator $T$ of weak type $(r, p)$ satisfies the weaker inequality
+\begin{equation}\label{eq:c5-3-12}
+\|Tf\|_{p\infty}^{*}\leq k\|f\|_{r1}^{*}
+\end{equation}
+for all $f$ belonging to the domain of $T$ and to $L(r, 1)$. The interpolation
+theorem that will be proved in this section asserts, in part, that end point
+conditions like \eqref{eq:c5-3-12}, even though weaker than weak type
+conditions, are sufficient in order to guarantee the conclusion of the
+Marcinkiewicz theorem (Theorem~\ref{thm:c5-2-4}). Closely connected with part
+(iii) of Theorem~\ref{thm:c5-3-11} is the fact that the hypotheses of the
+Marcinkiewicz theorem can be reduced still further. In fact, we have the
+following result, showing that the conclusion of Theorem~\ref{thm:c5-2-4}
+depends only on knowing that the weak type inequalities at the end points hold
+for characteristic functions of sets of finite measure.
+
+\begin{theorem}\label{thm:c5-3-13}
+Suppose $T$ is a linear operator which maps the finite linear combinations of
+characteristic functions $\chi_{E}$ of sets $E \subset M$ of finite measure
+into a vector space $B$ that is endowed with an order preserving norm
+$\|\cdot\|$. If
+\[
+\|T\chi_{E}\|\leq C\|\chi_{E}\|_{r1}^{*}=C\{\mu(E)\}^{1/r},
+\]
+where $C$ is independent of $E$, then there exists a constant $A$ such that
+\[
+\|Tf\|\leq A\|f\|_{r1}^{*}
+\]
+for all $f$ in the domain of $T$.
+\end{theorem}
+
+\begin{proof}
+If $f \geq 0$ belongs to the domain of $T$ we can represent it as a sum
+$f = \sum_{k=1}^{n}f_{k}$, where the functions $f_{k}$ are the multiples of
+characteristic functions defined in the proof of Theorem~\ref{thm:c5-3-11} so
+that equality (b) is satisfied. Then
+\[
+\|Tf\|=\left\|\sum_{k=1}^{n}Tf_{k}\right\|\leq\sum_{k=1}^{n}\|Tf_{k}\|
+\leq\sum_{k=1}^{n}Cb_{k}\|\chi_{F_{k}}\|_{r1}^{*}.
+\]
+But, as was shown in the proof of Theorem~\ref{thm:c5-3-11}, part (iii), the
+last sum equals $C\|f\|_{r1}^{*}$. If $f = f_{1} + if_{2}$ is complex valued we
+obtain the theorem with $A = 4C$ by applying the result that has been just
+established to the positive and negative parts of $f_{1}$ and
+$f_{2}$.\footnote{Part (iii) of Theorem~\ref{thm:c5-3-11} is the special case
+of Theorem~\ref{thm:c5-3-13} obtained when $T$ is the identity operator. It is
+clear that the proof of Theorem~\ref{thm:c5-3-11} is valid for sublinear
+operators $T$; that is, operators that are subadditive and positive homogeneous
+($|Taf| = |a||Tf|$ for all scalars $a$).}
+\end{proof}
+
+The interpolation theorem we have been discussing is a consequence of the
+following classical estimate, known as Hardy's inequality.
+
+\begin{lemma}\label{lem:c5-3-14}
+If $q \geq 1$, $r > 0$ and $g$ is a nonnegative function defined on
+$(0, \infty)$ then
+\[
+\textup{(i)}\qquad
+\left(\int_{0}^{\infty}\left[\int_{0}^{t}g(u)\,du\right]^{q}t^{-r-1}\,dt\right)^{1/q}
+\leq\frac{q}{r}\left(\int_{0}^{\infty}[ug(u)]^{q}u^{-r-1}\,du\right)^{1/q};
+\]
+\[
+\textup{(ii)}\qquad
+\left(\int_{0}^{\infty}\left[\int_{t}^{\infty}g(u)\,du\right]^{q}t^{r-1}\,dt\right)^{1/q}
+\leq\frac{q}{r}\left(\int_{0}^{\infty}[ug(u)]^{q}u^{r-1}\,du\right)^{1/q}.
+\]
+\end{lemma}
+
+\begin{proof}
+We first show that (i) implies (ii). If we apply (i) to the function
+$g_{1}(u) = u^{-2}g(u^{-1})$ we obtain that
+\[
+\int_{0}^{\infty}\left[\int_{0}^{t}g_{1}(u)\,du\right]^{q}t^{-r-1}\,dt
+=\int_{0}^{\infty}\left[\int_{1/t}^{\infty}g(v)\,dv\right]^{q}t^{-r-1}\,dt
+=\int_{0}^{\infty}\left[\int_{s}^{\infty}g(v)\,dv\right]^{q}s^{r-1}\,ds
+\]
+is less than or equal to $(q/r)^{q}$ times
+\[
+\int_{0}^{\infty}[ug_{1}(u)]^{q}u^{-r-1}\,du
+=\int_{0}^{\infty}[vg(v)]^{q}v^{r-1}\,dv.
+\]
+Thus, it suffices to establish inequality (i).
+
+If we apply Jensen's inequality, with $\varphi(x) = |x|^{q}$ and
+$d\mu(u) = u^{(r/q)-1}\,du$ (see Section 4, Example (2), in the second chapter)
+we obtain
+\begin{align*}
+\left[\int_{0}^{t}g(u)\,du\right]^{q}
+&=\left[\int_{0}^{t}g(u)u^{1-(r/q)}u^{(r/q)-1}\,du\right]^{q}\\
+&\leq\left(\frac{q}{r}\right)^{q-1}t^{r(1-1/q)}
+\int_{0}^{t}[g(u)]^{q}u^{q-r-1+r/q}\,du.
+\end{align*}
+Thus,
+\begin{align*}
+\int_{0}^{\infty}\left[\int_{0}^{t}g(u)\,du\right]^{q}t^{-r-1}\,dt
+&\leq\left(\frac{q}{r}\right)^{q-1}\int_{0}^{\infty}t^{-1-r/q}
+\left[\int_{0}^{t}[g(u)]^{q}u^{q-r-1+r/q}\,du\right]dt\\
+&=\left(\frac{q}{r}\right)^{q-1}\int_{0}^{\infty}[g(u)u]^{q}u^{-r-1+r/q}
+\left(\int_{u}^{\infty}t^{-1-r/q}\,dt\right)du\\
+&=\left(\frac{q}{r}\right)^{q}\int_{0}^{\infty}[g(u)u]^{q}u^{-r-1}\,du
+\end{align*}
+and Hardy's inequality is proved.
+\end{proof}
+
+We can now state and prove the principal result of this section. We say that a
+subadditive operator $T$ is of restricted weak type $(r, p)$ if its domain $D$
+contains all the truncations of its members as well as all finite linear
+combinations of characteristic functions of sets of finite measure and satisfies
+inequality \eqref{eq:c5-3-12} whenever $f \in D \cap L(r, 1)$. In view of
+Theorem~\ref{thm:c5-3-13} such an operator may be considered to be one that
+satisfies the weak type $(r, p)$ conditions when it is restricted to
+characteristic functions of sets of finite measure.
+
+\begin{theorem}\label{thm:c5-3-15}
+Suppose $T$ is a subadditive operator of restricted weak types $(r_{j}, p_{j})$,
+$j = 0$, 1, with $r_{0} < r_{1}$ and $p_{0} \neq p_{1}$, then there exists a
+constant $B = B_{\theta}$ such that
+\[
+\|Tf\|_{pq}^{*}\leq B\|f\|_{rq}^{*}
+\]
+for all $f$ belonging to the domain of $T$ and to $L(r, q)$, where
+$1 \leq q \leq \infty$,
+\[
+\frac{1}{p}=\frac{(1-\theta)}{p_{0}}+\frac{\theta}{p_{1}},\qquad
+\frac{1}{r}=\frac{1-\theta}{r_{0}}+\frac{\theta}{r_{1}}
+\qquad\text{and}\qquad 0<\theta<1.
+\]
+\end{theorem}
+
+\begin{proof}
+For $f \in L(r, q) \cap D$ we define
+\[
+f^{t}(x)=\begin{cases}
+f(x) & \quad\text{if } |f(x)| > f^{*}(t^{\gamma}),\\
+0 & \quad\text{if } |f(x)| \leq f^{*}(t^{\gamma}),\\
+\end{cases}
+\]
+and $f_{t}(x) = f(x) - f^{t}(x)$, where
+\[
+\gamma=\frac{(1/p_{0})-(1/p)}{(1/r_{0})-(1/r)}
+=\frac{(1/p)-(1/p_{1})}{(1/r)-(1/r_{1})}.
+\]
+We then have the two inequalities
+\[
+\textup{(a)}\qquad
+(f^{t})^{*}(s)\leq\begin{cases}
+f^{*}(s) & \quad\text{if } 0 < s < t^{\gamma},\\
+0 & \quad\text{if } t^{\gamma} \leq s,\\
+\end{cases}
+\qquad\text{and}
+\]
+\[
+f_{t}^{*}(s)\leq\begin{cases}
+f^{*}(t^{\gamma}) & \quad\text{if } 0 < s < t^{\gamma},\\
+f^{*}(s) & \quad\text{if } t^{\gamma} \leq s.\\
+\end{cases}
+\]
+When $f$ is simple (a) can be derived readily from formulas analogous to
+\eqref{eq:c5-3-7}; the general case then follows easily from this one. Since the
+operator $T$ is subadditive
+$|[Tf](y)| = |[T(f^{t} + f_{t})](y)| \leq |[Tf^{t}](y)| + |[Tf_{t}](y)|$ for
+almost every $y \in N$. Thus, if $s > 0$,
+\begin{align*}
+\{y \in N:{}&|[Tf](y)|>(Tf^{t})^{*}(s)+(Tf_{t})^{*}(s)\}\\
+&\subset\{y \in N : |[Tf^{t}](y)|>(Tf^{t})^{*}(s)\}
+\cup\{y \in N : |[Tf_{t}](y)|>(Tf_{t})^{*}(s)\}.
+\end{align*}
+If $\lambda$, $\lambda^{t}$, and $\lambda_{t}$ are the distribution functions of
+$Tf$, $Tf^{t}$, and $Tf_{t}$, respectively, it follows from this inclusion
+relation and Lemma~\ref{lem:c5-3-4}, part (ii),
+\[
+\lambda((Tf^{t})^{*}(s)+(Tf_{t})^{*}(s))\leq
+\lambda^{t}((Tf^{t})^{*}(s))+\lambda_{t}((Tf_{t})^{*}(s))\leq s+s=2s.
+\]
+By the definition of $(Tf)^{*}$, therefore, we have
+\[
+\textup{(b)}\qquad
+(Tf^{t})^{*}(s)+(Tf_{t})^{*}(s)\geq(Tf)^{*}(2s)\qquad\text{for all } s>0.
+\]
+Suppose $r_{1} < \infty$ and $q < \infty$. Then, from (b) with $s = t$, a
+change of variables and Minkowski's inequality, we obtain
+\begin{align*}
+\|Tf\|_{pq}^{*}&=(q/p)^{1/q}\Biggl\{\int_{0}^{\infty}[t^{1/p}(Tf)^{*}(t)]^{q}\frac{dt}{t}\Biggr\}^{1/q}\\
+&=(q/p)^{1/q}2^{1/p}\Biggl\{\int_{0}^{\infty}[t^{1/p}(Tf)^{*}(2t)]^{q}\frac{dt}{t}\Biggr\}^{1/q}\\
+&\leq(q/p)^{1/q}2^{1/p}\Biggl\{\Biggl(\int_{0}^{\infty}[t^{1/p}(Tf^{t})^{*}(t)]^{q}\frac{dt}{t}\Biggr)^{1/q}\\
+&\quad+\Biggl(\int_{0}^{\infty}[t^{1/p}(Tf_{t})^{*}(t)]^{q}\frac{dt}{t}\Biggr)^{1/q}\Biggr\}.
+\end{align*}
+Since $T$ is of restricted weak types $(r_{0}, p_{0})$ and $(r_{1}, p_{1})$ we
+have $t^{1/p_{0}}(Tf^{t})^{*}(t) \leq k_{0}\|f^{t}\|_{r_{0}1}^{*}$ and
+$t^{1/p_{1}}(Tf_{t})^{*}(t) \leq k_{1}\|f_{t}\|_{r_{1}1}^{*}$ for all $t > 0$.
+Thus, the above sum within brackets is not larger than
+\[
+k_{0}\left(\int_{0}^{\infty}[t^{(1/p)-(1/p_{0})}\|f^{t}\|_{r_{0}1}^{*}]^{q}\frac{dt}{t}\right)^{1/q}
++k_{1}\left(\int_{0}^{\infty}[t^{(1/p)-(1/p_{1})}\|f_{t}\|_{r_{1}1}^{*}]^{q}\frac{dt}{t}\right)^{1/q}.
+\]
+But, it follows from the first part of (a), a change of variables and
+Lemma~\ref{lem:c5-3-14}, part (i), that
+\begin{align*}
+&\left(\int_{0}^{\infty}[t^{(1/p)-(1/p_{0})}\|f^{t}\|_{r_{0}1}^{*}]^{q}\frac{dt}{t}\right)^{1/q}\\
+&\quad\leq\left(\int_{0}^{\infty}\left[t^{(1/p)-(1/p_{0})}\left(\frac{1}{r_{0}}\int_{0}^{t^{\gamma}}f^{*}(s)s^{(1/r_{0})-1}\,ds\right)\right]^{q}\frac{dt}{t}\right)^{1/q}\\
+&\quad=|\gamma|^{-(1/q)}(1/r_{0})\left(\int_{0}^{\infty}\left[u^{(1/r)-(1/r_{0})}\int_{0}^{u}f^{*}(s)s^{(1/r_{0})-1}\,ds\right]^{q}\frac{du}{u}\right)^{1/q}\\
+&\quad\leq\frac{|\gamma|^{-(1/q)}}{1-(r_{0}/r)}
+\left(\int_{0}^{\infty}[u^{1/r_{0}}f^{*}(u)]^{q}u^{(q/r)-(q/r_{0})}\frac{du}{u}\right)^{1/q}\\
+&\quad=\frac{1}{1-(r_{0}/r)}\left(\frac{r}{|\gamma|q}\right)^{1/q}\|f\|_{rq}^{*}.
+\end{align*}
+A similar argument, involving the second parts of (a) and
+Lemma~\ref{lem:c5-3-14}, gives us
+\begin{align*}
+&\left(\int_{0}^{\infty}[t^{(1/p)-(1/p_{1})}\|f_{t}\|_{r_{1}1}^{*}]^{q}\frac{dt}{t}\right)^{1/q}\\
+&\quad\leq\left(\int_{0}^{\infty}\left[t^{(1/p)-(1/p_{1})}\left(\frac{1}{r_{1}}\int_{0}^{t^{\gamma}}f^{*}(t^{\gamma})s^{(1/r_{1})-1}\,ds+\frac{1}{r_{1}}\int_{t^{\gamma}}^{\infty}f^{*}(s)s^{(1/r_{1})-1}\,ds\right)\right]^{q}\frac{dt}{t}\right)^{1/q}\\
+&\quad\leq\left(\int_{0}^{\infty}[t^{(1/p)-(1/p_{1})}f^{*}(t^{\gamma})t^{\gamma/r_{1}}]^{q}\frac{dt}{t}\right)^{1/q}\\
+&\quad\quad+\frac{1}{r_{1}}\left(\int_{0}^{\infty}\left[t^{(1/p)-(1/p_{1})}\int_{t^{\gamma}}^{\infty}f^{*}(s)s^{(1/r_{1})-1}\,ds\right]^{q}\frac{dt}{t}\right)^{1/q}\\
+&\quad=|\gamma|^{-(1/q)}\Biggl\{\left(\int_{0}^{\infty}[u^{1/r}f^{*}(u)]^{q}\frac{du}{u}\right)^{1/q}\\
+&\quad\quad+\frac{1}{r_{1}}\left(\int_{0}^{\infty}\left[u^{(1/r)-(1/r_{1})}\int_{u}^{\infty}f^{*}(s)s^{(1/r_{1})-1}\,ds\right]^{q}\frac{du}{u}\right)^{1/q}\Biggr\}\\
+&\quad\leq\left(\frac{r}{|\gamma|q}\right)^{1/q}\|f\|_{rq}^{*}
++\frac{|\gamma|^{-(1/q)}}{(r_{1}/r)-1}
+\left(\int_{0}^{\infty}[f^{*}(u)u^{1/r_{1}}]^{q}u^{(q/r)-(q/r_{1})}\frac{du}{u}\right)^{1/q}\\
+&\quad=\left(\frac{r}{|\gamma|q}\right)^{1/q}\left(\frac{r_{1}}{r_{1}-r}\right)\|f\|_{rq}^{*}.
+\end{align*}
+We have shown, therefore, that
+\[
+\|Tf\|_{pq}^{*}\leq B\|f\|_{rq}^{*}
+\]
+with
+\[
+B=\left(\frac{r}{|\gamma|p}\right)^{1/q}2^{1/p}
+\left(\frac{rk_{0}}{r-r_{0}}+\frac{r_{1}k_{1}}{r_{1}-r}\right).
+\]
+
+When $r_{1} < \infty$ and $q = \infty$ we estimate $t^{1/p}(Tf)^{*}(t)$, for
+$t > 0$, using inequalities (a) and (b), just as was done in the above proof.
+We obtain positive constants $c_{1}$, $c_{2}$, and $c_{3}$ (in fact,
+$c_{1} = 2^{1/p}k_{0}$, and $c_{2} = c_{3} = 2^{1/p}k_{1}$) such that
+\begin{align*}
+t^{1/p}(Tf)^{*}(t)&\leq c_{1}t^{(1/p)-(1/p_{0})}\int_{0}^{t^{\gamma}}f^{*}(s)s^{(1/r_{0})-1}\,ds\\
+&\quad+c_{2}t^{(1/p)-(1/p_{1})}\int_{0}^{t^{\gamma}}f^{*}(t^{\gamma})s^{(1/r_{1})-1}\,ds
++c_{3}t^{1/p-1/p_{1}}\int_{t^{\gamma}}^{\infty}f^{*}(s)s^{(1/r_{1})-1}\,ds.
+\end{align*}
+If we now use the fact that $f^{*}(s)s^{1/r} \leq \|f\|_{r\infty}^{*}$ we have
+\[
+t^{1/p}(Tf)^{*}(t)\leq\left\{\frac{c_{1}}{(1/r_{0})-(1/r)}+c_{2}r_{1}
++\frac{c_{3}}{(1/r)-(1/r_{1})}\right\}\|f\|_{r\infty}^{*}=B\|f\|_{r\infty}^{*},
+\]
+and, thus, $\|Tf\|_{p\infty}^{*} \leq B\|f\|_{r\infty}^{*}$.
+
+In the remaining case, $r_{1} = \infty$ and $q = \infty$, the proof follows the
+same lines as that of the above cases, except for the necessity of using the
+estimate $\|f_{t}\|_{r_{1}\infty}^{*} \leq f^{*}(t^{\gamma})$.
+\end{proof}
+
+Theorem~\ref{thm:c5-3-15} obviously contains the Marcinkiewicz interpolation
+theorem as a special case; moreover, it gives us sharper results since it
+involves the spaces $L(p, q)$. For example, if we apply it to the Fourier
+transform we obtain the following strengthening of the inequality of
+Hausdorff-Young (see \eqref{eq:c5-1-2}):
+
+\begin{corollary}\label{cor:c5-3-16}
+If $f \in L^{p}(E_{n})$, $1 < p \leq 2$, then $\hat{f}$ belongs to
+$L(p', p)$ and there exists a constant $B = B_{p}$ such that
+\[
+\|\hat{f}\|_{p'p}^{*}\leq B\|f\|_{p},
+\]
+where $(1/p) + (1/p') = 1$.
+\end{corollary}
+
+The remainder of this section will be devoted to showing that most of the
+spaces $L(p, q)$ have a norm that is closely connected to $\|\ \|_{pq}^{*}$;
+moreover, with this norm, $L(p, q)$ is a Banach space. The following lemmas
+will be needed to establish these facts.
+
+For notational convenience we restrict our attention to nonatomic measure
+spaces. This means that $M$ does not contain atoms (sets of positive measure
+all of whose measurable subsets have measure zero). The applications we shall
+make of the material developed in this section will involve only the nonatomic
+measure spaces $(E_{n}, \mathcal{B}, m)$, where $\mathcal{B}$ consists of the
+Borel subsets of $E_{n}$ and $m$ is Borel-Lebesgue measure. The only place
+where this restriction is used is in the proof of part (iii) of the following
+lemma.
+
+\begin{lemma}\label{lem:c5-3-17}
+If $E \in \mathcal{M}$ and
+$F_{s} = \{x \in M : |f(x)| > s \geq 0\}$ (so that $\lambda(s) = \mu(F_{s})$)
+then
+\[
+\textup{(i)}\qquad \int_{E}|f|\,d\mu\leq\int_{0}^{\mu(E)}f^{*}(t)\,dt;
+\]
+\[
+\textup{(ii)}\qquad \int_{F_{s}}|f|\,d\mu=\int_{0}^{\lambda(s)}f^{*}(t)\,dt;
+\]
+\textup{(iii)} if $\mu(M) \geq t > 0$ then there exists a set
+$E_{t} \in \mathcal{M}$ such that $\mu(E_{t}) = t$ and
+\[
+\int_{E_{t}}|f|\,d\mu=\int_{0}^{t}f^{*}(u)\,du.
+\]
+\end{lemma}
+
+\begin{proof}
+It is clear that if $|f_{1}| \leq |f|$ then $f_{1}^{*} \leq f^{*}$. Thus, if
+$\chi_{E}$ is the characteristic function of $E$ and $f_{1} = f\chi_{E}$, then
+\[
+\textup{(a)}\qquad
+\int_{0}^{\mu(E)}f_{1}^{*}(t)\,dt\leq\int_{0}^{\mu(E)}f^{*}(t)\,dt.
+\]
+On the other hand, the distribution function of $f_{1}$ must be bounded by
+$\mu(E)$ and, consequently, $f_{1}^{*}(t) = 0$ for $t > \mu(E)$. Using
+\eqref{eq:c5-3-9} with $p = 1$, therefore,
+\[
+\textup{(b)}\qquad
+\int_{E}|f|\,d\mu=\int_{M}|f_{1}|\,d\mu=\int_{0}^{\infty}f_{1}^{*}(t)\,dt
+=\int_{0}^{\mu(E)}f_{1}^{*}(t)\,dt.
+\]
+Inequality (a) and inequality (b) imply (i).
+
+In order to show (ii) we first observe that if we put
+\[
+g(t)=\begin{cases}
+f^{*}(t) & \quad\text{for } 0 < t < \lambda(s),\\
+0 & \quad\text{for } \lambda(s) \leq t,\\
+\end{cases}
+\]
+then $g$ and $h = f\chi_{F_{s}}$ have the same distribution function (when $f$
+is simple this follows immediately from Lemma~\ref{lem:c5-3-4}, part (iii), and
+equalities \eqref{eq:c5-3-6} and \eqref{eq:c5-3-7}. The general case follows
+from this and Lemma~\ref{lem:c5-3-5}). Thus,
+\[
+\int_{F_{s}}|f|\,d\mu=\int_{M}|h|\,d\mu=\int_{0}^{\infty}g(u)\,du
+=\int_{0}^{\lambda(s)}f^{*}(u)\,du.
+\]
+Finally, if $0 < t \leq \mu(M)$, let
+$G = \{x \in M : |f(x)| > f^{*}(t)\}$ and
+$H = \{x \in M : |f(x)| \geq f^{*}(t)\}$. We claim that
+\[
+\mu(G)\leq t\leq\mu(H).
+\]
+The first inequality is a consequence of part (ii) of Lemma~\ref{lem:c5-3-4}
+and the fact that $\mu(G) = \lambda(f^{*}(t))$. The second inequality is
+particularly easy to establish with the help of \eqref{eq:c5-3-6} and
+\eqref{eq:c5-3-7} when $f$ is simple; the general case then follows from
+Lemma~\ref{lem:c5-3-5}. Since we are assuming that the measure space
+$(M, \mathcal{M}, \mu)$ is not atomic we can find a set $E_{t}$ in
+$\mathcal{M}$ such that $G \subset E_{t} \subset H$ and $\mu(E_{t}) = t$. Let
+$h = f\chi_{E_{t}}$. Then $h^{*} = f^{*}$ when these functions are restricted
+to $(0, t)$, while $h(u) = 0$ for $u \geq t$. Therefore,
+\[
+\int_{E_{t}}|f|\,d\mu=\int_{M}|h|\,d\mu=\int_{0}^{\infty}h^{*}(u)\,du
+=\int_{0}^{t}f^{*}(u)\,du.
+\]
+\end{proof}
+
+An immediate corollary of parts (i) and (iii) of this lemma is
+\begin{equation}\label{eq:c5-3-18}
+\sup_{E \in \mathcal{M},\ \mu(E) \leq t}\int_{E}|f|\,d\mu=\int_{0}^{t}f^{*}(u)\,du.
+\end{equation}
+If $f$ is not zero almost everywhere and $t > 0$, then the expression on the
+left in \eqref{eq:c5-3-18} is positive. It follows, therefore, that the mapping
+$f \to t^{-1}\int_{0}^{t}f^{*}(u)\,du$ is a norm defined on each of the spaces
+$L^{p}(M)$, $1 \leq p \leq \infty$ (the fact that it is finite-valued is a
+consequence of H\"older's inequality):
+\[
+\int_{E}|f|\,d\mu=\int_{M}\chi_{E}|f|\,d\mu\leq\|f\|_{p}\|\chi_{E}\|_{p'}
+\leq t^{1/p'}\|f\|_{p},
+\]
+where $(1/p) + (1/p') = 1$. This norm is closely related to the
+Hardy-Littlewood maximal function introduced in Chapter II, Section 3. In
+order to see this relation we make a few simple observations concerning the
+maximal function.
+
+The maximal function introduced in the second chapter was defined to be the
+supremum over all integral averages of $|f|$ taken over spheres with center at
+$x$. In the one-dimensional case it is not hard to show that its basic
+properties, developed in the third section of that chapter, are shared by the
+more general ``nonsymmetric'' maximal function defined by letting its value at
+$x$ be
+\begin{equation}\label{eq:c5-3-19}
+\sup\frac{1}{h+k}\int_{x-h}^{x+k}|f(u)|\,du,
+\end{equation}
+where the supremum is taken over all nonnegative $h$ and $k$ satisfying
+$h + k > 0$. This is a consequence of the inequalities
+\begin{align*}
+\frac{1}{h+k}\int_{x-h}^{x+k}|f(u)|\,du
+&\leq\frac{1}{h+k}\int_{x-(h+k)}^{x+h+k}|f(u)|\,du\\
+&\leq 2\sup_{r>0}\frac{1}{2r}\int_{|x-u| \leq r}|f(u)|\,du
+\end{align*}
+which show that this nonsymmetric maximal function is no larger than twice the
+one we introduced earlier. In order to avoid introducing new notation, we let
+$m = m_{f}$ denote the function defined by \eqref{eq:c5-3-19}.
+
+Suppose $g$ is a nonnegative function defined on the real line such that
+$g(u) = 0$ for $u < 0$ and $g$ is nonincreasing when restricted to
+$[0, \infty)$. If $t > 0$ it then follows from the fact that $g(u) = 0$ for
+$u < 0$ that $m(t) = m_{g}(t)$ is the supremum over all integral averages
+\[
+\frac{1}{h+k}\int_{t-h}^{t+k}g(u)\,du
+\]
+such that $t - h \geq 0$. Since $g$ is nonincreasing, however, a simple
+argument shows that each such average is not larger than
+\[
+\frac{1}{t}\int_{0}^{t}g(u)\,du.
+\]
+If we apply these arguments to the function $g$ whose values at $u \geq 0$ are
+$f^{*}(u)$ we obtain the fact that
+\[
+m_{g}(t)=m_{f^{*}}(t)=m(t)=\frac{1}{t}\int_{0}^{t}f^{*}(u)\,du
+\]
+for all $t > 0$.
+
+It is clear from the nonincreasing property of $f^{*}$ that
+$m(t) \geq f^{*}(t)$ for all $t > 0$. Thus, if we define
+\[
+\|f\|_{pq}=\left(\frac{q}{p}\int_{0}^{\infty}[t^{1/p}m(t)]^{q}\frac{dt}{t}\right)^{1/q}
+\]
+when $1 \leq p < \infty$ and $1 \leq q < \infty$, and
+\[
+\|f\|_{pq}=\sup_{t>0}t^{1/p}m(t)
+\]
+when $1 \leq p \leq \infty$ and $q = \infty$, we must have
+\begin{equation}\label{eq:c5-3-20}
+\|f\|_{pq}^{*}\leq\|f\|_{pq}.
+\end{equation}
+
+One of the advantages of using $\|\ \|_{pq}$ instead of $\|\ \|_{pq}^{*}$ is
+that the former is a norm. This follows from the fact, observed immediately
+following \eqref{eq:c5-3-18}, that the mapping $t \to m(t) = m_{f}(t)$ is a
+norm for each $t > 0$. From \eqref{eq:c5-3-9}, with $p = 1$, we see that
+$\|f\|_{1\infty} = \|f\|_{1}$; on the other hand, a simple calculation shows
+that a function $f$ satisfying $\|f\|_{1q} < \infty$, for $1 \leq q < \infty$,
+must be zero almost everywhere. When $1 < p \leq \infty$, however,
+$\|\ \|_{pq}$ is ``equivalent'' to $\|\ \|_{pq}^{*}$. More precisely, we have
+the following result\footnote{It is important to use both $\|\ \|_{pq}^{*}$
+and $\|\ \|_{pq}$ since each has its advantages. The advantage that
+$\|\ \|_{pq}$ is a norm is offset by the fact that the former is often easier
+to handle; moreover, as was just observed, $\|\ \|_{1q}$ cannot be used to
+define a satisfactory extension of $L^{1}$.}:
+
+\begin{theorem}\label{thm:c5-3-21}
+If $f \in L(p, q)$, $1 < p \leq \infty$, then
+\[
+\|f\|_{pq}^{*}\leq\|f\|_{pq}\leq\frac{p}{p-1}\|f\|_{pq}^{*}.
+\]
+\end{theorem}
+
+\begin{proof}
+The first inequality is just inequality \eqref{eq:c5-3-20} and has already
+been proved. When $1 < p < \infty$ and $1 \leq q < \infty$ the second
+inequality follows from Lemma~\ref{lem:c5-3-14}, part (i):
+\begin{align*}
+\|f\|_{pq}&=\left(\frac{q}{p}\int_{0}^{\infty}\left[\int_{0}^{t}f^{*}(u)\,du\right]^{q}
+t^{-q(1-1/p)-1}\,dt\right)^{1/q}\\
+&\leq\frac{p}{p-1}\left(\frac{q}{p}\int_{0}^{\infty}[uf^{*}(u)]^{q}
+u^{-q(1-1/p)-1}\,du\right)^{1/q}
+=\frac{p}{p-1}\|f\|_{pq}^{*}.
+\end{align*}
+For the remaining cases, $1 < p \leq \infty$ and $q = \infty$, we have
+\begin{align*}
+t^{1/p}m(t)&=t^{(1/p)-1}\int_{0}^{t}f^{*}(u)\,du
+=t^{(1/p)-1}\int_{0}^{t}u^{-1/p}u^{1/p}f^{*}(u)\,du\\
+&\leq\|f\|_{p\infty}^{*}t^{(1/p)-1}\int_{0}^{t}u^{-1/p}\,du
+=\frac{p}{p-1}\|f\|_{p\infty}^{*}.
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{thm:c5-3-22}
+$L(p, q)$, $1 < p \leq \infty$, $1 \leq q \leq \infty$, with the norm
+$\|\ \|_{pq}$ is a Banach space.
+\end{theorem}
+
+\begin{proof}
+We need to show that $L(p, q)$ is complete. When $p = \infty$ we only defined
+$L(p, q)$ for $q = \infty$; since $L(\infty, \infty) = L^{\infty}$ the theorem,
+in this case, follows from the completeness of $L^{\infty}$. Suppose,
+therefore, that $1 < p < \infty$ and that $\{f_{n}\}$ is a Cauchy sequence in
+$L(p, q)$. By Theorem~\ref{thm:c5-3-21}, part (i) of
+Theorem~\ref{thm:c5-3-11}, and Lemma~\ref{lem:c5-3-8} we must then have
+\[
+\sup_{s>0}s^{p}\mu(\{x \in M : |f_{n}(x)-f_{m}(x)| > s\}) \to 0
+\qquad\text{as } n, m \to \infty.
+\]
+In particular, the sequence $\{f_{n}\}$ is fundamental in measure; therefore,
+there exists a subsequence $\{f_{n_{k}}\}$ and a function $f$ such that
+$f_{n_{k}}(x) \to f(x)$ a.e. Given $\delta > 0$ there exists
+$j_{0} = j_{0}(\delta)$ such that $\|f_{n} - f_{j}\|_{pq} < \delta$ for
+$j, n \geq j_{0}$. Let $g_{k} = f_{n_{k}} - f_{j}$ and $g = f - f_{j}$; it
+follows from Fatou's lemma that
+\[
+\int_{E}|g|\,d\mu\leq\liminf_{k \to \infty}\int|g_{k}|\,d\mu
+\]
+for any measurable set $E$. From \eqref{eq:c5-3-18} and another application of
+Fatou's lemma, therefore,
+\[
+\|f-f_{j}\|_{pq}=\|g\|_{pq}\leq\delta
+\]
+for $j \geq j_{0}$. This proves the theorem. It can be shown that $L(p, q)$
+cannot be normed when $p = 1$, and $1 < q \leq \infty$. For this, see 5.12
+below.
+\end{proof}
+
+\section{Interpolation of Analytic Families of Operators}
+
+In this section we will extend the M. Riesz convexity theorem to the case
+where the operators being interpolated vary with the indices $p$ and $q$ in a
+sufficiently smooth way. We suppose that to each $z$ in the strip
+$S = \{z \in \mathbf{C} : 0 \leq \operatorname{Re} z \leq 1\}$ there is
+assigned a linear operator $T_{z}$ on the space of simple functions in
+$L^{1}(M)$ into measurable functions on $N$ in such a way that $(T_{z}f)g$ is
+integrable on $N$ whenever $f$ is a simple function in $L^{1}(M)$ and $g$ is a
+simple function in $L^{1}(N)$. We shall say that the family $\{T_{z}\}$ is
+admissible if the mapping
+\[
+z\to\int_{N}(T_{z}f)g\,d\nu
+\]
+is analytic in the interior of $S$, continuous on $S$ and there exists a
+constant $a < \pi$ such that
+\[
+e^{-a|y|}\log\left|\int_{N}(T_{z}f)g\,d\nu\right|,
+\]
+$z = x + iy$, is uniformly bounded above in the strip $S$.
+
+The extension of Theorem~\ref{thm:c5-1-3} is, then, the following one:
+
+\begin{theorem}\label{thm:c5-4-1}
+Suppose $\{T_{z}\}$, $z \in S$, is an admissible family of linear operators
+satisfying
+\[
+\|T_{iy}f\|_{q_{0}}\leq M_{0}(y)\|f\|_{p_{0}}
+\qquad\text{and}\qquad
+\|T_{1+iy}f\|_{q_{1}}\leq M_{1}(y)\|f\|_{p_{1}}
+\]
+for all simple functions $f$ in $L^{1}(M, m, \mu)$, where
+$1 \leq p_{j}$, $q_{j} \leq \infty$, $M_{j}(y)$, $j = 0$, 1, are independent
+of $f$ and satisfy
+\[
+\sup_{-\infty<y<\infty}e^{-b|y|}\log M_{j}(y)<\infty
+\]
+for some $b < \pi$. Then, if $0 \leq t \leq 1$, there exists a constant
+$M_{t}$ such that
+\[
+\|T_{t}f\|_{q_{t}}\leq M_{t}\|f\|_{p_{t}}
+\]
+for all such simple functions $f$ provided
+$1/p_{t} = (1 - t)/p_{0} + t/p_{1}$ and
+$1/q_{t} = (1 - t)/q_{0} + t/q_{1}$.
+\end{theorem}
+
+The proof of this theorem is very similar to that of the M. Riesz convexity
+theorem once we have established the following extension of the three lines
+theorem (Lemma~\ref{lem:c5-1-4}):
+
+\begin{lemma}\label{lem:c5-4-2}
+Suppose $F$ is a continuous function on $S$ that is analytic in the interior
+of $S$ satisfying
+\begin{equation}\label{eq:c5-4-3}
+\sup_{0 \leq x \leq 1,\ -\infty<y<\infty}e^{-a|y|}\log|F(x+iy)|<\infty
+\end{equation}
+for some $a < \pi$. Then
+\begin{equation}\label{eq:c5-4-4}
+\begin{aligned}
+\log|F(x)|&\\
+&\leq\tfrac{1}{2}\sin\pi x\int_{-\infty}^{\infty}
+\left\{\frac{\log|F(iy)|}{\cosh\pi y-\cos\pi x}
++\frac{\log|F(1+iy)|}{\cosh\pi y+\cos\pi x}\right\}dy
+\end{aligned}
+\end{equation}
+whenever $0 < x < 1$.
+\end{lemma}
+
+\begin{proof}
+For $\zeta \in D = \{z \in \mathbb{C} : |z| \leq 1\}$, $\zeta \neq 1$, $-1$,
+let
+\[
+h(\zeta)=(1/\pi i)\log i(1+\zeta)/(1-\zeta).
+\]
+The function $h$ is easily seen to be the composition of the conformal mapping
+$\zeta \to w = i(1 + \zeta)/(1 - \zeta)$ of the closed unit disk $D$, minus the
+points 1 and $-1$, onto the upper half plane
+$\{w \in \mathbb{C} : w \neq 0$, $\operatorname{Im} w \geq 0\}$ and of the
+conformal mapping $w \to z = (\log w)/\pi i$ of this half-plane onto $S$.
+Thus, $h$ maps $D - \{1, -1\}$ conformally onto $S$. Moreover, for $z \in S$
+\[
+\zeta=h^{-1}(z)=\frac{e^{\pi iz}-i}{e^{\pi iz}+i}.
+\]
+If we define $G(\zeta) = F(h(\zeta))$ for $\zeta \in D - \{1, -1\}$ we obtain
+an analytic function on the open unit disk that is continuous on the closed
+unit disk with the exception of the points 1 and $-1$. If $0 \leq \rho < R < 1$,
+an application of the Poisson-Jensen formula gives us, for
+$\zeta = \rho e^{i\theta}$,
+\begin{equation}\label{eq:c5-4-5}
+\log|G(\zeta)|\leq\frac{1}{2\pi}\int_{-\pi}^{\pi}
+\frac{R^{2}-\rho^{2}}{R^{2}-2R\rho\cos(\theta-\varphi)+\rho^{2}}
+\log|G(Re^{i\varphi})|\,d\varphi.
+\end{equation}
+Condition \eqref{eq:c5-4-3}, expressed in terms of $G$ and
+$\eta = h^{-1}(x + iy)$, implies
+\[
+\log|G(\eta)|\leq A\{|1+\eta|^{-(a/\pi)}+|1-\eta|^{-(a/\pi)}\}
+\]
+for some constant $A$, independent of $\eta \in D$. Since $a/\pi < 1$ this
+inequality, with $\eta = Re^{i\varphi}$, allows us to apply the dominated
+convergence theorem of Lebesgue to the integral in \eqref{eq:c5-4-5} and we
+see, by letting $R$ tend to 1, that
+\begin{equation}\label{eq:c5-4-6}
+\log|G(\zeta)|\leq\frac{1}{2\pi}\int_{-\pi}^{\pi}
+\frac{1-\rho^{2}}{1-2\rho\cos(\theta-\varphi)+\rho^{2}}
+\log|G(e^{i\varphi})|\,d\varphi
+\end{equation}
+for $\zeta = \rho e^{i\theta}$, $\rho < 1$. We now claim that the desired
+inequality \eqref{eq:c5-4-4} can be obtained from \eqref{eq:c5-4-6} by a change
+of variables. First we note that the condition
+$0 < x = h(\rho e^{i\theta}) < 1$ can be easily translated to a condition on
+$\rho$ and $\theta$: since, in this case, we must have
+\[
+\rho e^{i\theta}=h^{-1}(x)=\frac{e^{\pi ix}-i}{e^{\pi ix}+i}
+=-i\frac{\cos\pi x}{1+\sin\pi x}
+=\left\{\frac{\cos\pi x}{1+\sin\pi x}\right\}e^{-i(\pi/2)},
+\]
+it follows that $\rho = (\cos\pi x)/(1 + \sin\pi x)$ and $\theta = -(\pi/2)$,
+when $0 < x \leq \frac{1}{2}$, while
+$\rho = -(\cos\pi x)/(1 + \sin\pi x)$ and $\theta = \pi/2$, when
+$\frac{1}{2} \leq x < 1$. In the first case we have
+\begin{align*}
+\frac{1-\rho^{2}}{1-2\rho\cos(\theta-\varphi)+\rho^{2}}
+&=\frac{1-\rho^{2}}{1-2\rho\cos(\varphi+\pi/2)+\rho^{2}}\\
+&=\frac{1-\rho^{2}}{1+2\rho\sin\varphi+\rho^{2}}\\
+&=\frac{\sin\pi x}{1+\cos\pi x\sin\varphi};
+\end{align*}
+moreover, this equality is also valid when $\frac{1}{2} \leq x < 1$. As we can
+see from the relation
+$e^{i\varphi} = h^{-1}(iy) = (e^{-\pi y} - i)/(e^{-\pi y} + i)$, as $\varphi$
+ranges from $-\pi$ to 0, $y$ ranges from $+\infty$ to $-\infty$. Furthermore,
+$\sin\varphi = -1/(\cosh\pi y)$ and
+$d\varphi = -[\pi/(\cosh\pi y)]\,dy$. We therefore obtain
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^{0}\frac{1-\rho^{2}}{1-2\rho\cos(\theta-\varphi)+\rho^{2}}\log|G(e^{i\varphi})|\,d\varphi
+=\frac{1}{2}\int_{-\infty}^{\infty}\frac{\sin\pi x}{\cosh\pi y-\cos\pi x}\log|F(iy)|\,dy.
+\end{align*}
+Similarly, as $\varphi$ ranges from 0 to $\pi$, $h(e^{i\varphi})$ describes the
+points $1 + iy$ with $-\infty < y < \infty$ and we obtain
+\begin{align*}
+\frac{1}{2\pi}\int_{0}^{\pi}\frac{1-\rho^{2}}{1-2\rho\cos(\theta-\varphi)+\rho^{2}}\log|G(e^{i\varphi})|\,d\varphi
+=\frac{1}{2}\int_{-\infty}^{\infty}\frac{\sin\pi x}{\cosh\pi y+\cos\pi x}\log|F(1+iy)|\,dy.
+\end{align*}
+This proves the lemma.
+\end{proof}
+
+Before showing how \eqref{lem:c5-4-2} can be used in order to prove
+Theorem~\ref{thm:c5-4-1} we make some observations. First, we show that
+Lemma~\ref{lem:c5-4-2} is, indeed, an extension of the three lines theorem. We
+have
+\begin{align*}
+\frac{1}{2}\int_{-\infty}^{\infty}\frac{\sin\pi x}{\cosh\pi y+\cos\pi x}\,dy
+&=\frac{1}{2}\int_{-\infty}^{\infty}
+\frac{\tan(\pi/2)x}{(1+\tan^{2}(\pi/2)x\,\tanh^{2}(\pi/2)y)\cosh^{2}(\pi/2)y}\,dy\\
+&=\frac{1}{\pi}\int_{-1}^{1}\frac{\tan(\pi/2)x}{1+s^{2}\tan^{2}(\pi/2)x}\,ds
+=\frac{2}{\pi}\int_{0}^{1}\frac{\tan(\pi/2)x}{1+s^{2}\tan^{2}(\pi/2)x}\,ds\\
+&=\frac{2}{\pi}\int_{0}^{\tan(\pi/2)x}\frac{du}{1+u^{2}}
+=\frac{2}{\pi}\tan^{-1}\bigl(\tan(\pi/2)x\bigr)=x.
+\end{align*}
+Since $\sin\pi(1-x) = \sin\pi x$ and $\cos\pi(1-x) = -\cos\pi x$, we also have
+\[
+\frac{1}{2}\int_{-\infty}^{\infty}\frac{\sin\pi x}{\cosh\pi y-\cos\pi x}\,dy=1-x.
+\]
+Consequently, if condition \eqref{eq:c5-4-3} were replaced by the conditions
+$|F(iy)| \leq m_{0}$, $|F(1 + iy)| \leq m_{1}$ and the fact that $|F|$ is
+uniformly bounded in $S$, then the equalities we have just established and
+\eqref{eq:c5-4-4} imply $|F(x + iy)| \leq m_{0}^{1-x}m_{1}^{x}$. That is, the
+three lines theorem (Lemma~\ref{lem:c5-1-4}) is a special case of
+Lemma~\ref{lem:c5-4-2}.
+
+It is clear from the proof of \eqref{lem:c5-4-2} that the integral on the right
+side of inequality \eqref{eq:c5-4-4} is the ``conformal image'' of a
+corresponding Poisson integral on the unit circle. In fact, a small change in
+the argument used to establish \eqref{lem:c5-4-2} gives us the following
+solution to the Dirichlet problem for the strip: If $f$ is defined on the
+vertical lines $x = 0$ and $x = 1$ in such a way that $e^{-a|y|}f(y)$ and
+$e^{-a|y|}f(1 + iy)$ are bounded for some $a < \pi$, then
+\[
+u(x,y)=\tfrac{1}{2}\sin\pi x\int_{-\infty}^{\infty}
+\left\{\frac{f(iy)}{\cosh\pi y-\cos\pi x}
++\frac{f(1+iy)}{\cosh\pi y+\cos\pi x}\right\}dy
+\]
+defines a harmonic function in the interior of $S$ having (nontangential)
+boundary values $f$. The conditions $e^{-a|y|}f(y) = O(1)$ and
+$e^{-a|y|}f(1 + iy) = O(1)$ imply the existence of the above integral (this
+also explains the role played by condition \eqref{eq:c5-4-3}).
+
+We now pass to the proof of Theorem~\ref{thm:c5-4-1}. Let $f \in L^{1}(M)$ and
+$g \in L^{1}(N)$ be simple functions satisfying
+\[
+\|f\|_{p}=1=\|g\|_{q'},
+\]
+where $p = p_{t}$, $q = q_{t}$ and $1/q + 1/q' = 1$. Suppose that
+$f = \sum_{j=1}^{m}a_{j}\chi_{E_{j}}$ and
+$g = \sum_{k=1}^{n}b_{k}\chi_{F_{k}}$. Using the same notation that was
+introduced in the proof of the M. Riesz convexity theorem
+(Theorem~\ref{thm:c5-1-3}), we construct the function
+\[
+F(z)=\int_{N}(T_{z}f_{z})g_{z}\,d\nu
+=\sum_{j,k=1}^{m,n}|a_{j}|^{\alpha(z)/\alpha}|b_{k}|^{(1-\beta(z))/(1-\beta)}\gamma_{jk}(z),
+\]
+where
+$\gamma_{jk}(z) = e^{i(\theta_{j} + \varphi_{k})}\int_{N}(T_{z}\chi_{E_{j}})\chi_{F_{k}}\,d\nu$.
+It follows from the assumption that $\{T_{z}\}$ is an admissible family that
+$F$ satisfies the hypotheses of Lemma~\ref{lem:c5-4-2}. Moreover, since
+\[
+|f_{iy}|^{p_{0}}=|f|^{p}=|f_{1+iy}|^{p_{1}}
+\qquad
+|g_{iy}|^{q_{0}'}=|g|^{q'}=|g_{1+iy}|^{q_{1}'}
+\]
+an application of H\"older's inequality gives us $|F(iy)| \leq M_{0}(y)$ and
+$|F(1 + iy)| \leq M_{1}(y)$. Thus, by Lemma~\ref{lem:c5-4-2},
+\begin{align*}
+\bigg|\int_{N}(T_{t}f)g\,d\nu\bigg|&=|F(t)|\\
+&\leq\exp\left[\tfrac{1}{2}\sin\pi t\int_{-\infty}^{\infty}
+\left\{\frac{\log M_{0}(y)}{\cosh\pi y-\cos\pi t}
++\frac{\log M_{1}(y)}{\cosh\pi y+\cos\pi t}\right\}dy\right]=M_{t}.
+\end{align*}
+Since
+$\|T_{t}f\|_{q_{t}} = \sup_{\|g\|_{q_{t}'} = 1}|\int_{N}(T_{t}f)g\,d\nu|$,
+this proves the theorem.
+
+\section{Further Results}
+
+\textbf{5.1.} The theory of interpolation of linear operators has been
+extended in many ways to general Banach spaces. The setting for these
+extensions can be described in the following manner: Let $V$ be a topological
+vector space and $A^{0}$, $A^{1}$ two Banach spaces, with norms $\|\ \|_{0}$
+and $\|\ \|_{1}$, that are continuously embedded in $V$. We can convert
+$A^{0} \cap A^{1}$ and
+$A^{0} + A^{1} = \{a = a_{0} + a_{1} : a_{0} \in A^{0} \text{ and } a_{1} \in A^{1}\}$
+into Banach spaces by introducing the norm
+$\|a\|_{A^{0} \cap A^{1}} = \max\{\|a\|_{0}, \|a\|_{1}\}$ in the former space
+and
+$\|a\|_{A^{0} + A^{1}} = \inf\{\|a_{0}\|_{0} + \|a_{1}\|_{1} : a_{0} \in A^{0}, a_{1} \in A^{1} \ni a_{0} + a_{1} = a\}$
+in the latter. An intermediate space between $A^{0}$ and $A^{1}$ is any Banach
+space $A$ satisfying $A^{0} \cap A^{1} \subset A \subset A^{0} + A^{1}$. For
+example, when $A^{0} = L^{p_{0}}$, $A^{1} = L^{p_{1}}$,
+$1 \leq p_{0}, p_{1} \leq \infty$,
+$1/p_{t} = (1 - t)/p_{0} + t/p_{1}$, $0 \leq t \leq 1$, then $L^{p_{t}}$ is an
+intermediate space between $L^{p_{0}}$ and $L^{p_{1}}$. Suppose an intermediate
+space $A$ is invariant under each linear transformation $T$ of $A^{0} + A^{1}$
+into itself having the property that its restriction to $A^{j}$, $j = 0$, 1, is
+a bounded operator of $A^{j}$ into itself. If, moreover, the restriction of any
+such $T$ to $A$ is also a bounded operator, we say that $A$ is a space of
+linear interpolation between $A^{0}$ and $A^{1}$. It follows from the M. Riesz
+convexity theorem that $L^{p_{t}}$ is a space of linear interpolation between
+$L^{p_{0}}$ and $L^{p_{1}}$.
+
+We can then formulate the general problems in the abstract theory of
+interpolation of linear operators in the following way:
+
+\textup{(i)} Given two Banach spaces $A^{0}$ and $A^{1}$, how can ``all'' the
+spaces of linear interpolation between $A^{0}$ and $A^{1}$ be characterized?
+
+\textup{(ii)} How can one construct spaces of linear interpolation between two
+given Banach spaces $A^{0}$ and $A^{1}$?
+
+\textup{(iii)} Suppose $A$ is a space of linear interpolation between $A^{0}$
+and $A^{1}$. If $B^{0}$ and $B^{1}$ are two other Banach spaces, does there
+exist a space of linear interpolation $B$ (between $B^{0}$ and $B^{1}$) such
+that each linear transformation of $A^{0} + A^{1}$ into $B^{0} + B^{1}$ whose
+restriction to $A^{j}$ maps this space continuously into $B^{j}$, $j = 0$, 1,
+has the property that it maps $A$ continuously into $B$?
+
+\textup{(iv)} Suppose $A$ is a space of linear interpolation that has been
+constructed by some specific method from $A^{0}$ and $A^{1}$ and the ``same''
+method has been employed to obtain $B$ from two other Banach spaces $B^{0}$ and
+$B^{1}$. Is it true that each linear transformation from $A^{0} + A^{1}$ into
+$B^{0} + B^{1}$ that maps $A^{j}$ continuously into $B^{j}$, $j = 0$, 1, also
+maps $A$ continuously into $B$?
+
+An answer to the first problem has been obtained by Gagliardo (see
+\cite{Gagliardo1}). Moreover, Gagliardo's method enabled him to obtain an
+affirmative answer to problem (iii). These results are very general and are not
+as closely related to the material developed in this chapter as are two
+constructive theories of interpolation (that is, answers to problems (ii) and
+(iv)) developed by Lions \cite{Lions1}, Calder\'on \cite{Calderon2}, Lions and
+Peetre \cite{LionsPeetre1}. The next few paragraphs will be devoted to a
+description of these methods of interpolation.
+
+\textbf{5.2.} We begin by describing the complex method of interpolation due
+to Calder\'on. Let $B$ be a Banach space and $D$ a domain in the complex
+plane. A mapping $z \to b(z)$, from $D$ into $B$, is said to be analytic if
+$z \to l[b(z)]$ is an analytic complex-valued function on $D$ for each
+continuous linear functional $l$ on $B$. We introduce an auxiliary space
+$\mathcal{F}(A^{0}, A^{1})$ consisting of all functions $f$ defined on the
+strip $S = \{z \in \mathbb{C} : 0 \leq \operatorname{Re} z \leq 1\}$ with
+values in $A^{0} + A^{1}$ satisfying:
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*,itemsep=0pt]
+\item $f$ is analytic in the interior
+$S^{0} = \{z \in \mathbb{C} : 0 < \operatorname{Re} z < 1\}$ of $S$;
+\item $f$ is continuous and $\|f\|_{A^{0}+A^{1}}$ is bounded on $S$;
+\item $f(it) \in A^{0}$ for $-\infty < t < \infty$,
+$t \to f(it)$ is continuous as a function from $(-\infty, \infty)$ into $A^{0}$
+and $t \to \|f(it)\|_{0}$ is bounded;
+\item $f(1 + it) \in A^{1}$ for $-\infty < t < \infty$,
+$t \to f(1 + it)$ is continuous as a function from $(-\infty, \infty)$ into
+$A^{1}$ and $t \to \|f(1 + it)\|_{1}$ is bounded.
+\end{enumerate}
+
+$\mathcal{F}(A^{0}, A^{1})$ is a Banach space if we introduce the norm
+$\|f\|_{\mathcal{F}} = \|f\|_{\mathcal{F}(A^{0}, A^{1})} = \max\{\sup_{t}\|f(it)\|_{0}, \sup_{t}\|f(1 + it)\|_{1}\}$.
+Suppose $0 \leq t \leq 1$ and $N_{t} = \{f \in \mathcal{F} : f(t) = 0\}$ we
+then define $A_{t}$ to be the space $\mathcal{F}/N_{t}$. Clearly, we can then
+identify $A_{t}$ with the linear space of all elements
+$f(t) \in A^{0} + A^{1}$ with $f \in \mathcal{F}$. We obtain a Banach space if
+we introduce on $A_{t}$ the usual quotient space norm
+$\|a\|_{A_{t}} = \inf\{\|f\|_{\mathcal{F}} : f \in \mathcal{F}, f(t) = a\}$
+whenever $a \in A_{t}$. We shall assume that $\{0\} \neq A^{0} \cap A^{1}$.
+
+It is clear that $A_{t}$ is an intermediate space between $A^{0}$ and $A^{1}$.
+It can be shown, moreover, that $A_{t}$ is a space of linear interpolation
+between $A^{0}$ and $A^{1}$. In fact, we obtain the following solution to
+problem (iv) announced above:
+
+If $B^{0}$ and $B^{1}$ are two Banach spaces and $T$ is a linear
+transformation from $A^{0} + A^{1}$ into $B^{0} + B^{1}$ that maps $A^{j}$ into
+$B^{j}$, $j = 0$, 1, in such a way that $\|Ta\|_{j} \leq M_{j}\|a\|_{j}$ for
+all $a \in A^{j}$ then $T$ maps $A_{t}$ into $B_{t}$ and
+$\|Ta\|_{B_{t}} \leq M_{0}^{(1-t)}M_{1}^{t}\|a\|_{A_{t}}$ for all
+$a \in A_{t}$.
+
+Calder\'on gives another (but related) construction of spaces of linear
+interpolation between $A^{0}$ and $A^{1}$ that leads to another solution to
+problem (iv). When we apply either of these results, however, we must identify
+the spaces of linear interpolation that have been obtained. In order to better
+understand the significance of this new problem we present some basic examples
+of interpolation of linear operators (for the most part, these were known
+before the formulation of the general theory).
+
+\textbf{5.3.} Suppose $(M, \mathcal{M}, \mu)$ is a measure space and
+$A^{j} = L^{p_{j}}(M)$, $1 \leq p_{j} \leq \infty$ for $j = 0$, 1. We can
+embed $A^{0}$ and $A^{1}$ in, say, the space $V$ of locally integrable
+functions. Then, there exists a norm preserving isomorphism between $A_{t}$ and
+$L^{p_{t}}(M)$, where $1/p_{t} = (1 - t)/p_{0} + t/p_{1}$, $0 \leq t \leq 1$,
+provided $p_{t} < \infty$. In case $p_{t} = \infty$, $p_{t}$ must be either
+$p_{0}$ or $p_{1}$; let us suppose $p_{t} = p_{0}$ and $p_{1} < \infty$. We do
+not then obtain, in general, a norm preserving isomorphism between $A_{0}$ and
+$A^{0} = L^{\infty}(M)$. It can be shown, however, that $A_{0}$ can be
+identified with the closure in the $L^{\infty}$ norm of the set of functions
+$f \in L^{\infty}(M)$ for which
+$\mu(\{x \in M : |f(x)| > \alpha\}) < \infty$ for all $\alpha > 0$. If
+$B^{0} = L^{q_{0}}(N)$ and $B^{1} = L^{q_{1}}(N)$, where
+$(N, \mathcal{N}, \nu)$ is another measure space, the theorem stated in
+paragraph 5.2 is a reformulation of the M. Riesz convexity theorem
+(Theorem~\ref{thm:c5-1-3}).
+
+\textbf{5.4.} Suppose $(M, \mathcal{M}, \mu)$ is a measure space and
+$\mu_{j}$, $j = 0$, 1, is a measure on $\mathcal{M}$ that is absolutely
+continuous with respect to $\mu$. If $A^{j} = L^{p_{j}}(M, \mu_{j})$ then
+there exists a norm-preserving isomorphism between $A_{t}$ and
+$L^{p_{t}}(M, \mu_{t})$ where
+$0 < 1/p_{t} = (1 - t)/p_{0} + t/p_{1}$ and
+$d\mu_{t} = \alpha_{0}^{1-t}\alpha_{1}^{t}\,d\mu$, with $0 \leq t \leq 1$
+($\alpha_{j}$ being the Radon-Nikodym derivative of $\mu_{j}$, $j = 0$, 1, with
+respect to $\mu$). When $p_{t} = \infty$ we have to make the modifications
+described in 5.3. See Stein and G. Weiss \cite{SteinWeiss5}.
+
+\textbf{5.5.} For $p \geq 1$ let $H^{p}$ be the space of all functions
+$F(z)$ that are analytic in the upper half-plane $\operatorname{Im} z > 0$ and
+satisfy
+\[
+\|F\|_{p}=\sup_{y>0}\left(\int_{-\infty}^{\infty}|F(x+iy)|^{p}\,dx\right)^{1/p}<\infty.
+\]
+This is the $H^{p}$ space associated with the tube whose base is the positive
+real line (see Chapter III). If $A^{j} = H^{p_{j}}$, $1 \leq p_{j} < \infty$,
+then $A_{t}$, $0 \leq t \leq 1$, is equivalent to $H^{p_{t}}$ (that is, there
+exists an invertible linear map of $A_{t}$ onto $H^{p_{t}}$). (See Salem and
+Zygmund \cite{SalemZygmund1}, Calder\'on and Zygmund \cite{CalderonZygmund2}
+and G. Weiss \cite{Weiss1}.) The identification of the spaces of linear
+interpolation between two $H^{p}$ spaces associated with higher dimensional
+tubes is an open problem. This also applies to the $H^{p}$ spaces of systems of
+conjugate harmonic functions that are discussed in the next chapter.
+
+\textbf{5.6.} Suppose $0 < \alpha < 2$, we then consider the space
+$\lambda_{\alpha} = \lambda_{\alpha}(E_{n})$ consisting of all continuous
+bounded functions on $E_{n}$ satisfying
+$\sup_{x}|f(x + t) + f(x - t) - 2f(x)| = o(|t|^{\alpha})$ as $|t| \to 0$. This
+space is a Banach space with the norm
+$\|f\|^{(\alpha)} = \|f\|_{\infty} + \sup_{x,t}\{|t|^{-\alpha}|f(x + t) + f(x - t) - 2f(x)|\}$.
+For general $\alpha > 0$ we define $\lambda_{\alpha}$ to be the space of all
+$C^{k}$ functions, where $k$ is the largest integer strictly smaller than
+$\alpha$, satisfying $D^{\beta}f \in \lambda_{\alpha-k}$, for
+$0 \leq |\beta| = \beta_{1} + \cdots + \beta_{n} < \alpha$ (we are using the
+notation introduced in \eqref{eq:c1-1-9} of Chapter I). Then $\lambda_{\alpha}$
+is a Banach space with the norm
+$\|f\|^{(\alpha)} = \sum_{|\beta| < \alpha}\|D^{\beta}f\|^{(\alpha-k)}$. If
+$A^{j} = \lambda_{\alpha_{j}}$, $j = 0$, 1, then $A_{t}$ is equivalent to
+$\lambda_{\alpha}$, where $\alpha = (1 - t)\alpha_{0} + t\alpha_{1}$. (See
+Taibleson \cite{Taibleson1} and Calder\'on \cite{Calderon2}.)
+
+\textbf{5.7.} The following example is usually studied in the context of
+$E_{n}$ but is simpler to describe in the setting of multiple Fourier series.
+For any $\alpha \geq 0$ we define the space $L_{\alpha}^{p}(T_{n})$ to be the
+set of those $f \in L^{p}(T_{n})$ with
+$f(x) \sim \sum_{m}a_{m}e^{2\pi im \cdot x}$ so that
+$a_{0} + \sum_{m \neq 0}|m|^{\alpha}a_{m}e^{2\pi im \cdot x}$ is the Fourier
+series of a function $f^{(\alpha)} \in L^{p}(T_{n})$ (we are using the
+notation that is introduced at the beginning of Chapter VII). This space is a
+Banach space with the norm $\|f\|_{p}^{(\alpha)} = \|f^{(\alpha)}\|_{p}$.
+Suppose $A^{j} = L_{\alpha_{j}}^{p}$, $1 < p_{j} < \infty$, $j = 0$, 1, then
+$A_{t}$ is equivalent to $L_{\alpha}^{p}$, where
+$1/p = (1 - t)/p_{0} + t/p_{1}$ and $\alpha = (1 - t)\alpha_{0} + t\alpha_{1}$.
+The proof of this fact makes use of Theorem~\ref{thm:c5-4-1} and the fact that
+$f \to \sum_{m}|m|^{-i\gamma}a_{m}e^{2\pi im \cdot x}$ is a bounded operator on
+$L^{p}(T^{n})$ for $1 < p < \infty$ when $\gamma$ is real.
+
+\textbf{5.8.} The classical interpolation theorem of M. Riesz, as formulated
+in 5.3 or in Section 1 of this chapter, can be extended to the case of
+Banach-space-valued functions on a measure space. For a detailed statement of
+this result, see Calder\'on \cite{Calderon2}. Special cases, where the values
+of the functions are themselves $L^{q}$ spaces, were obtained earlier by Boas
+and Bochner \cite{BoasBochner1} and by Benedeck and Panzone
+\cite{BenedekPanzone1}. Another extension of the classical interpolation
+theorem of M. Riesz can be formulated for Banach Lattices (these being Banach
+function spaces such that $|f| \leq |g|$ implies $\|f\| \leq \|g\|$. For a
+precise statement see Calder\'on \cite{Calderon2}). This extension includes the
+M. Riesz theorem, the example described in 5.4 and an interpolation theorem
+involving $L(p, q)$ spaces that were defined in the third section.
+
+\textbf{5.9.} The constructive theory of interpolation mentioned in 5.1 which
+was introduced by Gagliardo, Lions and Peetre can be described in the following
+way. In terms of the notation introduced in 5.1 we define a norm on
+$A^{0} + A^{1}$ for each $t > 0$ by letting
+$K_{a}(t) = \inf\{\|a_{0}\|_{0} + t\|a_{1}\|_{1} : a_{0} + a_{1} = a, a_{0} \in A^{0}, a_{1} \in A^{1}\}$.
+It follows immediately from this definition that $K_{a}$ is a concave and
+nonnegative function on the positive real numbers. Suppose now that $\Phi$ is
+a nonnegative (possibly infinite-valued) function defined on the set of all
+nonnegative Lebesgue measurable functions on $(0, \infty)$ satisfying:
+\[
+\begin{aligned}
+&\textup{(i)}\quad \Phi(h)=0 \text{ if and only if } h(t)=0 \text{ a.e.};\\
+&\textup{(ii)}\quad \text{if } \Phi(h)<\infty \text{ then } h(t)<\infty \text{ a.e.};\\
+&\textup{(iii)}\quad \Phi(ah)=a\Phi(h) \text{ when } a>0;\\
+&\textup{(iv)}\quad \text{if } h(t)\leq\sum_{j=1}^{\infty}h_{j}(t) \text{ a.e. then } \Phi(h)\leq\sum_{j=1}^{\infty}\Phi(h_{j}).
+\end{aligned}
+\]
+Such a function $\Phi$ is called a function norm and the set
+$A(\Phi) = \{a \in A^{0} + A^{1} : \Phi(K_{a}) < \infty\}$ is a subspace of
+$A^{0} + A^{1}$. The mapping $a \to \Phi(K_{a})$ is a norm on $A(\Phi)$ which
+shall be denoted by $\|a\|_{\Phi}$. When $\Phi$ satisfies certain general
+conditions the space $A(\Phi)$ is a space of linear interpolation between
+$A^{0}$ and $A^{1}$; moreover, we then have an interpolation theorem that gives
+us a solution to problem (iv) that was posed in 5.1: Suppose $T$ is a linear
+transformation from $A^{0} + A^{1}$ into $B^{0} + B^{1}$ that maps $A^{j}$ into
+$B^{j}$, $j = 0$, 1, in such a way that $\|Ta\|_{j} \leq M_{j}$ for all
+$a \in A^{j}$; then $T$ maps $A(\Phi)$ into $B(\Phi)$ and there exists a
+constant $M = M(\Phi, M_{0}, M_{1})$ such that $\|Ta\|_{B(\Phi)} \leq M\|a\|_{A(\Phi)}$
+for all $a \in A(\Phi)$. The proof of this theorem is particularly simple if
+$\Phi$ satisfies the following condition: There exists a nonnegative function
+$\psi$ on $(0, \infty)$ such that $\Phi(h^{\lambda}) \leq \psi(\lambda)\Phi(h)$,
+where $\lambda > 0$ and $h^{\lambda}(t) = h(\lambda t)$. When this is the case,
+we have $\|Ta\|_{B(\Phi)} = \Phi(K_{Ta}) \leq M_{0}\Phi(K_{a}^{M_{1}/M_{0}})
+\leq M_{0}\psi(M_{1}/M_{0})\Phi(K_{a}) = M_{0}\psi(M_{1}/M_{0})\|a\|_{A(\Phi)}$
+(the first inequality being a consequence of the hypotheses on $T$ and the
+second following from our new assumption on $\Phi$). Thus, the interpolation
+theorem is obtained with $M \leq M_{0}\psi(M_{1}/M_{0})$. If, for example,
+$\psi(\lambda) = \lambda^{s}$ for $0 \leq s \leq 1$ we then have the familiar
+inequality $M \leq M_{0}^{1-s}M_{1}^{s}$.
+
+\textbf{5.10.} When $A^{0} = L^{1}$, $A^{1} = L^{\infty}$ and
+$f \in L^{1} + L^{\infty}$ it is not hard to establish that
+$K_{f}(t) = \int_{0}^{t}f^{*}(u)\,du$. The following observations show that it
+suffices to consider only the case $f \geq 0$ and, in this case,
+$K_{f}(t) = \inf\{\|f_{0}\|_{L^{1}} + t\|f_{1}\|_{L^{\infty}} : f = f_{0} + f_{1}, f_{j} \geq 0 \text{ and } f_{j} \in A^{j}, j = 0, 1\}$.
+Suppose $f = f_{0} + f_{1}$; then
+$|f| = (\operatorname{sgn}\bar{f})f = (\operatorname{sgn}\bar{f})f_{0} + (\operatorname{sgn}\bar{f})f_{1} = g_{0} + g_{1}$;
+similarly, if $|f| = g_{0} + g_{1}$ then
+$f = (\operatorname{sgn}\bar{f})g_{0} + (\operatorname{sgn}\bar{f})g_{1} = f_{0} + f_{1}$.
+In either case we have
+$\|f_{0}\|_{L^{1}} + t\|f_{1}\|_{L^{\infty}} = \|g_{0}\|_{L^{1}} + t\|g_{1}\|_{L^{\infty}}$
+and, thus, $K_{f} = K_{|f|}$. When $f$ is real-valued and $f = f_{0} + f_{1}$
+then $f = \operatorname{Re}f_{0} + \operatorname{Re}f_{1}$; thus, in estimating
+$K_{f}$ it suffices to consider only real-valued $f_{0}$ and $f_{1}$. Finally,
+if $f \geq 0$ and $f = f_{0} + f_{1}$ let $f_{0}' = \inf\{f_{0}^{+}, f\}$ and
+$f_{1}' = f - f_{0}'$. Then, $f = f_{0}' + f_{1}'$,
+$0 \leq f_{0}' \leq f_{0}^{+} \leq |f_{0}|$ and
+$0 \leq f_{1}' = f - f_{0}' \leq |f - f_{0}| = |f_{1}|$. Consequently,
+$\|f_{0}'\|_{L^{1}} + t\|f_{1}'\|_{L^{\infty}} \leq \|f_{0}\|_{L^{1}} + t\|f_{1}\|_{L^{\infty}}$.
+We can, therefore, assume that $f = f_{0} + f_{1}$ with all three functions
+being nonnegative. If $s = \|f_{1}\|_{L^{\infty}}$ define
+$f^{(s)} = f \wedge s = \inf\{f, s\}$ and $g = f - f^{(s)}$. By changing $f_{1}$
+on a set of measure 0, if necessary, we can assume $0 \leq f_{1}(x) \leq s$ for
+all $x$. Since $f_{1} \leq f$ it follows that $f_{1} \leq f^{(s)}$ and,
+consequently, $g = f - f^{(s)} \leq f - f_{1} = f_{0}$. This shows that
+$\|g\|_{L^{1}} + t\|f^{(s)}\|_{L^{\infty}} = \|g\|_{L^{1}} + st \leq \|f_{0}\|_{L^{1}} + st \leq \|f_{0}\|_{L^{1}} + t\|f_{1}\|_{L^{\infty}}$.
+Therefore, for $f \geq 0$ we have
+$K_{f}(t) = \inf_{s \geq 0}\{\|f - f^{(s)}\|_{L^{1}} + ts : f^{(s)} = f \wedge s\}$.
+If $\lambda$ denotes the distribution function of $f$ and
+$s_{0} = \inf\{s : \lambda(s) < t\}$ we will now show that
+$K_{f}(t) = \|f - f^{(s_{0})}\|_{L^{1}} + ts_{0}$. First suppose $s_{1} > s_{0}$;
+then $f^{(s_{1})}(x) - f^{(s_{0})}(x)$ equals 0 when $f(x) \leq s_{0}$, equals
+$f(x) - s_{0}$ if $s_{0} < f(x) \leq s_{1}$, and takes on the value $s_{1} - s_{0}$
+if $s_{1} < f(x)$. Thus, since $\lambda(s_{0}) \leq t$,
+\begin{align*}
+\|f&-f^{(s_{1})}\|_{L^{1}}+ts_{1}-(\|f-f^{(s_{0})}\|_{L^{1}}+ts_{0})\\
+&=t(s_{1}-s_{0})-\int(f^{(s_{1})}-f^{(s_{0})})\,d\mu\\
+&\geq\lambda(s_{0})(s_{1}-s_{0})-\int_{f(x)>s_{0}}(f^{(s_{1})}-f^{(s_{0})})\,d\mu\\
+&\geq\lambda(s_{0})(s_{1}-s_{0})-\lambda(s_{0})(s_{1}-s_{0})=0.
+\end{align*}
+Now suppose $s_{1} < s_{0}$ and $s_{1} \leq s < s_{0}$. For $s$ in this
+interval $\lambda(s) \geq t$; therefore,
+\begin{align*}
+\|f&-f^{(s_{1})}\|_{L^{1}}+ts_{1}-(\|f-f^{(s)}\|_{L^{1}}+st)\\
+&\geq\int_{f(x)>s_{1}}(f^{(s)}-f^{(s_{1})})\,d\mu-\lambda(s)(s-s_{1})\\
+&\geq\int_{f(x)>s}(s-s_{1})\,d\mu-\lambda(s)(s-s_{1})\\
+&=0.
+\end{align*}
+By continuity the inequality
+$\|f - f^{(s_{1})}\|_{L^{1}} + ts_{1} \geq \|f - f^{(s)}\|_{L^{1}} + ts$ must
+hold for $s = s_{0}$ and we have shown that
+$K_{f}(t) = \|f - f^{(s_{0})}\|_{L^{1}} + ts_{0}$. It follows from the
+definition of $f^{*}$ that $f^{*}(u) = s_{0}$ when $\lambda(s_{0}) \leq u < t$.
+This, together with equality (ii) of Lemma~\ref{lem:c5-3-17}, gives us
+\begin{align*}
+K_{f}(t)&=\int(f-f^{(s_{0})})\,d\mu+ts_{0}
+=\int_{f(x)>s_{0}}f\,d\mu-s_{0}\lambda(s_{0})+ts_{0}\\
+&=\int_{0}^{\lambda(s_{0})}f^{*}(u)\,du+\int_{\lambda(s_{0})}^{t}f^{*}(u)\,du
+=\int_{0}^{t}f^{*}(u)\,du.
+\end{align*}
+If we now choose the function norm
+\[
+\Phi(h)=\left((q/p)\int_{0}^{\infty}(t^{(1/p)-1}h(t))^{q}\,(dt/t)\right)^{1/q}
+\]
+we see that the space $A(\Phi)$ defined in 5.9 is $L(p, q)$, with
+$1 < p \leq \infty$, and the norm is identical with $\|\ \|_{pq}$.
+
+\textbf{5.11.} In the first section of this chapter we gave a geometrical
+interpretation of the M. Riesz convexity theorem in terms of the points of the
+unit square $Q = \{(\alpha, \beta) : 0 \leq \alpha, \beta \leq 1\}$. A similar
+interpretation can be given for the Marcinkiewicz theorem
+(Theorem~\ref{thm:c5-2-4}); however, in this case only the points of the
+``lower triangle'' $\{(\alpha, \beta) \in Q : \alpha \geq \beta\}$ are
+involved. One can show by example that this theorem is not valid in the
+``upper triangle'' (see Hunt \cite{Hunt1}). In his paper \cite{Riesz2} M. Riesz
+showed that his convexity theorem is valid for the entire unit square $Q$ only
+if the $L^{p}$ spaces under consideration consist of complex-valued functions.
+In case only real-valued functions are considered, M. Riesz gave examples
+showing that the convexity result fails in the upper triangle and, yet, is
+valid for the lower triangle. It follows immediately from the complex case,
+however, that, given the hypotheses of Theorem~\ref{thm:c5-1-3}, there exists a
+constant $k_{t}$ (not necessarily less than or equal to $k_{0}^{1-t}k_{1}^{t}$)
+such that the operator $T$ is of type $(p_{t}, q_{t})$ with
+$(p_{t}, q_{t})$-norm $\leq k_{t}$. In this connection, it is of interest to
+remark that virtually all operators that arise in a natural way in Fourier
+analysis are of type (or weak type) $(p, q)$ for some indices $p$ and $q$
+satisfying $p \leq q$; thus, interpolation results corresponding to points of
+the ``lower triangle'' suffice for our purpose.
+
+\textbf{5.12.} When $p = 1$ and $1 < q \leq \infty$, then there is no norm
+equivalent with $\|\cdot\|_{pq}^{*}$, and thus these spaces $L(p, q)$ cannot be
+normed. Let us show this in the case $q = \infty$. On $E_{1}$ we consider the
+sequence of functions $\{f_{k}\}$ defined by $f_{k}(x) = 1/|x - k|$. Then each
+$f_{k} \in L(1, \infty)$, and $\|f_{k}\|_{1\infty}^{*}$ is independent of $k$.
+Let $f = \sum_{k=1}^{N}f_{k}$. If $\|\cdot\|$ were a norm equivalent with
+$\|\cdot\|_{1\infty}^{*}$, then we would have $\|f\| \leq C_{1}N$, for some
+constant $C_{1}$. However, $f(x) \geq C_{2}\log N$ for $0 \leq x \leq N$, and
+thus $\|f\|_{1\infty}^{*} \geq C_{2}N\log N$, giving a contradiction when
+$N \to \infty$. The proof for $1 < q < \infty$ is similar.
+
+\bibnoteshead
+
+The Marcinkiewicz theorem was first announced in \cite{Marcinkiewicz2}, where
+a sketch of the proof is given for the ``main diagonal''
+$\{(\alpha, \beta) \in Q : \alpha = \beta\}$. Its proof for the ``lower
+triangle,'' as well as many important applications was first published by
+Zygmund \cite{Zygmund2}. The proof of the M. Riesz convexity theorem presented
+in this chapter was discovered by Thorin \cite{Thorin1} and, independently, by
+Tamarkin and Zygmund \cite{TamarkinZygmund1}. Interpolation of analytic
+families of operators is due to Stein \cite{Stein2}. A related result, which
+also makes use of Lemma~\ref{lem:c5-4-2} can be found in Hirschman
+\cite{Hirschman1}. An extension of this type of interpolation to $H^{p}$ spaces
+is found in Stein and G. Weiss \cite{SteinWeiss3}. $L(p, q)$ spaces were
+introduced by Lorentz \cite{Lorentz1}. Calder\'on was the first to use the
+function $m_{f}^{*}$ and to point out how it induces a norm on $L(p, q)$. For
+the general theory of these spaces see Hunt \cite{Hunt1} and Oklander
+\cite{Oklander1}. Our treatment of the results leading to the interpolation
+Theorem~\ref{thm:c5-3-15} is adapted from Hunt \cite{Hunt1}. For related
+results see Stein and G. Weiss \cite{SteinWeiss2}, Krein and Semenov
+\cite{KreinSemenov1}, Calder\'on \cite{Calderon2} and Lions and Peetre
+\cite{LionsPeetre1}. Two expository articles describing various general methods
+of interpolation and how they are related to each other are Krein and Petunin
+\cite{KreinPetunin1} and Magenes \cite{Magenes1}. Weak type inequalities for
+the Hilbert transform go back to Kolmogorov \cite{Kolmogorov1}, Besicovitch
+\cite{Besicovitch1} and Titchmarsh \cite{Titchmarsh1}.

@@ -1,0 +1,694 @@
+% ==================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S4.2  Taylor 公式的应用
+% ==================================================================
+%  源：原书印刷页 261-277（PDF 物理页 267-283）
+%  底本：PaddleOCR-VL-1.6 + 高清影印比对校订
+%  规范：全西文半角标点；单一落盘出口 _texout.py
+% ==================================================================
+\section{Taylor 公式的应用}\label{sec:4.2}
+
+众所周知, L'Hospital 法则是 $\frac{0}{0}$, $\frac{\infty}{\infty}$ 型等不定型极限计算的有效方法, 但有时求导是很麻烦的, 应用 Taylor 公式来计算这种极限是十分方便的. 用 Taylor 公式还可证明不等式, 求极值以及近似计算.
+
+\subsection*{1. 应用 Taylor 公式计算极限}
+
+\begin{example}\label{ex:4.2.1}
+计算 $\lim_{x\to 0}\frac{\cos x-\mathrm{e}^{-\frac{x^2}{2}}}{x^4}$.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+\lim_{x\to 0}\frac{\cos x-\mathrm{e}^{-\frac{x^2}{2}}}{x^4}
+&= \lim_{x\to 0}\frac{\left[1-\frac{x^2}{2!}+\frac{x^4}{4!}+o(x^4)\right]-\left[1-\frac{x^2}{2}+\frac{\left(-\frac{x^2}{2}\right)^2}{2!}+o(x^4)\right]}{x^4} \\
+&= \lim_{x\to 0}\frac{-\frac{1}{12}x^4+o(x^4)}{x^4} = \lim_{x\to 0}\left(-\frac{1}{12}+\frac{o(x^4)}{x^4}\right) \\
+&= -\frac{1}{12}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.2.2}
+计算 $\lim_{x\to 0}\frac{\mathrm{e}^{x}\sin x-x(1+x)}{\sin^{3}x}$.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+\lim_{x\to 0}\frac{\mathrm{e}^{x}\sin x-x(1+x)}{\sin^{3}x}
+&= \lim_{x\to 0}\frac{\left(1+x+\frac{x^{2}}{2!}+o(x^{2})\right)\left(x-\frac{x^{3}}{3!}+o(x^{3})\right)-x-x^{2}}{x^{3}} \\
+&= \lim_{x\to 0}\frac{x+x^{2}+\frac{x^{3}}{2}-\frac{x^{3}}{6}+o(x^{3})-x-x^{2}}{x^{3}} \\
+&= \lim_{x\to 0}\frac{\frac{1}{3}x^{3}+o(x^{3})}{x^{3}} = \lim_{x\to 0}\left(\frac{1}{3}+\frac{o(x^{3})}{x^{3}}\right) = \frac{1}{3}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.2.3}
+求 $\lim_{n\to+\infty}\left(\frac{n^{4}}{\mathrm{e}}\left(1+\frac{1}{n}\right)^{n}-n^{4}+\frac{n^{3}}{2}-\frac{11}{24}n^{2}+\frac{7}{16}n\right)$.
+\end{example}
+
+\begin{solution}
+由 Taylor 公式得到
+\begin{align*}
+\frac{n^{4}}{\mathrm{e}}\left(1+\frac{1}{n}\right)^{n}
+&= n^{4}\mathrm{e}^{n\ln\left(1+\frac{1}{n}\right)-1} \\
+&= n^{4}\exp\left[n\left(\frac{1}{n}-\frac{1}{2n^{2}}+\frac{1}{3n^{3}}-\frac{1}{4n^{4}}+\frac{1}{5n^{5}}+o\left(\frac{1}{n^{5}}\right)\right)-1\right] \\
+&= n^{4}\exp\left[-\frac{1}{2n}+\frac{1}{3n^{2}}-\frac{1}{4n^{3}}+\frac{1}{5n^{4}}+o\left(\frac{1}{n^{4}}\right)\right] \\
+&= n^{4}\left\{1+\left[-\frac{1}{2n}+\frac{1}{3n^{2}}-\frac{1}{4n^{3}}+\frac{1}{5n^{4}}+o\left(\frac{1}{n^{4}}\right)\right]\right. \\
+&\quad +\frac{1}{2!}\left[-\frac{1}{2n}+\frac{1}{3n^{2}}-\frac{1}{4n^{3}}+o\left(\frac{1}{n^{3}}\right)\right]^{2} \\
+&\quad +\frac{1}{3!}\left[-\frac{1}{2n}+\frac{1}{3n^{2}}+o\left(\frac{1}{n^{2}}\right)\right]^{3} \\
+&\quad \left.+\frac{1}{4!}\left[-\frac{1}{2n}+o\left(\frac{1}{n}\right)\right]^{4}+o\left(\frac{1}{n^{4}}\right)\right\} \\
+&= n^{4}\left\{1-\frac{1}{2n}+\frac{1}{3n^{2}}-\frac{1}{4n^{3}}+\frac{1}{5n^{4}}+\frac{1}{8n^{2}}-\frac{1}{6n^{3}}+\frac{1}{18n^{4}}+\frac{1}{8n^{4}}\right. \\
+&\quad \left.-\frac{1}{48n^{3}}+\frac{1}{24n^{4}}+\frac{1}{24\times 16n^{4}}+o\left(\frac{1}{n^{4}}\right)\right\} \\
+&= n^{4}-\frac{n^{3}}{2}+\frac{11n^{2}}{24}-\frac{7}{16}n+\frac{2447}{5760}+n^{4}o\left(\frac{1}{n^{4}}\right).
+\end{align*}
+因此
+\[
+\lim_{n\to+\infty}\left[\frac{n^{4}}{\mathrm{e}}\left(1+\frac{1}{n}\right)^{n}-n^{4}+\frac{n^{3}}{2}-\frac{11}{24}n^{2}+\frac{7}{16}n\right]
+=\lim_{n\to+\infty}\left[\frac{2447}{5760}+\frac{o\left(\frac{1}{n^{4}}\right)}{\frac{1}{n^{4}}}\right]=\frac{2447}{5760}.
+\]
+\end{solution}
+
+\begin{example}\label{ex:4.2.4}
+计算 $\lim_{x\to+\infty}\left(\sqrt[6]{x^6+x^5}-\sqrt[6]{x^6-x^5}\right)$.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+\lim_{x\to+\infty}\left(\sqrt[6]{x^6+x^5}-\sqrt[6]{x^6-x^5}\right)
+&= \lim_{x\to+\infty}x\left[\left(1+\frac{1}{x}\right)^{\frac{1}{6}}-\left(1-\frac{1}{x}\right)^{\frac{1}{6}}\right] \\
+&= \lim_{x\to+\infty}x\left[\left(1+\frac{1}{6}\cdot\frac{1}{x}+o\left(\frac{1}{x}\right)\right)-\left(1-\frac{1}{6}\cdot\frac{1}{x}+o\left(\frac{1}{x}\right)\right)\right] \\
+&= \lim_{x\to+\infty}\left[\frac{1}{3}+\frac{o\left(\frac{1}{x}\right)}{\frac{1}{x}}\right]=\frac{1}{3}+0=\frac{1}{3}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.2.5}
+计算 $\lim_{x\to+\infty}x^{\frac{7}{4}}\left(\sqrt[4]{x+1}+\sqrt[4]{x-1}-2\sqrt[4]{x}\right)$.
+\end{example}
+
+\begin{solution}
+\begin{align*}
+&\lim_{x\to+\infty}x^{\frac{7}{4}}\left(\sqrt[4]{x+1}+\sqrt[4]{x-1}-2\sqrt[4]{x}\right) \\
+&= \lim_{x\to+\infty}x^{\frac{7}{4}}x^{\frac{1}{4}}\left[\left(1+\frac{1}{x}\right)^{\frac{1}{4}}+\left(1-\frac{1}{x}\right)^{\frac{1}{4}}-2\right] \\
+&= \lim_{x\to+\infty}x^2\left[1+\frac{1}{4}\cdot\frac{1}{x}+\frac{\frac{1}{4}\left(-\frac{3}{4}\right)}{2!}\left(\frac{1}{x}\right)^2+o\left(\frac{1}{x^2}\right)+1\right. \\
+&\quad \left.+\frac{1}{4}\left(-\frac{1}{x}\right)+\frac{\frac{1}{4}\left(-\frac{3}{4}\right)}{2!}\left(-\frac{1}{x}\right)^2+o\left(\frac{1}{x^2}\right)-2\right] \\
+&= \lim_{x\to+\infty}\left[-\frac{3}{16}+\frac{o\left(\frac{1}{x^{2}}\right)}{\frac{1}{x^{2}}}\right]=-\frac{3}{16}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.2.6}
+计算 $\lim_{x\to+\infty}\frac{\left[(1+x)^{\frac{1}{x}}-x^{\frac{1}{x}}\right](x\ln x)^2}{x^{x^{\frac{1}{x}}}-x}$.
+\end{example}
+
+\begin{solution}
+因为
+\begin{align*}
+(1+x)^{\frac{1}{x}}-x^{\frac{1}{x}}
+&= x^{\frac{1}{x}}\left(1+\frac{1}{x}\right)^{\frac{1}{x}}-x^{\frac{1}{x}} \\
+&= \mathrm{e}^{\frac{1}{x}\ln x}\left[\mathrm{e}^{\frac{1}{x}\ln\left(1+\frac{1}{x}\right)}-1\right] \\
+&= \mathrm{e}^{\frac{1}{x}\ln x}\left[\frac{1}{x}\ln\left(1+\frac{1}{x}\right)+o\left(\frac{1}{x}\ln\left(1+\frac{1}{x}\right)\right)\right] \\
+&= \mathrm{e}^{\frac{1}{x}\ln x}\left[\frac{1}{x^{2}}+o\left(\frac{1}{x^{2}}\right)\right]\sim\frac{1}{x^{2}}\quad (x\to+\infty),
+\end{align*}
+所以
+\[
+\left[(1+x)^{\frac{1}{x}}-x^{\frac{1}{x}}\right](x\ln x)^{2}\sim\frac{1}{x^{2}}x^{2}\ln^{2}x=\ln^{2}x\quad (x\to+\infty).
+\]
+又因为
+\begin{align*}
+x^{x^{\frac{1}{x}}}-x
+&= x\left[x^{x^{\frac{1}{x}}-1}-1\right] \\
+&= x\left[\mathrm{e}^{\left(x^{\frac{1}{x}}-1\right)\ln x}-1\right] \\
+&= x\left[\mathrm{e}^{\left(\mathrm{e}^{\frac{\ln x}{x}}-1\right)\ln x}-1\right] \\
+&= x\left[\mathrm{e}^{\ln x\left(\frac{\ln x}{x}+o\left(\frac{\ln x}{x}\right)\right)}-1\right] \\
+&= x\left[\mathrm{e}^{\frac{\ln^{2}x}{x}+o\left(\frac{\ln^{2}x}{x}\right)}-1\right] \\
+&= x\left[\frac{\ln^{2}x}{x}+o\left(\frac{\ln^{2}x}{x}\right)\right]\sim\ln^{2}x\quad (x\to+\infty),
+\end{align*}
+于是
+\[
+\lim_{x\to+\infty}\frac{\left[(1+x)^{\frac{1}{x}}-x^{\frac{1}{x}}\right](x\ln x)^{2}}{x^{x^{\frac{1}{x}}}-x}
+=\lim_{x\to+\infty}\frac{\ln^{2}x}{\ln^{2}x}=1.
+\]
+\end{solution}
+
+\begin{example}\label{ex:4.2.7}
+设 $f, g\colon X \to \mathbb{R}$ 在 $x=0 \in X$ 处满足条件:
+\begin{enumerate}[label=(\arabic*)]
+  \item $f$ 在 $x=0$ 处 $n$ 阶可导, 且
+  \[
+  f(0)=f'(0)=f''(0)=\cdots=f^{(n-1)}(0)=0,\quad f^{(n)}(0)\neq 0;
+\]
+  \item $g$ 在 $x=0$ 处 $m$ 阶可导, 且
+  \[
+  g(0)=g'(0)=g''(0)=\cdots=g^{(m-1)}(0)=0,\quad g^{(m)}(0)\neq 0.
+\]
+\end{enumerate}
+则
+\begin{align*}
+\lim_{x\to 0}\frac{f(x)}{g(x)}
+&= \lim_{x\to 0}\frac{\dfrac{f^{(n)}(0)}{n!}x^n+o(x^n)}{\dfrac{g^{(m)}(0)}{m!}x^m+o(x^m)} \\
+&= \lim_{x\to 0}x^{n-m}\frac{\dfrac{f^{(n)}(0)}{n!}+\dfrac{o(x^n)}{x^n}}{\dfrac{g^{(m)}(0)}{m!}+\dfrac{o(x^m)}{x^m}} \\
+&= \begin{cases}
+0, & n>m, \\
+\dfrac{f^{(n)}(0)}{g^{(n)}(0)}, & n=m, \\
+\infty, & n<m.
+\end{cases}
+\end{align*}
+\end{example}
+
+\subsection*{2. 应用 Taylor 公式证明不等式}
+
+\begin{example}\label{ex:4.2.8}
+当 $x>0$ 时, 证明:
+\[
+x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\cdots+\frac{x^{2n-1}}{2n-1}-\frac{x^{2n}}{2n}
+<\ln(1+x)
+<x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\cdots+\frac{x^{2n-1}}{2n-1}.
+\]
+\end{example}
+
+\begin{proof}
+$\forall x>0$, 将 $\ln(1+x)$ 展开至 $2n-1$ 次幂, 得到
+\[
+\ln(1+x)-\sum_{k=1}^{2n-1}\frac{(-1)^{k-1}}{k}x^{k}
+=R_{2n-1}(x)=\frac{(-1)^{2n-1}}{2n}\frac{x^{2n}}{(1+\xi_{1})^{2n}}<0,\quad\xi_{1}\in(0,x).
+\]
+又将 $\ln(1+x)$ 展开至 $2n$ 次幂, 得到
+\[
+\ln(1+x)-\sum_{k=1}^{2n}\frac{(-1)^{k-1}}{k}x^{k}
+=R_{2n}(x)=\frac{(-1)^{2n}}{2n+1}\frac{x^{2n+1}}{(1+\xi_{2})^{2n+1}}>0,\quad\xi_{2}\in(0,x).
+\]
+因此
+\[
+\sum_{k=1}^{2n}\frac{(-1)^{k-1}}{k}x^{k}<\ln(1+x)<\sum_{k=1}^{2n-1}\frac{(-1)^{k-1}}{k}x^{k},\quad x>0.
+\]
+\end{proof}
+
+利用例~\ref{ex:4.2.8} 中的不等式, 还可计算一些比较复杂的数列的极限.
+
+\begin{example}\label{ex:4.2.9}
+计算数列极限
+\[
+\lim_{n\to+\infty}\left(1+\frac{1}{n^{2}}\right)\left(1+\frac{2}{n^{2}}\right)\cdots\left(1+\frac{n}{n^{2}}\right).
+\]
+\end{example}
+
+\begin{solution}
+记 $a_{n}=\left(1+\frac{1}{n^{2}}\right)\left(1+\frac{2}{n^{2}}\right)\cdots\left(1+\frac{n}{n^{2}}\right)$, 则
+\[
+\ln a_{n}=\sum_{k=1}^{n}\ln\left(1+\frac{k}{n^{2}}\right).
+\]
+由例~\ref{ex:4.2.8} 可知,
+\[
+\frac{k}{n^{2}}-\frac{k^{2}}{2n^{4}}<\ln\left(1+\frac{k}{n^{2}}\right)<\frac{k}{n^{2}},\quad k=1,2,\cdots,n.
+\]
+将这些不等式对 $k$ 从 $1$ 到 $n$ 求和得
+\[
+\frac{1}{n^{2}}\sum_{k=1}^{n}k-\frac{1}{2n^{4}}\sum_{k=1}^{n}k^{2}<\ln a_{n}<\frac{1}{n^{2}}\sum_{k=1}^{n}k.
+\]
+这也就是
+\[
+\frac{1}{2}\left(1+\frac{1}{n}\right)-\frac{(n+1)(2n+1)}{12n^{3}}<\ln a_{n}<\frac{1}{2}\left(1+\frac{1}{n}\right).
+\]
+令 $n \to +\infty$, 再用夹逼定理得到
+\[
+\lim_{n\to+\infty}a_n=\lim_{n\to+\infty}\mathrm{e}^{\ln a_n}=\mathrm{e}^{\frac{1}{2}}=\sqrt{\mathrm{e}}.
+\]
+\end{solution}
+
+\subsection*{3. 应用 Taylor 公式求极值}
+
+\begin{theorem}\label{thm:4.2.1}
+设 $f$ 在 $x_{0}$ 附近有 $n+1$ 阶连续导数, 且
+\[
+f'(x_{0})=f''(x_{0})=\cdots=f^{(n)}(x_{0})=0,\quad f^{(n+1)}(x_{0})\neq 0.
+\]
+\begin{enumerate}[label=(\arabic*)]
+  \item 如果 $n$ 为偶数, 则 $x_{0}$ 不是 $f$ 的极值点.
+  \item 如果 $n$ 为奇数, 则 $x_{0}$ 是 $f$ 的严格极值点, 且当 $f^{(n+1)}(x_{0})>0$ 时, $x_{0}$ 是 $f$ 的严格极小值点; 当 $f^{(n+1)}(x_{0})<0$ 时, $x_{0}$ 是 $f$ 的严格极大值点.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+将 $f$ 在 $x_{0}$ 点处作带 Peano 余项的 Taylor 展开, 即
+\[
+f(x)=f(x_{0})+\frac{f^{(n+1)}(x_{0})}{(n+1)!}(x-x_{0})^{n+1}+o((x-x_{0})^{n+1}).
+\]
+于是
+\[
+f(x)-f(x_{0})=\left[\frac{f^{(n+1)}(x_{0})}{(n+1)!}+\frac{o((x-x_{0})^{n+1})}{(x-x_{0})^{n+1}}\right](x-x_{0})^{n+1}.
+\]
+由于
+\[
+\lim_{x\to x_{0}}\left[\frac{f^{(n+1)}(x_{0})}{(n+1)!}+\frac{o((x-x_{0})^{n+1})}{(x-x_{0})^{n+1}}\right]=\frac{f^{(n+1)}(x_{0})}{(n+1)!},
+\]
+故 $\exists\delta>0$, s.t. 在 $(x_{0}-\delta,x_{0}+\delta)$ 中,
+\[
+\frac{f^{(n+1)}(x_{0})}{(n+1)!}+\frac{o((x-x_{0})^{n+1})}{(x-x_{0})^{n+1}}
+\]
+与 $\frac{f^{(n+1)}(x_{0})}{(n+1)!}$ 同号.
+
+(1) 如果 $n$ 为偶数, 则由 $(x-x_{0})^{n+1}$ 在 $x_{0}$ 附近变号知, $f(x)-f(x_{0})$ 也变号, 故 $x_{0}$ 不是 $f$ 的极值点.
+
+(2) 如果 $n$ 为奇数, 则 $n+1$ 为偶数. 于是, $(x-x_{0})^{n+1}$ 在 $x_{0}$ 附近不变号, 故 $f(x)-f(x_{0})$ 与 $\frac{f^{(n+1)}(x_{0})}{(n+1)!}$ 同号.
+
+若 $f^{(n+1)}(x_{0})>0$, 则 $f(x)>f(x_{0})$, $\forall x\in(x_{0}-\delta,x_{0})\cup(x_{0},x_{0}+\delta)$, $x_{0}$ 为 $f$ 的严格极小值点;
+
+若 $f^{(n+1)}(x_{0})<0$, 则 $f(x)<f(x_{0})$, $\forall x\in(x_{0}-\delta,x_{0})\cup(x_{0},x_{0}+\delta)$, $x_{0}$ 为 $f$ 的严格极大值点.
+\end{proof}
+
+\subsection*{4. 应用 Taylor 公式研究函数图形的局部形态}
+
+\begin{theorem}\label{thm:4.2.2}
+设 $X \subsetneqq \mathbb{R}$ 为任一非空集合, $x_{0} \in X$. 函数 $f\colon X \to \mathbb{R}$ 在 $x_{0}$ 处 $n$ 阶可导, 且满足条件:
+\[
+f''(x_{0})=f'''(x_{0})=\cdots=f^{(n-1)}(x_{0})=0,\quad f^{(n)}(x_{0})\neq 0.
+\]
+\begin{enumerate}[label=(\arabic*)]
+  \item $n$ 为偶数. 如果 $f^{(n)}(x_{0})>0(<0)$, 则曲线 $y=f(x)$ 在点 $(x_{0}, f(x_{0}))$ 的邻近位于曲线过此点的切线的上(下)方.
+  \item $n$ 为奇数. 则曲线 $y = f(x)$ 在点 $(x_{0}, f(x_{0}))$ 的邻近位于该点切线的两侧, 此时称曲线 $y = f(x)$ 在点 $(x_{0}, f(x_{0}))$ 处与该点的切线横截相交(图~\ref{fig:4.2.1}).
+\end{enumerate}
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.15cm,y=1.15cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (7.5,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[very thick,domain=0.2:6.8,samples=100,smooth] 
+    plot (\x, {1.8 + 0.6*sin(deg(\x*1.5)) + 0.4*cos(deg(\x*0.8))});
+
+  \coordinate (P1) at (0.95, {1.8 + 0.6*sin(deg(0.95*1.5)) + 0.4*cos(deg(0.95*0.8))});
+  \coordinate (P2) at (2.4, {1.8 + 0.6*sin(deg(2.4*1.5)) + 0.4*cos(deg(2.4*0.8))});
+  \coordinate (P3) at (3.8, {1.8 + 0.6*sin(deg(3.8*1.5)) + 0.4*cos(deg(3.8*0.8))});
+  \coordinate (P4) at (5.3, {1.8 + 0.6*sin(deg(5.3*1.5)) + 0.4*cos(deg(5.3*0.8))});
+
+  \draw[dashed] (0.95,0) node[below=2pt] {$x_1$} node[below=14pt] {\scriptsize $f^{(2n)}(x_1)<0$} -- (P1);
+  \draw[dashed] (2.4,0) node[below=2pt] {$x_2$} node[below=14pt] {\scriptsize $f^{(2m)}(x_2)>0$} -- (P2);
+  \draw[dashed] (3.8,0) node[below=2pt] {$x_3$} node[below=14pt] {\scriptsize $f^{(2s+1)}(x_3)<0$} -- (P3);
+  \draw[dashed] (5.3,0) node[below=2pt] {$x_4$} node[below=14pt] {\scriptsize $f^{(2k+1)}(x_4)>0$} -- (P4);
+
+  \draw (P1) circle (0.45);
+  \draw[thick] ($(P1)+(-0.7,-0.4)$) -- ($(P1)+(0.6,0.4)$);
+
+  \draw (P2) circle (0.45);
+  \draw[thick] ($(P2)+(-0.6,0.3)$) -- ($(P2)+(0.7,-0.2)$);
+
+  \draw (P3) circle (0.45);
+  \draw[thick] ($(P3)+(-0.4,-0.6)$) -- ($(P3)+(0.3,0.7)$);
+
+  \draw (P4) circle (0.45);
+  \draw[thick] ($(P4)+(-0.4,0.6)$) -- ($(P4)+(0.4,-0.6)$);
+\end{tikzpicture}
+\caption{}\label{fig:4.2.1}
+\end{figure}
+
+\begin{proof}
+因为 $f$ 在 $x_{0}$ 处 $n$ 阶可导, 并且
+\[
+f''(x_{0})=f'''(x_{0})=\cdots=f^{(n-1)}(x_{0})=0,\quad f^{(n)}(x_{0})\neq 0,
+\]
+所以, $f$ 在 $x_{0}$ 的开邻域内的 $n$ 阶 Taylor 公式为
+\[
+f(x)=f(x_{0})+f'(x_{0})(x-x_{0})+\frac{f^{(n)}(x_{0})}{n!}(x-x_{0})^{n}+o((x-x_{0})^{n})\quad (x\to x_{0}).
+\]
+于是
+\[
+f(x)-\left[f(x_{0})+f'(x_{0})(x-x_{0})\right]
+=\frac{f^{(n)}(x_{0})}{n!}(x-x_{0})^{n}\left[1+\frac{o((x-x_{0})^{n})}{(x-x_{0})^{n}}\right].
+\]
+由此可见, $\exists\delta>0$, s.t. $\forall x\in X\cap B^\circ(x_{0},\delta)$, 有
+\[
+f(x)-\left[f(x_{0})+f'(x_{0})(x-x_{0})\right]
+\]
+与 $\frac{f^{(n)}(x_{0})}{n!}(x-x_{0})^{n}$ 同号.
+
+(1) $n$ 为偶数. 如果 $f^{(n)}(x_{0})>0$, 则
+\[
+f(x)-\left[f(x_{0})+f'(x_{0})(x-x_{0})\right]>0,\quad\forall x\in X\cap B^\circ(x_{0};\delta).
+\]
+这就表明在点 $(x_{0}, f(x_{0}))$ 邻近, 曲线 $y = f(x)$ 位于切线 $y = f(x_{0}) + f'(x_{0})(x - x_{0})$ 的上方;
+
+如果 $f^{(n)}(x_{0})<0$, 则
+\[
+f(x)-\left[f(x_{0})+f'(x_{0})(x-x_{0})\right]<0,\quad\forall x\in X\cap B^\circ(x_{0};\delta).
+\]
+因此, 在点 $(x_{0}, f(x_{0}))$ 邻近, 曲线 $y=f(x)$ 位于切线 $y=f(x_{0})+f'(x_{0})(x-x_{0})$ 的下方.
+
+(2) $n$ 为奇数. 这时若 $f^{(n)}(x_{0})>0(<0)$, 则
+\[
+f(x)-\left[f(x_{0})+f'(x_{0})(x-x_{0})\right]
+\begin{cases}
+>0(<0), & \forall x\in X\cap B_+^\circ(x_{0};\delta), \\
+<0(>0), & \forall x\in X\cap B_-^\circ(x_{0};\delta).
+\end{cases}
+\]
+由此知, 在 $x_{0}$ 的右侧, 曲线 $y = f(x)$ 位于切线 $y = f(x_{0}) + f'(x_{0})(x - x_{0})$ 的上(下)方; 而在 $x_{0}$ 的左侧, 曲线 $y = f(x)$ 位于切线 $y = f(x_{0}) + f'(x_{0})(x - x_{0})$ 的下(上)方. 因此, 曲线 $y = f(x)$ 在点 $(x_{0}, f(x_{0}))$ 处与该点的切线横截相交.
+\end{proof}
+
+\subsection*{5. 应用 Taylor 公式研究线性插值}
+
+\begin{example}[线性插值的误差公式]\label{ex:4.2.10}
+设 $f\colon [a, b] \to \mathbb{R}$ 为实一元函数. $l$ 为由两点 $(a, f(a))$ 与 $(b, f(b))$ 所决定的线性函数, 即
+\[
+l(x)=\frac{b-x}{b-a}f(a)+\frac{x-a}{b-a}f(b).
+\]
+$l$ 称为 $f$ 在区间 $[a,b]$ 上的线性插值(图~\ref{fig:4.2.2}). 如果 $f$ 在 $(a,b)$ 内 $2$ 阶可导, $f$ 在 $[a,b]$ 上连续, 那么, 我们可以对这种插值带来的误差作出估计. 应用带 Lagrange 余项的 Taylor 公式, $\exists\xi\in(a,x),\eta\in(x,b)$, s.t.
+\begin{align*}
+l(x)-f(x)
+&=\frac{b-x}{b-a}(f(a)-f(x))+\frac{x-a}{b-a}(f(b)-f(x)) \\
+&=\frac{b-x}{b-a}\left[(a-x)f'(x)+\frac{1}{2}(a-x)^2f''(\xi)\right] \\
+&\quad +\frac{x-a}{b-a}\left[(b-x)f'(x)+\frac{1}{2}(b-x)^2f''(\eta)\right] \\
+&=\frac{(b-x)(x-a)}{2}\left(\frac{x-a}{b-a}f''(\xi)+\frac{b-x}{b-a}f''(\eta)\right) \\
+&=\frac{(b-x)(x-a)}{2}f''(\zeta),\quad\zeta\in(a,b),
+\end{align*}
+其中最后一个等式是由于
+\[
+\frac{x-a}{b-a}>0,\quad\frac{b-x}{b-a}>0,
+\]
+\begin{align*}
+\min\{f''(\xi),f''(\eta)\}
+&=\min\{f''(\xi),f''(\eta)\}\left(\frac{x-a}{b-a}+\frac{b-x}{b-a}\right) \\
+&\leqslant\frac{x-a}{b-a}f''(\xi)+\frac{b-x}{b-a}f''(\eta) \\
+&\leqslant\max\{f''(\xi),f''(\eta)\},
+\end{align*}
+以及 Darboux 定理推得.
+
+如果 $M$ 为 $|f''|$ 的上界(特别当 $f''$ 在 $[a,b]$ 上连续时, 根据最值定理, 取 $M = \max_{x \in [a,b]} |f''(x)|$), 则误差估计为
+\[
+|l(x)-f(x)|=\frac{(b-x)(x-a)}{2}|f''(\zeta)|\leqslant\frac{(b-a)^{2}}{2}M,\quad\forall x\in[a,b].
+\]
+这表明, $M$ 愈小线性插值的逼近效果就会愈好, 当 $M$ 很小时, 曲线 $y = f(x)$ 的切线改变得不剧烈, 这也是符合几何直观的.
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.5cm,y=1.2cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \def\xa{1.2}
+  \def\xb{3.2}
+  \def\xx{1.9}
+  \def\ya{1.0}
+  \def\yb{2.8}
+  \def\lx{1.7}
+
+  \draw[very thick] (\xa,\ya) to[bend right=25] (\xb,\yb);
+  \draw[thick] (\xa,\ya) -- (\xb,\yb);
+
+  \draw[dashed] (\xa,0) node[below] {$a$} -- (\xa,\ya) -- (0,\ya) node[left] {$f(a)$};
+  \draw[dashed] (\xb,0) node[below] {$b$} -- (\xb,\yb) -- (0,\yb) node[left] {$f(b)$};
+  \draw[thick] (\xx,0) node[below] {$x=ta+(1-t)b$} -- (\xx,\lx);
+  \draw[dashed] (\xx,\lx) -- (0,\lx) node[left] {$l(x)$};
+
+  \node[right] at (\xb, 2.1) {$t=\dfrac{b-x}{b-a}$};
+  \node[right] at (\xb, 1.4) {$1-t=\dfrac{x-a}{b-a}$};
+\end{tikzpicture}
+\caption{}\label{fig:4.2.2}
+\end{figure}
+
+\subsection*{6. 应用 Taylor 公式作近似计算}
+
+下面是一个估计整体逼近误差的例子.
+
+\begin{example}\label{ex:4.2.11}
+在区间 $[0,\pi]$ 上, 用 $9$ 次多项式
+\[
+x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}-\frac{x^{7}}{7!}+\frac{x^{9}}{9!}
+\]
+来逼近函数 $\sin x$, 试求出一个误差界.
+\end{example}
+
+\begin{solution}
+由于 $x \in [0, \pi]$, 于是有
+\begin{align*}
+|R_{10}(x)|
+&=\left|\frac{f^{(11)}(\xi)}{11!}x^{11}\right|=\left|\frac{\sin\left(\xi+\frac{11}{2}\pi\right)}{11!}x^{11}\right| \\
+&\leqslant\frac{x^{11}}{11!}\leqslant\frac{\pi^{11}}{11!}=0.0073404\cdots.
+\end{align*}
+这是非常好的近似. 在图~\ref{fig:4.2.3} 中 $\left(T_{n}(x_{0}, x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}\right)$, 画出了 $1$ 次、$3$ 次、$5$ 次、$7$ 次和 $9$ 次的 $\sin x$ 的 Maclaurin 多项式的图形. 在区间 $[0,\pi]$ 上 $9$ 次多项式的图形与 $y = \sin x$ 的图形几乎合为一体, 肉眼已不能辨别它们之间的差别, 这与上面算出来的数值结果是吻合的.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=2.2cm,y=1.6cm,>=Stealth]
+  \draw[->] (-0.2,0) -- (4.4,0) node[below] {$x$};
+  \draw[->] (0,-2.0) -- (0,2.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw (3.14159,0.08) -- (3.14159,-0.08) node[above right] {$\pi$};
+
+  \draw[line width=1.5pt,smooth] plot coordinates {(0.000,0.000) (0.105,0.105) (0.210,0.208) (0.315,0.310) (0.420,0.408) (0.525,0.501) (0.630,0.589) (0.735,0.671) (0.840,0.745) (0.945,0.810) (1.050,0.867) (1.155,0.915) (1.260,0.952) (1.365,0.979) (1.470,0.995) (1.575,1.000) (1.680,0.994) (1.785,0.977) (1.890,0.949) (1.995,0.911) (2.100,0.863) (2.205,0.806) (2.310,0.739) (2.415,0.664) (2.520,0.582) (2.625,0.494) (2.730,0.400) (2.835,0.302) (2.940,0.200) (3.045,0.096) (3.150,-0.008) (3.255,-0.113) (3.360,-0.217) (3.465,-0.318) (3.570,-0.415) (3.675,-0.508) (3.780,-0.596) (3.885,-0.677) (3.990,-0.750) (4.095,-0.815) (4.200,-0.872)};
+  \node[right] at (3.5, -0.6) {$y=\sin x$};
+
+  \draw[thick] plot coordinates {(0.000,0.000) (0.150,0.150) (0.300,0.300) (0.450,0.450) (0.600,0.600) (0.750,0.750) (0.900,0.900) (1.050,1.050) (1.200,1.200) (1.350,1.350) (1.500,1.500)};
+  \node (LT1) at (1.2, 1.6) {$y=T_1(0,x)$};
+  \draw[->] (LT1) -- (0.9, 0.95);
+
+  \draw[thick,smooth] plot coordinates {(0.000,0.000) (0.108,0.108) (0.216,0.214) (0.324,0.318) (0.432,0.419) (0.540,0.514) (0.648,0.603) (0.756,0.684) (0.864,0.757) (0.972,0.819) (1.080,0.870) (1.188,0.909) (1.296,0.933) (1.404,0.943) (1.512,0.936) (1.620,0.911) (1.728,0.868) (1.836,0.805) (1.944,0.720) (2.052,0.612) (2.160,0.480) (2.268,0.324) (2.376,0.140) (2.484,-0.070) (2.592,-0.310) (2.700,-0.581)};
+  \node[left] at (2.9, -1.2) {$y=T_3(0,x)$};
+
+  \draw[thick,smooth] plot coordinates {(0.000,0.000) (0.113,0.113) (0.227,0.225) (0.340,0.333) (0.453,0.438) (0.567,0.537) (0.680,0.629) (0.793,0.713) (0.907,0.788) (1.020,0.852) (1.133,0.906) (1.247,0.949) (1.360,0.980) (1.473,0.998) (1.587,1.005) (1.700,0.999) (1.813,0.983) (1.927,0.956) (2.040,0.919) (2.153,0.875) (2.267,0.824) (2.380,0.769) (2.493,0.713) (2.607,0.658) (2.720,0.607) (2.833,0.564) (2.947,0.534) (3.060,0.520) (3.173,0.529) (3.287,0.565) (3.400,0.636)};
+  \node[above] at (3.1, 1.3) {$y=T_5(0,x)$};
+
+  \draw[thick,smooth] plot coordinates {(0.000,0.000) (0.109,0.108) (0.217,0.215) (0.326,0.320) (0.434,0.421) (0.543,0.517) (0.651,0.606) (0.760,0.689) (0.869,0.763) (0.977,0.829) (1.086,0.885) (1.194,0.930) (1.303,0.964) (1.411,0.987) (1.520,0.999) (1.629,0.998) (1.737,0.986) (1.846,0.962) (1.954,0.926) (2.063,0.880) (2.171,0.822) (2.280,0.755) (2.389,0.677) (2.497,0.591) (2.606,0.496) (2.714,0.394) (2.823,0.284) (2.931,0.168) (3.040,0.045) (3.149,-0.084) (3.257,-0.219) (3.366,-0.360) (3.474,-0.509) (3.583,-0.666) (3.691,-0.833) (3.800,-1.013)};
+  \node[below] at (3.5, -1.6) {$y=T_7(0,x)$};
+
+  \draw[thick,smooth] plot coordinates {(0.000,0.000) (0.102,0.102) (0.205,0.204) (0.307,0.303) (0.410,0.399) (0.512,0.490) (0.615,0.577) (0.717,0.658) (0.820,0.731) (0.922,0.797) (1.025,0.855) (1.127,0.903) (1.230,0.942) (1.333,0.972) (1.435,0.991) (1.537,0.999) (1.640,0.998) (1.742,0.985) (1.845,0.963) (1.947,0.930) (2.050,0.887) (2.152,0.836) (2.255,0.775) (2.357,0.706) (2.460,0.631) (2.562,0.548) (2.665,0.460) (2.767,0.367) (2.870,0.271) (2.972,0.172) (3.075,0.072) (3.177,-0.028) (3.280,-0.127) (3.382,-0.223) (3.485,-0.315) (3.587,-0.402) (3.690,-0.482) (3.792,-0.552) (3.895,-0.613) (3.997,-0.661) (4.100,-0.694)};
+  \node[above right] at (3.7, 0.8) {$y=T_9(0,x)$};
+\end{tikzpicture}
+\caption{}\label{fig:4.2.3}
+\end{figure}
+
+\begin{example}\label{ex:4.2.12}
+用 Taylor 多项式逼近正弦函数 $\sin x$. 试分别以 $m = 1, m = 2$ 两种情形讨论 $x$ 的取值范围, 使得其误差小于 $10^{-3}$.
+\end{example}
+
+\begin{solution}
+(1) 当 $m = 1$ 时, $\sin x \approx x$, 使其误差满足
+\[
+|R_{2}(x)|=\left|\frac{(-1)^{1}\cos\xi}{3!}x^{3}\right|\leqslant\frac{|x|^{3}}{6}<10^{-3},
+\]
+即 $|x|<\sqrt[3]{6\times 10^{-3}}=\sqrt[3]{6}\times 10^{-1}\text{ (rad)}\approx 0.1817\text{ (rad)}$, 即大约在原点左右 $10^\circ 24'40''$ 范围内以 $x$ 近似 $\sin x$, 其误差小于 $10^{-3}$.
+
+(2) 当 $m=2$ 时, $\sin x\approx x-\frac{x^{3}}{6}$, 使其误差满足
+\[
+|R_{4}(x)|=\left|\frac{(-1)^{2}\cos\xi}{5!}x^{5}\right|\leqslant\frac{|x|^{5}}{120}<10^{-3},
+\]
+即 $|x|<\sqrt[5]{12000\times 10^{-5}}=0.1\sqrt[5]{120000}\approx 0.6543\text{ (rad)}$, 也就是大约在原点左右 $37^\circ 29'38''$ 范围内, 以 $x-\frac{x^{3}}{3!}$ 近似 $\sin x$, 其误差小于 $10^{-3}$.
+\end{solution}
+
+\begin{example}\label{ex:4.2.13}
+计算 $\mathrm{e}$ 的值, 使其误差小于 $10^{-6}$.
+\end{example}
+
+\begin{solution}
+$\mathrm{e}^{x}$ 的带 Lagrange 余项的 Taylor 展开为
+\[
+\mathrm{e}^{x}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots+\frac{x^{n}}{n!}+\frac{\mathrm{e}^{\xi}}{(n+1)!}x^{n+1},\quad\xi\in(0,x).
+\]
+取 $x=1$, 就有
+\[
+\mathrm{e}=\mathrm{e}^{1}=1+1+\frac{1}{2!}+\frac{1}{3!}+\cdots+\frac{1}{n!}+\frac{\mathrm{e}^{\xi}}{(n+1)!},\quad\xi\in(0,1).
+\]
+其中 $R_{n}(1)$ 满足
+\[
+0<R_{n}(1)=\frac{\mathrm{e}^{\xi}}{(n+1)!}<\frac{\mathrm{e}}{(n+1)!}<\frac{3}{(n+1)!}.
+\]
+当 $n=9$ 时便有
+\[
+0<R_{9}(1)<\frac{3}{10!}=\frac{3}{3628800}=0.000000826\cdots<10^{-6}.
+\]
+\begin{align*}
+1+1 &= 2.00000000 \\
+\frac{1}{2!} &= 0.50000000 \\
+\frac{1}{3!} &= 0.16666667 \\
+\frac{1}{4!} &= 0.04166667 \\
+\frac{1}{5!} &= 0.00833333 \\
+\frac{1}{6!} &= 0.00138889 \\
+\frac{1}{7!} &= 0.00019841 \\
+\frac{1}{8!} &= 0.00002480 \\
++\quad \frac{1}{9!} &= 0.00000276 \\
+\hline
+\mathrm{e} &\approx 2.71828153 \approx 2.718282,
+\end{align*}
+其中
+\begin{align*}
+\text{总误差 (绝对误差)}
+&\leqslant |R_{9}(1)|+7\times 0.5\times 10^{-8} \\
+&< \frac{3}{3628800}+7\times 0.5\times 10^{-8} \\
+&= 0.000000828+0.035\times 10^{-6} \\
+&= 0.863\times 10^{-6}<10^{-6}.
+\end{align*}
+在做近似计算中, 先凑项数 $n$, 使 $|R_{n}(1)|$ (记为 $r_{1}$) 足够小, 小于预先要求的误差 $10^{-6}$. 其差 $10^{-6}-|R_{n}(1)|$ 不能太小! 要留有余地, 使得每一项 $\frac{1}{3!},\cdots,\frac{1}{9!}$ 计算时, 由于四舍五入产生的误差总和(记为 $r_{2}$) 不超过 $10^{-6}-|R_{n}(1)|$. 于是, 总误差 $\leqslant r_{1}+r_{2}<10^{-6}$, 符合要求.
+
+自然项数 $n$ 愈大, 计算的值愈精确, 但计算的工作量就愈大, 近似计算者须自己掂量着取 $n$.
+
+如果要求总误差 $<10^{-7}$. 显然,
+\begin{align*}
+|R_{9}(1)|
+&=\frac{\mathrm{e}^{\xi}}{10!}=\frac{\mathrm{e}^{\xi}}{3628800}\geqslant\frac{1}{3628800} \\
+&=0.000000275\cdots=2.75\times 10^{-7}>10^{-7},
+\end{align*}
+故 $n=9$ 已不够用了.
+
+取 $n=10$ 时, 便有
+\[
+0<R_{10}(1)=\frac{\mathrm{e}^{\xi}}{11!}<\frac{3}{11!}<0.0000000752=0.752\times 10^{-7}<10^{-7}.
+\]
+如果在计算 $\frac{1}{3!},\cdots,\frac{1}{9!},\frac{1}{10!}$ 时, 仍算到小数点后第 $9$ 位, 再将第 $9$ 位四舍五入, 那么总误差为
+\[
+0.752\times 10^{-7}+7\times 0.5\times 10^{-8}=1.102\times 10^{-7}>10^{-7}.
+\]
+这不符合要求! 我们必须提高计算 $\frac{1}{3!},\cdots,\frac{1}{9!},\frac{1}{10!}$ 的精确度. 即取
+\begin{align*}
+1+1 &= 2.000000000 \\
+\frac{1}{2!} &= 0.500000000 \\
+\frac{1}{3!} &= 0.166666667 \\
+\frac{1}{4!} &= 0.041666667 \\
+\frac{1}{5!} &= 0.008333333 \\
+\frac{1}{6!} &= 0.001388889 \\
+\frac{1}{7!} &= 0.000198413 \\
+\frac{1}{8!} &= 0.000024802 \\
+\frac{1}{9!} &= 0.000002756 \\
++\quad \frac{1}{10!} &= 0.000000276 \\
+\hline
+\mathrm{e} &\approx 2.718281803 \approx 2.7182818,
+\end{align*}
+\begin{align*}
+\text{总误差 (绝对误差)}
+&\leqslant |R_{10}(1)|+8\times 0.5\times 10^{-9} \\
+&< 0.752\times 10^{-7}+0.04\times 10^{-7} \\
+&= 0.792\times 10^{-7}<10^{-7}.
+\end{align*}
+\end{solution}
+
+\begin{remark}\label{rem:4.2.1}
+读者肯定还记得定理~\ref{thm:1.4.2}(7) 中的式子:
+\[
+\mathrm{e}=1+1+\frac{1}{2!}+\cdots+\frac{1}{n!}+\frac{\theta_{n}}{n\cdot n!},\quad 0<\frac{n}{n+1}<\theta_{n}<1.
+\]
+这式子与
+\[
+\mathrm{e}=1+1+\frac{1}{2!}+\cdots+\frac{1}{n!}+\frac{\mathrm{e}^{\xi}}{(n+1)!},\quad\xi\in(0,1)
+\]
+一样可进行 $\mathrm{e}$ 的近似计算.
+\end{remark}
+
+\begin{remark}\label{rem:4.2.2}
+警告读者, 在计算 $\frac{1}{3!},\cdots,\frac{1}{n!}$ 时, 绝对不能用计算器! 因为计算器上的精确度未必达到所需的要求.
+\end{remark}
+
+\begin{example}\label{ex:4.2.14}
+求 $\sqrt[10]{1000}$, 精确到 $10^{-5}$, 即总误差小于 $10^{-5}$.
+\end{example}
+
+\begin{solution}
+先找一个数, 它的 $10$ 次方与 $1000$ 比较接近, 例如取 $2$, $2^{10} = 1024$ 比 $1000$ 多一点. 于是
+\begin{align*}
+\sqrt[10]{1000}
+&= 2\sqrt[10]{\frac{1000}{1024}}=2\left(1-\frac{3}{128}\right)^{\frac{1}{10}} \\
+&\approx 2\left[1+\frac{1}{10}\left(-\frac{3}{128}\right)+\frac{\frac{1}{10}\left(\frac{1}{10}-1\right)}{2!}\left(-\frac{3}{128}\right)^{2}\right] \\
+&= 2-\frac{3}{640}-\frac{81}{100}\times\frac{1}{16384} \\
+&\approx 2-0.0046875-0.0000494 \\
+&= 2-0.0047369=1.9952631\approx 1.99526.
+\end{align*}
+其中
+\begin{align*}
+\sqrt[10]{1+x}=(1+x)^{\frac{1}{10}}
+&= 1+\frac{1}{10}x+\frac{\frac{1}{10}\left(\frac{1}{10}-1\right)}{2!}x^{2} \\
+&\quad +\cdots+\frac{\frac{1}{10}\left(\frac{1}{10}-1\right)\cdots\left(\frac{1}{10}-n+1\right)}{n!}x^{n}+R_{n}(x),
+\end{align*}
+\begin{align*}
+|R_{n}(x)|
+&= \left|\frac{\frac{1}{10}\left(\frac{1}{10}-1\right)\cdots\left(\frac{1}{10}-n\right)}{(n+1)!}(1+\xi)^{\frac{1}{10}-n-1}x^{n+1}\right| \\
+&\leqslant \frac{n!}{10\cdot(n+1)!}\frac{|x|^{n+1}}{(1+\xi)^{n+1-\frac{1}{10}}} \\
+&= \frac{|x|^{n+1}}{10(n+1)(1+\xi)^{n+1}},\quad\xi\in\left(-\frac{3}{128},0\right).
+\end{align*}
+特别当 $x = -\frac{3}{128}$ 时,
+\[
+\left|R_{n}\left(-\frac{3}{128}\right)\right|<\frac{1}{10(n+1)}\frac{\left(\frac{3}{128}\right)^{n+1}}{\left(\frac{125}{128}\right)^{n+1}}=\frac{1}{10(n+1)}\left(\frac{3}{125}\right)^{n+1}.
+\]
+取 $n=1$,
+\[
+2|R_{1}(x)|<\frac{2}{10\times 2}\left(\frac{3}{125}\right)^{2}=\frac{9}{156250}=0.00005\cdots>10^{-5}.
+\]
+取 $n=2$,
+\[
+2|R_{2}(x)|=\frac{2}{10\times 3}\left(\frac{3}{125}\right)^{3}=\frac{9}{9765625}<\frac{1}{1000000}=10^{-6}.
+\]
+于是,
+\begin{align*}
+\text{总误差 (绝对误差)}
+&< 0.1\times 10^{-5}+2\times 0.5\times 10^{-7}+0.5\times 10^{-5} \\
+&= 0.61\times 10^{-5}<10^{-5}.
+\end{align*}
+因此, 上述所作的近似计算达到要求.
+\end{solution}
+
+\begin{example}\label{ex:4.2.15}
+计算 $\sin 10^\circ$, 误差小于 $10^{-5}$.
+\end{example}
+
+\begin{solution}
+\[
+f(x)=\sin x=\sum_{k=1}^{m}(-1)^{k-1}\frac{x^{2k-1}}{(2k-1)!}+R_{2m}(x).
+\]
+$10^\circ$ 的弧度数为
+\[
+x=\frac{10\pi}{180}=\frac{\pi}{18}=\frac{3.1415926\cdots}{18}=0.1745329\cdots<0.2.
+\]
+\[
+|R_{2m}(x)|=\left|\frac{(-1)^{m}\cos\xi}{(2m+1)!}x^{2m+1}\right|\leqslant\frac{|x|^{2m+1}}{(2m+1)!}<\frac{0.2^{2m+1}}{(2m+1)!}.
+\]
+取 $m=2$,
+\[
+|R_{4}(x)|<\frac{0.2^{5}}{5!}=\frac{4}{15}\times 10^{-5}<10^{-5}.
+\]
+每一项取到小数点后 $7$ 位, 并四舍五入得到
+\begin{align*}
+\sin 10^\circ=\sin\frac{\pi}{18}
+&\approx \frac{\pi}{18}-\frac{1}{3!}\left(\frac{\pi}{18}\right)^{3} \\
+&\approx 0.174533-\frac{1}{6}\times 0.174533^{3} \\
+&\approx 0.174533-0.000886 = 0.173647 \approx 0.17365.
+\end{align*}
+于是,
+\begin{align*}
+\text{总误差 (绝对误差)}
+&< \frac{4}{15}\times 10^{-5}+2\times 5\times 10^{-7}+0.5\times 10^{-5} \\
+&< 0.27\times 10^{-5}+0.01\times 10^{-5}+0.5\times 10^{-5} \\
+&= 0.78\times 10^{-5}<10^{-5}.
+\end{align*}
+\end{solution}
+
+回顾上述 Taylor 公式所起的作用, 可以看到它是研究函数在一点近旁行为的强有力工具. 应用带 Peano 余项的 Taylor 公式可以很方便地计算许多不定型的极限, 可以比较彻底地研究函数的极值. 应用带 Lagrange 余项与 Cauchy 余项的 Taylor 公式可以从理论上讨论函数的性态. 由此, 可以证明一些不等式. 更值得指出的是应用 Taylor 公式能精确计算函数在一点处的近似值, 并估计它的总误差(绝对误差). 因此, 称它为一元微分学的顶峰是当之无愧的.
+
+\begin{exblock}{练习题 4.2}
+\item 计算下列极限:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim_{x\to\infty}\left[x-x^2\ln\left(1+\frac{1}{x}\right)\right]$;
+  \item $\lim_{x\to 0}\frac{1}{x}\left(\frac{1}{x}-\cot x\right)$;
+  \item $\lim_{x\to 0}\frac{a^x+a^{-x}-2}{x^2}$ ($a>0$);
+  \item $\lim_{x\to 0}\frac{\sin x-\arctan x}{\tan x-\sin x}$;
+  \item $\lim_{x\to 0}\frac{\mathrm{e}^x\sin x-\left(x+x^2+\frac{x^3}{3}\right)}{x^5}$;
+  \item $\lim_{x\to\infty}\left[\left(x^3-x^2+\frac{x}{2}\right)\mathrm{e}^{\frac{1}{x}}-\sqrt{x^6+1}\right]$.
+\end{enumerate}
+
+\item 估计下列近似公式的绝对误差:
+\begin{enumerate}[label=(\arabic*)]
+  \item $\sin x \approx x - \frac{x^3}{6}$, 当 $|x|\leqslant \frac{1}{2}$;
+  \item $\sqrt{1+x}\approx 1+\frac{x}{2}-\frac{x^2}{8}$, $x\in[0,1]$.
+\end{enumerate}
+
+\item 计算:
+\begin{enumerate}[label=(\arabic*)]
+  \item 数 $\mathrm{e}$ 精确到 $10^{-9}$;
+  \item $\ln 1.005$ 精确到 $10^{-5}$;
+  \item $\sqrt[10]{999}$ 精确到 $10^{-5}$.
+\end{enumerate}
+
+\item 曲线 $y=\cosh x = \frac{\mathrm{e}^x+\mathrm{e}^{-x}}{2}$ 称为悬链线. 证明: 抛物线 $y=1+\frac{x^2}{2}$ 同悬链线在区间 $[-1,1]$ 上的偏差小于 $0.20$.
+\end{exblock}
+
+\begin{exblock}{思考题 4.2}
+\item 设 $p>0, q>0$, 且 $p+q=1$, 求极限 $\lim_{n\to+\infty}\left(p\mathrm{e}^{\frac{qt}{\sqrt{npq}}}+q\mathrm{e}^{\frac{pt}{\sqrt{npq}}}\right)$.
+\item 求极限 $\lim_{n\to+\infty}\cos\frac{a}{n\sqrt{n}}\cos\frac{2a}{n\sqrt{n}}\cdots\cos\frac{na}{n\sqrt{n}}$.
+\end{exblock}

@@ -1,0 +1,696 @@
+\section{函数的极限}\label{sec:3.3}
+
+我们现在来讨论函数的极限．注意，典型的函数极限模型来自对自由落体运动，由平均速度
+\[
+\frac{\frac{1}{2}g(t+h)^2 - \frac{1}{2}gt^2}{h}
+\]
+求瞬时速度．也就是说要考察上述 $h$ 的函数（注意，$t$ 是固定的），当 $h$ 无限变小时，它的变化趋势，即看它是否无限接近于一个数．
+
+首先看到，这个函数在 $h=0$ 是没有定义的，但至少在包含 $0$ 的一个开区间（$0$ 这点除外）有定义．$h$ 不等于 $0$ 时，有
+\[
+\frac{\frac{1}{2}g(t+h)^2 - \frac{1}{2}gt^2}{h} = gt + \frac{1}{2}gh.
+\]
+当 $|h|$ 很小时，左边的函数值与 $gt$ 的差也很小，而且当 $h$ 无限接近于 $0$（而不等于 $0$）时，左边的函数也就无限接近于 $gt$．
+
+重复数列极限时的讨论，把``接近''、``无限''等语言精确化，便得到一般的函数极限概念的定义．
+
+\begin{definition}\label{def:3-5}
+设 $f(x)$ 在 $x_0$ 点附近（$x_0$ 除外）有定义，$A$ 为一常数．如果任给 $\varepsilon > 0$，存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+|f(x) - A| < \varepsilon,
+\]
+则称 $A$ 是函数 $f(x)$ 当 $x$ 趋于 $x_0$ 时的极限，记为
+\[
+\lim_{x \to x_0} f(x) = A \quad \text{或} \quad f(x) \to A \quad (x \to x_0).
+\]
+\end{definition}
+
+也可以说成：$f(x)$ 当 $x \to x_0$ 时有极限 $A$．
+
+在定义中用到的符号 $\delta$，在概念上对应于数列极限中的 $N$．在数列极限中，$n \to \infty$ 是用 $n > N$ 来刻画；而在函数极限中，$x \to x_0$ 则是用 $0 < |x - x_0| < \delta$ 来刻画．$\delta$ 越小，说明 $x$ 越接近 $x_0$．
+
+在定义中，需要注意的是，函数在 $x_0$ 这点是否有定义，对函数在 $x_0$ 点有无极限，是毫无关系的．定义中的条件 $0 < |x - x_0| < \delta$，意味着 $x \neq x_0$，所以即使函数在 $x_0$ 这点没有定义，或者虽然有定义但函数值 $f(x_0)$ 与极限值 $A$ 并不相等，这并不妨碍极限的存在．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.65\textwidth]{fig3-4.png}
+\figcap
+\label{fig:3-4}
+\end{figure}
+
+注意到不等式 $|f(x) - A| < \varepsilon$ 等价于 $A - \varepsilon < f(x) < A + \varepsilon$，函数 $f(x)$ 当 $x \to x_0$ 时的极限为 $A$ 的几何解释便是（图~\ref{fig:3-4}）：任给 $\varepsilon > 0$，作直线 $y = A - \varepsilon$ 和 $y = A + \varepsilon$．这时必存在 $\delta > 0$，使得在两垂线 $x = x_0 - \delta$ 与 $x = x_0 + \delta$ 之间（垂线 $x = x_0$ 除外）的曲线 $y = f(x)$，全部落在两平行直线 $y = A - \varepsilon$ 与 $y = A + \varepsilon$ 所夹的带形区域内．
+
+\begin{example}\label{ex:3-3-1}
+证明
+\[
+\lim_{h \to 0} \frac{\frac{1}{2}g(t+h)^2 - \frac{1}{2}gt^2}{h} = gt.
+\]
+\end{example}
+
+\begin{proof}
+任给 $\varepsilon > 0$．由
+\[
+\left|\frac{\frac{1}{2}g(t+h)^2 - \frac{1}{2}gt^2}{h} - gt\right| = \left|gt + \frac{1}{2}gh - gt\right| = \frac{g}{2}|h|,
+\]
+要使
+\[
+\left|\frac{\frac{1}{2}g(t+h)^2 - \frac{1}{2}gt^2}{h} - gt\right| < \varepsilon,
+\]
+只要取 $\delta = \frac{2\varepsilon}{g}$，则当 $0 < |h| < \delta$ 时，便有
+\[
+\left|\frac{\frac{1}{2}g(t+h)^2 - \frac{1}{2}gt^2}{h} - gt\right| = \frac{g}{2}|h| < \frac{g}{2} \cdot \frac{2\varepsilon}{g} = \varepsilon.
+\]
+这就证明了所要证明的结论．
+\end{proof}
+
+从这便看到了极限概念的妙处．牛顿当时的瞬 $h$ 是 0 还是非 0 的矛盾就解决了．这里的 $h$ 先作为一个变动的量，从两边（一个非 0 的对称区间）无限接近于 $0$（但不等于 $0$），在这个过程中看平均速度的变化趋势，即极限．
+
+\begin{example}\label{ex:3-3-2}
+证明 $\lim_{x \to a} \sqrt{x} = \sqrt{a}$，这里 $a > 0$．
+\end{example}
+
+\begin{proof}
+任给 $\varepsilon > 0$．当 $x > 0$ 时，
+\[
+|\sqrt{x} - \sqrt{a}| = \frac{|x - a|}{\sqrt{x} + \sqrt{a}} < \frac{|x - a|}{\sqrt{a}}.
+\]
+因此，只要取 $\delta = \sqrt{a}\varepsilon$，则当 $0 < |x - a| < \delta$ 时，便有
+\[
+|\sqrt{x} - \sqrt{a}| < \frac{|x - a|}{\sqrt{a}} < \frac{\delta}{\sqrt{a}} = \varepsilon.
+\]
+即 $\lim_{x \to a} \sqrt{x} = \sqrt{a}$．
+\end{proof}
+
+\begin{example}\label{ex:3-3-3}
+证明 $\lim_{x \to 1} \frac{x^3 - 1}{x - 1} = 3$．
+\end{example}
+
+\begin{proof}
+任给 $\varepsilon > 0$．当 $x \neq 1$ 时，
+\[
+\left|\frac{x^3 - 1}{x - 1} - 3\right| = |x^2 + x + 1 - 3| = |x^2 + x - 2| = |x - 1||x + 2|.
+\]
+限制 $|x - 1| < 1$，即 $0 < x < 2$．此时
+\[
+|x + 2| < 4.
+\]
+从而
+\[
+\left|\frac{x^3 - 1}{x - 1} - 3\right| < 4|x - 1|.
+\]
+因此取 $\delta = \min\left\{1, \frac{\varepsilon}{4}\right\}$，则当 $0 < |x - 1| < \delta$ 时，有
+\[
+\left|\frac{x^3 - 1}{x - 1} - 3\right| < 4|x - 1| < 4 \cdot \frac{\varepsilon}{4} = \varepsilon.
+\]
+即 $\lim_{x \to 1} \frac{x^3 - 1}{x - 1} = 3$．
+\end{proof}
+
+这里所用的方法仍然是``适当放大法''．因为 $x$ 是连续变动的，所以一开始就要对 $x$ 的变化范围作一定的限制，以便以后能适当放大 $|f(x) - A|$，从而能较方便地找到一个 $\delta$．
+
+对于函数的极限，同样也有对应于数列极限的一系列的性质，其证明也是类似的，关键是要找到两者的联系．例如，在数列极限中是``存在 $N$，只要 $n > N$''，而在函数极限中则为``存在 $\delta > 0$，只要 $0 < |x - x_0| < \delta$''．自然也有各地方，函数极限与数列极限是很不相同的，读者应特别注意．
+
+\begin{theorem}[四则运算]\label{thm:3-1-prime}
+设 $\lim_{x \to x_0} f(x) = A$，$\lim_{x \to x_0} g(x) = B$，则
+\begin{enumerate}[label=(\roman*)]
+\item $\lim_{x \to x_0} [f(x) \pm g(x)] = A \pm B$；
+\item $\lim_{x \to x_0} [f(x)g(x)] = AB$；
+\item 当 $B \neq 0$ 时，$\lim_{x \to x_0} \frac{f(x)}{g(x)} = \frac{A}{B}$．
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[局部有界性]\label{thm:3-2-prime}
+设 $\lim_{x \to x_0} f(x) = A$，则存在常数 $M > 0$ 与 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+|f(x)| \leqslant M.
+\]
+\end{theorem}
+
+\begin{theorem}[局部保号性]\label{thm:3-3-prime}
+设 $\lim_{x \to x_0} f(x) = A$．如果 $A > 0$（或 $A < 0$），则存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+f(x) > 0 \quad (\text{或 } f(x) < 0).
+\]
+特别地，当 $A > 0$ 时，存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+f(x) > \frac{A}{2}.
+\]
+\end{theorem}
+
+\begin{proof}
+由 $\lim_{x \to x_0} f(x) = A$，对 $\varepsilon = \frac{A}{2} > 0$，存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+|f(x) - A| < \frac{A}{2},
+\]
+即
+\[
+A - \frac{A}{2} < f(x) < A + \frac{A}{2}.
+\]
+从而
+\[
+f(x) > A - \frac{A}{2} = \frac{A}{2} > 0.
+\]
+定理~\ref{thm:3-3-prime} 证毕．
+\end{proof}
+
+\begin{theorem}[无穷小与局部有界函数之积]\label{thm:3-4-prime}
+若 $\lim_{x \to x_0} \alpha(x) = 0$，且存在 $M > 0$ 及 $\delta_1 > 0$，使得当 $0 < |x - x_0| < \delta_1$ 时，有 $|g(x)| \leqslant M$，则
+\[
+\lim_{x \to x_0} \alpha(x)g(x) = 0.
+\]
+\end{theorem}
+
+下面我们来证明定理~\ref{thm:3-1-prime}．
+
+\begin{proof}[定理~\ref{thm:3-1-prime}的证明]
+(i) 的证明是简单的，留给读者，这里只证 (ii) 与 (iii)．
+
+(ii) 因为
+\[
+|f(x)g(x) - AB| = |f(x)g(x) - Ag(x) + Ag(x) - AB| \leqslant |g(x)||f(x) - A| + |A||g(x) - B|.
+\]
+由 $\lim_{x \to x_0} g(x) = B$，由局部有界性（定理~\ref{thm:3-2-prime}），存在 $\delta_1 > 0$ 及 $M > 0$，使得当 $0 < |x - x_0| < \delta_1$ 时，有 $|g(x)| \leqslant M$．
+
+任给 $\varepsilon > 0$，由 $\lim_{x \to x_0} f(x) = A$，$\lim_{x \to x_0} g(x) = B$，存在 $\delta_2 > 0$，使得当 $0 < |x - x_0| < \delta_2$ 时，有
+\[
+|f(x) - A| < \frac{\varepsilon}{2M} \quad \text{与} \quad |g(x) - B| < \frac{\varepsilon}{2(|A| + 1)}.
+\]
+取 $\delta = \min\{\delta_1, \delta_2\}$，则当 $0 < |x - x_0| < \delta$ 时，
+\[
+|f(x)g(x) - AB| < M \cdot \frac{\varepsilon}{2M} + |A| \cdot \frac{\varepsilon}{2(|A| + 1)} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+这就证明了 $\lim_{x \to x_0} [f(x)g(x)] = AB$．
+
+(iii) 设 $B \neq 0$．由于
+\[
+\left|\frac{f(x)}{g(x)} - \frac{A}{B}\right| = \frac{|B f(x) - A g(x)|}{|B||g(x)|} = \frac{|B(f(x) - A) - A(g(x) - B)|}{|B||g(x)|} \leqslant \frac{|f(x) - A|}{|g(x)|} + \frac{|A||g(x) - B|}{|B||g(x)|}.
+\]
+由局部保号性（定理~\ref{thm:3-3-prime}），存在 $\delta_1 > 0$，当 $0 < |x - x_0| < \delta_1$ 时，有 $|g(x)| > \frac{|B|}{2}$，从而 $\frac{1}{|g(x)|} < \frac{2}{|B|}$．
+
+因此，当 $0 < |x - x_0| < \delta_1$ 时，有
+\[
+\left|\frac{f(x)}{g(x)} - \frac{A}{B}\right| < \frac{2}{|B|}|f(x) - A| + \frac{2|A|}{|B|^2}|g(x) - B|.
+\]
+任给 $\varepsilon > 0$，由 $\lim_{x \to x_0} f(x) = A$ 及 $\lim_{x \to x_0} g(x) = B$，存在 $\delta_2 > 0$，当 $0 < |x - x_0| < \delta_2$ 时，有
+\[
+|f(x) - A| < \frac{|B|}{4}\varepsilon,
+\]
+且存在 $\delta_3 > 0$，当 $0 < |x - x_0| < \delta_3$ 时，有
+\[
+|g(x) - B| < \frac{|B|^2}{4(|A| + 1)}\varepsilon.
+\]
+取 $\delta = \min\{\delta_1, \delta_2, \delta_3\}$，则当 $0 < |x - x_0| < \delta$ 时，便有
+\[
+\left|\frac{f(x)}{g(x)} - \frac{A}{B}\right| < \frac{2}{|B|} \cdot \frac{|B|}{4}\varepsilon + \frac{2|A|}{|B|^2} \cdot \frac{|B|^2}{4(|A| + 1)}\varepsilon < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+故 $\lim_{x \to x_0} \frac{f(x)}{g(x)} = \frac{A}{B}$．定理~\ref{thm:3-1-prime} 证毕．
+\end{proof}
+
+对应于数列极限的性质，我们还有：
+
+\begin{theorem}[局部保序性]\label{thm:3-5-prime}
+设 $\lim_{x \to x_0} f(x) = A$，$\lim_{x \to x_0} g(x) = B$．若 $A < B$，则存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+f(x) < g(x).
+\]
+\end{theorem}
+
+\begin{theorem}[极限不等式]\label{thm:3-6-prime}
+设 $\lim_{x \to x_0} f(x) = A$，$\lim_{x \to x_0} g(x) = B$．若存在 $\delta_0 > 0$，使得当 $0 < |x - x_0| < \delta_0$ 时，有 $f(x) \leqslant g(x)$，则
+\[
+A \leqslant B.
+\]
+\end{theorem}
+
+\begin{theorem}[极限唯一性]\label{thm:3-7-prime}
+如果极限 $\lim_{x \to x_0} f(x)$ 存在，则极限是唯一的．
+\end{theorem}
+
+\begin{theorem}[夹迫性]\label{thm:3-8-prime}
+若存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+g(x) \leqslant f(x) \leqslant h(x),
+\]
+且 $\lim_{x \to x_0} g(x) = \lim_{x \to x_0} h(x) = A$，则
+\[
+\lim_{x \to x_0} f(x) = A.
+\]
+\end{theorem}
+
+这些定理的证明完全与数列极限的情形类似，请读者自己写出．
+
+由定理~\ref{thm:3-8-prime}，容易得出以下两个推论：
+
+\begin{corollary}\label{cor:3-3-prime}
+设 $\lim_{x \to x_0} g(x) = 0$．如果存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+|f(x)| \leqslant g(x),
+\]
+则 $\lim_{x \to x_0} f(x) = 0$．
+\end{corollary}
+
+\begin{corollary}\label{cor:3-4}
+设 $\lim_{x \to x_0} g(x) = 0$．如果存在 $\delta > 0$ 及常数 $A$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+|f(x) - A| \leqslant g(x),
+\]
+则 $\lim_{x \to x_0} f(x) = A$．
+\end{corollary}
+
+由数列极限的定义，读者也许已注意到对应于数列的极限过程 $n \to \infty$，函数的极限过程可以通过自变量取值于数列 $x_n \to x_0$ 来实现．即不仅可以把一个函数的极限过程看作连续过程，也可以看作某种离散过程的某种结合．这种看法可以由海涅（Heine）提出的下面的定理所体现．
+
+\begin{theorem}[海涅定理，归结原则]\label{thm:3-10}
+$\lim_{x \to x_0} f(x) = A$ 的充要条件是：对任何满足 $x_n \neq x_0$ 且 $\lim_{n \to \infty} x_n = x_0$ 的数列 $\{x_n\}$，都有
+\[
+\lim_{n \to \infty} f(x_n) = A.
+\]
+\end{theorem}
+
+\begin{proof}
+必要性．已知 $\lim_{x \to x_0} f(x) = A$．任给 $\varepsilon > 0$，存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有
+\[
+|f(x) - A| < \varepsilon.
+\]
+对于任何满足 $x_n \neq x_0$ 且 $\lim_{n \to \infty} x_n = x_0$ 的数列 $\{x_n\}$，对上述的 $\delta > 0$，存在自然数 $N$，使得当 $n > N$ 时，有
+\[
+0 < |x_n - x_0| < \delta.
+\]
+从而当 $n > N$ 时，有
+\[
+|f(x_n) - A| < \varepsilon.
+\]
+这就证明了 $\lim_{n \to \infty} f(x_n) = A$．
+
+充分性．用反证法．如果 $\lim_{x \to x_0} f(x) = A$ 不成立，即存在某个 $\varepsilon_0 > 0$，对任何 $\delta > 0$，存在 $x_\delta$，满足 $0 < |x_\delta - x_0| < \delta$，但
+\[
+|f(x_\delta) - A| \geqslant \varepsilon_0.
+\]
+特别取 $\delta = \frac{1}{n}$ ($n = 1, 2, \cdots$)，则对每个 $n$，相应地存在 $x_n$，使得
+\[
+0 < |x_n - x_0| < \frac{1}{n} \quad \text{但} \quad |f(x_n) - A| \geqslant \varepsilon_0.
+\]
+显然，此数列满足 $x_n \neq x_0$ 且 $\lim_{n \to \infty} x_n = x_0$．但由于对一切 $n$，都有 $|f(x_n) - A| \geqslant \varepsilon_0$，所以 $\{f(x_n)\}$ 不可能以 $A$ 为极限．这与充分性的假设矛盾！因此必有 $\lim_{x \to x_0} f(x) = A$．
+\end{proof}
+
+既然函数极限可以通过数列极限来刻画，那么我们就可以利用这种刻画把数列极限的一些性质移植到函数极限，例如定理~\ref{thm:3-6-prime}、定理~\ref{thm:3-8-prime}等的证明，也可以用定理~\ref{thm:3-10}来完成．
+
+定理~\ref{thm:3-10}不仅可以用来证明某些函数极限存在，更重要的在于证明某些函数极限不存在．
+
+\begin{example}\label{ex:3-3-4}
+证明 $\lim_{x \to 0} \sin\frac{1}{x}$ 不存在．
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\textwidth]{fig3-5.png}
+\figcap
+\label{fig:3-5}
+\end{figure}
+
+\begin{proof}
+只需找到两个数列 $\{x_n\}$ 和 $\{y_n\}$ 都以 $0$ 为极限，且 $x_n \neq 0$，$y_n \neq 0$，但 $\{f(x_n)\}$ 与 $\{f(y_n)\}$ 都存在极限但不相等，则由定理~\ref{thm:3-10}，知 $\lim_{x \to 0} \sin\frac{1}{x}$ 不存在（图~\ref{fig:3-5}）．
+
+事实上，取
+\[
+x_n = \frac{1}{n\pi}, \quad y_n = \frac{1}{2n\pi + \frac{\pi}{2}},
+\]
+则 $x_n \neq 0$，$y_n \neq 0$，$\lim_{n \to \infty} x_n = \lim_{n \to \infty} y_n = 0$，但
+\[
+f(x_n) = \sin(n\pi) = 0 \to 0 \quad (n \to \infty),
+\]
+\[
+f(y_n) = \sin\left(2n\pi + \frac{\pi}{2}\right) = 1 \to 1 \quad (n \to \infty).
+\]
+极限不相等，故极限 $\lim_{x \to 0} \sin\frac{1}{x}$ 不存在．
+\end{proof}
+
+利用定理~\ref{thm:3-10}，还可以把数列极限的复合函数极限法则移植到函数极限的情形：
+
+\begin{theorem}[复合函数的极限]\label{thm:3-11}
+设 $\lim_{x \to x_0} g(x) = u_0$，且在 $x_0$ 的某个去心邻域内 $g(x) \neq u_0$．如果 $\lim_{u \to u_0} f(u) = A$，则复合函数 $f(g(x))$ 当 $x \to x_0$ 时的极限存在，且
+\[
+\lim_{x \to x_0} f(g(x)) = \lim_{u \to u_0} f(u) = A.
+\]
+\end{theorem}
+
+\begin{example}\label{ex:3-3-5}
+求 $\lim_{x \to 0} \frac{\sqrt[4]{1+x} - 1}{x}$．
+\end{example}
+
+\begin{proof}[解]
+令 $u = \sqrt[4]{1+x}$，则当 $x \to 0$ 时，$u \to 1$，且 $x = u^4 - 1$．由于当 $x \neq 0$ 时 $u \neq 1$，故
+\[
+\lim_{x \to 0} \frac{\sqrt[4]{1+x} - 1}{x} = \lim_{u \to 1} \frac{u - 1}{u^4 - 1} = \lim_{u \to 1} \frac{1}{u^3 + u^2 + u + 1} = \frac{1}{4}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:3-3-6}
+求 $\lim_{x \to 0} \frac{\sqrt{1+x} - \sqrt{1-x}}{x}$．
+\end{example}
+
+\begin{proof}[解]
+分子有理化，有
+\[
+\lim_{x \to 0} \frac{\sqrt{1+x} - \sqrt{1-x}}{x} = \lim_{x \to 0} \frac{(1+x) - (1-x)}{x(\sqrt{1+x} + \sqrt{1-x})} = \lim_{x \to 0} \frac{2}{\sqrt{1+x} + \sqrt{1-x}} = 1.
+\]
+\end{proof}
+
+\subsection*{单侧极限与单调函数极限}
+
+有时自变量 $x$ 只能从某一点的单侧接近该点，例如讨论 $\sqrt{x}$ 在 $x \to 0$ 时的变化趋势，自变量只能从右边接近 $0$．这就引出单侧极限的概念．
+
+\begin{definition}\label{def:3-6}
+设函数 $f(x)$ 在 $x_0$ 的左边（右边）邻域有定义．$A$ 是一常数．如果任给 $\varepsilon > 0$，存在 $\delta > 0$，当 $0 < x_0 - x < \delta$（或 $0 < x - x_0 < \delta$）时，有 $|f(x) - A| < \varepsilon$，则称 $A$ 是函数 $f(x)$ 在 $x_0$ 的左极限（右极限），记为
+\[
+\lim_{x \to x_0^-} f(x) = A \quad (\text{或 } \lim_{x \to x_0^+} f(x) = A),
+\]
+或记为 $f(x_0 - 0) = A$（或 $f(x_0 + 0) = A$）．
+\end{definition}
+
+类似地，有关于单侧极限的四则运算与海涅定理等．容易看出：
+
+\begin{corollary}\label{cor:3-5}
+极限 $\lim_{x \to x_0} f(x) = A$ 存在的充要条件是左、右极限都存在且都等于 $A$：
+\[
+f(x_0 - 0) = f(x_0 + 0) = A.
+\]
+\end{corollary}
+
+对于单调函数，有：
+
+\begin{theorem}\label{thm:3-12}
+设 $f(x)$ 在 $(a, b)$ 单调增加且有上界，则 $\lim_{x \to b^-} f(x)$ 存在．
+\end{theorem}
+
+\begin{proof}
+设 $A = \sup_{x \in (a, b)} f(x)$．由上确界的定义，任给 $\varepsilon > 0$，存在 $x_0 \in (a, b)$，使得
+\[
+f(x_0) > A - \varepsilon.
+\]
+取 $\delta = b - x_0 > 0$，则当 $0 < b - x < \delta$，即 $x_0 < x < b$ 时，由 $f(x)$ 的单调递增性，便有
+\[
+A - \varepsilon < f(x_0) \leqslant f(x) \leqslant A < A + \varepsilon,
+\]
+即 $|f(x) - A| < \varepsilon$．故 $\lim_{x \to b^-} f(x) = A$．
+\end{proof}
+
+类似地，若 $f(x)$ 在 $(a, b)$ 单调增加且有下界，则 $\lim_{x \to a^+} f(x)$ 存在，且极限等于 $\inf_{x \in (a, b)} f(x)$．
+
+\begin{example}\label{ex:3-3-7}
+讨论函数 $f(x) = \operatorname{sgn} x$ 当 $x \to 0$ 时的极限，其中
+\[
+\operatorname{sgn} x = \begin{cases}
+1, & x > 0, \\
+0, & x = 0, \\
+-1, & x < 0.
+\end{cases}
+\]
+\end{example}
+
+\begin{proof}[解]
+当 $x > 0$ 时，$f(x) = 1$，故 $\lim_{x \to 0^+} f(x) = 1$；当 $x < 0$ 时，$f(x) = -1$，故 $\lim_{x \to 0^-} f(x) = -1$．因为左、右极限不相等，所以当 $x \to 0$ 时，$f(x)$ 的极限不存在．
+\end{proof}
+
+\begin{example}\label{ex:3-3-8}
+设 $f(x) = \frac{1}{1 + e^{1/x}}$，求 $\lim_{x \to 0^+} f(x)$ 与 $\lim_{x \to 0^-} f(x)$．
+\end{example}
+
+\begin{proof}[解]
+当 $x \to 0^+$ 时，$\frac{1}{x} \to +\infty$，$e^{1/x} \to +\infty$，故
+\[
+\lim_{x \to 0^+} \frac{1}{1 + e^{1/x}} = 0.
+\]
+当 $x \to 0^-$ 时，$\frac{1}{x} \to -\infty$，$e^{1/x} \to 0$，故
+\[
+\lim_{x \to 0^-} \frac{1}{1 + e^{1/x}} = 1.
+\]
+故左右极限均存在但不相等，函数在 $x \to 0$ 时的极限不存在．
+\end{proof}
+
+\subsection*{自变量趋于无穷大时的极限与无穷大量}
+
+我们还可以考虑自变量 $x \to \infty$（或者 $x \to +\infty$，$x \to -\infty$）时的函数极限，以及极限为无穷大（无穷大量）的情形．
+
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $x \to \infty$ 时的极限：如果任给 $\varepsilon > 0$，存在 $M > 0$，使得当 $|x| > M$ 时，有 $|f(x) - A| < \varepsilon$，则记 $\lim_{x \to \infty} f(x) = A$．类似可定义 $x \to +\infty$ 及 $x \to -\infty$ 时的极限．
+\item 无穷大量：设 $f(x)$ 在 $x_0$ 附近（$x_0$ 除外）有定义．如果任给 $G > 0$，存在 $\delta > 0$，使得当 $0 < |x - x_0| < \delta$ 时，有 $|f(x)| > G$，则称 $f(x)$ 当 $x \to x_0$ 时为无穷大量，记为 $\lim_{x \to x_0} f(x) = \infty$．
+\end{enumerate}
+
+关于这些极限也有相应的四则运算与性质，注意局部性质应相应改为在无穷大邻域或者在去心邻域内．
+
+\begin{example}\label{ex:3-3-9}
+证明 $\lim_{x \to 0} \frac{1-x}{x^n} = \infty$（$n$ 为正整数）．
+\end{example}
+
+\begin{proof}
+因为 $\lim_{x \to 0} x^n = 0$，所以 $\lim_{x \to 0} \frac{1}{x^n} = \infty$．又 $\lim_{x \to 0} (1 - x) = 1 \neq 0$，由无穷大量的性质知
+\[
+\lim_{x \to 0} \frac{1-x}{x^n} = \infty.
+\]
+\end{proof}
+
+\begin{example}\label{ex:3-3-10}
+设 $a_0 \neq 0$，$b_0 \neq 0$，$m, n$ 为非负整数，求
+\[
+\lim_{x \to \infty} \frac{a_0 x^m + a_1 x^{m-1} + \cdots + a_m}{b_0 x^n + b_1 x^{n-1} + \cdots + b_n}.
+\]
+\end{example}
+
+\begin{proof}[解]
+分子、分母同除以 $x^n$，得
+\[
+\frac{a_0 x^m + a_1 x^{m-1} + \cdots + a_m}{b_0 x^n + b_1 x^{n-1} + \cdots + b_n} = \frac{a_0 x^{m-n} + a_1 x^{m-n-1} + \cdots + a_m x^{-n}}{b_0 + b_1 x^{-1} + \cdots + b_n x^{-n}}.
+\]
+当 $x \to \infty$ 时，分母趋于 $b_0 \neq 0$．因此：
+\begin{enumerate}[label=(\arabic*)]
+\item 当 $m < n$ 时，分子趋于 $0$，故极限为 $0$；
+\item 当 $m = n$ 时，分子趋于 $a_0$，故极限为 $\frac{a_0}{b_0}$；
+\item 当 $m > n$ 时，分子趋于 $\infty$，故极限为 $\infty$．
+\end{enumerate}
+\end{proof}
+
+\subsection*{两个重要极限}
+
+在微积分中，有两个非常重要的函数极限，它们在求导数以及初等函数的理论中起着基础性的作用．
+
+\subsubsection*{1. $\lim_{x \to 0} \frac{\sin x}{x} = 1$}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.28\textwidth]{fig3-6.png}
+\figcap
+\label{fig:3-6}
+\end{figure}
+
+事实上，作单位圆如图~\ref{fig:3-6}所示．先设 $0 < x < \frac{\pi}{2}$，此时显然有
+\[
+\triangle AOB \text{ 的面积} < \text{扇形 } AOB \text{ 的面积} < \triangle AOC \text{ 的面积}.
+\]
+从而
+\[
+\frac{1}{2}\sin x < \frac{1}{2}x < \frac{1}{2}\tan x,
+\]
+即
+\[
+\sin x < x < \tan x.
+\]
+因此
+\[
+\cos x < \frac{\sin x}{x} < 1.
+\]
+由于 $\cos(-x) = \cos x$，$\frac{\sin(-x)}{-x} = \frac{\sin x}{x}$，故当 $-\frac{\pi}{2} < x < 0$ 时，上述不等式同样成立．
+
+又因为
+\[
+1 - \cos x = 2\sin^2\frac{x}{2} < 2\left(\frac{x}{2}\right)^2 = \frac{x^2}{2},
+\]
+故当 $x \to 0$ 时，$\cos x \to 1$．由夹迫定理（定理~\ref{thm:3-8-prime}），立即得到
+\[
+\lim_{x \to 0} \frac{\sin x}{x} = 1.
+\]
+
+\subsubsection*{2. $\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$}
+
+在§2中，我们已经证明了数列极限 $\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e$．
+
+首先设 $x \to +\infty$．设 $[x] = n$，则 $n \leqslant x < n + 1$．从而
+\[
+1 + \frac{1}{n+1} < 1 + \frac{1}{x} \leqslant 1 + \frac{1}{n},
+\]
+\[
+\left(1 + \frac{1}{n+1}\right)^n < \left(1 + \frac{1}{x}\right)^x < \left(1 + \frac{1}{n}\right)^{n+1}.
+\]
+因为
+\[
+\lim_{n \to \infty} \left(1 + \frac{1}{n+1}\right)^n = \lim_{n \to \infty} \frac{\left(1 + \frac{1}{n+1}\right)^{n+1}}{1 + \frac{1}{n+1}} = e,
+\]
+\[
+\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^{n+1} = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \left(1 + \frac{1}{n}\right) = e.
+\]
+由夹迫定理，得
+\[
+\lim_{x \to +\infty} \left(1 + \frac{1}{x}\right)^x = e.
+\]
+再设 $x \to -\infty$．令 $t = -x$，则 $t \to +\infty$．
+\[
+\lim_{x \to -\infty} \left(1 + \frac{1}{x}\right)^x = \lim_{t \to +\infty} \left(1 - \frac{1}{t}\right)^{-t} = \lim_{t \to +\infty} \left(\frac{t}{t-1}\right)^t = \lim_{t \to +\infty} \left(1 + \frac{1}{t-1}\right)^{t-1} \cdot \left(1 + \frac{1}{t-1}\right) = e \cdot 1 = e.
+\]
+综合上述两方面，得
+\[
+\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e.
+\]
+若令 $t = \frac{1}{x}$，则上述极限可等价地写为
+\[
+\lim_{t \to 0} (1 + t)^{1/t} = e.
+\]
+
+\begin{example}\label{ex:3-3-11}
+求 $\lim_{x \to 0} \frac{1 - \cos x}{x^2}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \lim_{x \to 0} \frac{2\sin^2\frac{x}{2}}{x^2} = \lim_{x \to 0} \frac{1}{2}\left(\frac{\sin\frac{x}{2}}{\frac{x}{2}}\right)^2 = \frac{1}{2}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:3-3-12}
+求 $\lim_{x \to 0} \frac{\tan x}{x}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\lim_{x \to 0} \frac{\tan x}{x} = \lim_{x \to 0} \frac{\sin x}{x} \cdot \frac{1}{\cos x} = 1 \cdot 1 = 1.
+\]
+\end{proof}
+
+\begin{example}\label{ex:3-3-13}
+求 $\lim_{x \to 0} (1 + 2x)^{\frac{1}{x}}$．
+\end{example}
+
+\begin{proof}[解]
+\[
+\lim_{x \to 0} (1 + 2x)^{\frac{1}{x}} = \lim_{x \to 0} \left[(1 + 2x)^{\frac{1}{2x}}\right]^2 = e^2.
+\]
+\end{proof}
+
+\begin{xiti}
+\item 用极限定义证明下列极限：
+\begin{ziti}
+\item $\lim_{x \to -1} \frac{x - 3}{x^2 - 9} = \frac{1}{2}$；
+\item $\lim_{x \to 3} \frac{x - 3}{x^2 - 9} = \frac{1}{6}$；
+\item $\lim_{x \to 1} \frac{x - 1}{\sqrt{x} - 1} = 2$；
+\item $\lim_{x \to 1} \frac{(x-2)(x-1)}{x-3} = 0$；
+\item $\lim_{x \to 2} \sqrt{x^2 + 5} = 3$；
+\item $\lim_{x \to 1} \frac{x(x-1)}{x^2 - 1} = \frac{1}{2}$；
+\item $\lim_{x \to 3} \frac{x}{x^2 - 9} = \infty$；
+\item $\lim_{x \to \infty} \frac{x - 1}{x + 2} = 1$；
+\item $\lim_{x \to \infty} \frac{x^2 + x}{x + 1} = \infty$；
+\item $\lim_{x \to \infty} \frac{x^2 - 5}{x^2 - 1} = 1$．
+\end{ziti}
+
+\item 用极限的四则运算法则求下列极限：
+\begin{ziti}
+\item $\lim_{x \to 0} \frac{x^2 - 1}{2x^2 - x - 1}$；
+\item $\lim_{x \to 1} \frac{x^2 - 1}{2x^2 - x - 1}$；
+\item $\lim_{x \to 0} \frac{(x-1)^3 + (1-3x)}{x^2 + 2x^3}$；
+\item $\lim_{x \to 1} \frac{x^2 - \sqrt{x}}{\sqrt{x} - 1}$；
+\item $\lim_{x \to 3} \frac{\sqrt{1+x} - 2}{x - 3}$；
+\item $\lim_{x \to 3} \frac{x^2 - 5x + 6}{x^2 - 8x + 15}$；
+\item $\lim_{x \to 1} \frac{x^n - 1}{x^m - 1}$（$n, m$ 为正整数）；
+\item $\lim_{x \to 4} \frac{\sqrt{1 + 2x} - 3}{\sqrt{x} - 2}$．
+\end{ziti}
+
+\item 设 $f(x) > 0$，证明：若 $\lim_{x \to x_0} f(x) = A$，则 $\lim_{x \to x_0} \sqrt[n]{f(x)} = \sqrt[n]{A}$（对任意自然数 $n \geqslant 2$）．
+
+\item 证明：若 $\lim_{x \to x_0} f(x) = A$，则 $\lim_{x \to x_0} |f(x)| = |A|$，反之如何？
+
+\item 求下列函数在指示点的左右极限：
+\begin{ziti}
+\item $f(x) = \begin{cases} 0, & x > 1, \\ 1, & x = 1, \\ x^2 + 2, & x < 1 \end{cases}$ 在 $x = 1$；
+\item $f(x) = \begin{cases} x\sin\frac{1}{x}, & x > 0, \\ 1 + x^2, & x < 0 \end{cases}$ 在 $x = 0$；
+\item $f(x) = \frac{|x|}{x}\frac{1}{1+x^2}$ 在 $x = 0$；
+\item $f(x) = \frac{1}{x} - \left[\frac{1}{x}\right]$ 在 $x = \frac{1}{n}$（$n$ 为正整数）；
+\item $f(x) = \begin{cases} 2^x, & x > 0, \\ 0, & x = 0, \\ 1 + x^2, & x < 0 \end{cases}$ 在 $x = 0$．
+\end{ziti}
+
+\item 求下列极限：
+\begin{ziti}
+\item $\lim_{x \to \infty} \frac{x^2 - 1}{2x^2 - x - 1}$；
+\item $\lim_{x \to +\infty} \frac{5x - 7}{2x + \sqrt{x}}$；
+\item $\lim_{x \to +\infty} (\sqrt{x^2 + 1} - x)$；
+\item $\lim_{x \to -\infty} (\sqrt{x^2 + 1} - x)$；
+\item $\lim_{x \to \infty} \frac{x^2 + 3x}{x^2}$；
+\item $\lim_{x \to +\infty} \frac{x\sin x}{x^2 - 4}$；
+\item $\lim_{x \to -\infty} \frac{x - \cos x}{x}$；
+\item $\lim_{x \to +\infty} \frac{\sqrt{x + \sqrt{x + \sqrt{x}}}}{x + 1}$；
+\item $\lim_{n \to \infty} (\cos\sqrt{n+1} - \cos\sqrt{n})$；
+\item $\lim_{n \to +\infty} \sin(\pi\sqrt{n^2 + 1})$（$n$ 为整数）．
+\end{ziti}
+
+\item 用变量替换求下列极限：
+\begin{ziti}
+\item $\lim_{x \to 0^+} x \left[\frac{1}{x}\right]$；
+\item $\lim_{x \to 0^+} x^\alpha \ln x$ ($\alpha > 0$)；
+\item $\lim_{x \to +\infty} \frac{\ln x}{x^\alpha}$ ($\alpha > 0$)；
+\item $\lim_{x \to +\infty} x^{\frac{1}{x}}$．
+\end{ziti}
+
+\item 设 $f(x)$ 在 $(a, +\infty)$ 上单调，若对 $\lim_{n \to \infty} x_n = +\infty$，有 $\lim_{n \to \infty} f(x_n) = A$，则证明 $\lim_{x \to +\infty} f(x) = A$（$A$ 可以为无穷）．
+
+\item 设 $f(x)$ 在集合 $X$ 上定义，则 $f(x)$ 在 $X$ 上无界的充要条件是：存在 $x_n \in X$ ($n = 1, 2, \cdots$)，使得 $\lim_{n \to \infty} |f(x_n)| = +\infty$．
+
+\item 利用重要极限求极限：
+\begin{ziti}
+\item $\lim_{x \to 0} \frac{\sin 2x}{x}$；
+\item $\lim_{x \to 0} \frac{\sin x^2}{(\sin x)^2}$；
+\item $\lim_{x \to 0} \frac{\tan 3x}{\sin 5x}$；
+\item $\lim_{x \to 0} \frac{2\sin x - \sin 2x}{x^3}$；
+\item $\lim_{x \to 0} \frac{\cos 5x - \cos 3x}{x^2}$；
+\item $\lim_{x \to 0} \frac{\tan x - \sin x}{x^3}$；
+\item $\lim_{x \to 0} \frac{\arctan x}{x}$；
+\item $\lim_{x \to 0} \frac{\sin 4x}{\sqrt{x+1} - 1}$；
+\item $\lim_{x \to 0} \frac{\sqrt{1 - \cos x^2}}{1 - \cos x}$；
+\item $\lim_{x \to 0} \frac{\cos(n\arccos x)}{x}$（$n$ 为奇数）；
+\item $\lim_{x \to \frac{\pi}{4}} \frac{\tan x - 1}{x - \frac{\pi}{4}}$；
+\item $\lim_{x \to \pi} \frac{\sin mx}{\sin nx}$（$m, n$ 为整数）；
+\item $\lim_{x \to \frac{\pi}{2}} \frac{\cos x}{x - \frac{\pi}{2}}$；
+\item $\lim_{x \to +\infty} x\sin\frac{1}{x}$；
+\item $\lim_{n \to \infty} \left(1 + \frac{1}{2n}\right)^n$；
+\item $\lim_{n \to \infty} \left(1 + \frac{1}{n^2}\right)^n$；
+\item $\lim_{x \to \infty} \left(1 - \frac{2}{x}\right)^{-x}$；
+\item $\lim_{x \to 0} (1 + nx)^{\frac{1}{x}}$（$n$ 为正整数）；
+\item $\lim_{x \to 0} (1 + \tan x)^{\cot x}$；
+\item $\lim_{x \to 0} \left(\frac{1+x}{1-x}\right)^{\frac{1}{x}}$；
+\item $\lim_{x \to +\infty} \left(\frac{3x+2}{3x-1}\right)^{2x-1}$；
+\item $\lim_{x \to \infty} \left(\frac{x^2-1}{x^2+1}\right)^{x^2}$．
+\end{ziti}
+
+\item 证明 $\lim_{x \to 0} \cos\frac{1}{x}$ 不存在．
+
+\item 证明 $\lim_{x \to x_0} D(x)$ 不存在，其中
+\[
+D(x) = \begin{cases}
+1, & x \text{ 为有理数}, \\
+0, & x \text{ 为无理数}.
+\end{cases}
+\]
+
+\item 计算
+\[
+\lim_{n \to +\infty} \cos\frac{x}{2}\cos\frac{x}{4}\cdots\cos\frac{x}{2^n}.
+\]
+
+\item 用定义证明下列命题：
+\begin{ziti}
+\item 若 $\lim_{x \to a} f(x) = +\infty$，$\lim_{x \to a} g(x) = A$，则 $\lim_{x \to a} [f(x) + g(x)] = +\infty$；
+\item 若 $\lim_{x \to a} f(x) = +\infty$，$\lim_{x \to a} g(x) = A > 0$，则 $\lim_{x \to a} [f(x)g(x)] = +\infty$．
+\end{ziti}
+
+\item 设 $\lim_{x \to +\infty} f(x) = A$，$\lim_{x \to +\infty} g(x) = B$，证明 $\lim_{x \to +\infty} [f(x)g(x)] = AB$．
+
+\item 证明 $\lim_{x \to +\infty} f(x) = A$ 的充要条件是：对任何数列 $x_n \to +\infty$ ($n \to \infty$)，都有 $f(x_n) \to A$ ($n \to \infty$)．
+
+\item 证明 $\lim_{x \to x_0^+} f(x) = +\infty$ 的充要条件是：对任何数列 $x_n \to x_0$ ($n \to \infty$) 且 $x_n > x_0$，都有 $f(x_n) \to +\infty$ ($n \to \infty$)．
+
+\item 设函数 $f(x)$ 在 $(0, +\infty)$ 上满足方程 $f(2x) = f(x)$，且 $\lim_{x \to +\infty} f(x) = A$，证明：$f(x) \equiv A$ ($x \in (0, +\infty)$)．
+\end{xiti}

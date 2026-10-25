@@ -1,0 +1,377 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S15.1  含参变量的正常积分
+%  源：原书印刷页 177-183（PDF 物理页 183-189）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch15_15_1_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误与原书照录清单见 tools/_make_ch15_1.py 头部说明
+% ==================================================================
+\section{含参变量的正常积分}\label{sec:15.1}
+
+应用函数项级数 $\sum_{n=1}^{\infty}u_{n}(x)$ 可以构造新函数, 它就是这个函数项级数的和函数. 收敛的幂级数是构造新函数的最简单而且又是非常重要的一种方法. 第 16 章将用三角级数, 或者更确切地用 Fourier 级数
+\[
+  \frac{a_{0}}{2}+\sum_{n=1}^{\infty}[a_{n}\cos nx+b_{n}\sin nx]
+\]
+来构造新函数.
+
+现在我们用含参变量 (的正常或反常 (广义)) 积分来构造新函数.
+
+\begin{definition}\label{def:15.1.1}
+设二元函数 $f(x,u)$ 在闭区间 $[a,b]\times[\alpha,\beta]$ 上连续, 我们要研究由含参变量 $u$ 的正常积分所确定的关于 $u$ 的函数
+\[
+  \varphi(u)=\int_{a}^{b}f(x,u)\mathrm{d}x
+\]
+的分析性质，并称它为含参变量 $u$ 的正常积分.
+\end{definition}
+
+\begin{theorem}[含参变量正常积分保持连续性]\label{thm:15.1.1}
+如果 $f(x,u)$ 在闭区间 $[a,b]\times[\alpha,\beta]$ 上连续, 则
+\[
+  \varphi(u)=\int_{a}^{b}f(x,u)\mathrm{d}x
+\]
+为区间 $[\alpha,\beta]$ 上的连续函数，即 $\forall u_{0}\in[\alpha,\beta]$，有
+\[
+  \lim_{u\to u_{0}}\int_{a}^{b}f(x,u)\mathrm{d}x=\lim_{u\to u_{0}}\varphi(u)=\varphi(u_{0})=\int_{a}^{b}f(x,u_{0})\mathrm{d}x=\int_{a}^{b}\lim_{u\to u_{0}}f(x,u)\mathrm{d}x
+\]
+(极限号与积分号可交换或可积分号下求极限).
+\end{theorem}
+
+\begin{proof}
+设 $u_{0}\in[\alpha,\beta]$. 因为 $f(x,u)$ 在 $[a,b]\times[\alpha,\beta]$ 上连续, 所以它一致连续, 故 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $(x_{1},u_{1})$, $(x_{2},u_{2})\in[a,b]\times[\alpha,\beta]$ 时, 只要
+\[
+  \rho_{0}\big((x_{1},u_{1}),(x_{2},u_{2})\big)=\sqrt{(x_{1}-x_{2})^{2}+(u_{1}-u_{2})^{2}}<\delta,
+\]
+就有
+\[
+  |f(x_{1},u_{1})-f(x_{2},u_{2})|<\frac{\varepsilon}{b-a}.
+\]
+因此, 当 $|u-u_{0}|<\delta$ 时, $|f(x,u)-f(x,u_{0})|<\frac{\varepsilon}{b-a}$. 于是
+\[
+  \begin{aligned}
+    |\varphi(u)-\varphi(u_{0})|&=\left|\int_{a}^{b}f(x,u)\mathrm{d}x-\int_{a}^{b}f(x,u_{0})\mathrm{d}x\right|\\
+    &\leqslant\int_{a}^{b}|f(x,u)-f(x,u_{0})|\mathrm{d}x<\frac{\varepsilon}{b-a}\int_{a}^{b}\mathrm{d}x=\varepsilon,
+  \end{aligned}
+\]
+故 $\varphi(u)$ 在 $u_{0}$ 处连续. 由 $u_{0}\in[\alpha,\beta]$ 是任取的, 故 $\varphi(u)$ 在 $[\alpha,\beta]$ 上连续.
+\end{proof}
+
+\begin{theorem}[积分号可交换]\label{thm:15.1.2}
+如果 $f(x,u)$ 在闭区间 $[a,b]\times[\alpha,\beta]$ 上连续, 则
+\[
+  \varphi(u)=\int_{a}^{b}f(x,u)\mathrm{d}x
+\]
+在 $[\alpha,\beta]$ 上连续 (当然 Riemann 可积), 且
+\[
+  \begin{aligned}
+    \int_{\alpha}^{\beta}\varphi(u)\mathrm{d}u&=\int_{\alpha}^{\beta}\left[\int_{a}^{b}f(x,u)\mathrm{d}x\right]\mathrm{d}u\\
+    &=\int_{a}^{b}\left[\int_{\alpha}^{\beta}f(x,u)\mathrm{d}u\right]\mathrm{d}x,
+  \end{aligned}
+\]
+即积分号可交换.
+\end{theorem}
+
+\begin{proof}
+因为 $f(x,u)$ 在 $[a,b]\times[\alpha,\beta]$ 上连续, 故\extref{定理 10.3.3} 表明二重积分与累次积分都存在, 且
+\[
+  \int_{\alpha}^{\beta}\left[\int_{a}^{b}f(x,u)\mathrm{d}x\right]\mathrm{d}u=\iint\limits_{[a,b]\times[a,b]}f(x,u)\mathrm{d}x\mathrm{d}u=\int_{a}^{b}\left[\int_{\alpha}^{\beta}f(x,u)\mathrm{d}u\right]\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{theorem}[可在积分号下求导]\label{thm:15.1.3}
+如果 $f(x,u)$ 与偏导函数 $\dfrac{\partial f}{\partial u}(x,u)$ 都在闭区间 $[a,b]\times[\alpha,\beta]$ 上连续, 则
+\[
+  \varphi(u)=\int_{a}^{b}f(x,u)\mathrm{d}x
+\]
+在 $[\alpha,\beta]$ 上可导, 且
+\[
+  \varphi'(u)=\frac{\mathrm{d}\varphi(u)}{\mathrm{d}u}=\int_{a}^{b}\frac{\partial f(x,u)}{\partial u}\mathrm{d}x=\int_{a}^{b}f_{u}'(x,u)\mathrm{d}x
+\]
+(求导与积分号可交换, 或可积分号下求导).
+\end{theorem}
+
+\begin{proof}
+令 $g(u)=\displaystyle\int_{a}^{b}\frac{\partial f(x,u)}{\partial u}\mathrm{d}x$, $u\in[\alpha,\beta]$, 则 $\forall v\in[\alpha,\beta]$ 有
+\[
+  \begin{aligned}
+    \int_{\alpha}^{v}g(u)\mathrm{d}u&=\int_{\alpha}^{v}\left[\int_{a}^{b}\frac{\partial f(x,u)}{\partial u}\mathrm{d}x\right]\mathrm{d}u\xlongequal{\text{定理~\ref{thm:15.1.2}}}\int_{a}^{b}\left[\int_{\alpha}^{v}\frac{\partial f(x,u)}{\partial u}\mathrm{d}u\right]\mathrm{d}x\\
+    &\xlongequal{\text{Newton-Leibniz 公式}}\int_{a}^{b}[f(x,v)-f(x,\alpha)]\mathrm{d}x=\varphi(v)-\varphi(\alpha),
+  \end{aligned}
+\]
+由定理~\ref{thm:15.1.1} 知, $g(u)$ 在 $[\alpha,\beta]$ 上连续, 根据\extref{定理 6.3.2} (微积分基本定理) 得到
+\[
+  \begin{aligned}
+    \int_{a}^{b}f_{u}'(x,v)\mathrm{d}x&=g(v)=\left(\int_{\alpha}^{v}g(u)\mathrm{d}u\right)'=\left(\varphi(v)-\varphi(\alpha)\right)'\\
+    &=\varphi'(v)=\left(\int_{a}^{b}f(x,v)\mathrm{d}x\right)'.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:15.1.4}
+如果 $f(x,u)$ 在闭区间 $[a,b]\times[\alpha,\beta]$ 上连续, $a(u)$, $b(u)$ 都在闭区间 $[\alpha,\beta]$ 上连续, 且 $a\leqslant a(u)$, $b(u)\leqslant b$, $u\in[\alpha,\beta]$, 则
+\[
+  \psi(u)=\int_{a(u)}^{b(u)}f(x,u)\mathrm{d}x
+\]
+在 $[\alpha,\beta]$ 上也连续.
+\end{theorem}
+
+\begin{proof}
+证法 1 设 $M=\sup\limits_{(x,u)\in[a,b]\times[\alpha,\beta]}|f(x,u)|$, $u_{0}$, $u\in[\alpha,\beta]$, 由 $a(u)$ 与 $b(u)$ 在 $[\alpha,\beta]$ 都连续知
+\[
+  \begin{aligned}
+    \left|\int_{a(u)}^{a(u_{0})}f(x,u)\mathrm{d}x\right|&\leqslant\int_{a(u)}^{a(u_{0})}|f(x,u)|\mathrm{d}x\leqslant M|a(u)-a(u_{0})|\to0\quad(u\to u_{0}),\\
+    \left|\int_{b(u_{0})}^{b(u)}f(x,u)\mathrm{d}x\right|&\leqslant\int_{b(u_{0})}^{b(u)}|f(x,u)|\mathrm{d}x\leqslant M|b(u)-b(u_{0})|\to0\quad(u\to u_{0}).
+  \end{aligned}
+\]
+因此
+\[
+  \lim_{u\to u_{0}}\int_{a(u)}^{a(u_{0})}f(x,u)\mathrm{d}x=0=\lim_{u\to u_{0}}\int_{b(u_{0})}^{b(u)}f(x,u)\mathrm{d}x.
+\]
+于是
+\[
+  \begin{aligned}
+    \lim_{u\to u_{0}}\psi(u)&=\lim_{u\to u_{0}}\int_{a(u)}^{b(u)}f(x,u)\mathrm{d}x\\
+    &=\lim_{u\to u_{0}}\left[\int_{a(u)}^{a(u_{0})}f(x,u)\mathrm{d}x+\int_{a(u_{0})}^{b(u_{0})}f(x,u)\mathrm{d}x+\int_{b(u_{0})}^{b(u)}f(x,u)\mathrm{d}x\right]\\
+    &\xlongequal{\text{定理~\ref{thm:15.1.1}}}0+\int_{a(u_{0})}^{b(u_{0})}\lim_{u\to u_{0}}f(x,u)\mathrm{d}x+0=\int_{a(u_{0})}^{b(u_{0})}f(x,u_{0})\mathrm{d}x=\psi(u_{0}),
+  \end{aligned}
+\]
+所以, $\psi(u)$ 在 $u_{0}$ 处连续, 由 $u_{0}\in[\alpha,\beta]$ 的任取性, $\psi(u)$ 在 $[\alpha,\beta]$ 上连续.
+
+证法 2 设 $M=\sup\limits_{(x,u)\in[a,b]\times[\alpha,\beta]}|f(x,u)|$, $u_{0}\in[\alpha,\beta]$. $\forall\varepsilon>0$, 由于 $a(u)$, $b(u)$ 都在闭区间 $[\alpha,\beta]$ 上连续, 故 $\exists\delta_{1}>0$, 使得当 $u\in[\alpha,\beta]$, $|u-u_{0}|<\delta_{1}$ 时, 有 $|a(u)-a(u_{0})|<\dfrac{\varepsilon}{3(M+1)}$, $|b(u)-b(u_{0})|<\dfrac{\varepsilon}{3(M+1)}$. 再由 $f(x,u)$ 在 $[a,b]\times[\alpha,\beta]$ 上一致连续, 故 $\exists\delta_{2}>0$, 当 $\rho_{0}^{2}\big((x',u'),(x'',u'')\big)<\delta_{2}$ 时, $|f(x',u')-f(x'',u'')|<\dfrac{\varepsilon}{3(|b(u_{0})-a(u_{0})|+1)}$. 于是, 令 $\delta=\min\{\delta_{1},\delta_{2}\}$, 当 $|u-u_{0}|<\delta$ 时, 有
+\[
+  \begin{aligned}
+    |\psi(u)-\psi(u_{0})|&=\left|\int_{a(u)}^{b(u)}f(x,u)\mathrm{d}x-\int_{a(u_{0})}^{b(u_{0})}f(x,u_{0})\mathrm{d}x\right|\\
+    &\leqslant\left|\int_{a(u)}^{a(u_{0})}f(x,u)\mathrm{d}x\right|+\left|\int_{a(u_{0})}^{b(u_{0})}f(x,u)\mathrm{d}x-\int_{b(u_{0})}^{b(u)}f(x,u_{0})\mathrm{d}x\right|\\
+    &\quad+\left|\int_{b(u_{0})}^{b(u)}f(x,u)\mathrm{d}x\right|\\
+    &\leqslant\int_{a(u)}^{a(u_{0})}|f(x,u)|\mathrm{d}x+\int_{a(u_{0})}^{b(u_{0})}|f(x,u)-f(x,u_{0})|\mathrm{d}x\\
+    &\quad+\int_{b(u_{0})}^{b(u)}|f(x,u)|\mathrm{d}x\\
+    &\leqslant M|a(u)-a(u_{0})|+\frac{\varepsilon}{3(|b(u_{0})-a(u_{0})|+1)}|b(u_{0})-a(u_{0})|\\
+    &\quad+M|b(u)-b(u_{0})|\\
+    &\leqslant\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon.
+  \end{aligned}
+\]
+这就证明了 $\lim\limits_{u\to u_{0}}\psi(u)=\psi(u_{0})$, 即 $\psi(u)$ 在 $u_{0}$ 连续. 再由 $u_{0}\in[\alpha,\beta]$ 任取知, $\psi(u)$ 在 $[\alpha,\beta]$ 上连续.
+\end{proof}
+
+\begin{theorem}[一般的参变量积分的求导公式]\label{thm:15.1.5}
+设 $f(x,u)$ 在闭区间 $[a,b]\times[\alpha,\beta]$ 上连续, $\dfrac{\partial f}{\partial u}(x,u)$ 在 $[a,b]\times[\alpha,\beta]$ 也连续, $a(u)$, $b(u)$ 在 $[\alpha,\beta]$ 上可导, 且
+\[
+  a\leqslant a(u),\quad b(u)\leqslant b,\quad u\in[\alpha,\beta],
+\]
+则 $\psi(u)=\displaystyle\int_{a(u)}^{b(u)}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上可导, 并且
+\[
+  \psi'(u)=\int_{a(u)}^{b(u)}f_{u}'(x,u)\mathrm{d}x+f(b(u),u)b'(u)-f(a(u),u)a'(u).
+\]
+\end{theorem}
+
+\begin{proof}
+证法 1 设 $\psi(u)=\displaystyle\int_{a(u)}^{b(u)}f(x,u)\mathrm{d}x$ 是由函数
+\[
+  F(u,a,b)=\int_{a}^{b}f(x,u)\mathrm{d}x
+\]
+与 $a=a(u)$, $b=b(u)$ 复合而成的. 根据复合函数求导的链规则得到
+\[
+  \begin{aligned}
+    \psi'(u)&=F_{u}'+F_{b}'b'(u)+F_{a}'a'(u)\\
+    &=\int_{a(u)}^{b(u)}f_{u}'(x,u)\mathrm{d}x+f(b(u),u)b'(u)-f(a(u),u)a'(u).
+  \end{aligned}
+\]
+
+证法 2 $\forall u_{0}\in[\alpha,\beta]$, 有
+\[
+  \begin{aligned}
+    \psi'(u_{0})&=\lim_{u\to u_{0}}\frac{\psi(u)-\psi(u_{0})}{u-u_{0}}=\lim_{u\to u_{0}}\frac{1}{u-u_{0}}\left[\int_{a(u)}^{b(u)}f(x,u)\mathrm{d}x-\int_{a(u_{0})}^{b(u_{0})}f(x,u_{0})\mathrm{d}x\right]\\
+    &=\lim_{u\to u_{0}}\frac{1}{u-u_{0}}\left[\int_{a(u)}^{a(u_{0})}f(x,u)\mathrm{d}x+\int_{a(u_{0})}^{b(u_{0})}[f(x,u)-f(x,u_{0})]\mathrm{d}x+\int_{b(u_{0})}^{b(u)}f(x,u)\mathrm{d}x\right]\\
+    &\xlongequal{\text{积分中值定理}}\lim_{u\to u_{0}}\left[-\frac{a(u)-a(u_{0})}{u-u_{0}}f(\overline{x},u)\right.\\
+    &\left.\quad+\frac{1}{u-u_{0}}\int_{a(u_{0})}^{b(u_{0})}f_{u}'\big(x,u_{0}+\theta(u-u_{0})\big)(u-u_{0})\mathrm{d}x+\frac{b(u)-b(u_{0})}{u-u_{0}}f(\overline{\overline{x}},u)\right]\\
+    &=-a'(u_{0})f(a(u_{0}),u_{0})+\int_{a(u_{0})}^{b(u_{0})}f_{u}'(x,u_{0})\mathrm{d}x+b'(u_{0})f(b(u_{0}),u_{0}).
+  \end{aligned}
+\]
+由此, $\forall u\in[\alpha,\beta]$ 有
+\[
+  \psi'(u)=\int_{a(u)}^{b(u)}f_{u}'(x,u)\mathrm{d}x+f(b(u),u)b'(u)-f(a(u),u)a'(u).
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.1.1}
+计算积分
+\[
+  \int_{0}^{1}\frac{x^{b}-x^{a}}{\ln x}\mathrm{d}x,\quad0<a<b.
+\]
+\end{example}
+
+\begin{proof}
+解法 1 由于 $x^{n}$ 在 $[0,1]\times[a,b]$ 上连续, 故
+\[
+  \begin{aligned}
+    \int_{0}^{1}\frac{x^{b}-x^{a}}{\ln x}\mathrm{d}x&=\int_{0}^{1}\left[\int_{a}^{b}x^{u}\mathrm{d}u\right]\mathrm{d}x\xlongequal{\text{定理~\ref{thm:15.1.2}}}\int_{a}^{b}\left[\int_{0}^{1}x^{u}\mathrm{d}x\right]\mathrm{d}u\\
+    &=\int_{a}^{b}\left.\frac{x^{u+1}}{u+1}\right|_{0}^{1}\mathrm{d}u=\int_{a}^{b}\frac{\mathrm{d}u}{u+1}=\left.\ln(u+1)\right|_{a}^{b}=\ln\frac{b+1}{a+1}.
+  \end{aligned}
+\]
+解法 2 视 $I(b)=\displaystyle\int_{0}^{1}\frac{x^{b}-x^{a}}{\ln x}\mathrm{d}x$ 中的 $a$ 为固定的常数, 而 $b$ 视为参变量, 则
+\[
+  \frac{\mathrm{d}I}{\mathrm{d}b}\xlongequal{\text{定理~\ref{thm:15.1.3}}}\int_{0}^{1}\frac{\mathrm{d}}{\mathrm{d}b}\left(\frac{x^{b}-x^{a}}{\ln x}\right)\mathrm{d}x=\int_{0}^{1}x^{b}\mathrm{d}x=\left.\frac{x^{b+1}}{b+1}\right|_{0}^{1}=\frac{1}{b+1},
+\]
+所以, 重新得到
+\[
+  I(b)=\int_{a}^{b}\frac{\mathrm{d}I}{\mathrm{d}u}\mathrm{d}u+I(a)=\int_{a}^{b}\frac{\mathrm{d}u}{u+1}+0=\left.\ln(u+1)\right|_{a}^{b}=\ln\frac{b+1}{a+1}.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:15.1.1}
+例~\ref{ex:15.1.1} 的解法中, $\dfrac{x^{b}-x^{a}}{\ln x}$ 当 $x=0,1$ 时无定义, 正确理解应为
+\[
+  \int_{a}^{b}x^{u}\mathrm{d}u=\begin{cases}
+    0, & x=0,\\
+    \left.\dfrac{x^{u}}{\ln x}\right|_{a}^{b}=\dfrac{x^{b}-x^{a}}{\ln x}, & 0<x<1,\\
+    b-a, & x=1.
+\end{cases}
+\]
+\[
+  \begin{aligned}
+    &\lim_{x\to0^{+}}\frac{x^{b}-x^{a}}{\ln x}\xlongequal{\text{L'Hospital 法则}}\lim_{x\to0^{+}}\frac{bx^{b-1}-ax^{a-1}}{\frac{1}{x}}=\lim_{x\to0^{+}}(bx^{b}-ax^{a})=0-0=0=\int_{a}^{b}0^{u}\mathrm{d}u,\\
+    &\lim_{x\to1^{-}}\frac{x^{b}-x^{a}}{\ln x}\xlongequal{\text{L'Hospital 法则}}\lim_{x\to1^{-}}\frac{bx^{b-1}-ax^{a-1}}{\frac{1}{x}}=\lim_{x\to1^{-}}(bx^{b}-ax^{a})=b-a=\int_{a}^{b}1^{u}\mathrm{d}u.
+  \end{aligned}
+\]
+例~\ref{ex:15.1.1} 的解法 2 中, 如果令
+\[
+  f(x,b)=\begin{cases}
+    0, & x=0,\\
+    \dfrac{x^{b}-x^{a}}{\ln x}, & 0<x<1,\\
+    b-a, & x=1,
+\end{cases}
+\]
+则
+\[
+  \begin{aligned}
+    \frac{\mathrm{d}}{\mathrm{d}b}f(x,b)&=\begin{cases}
+      0, & x=0,\\
+      x^{b}, & 0<x<1,\\
+      1, & x=1,
+\end{cases}
+  \end{aligned}
+\]
+在 $[0,1]\times[a,+\infty)$ 上连续. 因此, 上面应用定理~\ref{thm:15.1.3} 是合理的.
+
+我们给出这样的注解是完全必要的, 大部分读者都会忽略这些! 但是, 千万不能因为这样枝节的问题, 束缚自己的手脚, 这也不敢做, 那也不敢做. 您只管大胆地用定理~\ref{thm:15.1.1}, 定理~\ref{thm:15.1.2} 与定理~\ref{thm:15.1.3}, 计算出结果后仔细验证是否满足定理的条件.
+\end{remark}
+
+\begin{example}\label{ex:15.1.2}
+计算积分
+\[
+  I(r)=\int_{0}^{\pi}\ln(1-2r\cos x+r^{2})\mathrm{d}x,\quad|r|<1.
+\]
+\end{example}
+
+\begin{proof}
+将 $r$ 视作参变量, 应用定理~\ref{thm:15.1.3}, 对 $r$ 求导得
+\[
+  \begin{aligned}
+    I'(r)&=\int_{0}^{\pi}\frac{\partial}{\partial r}\ln\left(1-2r\cos x+r^{2}\right)\mathrm{d}x\\
+    &=\int_{0}^{\pi}\frac{-2\cos x+2r}{1-2r\cos x+r^{2}}\mathrm{d}x,
+  \end{aligned}
+\]
+\[
+  I'(0)=-\int_{0}^{\pi}2\cos x\mathrm{d}x=-\left.2\sin x\right|_{0}^{\pi}=0.
+\]
+当 $r\neq0$ 时, 有
+\[
+  \begin{aligned}
+    I'(r)&=\frac{1}{r}\int_{0}^{\pi}\left(1-\frac{1-r^{2}}{1-2r\cos x+r^{2}}\right)\mathrm{d}x\\
+    &\xlongequal{t=\tan\frac{x}{2}}\frac{1}{r}\left[\pi-(1-r^{2})\int_{0}^{+\infty}\frac{1}{1-2r\frac{1-t^{2}}{1+t^{2}}+r^{2}}\cdot\frac{2\mathrm{d}t}{1+t^{2}}\right]
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    &=\frac{1}{r}\left[\pi-2(1-r^{2})\int_{0}^{+\infty}\frac{\mathrm{d}t}{(1-r)^{2}+(1+r)^{2}t^{2}}\right]\\
+    &=\frac{1}{r}\left[\pi-\frac{1+r}{1-r}\int_{0}^{+\infty}\frac{2\mathrm{d}t}{1+\left(\frac{1+r}{1-r}\right)^{2}}\right]\\
+    &=\frac{1}{r}\left[\pi-2\arctan\frac{1+r}{1-r}t\bigg|_{0}^{+\infty}\right]=\frac{1}{r}\left[\pi-2\left(\frac{\pi}{2}-0\right)\right]=0.
+  \end{aligned}
+\]
+由上得到 $I'(r)=0$, $|r|<1$. 所以 $I(r)=c$ (常值). 从而
+\[
+  I(r)=\int_{0}^{\pi}\ln(1-2r\cos x+r^{2})\mathrm{d}x=I(0)=\int_{0}^{\pi}0\mathrm{d}x=0,\quad|r|<1.
+\]
+\end{proof}
+
+\begin{exblock}{练习题 15.1}
+\begin{enumerate}
+  \item 求极限:
+  \[
+    (1)\ \lim_{a\to0}\int_{-1}^{1}\sqrt{x^{2}+a^{2}}\mathrm{d}x;\qquad
+    (2)\ \lim_{t\to0}\int_{0}^{2}x^{2}\cos tx\,\mathrm{d}x.
+\]
+  \item 设 $f(x)$ 为可导函数, 令 $F(x)=\displaystyle\int_{0}^{u}(x+u)f(x)\mathrm{d}x$, 计算 $F''(u)$.
+  \item 计算下列函数的导数:
+
+  (1) $f(x)=\displaystyle\int_{\sin x}^{\cos x}\mathrm{e}^{(1+t)^{2}}\mathrm{d}t$;
+
+  (2) $f(x)=\displaystyle\int_{x}^{x^{2}}\mathrm{e}^{-x^{2}u^{2}}\mathrm{d}u$;
+
+  (3) $f(x)=\displaystyle\int_{a+x}^{b+x}\frac{\sin xt}{t}\mathrm{d}t$;
+
+  (4) $f(u)=\displaystyle\int_{0}^{u}g(x+u,x-u)\,\mathrm{d}x$, 其中 $g$ 为具有连续偏导数的二元函数.
+  \item 设 $\varphi,\psi$ 分别可以微分两次与一次. 证明:
+  \[
+    u(x,t)=\frac{1}{2}\big[\varphi(x-at)+\varphi(x+at)\big]+\frac{1}{2a}\int_{x-at}^{x+at}\psi(s)\mathrm{d}s
+\]
+  \[
+    \frac{\partial^{2}u}{\partial t^{2}}=a^{2}\frac{\partial^{2}u}{\partial x^{2}}
+\]
+  满足弦振动方程.
+  \item 设 $f(t)$ 在闭区间 $[0,a]$ 上连续, 且当 $t\in[0,a]$ 时, $(x-t)^{2}+y^{2}+z^{2}\neq0$. 证明: 函数
+  \[
+    u(x,y,z)=\int_{0}^{a}\frac{f(t)}{\sqrt{(x-t)^{2}+y^{2}+z^{2}}}\mathrm{d}t
+\]
+  满足 Laplace 方程
+  \[
+    \Delta u=\frac{\partial^{2}u}{\partial x^{2}}+\frac{\partial^{2}u}{\partial y^{2}}+\frac{\partial^{2}u}{\partial z^{2}}=0.
+\]
+  \item 设 $f(t)$ 在 $[a,A]$ 上连续, 证明:
+  \[
+    \lim_{h\to0}\frac{1}{h}\int_{a}^{x}[f(t+h)-f(t)]\mathrm{d}t=f(x)-f(a),\quad a<x<A.
+\]
+  \item 设 $a<b$, $f(x)$ 为可导函数, 令
+  \[
+    \varphi(u)=\int_{a}^{b}f(x)|x-u|\mathrm{d}x,
+\]
+  计算 $\varphi''(u)$.
+  \item 在区间 $[1,3]$ 上用线性函数 $a+bx$ 近似代替 $f(x)=x^{2}$, 试选 $a$, $b$, 使得
+  \[
+    \int_{1}^{3}(a+bx-x^{2})^{2}\mathrm{d}x
+\]
+  达到最小值.
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 15.1}
+\begin{enumerate}
+  \item 证明: $n$ 阶 Bessel 函数
+  \[
+    \mathrm{J}_{n}(x)=\frac{1}{\pi}\int_{0}^{\pi}\cos(n\varphi-x\sin\varphi)\mathrm{d}\varphi
+\]
+  满足 Bessel 方程
+  \[
+    x^{2}\mathrm{J}_{n}''(x)+x\mathrm{J}_{n}'(x)+(x^{2}-n^{2})\mathrm{J}_{n}(x)=0.
+\]
+  \item 利用对参数的求导法, 计算下列积分:
+
+  (1) $\displaystyle\int_{0}^{\frac{\pi}{2}}\ln(a^{2}\sin^{2}x+b^{2}\cos^{2}x)\mathrm{d}x$;
+
+  (2) $\displaystyle\int_{0}^{\frac{\pi}{2}}\frac{\arctan(a\tan x)}{\tan x}\mathrm{d}x$.
+  \item 用下面两种方法证明
+  \[
+    \int_{0}^{\frac{\pi}{2}}\ln\frac{1+a\cos x}{1-a\cos x}\frac{\mathrm{d}x}{\cos x}=\pi\operatorname{arcsin}a,\quad|a|<1.
+\]
+  (1) 对参数 $a$ 求导;
+
+  (2) 由 $\dfrac{1}{\cos x}\ln\dfrac{1+a\cos x}{1-a\cos x}=2a\displaystyle\int_{0}^{1}\frac{\mathrm{d}y}{1-(a^{2}\cos^{2}x)y^{2}}$.
+  \item 用下面两种方法证明
+  \[
+    \int_{0}^{1}\frac{\ln(1+x)}{1+x^{2}}\mathrm{d}x=\frac{\pi}{8}\ln2.
+\]
+  (1) $I(\alpha)=\displaystyle\int_{0}^{1}\frac{\ln(1+\alpha x)}{1+x^{2}}\mathrm{d}x$ 关于参数 $\alpha$ 求导;
+
+  (2) $\displaystyle\int_{0}^{1}\frac{\ln(1+x)}{1+x^{2}}\mathrm{d}x=\int_{0}^{\frac{\pi}{2}}\ln(1+\tan\theta)\mathrm{d}\theta$.
+\end{enumerate}
+\end{exblock}

@@ -1,0 +1,492 @@
+% ============ 第九章 §1 关于费马猜想的 Kummer 定理（第 2 种情形） (原书 pp.311-325) ============
+\section{关于费马猜想的 Kummer 定理（第 2 种情形）}\label{sec:ch9-s1}
+
+本节中要证明
+
+\begin{theorem}\label{thm:9.1}
+设 $p$ 是奇素数, 并且 $p\nmid h_p$, 其中 $h_p$ 为分圆域 $\Q(\zeta_p)$ 的理想类数, 则 $x^p+y^p=z^p$ 没有正整数解 $(x,y,z)$.
+\end{theorem}
+
+我们在第三章末尾已证明了第 $1$ 种情形, 即不存在解满足 $p\mid xyz$. 现在要证第 $2$ 种情形, 即不存在解满足 $p\nmid xyz\neq 0$. 这种情形的证明更加困难, 需要局部域的知识.
+
+和第 $1$ 种情形一样, 我们不妨设 $x,y,z$ 两两互素. 我们可以像 Kummer 那样证明更一般的结果.
+
+\begin{theorem}\label{thm:9.2}
+设 $p$ 为奇素数, $p\nmid h_p$, 则方程 $x^p+y^p=z^p$ 没有解 $(x,y,z)$, 使得 $x,y,z\in\Z[\zeta_p]$, $(1-\zeta_p)\mid xyz\neq 0$, 并且 $x,y,z$ 在 $\Z[\zeta_p]$ 中两两互素.
+\end{theorem}
+
+\begin{proof}
+假如方程 $x^p+y^p=z^p$ 具有满足定理 \ref{thm:9.2} 条件的解, 我们不妨设 $(1-\zeta_p)\mid z$（因为若 $(1-\zeta_p)\mid x$, 可考虑方程 $y^p+(-z)^p=(-x)^p$）. 于是 $x$ 和 $y$ 均与 $(1-\zeta)$ 互素（以后 $\zeta_p$ 简记为 $\zeta$）. 令 $z=(1-\zeta)^mz_0$, 其中 $m\geqslant 1$ 而 $z_0$ 与 $(1-\zeta)$ 互素（$z_0\in\Z[\zeta]$）, 则 $x^p+y^p=(1-\zeta)^{mp}z_0^p$, 其中 $x,y,z_0\in\Z[\zeta]$, $(1-\zeta)\nmid xyz_0\neq 0$, 并且 $x,y,z_0$ 在 $\Z[\zeta]$ 中彼此互素. 现在我们证明这是不可能的. 即我们要证明: 对 $\Z[\zeta]$ 中任何单位 $\varepsilon$ 和正整数 $m$, 方程
+\begin{equation}\tag{1}
+  x^p+y^p=\varepsilon(1-\zeta)^{pm}z_0^p
+\end{equation}
+不可能有解满足条件
+\[
+  (*)\qquad x,y,z_0\in\Z[\zeta],\quad (1-\zeta)\nmid xyz_0\neq 0.
+\]
+如果不然, 我们令 $m$ 是最小正整数, 使得形如 (1) 的方程有满足条件 $(*)$ 的解. 记 $K=\Q(\zeta)\ (\zeta=\zeta_p)$, 则 $O_K=\Z[\zeta]$, $pO_K=\mathfrak{p}^{p-1}$, 其中 $\mathfrak{p}=(1-\zeta)$. 由条件 $(*)$ 知理想 $\mathfrak{a}=(z_0)$ 与 $\mathfrak{p}$ 互素. 将 (1) 式写成理想形式则为
+\begin{equation}\tag{2}
+  \prod_{k=0}^{p-1}(x+\zeta^ky)=\mathfrak{p}^{pm}\mathfrak{a}^p.
+\end{equation}
+由于 $pm>0$, 可知 (2) 式左边至少有一个 $k$ 使得 $\mathfrak{p}\mid(x+\zeta^ky)$. 由于
+\[
+  (x+\zeta^ky)-(x+\zeta^iy)=y(\zeta^k-\zeta^i)\equiv 0\ (\mathrm{mod}\ 1-\zeta),
+\]
+可知 (2) 式左边每个因子 $(x+\zeta^ky)$ 都被 $\mathfrak{p}$ 除尽. 于是
+\[
+  a_k=\frac{x+\zeta^ky}{1-\zeta}\in O_K\qquad(0\leqslant k\leqslant p-1).
+\]
+进而, 当 $0\leqslant k<i\leqslant p-1$ 时, 由于 $y$ 和 $\mathfrak{p}=(1-\zeta)$ 互素, 可知
+\[
+  V_{\mathfrak{p}}(a_k-a_i)=V_{\mathfrak{p}}\left(\frac{\zeta^k-\zeta^i}{1-\zeta}y\right)
+  =V_{\mathfrak{p}}\left(\frac{1-\zeta^{i-k}}{1-\zeta}\right)=0,
+\]
+这表明 $a_k\ (0\leqslant k\leqslant p-1)$ 模 $\mathfrak{p}$ 彼此不同余. 但是 $O_K/\mathfrak{p}\cong\F_p$, 从而 $a_k\ (0\leqslant k\leqslant p-1)$ 就是 $O_K/\mathfrak{p}$ 的完全代表系. 于是恰有一个 $k$, 使得 $a_k\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$, 即 $V_{\mathfrak{p}}(x+\zeta^ky)\geqslant 2$. 必要时将 $\zeta^ky$ 作为 $y$, 我们不妨设 $k=0$, 即 $V_{\mathfrak{p}}(x+y)\geqslant 2$, 而对 $1\leqslant k\leqslant p-1$, $a_k\not\equiv 0\ (\mathrm{mod}\ \mathfrak{p})$, 即 $V_{\mathfrak{p}}(x+\zeta^ky)=1$. 于是 (2) 式左边被 $\mathfrak{p}^{p+1}$ 除尽, 从而 $pm\geqslant p+1$, 即 $m\geqslant 2$. 并且
+\[
+  V_{\mathfrak{p}}(x+y)=pm-\sum_{k=1}^{p-1}V_{\mathfrak{p}}(x+\zeta^ky)
+  =pm-(p-1)=p(m-1)+1.
+\]
+令 $\mathfrak{m}=(x)+(y)$ 为理想 $(x)$ 和 $(y)$ 的最大公因子. 由于 $x$ 和 $y$ 均与 $\mathfrak{p}=(1-\zeta)$ 互素, 可知 $\mathfrak{p}\nmid\mathfrak{m}$. 但是
+\[
+  \mathfrak{pm}\mid(x+\zeta^ky)\ (1\leqslant k\leqslant p-1),\qquad
+  \mathfrak{p}^{p(m-1)+1}\mathfrak{m}\mid(x+y).
+\]
+所以
+\begin{equation}\tag{3}
+  (x+y)=\mathfrak{p}^{p(m-1)+1}\mathfrak{mc}_0,
+\end{equation}
+\begin{equation}\tag{4}
+  (x+\zeta^ky)=\mathfrak{pmc}_k\qquad(1\leqslant k\leqslant p-1),
+\end{equation}
+其中 $c_0,c_1,\cdots,c_{p-1}$ 均是 $O_K$ 中的整理想. 而 (2) 式给出
+\begin{equation}\tag{5}
+  \mathfrak{m}^p\mathfrak{c}_0\mathfrak{c}_1\cdots\mathfrak{c}_{p-1}=\mathfrak{a}^p.
+\end{equation}
+我们现在证明 $c_k\ (0\leqslant k\leqslant p-1)$ 两两互素. 假如 $c_i$ 和 $c_k\ (0\leqslant i<k\leqslant p-1)$ 有公共素理想因子 $\mathfrak{q}$, 则 $\mathfrak{q}\neq\mathfrak{p}$, 于是由 (3) 和 (4) 式知 $\mathfrak{pqm}$ 除尽 $x+\zeta^iy$ 和 $x+\zeta^ky$. 从而 $\mathfrak{pqm}$ 除尽
+\[
+  x+\zeta^iy-(x+\zeta^ky)=\zeta^k(\zeta^{i-k}-1)y.
+\]
+于是 $\mathfrak{qm}$ 除尽 $y$. 所以 $\mathfrak{qm}$ 也除尽 $x+\zeta^iy-\zeta^iy=x$, 这就与 $\mathfrak{m}$ 是 $(x)$ 和 $(y)$ 的最大公因子相矛盾. 于是 $c_k\ (0\leqslant k\leqslant p-1)$ 两两互素. 由 (5) 式即知每个 $c_k$ 都是某个整理想的 $p$ 次方, 即
+\[
+  \mathfrak{c}_k=\mathfrak{a}_k^p\qquad(0\leqslant k\leqslant p-1),
+\]
+于是 (3) 和 (4) 式变成
+\begin{equation}\tag{6}
+  (x+y)=\mathfrak{p}^{p(m-1)+1}\mathfrak{ma}_0^p,
+\end{equation}
+\begin{equation}\tag{7}
+  (x+\zeta^ky)=\mathfrak{pma}_k^p\qquad(1\leqslant k\leqslant p-1).
+\end{equation}
+由于 $\mathfrak{p}=(1-\zeta)$ 是主理想, 将 (6) 式和 (7) 式相除, 便知 $(\mathfrak{a}_k\mathfrak{a}_0^{-1})^p$ 是主分式理想. 由于假定 $p$ 除不尽 $K$ 的理想类数 $h_p$, 可知 $\mathfrak{a}_k\mathfrak{a}_0^{-1}$ 为 $K=\Q(\zeta)$ 中的主分式理想, 即
+\begin{equation}\tag{8}
+  \mathfrak{a}_k\mathfrak{a}_0^{-1}=\left(\frac{\alpha_k}{\beta_k}\right)\qquad(1\leqslant k\leqslant p-1),
+\end{equation}
+其中 $\alpha_k,\beta_k\in O_K=\Z[\zeta]$. 由于 $\mathfrak{a}_k$ 和 $\mathfrak{a}_0$ 均与 $\mathfrak{p}$ 互素, 我们总可使 $\alpha_k,\beta_k$ 均与 $1-\zeta$ 互素. 于是由 (6) 和 (7) 式得到 $O_K$ 中元素的等式
+\begin{equation}\tag{9}
+  (x+\zeta^ky)(1-\zeta)^{p(m-1)}=(x+y)\left(\frac{\alpha_k}{\beta_k}\right)^p\varepsilon_k
+  \qquad(1\leqslant k\leqslant p-1),
+\end{equation}
+其中 $\varepsilon_k$ 为 $O_K$ 中单位. 将等式
+\[
+  (x+\zeta y)(1+\zeta)-(x+\zeta^2y)=\zeta(x+y)
+\]
+乘以 $(1-\zeta)^{p(m-1)}$, 再用 (9) 式得到
+\[
+  \begin{aligned}
+    \zeta(1-\zeta)^{p(m-1)}(x+y)&=(x+\zeta y)(1+\zeta)(1-\zeta)^{p(m-1)}\\
+    &\qquad-(x+\zeta^2y)(1-\zeta)^{p(m-1)}\\
+    &=(1+\zeta)(x+y)\left(\frac{\alpha_1}{\beta_1}\right)^p\varepsilon_1
+    -(x+y)\left(\frac{\alpha_2}{\beta_2}\right)^p\varepsilon_2.
+  \end{aligned}
+\]
+于是
+\[
+  \left(\alpha_1\beta_2\right)^p-\frac{\varepsilon_2}{\varepsilon_1(1+\zeta)}\left(\alpha_2\beta_1\right)^p
+  =\frac{\zeta}{\varepsilon_1(1+\zeta)}(1-\zeta)^{p(m-1)}\left(\beta_1\beta_2\right)^p.
+\]
+注意到 $1+\zeta=\frac{1-\zeta^2}{1-\zeta}$ 为 $O_K$ 中单位, 所以上式表明方程
+\begin{equation}\tag{10}
+  X^p+\varepsilon_0Y^p=\varepsilon'(1-\zeta)^{p(m-1)}Z^p
+\end{equation}
+有解 $(X,Y,Z)=(\alpha_1\beta_2,\alpha_2\beta_1,\beta_1\beta_2)$, 其中
+\[
+  \varepsilon_0=-\frac{\varepsilon_2}{\varepsilon_1(1+\zeta)},\qquad
+  \varepsilon'=\frac{\zeta}{\varepsilon_1(1+\zeta)}
+\]
+为 $O_K$ 中单位, 而 $\alpha_1\beta_2$, $\alpha_2\beta_1$, $\beta_1\beta_2$ 均是与 $1-\zeta$ 互素的 $O_K$ 中元素. 由于已证 $m\geqslant 2$, 可知 $p(m-1)\geqslant p$. (10) 式给出
+\[
+  (\alpha_1\beta_2)^p+\varepsilon_0(\alpha_2\beta_1)^p\equiv 0\quad(\mathrm{mod}\ \mathfrak{p}^p).
+\]
+即 $\varepsilon_0\equiv\omega^p\ (\mathrm{mod}\ \mathfrak{p}^p)$, 其中 $\omega\in O_K$. 由于 $N(\mathfrak{p})=p$, 可知 $0,1,\cdots,p-1$ 是 $O_K/\mathfrak{p}$ 的完全代表系集合, 即存在有理数 $a$, 使得 $\omega\equiv a\ (\mathrm{mod}\ \mathfrak{p})$, 再由 $(p)=\mathfrak{p}^{p-1}$ 不难证明 $\omega^p\equiv a^p\ (\mathrm{mod}\ \mathfrak{p}^p)$. 于是 $\varepsilon_0\equiv a^p\ (\mathrm{mod}\ \mathfrak{p}^p)$. 利用下面的 Kummer 引理（引理 \ref{lem:ch9-1}）, 推出 $\varepsilon_0$ 是 $O_K$ 中某个单位 $\eta$ 的 $p$ 次方, 即 $\varepsilon_0=\eta^p$. 于是方程 (10) 变成
+\[
+  X^p+(\eta Y)^p=\varepsilon'(1-\zeta)^{p(m-1)}Z^p,
+\]
+这是一个与方程 (1) 类似的方程. 由上述知此方程具有满足条件 $(*)$ 的解, 这就与 $m$ 的最小性相矛盾. 这个矛盾表明定理 \ref{thm:9.2} 是正确的, 从而也证明了定理 \ref{thm:9.1}.
+\end{proof}
+
+我们在以上证明的最后使用了下述结果:
+
+\begin{lemma}[\emph{Kummer}]\label{lem:ch9-1}
+设 $p$ 是奇素数, 并且 $p\nmid h_p$（其中 $h_p$ 为 $K=\Q(\zeta_p)$ 的理想类数）. 如果 $\varepsilon$ 是 $O_K$ 中单位, 并且存在有理数 $a$ 使得 $\varepsilon\equiv a\ (\mathrm{mod}\ p)$, 则存在 $O_K$ 中单位 $\eta$ 使得 $\varepsilon=\eta^p$.
+\end{lemma}
+
+本节的其余部分的目的是证明这个引理. 我们采用 $p$-adic 分析方法. 以下记 $\zeta=\zeta_p$. 素数 $p$ 在分圆域 $K=\Q(\zeta)$ 中完全分歧: $pO_K=\mathfrak{p}^{p-1}$, $\mathfrak{p}=(1-\zeta)$. 考虑局部域 $K_{\mathfrak{p}}$, 则 $K_{\mathfrak{p}}/\Q_p$ 是 $p-1$ 次完全分歧扩张, $1-\zeta$ 为素元. 我们现在要给出 $K_{\mathfrak{p}}$ 的另一个素元 $\lambda$.
+
+\begin{lemma}\label{lem:ch9-2}
+在 $K_{\mathfrak{p}}$ 中有素元 $\lambda$ 满足
+\[
+  \lambda^{p-1}=-p,\qquad\lambda\equiv\zeta-1\ (\mathrm{mod}\ \mathfrak{p}^2),
+\]
+并且满足以上条件的素元 $\lambda$ 是惟一的.
+\end{lemma}
+
+\begin{proof}
+由 $V_{\mathfrak{p}}(p)=p-1$ 可知 $\frac{-p}{(1-\zeta)^{p-1}}=\alpha$ 是 $O_{\mathfrak{p}}$ 中单位, 这里 $O_{\mathfrak{p}}=\{\alpha\in K_{\mathfrak{p}}\mid V_{\mathfrak{p}}(\alpha)\geqslant 0\}$ 为 $K_{\mathfrak{p}}$ 的整数环. 但是
+\begin{align*}
+  \frac{p}{(1-\zeta)^{p-1}}&=\prod_{i=1}^{p-1}(1-\zeta^i)\Big/(1-\zeta)^{p-1}
+  =\prod_{i=1}^{p-1}\frac{1-\zeta^i}{1-\zeta}\\
+  &=\prod_{i=1}^{p-1}(1+\zeta+\zeta^2+\cdots+\zeta^{i-1})
+  \equiv\prod_{i=1}^{p-1}i\equiv -1\ (\mathrm{mod}\ p),
+\end{align*}
+其中用到 $\zeta\equiv 1\ (\mathrm{mod}\ \mathfrak{p})$ 和 $(p-1)!\equiv -1\ (\mathrm{mod}\ p)$. 于是 $\alpha\equiv 1\ (\mathrm{mod}\ \mathfrak{p})$. 考虑多项式 $f(x)=x^{p-1}-\alpha\in O_{\mathfrak{p}}[x]$, 则
+\[
+  V_{\mathfrak{p}}(f(1))>0=2\cdot V_{\mathfrak{p}}(f'(1)).
+\]
+由 Hensel 引理知 $f(x)$ 在 $O_{\mathfrak{p}}$ 中有解, 即存在 $\gamma\in O_{\mathfrak{p}}$, 使得 $\gamma^{p-1}=\alpha$. 令 $\lambda_1=\gamma(\zeta-1)$, 则
+\[
+  \lambda_1^{p-1}=\gamma^{p-1}(\zeta-1)^{p-1}=\alpha(\zeta-1)^{p-1}=-p,
+\]
+并且 $\frac{\lambda_1}{\zeta-1}=\gamma$. 方程 $x^{p-1}=-p$ 的全部解为 $\lambda_1\theta^t\ (0\leqslant t\leqslant p-2)$, 其中 $\theta$ 为 $O_{\mathfrak{p}}$ 中一个 $p-1$ 次本原单位根（事实上 $\theta$ 属于 $O_{\mathfrak{p}}$ 的子环 $\Z_p$）. 由于 $K_{\mathfrak{p}}/\Q_p$ 完全分歧, 剩余类域 $O_{\mathfrak{p}}/\mathfrak{p}O_{\mathfrak{p}}$ 等于 $\Z_p/p\Z_p\cong\F_p$, 从而 $\{0,\theta,\theta^2,\cdots,\theta^{p-2},1\}$ 是 $O_{\mathfrak{p}}$ 模 $\mathfrak{p}$ 的完全代表系. 所以存在惟一的 $t\ (0\leqslant t\leqslant p-2)$, 使得 $\gamma\equiv\theta^t\ (\mathrm{mod}\ \mathfrak{p})$. 取 $\lambda=\lambda_1\theta^{-t}$, 则 $\frac{\lambda}{\zeta-1}=\gamma\theta^{-t}\equiv 1\ (\mathrm{mod}\ \mathfrak{p})$, 于是 $\lambda\equiv\zeta-1\ (\mathrm{mod}\ \mathfrak{p}^2)$. 这就证明了素元 $\lambda$ 的惟一性.
+\end{proof}
+
+由上述引理可知 $K_{\mathfrak{p}}=\Q_p(\lambda)$, $O_{\mathfrak{p}}=\Z_p[\lambda]$, 而 $1,\lambda,\cdots,\lambda^{p-2}$ 是 $O_{\mathfrak{p}}$ 的一组 $\Z_p$-基. 伽罗瓦群 $\Gal(K_{\mathfrak{p}}/\Q_p)$ 是由 $\sigma$ 生成的 $p-1$ 阶循环群, 其中 $\sigma(\lambda)=\theta\lambda$. 于是对于 $2$ 阶子群 $\{I,\sigma^m\}$ 的固定子域为 $\Q_p(\lambda^2)$, 其中 $m=\frac{p-1}{2}$. 并且 $K=\Q(\zeta_p)$ 的极大实子域 $K^+=\Q(\zeta+\bar{\zeta})$ 包含在 $\Q_p(\lambda^2)$ 之中. 事实上, $p$ 在 $K^+$ 中是 $m$ 次完全分歧, $pO_{K^+}=\mathfrak{q}^m$, $\mathfrak{q}O_K=\mathfrak{p}^2$. 而 $\Q_p(\lambda^2)$ 就是 $K^+$ 对于 $\mathfrak{q}$ 的完备化 $K_{\mathfrak{q}}^+$. 我们用 $O_{\mathfrak{q}}^+$ 表示 $K_{\mathfrak{q}}^+=\Q_p(\lambda^2)$ 的整数环, 则 $O_{\mathfrak{q}}^+=\Z_p[\lambda^2]$, 即 $1,\lambda^2,\lambda^4,\cdots,\lambda^{2(m-1)}$ 是 $O_{\mathfrak{q}}^+$ 的一组 $\Z_p$-基（因为 $K_{\mathfrak{q}}^+/\Q_p$ 是 $m$ 次完全分歧扩张, 而 $\lambda^2$ 是 $K_{\mathfrak{q}}^+$ 的一个素元）. 于是 $O_{\mathfrak{q}}^+$ 中元素均惟一表示成
+\[
+  \alpha=\sum_{i=0}^{m-1}\alpha_i\lambda^{2i}\qquad(\alpha_i\in\Z_p).
+\]
+我们用 $T$ 表示关于 $\Q_p(\lambda^2)/\Q_p$ 的迹函数, 则
+\[
+  T(\alpha)=\sum_{j=0}^{m-1}\sigma^j(\alpha)
+  =\sum_{i=0}^{m-1}\alpha_i\sum_{j=0}^{m-1}\sigma^j(\lambda)^{2i}
+  =\sum_{i=0}^{m-1}\alpha_i\lambda^{2i}\sum_{j=0}^{m-1}\theta^{2ij}=m\alpha_0.
+\]
+如果令
+\[
+  M=\{\alpha\in O_{\mathfrak{q}}^+\mid T(\alpha)=0\},
+\]
+这是 $O_{\mathfrak{q}}^+$ 的一个 $\Z_p$-子模, 由上式可知
+\[
+  M=\left\{\sum_{i=1}^{m-1}\alpha_i\lambda^{2i}\mid\alpha_i\in\Z_p\right\}
+  =\bigoplus_{i=1}^{m-1}\lambda^{2i}\Z_p,
+\]
+即 $\lambda^2,\lambda^4,\cdots,\lambda^{2(m-1)}$ 是 $M$ 的一组 $\Z_p$-基. 我们的下一个目的是给出 $M$ 的另一组 $\Z_p$-基.
+
+令 $\eta=\zeta_{2p}$, 则 $\eta$ 是 $K$ 中的单位根. 对每个整数 $k\ (2\leqslant k\leqslant m)$, 定义
+\[
+  \theta_k=\frac{\eta^k-\bar{\eta}^k}{\eta-\bar{\eta}}
+  =\frac{\zeta_{2p}^k-\zeta_{2p}^{-k}}{\zeta_{2p}-\zeta_{2p}^{-1}}
+  =\frac{\zeta^k-1}{\zeta-1}\eta^{1-k},
+\]
+由第 $1$ 个表达式知 $\theta_k$ 是实数, 可知 $\theta_k\in K^+\subseteq\Q_p(\lambda^2)$. 由最后的表达式可知 $\theta_k$ 是 $O_{\mathfrak{q}}^+$ 中单位, 即 $V_{\mathfrak{p}}(\theta_k)=V_{\mathfrak{q}}(\theta_k)=0$.
+
+现在使用定义在 $K_{\mathfrak{p}}$ 中的 $p$-adic 指数函数 $\exp$ 和 $p$-adic 对数函数 $\log$:
+\[
+  \exp(\alpha)=\sum_{n=0}^{\infty}\frac{\alpha^n}{n!}
+  \qquad(\alpha\in O_{\mathfrak{p}},\ V_{\mathfrak{p}}(\alpha)\geqslant 2),
+\]
+\[
+  \log(1+\alpha)=\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\alpha^n}{n}
+  \qquad(\alpha\in O_{\mathfrak{p}},\ V_{\mathfrak{p}}(\alpha)\geqslant 1).
+\]
+熟知当 $V_{\mathfrak{p}}(\alpha)\geqslant 2$ 时,
+\[
+  \exp\circ\log(1+\alpha)=1+\alpha,\qquad\log\circ\exp(\alpha)=\alpha.
+\]
+对于 $2\leqslant k\leqslant m$, $\theta_k$ 是 $O_{K^+}$ 中单位. 由于 $O_{K^+}/\mathfrak{q}$ 是 $p$ 元域, 所以存在整数 $a\ (1\leqslant a\leqslant p-1)$, 使得 $\theta_k\equiv a\ (\mathrm{mod}\ \mathfrak{q})$, 于是 $\theta_k^{p-1}\equiv a^{p-1}\equiv 1\ (\mathrm{mod}\ \mathfrak{q})$. 所以可定义 $\log\theta_k^{p-1}\in O_{\mathfrak{q}}^+$. 进而, 我们可以等同于 $\Gal(K^+/\Q)$ 和 $\Gal(K_{\mathfrak{q}}^+/\Q_p)$, 从而对于 $K^+$ 中元素 $\alpha$, 对于 $K^+/\Q$ 和 $K_{\mathfrak{q}}^+/\Q_p$ 有同样的迹映射（均表成 $T(\alpha)$）和范映射（均表成 $N(\alpha)$）. 特别因为 $\theta_k\ (2\leqslant k\leqslant m)$ 均是 $O_{K^+}$ 中单位, 所以 $N(\theta_k)=\pm 1$. 于是
+\[
+  T(\log\theta_k^{p-1})=\log(N\theta_k^{p-1})=\log 1=0.
+\]
+这就表明 $\log\theta_k^{p-1}\in M\ (2\leqslant k\leqslant m)$. 现在我们证明:
+
+\begin{lemma}\label{lem:ch9-3}
+如果 $p\nmid h_p$, 则 $\log\theta_k^{p-1}\ (2\leqslant k\leqslant m)$ 是 $M$ 的一组 $\Z_p$-基.
+\end{lemma}
+
+\begin{proof}
+由于 $\lambda^2,\lambda^4,\cdots,\lambda^{2(m-1)}$ 是 $M$ 的一组 $\Z_p$-基, 并且 $\log\theta_k^{p-1}\in M\ (2\leqslant k\leqslant m)$, 可知
+\[
+  \log\theta_k^{p-1}=\sum_{i=1}^{m-1}b_{ki}\lambda^{2i}\qquad(2\leqslant k\leqslant m),
+\]
+其中 $b_{ki}\in\Z_p$. 为证引理, 我们只需证明 $\Z_p$ 上的 $m-1$ 阶方阵
+\[
+  B=(b_{ki})\qquad(2\leqslant k\leqslant m,\ 1\leqslant i\leqslant m-1)
+\]
+是 $\Z_p$ 中可逆方阵, 即要证行列式 $\det(B)$ 是 $p$-adic 单位. 为了证明这件事, 我们要用 $\log$ 和 $\exp$ 的如下近似函数
+\[
+  L(1+x)=\sum_{n=1}^{p-1}(-1)^{n+1}\frac{x^n}{n},
+  \qquad
+  E(x)=\sum_{n=0}^{p-1}\frac{x^n}{n!}.
+\]
+这两个函数有以下一些性质.
+
+\emph{性质 1} 若 $x\in O_{\mathfrak{p}}$, $V_{\mathfrak{p}}(x)\geqslant 1$, 则 $E(x)\equiv 1\ (\mathrm{mod}\ \mathfrak{p})$; 若 $V_{\mathfrak{p}}(x)\geqslant 2$, 则 $L(1+x)\equiv\log(1+x)\ (\mathrm{mod}\ \mathfrak{p}^p)$.
+
+\emph{证明} 第 $1$ 个同余式是由于当 $n\geqslant 1$ 时,
+\begin{align*}
+  V_{\mathfrak{p}}\left(\frac{x^n}{n!}\right)&=V_{\mathfrak{p}}(x^n)-V_{\mathfrak{p}}(n!)
+  =nV_{\mathfrak{p}}(x)-(p-1)V_p(n!)\\
+  &\geqslant n-(p-1)\left(\left[\frac{n}{p}\right]+\left[\frac{n}{p^2}\right]+\cdots\right)\\
+  &>n-n(p-1)\left(\frac{1}{p}+\frac{1}{p^2}+\cdots\right)\\
+  &\geqslant n-n(p-1)\cdot\frac{1}{p-1}\geqslant 0.
+\end{align*}
+第 $2$ 个同余式是由于 $\log(1+x)-L(1+x)=\sum_{n=p}^{\infty}(-1)^{n+1}\frac{x^n}{n}$, 而当 $V_{\mathfrak{p}}(x)\geqslant 2$, $n\geqslant p$ 时,
+\[
+  V_{\mathfrak{p}}\left(\frac{x^n}{n}\right)\geqslant 2n-(p-1)V_p(n)\geqslant p.
+\]
+
+\emph{性质 2} $E(x)E(y)=E(x+y)+F(x,y)$, $L(1+x+y+xy)=L(1+x)+L(1+y)+G(x,y)$, 其中 $F(x,y),G(x,y)\in\Z_p[x,y]$, 并且 $F(x,y)$ 和 $G(x,y)$ 中每个单项式的次数均 $\geqslant p$.
+
+\emph{证明} 作为形式幂级数我们有
+\[
+  \left(E(x)+\sum_{n\geqslant p}\frac{x^n}{n!}\right)
+  \left(E(y)+\sum_{m\geqslant p}\frac{y^m}{m!}\right)
+  =\exp(x)\cdot\exp(y)
+  =\exp(x+y)=E(x+y)+\sum_{k\geqslant p}\frac{(x+y)^k}{k!},
+\]
+于是
+\begin{align*}
+  F(x,y)&=E(x)E(y)-E(x+y)\\
+  &=-E(x)\sum_{m\geqslant p}\frac{y^m}{m!}-E(y)\sum_{n\geqslant p}\frac{x^n}{n!}
+  -\sum_{\substack{n,m\geqslant p}}\frac{x^ny^m}{n!m!}
+  +\sum_{k\geqslant p}\sum_{n+m=k}\frac{x^ny^m}{n!m!}\\
+  &=\left(-\sum_{\substack{0\leqslant n\leqslant p-1\\ m\geqslant p}}
+  -\sum_{\substack{n\geqslant p\\ 0\leqslant m\leqslant p-1}}
+  -\sum_{\substack{n\geqslant p\\ m\geqslant p}}
+  +\sum_{\substack{n,m\geqslant 0\\ n+m\geqslant p}}\right)\frac{x^ny^m}{n!m!}\\
+  &=\sum_{\substack{0\leqslant n,m\leqslant p-1\\ n+m\geqslant p}}\frac{x^ny^m}{n!m!}.
+\end{align*}
+当 $0\leqslant n,m\leqslant p-1$ 时, $\frac{1}{n!m!}\in\Z_p$, 所以 $F(x,y)\in\Z_p[x,y]$, 并且 $F(x,y)$ 的每个单项式的次数均 $\geqslant p$. 类似地,
+\[
+  \begin{aligned}
+    &L(1+x)+\sum_{n\geqslant p}(-1)^{n+1}\frac{x^n}{n}
+    +L(1+y)+\sum_{m\geqslant p}(-1)^{m+1}\frac{y^m}{m}\\
+    &=\log(1+x)+\log(1+y)=\log(1+x+y+xy)\\
+    &=L(1+x+y+xy)+\sum_{k\geqslant p}(-1)^{k+1}\frac{(x+y+xy)^k}{k},
+  \end{aligned}
+\]
+于是
+\[
+  \begin{aligned}
+    G(x,y)&=L(1+x)+L(1+y)-L(1+x+y+xy)\\
+    &=\sum_{k\geqslant p}(-1)^{k+1}\frac{(x+y+xy)^k}{k}
+    -\sum_{n\geqslant p}(-1)^{n+1}\frac{x^n}{n}
+    -\sum_{m\geqslant p}(-1)^{m+1}\frac{y^m}{m}.
+  \end{aligned}
+\]
+由此即知 $G(x,y)$ 的每个单项式的次数均 $\geqslant p$. 现在证明所有单项式 $x^Ay^B\ (A+B\geqslant p)$ 的系数均属于 $\Z_p$. 由上式右边易知 $x^A$ 和 $y^B$ 的系数均为 $0$, 以下设 $A,B\geqslant 1$. 这时, $G(x,y)$ 中 $x^Ay^B$ 的系数即是
+\[
+  \sum_{k\geqslant p}(-1)^{k+1}\frac{1}{k}
+  \sum_{a+b+c=k}\binom{k}{a,b,c}x^{a+c}y^{b+c}
+\]
+中 $x^Ay^B$ 的系数
+\[
+  \gamma(A,B)=\sum_{k\geqslant p}\frac{(-1)^{k+1}}{k}
+  \sum_{\substack{a+b+c=k\\ a+c=A\\ b+c=B}}\binom{k}{a,b,c}\qquad(A,B\geqslant 1),
+\]
+其中 $\binom{k}{a,b,c}=\frac{k!}{a!b!c!}$. 由求和条件可知 $c=A+B-k$, $a=k-B$, $b=k-A$. 因此
+\begin{align*}
+  \gamma(A,B)&=\sum_{k\geqslant p}\frac{(-1)^{k+1}}{k}\binom{k}{k-B,k-A,A+B-k}\ (=\gamma(B,A))\\
+  &=\sum_{k=p}^{A+B}\frac{(-1)^{k+1}}{k}\binom{k}{k-B}\binom{B}{k-A}\\
+  &=\sum_{k=p}^{A+B}\frac{(-1)^k}{k}\binom{k}{B}\binom{B}{k-A}.
+\end{align*}
+如果 $1\leqslant B\leqslant p-1$, 则上式右边等于
+\[
+  \sum_{k=p}^{A+B}\frac{(-1)^{k+1}}{B}\binom{k-1}{B-1}\binom{B}{k-A}\in\Z_p.
+\]
+由于 $\gamma(A,B)=\gamma(B,A)$, 从而 $1\leqslant A\leqslant p-1$ 时也有 $\gamma(A,B)\in\Z_p$. 最后若 $A,B\geqslant p$, 则当 $k<p$ 或 $k>A+B$ 时 $\binom{k}{B}\binom{B}{k-A}=0$. 因此
+\begin{align*}
+  \gamma(A,B)&=\sum_{k=0}^{\infty}\frac{(-1)^{k+1}}{B}\binom{k-1}{B-1}\binom{B}{k-A}\\
+  &=\sum_k\frac{(-1)^{k+1}}{B}\binom{k-1}{k-B}\binom{B}{A+B-k}\\
+  &=\frac{1}{B}\sum_k\binom{-B}{k-B}\binom{B}{A+B-k}
+  =\frac{1}{B}\binom{0}{A}=0.
+\end{align*}
+这就表明 $G(x,y)\in\Z_p[x,y]$.
+
+\emph{性质 3} $L(E(x))=x+H(x)$, 其中 $H(x)\in\Z_p[x]$, 并且每个单项式的次数均 $\geqslant p$.
+
+\emph{证明} $L(E(x))=\sum_{m=1}^{p-1}(-1)^{m+1}\frac{1}{m}\left(\sum_{n=0}^{p-1}\frac{x^n}{n!}\right)^m$, 由于分母均与 $p$ 互素, 并且这是次数 $\leqslant(p-1)^2$ 的多项式, 因此 $L(E(x))\in\Z_p[x]$, 于是 $H(x)=L(E(x))-x\in\Z_p[x]$. 进而
+\[
+  \begin{aligned}
+    x&=\log(\exp(x))=\log\left(E(x)+\sum_{m\geqslant p}\frac{x^m}{m!}\right)\\
+    &=\log E(x)+\log\left(1+E(x)^{-1}\sum_{m\geqslant p}\frac{x^m}{m!}\right)\\
+    &=L(E(x))+\sum_{n\geqslant p}(-1)^{n+1}\frac{1}{n}\left(\sum_{m=1}^{p-1}\frac{x^m}{m!}\right)^n\\
+    &\qquad+\sum_{n\geqslant 1}(-1)^{n+1}\frac{1}{n}\left(E(x)^{-1}\sum_{m\geqslant p}\frac{x^m}{m!}\right)^n,
+  \end{aligned}
+\]
+可知 $H(x)$ 的每个单项式的次数均 $\geqslant p$.
+
+\emph{性质 4} $E(\lambda)^p\equiv 1\ (\mathrm{mod}\ \mathfrak{p}^{2p-1})$; 当 $k\geqslant 1$ 时 $E(k\lambda)\equiv E(\lambda)^k\ (\mathrm{mod}\ \mathfrak{p}^p)$;
+\[
+  L(\zeta)\equiv\lambda\ (\mathrm{mod}\ \mathfrak{p}^p).
+\]
+
+\emph{证明} $E(x)=1+xg(x)$, $g(x)=1+\frac{x}{2!}+\cdots+\frac{x^{p-2}}{(p-1)!}$, 于是
+\[
+  \begin{aligned}
+    E(x)^p&=1+\binom{p}{1}xg(x)+\cdots+\binom{p}{p-1}x^{p-1}g(x)^{p-1}+x^pg(x)^p\\
+    &=1+ph(x)+x^pg(x)^p,
+  \end{aligned}
+\]
+其中 $h(x)\in\Z_p[x]$. 另一方面, 由性质 2 知
+\[
+  E(x)^p=E(px)+x^pM(x),\qquad M(x)\in\Z_p[x],
+\]
+可知
+\[
+  \begin{aligned}
+    ph(x)&=E(x)^p-1-x^pg(x)^p\\
+    &=E(px)-1+x^p(M(x)-g(x)^p)\\
+    &=\sum_{n=1}^{p-1}\frac{(px)^n}{n!}+x^pH(x),
+  \end{aligned}
+\]
+其中 $H(x)=M(x)-g(x)^p\in\Z_p[x]$. 由此可知 $H(x)\equiv 0\ (\mathrm{mod}\ p)$. 从而
+\[
+  h(x)=\sum_{n=1}^{p-1}\frac{p^{n-1}x^n}{n!}+x^pG(x),\qquad
+  G(x)=\frac{1}{p}H(x)\in\Z_p[x].
+\]
+代入 $x=\lambda$ 即知 $h(\lambda)\equiv\lambda\ (\mathrm{mod}\ \mathfrak{p}^p)$, 从而 $ph(\lambda)\equiv p\lambda\ (\mathrm{mod}\ \mathfrak{p}^{2p-1})$. 由 $g(\lambda)\equiv 1\ (\mathrm{mod}\ \mathfrak{p})$, 可知 $g(\lambda)^p\equiv 1\ (\mathrm{mod}\ \mathfrak{p}^p)$. 从而 $\lambda^pg(\lambda)^p\equiv\lambda^p\ (\mathrm{mod}\ \mathfrak{p}^{2p})$. 最后由 $\lambda^{p-1}+p=0$ 给出
+\[
+  E(\lambda)^p=1+ph(\lambda)+\lambda^pg(\lambda)^p
+  \equiv 1+p\lambda+\lambda^p\equiv 1\ (\mathrm{mod}\ \mathfrak{p}^{2p-1}).
+\]
+这就证明了第 $1$ 式. 现在证第 $2$ 式. 由性质 2 知 $E(k\lambda)\equiv E(\lambda)^k\ (\mathrm{mod}\ \mathfrak{p}^p)$, 从而只需证明 $E(\lambda)\equiv\zeta\ (\mathrm{mod}\ \mathfrak{p}^p)$. 由引理 \ref{lem:ch9-2} 知 $\zeta\equiv 1+\lambda\ (\mathrm{mod}\ \mathfrak{p}^2)$, 而 $E(\lambda)\equiv 1+\lambda\ (\mathrm{mod}\ \mathfrak{p}^2)$. 因此 $\zeta^{-1}E(\lambda)\equiv 1\ (\mathrm{mod}\ \mathfrak{p}^2)$. 记 $\zeta^{-1}E(\lambda)=1+\lambda^2\gamma$, $\gamma\in O_{\mathfrak{p}}$, 则
+\[
+  E(\lambda)^p=(1+\lambda^2\gamma)^p
+  =1+\binom{p}{1}\lambda^2\gamma+\cdots+\binom{p}{p-1}\lambda^{2(p-1)}\gamma^{p-1}+\lambda^{2p}\gamma^p.
+\]
+再由第 $1$ 式知
+\[
+  \gamma\left(p\lambda^2+\frac{p(p-1)}{2}\lambda^4\gamma+\cdots+\lambda^{2p}\gamma^{p-1}\right)\equiv 0
+  \quad(\mathrm{mod}\ \mathfrak{p}^{2p-1}).
+\]
+于是 $\gamma\equiv 0\ (\mathrm{mod}\ \mathfrak{p}^{p-2})$, 即 $\zeta^{-1}E(\lambda)\equiv 1\ (\mathrm{mod}\ \mathfrak{p}^p)$. 这就证明了第 $2$ 式. 最后, 由性质 3 可知 $L(E(\lambda))\equiv\lambda\ (\mathrm{mod}\ \mathfrak{p}^p)$. 再由 $E(\lambda)\equiv\zeta\ (\mathrm{mod}\ \mathfrak{p}^p)$ 即得第 $3$ 式 $L(\zeta)\equiv\lambda\ (\mathrm{mod}\ \mathfrak{p}^p)$.
+
+有了以上准备, 我们来证明引理 \ref{lem:ch9-3}. 对于
+\[
+  \theta_k=\frac{\zeta^k-1}{\zeta-1}\eta^{1-k}\quad(\eta=\zeta_{2p})\qquad
+  2\leqslant k\leqslant m=\frac{p-1}{2},
+\]
+由性质 2 可知 $\log\theta_k^{p-1}\equiv L(\theta_k^{p-1})\ (\mathrm{mod}\ \mathfrak{p}^p)$. 但是
+\[
+  \theta_k^p=(1+\zeta+\cdots+\zeta^{k-1})^p(-1)^{1-k}
+  \equiv k^p(-1)^{1-k}\ (\mathrm{mod}\ \mathfrak{p}^p),
+\]
+可知
+\[
+  \theta_k^{p-1}\equiv\theta_k^{-1}k(-1)^{k-1}
+  \equiv\frac{\zeta-1}{\lambda}\left(\frac{\zeta^k-1}{k\lambda}\right)^{-1}
+  \zeta^{\frac{(k-1)(p+1)}{2}}\ (\mathrm{mod}\ \mathfrak{p}^{p-1}).
+\]
+由性质 2 得到
+\[
+  L(\theta_k^{p-1})\equiv L\left(\frac{\zeta-1}{\lambda}\right)
+  -L\left(\frac{\zeta^k-1}{k\lambda}\right)
+  +\frac{(k-1)(p+1)}{2}L(\zeta)\quad(\mathrm{mod}\ \mathfrak{p}^{p-1}).
+\]
+又由性质 4 知
+\[
+  \frac{\zeta^k-1}{k\lambda}\equiv\frac{E(k\lambda)-1}{k\lambda}
+  \quad(\mathrm{mod}\ \mathfrak{p}^{p-1})\qquad(1\leqslant k\leqslant m),
+\]
+所以
+\begin{equation}\tag{*}
+  L(\theta_k^{p-1})\equiv L\left(\frac{E(\lambda)-1}{\lambda}\right)
+  -\frac{\lambda}{2}-L\left(\frac{E(k\lambda)-1}{k\lambda}\right)
+  +\frac{k\lambda}{2}\quad(\mathrm{mod}\ \mathfrak{p}^{p-1}).
+\end{equation}
+现在我们利用由下式定义的 Bernoulli 数
+\[
+  \frac{x}{e^x-1}=\sum_{n\geqslant 0}\frac{B_n}{n!}x^n,\qquad B_0=1,
+\]
+\[
+  B_1=-\frac{1}{2},\qquad B_{2k+1}=0\quad(k\geqslant 1\ \text{时}),
+\]
+从而
+\[
+  \frac{e^x}{e^x-1}-\frac{1}{2}-\frac{1}{x}
+  =\sum_{k\geqslant 1}\frac{B_{2k}}{(2k)!}x^{2k-1},
+\]
+积分此式得到
+\[
+  \log\frac{e^x-1}{x}-\frac{x}{2}
+  =\sum_{k\geqslant 1}\frac{B_{2k}}{(2k)!\,2k}x^{2k}.
+\]
+再由性质 2 即知
+\[
+  L\left(\frac{E(x)-1}{x}\right)-\frac{x}{2}
+  =\sum_{k=1}^{m-1}\frac{B_{2k}}{(2k)!\,2k}x^{2k}+x^{p-1}R(x),
+  \qquad R(x)\in\Z_p[x].
+\]
+代入 $x=k\lambda$ 给出
+\[
+  L\left(\frac{E(k\lambda)-1}{k\lambda}\right)-\frac{k\lambda}{2}
+  \equiv\sum_{i=1}^{m-1}\frac{B_{2i}k^{2i}\lambda^{2i}}{(2i)!\,2i}
+  \quad(\mathrm{mod}\ \mathfrak{p}^{p-1}),
+\]
+再代入 $(*)$ 式给出
+\[
+  L(\theta_k^{p-1})\equiv\sum_{i=1}^{m-1}\frac{B_{2i}(1-k^{2i})\lambda^{2i}}{(2i)!\,2i}
+  \quad(\mathrm{mod}\ \mathfrak{p}^{p-1}).
+\]
+这就表明
+\[
+  b_{ki}\equiv\frac{B_{2i}(1-k^{2i})}{(2i)!\,2i}\pmod{p}
+  \qquad(2\leqslant k\leqslant m=\frac{p-1}{2},\ 1\leqslant i\leqslant m-1).
+\]
+于是对于方阵 $B=(b_{ki})$,
+\[
+  \det B\equiv\prod_{i=1}^{m-1}\frac{(-1)^{m-1}B_{2i}}{(2i)!\,2i}
+  \begin{vmatrix}
+    2^2-1 & 2^4-1 & \cdots & 2^{p-3}-1\\
+    3^2-1 & 3^4-1 & \cdots & 3^{p-3}-1\\
+    \vdots & \vdots & & \vdots\\
+    m^2-1 & m^4-1 & \cdots & m^{p-3}-1
+  \end{vmatrix}\pmod{p}.
+\]
+易知右边行列式的值为
+\[
+  \prod_{1\leqslant s<r\leqslant m}(r^2-s^2)
+  =\prod_{1\leqslant s<r\leqslant m}(r+s)(r-s)\not\equiv 0\ (\mathrm{mod}\ p).
+\]
+而由 $p\nmid h_p$ 可知 $V_p(B_{2i})=0\ (1\leqslant i\leqslant m-1)$. 这就表明 $\det B$ 是 $p$-adic 单位. 这就完成了引理 \ref{lem:ch9-3} 的证明.
+\end{proof}
+
+现在来证 Kummer 引理 \ref{lem:ch9-1}. 根据引理 \ref{lem:ch9-3}, $\log\theta_k^{p-1}\ (2\leqslant k\leqslant m)$ 是 $\Z_p$-线性无关的, 从而也是 $\Z$-线性无关的. 这就表明 $\theta_k\ (2\leqslant k\leqslant m)$ 对于乘法生成秩 $m-1$ 的自由阿贝尔群 $C$. 但是 $\theta_k$ 均为 $K$ 中的单位, 而由 Dirichlet 单位定理, $K$ 的单位群 $U$ 的秩也是 $\frac{p-1}{2}-1=m-1$, 从而子群 $C$ 对 $U$ 的指数 $[U:C]$ 有限. 从而对于每个单位 $\varepsilon\in U$, 均存在正整数 $d$, 使得 $\varepsilon^d\in C$, 即
+\begin{equation}\tag{**}
+  \varepsilon^d=\prod_{k=2}^{m}\theta_k^{d_k},\qquad d_k\in\Z.
+\end{equation}
+如果 $\varepsilon\equiv a\ (\mathrm{mod}\ p)$, 其中 $a\in\Z$, $p\nmid a$, 我们证明 $\varepsilon$ 必为实单位. 这是因为, $\varepsilon$ 必可表为 $\varepsilon=\varepsilon_1\zeta^k$, 其中 $\varepsilon_1$ 是实单位. 由于 $p$ 在 $K^+$ 中完全分歧: $p=\mathfrak{q}^m$, $\mathfrak{q}=\mathfrak{p}^2$. 而 $O_K^+/\mathfrak{q}\cong\Z/p\Z$, 可知存在整数 $b\in\Z$, $p\nmid b$, 使得 $\varepsilon_1\equiv b\ (\mathrm{mod}\ \mathfrak{p}^2)$. 进而 $\zeta\equiv 1+\lambda\ (\mathrm{mod}\ \mathfrak{p}^2)$, 于是
+\[
+  a\equiv\varepsilon=\varepsilon_1\zeta^k\equiv b(1+\lambda)^k
+  \equiv b(1+k\lambda)\ (\mathrm{mod}\ \mathfrak{p}^2).
+\]
+这就表明 $k\equiv 0\ (\mathrm{mod}\ p)$, 于是 $p\mid k$, 从而 $\varepsilon=\varepsilon_1\zeta^k=\varepsilon_1$ 是实单位. 现在我们不妨设 $\varepsilon>0$（因为我们的目的是要证明 $\varepsilon=\eta^p$, 而这等价于 $(-\varepsilon)=(-\eta)^p$）. 由于
+\[
+  \theta_k=\frac{\zeta_{2p}^k-\zeta_{2p}^{-k}}{\zeta_{2p}-\zeta_{2p}^{-1}}
+  =\frac{\sin\frac{k\pi}{p}}{\sin\frac{\pi}{p}}\qquad(2\leqslant k\leqslant m=\frac{p-1}{2})
+\]
+也均是正数. 所以在 $(**)$ 式中, 我们不妨设 $d,d_2,\cdots,d_m$ 是没有公共素因子的整数. 由 $\varepsilon\equiv a\ (\mathrm{mod}\ p)$ 可知 $\varepsilon^{p-1}\equiv a^{p-1}\equiv 1\ (\mathrm{mod}\ p)$, 于是 $\log\varepsilon^{p-1}\equiv 0\ (\mathrm{mod}\ p)$. 从而 $\frac{1}{p}\log\varepsilon^{p-1}\in M$. 根据引理 \ref{lem:ch9-3} 可知
+\[
+  \log\varepsilon^{p-1}=\sum_{k=2}^{m}pc_k\log\theta_k^{p-1},\qquad c_k\in\Z_p.
+\]
+再由 $(**)$ 式可知
+\[
+  \sum_{k=2}^{m}d_k\log\theta_k^{p-1}=d\cdot\log\varepsilon^{p-1}
+  =\sum_{k=2}^{m}dpc_k\log\theta_k^{p-1},
+\]
+所以 $d_k=dpc_k\ (2\leqslant k\leqslant m)$. 由于 $c_k\in\Z_p$, 可知 $p\mid d_k\ (2\leqslant k\leqslant m)$. 由 $(**)$ 式即知 $\varepsilon^d=\varepsilon_1^p$, 其中 $\varepsilon_1$ 是 $K$ 中的单位. 由于 $d,d_2,\cdots,d_k$ 没有公共素因子, 可知 $p\nmid d$. 于是存在整数 $u$ 和 $v$, 使得 $du+pv=1$. 最后得到
+\[
+  \varepsilon=\varepsilon^{du+pv}=(\varepsilon_1^u\varepsilon^v)^p.
+\]
+这就完成了 Kummer 引理 \ref{lem:ch9-1} 的证明.
+
+关于 Kummer 结果（定理 \ref{thm:9.1}）的上述证明取自波列维奇和沙弗列维奇《数论》一书.

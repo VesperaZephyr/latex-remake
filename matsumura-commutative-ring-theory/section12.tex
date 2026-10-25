@@ -1,0 +1,340 @@
+% ============ §12 Krull rings (原书 pp.86-91) ============
+\section{Krull rings}\label{sec:12}\index{Krull rings, section 12}
+
+Let $A$ be an integral domain and $K$ its field of fractions. We write
+$K^*$ for the multiplicative group of $K$. We say that $A$ is a \emph{Krull ring}\index{Krull ring} if there is
+a family $\mathcal{F} = \{R_\lambda\}_{\lambda \in \Lambda}$ of DVRs of $K$ such that the following two conditions
+hold, where we write $v_\lambda$ for the normalised additive valuation correspond-
+ing to $R_\lambda$:
+\begin{enumerate}[(1)]
+  \item $A = \bigcap_\lambda R_\lambda$;
+  \item for every $x \in K^*$ there are at most a finite number of $\lambda \in \Lambda$ such that
+        $v_\lambda(x) \neq 0$.
+\end{enumerate}
+The family $\mathcal{F}$ of DVRs is said to be a \emph{defining family} of $A$. Since DVRs are
+completely integrally closed (see Ex.~\ref{ex:9.5-ex}), so are Krull rings. If $A$ is a Krull
+ring then for any subfield $K' \subset K$ the intersection $A \cap K'$ is again Krull.
+
+\begin{theorem}\label{thm:12.1}
+If $A$ is a Krull ring and $S \subset A$ a multiplicative set, then $A_S$ is
+again Krull. If $\mathcal{F} = \{R_\lambda\}_{\lambda \in \Lambda}$ is a defining family of $A$ then the subfamily
+$\{R_\lambda\}_{\lambda \in \Gamma}$, where $\Gamma = \{\lambda \in \Lambda \mid R_\lambda \supset A_S\}$, is a defining family of $A_S$.
+\end{theorem}
+
+\begin{proof}
+Setting $m_\lambda$ for the maximal ideal of $R_\lambda$, we have
+\[
+  \bigcap_{\lambda \in \Gamma} m_\lambda = 0.
+\]
+Let $0 \neq x \in \bigcap_{\lambda \in \Gamma} R_\lambda$; there are at most finitely many $\lambda \in \Lambda$ such that $v_\lambda(x) < 0$;
+let $\Delta = \{\lambda_1, \ldots, \lambda_n\}$ be the set of these. If $s \in S$ then $s \notin m_\lambda$, hence we can find
+$t_\lambda \in m_\lambda \cap S$. Replacing $t_\lambda$ by a suitable power, we can assume that $v_\lambda(t_\lambda x) \ge 0$.
+We then set $t = \prod_{\lambda \in \Delta} t_\lambda$, so that for every $\lambda \in \Lambda$ we have $v_\lambda(tx) \ge 0$, and
+therefore $tx \in A$; but on the other hand $t \in S$ so that $x \in A_S$, and we have
+proved that $A_S \supset \bigcap_{\lambda \in \Gamma} R_\lambda$. The opposite inclusion is obvious. The finiteness
+condition (2) holds for $A$, so also for the subset $\Gamma$.
+\end{proof}
+
+Krull rings defined by a finite number of DVRs have a simple structure.
+
+\begin{lemma}[Nagata]\label{lem:12.1}
+Let $K$ be a field and $R_1, \ldots, R_n$ valuation rings of $K$;
+set $A = \bigcap R_i$. Then for any given $a \in K$ there exists a natural number $s \ge 2$
+such that
+\[
+  (1 + a + \cdots + a^{s-1})^{-1} \quad \text{and} \quad a \cdot (1 + a + \cdots + a^{s-1})^{-1}
+\]
+both belong to $A$.
+\end{lemma}
+
+\begin{proof}
+We consider separately each $R_i$. Note first that $(1 - a)(1 + a + \cdots
++ a^{s-1}) = 1 - a^s$. If $a \notin R_i$ then $a^{-1} \in m_i$, and any $s \ge 2$ will do. If $a \in R_i$ then
+provided that there does not exist $t$ such that $1 - a^t \in m_i$, any $s \ge 2$ will do.
+If $1 - a \in m_i$ then any $s$ which is not a multiple of the characteristic of $R_i/m_i$
+will do. If on the other hand $1 - a \notin m_i$ but $1 - a^t \in m_i$ for some $t > 2$, letting $t_0$
+be the smallest value of $t$ for which this happens, we see that $1 - a^s \in m_i$
+only for $s$ multiples of $t_0$, so that we only have to avoid these. Thus for each $i$
+the bad values of $s$ (if any) are multiples of some number $d_i > 1$, so that
+choosing $s$ not divisible by any of these $d_i$ we get the result.
+\end{proof}
+
+\begin{theorem}\label{thm:12.2}
+Let $K$ be a field and $R_1, \ldots, R_n$ valuation rings of $K$ such
+that $R_i \nsubseteq R_j$ for $i \neq j$; set $m_i = \rad(R_i)$. Then the intersection $A = \bigcap_{i=1}^{n} R_i$ is
+a semilocal ring, having $p_i = m_i \cap A$ for $i = 1, \ldots, n$ as its only maximal
+ideals; moreover $A_{p_i} = R_i$. If each $R_i$ is a DVR then $A$ is a principal ideal
+ring.
+\end{theorem}
+
+\begin{proof}
+The inclusion $A_{p_i} \subset R_i$ is obvious. For the opposite inclusion, let
+$a \in R_i$; choosing $s \ge 2$ as in the lemma, and setting $u = (1 + a + \cdots + a^{s-1})^{-1}$
+we get $u \in A$ and $au \in A$. Obviously $u$ is a unit of $R_i$, so that $u \in A - p_i$
+and $a = (au)/u \in A_{p_i}$. This proves that $A_{p_i} = R_i$. It follows from this
+that there are no inclusions among $p_1, \ldots, p_n$. If $I$ is an ideal of $A$ not
+contained in any $p_i$ then (by Ex.~\ref{ex:1.6-ex}) there exists $x \in I$ not contained in
+$\bigcup_{i=1}^{n} p_i$; then $x$ is a unit in each $R_i$, and hence in $A$, so that $I = A$. Thus
+$p_1, \ldots, p_n$ are all the maximal ideals of $A$.
+
+If each $R_i$ is a DVR then we have $m_i \neq m_i^{(2)}$, and hence $p_i \neq p_i^{(2)}$ (where $p^{(2)}$
+denotes $p^2A_p \cap A$). Thus there exists $x_i \in p_i$ such that $x_i \notin p_i^{(2)}$, and $x_i \notin p_j$ for
+$i \neq j$; then $p_i = x_iA$. If $I$ is any ideal of $A$ and $IR_i = x_i^{e_i}R_i$ for $i = 1, \ldots, n$ then it
+is easy to see that $I = x_1^{e_1} \cdots x_n^{e_n}A$.
+\end{proof}
+
+If a Krull ring $A$ is defined by an infinite number of DVRs then the
+defining family of DVRs is not necessarily unique, but the following
+theorem tells us that among them there is a minimal family.
+
+\begin{theorem}\label{thm:12.3}
+Let $A$ be a Krull ring, $K$ its field of fractions, and $p$ a height $1$
+prime ideal of $A$; then if $\mathcal{F} = \{R_\lambda\}_{\lambda \in \Lambda}$ is a family of DVRs of $K$ defining $A$, we
+must have $A_p \in \mathcal{F}$. If we set $\mathcal{F}_0 = \{A_p \mid p \in \Spec A \text{ and } \htop p = 1\}$ then $\mathcal{F}_0$ is a
+defining family of $A$. Thus $\mathcal{F}_0$ is the minimal defining family of DVRs of $A$.
+\end{theorem}
+
+\begin{proof}
+By Theorem 1, $A_p$ is a Krull ring defined by the subfamily $\mathcal{F}_1 =
+\{R_\lambda \mid A_p \subset R_\lambda\} \subset \mathcal{F}$; if $A_p \subset R_\lambda$ then the elements of $A - p$ are units of $R_\lambda$,
+so that $p \supset m_\lambda \cap A$. If $m_\lambda \cap A = (0)$ then $R_\lambda \supset K$ which is a contradiction,
+hence $m_\lambda \cap A \neq (0)$; since $\htop p = 1$, we must have $p = m_\lambda \cap A$. Thus if we fix
+some $0 \neq x \in p$, then $v_\lambda(x) > 0$ for all $R_\lambda \in \mathcal{F}_1$, and hence $\mathcal{F}_1$ is a finite set,
+Now by the previous theorem and Ex.~\ref{ex:10.5-ex}, the elements of $\mathcal{F}_1$ correspond
+bijectively with maximal ideals of $A_p$, and $\mathcal{F}_1$ has just one element $A_p$. Thus
+$A_p \in \mathcal{F}$, in other words $\mathcal{F}_0 \subset \mathcal{F}$.
+
+To prove that $\mathcal{F}_0$ is a defining family of DVRs of $A$ it is enough to show that
+$A \supset \bigcap_{\htop p = 1} A_p$. That is, it is enough to prove the implication
+\[
+  \text{for } a, b \in A \text{ with } a \neq 0, \quad b \in aA_p \text{ for all } A_p \in \mathcal{F}_0 \Rightarrow b \in aA.
+\]
+As one sees easily, this is equivalent to saying that $aA$ can be written as
+the intersection of height $1$ primary ideals. The set of $R_\lambda \in \mathcal{F}$ such that
+$aR_\lambda \neq R_\lambda$ is finite, so we write $R_1, \ldots, R_r$ for this. If we set
+\[
+  aR_i \cap A = q_i \quad \text{and} \quad \rad(R_i) \cap A = p_i
+\]
+then $q_i$ is a primary ideal belonging to $p_i$ for each $i$, and $aA = q_1 \cap \cdots \cap q_r$.
+Eliminating redundant terms from this expression, we get an irredundant
+expression, say $aA = q_1 \cap \cdots \cap q_r$. It is enough to show that then $\htop p_i = 1$
+for $1 \le i \le r$. By contradiction, suppose that $\htop p_1 > 1$. By Theorem 1, $A_{p_1}$ is
+a Krull ring with defining family $\mathcal{F}' = \{R_\lambda \in \mathcal{F} \mid A_{p_1} \subset R_\lambda\}$, but is not itself
+a DVR, and hence by Theorem 2, $\mathcal{F}'$ is infinite. Thus there exists $R' \in \mathcal{F}'$
+such that $aR' = R'$; we set $p' = \rad(R') \cap A$. We have $a \notin p'$, and $A_{p'} \subset R'$
+implies that $p' \subset p_1$. Now by assumption $aA = q_1 \cap \cdots \cap q_r$ is irredundant, and $R_1$ is
+a DVR, so that $(\rad(R_1))^\nu \subset aR_1$ for some $\nu > 0$, and hence $p_1^\nu \subset q_1$.
+Therefore there exists an $i \ge 0$ such that
+\[
+  aA \neq p'^i \cap q_1 \cap \cdots \cap q_r \quad \text{and} \quad aA \supset p'^{i+1} \cap q_1 \cap \cdots \cap q_r.
+\]
+Hence there exist $b \in A$ such that $b \notin aA$ but $bp'^i \subset aA$. In particular $bp' \subset aA$,
+but since $a$ is a unit of $R'$ we have
+\[
+  (b/a)p' \subset A \cap \rad(R') = p'.
+\]
+Taking $0 \neq c \in p'$ then for every $n > 0$ we have $(b/a)^nc \in p' \subset A$, and since $A$ is
+completely integrally closed, $b/a \in A$. This is a contradiction, and it proves
+that $\htop p_i = 1$ for $1 \le i \le r$.
+\end{proof}
+
+\begin{corollary*}
+Let $A$ be a Krull ring and $\mathcal{P}$ the set of height $1$ prime ideals of $A$.
+For $0 \neq a \in A$ set $v_p(a) = n_p$; then
+\[
+  aA = \bigcap_{p \in \mathcal{P}} p^{(n_p)},
+\]
+where $p^{(n)}$ denotes the symbolic $n$th power $p^nA_p \cap A$.
+\end{corollary*}
+
+\begin{proof}
+According to the theorem we have $aA = \bigcap_p (aA_p \cap A)$,
+but $aA_p = p^{n_p}A_p$, so that $aA_p \cap A = p^{(n_p)}$.
+\end{proof}
+
+\begin{theorem}\label{thm:12.4}
+\begin{enumerate}[(i)]
+  \item A Noetherian normal domain is a Krull ring.
+  \item Let $A$ be an integral domain, $K$ its field of fractions, and $L$ an extension
+        field of $K$. If $(A_i)_{i \in I}$ is a family of Krull rings contained in $L$ satisfying
+        the two conditions (1) $A = \bigcap A_i$ and (2) given any $0 \neq a \in A$ we have
+        $aA_i = A_i$ for all but finitely many $i$, then $A$ is a Krull ring.
+  \item If $A$ is a Krull ring then so is $A[X]$ and $A[[X]]$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) This follows from Theorem~\ref{thm:11.5} and the fact that for any non-
+zero $a \in A$ there are only finitely many height $1$ prime ideals containing $aA$
+(because these are the prime divisors of $aA$).
+
+(ii) is easy, and we leave it to the reader.
+
+(iii) $K[X]$ is a principal ideal ring and therefore a Krull ring. Moreover,
+if we let $\mathcal{P}$ be the set of height $1$ prime ideals of $A$ then for $p \in \mathcal{P}$
+the ideal $p[X]$ is prime in $A[X]$, and by Theorem~\ref{thm:11.2}, (3), the local ring
+$A[X]_{p[X]}$ is a DVR of $K(X)$. (If we write $v$ for the additive valuation of $K$
+corresponding to the valuation ring $A_p$, we can extend $v$ to an additive
+valuation of $K(X)$ by setting $v(F(X)) = \min\{v(a_i)\}$ for a polynomial
+$F(X) = a_0 + a_1X + \cdots + a_rX^r$ (with $a_i \in K$),
+and $v(F/G) = v(F) - v(G)$ for a rational function $F(X)/G(X)$; then the
+valuation ring of $v$ in $K(X)$ is $A[X]_{p[X]}$.) Now we have
+\[
+  K[X] \cap A[X]_{p[X]} = A_p[X]
+\]
+(prove this!), and so
+\[
+  A[X] = \bigcap_{p \in \mathcal{P}} A_p[X],
+\]
+by (ii) this is a Krull ring.
+
+Now for $A[[X]]$, let $\{R_\lambda\}_{\lambda \in \Lambda}$ be a family of DVRs of $K$ defining $A$; then
+inside $K[[X]]$ we have $A[[X]] = \bigcap_\lambda R_\lambda[[X]]$; also by Ex.~\ref{ex:9.5-ex}, $R_\lambda[[X]]$ is an
+integrally closed Noetherian ring, and is therefore a Krull ring by (i).
+However, we cannot use (ii) as it stands, since $X$ is a non-unit of all the rings
+$R_\lambda[[X]]$, so we set $R_\lambda[[X]][X^{-1}] = B_\lambda$ and note that $A[[X]] = K[[X]] \cap
+(\bigcap_\lambda B_\lambda)$; now the hypothesis in (ii) is easily verified. Indeed,
+\[
+  F(X) = a_rX^r + a_{r+1}X^{r+1} + \cdots \in A[[X]] \quad \text{with } a_r \neq 0
+\]
+is a non-unit of $B_\lambda$ if and only if $a_r$ is a non-unit of $R_\lambda$, and there are only
+finitely many such $\lambda$. Therefore $A[[X]]$ is a Krull ring.
+\end{proof}
+
+\begin{remark}
+Note that the field of fractions of $A[[X]]$ is in general smaller
+than the field of fractions of $K[[X]]$.
+\end{remark}
+
+\begin{remark}
+The $B_\lambda$ occurring above are Euclidean rings ([B7], \S1, Ex. 9).
+\end{remark}
+
+\begin{theorem}\label{thm:12.5}
+The notions of Dedekind ring and one-dimensional Krull
+ring coincide.
+\end{theorem}
+
+\begin{proof}
+A Dedekind ring is a normal Noetherian domain, and therefore a
+Krull ring. Conversely, if $A$ is a one-dimensional Krull ring, let us prove that
+$A$ is Noetherian. Let $I$ be a non-zero ideal of $A$, and let $0 \neq a \in I$. If we can
+prove that $A/aA$ is Noetherian then $I/aA$ is finitely generated, and thus so is
+$I$. By the corollary of Theorem 3 we can write $aA = q_1 \cap \cdots \cap q_r$, where
+$q_i$ are symbolic powers of prime ideals $p_i$ and $p_i \neq p_j$ if $i \neq j$; now since
+$\dim A = 1$ each $p_i$ is maximal and we have
+\[
+  A/aA = A/q_1 \times \cdots \times A/q_r
+\]
+by Theorem~\ref{thm:1.3} and Theorem~\ref{thm:1.4}. But $A/q_i$ is a local ring with maximal
+ideal $p_i/q_i$, and hence $A/q_i \cong A_{p_i}/q_iA_{p_i}$; now since each $A_{p_i}$ is a DVR, $A/aA$ is
+Noetherian (in fact even Artinian). Hence $A$ is one-dimensional Noetherian
+integral domain, and is normal, and is therefore a Dedekind ring.
+\end{proof}
+
+\begin{theorem}\label{thm:12.6}
+Let $A$ be a Krull ring, $K$ its field of fractions, and write $\mathcal{P}$
+for the set of height $1$ prime ideals of $A$. Suppose given any $p_1, \ldots, p_r \in \mathcal{P}$
+and $e_1, \ldots, e_r \in \Z$. Then there exists $x \in K$ satisfying
+\[
+  v_{p_i}(x) = e_i \quad \text{for } 1 \le i \le r
+\]
+and
+\[
+  v_p(x) \ge 0 \quad \text{for all } p \in \mathcal{P} - \{p_1, \ldots, p_r\}.
+\]
+Here $v_{p_i}$ and $v_p$ stand for the normalised additive valuations of $K$
+corresponding to $p_i$ and $p$.
+\end{theorem}
+
+\begin{proof}
+If $y_i \in A$ is chosen so that $y_i \in p_i$ but $y_i \notin p_i^{(2)}$ and $y_i \notin p_j$ for
+$j \neq i$, then $v_{p_j}(y_i) = \delta_{ij}$ for $1 \le i, j \le r$. Similarly we choose $y_1, \ldots, y_r \in A$ such
+that $v_{p_i}(y_j) = \delta_{ij}$. Then we set
+\[
+  y = \prod_{i=1}^{r} y_i^{e_i};
+\]
+let $p_1', \ldots, p_s'$ be all the primes $p \in \mathcal{P} - \{p_1, \ldots, p_r\}$ for which $v_p(y) \neq 0$.
+Then choosing for each $j = 1, \ldots, s$ an element $t_j \in p_j'$ not belonging to
+$p_1 \cup \cdots \cup p_r$, and taking $\nu$ to be sufficiently large, we see that
+\[
+  x = y(t_1 \cdots t_s)^\nu
+\]
+satisfies the requirements of the theorem.
+\end{proof}
+
+\begin{theorem}[Y. Mori and J. Nishimura]\label{thm:12.7}
+Let $A$ and $\mathcal{P}$ be as in the previous
+theorem. If $A/p$ is Noetherian for every $p \in \mathcal{P}$ then $A$ is Noetherian.
+\end{theorem}
+
+\begin{proof}[Proof (J. Nishimura)]
+As in the proof of Theorem 5, it is enough to show
+that $A/p^{(n)}$ is Noetherian for $p \in \mathcal{P}$ and any $n > 0$. If $n = 1$ this holds by
+hypothesis. For $n > 1$ we proceed as follows. Applying the previous
+theorem with $r = 1$ and $e = -1$ we can find an element $x$ in the field of
+fractions of $A$ such that $v_p(x) = 1$ and $v_q(x) < 0$ for every other $q \in \mathcal{P}$. Set
+$B = A[x]$. If $y \in p$ then $y/x \in A$ so that $y \in xB$, and conversely $B \subset A_p$, and
+$xB \subset pA_p$, so that $p = xB \cap A$. Moreover, $B = A + xB$ and so
+\[
+  B/xB = A/p.
+\]
+Now $x^iB/x^{i+1}B \cong B/xB$ for each $i$, so that by induction on $i$ we see that
+$B/x^iB$ is a Noetherian $B$-module for each $i$, and hence a Noetherian ring.
+Now we have
+\[
+  A/(x^nB \cap A) \hookrightarrow B/x^nB,
+\]
+and $B/x^nB$ is finite over $A/(x^nB \cap A)$, being generated by the images of
+$1, x, \ldots, x^{n-1}$, so that by the Eakin--Nagata theorem (Theorem~\ref{thm:3.7}),
+$A/(x^nB \cap A)$ is a Noetherian ring; therefore its quotient $A/p^{(n)}$ is also
+Noetherian.
+\end{proof}
+
+\begin{remark}
+If $A$ is a Noetherian integral domain and $K$ its field of fractions,
+then the integral closure of $A$ in $K$ is a possibly non-Noetherian Krull ring
+([N1], (33.10)). This was proved by Y. Mori (1952) in the local case, and
+in the general case by M. Nagata (1955). Theorem~\ref{thm:12.7} was proved by
+Mori [1] in 1955 as a theorem on the integral closure of Noetherian
+rings. His proof was correct (in spite of a number of easily rectifiable
+inaccuracies), and was an extremely interesting piece of work, but due to
+its difficulty, and the fact that it appeared in an inaccessible journal, the
+result was practically forgotten. After Marot [1], (1973) applied it
+successfully, Mori's work attracted attention once more, and J. Nishimura
+[1], (1975) reformulated the result as above as a theorem on Krull rings
+and gave an elegant proof.
+
+More results on Krull rings can be found in [N1], [B7], [F], among
+others.
+\end{remark}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:12}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:12.1-ex}
+Let $K \subset L$ be a finite extension of fields, and $R$ a valuation ring of $K$. Then
+there are a finite number of valuation rings of $L$ dominating $R$, and if $L$ is a
+normal extension of $K$ then these are all conjugate to one another under
+elements of the Galois group $\Aut_K(L)$.
+\end{exercise}
+
+\begin{exercise}\label{ex:12.2-ex}
+Let $R$ be a valuation ring of a field $K$, and let $K \subset L$ be a (possibly infinite)
+algebraic extension; write $\bar{R}$ for the integral closure of $R$ in $L$. Then the
+localisation of $\bar{R}$ at a maximal ideal is a valuation ring dominating $R$, and
+conversely every valuation ring of $L$ dominating $R$ is obtained in this way.
+\end{exercise}
+
+\begin{exercise}\label{ex:12.3-ex}
+Let $A$ be a Krull ring, $K$ its field of fractions, and $K \subset L$ a finite extension
+field; if $B$ is the integral closure of $A$ in $L$, then $B$ is also a Krull ring.
+\end{exercise}
+
+\begin{exercise}\label{ex:12.4-ex}
+Let $A$ be an integral domain and $K$ its field of fractions. For $I$ a fractional
+ideal, write $\tilde{I} = (I^{-1})^{-1}$. If $I = \tilde{I}$ we say that $I$ is \emph{divisorial}. If $A$ is a Krull
+ring, then an ideal of $A$ is divisorial if and only if it can be expressed as the
+intersection of a finite number of height $1$ primary ideals.
+\end{exercise}

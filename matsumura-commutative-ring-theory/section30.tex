@@ -1,0 +1,954 @@
+% ============ §30 Connections with derivations (原书 pp.230-245) ============
+\section{Connections with derivations}\label{sec:30}\index{Jacobian criterion, section 30}\index{weak Jacobian condition, section 30}\index{Nagata-Zariski-Lipman, section 30}\index{geometrically regular, section 30}
+
+\begin{theorem}[\textbf{Nagata-Zariski-Lipman}]\label{thm:30.1}
+Let $(A, m)$ be a complete Noetherian local ring with $\mathbb{Q} \subset A$. Suppose that
+$x_1, \ldots, x_r \in m$ and $D_1, \ldots, D_r \in \Der(A)$ are elements satisfying
+$\det(D_ix_j) \notin m$. Then
+\begin{enumerate}[(i)]
+  \item There is a subring $C \subset A$ such that
+        \[
+          A = C[x_1, \ldots, x_r] \cong C[[X_1, \ldots, X_r]].
+        \]
+        Therefore $x_1, \ldots, x_r$ are analytically independent over $C$, and $A$ is
+        $I$-smooth over $C$, where $I = \sum Ax_i$, and therefore also $m$-smooth over
+        $C$.
+  \item If $\mathfrak{g} = \sum AD_i$ is a Lie algebra, (that is if $[D_i, D_j] \in \mathfrak{g}$ for all
+        $i, j$) then we can take $C$ to be $\{a \in A \mid D_1a = \cdots = D_ra = 0\}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Letting $(c_{ij})$ be the inverse matrix of $(D_ix_j)$, and setting
+$D_i' = \sum c_{ij}D_j$, we have $D_i'x_j = \delta_{ij}$, so that we can assume that
+$D_ix_j = \delta_{ij}$. Quite generally, for an element $t \in m$ and a derivation
+$D \in \Der(A)$, we define a map $E(D, t)\colon A \to A$ by
+\[
+  E(D, t) = \sum_{n \ge 0} \frac{t^n}{n!}D^n;
+\]
+by our assumptions, $E(D, t)(a) = \sum (t^n/n!)D^n(a)$ is meaningful, and one sees
+easily that $E(D, t)$ is a ring homomorphism. Now set
+\[
+  E_i = E(D_i, -x_i) \quad \text{and} \quad C_i = \Im(E_i);
+\]
+then $C_i$ is a subring of $A$, and by computation we see that
+\[
+  D_i\Big(\sum \frac{(-x_i)^n}{n!}D_i^n(a)\Big) = \sum \frac{(-x_i)^{n-1}}{(n-1)!}D_i^n(a)
+      + \sum \frac{(-x_i)^n}{n!}D_i^{n+1}(a) = 0,
+\]
+so that $C_i \subset \{a \in A \mid D_ia = 0\}$. Conversely, if $D_ia = 0$ then
+$E_i(a) = a$, so that $C_i = \{a \in A \mid D_ia = 0\}$. Also, since for any $a \in A$ we have
+$E_i(a) \equiv a \mod x_1A$, we see that elements of $A$ can be expanded in power
+series in $x_1$ with coefficients in $C_1$, so that $A = C_1[x_1]$. Now
+$E_1(x_1) = x_1 - x_1 = 0$, so that $x_1A \subset \Ker E_1$, and conversely, if
+$E_1(a) = a - x_1D_1a + \cdots = 0$ then $a \in x_1A$, and therefore $\Ker E_1 = x_1A$.
+Also, $D_1 \circ D_1c = 0 \iff E_1(c) = c$, so that $C_1 \cap x_1A = 0$. Now we prove
+that $x_1$ is analytically independent over $C_1$; by contradiction, suppose that
+\[
+  c_\nu x_1^\nu + c_{\nu+1}x_1^{\nu+1} + \cdots = 0 \quad \text{with } c_\nu \in C_1
+      \text{ and } c_\nu \ne 0.
+\]
+Then by Ex.~\hyperref[ex:25.2-ex]{25.2}, since $x_1$ is not a zero-divisor in $A$, we have
+$c_\nu \in x_1A$, which is a contradiction. Thus if $0 \ne \varphi(X) \in C_1[X]$ then
+$\varphi(x_1) \ne 0$, as required.
+
+If $r > 1$, then write $D_i'$ for the restriction to $C_1$ of $E_1 \circ D_i$; then
+$D_i' \in \Der(C_1)$, and $x_j \in C_1$ with $D_i'x_j = \delta_{ij}$ for $2 \le i, j \le r$, so that by
+induction we have
+\[
+  C_1 = C[x_2, \ldots, x_r] \cong C[[X_2, \ldots, X_r]].
+\]
+(i) follows from this.
+
+If $\mathfrak{g}$ is a Lie algebra, then we first arrange as before that $D_ix_j = \delta_{ij}$,
+and then set $[D_i, D_j] = \sum_\nu a_{ij\nu}D_\nu$ with $a_{ij\nu} \in A$; then
+$[D_i, D_j]x_\nu = D_i(\delta_{j\nu}) - D_j(\delta_{i\nu}) = 0$, so that $a_{ij\nu} = 0$, hence
+$[D_i, D_j] = 0$, and $D_1(D_i(C_1)) = D_i(D_1(C_1)) = D_i(0) = 0$. Therefore
+$D_i(C_1) \subset C_1$ for $i > 1$, and then in the above notation $D_i' = D_i$ for $i > 1$.
+Thus by induction we have $C = \{a \in A \mid D_1a = \cdots = D_ra = 0\}$.
+\end{proof}
+
+\begin{corollary*}
+Let $(A, m)$ be a reduced $n$-dimensional local ring containing $\mathbb{Q}$, and suppose
+that the completion $\hat{A}$ of $A$ is also reduced. If there exist $n$ elements
+$D_1, \ldots, D_n \in \Der(A)$ and $x_1, \ldots, x_n \in m$ such that
+$\det(D_ix_j) \notin m$ then $A$ is a regular local ring and $x_1, \ldots, x_n$ is a regular
+system of parameters of $A$. Suppose in addition that $\mathfrak{g} = \sum AD_i$ is a Lie
+algebra; then $C = \{a \in A \mid D_1a = \cdots = D_na = 0\}$ is a coefficient field of
+$\hat{A}$.
+\end{corollary*}
+
+\begin{proof}
+Consider $\hat{A}$, with each of the $D_i$ extended to $\hat{A}$. If
+$[D_i, D_j] = \sum_\nu a_{ij\nu}D_\nu$ holds in $A$ then it also holds in $\hat{A}$, so that if
+$\mathfrak{g}$ is a Lie algebra, so is $\hat{\mathfrak{g}} = \sum \hat{A}D_i$. By the theorem,
+$\hat{A} = C[[x_1, \ldots, x_n]]$, and $C$ is isomorphic to $\hat{A}/\sum x_i\hat{A}$, so is a
+zero-dimensional local ring. Now by assumption $C$ is also reduced, so that $C$
+must be a field. Therefore $\hat{A}$ is a formal power series ring over a field, and
+hence is regular, so that $A$ is also regular. The other assertion is also clear.
+\end{proof}
+
+\begin{remark}
+If we view this corollary as a criterion for regularity, then the condition that
+$\hat{A}$ should be reduced is rather a nuisance; however, as we will see later, for
+a very wide variety of local rings, we have $A$ is reduced $\iff \hat{A}$ is reduced.
+This is the case (corollary of Theorem~\hyperref[thm:32.6]{32.6}) if $A$ is a localisation of a ring
+$B$ which is finitely generated over a field (such an $A$ is said to be
+\emph{essentially of finite type} over $K$). Note also that if we start off with a
+regular local ring $A$, then the corollary gives a concrete method of
+constructing a coefficient field of $\hat{A}$.
+\end{remark}
+
+Next we consider rings which are finitely generated over a field, which are
+important in algebraic geometry.
+
+\begin{theorem}\label{thm:30.2}
+Let $k$ be a field, and $A = k[x_1, \ldots, x_n]$ a finitely generated ring over $k$. If
+$A_p$ is 0-smooth over $k$ for every $p \in \mathrm{m}$-$\Spec A$, then $A$ is 0-smooth over
+$k$.
+\end{theorem}
+
+\begin{proof}
+Write $k[X]$ for $k[X_1, \ldots, X_n]$, and let $I = \{f(X) \in k[X] \mid f(x) = 0\}$, so
+that $A = k[X]/I$. Suppose that $I = (f_1, \ldots, f_s)$. Consider a commutative diagram
+\[
+\begin{tikzcd}
+A \arrow[r, "\bar{\varphi}"] & C/N \\
+k \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+where $C$ is a ring, and $N \subset C$ is an ideal satisfying $N^2 = 0$. To lift
+$\bar{\varphi}$ to $A \to C$, we first of all choose $u_i \in C$ such that
+$\bar{\varphi}(x_i) = \bar{u}_i$. If $f \in I$ then $f(u_1, \ldots, u_n) \in N$. Now if we can choose
+$y_i \in N$ for $1 \le i \le n$ such that $f_j(u + y) = 0$ for all $j$, then the
+homomorphism $A \to C$ defined by $X_i \mapsto u_i + y_i$ is a lifting of
+$\bar{\varphi}$. We have
+\[
+  f_j(u + y) = f_j(u) + \sum_{i=1}^{n} (\partial f_j/\partial X_i)(u) \cdot y_i,
+\]
+so that we are looking for solutions in $N$ of the system of linear equations in
+$y_1, \ldots, y_n$:
+\[
+  (*) \quad f_j(u) + \sum_{i=1}^{n} (\partial f_j/\partial X_i)(u) \cdot y_i = 0
+      \quad \text{for } j = 1, \ldots, s.
+\]
+For each maximal ideal $p$, the local ring $A_p$ is 0-smooth over $k$, so that if we
+set $S = \bar{\varphi}(A - p)$ and $\tilde{S} = \varphi^{-1}(S)$ then in the diagram
+\[
+\begin{tikzcd}
+A_p \arrow[r, "\bar{\varphi}_p"] & C_{\tilde{S}}/N_{\tilde{S}} = C_S/N_S \\
+k \arrow[u] \arrow[r] & C_{\tilde{S}} \arrow[u]
+\end{tikzcd}
+\]
+there exists a $y^p\colon A_p \to C_{\tilde{S}}$ lifting $\bar{\varphi}_p$. From this we see that (*), as
+a system of equations in $N_{\tilde{S}}$, has a solution in $N_{\tilde{S}}$. If we view $N$ as a
+$C/N$-module then $N_{\tilde{S}} = N_S$. Thus the theorem reduces to the following
+lemma.
+\end{proof}
+
+\begin{lemma}\label{lem:30.1}
+Let $A$ and $B$ be rings, $\varphi\colon A \to B$ a ring homomorphism, and $N$ a
+$B$-module; suppose that $b_{ij} \in B$ and $\beta_i \in N$. If the system of linear
+equations
+\[
+  \sum_j b_{ij}y_j = \beta_i \quad (\text{for } i = 1, \ldots, s)
+\]
+has a solution in $N_{A-p}$ for every $p \in \mathrm{m}$-$\Spec A$, then it has a solution in $N$.
+\end{lemma}
+
+\begin{proof}
+The assumption that there is a solution in $N_{A-p}$ means that there exist
+$q_{jp} \in N$ for $1 \le j \le n$, and $t_p \in A - p$ such that
+\[
+  \sum_j b_{ij}q_{jp} - \varphi(t_p)\beta_i = 0 \quad \text{for } 1 \le i \le s.
+\]
+Now since $\sum_p t_pA = A$, there is a finite set $\{p_1, \ldots, p_\ell\} \subset
+\mathrm{m}$-$\Spec A$ and $a_\nu \in A$ such that
+\[
+  \sum_{\nu=1}^{\ell} a_\nu t_{p_\nu} = 1.
+\]
+Hence if we set
+\[
+  q_j = \sum_\nu \varphi(a_\nu)q_{jp_\nu},
+\]
+we get $\sum_j b_{ij}q_j = \beta_i$ for $1 \le i \le s$.
+\end{proof}
+
+\begin{theorem}\label{thm:30.3}
+Let $k$ be a field, $S = k[X_1, \ldots, X_n]$, and $I$, $P$ ideals of $S$ such that
+$I \subset P \in \Spec S$. Set
+\[
+  S_P = R, \quad \rad(R) = PR = M, \quad \text{and} \quad R/IR = A, \quad \rad(A) = m,
+\]
+\[
+  R/M = A/m = K,
+\]
+and suppose that $\htop IR = r$ and $I = (f_1(X), \ldots, f_t(X))$. Then the following
+conditions are equivalent.
+\begin{enumerate}[(1)]
+  \item $\rank(\partial f_i/\partial X_j \bmod P)_{i=1, \ldots, t;\, j=1, \ldots, n} = r$;
+  \item $A$ is 0-smooth over $k$;
+  \item $A$ is $m$-smooth over $k$;
+  \item $\Omega_{A/k}$ is a free $A$-module of rank $n - r$;
+  \item $A$ is an integral domain, its field of fractions is separable over $k$, and
+        $\Omega_{A/k}$ is a free $A$-module.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Note that $R$ is a regular local ring.
+
+(1) $\Rightarrow$ (2) By assumption, for a suitable choice of $r$ elements
+$D_1, \ldots, D_r$ from $\partial/\partial X_1, \ldots, \partial/\partial X_n$, and of $r$ elements
+$g_1, \ldots, g_r$ from $f_1, \ldots, f_t$, we have $\det(D_ig_j) \notin M$. We observe that
+taking $R \ni f$ into $(\partial f/\partial X_1 \bmod M, \ldots, \partial f/\partial X_n \bmod M)
+\in K^n$ induces a linear map $M/M^2 \to K^r$, so that the images of $g_1, \ldots, g_r$ in
+$M/M^2$ are linearly independent. Therefore $\sum g_iR$ is a height $r$ prime ideal
+contained in $IR$, and hence $\sum g_iR = IR$. Given a commutative diagram
+\[
+\begin{tikzcd}
+A \arrow[r, "\bar{\varphi}"] & C/N \\
+k \arrow[u] \arrow[r] & C \arrow[u]
+\end{tikzcd}
+\]
+with $N^2 = 0$, write $\bar{X}_i \in A$ for the image of $X_i$, and choose $u_i \in C$
+such that $\varphi(u_i) = \bar{\varphi}(\bar{X}_i) \in C/N$. Then there is a homomorphism
+$R \to C$ defined by $X_i \mapsto u_i$, and this induces a lifting of $\bar{\varphi}$ to $C$ if and
+only if $g_i(u) = 0$ for $1 \le i \le r$. Therefore, as in the proof of the previous
+theorem, we need only solve the system of equations in unknowns
+$y_1, \ldots, y_n \in N$:
+\[
+  (*) \quad g_i(u) + \sum_{j=1}^{n} (\partial g_i/\partial X_j)(u) \cdot y_j = 0
+      \quad \text{for } 1 \le i \le r.
+\]
+However, we view $N$ as a $C/N$-module, then via $\bar{\varphi}$ as an $A$-module, so that we
+can replace the coefficients $(\partial g_i/\partial X_j)(u)$ of this system by
+$(\partial g_i/\partial X_j)(\bar{X}) \in A$. Now by assumption, one $r \times r$ minor of this
+$r \times n$ matrix of coefficients is a unit of $A$, so that (*) can always be solved.
+
+(2) $\Rightarrow$ (3) is trivial.
+
+(3) $\Rightarrow$ (1) By \S\ref{sec:28}, Lemma~\hyperref[lem:28.1]{1}, $A$ is regular, so that $IR$ is generated by
+$r$ elements forming a subset of a regular system of parameters of $R$, and the
+image of the natural map $IR \to M \to M/M^2$ is an $r$-dimensional $K$-vector space.
+Let $k_1 \subset k$ be the prime subfield; then by
+Theorem~\hyperref[thm:26.9]{26.9} $K = R/M$ is 0-smooth over $k_1$, so that by
+Theorem~\hyperref[thm:25.2]{25.2}, the sequence
+\[
+  0 \to M/M^2 \to \Omega_{R/k_1} \otimes_R K \to \Omega_{K/k_1} \to 0
+\]
+is exact. We can write $\Omega_{S/k_1} = (\Omega_{k/k_1} \otimes S) \oplus F$, where $F$ is the free
+$S$-module with basis $dX_1, \ldots, dX_n$ (for example, by
+Theorem~\hyperref[thm:25.1]{25.1}), and localising we get
+\[
+  \Omega_{R/k_1} = (\Omega_{k/k_1} \otimes R) \oplus F \otimes_S R.
+\]
+Hence $\Omega_{R/k_1} \otimes_R K = (\Omega_{k/k_1} \otimes_k K) \oplus (F \otimes K)$. However, from
+\[
+  0 \to I/I^2 \to \Omega_{S/k_1} \otimes_S A \to \Omega_{A/k_1} \to 0
+\]
+we get the exact sequence $(I/I^2) \otimes_A K \to \Omega_{R/k_1} \otimes_R K \to
+\Omega_{A/k_1} \otimes_A K \to 0$, and if $A$ is $m$-smooth over $k$ then by the corollary to
+Theorem~\hyperref[thm:28.6]{28.6}, $\Omega_{k/k_1} \otimes K \to \Omega_{A/k_1} \otimes K$ is injective, so that
+$V = \Im((I/I^2) \otimes K \to \Omega_{R/k_1} \otimes K)$ maps isomorphically to its
+projection $W \subset F \otimes K$ in the second factor of the decomposition
+$\Omega_{R/k_1} \otimes K = (\Omega_{k/k_1} \otimes K) \oplus (F \otimes K)$. Now factor
+$I/I^2 \otimes K \to \Omega_{R/k_1} \otimes K$ as the composite
+$I/I^2 \otimes K \to M/M^2 \to \Omega_{R/k_1} \otimes K$; as we have seen above, the first arrow
+has rank $r$, and the second is injective, so that $\rank V = r$. Now
+$F \otimes K = KdX_1 + \cdots + KdX_n$, and if we write
+$(\partial f_i/\partial X_j) \bmod P = a_{ij}$ then $W$ is spanned by $\sum_j a_{ij}dX_j$ for
+$1 \le i \le t$. Therefore $\rank(a_{ij}) = r$, and this proves (1).
+
+(2) $\Rightarrow$ (4) By Theorem~\hyperref[thm:25.2]{25.2},
+\[
+  0 \to IR/I^2R \to \Omega_{R/k} \otimes_R A \to \Omega_{A/k} \to 0
+\]
+is a split exact sequence, and since $\Omega_{R/k} \otimes_R A$ is a free $A$-module with basis
+$dX_1, \ldots, dX_n$, the $A$-module $\Omega_{A/k}$ is projective; but $A$ is a local ring, so
+that $\Omega_{A/k}$ is free. Also $A$ is a regular local ring, therefore an integral
+domain, and if $L$ is its field of fractions then $L$ is 0-smooth over $A$, hence also
+0-smooth over $k$, so that $L$ is separable over $k$.
+
+(4) $\Rightarrow$ (5) By Theorem~\hyperref[thm:26.2]{26.2}, the field of fractions $L$ of $A$ is
+separably generated over $k$, so that a separating transcendence basis of $L$ over
+$k$ is a differential basis, and $\rank \Omega_{L/k} = \trdeg_k L = n - r$; but
+$\Omega_{L/k} = \Omega_{A/k} \otimes_A L$ and hence $\rank \Omega_{A/k} = \rank \Omega_{L/k} = n - r$.
+
+(5) $\Rightarrow$ (1) In the exact sequence
+\[
+  IR/I^2R \to \Omega_{R/k} \otimes_R A \to \Omega_{A/k} \to 0,
+\]
+set $E = \Im(IR/I^2R \to \Omega_{R/k} \otimes_R A)$. Then
+$\Omega_{R/k} \otimes_R A \cong E \oplus A^{n-r}$, so that $E \cong A^r$, and therefore
+$E \otimes K \cong K^r$. This gives (1).
+\end{proof}
+
+\begin{remark}
+In the above proof, the equivalence of (1), (2), (4) and (5) was comparatively
+easy. The proof of (3) $\Rightarrow$ (1) used the corollary to Theorem~\hyperref[thm:28.6]{28.6}, and so
+is not very elementary.
+\end{remark}
+
+\begin{remark}
+If $k$ is a perfect field, or more generally if the residue field $K$ is separable
+over $k$, then $m$-smoothness is equivalent to $A$ being a regular local ring, so
+that Theorem~\hyperref[thm:30.3]{3} gives a criterion for regularity. In the case of an imperfect
+field $k$, if $A$ is 0-smooth over $k$ then so is the field of fractions $L$ of $A$, but
+the residue field $K$ is not necessarily separable over $k$; for example,
+$A = k[X]_{(X^p - a)}$ with $a \in k - k^p$. For the case of an imperfect field $k$, we
+give a regularity criterion for $A$ in Theorem~\hyperref[thm:30.5]{5}.
+\end{remark}
+
+Quite generally, let $A$ be a ring and $P$ a prime ideal of $A$, and let
+$D_1, \ldots, D_s \in \Der(A)$ and $f_1, \ldots, f_t \in A$; then we write
+\[
+  J(f_1, \ldots, f_t; D_1, \ldots, D_s)(P) = (D_if_j \bmod P).
+\]
+This is an $s \times t$ matrix with entries in the integral domain $A/P$.
+
+\begin{theorem}\label{thm:30.4}
+Let $R$ be a regular ring, $P \in \Spec R$, and let $I \subset P$ be an ideal of $R$;
+suppose that $\htop IR_P = r$.
+\begin{enumerate}[(i)]
+  \item for any $D_1, \ldots, D_s \in \Der(R)$ and $f_1, \ldots, f_t \in I$ we have
+        \[
+          \rank J(f_1, \ldots, f_t; D_1, \ldots, D_s)(P) \le r;
+        \]
+  \item if $D_1, \ldots, D_r \in \Der(R)$ and $f_1, \ldots, f_r \in I$ are such that
+        $\det(D_if_j) \notin P$ then $IR_P = (f_1, \ldots, f_r)R_P$ and $R_P/IR_P$ is regular.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $Q$ is a prime ideal of $R$ with $I \subset Q \subset P$ and $\htop Q = r$ then
+\[
+  \rank J(f_1, \ldots; D_1, \ldots)(P) \le \rank J(f_1, \ldots; D_1, \ldots)(Q),
+\]
+and if we set $QR_Q = \mathfrak{n}$ then $R_Q$ is an $r$-dimensional regular local ring, so
+that $m$ is generated by $r$ elements, $m = (g_1, \ldots, g_r)$. Working in $R_Q$, we can
+write
+\[
+  f_j = \sum_{\nu=1}^{r} g_\nu a_{\nu j} \quad \text{with } a_{\nu j} \in R_Q,
+\]
+so that
+\[
+  D_if_j \equiv \sum_{\nu=1}^{r} (D_ig_\nu) \cdot a_{\nu j} \bmod Q,
+\]
+and therefore
+\[
+  \rank J(f_1, \ldots, f_t; D_1, \ldots, D_s)(P) \le
+  \rank J(g_1, \ldots, g_r; D_1, \ldots, D_s)(Q) \le r.
+\]
+(ii) Set $M = PR_P$; then if $\det(D_if_j) \notin M$ one sees easily that the images in
+$M/M^2$ of $f_1, \ldots, f_r$ are linearly independent over $R_P/M = \kappa(M)$, so that
+$\sum f_iR_P$ is a prime ideal of height $r$, and therefore coincides with $IR_P$.
+Also, $R_P/IR_P$ is regular.
+\end{proof}
+
+\begin{theorem}[\textbf{Zariski}]\label{thm:30.5}
+Let $k$ be a field of characteristic $p$, $S = k[X_1, \ldots, X_n]$, and $I$ and $P$
+ideals of $S$ with $I \subset P \in \Spec S$. Set $S_P = R$ and $R/IR = A$, and suppose
+that $\htop IR = r$ and $I = (f_1, \ldots, f_t)$. Then the following three conditions are
+equivalent.
+\begin{enumerate}[(1)]
+  \item $A$ is a regular local ring.
+  \item For any $p$-basis $\{u_\gamma\}_{\gamma \in \Gamma}$ of $k$, define $D_\gamma \in \Der(S)$ by
+        $D_\gamma(u_{\gamma'}) = \delta_{\gamma\gamma'}$ (the Kronecker $\delta$) and
+        $D_\gamma X_i = 0$; then there are a finite number of elements
+        $\alpha, \beta, \ldots, \gamma \in \Gamma$ such that
+        \[
+          \rank J(f_1, \ldots, f_t; D_\alpha, D_\beta, \ldots, D_\gamma,
+              \partial/\partial X_1, \ldots, \partial/\partial X_n)(P) = r.
+        \]
+  \item There exists a subfield $k' \subset k$ with the following properties:
+        $k^p \subset k' \subset k$, $[k : k'] < \infty$, and $\Omega_{A/k'}$ is a free $A$-module, with
+        \[
+          \rank \Omega_{A/k'} = n - r + \rank \Omega_{k/k'}.
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(2) $\Rightarrow$ (1) comes from Theorem~\hyperref[thm:30.4]{4}, (ii).
+
+(1) $\Rightarrow$ (2), (3) If $A$ is regular then $IR$ is generated by $r$ elements, and
+these form an $R$-sequence, so that $IR/I^2R$ is a free $A$-module of rank $r$. Set
+$M = PR$, $m = M/IR$ and $K = R/M = A/m$; then the image of $IR \to M/M^2$ is an
+$r$-dimensional $K$-vector space, so that the natural map $(IR/I^2R) \otimes_A K \to
+M/M^2$ is injective. From the exact sequence
+\[
+  IR/I^2R \to \Omega_{R/k} \otimes_R A \to \Omega_{A/k} \to 0
+\]
+we get the exact sequence
+\[
+  (*) \quad (IR/I^2R) \otimes_A K \to \Omega_{R/k} \otimes_R K \to \Omega_{A/k} \otimes_A K \to 0.
+\]
+Now by Theorem~\hyperref[thm:25.2]{25.2},
+\[
+  0 \to M/M^2 \to \Omega_{R/k} \otimes_R K \to \Omega_{K/k} \to 0
+\]
+is an exact sequence. The first arrow in (*) is the composite
+$(IR/I^2R) \to M/M^2 \to \Omega_{R/k} \otimes K$, and so is injective. Thus
+\[
+  (**) \quad 0 \to (IR/I^2R) \otimes K \to \Omega_{R/k} \otimes K \to \Omega_{A/k} \otimes K \to 0
+\]
+is exact. Let $\{du_\sigma\}_{\sigma \in \Sigma}$ be a basis of $\Omega_k$ over $k$; then $\Omega_S$ is the free
+$S$-module with basis $\{du_\sigma\}_{\sigma \in \Sigma} \cup \{dX_1, \ldots, dX_n\}$, and
+$\Omega_R = \Omega_S \otimes_S R$, $\Omega_R \otimes_R K = \Omega_k \otimes_k K \oplus
+(KdX_1 \oplus \cdots \oplus KdX_n)$. Now reorder $f_1, \ldots, f_t$ so that $f_1, \ldots, f_r$ are
+generators of $IR$; then $df_1, \ldots, df_r \in \Omega_R \otimes K$ can be expressed using
+$dX_1, \ldots, dX_n$ together with finitely many elements $du_{\tau_1}, \ldots, du_{\tau_s}$, and this
+gives (2). Now if we let $k'$ be the field obtained by adjoining to $k^p$ all the
+elements $u_\sigma$ for $\sigma \in \Sigma$ other than the $du_{\tau_1}, \ldots, du_{\tau_s}$ just used, then
+from (**) we see that
+\[
+  0 \to (IR/I^2R) \otimes K \to \Omega_{R/k'} \otimes K \to \Omega_{A/k'} \otimes K \to 0
+\]
+is also exact. In the exact sequence
+\[
+  (\dagger) \quad IR/I^2R \to \Omega_{R/k'} \otimes_R A \to \Omega_{A/k'} \to 0,
+\]
+the middle term is the free $A$-module with basis
+$du_{\tau_1}, \ldots, du_{\tau_s}, dX_1, \ldots, dX_n$; now the generators $f_1, \ldots, f_r$ of $IR$ map
+to $df_1, \ldots, df_r \in \Omega_{R/k'} \otimes_R A$, and since these are linearly independent over
+$K$, they base a direct summand of $\Omega_{R/k'} \otimes_R A$. Thus $\Omega_{A/k'}$ is also a
+free $A$-module, and $\rank \Omega_{A/k'} + r = \rank \Omega_{R/k'} = \rank \Omega_{k/k'} + n$.
+
+(3) $\Rightarrow$ (1) In the exact sequence ($\dagger$) the two terms
+$\Omega_{R/k'} \otimes_R A$ and $\Omega_{A/k'}$ are both free modules, and the difference between
+their ranks is $r$, so that $IR/I^2R$ maps onto a direct summand of
+$\Omega_{R/k'} \otimes_R A$, which is a free module of rank $r$. Thus we can choose
+$f_1, \ldots, f_r \in IR$ such that $df_1 \otimes 1, \ldots, df_r \otimes 1$ base this direct summand,
+and then by NAK we see that $Rdf_1 + \cdots + Rdf_r$ is a direct summand of
+$\Omega_{R/k'}$. Hence there exist $D_1, \ldots, D_r \in \Der_{k'}(R)$ such that
+$\det(D_if_j) \notin M$. Therefore, by Theorem~\hyperref[thm:30.4]{4}, $A$ is regular.
+\end{proof}
+
+\begin{corollary*}
+Let $k$ be a field and $S = k[X_1, \ldots, X_n]$; let $I$ be an ideal of $S$, and set
+$B = S/I$. Define $U = \{p \in \Spec B \mid B_p \text{ is 0-smooth over } k\}$ and
+$\Reg(B) = \{p \in \Spec B \mid B_p \text{ is regular}\}$. Then both $U$ and $\Reg(B)$ are open
+subsets of $\Spec B$.
+\end{corollary*}
+
+\begin{proof}
+Set $V' = \Spec B$, and let $V_1, \ldots, V_s$ be the irreducible components of $V'$. To
+say that $P \in V_i \cap V_j$ for $i \neq j$ means just that $B_p$ has at least two minimal
+prime ideals, and such points cannot belong to $\Reg(B)$, (nor a fortiori to $U$).
+Thus first of all we can throw out the closed subset $W = \bigcup_{i \neq j}(V_i \cap V_j)$,
+and therefore we need only prove that $V_i \cap U$ and $V_i \cap \Reg(B)$ are open in
+$V_i$ for each $i$; we fix $i$, and set $\dim V_i = n - r$. Then by
+Theorems~\hyperref[thm:30.3]{3} and \hyperref[thm:30.4]{4}, if we let $\Delta_1, \ldots, \Delta_s$ denote the images in
+$B$ of the $r \times r$ minors of the Jacobian matrix $(\partial f_i/\partial X_j)$, where
+$I = (f_1, \ldots, f_t)$, then $V_i - U$ is the intersection of $V_i$ with the closed subset of
+$V'$ defined by the ideal $(\Delta_1, \ldots, \Delta_s)B$ of $B$, and is thus closed in $V_i$.
+Using Theorem~\hyperref[thm:30.5]{5}, we can argue similarly for $\Reg(B)$; the only difference
+is that, instead of one Jacobian matrix, we have to consider the closed subsets
+of $V'$ defined by the ideal of $B$ generated by all the $r \times r$ minors of the
+infinitely many Jacobian matrices $J(f_1, \ldots, f_t; D_\alpha, D_\beta, \ldots, D_\gamma,
+\partial/\partial X_1, \ldots, \partial/\partial X_n)$, where $\{D_\alpha, \ldots, D_\gamma\}$ runs through all finite
+subsets of the set of derivations $\{D_\gamma\}_{\gamma \in \Gamma}$ appearing in
+Theorem~\hyperref[thm:30.5]{5}, (2).
+\end{proof}
+
+Theorems~\hyperref[thm:30.3]{3} and \hyperref[thm:30.5]{5} contain the result known as the \emph{Jacobian
+criterion for regularity} in polynomial rings. There is some purpose in trying to
+extend this to more general rings. In cases when the module of differentials is
+not finitely generated, then the above method cannot be used as it stands, so we
+approach the problem using modules of derivations.
+
+Quite generally, let $A$ be an integral domain with field of fractions $L$; then
+for an $A$-module $M$, we write $\rank_A M$ for the dimension over $L$ of the vector
+space $M \otimes_A L$.
+
+\begin{theorem}[\textbf{M.~Nomura}]\label{thm:30.6}
+Let $(R, m)$ be an equicharacteristic $n$-dimensional regular local ring, and $R^*$
+the completion of $R$; suppose that $k$ is a quasi-coefficient field of $R$ and $K$ a
+coefficient field of $R^*$ containing $k$. Let $x_1, \ldots, x_n$ be a regular system of
+parameters of $R$.
+\begin{enumerate}[(i)]
+  \item $R^* = K[[x_1, \ldots, x_n]]$, and if we write $\partial/\partial x_i$ for the partial
+        derivatives in this representation, then $\Der_k(R^*) = \Der_k(R^*)$ is the free
+        $R^*$-module with basis $\partial/\partial x_i$ for $1 \le i \le n$.
+  \item The following conditions are equivalent:
+        \begin{enumerate}[(1)]
+          \item $\partial/\partial x_i$ maps $R$ into $R$ for $1 \le i \le n$, so that they can be
+                considered as elements of $\Der_k(R)$;
+          \item there exist $D_1, \ldots, D_n \in \Der_k(R)$ and $a_1, \ldots, a_n \in R$ such
+                that $D_ia_j = \delta_{ij}$;
+          \item there exist $D_1, \ldots, D_n \in \Der_k(R)$ and $a_1, \ldots, a_n \in R$ such
+                that $\det(D_ia_j) \notin m$;
+          \item $\Der_k(R)$ is a free $R$-module of rank $n$;
+          \item $\rank \Der_k(R) = n$.
+        \end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Since $K$ is 0-\'etale over $k$, any derivation of $R^*$ which vanishes on $k$ also
+vanishes on $K$. If $D \in \Der_k(R^*)$, set $Dx_i = y_i$; then for any
+$f \in R^* = K[[x_1, \ldots, x_n]]$ we have $D(f) = \sum_{i=1}^{n}(\partial f/\partial x_i) \cdot y_i$,
+and hence $D = \sum y_i \partial/\partial x_i$. Conversely, for any given $y_i$ we can
+construct a derivation by this formula, so that $\Der_k(R^*)$ is the free $R^*$-module
+with basis $\partial/\partial x_1, \ldots, \partial/\partial x_n$.
+
+(ii) (1) $\Rightarrow$ (2) $\Rightarrow$ (3) and (4) $\Rightarrow$ (5) are trivial. If (3) holds then
+$D_1, \ldots, D_n$ are linearly independent over $R$ and over $R^*$, so that by (i), any
+$D \in \Der_k(R)$ can be written as a combination $D = \sum c_iD_i$ of the $D_i$ with
+coefficients in the field of fractions of $R^*$, but since $Da_j = \sum c_iD_i(a_j)$ for
+$j = 1, \ldots, n$, we have $c_i \in R$; therefore $D_1, \ldots, D_n$ form a basis of
+$\Der_k(R)$, which proves (4).
+
+(5) $\Rightarrow$ (1) If $D_1, \ldots, D_n$ are linearly independent over $R$ then there exist
+$a_1, \ldots, a_n \in R$ such that $\det(D_ia_j) \ne 0$. Therefore $D_1, \ldots, D_n$ are also
+linearly independent over $R^*$. Thus writing $L^*$ for the field of fractions of
+$R^*$ we can write $\partial/\partial x_i = \sum_j c_{ij}D_j$, with $c_{ij} \in L^*$. From this we
+get $\delta_{ij} = \sum_\nu c_{i\nu}D_\nu x_j$, so that the matrix $(c_{ij})$ is the inverse of
+$(D_jx_i)$, and $c_{ij} \in L$, where $L$ is the field of fractions of $R$; therefore
+$(\partial/\partial x_i)(R) \subset L \cap R^* = R$.
+\end{proof}
+
+\begin{lemma}\label{lem:30.2}
+Let $R$ be a regular ring and $P \in \Spec R$ with $\htop P = r$; then the following
+two conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item there exist $D_1, \ldots, D_r \in \Der(R)$ and $f_1, \ldots, f_r \in P$ such that
+        $\det(D_if_j) \notin P$;
+  \item for all $Q \in \Spec R$ with $\htop Q = s \le r$ such that $Q \subset P$ and
+        $R_P/QR_P$ is regular, there exist $D_1, \ldots, D_s \in \Der(R)$ and
+        $g_1, \ldots, g_s \in Q$ such that $\det(D_ig_j) \notin P$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(2) contains (1) as the special case $P = Q$; conversely, suppose that (1) holds.
+By Theorem~\hyperref[thm:30.4]{4} we see that $f_1, \ldots, f_r$ is a regular system of parameters
+of $R_P$. If $R_P/QR_P$ is regular then we can take $g_1, \ldots, g_s \in Q$ forming a
+minimal basis of $QR_P$, and then take $g_{s+1}, \ldots, g_r \in P$ such that
+$g_1, \ldots, g_r$ is a regular system of parameters of $R_P$. Then from
+$\det(D_if_j) \notin P$ we deduce that $\det(D_ig_j) \notin P$, or in other words
+$\rank J(g_1, \ldots, g_r; D_1, \ldots, D_r)(P) = r$. Therefore
+\[
+  \rank J(g_1, \ldots, g_s; D_1, \ldots, D_s)(P) = s.
+\]
+\end{proof}
+
+If the above condition (1) holds, we say that the \emph{weak Jacobian condition} (WJ)
+holds at $P$. If (WJ) holds at every $P \in \Spec R$ then we say that (WJ) holds in $R$.
+If this holds, then for any $P$, $Q \in \Spec R$ with $Q \subset P$, setting $\htop Q = s$ we
+have
+\[
+  R_P/QR_P \text{ is regular} \iff
+  \text{there exist } D_1, \ldots, D_s \in \Der(R) \text{ and }
+  f_1, \ldots, f_s \in Q \text{ such that } \det(D_if_j) \notin P,
+\]
+(the implication ($\Leftarrow$) is given by Theorem~\hyperref[thm:30.4]{4}). This statement is
+the Jacobian criterion for regularity. We can use $\Der_k(R)$ in place of
+$\Der(R)$, and we then write (WJ)$_k$.
+
+\begin{theorem}\label{thm:30.7}
+Let $(A, m)$ be an $n$-dimensional Noetherian local integral domain containing
+$\mathbb{Q}$, and let $k \subset A$ be a subfield such that $\trdeg_k(A/m) = r < \infty$. Then
+$\Der_k(A)$ is isomorphic to a submodule of $A^{n+r}$, and is therefore a finite
+$A$-module, with
+\[
+  \rank \Der_k(A) \le \dim A + \trdeg_k(A/m).
+\]
+\end{theorem}
+
+\begin{proof}
+We write $A^*$ for the completion of $A$; choose a quasi-coefficient field $k'$ of $A$
+containing $k$, and let $K$ be a coefficient field of $A^*$ containing $k'$. Let
+$u_1, \ldots, u_r$ be a transcendence basis of $k'$ over $k$, and $x_1, \ldots, x_n$ a system
+of parameters of $A$. We define $\varphi\colon \Der_k(A) \to A^{n+r}$ by
+$\varphi(D) = (Du_1, \ldots, Du_r, Dx_1, \ldots, Dx_n)$; then $\varphi$ is $A$-linear, so that we
+need only prove that it is injective. Suppose then that $Du_i = Dx_j = 0$ for all $i$
+and $j$; then $D$ has a continuous extension to $A^*$, and this vanishes on
+$B = K[[x_1, \ldots, x_n]]$. Now we do not know whether $A^*$ is an integral domain,
+but it is finite as a $B$-module, so that any $a \in A$ is integral over $B$, and if
+$f(X) \in B[X]$ has $a$ as a root, and has minimal degree, then $f(a) = 0$,
+$f'(a) \ne 0$. Then $0 = D(f(a)) = f'(a) \cdot Da$, and $Da \in A$, so that, since a
+non-zero element of $A$ cannot be a zero-divisor in $A^*$, we must have $Da = 0$.
+Hence $D = 0$.
+\end{proof}
+
+\begin{remark}
+If $k$ is an imperfect field then there are counter-examples even if
+$k = A/m$: suppose $\chark k = p$ and $a \in k - k^p$, and set
+$A = k[X, Y]_{(X, Y)}/(X^p + aY^p)$; then $\dim A = 1$ but
+$\rank \Der_k(A) = 2$.
+\end{remark}
+
+\begin{theorem}\label{thm:30.8}
+Let $(R, m)$ be a regular local ring containing $\mathbb{Q}$ and $k$ a quasi-coefficient
+field of $R$. Then the following three conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item (WJ)$_k$ holds at $m$;
+  \item $\rank \Der_k(R) = \dim R$;
+  \item (WJ)$_k$ holds at every $P \in \Spec R$.
+\end{enumerate}
+Furthermore, if these conditions hold, then for any $P \in \Spec R$, every element
+of $\Der_k(R/P)$ is induced by an element of $\Der_k(R)$ and
+\[
+  \rank \Der_k(R/P) = \dim R/P.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) $\Leftrightarrow$ (2) is known from Theorem~\hyperref[thm:30.6]{6}, and (1) is contained in
+(3).
+
+(1) $\Rightarrow$ (3) Write $R^*$ for the completion of $R$, and let $K$ be the coefficient
+field of $R^*$ containing $k$; then by Theorem~\hyperref[thm:30.6]{6}, if
+$x_1, \ldots, x_n$ is a regular system of parameters of $R$ then the derivations
+$\partial/\partial x_i$ of $R^* = K[[x_1, \ldots, x_n]]$ belong to $\Der_k(R)$ for $1 \le i \le n$, and
+form a basis of it. Now let $P \in \Spec R$, and write $\sigma\colon R \to R/P$ for the
+natural homomorphism; to say that $D' \in \Der_k(R/P)$ is induced by
+$D \in \Der_k(R)$ means that there is a commutative diagram
+\[
+\begin{tikzcd}
+R \arrow[r, "\sigma"] \arrow[d, "D"'] & R/P \arrow[d, "D'"] \\
+R \arrow[r, "\sigma"'] & R/P
+\end{tikzcd}
+\]
+Suppose then that $D'$ is given; then $D'\sigma \in \Der_k(R, R/P)$, and this has a
+unique extension to an element of $\Der_k(R^*, R^*/PR^*)$, so that it is uniquely
+determined by its values on $x_1, \ldots, x_n$. Therefore if we choose
+$b_1, \ldots, b_n \in R$ such that $D'(\sigma(x_i)) = \sigma(b_i)$, and set
+$D = \sum b_i \partial/\partial x_i$, then $D'$ is induced by $D$.
+
+Now $\Der_k(R, R/P)$ is a free $R/P$-module with basis $\bar{\sigma} \circ \partial/\partial x_i$ for
+$1 \le i \le n$, and $\Der_k(R/P)$ can be identified with the submodule
+\[
+  N = \{D \in \Der_k(R, R/P) \mid D(f) = 0 \text{ for all } f \in P\}.
+\]
+Therefore, if $P = (f_1, \ldots, f_t)$ and $\htop P = r$ then
+\[
+  \rank \Der_k(R/P) = n - \rank J(f_1, \ldots, f_t; \partial/\partial x_1, \ldots,
+      \partial/\partial x_n)(P);
+\]
+according to Theorem~\hyperref[thm:30.4]{4}, the right-hand side is $\ge n - r$, and by
+Theorem~\hyperref[thm:30.7]{7} the left-hand side is $\le \dim R/P = n - r$, so we see that
+\[
+  \rank J(f_1, \ldots, f_t; \partial/\partial x_1, \ldots, \partial/\partial x_n)(P) = r,
+\]
+\[
+  \rank \Der_k(R/P) = \dim R/P.
+\]
+\end{proof}
+
+This theorem has many applications. For example, in the ring $R$ of convergent
+power series in $n$ variables over $k = \mathbb{R}$ or $\mathbb{C}$ ($R$ is denoted by
+$k\{X_1, \ldots, X_n\}$ in [N1], and elsewhere by $k\{X_1, \ldots, X_n\}$) we have
+$\partial X_i/\partial X_j = \delta_{ij}$, so that the Jacobian criterion for regularity holds in
+$R$. In characteristic $0$, the assumptions of the theorem are satisfied by the
+formal power series ring over any field, or more generally by the formal power
+series ring $R[[Y_1, \ldots, Y_n]]$ over a regular local ring $R$ which satisfies the
+assumptions of the theorem. Even if $R$ is not local, but is a regular ring
+containing a field $k$ of characteristic $0$, and such that the residue field at
+every maximal ideal is algebraic over $k$, then if (WJ)$_k$ holds at every maximal
+ideal of $R$, it in fact holds at every prime ideal of $R$, so that the Jacobian
+criterion for regularity holds for example in rings such as
+$k[X_1, \ldots, X_n] \otimes k[[Y_1, \ldots, Y_m]]$. A further extension of this theorem can be
+found in Matsumura [2].
+
+Now we are going to prove the results analogous to Theorem~\hyperref[thm:30.5]{5} for formal
+power series rings over a field of characteristic $p$. This is a difficult theorem
+obtained by Nagata [6]. First of all we have to do some preparatory work.
+
+Let $k$ be a field and $k' \subset k$ a subfield; we say that $k'$ is \emph{cofinite} in $k$ if
+$[k : k'] < \infty$. We say that a family $\mathcal{F} = \{k_\alpha\}_{\alpha \in I}$ of subfields of $k$ is
+a \emph{directed family} if for any $\alpha, \beta \in I$ there exists $\gamma \in I$ such that
+$k_\alpha, k_\beta \subset k_\gamma$.
+
+Let $K$ be a field of characteristic $p$, and $k \subset K$ a subfield. Then there
+exists a directed family $\mathcal{F} = \{k_\alpha\}_{\alpha \in I}$ of intermediate fields
+$k \subset k_\alpha \subset K$ cofinite in $K$ such that $\bigcap_\alpha k_\alpha = k(K^p)$. To construct
+this, we let $B$ be a fixed $p$-basis of $K$ over $k$, and let $I$ be the set of all
+finite subsets of $B$; then we only need take $k_\alpha = k(K^p, B - \alpha)$ for
+$\alpha \in I$.
+
+\begin{lemma}\label{lem:30.3}
+Let $K$ be a field, $(k_\alpha)_{\alpha \in I}$ a directed family of subfields of $K$, and set
+$k = \bigcap_\alpha k_\alpha$. Then if $V$ is a vector space over $K$, and
+$v_1, \ldots, v_n \in V$ are linearly independent over $k$, there exists $\alpha \in I$ such that
+$v_1, \ldots, v_n$ are also linearly independent over $k_\alpha$.
+\end{lemma}
+
+\begin{proof}
+For each $\alpha \in I$, write $q(\alpha)$ for the number of linearly independent
+elements over $k_\alpha$ among $v_1, \ldots, v_n$; let $\alpha$ be such that $q(\alpha)$ is maximal,
+and set $q = q(\alpha)$. Now if $q < n$, and we assume that $v_1, \ldots, v_q$ are linearly
+independent over $k_\alpha$, we have $v_n = \sum_{i=1}^{q} c_iv_i$ with $c_i \in k_\alpha$. Since
+the $v_i$ are linearly independent over $k$, at least one of the $c_i$ does not belong
+to $k$, so that we can assume $c_1 \notin k$. Hence there exists $\beta \in I$ such that
+$c_1 \notin k_\beta$, and also $\gamma \in I$ such that $k_\alpha, k_\beta \subset k_\gamma$, so that
+$v_1, \ldots, v_q$ and $v_n$ are linearly independent over $k_\gamma$; this contradicts the
+maximality of $q$, so that $q = n$.
+\end{proof}
+
+\begin{lemma}\label{lem:30.4}
+Let $k \subset K$ be fields of characteristic $p$, and let $\mathcal{F} = \{k_\alpha\}_{\alpha \in I}$
+be a directed family of intermediate fields $k \subset k_\alpha \subset K$; then the
+following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $\bigcap_\alpha k_\alpha(K^p) = k(K^p)$;
+  \item the natural map $\Omega_{K/k} \to \varprojlim \Omega_{K/k_\alpha}$ is injective;
+  \item if a finite subset $\{u_1, \ldots, u_n\} \subset K$ is $p$-independent over $k$, then
+        it is also $p$-independent over $k_\alpha$ for some $\alpha$;
+  \item there exists a $p$-basis $B$ of $K$ over $k$ such that every finite subset of
+        $B$ is $p$-independent over $k_\alpha$ for some $\alpha$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) $\Rightarrow$ (3) If $\{u_1, \ldots, u_n\}$ is $p$-independent over $k$ then the $p^n$ monomials
+$u_1^{i_1} \cdots u_n^{i_n}$ for $0 \le i_\nu < p$ are linearly independent over $k(K^p)$, so that by
+the previous lemma they are also linearly independent over $k_\alpha(K^p)$ for some
+$\alpha$.
+
+(3) $\Rightarrow$ (4) is trivial; any $p$-basis will do.
+
+(4) $\Rightarrow$ (2) If $0 \ne \omega \in \Omega_{K/k}$ and $B$ is a $p$-basis then there is a unique
+expression $\omega = \sum c_id_{K/k}b_i$, with $\{b_1, \ldots, b_n\} \subset B$ a finite set and
+$c_i \in K$. If we take $\alpha$ such that $b_1, \ldots, b_n$ are $p$-independent over
+$k_\alpha$, then $d_{K/k_\alpha}b_i$ for $1 \le i \le n$ are linearly independent as elements of
+$\Omega_{K/k_\alpha}$, so that $\omega$ has non-zero image in $\varprojlim \Omega_{K/k_\alpha}$.
+
+(2) $\Rightarrow$ (1) Let $a \in K$ be such that $a \notin k(K^p)$; then $d_{K/k}a \ne 0$, so that
+$d_{K/k}a \ne 0$ in $\Omega_{K/k_\alpha}$ for some $k_\alpha$, in other words $a \notin k_\alpha(K^p)$.
+\end{proof}
+
+\begin{lemma}\label{lem:30.5}
+Let $k \subset K$ and $\mathcal{F} = \{k_\alpha\}_{\alpha \in I}$ be as in the previous lemma, and
+assume that $\bigcap_\alpha k_\alpha(K^p) = k(K^p)$. Then if $L$ is an extension field of $K$
+which is either separable over $K$ or finitely generated over $K$, we again have
+$\bigcap_\alpha k_\alpha(L^p) = k(L^p)$.
+\end{lemma}
+
+\begin{proof}
+(i) If $L/K$ is separable, choose a $p$-basis $B$ of $K/k$ and a $p$-basis $C$ of
+$L/K$; then in view of the exact sequence (Theorem~\hyperref[thm:25.1]{25.1})
+\[
+  0 \to \Omega_{K/k} \otimes_K L \to \Omega_{L/k} \to \Omega_{L/K} \to 0,
+\]
+$B \cup C$ is a $p$-basis of $L/k$. If $b_1, \ldots, b_m \in B$ and $c_1, \ldots, c_n \in C$ are
+finitely many distinct elements, then by the previous lemma, $b_1, \ldots, b_m$ are
+$p$-independent over some $k_\alpha$, and from this (replacing $k$ by $k_\alpha$ in the
+above exact sequence) we see that $b_1, \ldots, b_m, c_1, \ldots, c_n$ are
+$p$-independent over $k_\alpha$.
+
+(ii) If $L/K$ is finitely generated, then since any finitely generated extension
+can be obtained as a succession of elementary extensions of type
+\begin{enumerate}[(a)]
+  \item $L = K(x)$ with $x$ separable over $K$,
+  or
+  \item $L = K(x)$ with $x^p = a \in K$,
+\end{enumerate}
+we need only consider case (b). We further divide this into two subcases: in
+the first, $d_{K/k}a = 0$, and then from Theorem~\hyperref[thm:25.2]{25.2} and the fact that
+$L \cong K[X]/(X^p - a)$ we get $\Omega_{L/k} = (\Omega_{K/k} \otimes L) \oplus Ldx$; from this
+one sees easily that $\Omega_{L/k} \to \varprojlim \Omega_{L/k_\alpha}$ is injective. In the second
+subcase, $d_{K/k}a \ne 0$ and now we have
+$\Omega_{L/k} \cong ((\Omega_{K/k} \otimes L)/L \cdot d_{K/k}a) \oplus Ldx$. Hence if we take a
+$p$-basis of $K/k$ of the form $\{a\} \cup B'$ with $a \notin B'$, then $\{x\} \cup B'$ is a
+$p$-basis of $L/k$. Now $L/k$ satisfies condition (4) of the previous lemma, since
+for $b_1, \ldots, b_m \in B'$, if we choose $\alpha$ such that $\{a, b_1, \ldots, b_m\} \subset K$
+is $p$-independent over $k_\alpha$, then $\{x, b_1, \ldots, b_m\} \subset L$ is $p$-independent
+over $k_\alpha$.
+\end{proof}
+
+\begin{lemma}\label{lem:30.6}
+Let $K$ be a field of characteristic $p$, and let $\{K_\alpha\}$ be a directed family of
+cofinite subfields $K_\alpha \subset K$ such that $\bigcap_\alpha K_\alpha = K^p$. Then if $L$ is a
+finite field extension of $K$, there exists $\alpha$ such that
+\[
+  \rank_L \Omega_{L/K_\alpha} = \rank_L \Omega_{L/K}
+\]
+for all subfields $K' \subset K_\alpha$ with $[K : K'] < \infty$.
+\end{lemma}
+
+\begin{proof}
+Let $K = K_0 \subset K_1 \subset \cdots \subset K_t = L$ be a chain of intermediate
+fields such that $K_i = K_{i-1}(x_i)$, with $x_i$ either separable algebraic over
+$K_{i-1}$ or $x_i^p \in K_{i-1}$. Then by the previous lemma we have
+$\bigcap_\alpha K_\alpha(L^p) = L^p$, so that we need only prove the lemma for $t = 1$;
+hence suppose that $L = K(x)$. If $L$ is separable over $K$ then in view of
+$\Omega_{L/K'} = \Omega_{K/K'} \otimes_K L$, the assertion is clear (any $\alpha$ will do). Thus
+suppose that $x^p = a \in K$, but $a \notin K^p$; then there exists $\alpha$ such that
+$a \notin K_\alpha$. If $K' \subset K_\alpha$, then computing by means of
+$L = K[X]/(X^p - a)$ we see that
+\[
+  \Omega_{L/K'} = ((\Omega_{K/K'} \otimes_K L) \oplus Ldx)/L \cdot d_{K/K'}a,
+\]
+and if $\rank \Omega_{L/K'} < \infty$ then $\rank \Omega_{L/K'} = \rank \Omega_{L/K}$.
+\end{proof}
+
+\begin{theorem}[\textbf{Nagata}]\label{thm:30.9}
+Let $k$ be a field of characteristic $p$, $S = k[Y_1, \ldots, Y_m]$ and $P \in \Spec S$;
+suppose that $\mathcal{F} = \{k_\alpha\}_{\alpha \in I}$ is a directed family of cofinite subfields of
+$k$ such that $\bigcap_\alpha k_\alpha = k^p$. Then there exists $\alpha \in I$ such that for
+every intermediate field $k^p \subset k' \subset k_\alpha$ with $[k : k'] < \infty$ the
+following formula holds:
+\[
+  \rank \Der_{k'}(S/P) = \dim(S/P) + \rank \Der_{k'}(k).
+\]
+\end{theorem}
+
+\begin{proof}
+Set $A = S/P$, let $L$ be the field of fractions of $A$, and $\dim A = n$. Choose a
+system of parameters $x_1, \ldots, x_n$ of $A$, set $B = k[x_1, \ldots, x_n]$, let $K$ be the
+field of fractions of $B$ and $m_B$ its maximal ideal. Then $A$ is a finite $B$-module,
+and hence $[L : K] < \infty$. If $k'$ is an intermediate field $k^p \subset k' \subset k$
+with $[k : k'] = p^\rho < \infty$, and if $u_1, \ldots, u_\rho$ is a $p$-basis of $k$ over $k'$,
+then $\{u_1, \ldots, u_\rho, x_1, \ldots, x_n\}$ is a $p$-basis of $B$ over
+$C' = k'[x_1^p, \ldots, x_n^p]$, in the sense that $B$ is the free $C'$-module with basis
+the set of $p$-monomials in $u_1, \ldots, u_\rho, x_1, \ldots, x_n$. A derivation from $B$ to
+$B$ is continuous in the $m_B$-adic topology, and any element of $\Der_{k'}(B)$ is $0$ on
+$C'$. Therefore $\Der_{k'}(B) = \Der_{k'}(B) = \Hom_B(\Omega_{B/C'}, B)$, and $\Omega_{B/C'}$ is
+the free $B$-module of rank $n + \rho$ with basis $du_1, \ldots, du_\rho, dx_1, \ldots, dx_n$.
+Therefore $\Der_{k'}(B)$ is also a free $B$-module of rank $n + \rho$, and the theorem
+holds in case $A = B$.
+
+We write $F'$ for the field of fractions of $C'$, and for $k_\alpha \in \mathcal{F}$ we set
+$C_\alpha = k_\alpha[x_1^p, \ldots, x_n^p]$ and write $K_\alpha$ for the field of fractions of
+$C_\alpha$. As above we have
+\[
+  \Der_{k'}(A) = \Der_{k'}(A) = \Hom_A(\Omega_{A/C'}, A),
+\]
+and since $A$ is a finite $C'$-module, $\Omega_{A/C'}$ is a finite $A$-module. Hence
+\[
+  \Der_{k'}(A) \otimes_A L = \Hom_L(\Omega_{A/C'} \otimes_A L, L) = \Hom_L(\Omega_{L/F'}, L),
+\]
+so that $\rank_L \Der_{k'}(A) = \rank_L \Omega_{L/F'}$. Moreover,
+\[
+  n + \rank \Der_{k'}(k) = \rank \Omega_{L/F'} = \rank \Omega_{K/F'},
+\]
+so that the conclusion of the theorem can be rewritten
+\[
+  \rank \Omega_{L/F'} = \rank \Omega_{K/F'}.
+\]
+Any element of $K_\alpha$ can be written with its denominator in
+$k^p[x_1^p, \ldots, x_n^p] = B^p$. However, $B$ is faithfully flat over $C_\alpha$, so that
+$K_\alpha \cap B = C_\alpha$. From this one deduces easily that
+$\bigcap_\alpha K_\alpha = K^p$. Thus the theorem follows from the previous lemma.
+\end{proof}
+
+\begin{theorem}[\textbf{Nagata's Jacobian criterion}]\label{thm:30.10}
+Let $k$ be a field of characteristic $p$, $S = k[[X_1, \ldots, X_n]]$, and let $I$, $P$ be
+ideals of $S$ such that $I \subset P \in \Spec S$; set $S_P = R$, $R/IR = A$, and suppose
+that $\htop IR = r$ and $I = (f_1, \ldots, f_t)$. Choose a $p$-basis $\{u_\gamma\}_{\gamma \in \Gamma}$ of
+$k$, and define $D_\gamma \in \Der(k)$ by $D_\gamma(u_{\gamma'}) = \delta_{\gamma\gamma'}$. We make
+any element $D \in \Der(k)$ act on the coefficients of power series, thus
+extending $D$ to an element of $\Der(S)$.
+
+Then the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $A$ is a regular local ring;
+  \item there exists a finite number of elements $\alpha, \beta, \ldots, \gamma \in \Gamma$
+        such that
+        \[
+          \rank J(f_1, \ldots, f_t; D_\alpha, \ldots, D_\gamma,
+              \partial/\partial X_1, \ldots, \partial/\partial X_n)(P) = r.
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(2) $\Rightarrow$ (1) follows from Theorem~\hyperref[thm:30.4]{4}.
+
+(1) $\Rightarrow$ (2) As we see from the proof of Lemma~\hyperref[lem:30.2]{2}, we need only
+prove (2) in the case $I = P$. We let $\mathcal{F}$ be the family of subfields of $k$
+obtained by adjoining all but a finite number of $\{u_\gamma\}_{\gamma \in \Gamma}$ to $k^p$;
+then the conditions of Theorem~\hyperref[thm:30.9]{9} are satisfied, and there exists
+$k' \in \mathcal{F}$ such that
+\[
+  \rank \Der_{k'}(S/P) = n - \htop P + \rank \Der_{k'}(k).
+\]
+If we set $[k : k'] = p^s$ then by construction there exist
+$\gamma_1, \ldots, \gamma_s \in \Gamma$ such that $k = k'(u_{\gamma_1}, \ldots, u_{\gamma_s})$; now set
+$C = k'[[X_1, \ldots, X_n]]$, so that $\Omega_{S/C}$ is the free $S$-module with basis
+$du_{\gamma_1}, \ldots, du_{\gamma_s}, dX_1, \ldots, dX_n$, and arguing as in the proof of
+Theorem~\hyperref[thm:30.8]{8}, we see that the derivations of $S/P$ over $k'$ are all induced by
+derivations of $S$ over $k'$, and that if $g_1, \ldots, g_m$ are generators of $P$, we have
+\[
+  \rank J(g_1, \ldots, g_m; D_{\gamma_1}, \ldots, D_{\gamma_s},
+      \partial/\partial X_1, \ldots, \partial/\partial X_n)(P) = \htop P.
+\]
+\end{proof}
+
+\begin{remark}
+Conditions (1) and (2) in Theorem~\hyperref[thm:30.10]{10} are of the same form as the
+corresponding conditions in Theorem~\hyperref[thm:30.5]{5}. Condition (3) of
+Theorem~\hyperref[thm:30.5]{5} is not applicable as it stands to the present situation, since
+$\Omega_{A/k}$ is in general not a finite $A$-module. However, in general for a module
+$M$ over a local ring $(R, m)$, if we write (in temporary notation)
+$\tilde{M} = M/\bigcap_\nu m^\nu M$ for the associated separated module, then for any
+$R$-module $N$ which is separated ($N = \tilde{N}$) we have
+$\Hom_R(\tilde{M}, N) = \Hom_R(M, N)$. Therefore in the situation of the above theorem
+we have $\Der_k(S) = \Hom_S(\tilde{\Omega}_{S/k}, S)$ and $\Der_k(A) = \Hom_A(\tilde{\Omega}_{A/k}, A)$,
+and moreover $\tilde{\Omega}_{S/k}$ is a free $S$-module of rank $\rho + \rank \Omega_{k/\pi}$.
+From this, using the same argument as in the proof of Theorem~\hyperref[thm:30.5]{5}, we see
+that replacing $\Omega_{A/k}$ by $\tilde{\Omega}_{A/k}$ in (3) of Theorem~\hyperref[thm:30.5]{5}, this
+condition is equivalent to (1) and (2) of Theorem~\hyperref[thm:30.10]{10}. Verifying this is a
+suitable exercise for the reader.
+\end{remark}
+
+\begin{corollary*}
+Let $A$ be a complete Noetherian local ring; then $\Reg(A)$ is an open subset of
+$\Spec A$.
+\end{corollary*}
+
+\begin{proof}
+If $A$ is equicharacteristic, and $k$ is a coefficient field of $A$, then $A$ is of the
+form $A = S/I$ with $S = k[[X_1, \ldots, X_n]]$, so that by Theorems~\hyperref[thm:30.8]{8} and
+\hyperref[thm:30.10]{10}, we see as in the corollary of Theorem~\hyperref[thm:30.5]{5} that $\Reg(A)$ is open.
+
+If $A$ is of unequal characteristic, then by Theorem~\hyperref[thm:24.4]{24.4}, it is enough to
+prove, under the assumption that $A$ is an integral domain, that $\Reg(A)$
+contains a non-empty open subset of $\Spec A$. Now by
+Theorem~\hyperref[thm:29.5]{29.5}, $A$ contains a regular local ring $B$, and is a finite module
+over $B$, so that if we let $L$ and $K$ be the fields of fractions of $A$ and $B$,
+then $L$ is a finite extension of $K$, and is separable since $\chark K = 0$. Replacing
+$A$ by $A_b$, and $B$ by $B_b$ for some suitable $0 \ne b \in B$ we can assume that $A$ is
+a free $B$-module (although $A$ and $B$ are no longer local rings, $B$ remains
+regular). Suppose that $\omega_1, \ldots, \omega_m$ are a basis of $A$ as a $B$-module, and
+consider the discriminant
+\[
+  d = \det(\tr_{L/K}(\omega_i\omega_j)).
+\]
+Let us prove that if $P \in \Spec A$ is such that $d \notin P$ then $P \in \Reg(A)$. Set
+$p = P \cap B$; then $A_p$ is flat over $B_p$, and $B_p$ is regular, so that we need only
+prove that the fibre $A_p \otimes_B \kappa(p)$ is regular. Now $A = \sum B\omega_i$, so
+that $A \otimes_B \kappa(p) = \sum \kappa(p)\bar{\omega}_i$, and in $\kappa(p)$ we have
+$\det(\tr(\bar{\omega}_i\bar{\omega}_j)) = \bar{d} \ne 0$; hence $A \otimes_B \kappa(p)$ is reduced,
+and is therefore a direct product of fields. Therefore $A_p \otimes_B \kappa(p)$ is a
+field; this proves that $\Reg(A)$ contains a non-empty open subset of $\Spec A$.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:30}}
+
+\begin{exercise}\label{ex:30.1-ex}
+Let $(A, m)$ be a complete Noetherian local ring, and $D = (D_0, D_1, \ldots) \in
+\mathrm{HS}(A)$. Suppose that $x \in m$ satisfies $D_1x = 1$ and $D_ix = 0$ for $i > 0$,
+that is $E_t(x) = x + t$, and define $\varphi = E_{-t}$ by
+$\varphi(a) = \sum_i (-x)^iD_ia$. Then $\varphi$ is an endomorphism of $A$ to $A$, with
+$\Ker \varphi = xA$; and if we set $C = \Im \varphi$ then $A = C[x] \cong C[[X]]$.
+\end{exercise}
+
+\begin{exercise}\label{ex:30.2-ex}
+If the conditions of Theorem~\hyperref[thm:30.5]{5} hold, is it true that $A$ is 0-smooth over
+the $k'$ appearing in (3)?
+\end{exercise}
+
+\begin{exercise}\label{ex:30.3-ex}
+Are conditions (1) and (3) of Theorem~\hyperref[thm:30.3]{3} still equivalent if
+$S = k[[X_1, \ldots, X_n]]$?
+\end{exercise}
+
+\begin{exercise}\label{ex:30.4-ex}
+Let $R$ be a regular ring containing a field of characteristic $0$; if (WJ) holds in
+$R$ then it also holds in the polynomial ring $R[X_1, \ldots, X_n]$.
+\end{exercise}

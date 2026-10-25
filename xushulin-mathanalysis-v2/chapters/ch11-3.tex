@@ -1,0 +1,1290 @@
+% ==================================================================
+%  §11.3  第二型曲线、曲面积分、定向流形上的外微分形式的积分
+%  源：徐森林、薛春华《数学分析》第二册, 印刷页 333-354
+%  底本：PaddleOCR-VL 为主, MinerU 交叉核对
+%  约定：全西文标点; \[\] 表行间公式; align*/aligned 表多行;
+%        定理/证明以 \qedhere 收 □, 不需 □ 的用 \noqedhere 抑制
+%        章节标题（\chapter/\section）按原书原文保留顿号「、」,
+%        正文一律不得出现中文标点（规范 §1.3）
+%  图：图11.3.1-11.3.8 皆用 TikZ 绘（二维曲线 + 3D 球面/抛物面/椭球/平面）
+%  订正 OCR 之处：
+%      · 实数域 R^n / R^3 实为 \mathbb{R}^{n} / \mathbb{R}^{3}
+%      · 定向曲线 \bar{C}/\vec{c} 实为 \overrightarrow{C}; 条件注记 \xlongequal 用 \reasonb 实现
+%      · 外积 d x_i \wedge d x_j 间空格、d_{\omega}、\omega\Lambda\eta、\bar{C} 均为伪影
+%      · 例11.3.7 之 \overrightarrow{C}_{2}: (a,0,t), 0\leqslant t\leqslant 2\pi b（Paddle 误识为 2\pi）
+%      · 练习题 11.3(1) 题面误 \frac{-y\mathrm{d}y-x\mathrm{d}y}{...}, 实为 \frac{-y\mathrm{d}x+x\mathrm{d}y}{...}
+%      · 练习题 11.3(3) 缺题号, 已补 (3)
+% ==================================================================
+\section{第二型曲线、曲面积分、定向流形上的外微分形式的积分}
+
+为了引进第二型曲线积分, 第二型曲面积分以及定向流形上的外微分形式的积分, 先来介绍外微分形式与外微分运算.
+
+\begin{definition}\label{def:11.3.1}
+设 $\mathrm{d}x_{i}$, $\mathrm{d}x_{j}$ 为微分, 定义它们的外积 $\wedge$, 满足:
+\begin{enumerate}
+\item $\mathrm{d}x_{i}\wedge\mathrm{d}x_{j}=-\mathrm{d}x_{j}\wedge\mathrm{d}x_{i}$, 蕴涵着 $\mathrm{d}x_{i}\wedge\mathrm{d}x_{i}=0$;
+\item 对运算 $+$, $\wedge$ 具有分配律, 结合律. 如:
+\end{enumerate}
+\[
+\begin{aligned}
+&(\mathrm{d}x_{1}+\mathrm{d}x_{2})\wedge(\mathrm{d}x_{1}-\mathrm{d}x_{2})\\
+={}&\mathrm{d}x_{1}\wedge\mathrm{d}x_{1}+\mathrm{d}x_{2}\wedge\mathrm{d}x_{1}-\mathrm{d}x_{1}\wedge\mathrm{d}x_{2}-\mathrm{d}x_{2}\wedge\mathrm{d}x_{2}\\
+={}&-2\mathrm{d}x_{1}\wedge\mathrm{d}x_{2}.\\
+&(\mathrm{d}x_{1}\wedge\mathrm{d}x_{2})\wedge\mathrm{d}x_{3}=\mathrm{d}x_{1}\wedge(\mathrm{d}x_{2}\wedge\mathrm{d}x_{3}).
+\end{aligned}
+\]
+在 $\mathbb{R}^{1}$ 中:
+
+\textbf{0 次微分形式} $\omega=f(x)$;
+
+\textbf{1 次微分形式} $\omega=f(x)\,\mathrm{d}x$;
+
+\textbf{$k(\geqslant2)$ 次微分形式} $\omega=\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}=0$ (因 $k\geqslant2$, $\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}=\mathrm{d}x\wedge\cdots\wedge\mathrm{d}x=(\mathrm{d}x\wedge\mathrm{d}x)\wedge\cdots\wedge\mathrm{d}x=0\wedge\cdots\wedge\mathrm{d}x=0$).
+
+在 $\mathbb{R}^{2}$ 中:
+
+\textbf{0 次微分形式} $\omega=f(x,y)$;
+
+\textbf{1 次微分形式} $\omega=P(x,y)\,\mathrm{d}x+Q(x,y)\,\mathrm{d}y$;
+
+\textbf{2 次微分形式} $\omega=f(x,y)\,\mathrm{d}x\wedge\mathrm{d}y$;
+
+\textbf{$k(\geqslant3)$ 次微分形式} $\omega=\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}=0$ (因 $k\geqslant3$, $\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}$ 中必有两个相同, 再由性质 (1)(2) 知, 它为 $0$).
+
+在 $\mathbb{R}^{3}$ 中:
+
+\textbf{0 次微分形式} $\omega=f(x,y,z)$;
+
+\textbf{1 次微分形式} $\omega=P(x,y,z)\,\mathrm{d}x+Q(x,y,z)\,\mathrm{d}y+R(x,y,z)\,\mathrm{d}z$;
+
+\textbf{2 次微分形式} $\omega=P(x,y,z)\,\mathrm{d}y\wedge\mathrm{d}z+Q(x,y,z)\,\mathrm{d}z\wedge\mathrm{d}x+R(x,y,z)\,\mathrm{d}x\wedge\mathrm{d}y$;
+
+\textbf{3 次微分形式} $\omega=f(x,y,z)\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$;
+
+\textbf{$k(\geqslant4)$ 次微分形式} $\omega=\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}=0$ (因 $k\geqslant4$, $\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}$ 中必有两个相同, 再由性质 (1)(2) 知, 它为 $0$).
+
+更一般地, 在 $\mathbb{R}^{n}$ 中:
+
+\textbf{0 次微分形式} $\omega=f(x_{1},x_{2},\cdots,x_{n})$;
+
+\textbf{1 次微分形式} $\omega=\sum_{i=1}^{n}P_{i}(x_{1},x_{2},\cdots,x_{n})\,\mathrm{d}x_{i}$;
+
+\textbf{$k(1\leqslant k\leqslant n)$ 次微分形式} $\omega=\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(x_{1},x_{2},\cdots,x_{n})\,\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}$;
+
+\textbf{$n$ 次微分形式} $\omega=P_{1,2\cdots n}(x_{1},x_{2},\cdots,x_{n})\,\mathrm{d}x_{1}\wedge\cdots\wedge\mathrm{d}x_{n}$;
+
+\textbf{$k(\geqslant n+1)$ 次微分形式} $\omega=0$ (因 $k\geqslant n+1$, $\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}$ 中必有两个相同, 再由性质 (1)(2) 知, 它为 $0$).
+\end{definition}
+
+\begin{definition}\label{def:11.3.2}
+外微分(算子) $\mathrm{d}:\omega(k\text{ 次})\to\mathrm{d}\omega(k+1\text{ 次})$.
+\end{definition}
+
+在 $\mathbb{R}^{1}$ 中:
+
+\textbf{0 次微分形式} $\omega=f$, $\mathrm{d}\omega=f'\mathrm{d}x$ ($1$ 次微分形式);
+
+\textbf{1 次微分形式} $\omega=f\mathrm{d}x$, $\mathrm{d}\omega=0$ ($2$ 次微分形式).
+
+在 $\mathbb{R}^{2}$ 中:
+
+\textbf{0 次微分形式} $\omega=f$, $\mathrm{d}\omega=\dfrac{\partial f}{\partial x}\mathrm{d}x+\dfrac{\partial f}{\partial y}\mathrm{d}y$ ($1$ 次微分形式);
+
+\textbf{1 次微分形式} $\omega=P\mathrm{d}x+Q\mathrm{d}y$,
+\[
+\begin{aligned}
+\mathrm{d}\omega&=\mathrm{d}P\wedge\mathrm{d}x+\mathrm{d}Q\wedge\mathrm{d}y\\
+&=\Bigl(\frac{\partial P}{\partial x}\mathrm{d}x+\frac{\partial P}{\partial y}\mathrm{d}y\Bigr)\wedge\mathrm{d}x+\Bigl(\frac{\partial Q}{\partial x}\mathrm{d}x+\frac{\partial Q}{\partial y}\mathrm{d}y\Bigr)\wedge\mathrm{d}y\\
+&=\Bigl(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Bigr)\mathrm{d}x\wedge\mathrm{d}y\quad(2\text{ 次微分形式});
+\end{aligned}
+\]
+
+\textbf{2 次微分形式} $\omega=f\mathrm{d}x\wedge\mathrm{d}y$,
+\[
+\begin{aligned}
+\mathrm{d}\omega&=\mathrm{d}f\wedge\mathrm{d}x\wedge\mathrm{d}y\\
+&=\Bigl(\frac{\partial f}{\partial x}\mathrm{d}x+\frac{\partial f}{\partial y}\mathrm{d}y\Bigr)\wedge\mathrm{d}x\wedge\mathrm{d}y=0.
+\end{aligned}
+\]
+
+在 $\mathbb{R}^{3}$ 中:
+
+\textbf{0 次微分形式} $\omega=f$, $\mathrm{d}\omega=\dfrac{\partial f}{\partial x}\mathrm{d}x+\dfrac{\partial f}{\partial y}\mathrm{d}y+\dfrac{\partial f}{\partial z}\mathrm{d}z$ ($1$ 次微分形式);
+
+\textbf{1 次微分形式} $\omega=P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z$,
+\[
+\begin{aligned}
+\mathrm{d}\omega&=\mathrm{d}P\wedge\mathrm{d}x+\mathrm{d}Q\wedge\mathrm{d}y+\mathrm{d}R\wedge\mathrm{d}z\\
+&=\Bigl(\frac{\partial P}{\partial x}\mathrm{d}x+\frac{\partial P}{\partial y}\mathrm{d}y+\frac{\partial P}{\partial z}\mathrm{d}z\Bigr)\wedge\mathrm{d}x+\Bigl(\frac{\partial Q}{\partial x}\mathrm{d}x+\frac{\partial Q}{\partial y}\mathrm{d}y+\frac{\partial Q}{\partial z}\mathrm{d}z\Bigr)\wedge\mathrm{d}y\\
+&\quad+\Bigl(\frac{\partial R}{\partial x}\mathrm{d}x+\frac{\partial R}{\partial y}\mathrm{d}y+\frac{\partial R}{\partial z}\mathrm{d}z\Bigr)\wedge\mathrm{d}z\\
+&=\Bigl(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\Bigr)\mathrm{d}y\wedge\mathrm{d}z+\Bigl(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\Bigr)\mathrm{d}z\wedge\mathrm{d}x+\Bigl(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\Bigr)\mathrm{d}x\wedge\mathrm{d}y\\
+&\overset{\text{def}}{=}
+\begin{vmatrix}
+\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\[2pt]
+\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\[4pt]
+P&Q&R
+\end{vmatrix}\quad(2\text{ 次微分形式});
+\end{aligned}
+\]
+
+\textbf{3 次微分形式} $\omega=f\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$,
+\[
+\begin{aligned}
+\mathrm{d}\omega&=\mathrm{d}f\wedge\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\\
+&=\Bigl(\frac{\partial f}{\partial x}\mathrm{d}x+\frac{\partial f}{\partial y}\mathrm{d}y+\frac{\partial f}{\partial z}\mathrm{d}z\Bigr)\wedge\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z=0\quad(4\text{ 次微分形式}).
+\end{aligned}
+\]
+
+更一般地, 在 $\mathbb{R}^{n}$ 中:
+
+\textbf{0 次微分形式} $\omega=f$, $\mathrm{d}\omega=\sum_{i=1}^{n}\dfrac{\partial f}{\partial x_{i}}\mathrm{d}x_{i}$ ($1$ 次微分形式);
+
+\textbf{1 次微分形式} $\omega=\sum_{i=1}^{n}P_{i}\,\mathrm{d}x_{i}$,
+\[
+\begin{aligned}
+\mathrm{d}\omega&=\sum_{i=1}^{n}\mathrm{d}P_{i}\wedge\mathrm{d}x_{i}=\sum_{i=1}^{n}\Bigl(\sum_{j=1}^{n}\frac{\partial P_{i}}{\partial x_{j}}\mathrm{d}x_{j}\Bigr)\wedge\mathrm{d}x_{i}\\
+&=\sum_{i<j}\Bigl(\frac{\partial P_{j}}{\partial x_{i}}-\frac{\partial P_{i}}{\partial x_{j}}\Bigr)\mathrm{d}x_{i}\wedge\mathrm{d}x_{j}\quad(2\text{ 次微分形式});
+\end{aligned}
+\]
+
+\textbf{$k(1\leqslant k\leqslant n)$ 次微分形式} $\omega=\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\,\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}$,
+\begin{align*}
+\mathrm{d}\omega&=\sum_{i_{1}<\cdots<i_{k}}\mathrm{d}P_{i_{1}\cdots i_{k}}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i_{1}<\cdots<i_{k}}\Bigl(\sum_{i=1}^{n}\frac{\partial P_{i_{1}\cdots i_{k}}}{\partial x_{i}}\mathrm{d}x_{i}\Bigr)\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i_{1}<\cdots<i_{k}}\sum_{i=1}^{n}\frac{\partial P_{i_{1}\cdots i_{k}}}{\partial x_{i}}\mathrm{d}x_{i}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}};
+\end{align*}
+
+\textbf{$n-1$ 次微分形式} $\omega=\sum_{i=1}^{n}(-1)^{i-1}P_{i}\,\mathrm{d}x_{1}\wedge\cdots\wedge\widehat{\mathrm{d}x_{i}}\wedge\cdots\wedge\mathrm{d}x_{n}$, 其中 $\widehat{\mathrm{d}x_{i}}$ 表示删去 $\mathrm{d}x_{i}$,
+\[
+\begin{aligned}
+\mathrm{d}\omega&=\sum_{i=1}^{n}(-1)^{i-1}\mathrm{d}P_{i}\wedge\mathrm{d}x_{1}\wedge\cdots\wedge\widehat{\mathrm{d}x_{i}}\wedge\cdots\wedge\mathrm{d}x_{n}\\
+&=\sum_{i=1}^{n}(-1)^{i-1}\Bigl(\sum_{j=1}^{n}\frac{\partial P_{i}}{\partial x_{j}}\mathrm{d}x_{j}\Bigr)\wedge\mathrm{d}x_{1}\wedge\cdots\wedge\widehat{\mathrm{d}x_{i}}\wedge\cdots\wedge\mathrm{d}x_{n}\\
+&=\sum_{i=1}^{n}\frac{\partial P_{i}}{\partial x_{i}}\mathrm{d}x_{1}\wedge\cdots\wedge\mathrm{d}x_{n}=\Bigl(\sum_{i=1}^{n}\frac{\partial P_{i}}{\partial x_{i}}\Bigr)\mathrm{d}x_{1}\wedge\cdots\wedge\mathrm{d}x_{n}\quad(n\text{ 次微分形式});
+\end{aligned}
+\]
+
+\textbf{$k(\geqslant n)$ 次微分形式} $\mathrm{d}\omega=0$ ($k+1$ 次微分形式).
+
+\begin{theorem}\label{thm:11.3.1}
+在 $\mathbb{R}^{n}$ 中, $\mathrm{d}$ 具有以下性质:
+\begin{enumerate}
+\item $\mathrm{d}(\omega+\eta)=\mathrm{d}\omega+\mathrm{d}\eta$,
+\[
+\mathrm{d}(c\omega)=c\,\mathrm{d}\omega,
+\]
+其中 $c\in\mathbb{R}$ 为常数, $\omega$ 与 $\eta$ 都为 $k$ 次微分形式;
+\item $\mathrm{d}(\omega\wedge\eta)=\mathrm{d}\omega\wedge\eta+(-1)^{k}\omega\wedge\mathrm{d}\eta$, 其中 $\omega$ 为 $k$ 次微分形式, $\eta$ 为 $l$ 次微分形式;
+\item $\mathrm{d}^{2}\omega=\mathrm{d}(\mathrm{d}\omega)=0$, 其中 $\omega$ 为 $C^{2}$ ($\omega$ 的系数 $P_{i_{1}\ldots i_{k}}$ 为 $C^{2}$ 函数) 的 $k$ 次微分形式.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(1)
+\[
+\begin{aligned}
+\mathrm{d}(\omega+\eta)&=\mathrm{d}\Bigl(\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}+\sum_{i_{1}<\cdots<i_{k}}Q_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\Bigr)\\
+&=\mathrm{d}\sum_{i_{1}<\cdots<i_{k}}(P_{i_{1}\cdots i_{k}}+Q_{i_{1}\cdots i_{k}})\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i_{1}<\cdots<i_{k}}\mathrm{d}(P_{i_{1}\cdots i_{k}}+Q_{i_{1}\cdots i_{k}})\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i_{1}<\cdots<i_{k}}\mathrm{d}P_{i_{1}\cdots i_{k}}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&\quad+\sum_{i_{1}<\cdots<i_{k}}\mathrm{d}Q_{i_{1}\cdots i_{k}}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\mathrm{d}\omega+\mathrm{d}\eta.
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\mathrm{d}(c\omega)&=\mathrm{d}\sum_{i_{1}<\cdots<i_{k}}(cP_{i_{1}\cdots i_{k}})\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i_{1}<\cdots<i_{k}}\mathrm{d}(cP_{i_{1}\cdots i_{k}})\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i_{1}<\cdots<i_{k}}c\,\mathrm{d}P_{i_{1}\cdots i_{k}}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}=c\,\mathrm{d}\omega.
+\end{aligned}
+\]
+
+(2) 由 (1) 中线性性质, 公式只需对单项式
+\[
+\omega=f\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}},\quad\eta=g\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}}
+\]
+加以证明:
+\[
+\begin{aligned}
+\mathrm{d}(\omega\wedge\eta)&=\mathrm{d}\bigl[(f\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}})\wedge(g\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}})\bigr]\\
+&=\mathrm{d}(fg\,\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\wedge\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}})\\
+&=\mathrm{d}(fg)\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\wedge\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}}\\
+&=(g\,\mathrm{d}f+f\,\mathrm{d}g)\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\wedge\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}}\\
+&=(\mathrm{d}f\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}})\wedge(g\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}})\\
+&\quad+(-1)^{k}(f\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}})\wedge(\mathrm{d}g\wedge\mathrm{d}x_{j_{1}}\wedge\cdots\wedge\mathrm{d}x_{j_{l}})\\
+&=\mathrm{d}\omega\wedge\eta+(-1)^{k}\omega\wedge\mathrm{d}\eta.
+\end{aligned}
+\]
+
+(3) 由 (1) 中线性性质, 公式只需对单项式 $\omega=f\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}$ 加以证明:
+\begin{align*}
+\mathrm{d}\omega&=\mathrm{d}f\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\Bigl(\sum_{i=1}^{n}\frac{\partial f}{\partial x_{i}}\mathrm{d}x_{i}\Bigr)\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i=1}^{n}\frac{\partial f}{\partial x_{i}}\mathrm{d}x_{i}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}},\\
+\mathrm{d}^{2}\omega&=\mathrm{d}(\mathrm{d}\omega)=\sum_{i=1}^{n}\mathrm{d}\Bigl(\frac{\partial f}{\partial x_{i}}\mathrm{d}x_{i}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\Bigr)\\
+&=\sum_{i=1}^{n}\Bigl(\sum_{j=1}^{n}\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}\mathrm{d}x_{j}\Bigr)\wedge\mathrm{d}x_{i}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i<j}\Bigl(\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}-\frac{\partial^{2}f}{\partial x_{j}\partial x_{i}}\Bigr)\mathrm{d}x_{j}\wedge\mathrm{d}x_{i}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\sum_{i<j}0\cdot\mathrm{d}x_{j}\wedge\mathrm{d}x_{i}\wedge\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}=0.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:11.3.1}
+在 $\mathbb{R}^{3}$ 中, 证明:
+\begin{enumerate}
+\item $\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}x=0$;
+\item 设微分形式 $\omega=f\mathrm{d}x+g\mathrm{d}y+h\mathrm{d}z$, $\eta=P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z$, 则
+\[
+\omega\wedge\eta=
+\begin{vmatrix}
+\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\
+f&g&h\\
+P&Q&R
+\end{vmatrix};
+\]
+\item 设微分形式 $\omega=f\mathrm{d}x+g\mathrm{d}y+h\mathrm{d}z$, $\eta=P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y$, 则
+\[
+\omega\wedge\eta=(fP+gQ+hR)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z.
+\]
+\end{enumerate}
+\end{example}
+\begin{proof}
+(1) $\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}x=\mathrm{d}x\wedge(\mathrm{d}y\wedge\mathrm{d}x)=\mathrm{d}x\wedge(-\mathrm{d}x\wedge\mathrm{d}y)=-(\mathrm{d}x\wedge\mathrm{d}x)\wedge\mathrm{d}y=0$.
+
+(2)
+\[
+\begin{aligned}
+\omega\wedge\eta&=(f\mathrm{d}x+g\mathrm{d}y+h\mathrm{d}z)\wedge(P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z)\\
+&=(gR-hQ)\mathrm{d}y\wedge\mathrm{d}z+(hP-fR)\mathrm{d}z\wedge\mathrm{d}x+(fQ-gP)\mathrm{d}x\wedge\mathrm{d}y\\
+&\overset{\text{def}}{=}
+\begin{vmatrix}
+\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\
+f&g&h\\
+P&Q&R
+\end{vmatrix}.
+\end{aligned}
+\]
+
+(3)
+\[
+\begin{aligned}
+\omega\wedge\eta&=(f\mathrm{d}x+g\mathrm{d}y+h\mathrm{d}z)\wedge(P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y)\\
+&=fP\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z+gQ\,\mathrm{d}y\wedge\mathrm{d}z\wedge\mathrm{d}x+hR\,\mathrm{d}z\wedge\mathrm{d}x\wedge\mathrm{d}y\\
+&=(fP+gQ+hR)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:11.3.2}
+\begin{enumerate}
+\item 在 $\mathbb{R}^{n}$ 中, 设 $\omega=\sum_{i=1}^{n}P_{i}\,\mathrm{d}x_{i}$, 证明: $\omega\wedge\omega=0$;
+\item 在 $\mathbb{R}^{4}$ 中, 设 $\omega=\mathrm{d}x\wedge\mathrm{d}y-\mathrm{d}z\wedge\mathrm{d}u$, 证明: $\omega\wedge\omega\neq0$.
+\end{enumerate}
+\end{example}
+\begin{proof}
+(1)
+\begin{align*}
+\omega\wedge\omega&=\Bigl(\sum_{i=1}^{n}P_{i}\mathrm{d}x_{i}\Bigr)\wedge\Bigl(\sum_{j=1}^{n}P_{j}\mathrm{d}x_{j}\Bigr)=\sum_{i,j=1}^{n}P_{i}P_{j}\mathrm{d}x_{i}\wedge\mathrm{d}x_{j}\\
+&=\sum_{i<j}(P_{i}P_{j}-P_{j}P_{i})\mathrm{d}x_{i}\wedge\mathrm{d}x_{j}=\sum_{i<j}0\cdot\mathrm{d}x_{i}\wedge\mathrm{d}x_{j}=0.
+\end{align*}
+
+(2)
+\[
+\begin{aligned}
+\omega\wedge\omega&=(\mathrm{d}x\wedge\mathrm{d}y-\mathrm{d}z\wedge\mathrm{d}u)\wedge(\mathrm{d}x\wedge\mathrm{d}y-\mathrm{d}z\wedge\mathrm{d}u)\\
+&=-\mathrm{d}z\wedge\mathrm{d}u\wedge\mathrm{d}x\wedge\mathrm{d}y-\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\wedge\mathrm{d}u\\
+&=-2\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\wedge\mathrm{d}u\neq0.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+现在我们在定向曲线上引进第二型曲线积分, 在定向曲面上引进第二型曲面积分, 在定向流形上引进外微分形式的积分.
+
+\begin{definition}\label{def:11.3.3}
+(1 次微分形式的积分---第二型曲线积分) 设 $U\subset\mathbb{R}^{n}$ 为开集, $\overrightarrow{C}\subset U$ 为定向曲线, 其定向参数表示
+\[
+\boldsymbol{x}=\boldsymbol{x}(t)=(x_{1}(t),x_{2}(t),\cdots,x_{n}(t)),\quad a\leqslant t\leqslant b
+\]
+与曲线定向一致 (即 $\boldsymbol{x}'(t)$ 与定向一致), $\omega=\sum_{i=1}^{n}P_{i}\mathrm{d}x_{i}$ 为连续 (即 $P_{i}$ 连续, $i=1,2,\cdots,n$) 的 1 次微分形式, 称
+\[
+\int_{\overrightarrow{C}}\omega=\int_{\overrightarrow{C}}\sum_{i=1}^{n}P_{i}\mathrm{d}x_{i}\overset{\text{def}}{=}\int_{a}^{b}\sum_{i=1}^{n}P_{i}(\boldsymbol{x}(t))\frac{\mathrm{d}x_{i}}{\mathrm{d}t}\mathrm{d}t
+\]
+(若积分值存在) 为 $\omega$ 沿定向曲线 $\overrightarrow{C}$ 的第二型曲线积分.
+\end{definition}
+
+\begin{lemma}\label{lem:11.3.1}
+定义 \ref{def:11.3.3} 与定向参数的选取无关.
+\end{lemma}
+\begin{proof}
+设 $\overrightarrow{C}$ 的另一参数表示为 $\tilde{\boldsymbol{x}}(u)=\boldsymbol{x}(t(u))$, $u\in[\alpha,\beta]$, $\dfrac{\mathrm{d}t}{\mathrm{d}u}>0$, $t(\alpha)=a$, $t(\beta)=b$. 于是,
+\[
+\begin{aligned}
+\int_{a}^{b}\sum_{i=1}^{n}P_{i}(\boldsymbol{x}(t))\frac{\mathrm{d}x_{i}}{\mathrm{d}t}\mathrm{d}t&=\int_{a}^{b}\sum_{i=1}^{n}P_{i}(\boldsymbol{x}(t(u)))\frac{\mathrm{d}x_{i}}{\mathrm{d}u}\frac{\mathrm{d}u}{\mathrm{d}t}\mathrm{d}t\\
+&\reasonb{$t=t(u)$} {\text{换元}}\int_{\alpha}^{\beta}\sum_{i=1}^{n}P_{i}(\tilde{\boldsymbol{x}}(u))\frac{\mathrm{d}x_{i}}{\mathrm{d}u}\mathrm{d}u.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:11.3.2}
+设 $\omega$ 为 1 次微分形式, $\overrightarrow{C}$ 为定义 \ref{def:11.3.3} 中的定向曲线, 它的反向曲线为 $\overrightarrow{C}^{-}$, 则
+\[
+\int_{\overrightarrow{C}}\omega=-\int_{\overrightarrow{C}^{-}}\omega.
+\]
+\end{theorem}
+\begin{proof}
+设 $\boldsymbol{x}(t)$ 与 $\overrightarrow{C}$ 的方向一致, $\tilde{\boldsymbol{x}}(u)$ 与 $\overrightarrow{C}^{-}$ 的方向一致. $t=t(u)$, $t(\alpha)=b$, $t(\beta)=a$, 故 $\dfrac{\mathrm{d}t}{\mathrm{d}u}<0$. 于是,
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}}\omega&=\int_{a}^{b}\Bigl(\sum_{i=1}^{n}P_{i}(\boldsymbol{x}(t))\frac{\mathrm{d}x_{i}}{\mathrm{d}t}\Bigr)\mathrm{d}t=\int_{a}^{b}\Bigl[\sum_{i=1}^{n}P_{i}(\boldsymbol{x}(t(u)))\frac{\mathrm{d}x_{i}}{\mathrm{d}u}\Bigr]\frac{\mathrm{d}u}{\mathrm{d}t}\mathrm{d}t\\
+&\reasonb{$t=t(u)$} {\text{换元}}\int_{\beta}^{a}\Bigl[\sum_{i=1}^{n}P_{i}(\tilde{\boldsymbol{x}}(u))\frac{\mathrm{d}x_{i}}{\mathrm{d}u}\Bigr]\mathrm{d}u\\
+&=-\int_{\alpha}^{\beta}\Bigl[\sum_{i=1}^{n}P_{i}(\tilde{\boldsymbol{x}}(u))\frac{\mathrm{d}x_{i}}{\mathrm{d}u}\Bigr]\mathrm{d}u=-\int_{\overrightarrow{C}^{-}}\omega.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+设 $\boldsymbol{F}=(P_{1},P_{2},\cdots,P_{n})$, $\boldsymbol{x}=(x_{1}(t),x_{2}(t),\cdots,x_{n}(t))$, $\mathrm{d}\boldsymbol{x}=(\mathrm{d}x_{1},\mathrm{d}x_{2},\cdots,\mathrm{d}x_{n})$, 则有第二型曲线积分
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}}\omega&=\int_{\overrightarrow{C}}\sum_{i=1}^{n}P_{i}\mathrm{d}x_{i}=\int_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}=\int_{a}^{b}\boldsymbol{F}\cdot\boldsymbol{x}'(t)\mathrm{d}t\\
+&=\int_{a}^{b}\boldsymbol{F}\cdot\frac{\boldsymbol{x}'(t)}{\lVert\boldsymbol{x}'(t)\rVert}\lVert\boldsymbol{x}'(t)\rVert\mathrm{d}t=\int_{C}\boldsymbol{F}\cdot\boldsymbol{\tau}\,\mathrm{d}s\\
+&=\int_{C}\Bigl(\sum_{i=1}^{n}P_{i}\cos\alpha_{i}\Bigr)\mathrm{d}s\quad(\text{化为第一型曲线积分}),
+\end{aligned}
+\]
+其中 $\boldsymbol{\tau}=(\cos\alpha_{1},\cos\alpha_{2},\cdots,\cos\alpha_{n})$ 为定向曲线 $\overrightarrow{C}$ 的单位切向量场, 它的方向与 $\overrightarrow{C}$ 一致 (沿参数 $t$ 增加的方向). 1 次微分形式积分的向量形式为
+\[
+\int_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}=\int_{C}\boldsymbol{F}\cdot\boldsymbol{\tau}\,\mathrm{d}s.
+\]
+当 $n=3$ 时, $\omega=P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z$, $\boldsymbol{x}=(x,y,z)$, $\mathrm{d}\boldsymbol{x}=(\mathrm{d}x,\mathrm{d}y,\mathrm{d}z)$, 则上述公式为
+\begin{align*}
+\int_{\overrightarrow{C}}\omega&=\int_{\overrightarrow{C}}P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z=\int_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}=\int_{a}^{b}\Bigl(P\frac{\mathrm{d}x}{\mathrm{d}t}+Q\frac{\mathrm{d}y}{\mathrm{d}t}+R\frac{\mathrm{d}z}{\mathrm{d}t}\Bigr)\mathrm{d}t\\
+&=\int_{C}\boldsymbol{F}\cdot\boldsymbol{\tau}\,\mathrm{d}s=\int_{C}(P\cos\alpha+Q\cos\beta+R\cos\gamma)\mathrm{d}s.
+\end{align*}
+
+\begin{example}\label{ex:11.3.3}
+计算第二型曲线积分
+\[
+\int_{\overrightarrow{C}}(y^{2}-z^{2})\mathrm{d}x+2xy\,\mathrm{d}y-x^{2}\mathrm{d}z,
+\]
+其中 $\overrightarrow{C}$ 的参数表示为 $\boldsymbol{x}(t)=(t,t^{2},t^{3})$, 沿 $t$ 从 $0$ 到 $1$ 增加的方向.
+\end{example}
+\begin{solution}
+\[
+\begin{aligned}
+&\int_{\overrightarrow{C}}(y^{2}-z^{2})\mathrm{d}x+2xy\,\mathrm{d}y-x^{2}\mathrm{d}z\\
+={}&\int_{0}^{1}\bigl[(t^{4}-t^{6})\cdot1+2t\cdot t^{2}\cdot2t-t^{2}\cdot3t^{2}\bigr]\mathrm{d}t\\
+={}&\int_{0}^{1}(2t^{4}-t^{6})\mathrm{d}t\\
+={}&\Bigl(\frac{2t^{5}}{5}-\frac{t^{7}}{7}\Bigr)\Big|_{0}^{1}=\frac{2}{5}-\frac{1}{7}=\frac{9}{35}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.3.4}
+计算第二型曲线积分
+\[
+\int_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}},
+\]
+其中 $\overrightarrow{C}$ 为圆周 $x^{2}+y^{2}=R^{2}\,(R>0)$ 沿逆时针方向 (\cref{fig:11.3.1}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-1.9, 0) -- (1.9, 0) node[below] {$x$};
+    \draw[->] (0, -1.9) -- (0, 1.9) node[left] {$y$};
+    \node[below left] at (0, 0) {$O$};
+    
+    % 圆周 (半径 R=1.3)
+    \draw[thick, postaction={decorate}, decoration={markings,
+      mark=at position 0.125 with {\arrow{>}},
+      mark=at position 0.375 with {\arrow{>}},
+      mark=at position 0.625 with {\arrow{>}},
+      mark=at position 0.875 with {\arrow{>}}}]
+      (0, 0) circle (1.3);
+      
+    % 标注半径与曲线名称
+    \fill (1.3, 0) circle (1.2pt) node[below right] {$R$};
+    \node[above right] at (45:1.3) {$\overrightarrow{C}$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.1}
+\end{figure}
+\begin{solution}
+选与 $\overrightarrow{C}$ 的定向一致的参数 $\theta$, 使
+\[
+\boldsymbol{x}(\theta)=(x(\theta),y(\theta))=(R\cos\theta,R\sin\theta),\quad0\leqslant\theta\leqslant2\pi.
+\]
+于是,
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}&=\int_{0}^{2\pi}\frac{-R\sin\theta(-R\sin\theta)+R\cos\theta(R\cos\theta)}{R^{2}\cos^{2}\theta+R^{2}\sin^{2}\theta}\mathrm{d}\theta\\
+&=\int_{0}^{2\pi}\mathrm{d}\theta=2\pi.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.3.5}
+计算第二型曲线积分
+\[
+\int_{\overrightarrow{C}}\frac{\mathrm{d}x+\mathrm{d}y}{|x|+|y|},
+\]
+其中 $\overrightarrow{C}$ 由 $\overrightarrow{C}_{1}$ 与 $\overrightarrow{C}_{2}$ 组成 (\cref{fig:11.3.2}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.3, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-1.8, 0) -- (1.8, 0) node[below] {$x$};
+    \draw[->] (0, -0.45) -- (0, 1.7) node[left] {$y$};
+    \node[below right] at (0, 0) {$O$};
+    
+    % 折线段 C1: (1,0) -> (0,1)
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      (1.2, 0) -- (0, 1.2) node[midway, above right] {$\overrightarrow{C}_{1}$};
+      
+    % 折线段 C2: (0,1) -> (-1,0)
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      (0, 1.2) -- (-1.2, 0) node[midway, above left] {$\overrightarrow{C}_{2}$};
+      
+    % 特征点
+    \fill (1.2, 0) circle (1.2pt) node[below] {$1$};
+    \fill (-1.2, 0) circle (1.2pt) node[below] {$-1$};
+    \fill (0, 1.2) circle (1.2pt) node[left] {$1$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.2}
+\end{figure}
+\begin{solution}
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}}\frac{\mathrm{d}x+\mathrm{d}y}{|x|+|y|}&=\int_{\overrightarrow{C}_{1}}\frac{\mathrm{d}x+\mathrm{d}y}{|x|+|y|}+\int_{\overrightarrow{C}_{2}}\frac{\mathrm{d}x+\mathrm{d}y}{|x|+|y|}\\
+&=\int_{1}^{0}\frac{1+(-1)}{x+(1-x)}\mathrm{d}x+\int_{0}^{-1}\frac{1+1}{-x+1+x}\mathrm{d}x\\
+&=0+\int_{0}^{-1}2\,\mathrm{d}x\\
+&=-2.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.3.6}
+计算 1 次微分形式 $\omega=xy\,\mathrm{d}x$ 在三条起点相同, 终点相同的不同定向曲线 $\overrightarrow{C}_{i}\,(i=1,2,3)$ 上的第二型曲线积分 (\cref{fig:11.3.3})
+\[
+\int_{\overrightarrow{C}_{i}}xy\,\mathrm{d}x,\quad i=1,2,3.
+\]
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=2.2, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-0.2, 0) -- (1.45, 0) node[below] {$x$};
+    \draw[->] (0, -0.2) -- (1.45, 0) node[left] {$y$};
+    \node[below left] at (0, 0) {$O$};
+    
+    % C1: 直线 y = x
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      (0, 0) -- (1, 1) node[midway, above left] {$\overrightarrow{C}_{1}$};
+      
+    % C2: 抛物线 y = x^2
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      plot[domain=0:1, samples=50] (\x, {\x*\x})
+      node[pos=0.6, below right] {$\overrightarrow{C}_{2}$};
+      
+    % C3: 折线 (0,0) -> (1,0) -> (1,1)
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      (0, 0) -- (1, 0);
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      (1, 0) -- (1, 1) node[midway, right] {$\overrightarrow{C}_{3}$};
+      
+    % 特征点与辅助线
+    \draw[densely dashed, gray] (0, 1) -- (1, 1);
+    \fill (1, 1) circle (0.9pt) node[above right] {$(1,1)$};
+    \fill (1, 0) circle (0.9pt) node[below] {$1$};
+    \fill (0, 1) circle (0.9pt) node[left] {$1$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.3}
+\end{figure}
+\begin{solution}
+\[
+\int_{\overrightarrow{C}_{1}}xy\,\mathrm{d}x\reason{$\boldsymbol{x}=(x,x)$}\int_{0}^{1}x\cdot x\,\mathrm{d}x=\frac{x^{3}}{3}\Big|_{0}^{1}=\frac{1}{3}.
+\]
+\[
+\int_{\overrightarrow{C}_{2}}xy\,\mathrm{d}x\reason{$\boldsymbol{x}=(x,x^{2})$}\int_{0}^{1}x\cdot x^{2}\mathrm{d}x=\frac{x^{4}}{4}\Big|_{0}^{1}=\frac{1}{4}.
+\]
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}_{3}}xy\,\mathrm{d}x&=\int_{\overrightarrow{OB}}xy\,\mathrm{d}x+\int_{\overrightarrow{BA}}xy\,\mathrm{d}x\\
+&=\int_{0}^{1}x\cdot0\,\mathrm{d}x+\int_{0}^{1}1\cdot y\cdot0\,\mathrm{d}y=0.
+\end{aligned}
+\]
+上面计算表明, 三个第二型曲线积分虽然起点相同, 终点相同, 但是它们的积分值不同, 它们与所选路径有关.
+\end{solution}
+
+\begin{example}\label{ex:11.3.7}
+计算第二型曲线积分
+\[
+\int_{\overrightarrow{C}_{i}}y\,\mathrm{d}x+z\,\mathrm{d}y+x\,\mathrm{d}z,\quad i=1,2,
+\]
+其中 $\overrightarrow{C}_{1}$: $\boldsymbol{x}=(a\cos t,a\sin t,bt)$, $0\leqslant t\leqslant2\pi$; $\overrightarrow{C}_{2}$: $\boldsymbol{x}=(a,0,t)$, $0\leqslant t\leqslant2\pi b$ (\cref{fig:11.3.4}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+    % 三维坐标系
+    \coordinate (O) at (0, 0);
+    \draw[->] (-1.3, -0.7) -- (1.5, 0.8) node[right] {$y$};
+    \draw[->] (0, -0.5) -- (0, 3.4) node[above] {$z$};
+    \draw[->] (0, 0) -- (-1.1, -1.1) node[below left] {$x$};
+    \node[below right] at (O) {$O$};
+    
+    % 辅助柱面 (底面和顶面椭圆)
+    \draw[densely dashed, gray!70] (0, 0) ellipse (1.2 and 0.45);
+    \draw[densely dashed, gray!70] (0, 2.5) ellipse (1.2 and 0.45);
+    \draw[densely dashed, gray!50] (-1.2, 0) -- (-1.2, 2.5);
+    \draw[densely dashed, gray!50] (1.2, 0) -- (1.2, 2.5);
+    
+    % C2: 直线段母线从 (a,0,0) 到 (a,0,2pi b)
+    % 投影坐标中 (a,0,0) 对应 x 轴前端，这里取椭圆右前部或前端
+    \coordinate (A) at (1.2, 0);
+    \coordinate (B) at (1.2, 2.5);
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      (A) -- (B) node[midway, right] {$\overrightarrow{C}_{2}$};
+    \fill (A) circle (1.2pt) node[below right] {$(a,0,0)$};
+    \fill (B) circle (1.2pt) node[above right] {$(a,0,2\pi b)$};
+    
+    % C1: 螺旋曲线 (盘旋一周从 A 绕回 B)
+    % 前半圈 实线，后半圈 虚线
+    % t 从 0 到 pi: 实线在正面
+    \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+      mark=at position 0.55 with {\arrow[ThemeColor]{>}}}]
+      plot[domain=0:180, samples=60, variable=\t]
+      ({1.2*cos(\t)}, {2.5*\t/360 + 0.45*sin(\t)}) node[midway, left] {$\overrightarrow{C}_{1}$};
+    % t 从 180 到 360: 虚线在背面
+    \draw[thick, ThemeColor, densely dashed]
+      plot[domain=180:360, samples=60, variable=\t]
+      ({1.2*cos(\t)}, {2.5*\t/360 + 0.45*sin(\t)});
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.4}
+\end{figure}
+\begin{solution}
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}_{1}}y\,\mathrm{d}x+z\,\mathrm{d}y+x\,\mathrm{d}z&=\int_{0}^{2\pi}\bigl[a\sin t\cdot(-a\sin t)+bt\cdot(a\cos t)+a\cos t\cdot b\bigr]\mathrm{d}t\\
+&=-4a^{2}\int_{0}^{\frac{\pi}{2}}\sin^{2}t\,\mathrm{d}t+ab\Bigl(t\sin t\Big|_{0}^{2\pi}-\int_{0}^{2\pi}\sin t\,\mathrm{d}t\Bigr)+ab\sin t\Big|_{0}^{2\pi}\\
+&=-4a^{2}\cdot\frac{1}{2}\cdot\frac{\pi}{2}+0+0=-\pi a^{2}.
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}_{2}}y\,\mathrm{d}x+z\,\mathrm{d}y+x\,\mathrm{d}z&=\int_{0}^{2\pi b}(0\cdot0+t\cdot0+a\cdot1)\mathrm{d}t\\
+&=\int_{0}^{2\pi b}a\,\mathrm{d}t=2\pi a b.
+\end{aligned}
+\]
+这也说明了沿起点相同, 终点相同的两条不同曲线的第二型曲线积分值一般而言并不相等. 它们与所选路径有关.
+\end{solution}
+
+\begin{definition}\label{def:11.3.4}
+($\mathbb{R}^{3}$ 中 2 次微分形式的积分---第二型曲面积分) 设 $U\subset\mathbb{R}^{3}$ 为开集, $\overrightarrow{\Sigma}\subset U$ 为定向有界曲面, 其定向参数表示为
+\[
+\boldsymbol{x}=\boldsymbol{x}(u,v)=(x(u,v),y(u,v),z(u,v)),\quad(u,v)\in\Delta.
+\]
+定向曲面 $\Sigma$ 的定向由 $\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'$ 所确定.
+\[
+\omega=P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y
+\]
+为连续 (即 $P,Q,R$ 连续) 的 2 次微分形式. 称
+\[
+\begin{aligned}
+\int_{\overrightarrow{\Sigma}}\omega&=\int_{\overrightarrow{\Sigma}}P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y\\
+&\overset{\text{def}}{=}\iint_{\Delta}\Biggl[P(\boldsymbol{x}(u,v))\frac{\partial(y,z)}{\partial(u,v)}+Q(\boldsymbol{x}(u,v))\frac{\partial(z,x)}{\partial(u,v)}\\
+&\qquad+R(\boldsymbol{x}(u,v))\frac{\partial(x,y)}{\partial(u,v)}\Biggr]\mathrm{d}u\mathrm{d}v\\
+&=\iint_{\Delta}
+\begin{vmatrix}
+P(\boldsymbol{x}(u,v))&Q(\boldsymbol{x}(u,v))&R(\boldsymbol{x}(u,v))\\
+\dfrac{\partial x}{\partial u}&\dfrac{\partial y}{\partial u}&\dfrac{\partial z}{\partial u}\\[4pt]
+\dfrac{\partial x}{\partial v}&\dfrac{\partial y}{\partial v}&\dfrac{\partial z}{\partial v}
+\end{vmatrix}\mathrm{d}u\mathrm{d}v
+\end{aligned}
+\]
+(若积分值存在) 为 $\omega$ 沿定向曲面 $\overrightarrow{\Sigma}$ 的第二型曲面积分, 其中
+\[
+\begin{aligned}
+\mathrm{d}y\wedge\mathrm{d}z&=\Bigl(\frac{\partial y}{\partial u}\mathrm{d}u+\frac{\partial y}{\partial v}\mathrm{d}v\Bigr)\wedge\Bigl(\frac{\partial z}{\partial u}\mathrm{d}u+\frac{\partial z}{\partial v}\mathrm{d}v\Bigr)\\
+&=\Bigl(\frac{\partial y}{\partial u}\frac{\partial z}{\partial v}-\frac{\partial y}{\partial v}\frac{\partial z}{\partial u}\Bigr)\mathrm{d}u\wedge\mathrm{d}v=\frac{\partial(y,z)}{\partial(u,v)}\mathrm{d}u\wedge\mathrm{d}v.
+\end{aligned}
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:11.3.2}
+$\mathbb{R}^{3}$ 中 2 次微分形式 $\omega$ 的第二型曲面积分的定义 \ref{def:11.3.4} 与定向曲面 $\Sigma$ 的定向参数的选择无关.
+\end{lemma}
+\begin{proof}
+设 $\boldsymbol{x}(u,v)$ 与 $\tilde{\boldsymbol{x}}(s,t)$ 都是与定向曲面 $\tilde{\Sigma}$ 的定向一致的参数表示, 即 $\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'$ 和 $\tilde{\boldsymbol{x}}_{s}'\times\tilde{\boldsymbol{x}}_{t}'$ 都与 $\tilde{\Sigma}$ 的定向一致. $(u,v)\in\Delta$, $(s,t)\in\tilde{\Delta}$, $\boldsymbol{x}(\Delta)=\Sigma=\tilde{\boldsymbol{x}}(\tilde{\Delta})$. 并且 $\exists h$ 使得
+\[
+h:\Delta\to\widetilde{\Delta},\quad(u,v)\mapsto(s,t)
+\]
+为 $C^{1}$ 微分同胚. 由 $\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'$ 与 $\tilde{\boldsymbol{x}}_{s}'\times\tilde{\boldsymbol{x}}_{t}'$ 同向及
+\[
+\begin{aligned}
+\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'&=\Bigl(\tilde{\boldsymbol{x}}_{s}'\frac{\partial s}{\partial u}+\tilde{\boldsymbol{x}}_{t}'\frac{\partial t}{\partial u}\Bigr)\times\Bigl(\tilde{\boldsymbol{x}}_{s}'\frac{\partial s}{\partial v}+\tilde{\boldsymbol{x}}_{t}'\frac{\partial t}{\partial v}\Bigr)\\
+&=\Bigl(\frac{\partial s}{\partial u}\frac{\partial t}{\partial v}-\frac{\partial s}{\partial v}\frac{\partial t}{\partial u}\Bigr)\tilde{\boldsymbol{x}}_{s}'\times\tilde{\boldsymbol{x}}_{t}'=\frac{\partial(s,t)}{\partial(u,v)}\tilde{\boldsymbol{x}}_{s}'\times\tilde{\boldsymbol{x}}_{t}'
+\end{aligned}
+\]
+可知,
+\[
+\frac{\partial(s,t)}{\partial(u,v)}>0,
+\]
+由此推得
+\[
+\begin{aligned}
+\iint_{\Delta}P(\boldsymbol{x}(u,v))\frac{\partial(y,z)}{\partial(u,v)}\mathrm{d}u\mathrm{d}v&=\iint_{\Delta}P(\boldsymbol{x}(u,v))\frac{\partial(y,z)}{\partial(s,t)}\frac{\partial(s,t)}{\partial(u,v)}\mathrm{d}u\mathrm{d}v\\
+&\reasonb{$\text{由 }\frac{\partial(s,t)}{\partial(u,v)}>0$} {\text{换元}}\iint_{\widetilde{\Delta}}P(\widetilde{\boldsymbol{x}}(s,t))\frac{\partial(y,z)}{\partial(s,t)}\mathrm{d}s\mathrm{d}t.
+\end{aligned}
+\]
+类似地, 有
+\[
+\iint_{\Delta}Q(\boldsymbol{x}(u,v))\frac{\partial(z,x)}{\partial(u,v)}\mathrm{d}u\mathrm{d}v=\iint_{\widetilde{\Delta}}Q(\widetilde{\boldsymbol{x}}(s,t))\frac{\partial(z,x)}{\partial(s,t)}\mathrm{d}s\mathrm{d}t,
+\]
+\[
+\iint_{\Delta}R(\boldsymbol{x}(u,v))\frac{\partial(x,y)}{\partial(u,v)}\mathrm{d}u\mathrm{d}v=\iint_{\widetilde{\Delta}}R(\widetilde{\boldsymbol{x}}(s,t))\frac{\partial(x,y)}{\partial(s,t)}\mathrm{d}s\mathrm{d}t,
+\]
+于是,
+\[
+\begin{aligned}
+&\iint_{\Delta}\Biggl[P(\boldsymbol{x}(u,v))\frac{\partial(y,z)}{\partial(u,v)}+Q(\boldsymbol{x}(u,v))\frac{\partial(z,x)}{\partial(u,v)}+R(\boldsymbol{x}(u,v))\frac{\partial(x,y)}{\partial(u,v)}\Biggr]\mathrm{d}u\mathrm{d}v\\
+={}&\iint_{\widetilde{\Delta}}\Biggl[P(\widetilde{\boldsymbol{x}}(s,t))\frac{\partial(y,z)}{\partial(s,t)}+Q(\widetilde{\boldsymbol{x}}(s,t))\frac{\partial(z,x)}{\partial(s,t)}+R(\widetilde{\boldsymbol{x}}(s,t))\frac{\partial(x,y)}{\partial(s,t)}\Biggr]\mathrm{d}s\mathrm{d}t.
+\end{aligned}
+\]
+这就证明了 $\mathbb{R}^{3}$ 中 2 次微分形式 $\omega$ 的第二型曲面积分与定向曲面 $\Sigma$ 的定向参数的选择无关.
+\end{proof}
+
+\begin{theorem}\label{thm:11.3.3}
+关于 $\mathbb{R}^{3}$ 中 2 次微分形式 $\omega$ 在可定向曲面 $\Sigma$ 上, 有
+\[
+\iint_{\Sigma}\omega=-\iint_{\Sigma^{-}}\omega.
+\]
+\end{theorem}
+\begin{proof}
+取 $\boldsymbol{x}(u,v)$ 与 $\vec{\Sigma}$ 一致, $\tilde{\boldsymbol{x}}(s,t)$ 与 $\vec{\Sigma}^{-}$ 一致, $(u,v)\in\Delta$, $(s,t)\in\widetilde{\Delta}$,
+\[
+h:\Delta\to\widetilde{\Delta},\quad(u,v)\mapsto(s,t)
+\]
+为 $C^{1}$ 微分同胚. 于是,
+\[
+\frac{\partial(s,t)}{\partial(u,v)}<0,
+\]
+且
+\[
+\begin{aligned}
+\int_{\vec{\Sigma}}\omega&=\iint_{\Delta}\Bigl[P(\boldsymbol{x}(u,v))\frac{\partial(y,z)}{\partial(u,v)}+Q(\boldsymbol{x}(u,v))\frac{\partial(z,x)}{\partial(u,v)}+R(\boldsymbol{x}(u,v))\frac{\partial(x,y)}{\partial(u,v)}\Bigr]\mathrm{d}u\mathrm{d}v\\
+&=\iint_{\Delta}\Bigl[P(\tilde{\boldsymbol{x}}(s,t))\frac{\partial(y,z)}{\partial(s,t)}+Q(\tilde{\boldsymbol{x}}(s,t))\frac{\partial(z,x)}{\partial(s,t)}+R(\tilde{\boldsymbol{x}}(s,t))\frac{\partial(x,y)}{\partial(s,t)}\Bigr]\frac{\partial(s,t)}{\partial(u,v)}\mathrm{d}u\mathrm{d}v\\
+&\reasonb{$\text{由 }\frac{\partial(s,t)}{\partial(u,v)}<0$} {\text{换元}}-\iint_{\widetilde{\Delta}}\Bigl[P(\tilde{\boldsymbol{x}}(s,t))\frac{\partial(y,z)}{\partial(s,t)}+Q(\tilde{\boldsymbol{x}}(s,t))\frac{\partial(z,x)}{\partial(s,t)}+R(\tilde{\boldsymbol{x}}(s,t))\frac{\partial(x,y)}{\partial(s,t)}\Bigr]\mathrm{d}s\mathrm{d}v\\
+&=-\iint_{\vec{\Sigma}^{-}}\omega.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+令 $\boldsymbol{F}=(P,Q,R)$, $\boldsymbol{x}=(x(u,v),y(u,v),z(u,v))$, $\mathrm{d}\boldsymbol{x}=(\mathrm{d}x,\mathrm{d}y,\mathrm{d}z)$,
+\[
+\boldsymbol{n}_{0}=\frac{\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'}{\lVert\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'\rVert}
+\]
+为单位法向量场. 于是, 第二型曲面积分
+\[
+\begin{aligned}
+&\iint_{\Sigma}P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y\\
+={}&\iint_{\Delta}
+\begin{vmatrix}
+P&Q&R\\[2pt]
+\dfrac{\partial x}{\partial u}&\dfrac{\partial y}{\partial u}&\dfrac{\partial z}{\partial u}\\[4pt]
+\dfrac{\partial x}{\partial v}&\dfrac{\partial y}{\partial v}&\dfrac{\partial z}{\partial v}
+\end{vmatrix}\mathrm{d}u\mathrm{d}v=\iint_{\Delta}\boldsymbol{F}\cdot\frac{\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'}{\lVert\boldsymbol{x}_{u}'\rVert\lVert\boldsymbol{x}_{v}'\rVert}\lVert\boldsymbol{x}_{u}'\times\boldsymbol{x}_{v}'\rVert\mathrm{d}u\mathrm{d}v\\
+={}&\iint_{\Delta}\boldsymbol{F}\cdot\boldsymbol{n}_{0}\sqrt{EG-F^{2}}\,\mathrm{d}u\mathrm{d}v=\iint_{\Sigma}\boldsymbol{F}\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma=\iint_{\Sigma}(P\cos\alpha+Q\cos\beta+R\cos\gamma)\,\mathrm{d}\sigma,
+\end{aligned}
+\]
+化为第一型曲面积分.
+
+\begin{example}\label{ex:11.3.8}
+计算第二型曲面积分
+\[
+\iint_{\overrightarrow{\Sigma}}xyz\,\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\overrightarrow{\Sigma}$ 为半径 $1$ 的四分之一球面
+\[
+\Sigma=\{(x,y,z)\mid x^{2}+y^{2}+z^{2}=1,\ x\leqslant0,\ y\leqslant0\}
+\]
+并取球面的外侧 (\cref{fig:11.3.5}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-2.2, 0) -- (1.5, 0) node[below] {$y$};
+    \draw[->] (0, -1.8) -- (0, 1.8) node[above] {$z$};
+    \draw[->] (1.3, 0.75) -- (-1.5, -0.9) node[below left] {$x$};
+    \node[below right] at (0, 0) {$O$};
+    
+    % 四分之一球面: x<=0, y<=0. 
+    % 对应于左下/左前方区域
+    % 经纬线截线
+    \draw[thick, ThemeColor, fill=ThemeColor!12, fill opacity=0.6]
+      (0, 1.4) arc (90:270:0.8 and 1.4) -- (0, -1.4) arc (-90:-180:1.4) -- (-1.4, 0) arc (180:90:1.4) -- cycle;
+      
+    % 球面外轮廓弧
+    \draw[thick, ThemeColor] (0, 1.4) arc (90:270:1.4);
+    \draw[densely dashed, gray] (0, 1.4) arc (90:-90:1.4);
+    
+    % 赤道圆截弧 (xy 平面第三象限弧)
+    \draw[thick, ThemeColor] (-1.4, 0) arc (180:270:1.4 and 0.55);
+    \draw[densely dashed, gray] (0, 0) ellipse (1.4 and 0.55);
+    
+    % 子午面截弧 (xz 平面 x<=0)
+    \draw[thick, ThemeColor] (0, 1.4) arc (90:270:0.8 and 1.4);
+    
+    % 外法向量 n 标注
+    \coordinate (P) at (-0.8, -0.4);
+    \draw[->, very thick, ThemeColor] (P) -- ++(-0.7, -0.5) node[below left] {$\boldsymbol{n}$};
+    \fill (P) circle (1.2pt);
+    \node at (-1.1, 0.7) {$\Sigma$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.5}
+\end{figure}
+\begin{solution}[解法 1]
+将 $\Sigma$ 分成如下两部分:
+\[
+\Sigma_{\text{上}}=\{(x,y,z)\mid x^{2}+y^{2}+z^{2}=1,\ x\leqslant0,\ y\geqslant0,\ z=\sqrt{1-x^{2}-y^{2}}\},
+\]
+\[
+\Sigma_{\text{下}}=\{(x,y,z)\mid x^{2}+y^{2}+z^{2}=1,\ x\leqslant0,\ y\geqslant0,\ z=-\sqrt{1-x^{2}-y^{2}}\}.
+\]
+于是,
+\[
+\begin{aligned}
+&\iint_{\overrightarrow{\Sigma}}xyz\,\mathrm{d}x\wedge\mathrm{d}y=\iint_{\overrightarrow{\Sigma}_{\text{上}}}xyz\,\mathrm{d}x\wedge\mathrm{d}y+\iint_{\overrightarrow{\Sigma}_{\text{下}}}xyz\,\mathrm{d}x\wedge\mathrm{d}y\\
+={}&\iint_{\Delta_{1}}xy\sqrt{1-x^{2}-y^{2}}\frac{\partial(x,y)}{\partial(x,y)}\mathrm{d}x\mathrm{d}y-\iint_{\Delta_{1}}xy\bigl(-\sqrt{1-x^{2}-y^{2}}\bigr)\frac{\partial(x,y)}{\partial(x,y)}\mathrm{d}x\mathrm{d}y\\
+={}&2\iint_{\substack{x^{2}+y^{2}\leqslant1\\ x\leqslant0,\ y\geqslant0}}xy\sqrt{1-x^{2}-y^{2}}\,\mathrm{d}x\mathrm{d}y\\
+&\reason{极坐标变换}2\int_{\frac{\pi}{2}}^{\pi}\mathrm{d}\varphi\int_{0}^{1}r\cos\varphi\cdot r\sin\varphi\cdot\sqrt{1-r^{2}}\cdot r\,\mathrm{d}r\\
+={}&2\int_{\frac{\pi}{2}}^{\pi}\sin\varphi\cos\varphi\,\mathrm{d}\varphi\int_{0}^{1}r^{3}\sqrt{1-r^{2}}\,\mathrm{d}r\\
+&\reason{$u=1-r^{2}$}\sin^{2}\varphi\Big|_{\frac{\pi}{2}}^{\pi}\cdot\frac{1}{2}\int_{0}^{1}(1-u)\sqrt{u}\,\mathrm{d}u\\
+=&(-1)\cdot\frac{1}{2}\Bigl(\frac{2}{3}-\frac{2}{5}\Bigr)=-\frac{2}{15}.
+\end{aligned}
+\]
+\end{solution}
+\begin{solution}[解法 2]
+\[
+\begin{aligned}
+\iint_{\overrightarrow{\Sigma}}xyz\,\mathrm{d}x\wedge\mathrm{d}y&=-\iint_{\Delta_{2}}\bigl(-\sqrt{1-y^{2}-z^{2}}\bigr)yz\frac{\partial(x,y)}{\partial(y,z)}\mathrm{d}y\mathrm{d}z\\
+&=\iint_{\Delta_{2}}\sqrt{1-y^{2}-z^{2}}\Bigl(-\frac{\partial x}{\partial z}\Bigr)\mathrm{d}y\mathrm{d}z\\
+&=\iint_{\Delta_{2}}\sqrt{1-y^{2}-z^{2}}\,yz\frac{z}{\sqrt{1-y^{2}-z^{2}}}\mathrm{d}y\mathrm{d}z\\
+&=-\iint_{\Delta_{2}}yz^{2}\,\mathrm{d}y\mathrm{d}z\reason{极坐标变换}-\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\mathrm{d}\varphi\int_{0}^{1}r\cos\varphi\cdot r^{2}\sin\varphi\cdot r\,\mathrm{d}r\\
+&=-\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\sin^{2}\varphi\cos\varphi\,\mathrm{d}\varphi\int_{0}^{1}r^{4}\,\mathrm{d}r=-\frac{\sin^{3}\varphi}{3}\Big|_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\cdot\frac{r^{5}}{5}\Big|_{0}^{1}=-\frac{2}{15},
+\end{aligned}
+\]
+其中 $\Delta_{2}=\{(y,z)\mid y^{2}+z^{2}\leqslant1,\ y\geqslant0\}$.
+\end{solution}
+\begin{solution}[解法 3]
+\[
+\begin{aligned}
+\iint_{\overrightarrow{\Sigma}}xyz\,\mathrm{d}x\wedge\mathrm{d}y&=-\iint_{\Delta_{3}}x\sqrt{1-x^{2}-z^{2}}\,z\frac{\partial(x,y)}{\partial(x,z)}\mathrm{d}x\mathrm{d}z\\
+&=-\iint_{\Delta_{3}}xz\sqrt{1-x^{2}-z^{2}}\frac{\partial y}{\partial z}\mathrm{d}x\mathrm{d}z=-\iint_{\Delta_{3}}xz\sqrt{1-x^{2}-z^{2}}\frac{-z}{\sqrt{1-x^{2}-z^{2}}}\mathrm{d}x\mathrm{d}z\\
+&=\iint_{\substack{x^{2}+z^{2}\leqslant1\\ x\leqslant0}}xz^{2}\,\mathrm{d}x\mathrm{d}z\reason{极坐标变换}\int_{\frac{\pi}{2}}^{\frac{3\pi}{2}}\mathrm{d}\varphi\int_{0}^{1}r\cos\varphi\cdot r^{2}\sin^{2}\varphi\cdot r\,\mathrm{d}r\\
+&=\int_{\frac{\pi}{2}}^{\frac{3\pi}{2}}\sin^{2}\varphi\cos\varphi\,\mathrm{d}\varphi\int_{0}^{1}r^{4}\,\mathrm{d}r=\frac{\sin^{3}\varphi}{3}\Big|_{\frac{\pi}{2}}^{\frac{3\pi}{2}}\cdot\frac{r^{5}}{5}\Big|_{0}^{1}=-\frac{2}{15},
+\end{aligned}
+\]
+其中 $\Delta_{3}=\{(x,z)\mid x^{2}+z^{2}\leqslant1,\ x\leqslant0\}$.
+\end{solution}
+\begin{solution}[解法 4]
+\[
+\begin{aligned}
+\iint_{\overrightarrow{\Sigma}}xyz\,\mathrm{d}x\wedge\mathrm{d}y&\reason{球面坐标}\iint_{[0,\pi]\times[\frac{\pi}{2},\pi]}(\sin\theta\cos\varphi)(\sin\theta\sin\varphi)\cos\theta\frac{\partial(x,y)}{\partial(\theta,\varphi)}\mathrm{d}\theta\mathrm{d}\varphi\\
+&=\iint_{[0,\pi]\times[\frac{\pi}{2},\pi]}\sin^{2}\theta\cos\theta\sin\varphi\cos\varphi(\sin\theta\cos\theta)\,\mathrm{d}\theta\mathrm{d}\varphi\\
+&=\iint_{[0,\pi]\times[\frac{\pi}{2},\pi]}\sin^{3}\theta\cos^{2}\theta\sin\varphi\cos\varphi\,\mathrm{d}\theta\mathrm{d}\varphi\\
+&=\int_{0}^{\pi}\sin^{3}\theta\cos^{2}\theta\,\mathrm{d}\theta\int_{\frac{\pi}{2}}^{\pi}\sin\varphi\cos\varphi\,\mathrm{d}\varphi=\Bigl(\frac{\cos^{5}\theta}{5}-\frac{\cos^{3}\theta}{3}\Bigr)\Big|_{0}^{\pi}\cdot\frac{\sin^{2}\varphi}{2}\Big|_{\frac{\pi}{2}}^{\pi}\\
+&=\frac{4}{15}\cdot\Bigl(-\frac{1}{2}\Bigr)=-\frac{2}{15}.
+\end{aligned}
+\]
+\end{solution}
+\begin{solution}[解法 5]
+应用化第二型曲面积分为第一型曲面积分的公式, 有
+\[
+\begin{aligned}
+\iint_{\overrightarrow{\Sigma}}xyz\,\mathrm{d}x\wedge\mathrm{d}y&=\iint_{\overrightarrow{\Sigma}}(0\cdot\cos\alpha+0\cdot\cos\beta+xyz\cos\gamma)\,\mathrm{d}\sigma\\
+&=\iint_{\overrightarrow{\Sigma}}xyz\cdot z\,\mathrm{d}\sigma\reason{球面坐标}\\
+&\qquad\iint_{[0,\pi]\times[\frac{\pi}{2},\pi]}(\sin\theta\cos\varphi)(\sin\theta\sin\varphi)\cos\theta\cdot\cos\theta\cdot(\sin\theta\,\mathrm{d}\theta\mathrm{d}\varphi)\\
+&=\iint_{[0,\pi]\times[\frac{\pi}{2},\pi]}\sin^{3}\theta\cos^{2}\theta\sin\varphi\cos\varphi\,\mathrm{d}\theta\mathrm{d}\varphi\\
+&\reason{解法 4}-\frac{2}{15}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.3.9}
+计算第二型曲面积分
+\[
+\iint_{\Sigma}(2x+z)\,\mathrm{d}y\wedge\mathrm{d}z+z\,\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\Sigma$ 为曲面 $\Sigma=\{(x,y,z)\mid z=x^{2}+y^{2},\ z\in[0,1]\}$ 的下侧 (\cref{fig:11.3.6}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+    % 坐标系
+    \draw[->] (-1.9, 0) -- (1.9, 0) node[below] {$y$};
+    \draw[->] (0, -0.6) -- (0, 2.6) node[above] {$z$};
+    \draw[->] (1.1, 0.6) -- (-1.2, -0.7) node[below left] {$x$};
+    \node[below right] at (0, 0) {$O$};
+    
+    % 抛物面母线 z = y^2 (顶点在 O, 到 z=1.8 处 y=1.3)
+    \draw[thick, ThemeColor, fill=ThemeColor!10, fill opacity=0.5]
+      plot[domain=-1.35:1.35, samples=50] (\x, {1.8*(\x/1.35)^2}) -- cycle;
+      
+    % 顶部水平截圆 z=1 对应透视椭圆
+    \draw[thick, ThemeColor] (0, 1.8) ellipse (1.35 and 0.42);
+    
+    % 下侧法向量 n (向下)
+    \coordinate (Q) at (0.6, 0.36);
+    \draw[->, very thick, ThemeColor] (Q) -- ++(0.35, -0.8) node[below right] {$\boldsymbol{n}$};
+    \fill (Q) circle (1.2pt);
+    
+    \coordinate (Q2) at (-0.6, 0.36);
+    \draw[->, very thick, ThemeColor] (Q2) -- ++(-0.35, -0.8) node[below left] {$\boldsymbol{n}$};
+    \fill (Q2) circle (1.2pt);
+    
+    \node at (1.1, 1.1) {$\Sigma$};
+    \node[left] at (0, 1.8) {$1$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.6}
+\end{figure}
+\begin{solution}[解法 1]
+$\boldsymbol{x}(x,y)=(x,y,x^{2}+y^{2})$,
+\[
+\boldsymbol{x}_{x}'=(1,0,2x),\quad\boldsymbol{x}_{y}'=(0,1,2y),
+\]
+\[
+\boldsymbol{x}_{x}'\times\boldsymbol{x}_{y}'=
+\begin{vmatrix}
+\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\
+1&0&2x\\
+0&1&2y
+\end{vmatrix}=(-2x,-2y,1),
+\]
+这与 $\Sigma$ 给定的方向 (下侧) 恰好相反. 于是,
+\[
+\begin{aligned}
+\iint_{\Sigma}(2x+z)\,\mathrm{d}y\wedge\mathrm{d}z+z\,\mathrm{d}x\wedge\mathrm{d}y&=-\iint_{x^{2}+y^{2}\leqslant1}
+\begin{vmatrix}
+2x+z&0&z\\
+1&0&2x\\
+0&1&2y
+\end{vmatrix}\mathrm{d}x\mathrm{d}y\\
+&=-\iint_{x^{2}+y^{2}\leqslant1}-\begin{vmatrix}2x+z&z\\1&2x\end{vmatrix}\mathrm{d}x\mathrm{d}y\\
+&=\iint_{x^{2}+y^{2}\leqslant1}\bigl[(2x+x^{2}+y^{2})\cdot2x-(x^{2}+y^{2})\bigr]\mathrm{d}x\mathrm{d}y\\
+&\reason{极坐标}\int_{0}^{2\pi}\mathrm{d}\varphi\int_{0}^{1}(4r^{2}\cos^{2}\varphi+2r^{3}\cos\varphi-r^{2})r\,\mathrm{d}r\\
+&=\int_{0}^{2\pi}\Bigl(\cos^{2}\varphi+\frac{2}{5}\cos\varphi-\frac{1}{4}\Bigr)\mathrm{d}\varphi\\
+&=4\cdot\frac{1}{2}\cdot\frac{\pi}{2}+0-\frac{1}{4}\cdot2\pi=\frac{\pi}{2}.
+\end{aligned}
+\]
+\end{solution}
+\begin{solution}[解法 2]
+由解法 1 知, $-\boldsymbol{x}_{x}'\times\boldsymbol{x}_{y}'=(2x,2y,-1)$ 与 $\vec{\Sigma}$ 的方向一致. 此外, 曲面 $\Sigma$ 的面积元为
+\[
+\mathrm{d}\sigma=\sqrt{1+\Bigl(\frac{\partial z}{\partial x}\Bigr)^{2}+\Bigl(\frac{\partial z}{\partial y}\Bigr)^{2}}\,\mathrm{d}x\mathrm{d}y=\sqrt{1+4x^{2}+4y^{2}}\,\mathrm{d}x\mathrm{d}y.
+\]
+于是,
+\[
+\begin{aligned}
+&\iint_{\Sigma}(2x+z)\,\mathrm{d}y\wedge\mathrm{d}z+z\,\mathrm{d}x\wedge\mathrm{d}y=\iint_{\Sigma}\bigl[(2x+z)\cos\alpha+0\cdot\cos\beta+z\cos\gamma\bigr]\mathrm{d}\sigma\\
+={}&\iint_{x^{2}+y^{2}\leqslant1}\Bigl[(2x+z)\cdot\frac{2x}{\sqrt{1+4x^{2}+4y^{2}}}+0\cdot\frac{2y}{\sqrt{1+4x^{2}+4y^{2}}}+z\cdot\frac{-1}{\sqrt{1+4x^{2}+4y^{2}}}\Bigr]\\
+&\qquad\sqrt{1+4x^{2}+4y^{2}}\,\mathrm{d}x\mathrm{d}y\\
+={}&\iint_{x^{2}+y^{2}\leqslant1}\bigl[(2x+x^{2}+y^{2})\cdot2x-(x^{2}+y^{2})\bigr]\mathrm{d}x\mathrm{d}y\reason{由解法 1}\frac{\pi}{2}.
+\end{aligned}
+\]
+\end{solution}
+\begin{solution}[解法 3]
+建议读者将 $\Sigma$ 剖分为两片, 用 $y,z$ 作为参数计算该第二型曲面积分, 并体会其中的繁简.
+\end{solution}
+
+\begin{example}\label{ex:11.3.10}
+计算第二型的曲面积分
+\[
+\iint_{\Sigma}x^{3}\,\mathrm{d}y\wedge\mathrm{d}z,
+\]
+其中 $\overrightarrow{\Sigma}$ 为椭球面 $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}+\dfrac{z^{2}}{c^{2}}=1$ 的上半部并选取外侧为其定向 (\cref{fig:11.3.7}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-2.2, 0) -- (2.2, 0) node[below] {$y$};
+    \draw[->] (0, -0.4) -- (0, 2.2) node[above] {$z$};
+    \draw[->] (1.3, 0.7) -- (-1.5, -0.85) node[below left] {$x$};
+    \node[below right] at (0, 0) {$O$};
+    
+    % 底面椭圆 (xy 平面截线)
+    \draw[thick, ThemeColor, fill=ThemeColor!10, fill opacity=0.4]
+      (0, 0) ellipse (1.8 and 0.65);
+      
+    % 上半部轮廓弧
+    \draw[thick, ThemeColor] (-1.8, 0) arc (180:0:1.8 and 1.55);
+    
+    % 正面主子午椭圆弧 (xz 平面上半部)
+    \draw[thick, ThemeColor] (-0.9, -0.5) arc (-120:60:1.3 and 1.6);
+    \draw[densely dashed, gray] (0, 1.55) arc (90:270:0.75 and 1.55);
+    
+    % 外法向量 n 向上向外
+    \coordinate (P) at (0.8, 1.05);
+    \draw[->, very thick, ThemeColor] (P) -- ++(0.55, 0.7) node[above right] {$\boldsymbol{n}$};
+    \fill (P) circle (1.2pt);
+    
+    \node at (-1.1, 1.1) {$\vec{\Sigma}$};
+    \fill (1.8, 0) circle (1.1pt) node[below right] {$b$};
+    \fill (0, 1.55) circle (1.1pt) node[above left] {$c$};
+    \fill (-0.9, -0.5) circle (1.1pt) node[below left] {$a$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.7}
+\end{figure}
+\begin{solution}
+采用广义球面坐标
+\[
+\boldsymbol{x}(\theta,\varphi)=(a\sin\theta\cos\varphi,\ b\sin\theta\sin\varphi,\ c\cos\theta),\quad0\leqslant\theta\leqslant\frac{\pi}{2},\ 0\leqslant\varphi\leqslant2\pi,
+\]
+我们得到 $\boldsymbol{x}_{\theta}'\times\boldsymbol{x}_{\varphi}'$ 与 $\vec{\Sigma}$ 方向一致, 且有
+\[
+\begin{aligned}
+\iint_{\Sigma}x^{3}\,\mathrm{d}y\wedge\mathrm{d}z&=\iint_{[0,\frac{\pi}{2}]\times[0,2\pi]}a^{3}\sin^{3}\theta\cos^{3}\varphi\frac{\partial(y,z)}{\partial(\theta,\varphi)}\mathrm{d}\theta\mathrm{d}\varphi\\
+&=\iint_{[0,\frac{\pi}{2}]\times[0,2\pi]}a^{3}\sin^{3}\theta\cos^{3}\varphi
+\begin{vmatrix}
+b\cos\theta\sin\varphi&-c\sin\theta\\
+b\sin\theta\cos\varphi&0
+\end{vmatrix}\mathrm{d}\theta\mathrm{d}\varphi\\
+&=a^{3}bc\int_{0}^{\frac{\pi}{2}}\sin^{5}\theta\,\mathrm{d}\theta\int_{0}^{2\pi}\cos^{4}\varphi\,\mathrm{d}\varphi=a^{3}bc\cdot\frac{4\cdot2}{5\cdot3}\cdot4\cdot\frac{3\cdot1}{4\cdot2}\cdot\frac{\pi}{2}=\frac{2}{5}\pi a^{3}bc.
+\end{aligned}
+\]
+上例表明, 被积微分形式中只有一项 $x^{3}\,\mathrm{d}y\wedge\mathrm{d}z$, 采用计算 $\dfrac{\partial(y,z)}{\partial(\theta,\varphi)}$ 比较方便. 如果被积微分形式中有两项或三项, 则应用例 \ref{ex:11.3.9} 中解法 1 或解法 2 比较方便.
+\end{solution}
+
+\begin{example}\label{ex:11.3.11}
+计算第二型曲面积分
+\[
+\iint_{\Sigma}x\,\mathrm{d}y\wedge\mathrm{d}z+y\,\mathrm{d}z\wedge\mathrm{d}x+z\,\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\Sigma=\{(x,y,z)\mid x,y,z\geqslant0,\ x+y+z=1\}$, $\Sigma$ 的方向与 $(1,1,1)$ 一致 (\cref{fig:11.3.8}).
+\end{example}
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.35, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \coordinate (O) at (0, 0);
+    \draw[->] (O) -- (2.3, 0) node[below] {$y$};
+    \draw[->] (O) -- (0, 2.3) node[above] {$z$};
+    \draw[->] (O) -- (-1.4, -1.2) node[below left] {$x$};
+    \node[below right] at (O) {$O$};
+    
+    % 截距点 A(1,0,0), B(0,1,0), C(0,0,1)
+    \coordinate (A) at (-0.95, -0.85);
+    \coordinate (B) at (1.7, 0);
+    \coordinate (C) at (0, 1.7);
+    
+    % 三角形面片 Sigma
+    \draw[thick, ThemeColor, fill=ThemeColor!18, fill opacity=0.7]
+      (A) -- (B) -- (C) -- cycle;
+      
+    % 面中心重心
+    \coordinate (G) at (barycentric cs:A=1,B=1,C=1);
+    \fill (G) circle (1.3pt);
+    
+    % 法向量 n=(1,1,1) 方向
+    \draw[->, very thick, ThemeColor] (G) -- ++(0.65, 0.75) node[above right] {$\boldsymbol{n}$};
+    
+    % 坐标标注
+    \fill (A) circle (1.2pt) node[below left] {$1$};
+    \fill (B) circle (1.2pt) node[below] {$1$};
+    \fill (C) circle (1.2pt) node[left] {$1$};
+    \node at (0.7, 0.9) {$\Sigma$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.3.8}
+\end{figure}
+\begin{solution}[解法 1]
+先算
+\[
+\iint_{\overrightarrow{\Sigma}}z\,\mathrm{d}x\wedge\mathrm{d}y=\iint_{\substack{x,y\geqslant0\\ x+y\leqslant1}}(1-x-y)\,\mathrm{d}x\mathrm{d}y
+\]
+\[
+\begin{aligned}
+&=\int_{0}^{1}\mathrm{d}x\int_{0}^{1-x}(1-x-y)\mathrm{d}y=\int_{0}^{1}\Bigl(y-xy-\frac{y^{2}}{2}\Bigr)\Big|_{y=0}^{y=1-x}\mathrm{d}x\\
+&=\frac{1}{2}\int_{0}^{1}(1-x)^{2}\mathrm{d}x=-\frac{1}{6}(1-x)^{3}\Big|_{0}^{1}=\frac{1}{6}.
+\end{aligned}
+\]
+根据对称性, 有
+\[
+\iint_{\Sigma}x\,\mathrm{d}y\wedge\mathrm{d}z=\iint_{\Sigma}y\,\mathrm{d}z\wedge\mathrm{d}x=\frac{1}{6},
+\]
+所以
+\[
+\iint_{\Sigma}x\,\mathrm{d}y\wedge\mathrm{d}z+y\,\mathrm{d}z\wedge\mathrm{d}x+z\,\mathrm{d}x\wedge\mathrm{d}y=\frac{1}{6}+\frac{1}{6}+\frac{1}{6}=\frac{1}{2}.
+\]
+\end{solution}
+\begin{solution}[解法 2]
+$\boldsymbol{F}=(x,y,z)$, 与 $\vec{\Sigma}$ 方向一致的单位法向量场为 $\boldsymbol{n}_{0}=\dfrac{1}{\sqrt{3}}(1,1,1)$. 于是,
+\[
+\begin{aligned}
+&\iint_{\Sigma}x\,\mathrm{d}y\wedge\mathrm{d}z+y\,\mathrm{d}z\wedge\mathrm{d}x+z\,\mathrm{d}x\wedge\mathrm{d}y\\
+={}&\iint_{\Sigma}\boldsymbol{F}\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma=\iint_{\Sigma}(x,y,z)\cdot\frac{1}{\sqrt{3}}(1,1,1)\,\mathrm{d}\sigma\\
+={}&\frac{1}{\sqrt{3}}\iint_{\Sigma}(x+y+z)\,\mathrm{d}\sigma=\frac{1}{\sqrt{3}}\sigma(\Sigma)=\frac{1}{\sqrt{3}}\cdot\frac{1}{2}(\sqrt{2})^{2}\sin\frac{\pi}{3}=\frac{1}{2}.
+\end{aligned}
+\]
+\end{solution}
+\begin{solution}[解法 3]
+参阅例 \ref{ex:11.4.7}, 应用 Stokes 定理.
+\end{solution}
+
+\begin{example}\label{ex:11.3.12}
+计算第二型曲面积分
+\[
+\iint_{\overrightarrow{\Sigma}}x^{2}\,\mathrm{d}y\wedge\mathrm{d}z+y^{2}\,\mathrm{d}z\wedge\mathrm{d}x+z^{2}\,\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\overrightarrow{\Sigma}$ 是球面 $(x-a)^{2}+(y-b)^{2}+(z-c)^{2}=R^{2}$ 的外侧. 该球面包围的球体记为 $V$.
+\end{example}
+\begin{solution}
+用平面 $z=c$ 将 $\overrightarrow{\Sigma}$ 分成上, 下两个半球面 $\overrightarrow{\Sigma}_{\text{上}}$, $\overrightarrow{\Sigma}_{\text{下}}$, 上半球面方程为
+\[
+z_{\text{上}}=c+\sqrt{R^{2}-(x-a)^{2}-(y-b)^{2}},
+\]
+下半球面方程为
+\[
+z_{\text{下}}=c-\sqrt{R^{2}-(x-a)^{2}-(y-b)^{2}}.
+\]
+于是,
+\[
+\begin{aligned}
+\iint_{\overrightarrow{\Sigma}}z^{2}\,\mathrm{d}x\wedge\mathrm{d}y&=\iint_{\overrightarrow{\Sigma}_{\text{上}}}z^{2}\,\mathrm{d}x\wedge\mathrm{d}y+\iint_{\overrightarrow{\Sigma}_{\text{下}}}z^{2}\,\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{(x-a)^{2}+(y-b)^{2}\leqslant R^{2}}(z_{\text{上}}^{2}-z_{\text{下}}^{2})\,\mathrm{d}x\mathrm{d}y\\
+&=\iint_{(x-a)^{2}+(y-b)^{2}\leqslant R^{2}}(z_{\text{上}}+z_{\text{下}})(z_{\text{上}}-z_{\text{下}})\,\mathrm{d}x\mathrm{d}y\\
+&=2c\iint_{(x-a)^{2}+(y-b)^{2}\leqslant R^{2}}(z_{\text{上}}-z_{\text{下}})\,\mathrm{d}x\mathrm{d}y=2c\,v(V)=\frac{8c}{3}\pi R^{3}.
+\end{aligned}
+\]
+由对称性知,
+\[
+\iint_{\overrightarrow{\Sigma}}x^{2}\,\mathrm{d}y\wedge\mathrm{d}z+y^{2}\,\mathrm{d}z\wedge\mathrm{d}x+z^{2}\,\mathrm{d}x\wedge\mathrm{d}y=\frac{8}{3}(a+b+c)\pi R^{3}.
+\]
+\end{solution}
+
+\begin{definition}\label{def:11.3.5}
+($\mathbb{R}^{3}$ 中 3 次微分形式在定向区域上的第二型积分) 设 $\Sigma\subset\mathbb{R}^{3}$ 为定向有界区域, $\Delta\subset\mathbb{R}^{3}$ 有体积, 参数表示为
+\[
+\boldsymbol{x}=\boldsymbol{x}(u,v,w)=(x(u,v,w),y(u,v,w),z(u,v,w)),\quad(u,v,w)\in\Delta,
+\]
+它与 $\vec{\Sigma}$ 的定向一致, 即 $\{\boldsymbol{x}_{u}',\boldsymbol{x}_{v}',\boldsymbol{x}_{w}'\}$ 与 $\vec{\Sigma}$ 同为右手系或同为左手系. 我们定义 3 次微分形式 $\omega=f\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z$ ($f$ 连续) 沿 $\vec{\Sigma}$ 的第二型积分为
+\[
+\begin{aligned}
+\iiint_{\Sigma}\omega&=\iiint_{\vec{\Sigma}}f(x,y,z)\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\\
+&\overset{\text{def}}{=}\iiint_{\Delta}f(\boldsymbol{x}(u,v,w))\frac{\partial(x,y,z)}{\partial(u,v,w)}\mathrm{d}u\mathrm{d}v\mathrm{d}w,
+\end{aligned}
+\]
+其中
+\[
+\begin{aligned}
+f\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z&=f\Bigl(\frac{\partial x}{\partial u}\mathrm{d}u+\frac{\partial x}{\partial v}\mathrm{d}v+\frac{\partial x}{\partial w}\mathrm{d}w\Bigr)\wedge\Bigl(\frac{\partial y}{\partial u}\mathrm{d}u+\frac{\partial y}{\partial v}\mathrm{d}v+\frac{\partial y}{\partial w}\mathrm{d}w\Bigr)\\
+&\quad\wedge\Bigl(\frac{\partial z}{\partial u}\mathrm{d}u+\frac{\partial z}{\partial v}\mathrm{d}v+\frac{\partial z}{\partial w}\mathrm{d}w\Bigr)\\
+&=f\frac{\partial(x,y,z)}{\partial(u,v,w)}\mathrm{d}u\wedge\mathrm{d}v\wedge\mathrm{d}w.
+\end{aligned}
+\]
+\end{definition}
+
+类似引理 \ref{lem:11.3.1} 与引理 \ref{lem:11.3.2}, 有下面的引理.
+
+\begin{lemma}\label{lem:11.3.3}
+$\mathbb{R}^{3}$ 中 3 次微分形式 $\omega$ 在定向区域 $\Sigma$ 上的第二型积分与定向参数的选择无关.
+\end{lemma}
+\begin{proof}
+设 $\boldsymbol{x}(u,v,w)$, $\tilde{\boldsymbol{x}}(s,t,q)$ 与 $\vec{\Sigma}$ 的定向一致, $(u,v,w)\in\Delta$, $(s,t,q)\in\widetilde{\Delta}$, 即
+\[
+\boldsymbol{x}_{u}'\cdot(\boldsymbol{x}_{v}'\times\boldsymbol{x}_{w}')=\frac{\partial(x,y,z)}{\partial(u,v,w)},\quad\tilde{\boldsymbol{x}}_{s}'\cdot(\tilde{\boldsymbol{x}}_{t}'\times\tilde{\boldsymbol{x}}_{q}')=\frac{\partial(x,y,z)}{\partial(s,t,q)}
+\]
+都与 $\Sigma$ 相一致. 并且, $\boldsymbol{x}(\Delta)=\tilde{\boldsymbol{x}}(\widetilde{\Delta})=\Sigma$, $\exists h:\Delta\to\widetilde{\Delta}$, $(u,v,w)\mapsto(s,t,q)$ 为 $C^{1}$ 微分同胚. 由于 $\boldsymbol{x}_{u}'\cdot(\boldsymbol{x}_{v}'\times\boldsymbol{x}_{w}')$ 与 $\tilde{\boldsymbol{x}}_{s}'\cdot(\tilde{\boldsymbol{x}}_{t}'\times\tilde{\boldsymbol{x}}_{q}')$ 同号及
+\[
+\begin{aligned}
+\boldsymbol{x}_{u}'\cdot(\boldsymbol{x}_{v}'\times\boldsymbol{x}_{w}')&=\Bigl(\tilde{\boldsymbol{x}}_{s}'\frac{\partial s}{\partial u}+\tilde{\boldsymbol{x}}_{t}'\frac{\partial t}{\partial u}+\tilde{\boldsymbol{x}}_{q}'\frac{\partial q}{\partial u}\Bigr)\cdot\Bigl[\Bigl(\tilde{\boldsymbol{x}}_{s}'\frac{\partial s}{\partial v}+\tilde{\boldsymbol{x}}_{t}'\frac{\partial t}{\partial v}+\tilde{\boldsymbol{x}}_{q}'\frac{\partial q}{\partial v}\Bigr)\\
+&\quad\times\Bigl(\tilde{\boldsymbol{x}}_{s}'\frac{\partial s}{\partial w}+\tilde{\boldsymbol{x}}_{t}'\frac{\partial t}{\partial w}+\tilde{\boldsymbol{x}}_{q}'\frac{\partial q}{\partial w}\Bigr)\Bigr]\\
+&=\frac{\partial(u,v,w)}{\partial(s,t,q)}\tilde{\boldsymbol{x}}_{s}'\cdot(\tilde{\boldsymbol{x}}_{t}'\times\tilde{\boldsymbol{x}}_{q}'),
+\end{aligned}
+\]
+立即得到
+\[
+\frac{\partial(u,v,w)}{\partial(s,t,q)}>0.
+\]
+于是,
+\[
+\begin{aligned}
+&\iiint_{\Delta}f(\boldsymbol{x}(u,v,w))\frac{\partial(x,y,z)}{\partial(u,v,w)}\mathrm{d}u\mathrm{d}v\mathrm{d}w\\
+={}&\iiint_{\Delta}f(\tilde{\boldsymbol{x}}(s,t,q))\frac{\partial(x,y,z)}{\partial(s,t,q)}\frac{\partial(s,t,q)}{\partial(u,v,w)}\mathrm{d}u\mathrm{d}v\mathrm{d}w\\
+&\reasonb{$\frac{\partial(u,v,w)}{\partial(s,t,q)}>0$} {\text{换元}}\iiint_{\widetilde{\Delta}}f(\tilde{\boldsymbol{x}}(s,t,q))\frac{\partial(x,y,z)}{\partial(s,t,q)}\mathrm{d}s\mathrm{d}t\mathrm{d}q.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+类似定理 \ref{thm:11.3.2} 与定理 \ref{thm:11.3.3}, 有下面定理.
+
+\begin{theorem}\label{thm:11.3.4}
+$\mathbb{R}^{3}$ 中 3 次微分形式 $\omega$ 在定向区域 $\Sigma$ 上, 有
+\[
+\iiint_{\overrightarrow{\Sigma}}\omega=-\iiint_{\overrightarrow{\Sigma}^{-}}\omega.
+\]
+\end{theorem}
+\begin{proof}
+取 $\boldsymbol{x}(u,v,w)$ 与 $\vec{\Sigma}$ 的定向一致, $\tilde{\boldsymbol{x}}(s,t,q)$ 与 $\vec{\Sigma}^{-}$ 的定向一致. 于是,
+\[
+\frac{\partial(s,t,q)}{\partial(u,v,w)}<0.
+\]
+从而
+\[
+\begin{aligned}
+\iiint_{\overrightarrow{\Sigma}}\omega&=\iiint_{\Delta}f(\boldsymbol{x}(u,v,w))\frac{\partial(x,y,z)}{\partial(u,v,w)}\mathrm{d}u\mathrm{d}v\mathrm{d}w\\
+&=\iiint_{\Delta}f(\boldsymbol{x}(u,v,w))\frac{\partial(x,y,z)}{\partial(s,t,q)}\frac{\partial(s,t,q)}{\partial(u,v,w)}\mathrm{d}u\mathrm{d}v\mathrm{d}w\\
+&\reasonb{$\frac{\partial(s,t,q)}{\partial(u,v,w)}<0$} {\text{换元}}-\iiint_{\widetilde{\Delta}}f(\tilde{\boldsymbol{x}}(s,t,q))\frac{\partial(x,y,z)}{\partial(s,t,q)}\mathrm{d}s\mathrm{d}t\mathrm{d}q=-\iiint_{\overrightarrow{\Sigma}^{-}}\omega.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+更一般地, 有下面的定义.
+
+\begin{definition}\label{def:11.3.6}
+($\mathbb{R}^{n}$ 中 $k$ 次微分形式在 $k$ 维定向曲面上的第二型积分) 设 $U\subset\mathbb{R}^{n}$ 为开集, $\vec{\Sigma}\subset U$ 为 $k$ 维定向有界曲面, 其参数表示为
+\[
+\begin{aligned}
+\boldsymbol{x}(u_{1},u_{2},\cdots,u_{k})&=(x_{1}(u_{1},u_{2},\cdots,u_{k}),x_{2}(u_{1},u_{2},\cdots,u_{k}),\cdots,x_{n}(u_{1},u_{2},\cdots,u_{k})),\\
+&\quad(u_{1},u_{2},\cdots,u_{k})\in\Delta.
+\end{aligned}
+\]
+定向曲面 $\Sigma$ 的定向由 $\{\boldsymbol{x}_{u_{1}}',\boldsymbol{x}_{u_{2}}',\cdots,\boldsymbol{x}_{u_{k}}'\}$ 所确定. $k$ 次微分形式
+\[
+\omega=\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}
+\]
+是连续的. 定义 $\omega$ 在 $\Sigma$ 上的第二型曲面积分为
+\[
+\begin{aligned}
+&\int_{\Sigma}\!\!\cdots\!\int\omega=\int_{\Sigma}\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&\reason{def}\int_{\Delta}\!\!\cdots\!\int\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\boldsymbol{x}(u_{1},u_{2},\cdots,u_{k}))\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(u_{1},u_{2},\cdots,u_{k})}\mathrm{d}u_{1}\cdots\mathrm{d}u_{k},
+\end{aligned}
+\]
+其中
+\[
+\begin{aligned}
+\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}&=\Bigl(\sum_{j_{1}=1}^{k}\frac{\partial x_{i_{1}}}{\partial u_{j_{1}}}\mathrm{d}u_{j_{1}}\Bigr)\wedge\cdots\wedge\Bigl(\sum_{j_{k}=1}^{k}\frac{\partial x_{i_{k}}}{\partial u_{j_{k}}}\mathrm{d}u_{j_{k}}\Bigr)\\
+&=\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(u_{1},u_{2},\cdots,u_{k})}\mathrm{d}u_{1}\wedge\cdots\wedge\mathrm{d}u_{k}.
+\end{aligned}
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:11.3.4}
+$\mathbb{R}^{n}$ 中 $k$ 次微分形式 $\omega$ 的第二型曲面积分与 $\vec{\Sigma}$ 的定向参数的选择无关.
+\end{lemma}
+\begin{proof}
+设 $\tilde{\boldsymbol{x}}(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})$ 为 $\vec{\Sigma}$ 的另一定向参数表示, 则
+\[
+\frac{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}{\partial(u_{1},u_{2},\cdots,u_{k})}>0.
+\]
+于是,
+\[
+\begin{aligned}
+&\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\boldsymbol{x}(u_{1},u_{2},\cdots,u_{k}))\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(u_{1},u_{2},\cdots,u_{k})}\mathrm{d}u_{1}\cdots\mathrm{d}u_{k}\\
+={}&\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\tilde{\boldsymbol{x}}(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k}))\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}\frac{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}{\partial(u_{1},u_{2},\cdots,u_{k})}\mathrm{d}u_{1}\cdots\mathrm{d}u_{k}\\
+&\reasonb{换元}{\frac{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}{\partial(u_{1},u_{2},\cdots,u_{k})}>0}\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\tilde{\boldsymbol{x}}(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k}))\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}\mathrm{d}\tilde{u}_{1}\cdots\mathrm{d}\tilde{u}_{k},
+\end{aligned}
+\]
+其中 $h:\Delta\to\widetilde{\Delta}$, $(u_{1},u_{2},\cdots,u_{k})\mapsto(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})$ 为 $C^{1}$ 微分同胚.
+\end{proof}
+
+\begin{theorem}\label{thm:11.3.5}
+关于 $\mathbb{R}^{n}$ 中 $k$ 次微分形式 $\omega$ 在可定向曲面 $\Sigma$ 上, 有
+\[
+\int_{\overrightarrow{\Sigma}}\!\!\cdots\!\int\omega=-\int_{\overrightarrow{\Sigma}^{-}}\!\!\cdots\!\int\omega.
+\]
+\end{theorem}
+\begin{proof}
+{\emergencystretch=3em 取 $\boldsymbol{x}(u_{1},u_{2},\cdots,u_{k})$ 与 $\Sigma$ 定向一致, $\widetilde{\boldsymbol{x}}(\widetilde{u}_{1},\widetilde{u}_{2},\cdots,\widetilde{u}_{k})$ 与 $\widetilde{\Sigma}^{-}$ 的定向一致, $(u_{1},u_{2},\cdots,u_{k})\in\Delta$, $(\widetilde{u}_{1},\widetilde{u}_{2},\cdots,\widetilde{u}_{k})\in\widetilde{\Delta}$, $h:\Delta\to\widetilde{\Delta}$, $(u_{1},u_{2},\cdots,u_{k})\mapsto(\widetilde{u}_{1},\widetilde{u}_{2},\cdots,\widetilde{u}_{k})$ 为 $C^{1}$ 微分同胚. 于是,\par}
+\[
+\frac{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}{\partial(u_{1},u_{2},\cdots,u_{k})}<0.
+\]
+由此推得
+\[
+\begin{aligned}
+\idotsint_{\overrightarrow{\Sigma}}\omega&=\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}\mathrm{d}x_{i_{1}}\wedge\cdots\wedge\mathrm{d}x_{i_{k}}\\
+&=\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\boldsymbol{x}(u_{1},u_{2},\cdots,u_{k}))\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(u_{1},u_{2},\cdots,u_{k})}\mathrm{d}u_{1}\cdots\mathrm{d}u_{k}\\
+&=\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\tilde{\boldsymbol{x}}(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k}))\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}\\
+&\qquad\cdot\frac{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}{\partial(u_{1},u_{2},\cdots,u_{k})}\mathrm{d}u_{1}\cdots\mathrm{d}u_{k}\\
+&\reasonb{换元}{\frac{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}{\partial(u_{1},u_{2},\cdots,u_{k})}<0}-\idotsint\sum_{i_{1}<\cdots<i_{k}}P_{i_{1}\cdots i_{k}}(\tilde{\boldsymbol{x}}(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k}))\\
+&\qquad\cdot\frac{\partial(x_{i_{1}},x_{i_{2}},\cdots,x_{i_{k}})}{\partial(\tilde{u}_{1},\tilde{u}_{2},\cdots,\tilde{u}_{k})}\mathrm{d}\tilde{u}_{1}\cdots\mathrm{d}\tilde{u}_{k}\\
+&=-\idotsint_{\overrightarrow{\Sigma}^{-}}\omega.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{exblock}{练习题 11.3}
+\item 计算下列第二型曲线积分:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\int_{\overrightarrow{C}}\frac{-y\,\mathrm{d}x+x\,\mathrm{d}y}{x^{2}+y^{2}}$, $\overrightarrow{C}$ 为逆时针方向的圆周 $x^{2}+y^{2}=a^{2}$, $a>0$;
+  \item $\displaystyle\int_{\overrightarrow{C}}(x+y)\mathrm{d}x+(x-y)\mathrm{d}y$, $\overrightarrow{C}$ 表示逆时针方向的椭圆 $\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1$, $a>0$, $b>0$;
+  \item $\displaystyle\int_{\overrightarrow{C}}(x^{2}-2xy)\mathrm{d}x+(y^{2}-2xy)\mathrm{d}y$, $\overrightarrow{C}:x=y^{2}$, $y\in[-1,1]$;
+  \item $\displaystyle\int_{\overrightarrow{C}}x\,\mathrm{d}y$, $\overrightarrow{C}$: 直线 $2x+y=1$ 与两坐标轴组成的三角形, 沿逆时针方向;
+  \item $\displaystyle\int_{\overrightarrow{C}}(x^{2}+y^{2})\mathrm{d}y$, $\overrightarrow{C}$ 是直线 $x=1$, $x=3$ 和 $y=1$, $y=4$ 构成的矩形, 沿逆时针方向.
+  \end{enumerate}
+\item 设常数 $a,b,c$ 满足 $ac-b^{2}>0$. 计算第二型曲线积分
+  \[
+  \int_{\overrightarrow{C}}\frac{-y\,\mathrm{d}x+x\,\mathrm{d}y}{ax^{2}+2bxy+cy^{2}},
+  \]
+  其中 $\overrightarrow{C}$ 为逆时针方向的单位圆.
+\item 计算下列第二型曲线积分, 曲线的定向是参数的增加方向:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\int_{\overrightarrow{C}}xz^{2}\mathrm{d}x+yx^{2}\mathrm{d}y+zy^{2}\mathrm{d}z$, $\overrightarrow{C}:(x,y,z)=(t,t^{2},t^{3})$, $t\in[0,1]$;
+  \item $\displaystyle\int_{\overrightarrow{C}}(y+z)\mathrm{d}x+(z+x)\mathrm{d}y+(x+y)\mathrm{d}z$, $\overrightarrow{C}:(x,y,z)=(a\sin^{2}t,2a\sin t\cos t,a\cos^{2}t)$, $t\in[0,\pi]$.
+  \end{enumerate}
+\item 计算第二型曲线积分
+  \[
+  \int_{\overrightarrow{C}}(y^{2}-z^{2})\mathrm{d}x+(z^{2}-x^{2})\mathrm{d}y+(x^{2}-y^{2})\mathrm{d}z,
+  \]
+  $\overrightarrow{C}$ 为球面片 $x^{2}+y^{2}+z^{2}=1$, $x\geqslant0$, $y\geqslant0$, $z\geqslant0$ 的边界, 方向是从 $(1,0,0)$ 到 $(0,1,0)$ 到 $(0,0,1)$ 再回到 $(1,0,0)$.
+\item 计算第二型曲线积分
+  \[
+  \int_{\overrightarrow{C}}y\,\mathrm{d}x+z\,\mathrm{d}y+x\,\mathrm{d}z.
+  \]
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\overrightarrow{C}$ 是平面 $x+y=2$ 与球面 $x^{2}+y^{2}+z^{2}=2(x+y)$ 交成的圆周, 眼睛从原点看去顺时针方向是 $\overrightarrow{C}$ 的方向;
+  \item $\overrightarrow{C}$ 是曲面 $z=xy$ 与 $x^{2}+y^{2}=1$ 的交线, 沿 $\overrightarrow{C}$ 的方向行进时, $z$ 轴在左手边.
+  \end{enumerate}
+\item 计算下列第二型曲面积分:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}x^{4}\,\mathrm{d}y\wedge\mathrm{d}z+y^{4}\,\mathrm{d}z\wedge\mathrm{d}x+z^{4}\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:x^{2}+y^{2}+z^{2}=a^{2}\,(a>0)$, 内侧;
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}xz\,\mathrm{d}y\wedge\mathrm{d}z+yz\,\mathrm{d}z\wedge\mathrm{d}x+x^{2}\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:x^{2}+y^{2}+z^{2}=a^{2}\,(a>0)$, 外侧;
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}f(x)\,\mathrm{d}y\wedge\mathrm{d}z+g(y)\,\mathrm{d}z\wedge\mathrm{d}x+h(z)\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:[0,a]\times[0,b]\times[0,c]$ 的边界, 外侧;
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}z\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{z^{2}}{c^{2}}=1$, 外侧;
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}(y-z)\,\mathrm{d}y\wedge\mathrm{d}z+(z-x)\,\mathrm{d}z\wedge\mathrm{d}x+(x-y)\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:z=\sqrt{x^{2}+y^{2}}$, $z=h$ 所围曲面, 外侧;
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}x\,\mathrm{d}y\wedge\mathrm{d}z+y\,\mathrm{d}z\wedge\mathrm{d}x+z\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:x^{2}+y^{2}+z^{2}=a^{2}\,(a>0)$, 外侧;
+  \item $\displaystyle\int_{\overrightarrow{\Sigma}}x^{3}\,\mathrm{d}y\wedge\mathrm{d}z+y^{3}\,\mathrm{d}z\wedge\mathrm{d}x+z^{3}\,\mathrm{d}x\wedge\mathrm{d}y$, 其中 $\overrightarrow{\Sigma}:\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}+\frac{z^{2}}{c^{2}}=1\ (a,b,c>0)$, 外侧.
+  \end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 11.3}
+\item 证明: $\bigl|\int_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}\bigr|\leqslant\int_{C}\lVert\boldsymbol{F}\rVert\,\mathrm{d}s$.
+\item 计算第二型曲线积分
+  \[
+  \int_{\overrightarrow{C}}\frac{-y\,\mathrm{d}x+x\,\mathrm{d}y}{x^{2}+y^{2}},
+  \]
+  其中 $\overrightarrow{C}$ 是任意一条不通过原点的逆时针方向的定向曲线.
+\item 设 $\overrightarrow{\Sigma}:z=f(x,y)$, $(x,y)\in\Delta$, 法向量向上, 证明:
+  \[
+  \iint_{\overrightarrow{\Sigma}}P\,\mathrm{d}y\wedge\mathrm{d}z=-\iint_{\Delta}P(x,y,f(x,y))\frac{\partial f}{\partial x}\,\mathrm{d}x\wedge\mathrm{d}y;
+  \]
+  \[
+  \iint_{\overrightarrow{\Sigma}}Q\,\mathrm{d}z\wedge\mathrm{d}x=-\iint_{\Delta}Q(x,y,f(x,y))\frac{\partial f}{\partial y}\,\mathrm{d}x\wedge\mathrm{d}y.
+  \]
+\item 设 $\mathbb{R}^{n}$ 中有 $n$ 个一次微分形式
+  \[
+  \omega_{j}=\sum_{i=1}^{n}a_{j}^{i}\mathrm{d}x_{i},\quad j=1,2,\cdots,n.
+  \]
+  证明:
+  \[
+  \omega_{1}\wedge\cdots\wedge\omega_{n}=\det(a_{i}^{j}(\boldsymbol{x}))\,\mathrm{d}x_{1}\wedge\cdots\wedge\mathrm{d}x_{n}.
+  \]
+\item 设 $f_{j}(x_{1},x_{2},\cdots,x_{n})\ (j=1,2,\cdots,n)$ 是 $\mathbb{R}^{n}$ 中 $n$ 个 $C^{r}\ (r\geqslant1)$ 函数, $\mathrm{d}f_{j}$ 是它们的微分, $j=1,2,\cdots,n$. 证明:
+  \[
+  \mathrm{d}f_{1}\wedge\cdots\wedge\mathrm{d}f_{n}=\frac{\partial(f_{1},f_{2},\cdots,f_{n})}{\partial(x_{1},x_{2},\cdots,x_{n})}\,\mathrm{d}x_{1}\wedge\cdots\wedge\mathrm{d}x_{n}.
+  \]
+\end{exblock}

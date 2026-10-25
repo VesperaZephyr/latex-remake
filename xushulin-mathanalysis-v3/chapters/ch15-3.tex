@@ -1,0 +1,1065 @@
+% ====================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S15.3  含参变量广义积分的性质
+%  源：原书印刷页 198 起（PDF 物理页 204 起）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch15_15_3_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref（写作「定理 x.y.z」原文）；数学模式内的中文必须包text
+% ====================================================================
+\section{含参变量广义积分的性质}\label{sec:15.3}
+
+设含参变量无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 对 $[\alpha,\beta]$ 中每个 $u$ 都收敛, 我们要研究由它所确定的函数
+\[
+  \varphi(u)=\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x
+\]
+的性质.
+
+与连续函数项级数的一致收敛性保证了级数和函数的连续性一样, 无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 的一致收敛性保证了 $\varphi(u)$ 的连续性.
+
+\begin{theorem}[含参变量无穷积分保持连续性]\label{thm:15.3.1}
+如果 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 中连续, 且无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛, 则函数
+\[
+  \varphi(u)=\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x
+\]
+在 $[\alpha,\beta]$ 上连续, 即
+\[
+  \begin{aligned}
+    \lim_{u\to u_{0}}\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x&=\lim_{u\to u_{0}}\varphi(u)=\varphi(u_{0})\\
+    &=\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x=\int_{a}^{+\infty}\left[\lim_{u\to u_{0}}f(x,u)\right]\mathrm{d}x
+  \end{aligned}
+\]
+(即极限号与无穷积分号可以交换).
+\end{theorem}
+
+\begin{proof}
+$\forall u_{0}\in[\alpha,\beta]$, $\forall\varepsilon>0$, 因为 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛, 故 $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A>A_{0}$ 时, $\forall u\in[\alpha,\beta]$, 有
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right|<\frac{\varepsilon}{3}.
+\]
+对固定的 $A>A_{0}$, 由定理~\ref{thm:15.1.1} 知, $\displaystyle\int_{a}^{A}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上连续, 故 $\exists\delta>0$, 当 $|u-u_{0}|<\delta$ 时, 有
+\[
+  \left|\int_{a}^{A}f(x,u)\,\mathrm{d}x-\int_{a}^{A}f(x,u_{0})\,\mathrm{d}x\right|<\frac{\varepsilon}{3}.
+\]
+于是
+\[
+  \begin{aligned}
+    |\varphi(u)-\varphi(u_{0})|&=\left|\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x-\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x\right|\\
+    &=\left|\int_{a}^{A}f(x,u)\,\mathrm{d}x-\int_{a}^{A}f(x,u_{0})\,\mathrm{d}x+\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x-\int_{A}^{+\infty}f(x,u_{0})\,\mathrm{d}x\right|\\
+    &\leqslant\left|\int_{a}^{A}f(x,u)\,\mathrm{d}x-\int_{a}^{A}f(x,u_{0})\,\mathrm{d}x\right|+\left|\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right|+\left|\int_{A}^{+\infty}f(x,u_{0})\,\mathrm{d}x\right|\\
+    &<\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon,
+  \end{aligned}
+\]
+所以, $\varphi(u)$ 在 $u_{0}$ 处连续. 由 $u_{0}\in[\alpha,\beta]$ 的任意性, 故 $\varphi(u)$ 在 $[\alpha,\beta]$ 上连续.
+\end{proof}
+
+与函数项级数类似, 无穷积分的一致收敛只是保证 $\varphi(u)$ 连续的一个充分条件, 并不必要. 但在 $f(x,u)$ 非负的条件下, 无穷积分的一致收敛便是 $\varphi(u)$ 连续的充要条件. 与 Dini 定理~\ref{thm:13.2.5} 相对偶的是下面的定理.
+
+\begin{theorem}[Dini]\label{thm:15.3.2}
+设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 中连续、非负. 如果
+\[
+  \varphi(u)=\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x
+\]
+在 $u\in[\alpha,\beta]$ 上连续, 则无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1} (利用函数项级数的 Dini 定理) 因为 $f(x,u)$ 连续及非负, 故积分
+\[
+  a_{n}(u)=\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x
+\]
+也连续、非负, 而 (和函数)
+\[
+  \varphi(u)=\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x=\sum_{n=1}^{\infty}a_{n}(u)
+\]
+在 $[\alpha,\beta]$ 上连续, 根据函数项级数的 Dini 定理~\ref{thm:13.2.5}, $\displaystyle\sum_{n=1}^{\infty}a_{n}(u)$ 在 $[\alpha,\beta]$ 上一致收敛. 所以, $\forall\varepsilon>0$, $\exists N=N(\varepsilon)\in\mathbb{N}$, 使得 $\forall u\in[\alpha,\beta]$, 有
+\[
+  \left|\sum_{n=1}^{N}a_{n}(u)-\varphi(u)\right|=\sum_{n=N+1}^{\infty}a_{n}(u)<\varepsilon.
+\]
+取 $A_{0}=a+N=a+N(\varepsilon)$, 由 $f(x,u)$ 非负, 故当 $A>A_{0}$ 时, 有
+\[
+  \begin{aligned}
+    0&\leqslant\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\leqslant\int_{A_{0}}^{+\infty}f(x,u)\,\mathrm{d}x=\sum_{n=N+1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x\\
+    &=\sum_{n=N+1}^{\infty}a_{n}(u)<\varepsilon,\quad\forall u\in[\alpha,\beta].
+  \end{aligned}
+\]
+这就证明了 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+
+\textbf{证法 2} (反证) 假设 $\varphi(u)=\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $[\alpha,\beta]$ 上不一致收敛, 则 $\exists\varepsilon_{0}>0$, $\forall n\in\mathbb{N}$, $\exists u_{n}\in[\alpha,\beta]$, 有
+\[
+  \int_{a+n}^{+\infty}f(x,u_{n})\,\mathrm{d}x\geqslant\varepsilon_{0}\iff\int_{a}^{a+n}f(x,u_{n})\,\mathrm{d}x\leqslant\int_{a}^{+\infty}f(x,u_{n})\,\mathrm{d}x-\varepsilon_{0}=\varphi(u_{n})-\varepsilon_{0}.
+\]
+由于 $u_{n}\in[\alpha,\beta]$, $\forall n\in\mathbb{N}$, 根据 Bolzano-Weierstrass 序列紧性知, $\{u_{n}\}$ 有收敛子列 $\{u_{n_{k}}\}$, 设 $\lim\limits_{k\to+\infty}u_{n_{k}}=u_{0}\in[\alpha,\beta]$. 对固定的 $u_{0}$, 因为 $\displaystyle\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x$ 收敛, 故 $\exists m\in\mathbb{N}$, 使得
+\[
+  \int_{a+m}^{+\infty}f(x,u_{0})\,\mathrm{d}x<\varepsilon_{0}\iff\int_{a}^{a+m}f(x,u_{0})\,\mathrm{d}x>\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x-\varepsilon_{0}=\varphi(u_{0})-\varepsilon_{0}.
+\]
+但我们知道, 当 $k$ 充分大时, $n_{k}>m$, 即有
+\[
+  \varphi(u_{n_{k}})-\varepsilon_{0}\geqslant\int_{a}^{a+n_{k}}f(x,u_{n_{k}})\,\mathrm{d}x\xlongequal[f\text{ 非负}]{\quad\geqslant\quad}\int_{a}^{a+m}f(x,u_{n_{k}})\,\mathrm{d}x,
+\]
+两边令 $k\to+\infty$, 并由 $\varphi(u)$ 连续及定理~\ref{thm:15.1.1} 得到
+\[
+  \varphi(u_{0})-\varepsilon_{0}\geqslant\int_{a}^{a+m}f(x,u_{0})\,\mathrm{d}x>\varphi(u_{0})-\varepsilon_{0},
+\]
+矛盾.
+\end{proof}
+
+\begin{remark}\label{rem:15.3.1}
+思考题 15.3 第 4 题表明, Dini 定理~\ref{thm:15.3.2} 中有界闭区间 $[\alpha,\beta]$ 改为开区间或无穷区间, 结论未必成立.
+\end{remark}
+
+关于 $\varphi(u)$ 的积分有下面的定理.
+
+\begin{theorem}[有穷积分号与无穷积分号可交换]\label{thm:15.3.3}
+如果 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 中连续, $\varphi(u)=\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛, 则 $\varphi(u)$ 在 $[\alpha,\beta]$ 上 Riemann 可积, 且
+\[
+  \int_{\alpha}^{\beta}\varphi(u)\,\mathrm{d}u=\int_{\alpha}^{\beta}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x
+\]
+(即对 $x$ 与 $u$ 的积分次序可以交换).
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1} 根据定理~\ref{thm:15.3.1}, $\varphi(u)$ 在 $[\alpha,\beta]$ 上连续, 当然在 $[\alpha,\beta]$ 上 Riemann 可积. 因为 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛, 故 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 使得当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right|<\frac{\varepsilon}{\beta-\alpha},\quad\forall u\in[\alpha,\beta].
+\]
+取定 $A>A_{0}$, 由定理~\ref{thm:15.1.2} 知
+\[
+  \int_{\alpha}^{\beta}\left(\int_{a}^{A}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{A}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+于是
+\[
+  \begin{aligned}
+    &\left|\int_{a}^{A}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x-\int_{\alpha}^{\beta}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\right|\\
+    &\quad=\left|\int_{a}^{A}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x-\int_{\alpha}^{\beta}\left(\int_{a}^{A}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u-\int_{\alpha}^{\beta}\left(\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\right|\\
+    &\quad=\left|\int_{\alpha}^{\beta}\left(\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\right|\leqslant\int_{\alpha}^{\beta}\left|\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right|\mathrm{d}u<\frac{\varepsilon}{\beta-\alpha}(\beta-\alpha)=\varepsilon.
+  \end{aligned}
+\]
+这就证明了
+\[
+  \int_{a}^{+\infty}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x=\int_{\alpha}^{\beta}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u.
+\]
+
+\textbf{证法 2} 记
+\[
+  \int_{a}^{+\infty}f(x,u)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x.
+\]
+因为无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 中一致收敛, 故 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\,\mathrm{d}x\right|<\varepsilon,\quad\forall u\in[\alpha,\beta].
+\]
+取 $N\in\mathbb{N}$, 使得 $N>A_{0}-a$, 即 $a+N>A_{0}$. 于是, $\forall u\in[\alpha,\beta]$, 有
+\[
+  \left|\sum_{n=N+1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x\right|=\left|\int_{a+N}^{+\infty}f(x,u)\,\mathrm{d}x\right|<\varepsilon.
+\]
+因此, $\displaystyle\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛. 这就得到
+\[
+  \begin{aligned}
+    \int_{\alpha}^{\beta}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u&=\int_{\alpha}^{\beta}\left(\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\\
+    &\xlongequal{\text{定理~\ref{thm:13.2.3p}}}\sum_{n=1}^{\infty}\int_{\alpha}^{\beta}\left(\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\\
+    &\xlongequal{\text{定理~\ref{thm:15.1.2}}}\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\lim_{N\to+\infty}\sum_{n=1}^{N}\int_{a+n-1}^{a+n}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\lim_{N\to+\infty}\int_{a}^{a+N}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\lim_{A\to+\infty}\int_{a}^{A}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\int_{a}^{+\infty}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x,
+  \end{aligned}
+\]
+其中最后一个等式成立是因为 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛, 故 $\forall\varepsilon>0$, $\exists A_{1}=A_{1}(\varepsilon)>a$, 当 $A',A''>A_{1}$ 时, 有
+\[
+  \left|\int_{A'}^{A''}f(x,u)\,\mathrm{d}x\right|<\frac{\varepsilon}{\beta-\alpha},\quad\forall u\in[\alpha,\beta].
+\]
+因此
+\[
+  \begin{aligned}
+    \left|\int_{A'}^{A''}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\right|&\xlongequal{\text{定理~\ref{thm:15.1.2}}}\left|\int_{\alpha}^{\beta}\left(\int_{A'}^{A''}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\right|\\
+    &\leqslant\int_{\alpha}^{\beta}\left|\int_{A'}^{A''}f(x,u)\,\mathrm{d}x\right|\mathrm{d}u<\frac{\varepsilon}{\beta-\alpha}(\beta-\alpha)=\varepsilon.
+  \end{aligned}
+\]
+这就证明了 $\displaystyle\int_{a}^{+\infty}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x$ 收敛. 由此得到
+\[
+  \lim_{N\to+\infty}\int_{a}^{a+N}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x=\lim_{A\to+\infty}\int_{a}^{A}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+\end{proof}
+
+定理~\ref{thm:15.3.3} 中, 关于 $u$ 的积分区间 $[\alpha,\beta]$ 是有限的, 在很多的情况下, 往往需要知道两个无穷区间的积分是否可以交换. 对此, 有下面的定理.
+
+\begin{theorem}[无穷积分号与无穷积分号可交换]\label{thm:15.3.4}
+如果 $f(x,u)$ 满足:
+\begin{enumerate}
+  \item $f(x,u)$ 在 $[a,+\infty)\times[\alpha,+\infty)$ 上连续;
+  \item 对任何固定的 $\beta>\alpha$, 无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛; 对任何固定的 $b>a$, 无穷积分 $\displaystyle\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u$ 关于 $x\in[a,b]$ 一致收敛;
+  \item 无穷积分
+  \[
+    \int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}|f(x,u)|\,\mathrm{d}u\right)\mathrm{d}x,\quad\int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}|f(x,u)|\,\mathrm{d}x\right)\mathrm{d}u
+\]
+  中至少有一个收敛.
+\end{enumerate}
+则无穷积分
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u,\quad\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x
+\]
+均收敛, 且
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+不失一般性, 设 $\displaystyle\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}|f(x,u)|\,\mathrm{d}u\right)\mathrm{d}x$ 收敛. 根据无穷积分的 Cauchy 收敛准则, 有
+\[
+  \int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x
+\]
+收敛. 于是
+\[
+  \begin{aligned}
+    \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u&=\lim_{\beta\to+\infty}\int_{\alpha}^{\beta}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u\\
+    &\xlongequal[\text{定理~\ref{thm:15.3.3}}]{\text{条件 (2)}}\lim_{\beta\to+\infty}\int_{a}^{+\infty}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\lim_{\beta\to+\infty}\int_{a}^{+\infty}\left(\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &\quad+\lim_{\beta\to+\infty}\int_{a}^{+\infty}\left(\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\lim_{\beta\to+\infty}\int_{a}^{+\infty}\left[\int_{\alpha}^{\beta}f(x,u)\,\mathrm{d}u+\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right]\mathrm{d}x\\
+    &=\lim_{\beta\to+\infty}\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\\
+    &=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+  \end{aligned}
+\]
+它等价于要证
+\[
+  \lim_{\beta\to+\infty}\int_{a}^{+\infty}\left(\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x=0.
+\]
+事实上, $\forall\varepsilon>0$, 因为 $\displaystyle\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}|f(x,u)|\,\mathrm{d}u\right)\mathrm{d}x$ 收敛, 故 $\exists b_{0}>a$, 使得
+\[
+  0\leqslant\int_{b_{0}}^{+\infty}\left(\int_{\alpha}^{+\infty}|f(x,u)|\,\mathrm{d}u\right)\mathrm{d}x<\frac{\varepsilon}{2}.
+\]
+对固定的 $b_{0}$, 由于 $\displaystyle\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u$ 关于 $x\in[a,b_{0}]$ 一致收敛, 故必 $\exists\beta_{0}>\alpha$, 使得当 $\beta>\beta_{0}$ 时, 有
+\[
+  \left|\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right|<\frac{\varepsilon}{2(b_{0}-a)},\quad\forall x\in[a,b_{0}].
+\]
+于是, 当 $\beta>\beta_{0}$ 时, 有
+\[
+  \begin{aligned}
+    \left|\int_{a}^{+\infty}\left(\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\right|&=\left|\int_{a}^{b_{0}}\left(\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x+\int_{b_{0}}^{+\infty}\left(\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x\right|\\
+    &\leqslant\int_{a}^{b_{0}}\left|\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right|\mathrm{d}x+\int_{b_{0}}^{+\infty}\left(\int_{\beta}^{+\infty}|f(x,u)|\,\mathrm{d}u\right)\mathrm{d}x\\
+    &<\frac{\varepsilon}{2(b_{0}-a)}\cdot(b_{0}-a)+\int_{b_{0}}^{+\infty}\left(\int_{\alpha}^{+\infty}|f(x,u)|\,\mathrm{d}u\right)\mathrm{d}x\\
+    &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+  \end{aligned}
+\]
+这就证明了
+\[
+  \lim_{\beta\to+\infty}\int_{a}^{+\infty}\left(\int_{\beta}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x=0.
+\]
+\end{proof}
+
+如果 $f(x,u)\geqslant0$, 利用无穷积分的 Dini 定理~\ref{thm:15.3.2}, 从定理~\ref{thm:15.3.4} 可得下面的结论.
+
+\begin{theorem}[非负函数的无穷积分与无穷积分可交换]\label{thm:15.3.5}
+如果 $f(x,u)$ 满足:
+\begin{enumerate}
+  \item $f(x,u)$ 在 $[a,+\infty)\times[\alpha,+\infty)$ 上连续且非负;
+  \item 函数 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,+\infty)$ 上连续, $\displaystyle\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u$ 在 $x\in[a,+\infty)$ 上连续;
+  \item 无穷积分
+  \[
+    \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u,\quad\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x
+\]
+  中至少有一个收敛.
+\end{enumerate}
+则条件 (3) 中另一个无穷积分也收敛, 且
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+由条件 (1)、(2) 及无穷积分的 Dini 定理~\ref{thm:15.3.2} 知:
+$\forall\beta>\alpha$, $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛;
+$\forall b>a$, $\displaystyle\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u$ 关于 $x\in[a,b]$ 一致收敛.
+再由条件 (3) 及定理~\ref{thm:15.3.4} 可推得条件 (3) 中另一个无穷积分也收敛, 且
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+\end{proof}
+
+由定理~\ref{thm:15.3.5} 立即得到.
+
+\begin{corollary}[非负函数的无穷积分与无穷积分可交换]\label{cor:15.3.1}
+如果 $f(x,u)$ 满足:
+\begin{enumerate}
+  \item $f(x,u)$ 在 $[a,+\infty)\times[\alpha,+\infty)$ 上连续且非负;
+  \item 函数 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,+\infty)$ 上连续, $\displaystyle\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u$ 在 $x\in[a,+\infty)$ 上连续.
+\end{enumerate}
+则
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+此外, 如果无穷积分
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u,\quad\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x
+\]
+中至少有一个收敛, 则上述另一个无穷积分也收敛.
+如果上述无穷积分中有一个为 $+\infty$, 则另一个也为 $+\infty$, 即
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x=+\infty.
+\]
+\end{corollary}
+
+\begin{proof}
+因为 $f(x,u)\geqslant0$, 所以有两种情形:
+(1) 无穷积分中至少有一个为 $+\infty$, 则另一个必为 $+\infty$, 即
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=+\infty=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+(2) 无穷积分中至少有一个收敛, 则根据定理~\ref{thm:15.3.5} 知, 另一个无穷积分也收敛, 且
+\[
+  \int_{\alpha}^{+\infty}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)\mathrm{d}u=\int_{a}^{+\infty}\left(\int_{\alpha}^{+\infty}f(x,u)\,\mathrm{d}u\right)\mathrm{d}x.
+\]
+\end{proof}
+
+现在来研究 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 的求导问题.
+
+\begin{theorem}[无穷积分对参变量求导]\label{thm:15.3.6}
+如果 $f(x,u)$ 满足:
+\begin{enumerate}
+  \item $f(x,u)$ 与 $\dfrac{\partial f(x,u)}{\partial u}$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续;
+  \item $\displaystyle\int_{a}^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛;
+  \item $\exists u_{0}\in[\alpha,\beta]$, 使 $\displaystyle\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x$ 收敛.
+\end{enumerate}
+则
+\[
+  \varphi(u)=\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x
+\]
+在 $u\in[\alpha,\beta]$ 上可导, 且
+\[
+  \varphi'(u)=\frac{\mathrm{d}\varphi(u)}{\mathrm{d}u}=\frac{\mathrm{d}}{\mathrm{d}u}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)=\int_{a}^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1} 设 $a_{n}(u)=\displaystyle\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x$, 显然由 $f(x,u)$ 连续知 $a_{n}(u)$ 为 $[\alpha,\beta]$ 上的连续函数, 再由 $\dfrac{\partial f(x,u)}{\partial u}$ 连续及定理~\ref{thm:15.1.3} 推得
+\[
+  a_{n}'(u)=\frac{\mathrm{d}}{\mathrm{d}u}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x=\int_{a+n-1}^{a+n}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x
+\]
+在 $[\alpha,\beta]$ 上连续. 从 $\displaystyle\int_{a}^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛可推得
+\[
+  \sum_{n=1}^{\infty}a_{n}'(u)=\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x
+\]
+在 $u\in[\alpha,\beta]$ 上一致收敛. 由条件 (3) 知 $\displaystyle\sum_{n=1}^{\infty}a_{n}(u_{0})=\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}f(x,u_{0})\,\mathrm{d}x=\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x$ 收敛. 根据函数项级数的逐项求导定理~\ref{thm:13.2.4p} 得到
+\[
+  \begin{aligned}
+    \varphi'(u)&=\frac{\mathrm{d}}{\mathrm{d}u}\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x=\frac{\mathrm{d}}{\mathrm{d}u}\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x\\
+    &\xlongequal{\text{定理~\ref{thm:13.2.4p}}}\sum_{n=1}^{\infty}\frac{\mathrm{d}}{\mathrm{d}u}\int_{a+n-1}^{a+n}f(x,u)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{a+n-1}^{a+n}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x\\
+    &=\int_{a}^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x.
+  \end{aligned}
+\]
+
+\textbf{证法 2} 设 $\varphi_{n}(u)=\displaystyle\int_{a}^{a+n}f(x,u)\,\mathrm{d}x$, 则由条件 (1) 及定理~\ref{thm:15.1.3} 推得 $\varphi_{n}'(u)=\dfrac{\mathrm{d}}{\mathrm{d}u}\displaystyle\int_{a}^{a+n}f(x,u)\,\mathrm{d}x=\int_{a}^{a+n}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x$ 在 $[\alpha,\beta]$ 上连续. 由条件 (2) 知 $\{\varphi_{n}'(u)\}$ 在 $[\alpha,\beta]$ 上一致收敛于 $\psi(u)=\displaystyle\int_{a}^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x$. 再由条件 (3) 得到 $\{\varphi_{n}(u_{0})\}$ 收敛于 $\displaystyle\int_{a}^{+\infty}f(x,u_{0})\,\mathrm{d}x$. 根据定理~\ref{thm:13.2.4}, $\varphi(u)=\lim\limits_{n\to+\infty}\varphi_{n}(u)=\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上可导, 且
+\[
+  \begin{aligned}
+    \varphi'(u)&=\frac{\mathrm{d}}{\mathrm{d}u}\left(\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x\right)=\lim_{n\to+\infty}\varphi_{n}'(u)=\lim_{n\to+\infty}\int_{a}^{a+n}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x\\
+    &=\int_{a}^{+\infty}\frac{\partial f(x,u)}{\partial u}\,\mathrm{d}x.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.3.1}
+讨论函数
+\[
+  \varphi(\alpha)=\int_{0}^{+\infty}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x
+\]
+的连续性.
+\end{example}
+
+\begin{proof}[解]
+因为
+\[
+  \frac{\arctan x}{x^{\alpha}(2+x^{3})}\sim\frac{1}{2}\frac{1}{x^{\alpha-1}}\quad(x\to0^{+}),
+\]
+所以, 当 $\alpha-1<1$, 即 $\alpha<2$ 时, 积分 $\displaystyle\int_{0}^{1}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x$ 收敛; 又因为
+\[
+  \frac{\arctan x}{x^{\alpha}(2+x^{3})}\sim\frac{\pi}{2}\frac{1}{x^{\alpha+3}}\quad(x\to+\infty),
+\]
+故当 $\alpha+3>1$, 即 $\alpha>-2$ 时, 积分 $\displaystyle\int_{1}^{+\infty}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x$ 收敛. 由此得到, $\varphi(\alpha)$ 的定义域应为 $(-2,2)$.
+
+下面证明 $\varphi(\alpha)$ 在 $(-2,2)$ 上连续. 为此, 对任意 $[a,b]\subset(-2,2)$, 先证 $\displaystyle\int_{0}^{+\infty}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x$ 在 $\alpha\in[a,b]$ 上一致收敛. 根据定理~\ref{thm:15.3.1}, $\varphi(\alpha)$ 在 $[a,b]$ 上连续. 再由于 $[a,b]$ 的任取性, $\varphi(\alpha)$ 在 $\alpha\in(-2,2)$ 上连续.
+
+事实上, 当 $x\in(0,1)$ 时, 设 $a\leqslant\alpha\leqslant b<2$, 则存在常数 $c$, 使得
+\[
+  0<\frac{\arctan x}{x^{\alpha}(2+x^{3})}\leqslant\frac{c}{x^{\alpha-1}}\leqslant\frac{c}{x^{b-1}},
+\]
+而 $b-1<1$, 故由 Weierstrass 判别法知, 积分 $\displaystyle\int_{0}^{1}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x$ 在 $\alpha\in(-\infty,b]$ 上一致收敛.
+
+当 $x\in[1,+\infty)$ 时, 设 $-2<a\leqslant\alpha$, 则
+\[
+  0<\frac{\arctan x}{x^{\alpha}(2+x^{3})}\leqslant\frac{\pi}{2}\frac{1}{x^{\alpha+3}}\leqslant\frac{\pi}{2}\frac{1}{x^{a+3}},
+\]
+而 $a+3>1$, 故由 Weierstrass 判别法知, 积分 $\displaystyle\int_{1}^{+\infty}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x$ 在 $\alpha\in[a,+\infty)$ 上一致收敛.
+
+将两个积分合在一起, 即知 $\displaystyle\int_{0}^{+\infty}\frac{\arctan x}{x^{\alpha}(2+x^{3})}\,\mathrm{d}x$ 在 $\alpha\in[a,b]\subset(-2,2)$ 上一致收敛.
+\end{proof}
+
+\begin{example}\label{ex:15.3.2}
+证明: $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x=\ln\frac{b}{a}$ ($b>a>0$).
+\end{example}
+
+\begin{proof}
+\textbf{证法 1} 在\extref{例 6.5.19} 中, 取 $f(x)=\mathrm{e}^{-x}$, 则 $k=\lim\limits_{x\to+\infty}f(x)=\lim\limits_{x\to+\infty}\mathrm{e}^{-x}=0$, $f(0)=1$. 于是
+\[
+  \int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x=[f(0)-k]\ln\frac{b}{a}=(1-0)\ln\frac{b}{a}=\ln\frac{b}{a}.
+\]
+
+\textbf{证法 2}
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x&=\int_{0}^{+\infty}\left(\int_{a}^{b}\mathrm{e}^{-ux}\,\mathrm{d}u\right)\mathrm{d}x\xlongequal[\text{积分可交换}]{\text{定理~\ref{thm:15.3.3}}}\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-ux}\,\mathrm{d}x\right)\mathrm{d}u\\
+    &=\int_{a}^{b}-\frac{\mathrm{e}^{-ux}}{u}\bigg|_{x=0}^{+\infty}\mathrm{d}u=\int_{a}^{b}\frac{\mathrm{d}u}{u}=\ln u\bigg|_{a}^{b}=\ln\frac{b}{a}.
+  \end{aligned}
+\]
+在上述计算中, 关键的是将
+\[
+  \frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}
+\]
+表示成积分 $\displaystyle\int_{a}^{b}\mathrm{e}^{-ux}\,\mathrm{d}u$. 然后大胆地 (千万不要缩手缩脚!) 交换积分号. 最后计算出其结果为 $\ln\dfrac{b}{a}$. 但是, 还必须验证积分确实可交换.
+
+事实上, 因为 $f(x,u)=\mathrm{e}^{-ux}$ 在 $[0,+\infty)\times[a,b]$ 上连续, 又
+\[
+  |\mathrm{e}^{-ux}|\leqslant\mathrm{e}^{-ax},\quad\forall(x,u)\in[0,+\infty)\times[a,b],
+\]
+且 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax}\,\mathrm{d}x$ 收敛. 根据 Weierstrass 判别法知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ux}\,\mathrm{d}x$ 在 $u\in[a,b]$ 中一致收敛, 从而有
+\[
+  \int_{0}^{+\infty}\left(\int_{a}^{b}\mathrm{e}^{-ux}\,\mathrm{d}u\right)\mathrm{d}x=\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-ux}\,\mathrm{d}x\right)\mathrm{d}u.
+\]
+
+\textbf{证法 3} 视 $a$ 为参数, 令
+\[
+  I(a)=\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x,
+\]
+则
+\[
+  \begin{aligned}
+    I'(a)&=\frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x\xlongequal[\text{积分号下求导}]{\text{定理~\ref{thm:15.3.6}}}\int_{0}^{+\infty}\frac{\partial}{\partial a}\left(\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\right)\mathrm{d}x\\
+    &=-\int_{0}^{+\infty}\mathrm{e}^{-ax}\,\mathrm{d}x=\frac{1}{a}\mathrm{e}^{-ax}\bigg|_{0}^{+\infty}=-\frac{1}{a},
+  \end{aligned}
+\]
+\[
+  I(a)=\int_{b}^{a}I'(t)\,\mathrm{d}t+I(b)=-\int_{b}^{a}\frac{\mathrm{d}t}{t}+0=-\ln t\bigg|_{b}^{a}=\ln\frac{b}{a}.
+\]
+由于
+\[
+  f(x,a)=\begin{cases}
+    \dfrac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}, & x\neq0,\\
+    b-a, & x=0,
+\end{cases}
+\]
+与
+\[
+  \frac{\partial f(x,a)}{\partial a}=\begin{cases}
+    -\mathrm{e}^{-ax}, & x\neq0,\\
+    -1, & x=0
+\end{cases}=-\mathrm{e}^{-ax}
+\]
+在 $[0,+\infty)\times[0,+\infty)$ 上都连续. 另一方面, 任取 $\delta>0$, 有
+\[
+  \left|\frac{\partial f(x,a)}{\partial a}\right|=|-\mathrm{e}^{-ax}|\leqslant\mathrm{e}^{-\delta x},\quad\forall x\in[0,+\infty),\forall a\in[\delta,+\infty).
+\]
+由于 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\delta x}\,\mathrm{d}x$ 收敛, 故根据 Weierstrass 判别法知, 无穷积分 $\displaystyle\int_{0}^{+\infty}\frac{\partial f(x,a)}{\partial a}\,\mathrm{d}x=\int_{0}^{+\infty}(-\mathrm{e}^{-ax})\,\mathrm{d}x$ 在 $a\in[\delta,+\infty)$ 上一致收敛. 此外, 显然 $f(x,a)$ 连续, 且由
+\[
+  \lim_{x\to+\infty}\frac{f(x,a)}{\frac{1}{x^{2}}}=\lim_{x\to+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{\frac{1}{x}}=\lim_{x\to+\infty}\left(\frac{x}{\mathrm{e}^{ax}}-\frac{x}{\mathrm{e}^{bx}}\right)=0-0=0
+\]
+以及 $\displaystyle\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{2}}$ 收敛立知, $\displaystyle\int_{0}^{+\infty}f(x,a)\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x$ 收敛. 综合以上讨论及应用定理~\ref{thm:15.3.6} 得到
+\[
+  \frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\partial}{\partial a}\left(\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\right)\mathrm{d}x,\quad\forall a\in[\delta,+\infty).
+\]
+由于 $\delta>0$ 任取, 故上式在 $a\in(0,+\infty)$ 均成立.
+\end{proof}
+
+更一般地, 有下面的例题.
+
+\begin{example}\label{ex:15.3.3}
+证明: $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x=\frac{1}{2}\ln\frac{b^{2}+m^{2}}{a^{2}+m^{2}}$ ($b>a>0$). 当 $m=0$ 时, 就是
+\[
+  \int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\,\mathrm{d}x=\ln\frac{b}{a}.
+\]
+\end{example}
+
+\begin{proof}
+\textbf{证法 1}
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x&=\int_{0}^{+\infty}\left(\int_{a}^{b}\mathrm{e}^{-ux}\cos mx\,\mathrm{d}u\right)\mathrm{d}x\\
+    &\xlongequal[\text{积分可交换}]{\text{定理~\ref{thm:15.3.3}}}\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-ux}\cos mx\,\mathrm{d}x\right)\mathrm{d}u\\
+    &=\int_{a}^{b}\frac{u}{u^{2}+m^{2}}\,\mathrm{d}u\\
+    &=\frac{1}{2}\ln(u^{2}+m^{2})\bigg|_{a}^{b}=\frac{1}{2}\ln\frac{b^{2}+m^{2}}{a^{2}+m^{2}},
+  \end{aligned}
+\]
+其中积分可交换是因为
+\[
+  |\mathrm{e}^{-ux}\cos mx|\leqslant\mathrm{e}^{-ux}\leqslant\mathrm{e}^{-ax},
+\]
+而 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax}\,\mathrm{d}x$ 收敛, 根据 Weierstrass 判别法知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ux}\cos mx\,\mathrm{d}x$ 在 $u\in[a,b]$ 上一致收敛. 从而有
+\[
+  \int_{0}^{+\infty}\left(\int_{a}^{b}\mathrm{e}^{-ux}\cos mx\,\mathrm{d}u\right)\mathrm{d}x=\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-ux}\cos mx\,\mathrm{d}x\right)\mathrm{d}u.
+\]
+
+\textbf{证法 2} 视 $a$ 为参数, 令
+\[
+  I(a)=\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x,
+\]
+则
+\[
+  \begin{aligned}
+    I'(a)&=\frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x\\
+    &\xlongequal[\text{积分号下求导}]{\text{定理~\ref{thm:15.3.6}}}\int_{0}^{+\infty}\frac{\partial}{\partial a}\left(\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\right)\mathrm{d}x\\
+    &=-\int_{0}^{+\infty}\mathrm{e}^{-ax}\cos mx\,\mathrm{d}x=-\frac{a}{a^{2}+m^{2}},
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    I(a)&=\int_{b}^{a}I'(t)\,\mathrm{d}t+I(b)=-\int_{b}^{a}\frac{t}{t^{2}+m^{2}}\,\mathrm{d}t\\
+    &=-\frac{1}{2}\ln(t^{2}+m^{2})\bigg|_{b}^{a}=\frac{1}{2}\ln\frac{b^{2}+m^{2}}{a^{2}+m^{2}}.
+  \end{aligned}
+\]
+由于
+\[
+  f(x,a)=\begin{cases}
+    \dfrac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx, & x\neq0,\\
+    b-a, & x=0,
+\end{cases}
+\]
+\[
+  \frac{\partial f(x,a)}{\partial a}=\begin{cases}
+    -\mathrm{e}^{-ax}\cos mx, & x\neq0,\\
+    -1, & x=0
+\end{cases}=-\mathrm{e}^{-ax}\cos mx
+\]
+在 $[0,+\infty)\times[0,+\infty)$ 上连续. 另一方面, 任取 $\delta>0$, 有
+\[
+  \left|\frac{\partial f(x,a)}{\partial a}\right|=|-\mathrm{e}^{-ax}\cos mx|\leqslant\mathrm{e}^{-\delta x},\quad\forall x\in[0,+\infty),\forall a\in[\delta,+\infty).
+\]
+由于 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\delta x}\,\mathrm{d}x$ 收敛, 故根据 Weierstrass 判别法知, 无穷积分 $\displaystyle\int_{0}^{+\infty}\frac{\partial f(x,a)}{\partial a}\,\mathrm{d}x=\int_{0}^{+\infty}(-\mathrm{e}^{-ax}\cos mx)\,\mathrm{d}x$ 在 $a\in[\delta,+\infty)$ 上一致收敛. 此外, 显然 $f(x,a)$ 连续, 且由
+\[
+  \lim_{x\to+\infty}\frac{f(x,a)}{\frac{1}{x^{2}}}=\lim_{x\to+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{\frac{1}{x}}\cos mx=\lim_{x\to+\infty}\left(\frac{x}{\mathrm{e}^{ax}}-\frac{x}{\mathrm{e}^{bx}}\right)\cos mx=0
+\]
+以及 $\displaystyle\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{2}}$ 收敛可知, $\displaystyle\int_{0}^{+\infty}f(x,a)\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x$ 收敛. 综合以上讨论及应用定理~\ref{thm:15.3.6} 得到
+\[
+  \frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\partial}{\partial a}\left(\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\right)\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.3.4}
+证明: $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\cos bx\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{a}}\mathrm{e}^{-\frac{b^{2}}{4a}}$ ($a>0$).
+
+当 $b=0$ 时, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{a}}$, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}$.
+\end{example}
+
+\begin{proof}
+视 $b$ 为参数, 令 $I(b)=\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\cos bx\,\mathrm{d}x$, $f(x,b)=\mathrm{e}^{-ax^{2}}\cos bx$ 在 $[0,+\infty)\times[0,+\infty)$ 中连续, 且
+\[
+  |f(x,b)|=|\mathrm{e}^{-ax^{2}}\cos bx|\leqslant\mathrm{e}^{-ax^{2}},\quad\forall b\in[0,+\infty),
+\]
+而 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\,\mathrm{d}x$ 收敛, 根据 Weierstrass 判别法, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\cos bx\,\mathrm{d}x$ 在 $b\in[0,+\infty)$ 上一致收敛. 根据定理~\ref{thm:15.3.1}, $I(b)$ 在 $[0,+\infty)$ 上连续.
+
+又因为
+\[
+  \left|\frac{\partial f(x,b)}{\partial b}\right|=|-x\mathrm{e}^{-ax^{2}}\sin bx|\leqslant x\mathrm{e}^{-ax^{2}},
+\]
+而 $\displaystyle\int_{0}^{+\infty}x\mathrm{e}^{-ax^{2}}\,\mathrm{d}x$ 收敛, 根据 Weierstrass 判别法知, $\displaystyle\int_{0}^{+\infty}\frac{\partial f(x,b)}{\partial b}\,\mathrm{d}x=-\int_{0}^{+\infty}x\mathrm{e}^{-ax^{2}}\sin bx\,\mathrm{d}x$ 在 $b\in[0,+\infty)$ 中一致收敛. 应用无穷积分号下求导定理~\ref{thm:15.3.6} 得到
+\[
+  \begin{aligned}
+    I'(b)&=-\int_{0}^{+\infty}x\mathrm{e}^{-ax^{2}}\sin bx\,\mathrm{d}x=\frac{1}{2a}\int_{0}^{+\infty}\sin bx\,\mathrm{d}\mathrm{e}^{-ax^{2}}\\
+    &=\frac{1}{2a}\left(\mathrm{e}^{-ax^{2}}\sin bx\bigg|_{0}^{+\infty}-\int_{0}^{+\infty}b\mathrm{e}^{-ax^{2}}\cos bx\,\mathrm{d}x\right)\\
+    &=-\frac{b}{2a}I(b),
+  \end{aligned}
+\]
+\[
+  (\ln|I(b)|)'=\frac{I'(b)}{I(b)}=-\frac{b}{2a},\quad\ln|I(b)|=\ln|I(0)|-\frac{b^{2}}{4a},
+\]
+\[
+  I(b)=I(0)\mathrm{e}^{-\frac{b^{2}}{4a}}=\frac{1}{2}\sqrt{\frac{\pi}{a}}\mathrm{e}^{-\frac{b^{2}}{4a}},
+\]
+其中 $I(0)$
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\,\mathrm{d}x\xlongequal{t=\sqrt{a}x}\int_{0}^{+\infty}\mathrm{e}^{-t^{2}}\frac{\mathrm{d}t}{\sqrt{a}}=\frac{1}{\sqrt{a}}\cdot\frac{\sqrt{\pi}}{2}=\frac{1}{2}\sqrt{\frac{\pi}{a}}.
+\]
+\end{proof}
+
+% ===== PART-B =====
+
+\begin{example}\label{ex:15.3.5}
+证明: $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}$.
+\end{example}
+
+\begin{proof}
+证法 1$\sim$3 参阅\extref{例 6.5.7}, \extref{例 10.6.2}, 例~\ref{ex:15.2.8}.
+
+\textbf{证法 4} 由 $I=\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x\xlongequal[u>0]{x=ut}\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}t^{2}}\,\mathrm{d}t$ 得到
+\[
+  \begin{aligned}
+    I^{2}&=I\int_{0}^{+\infty}\mathrm{e}^{-u^{2}}\,\mathrm{d}u=\int_{0}^{+\infty}I\mathrm{e}^{-u^{2}}\,\mathrm{d}u=\int_{0}^{+\infty}\left(\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}t^{2}}\,\mathrm{d}t\right)\mathrm{e}^{-u^{2}}\,\mathrm{d}u\\
+    &=\int_{0}^{+\infty}\left(\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}(1+t^{2})}\,\mathrm{d}t\right)\mathrm{d}u\\
+    &\xlongequal[\text{无穷积分号交换}]{\text{定理~\ref{thm:15.3.5}}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}(1+t^{2})}\,\mathrm{d}u\right)\mathrm{d}t\\
+    &=\int_{0}^{+\infty}-\frac{\mathrm{e}^{-u^{2}(1+t^{2})}}{2(1+t^{2})}\bigg|_{u=0}^{+\infty}\,\mathrm{d}t=\frac{1}{2}\int_{0}^{+\infty}\frac{\mathrm{d}t}{1+t^{2}}=\frac{1}{2}\arctan t\bigg|_{0}^{+\infty}=\frac{\pi}{4},
+  \end{aligned}
+\]
+可得到
+\[
+  I=\frac{\sqrt{\pi}}{2}.
+\]
+
+接下来证无穷积分交换次序的合理性. 因为 $f(t,u)=u\mathrm{e}^{-u^{2}(1+t^{2})}$ 在 $[0,+\infty)\times[0,+\infty)$ 上连续且非负, 故
+\[
+  \varphi(u)=\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}(1+t^{2})}\,\mathrm{d}t=\mathrm{e}^{-u^{2}}\int_{0}^{+\infty}\mathrm{e}^{-(ut)^{2}}\,\mathrm{d}(ut)=I\mathrm{e}^{-u^{2}}
+\]
+为 $[0,+\infty)$ 上的连续函数,
+\[
+  \psi(t)=\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}(1+t^{2})}\,\mathrm{d}u=\frac{1}{2}\frac{1}{1+t^{2}}
+\]
+也为 $[0,+\infty)$ 上的连续函数. 且
+\[
+  \int_{0}^{+\infty}\varphi(u)\,\mathrm{d}u=\int_{0}^{+\infty}I\mathrm{e}^{-u^{2}}\,\mathrm{d}u=I\int_{0}^{+\infty}\mathrm{e}^{-u^{2}}\,\mathrm{d}u=I^{2}\quad(\text{正实数})
+\]
+收敛. 根据定理~\ref{thm:15.3.5}, 有
+\[
+  \int_{0}^{+\infty}\left(\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}(1+t^{2})}\,\mathrm{d}t\right)\mathrm{d}u=\int_{0}^{+\infty}\left(\int_{0}^{+\infty}u\mathrm{e}^{-u^{2}(1+t^{2})}\,\mathrm{d}u\right)\mathrm{d}t.
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.3.6}
+证明:
+\[
+  \int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\,\mathrm{d}x=\sqrt{\pi}(\sqrt{b}-\sqrt{a}),\quad a>0,b>0.
+\]
+\end{example}
+
+\begin{proof}
+\textbf{证法 1} 视 $a$ 为参数, 令
+\[
+  I(a)=\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\,\mathrm{d}x,
+\]
+则
+\[
+  \begin{aligned}
+    I'(a)&=\frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\,\mathrm{d}x\xlongequal[\text{无穷积分号下求导}]{\text{定理~\ref{thm:15.3.6}}}\int_{0}^{+\infty}\frac{\partial}{\partial a}\left(\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\right)\mathrm{d}x\\
+    &=-\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\,\mathrm{d}x\xlongequal{t=\sqrt{a}x}-\int_{0}^{+\infty}\mathrm{e}^{-t^{2}}\frac{\mathrm{d}t}{\sqrt{a}}=-\frac{\sqrt{\pi}}{2\sqrt{a}},
+  \end{aligned}
+\]
+\[
+  I(a)=\int_{b}^{a}I'(t)\,\mathrm{d}t+I(b)=-\int_{b}^{a}\frac{\sqrt{\pi}}{2\sqrt{t}}\,\mathrm{d}t+I(b)=-\sqrt{\pi}\sqrt{t}\bigg|_{b}^{a}+0=\sqrt{\pi}(\sqrt{b}-\sqrt{a}).
+\]
+现在再来验证无穷积分号下求导的合理性. 事实上, 由于
+\[
+  f(x,a)=\begin{cases}
+    \dfrac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}, & x\neq0,\\
+    b-a, & x=0
+\end{cases}
+\]
+与
+\[
+  \frac{\partial f(x,a)}{\partial a}=\begin{cases}
+    -\mathrm{e}^{-ax^{2}}, & x\neq0,\\
+    -1, & x=0
+\end{cases}=-\mathrm{e}^{-ax^{2}}
+\]
+在 $[0,+\infty)\times[0,+\infty)$ 上都连续. 另一方面, 任取 $\delta>0$, 有
+\[
+  \left|\frac{\partial f(x,a)}{\partial a}\right|=|-\mathrm{e}^{-ax^{2}}|\leqslant\mathrm{e}^{-\delta x^{2}},\quad\forall x\in[0,+\infty),\forall a\in[\delta,+\infty).
+\]
+由于 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\delta x^{2}}\,\mathrm{d}x$ 收敛, 故根据 Weierstrass 判别法知, 无穷积分 $\displaystyle\int_{0}^{+\infty}\frac{\partial f(x,a)}{\partial a}\,\mathrm{d}x=\int_{0}^{+\infty}(-\mathrm{e}^{-ax^{2}})\,\mathrm{d}x$ 在 $a\in[\delta,+\infty)$ 上一致收敛. 此外, 显然 $f(x,a)$ 连续, 且由
+\[
+  \lim_{x\to+\infty}\frac{f(x,a)}{\frac{1}{x^{2}}}=\lim_{x\to+\infty}(\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}})=0
+\]
+以及 $\displaystyle\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{2}}$ 收敛立知, $\displaystyle\int_{0}^{+\infty}f(x,a)\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\,\mathrm{d}x$ 收敛. 综上及应用定理~\ref{thm:15.3.6} 得到
+\[
+  \frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\partial}{\partial a}\left(\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\right)\mathrm{d}x,\quad\forall a\in[\delta,+\infty).
+\]
+由于 $\delta>0$ 任取, 故上式在 $a\in(0,+\infty)$ 均成立.
+
+\textbf{证法 2}
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\mathrm{e}^{-bx^{2}}}{x^{2}}\,\mathrm{d}x&=\int_{0}^{+\infty}\left(\int_{a}^{b}\mathrm{e}^{-ux^{2}}\,\mathrm{d}u\right)\mathrm{d}x\xlongequal[\text{积分可交换}]{\text{定理~\ref{thm:15.3.3}}}\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-ux^{2}}\,\mathrm{d}x\right)\mathrm{d}u\\
+    &\xlongequal{t=\sqrt{u}x}\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-t^{2}}\frac{\mathrm{d}t}{\sqrt{u}}\right)\mathrm{d}u=\int_{a}^{b}\frac{\sqrt{\pi}}{2\sqrt{u}}\,\mathrm{d}u=\sqrt{\pi u}\bigg|_{a}^{b}\\
+    &=\sqrt{\pi}(\sqrt{b}-\sqrt{a}).
+  \end{aligned}
+\]
+因为 $f(x,u)=\mathrm{e}^{-ux^{2}}$ 在 $[0,+\infty)\times[a,b]$ 上连续, 又因为
+\[
+  |\mathrm{e}^{-ux^{2}}|\leqslant\mathrm{e}^{-ax^{2}},\quad\forall(x,u)\in[0,+\infty)\times[a,b],
+\]
+且 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ax^{2}}\,\mathrm{d}x$ 收敛, 根据 Weierstrass 判别法知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ux^{2}}\,\mathrm{d}x$ 在 $u\in[a,b]$ 中一致收敛 (不失一般性, 令 $a<b$), 从而有
+\[
+  \int_{0}^{+\infty}\left(\int_{a}^{b}\mathrm{e}^{-ux^{2}}\,\mathrm{d}u\right)\mathrm{d}x=\int_{a}^{b}\left(\int_{0}^{+\infty}\mathrm{e}^{-ux^{2}}\,\mathrm{d}x\right)\mathrm{d}u.
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.3.7}
+证明: $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}\mathrm{e}^{-2a}$ ($a\geqslant0$).
+\end{example}
+
+\begin{proof}
+\textbf{证法 1} 视 $a$ 为参数, 令 $\varphi(a)=\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x$ ($a\geqslant0$), 则
+\[
+  f(x,a)=\begin{cases}
+    \mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}, & x\neq0,\\
+    0, & x=0,
+\end{cases}\quad
+  \frac{\partial f(x,a)}{\partial a}=\begin{cases}
+    -\dfrac{2a}{x^{2}}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}, & x\neq0,\\
+    0, & x=0
+\end{cases}
+\]
+在 $[0,+\infty)\times[0,+\infty)$ 上都连续. 因为
+\[
+  |f(x,a)|\leqslant\mathrm{e}^{-x^{2}},\quad\forall x\in[0,+\infty),\forall a\in[0,+\infty)
+\]
+及 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$ 收敛, 故根据 Weierstrass 判别法知, $\displaystyle\int_{0}^{+\infty}f(x,a)\,\mathrm{d}x=\int_{0}^{+\infty}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x$ 收敛 ($a\geqslant0$). 又因为
+\[
+  \left|\frac{\partial f(x,a)}{\partial a}\right|=\left|-\frac{2a}{x^{2}}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\right|\leqslant\frac{2\beta}{x^{2}}\min\left\{\mathrm{e}^{-x^{2}},\mathrm{e}^{-\frac{\alpha^{2}}{x^{2}}}\right\},
+\]
+所以, $\displaystyle\int_{0}^{+\infty}\frac{\partial f(x,a)}{\partial a}\,\mathrm{d}x$ 在 $a\in[\alpha,\beta]$ 上一致收敛 ($\beta>\alpha>0$). 于是, 应用定理~\ref{thm:15.3.6} 得到
+\[
+  \begin{aligned}
+    \varphi'(a)&=\frac{\mathrm{d}}{\mathrm{d}a}\int_{0}^{+\infty}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\partial}{\partial a}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x\\
+    &=-2a\int_{0}^{+\infty}\frac{1}{x^{2}}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x\xlongequal{x=\frac{a}{t}}-2a\int_{+\infty}^{0}\frac{t^{2}}{a^{2}}\mathrm{e}^{-\left(\frac{a^{2}}{t^{2}}+t^{2}\right)}\frac{-a}{t^{2}}\,\mathrm{d}t\\
+    &=-2\int_{0}^{+\infty}\mathrm{e}^{-\left(t^{2}+\frac{a^{2}}{t^{2}}\right)}\,\mathrm{d}t=-2\varphi(a),
+  \end{aligned}
+\]
+\[
+  \frac{\varphi'(a)}{\varphi(a)}=-2,\quad\ln\varphi(a)=-2a+\ln\varphi(0),
+\]
+\[
+  \varphi(a)=\varphi(0)\mathrm{e}^{-2a}=\frac{\sqrt{\pi}}{2}\mathrm{e}^{-2a}.
+\]
+
+\textbf{证法 2} 由
+\[
+  \begin{aligned}
+    \varphi(a)&=\int_{0}^{+\infty}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x\xlongequal[a>0]{x=\frac{a}{t}}\int_{+\infty}^{0}\mathrm{e}^{-\left(\frac{a^{2}}{t^{2}}+t^{2}\right)}\frac{-a}{t^{2}}\,\mathrm{d}t\\
+    &=\int_{0}^{+\infty}\frac{a}{x^{2}}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x,
+  \end{aligned}
+\]
+得到
+\[
+  \begin{aligned}
+    2\varphi(a)&=\int_{0}^{+\infty}\left(1+\frac{a}{x^{2}}\right)\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x=\mathrm{e}^{-2a}\int_{0}^{+\infty}\mathrm{e}^{-\left(x-\frac{a}{x}\right)^{2}}\,\mathrm{d}\left(x-\frac{a}{x}\right)\\
+    &\xlongequal{t=x-\frac{a}{x}}\mathrm{e}^{-2a}\int_{-\infty}^{+\infty}\mathrm{e}^{-t^{2}}\,\mathrm{d}t=2\mathrm{e}^{-2a}\int_{0}^{+\infty}\mathrm{e}^{-t^{2}}\,\mathrm{d}t=2\mathrm{e}^{-2a}\cdot\frac{\sqrt{\pi}}{2},
+  \end{aligned}
+\]
+即 $\varphi(a)=\dfrac{\sqrt{\pi}}{2}\mathrm{e}^{-2a}$.
+\end{proof}
+
+\begin{example}\label{ex:15.3.8}
+证明:
+\[
+  \int_{0}^{+\infty}\frac{\sin\beta x}{x}\,\mathrm{d}x=\begin{cases}
+    \dfrac{\pi}{2}, & \beta>0,\\
+    0, & \beta=0,\\
+    -\dfrac{\pi}{2}, & \beta<0.
+\end{cases}
+\]
+\end{example}
+
+\begin{proof}
+用 Dirichlet 判别法, 由\extref{例 6.5.12} 知, $\displaystyle\int_{0}^{+\infty}\frac{\sin x}{x}\,\mathrm{d}x$ 是收敛的 (但非绝对收敛, 故条件收敛). 为计算它的值, 应引进收敛因子 $\mathrm{e}^{-\alpha x}$, 考虑含参变量 $\alpha$ 的积分
+\[
+  I(\alpha)=\int_{0}^{+\infty}\mathrm{e}^{-\alpha x}\frac{\sin x}{x}\,\mathrm{d}x.
+\]
+例~\ref{ex:15.2.5} 已经证明了这个积分在 $[0,+\infty)$ 上一致收敛. 而被积函数
+\[
+  f(x,\alpha)=\begin{cases}
+    \mathrm{e}^{-\alpha x}\dfrac{\sin x}{x}, & x\neq0,\\
+    1, & x=0
+\end{cases}
+\]
+在 $[0,+\infty)\times[0,+\infty)$ 上连续, 根据定理~\ref{thm:15.3.1}, $I(\alpha)$ 在 $[0,+\infty)$ 上连续.
+
+由于当 $\alpha\geqslant\delta>0$ 时, 有
+\[
+  \left|\frac{\partial f(x,\alpha)}{\partial\alpha}\right|=|-\mathrm{e}^{-\alpha x}\sin x|\leqslant\mathrm{e}^{-\delta x},
+\]
+且 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\delta x}\,\mathrm{d}x$ 收敛, 由 Weierstrass 判别法知道, 积分
+\[
+  \int_{0}^{+\infty}\frac{\partial f(x,\alpha)}{\partial\alpha}\,\mathrm{d}x=-\int_{0}^{+\infty}\mathrm{e}^{-\alpha x}\sin x\,\mathrm{d}x
+\]
+在 $\alpha\in[\delta,+\infty)$ 上一致收敛. 于是, 由定理~\ref{thm:15.3.6} 得到
+\[
+  I'(\alpha)=-\int_{0}^{+\infty}\mathrm{e}^{-\alpha x}\sin x\,\mathrm{d}x\xlongequal{\text{两次分部积分}}-\frac{1}{1+\alpha^{2}},\quad0<\alpha<+\infty,
+\]
+\[
+  I(\alpha)=-\arctan\alpha+c.
+\]
+由于
+\[
+  |I(\alpha)|=\left|\int_{0}^{+\infty}\mathrm{e}^{-\alpha x}\frac{\sin x}{x}\,\mathrm{d}x\right|\leqslant\int_{0}^{+\infty}\mathrm{e}^{-\alpha x}\,\mathrm{d}x=\frac{1}{\alpha},
+\]
+故 $\lim\limits_{\alpha\to+\infty}I(\alpha)=0$, 且
+\[
+  c=\lim_{\alpha\to+\infty}c=\lim_{\alpha\to+\infty}(I(\alpha)+\arctan\alpha)=\lim_{\alpha\to+\infty}I(\alpha)+\frac{\pi}{2}=0+\frac{\pi}{2}=\frac{\pi}{2},
+\]
+\[
+  I(\alpha)=-\arctan\alpha+\frac{\pi}{2},
+\]
+\[
+  \int_{0}^{+\infty}\frac{\sin x}{x}\,\mathrm{d}x=I(0)=0+\frac{\pi}{2}=\frac{\pi}{2}.
+\]
+由此得到
+\[
+  \int_{0}^{+\infty}\frac{\sin\beta x}{x}\,\mathrm{d}x=\begin{cases}
+    \displaystyle\int_{0}^{+\infty}\frac{\sin t}{t}\frac{\mathrm{d}t}{\beta}=\int_{0}^{+\infty}\frac{\sin t}{t}\,\mathrm{d}t=\frac{\pi}{2}, & \beta>0,\\
+    0, & \beta=0,\\
+    -\displaystyle\int_{0}^{+\infty}\frac{\sin|\beta|x}{x}\,\mathrm{d}x=-\frac{\pi}{2}, & \beta<0.
+\end{cases}
+\]
+\end{proof}
+
+\begin{example}[Fresnel 积分]\label{ex:15.3.9}
+证明: Fresnel 积分
+\[
+  \int_{0}^{+\infty}\sin x^{2}\,\mathrm{d}x=\int_{0}^{+\infty}\cos x^{2}\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{2}}.
+\]
+\end{example}
+
+\begin{proof}
+先计算 $\displaystyle\int_{0}^{+\infty}\sin x^{2}\,\mathrm{d}x$:
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\sin x^{2}\,\mathrm{d}x&\xlongequal[\mathrm{d}t=2x\,\mathrm{d}x]{t=x^{2}}\frac{1}{2}\int_{0}^{+\infty}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t=\frac{1}{2}\int_{0}^{+\infty}\sin t\left(\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\mathrm{e}^{-tu^{2}}\,\mathrm{d}u\right)\mathrm{d}t\\
+    &=\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-tu^{2}}\sin t\,\mathrm{d}u\right)\mathrm{d}t\\
+    &\xlongequal{\text{积分号交换}}\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-tu^{2}}\sin t\,\mathrm{d}t\right)\mathrm{d}u\\
+    &\xlongequal{\text{分部积分}}\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+u^{4}}\xlongequal{\text{\extref{例 6.5.4}}}\frac{1}{\sqrt{\pi}}\cdot\frac{\pi}{2\sqrt{2}}=\frac{1}{2}\sqrt{\frac{\pi}{2}}.
+  \end{aligned}
+\]
+积分值虽然算出来了, 但要证明积分次序交换的合法性却并不容易! 因此, 上面证明严格来说还未完成.
+
+为了摆脱这一困境, 我们引进收敛因子 $\mathrm{e}^{-\alpha t}$ ($\alpha>0$). 考虑积分
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t,
+\]
+有
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t&=\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\sin t\,\mathrm{d}u\right)\mathrm{d}t\\
+    &\xlongequal{\text{积分号交换}}\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\sin t\,\mathrm{d}t\right)\mathrm{d}u\\
+    &\xlongequal{\text{两次分部积分}}\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+(u^{2}+\alpha)^{2}},\quad\alpha>0.
+  \end{aligned}
+\]
+由例~\ref{ex:15.2.3} 与例~\ref{ex:15.2.4}, 无穷积分 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\sin t\,\mathrm{d}t$ 在 $u\in[0,+\infty)$ 上一致收敛; 无穷积分 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\sin t\,\mathrm{d}u$ 在 $t\in[0,+\infty)$ 上一致收敛. 因为无穷积分
+\[
+  \int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\,\mathrm{d}t\right)\mathrm{d}u=\int_{0}^{+\infty}\frac{\mathrm{e}^{-t(u^{2}+\alpha)}}{-(u^{2}+\alpha)}\Bigg|_{0}^{+\infty}\,\mathrm{d}u=\int_{0}^{+\infty}\frac{\mathrm{d}u}{u^{2}+\alpha}
+\]
+收敛, 故
+\[
+  \int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}|\sin t|\,\mathrm{d}t\right)\mathrm{d}u
+\]
+也收敛. 根据定理~\ref{thm:15.3.4} 知, 上述交换积分次序是合理的.
+
+从
+\[
+  0<\frac{1}{1+(u^{2}+\alpha)^{2}}<\frac{1}{1+u^{4}}
+\]
+及 $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+u^{4}}$ 收敛, 并应用 Weierstrass 判别法知, $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+(u^{2}+\alpha)^{2}}$ 在 $\alpha\in[0,+\infty)$ 上一致收敛. 根据\extref{例 6.5.12}, $\displaystyle\int_{0}^{+\infty}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t$ 收敛, 当然在 $\alpha\in[0,+\infty)$ 上也是一致收敛的. 又因 $\mathrm{e}^{-\alpha t}$ 对 $t$ 单调, 且 $|\mathrm{e}^{-\alpha t}|\leqslant1$ 关于 $\alpha\in[0,+\infty)$ 一致有界, 根据 Abel 判别法知 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t$ 在 $\alpha\in[0,+\infty)$ 上一致收敛. 于是
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\sin x^{2}\,\mathrm{d}x&\xlongequal{t=x^{2}}\frac{1}{2}\int_{0}^{+\infty}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t=\frac{1}{2}\int_{0}^{+\infty}\lim_{\alpha\to0^{+}}\mathrm{e}^{-\alpha t}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t\\
+    &\xlongequal{\text{定理~\ref{thm:15.3.1}}}\frac{1}{2}\lim_{\alpha\to0^{+}}\int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\sin t}{\sqrt{t}}\,\mathrm{d}t=\frac{1}{\sqrt{\pi}}\lim_{\alpha\to0^{+}}\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+(u^{2}+\alpha)^{2}}\\
+    &\xlongequal{\text{定理~\ref{thm:15.3.1}}}\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\lim_{\alpha\to0^{+}}\frac{1}{1+(u^{2}+\alpha)^{2}}\,\mathrm{d}u=\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+u^{4}}=\frac{1}{2}\sqrt{\frac{\pi}{2}}.
+  \end{aligned}
+\]
+
+对于 $\displaystyle\int_{0}^{+\infty}\cos x^{2}\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{2}}$, 能否类似 $\displaystyle\int_{0}^{+\infty}\sin x^{2}\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{2}}$ 来证明呢? 应用 Dirichlet 判别法知
+\[
+  \int_{0}^{+\infty}\cos x^{2}\,\mathrm{d}x\xlongequal{t=x^{2}}\int_{0}^{+\infty}\frac{\cos t}{2\sqrt{t}}\,\mathrm{d}t
+\]
+是收敛的. 再乘收敛因子 $\mathrm{e}^{-\alpha t}$ 并应用 $\dfrac{1}{\sqrt{t}}=\dfrac{2}{\sqrt{\pi}}\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-tu^{2}}\,\mathrm{d}u$ 得到
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t&=\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}u\right)\mathrm{d}t\\
+    &\xlongequal{\text{积分号交换}}\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\left(\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}t\right)\mathrm{d}u\\
+    &\xlongequal{\text{分部积分}}\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{u^{2}+\alpha}{1+(u^{2}+\alpha)^{2}}\,\mathrm{d}u.
+  \end{aligned}
+\]
+因为 $\displaystyle\int_{0}^{+\infty}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t$ 收敛, $\mathrm{e}^{-\alpha t}$ 对固定的 $\alpha$ 关于 $t$ 单调且关于 $\alpha\in[0,+\infty)$ 一致有界 ($|\mathrm{e}^{-\alpha t}|\leqslant1$), 故由 Abel 判别法, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t$ 关于 $\alpha\in[0,+\infty)$ 一致收敛. 再由
+\[
+  \left|\frac{u^{2}+\alpha}{1+(u^{2}+\alpha)^{2}}\right|\leqslant\frac{u^{2}+1}{1+u^{4}},\quad\alpha\in[0,1]
+\]
+知 $\displaystyle\int_{0}^{+\infty}\frac{u^{2}+\alpha}{1+(u^{2}+\alpha)^{2}}\,\mathrm{d}u$ 关于 $\alpha\in[0,1]$ 一致收敛. 于是
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\cos x^{2}\,\mathrm{d}x&=\frac{1}{2}\int_{0}^{+\infty}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t=\frac{1}{2}\int_{0}^{+\infty}\lim_{\alpha\to0^{+}}\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t\\
+    &\xlongequal{\text{定理~\ref{thm:15.3.1}}}\frac{1}{2}\lim_{\alpha\to0^{+}}\int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t=\frac{1}{\sqrt{\pi}}\lim_{\alpha\to0^{+}}\int_{0}^{+\infty}\frac{u^{2}+\alpha}{1+(u^{2}+\alpha)^{2}}\,\mathrm{d}u\\
+    &\xlongequal{\text{定理~\ref{thm:15.3.1}}}\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\lim_{\alpha\to0^{+}}\frac{u^{2}+\alpha}{1+(u^{2}+\alpha)^{2}}\,\mathrm{d}u=\frac{1}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{u^{2}}{1+u^{4}}\,\mathrm{d}u\\
+    &=\frac{1}{\sqrt{\pi}}\left(\int_{0}^{+\infty}\frac{u^{2}+1}{1+u^{4}}\,\mathrm{d}u-\int_{0}^{+\infty}\frac{\mathrm{d}u}{1+u^{4}}\right)\\
+    &=\frac{1}{\sqrt{\pi}}\left(\int_{0}^{+\infty}\frac{\mathrm{d}\left(u-\frac{1}{u}\right)}{\left(u-\frac{1}{u}\right)^{2}+2}-\frac{\pi}{2\sqrt{2}}\right)\\
+    &=\frac{1}{\sqrt{\pi}}\left(\frac{1}{\sqrt{2}}\arctan\frac{u-\frac{1}{u}}{\sqrt{2}}\Bigg|_{0^{+}}^{+\infty}-\frac{\pi}{2\sqrt{2}}\right)=\frac{1}{2}\sqrt{\frac{\pi}{2}}.
+  \end{aligned}
+\]
+需要验证积分号次序可交换的条件是否成立? 不幸, 回答是否定的!
+
+易见, 由 $|\mathrm{e}^{-t(u^{2}+\alpha)}\cos t|\leqslant\mathrm{e}^{-t\alpha}$ ($\alpha>0$) 知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}t$ 关于 $u\in[0,+\infty)$ 是一致收敛的. 但是, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}u$ 关于 $t\in[0,a]$ 是非一致收敛的. 事实上, (反证) 假设该无穷积分关于 $t\in[0,a]$ 一致收敛, 则对 $\varepsilon_{0}=1$, $\exists A_{0}=A_{0}(\varepsilon_{0})>0$, 当 $A>A_{0}$ 时, $\forall t\in[0,a]$, 有
+\[
+  \left|\int_{A}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}u\right|<\varepsilon_{0}=1.
+\]
+作变换 $\theta=\sqrt{t}u$, 得
+\[
+  \left|\int_{A}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}u\right|=\left|\int_{\sqrt{t}A}^{+\infty}\mathrm{e}^{-\theta^{2}-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}\theta\right|=\left|\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\int_{\sqrt{t}A}^{+\infty}\mathrm{e}^{-\theta^{2}}\,\mathrm{d}\theta\right|<1.
+\]
+令 $t\to0^{+}$ 得到 $+\infty\leqslant1$, 矛盾.
+
+为了正确地证明 $\displaystyle\int_{0}^{+\infty}\cos x^{2}\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{2}}$, 我们应该进行更细致的估计.
+\[
+  \int_{0}^{+\infty}\left[\int_{\delta}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}|\cos t|\,\mathrm{d}t\right]\mathrm{d}u
+\]
+收敛. 于是
+\[
+  \begin{aligned}
+    \int_{\delta}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t&=\frac{2}{\sqrt{\pi}}\int_{\delta}^{+\infty}\left[\int_{0}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}u\right]\mathrm{d}t\\
+    &\xlongequal{\text{积分可交换}}\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\left[\int_{\delta}^{+\infty}\mathrm{e}^{-t(u^{2}+\alpha)}\cos t\,\mathrm{d}t\right]\mathrm{d}u\\
+    &=\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{(u^{2}+\alpha)\cos\delta-\sin\delta}{(u^{2}+\alpha)^{2}+1}\mathrm{e}^{-\delta(u^{2}+\alpha)}\,\mathrm{d}u.
+  \end{aligned}
+\]
+从
+\[
+  \int_{0}^{+\infty}\frac{\mathrm{d}u}{(u^{2}+\alpha)^{2}+1}\quad\text{与}\quad\int_{0}^{+\infty}\frac{u^{2}+\alpha}{(u^{2}+\alpha)^{2}+1}\,\mathrm{d}u
+\]
+均收敛推得上式右边积分关于 $\delta\in[0,1]$ 是一致收敛的. 令 $\delta\to0^{+}$ 得到
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\frac{\cos t}{\sqrt{t}}\,\mathrm{d}t=\frac{2}{\sqrt{\pi}}\int_{0}^{+\infty}\frac{u^{2}+\alpha}{(u^{2}+\alpha)^{2}+1}\,\mathrm{d}u.
+\]
+由此式及前面的论证结果, 立即有
+\[
+  \int_{0}^{+\infty}\cos x^{2}\,\mathrm{d}x=\frac{1}{2}\sqrt{\frac{\pi}{2}}.
+\]
+\end{proof}
+
+\begin{exblock}[练习题 15.3]
+\begin{enumerate}
+  \item 研究下列函数在指定区间上的连续性:
+  \begin{enumerate}
+    \item $f(x)=\displaystyle\int_{0}^{+\infty}\frac{t}{2+t^{x}}\,\mathrm{d}t$, $x\in(2,+\infty)$;
+    \item $\varphi(\alpha)=\displaystyle\int_{0}^{\pi}\frac{\sin x}{x^{\alpha}(\pi-x)^{\alpha}}\,\mathrm{d}x$, $\alpha\in(0,2)$;
+    \item $f(\alpha)=\displaystyle\int_{1}^{+\infty}\frac{\sin x}{x^{\alpha}}\,\mathrm{d}x$, $\alpha\in(0,+\infty)$.
+  \end{enumerate}
+  \item 利用公式 $\displaystyle\int_{0}^{1}x^{\alpha-1}\,\mathrm{d}x=\frac{1}{\alpha}$ ($\alpha>0$), 计算积分 $\displaystyle\int_{0}^{1}x^{\alpha-1}(\ln x)^{m}\,\mathrm{d}x$, 其中 $m$ 为自然数.
+  \item 计算参变量广义积分, 其中 $a>0$, $b>0$:
+  \begin{enumerate}
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\sin mx\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax}-\mathrm{e}^{-bx}}{x}\cos mx\,\mathrm{d}x$.
+  \end{enumerate}
+  \item 计算参变量广义积分
+  \[
+    \int_{0}^{+\infty}\frac{\ln(\alpha^{2}+x^{2})}{\beta^{2}+x^{2}}\,\mathrm{d}x,\quad\beta\neq0.
+\]
+  \item 利用已知的积分值计算下列积分:
+  \begin{enumerate}
+    \item $\displaystyle\int_{-\infty}^{+\infty}\mathrm{e}^{-(2x^{2}+x+2)}\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\sin x^{2}}{x}\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\sin^{3}x}{x}\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\sin ax\cos\beta x}{x}\,\mathrm{d}x$.
+  \end{enumerate}
+  \item 设 $\{f_{n}(x)\}$ 为 $[0,+\infty)$ 上的连续函数列, 满足:
+  \begin{enumerate}
+    \item 在 $[0,+\infty)$ 上, $|f_{n}(x)|\leqslant g(x)$, 且 $\displaystyle\int_{0}^{+\infty}g(x)\,\mathrm{d}x$ 收敛;
+    \item 在任何有限区间 $[0,A]$ 上 ($A>0$), 函数列 $\{f_{n}(x)\}$ 一致收敛于 $f(x)$.
+  \end{enumerate}
+  证明:
+  \[
+    \lim_{n\to+\infty}\int_{0}^{+\infty}f_{n}(x)\,\mathrm{d}x=\int_{0}^{+\infty}f(x)\,\mathrm{d}x.
+\]
+  \item (1) 证明: $\displaystyle\int_{0}^{+\infty}\frac{\sin2x}{x+\alpha}\mathrm{e}^{-\alpha x}\,\mathrm{d}x$ 在 $\alpha\in[0,b]$ 上一致收敛 ($b>0$);\\
+  (2) 求极限
+  \[
+    \lim_{\alpha\to0^{+}}\int_{0}^{+\infty}\frac{\sin2x}{x+\alpha}\mathrm{e}^{-\alpha x}\,\mathrm{d}x.
+\]
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}[思考题 15.3]
+\begin{enumerate}
+  \item 利用已知积分计算下列积分:
+  \begin{enumerate}
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\sin^{4}x}{x^{2}}\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\left(x^{2}+\frac{a^{2}}{x^{2}}\right)}\,\mathrm{d}x$, $a>0$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{e}^{-ax^{2}}-\cos bx}{x^{2}}\,\mathrm{d}x$, $a>0$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\sin^{4}\alpha x-\sin^{4}\beta x}{x}\,\mathrm{d}x$, $\alpha>0,\beta>0$.
+  \end{enumerate}
+  \item 证明: 函数
+  \[
+    f(\alpha)=\int_{0}^{+\infty}\frac{\mathrm{e}^{-t}}{|\sin t|^{\alpha}}\,\mathrm{d}t
+\]
+  在 $(0,1)$ 中连续.
+  \item 设 $\displaystyle\int_{-\infty}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛, 证明: 函数
+  \[
+    \varphi(u)=\int_{-\infty}^{+\infty}f(x)\cos ux\,\mathrm{d}x
+\]
+  在 $(-\infty,+\infty)$ 上一致连续.
+  \item 通过积分
+  \[
+    \varphi(u)=\int_{0}^{+\infty}u\mathrm{e}^{-ux}\,\mathrm{d}x,\quad0<u\leqslant1
+\]
+  与
+  \[
+    \psi(u)=\int_{0}^{+\infty}u\mathrm{e}^{u(u-x)}\,\mathrm{d}x,\quad1\leqslant u<+\infty,
+\]
+  说明含参变量广义积分的 Dini 定理~\ref{thm:15.3.2} 在开区间或无穷区间上不成立.
+  \item 设
+  \[
+    g(\alpha)=\int_{1}^{+\infty}\frac{\arctan\alpha x}{x^{2}\sqrt{x^{2}-1}}\,\mathrm{d}x,
+\]
+  证明:
+  \begin{enumerate}
+    \item $g'(\alpha)=\dfrac{\pi}{2}\left(1-\dfrac{|\alpha|}{\sqrt{1+\alpha^{2}}}\right)$;
+    \item $g(\alpha)=\dfrac{\pi}{2}(|\alpha|+1-\sqrt{1+\alpha^{2}})\operatorname{sgn}\alpha$ ($-\infty<\alpha<+\infty$).
+  \end{enumerate}
+  \item 设
+  \[
+    g(\alpha,\beta)=\int_{0}^{+\infty}\frac{\arctan\alpha x\arctan\beta x}{x^{2}}\,\mathrm{d}x,\quad\alpha>0,\beta>0,
+\]
+  证明:
+  \begin{enumerate}
+    \item $g_{\alpha\beta}''(\alpha,\beta)=\dfrac{\pi}{2(\alpha+\beta)}$, $\alpha>0,\beta>0$;
+    \item $g_{\alpha}'(\alpha,\beta)=\dfrac{\pi}{2}\ln\dfrac{\alpha+\beta}{\alpha}$, $\alpha>0,\beta>0$;
+    \item $g(\alpha,\beta)=\dfrac{\pi}{2}\ln\dfrac{(\alpha+\beta)^{\alpha+\beta}}{\alpha^{\alpha}\beta^{\beta}}$, $\alpha>0,\beta>0$;
+    \item
+    \[
+      g(\alpha,\beta)=\begin{cases}
+        \dfrac{\pi}{2}\operatorname{sgn}\alpha\cdot\operatorname{sgn}\beta\cdot\ln\dfrac{(|\alpha|+|\beta|)^{|\alpha|+|\beta|}}{|\alpha|^{|\alpha|}|\beta|^{|\beta|}}, & \alpha\beta\neq0,\\
+        0, & \alpha\beta=0.
+\end{cases}
+\]
+  \end{enumerate}
+  \item 设 $F(x)=\mathrm{e}^{\frac{x^{2}}{2}}\displaystyle\int_{x}^{+\infty}\mathrm{e}^{-\frac{t^{2}}{2}}\,\mathrm{d}t$, $x\in[0,+\infty)$. 证明:
+  \begin{enumerate}
+    \item $\lim\limits_{x\to+\infty}F(x)=0$;
+    \item $F(x)$ 在 $[0,+\infty)$ 内单调减少.
+  \end{enumerate}
+  \item 按下列步骤证明: Euler-Poisson 概率积分 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}$.
+  \begin{enumerate}
+    \item $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\int_{0}^{+\infty}\alpha\mathrm{e}^{-\alpha^{2}t^{2}}\,\mathrm{d}t$;
+    \item 设 $I=\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\alpha^{2}}\,\mathrm{d}\alpha$, 则
+    \[
+      I^{2}=\int_{0}^{+\infty}\mathrm{d}\alpha\int_{0}^{+\infty}\alpha\mathrm{e}^{-\alpha^{2}(1+t^{2})}\,\mathrm{d}t=\frac{\pi}{4};
+\]
+    \item $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=I=\frac{\sqrt{\pi}}{2}$ (对照\extref{例 6.5.7}, \extref{例 10.6.2}).
+  \end{enumerate}
+  \item 应用等式 $\mathrm{e}^{-x^{2}}=\lim\limits_{n\to+\infty}\left(1+\dfrac{x^{2}}{n}\right)^{-n}$ 证明:
+  \[
+    \int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\lim_{n\to+\infty}\sqrt{n}\int_{0}^{\frac{\pi}{2}}\sin^{2n-2}t\,\mathrm{d}t=\frac{\sqrt{\pi}}{2}.
+\]
+  \item 设
+  \[
+    \varphi(x)=\int_{0}^{1}\frac{\mathrm{e}^{-x^{2}(1+u^{2})}}{1+u^{2}}\,\mathrm{d}u,\quad f(x)=\left(\int_{0}^{x}\mathrm{e}^{-t^{2}}\,\mathrm{d}t\right)^{2},\quad I=\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x,
+\]
+  证明:
+  \begin{enumerate}
+    \item $f'(x)=-\varphi'(x)$, $f(x)=\dfrac{\pi}{4}-\varphi(x)$, $x\geqslant0$;
+    \item $I^{2}=\lim\limits_{x\to+\infty}f(x)=\dfrac{\pi}{4}-\lim\limits_{x\to+\infty}\varphi(x)=\dfrac{\pi}{4}$, $I=\dfrac{\sqrt{\pi}}{2}$.
+  \end{enumerate}
+  \item 设
+  \[
+    g(\alpha)=\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\cos2\alpha x\,\mathrm{d}x,
+\]
+  证明:
+  \begin{enumerate}
+    \item $g'(\alpha)=-2\alpha g(\alpha)$, $g(\alpha)=\dfrac{\sqrt{\pi}}{2}\mathrm{e}^{-\alpha^{2}}$ (已知 $g(0)=\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}$);
+    \item $g(\alpha)$ 有任意阶导数, 因而 $g(\alpha)$ 是 $C^{\infty}$ 函数, 且
+    \[
+      \int_{0}^{+\infty}x^{2k}\mathrm{e}^{-x^{2}}\cos2\alpha x\,\mathrm{d}x=(-1)^{k}\frac{\sqrt{\pi}}{2^{2k+1}}\frac{\mathrm{d}^{2k}}{\mathrm{d}\alpha^{2k}}\mathrm{e}^{-\alpha^{2}}.
+\]
+  \end{enumerate}
+\end{enumerate}
+\end{exblock}

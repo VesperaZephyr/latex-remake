@@ -1,0 +1,286 @@
+% ============ §27 Higher derivations (原书 pp.207-212) ============
+\section{Higher derivations}\label{sec:27}\index{higher derivation, section 27}\index{iterative higher derivation, section 27}\index{p-basis, section 27}
+
+Let $k \xrightarrow{f} A \xrightarrow{g} B$ be ring homomorphisms. Let $t$ be an indeterminate
+over $B$, and set $B_m = B[t]/(t^{m+1})$ for $m = 0, 1, \ldots$, and $B_\infty = B[[t]]$. We can
+view $B_m$ as a $k$-algebra in a natural way (for $m \le \infty$).
+
+For $m < \infty$ we define a \emph{higher derivation} (over $k$) of length $m$ from $A$ to
+$B$ to be a sequence $D = (D_0, D_1, \ldots, D_m)$ of $k$-linear maps
+$D_i\colon A \to B$, satisfying the conditions
+\[
+  (*) \quad D_0 = g \quad \text{and} \quad D_i(xy) = \sum_{j=0}^i D_j(x)D_{i-j}(y)
+      \quad \text{for } 1 \le i \le m \text{ and } x, y \in A.
+\]
+These conditions are equivalent to saying that the map $E_t\colon A \to B_m$, defined by
+\[
+  E_t(x) = \sum_{i=0}^m D_i(x)t^i,
+\]
+is a $k$-algebra homomorphism with $E_t(x) = g(x) \mod t$.
+
+When $A = B$ and $g = 1$ (the identity map of $A$) then we speak simply of a higher
+$k$-derivation of $A$. In what follows we consider mainly this case.
+
+If $D = (D_0, D_1, D_2, \ldots)$ is a higher derivation then $D_1 \in \Der_k(A, B)$.
+Furthermore, $D_i$ is $0$ on $f(k)$ for $i > 0$. In general we say that $D$ is \emph{trivial}
+on $a \in A$ if $D_i(a) = 0$ for $i > 0$; this means precisely that $a$ goes over to a
+constant under the homomorphism $E_t$ corresponding to $D$.
+
+The theory of higher derivations was initiated by Hasse and F.~K.~Schmidt [1].
+In view of this, in this book we write $\mathrm{HS}_k(A, m)$ for the set of all higher
+$k$-derivations of length $m$ of $A$, and we also write $\mathrm{HS}_k(A)$ for
+$\mathrm{HS}_k(A, \infty)$. When we are not concerned with $k$, we simplify this to
+$\mathrm{HS}(A, m)$ and $\mathrm{HS}(A)$. These sets do not have a module structure like that
+of $\Der_k(A)$, but they do have a group structure (generally non-Abelian), which we
+now explain. The homomorphism $E_t\colon A \to A_m$ corresponding to
+$D \in \mathrm{HS}_k(A, m)$ can be extended to an endomorphism of $A[[t]]$ by setting
+\[
+  E_t\Big(\sum a_\nu t^\nu\Big) = \sum E_t(a_\nu)t^\nu.
+\]
+Now $E_t$ is injective, since if $\xi = a_\nu t^\nu + a_{\nu+1}t^{\nu+1} + \cdots \in A[[t]]$ with
+$a_\nu \ne 0$ then $E_t(\xi) \equiv a_\nu t^\nu \mod t^{\nu+1}$; also, by setting
+\[
+  \xi - E_t(a_\nu t^\nu) = b_{\nu+1}t^{\nu+1} + \cdots,
+\]
+\[
+  \xi - E_t(a_\nu t^\nu + b_{\nu+1}t^{\nu+1}) = c_{\nu+2}t^{\nu+2} + \cdots,
+\]
+and proceeding in the same way, we see easily that $E_t$ is surjective. In other
+words, $E_t$ is an automorphism of $A[[t]]$. Conversely, an automorphism $E$ of the
+$k$-algebra $A[[t]]$ satisfying $E(a) = a \mod t$ corresponds to a higher derivation. Thus
+if we identify $\mathrm{HS}_k(A, m)$ with a subgroup of the automorphism group
+$\Aut_k(A[[t]])$ of $A[[t]]$, it acquires the group structure which we are looking for.
+Let us start computing this structure. For $D = (D_0, D_1, \ldots)$, $D' = (D'_0, D'_1, \ldots)$,
+set
+\[
+  D \cdot D' = (D_0'', D_1'', \ldots), \quad \text{and} \quad D^{-1} = (D_0^*, D_1^*, \ldots);
+\]
+then
+\begin{align*}
+  E_t(E'_t(a)) &= E_t(a + D'_1(a)t + D'_2(a)t^2 + \cdots) \\
+               &= (a + D_1(a)t + D_2(a)t^2 + \cdots) \\
+               &\quad - (D'_1(a) + D_1(D'_1(a))t + D_2(D'_1(a))t^2 + \cdots)t \\
+               &\quad + (D'_2(a) + D_1(D'_2(a))t + \cdots)t^2 + \cdots \\
+               &= a + (D_1 + D'_1)(a)t + (D_2 + D_1D'_1 + D'_2)(a)t^2 + \cdots,
+\end{align*}
+so that
+\[
+  D_i'' = \sum_{p+q=i} D_pD_q' \quad \text{for all } i;
+\]
+and the $D_i^*$ are obtained by solving $\sum_{p+q=i} D_pD_q^* = 0$ for $i > 0$, that is
+\[
+  D_0^* = D_1^* = 1, \quad D_2^* = -D_2, \quad D_3^* = D_2^2 - D_3,
+\]
+\[
+  D_4^* = -D_4 + D_2D_3 + D_3D_2 - D_2^3, \ldots
+\]
+(where $D_i^*$ is viewed as the operator $a \mapsto D_i^*(a)$; the products are
+compositions).
+
+If $S \subset A$ and $T \subset B$ are multiplicative sets such that $g(S) \subset T$, then the
+given homomorphism $g\colon A \to B$ induces a homomorphism $A_S \to B_T$. Now we show
+that in a similar way, a higher derivation has a unique extension to the
+localisations. To see this, let $D = (D_0, D_1, \ldots, D_m)$ be a higher derivation of
+length $m$ from $A$ to $B$; if we compose the homomorphism $E_t\colon A \to B_m$
+corresponding to $D$ with the localisation $B_m \to (B_T)_m$, then an element $x \in S$
+maps to $g(x)_T + D_1(x)_T t + \cdots$, and this is a unit of $(B_T)_m$, since the
+constant term $g(x)_T$ is a unit of $B_T$. This $E_t$ induces a homomorphism
+$A_S \to (B_T)_m$, which provides a higher derivation $A_S \to B_T$.
+
+Let $D = (D_0, D_1, \ldots, D_m)$ be a higher $k$-derivation of length $m < \infty$ from $A$
+to $B$. Consider the problem of extending this to a higher derivation of length
+$m + 1$. If $E_m\colon A \to B_m$ is the homomorphism corresponding to $D$, the problem
+of extending $D$ is equivalent to that of lifting $E_m$ to a homomorphism
+$A \to B_{m+1}$. The following theorem is then clear from this.
+
+\begin{theorem}\label{thm:27.1}
+If the ring $A$ is 0-smooth over a ring $k$, then a higher derivation of length
+$m < \infty$ over $k$ from $A$ to an $A$-algebra $B$ can be extended to a derivation of
+length $\infty$.
+\end{theorem}
+
+This theorem can be applied for example to the case of a field $k$ and a separable
+extension field $A$ of $k$.
+
+If $A$ is a ring of characteristic $p$ then an ordinary derivation of $A$ is zero on
+the subring $A^p$, but higher derivations need not vanish on $A^p$. If
+$D = (D_0, D_1, D_2, \ldots)$ is a higher derivation of length $m \ge p$ then from
+$E_t(a^p) = E_t(a)^p = a^p + D_1(a)^p t^p + \cdots$, we get
+\[
+  D_p(a^p) = D_1(a)^p, \quad \text{and in general } D_{pn}(a^p) = D_n(a)^p.
+\]
+For example, it follows from this that if $k$ is a field of characteristic $p$, and
+$K = k(\alpha)$ with $\alpha^p \in k$ but $\alpha \notin k$, then although there exists
+$D \in \Der_k(K)$ such that $D(\alpha) = 1$, this $D$ cannot be extended to a higher
+$k$-derivation of length $\ge p$. Since $K$ is separable over the prime subfield, $D$
+can be extended to a higher derivation of length $\infty$ (over the prime subfield),
+but this extension cannot be trivial on $k$.
+
+We say that a higher derivation $D = (D_0, D_1, \ldots) \in \mathrm{HS}_k(A)$ is \emph{iterative} if
+it satisfies the following conditions:
+\[
+  \binom{i+j}{i}D_{i+j} = D_iD_j \quad \text{for all } i, j.
+\]
+This condition is equivalent to asking that the following diagram is commutative:
+\[
+\begin{tikzcd}
+A \arrow[r, "E_{t+u}"] \arrow[rd, "E_t"'] & A[[t, u]] \\
+& A[[t]] \arrow[u, "\subset"]
+\end{tikzcd}
+\]
+where $E_t(a) = \sum t^nD_n(a)$ and $E_t(\sum t^\nu a_\nu) = \sum t^\nu E_t(a_\nu)$, and the
+right-hand vertical arrow is the inclusion map. Indeed,
+\[
+  E_t(E_u(a)) = E_t\Big(\sum u^nD_n(a)\Big) = \sum t^i u^j D_iD_j(a)
+\]
+and
+\[
+  E_{t+u}(a) = \sum (t + u)^nD_n(a) = \sum_{i,j} \binom{i+j}{i} t^i u^j D_{i+j}(a).
+\]
+If $A$ contains the rational field $\mathbb{Q}$, then one sees by induction on $n$ that an
+iterative higher derivation satisfies $D_n = D_1^n/n!$, and is hence determined by
+$D_1$ only. Conversely, for $D \in \Der_k(A)$, we see that
+$(1, D, D^2/2!, D^3/3!, \ldots)$ is an iterative higher derivation. If $A$ has
+characteristic $p$ then for an iterative $D = (D_0, D_1, \ldots)$ we have $D_i = D_1^i/i!$
+for $i < p$, and $D_p = 0$. Thus one cannot hope to extend any derivation to an
+iterative higher derivation, even if $A$ is a field.
+
+\begin{theorem}\label{thm:27.2}
+Let $k \to A \xrightarrow{g} B$ be ring homomorphisms, and suppose that $B$ is 0-\'etale over
+$A$. Then given $D = (D_0, D_1, \ldots) \in \mathrm{HS}_k(A, B)$, there exists a unique
+$D' = (D'_0, D'_1, \ldots) \in \mathrm{HS}_k(B)$ such that $D'_i(g(a)) = D_i(a)$ for all $i$.
+Moreover, if $D^* = (D_0^*, D_1^*, \ldots) \in \mathrm{HS}_k(A)$ is such that $D_i = g \circ D_i^*$
+for all $i$, and if $D^*$ is iterative, then $D'$ is also iterative.
+\end{theorem}
+
+\begin{proof}
+There is no problem about $D'_0 = 1_B$. Now assume that
+$(D'_0, \ldots, D'_m) \in \mathrm{HS}_k(B, m)$ has been constructed so that
+$D'_i \circ g = D_i$ for $i < m$; then if we define
+$h\colon A \to B_{m+1} = B[t]/(t^{m+2})$ by $h(a) = \sum_{i=0}^{m+1} t^iD_i(a)$,
+and $u\colon B \to B_{m+1}$ by $u(b) = \sum_{i=0}^{m} t^iD'_i(b)$, we obtain the left-hand
+commutative diagram
+\[
+\begin{tikzcd}
+A \arrow[r, "h"] \arrow[d, "g"'] & B_{m+1} \arrow[d, "p"] \\
+B \arrow[ru, "u"'] \arrow[r, "\bar{g}"'] & B
+\end{tikzcd}
+\]
+where $p\colon B_{m+1} \to B$ is the natural map and $\bar{g}$ the induced map. Hence by the
+0-\'etale assumption, there exists a unique $v\colon B \to B_{m+1}$ which makes the
+right-hand diagram commutative. Repeating this we see that $D'$ exists and is
+unique. If $D^*$ is iterative, and we consider the homomorphisms
+$E_t\colon A \to A[[t]]$ and $E'_t\colon B \to B[[t]]$ corresponding respectively to $D^*$ and
+$D'$, then we know $E_t \circ E_u = E_{t+u}$, and we need only prove that
+$E'_t \circ E'_u = E'_{t+u}$. By induction on $m$, assume that
+\[
+  E'_u(E'_t(b)) = E'_{t+u}(b) \mod (t, u)^{m+1} \quad \text{for all } b \in B;
+\]
+then from the commutativity of
+\[
+\begin{tikzcd}
+B \arrow[r, "E'_u"] \arrow[d, "g"'] & B[[t, u]]/(t, u)^{m+1} \arrow[d] \\
+A \arrow[r, "E_t"] & A[[t, u]] \arrow[r] & B[[t, u]]/(t, u)^{m+2}
+\end{tikzcd}
+\]
+from $E_{t+u} = E_t \circ E_u$ and from the assumption that $B$ is 0-\'etale over $A$, we get
+\[
+  E'_u(E'_t(b)) = E'_{t+u}(b) \mod (t, u)^{m+2} \quad \text{for all } b \in B.
+\]
+This proves that $E'_t \circ E'_u = E'_{t+u}$.
+\end{proof}
+
+\begin{remark}
+The above $D'$ will be called an \emph{extension} of $D$ (or of $D^*$) to $B$ (even if $A$ is
+not a subring of $B$).
+\end{remark}
+
+\begin{theorem}\label{thm:27.3}
+\begin{enumerate}[(i)]
+  \item Let $A$ be a ring of characteristic $p$, and suppose that $x \in A$,
+        $D \in \Der(A)$ satisfy $Dx = 1$ and $D^p = 0$; set $A_0 = \{a \in A \mid Da = 0\}$.
+        Then $A$ is a free module over $A_0$, with basis $1, x, \ldots, x^{p-1}$.
+  \item Let $k$ be a field of characteristic $p$, and $K$ a separable extension of $k$;
+        let $D \in \Der_k(K)$ be such that $D \ne 0$, $D^p = 0$. Set
+        $K_0 = \{a \in K \mid Da = 0\}$. Then there exists an $x \in K$ such that $Dx = 1$,
+        and a subset $B_0 \subset K_0$ such that $B = \{x\} \cup B_0$ is a $p$-basis for $K$ over
+        $k$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Suppose that $a_0 + a_1x + \cdots + a_ix^i = 0$ for some $i < p$ and $a_j \in A_0$.
+Then applying $D^i$ we get $i!a_i = 0$, hence $a_i = 0$. Hence by downward induction
+on $i$ we see that $1, x, \ldots, x^{p-1}$ are linearly independent over $A_0$. Now in
+view of $D^p = 0$, for every $a \in A$ we have $D^{i+1}a = 0$ for some $0 \le i < p$. If
+$i = 0$ we have $a \in A_0$. If $i > 0$ then $D^i(a - x^iD^ia/i!) = 0$, so that we see by
+induction that
+\[
+  D^{i+1}a = 0 \Rightarrow a \in A_0 + A_0x + \cdots + A_0x^i;
+\]
+setting $i = p - 1$ in this gives $A = A_0 + A_0x + \cdots + A_0x^{p-1}$.
+
+(ii) Since $D \ne 0$ we can find $z \in K$ such that $Dz \ne 0$. Now in view of
+$D^pz = 0$, there is an $i$ such that $D^iz \ne 0$ but $D^{i+1}z = 0$. If we set $y = D^iz$
+and $x = (D^{i-1}z)/y$ then $Dx = 1$, so that by (i) we have $K = K_0(x)$ and
+$[K : K_0] = p$. Now if we had $x^p \in K_0^pk$, then $x \in K_0k^{1/p}$, and we could
+write $x = \sum \omega_i\alpha_i$ with $\omega_1, \ldots, \omega_n \in K_0$ linearly independent over
+$k$, and $\alpha_i \in k^{1/p}$. Now $k \subset K_0$ and $x \notin K_0$, so that
+$x, \omega_1, \ldots, \omega_n$ are linearly independent over $k$, and hence by the assumption
+that $K$ is separable over $k$, they are also linearly independent over $k^{1/p}$,
+which contradicts $x = \sum \omega_i\alpha_i$. Thus $x^p \notin K_0^pk$. Hence we can
+choose a $p$-basis $C$ of $K_0$ over $k$ such that $x^p \in C$; set $B_0 = C - \{x^p\}$. Then
+if $y_1, \ldots, y_m$ are distinct elements of $B_0$, we have
+$[K_0^pk(x^p, y_1, \ldots, y_m) : K_0^pk] = p^{m+1}$, and together with $K = K_0(x)$ this
+gives $[K^pk(y_1, \ldots, y_m) : K^pk] = p^m$. Thus $B_0$ as a subset of $K$ is
+$p$-independent over $k$. Since also $K_0 = K_0^pk(x^p, B_0)$, we have
+$K = K_0(x) = K^pk(x, B_0)$, so that setting $B = B_0 \cup \{x\}$ we get a $p$-basis of $K$
+over $k$.
+\end{proof}
+
+\begin{theorem}\label{thm:27.4}
+Let $K$ be a field of characteristic $p$, and $k \subset K$ a subfield such that $K$ is
+separable over $k$. Then a necessary and sufficient condition for $D \in \Der_k(K)$
+to extend to an iterative element of $\mathrm{HS}_k(K)$ is that $D^p = 0$.
+\end{theorem}
+
+\begin{proof}
+We have already seen necessity, and we prove sufficiency. We can assume that
+$D \ne 0$; if $D^p = 0$ then we can choose $K_0$, $x$ and $B_0$ as in Theorem~\hyperref[thm:27.3]{3},
+(ii). We set $K' = k(B_0)$; then $D$ is a $K'$-derivation, $K$ is 0-\'etale over
+$K'(x)$, and $K'(x)$ is a purely transcendental extension of $K'$. We define a
+homomorphism $E_t\colon K'(X) \to K'(X)[t]$ by setting $E_t(a) = a$ for $a \in K'$ and
+$E_t(X) = X + t$; then
+\[
+  E_t(E_u(X)) = X + u + t = E_{t+u}(X),
+\]
+so that $E_t \circ E_u = E_{t+u}$ holds over the whole of $K'(X)$. Thus $E_t$ defines an
+iterative higher derivation $\bar{D}$ of $K'(X)$ over $K'$. Since $K$ is 0-\'etale over
+$K'(X)$, by Theorem~\hyperref[thm:27.2]{2} there is an extension of $\bar{D}$ to an iterative higher
+derivation of $K$ over $K'$; the term of degree $1$ in $D$ is $D$, so that $D$ is an
+extension of $D$ (or more precisely, of $(1, D)$).
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:27}}
+
+\begin{exercise}\label{ex:27.1-ex}
+Let $k$ be a ring, $A$ a $k$-algebra and $D \in \Der_k(A)$. Say that $D$ is
+\emph{integrable} over $k$ if there exists an extension $D' \in \mathrm{HS}_k(A)$ with
+$D' = (D_0, D_1, \ldots)$ and $D = D_1$ (then $D'$ is an \emph{integral} of $D$); set
+$\mathrm{Ider}_k(A) = \{D \in \Der_k(A) \mid D \text{ is integrable over } k\}$. Then prove
+that $\mathrm{Ider}_k(A) = \Der_k(A)$ is an $A$-submodule.
+\end{exercise}
+
+\begin{exercise}\label{ex:27.2-ex}
+In the notation of this section, consider the construction of $E_t\colon A \to A[[t]]$
+corresponding to $D$; then if $t' \in A[[t]]$ is any power series with no constant
+term, we have $A[[t']] \subset A[[t]]$, so that $E_t\colon A \to A[[t']]$ can be composed
+to a homomorphism $E_t\colon A \to A[[t]]$, to give a different higher derivation.
+Thus for $D = (D_0, D_1, \ldots)$, the homomorphism $E_{t'}$ corresponds to the higher
+derivation $D' = (D_0, 0, D_1, 0, D_2, \ldots)$; taking the product $D \cdot D'$ we get an
+integral of $D$, different from $D$. Thus for given $D \in \mathrm{Ider}_k(A)$ there will in
+general exist many integrals of $D$; verify that if $D^p = 0$ and we impose the
+condition that the integral should be iterative, it is still not uniquely
+determined.
+\end{exercise}

@@ -1,0 +1,420 @@
+\section{泰勒公式}\label{sec:8-1}
+
+\subsection{带佩亚诺（Peano，1858---1932）余项的泰勒公式}\label{subsec:8-1-1}
+
+函数的微商与微分，提供了研究函数的工具，这一点在第四、五两章已经看到了．粗略地说，一阶微商 $f'(x)$，它的符号反映了函数在 $x$ 点变化的方向（上升还是下降），它的数值反映了函数在 $x$ 点变化的快慢．而二阶微商，它的符号反映了函数在该点的“凹凸”，它的数值反映了“凹凸”的程度．这种对函数的局部性研究，在微元法的应用中也可体会到它的意义．当然，要证明一些涉及函数在一个区间的性质的定理，还需微分中值定理这样的工具，它适合于研究函数的整体性质．本节我们先从局部性质的深入研究开始．
+
+我们在第四章看到，如果函数 $f(x)$ 在点 $a$ 有微商，则当 $x \to a$ 时，
+\begin{equation}\label{eq:8-1}
+f(x) = f(a) + f'(a)(x-a) + o(x-a).
+\end{equation}
+当 $|x-a|$ 很小时，根据这个公式，我们就可以把 $f(x)$（一般说来，它依赖于 $x$ 的情况很复杂）近似地看成 $x$ 的简单的线性函数
+\[
+f(x) \approx f(a) + f'(a)(x-a),
+\]
+并且这个近似的误差，当 $|x-a|$ 很小时，不仅它本身很小，而且与 $|x-a|$ 比起来也很小，这导致了我们引入微分的概念，它在微积分演算与微元法中有许多应用．
+
+一个自然的问题是，我们能否用 $x$ 的二次函数去近似 $f(x)$，而且使得近似的误差是更高阶的无穷小量？也就是说，是否存在 $\alpha_0, \alpha_1, \alpha_2$，使得
+\[
+f(x) = \alpha_0 + \alpha_1(x-a) + \alpha_2(x-a)^2 + o\big((x-a)^2\big).
+\]
+或者说得更准确些，当 $f(x)$ 满足什么样的条件时，使满足上述等式的 $\alpha_0, \alpha_1, \alpha_2$ 存在？
+
+这个问题，实际上是问，在等式\eqref{eq:8-1}中，$o(x-a)$ 这误差项，已知它是较 $x-a$ 高阶的无穷小量，但在合适的条件下，它是否就是 $(x-a)$ 的二阶无穷小量？如果答案是肯定的，则问题就化成求这个二阶无穷小量的主部．
+
+我们看，在什么条件下，它是 $x-a$ 的二阶无穷小量？
+
+先用洛必达法则，再根据微商定义，有
+\[
+\lim_{x\to a}\frac{f(x) - f(a) - f'(a)(x-a)}{(x-a)^2} = \lim_{x\to a}\frac{f'(x) - f'(a)}{2(x-a)} = \frac{1}{2}f''(a),
+\]
+条件是只要 $f''(a)$ 存在，这时
+\[
+\frac{f(x) - f(a) - f'(a)(x-a)}{(x-a)^2} = \frac{1}{2}f''(a) + o(1),
+\]
+因此
+\[
+f(x) - f(a) - f'(a)(x-a) = \frac{1}{2}f''(a)(x-a)^2 + o\big((x-a)^2\big),
+\]
+从而
+\[
+f(x) = f(a) + f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2 + o\big((x-a)^2\big).
+\]
+这说明，只要 $f''(a)$ 存在，在 $a$ 的附近，$f(x)$ 可以用二次多项式
+\[
+f(a) + f'(a)(x-a) + \frac{1}{2}f''(a)(x-a)^2
+\]
+去近似，其近似误差当 $x \to a$ 时为比 $(x-a)^2$ 高阶的无穷小量．类似地，如果想在 $a$ 的附近，用三次多项式近似 $f(x)$，要求误差是当 $x \to a$ 时比 $(x-a)^3$ 高阶的无穷小量，是否可能呢？同样的推导知，只要 $f'''(a)$ 存在，便有
+\begin{align*}
+\lim_{x\to a}\frac{f(x) - f(a) - f'(a)(x-a) - \frac{1}{2}f''(a)(x-a)^2}{(x-a)^3} &= \lim_{x\to a}\frac{f'(x) - f'(a) - f''(a)(x-a)}{3(x-a)^2} \\
+&= \lim_{x\to a}\frac{f''(x) - f''(a)}{3\cdot 2(x-a)} = \frac{f'''(a)}{3!},
+\end{align*}
+即
+\[
+\frac{f(x) - f(a) - f'(a)(x-a) - \frac{1}{2}f''(a)(x-a)^2}{(x-a)^3} = \frac{f'''(a)}{3!} + o(1).
+\]
+下面例子的图形可给我们关于这种逼近的一个直观图象．
+
+\begin{example}
+$f(x) = \mathrm{e}^x$，取 $a = 0$，$\mathrm{e}^x$ 在 $x = 0$ 有任意次微商，故
+\begin{align*}
+\mathrm{e}^x &= 1 + x + o(x), \tag{I} \\
+\mathrm{e}^x &= 1 + x + \frac{x^2}{2} + o(x^2), \tag{II} \\
+\mathrm{e}^x &= 1 + x + \frac{x^2}{2} + \frac{x^3}{3!} + o(x^3). \tag{III}
+\end{align*}
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig8-1.png}
+\figcap{图 8-1}\label{fig:8-1}
+\end{figure}
+
+我们看出，在 $x = 0$ 附近，三次多项式 $1 + x + \frac{x^2}{2} + \frac{x^3}{6}$ 较二次多项式 $1 + x + \frac{x^2}{2}$ 要密接 $\mathrm{e}^x$ 多得多，而二次多项式 $1 + x + \frac{x^2}{2}$ 又较一次多项式 $1 + x$ 在 $x = 0$ 附近更密接 $\mathrm{e}^x$．
+
+用归纳法很容易得到下面的定理．
+
+\begin{theorem}[带佩亚诺余项的泰勒公式]\label{thm:8-1}
+若 $f(x)$ 在 $x = a$ 有 $n$ 阶微商，即 $f^{(n)}(a)$ 存在，则当 $x \to a$ 时有
+\[
+f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n + o\big((x-a)^n\big).
+\]
+\end{theorem}
+
+\begin{proof}
+用 $n-1$ 次洛必达法则，再根据 $f^{(n)}(a)$ 的定义，便有
+\[
+\lim_{x\to a}\frac{f(x) - f(a) - f'(a)(x-a) - \cdots - \frac{f^{(n-1)}(a)}{(n-1)!}(x-a)^{n-1}}{(x-a)^n} = \frac{1}{n!}f^{(n)}(a).
+\]
+用极限与无穷小量的关系再移项便证得定理所需要的结果．
+\end{proof}
+
+我们称定理中的公式为 $f(x)$ 的带佩亚诺余项 $o\big((x-a)^n\big)$ 的泰勒公式．多项式
+\[
+f(a) + f'(a)(x-a) + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n
+\]
+称为 $f(x)$ 在 $a$ 点的 $n$ 阶泰勒多项式．
+
+当 $a = 0$ 时，我们得到当 $x \to 0$ 时，有
+\[
+f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \cdots + \frac{f^{(n)}(0)}{n!}x^n + o(x^n),
+\]
+它称为 $f(x)$ 的带佩亚诺余项的麦克劳林（Maclaurin，1699---1746）公式，等式右边的多项式称为 $f(x)$ 的 $n$ 阶麦克劳林多项式．
+
+下面的定理，给出泰勒公式的一个应用．
+
+\begin{theorem}\label{thm:8-2}
+设 $f(x)$ 在 $a$ 点 $n$ ($n \geqslant 2$) 次可微，且
+\[
+f'(a) = f''(a) = \cdots = f^{(n-1)}(a) = 0, \quad f^{(n)}(a) \neq 0,
+\]
+则当 $n$ 为奇数时，$f(x)$ 在 $a$ 点不取极值．当 $n$ 为偶数时，若 $f^{(n)}(a) > 0$，则 $f(x)$ 在 $a$ 取极小值；若 $f^{(n)}(a) < 0$，则 $f(x)$ 在 $a$ 取极大值．
+\end{theorem}
+
+\begin{proof}
+用定理~\ref{thm:8-1}，有
+\[
+f(x) - f(a) = \left(\frac{f^{(n)}(a)}{n!} + o(1)\right)(x-a)^n.
+\]
+由 $f^{(n)}(a) \neq 0$，知存在 $\delta > 0$，使得当 $|x - a| < \delta$ 时，有
+\[
+|o(1)| \leqslant \frac{|f^{(n)}(a)|}{2n!},
+\]
+即 $\frac{f^{(n)}(a)}{n!} + o(1)$ 与 $\frac{f^{(n)}(a)}{n!}$ 同号．
+
+因此，当 $n$ 为奇数时，$f(x) - f(a)$ 在 $x > a$ 与 $x < a$ 两边变号，故 $f(x)$ 在 $a$ 不取极值．而当 $n$ 为偶数时，若 $f^{(n)}(a) > 0$，则当 $|x - a| < \delta$ 时，
+\[
+f(x) - f(a) > 0,
+\]
+这表明 $f(x)$ 在 $a$ 点达到极小．若 $f^{(n)}(a) < 0$，则当 $|x - a| < \delta$ 时，
+\[
+f(x) - f(a) < 0,
+\]
+这表明 $f(x)$ 在 $a$ 达到极大，定理证完．
+\end{proof}
+
+$n = 2$ 时，这是第五章已知的结果．
+
+下面的定理表明，具有这样性质的多项式是唯一的．
+
+\begin{theorem}[唯一性]\label{thm:8-3}
+若当 $x \to a$ 时
+\begin{align*}
+f(x) &= A_0 + A_1(x-a) + A_2(x-a)^2 + \cdots + A_n(x-a)^n + o\big((x-a)^n\big) \\
+&= B_0 + B_1(x-a) + B_2(x-a)^2 + \cdots + B_n(x-a)^n + o\big((x-a)^n\big),
+\end{align*}
+则
+\[
+A_i = B_i, \quad i = 0, 1, \cdots, n.
+\]
+\end{theorem}
+
+\begin{proof}
+用归纳法．在等式两边令 $x \to a$ 取极限，得 $A_0 = B_0$．设 $A_k = B_k$ ($k = 0, \cdots, j-1$，$j \leqslant n$)，则
+\[
+A_j(x-a)^j + \cdots + A_n(x-a)^n + o\big((x-a)^n\big) = B_j(x-a)^j + \cdots + B_n(x-a)^n + o\big((x-a)^n\big).
+\]
+因此
+\[
+A_j + A_{j+1}(x-a) + \cdots + A_n(x-a)^{n-j} + o\big((x-a)^{n-j}\big) = B_j + B_{j+1}(x-a) + \cdots + B_n(x-a)^{n-j} + o\big((x-a)^{n-j}\big).
+\]
+在等式两边令 $x \to a$ 取极限，便得 $A_j = B_j$．按归纳法原理得 $A_i = B_i$ ($i = 0, 1, \cdots, n$)，证完．
+\end{proof}
+
+\subsection{余项为其他形式的泰勒公式}\label{subsec:8-1-2}
+
+带佩亚诺余项的泰勒公式只告诉我们，只要在 $a$ 点有 $n$ 阶微商 $f^{(n)}(a)$ 存在，则 $f(x)$ 在 $a$ 的附近可以用 $n$ 次多项式逼近，其误差当 $x \to a$ 时是较 $(x - a)^n$ 高阶的无穷小量．它只给出这个误差的一种变化状态，而没有给出这个误差的数量性质，或者说，对于给定的 $x$，我们并不能给出这个误差大小的估计．而实际上，无论在计算函数值或理论应用中，人们都很想知道，这种逼近的误差究竟能不能估计．这种情形，我们在过去实际上碰到过．例如，公式在 $n = 0$ 的时候，有
+\[
+f(x) = f(a) + o(1),
+\]
+这等式表明，$f(x)$ 只要在 $a$ 连续，则在 $a$ 的附近用常数 $f(a)$ 来近似 $f(x)$，其误差当 $x \to a$ 时是无穷小量．这情形和关于佩亚诺余项的描述完全符合．但这里的无穷小量 $o(1)$，对固定的 $x \neq a$，它究竟有多大，从这公式我们是无法知道的．但另外一个公式——微分中值公式，却使我们可以在一定条件下估计这个误差．若 $f(x)$ 在 $[a, b]$ 有连续微商（注意，这里为了叙述方便，我们做了比微分中值定理更强一些的假设），则
+\[
+f(x) - f(a) = f'(\xi)(x-a), \quad \xi \in [a, b].
+\]
+虽然 $\xi$ 在什么地方不知道，但据此已可以估计 $f(x)$ 与 $f(a)$ 差的大小了．例如，用它可以证明，若在某区间 $f'(x) > 0$，则 $f(x)$ 在此区间单调上升等等．微分中值定理的大量应用，告诉了我们这个公式的重要性．
+
+我们现在提出的问题是：对佩亚诺余项 $o\big((x-a)^n\big)$，能否给出类似的公式？
+
+记 $f(x)$ 与其泰勒多项式之差为 $R_n(x)$，即
+\[
+f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n(x),
+\]
+我们能否给出 $R_n(x)$ 一个有用的表达式？
+
+用微积分基本定理，有
+\[
+f(x) - f(a) = \int_a^x f'(t)\,\mathrm{d}t,
+\]
+它就是 $R_0(x)$ 的一个积分表达式．用积分中值定理，知存在 $\xi \in [a, b]$ 使
+\[
+\int_a^x f'(t)\,\mathrm{d}t = f'(\xi)(x-a),
+\]
+即
+\[
+f(x) - f(a) = f'(\xi)(x-a),
+\]
+又重新得到微分中值定理（推导比以前简单了，但假设比以前强：设 $f'(x)$ 连续，且用了微积分基本定理），它也是 $R_0(x)$ 的另一个表达式．下面就用这个思想，假设 $f(x)$ 在 $[a,b]$ 有 $n+1$ 阶连续微商，对任意 $x \in [a,b]$，给出 $R_n(x)$ 的表达式，这些表达式以后将给出很多有用的结果．首先我们给出积分表达式
+\[
+R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t)\,\mathrm{d}t.
+\]
+再强调一次，$R_n(x)$ 是函数 $f(x)$ 与其泰勒多项式的误差
+\[
+R_n(x) = f(x) - \left[f(a) + f'(a)(x-a) + \cdots + \frac{1}{n!}f^{(n)}(a)(x-a)^n\right].
+\]
+我们来证明它．事实上，只要对
+\[
+f(x) - f(a) = \int_a^x f'(t)\,\mathrm{d}t
+\]
+用 $n$ 次分部积分即可得出
+\begin{align*}
+\int_a^x f'(t)\,\mathrm{d}t &= -\int_a^x f'(t)\,\mathrm{d}(x-t) \\
+&= -(x-t)f'(t)\Big|_a^x + \int_a^x (x-t)f''(t)\,\mathrm{d}t \\
+&= f'(a)(x-a) + \int_a^x (x-t)f''(t)\,\mathrm{d}t \\
+&= f'(a)(x-a) - \int_a^x f''(t)\,\mathrm{d}\frac{(x-t)^2}{2} \\
+&= f'(a)(x-a) - \frac{(x-t)^2}{2}f''(t)\Big|_a^x + \frac{1}{2!}\int_a^x (x-t)^2 f'''(t)\,\mathrm{d}t \\
+&= f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{1}{2!}\int_a^x (x-t)^2 f'''(t)\,\mathrm{d}t.
+\end{align*}
+继续做下去便得到所要的表达式，我们把它写成一个定理．
+
+\begin{theorem}\label{thm:8-4}
+若 $f(x)$ 在包含 $a$ 的一个区间有 $n+1$ 阶连续微商，则对此区间内的任意 $x$，有下面的泰勒公式成立：
+\[
+f(x) = f(a) + f'(a)(x-a) + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n(x),
+\]
+其中
+\[
+R_n(x) = \frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t)\,\mathrm{d}t,
+\]
+或
+\[
+R_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1},
+\]
+其中 $\xi$ 在 $a$ 与 $x$ 之间，或
+\[
+R_n(x) = \frac{(x-a)^{n+1}}{n!}(1-\theta)^n f^{(n+1)}\big(a+\theta(x-a)\big),
+\]
+其中 $0 < \theta < 1$．
+\end{theorem}
+
+这里 $R_n(x)$ 称为泰勒公式的余项．第一个表达式称为积分余项，第二个表达式称为拉格朗日余项，第三个表达式称为柯西余项．
+
+余项 $R_n(x)$ 可以写成上面的积分形式，我们实际上已经证明过了．直接用通常的积分中值定理
+\[
+\int_a^b h(t)\,\mathrm{d}t = h\big(a+\theta(b-a)\big)(b-a),
+\]
+便得柯西余项．用广义的积分中值定理
+\[
+\int_a^b g(t)h(t)\,\mathrm{d}t = g(\xi)\int_a^b h(t)\,\mathrm{d}t
+\]
+（其中假设 $g, h$ 连续，$h$ 不变号），则
+\[
+\frac{1}{n!}\int_a^x (x-t)^n f^{(n+1)}(t)\,\mathrm{d}t = \frac{f^{(n+1)}(\xi)}{n!}\int_a^x (x-t)^n\,\mathrm{d}t = \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1},
+\]
+这就是拉格朗日余项．
+
+以后将会经常看到这些公式的应用．
+
+\subsection{初等函数的泰勒公式}\label{subsec:8-1-3}
+
+下面我们给出一些常见的初等函数的泰勒公式，特别取 $a = 0$ 时，称为麦克劳林公式．
+
+指数函数 $f(x) = \mathrm{e}^x$．这时 $f^{(n)}(0) = 1$ ($n = 0, 1, 2, \cdots$)，用拉格朗日余项（$\xi = \theta x$，$0 < \theta < 1$），有
+\[
+\mathrm{e}^x = 1 + x + \frac{x^2}{2!} + \cdots + \frac{x^n}{n!} + \frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1}.
+\]
+用这个公式可以计算 $\mathrm{e}$ 的近似值．比如要求准确到 $10^{-5}$，注意到取 $n = 9$ 时，有
+\[
+R_9(1) = \frac{\mathrm{e}^\theta}{(9+1)!} \leqslant \frac{3}{10!} < \frac{1}{10}\times 10^{-5},
+\]
+故
+\[
+\mathrm{e} \approx 1 + 1 + \frac{1}{2} + \frac{1}{3!} + \cdots + \frac{1}{9!}.
+\]
+每项计算到小数后 $6$ 位（第 $7$ 位四舍五入），每项误差小于 $\frac{1}{2}\times 10^{-6}$，后 $7$ 项总误差为 $\frac{7}{2}\times 10^{-6}$，再加上余项 $R_9(1)$ 的误差，总误差
+\[
+\text{总误差} < \left(\frac{7}{20} + \frac{1}{10}\right)\times 10^{-5} < \frac{1}{2}\times 10^{-5}.
+\]
+用计算器容易算出
+\[
+\mathrm{e} \approx 2.718\,281\,5.
+\]
+这里，我们取 $x = 1$ 计算 $\mathrm{e}$．事实上，对任意固定的 $x$，由不等式
+\[
+\left|\frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1}\right| \leqslant \frac{\mathrm{e}^{|x|}}{(n+1)!}|x|^{n+1} \to 0 \quad (n \to \infty),
+\]
+知只要取 $n$ 充分大，用上述泰勒多项式去近似代替 $\mathrm{e}^x$，其误差可以达到任意小．
+
+三角函数 $f(x) = \sin x$．这时 $f^{(n)}(0)$ 是一个周期性的序列 $0, 1, 0, -1, 0, 1, 0, -1, \cdots$．因此对 $a = 0$ 用拉格朗日余项，有
+\[
+\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots + (-1)^{k-1}\frac{x^{2k-1}}{(2k-1)!} + (-1)^k \frac{\cos \theta x}{(2k+1)!}x^{2k+1}.
+\]
+同样也可看出，对任意固定的 $x$，当 $k \to \infty$ 时，
+\[
+|R_{2k}(x)| \leqslant \frac{|x|^{2k+1}}{(2k+1)!} \to 0.
+\]
+同样地，
+\[
+\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \cdots + \frac{(-1)^{k-1}x^{2k-2}}{(2k-2)!} + \frac{(-1)^k}{(2k)!}\cos \theta x\cdot x^{2k},
+\]
+也有
+\[
+|R_{2k-1}(x)| \leqslant \frac{|x|^{2k}}{(2k)!} \to 0 \quad (k \to \infty).
+\]
+
+对数函数 $f(x) = \ln(1+x)$．这时
+\[
+f'(x) = \frac{1}{1+x}, \quad f''(x) = -\frac{1}{(1+x)^2}, \quad \cdots, \quad f^{(n)}(x) = (-1)^{n-1}(n-1)!(1+x)^{-n},
+\]
+故
+\[
+f(0) = 0, \quad f'(0) = 1, \quad f''(0) = -1, \quad \cdots, \quad f^{(n)}(0) = (-1)^{n-1}(n-1)!,
+\]
+故
+\[
+\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \cdots + \frac{(-1)^{n-1}}{n}x^n + R_n(x).
+\]
+当 $0 < x \leqslant 1$ 时，用拉格朗日余项有（$0 < \theta < 1$）
+\[
+|R_n(x)| = \frac{1}{n+1}|x|^{n+1}(1+\theta x)^{-(n+1)} \leqslant \frac{1}{n+1} \to 0 \quad (n \to \infty),
+\]
+而当 $-1 < x < 0$ 时，用拉格朗日余项就无法断定它趋向于 $0$（当 $n \to \infty$），只能用柯西余项
+\begin{align*}
+|R_n(x)| &= \frac{|x|^{n+1}(1-\theta)^n}{n!}|f^{(n+1)}(\theta x)| \\
+&= \frac{|x|^{n+1}}{1-|\theta x|}\left(\frac{1-\theta}{1-|\theta x|}\right)^n \\
+&\leqslant \frac{|x|^{n+1}}{1-|x|} \to 0 \quad (n \to \infty).
+\end{align*}
+
+幂函数 $f(x) = (1+x)^\alpha$．这时
+\[
+f'(x) = \alpha(1+x)^{\alpha-1}, \quad \cdots, \quad f^{(n)}(x) = \alpha(\alpha-1)\cdots(\alpha-n+1)(1+x)^{\alpha-n},
+\]
+故
+\[
+f(0) = 1, \quad f'(0) = \alpha, \quad f''(0) = \alpha(\alpha-1), \quad \cdots, \quad f^{(n)}(0) = \alpha(\alpha-1)\cdots(\alpha-n+1).
+\]
+故
+\[
+(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots + \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n + R_n(x).
+\]
+对余项的估计我们就不在这里叙述了．
+
+\begin{xiti}
+\item 写出下列函数在 $x = 0$ 的带佩亚诺余项的泰勒展开式：
+\begin{ziti}
+\item $\mathrm{e}^{2x}$；
+\item $\cos x^2$；
+\item $\ln(1-x)$；
+\item $\displaystyle \frac{1}{(1+x)^2}$；
+\item $\displaystyle \frac{x^3 + 2x + 1}{x - 1}$；
+\item $\sin^3 x$；
+\item $\displaystyle \frac{x}{2x^2 + x - 1}$；
+\item $\displaystyle \ln\frac{1+x}{1-2x}$．
+\end{ziti}
+
+\item 写出下列函数在 $x = 0$ 的泰勒公式至所指的阶数：
+\begin{ziti}
+\item $\mathrm{e}^{\sin x}$，($x^3$)；
+\item $\ln\cos x$，$ (x^6) $；
+\item $\displaystyle \frac{x}{\sin x}$，($x^4$)；
+\item $\displaystyle \frac{x^2}{\sqrt{1 - x + x^2}}$，($x^4$).
+\end{ziti}
+
+\item 求下列函数在 $x = 1$ 的泰勒展开式：
+\begin{ziti}
+\item $\ln x$；
+\item $a^x$；
+\item $P(x) = x^3 - 2x^2 + 3x + 5$．
+\end{ziti}
+
+\item 确定常数 $a, b$，使当 $x \to 0$ 时，
+\begin{ziti}
+\item $f(x) = (a + b \cos x) \sin x - x$ 为 $x$ 的 $5$ 阶无穷小；
+\item $\displaystyle f(x) = \mathrm{e}^x - \frac{1 + ax}{1 + bx}$ 为 $x$ 的 $3$ 阶无穷小．
+\end{ziti}
+
+\item 利用泰勒公式求极限：
+\begin{ziti}
+\item $\displaystyle \lim_{x \to 0} \left( \frac{1}{x} - \frac{1}{\sin x} \right)$；
+\item $\displaystyle \lim_{x \to 0} \frac{\mathrm{e}^{x^3} - 1 - x^3}{\sin^6 2x}$；
+\item $\displaystyle \lim_{n\to\infty}\left(n+\frac{1}{2}\right)\ln\left(1+\frac{1}{n}\right)$；
+\item $\displaystyle \lim_{x \to 0} \frac{1 - \cos(\sin x)}{2 \ln(1 + x^2)}$；
+\item $\displaystyle \lim_{x \to +\infty} \left( \sqrt[3]{x^3 + 3x} - \sqrt{x^2 - 2x} \right)$．
+\end{ziti}
+
+\item 设 $f(x)$ 在原点的邻域二次可导，且
+\[
+\lim_{x\to0}\left(\frac{\sin 3x}{x^3} + \frac{f(x)}{x^2}\right) = 0.
+\]
+\begin{ziti}
+\item 求 $f(0)$，$f'(0)$，$f''(0)$；
+\item 求 $\displaystyle \lim_{x\to0}\left(\frac{3}{x^2} + \frac{f(x)}{x^2}\right)$．
+\end{ziti}
+
+\item 设 $f(x)$ 在实轴上任意次可导，令 $F(x) = f(x^2)$，求证：
+\[
+F^{(2n+1)}(0) = 0, \quad \frac{F^{(2n)}(0)}{(2n)!} = \frac{f^{(n)}(0)}{n!}.
+\]
+
+\item 设 $P(x)$ 为一 $n$ 次多项式，
+\begin{ziti}
+\item 若 $P(a), P'(a), \cdots, P^{(n)}(a)$ 皆为正数，证明 $P(x)$ 在 $(a, +\infty)$ 上无根；
+\item 若 $P(a), P'(a), \cdots, P^{(n)}(a)$ 正负号相间，证明 $P(x)$ 在 $(-\infty, a)$ 上无根．
+\end{ziti}
+
+\item 求证：
+\begin{ziti}
+\item $\displaystyle \mathrm{e} = 1 + 1 + \frac{1}{2!} + \cdots + \frac{1}{n!} + \frac{\mathrm{e}^\theta}{(n+1)!} \quad (0 < \theta < 1)$；
+\item $\mathrm{e}$ 是无理数．
+\end{ziti}
+
+\item 设 $f(x)$ 在 $[a, b]$ 上有二阶连续导数，且 $f'(a) = f'(b) = 0$，则存在 $c \in (a, b)$，使
+\[
+|f''(c)| \geqslant \frac{4}{(b-a)^2}|f(b) - f(a)|.
+\]
+
+\item 设 $f(x)$ 在 $a$ 点附近二次可导，且 $f''(a) \neq 0$，由微分中值定理：
+\[
+f(a+h) - f(a) = f'(a+\theta h)h, \qquad 0 < \theta < 1.
+\]
+求证：$\displaystyle \lim_{h\to0}\theta = \frac{1}{2}$．
+\end{xiti}

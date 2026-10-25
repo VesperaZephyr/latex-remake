@@ -1,0 +1,277 @@
+\documentclass[11pt,a4paper,openright,twoside]{book}
+
+% ============ 宏包 ============
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{ctex}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumerate}
+\usepackage{imakeidx}
+\usepackage{thmtools}
+\usepackage{tikz-cd}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{chngcntr}
+
+% 设置英文名称
+\ctexset{
+  contentsname      = Contents,
+  listfigurename    = List of Figures,
+  listtablename     = List of Tables,
+  bibname           = References,
+  indexname         = Index,
+  appendixname      = Appendix,
+}
+
+% 页面设置
+\usepackage{geometry}
+\geometry{
+    top=2cm,
+    bottom=2cm,
+    left=1.5cm,
+    right=1.5cm,
+    marginparwidth=2.5cm,
+    marginparsep=0.5cm,
+    headheight=15pt,
+}
+
+% 行间距
+\linespread{1.35}
+
+% ============ 定理环境 ============
+% 原书结构: 11 个 chapter (每章开头有一段引言), 章下设全局编号的 section (§1-§33).
+% 编号约定: Theorem 7.1 指 §7 的第 1 个定理 (见原书 Conventions (8)),
+% 故定理计数器挂在 section 上; section 编号全局连续 (1-33, 不随 chapter 重置).
+\counterwithout{section}{chapter}
+\renewcommand{\thesection}{\arabic{section}}
+% 原书中 Theorem/Proposition/Corollary 共用一个计数器, Lemma 单独计数(每节从 1 开始),
+% Definition 与 Example 不编号或每节独立编号, Remark 不编号.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{corollarynum}{Corollary}[section]
+\renewcommand{\thecorollarynum}{\arabic{corollarynum}} % 如 Theorem 4.3 后的 Corollary 1-4
+\newtheorem{lemma}{Lemma}[section]
+\renewcommand{\thelemma}{\arabic{lemma}} % 原书 Lemma 按节独立编号: Lemma 1, Lemma 2
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{exercise}{Exercise}[section]
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}{Example}[section]
+\renewcommand{\theexample}{\arabic{example}} % 原书 Example 按节独立编号
+\newtheorem*{example*}{Example}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{remarks}{Remarks}
+
+% 证明环境
+\renewcommand{\proofname}{Proof}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+% ============ 超链接 ============
+\definecolor{linkblue}{RGB}{0,0,180}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    hyperindex=true,
+    pdfauthor={Hideyuki Matsumura},
+    pdftitle={Commutative Ring Theory},
+    pdfsubject={Commutative Algebra}
+}
+
+% ============ 页眉页脚 ============
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\emph{Commutative Ring Theory --- H. Matsumura}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ============ 自定义命令 ============
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ann}{\operatorname{ann}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\nil}{\operatorname{nil}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Zar}{\operatorname{Zar}}
+\newcommand{\Ass}{\operatorname{Ass}}
+\newcommand{\Att}{\operatorname{Att}}
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\Imf}{\operatorname{Im}}
+\newcommand{\lcm}{\operatorname{l.c.m.}}
+\newcommand{\hcf}{\operatorname{h.c.f.}}
+\newcommand{\trdeg}{\operatorname{tr.deg}}
+% 注意: 不可重定义 \ht (TeX 原语, \LaTeX 徽标依赖它), 故用 \htop 表示高度算子 ht
+\newcommand{\htop}{\operatorname{ht}}
+\newcommand{\coht}{\operatorname{coht}}
+\newcommand{\depth}{\operatorname{depth}}
+\newcommand{\grade}{\operatorname{grade}}
+\newcommand{\injdim}{\operatorname{inj\,dim}}
+\newcommand{\projdim}{\operatorname{proj\,dim}}
+\newcommand{\codepth}{\operatorname{codepth}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Max}{\operatorname{Max}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\gldim}{\operatorname{gl\,dim}}
+\newcommand{\embdim}{\operatorname{emb\,dim}}
+\newcommand{\Pit}{\operatorname{Pit}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\divisor}{\operatorname{div}}
+\newcommand{\CM}{\operatorname{CM}}
+\newcommand{\Gor}{\operatorname{Gor}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Der}{\operatorname{Der}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\chark}{\operatorname{char}}
+\newcommand{\Nor}{\operatorname{Nor}}
+\providecommand{\blank}{{-}}
+
+% 索引
+\makeindex
+
+% ============ 文档开始 ============
+\begin{document}
+\frontmatter
+
+% 封面
+\begin{titlepage}
+    \begin{center}
+        \vspace*{2cm}
+        {\Huge\bfseries Commutative Ring Theory\par}
+        \vspace{1.5cm}
+        {\Large\bfseries HIDEYUKI MATSUMURA\par}
+        \vspace{0.5cm}
+        {\large Department of Mathematics, Faculty of Sciences\par}
+        {\large Nagoya University, Nagoya, Japan\par}
+        \vspace{0.7cm}
+        {\large Translated by M.\ Reid\par}
+        \vfill
+        {\large CAMBRIDGE UNIVERSITY PRESS\par}
+        \vspace{0.5cm}
+        {\large Cambridge \textbullet{} New York \textbullet{} New Rochelle\par}
+        {\large Melbourne \textbullet{} Sydney\par}
+    \end{center}
+\end{titlepage}
+
+\thispagestyle{empty}
+\begin{center}
+    \small
+    \noindent\textbf{关于本重排版 / About this edition}\\[0.5em]
+    本文件为《Commutative Ring Theory》一书的中文非官方 \LaTeX{} 重排版, 内容忠实于\\
+    Cambridge University Press 1986 年英文版 (Miles Reid 翻译), 未作任何内容删改.\\
+    重排版仅用于学习交流, 原书版权归 Hideyuki Matsumura 与 Cambridge University Press 所有.\\
+    \vspace{0.5cm}
+    Original edition: \textit{Commutative ring theory}, translated by M.\ Reid,\\
+    Cambridge Studies in Advanced Mathematics 8, Cambridge University Press, 1986.
+\end{center}
+
+% 重排前言
+\newpage
+\pagestyle{plain}
+\chapter*{重排前言}
+\addcontentsline{toc}{chapter}{重排前言}
+松村英之 (Hideyuki Matsumura) 的《交换环论》(\textit{Commutative Ring Theory}, Cambridge University Press, 1986, 由 Miles Reid 翻译) 是交换代数领域公认的经典专著. 全书以精炼而严谨的笔法, 系统地覆盖了从理想与模的基本理论、局部化、平坦性、完备化, 到维数理论、正则环、导子与光滑性等现代交换代数的核心内容, 是代数几何与代数数论研究者不可或缺的参考书.
+
+然而, 由于原书排版年代较早, 市面流通的扫描版电子文件普遍存在字体模糊、公式不清、版面拥挤的问题, 长期阅读容易造成视觉疲劳. 为了让读者能够更舒适地研读这部经典, 我们发起了本次非官方重排项目.
+
+本次重排工作的要点如下:
+\begin{enumerate}
+  \item \textbf{完全忠于原书内容}: 节 (§) 的划分、定理编号 (如 Theorem~\ref{thm:7.1} 指 §7 的第 1 个定理)、证明过程、习题安排与解答均严格遵从 1986 年英文版, 未作任何删改.
+  \item \textbf{采用 \LaTeX{} 专业排版}: 数学公式清晰锐利, 正文行距与页边距经过仔细调整, 适合屏幕阅读和打印.
+  \item \textbf{补充超链接}: 在 PDF 版本中, 目录、交叉引用、定理编号、参考文献与索引页码均为可点击超链接.
+  \item \textbf{分章推进}: 全书共 11 章、33 节及 3 个附录, 每章开头附有原书的章节引言, 本重排版按章节逐次完成.
+\end{enumerate}
+
+\noindent\textbf{关于版权}\\
+本项目严格遵循"只重排形式、不改变内容"的原则:
+\begin{itemize}
+  \item 原书版权归作者及原出版社所有, 本重排版并非官方版本, 也不声称拥有任何内容版权.
+  \item 重排版的 \LaTeX{} 源码开源共享, 其目的仅在于提供一种现代化的排版实现, 方便数学爱好者自行打印和学习.
+  \item 本项目不涉及任何商业行为. 若您需要正式出版物, 请支持正版原书.
+\end{itemize}
+
+\vspace{1cm}
+\begin{flushright}
+  重排者: Vespera Zephyr\\[0.3em]
+  \today
+\end{flushright}
+
+% 原书前言、引言、记号
+\input{frontmatter}
+
+% 目录
+\tableofcontents
+
+% ============ 主内容 ============
+% 原书结构: 11 个 chapter, 每章下设全局编号的 section (§1-§33), 章首有引言.
+% 每章一个 chapterNN.tex: 章标题 + 原书引言 + 各节 \input.
+\mainmatter
+\pagestyle{fancy}
+
+\input{chapter01}
+\input{chapter02}
+\input{chapter03}
+\input{chapter04}
+\input{chapter05}
+\input{chapter06}
+\input{chapter07}
+\input{chapter08}
+\input{chapter09}
+\input{chapter10}
+\input{chapter11}
+
+% ============ 附录 (原书 Appendices A--C, pp.266-286) ============
+\input{appendixA}
+\input{appendixB}
+\input{appendixC}
+
+% ============ 习题解答 ============
+\backmatter
+\chapter*{Solutions and hints for exercises}
+\addcontentsline{toc}{chapter}{Solutions and hints for exercises}
+\input{solutions1}
+\input{solutions2}
+\input{solutions3}
+\input{solutions4}
+\input{solutions5}
+\input{solutions6}
+\input{solutions7}
+\input{solutions8}
+\input{solutions9}
+\input{solutions10}
+
+% ============ 参考文献 ============
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+\input{references}
+
+% 索引
+\printindex
+\addcontentsline{toc}{chapter}{Index}
+
+\end{document}

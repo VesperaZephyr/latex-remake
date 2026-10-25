@@ -1,0 +1,240 @@
+\chapter{Singular Integrals and Systems of Conjugate Harmonic Functions}
+\label{ch:singular-integrals}
+
+In Chapter~IV we encountered the Riesz transforms $R_j$, $j = 1, 2, \dots, n$, which are higher-dimensional analogues of the Hilbert transform. In this chapter we develop the general theory of singular integral operators of Calder\'on--Zygmund type and their intimate connections with systems of conjugate harmonic functions and higher-dimensional $H^p$ spaces.
+
+In one dimension, the Hilbert transform connects the real and imaginary parts of the boundary values of an analytic function on the upper half-plane. In several variables, this role is played by systems of harmonic functions $F = (u_0, u_1, \dots, u_n)$ on the upper half-space $E_{n+1}^+$ satisfying the generalized Cauchy--Riemann equations of M.~Riesz:
+\[
+\sum_{j=0}^n \frac{\partial u_j}{\partial x_j} = 0, \quad \frac{\partial u_j}{\partial x_k} = \frac{\partial u_k}{\partial x_j}, \quad 0 \leq j, k \leq n,
+\]
+where $x_0 = y > 0$ represents the vertical variable.
+
+\section{The Hilbert Transform}
+
+For a function $f$ on the real line $E_1 = \mathbb{R}$, the \emph{Hilbert transform} $Hf = \tilde{f}$ is defined by the principal value integral
+\begin{equation}\label{eq:c6-1-1}
+(Hf)(x) = \tilde{f}(x) = \frac{1}{\pi} \lim_{\varepsilon \to 0} \int_{|t| > \varepsilon} \frac{f(x - t)}{t}\,dt = \frac{1}{\pi} \,\text{p.v.} \int_{-\infty}^\infty \frac{f(x - t)}{t}\,dt.
+\end{equation}
+
+\begin{lemma}\label{lem:c6-1-2}
+The Fourier transform of the principal value distribution $\text{p.v.}\,1/(\pi x)$ is $-i\,\text{sgn}(y)$. Consequently, for $f \in L^2(\mathbb{R})$,
+\begin{equation}\label{eq:c6-1-3}
+\widehat{Hf}(y) = -i\,\text{sgn}(y) \hat{f}(y).
+\end{equation}
+\end{lemma}
+
+\begin{theorem}[M. Riesz Theorem for the Hilbert Transform]\label{thm:c6-1-4}
+\begin{enumerate}
+\item[(a)] The Hilbert transform $H$ is a bounded linear operator from $L^p(\mathbb{R})$ to $L^p(\mathbb{R})$ for all $1 < p < \infty$:
+\[
+\|Hf\|_p \leq A_p \|f\|_p.
+\]
+\item[(b)] $H$ is an isometry on $L^2(\mathbb{R})$: $\|Hf\|_2 = \|f\|_2$.
+\item[(c)] $H^2 = -I$; that is, $H(Hf) = -f$ for all $f \in L^p(\mathbb{R})$, $1 < p < \infty$.
+\item[(d)] $H$ is of weak type $(1, 1)$: for all $\lambda > 0$,
+\[
+|\{x \in \mathbb{R} : |(Hf)(x)| > \lambda\}| \leq \frac{A}{\lambda} \|f\|_1.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}\label{lem:c6-1-5}
+Let $Q(x, y) = \frac{1}{\pi} \frac{x}{x^2 + y^2}$ be the conjugate Poisson kernel. Then for $f \in L^p(\mathbb{R})$, $1 \leq p < \infty$,
+\begin{equation}\label{eq:c6-1-6}
+\lim_{y \to 0} (f * Q_y)(x) = (Hf)(x) \quad \text{almost everywhere}.
+\end{equation}
+\end{lemma}
+
+\begin{equation}\label{eq:c6-1-7}
+u(x, y) + i v(x, y) = (f * P_y)(x) + i (f * Q_y)(x).
+\end{equation}
+
+\begin{equation}\label{eq:c6-1-8}
+v(x, y) = (Hf * P_y)(x).
+\end{equation}
+
+\section{Singular Integral Operators with Odd Kernels}
+
+A kernel $K(x)$ on $E_n$ is said to be a \emph{singular integral kernel with odd character} if
+\begin{equation}\label{eq:c6-2-1}
+K(x) = \frac{\Omega(x)}{|x|^n},
+\end{equation}
+where $\Omega$ is homogeneous of degree $0$, $\Omega(-x) = -\Omega(x)$ (odd), and $\Omega \in L^1(\Sigma)$.
+
+\begin{lemma}\label{lem:c6-2-2}
+Since $\Omega$ is odd, the mean value of $\Omega$ over the sphere $\Sigma$ vanishes:
+\begin{equation}\label{eq:c6-2-3}
+\int_\Sigma \Omega(t')\,dt' = 0.
+\end{equation}
+\end{lemma}
+
+\begin{equation}\label{eq:c6-2-4}
+(T_\varepsilon f)(x) = \int_{|t| > \varepsilon} K(t) f(x - t)\,dt.
+\end{equation}
+
+\begin{equation}\label{eq:c6-2-5}
+(T f)(x) = \lim_{\varepsilon \to 0} (T_\varepsilon f)(x).
+\end{equation}
+
+\begin{theorem}[Calder\'on--Zygmund Theorem for Odd Kernels]\label{thm:c6-2-6}
+Suppose $\Omega$ is odd, homogeneous of degree $0$, and satisfies the Dini condition on $\Sigma$:
+\[
+\int_0^1 \frac{\omega(\delta)}{\delta}\,d\delta < \infty,
+\]
+where $\omega(\delta) = \sup_{|\xi - \eta| \leq \delta} |\Omega(\xi) - \Omega(\eta)|$. Then:
+\begin{enumerate}
+\item[(a)] The singular integral $Tf(x) = \lim_{\varepsilon \to 0} (T_\varepsilon f)(x)$ exists almost everywhere for every $f \in L^p(E_n)$, $1 \leq p < \infty$.
+\item[(b)] For $1 < p < \infty$, $T$ is a bounded operator on $L^p(E_n)$:
+\begin{equation}\label{eq:c6-2-7}
+\|Tf\|_p \leq A_p \|f\|_p.
+\end{equation}
+\item[(c)] $T$ is of weak type $(1, 1)$:
+\begin{equation}\label{eq:c6-2-8}
+|\{x \in E_n : |(Tf)(x)| > \lambda\}| \leq \frac{A}{\lambda} \|f\|_1.
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{equation}\label{eq:c6-2-9}
+\widehat{Tf}(y) = m(y) \hat{f}(y), \quad m(y) = \lim_{\varepsilon \to 0} \int_{\varepsilon < |x| < 1/\varepsilon} K(x) e^{-2\pi i x \cdot y}\,dx.
+\end{equation}
+
+\begin{equation}\label{eq:c6-2-10}
+m(y) = -i \frac{\pi}{2} \int_\Sigma \Omega(\xi) \text{sgn}(\xi \cdot y')\,d\xi, \quad y' = y/|y|.
+\end{equation}
+
+\section{Singular Integral Operators with Even Kernels}
+
+When $\Omega(-x) = \Omega(x)$ is even, the condition of vanishing spherical mean $\int_\Sigma \Omega(t')\,dt' = 0$ does not follow automatically from parity and must be assumed explicitly.
+
+\begin{theorem}[Calder\'on--Zygmund Theorem for Even Kernels]\label{thm:c6-3-1}
+Let $K(x) = \Omega(x)/|x|^n$, where $\Omega$ is even, homogeneous of degree $0$, has mean zero on $\Sigma$:
+\begin{equation}\label{eq:c6-3-2}
+\int_\Sigma \Omega(t')\,dt' = 0,
+\end{equation}
+and satisfies the Dini condition on $\Sigma$. Then:
+\begin{enumerate}
+\item[(a)] The multiplier $m(y) = \widehat{\text{p.v.}\,K}(y)$ is homogeneous of degree $0$, even, and bounded.
+\item[(b)] For all $1 < p < \infty$, the singular integral operator $T$ is bounded on $L^p(E_n)$.
+\item[(c)] $T$ is of weak type $(1, 1)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{equation}\label{eq:c6-3-3}
+m(y) = \int_\Sigma \Omega(\xi) \left( \log \frac{1}{|\xi \cdot y'|} - \frac{i\pi}{2} \text{sgn}(\xi \cdot y') \right) d\xi.
+\end{equation}
+
+\begin{lemma}\label{lem:c6-3-4}
+If $P_k \in \mathcal{H}_k$ is a spherical harmonic of even degree $k \geq 2$, then $K(x) = P_k(x)/|x|^{n+k}$ satisfies the hypotheses of Theorem~\ref{thm:c6-3-1}.
+\end{lemma}
+
+\begin{equation}\label{eq:c6-3-5}
+\widehat{\text{p.v.}\,K}(y) = \gamma_k \frac{P_k(y)}{|y|^k}.
+\end{equation}
+
+\begin{equation}\label{eq:c6-3-6}
+\|T_\varepsilon f - Tf\|_p \to 0 \quad \text{as } \varepsilon \to 0, \quad 1 < p < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c6-3-7}
+\sup_{\varepsilon > 0} |(T_\varepsilon f)(x)| \leq T^*(f)(x).
+\end{equation}
+
+\section{\texorpdfstring{$H^p$}{Hp} Spaces of Conjugate Harmonic Functions}
+
+In higher dimensions, the generalized Cauchy--Riemann equations for a vector of $n+1$ real functions $F = (u_0, u_1, \dots, u_n)$ defined on $E_{n+1}^+ = \{(x, y) \in E_{n+1} : y > 0\}$ are:
+\begin{equation}\label{eq:c6-4-1}
+\frac{\partial u_j}{\partial x_k} = \frac{\partial u_k}{\partial x_j}, \quad \sum_{j=0}^n \frac{\partial u_j}{\partial x_j} = 0, \quad 0 \leq j, k \leq n,
+\end{equation}
+where we identify $x_0 = y$.
+
+\begin{theorem}\label{thm:c6-4-2}
+If $F = (u_0, u_1, \dots, u_n)$ satisfies the system \eqref{eq:c6-4-1}, then each component $u_j$ is harmonic in $E_{n+1}^+$.
+\end{theorem}
+
+\begin{equation}\label{eq:c6-4-3}
+\Delta u_j = 0, \quad j = 0, 1, \dots, n.
+\end{equation}
+
+\begin{equation}\label{eq:c6-4-4}
+u_j(x, y) = (R_j u_0)(\,\cdot\,, y)(x), \quad j = 1, 2, \dots, n,
+\end{equation}
+where $R_j$ is the $j$-th Riesz transform.
+
+\begin{equation}\label{eq:c6-4-5}
+|F(x, y)| = \left( \sum_{j=0}^n |u_j(x, y)|^2 \right)^{1/2}.
+\end{equation}
+
+\begin{equation}\label{eq:c6-4-6}
+\|F\|_{H^p(E_{n+1}^+)} = \sup_{y > 0} \left( \int_{E_n} |F(x, y)|^p\,dx \right)^{1/p} < \infty.
+\end{equation}
+
+\begin{equation}\label{eq:c6-4-7}
+|F(x, y)|^p \text{ is subharmonic in } E_{n+1}^+ \text{ for all } p \geq \frac{n-1}{n}.
+\end{equation}
+
+\begin{equation}\label{eq:c6-4-8}
+\Delta(|F|^p) = p |F|^{p-2} \left( |F| \Delta|F| + (p-1) |\nabla |F||^2 \right) \geq 0.
+\end{equation}
+
+\begin{theorem}\label{thm:c6-4-9}
+Let $p \geq (n-1)/n$. If $F \in H^p(E_{n+1}^+)$, then:
+\begin{enumerate}
+\item[(a)] The nontangential limit $\lim_{(t,y) \in \Gamma_\alpha(x), y \to 0} F(t, y) = F(x)$ exists almost everywhere on $E_n$.
+\item[(b)] If $p > (n-1)/n$, $F(\,\cdot\,, y) \to F$ in $L^p(E_n)$ as $y \to 0$.
+\item[(c)] Each component $u_j$ is the Poisson integral of its boundary value $f_j$:
+\begin{equation}\label{eq:c6-4-10}
+u_j(x, y) = (P_y * f_j)(x).
+\end{equation}
+\item[(d)] The boundary values are related by the Riesz transforms:
+\begin{equation}\label{eq:c6-4-11}
+f_j = R_j f_0, \quad j = 1, 2, \dots, n.
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{equation}\label{eq:c6-4-12}
+\int_{E_n} |f_0(x)|^p\,dx \approx \int_{E_n} |F(x)|^p\,dx.
+\end{equation}
+
+\begin{equation}\label{eq:c6-4-13}
+\sum_{j=1}^n R_j f_j = -f_0.
+\end{equation}
+
+\begin{theorem}[Characterization of $H^1(E_n)$]\label{thm:c6-4-14}
+A function $f \in L^1(E_n)$ belongs to the real Hardy space $H^1(E_n)$ if and only if $R_j f \in L^1(E_n)$ for all $j = 1, 2, \dots, n$. In this case,
+\begin{equation}\label{eq:c6-4-15}
+\|f\|_{H^1} = \|f\|_1 + \sum_{j=1}^n \|R_j f\|_1.
+\end{equation}
+\end{theorem}
+
+\begin{equation}\label{eq:c6-4-16}
+\int_{E_n} f(x)\,dx = 0 \quad \text{for all } f \in H^1(E_n).
+\end{equation}
+
+\begin{theorem}\label{thm:c6-4-17}
+For $1 < p < \infty$, the space $H^p(E_n)$ defined by systems of conjugate harmonic functions coincides with $L^p(E_n)$, and the norms are equivalent:
+\[
+\|F\|_{H^p} \approx \|f_0\|_p.
+\]
+\end{theorem}
+
+\begin{equation}\label{eq:c6-4-18}
+\sup_{y > 0} \|F(\,\cdot\,, y)\|_p \leq C_p \|f_0\|_p.
+\end{equation}
+
+\section{Further Results}
+
+\begin{enumerate}
+\item[5.1.] \textbf{The maximal function characterization of $H^p$.} A function $f$ belongs to $H^p(E_n)$ for $(n-1)/n < p \leq 1$ if and only if its nontangential Poisson maximal function $u^*(x) = \sup_{(t,y) \in \Gamma(x)} |(P_y * f)(t)|$ belongs to $L^p(E_n)$.
+
+\item[5.2.] \textbf{Vector-valued singular integrals.} The Calder\'on--Zygmund method extends naturally to operators with values in Hilbert spaces, providing a unified proof of the Marcinkiewicz multiplier theorem and Littlewood--Paley estimates.
+
+\item[5.3.] \textbf{Higher-order conjugate systems.} Systems of harmonic functions associated with Clifford algebras or representations of the orthogonal group provide further extensions of the Cauchy--Riemann equations to differential forms.
+
+\item[5.4.] \textbf{Singular integrals on manifolds and Lie groups.} The Calder\'on--Zygmund theory can be generalized to spaces of homogeneous type, Riemannian manifolds with non-negative Ricci curvature, and nilpotent Lie groups.
+\end{enumerate}
+
+\bibnoteshead
+
+For further discussion on the Hilbert transform see Titchmarsh~\cite{Titchmarsh2}, Zygmund~\cite{Zygmund1} and Loomis~\cite{Loomis1}. The rotation method discussed in the second section was first developed by Calder\'on and Zygmund~\cite{CalderonZygmund4}. For further properties of the Riesz transform see H\"orvath~\cite{Horvath1}. The spaces $\mathbf{H}^p(E_{n+1}^+)$ were introduced by Stein and G.~Weiss~\cite{SteinWeiss1}. Systems of conjugate harmonic functions have also been studied by Calder\'on and Zygmund~\cite{CalderonZygmund6}, Stein and G.~Weiss~\cite{SteinWeiss4}, Kuran~\cite{Kuran1} and Coifman and G.~Weiss~\cite{CoifmanWeiss2}. The fact that a harmonic solution $F$ of an elliptic system has the property that $|F|^p$ is subharmonic for some $p < 1$ was observed by Calder\'on.

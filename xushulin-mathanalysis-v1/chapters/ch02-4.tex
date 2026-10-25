@@ -1,0 +1,578 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S2.4  函数的连续、单调函数的不连续点集、初等函数的连续性
+%  源：原书印刷页 123–135（PDF 物理页 129–141）
+%  底本：高清影印比对校订
+%  规范：全西文半角标点配合；单一落盘出口 _texout.py
+% ====================================================================
+\section{函数的连续、单调函数的不连续点集、初等函数的连续性}\label{sec:2.4}
+
+连续函数是一大类很重要的函数, 且初等函数和许多我们所熟悉的函数都是连续的. 为此, 我们先了解它的定义.
+
+\begin{definition}\label{def:2.4.1}
+设 $X \subset \mathbb{R}$, $f: X \to \mathbb{R}$ 为一元函数, $x_0 \in X$, 如果 $\lim\limits_{x \to x_0} f(x) = f(x_0)$, 即 $\forall \varepsilon > 0, \exists \delta > 0$, 当 $x \in X, |x - x_0| < \delta$ 时, 有
+\[
+|f(x) - f(x_0)| < \varepsilon,
+\]
+则称 $f$ 在 $x_0 \in X$ 点处\textbf{连续}, 而 $x_0$ 称为 $f$ 的\textbf{连续点}. 如果 $x_0$ 不是 $f$ 的连续点, 则称它为 $f$ 的\textbf{不连续点}或\textbf{间断点}. 此时, 或者 $f$ 在 $x_0$ 无定义; 或者 $f$ 在 $x_0$ 无极限; 或者即使有极限, 但 $\lim\limits_{x \to x_0} f(x) \neq f(x_0)$.
+
+如果 $f$ 在 $X$ 中每一点处都连续, 则称 $f$ 在 $X$ 中连续或 $f$ 为 $X$ 中的连续函数.
+
+如果 $f$ 在 $x_0$ 的右旁有定义, 又 $\lim\limits_{x \to x_0^+} f(x) = f(x_0)$, 即 $\forall \varepsilon > 0, \exists \delta > 0$, 当 $x \in [x_0, x_0 + \delta) \cap X$ 时, 有 $|f(x) - f(x_0)| < \varepsilon$, 则称 $f$ 在 $x_0$ \textbf{右连续}, 此时, $f(x_0^+) = f(x_0)$.
+
+如果 $f$ 在 $x_0$ 的左旁有定义, 又 $\lim\limits_{x \to x_0^-} f(x) = f(x_0)$, 即 $\forall \varepsilon > 0, \exists \delta > 0$, 当 $x \in (x_0 - \delta, x_0] \cap X$ 时, 有 $|f(x) - f(x_0)| < \varepsilon$, 则称 $f$ 在 $x_0$ \textbf{左连续}, 此时, $f(x_0^-) = f(x_0)$.
+
+特别地, 当 $X = [a, b]$ 时, $f$ 在 $[a, b]$ 上连续是指 $f$ 在 $(a, b)$ 中每一点都连续, 而在 $a$ 右连续, 在 $b$ 左连续. 类似可理解 $f$ 在 $(a, b], [a, b), (a, b)$ 上的连续性.
+\end{definition}
+
+\begin{theorem}\label{thm:2.4.1}
+设 $f$ 在 $x_0$ 的某开邻域中有定义, 则
+
+$f$ 在 $x_0$ 连续 $\iff f$ 在 $x_0$ 既左连续又右连续, 即
+\[
+f(x_0 - 0) = \lim_{x \to x_0^-} f(x) = f(x_0) = \lim_{x \to x_0^+} f(x) = f(x_0 + 0).
+\]
+\end{theorem}
+
+\begin{proof}
+$f$ 在 $x_0$ 连续 $\iff \lim\limits_{x \to x_0} f(x) = f(x_0)$
+\begin{align*}
+&\iff \lim_{x \to x_0^-} f(x) = f(x_0) = \lim_{x \to x_0^+} f(x) \\
+&\iff f \text{ 在 } x_0 \text{ 既左连续又右连续}.
+\end{align*}
+\end{proof}
+
+\begin{theorem}[连续的四则运算]\label{thm:2.4.2}
+设 $f, g$ 在 $x_0$ 连续, 则 $f \pm g, fg, f/g\ (g(x_0) \neq 0)$ 都在 $x_0$ 连续.
+\end{theorem}
+
+\begin{proof}
+应用函数极限的四则运算定理立即可得. 例如
+\begin{align*}
+\lim_{x \to x_0} fg(x) &= \lim_{x \to x_0} f(x) g(x) = \lim_{x \to x_0} f(x) \cdot \lim_{x \to x_0} g(x) \\
+&= f(x_0) g(x_0) = fg(x_0),
+\end{align*}
+所以, $fg$ 在 $x_0$ 连续. 其他证明类似.
+\end{proof}
+
+\begin{theorem}[复合函数的连续性]\label{thm:2.4.3}
+设 $y = f(u)$ 在 $u_0$ 连续, $u = u(x)$, 当 $x \to x_0(x_0^{\pm}, \pm\infty, \infty)$ 时, $u(x) \to u_0$, 那么
+\[
+\lim_{x \to x_0} f(u(x)) = f(u_0) = f\left(\lim_{x \to x_0} u(x)\right).
+\]
+(极限号与连续函数交换次序)
+
+特别地, 当 $u = u(x)$ 在 $x_0 \in \mathbb{R}$ 处连续时, $u_0 = u(x_0)$, $f \circ u(x) = f(u(x))$ 在 $x_0$ 处也连续(复合函数的连续性).
+\end{theorem}
+
+\begin{proof}
+因为 $y = f(u)$ 在 $u_0$ 连续, 所以 $\exists \delta > 0$, 当 $|u - u_0| < \delta$ 时,
+\[
+|f(u) - f(u_0)| < \varepsilon.
+\]
+对该 $\delta > 0$, 由 $\lim\limits_{x \to x_0} u(x) = u_0$ 知, $\exists \eta > 0$, 当 $0 < |x - x_0| < \eta$ 时,
+\[
+|u(x) - u_0| < \delta,
+\]
+从而
+\[
+|f(u(x)) - f(u_0)| < \varepsilon.
+\]
+这就证明了, $\lim\limits_{x \to x_0} f(u(x)) = f(u_0) = f\left(\lim\limits_{x \to x_0} u(x)\right) = \lim\limits_{u \to u_0} f(u)$.
+\end{proof}
+
+现在来研究单调函数的极限与连续性.
+
+\begin{lemma}\label{lem:2.4.1}
+设函数 $f(x)$ 在点 $x_0$ 的左旁 $(x_0 - \delta_0, x_0)$ 单调增(减), 则左极限 $f(x_0^-) = \lim\limits_{x \to x_0^-} f(x)$ 存在, 且
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $f(x)$ 在 $x_0$ 的左旁有上界(下界), 则 $f(x_0^-)$ 为有限数;
+  \item 若 $f(x)$ 在 $x_0$ 的左旁无上界(下界), 则 $f(x_0^-) = +\infty(-\infty)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) 在 $(x_0 - \delta_0, x_0)$ 中任取一严格单调增数列 $\{x_n\}$, 且 $\lim\limits_{n \to +\infty} x_n = x_0\ (x_0 - \delta_0 < x_n < x_{n-1} < x_0)$. 因 $f$ 单调增有上界, 故数列 $\{f(x_n)\}$ 也单调增有上界, 因而收敛. 记 $\lim\limits_{n \to +\infty} f(x_n) = a$, 从而 $f(x_n) \leqslant a, \forall n \in \mathbb{N}$.
+
+$\forall \varepsilon > 0, \exists N \in \mathbb{N}$, 当 $n > N$ 时, $a - \varepsilon < f(x_n) \leqslant a$. 取 $\delta = x_0 - x_{N+1}$, 当 $x \in (x_0 - \delta, x_0) = (x_{N+1}, x_0)$ 时, 总有 $m > N+1$, s.t. $x_m > x$(因 $x_n \to x_0$). 于是,
+\[
+a - \varepsilon < f(x_{N+1}) \leqslant f(x) \leqslant f(x_m) \leqslant a < a + \varepsilon,
+\]
+\[
+f(x_0^-) = \lim_{x \to x_0^-} f(x) = a.
+\]
+
+(2) 因 $f$ 在 $x_0$ 左旁单调增无上界, 故 $\forall A > 0$ 不是 $f(x)$ 的上界, 总 $\exists \bar{x} \in (x_0 - \delta_0, x_0)$, s.t. $f(\bar{x}) > A$. 令 $\delta = x_0 - \bar{x}$, 当 $x \in (x_0 - \delta, x_0) = (\bar{x}, x_0)$ 时,
+\[
+f(x) \geqslant f(\bar{x}) > A,\quad f(x_0^-) = \lim_{x \to x_0^-} f(x) = +\infty.
+\]
+
+单调减的情形类似证明, 或用 $-f$ 代 $f$.
+\end{proof}
+
+关于单调函数在 $x_0$ 的右极限同样有以下结论.
+
+\begin{lemma}\label{lem:2.4.2}
+设函数 $f(x)$ 在点 $x_0$ 的右旁 $(x_0, x_0 + \delta_0)$ 单调增(减), 则右极限 $f(x_0^+) = \lim\limits_{x \to x_0^+} f(x)$ 存在, 且
+\begin{enumerate}[label=(\arabic*)]
+  \item 若 $f(x)$ 在 $x_0$ 的右旁有下界(上界), 则 $f(x_0^+)$ 为有限数;
+  \item 若 $f(x)$ 在 $x_0$ 的右旁无下界(上界), 则 $f(x_0^+) = -\infty(+\infty)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{lemma}\label{lem:2.4.3}
+设函数 $f(x)$ 在 $(a, b)$ 上单调, 则 $\forall x_0 \in (a, b)$, $f(x_0^-), f(x_0^+)$ 都存在有限, 且 $f(a^+)$ 及 $f(b^-)$ 也存在(不必有限).
+\end{lemma}
+
+\begin{proof}
+$\forall x_0 \in (a, b)$, $f(x)$ 在 $x_0$ 的左、右两旁都单调增(减), 且有
+\[
+f(x_0^-) \leqslant f(x_0) \leqslant f(x_0^+).
+\]
+因而, $f(x_0^-)$ 与 $f(x_0^+)$ 为有限数.
+\end{proof}
+
+\begin{lemma}\label{lem:2.4.4}
+设 $f$ 为区间 $I$ 上严格增(减)的函数, 则其反函数
+\[
+f^{-1}: f(I) \to I
+\]
+也为严格增(减)函数.
+\end{lemma}
+
+\begin{proof}
+$\forall y_1, y_2 \in f(I), y_1 < y_2$, 则 $\exists x_1, x_2 \in I$, s.t. $y_1 = f(x_1), y_2 = f(x_2)$, 则必有 $x_1 < x_2$.
+
+(反证) 假设 $x_1 \geqslant x_2$, 由 $f$ 严格单调增, 故有 $y_1 = f(x_1) \geqslant f(x_2) = y_2$, 这与 $y_1 < y_2$ 相矛盾, 从而 $x = f^{-1}(y)$ 为严格单调增的函数.
+\end{proof}
+
+\begin{lemma}\label{lem:2.4.5}
+设 $g(y)$ 为区间 $J$ 上严格单调增(减)的函数, 其值域 $I = g(J)$ 为一区间, 则 $g$ 在 $J$ 上必连续.
+\end{lemma}
+
+\begin{proof}
+(反证) 反设 $y_0 \in J$ 为 $g(y)$ 的不连续点(间断点), 由于 $g$ 严格单调增, 故 $g(y_0^-), g(y_0^+)$ 存在有限, 且必有
+\[
+g(y_0^-) \neq g(y_0) \text{ 或 } g(y_0^+) \neq g(y_0).
+\]
+不妨设 $g(y_0^+) \neq g(y_0)$, 则 $g(y_0) < g(y_0^+)$. 此时, 必有
+\[
+g(y) \leqslant g(y_0),\quad \forall y \leqslant y_0,\ y \in J;
+\]
+\[
+g(y_0) < g(y_0^+) < g(y),\quad \forall y > y_0,\ y \in J.
+\]
+所以, $\exists r \in (g(y_0), g(y_0^+)), \forall y \in J, g(y) \neq r$. 于是, $g$ 的值域
+\[
+I = g(J) = [g(J) \cap (-\infty, g(y_0)]] \cup [g(J) \cap (g(y_0^+), +\infty)]
+\]
+不为区间, 这与已知值域 $I$ 为区间相矛盾.
+
+$f$ 严格单调减的情形类似证明, 或用 $-g$ 代 $g$.
+\end{proof}
+
+\begin{theorem}\label{thm:2.4.4}
+设 $f$ 为区间 $I$ 上严格增(减)的连续函数, 值域为 $J$, 则在 $J$ 上存在 $f$ 的反函数 $f^{-1}$, 且 $f^{-1}$ 也为严格增(减)的连续函数.
+\end{theorem}
+
+\begin{proof}
+因为 $f$ 为区间 $I$ 上严格增(减)的函数, 由引理~\ref{lem:2.4.4} 知, $f$ 有反函数 $f^{-1}: J = f(I) \to I$, 它也为严格单调增(减)的函数.
+
+根据下面连续函数的介值定理的推论~\ref{cor:2.5.1} 知, 连续函数 $f$ 的值域 $J = f(I)$(即 $f^{-1}$ 的定义域)也为一个区间. 再由引理~\ref{lem:2.4.5} 得到 $f^{-1}$ 为 $J$ 上的一个连续函数.
+\end{proof}
+
+\begin{theorem}\label{thm:2.4.5}
+初等函数在其定义域中是连续的.
+\end{theorem}
+
+\begin{proof}
+我们已经证明了常值函数、指数函数、三角函数与对数函数在其定义域内都为连续函数. 再由定理~\ref{thm:2.4.4} 得到反三角函数在其定义域内是连续的. 根据复合函数连续性定理~\ref{thm:2.4.3} 知, 幂函数 $y = x^\alpha = e^{\alpha \ln x}$ 为连续函数. 这就证明了所有基本初等函数在其定义域中是连续的.
+
+最后, 从初等函数的定义及 $+,-,\cdot,\div$ 复合保持连续性知, 初等函数在其定义域中是连续的.
+\end{proof}
+
+由定理~\ref{thm:2.4.5} 立即推得至少有一个间断点的函数都不是初等函数.
+
+\begin{example}\label{ex:2.4.1}
+由初等函数的连续性定理~\ref{thm:2.4.5}, 立即有
+\begin{enumerate}[label=(\arabic*)]
+  \item $\lim\limits_{x \to 1} \frac{\sin x}{x} = \frac{\sin 1}{1} = \sin 1$.
+  \item $\lim\limits_{x \to 1} \sqrt{3x^2 + \sqrt{2x - 1}} = \sqrt{3 \cdot 1^2 + \sqrt{2 \cdot 1 - 1}} = 2$.
+  \item $\lim\limits_{x \to 1} \left(\frac{3+x}{4+x}\right)^{\frac{1}{1-x^2}} = \lim\limits_{x \to 1} \left(\frac{3+x}{4+x}\right)^{\frac{1}{1+x}} = \left(\frac{3+1}{4+1}\right)^{\frac{1}{1+1}} = \left(\frac{4}{5}\right)^{\frac{1}{2}} = \frac{2\sqrt{5}}{5}$,
+  其中 $\left(\frac{3+x}{4+x}\right)^{\frac{1}{1+x}} = e^{\left(\ln\frac{3+x}{4+x}\right)/(1+x)}$ 为由基本初等函数 $1, 3, 4, x, \ln x, e^x$ 通过 3 次加法, 一次除法, 两次复合得到, 故该函数为初等函数.
+\end{enumerate}
+\end{example}
+
+我们将引进函数 $f$ 在点 $x_0$ 处的振幅的概念, 并用振幅来刻画 $f$ 在点 $x_0$ 处的连续性.
+
+\begin{definition}\label{def:2.4.2}
+设 $f$ 在点 $x_0$ 的某开邻域 $(x_0 - r_0, x_0 + r_0)$ 中有定义, 称
+\[
+\omega_f(x_0, r) = \sup\{|f(x'') - f(x')| \mid x', x'' \in (x_0 - r, x_0 + r)\} \geqslant 0,\quad r \in (0, r_0)
+\]
+为 $f$ 在区间 $(x_0 - r, x_0 + r)$ 中的\textbf{振幅}. 显然, $\omega_f(x_0, r)$ 关于 $r \to 0^+$ 单调减, 故由引理~\ref{lem:2.4.1} 知,
+\[
+\omega_f(x_0) = \lim_{r \to 0^+} \omega_f(x_0, r)
+\]
+为有限数, 称它为 $f$ 在点 $x_0$ 处的\textbf{振幅}.
+\end{definition}
+
+\begin{theorem}\label{thm:2.4.6}
+$f$ 在点 $x_0$ 处连续 $\iff \omega_f(x_0) = 0$.
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) 设 $f$ 在点 $x_0$ 处连续, 则 $\forall \varepsilon > 0, \exists \delta > 0$, 当 $|x - x_0| < \delta$ 时, 有
+\[
+|f(x) - f(x_0)| < \frac{\varepsilon}{3}.
+\]
+令 $0 < r < \delta$, 当 $x \in (x_0 - r, x_0 + r)$ 时,
+\[
+f(x_0) - \frac{\varepsilon}{3} \leqslant \inf f((x_0 - r, x_0 + r)) \leqslant f(x) \leqslant \sup f((x_0 - r, x_0 + r)) \leqslant f(x_0) + \frac{\varepsilon}{3}.
+\]
+所以,
+\begin{align*}
+0 &\leqslant \omega_f(x_0, r) = \sup f((x_0 - r, x_0 + r)) - \inf f((x_0 - r, x_0 + r)) \\
+&\leqslant \left[f(x_0) + \frac{\varepsilon}{3}\right] - \left[f(x_0) - \frac{\varepsilon}{3}\right] = \frac{2\varepsilon}{3} < \varepsilon,
+\end{align*}
+\[
+\omega_f(x_0) = \lim_{r \to 0^+} \omega_f(x_0, r) = 0.
+\]
+
+($\Leftarrow$) 因
+\begin{align*}
+0 &= \omega_f(x_0) = \lim_{r \to 0^+} \omega_f(x_0, r) \\
+&= \lim_{r \to 0^+} \left[\sup f((x_0 - r, x_0 + r)) - \inf f((x_0 - r, x_0 + r))\right],
+\end{align*}
+故 $\forall \varepsilon > 0, \exists \delta > 0$, 当 $0 < r < \delta$ 时, $\forall x \in (x_0 - r, x_0 + r)$ 有
+\begin{align*}
+|f(x) - f(x_0)| &\leqslant \sup f((x_0 - r, x_0 + r)) \\
+&\quad - \inf f((x_0 - r, x_0 + r)) < \varepsilon.
+\end{align*}
+这就证明了
+\[
+\lim_{x \to x_0} f(x) = f(x_0),
+\]
+即 $f$ 在点 $x_0$ 处连续.
+\end{proof}
+
+一个区间 $I$ 上的连续函数 $f$ 的曲线是连绵不断的. 而有不连续点的函数的曲线是断开的, 所以不连续点又称间断点, 下面来研究函数的不连续点或间断点.
+
+\begin{definition}\label{def:2.4.3}
+设 $f$ 在点 $x_0$ 处不连续, 即点 $x_0$ 为 $f$ 的不连续点或间断点. 再若 $f(x_0^+)$ 与 $f(x_0^-)$ 都存在有限, 但 $f(x_0^+) \neq f(x_0^-)$ 或 $f(x_0^+) = f(x_0^-) \neq f(x_0)$, 则分别称点 $x_0$ 为 $f$ 的\textbf{跳跃间断点}与\textbf{可去间断点}. 它们统称为\textbf{第一类间断点}($|f(x_0^+) - f(x_0^-)|$ 称为\textbf{跳跃度}); 其他间断点都称为\textbf{第二类间断点}.
+\end{definition}
+
+由引理~\ref{lem:2.4.3} 知, 区间 $I$ 上单调函数 $f$ 的间断点必为第一类间断点.
+
+\begin{theorem}\label{thm:2.4.7}
+区间 $I$ 上的单调函数 $f$ 的间断点至多可数个.
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1}\quad 设 $f$ 在 $I$ 上单调增, 且不妨设 $I = (a, b)$(有限或无限区间, $(a, b]$ 或 $[a, b)$ 或 $[a, b]$ 与 $(a, b)$ 至多差两个点). 取 $\{a_n\}$ 严格减趋于 $a$, $\{b_n\}$ 严格增趋于 $b$, 且 $a_n < b_n$, 则 $[a_n, b_n] \subset [a_{n+1}, b_{n+1}] \subset (a, b) = I$. 记
+\[
+D_{n,k} = \left\{x \in (a_n, b_n) \mid \omega_f(x) = f(x^+) - f(x^-) \geqslant \frac{1}{k}\right\},
+\]
+则 $D_n = \bigcup\limits_{k=1}^{\infty} D_{n,k}$ 为 $f$ 在 $(a_n, b_n)$ 中的间断点集. $D = \bigcup\limits_{n=1}^{\infty} D_n = \bigcup\limits_{n=1}^{\infty} \bigcup\limits_{k=1}^{\infty} D_{n,k}$ 为 $f$ 在 $I = (a, b)$ 中间断点的集合.
+
+设 $x_1, x_2, \cdots, x_m \in D_{n,k}$, 则
+\begin{align*}
+f(b_n) - f(a_n) &\geqslant \sum_{i=1}^{m} \left[f(x_i^+) - f(x_i^-)\right] \\
+&= \sum_{i=1}^{m} \omega_f(x_i) \geqslant \sum_{i=1}^{m} \frac{1}{k} = \frac{m}{k},
+\end{align*}
+\[
+m \leqslant k [f(b_n) - f(a_n)].
+\]
+由此知, 当 $n, k$ 固定时, $D_{n,k}$ 为有限集. 于是, 按 $n + k$ 从小到大将 $D_{n,k}$ 以致 $D = \bigcup\limits_{n=1}^{\infty} \bigcup\limits_{k=1}^{\infty} D_{n,k}$ 依次排列(有重复者只排第一个). 如果到某个排完, 则 $D$ 为有限集; 如果一直排下去, 则 $D$ 为可数集. 所以 $D$ 必为至多可数集.
+
+\textbf{证法 2}\quad 设 $f$ 在 $I$ 上单调增. 此时, 它的间断点 $x$ 都是第一类跳跃间断点, 即 $\omega_f(x) = f(x^+) - f(x^-) > 0$. 因此,
+\[
+\text{间断点 } x \longleftrightarrow \text{ 开区间 } (f(x^-), f(x^+))
+\]
+形成一一对应($\leftrightarrow$ 表示一一对应), 不同的间断点对应的开区间不相同, 并且这些开区间彼此不相交.
+
+取 $r_x \in \mathbb{Q} \cap (f(x^-), f(x^+))$. 于是,
+\begin{align*}
+&\{x \in I = (a, b) \mid x \text{ 为 } f \text{ 的间断点}\} \\
+&\longleftrightarrow \{(f(x^-), f(x^+)) \mid \omega_f(x) = f(x^+) - f(x^-) > 0\} \\
+&\longleftrightarrow \{r_x \in \mathbb{Q} \cap (f(x^-), f(x^+)) \mid \omega_f(x) = f(x^+) - f(x^-) > 0\}
+\end{align*}
+为一一对应. 由 $\mathbb{Q}$ 为可数集知, 它的子集 $\{r_x \in \mathbb{Q} \cap (f(x^-), f(x^+)) \mid \omega_f(x) = f(x^+) - f(x^-) > 0\}$ 为至多可数集. 由此得到 $f$ 的间断点集 $D$ 为至多可数集.
+\end{proof}
+
+以下将研究一些具体函数的连续性及间断点的类型.
+
+\begin{example}\label{ex:2.4.2}
+讨论函数
+\[
+f(x) = \begin{cases} x + 2, & x \geqslant 0, \\ x - 2, & x < 0 \end{cases}
+\]
+的连续性.
+\end{example}
+
+\begin{solution}
+因为 $f(x)$ 在 $x > 0$ 上与初等函数 $x + 2$ 一致, 在 $x < 0$ 上与初等函数 $x - 2$ 一致, 所以, 根据初等函数连续性定理~\ref{thm:2.4.5} 知, $f(x)$ 在 $(-\infty, 0) \cup (0, +\infty)$ 上连续.
+
+余下要考虑的是 $f$ 在点 $x = 0$ 处的连续性.
+
+由于 $f(0^-) = \lim\limits_{x \to 0^-} f(x) = \lim\limits_{x \to 0^-} (x - 2) = -2 \neq 2 = \lim\limits_{x \to 0^+} (x + 2) = \lim\limits_{x \to 0^+} f(x) = f(0^+)$, 故 $f$ 在点 $x = 0$ 处不连续, 它右连续, 但不左连续, 其跳跃度为 $|2 - (-2)| = 4$, 它是第一类间断点, 且是跳跃间断点.
+\end{solution}
+
+\begin{example}\label{ex:2.4.3}
+研究下列函数在 $x = 0$ 处的连续性:
+\begin{enumerate}[label=(\arabic*)]
+  \item $f(x) = |\operatorname{sgn} x| = \begin{cases} 1, & x \neq 0, \\ 0, & x = 0; \end{cases}$
+  \item $f(x) = \begin{cases} \frac{\sin x}{x}, & x \neq 0, \\ 0, & x = 0. \end{cases}$
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) 显然, $\lim\limits_{x \to 0} f(x) = \lim\limits_{x \to 0} 1 = 1 \neq 0 = f(0)$, 故 $0$ 为 $f(x)$ 的可去间断点, 它是第一类间断点. 令
+\[
+\tilde{f}(x) = \begin{cases} f(x), & x \neq 0, \\ \lim\limits_{u \to 0} f(u), & x = 0 \end{cases} = 1,
+\]
+则 $\tilde{f}(x)$ 在 $x = 0$ 处连续. 注意, 由于 $\tilde{f}(0) = 1 \neq 0 = f(0)$, 所以 $\tilde{f} \neq f$.
+
+(2) 因为 $\lim\limits_{x \to 0} f(x) = \lim\limits_{x \to 0} \frac{\sin x}{x} = 1 \neq 0 = f(0)$, 所以 $0$ 为 $f$ 的可去间断点, 它是第一类间断点. 令
+\[
+\tilde{f}(x) = \begin{cases} \frac{\sin x}{x}, & x \neq 0, \\ 1, & x = 0, \end{cases}
+\]
+则 $\tilde{f}$ 在 $0$ 连续. 再由 $\tilde{f}(x)$ 在 $x \neq 0$ 处与初等函数 $\frac{\sin x}{x}$ 一致, 故 $\tilde{f}$ 在 $x \neq 0$ 上连续. 从而 $\tilde{f}$ 为 $\mathbb{R}$ 上的连续函数.
+\end{solution}
+
+\begin{example}\label{ex:2.4.4}
+研究函数 $f(x) = [x] = n - 1, n - 1 \leqslant x < n$ 的连续性.
+\end{example}
+
+\begin{solution}
+显然, $f(x) = [x]$ 在非整数点处都为局部常值函数, 因而在这些点处都连续. 而在整数点 $x = n$ 处,
+\begin{align*}
+f(n^+) &= \lim_{x \to n^+} f(x) = \lim_{x \to n^+} n = n \neq n - 1 = \lim_{x \to n^-} (n - 1) \\
+&= \lim_{x \to n^-} f(x) = f(n^-),
+\end{align*}
+所以, $n$ 为 $f$ 的跳跃间断点, 它为第一类间断点.
+\end{solution}
+
+\begin{example}\label{ex:2.4.5}
+讨论下列函数间断点的类型:
+\begin{enumerate}[label=(\arabic*)]
+  \item $y = \frac{1}{x}$;
+  \item $y = \sin\frac{1}{x}$;
+  \item $y = D(x)$(Dirichlet 函数).
+\end{enumerate}
+\end{example}
+
+\begin{solution}
+(1) 函数在 $x = 0$ 处没有定义, 但因 $\lim\limits_{x \to 0} \frac{1}{x} = \infty$, 故无论怎样定义它在 $x = 0$ 处的值, 都不会在 $0$ 处连续, $0$ 为 $y = \frac{1}{x}$ 的第二类间断点.
+
+(2) 因 $\lim\limits_{x \to 0} \sin\frac{1}{x}$ 不存在, 同上题, $0$ 为 $y = \sin\frac{1}{x}$ 的第二类间断点. 观察它的图像(如\ref{fig:2.1.17} 所示), 在 $x = 0$ 附近, 有无数次的振荡.
+
+(3) 因为 $\lim\limits_{x \to x_0} D(x)$ 在任一点 $x_0$ 处都不存在, 所以, $\mathbb{R}$ 上每一点都为 $D(x)$ 的第二类间断点.
+\end{solution}
+
+\begin{example}\label{ex:2.4.6}
+称函数
+\[
+R(x) = \begin{cases} \frac{1}{p}, & \text{当 } x = \frac{q}{p} \in (0, 1),\ p, q \in \mathbb{N},\ p \text{ 与 } q \text{ 互质(素)}, \\ 1, & \text{当 } x = 0, 1, \\ 0, & \text{当 } x \in (\mathbb{R} \setminus \mathbb{Q}) \cap (0, 1) \end{cases}
+\]
+为 Riemann 函数. 证明 $\lim\limits_{x \to x_0} R(x) = 0$. 由此知, $R(x)$ 在 $[0, 1]$ 中任何无理点处连续; 而在任何有理点处不连续, 它为可去间断点, 是第一类间断点.
+\end{example}
+
+\begin{proof}
+$\forall x_0 \in [0, 1], \forall \varepsilon > 0$, 因为满足 $\frac{1}{p} \geqslant \varepsilon$(即 $p \leqslant \frac{1}{\varepsilon}$)的自然数 $p$ 只有有限多个.
+
+因此, 相应于 $p = 1, 2, \cdots, \left[\frac{1}{\varepsilon}\right]$ 的 $\frac{q}{p}$($q < p$)也只有有限多个, 记为 $\{x_1, x_2, \cdots, x_k\}$. 令
+\[
+\delta = \min\{|x_j - x_0| \mid x_j \neq x_0,\ j = 1, 2, \cdots, k+2\},
+\]
+其中 $x_{k+1} = 0, x_{k+2} = 1$. 则当 $x \in [0, 1], 0 < |x - x_0| < \delta$ 时,
+\[
+|R(x) - 0| = R(x) = \begin{cases} \frac{1}{p}, & x = \frac{q}{p} \in (0, 1),\ p, q \in \mathbb{N},\ p \text{ 与 } q \text{ 互质}, \\ 0, & x \in (\mathbb{R} \setminus \mathbb{Q}) \cap [0, 1] \end{cases} < \varepsilon,
+\]
+所以, $\lim\limits_{x \to x_0} R(x) = 0$.
+\end{proof}
+
+细心的读者自然会问: 是否存在一个函数 $y = f(x)$ 在所有无理点不连续, 而在所有有理点连续. 回答是否定的.
+
+\begin{example}\label{ex:2.4.7}
+不存在函数 $f: \mathbb{R} \to \mathbb{R}$ 在所有无理点不连续, 而在所有有理点连续.
+\end{example}
+
+\begin{proof}
+\textbf{证法 1}\quad (反证) 假设存在函数 $f: \mathbb{R} \to \mathbb{R}$ 在所有无理点不连续, 而在所有有理点连续. 令
+\[
+E_n = \left\{x \in \mathbb{R} \mid f \text{ 在 } x \text{ 的振幅 } \omega_f(x) \geqslant \frac{1}{n}\right\}.
+\]
+显然, $E_n$ 为闭集且 $E_n \subset \mathbb{R} \setminus \mathbb{Q}$ 无内点. 另一方面, 设可数集 $\mathbb{Q} = \{r_1, r_2, \cdots, r_n, \cdots\}$, 则独点集 $\{r_n\}$ 也是无内点的闭集. 于是,
+\[
+\mathbb{R} = \mathbb{Q} \cup (\mathbb{R} \setminus \mathbb{Q}) = \left(\bigcup_{n=1}^{\infty} \{r_n\}\right) \cup \left(\bigcup_{n=1}^{\infty} E_n\right).
+\]
+根据 Baire 定理~\ref{thm:1.3.6} 知, $\mathbb{R}$ 无内点, 这与 $\mathbb{R}$ 中任一点都为内点相矛盾.
+
+\textbf{证法 2}\quad (反证) 假设存在函数 $f: \mathbb{R} \to \mathbb{R}$ 在所有无理点不连续, 而在所有有理点连续. 设 $\mathbb{Q} = \{r_1, r_2, \cdots, r_n, \cdots\}$, 取 $r_1^* \in \mathbb{Q} \setminus \{r_1\}$, 因 $f$ 在 $r_1^*$ 处连续, 故 $\exists \delta_1 > 0$, s.t. $r_1 \notin [r_1^* - \delta_1, r_1^* + \delta_1]$, $2\delta_1 < \frac{1}{2}$, 且有
+\[
+|f(x) - f(r_1^*)| < \frac{1}{2},\quad x \in [r_1^* - \delta_1, r_1^* + \delta_1].
+\]
+再取 $r_2^* \in (r_1^* - \delta_1, r_1^* + \delta_1) \cap (\mathbb{Q} \setminus \{r_1, r_2, r_1^*\})$. 由 $f$ 在 $r_2^*$ 处连续知, $\exists \delta_2 > 0$, s.t. $r_1, r_2, r_1^* \notin [r_2^* - \delta_2, r_2^* + \delta_2] \subset (r_1^* - \delta_1, r_1^* + \delta_1)$, $2\delta_2 < \frac{1}{2^2}$, 且有
+\[
+|f(x) - f(r_2^*)| < \frac{1}{2^2},\quad x \in [r_2^* - \delta_2, r_2^* + \delta_2].
+\]
+如此下去, 可取
+\[
+r_n^* \in (r_{n-1}^* - \delta_{n-1}, r_{n-1}^* + \delta_{n-1}) \cap \left(\mathbb{Q} \setminus \{r_1, \cdots, r_n, r_1^*, \cdots, r_{n-1}^*\}\right).
+\]再由 $f$ 在 $r_n^*$ 处连续知, $\exists \delta_n > 0$, s.t.
+\[
+r_1, \cdots, r_n, r_1^*, \cdots, r_{n-1}^* \notin [r_n^* - \delta_n, r_n^* + \delta_n] \subset (r_{n-1}^* - \delta_{n-1}, r_{n-1}^* + \delta_{n-1}),\quad 2\delta_n < \frac{1}{2^n},
+\]
+且有
+\[
+|f(x) - f(r_n^*)| < \frac{1}{2^n},\quad x \in [r_n^* - \delta_n, r_n^* + \delta_n].
+\]
+根据闭区间套原理知, $\exists_1 x_0 \in \bigcap\limits_{n=1}^{\infty} [r_n^* - \delta_n, r_n^* + \delta_n]$. 易见, 点 $x_0$ 为无理点, 且 $\omega_f(x_0) = 0$, 即 $f$ 在无理点 $x_0$ 处连续, 这与假设相矛盾.
+
+\textbf{证法 3}\quad (反证) 假设存在函数 $f: \mathbb{R} \to \mathbb{R}$ 在所有无理点不连续, 而在所有有理点连续. 任取无理点 $r$, 令
+\[
+g(x) = f(x + r),\quad x \in \mathbb{R}.
+\]
+先选 $r_1 \in \mathbb{Q}$, 由 $f$ 在 $r_1$ 连续知, $\exists \delta_1 \in (0, 1)$, s.t. $f$ 在开区间 $(x_1 - \delta_1, x_1 + \delta_1)$ 上的振幅 $\omega_f(r_1, \delta_1) < 1$; 选 $y_1 \in (r_1 + r - \delta_1, r_1 + r + \delta_1) \cap \mathbb{Q}$, 即 $x_1 = y_1 - r \in (r_1 - \delta_1, r_1 + \delta_1)$, 并且 $g(x) = f(x + r)$ 在点 $x_1$(即在 $y_1 = x_1 + r$)处连续, 故 $\exists \eta_1 \in (0, 1)$, s.t. $[a_1, b_1] = [x_1 - \eta_1, x_1 + \eta_1] \subset (r_1 - \delta_1, r_1 + \delta_1)$, 当然, $\omega_g(x_1, \eta_1) < 1$. 再选 $r_2 \in (a_1, b_1) \cap \mathbb{Q}$, 由 $f$ 在点 $r_2$ 处连续知, $\exists \delta_2 \in \left(0, \frac{1}{2}\right)$, s.t. $f$ 在开区间 $(r_2 - \delta_2, r_2 + \delta_2)$ 上的振幅 $\omega_f(r_2, \delta_2) < \frac{1}{2}$. 选 $y_2 \in (r_2 + r - \delta_2, r_2 + r + \delta_2) \cap \mathbb{Q}$, 即 $x_2 = y_2 - r \in (r_2 - \delta_2, r_2 + \delta_2)$, 且 $g(x) = f(x + r)$ 在点 $x_2$(即 $f$ 在 $y_2 = x_2 + r$)处连续, 故 $\exists \eta_2 \in \left(0, \frac{1}{2}\right)$, s.t. $[a_2, b_2] = [x_2 - \eta_2, x_2 + \eta_2] \subset (r_2 - \delta_2, r_2 + \delta_2)$. 当然, $\omega_g(x_2, \eta_2) < \frac{1}{2}$. 依此类推得到一个递降闭区间套:
+\[
+[a_1, b_1] \supset [a_2, b_2] \supset \cdots \supset [a_n, b_n] \supset \cdots
+\]
+\[
+b_n - a_n = 2\eta_n < \frac{1}{2^{n-1}},\quad \lim_{n \to +\infty} (b_n - a_n) = 0.
+\]
+根据闭区间套原理知, $\exists_1 \xi \in \bigcap\limits_{n=1}^{\infty} [a_n, b_n]$. 显然, $\omega_f(\xi) = 0$, 即 $\xi$ 为 $f$ 与 $g$ 的公共连续点. 因此, $f$ 在点 $\xi$ 与点 $\xi + r$ 处都连续. 但点 $\xi$ 与点 $\xi + r$ 中至少有一个为无理点. 这与 $f$ 在无理点处不连续相矛盾.
+\end{proof}
+
+\begin{exblock}{练习题 2.4}
+\item 研究下列函数在 $x = 0$ 处的连续性:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(x) = [x]$;
+    \item $f(x) = \operatorname{sgn}|x|$;
+    \item $f(x) = |x|$;
+    \item $f(x) = \operatorname{sgn}(\cos x)$;
+    \item $f(x) = [|\cos x|]$;
+    \item $f(x) = \operatorname{sgn}(\sin x)$;
+    \item $f(x) = \begin{cases} e^{-\frac{1}{x^2}}, & x \neq 0, \\ 0, & x = 0; \end{cases}$
+    \item $f(x) = \begin{cases} \frac{\sin x}{|x|}, & x \neq 0, \\ 1, & x = 0; \end{cases}$
+    \item $f(x) = \begin{cases} (1 + x^2)^{1/x^2}, & x \neq 0, \\ 2.718, & x = 0; \end{cases}$
+    \item $f(x) = \begin{cases} x, & x \text{ 为有理数}, \\ -x, & x \text{ 为无理数}. \end{cases}$
+  \end{enumerate}
+
+\item 指出下列函数的间断点, 并说明其类型:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(x) = \begin{cases} \frac{1}{x + 7}, & -\infty < x < -7, \\ x, & -7 \leqslant x \leqslant 1, \\ (x - 1)\sin\frac{1}{x - 1}, & 1 < x < +\infty; \end{cases}$
+    \item $f(x) = \begin{cases} x, & x \text{ 为有理数}, \\ -x, & x \text{ 为无理数}; \end{cases}$
+    \item $D(x) = \begin{cases} 1, & x \text{ 为有理数}, \\ 0, & x \text{ 为无理数}; \end{cases}$
+    \item $f(x) = \begin{cases} \frac{1}{x^2}, & x \neq 0, \\ 0, & x = 0. \end{cases}$
+  \end{enumerate}
+
+\item 延拓下列函数, 使其在 $\mathbb{R}$ 上连续:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(x) = \frac{x^3 - 8}{x - 2}$;
+    \item $f(x) = \frac{1 - \cos x}{x^2}$;
+    \item $f(x) = x\cos\frac{1}{x}$;
+    \item $f(x) = (1 + x)^{\frac{1}{x}}$.
+  \end{enumerate}
+
+\item 定出 $a, b$ 与 $c$, 使得函数
+  \[
+  f(x) = \begin{cases} -1, & x \leqslant -1, \\ ax^2 + bx + c, & 0 < |x| < 1, \\ 0, & x = 0, \\ 1, & x \geqslant 1 \end{cases}
+\]
+  在 $(-\infty, +\infty)$ 上连续.
+
+\item 设 $f$ 在点 $x_0$ 处连续, 则 $|f|$ 与 $f^2$ 也在点 $x_0$ 处连续. 反之是否成立?
+
+\item 讨论函数 $f + g$ 与 $fg$ 在点 $x_0$ 处的连续性, 如果:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f$ 在点 $x_0$ 处连续, 但 $g$ 在点 $x_0$ 处不连续;
+    \item $f$ 与 $g$ 在点 $x_0$ 处都不连续.
+  \end{enumerate}
+
+\item 设函数 $f$ 在点 $x_0$ 处连续, $f(x_0) > 0$, 则当 $x$ 充分靠近点 $x_0$ 时, 应有 $f(x) > \frac{f(x_0)}{2}$.
+
+\item (1) 设 $f(x) \equiv g(x), x \neq 0$, 且 $f(0) \neq g(0)$. 证明: $f$ 与 $g$ 两者中至多有一个在 $x = 0$ 处连续.
+
+  (2) 设 $f$ 与 $g$ 都为 $\mathbb{R}$ 上的连续函数, 且 $f(x) \equiv g(x), \forall x \in \mathbb{Q}$. 证明: $f(x) \equiv g(x), \forall x \in \mathbb{R}$.
+
+\item 举出定义在 $[0, 1]$ 上分别符合下述要求的函数:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 只在 $\frac{1}{2}, \frac{1}{3}$ 与 $\frac{1}{4}$ 三点不连续的函数;
+    \item 只在 $\frac{1}{2}, \frac{1}{3}$ 与 $\frac{1}{4}$ 三点连续的函数;
+    \item 只在 $\frac{1}{n}(n \in \mathbb{N})$ 上不连续的函数;
+    \item 只在 $x = 0$ 右连续, 而在其他点都不连续的函数.
+  \end{enumerate}
+
+\item 设函数 $f, g$ 在 $(a, b)$ 上连续. 证明:
+  \[
+  F(x) = \max\{f(x), g(x)\},\quad x \in (a, b),
+\]
+  \[
+  G(x) = \min\{f(x), g(x)\},\quad x \in (a, b)
+\]
+  在 $(a, b)$ 上都为连续函数.
+
+\item 设 $f$ 在 $(a, b)$ 内连续. 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 如果 $f(a^+)$ 与 $f(b^-)$ 为有限值, 则 $f$ 在 $(a, b)$ 内有界; 又若 $\exists \xi \in (a, b)$, s.t. $f(\xi) \geqslant \max\{f(a^+), f(b^-)\}$, 则 $f$ 在 $(a, b)$ 内能达到最大值;
+    \item 如果 $f(a^+) = f(b^-) = +\infty$. 证明: $f$ 在 $(a, b)$ 内能达到最小值.
+  \end{enumerate}
+
+\item 设函数 $f$ 在区间 $I$ 上连续. 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 若 $\forall r \in \mathbb{Q} \cap I$ 有 $f(r) = 0$, 则在 $I$ 上 $f(x) \equiv 0$;
+    \item 若 $\forall r_1, r_2 \in \mathbb{Q} \cap I, r_1 < r_2$ 有 $f(r_1) < f(r_2)$, 则 $f$ 在 $I$ 上严格增.
+  \end{enumerate}
+
+\item 设 $f$ 在 $[a, b]$ 上连续, 且 $\forall x \in [a, b], \exists y \in [a, b]$, s.t.
+  \[
+  |f(y)| \leqslant \frac{1}{2}|f(x)|.
+\]
+  证明: $\exists \xi \in [a, b]$, s.t. $f(\xi) = 0$.
+
+\item 设 $f$ 在 $[0, +\infty)$ 上连续, 满足: $0 \leqslant f(x) \leqslant x, x \in [0, +\infty)$. 又设 $a_1 \geqslant 0$, $a_{n+1} = f(a_n), n = 1, 2, \cdots$. 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\{a_n\}$ 为收敛数列;
+    \item 设 $\lim\limits_{n \to +\infty} a_n = t$, 则有 $f(t) = t$;
+    \item 若条件改为 $0 \leqslant f(x) < x, x \in (0, +\infty)$, 则 $t = 0$.
+  \end{enumerate}
+
+\item 求下列极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x \to 0} \frac{e^x\cos x + 5}{1 + x^2 + \ln(1 + x)}$;
+    \item $\lim\limits_{x \to 0} (1 + \sin x)^{\cos x}$;
+    \item $\lim\limits_{x \to +\infty} \frac{\sqrt{x + \sqrt{x + \sqrt{x}}}}{\sqrt{x + 1}}$;
+    \item $\lim\limits_{x \to +\infty} \left(\sqrt{x + \sqrt{x + \sqrt{x}}} - \sqrt{x}\right)$;
+    \item $\lim\limits_{x \to 0^+} \left(\sqrt{\frac{1}{x} + \sqrt{\frac{1}{x} + \sqrt{\frac{1}{x}}}} - \sqrt{\frac{1}{x} - \sqrt{\frac{1}{x} + \sqrt{\frac{1}{x}}}}\right)$.
+  \end{enumerate}
+
+\item 设 $f$ 为 $\mathbb{R}$ 上的连续函数, 常数 $c > 0$. 记
+  \[
+  F(x) = \begin{cases} -c, & f(x) < -c, \\ f(x), & |f(x)| \leqslant c, \\ c, & f(x) > c. \end{cases}
+\]
+  证明: $F$ 在 $\mathbb{R}$ 上连续(提示: 应用 $F(x) = \max\{-c, \min\{c, f(x)\}\}$ 或连续的定义).
+\end{exblock}
+
+\begin{exblock}{思考题 2.4}
+\item 设函数 $f$ 只有可去间断点. 证明: $F(x) = \lim\limits_{t \to x} f(t)$ 为连续函数.
+
+\item 设函数 $f$ 在 $\mathbb{R}$ 上单调增(或单调减), $F(x) = f(x^+)$. 证明: $F$ 在 $\mathbb{R}$ 上右连续.
+
+\item 设 $f$ 对任意 $x, y \in \mathbb{R}$ 适合函数方程 $f(x + y) = f(x) + f(y)$. 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 若 $f$ 在一点 $x_0$ 处连续, 则 $f(x) = f(1)x$;
+    \item 若 $f$ 在 $\mathbb{R}$ 上单调, 也有 $f(x) = f(1)x$.
+  \end{enumerate}
+
+\item 设函数 $f$ 在 $\mathbb{R}$ 上连续且 $\forall x, y \in \mathbb{R}$ 有等式 $f(x + y) = f(x) \cdot f(y)$. 证明: $f(x) = a^x$, 其中 $a = f(1)$ 为一正数.
+
+\item 设 $f$ 在 $(0, +\infty)$ 上连续, 且 $\forall x, y \in \mathbb{R}$ 有等式 $f(xy) = f(x) \cdot f(y)$. 证明: $f = 0$ 或者 $f(x) = x^a$, 其中 $a$ 为常数.
+
+\item 设 $f$ 在 $\mathbb{R}$ 上连续且 $\forall x, y \in \mathbb{R}$ 有等式
+  \[
+  f(x + y) + f(x - y) = 2f(x)f(y).
+\]
+  证明: $f = 0$ 或 $f(x) = \cos ax$ 或 $f(x) = \cosh ax$, 式中 $a$ 为常数.
+
+\item 设 $f: \mathbb{R} \to \mathbb{R}$, 且 $f(x^2) = f(x), \forall x \in \mathbb{R}$, 又 $f$ 在 $x = 0$ 与 $x = 1$ 处连续. 证明: $f$ 为常值函数.
+\end{exblock}

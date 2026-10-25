@@ -1,0 +1,625 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S14.3  用多项式一致逼近连续函数
+%  源：原书印刷页 160-177（PDF 物理页 166-183）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch14_14_3_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误与原书照录清单见 tools/_make_ch14_3a.py 头部说明
+% ==================================================================
+\section{用多项式一致逼近连续函数}\label{sec:14.3}
+
+这一节主要研究用多项式一致逼近连续函数的问题.
+
+\begin{definition}\label{def:14.3.1}
+设 $f\colon[a,b]\to\mathbb{R}$ 为实函数, 如果 $\forall\varepsilon>0$, 总 $\exists P(x)$, 使得
+\[
+  |f(x)-P(x)|<\varepsilon,\quad\forall x\in[a,b],
+\]
+其中 $P(x)$ 为多项式函数, 则称 $f(x)$ 在 $[a,b]$ 上能用多项式一致逼近.
+\end{definition}
+
+由于多项式函数 $P(x)$ 为 $[a,b]$ 上的连续函数, 故 $P(x)$ 在 $[a,b]$ 上有界. 再从
+\[
+  P(x)-\varepsilon<f(x)<P(x)+\varepsilon
+\]
+知
+\[
+  |f(x)|\leqslant|P(x)|+\varepsilon<\max\limits_{x\in[a,b]}|P(x)|+\varepsilon,\quad x\in[a,b].
+\]
+即 $f(x)$ 在 $[a,b]$ 上也有界.
+
+\begin{theorem}[用多项式函数一致逼近的必要条件]\label{thm:14.3.1}
+设 $f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近, 则 $f(x)$ 必为连续函数.
+\end{theorem}
+
+\begin{proof}
+设在 $[a,b]$ 上能用多项式函数一致逼近, $\forall\varepsilon>0$, 存在多项式函数 $P(x)$, 使得 $|P(x)-f(x)|<\varepsilon$, $\forall x\in[a,b]$. 特别地, 对 $\varepsilon=\frac{1}{n}$, 有多项式函数 $P_{n}(x)$, 使
+\[
+  |P_{n}(x)-f(x)|<\frac{1}{n},\quad\forall x\in[a,b].
+\]
+这表明多项式函数序列 $\{P_{n}(x)\}$ 在 $[a,b]$ 上一致收敛于 $f(x)$. 根据定理~\ref{thm:13.2.1}, $f(x)$ 为 $[a,b]$ 上的连续函数.
+\end{proof}
+
+\begin{theorem}[用多项式函数一致逼近的充要条件]\label{thm:14.3.2}
+$f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近 $\Leftrightarrow$ 存在多项式函数序列 $\{P_{n}(x)\}$ 在 $[a,b]$ 上一致收敛于 $f(x)$.
+\end{theorem}
+
+\begin{proof}
+($\rightarrow$) 由定理~\ref{thm:14.3.1} 证明, 存在多项式函数序列 $\{P_{n}(x)\}$, 使
+\[
+  |P_{n}(x)-f(x)|<\frac{1}{n},\quad\forall x\in[a,b].
+\]
+这表明多项式函数序列 $\{P_{n}(x)\}$ 在 $[a,b]$ 上一致收敛于 $f(x)$.
+
+($\Leftarrow$) 设有多项式函数序列 $\{P_{n}(x)\}$ 在 $[a,b]$ 上一致收敛于 $f(x)$, 则 $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  |P_{n}(x)-f(x)|<\varepsilon,\quad\forall x\in[a,b].
+\]
+取 $P(x)=P_{N+1}(x)$, 即知 $f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近.
+\end{proof}
+
+自然会问: 什么样的函数能在 $[a,b]$ 上用多项式函数一致逼近?
+
+\begin{theorem}[用多项式函数一致逼近的充分条件]\label{thm:14.3.3}
+设 $f(x)$ 在 $(-R,R)$ 中能展开成收敛的幂级数, 则对任意 $[a,b]\subset(-R,R)$, $f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近.
+\end{theorem}
+
+\begin{proof}
+因为 $f(x)$ 在 $(-R,R)$ 中能展开成收敛的幂级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$, 故由定理~\ref{thm:14.1.3}, 该幂级数在 $[a,b]\subset(-R,R)$ 上一致收敛于 $f(x)$. 即 $\forall\varepsilon>0$, $\exists N=N(\varepsilon)\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  |P(x)-f(x)|=\left|\sum_{k=0}^{n}a_{k}x^{k}-f(x)\right|<\varepsilon,\quad\forall x\in[a,b].
+\]
+其中 $P(x)=\sum_{k=0}^{n}a_{k}x^{k}$. 这就证明了 $f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近.
+\end{proof}
+
+虽然定理~\ref{thm:14.3.3} 给出了 $f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近的充分条件, 但是由定理~\ref{thm:14.1.4}(3) 知, $f(x)$ 必须是 $C^{\infty}$ 的, 它毕竟是一类很窄的函数. 另外, 定理~\ref{thm:14.2.2} 中的反例表明, 即使是 $C^{\infty}$ 函数也不必为 $C^{\omega}$ 函数, 也就是不一定能展开成收敛的幂级数. 因此, 上述充分条件的检验不是一件容易的事.
+
+定理~\ref{thm:14.3.1} 使人们大胆地猜测, $f(x)$ 连续不光是 $f(x)$ 能用多项式函数一致逼近的必要条件, 而且也是充分条件. Weierstrass 在 1885 年证明了这一重要事实.
+
+\begin{lemma}\label{lem:14.3.1}
+设 $f(x)$ 的 Bernstein 多项式为
+\[
+  B_{n}(f;x)=\sum_{i=0}^{n}f\left(\frac{i}{n}\right)\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i},\quad n=1,2,\cdots,
+\]
+则
+\[
+  B_{n}(1;x)=1;\quad B_{n}(x;x)=x;\quad B_{n}(x^{2};x)=\left(1-\frac{1}{n}\right)x^{2}+\frac{1}{n}x;
+\]
+\[
+  \sum_{i=0}^{n}\mathrm{C}_{n}^{i}(i-nx)^{2}x^{i}(1-x)^{n-i}\leqslant\frac{n}{4},\quad0\leqslant x\leqslant1.
+\]
+\end{lemma}
+
+\begin{proof}
+容易看到
+\[
+  \begin{aligned}
+    B_{n}(1;x)&=\sum_{i=0}^{n}f\left(\frac{i}{n}\right)\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}=\sum_{i=0}^{n}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &=[x+(1-x)]^{n}=1^{n}=1.
+  \end{aligned}
+\]
+为求 $B_{n}(x;x)$ 与 $B_{n}(x^{2};x)$, 我们在等式
+\[
+  (x+y)^{n}=\sum_{i=1}^{n}\mathrm{C}_{n}^{i}x^{i}y^{n-i}
+\]
+两边对 $x$ 求偏导得
+\[
+  n(x+y)^{n-1}=\sum_{i=1}^{n}i\mathrm{C}_{n}^{i}x^{i-1}y^{n-i},
+\]
+令 $y=1-x$ 代入上式并整理得到
+\[
+  n=\sum_{i=1}^{n}i\mathrm{C}_{n}^{i}x^{i-1}(1-x)^{n-i},
+\]
+\[
+  x=\sum_{i=0}^{n}\frac{i}{n}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}=B_{n}(x;x).
+\]
+在 $nx(x+y)^{n-1}=\sum_{i=1}^{n}i\mathrm{C}_{n}^{i}x^{i}y^{n-i}$ 两边对 $x$ 求偏导得
+\[
+  n\left[(x+y)^{n-1}+(n-1)x(x+y)^{n-2}\right]=\sum_{i=1}^{n}i^{2}\mathrm{C}_{n}^{i}x^{i-1}y^{n-i},
+\]
+令 $y=1-x$ 代入上式, 并整理得到
+\[
+  n[1+(n-1)x]=\sum_{i=0}^{n}i^{2}\mathrm{C}_{n}^{i}x^{i-1}(1-x)^{n-i},
+\]
+\[
+  \left(1-\frac{1}{n}\right)x^{2}+\frac{1}{n}x=\sum_{i=0}^{n}\left(\frac{i}{n}\right)^{2}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}=B_{n}(x^{2};x).
+\]
+于是
+\[
+  \begin{aligned}
+    &\sum_{i=0}^{n}\mathrm{C}_{n}^{i}(i-nx)^{2}x^{i}(1-x)^{n-i}\\
+    &=n^{2}\sum_{i=0}^{n}\left(\frac{i}{n}\right)^{2}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}-2n^{2}x\sum_{i=0}^{n}\frac{i}{n}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}+n^{2}x^{2}\sum_{i=0}^{n}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &=n^{2}B_{n}(x^{2};x)-2n^{2}xB_{n}(x;x)+n^{2}x^{2}B_{n}(1;x)\\
+    &\doteq n^{2}\left[\left(1-\frac{1}{n}\right)x^{2}+\frac{1}{n}x\right]-2n^{2}x\cdot x+n^{2}x^{2}\cdot1\\
+    &=nx(1-x)\leqslant n\left(\frac{x+1-x}{2}\right)^{2}=\frac{n}{4}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{theorem}[Bernstein]\label{thm:14.3.4}
+设 $f(x)$ 为闭区间 $[0,1]$ 上的连续函数, 则 $f(x)$ 的 Bernstein 多项式序列 $\{B_{n}(f;x)\}$ 在 $[0,1]$ 上一致收敛于 $f(x)$.
+\end{theorem}
+
+\begin{proof}
+因为 $f(x)$ 在 $[0,1]$ 上连续, 故 $f(x)$ 在 $[0,1]$ 上必一致连续且有界, 记 $|f(x)|\leqslant M$, $\forall x\in[0,1]$. 于是, $\forall\varepsilon>0$, $\exists\delta>0$, 当 $x',x''\in[0,1]$ 且满足 $|x'-x''|<\delta$ 时, 就有
+\[
+  |f(x')-f(x'')|<\frac{\varepsilon}{2}.
+\]
+由此,
+\[
+  \begin{aligned}
+    |B_{n}(f;x)-f(x)|&=\left|\sum_{i=0}^{n}f\left(\frac{i}{n}\right)\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}-\sum_{i=0}^{n}f(x)\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\right|\\
+    &=\left|\sum_{i=0}^{n}\left[f\left(\frac{i}{n}\right)-f(x)\right]\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\right|\\
+    &\leqslant\sum_{i=0}^{n}\left|f\left(\frac{i}{n}\right)-f(x)\right|\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &=\sum_{\left|\frac{i}{n}-x\right|\geqslant\delta}\left|f\left(\frac{i}{n}\right)-f(x)\right|\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &\quad+\sum_{\left|\frac{i}{n}-x\right|<\delta}\left|f\left(\frac{i}{n}\right)-f(x)\right|\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &<\frac{M}{2n\delta^{2}}+\frac{\varepsilon}{2}\cdot\sum_{i=0}^{n}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,\quad\forall x\in[0,1]
+  \end{aligned}
+\]
+(其中
+\[
+  \begin{aligned}
+    &\sum_{\left|\frac{i}{n}-x\right|>\delta}\left|f\left(\frac{i}{n}\right)-f(x)\right|\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &\leqslant\frac{2M}{\delta^{2}}\delta^{2}\sum_{\left|\frac{i}{n}-x\right|\geqslant\delta}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    &\leqslant\frac{2M}{\delta^{2}}\sum_{\left|\frac{i}{n}-x\right|\geqslant\delta}\left(\frac{i}{n}-x\right)^{2}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &\leqslant\frac{2M}{\delta^{2}}\sum_{i=0}^{n}\left(\frac{i}{n}-x\right)^{2}\mathrm{C}_{n}^{i}x^{i}(1-x)^{n-i}\\
+    &\xlongequal{\text{引理~\ref{lem:14.3.1}}}\frac{2M}{\delta^{2}}\cdot\frac{1}{n^{2}}\cdot\frac{n}{4}=\frac{M}{2n\delta^{2}}.)
+\end{aligned}
+\]
+这就证明了 $\{B_{n}(f;x)\}$ 在 $[0,1]$ 上一致收敛于 $f(x)$.
+\end{proof}
+
+\begin{theorem}[Weierstrass]\label{thm:14.3.5}
+闭区间 $[a,b]$ 上的任何连续函数 $f(x)$ 能在这个区间上用多项式函数一致逼近.
+\end{theorem}
+
+\begin{proof}
+证法 1 (Bernstein 证法) 设 $f(x)$ 是 $[a,b]$ 上的连续函数, 作变换
+\[
+  x=a+(b-a)t,
+\]
+并记 $g(t)=f(a+(b-a)t)$, 则 $g$ 是 $[0,1]$ 上的连续函数. 由定理~\ref{thm:14.3.4}, $\forall\varepsilon>0$, 存在多项式函数 $P(t)$ ($g$ 的某个 Bernstein 多项式), 使得
+\[
+  |g(t)-P(t)|<\varepsilon,\quad\forall t\in[0,1].
+\]
+用 $t=\frac{x-a}{b-a}$ 代入上式即得
+\[
+  \left|f(x)-P\left(\frac{x-a}{b-a}\right)\right|<\varepsilon,\quad\forall x\in[a,b].
+\]
+这就证明了定理的结果.
+
+在数学上, 上述证明方法称为构造性证明, 它不仅证明逼近 $f(x)$ 的多项式 $P\left(\frac{x-a}{b-a}\right)$ 是存在的, 而且给出了它的具体构造.
+
+证法 2 分 $3$ 步证明:
+
+第 $1$ 步, 设 $[a,b]=[0,1]$, 且 $f(0)=f(1)=0$, $f(x)$ 在 $[0,1]$ 上连续, 所以 $|f(x)|\leqslant M$, $x\in[0,1]$. 延拓 $f(x)$ 至 $(-\infty,+\infty)$, 使得 $f(x)=0$, $x\in\mathbb{R}\setminus[0,1]$, 则 $f(x)$ 在 $(-\infty,+\infty)$ 上一致连续. 于是, $\forall\varepsilon>0$, $\exists\delta>0$, 当 $|x'-x''|<\delta$ 时, 有
+\[
+  |f(x')-f(x'')|<\frac{\varepsilon}{2}.
+\]
+考虑多项式序列 $Q_{n}(x)=\mathrm{C}_{n}(1-x^{2})^{n}$, $n=1,2,\cdots$, 其中
+\[
+  \mathrm{C}_{n}=\frac{1}{\displaystyle\int_{-1}^{1}(1-x^{2})^{n}\mathrm{d}x}
+\]
+由此知
+\[
+  \int_{-1}^{1}Q_{n}(x)\mathrm{d}x=\mathrm{C}_{n}\int_{-1}^{1}(1-x^{2})^{n}\mathrm{d}x=\frac{1}{\int_{-1}^{1}(1-x^{2})^{n}\mathrm{d}x}\int_{-1}^{1}(1-x^{2})^{n}\mathrm{d}x=1,\quad n=1,2,\cdots.
+\]
+令 $\varphi(x)=(1-x^{2})^{n}-(1-nx^{2})$, 则
+\[
+  \varphi'(x)=n(1-x^{2})^{n-1}(-2x)+2nx=2nx\left[1-(1-x^{2})^{n-1}\right]\begin{cases}
+    <0, & -1\leqslant x<0,\ \varphi\text{ 严格单调减少},\\
+    =0, & x=0,\ \text{达最小值},\\
+    >0, & 0<x\leqslant1,\ \varphi\text{ 严格单调增加}.
+\end{cases}
+\]
+从而
+\[
+  (1-x^{2})^{n}-(1-nx^{2})=\varphi(x)\geqslant\varphi(0)=0,
+\]
+\[
+  (1-x^{2})^{n}\geqslant1-nx^{2},\quad|x|\leqslant1.
+\]
+由此推得
+\[
+  \begin{aligned}
+    \int_{-1}^{1}(1-x^{2})\mathrm{d}x&=2\int_{0}^{1}(1-x^{2})\mathrm{d}x\geqslant2\int_{0}^{\frac{1}{\sqrt{n}}}(1-x^{2})^{n}\mathrm{d}x\geqslant2\int_{0}^{\frac{1}{\sqrt{n}}}(1-nx^{2})\mathrm{d}x\\
+    &=2\left(x-\frac{n}{3}x^{3}\right)\bigg|_{0}^{\frac{1}{\sqrt{n}}}=\frac{4}{3\sqrt{n}}>\frac{1}{\sqrt{n}},
+  \end{aligned}
+\]
+\[
+  \mathrm{C}_{n}=\frac{1}{\displaystyle\int_{-1}^{1}(1-x^{2})^{n}\mathrm{d}x}<\sqrt{n}.
+\]
+于是, 当 $0<\delta\leqslant|x|\leqslant1$ 时, 有
+\[
+  Q_{n}(x)=\mathrm{C}_{n}(1-x^{2})^{n}\leqslant\sqrt{n}(1-\delta^{2})^{n},
+\]
+且当 $x\in[0,1]$ 时, $-1\leqslant-1+x\leqslant0$, $1\leqslant1+x\leqslant2$, 于是
+\[
+  P_{n}(x)=\int_{-1}^{1}f(x+t)Q_{n}(t)\mathrm{d}t\xlongequal{u=x+t}\int_{-1+x}^{1+x}f(u)Q_{n}(u-x)\mathrm{d}u\xlongequal{f|_{\mathbb{R}\setminus[0,1]}=0}\int_{0}^{1}f(u)Q_{n}(u-x)\mathrm{d}u,
+\]
+其中 $Q_{n}(u-x)=\mathrm{C}_{n}[1-(u-x)^{2}]^{n}$ 为 $x$ 的多项式, 故 $P_{n}(x)$ 也是 $x$ 的多项式. 并且, $\forall\varepsilon>0$, 先取定上述的 $\delta\in(0,1)$. 因为 $\lim\limits_{n\to+\infty}4M\sqrt{n}(1-\delta^{2})^{n}=0$, 所以 $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  4M\sqrt{n}(1-\delta^{2})^{n}<\frac{\varepsilon}{2},
+\]
+\[
+  \begin{aligned}
+    |P_{n}(x)-f(x)|&=\left|\int_{-1}^{1}f(x+t)Q_{n}(t)\mathrm{d}t-\int_{-1}^{1}f(x)Q_{n}(t)\mathrm{d}t\right|\\
+    &=\left|\int_{-1}^{1}[f(x+t)-f(x)]Q_{n}(t)\mathrm{d}t\right|\\
+    &\leqslant\int_{-1}^{1}|f(x+t)-f(x)|Q_{n}(t)\mathrm{d}t\\
+    &\leqslant2M\int_{-1}^{\delta}Q_{n}(t)\mathrm{d}t+\frac{\varepsilon}{2}\int_{-\delta}^{\delta}Q_{n}(t)\mathrm{d}t+2M\int_{\delta}^{1}Q_{n}(t)\mathrm{d}t
+  \end{aligned}
+\]
+\[
+  \leqslant4M\cdot\sqrt{n}(1-\delta^{2})^{n}+\frac{\varepsilon}{2}\cdot1<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,\quad x\in[0,1].
+\]
+这就证明了 $f(x)$ 在 $[0,1]$ 上可用多项式函数一致逼近 (注意: 这里不是 $P_{n}(x)\rightrightarrows f(x)$, $x\in[0,1]$, $n\to+\infty$! 为什么?).
+
+第 $2$ 步, 设 $f(x)$ 在 $[0,1]$ 上连续. 令
+\[
+  g(x)=f(x)-\left\{f(0)+x[f(1)-f(0)]\right\},\quad0\leqslant x\leqslant1,
+\]
+则 $g(x)$ 在 $[0,1]$ 上也连续, 且 $g(0)=g(1)=0$. 由第 $1$ 步知, $g(x)$ 在 $[0,1]$ 上可用多项式函数一致逼近, 即 $\forall\varepsilon>0$, 必有多项式函数 $P(x)$ 使
+\[
+  |P(x)-g(x)|<\varepsilon,\quad x\in[0,1]
+\]
+等价于
+\[
+  \left|\left\{P(x)+f(0)+x[f(1)-f(0)]\right\}-f(x)\right|
+\]
+\[
+  =\left|P(x)-\left\{f(x)-\left[f(0)+x(f(1)-f(0))\right]\right\}\right|<\varepsilon,\quad x\in[0,1].
+\]
+这就证明了 $f(x)$ 在 $[0,1]$ 上可用多项式函数一致逼近.
+
+第 $3$ 步, 设 $f$ 在有界闭区间 $[a,b]$ 上连续. 令 $x=a+t(b-a)$, 则 $t=\frac{x-a}{b-a}$, $t\in[0,1]$, 取
+\[
+  \varphi(t)=f(a+t(b-a))=f(x),
+\]
+则 $\varphi(0)=f(a)$, $\varphi(1)=f(b)$, $\varphi(t)$ 在 $[0,1]$ 上连续. 根据第 $2$ 步, $\varphi(t)$ 在 $[0,1]$ 上可用多项式函数一致逼近, 即 $\forall\varepsilon>0$, 有多项式函数 $P(t)$, 使得
+\[
+  |P(t)-\varphi(t)|<\varepsilon,\quad t\in[0,1]\Leftrightarrow\left|P\left(\frac{x-a}{b-a}\right)-f(x)\right|<\varepsilon,\quad x\in[a,b].
+\]
+而 $P\left(\frac{x-a}{b-a}\right)$ 是 $x$ 的多项式, 这就证明了连续函数 $f(x)$ 在 $[a,b]$ 上可用多项式函数一致逼近.
+\end{proof}
+
+%  第二部分：定理 14.3.6 起（生成脚本 tools/_make_ch14_3b.py）
+% ==================================================================
+
+% ===== PART-B =====
+
+\begin{theorem}\label{thm:14.3.6}
+$f(x)$ 在 $[a,b]$ 上能用多项式函数一致逼近的充分条件是 $f(x)$ 为 $[a,b]$ 上的连续函数.
+\end{theorem}
+
+\begin{proof}
+($\rightarrow$) 即是定理~\ref{thm:14.3.1}.
+
+($\Leftarrow$) 即是定理~\ref{thm:14.3.5}.
+\end{proof}
+
+这个定理揭示了这样一个事实: 在 $[a,b]$ 上能用多项式函数一致逼近的函数就是连续函数.
+
+此外, 必须指出, 如果将有界闭区间 $[a,b]$ 改为有界开区间 $(a,b)$, 有界半开半闭区间 $(a,b)$, $[a,b)$ 或无界区间, Weierstrass 定理~\ref{thm:14.3.5} 就不一定成立.
+
+\begin{example}\label{ex:14.3.1}
+$f(x)=\dfrac{1}{x}$ 在 $(0,1)$ 或 $(0,1]$ 上连续, 但不能用多项式函数一致逼近.
+\end{example}
+
+\begin{proof}
+(反证) 假设 $f(x)=\dfrac{1}{x}$ 在 $(0,1)$ (或 $(0,1]$) 能用多项式函数一致逼近, 如本节开
+始时所述, $f(x)$ 在 $(0,1)$ (或 $(0,1]$) 上必为有界函数, 这与 $f(x)=\dfrac{1}{x}$ 在 $(0,1)$ (或 $(0,1]$) 上显然无界相矛盾.
+\end{proof}
+
+\begin{example}\label{ex:14.3.2}
+$f(x)=\dfrac{1}{x}$ 在 $[1,+\infty)$ 上不能用多项式函数一致逼近.
+\end{example}
+
+\begin{proof}
+(反证) 假设 $f(x)=\dfrac{1}{x}$ 在 $[1,+\infty)$ 上能用多项式函数一致逼近, 则对 $\varepsilon_{0}=\frac{1}{4}$, 必有多项式函数 $P(x)$, 使
+\[
+  |P(x)-f(x)|=\left|P(x)-\frac{1}{x}\right|<\frac{1}{4},\quad x\in[1,+\infty),
+\]
+因此
+\[
+  |P(x)|=\left|P(x)-\frac{1}{x}+\frac{1}{x}\right|\leqslant\left|P(x)-\frac{1}{x}\right|+\left|\frac{1}{x}\right|<\frac{1}{4}+1<2,\quad x\in[1,+\infty).
+\]
+设 $P(x)=a_{n}x^{n}+a_{n-1}x^{n-1}+\cdots+a_{1}x+a_{0}$.
+
+(1) 当 $a_{n}\neq0$, $n\geqslant1$ 时, 由
+\[
+  \lim_{x\to+\infty}P(x)=\lim_{x\to+\infty}x^{n}\left(a_{n}+\frac{a_{n-1}}{x}+\cdots+\frac{a_{1}}{x^{n-1}}+\frac{a_{0}}{x^{n}}\right)=+\infty
+\]
+知, $P(x)$ 在 $[1,+\infty)$ 上无界, 这与上述 $P(x)$ 在 $[1,+\infty)$ 上有界相矛盾.
+
+(2) 当 $a_{n}=\cdots=a_{1}=0$, 则 $P(x)=a_{0}$. 取 $x_{1}=1$, $x_{2}=2$, 有
+\[
+  \begin{aligned}
+    \frac{1}{2}&=\left|1-\frac{1}{2}\right|=\left|\frac{1}{x_{1}}-\frac{1}{x_{2}}\right|=\left|\left(\frac{1}{x_{1}}-a_{0}\right)-\left(\frac{1}{x_{2}}-a_{0}\right)\right|\\
+    &\leqslant\left|\frac{1}{x_{1}}-a_{0}\right|+\left|\frac{1}{x_{2}}-a_{0}\right|<\frac{1}{4}+\frac{1}{4}=\frac{1}{2},
+  \end{aligned}
+\]
+矛盾. 由此推得 $f(x)=\dfrac{1}{x}$ 在 $[1,+\infty)$ 上不能用多项式函数一致逼近.
+\qedhere
+\end{proof}
+
+作为 Weierstrass 定理的应用, 有下面的结论.
+
+\begin{theorem}\label{thm:14.3.7}
+设 $f(x)$ 为有界闭区间 $[a,b]$ 上的 Riemann 可积函数, 则 $\forall\varepsilon>0$, 存在多项式函数 $P(x)$, 使得
+\[
+  \int_{a}^{b}|P(x)-f(x)|\mathrm{d}x<\varepsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+因为 $f(x)$ 在 $[a,b]$ 上 Riemann 可积, 根据\extref{定理 6.1.4}(3), 存在 $[a,b]$ 的某个分割 $T$: $a=x_{0}<x_{1}<\cdots<x_{n}=b$, 使得
+\[
+  \sum_{i=1}^{n}\sup_{x',x''\in[x_{i-1},x_{i}]}|f(x')-f(x'')|\Delta x_{i}=\sum_{i=1}^{n}\omega_{i}\Delta x_{i}<\frac{\varepsilon}{2}.
+\]
+连接 $(x_{i-1},f(x_{i-1}))$ 与 $(x_{i},f(x_{i}))$ ($i=1,2,\cdots,n$) 得一条折线, 它对应的函数记为 $\varphi(x)$. 设
+\[
+  x=tx_{i-1}+(1-t)x_{i},\quad\text{则}\quad t=\frac{x-x_{i}}{x_{i-1}-x_{i}}.
+\]
+于是
+\[
+  \begin{aligned}
+    \int_{a}^{b}|\varphi(x)-f(x)|\mathrm{d}x&=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}\left|\left[tf(x_{i-1})+(1-t)f(x_{i})\right]-f(x)\right|\mathrm{d}x\\
+    &=\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}\left|t\left[f(x_{i-1})-f(x)\right]+(1-t)\left[f(x_{i})-f(x)\right]\right|\mathrm{d}x\\
+    &\leqslant\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}\left[t|f(x_{i-1})-f(x)|+(1-t)|f(x_{i})-f(x)|\right]\mathrm{d}x\\
+    &\leqslant\sum_{i=1}^{n}\int_{x_{i-1}}^{x_{i}}\left[t\omega_{i}+(1-t)\omega_{i}\right]\mathrm{d}x=\sum_{i=1}^{n}\omega_{i}\Delta x_{i}<\frac{\varepsilon}{2}.
+  \end{aligned}
+\]
+对 $[a,b]$ 上的连续函数 $\varphi(x)$, 根据 Weierstrass 定理~\ref{thm:14.3.5}, 有多项式函数 $P(x)$, 使得
+\[
+  |P(x)-\varphi(x)|<\frac{\varepsilon}{2(b-a)},\quad\forall x\in[a,b].
+\]
+从而, 有
+\[
+  \begin{aligned}
+    \int_{a}^{b}|P(x)-f(x)|\mathrm{d}x&\leqslant\int_{a}^{b}|P(x)-\varphi(x)|\mathrm{d}x+\int_{a}^{b}|\varphi(x)-f(x)|\mathrm{d}x\\
+    &<\frac{\varepsilon}{2(b-a)}(b-a)+\frac{\varepsilon}{2}=\varepsilon.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:14.3.3}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 中能用多项式函数一致逼近, 则 $f(x)$ 必为一个多项式函数.
+\end{example}
+
+\begin{proof}
+因为 $f(x)$ 在 $(-\infty,+\infty)$ 中能用多项式函数一致逼近, 根据定理~\ref{thm:14.3.2}, 存在多项式函数序列 $P_{n}(x)$, 使得 $\{P_{n}(x)\}$ 在 $(-\infty,+\infty)$ 上一致收敛于 $f(x)$, 即
+\[
+  P_{n}(x)\rightrightarrows f(x),\quad x\in(-\infty,+\infty),\ n\to+\infty.
+\]
+于是, 对 $\varepsilon_{0}=1$, $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, 有
+\[
+  |P_{n}(x)-P_{N}(x)|<\varepsilon_{0}=1,\quad\forall x\in(-\infty,+\infty).
+\]
+即 $P_{n}(x)-P_{N}(x)$ 为 $(-\infty,+\infty)$ 中的有界多项式函数. 它必为常值函数. (反证) 假设它不为常值函数, 则
+\[
+  \begin{aligned}
+    P_{n}(x)-P_{N}(x)&=a_{0}x^{m}+a_{1}x^{m-1}+\cdots+a_{m-1}x+a_{m}\\
+    &=x^{m}\left(a_{0}+\frac{a_{1}}{x}+\cdots+\frac{a_{m-1}}{x^{m-1}}+\frac{a_{m}}{x^{m}}\right)\to\infty\quad(x\to\infty),
+  \end{aligned}
+\]
+其中 $a_{0}\neq0$. 这与 $P_{n}(x)-P_{N}(x)$ 为 $(-\infty,+\infty)$ 中的有界函数相矛盾. 由此设
+\[
+  P_{n}(x)-P_{N}(x)=C_{n},\quad n=N,N+1,\cdots,
+\]
+因而
+\[
+  \lim_{n\to+\infty}C_{n}=\lim_{n\to+\infty}[P_{n}(0)-P_{N}(0)]=f(0)-P_{N}(0).
+\]
+由此即得
+\[
+  f(x)=\lim_{n\to+\infty}P_{n}(x)=\lim_{n\to+\infty}[P_{N}(x)+C_{n}]=P_{N}(x)+f(0)-P_{N}(0).
+\]
+这就证明了 $f(x)$ 为一个多项式函数.
+\end{proof}
+
+作为 Weierstrass 定理的另一个应用, 可以证明周期为 $2\pi$ 的连续函数可以用三角多项式来逼近.
+
+\begin{definition}\label{def:14.3.2}
+称函数
+\[
+  T(x)=A+\sum_{k=1}^{n}(a_{k}\cos kx+b_{k}\sin kx)
+\]
+为 $n$ 次三角多项式.
+\end{definition}
+
+当 $b_{1}=\cdots=b_{n}=0$ 时, $T(x)$ 为一个偶函数, 称它为余弦多项式; 当 $a_{1}=\cdots=a_{n}=0$ 时, 称它为正弦多项式; 又若 $A=0$, 则 $T(x)$ 为一个奇函数.
+
+\begin{lemma}\label{lem:14.3.2}
+(1) 函数 $\cos^{k}x$ 为余弦多项式 ($k\in\mathbb{N}$);
+
+(2) 如果 $T(x)$ 为三角多项式, 则 $T(x)\sin x$ 也为三角多项式;
+
+(3) 如果 $T(x)$ 为三角多项式, 则 $T(x+\alpha)$ 也为三角多项式.
+\end{lemma}
+
+\begin{proof}
+(1) (归纳) 当 $k=1$ 时, $\cos^{1}x=\cos x$ 为一次三角多项式.
+
+假设当 $k=l$ 时, $\cos^{l}x$ 为 $l$ 次余弦多项式. 则当 $k=l+1$ 时, 有
+\[
+  \begin{aligned}
+    \cos^{l+1}x&=\cos^{l}x\cos x\xlongequal{\text{归纳}}\left(A+\sum_{j=1}^{l}a_{j}\cos jx\right)\cos x\\
+    &=A\cos x+\sum_{j=1}^{l}a_{j}\cos jx\cos x\\
+    &=A\cos x+\sum_{j=1}^{l}a_{j}\cdot\frac{1}{2}[\cos(j+1)x+\cos(j-1)x]
+  \end{aligned}
+\]
+为 $l+1$ 次余弦多项式.
+
+(2) 易见, 如果 $T(x)$ 为三角多项式, 则
+\[
+  \begin{aligned}
+    T(x)\sin x&=\left[A+\sum_{k=1}^{n}(a_{k}\cos kx+b_{k}\sin kx)\right]\sin x\\
+    &=A\sin x+\sum_{k=1}^{n}(a_{k}\cos kx\sin x+b_{k}\sin kx\sin x)\\
+    &=A\sin x+\sum_{k=1}^{n}\left\{a_{k}\cdot\frac{1}{2}[\sin(k+1)x-\sin(k-1)x]\right.\\
+    &\quad\left.+b_{k}\cdot\frac{1}{2}[\cos(k-1)x-\cos(k+1)x]\right\}
+  \end{aligned}
+\]
+也为三角多项式.
+
+(3) 如果 $T(x)$ 为三角多项式, 则
+\[
+  \begin{aligned}
+    T(x+\alpha)&=A+\sum_{k=1}^{n}\left[a_{k}\cos(kx+\alpha)+b_{k}\sin(kx+\alpha)\right]\\
+    &=A+\sum_{k=1}^{n}\left[a_{k}(\cos kx\cos\alpha-\sin kx\sin\alpha)\right.\\
+    &\quad\left.+b_{k}(\sin kx\cos\alpha+\cos kx\sin\alpha)\right]
+  \end{aligned}
+\]
+也为三角多项式.
+\end{proof}
+
+\begin{lemma}\label{lem:14.3.3}
+设 $f(x)$ 为 $[0,\pi]$ 上定义的连续函数, 则对任何 $\varepsilon>0$, 存在余弦多项式 $T(x)$, 使
+\[
+  |f(x)-T(x)|<\varepsilon,\quad\forall x\in[0,\pi].
+\]
+\end{lemma}
+
+\begin{proof}
+将 $f(\operatorname{arccos}t)$ 视作 $t$ 的函数, 它在 $[-1,1]$ 上是连续的. 因此, 根据 Weierstrass 多项式一致逼近定理~\ref{thm:14.3.5} 知, 有多项式 $\sum_{k=0}^{n}a_{k}t^{k}$ 使得
+\[
+  \left|f(\operatorname{arccos}t)-\sum_{k=0}^{n}a_{k}t^{k}\right|<\varepsilon,\quad\forall t\in[-1,1].
+\]
+如果 $\operatorname{arccos}t=x\in[0,\pi]$, 则 $t=\cos x\in[-1,1]$. 因此
+\[
+  \left|f(x)-\sum_{k=0}^{n}a_{k}\cos^{k}x\right|<\varepsilon.
+\]
+由引理~\ref{lem:14.3.2}(1), $\cos^{k}x$ 是一余弦多项式, 所以 $\sum_{k=0}^{n}a_{k}\cos^{k}x$ 为所求的余弦多项式.
+\qedhere
+\end{proof}
+
+\begin{lemma}\label{lem:14.3.4}
+设 $f(x)$ 为 $(-\infty,+\infty)$ 上周期 $2\pi$ 的偶函数, 且处处连续, 则对任何 $\varepsilon>0$, 有三角多项式 $T(x)$, 使得
+\[
+  |f(x)-T(x)|<\varepsilon,\quad\forall x\in(-\infty,+\infty).
+\]
+\end{lemma}
+
+\begin{proof}
+根据引理~\ref{lem:14.3.3}, 在 $[0,\pi]$ 中, 有余弦多项式 $T(x)$, 使得
+\[
+  |f(x)-T(x)|<\varepsilon.
+\]
+现在, $f(x)$ 与 $T(x)$ 均为偶函数, 因此上式在 $[-\pi,0]$ 上也成立. 最后, 由于 $f(x)-T(x)$ 为周期 $2\pi$ 的周期函数, 故上述不等式处处成立.
+\end{proof}
+
+\begin{theorem}[Weierstrass]\label{thm:14.3.8}
+设 $f(x)$ 为 $(-\infty,+\infty)$ 上的周期 $2\pi$ 的连续周期函数, 则对任何 $\varepsilon>0$, 必有三角多项式 $T(x)$, 使得
+\[
+  |f(x)-T(x)|<\varepsilon,\quad\forall x\in(-\infty,+\infty).
+\]
+\end{theorem}
+
+\begin{proof}
+由引理~\ref{lem:14.3.4} 知, 偶函数
+\[
+  f(x)+f(-x)\quad\text{与}\quad[f(x)-f(-x)]\sin x
+\]
+有如下的三角多项式 $T_{1}(x)$ 与 $T_{2}(x)$, 且满足:
+\[
+  f(x)+f(-x)=T_{1}(x)+\alpha_{1}(x),\quad\left[f(x)-f(-x)\right]\sin x=T_{2}(x)+\alpha_{2}(x),
+\]
+其中 $|\alpha_{1}(x)|<\frac{\varepsilon}{2}$, $|\alpha_{2}(x)|<\frac{\varepsilon}{2}$, $\forall x\in(-\infty,+\infty)$. 于是
+\[
+  \begin{aligned}
+    f(x)\sin^{2}x&=\left[f(x)+f(-x)\right]\cdot\frac{1}{2}\sin^{2}x+\left[f(x)-f(-x)\right]\sin x\cdot\frac{1}{2}\sin x\\
+    &=\left[T_{1}(x)+\alpha_{1}(x)\right]\cdot\frac{1}{2}\sin^{2}x+\left[T_{2}(x)+\alpha_{2}(x)\right]\cdot\frac{1}{2}\sin x\\
+    &=\frac{1}{2}\left[T_{1}(x)\sin^{2}x+T_{2}(x)\sin x\right]+\frac{1}{2}\left[\sin^{2}x\cdot\alpha_{1}(x)+\sin x\cdot\alpha_{2}(x)\right]\\
+    &=T_{3}(x)+\beta(x).
+  \end{aligned}
+\]
+根据引理~\ref{lem:14.3.2}(2), 有
+\[
+  T_{3}(x)=\frac{1}{2}\bigl[T_{1}(x)\sin^{2}x+T_{2}(x)\sin x\bigr]
+\]
+仍为三角多项式. 而
+\[
+  \begin{aligned}
+    |\beta(x)|&=\frac{1}{2}\left|\sin^{2}x\cdot\alpha_{1}(x)+\sin x\cdot\alpha_{2}(x)\right|\\
+    &\leqslant\frac{1}{2}\left[|\alpha_{1}(x)|+|\alpha_{2}(x)|\right]<\frac{1}{2}\left(\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\right)=\frac{\varepsilon}{2}.
+  \end{aligned}
+\]
+上述结果对于 $(-\infty,+\infty)$ 上任何以 $2\pi$ 为周期的连续周期函数是正确的. 因此, 对于函数 $f\left(x-\frac{\pi}{2}\right)$ 也是正确的, 即
+\[
+  f\left(x-\frac{\pi}{2}\right)\sin^{2}x=T_{4}(x)+r(x),\quad|r(x)|<\frac{\varepsilon}{2},\quad\forall x\in(-\infty,+\infty),
+\]
+其中 $T_{4}(x)$ 为三角多项式. 于此, 将 $x$ 换成 $x+\frac{\pi}{2}$, 仍得
+\[
+  \begin{aligned}
+    f(x)\cos^{2}x&=f\left(x+\frac{\pi}{2}-\frac{\pi}{2}\right)\sin^{2}\left(x+\frac{\pi}{2}\right)=T_{4}\left(x+\frac{\pi}{2}\right)+r\left(x+\frac{\pi}{2}\right)\\
+    &=T_{5}(x)+\delta(x),
+  \end{aligned}
+\]
+\[
+  |\delta(x)|=|r\left(x+\frac{\pi}{2}\right)|<\frac{\varepsilon}{2},\quad\forall x\in(-\infty,+\infty).
+\]
+根据引理~\ref{lem:14.3.2}(3), $T_{5}(x)=T_{4}\left(x+\frac{\pi}{2}\right)$ 为三角多项式. 因此
+\[
+  \begin{aligned}
+    f(x)&=f(x)(\cos^{2}x+\sin^{2}x)=T_{5}(x)+\delta(x)+T_{3}(x)+\beta(x)\\
+    &=(T_{3}(x)+T_{5}(x))+(\beta(x)+\delta(x)),
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    |f(x)-(T_{3}(x)+T_{5}(x))|&=|\beta(x)+\delta(x)|\leqslant|\beta(x)|+|\delta(x)|\\
+    &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,\quad\forall x\in(-\infty,+\infty),
+  \end{aligned}
+\]
+这就证明了 $T(x)=T_{3}(x)+T_{5}(x)$ 为所求的三角多项式.
+\end{proof}
+
+\begin{exblock}{练习题 14.3}
+\begin{enumerate}
+  \item 按照下列步骤给出 Weierstrass 逼近定理的另一个证明:
+
+  (1) 设 $\mathrm{C}_{n}=\left[\int_{-1}^{1}(1-x^{2})^{n}\mathrm{d}x\right]^{-1}$, 证明: $\mathrm{C}_{n}<\sqrt{n}$;
+
+  (2) 设 $f(x)$ 为 $[0,1]$ 上的连续函数, 且 $f(0)=f(1)=0$. 当 $x\notin[0,1]$ 时, 定义 $f(x)=0$. 记 $Q_{n}(x)=\mathrm{C}_{n}(1-x^{2})^{n}$. 证明:
+  \[
+    P_{n}(x)=\int_{-1}^{1}f(x+t)Q_{n}(t)\mathrm{d}t,\quad0\leqslant x\leqslant1
+\]
+  为一个多项式, 且
+  \[
+    \lim_{n\to+\infty}P_{n}(x)=f(x)
+\]
+  在 $[0,1]$ 上一致成立;
+
+  (3) 当 $f(0)=f(1)=0$ 的条件不成立时, 证明 Weierstrass 逼近定理.
+  \item 设 $f(x)$ 为 $[a,b]$ 上的连续函数, 如果
+  \[
+    \int_{a}^{b}f(x)x^{n}\mathrm{d}x=0,\quad n=0,1,2,\cdots,
+\]
+  证明: $f(x)$ 在 $[a,b]$ 上恒等于 $0$.
+  \item 设 $f(x)$ 在 $[a,b]$ 上 Riemann 可积, 如果
+  \[
+    \int_{a}^{b}f(x)x^{n}\mathrm{d}x=0,\quad n=0,1,2,\cdots,
+\]
+  证明: $f(x)$ 在 $[a,b]$ 上几乎处处等于 $0$.
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 14.3}
+\begin{enumerate}
+  \item 设 $f(x)$ 在 $[0,1]$ 上连续，证明:
+  \[
+    \lim_{n\to+\infty}\frac{1}{2^{n}}\sum_{k=0}^{n}(-1)^{k}\mathrm{C}_{n}^{k}f\left(\frac{k}{n}\right)=0.
+\]
+  \item 设 $B_{n}(f;x)$ 为函数 $f(x)$ 的 Bernstein 多项式. 如果 $f(x)$ 在 $[0,1]$ 上连续可导, 试应用
+  \[
+    B_{n+1}'(f;x)=(n+1)\sum_{k=0}^{n}\left\{f\left(\frac{k+1}{n+1}\right)-f\left(\frac{k}{n+1}\right)\right\}\mathrm{C}_{n}^{k}x^{k}(1-x)^{n-k}
+\]
+  证明: $\lim\limits_{n\to+\infty}B_{n}'(f;x)=f'(x)$ 在 $[0,1]$ 上一致成立.
+  \item 设 $f(x)$ 为有界闭区间 $[a,b]$ 上的连续函数. 证明: $f(x)$ 允许有理系数多项式一致逼近.
+  \item 设 $f(x)$ 为有界闭区间 $[a,b]$ 上的连续函数. 证明: 存在单调减的多项式序列 $\{P_{n}\}$, 它在 $[a,b]$ 上一致收敛于 $f(x)$.
+\end{enumerate}
+\end{exblock}

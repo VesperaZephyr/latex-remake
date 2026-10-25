@@ -1,0 +1,935 @@
+% ==============================================================================
+% ch06.tex -- Chapter 6: Cyclicity
+%   Source: book pp. 152--186 (physical pp. 163--196)
+% ==============================================================================
+\chapter{Cyclicity}
+\label{ch:6}
+\markboth{6.\ \MakeUppercase{Cyclicity}}{}
+
+In this chapter, we develop the theory of ``cyclic'' subgroups of elliptic curves, and prove the First Main Theorem \ref{thm:5.1.1} for $[\Gamma_0(N)]$.
+
+% ------------------------------------------------------------------------------
+% Section 6.1
+% ------------------------------------------------------------------------------
+\section{The Main Theorem}
+\label{sec:6.1}
+
+Let $S$ be an arbitrary scheme, and $G/S$ a finite locally free commutative group-scheme of rank $N$. We say that $G$ is \emph{cyclic} if, locally f.p.p.f.\ on $S$, $G$ admits a generator, (a ``$\Z/N\Z$-generator'' in the notations of \ref{km:1.10.5}) i.e., a section $P \in G(S)$ such that its $N$ multiples $\{aP\}$, $a = 0,1,\cdots,N-1$ form a ``full set of sections'' of $G/S$. The functor on $(\Sch/S)$
+\[
+T \longmapsto \text{generators of } G_T/T
+\]
+is representable by a closed subscheme $G^\times$ of $G$, defined, locally on $S$, by finitely many equations ($G^\times$ is the scheme denoted ``$\Z/N\Z\text{-Gen}(G/S)$'' in \ref{prop:1.10.13}),
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+G^\times \arrow[r, hook] \arrow[rd] & G \arrow[d] \\
+& S .
+\end{tikzcd}
+\]
+We refer to $G^\times$ as the ``scheme of generators'' of $G$. It is a finite $S$-scheme of finite presentation, whose formation commutes with arbitrary change of base $S' \to S$.
+
+\begin{mtcg}{6.1.1}\label{thm:6.1.1}
+Let $E/S$ be an elliptic curve over an arbitrary base $S$, $N \ge 1$ an integer, and $G \subset E[N]$ a finite locally free commutative $S$-subgroup-scheme of $E/S$, of rank $N$ over $S$. Then
+\begin{enumerate}[(1)]
+\item $G$ is cyclic if and only if its scheme of generators $G^\times$ is finite locally free over $S$, of rank $\phi(N)$.
+\item Suppose that $G/S$ is cyclic, and that $P \in G(S)$ is a generator. Then the Cartier divisor $D$ in $E$ defined by
+\[
+D = \sum_{\substack{(a,N)=1 \\ a \bmod N}} [aP]
+\]
+lies in $G$, and we have an equality of closed subschemes of $G$
+\[
+D = G^\times .
+\]
+\end{enumerate}
+\end{mtcg}
+
+\begin{proof}
+If $G^\times$ is finite locally free over $S$, of rank $\phi(N)$, then $G$ is certainly cyclic, for it acquires a generator after the f.p.p.f. base change $G^\times \to S$. The problem is to prove the converse, that if $G$ is cyclic then necessarily $G^\times$ is finite locally free over $S$ of the asserted rank $\phi(N)$. The question is f.p.p.f. local on $S$, so we may assume that $G$ admits a generator $P \in G(S)$. In this case, (1) follows from (2), for the Cartier divisor $D$ is visibly finite locally free over $S$, of degree $\phi(N)$. Thus it suffices to prove (2). By the ``factorization into prime powers'' lemma (\ref{cor:1.7.3}, \ref{cor:1.10.15}), we may reduce to the case when $N$ is a prime power $> 1$, say $N = p^n$. We also remark that (by \ref{cor:3.7.2}), (2) is physically obvious if $N$ is invertible on $S$.
+
+We will first show that $D$ lies inside $G^\times$. It is obvious that $D$ lies inside $G$, for $G$ as a Cartier divisor in $E$ is given by
+\[
+G = \sum_{a \bmod N} [aP].
+\]
+Because $G$ is embedded in $E/S$, it follows from \ref{lem:1.10.11} that $D$ is the unique closed subscheme of $G$ which is finite locally free over $S$ of degree $\phi(N)$ and for which the $\phi(N)$ sections $\{aP\}$ with $a \bmod N$, $(a,N) = 1$ form a full set of sections.
+
+To show that $D \subset G^\times$, it suffices, by reduction to the universal case, to treat the case when $S$ is affine, $S = \Spec(A)$, and flat over $\Z$ (simply because $[\Gamma_1(N)]$ is flat over $\Z$). Let
+\[
+Q \in G(D) = G_D(D)
+\]
+be the tautological section which $G$ acquires when pulled back to $D$:
+\[
+\begin{tikzcd}[row sep=large, column sep=large, every label/.append style={font=\scriptsize}]
+G & G_G & G_D \\
+S & G & D
+\arrow[from=1-2, to=1-1]
+\arrow[from=1-3, to=1-2]
+\arrow[from=1-1, to=2-1, "\pi"]
+\arrow[from=1-2, to=2-2]
+\arrow[from=2-2, to=1-2, bend right=25, "{(\pi,\mathrm{id})}"']
+\arrow[from=1-3, to=2-3]
+\arrow[from=2-3, to=1-3, bend right=25, "Q"']
+\arrow[from=2-2, to=2-1]
+\arrow[from=2-3, to=2-2, hook]
+\end{tikzcd}
+\]
+We must show that $Q$ is a generator of $G_D$. Let $\{f_i\}$ be a collection of functions in the affine coordinate ring of $G$ which define the closed subscheme $G^\times$. We must show that
+\[
+f_i(Q) = 0 \quad \text{in } \Gamma(D,\cO_D).
+\]
+But $D$ is flat over $\Z$, being finite flat over $A$, and we know that the assertion is true if we invert $N$:
+\[
+f_i(Q) = 0 \quad \text{in } \Gamma(D,\cO_D) \otimes \Z[1/N].
+\]
+Therefore we must have $f_i(Q) = 0$ in $\Gamma(D,\cO_D)$. This concludes the proof that $D \subset G^\times$.
+
+Because both $D$ and $G^\times$ are finite over $S$ the inclusion $D \subset G^\times$ is necessarily a closed immersion. We wish to show that this closed immersion is an isomorphism. To do this, we reduce to the universal case.
+
+Consider the following two moduli problems, $\mathcal{P}_1$ and $\mathcal{P}_2$, with respect to the fixed prime power $N = p^n$:
+\[
+\begin{aligned}
+\mathcal{P}_1(E/S) = {} & \text{triples } (P, G, Q) \text{ where } P \in E[N](S) \text{ is a generator} \\
+& \text{of a cyclic } S\text{-subgroup-scheme } G \subset E[N] \text{ finite} \\
+& \text{locally free over } S \text{ of rank } N, \text{ and } Q \in D(S), \text{ where} \\
+& D \subset G \text{ is the unique finite locally free } S\text{-subscheme} \\
+& \text{of rank } \phi(N) \text{ of which the sections } \{aP\},\ a \bmod N, \\
+& (a,N) = 1, \text{ are a full set of sections.}
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\mathcal{P}_2(E/S) = {} & \text{triples } (P, G, Q) \text{ where } P,\ G \text{ are as above, and} \\
+& Q \in G^\times(S) \text{ is another generator of } G.
+\end{aligned}
+\]
+Because $D \subset G^\times$, any $\mathcal{P}_1$-structure is a $\mathcal{P}_2$-structure, so we have a morphism of moduli problems
+\[
+\mathcal{P}_1 \to \mathcal{P}_2.
+\]
+To prove that $D = G^\times$ is to prove that this morphism is an isomorphism.
+
+We will prove this by a variant of the homogeneity argument of \ref{sec:5.2}.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 6.2
+% ------------------------------------------------------------------------------
+\section{Axiomatics}
+\label{sec:6.2}
+
+\begin{ait}{6.2.1}\label{thm:6.2.1}
+Let $\mathcal{P}_1$ and $\mathcal{P}_2$ be moduli problems on \Ell, and
+\[
+\mathcal{P}_1 \to \mathcal{P}_2
+\]
+a morphism between them. Suppose that
+\begin{enumerate}[(1)]
+\item Both $\mathcal{P}_1$ and $\mathcal{P}_2$ satisfy axioms Reg.~1, Reg.~3, and Reg.~4A of \ref{sec:5.2}.
+\item After inverting $p$, the induced morphism of moduli problems on $\Ell/\Z[1/p]$ is an isomorphism
+\[
+\mathcal{P}_1 \otimes \Z[1/p] \xrightarrow{\ \sim\ } \mathcal{P}_2 \otimes \Z[1/p].
+\]
+\item For any algebraically closed field $k$ of characteristic $p$, and any supersingular elliptic curve $E_0/k$ with universal formal deformation $E/W(k)[[T]]$, the morphism of finite $W[[T]]$-schemes
+\[
+\mathcal{P}_{1,E/W[[T]]} \to \mathcal{P}_{2,E/W[[T]]}
+\]
+is an isomorphism.
+\end{enumerate}
+Then the given morphism is an isomorphism $\mathcal{P}_1 \xrightarrow{\ \sim\ } \mathcal{P}_2$.
+\end{ait}
+
+\begin{proof}
+The proof is entirely analogous to that of the Axiomatic Regularity Theorem \ref{thm:5.2.1}, with the open set $\mathfrak{U} \subset \Mfrak(S)$ of that proof replaced by ``the'' open set $V$ over which the morphism of finite $\Mfrak(S)$-schemes
+\[
+\Mfrak(S,\mathcal{P}_1) \to \Mfrak(S,\mathcal{P}_2)
+\]
+is an isomorphism. To see that ``the'' open set $V$ makes sense, interpret the finite $\Mfrak(S)$-schemes in question as coherent sheaves of algebras $\mathcal{F}_1$ and $\mathcal{F}_2$ on $\Mfrak(S)$. The given morphism corresponds to an $\cO_{\Mfrak(S)}$-linear map
+\[
+\mathcal{F}_2 \to \mathcal{F}_1
+\]
+of coherent sheaves on $\Mfrak(S)$, which happens to be an algebra homomorphism. Forget the algebra structure, and consider the kernel and cokernel as coherent sheaves on $\Mfrak(S)$, say
+\[
+0 \to \Ker \to \mathcal{F}_2 \to \mathcal{F}_1 \to \Coker \to 0.
+\]
+Then $V$ is precisely the open set of the noetherian scheme $\Mfrak(S)$ over which the coherent sheaf $\Ker \oplus \Coker$ vanishes.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 6.3
+% ------------------------------------------------------------------------------
+\section{End of the proof}
+\label{sec:6.3}
+
+\begin{pitem}\label{km:6.3.1}
+We will now apply this Axiomatic Isomorphism Theorem \ref{thm:6.2.1} to the moduli problems $\mathcal{P}_1$ and $\mathcal{P}_2$ defined in \ref{sec:6.1} above. They are both relatively representable and finite over \Ell\ (the axiom Reg.~1) simply because they are both relatively representable and finite over $[\Gamma_1(p^n)]$, by $D$ and by $G^\times$ respectively, and because $[\Gamma_1(p^n)]$ is itself finite and flat (\ref{thm:5.1.1}) over \Ell. That they both satisfy Reg.~3, i.e., depend only on the underlying $p$-divisible groups, is clear from the somewhat convoluted definitions we have given of them. That they both satisfy Reg.~4A is clear from the fact that on a supersingular $E_0/k$, the unique possible $G$ is $\Ker(F^n)$, the unique possible $P$, $Q$'s are zero, because $G(k) = \{0\}$, and the zero-section is in fact a generator of $\Ker(F^n)$.
+
+This shows that condition (1) of \ref{thm:6.2.1} is satisfied. We have already remarked that condition (2) holds. The work comes in checking condition (3).
+\end{pitem}
+
+\begin{pitem}\label{km:6.3.2}
+We must show that the morphism
+\[
+\mathcal{P}_{1,E/W[[T]]} \to \mathcal{P}_{2,E/W[[T]]}
+\]
+is an isomorphism. This is a morphism of schemes finite over $\mathcal{P}_{E/W[[T]]}$, where $\mathcal{P}$ is the moduli problem $[\Gamma_1(p^n)]$, and $\mathcal{P}_{E/W[[T]]}$ is itself finite over $W[[T]]$. These schemes are spectra of complete local rings, which sit in a diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=large]
+A_2 \arrow[rr] \arrow[dr] & & A_1 \arrow[dl] \\
+& A & \\
+& W[[T]] \arrow[u]
+\end{tikzcd}
+\]
+Let us recall the explicit description of these rings.
+
+Fix a parameter $X$ for the formal group of $E/W[[T]]$. For any integer $a$, denote by
+\[
+[a](X) \in W[[T]][[X]]
+\]
+the expression of the endomorphism ``multiplication by $a$'' on this formal group. Then $A$ is easily described as a $W[[T]]$-algebra:
+\[
+A = W[[T,P]]/I
+\]
+where $I$ is the ideal generated by the equations which express that the finite free subscheme of $\hat{E}$ of rank $p^n$ defined over $W[[T,P]]$ by the equation
+\[
+\prod_{1 \le a \le p^n} (X - [a](P)) = 0
+\]
+is in fact a subgroup-scheme.
+
+We know that $A$ is a regular two-dimensional local ring with parameters $(T,P)$, and that $A$ is finite flat over $W[[T]]$ (\ref{thm:5.1.1} and \ref{sec:5.4}).
+
+Over $A$, $A_1$ is easily described:
+\[
+A_1 = A[[Q]]/J
+\]
+where $J$ is the principal ideal generated by
+\[
+\prod_{\substack{(b,p)=1 \\ b \bmod p^n}} (Q - [b](P)).
+\]
+Over $A$, $A_2$ is also easily described:
+\[
+A_2 = A[[Q]]/K
+\]
+where $K$ is the ideal in $A[[Q]]$ which expresses that in $A[[Q]][[X]]$, we have an equality of monic polynomials in $X$
+\[
+\prod_{1 \le a \le p^n} (X - [a](Q)) = \prod_{a \bmod p^n} (X - [a](P)).
+\]
+We know that $D \hookrightarrow G^\times$ is a closed immersion, i.e., that the homomorphism of rings
+\[
+A_2 \to A_1
+\]
+is surjective. Both $A_2$ and $A_1$ are finite $A$-modules (i.e., both $D$ and $G^\times$ lie inside $G$, so are finite over $S$), and $A_1$ is free of rank $\phi(p^n)$ over $A$. Consider the kernel
+\[
+0 \to \Ker \to A_2 \to A_1 \to 0;
+\]
+it is a finite $A$-module. We must show that $\Ker = 0$.
+
+Both $A_1$ and $A_2$ are presented as quotients of the ring $A[[Q]]$. Therefore $\Ker$ is itself a (finitely generated) $A[[Q]]$-module, being the kernel of a homomorphism of (finitely generated) $A[[Q]]$-modules. By Nakayama's lemma, we have
+\[
+\Ker = 0 \iff \Ker/Q\Ker = 0.
+\]
+\end{pitem}
+
+\begin{pitem}\label{km:6.3.3}
+We will show that $\Ker/Q\Ker = 0$. For this, consider the serpent lemma, applied to the exact sequence
+\[
+0 \to \Ker \to A_2 \to A_1 \to 0
+\]
+and to the endomorphism ``multiplication by $Q$.''
+\end{pitem}
+
+\begin{klem}\label{lem:6.3.4}
+The endomorphism ``multiplication by $Q$'' on $A_1$ is injective.
+\end{klem}
+
+\begin{proof}
+By Weierstrass preparation, we may view $A_1$ as the quotient of the polynomial ring $A[Q]$ by the monic polynomial in $Q$
+\[
+\prod_{\substack{b \bmod p^n \\ (b,p)=1}} (Q - [b](P)) = 0.
+\]
+Therefore $A_1$ is $A$-free with basis $1, Q, Q^2, \cdots, Q^{\phi(p^n)-1}$. Because $A$ is a regular local ring, it is an integral domain, so an endomorphism of a free $A$-module of finite rank is injective if and only if its \emph{determinant} is non-zero in $A$. The determinant of ``multiplication by $Q$'' on $A_1$ is $\pm$ the \emph{constant term} of the monic polynomial
+\[
+\prod_{\substack{b \bmod p^n \\ (b,p)=1}} (Q - [b](P)),
+\]
+i.e., we have
+\[
+\det_A(Q \mid A_1) = \prod_{\substack{b \bmod p^n \\ (b,p)=1}} [b](P).
+\]
+To see that this determinant is non-zero, we argue as follows. There is an obvious action of the group $(\Z/p^n\Z)^\times$ on the moduli problem $[\Gamma_1(p^n)]$, given modularly by $P \mapsto bP$. The induced action of $(\Z/p^n\Z)^\times$ on $A$ is given precisely by $P \mapsto [b](P)$. Therefore the determinant is the product of $P$ and all its transforms by a group of automorphisms of $A$. As $P$ is non-zero in $A$, being part of a regular system of parameters for $A$, (cf.\ \ref{sec:5.4}) all its $(\Z/p^n\Z)^\times$-transforms are also non-zero, and hence, $A$ being a domain, their product is non-zero in $A$.
+\end{proof}
+
+Therefore the serpent lemma yields a short exact sequence
+\[
+0 \to \Ker/Q\Ker \to A_2/QA_2 \to A_1/QA_1 \to 0.
+\]
+
+\begin{klem}\label{lem:6.3.5}
+The natural map $A_2/QA_2 \to A_1/QA_1$ is an isomorphism.
+\end{klem}
+
+\begin{proof}
+From the explicit descriptions of $A_1$ and $A_2$ as $A$-algebras, we have
+\[
+\begin{aligned}
+A_2/QA_2 = {} & A/\underline{K} \\
+& \text{where } \underline{K} \text{ is the ideal of } A \text{ generated by the} \\
+& \text{coefficients of the polynomial} \\
+& X^{p^n} - \prod_{a \bmod p^n} (X - [a](P))
+\end{aligned}
+\]
+\[
+\begin{aligned}
+A_1/QA_1 = {} & A/\underline{J} \\
+& \text{where } \underline{J} \text{ is the principal ideal of } A \text{ generated by} \\
+& \prod_{\substack{b \bmod p^n \\ (b,p)=1}} [b](P).
+\end{aligned}
+\]
+We must show that $\underline{K} = \underline{J}$. From the fact that the map $A_2/QA_2 \to A_1/QA_1$ exists (i.e., from the inclusion $D \subset G^\times$) we see that
+\[
+\underline{K} \subset \underline{J}.
+\]
+To reverse the inclusion, we must show that the element of $A$
+\[
+\prod_{\substack{b \bmod p^n \\ (b,p^n)=1}} [b](P)
+\]
+actually lies in the ideal $\underline{K}$.
+
+For this, consider the term of degree $p^n - \phi(p^n)$ in the polynomial
+\[
+X^{p^n} - \prod_{a \bmod p^n} (X - [a](P)).
+\]
+Its coefficient lies in $\underline{K}$. We will show that, up to a \emph{unit} in $A$, this coefficient is equal to
+\[
+\prod_{\substack{b \bmod p^n \\ (b,p)=1}} [b](P).
+\]
+Indeed, this coefficient is equal to the sum of \emph{all} $\phi(p^n)$-fold products of distinct elements of the set of $p^n$ quantities
+\[
+[a](P), \quad a \bmod p^n.
+\]
+\end{proof}
+
+\begin{klem}\label{lem:6.3.6}
+Let $a$ be an integer. In the ring $A$ we have
+\[
+[a](P) = \begin{cases} P \times (\text{unit of } A) & \text{if } (a,p) = 1 \\ P \times (\text{elt. of } \max(A)) & \text{if } p \text{ divides } a. \end{cases}
+\]
+\end{klem}
+
+\begin{proof}
+Consider the series $[a](X)$ expressing ``multiplication by $a$'' on our formal group $\hat{E}$ over $A$:
+\[
+[a](X) \equiv aX \bmod (X^2)A[[X]];
+\]
+therefore
+\[
+[a](X) = X \times (a + \text{elt. in } XA[[X]]).
+\]
+Substituting $P \in \max(A)$ gives the assertion.
+\end{proof}
+
+It is now immediate that both quantities
+\[
+\left\{ \begin{array}{@{}l@{}}
+\prod\limits_{\substack{b \bmod p^n \\ (b,p)=1}} [b](P) \\[6pt]
+\text{the coefficient of } X^{p^n-\phi(p^n)} \text{ in } \prod\limits_{a \bmod p^n} (X - [a](P))
+\end{array} \right.
+\]
+are of the form
+\[
+(\text{a unit in } A) \times P^{\phi(p^n)}.
+\]
+This concludes the proof of the Main Theorem (\ref{thm:6.1.1}) on Cyclic groups.
+
+% ------------------------------------------------------------------------------
+% Section 6.4
+% ------------------------------------------------------------------------------
+\section{Cyclicity as a closed condition}
+\label{sec:6.4}
+
+\begin{kthm}\label{thm:6.4.1}
+Let $E/S$ be an elliptic curve, $N \ge 1$ an integer, and $G \subset E[N]$ a finite locally free commutative $S$-subgroup-scheme of $E/S$, of rank $N$ over $S$. Then there exists a closed subscheme $W \subset S$, defined locally on $S$ by finitely many equations, which is universal for the condition ``$G$ is cyclic'', in the sense that for any morphism $T \to S$, the inverse image $G_T/T$ is cyclic if and only if the map $T \to S$ factors through the closed subscheme $W$.
+\end{kthm}
+
+\begin{proof}
+The question is Zariski local on $S$, which we may suppose affine. Because $E$ and $G$ are of finite presentation over $S$, we may further reduce to the case when $S$ is noetherian. Consider the finite $S$-scheme $G^\times$ of generators of $G$, which we view as the $\Spec$ of a coherent sheaf $\mathcal{F}$ of algebras on $S$:
+\[
+G^\times = \Spec(\mathcal{F}).
+\]
+By the Main Theorem on Cyclic Groups (\ref{thm:6.1.1}), the condition on an $S$-scheme $T \to S$ that $G_T$ be cyclic is that its scheme of generators $(G_T)^\times \xrightarrow{\ \sim\ } (G^\times) \underset{S}{\times} T$ be a finite locally free scheme over $T$ of rank $\phi(N)$. In terms of the coherent sheaf $\mathcal{F}$ on $S$, the condition is that the inverse image coherent sheaf $\mathcal{F}_T$ on $T$ be locally free on $T$ of rank $\phi(N)$.
+\end{proof}
+
+\begin{klem}\label{lem:6.4.2}
+For any field-valued point $\Spec(k) \to S$ of $S$, the fiber $\mathcal{F}\otimes k$ is a $k$-vector space, whose dimension is given by
+\[
+\dim_k(\mathcal{F}\otimes k) = \begin{cases} \phi(N) & \text{if } G_k/k \text{ is cyclic} \\ 0 & \text{if not.} \end{cases}
+\]
+\end{klem}
+
+\begin{proof}
+The $k$-vector space $\mathcal{F}\otimes k$ is the affine ring of $(G^\times)\otimes k \cong (G_k)^\times$. If $G_k/k$ is cyclic, then $(G_k)^\times$ is a finite $k$-scheme of rank $\phi(N)$, by the Main Theorem on Cyclic Groups (\ref{thm:6.1.1}). If $G_k/k$ is not cyclic, then, $k$ being a field, $G_k$ never becomes cyclic after any field extension. Therefore the $k$-scheme $(G_k)^\times$ has no field-valued points, hence it is the empty scheme, i.e., its affine ring is the zero-ring.
+\end{proof}
+
+In view of this lemma, Theorem \ref{thm:6.4.1} is a special case of
+
+\begin{pprop}{6.4.3}\label{prop:6.4.3}
+Given a noetherian scheme $S$, a coherent sheaf $\mathcal{F}$ on $S$, and an integer $n$ such that
+\[
+\text{for all } s \in S, \quad \dim_{k(s)}(\mathcal{F}\otimes k(s)) \le n,
+\]
+the condition on $S$-schemes $T \to S$ that $\mathcal{F}_T$ be locally free of rank $n$ on $T$ is represented by a closed subscheme $W$ of $S$.
+\end{pprop}
+
+\begin{proof}
+This is Mumford's ``flattening stratification'', cf.\ \cite{Mum2}. For the reader's convenience, we briefly recall the construction of the closed subscheme $W$. Let $s \in S$ be a point of $S$. By hypothesis, we can find $n$ sections $e_1, \cdots, e_n$ of $\mathcal{F}$ over some open neighborhood $U$ of $s$ in $S$ which span $\mathcal{F}\otimes k(s)$, hence which span $\mathcal{F}\otimes\cO_{S,s}$ (by Nakayama), hence which span $\mathcal{F}$ in some open neighborhood, which we may, by shrinking the original $U$, take to be $U$ itself.
+
+Thus we have a surjection
+\[
+(\cO_U)^n \xrightarrow{\ \pi\ } \mathcal{F}|U \to 0,
+\]
+which, $U$ being noetherian, we may extend (again shrinking $U$) to a presentation
+\[
+(\cO_U)^m \xrightarrow{\ \alpha\ } (\cO_U)^n \xrightarrow{\ \pi\ } \mathcal{F}|U \to 0.
+\]
+We claim that $W \cap U$ is defined inside $U$ by the vanishing of the $nm$ matrix coefficients of the map $\alpha$. It is clear that over the locus $\alpha = 0$, $\mathcal{F}$ will be locally free of rank $n$.
+
+To prove the converse, pull back to any $U$-scheme. The presentation pulls back to a presentation (right-exactness of $\otimes$), so we are reduced to checking that over a no-longer-necessarily noetherian $U$, if $\mathcal{F}|U$ is locally free of rank $n$ then $\alpha = 0$. Zariski-localizing on $U$, we may assume $\mathcal{F}$ free of rank $n$ on $U$, and that we have a splitting $\beta$ ($\pi\beta = \mathrm{id}_{\mathcal{F}}$) of the projection $(\cO_U)^n \twoheadrightarrow \mathcal{F}$:
+\[
+\begin{tikzcd}[column sep=large, every label/.append style={font=\scriptsize}]
+(\cO_U)^m \arrow[r, "\alpha"] & (\cO_U)^n \arrow[r, "\pi"] & \mathcal{F} \arrow[r] & 0 \\
+& (\cO_U)^n \arrow[u, "\beta"'] & \Vert
+\end{tikzcd}
+\]
+The ``$\alpha = 0$'' is equivalent to ``$\beta$ is surjective.'' By Cramer's rule, ``$\beta$ surjective'' is implied by ``$\det(\beta)$ invertible'', and this invertibility follows from ``$\pi \circ \beta = \mathrm{id}_{\mathcal{F}}$'' upon taking determinants.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 6.5
+% ------------------------------------------------------------------------------
+\section{The moduli problem \texorpdfstring{$[N\text{-Isog}]$}{[N-Isog]}}
+\label{sec:6.5}
+
+For any elliptic curve $E/S$, we define
+\[
+\begin{aligned}
+[N\text{-Isog}](E/S) = {} & \text{the set of finite locally free commutative} \\
+& S\text{-subgroup-schemes } G \subset E[N] \text{ which are} \\
+& \text{of rank } N \text{ over } S.
+\end{aligned}
+\]
+
+\begin{kprop}\label{prop:6.5.1}
+The moduli problem $[N\text{-Isog}]$ is relatively representable and finite over \Ell.
+\end{kprop}
+
+\begin{proof}
+Given $E/S$, view $E[N]/S$ as the $\Spec$ of a coherent sheaf $\mathcal{F}$ of bi-algebras on $S$ which is locally free of rank $N^2$. A subgroup $G \subset E[N]$ of the type being sought is nothing other than a locally free rank-$N$ quotient $\mathcal{H}$ of $\mathcal{F}$, such that the locally free rank $N^2-N$ kernel $\mathcal{K} \subset \mathcal{F}$ is a bi-ideal in $\mathcal{F}$. Therefore $[N\text{-Isog}]$ is relatively represented by a closed subscheme of the Grassmannian of all rank $N$ quotients of $\mathcal{F}$, i.e., $[N\text{-Isog}]$ is relatively representable and projective over \Ell. To see that it is finite over \Ell, we must show it has finite fibers, i.e., we must show that
+\[
+[N\text{-Isog}](E/k) = \{\text{a finite set}\}
+\]
+when $k$ is an algebraically closed field. Factoring $N$ into a product of prime powers, say $N = \prod p_i^{n_i}$, we have
+\[
+[N\text{-Isog}] = \prod [p_i^{n_i}\text{-Isog}],
+\]
+so we are reduced to the case when $N$ is a prime power, say $N = p^n$. If $\chark(k) \ne p$, the assertion is physically obvious ($(\Z/p^n\Z)^2$ has only finitely many subgroups). If $\chark(k) = p$, and $E/k$ is supersingular, the unique subgroup of $E/k$ of rank $p^n$ is $\Ker(F^n)$. If $\chark(k) = p$ and $E/k$ is ordinary, the $E[p^n]$ is isomorphic to $\mu_{p^n} \times \Z/p^n\Z$. Any $G/k$ is canonically a product ($k$ being perfect)
+\[
+G \xrightarrow{\ \sim\ } G^{\mathrm{conn}} \times G^{\mathrm{et}}
+\]
+and therefore the only possible $G$'s of rank $p^n$ are the $n+1$ subgroups
+\[
+\mu_{p^a} \times (p^{n-b}\Z/p^n\Z), \quad a+b = n,
+\]
+of $\mu_{p^n} \times \Z/p^n\Z$.
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 6.6
+% ------------------------------------------------------------------------------
+\section{The moduli problem \texorpdfstring{$[\Gamma_0(N)]$}{[Gamma\_0(N)]}; proof of the First Main Theorem \ref{thm:5.1.1}}
+\label{sec:6.6}
+
+\begin{kthm}\label{thm:6.6.1}
+The moduli problem $[\Gamma_0(N)]$ is relatively representable over \Ell. It is finite and flat over \Ell\ of degree
+\[
+\frac{N^2}{\phi(N)} \prod_{p \mid N} \left(1 - \frac{1}{p^2}\right).
+\]
+The natural map
+\[
+[\Gamma_1(N)] \to [\Gamma_0(N)]
+\]
+is finite and flat of rank $\phi(N)$. The moduli problem $[\Gamma_0(N)]$ is regular and two-dimensional.
+\end{kthm}
+
+\begin{proof}
+For any $E/S$, $[\Gamma_0(N)]$ is relatively represented by the closed subscheme of the finite $S$-scheme
+\[
+[N\text{-Isog}]_{E/S}
+\]
+over which the universal $N$-isogeny is cyclic. Therefore by (\ref{prop:6.5.1}), $[\Gamma_0(N)]$ is itself relatively representable and finite over \Ell.
+
+The moduli problem $[\Gamma_1(N)]$ is relatively representable over $[\Gamma_0(N)]$ by the scheme of generators $G^\times$ of the universal cyclic $N$-group over $[\Gamma_0(N)]$. Therefore $[\Gamma_1(N)]$ is finite and flat over $[\Gamma_0(N)]$ of rank $\phi(N)$. We have already proven (\ref{thm:5.1.1}) that $[\Gamma_1(N)]$ is regular and two-dimensional; therefore $[\Gamma_0(N)]$ is also regular and two-dimensional, being finite flat ``under'' $[\Gamma_1(N)]$ (cf.\ \cite[VII, 4.8]{AK1}). Once $[\Gamma_0(N)]$ is regular and two-dimensional, and is finite over \Ell, it is necessarily finite and flat over \Ell\ \cite[V, 3.8]{AK1}.\footnote{Alternately, $[\Gamma_0(N)]$ is flat over \Ell\ because $[\Gamma_1(N)]$ is flat over \Ell\ and faithfully flat over $[\Gamma_0(N)]$.} We may compute its degree after inverting $N$ (cf.\ \ref{lem:4.12.1}), where we find the asserted degree, namely the number of cyclic subgroups of order $N$ inside $(\Z/N\Z)^2$ (cf.\ \ref{cor:3.7.2}).
+\end{proof}
+
+\begin{kthm}\label{thm:6.6.2}
+Let $N \ge 1$ be an integer, and $\mathcal{S}$ a representable moduli problem which is etale over \Ell. Then:
+\begin{enumerate}[(1)]
+\item $\Mfrak(\mathcal{S}, \Gamma_0(N))$ is a regular two-dimensional scheme, finite and flat over $\Mfrak(\mathcal{S})$.
+\item $\Mfrak(\mathcal{S}, \Gamma_0(N)) \otimes \Z[1/N]$ is finite etale over $\Mfrak(\mathcal{S}) \otimes \Z[1/N]$.
+\item $\Mfrak(\mathcal{S}, \Gamma_0(N))$ is flat over $\Z$.
+\item $\Mfrak(\mathcal{S}, \Gamma_0(N))$ is the normalization of $\Mfrak(\mathcal{S})$ in $\Mfrak(\mathcal{S}, \Gamma_1(N))\!\otimes \Z[1/N]$.
+\end{enumerate}
+\end{kthm}
+
+\begin{proof}
+Entirely analogous to the proof of (\ref{thm:5.5.1}).
+\end{proof}
+
+% ------------------------------------------------------------------------------
+% Section 6.7
+% ------------------------------------------------------------------------------
+\section{Detailed theory of cyclic isogenies and cyclic subgroups; standard factorizations}
+\label{sec:6.7}
+
+\begin{pitem}\label{km:6.7.1}
+We will use the expression ``cyclic group (over $S$) of order $N$'' or simply ``cyclic group'' if $S$ and its order $N$ are understood, as shorthand for ``finite locally free commutative $S$-group-scheme, of rank $N$, and cyclic'', and the expression ``cyclic $N$-isogeny'' to mean an isogeny whose kernel is a cyclic group of order $N$.
+\end{pitem}
+
+\begin{kthm}\label{thm:6.7.2}
+Let $E/S$ be an elliptic curve, $G \subset E/S$ a cyclic subgroup over $S$ of order $N$. For every divisor $d$ of $N$, there is a ``standard'' cyclic subgroup $G_d \subset G$ of order $d$, which may be described, f.p.p.f.\ locally on $S$, in terms of any generator $P$ of $G$, as the cyclic subgroup of order $d$ generated by $(N/d)P$.
+\end{kthm}
+
+\begin{proof*}
+It suffices to construct $G_d$ f.p.p.f.\ locally on $S$. Let $P$ and $P'$ be two generators of $G$. By (\ref{thm:5.5.7}) we know that the points $(N/d)P$ and $(N/d)P'$ both have ``exact order $d$'', so they generate subgroups $G_d$ and $G'_d$ respectively. We must show that $G_d = G'_d \subset G$. That they both lie in $G$ is clear from their descriptions as Cartier divisors inside $E$:
+\[
+G = \sum_{a \bmod N} [aP], \qquad G_d = \sum_{b \bmod d} [b(N/d)P],
+\]
+and similarly for $G'_d$, with $P$ replaced by $P'$.
+
+To show that $G_d = G'_d$, we may reduce to the case where $S$ is flat over $\Z$, and noetherian (because the universal case of a cyclic $G$ with two generators is the moduli problem
+\[
+[\Gamma_1(N)] \times_{[\Gamma_0(N)]} [\Gamma_1(N)]
+\]
+which by (\ref{thm:6.6.1}) is finite flat over $[\Gamma_1(N)]$ of degree $(\phi(N))^2$, hence is flat over $\Z$). It is physically obvious that $G_d = G'_d$ whenever $N$ is invertible on $S$. Because $S$ is flat over $\Z$, the open set $S \otimes \Z[1/N]$ of $S$ is dense in $S$. So it suffices to see that the condition ``$G_d = G'_d$'' defines a closed subscheme of $S$.
+\end{proof*}
+
+\begin{kusefullem}\label{lem:6.7.3}
+Let $S$ be a noetherian scheme, $W$ a finite flat $S$-scheme, and $Z_1$, $Z_2$ two closed subschemes of $W$, each of which is finite flat over $S$. Then the locus ``$Z_1 = Z_2$'' is a closed subscheme of $S$.
+\end{kusefullem}
+
+\begin{proof}
+Let $\cF$ denote the locally free sheaf of algebras on $S$ such that $W = \Spec(\cF)$, $I$ and $J$ the locally free sheaves of ideals in $\cF$ whose locally free quotients $\cF/I$ and $\cF/J$ correspond to $Z_1$ and $Z_2$ respectively. The locus ``$Z_1 = Z_2$'' is the closed subscheme of $S$ over which both of the maps $\alpha$, $\beta$ between locally free sheaves on $S$ vanish:
+\[
+\begin{tikzcd}[column sep=large, row sep=large, every label/.append style={font=\scriptsize}]
+I \arrow[dr] \arrow[dd, "\alpha"'] & & J \arrow[dl] \arrow[dd, "\beta"] \\
+& \cF \arrow[dl] \arrow[dr] & \\
+\cF/J & & \cF/I .
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+\begin{kthm}\label{thm:6.7.4}
+Let $E/S$ be an elliptic curve, $G \subset E[N]$ a cyclic subgroup of order $N$, $d$ a divisor of $N$, and $G_d \subset G$ the standard cyclic subgroup of $G$ of order $d$. Then the quotient group $G' = G \bmod G_d$ in the quotient elliptic curve $E' = E \bmod G_d$ is cyclic of order $N/d$. If $P$ is a generator of $G$, then its image $P'$ in $G'$ generates $G'$. If $d \mid d' \mid N$, then $G_d \subset G_{d'}$ is the standard cyclic subgroup of $G_{d'}$ of order $d$, and the quotient $G_{d'}/G_d$ in $G/G_d$ is its standard cyclic subgroup of order $(d'/d)$.
+\end{kthm}
+
+\begin{proof}
+The question is f.p.p.f.\ local on $S$, so we may assume $G$ has a generator $P$. By reduction to the universal case ($[\Gamma_1(N)]$ being flat over $\Z$), it suffices to treat the case when $S$ is flat over $\Z$. The locus over which $G'$ is cyclic is a closed subscheme of $S$, which contains the dense open $S \otimes \Z[1/N]$. Similarly, the locus over which $P'$ generates $G'$ is closed in $S$, and contains the dense open $S \otimes \Z[1/N]$. The third assertion is that $G_d = (G_{d'})_d$ inside $G$, and that $G_{d'}/G_d = (G/G_d)_{d'/d}$ inside $G'$. This is physically obvious when $N$ is invertible, and its locus of truth is a closed subscheme of $S$, this time by the Useful Lemma (\ref{lem:6.7.3}).
+\end{proof}
+
+\begin{kcor}\label{cor:6.7.5}
+Let $E/S$ be an elliptic curve, $G \subset E/S$ a cyclic subgroup over $S$ of order $N$. For each divisor $d$ of $N$, denote by $G_d \subset G$ the standard cyclic subgroup of order $d$, and by $(G_d)^\times \subset G_d$ its scheme of generators. Then we have an equality of Cartier divisors inside $E$
+\[
+G = \sum_{d \mid N} (G_d)^\times .
+\]
+\end{kcor}
+
+\begin{proof}
+The equality of two Cartier divisors inside $E/S$ may be checked f.p.p.f.\ locally on $S$. This reduces us to the case when $G$ admits a generator $P$, in which case the assertion is obvious; for we have
+\[
+G = \sum_{a \bmod N} [aP]; \qquad G_d^\times = \sum_{b \bmod d} [b(N/d)P]. \qedhere
+\]
+\end{proof}
+
+\begin{pitem}\label{km:6.7.6}
+In the situation of Theorem \ref{thm:6.7.4}, we will refer to $G' = G \bmod G_d$ as the \emph{standard cyclic $N/d$-quotient} of the cyclic group $G$. Given a cyclic $N$-isogeny, $\pi$, with kernel $G$,
+\[
+E \xrightarrow[\ker = G]{\pi} E''
+\]
+and a divisor $d$ of $N$, we will refer to the factorization
+\[
+E \xrightarrow[\ker = G_d]{\pi_d} E' \xrightarrow[\ker = G']{\pi'} E''
+\]
+as the \emph{standard factorization} of the cyclic $N$-isogeny $\pi$ into a cyclic $d$-isogeny followed by a cyclic $N/d$-isogeny, or simply as the \emph{standard factorization}, if $d$ and $N/d$ are given.
+\end{pitem}
+
+\begin{pitem}\label{km:6.7.7}
+Suppose we are given a pair of composable isogenies
+\[
+E \xrightarrow{\pi_1} E' \xrightarrow{\pi_2} E''
+\]
+with $\pi_1$ and $\pi_2$ of degrees $d_1$ and $d_2$ respectively. We say that the pair $(\pi_1,\pi_2)$ is \emph{cyclic in standard order} if both of the following conditions hold:
+\begin{enumerate}[(1)]
+\item The composite $\pi_2 \circ \pi_1$ is cyclic.
+\item The given factorization is standard, i.e., $\Ker(\pi_1)$ is the standard cyclic subgroup of $\Ker(\pi_2\pi_1)$ of order $d_1$.
+\end{enumerate}
+\end{pitem}
+
+\begin{kprop}\label{prop:6.7.8}
+Let $\pi_1$ and $\pi_2$ be a pair of composable isogenies
+\[
+E \xrightarrow{\pi_1} E' \xrightarrow{\pi_2} E''
+\]
+over a base $S$, of constant ranks $d_1$ and $d_2$. Suppose that $\pi_2$ is etale (a condition which is automatic if $d_2$ is invertible on $S$). Then the following are equivalent.
+\begin{enumerate}[(1)]
+\item The composite $\pi = \pi_2\pi_1$ is cyclic.
+\item $\pi_1$, $\pi_2$ and $\pi = \pi_2\pi_1$ are all cyclic.
+\item $\pi$, $\pi_1$, $\pi_2$ are all cyclic, and $(\pi_1,\pi_2)$ is the standard factorization of $\pi$.
+\end{enumerate}
+\end{kprop}
+
+\begin{proof}
+Trivially (3) $\Rightarrow$ (2) $\Rightarrow$ (1). We must show (1) $\Rightarrow$ (2), (3). The question is f.p.p.f.\ local on $S$, so we may assume that $G = \Ker(\pi)$ admits a generator $\phi : \Z/d_1d_2\Z \to G(S)$. Consider the exact sequence
+\[
+\begin{tikzcd}[row sep=large, column sep=small, every label/.append style={font=\scriptsize}]
+& & \Z/d_1d_2\Z \arrow[d, "\phi"] \arrow[dr, dashed] & & \\
+0 \arrow[r] & \Ker(\pi_1) \arrow[r] & G \arrow[r, "\pi_1"] & \Ker(\pi_2) \arrow[r] & 0 .
+\end{tikzcd}
+\]
+Applying the key result (\ref{prop:1.11.2}), we see that the oblique arrow must be surjective, whence we have a commutative diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=small, every label/.append style={font=\scriptsize}]
+0 \arrow[r] & d_2\Z/d_1d_2\Z \arrow[r] \arrow[d] & \Z/d_1d_2\Z \arrow[r, "\mathrm{mod}\ d_2"] \arrow[d, "\phi"] & \Z/d_2\Z \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \Ker \pi_1 \arrow[r] & G \arrow[r] & \Ker(\pi_2) \arrow[r] & 0 .
+\end{tikzcd}
+\]
+all of whose vertical arrows are generators. Thus (1) $\Rightarrow$ (2). Therefore $G$ is generated by $P = \phi(1)$, and $\Ker \pi_1$ is generated by $d_2P$, so that $\Ker \pi_1$ is the standard subgroup of $G$ of rank $d_1$. Thus (1) $\Rightarrow$ (3).
+\end{proof}
+
+\begin{kthm}\label{thm:6.7.9}
+Let $\pi_1$ and $\pi_2$ be composable cyclic isogenies of elliptic curves over a base $S$
+\[
+E \xrightarrow{\pi_1} E' \xrightarrow{\pi_2} E'',
+\]
+with $\pi_i$ cyclic of degree $d_i$. Consider the diagram of dual isogenies
+\[
+E \xleftarrow{\pi_1^t} E' \xleftarrow{\pi_2^t} E'' .
+\]
+(By (\ref{cor:5.5.4}, (3)), these duals are also cyclic.) Then $(\pi_1,\pi_2)$ is cyclic in standard order if and only if $(\pi_2^t,\pi_1^t)$ is cyclic in standard order.
+\end{kthm}
+
+\begin{proof}
+By symmetry, it suffices to prove the implication one way. Thus let $\pi = \pi_2\pi_1$, a cyclic isogeny of degree $d_1d_2$. The statement is that for any cyclic isogeny $\pi$ of degree $d_1d_2$, the standard subgroup of $\Ker(\pi^t)$ of order $d_2$ is equal to the subgroup $\Ker(\pi_2^t)$ of $\Ker(\pi^t)$. Because $[\Gamma_0(d_1d_2)]$ is flat over $\Z$, we may reduce to the case when $S$ is flat over $\Z$, and noetherian. The assertion is visibly true over the dense open set $S \otimes \Z[1/N]$, $N = d_1d_2$, and by the Useful Lemma \ref{lem:6.7.3} its locus of truth is closed in $S$.
+\end{proof}
+
+\begin{kprop}\label{prop:6.7.10}
+Let $\pi_1$ and $\pi_2$ be composable isogenies of elliptic curves over a base $S$,
+\[
+\begin{tikzcd}[column sep=large, every label/.append style={font=\scriptsize}]
+E \arrow[r, "\pi_1"] \arrow[rr, bend right, "\pi"'] & E' \arrow[r, "\pi_2"] & E'' ,
+\end{tikzcd}
+\]
+whose degrees $d_1$ and $d_2$ are relatively prime: $(d_1,d_2) = 1$. Then the following conditions are equivalent.
+\begin{enumerate}[(1)]
+\item $\pi_1$ and $\pi_2$ are each cyclic.
+\item $\pi$ is cyclic.
+\item $\pi$, $\pi_1$ and $\pi_2$ are each cyclic, and $(\pi_1,\pi_2)$ is the standard factorization of $\pi$.
+\end{enumerate}
+\end{kprop}
+
+\begin{proof}
+Let $G = \Ker(\pi)$. Then $G$ has rank $d = d_1d_2$ with $(d_1,d_2) = 1$. Therefore $G$ has a unique product structure $G = G_1 \times G_2$ where for $i = 1,2$, $G_i = G[d_i]$ is the subgroup-scheme of $G$ of elements killed by $d_i$, and where $G_i$ is itself finite locally free of rank $d_i$. Then $G$ is cyclic if and only if both $G_1$ and $G_2$ are cyclic, and a point $P = (P_1,P_2)$ is a generator of $G$ if and only if $P_i$ generates $G_i$ for $i = 1,2$. Therefore (1) $\iff$ (2), and we have (2) $\iff$ (3) because $\Ker(\pi_1)$, having rank $d_1$, must lie in $G[d_1] = G_1$, whence $\Ker \pi_1 = G_1$, and similarly if $G$ is cyclic, its standard subgroup of rank $d_1$ must also coincide with $G_1$.
+\end{proof}
+
+\begin{backingup}\label{thm:6.7.11}
+Let $E/S$ be an elliptic curve, $N \ge 1$ an integer, $d$ a divisor of $N$, and
+\[
+\begin{tikzcd}[column sep=large, every label/.append style={font=\scriptsize}]
+E \arrow[r, "\pi_d"] \arrow[rr, bend right, "\pi"'] & E' \arrow[r, "\pi'"] & E''
+\end{tikzcd}
+\]
+the standard factorization of a cyclic $N$-isogeny into a cyclic $d$-isogeny followed by a cyclic $N/d$-isogeny.
+
+Let $P \in (\Ker \pi)(S)$. Then
+\begin{enumerate}[(1)]
+\item If $P$ generates $\Ker \pi$, then $\pi_dP$ generates $\Ker \pi'$, and $(N/d)P$ generates $\Ker(\pi_d)$.
+\item If $N$ and $N/d$ have the same prime factors, then $P$ generates $\Ker \pi$ if and only if $\pi_dP$ generates $\Ker \pi'$. (In particular, $0$ generates $\Ker \pi$ if and only if $0$ generates $\Ker \pi'$.)
+\end{enumerate}
+\end{backingup}
+
+\begin{proof}
+Let us first prove (1). That $(N/d)P$ generates $\Ker(\pi_d)$ is clear from the definition of the standard factorization. To prove that $\pi_dP$ generates $\Ker \pi'$, we argue as follows. The data of a cyclic $N$-isogeny together with a generator $P$ of $\Ker(\pi)$ is precisely a $\Gamma_1(N)$-structure on $E$. As $[\Gamma_1(N)]$ is flat over $\Z$, we may, by reduction to the universal case, reduce to the case when $S$ is flat over $\Z$. The statement (1) is obviously true over $S \otimes \Z[1/N]$, and the locus in $S$ over which a given point $(\pi_dP)$ generates a given group $(\Ker \pi')$ is closed in $S$.
+
+To prove (2), we argue as follows. By (1), the map $\pi_d$ defines a morphism of schemes of generators
+\[
+\begin{tikzcd}[row sep=large, column sep=large, every label/.append style={font=\scriptsize}]
+(\Ker \pi)^\times \arrow[r, "\pi_d"] \arrow[d, hook] & (\Ker \pi')^\times \arrow[d, hook] \\
+\Ker \pi \arrow[r, "\pi_d"] & \Ker \pi' .
+\end{tikzcd}
+\]
+The assertion of (2) is that when $N$ and $N/d$ have the same prime factors, this diagram of finite $S$-schemes is cartesian, whenever $\pi$ is a cyclic $N$-isogeny. Because $[\Gamma_0(N)]$ is flat over $\Z$, the usual reduction to the universal case reduces us to the case when $S$ is flat over $\Z$, and noetherian.
+
+It is physically obvious that (2) holds over $S \otimes \Z[1/N]$. So it suffices to check that the locus in $S$ where (2) holds is a closed subscheme of $S$. For this, we simply apply the Useful Lemma \ref{lem:6.7.3} to the finite flat $S$-scheme $\Ker \pi$, its finite, flat over $S$ subscheme $(\Ker \pi)^\times$, and the fiber-product of the diagram
+\[
+\begin{tikzcd}[row sep=large, column sep=large, every label/.append style={font=\scriptsize}]
+& (\Ker \pi')^\times \arrow[d] & \\
+(\Ker \pi) \arrow[r, "\pi_d"] & \Ker \pi' .
+\end{tikzcd}
+\]
+This fiber product is finite flat over $S$ because $\pi_d$ is a finite flat map, and $(\Ker \pi')^\times$ is finite flat over $S$.
+\end{proof}
+
+\begin{kthm}\label{thm:6.7.12}
+Let $\pi_1$, $\pi_2$ be a pair of composable isogenies of elliptic curves over a base $S$,
+\[
+E \xrightarrow{\pi_1} E' \xrightarrow{\pi_2} E'',
+\]
+which are both cyclic, of degrees $d_1$ and $d_2$ respectively. Suppose that $d_1$ and $d_2$ have exactly the same prime divisors.
+
+Let $P \in \Ker(\pi_2\pi_1)(S)$. Then the following conditions are equivalent:
+\begin{enumerate}[(1)]
+\item The cyclic isogenies $(\pi_1,\pi_2)$ are cyclic in standard order, and $P$ generates $\Ker(\pi_2\pi_1)$.
+\item The point $d_2P$ generates $\Ker \pi_1$, and the point $\pi_1P$ generates $\Ker \pi_2$.
+\end{enumerate}
+\end{kthm}
+
+\begin{proof}
+That (1) implies (2) is part (1) of the preceding theorem. To prove that (2) implies (1), we argue as follows. Consider the point $P \in E(S)$. Because $d_2P$ generates $\Ker \pi_1$, $d_2P$ has ``exact order $d_1$'', and hence $P$ has ``exact order $d_1d_2$'' (by \ref{cor:5.5.8}, (2)). Consider the cyclic subgroup $G \subset E$ of order $d_1d_2$ generated by $P$. Its standard cyclic subgroup of order $d_1$ is precisely $\Ker \pi_1$. Therefore its standard cyclic quotient $G'$ of order $d_2$ is the cyclic subgroup of $E'$ generated by $\pi_1P$. As $\pi_1P$ generates $\Ker \pi_2$, we have $G' = \Ker(\pi_2)$. This shows that $(\pi_1,\pi_2)$ is the standard factorization of the cyclic $d_1d_2$ isogeny whose kernel is generated by $P$.
+\end{proof}
+
+\begin{stdorder}\label{thm:6.7.13}
+Let $\pi_1$, $\pi_2$ be a composable pair of cyclic isogenies
+\[
+E \xrightarrow{\pi_1} E' \xrightarrow{\pi_2} E''
+\]
+where $\pi_i$ is cyclic of degree $d_i$, $i = 1,2$, and where $d_1$ and $d_2$ have the same prime divisors. In order that $(\pi_1,\pi_2)$ be cyclic in standard order, it is necessary and sufficient that, locally f.p.p.f.\ on $S$, we have one of the following equivalent conditions:
+\begin{enumerate}[a)]
+\item For every generator $P' \in E'(S)$ of $\Ker \pi_2$, and every $P \in E(S')$ with $S' \to S$ f.p.p.f.\ and $\pi_1P = P'$, the point $d_2P$ generates $\Ker \pi_1$ over $S'$.
+\item For some generator $P' \in E'(S)$ of $\Ker \pi_2$, and for some $P \in E(S')$ with $S' \to S$ f.p.p.f.\ and $\pi_1P = P'$, the point $d_2P$ generates $\Ker \pi_1$ over $S'$.
+\end{enumerate}
+\end{stdorder}
+
+\begin{proof}
+Clearly a) implies b). If b) holds, then the point $P$ satisfies condition (2) of the preceding theorem, and hence $(\pi_1,\pi_2)$ is cyclic in standard order, with $\Ker(\pi_2\pi_1)$ generated by $P$. If $(\pi_1,\pi_2)$ is cyclic in standard order, we claim a) holds.
+
+By the Backing-up Theorem \ref{thm:6.7.11}, if $P'$ generates $\Ker \pi_2$, any $P$ with $\pi_1P = P'$ generates $\Ker(\pi_2\pi_1)$, and therefore by the preceding theorem we have $d_2P$ generates $\Ker(\pi_1)$.
+\end{proof}
+
+\begin{pitem}\label{km:6.7.14}
+Suppose we are given a sequence of $n \ge 2$ composable isogenies of elliptic curves over some base $S$
+\[
+E_0 \xrightarrow{\pi_1} E_1 \xrightarrow{\pi_2} E_2 \longrightarrow \cdots \xrightarrow{\pi_n} E_n,
+\]
+with each $\pi_i$ cyclic of degree $d_i$.
+
+We say that $(\pi_1, \cdots, \pi_n)$ are \emph{cyclic in standard order} if the composite $\pi_n \circ \cdots \circ \pi_1$ is cyclic, and if the given factorization corresponds to the filtration of its kernel $G = \Ker(\pi_n \cdots \pi_1)$ by the successive standard cyclic subgroups $G_{d_1}, G_{d_1d_2}, \cdots, G_{d_1d_2\cdots d_n}$ of $G$, i.e., if for every $i$ the $i$-fold composite $\pi_i \cdots \pi_1$ has kernel $G_{d_1\cdots d_i}$. If this is the case, then for $j > i$ the map $\pi_j \cdots \pi_{i+1}$ has kernel the standard cyclic subgroup of $G/G_{d_1\cdots d_i}$ of order $d_{i+1}\cdots d_j$.
+\end{pitem}
+
+\begin{kthm}\label{thm:6.7.15}
+Consider a sequence of $n \ge 2$ composable cyclic isogenies
+\[
+E_0 \xrightarrow{\pi_1} E_1 \xrightarrow{\pi_2} \cdots \xrightarrow{\pi_n} E_n,
+\]
+whose degrees $d_1, \cdots, d_n$ all have the same prime divisors. Then in order that $(\pi_1, \cdots, \pi_n)$ be cyclic in standard order, it is necessary and sufficient that every two-step chain $(\pi_i, \pi_{i+1})$ be cyclic in standard order.
+\end{kthm}
+
+\begin{proof}
+As already noted, the necessity is clear. For sufficiency, we proceed by induction on $n$, the case $n = 2$ being vacuously true. By induction, we know all chains of length $\le n-1$ are cyclic in standard order. In particular, for $1 \le i \le n-1$ the isogeny $\pi_i \cdots \pi_1$ is cyclic, and its kernel is the standard cyclic subgroup of order $d_1 \cdots d_i$ in $\Ker(\pi_{n-1} \cdots \pi_1)$. Because standard subgroups of standard subgroups are standard, we are left with proving that $\pi_n \cdots \pi_1$ is cyclic, and that $\Ker(\pi_{n-1} \cdots \pi_1)$ is its standard cyclic subgroup of order $d_1 \cdots d_{n-1}$. In other words, we must prove that the pair $(\pi_{n-1} \cdots \pi_1, \pi_n)$ is cyclic in standard order. Locally f.p.p.f.\ on $S$, we may choose $P_{n-1} \in E_{n-1}(S)$ which generates $\Ker(\pi_n)$, and a sequence of points $P_i \in E_i(S)$ for $i = 0, \cdots, n-2$ such that
+\[
+P_{n-1} = \pi_{n-1}P_{n-2}, \quad P_{n-2} = \pi_{n-2}P_{n-3}, \quad \cdots, \quad P_1 = \pi_1P_0 .
+\]
+By the standard order criterion, it suffices to show that
+\[
+d_nP_0 \text{ generates } \Ker(\pi_{n-1} \circ \cdots \circ \pi_1) .
+\]
+To see this, we argue as follows. The pair $(\pi_{n-1},\pi_n)$ is cyclic in standard order. Therefore $d_nP_{n-2}$ generates $\Ker(\pi_{n-1})$, by the standard order criterion. The pair $(\pi_{n-2} \cdots \pi_1, \pi_{n-1})$ is cyclic in standard order by induction, and $(\pi_{n-2} \cdots \pi_1)(d_nP_0) = d_nP_{n-2}$. Therefore by the Backing-up Theorem, $d_nP_0$ generates $\Ker(\pi_{n-1} \circ \cdots \circ \pi_1)$, as required.
+\end{proof}
+
+\begin{krem}\label{rem:6.7.16}
+The reason we have developed the notion of the standard factorization of a cyclic isogeny, and criteria for recognizing it, is that an isogeny which isn't etale may have non-standard factorizations. The most striking example is this. Let $S$ be any $\F_p$-scheme, $E/S$ an elliptic curve, and $E^{(p)}/S$ its absolute Frobenius transform. We will see later that over $\F_p$-schemes, the morphism ``multiplication by $p$'' is cyclic, and that its standard factorization is
+\[
+E \xrightarrow{F} E^{(p)} \xrightarrow{V} E .
+\]
+If we replace $E$ by $E^{(p)}$, we get the decidedly \emph{non-standard} factorization
+\[
+E^{(p)} \xrightarrow{V} E \xrightarrow{F} E^{(p)} .
+\]
+We do not know a good criterion to decide when a composition of two cyclic isogenies is again a cyclic isogeny if the two are not in standard order.
+\end{krem}
+
+% ------------------------------------------------------------------------------
+% Section 6.8
+% ------------------------------------------------------------------------------
+\section{More on \texorpdfstring{$[N\text{-Isog}]$}{[N-Isog]}}
+\label{sec:6.8}
+
+\begin{kthm}\label{thm:6.8.1}
+For any integer $N \ge 1$, the moduli problem $[N\text{-Isog}]$ is finite and flat over \Ell. In particular, it is flat over $\Z$. After tensoring with $\Z[1/N]$, it becomes finite etale over $(\mathrm{Ell}/\Z[1/N])$.
+\end{kthm}
+
+\begin{proof*}
+We will first reduce to the case when $N$ is a prime power. If $N = N_1N_2$ with $(N_1,N_2) = 1$ then we have, for any representable moduli problem $\mathcal{S}$, a canonical $\Mfrak(\mathcal{S})$-isomorphism
+\[
+\Mfrak(\mathcal{S}, [N\text{-Isog}]) \xrightarrow{\ \sim\ } \Mfrak(\mathcal{S}, [N_1\text{-Isog}]) \times_{\Mfrak(\mathcal{S})} \Mfrak(\mathcal{S}, [N_2\text{-Isog}]) .
+\]
+We also remark that it is physically obvious that $[N\text{-Isog}] \otimes \Z[1/N]$ is finite etale over $(\mathrm{Ell}/\Z[1/N])$.
+
+To prove the theorem with $N$ a prime power, say $N = p^n$, we will use a variant of the Axiomatic Regularity Theorem.
+\end{proof*}
+
+\begin{afft}\label{thm:6.8.2}
+Let $\mathcal{P}$ be a moduli problem which satisfies the axioms Reg.~1, Reg.~2, Reg.~3, and Reg.~4A, with respect to a prime number $p$. Then $\mathcal{P}$ is finite flat over \Ell\ if and only if the following condition holds:
+\begin{enumerate}[(FF)]
+\item Let $k$ be any algebraically closed field of characteristic $p$, $E_0/k$ any supersingular elliptic curve, $E/W(k)[[T]]$ its universal formal deformation. Then the scheme $\mathcal{P}_{E/W[[T]]}$, which is the spectrum of a local ring finite over $W[[T]]$, is flat over $W[[T]]$.
+\end{enumerate}
+\end{afft}
+
+\begin{proof}
+The proof is entirely analogous to the proof of the Axiomatic Regularity Theorem, with the open set $U$ in $\Mfrak(\mathcal{S}_1)$ the open set of all points $x \in \Mfrak(\mathcal{S}_1)$ such that for every $y \in \Mfrak(\mathcal{S}_1, \mathcal{P})$ with $y \to x$, the local ring upstairs at $y$ is flat over the local ring downstairs at $x$.
+\end{proof}
+
+\begin{pitem}\label{km:6.8.3}
+We now apply this theorem to $\mathcal{P} = [p^n\text{-Isog}]$. We have already checked axioms Reg.~1 and Reg.~2, and Reg.~3 obviously holds. Reg.~4A holds because in a supersingular $E_0/k$ with $k$ a field, $\Ker(F^n)$ is the unique subgroup-scheme of $E_0/k$ of rank $p^n$. It remains to prove that $[p^n\text{-Isog}]$ verifies the condition (FF).
+
+Let $A$ denote the complete local ring such that
+\[
+[p^n\text{-Isog}]_{E/W[[T]]} = \Spec(A) .
+\]
+Let
+\[
+G \subset E \tens{W[[T]]} A
+\]
+be the universal finite flat subgroup of rank $p^n$, let $E'$ be the elliptic curve over $A$ which is the quotient of $E \tens{W[[T]]} A$ mod $G$, and let
+\[
+E \tens{W[[T]]} A \xrightarrow{\ \pi\ } E'
+\]
+be the corresponding $p^n$-isogeny with kernel $G$.
+
+Let $E_1/k$ denote the special fiber of $E'/A$. We fix an isomorphism
+\[
+E_1 \xrightarrow{\ \sim\ } E_0^{(p^n)}
+\]
+which carries $\pi$ to $F^n$.
+
+The ring $A$ pro-represents the functor $\Phi$ on artin local $W(k)$-algebras with residue field $k$ defined by
+\[
+\Phi(R) = \left\{ \begin{array}{l}
+\text{$p^n$-isogenies } E \xrightarrow{\ \pi\ } E' \text{ of elliptic curves} \\
+\text{over } R \text{ together with an isomorphism of} \\
+\text{the special fiber with the $p^n$-isogeny} \\[2pt]
+E_0 \xrightarrow{F^{p^n}} E_0^{(p^n)} \xrightarrow{\ \sim\ } E_1 .
+\end{array} \right.
+\]
+Fix a universal formal deformation of $E_1/k$, say $E_1/W[[T_1]]$. The constructions ``source of $\pi$'', ``target of $\pi$'', define a morphism of functors
+\[
+\Phi(R) \to \left( \begin{matrix} \text{formal deformations} \\ \text{of } E_0/k \text{ to } R \end{matrix} \right) \times \left( \begin{matrix} \text{formal deformations} \\ \text{of } E_1/k \text{ to } R \end{matrix} \right) .
+\]
+By rigidity, this map is injective on $R$-valued points, for any artin local $W(k)$-algebra $R$. Furthermore, it is a closed immersion, as follows immediately from Drinfeld's approach to the Serre-Tate theorem. For the reader's convenience, we state the result explicitly.
+\end{pitem}
+
+\begin{kthm}[Drinfeld]\label{thm:6.8.4}
+Let $R$ be a ring in which a prime number $p$ is nilpotent, $I$ a nilpotent ideal of $R$, $R_0$ the ring $R/I$, and $X$, $Y$ two abelian schemes over $R$. Suppose that we are given a homomorphism of abelian schemes over $R_0$
+\[
+X \otimes_R R_0 \xrightarrow{\ f_0\ } Y \otimes_R R_0 .
+\]
+Then
+\begin{enumerate}[(1)]
+\item For any $n$ large enough that the sequence of ideals of $R$ given by $I^{(0)} = I, \cdots, I^{(k+1)} = (pI^{(k)}, (I^{(k)})^2)$, has $I^{(n)} = 0$, the homomorphism $p^nf_0$ lifts to a homomorphism of abelian schemes over $R$
+\[
+X \xrightarrow{\ \text{``}p^nf_0\text{''}\ } Y .
+\]
+\item The homomorphism $f_0$ lifts to a homomorphism of abelian schemes over $R$
+\[
+X \xrightarrow{\ f\ } Y
+\]
+if and only if for $n$ as above, the homomorphism ``$p^nf$'' induces the zero-map
+\[
+X[p^n] \xrightarrow{\ \text{``}p^nf\text{''}\ } Y[p^n] .
+\]
+\item If $f_0$ lifts to an $f$, the lifting $f$ is unique. If $f$ exists, then $f$ is an isogeny (i.e., finite flat) if and only if $f_0$ is.
+\end{enumerate}
+\end{kthm}
+
+\begin{proof}
+See \cite{Dr2} or \cite{K5}.
+\end{proof}
+
+\begin{kcor}\label{cor:6.8.5}
+The ``locus of existence'' of a lifting $f$ is the closed subscheme of $R$ over which a specific map, ``$p^nf_0$'', between specific finite flat locally free $R$-group-schemes, namely $X[p^n]$ and $Y[p^n]$, is the zero-map.
+\end{kcor}
+
+Applying these results to our functor $\Phi$, we see that $\Phi$ is pro-represented by the formal closed subscheme of $\Spec(W[[T,T_1]])$ over which the map of elliptic curves over $k$
+\[
+E_0 \xrightarrow{F^n} E_0^{(p^n)} \xrightarrow{\ \sim\ } E_1
+\]
+lifts to a homomorphism of elliptic curves
+\[
+E \xrightarrow{\ \pi\ } E_1 .
+\]
+Concretely, this means that the ring $A$ is a quotient of the ring $W[[T,T_1]]$, by some ideal $J$. It suffices to prove that the ideal $J$ is principal, say $J = (f)$. For if this is so, then $f \ne 0$ (because $A$ is finite over $W[[T]]$), and $f \ne 1$ (because $\Phi(k)$ is non-empty). Therefore, $f$ is a non-unit non-zero-divisor in a regular local ring $W[[T,T_1]]$ of dimension three, and hence $A = W[[T,T_1]]/(f)$ is itself Cohen-Macaulay of dimension two. We already know that $A$ is finite over the two-dimensional regular local ring $W[[T]]$, and therefore it is automatically finite and flat over $W[[T]]$ (cf.\ \cite[V, 3.5]{AK1}).
+
+To prove that the ideal $J$ is generated by a single element, we argue as follows (compare the proof of Proposition 1.5 in \cite{DeIl}). The ideal $J$ is a proper ideal of $W[[T,T_1]]$ (because $A$ is finite over $W[[T]]$), and hence lies in the maximal ideal. Therefore $W[[T,T_1]]$ is $J$-adically complete and separated. So an obvious recursion argument shows that any element $f \in J$ such that $J = (J^2, f)$ is automatically a generator of $J$. To see that such an element exists, we argue as follows. Over the ring $R_0 = W[[T,T_1]]/J$, we have the universal lifting $\pi$ of the isogeny $F^n$. Suppose we try to lift further to the ring $R = W[[T,T_1]]/J^2$, a ``square-zero thickening'' of $R_0$. We must show that the ``locus of liftability of $\pi$'' in $\Spec(R)$ is defined by a single equation $f = 0$ with $f \in R$. (For by construction this locus of liftability is the subscheme defined by the ideal $J/J^2$ in $R$, hence any lifting of $f \in J/J^2$ to an element of $J$ will satisfy $J = (J^2, f)$, as required.) \hfill\ensuremath{\square}
+
+Thus we are reduced to the following proposition (which applies ``globally'' on our $R$, because it is a local ring).
+
+\begin{kprop}\label{prop:6.8.6}
+Let $R$ be a ring, $I \subset R$ an ideal of square zero, $E$ and $E_1$ elliptic curves over $R$, and
+\[
+E \otimes (R/I) \xrightarrow{\ \phi_0\ } E_1 \otimes (R/I)
+\]
+a homomorphism between their reductions mod $I$. Then the closed subscheme of $\Spec(R)$ over which $\phi_0$ lifts is defined, locally on $R$, by a single equation $f = 0$.
+\end{kprop}
+
+\begin{proof}
+By autoduality of elliptic curves, the homomorphism $\phi_0$ is induced by an invertible sheaf $\cL_0$ on $(E \times_R E_1) \otimes (R/I)$, by the formalism of divisorial correspondences (cf.\ \cite[Exp.~VII, \S2]{DeGiRay}, \cite[7, VIII 3.2.4 and VII 2.9.5]{SGA}). The invertible sheaf $\cL_0$ is unique up to tensoring with an arbitrary invertible sheaf of the form $\mathrm{pr}_1^*(\cF_0) \otimes \mathrm{pr}_2^*(\cG_0)$, where $\cF_0$ and $\cG_0$ are arbitrary invertible sheaves on $E \otimes (R/I)$ and on $E_1 \otimes (R/I)$ respectively. Because $E$ and $E_1$ are curves, there is no obstruction to lifting any such $\cF_0$, $\cG_0$ to invertible sheaves on $E$ and on $E_1$ respectively. Therefore the homomorphism lifts if and only if the invertible sheaf $\cL_0$ lifts to an invertible sheaf $\cL$ on $E \times_R E_1$. The obstruction to the existence of such a lifting is an element in the cohomology group
+\[
+H^2(E \times_R E_1, \cO) \otimes I .
+\]
+Locally on $R$, the group $H^2(E \times_R E_1, \cO)$ is a free $R$-module of rank one, and so locally on $R$ the vanishing of the obstruction is expressed by a single equation.
+\end{proof}
+
+\begin{kcor}\label{cor:6.8.7}
+If $N \ge 1$ is a square-free integer, then every $N$-isogeny is cyclic, i.e., the closed immersion of moduli problems over \Ell
+\[
+[\Gamma_0(N)] \hookrightarrow [N\text{-Isog}]
+\]
+is an isomorphism.
+\end{kcor}
+
+\begin{proof}
+We must show that if $N$ is square-free, then for any elliptic curve $E/S$ and any $S$-subgroup $G \subset E[N]$ which is finite locally free of rank $N$ over $S$, $G$ is cyclic. Because $[N\text{-Isog}]$ is flat over $\Z$, the usual ``reduction to the universal case'' reduces us to treating the case when $S$ is flat over $\Z$. The locus ``$G$ is cyclic'' is a closed subscheme of $S$, so it suffices to show that $G$ is cyclic over $S \otimes \Z[1/N]$, where it is physically obvious: an abelian group of square-free order is cyclic.
+\end{proof}
+
+\begin{kthm}\label{thm:6.8.8}
+If $N$ is not a square-free integer, then the moduli problem $[N\text{-Isog}]$ is not normal.
+\end{kthm}
+
+\begin{proof}
+Write $N = p^nN_1$ with $n \ge 2$ and $N_1$ prime to $p$. We will show that already over $\Z[1/N_1]$, the moduli problem $[N\text{-Isog}]$ is not normal. The moduli problem $[N_1\text{-Isog}]$ is finite etale over $(\mathrm{Ell}/\Z[1/N_1])$, so it is equivalent to show that $[p^n\text{-Isog}]$ is not normal.
+
+To see this, first look at $[p^n\text{-Isog}] \otimes \Z[1/p]$. Any subgroup of $(\Z/p^n\Z)^2$ of order $p^n$ contains a maximal subgroup of the form $(\Z/p^a\Z)^2$, modulo which it is cyclic. Therefore over any connected $\Z[1/p]$-scheme $S$, any $p^n$ isogeny of elliptic curves over $S$ has a unique factorization
+\[
+E \xrightarrow{p^a} E \xrightarrow{\pi} E'
+\]
+where $n = 2a+b$ and where $\pi$ is a cyclic $p^b$-isogeny. Modularly, this means that over $\Z[1/p]$, we have a decomposition of moduli problems
+\[
+[p^n\text{-Isog}] \otimes \Z[1/p] \xrightarrow{\ \sim\ } \coprod_{2a+b=n} [\Gamma_0(p^b)] \otimes \Z[1/p] .
+\]
+If $[p^n\text{-Isog}]$ were normal, it would be the normalization of \Ell\ in $[p^n\text{-Isog}] \otimes \Z[1/p]$, i.e., for any representable etale moduli problem $\mathcal{S}$, the scheme $\Mfrak(\mathcal{S}, [p^n\text{-Isog}])$ would be the normalization of $\Mfrak(\mathcal{S})$ in $\Mfrak(\mathcal{S}, [p^n\text{-Isog}]) \otimes \Z[1/p]$, because it would be the unique normal scheme finite over $\Mfrak(\mathcal{S})$ which outside of $p$ coincides with $\Mfrak(\mathcal{S}, [p^n\text{-Isog}])$.
+
+So if $[p^n\text{-Isog}]$ were normal, we could deduce from our decomposition over $\Z[1/p]$ a decomposition
+\[
+[p^n\text{-Isog}] \xrightarrow{\ \sim\ } \coprod_{2a+b=n} [\Gamma_0(p^b)] .
+\]
+That such a decomposition does not exist is obvious from the fact that for $E_0/k$ a supersingular elliptic curve over a field, we have
+\[
+[p^n\text{-Isog}](E_0/k) = \text{a single element } (\Ker F^n)
+\]
+while for each $b = n, n-2, \cdots$ we also have
+\[
+[\Gamma_0(p^b)](E_0/k) = \text{a single element } (\Ker F^b) !
+\]
+\end{proof}
+
+\begin{krem}\label{rem:6.8.9}
+Indeed, the above proof shows that the \emph{normalization} of $[p^n\text{-Isog}]$ is the disjoint union
+\[
+\coprod_{2a+b=n} [\Gamma_0(p^b)] ,
+\]
+and hence that $[p^n\text{-Isog}]$ is not geometrically unibranch at any supersingular point in characteristic $p$, as soon as $n \ge 2$.
+\end{krem}

@@ -1,0 +1,993 @@
+% ====================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S16.2  平方平均收敛
+%  源：原书印刷页 267–286（PDF 物理页 273–292）
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref；数学模式内的中文必须包 text
+% ====================================================================
+\section{平方平均收敛}\label{sec:16.2}
+
+定理~\ref{thm:14.3.8} 中已经证明, 周期为 $2\pi$ 的连续函数能用三角多项式一致逼近. 根据定理~\ref{thm:13.2.1} 知, 能用周期为 $2\pi$ 的三角多项式一致逼近的函数必是周期为 $2\pi$ 的连续函数. 因此, 周期为 $2\pi$ 的且在 $[-\pi, \pi]$ 上可积的函数, 只要它不连续(如: $f(x) = \begin{cases} 0, & x \neq 2k\pi, \\ 1, & x = 2k\pi, \end{cases}\ k = 0, \pm 1, \pm 2, \cdots$) 就不能用三角多项式一致逼近. 问题出在哪里呢? 所谓一致逼近, 就是
+\[
+  \sup_{-\pi\leqslant x\leqslant\pi}\left|f(x)-T_{n}(x)\right|\to0,\quad n\to+\infty.
+\]
+这就要求 $f(x)$ 与三角多项式 $T_{n}(x)$ 之差在整个 $[-\pi, \pi]$ 上均匀地趋于 $0$, 而不允许有点例外. 由于连续函数在邻近点处的值相差很小, 上述要求能办到, 而一般的周期为 $2\pi$ 的且在 $[-\pi, \pi]$ 上可积的函数就不一定做得到了. 在这种情况下, 我们只能放弃一致逼近, 退而求其次, 要求能用三角多项式 $T_{n}(x)$ 平均地逼近 $f(x)$, 即
+\[
+  \int_{-\pi}^{\pi}\left[f(x)-T_{n}(x)\right]^{2}\mathrm{d}x\to0,\quad n\to+\infty.
+\]
+这是比一致逼近弱一点的概念.
+
+\begin{definition}\label{def:16.2.1}
+设 $f(x)$ 是 $[-\pi, \pi]$ 上的可积函数, 如果存在三角多项式序列 $\{T_{n}(x)\}$, 使得
+\[
+  \lim_{n\to+\infty}\int_{-\pi}^{\pi}\left[f(x)-T_{n}(x)\right]^{2}\mathrm{d}x=0,
+\]
+则称 $\{T_{n}(x)\}$ \textbf{平方平均收敛}于 $f(x)$, 或称 $f(x)$ 可用三角多项式\textbf{平方平均逼近}.
+\end{definition}
+
+\begin{theorem}\label{thm:16.2.1}
+如果 $[-\pi, \pi]$ 上的三角多项式序列 $\{T_{n}(x)\}$ 能一致逼近 $f(x)$, 则 $\{T_{n}(x)\}$ 必平方平均收敛于 $f(x)$. 但反之不真.
+\end{theorem}
+
+\begin{proof}
+设 $[-\pi, \pi]$ 上的三角多项式序列 $\{T_{n}(x)\}$ 能一致逼近 $f(x)$, 即 $\forall \varepsilon > 0, \exists N \in \mathbb{N}$, 当 $n > N$ 时, 有
+\[
+  |f(x)-T_{n}(x)|<\sqrt{\frac{\varepsilon}{2\pi}},\quad\forall x\in[-\pi,\pi].
+\]
+则
+\[
+  \int_{-\pi}^{\pi}\left[f(x)-T_{n}(x)\right]^{2}\mathrm{d}x<\frac{\varepsilon}{2\pi}\cdot2\pi=\varepsilon,
+\]
+即
+\[
+  \int_{-\pi}^{\pi}\left[f(x)-T_{n}(x)\right]^{2}\mathrm{d}x\to0,\quad n\to+\infty,
+\]
+这就表明 $\{T_{n}(x)\}$ 平方平均收敛于 $f(x)$.
+
+但反之不真. 事实上, 设 $T_{n}(x)=0, x\in[-\pi,\pi]$,
+\[
+  f(x)=\begin{cases}
+    0, & x\neq0,2\pi,\\
+    1, & x=0,2\pi.
+\end{cases}
+\]
+显然, $\{T_{n}(x)\}=\{0\}$ 平方平均收敛于 $f(x)$, 但 $\{T_{n}(x)\}$ 在 $[-\pi, \pi]$ 上非一致收敛于 $f(x)$.
+\end{proof}
+
+\begin{remark}\label{rem:16.2.1}
+如果 $f(x)$ 在 $[a,b]$ 上为有界函数, 假定 $f(x)$ 是 Riemann 可积的, 因而 $f^{2}(x)$ 也是 Riemann 可积的; 如果 $f(x)$ 是 $[a,b]$ 上的无界函数, 假定 $f^{2}(x)$ 是广义可积的. 从不等式
+\[
+  |f(x)|\leqslant\frac{1+|f(x)|^{2}}{2}
+\]
+知, $|f(x)|$ 是广义可积的, 因而只要 $f(x)$ 在 $[a,b]$ 的任意不含 $f(x)$ 的瑕点的内闭区间上 Riemann 可积, $f(x)$ 必广义可积. 提醒读者, 研究例子
+\[
+  f(x)=\begin{cases}
+    \dfrac{1}{x^{1/4}}, & x\text{ 为 }(0,1]\text{ 中的有理数},\\
+    -\dfrac{1}{x^{1/4}}, & x\text{ 为 }(0,1]\text{ 中的无理数}.
+\end{cases}
+\]
+显然, $f(x)$ 在 $[0,1]$ 上非广义可积, 但 $f^{2}(x)$ 在 $[0,1]$ 上广义可积.
+\end{remark}
+
+\begin{remark}\label{rem:16.2.2}
+在定义~\ref{def:16.2.1} 中, 如果 $f(x)$ 为无界函数, 由
+\[
+  \lim_{n\to+\infty}\int_{-\pi}^{\pi}\left[f(x)-T_{n}(x)\right]^{2}\mathrm{d}x=0,
+\]
+可知 $\exists N \in \mathbb{N}$, 当 $n > N$ 时,
+\[
+  \int_{-\pi}^{\pi}\left[f(x)-T_{n}(x)\right]^{2}\mathrm{d}x<1.
+\]
+根据注~\ref{rem:16.2.1}, $f(x)-T_{n}(x)$ 在 $[-\pi,\pi]$ 上广义可积, 从而 $f(x)=[f(x)-T_{n}(x)]+T_{n}(x)$ 也广义可积.
+\end{remark}
+
+对于可积函数 $f(x)$, 是否存在平方平均收敛于 $f(x)$ 的三角多项式序列 $\{T_{n}(x)\}$ 呢? 回答是肯定的.
+
+我们将 $[a,b]$ 上所有既可积(按注~\ref{rem:16.2.1}理解)又平方可积的函数的全体记为 $R[a,b]$. 在 $R[a,b]$ 中, 按通常函数的加法
+\[
+  (f+g)(x)=f(x)+g(x),
+\]
+及数乘
+\[
+  (\lambda f)(x)=\lambda f(x),\quad\forall f,g\in R[a,b],\ \forall\lambda\in\mathbb{R}
+\]
+成为一个线性空间.
+
+\begin{theorem}\label{thm:16.2.2}
+对 $\forall f, g \in R[a, b]$, 令
+\[
+  \langle f,g\rangle=\int_{a}^{b}f(x)g(x)\mathrm{d}x,
+\]
+则 $\langle\cdot,\cdot\rangle$ 有以下简单性质:
+\begin{enumerate}
+  \item $\langle f, f\rangle \geqslant 0, \forall f \in R[a, b]$; $\langle f, f\rangle = 0 \iff f(x) \overset{\mathrm{a.e.}}{=} 0, x \in [a, b]$;
+  \item $\langle f, g\rangle = \langle g, f\rangle, \forall f, g \in R[a, b]$ (对称性);
+  \item $\langle\alpha_{1}f_{1}+\alpha_{2}f_{2},g\rangle=\alpha_{1}\langle f_{1},g\rangle+\alpha_{2}\langle f_{2},g\rangle,\forall f_{1},f_{2},g\in R[a,b],\forall\alpha_{1},\alpha_{2}\in\mathbb{R}$.
+\end{enumerate}
+由性质 (2)、性质 (3) 立即推出
+\[
+  \langle f,\alpha_{1}g_{1}+\alpha_{2}g_{2}\rangle=\alpha_{1}\langle f,g_{1}\rangle+\alpha_{2}\langle f,g_{2}\rangle,\quad\forall f,g_{1},g_{2}\in R[a,b],\ \forall\alpha_{1},\alpha_{2}\in \mathbb{R}\quad(\text{双线性}).
+\]
+于是, $(R[a,b],\langle\cdot,\cdot\rangle)$ 成为 $R[a,b]$ 上的一个``内积''.
+\end{theorem}
+
+\begin{proof}
+(1) 显然 $\langle f, f \rangle = \int_{a}^{b} f(x) f(x) \, \mathrm{d}x = \int_{a}^{b} f^{2}(x) \, \mathrm{d}x \geqslant 0.$
+\[
+  \langle f,f\rangle=\int_{a}^{b}f^{2}(x)\mathrm{d}x=0\xleftarrow{\text{\extref{例 6.2.3(2)}}}f^{2}(x)\overset{\mathrm{a.e.}}{=}0,\ x\in[a,b]\iff f(x)\overset{\mathrm{a.e.}}{=}0,\ x\in[a,b].
+\]
+
+(2)
+\[
+  \langle f,g\rangle=\int_{a}^{b}f(x)g(x)\mathrm{d}x=\int_{a}^{b}g(x)f(x)\mathrm{d}x=\langle g,f\rangle.
+\]
+
+(3)
+\[
+  \begin{aligned}
+    \langle\alpha_{1}f_{1}+\alpha_{2}f_{2},g\rangle&=\int_{a}^{b}(\alpha_{1}f_{1}+\alpha_{2}f_{2})(x)g(x)\mathrm{d}x\\
+    &=\alpha_{1}\int_{a}^{b}f_{1}(x)g(x)\mathrm{d}x+\alpha_{2}\int_{a}^{b}f_{2}(x)g(x)\mathrm{d}x\\
+    &=\alpha_{1}\langle f_{1},g\rangle+\alpha_{2}\langle f_{2},g\rangle.
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    \langle f,\alpha_{1}g_{1}+\alpha_{2}g_{2}\rangle&\xlongequal{(2)}\langle\alpha_{1}g_{1}+\alpha_{2}g_{2},f\rangle\xlongequal{(3)}\alpha_{1}\langle g_{1},f\rangle+\alpha_{2}\langle g_{2},f\rangle\\
+    &=\alpha_{1}\langle f,g_{1}\rangle+\alpha_{2}\langle f,g_{2}\rangle.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{remark}\label{rem:16.2.3}
+应该指出的是, $\langle\cdot,\cdot\rangle$ 并不是 $R[a,b]$ 上的一个内积, 这是因为 $\langle f,f\rangle=0$, 只能推得 $f\overset{\mathrm{a.e.}}{=}0$, 而不能推得 $f=0$.
+
+为了得到一个真正的内积, 我们在 $R[a,b]$ 上引进一个等价关系: $f,g\in R[a,b]$, $f\sim g$ ($f$ 等价于 $g$) $\iff f\overset{\mathrm{a.e.}}{=}g,\forall x\in[a,b]$. 记 $\tilde{f}=\{g\mid g\in R[a,b],g\sim f\}$ 为 $f$ 的等价类, 并称
+\[
+  \widetilde{R[a,b]}=\{\tilde{f}\mid f\in R[a,b]\}
+\]
+为 $R[a,b]$ 在``$\sim$''下的商集合. 如果定义
+\[
+  \langle\tilde{f},\tilde{g}\rangle=\int_{a}^{b}f(x)g(x)\mathrm{d}x=\langle f,g\rangle,
+\]
+则显然它与 $f, g$ 的代表元的选取无关, 并且满足定理~\ref{thm:16.2.2} 中 3 个条件. 更重要的是, $\langle \tilde{f}, \tilde{f} \rangle = 0 \iff f \overset{\mathrm{a.e.}}{=} 0, \forall x \in [a, b] \iff \tilde{f} = \tilde{0}$. 由此可看出, $\langle\cdot,\cdot\rangle$ 为 $\widetilde{R[a,b]}$ 上的一个内积, $(\widetilde{R[a,b]},\langle\cdot,\cdot\rangle)$ 为 $\widetilde{R[a,b]}$ 上的一个内积空间. 如果 $f(x)\overset{\mathrm{a.e.}}{=}g(x),\forall x\in[a,b]$, 即 $\tilde{f}=\tilde{g}$, 我们就视 $f$ 与 $g$ 是相等的, 并粗略地视 $(R[a,b],\langle\cdot,\cdot\rangle)$ 为一个内积空间.
+\end{remark}
+
+\begin{lemma}\label{lem:16.2.1}
+对 $f \in R[a, b]$, 若令 $\| f \| = \sqrt{\langle f, f \rangle} = \left[ \int_{a}^{b} f^{2}(x) \, \mathrm{d}x \right]^{1/2}$, 则 $\forall f, g \in R[a, b]$ 有 Cauchy-Schwarz 不等式
+\[
+  \left|\langle f,g\rangle\right|\leqslant\| f\|\,\| g\|,
+\]
+且等号当且仅当在 $[a, b]$ 上 $f(x) \overset{\mathrm{a.e.}}{=} \lambda g(x)$ 或 $g(x) \overset{\mathrm{a.e.}}{=} \lambda f(x)$ 时成立, 其中 $\lambda \in \mathbb{R}$.
+\end{lemma}
+
+\begin{proof}
+对 $\forall t \in \mathbb{R}$, 由于
+\[
+  0\leqslant\int_{a}^{b}\left[f(x)-tg(x)\right]^{2}\mathrm{d}x=\int_{a}^{b}f^{2}(x)\mathrm{d}x-2t\int_{a}^{b}f(x)g(x)\mathrm{d}x+t^{2}\int_{a}^{b}g^{2}(x)\mathrm{d}x,
+\]
+当 $\int_{a}^{b}g^{2}(x)\mathrm{d}x=0$ 时, $g(x)\overset{\mathrm{a.e.}}{=}0,x\in[a,b]$. 从而 $f(x)g(x)\overset{\mathrm{a.e.}}{=}0,x\in[a,b]$,
+\[
+  |\langle f,g\rangle|=\left|\int_{a}^{b}f(x)g(x)\mathrm{d}x\right|=0=\|f\|\cdot\|0\|=\|f\|\,\|g\|.
+\]
+当 $\int_{a}^{b} g^{2}(x) \,\mathrm{d}x > 0$ 时, 上面关于 $t$ 的二次三项式的判别式
+\[
+  \Delta=4\left[\int_{a}^{b}f(x)g(x)\mathrm{d}x\right]^{2}-4\int_{a}^{b}f^{2}(x)\mathrm{d}x\cdot\int_{a}^{b}g^{2}(x)\mathrm{d}x\leqslant0,
+\]
+即
+\[
+  |\langle f,g\rangle|\leqslant\| f\|\,\| g\|.
+\]
+如果 $f(x)\overset{\mathrm{a.e.}}{=}\lambda g(x),x\in[a,b]$, 则
+\[
+  \begin{aligned}
+    |\langle f,g\rangle|&=|\langle\lambda g,g\rangle|=|\lambda\langle g,g\rangle|=|\lambda|\,\|g\|^{2}\\
+    &=\|\lambda g\|\,\|g\|=\|f\|\,\|g\|.
+  \end{aligned}
+\]
+反之, 如果
+\[
+  |\langle f,g\rangle|=\| f\|\,\| g\|,
+\]
+则当 $\| g \| = 0$ 时, $g(x) \overset{\mathrm{a.e.}}{=} 0 \cdot f(x), x \in [a, b]$; 如果 $\| g \| > 0$, 则由
+\[
+  \Delta=4\bigl[\langle f,g\rangle^{2}-\| f\|^{2}\| g\|^{2}\bigr]=0
+\]
+可知, 关于 $t$ 的二次方程 $\int_{a}^{b} f^{2}(x) \, \mathrm{d}x - 2t \int_{a}^{b} f(x) g(x) \, \mathrm{d}x + t^{2} \int_{a}^{b} g^{2}(x) \, \mathrm{d}x = 0$ 必有实解 $t = \lambda$. 于是,
+\[
+  \int_{a}^{b}\left[f(x)-\lambda g(x)\right]^{2}\mathrm{d}x=\int_{a}^{b}f^{2}(x)\mathrm{d}x-2\lambda\int_{a}^{b}f(x)g(x)\mathrm{d}x+\lambda^{2}\int_{a}^{b}g^{2}(x)\mathrm{d}x=0.
+\]
+由此得到
+\[
+  f(x)-\lambda g(x)\overset{\mathrm{a.e.}}{=}0,\quad x\in[a,b],
+\]
+即 $f(x)\overset{\mathrm{a.e.}}{=}\lambda g(x),x\in[a,b]$.
+\end{proof}
+
+\begin{theorem}\label{thm:16.2.3}
+$\| f \| = \sqrt{\langle f, f \rangle} = \left[ \int_{a}^{b} f^{2}(x) \, \mathrm{d}x \right]^{1/2}, f \in R[a, b]$, 有下列简单性质:
+\begin{enumerate}
+  \item $\| f \| \geqslant 0, \forall f \in R[a,b]$; $\| f \| = 0 \iff f(x)\overset{\mathrm{a.e.}}{=}0, x \in [a,b]$;
+  \item $\|\lambda f\| = |\lambda|\,\|f\|, \forall f \in R[a, b], \forall \lambda \in \mathbb{R}$;
+  \item $\| f + g \| \leqslant \| f \| + \| g \|$ (三角不等式或三点不等式).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\| f \| = \left[ \int_{a}^{b} f^{2}(x) \, \mathrm{d}x \right]^{1/2} \geqslant 0$.
+\[
+  \| f\|=\left[\int_{a}^{b}f^{2}(x)\mathrm{d}x\right]^{1/2}=0\iff f^{2}(x)\overset{\mathrm{a.e.}}{=}0,x\in[a,b]\iff f(x)\overset{\mathrm{a.e.}}{=}0,x\in[a,b].
+\]
+
+(2)
+\[
+  \|\lambda f\|=\left[\int_{a}^{b}\lambda^{2}f^{2}(x)\mathrm{d}x\right]^{1/2}=|\lambda|\left[\int_{a}^{b}f^{2}(x)\mathrm{d}x\right]^{1/2}=|\lambda|\,\| f\|.
+\]
+
+(3) $\| f + g \|^{2} = \langle f + g, f + g \rangle = \langle f, f \rangle + 2 \langle f, g \rangle + \langle g, g \rangle$
+\[
+  \begin{aligned}
+    \overset{\text{引理~\ref{lem:16.2.1}}}{\leqslant}\| f\|^{2}+2\| f\|\,\| g\|+\| g\|^{2}=(\| f\|+\| g\|)^{2},
+  \end{aligned}
+\]
+两边开平方即得
+\[
+  \| f+g\|\leqslant\| f\|+\| g\|.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:16.2.4}
+值得注意, $\|\cdot\|$ 并不是 $R[a,b]$ 上的一个模或范数, 这是因为 $\|f\|=0$, 只能推出 $f(x)\overset{\mathrm{a.e.}}{=}0, x\in[a,b]$, 而不能推得 $f=0$.
+
+类似注~\ref{rem:16.2.3}, 可定义
+\[
+  \|\tilde{f}\|=\sqrt{\langle\tilde{f},\tilde{f}\rangle}=\left[\int_{a}^{b}f^{2}(x)\mathrm{d}x\right]^{1/2}=\|f\|,
+\]
+则 $\|\tilde{f}\|=0\iff f(x)\overset{\mathrm{a.e.}}{=}0, x\in[a,b]\iff\tilde{f}=0$. 显见, $\|\cdot\|$ 还满足定理~\ref{thm:16.2.3} 中的 3 个条件. 因此, $\|\cdot\|$ 为 $\widetilde{R[a,b]}$ 上的一个模或范数, 而 $(\widetilde{R[a,b]}, \|\cdot\|)$ 为 $\widetilde{R[a,b]}$ 上的一个模空间或赋范空间. 如果 $f(x)\overset{\mathrm{a.e.}}{=}g(x), x\in[a,b]$, 即 $\tilde{f}=\tilde{g}$, 我们就视 $f$ 与 $g$ 是相等的, 并粗略地视 $(R[a,b], \|\cdot\|)$ 为一个模空间或赋范空间.
+\end{remark}
+
+\begin{theorem}\label{thm:16.2.4}
+设
+\[
+  d(f,g)=\| f-g\|=\sqrt{\langle f-g,f-g\rangle}=\sqrt{\int_{a}^{b}\left[f(x)-g(x)\right]^{2}\mathrm{d}x},\quad\forall f,g\in R[a,b],
+\]
+则
+\begin{enumerate}
+  \item $d(f,g) \geqslant 0, \forall f, g \in R[a,b]$; $d(f,g) = 0 \iff f(x) \overset{\mathrm{a.e.}}{=} g(x), x \in [a,b]$ (正定性);
+  \item $d(f,g)=d(g,f), \forall f,g\in R[a,b]$ (对称性);
+  \item $d(f,g) \leqslant d(f,h) + d(h,g), \forall f,g,h \in R[a,b]$ (三角不等式或三点不等式).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $d(f, g) = \| f - g \| \overset{\text{定理~\ref{thm:16.2.3}(1)}}{\geqslant} 0$.
+\[
+  d(f,g)=\| f-g\|=0\xLongleftrightarrow{\text{定理~\ref{thm:16.2.3}(1)}}f(x)-g(x)\overset{\mathrm{a.e.}}{=}0\iff f(x)\overset{\mathrm{a.e.}}{=}g(x),x\in[a,b].
+\]
+
+(2) $d(f,g)=\| f-g\|=\|-(g-f)\|\xlongequal{\text{定理~\ref{thm:16.2.3}(2)}}\| g-f\|=d(g,f)$.
+
+(3)
+\[
+  \begin{aligned}
+    d(f,g)&=\| f-g\|=\|(f-h)+(h-g)\|\\
+    &\overset{\text{定理~\ref{thm:16.2.3}(3)}}{\leqslant}\| f-h\|+\| h-g\|=d(f,h)+d(h,g).
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{remark}\label{rem:16.2.5}
+同注~\ref{rem:16.2.3} 与注~\ref{rem:16.2.4}, $d(\cdot, \cdot)$ 并不是 $R[a, b]$ 上的一个距离或度量, 这是因为 $d(f, g) = 0$, 只能推出 $f(x) \overset{\mathrm{a.e.}}{=} g(x), x \in [a, b]$, 而不能推得 $f = g$.
+
+类似注~\ref{rem:16.2.3} 与注~\ref{rem:16.2.4}, 可定义
+\[
+  d(\tilde{f},\tilde{g})=\left[\int_{a}^{b}(f(x)-g(x))^{2}\mathrm{d}x\right]^{1/2}=d(f,g),
+\]
+则 $d(\tilde{f}, \tilde{g}) = 0 \iff \|\tilde{f} - \tilde{g}\| = 0 \iff f(x) - g(x) \overset{\mathrm{a.e.}}{=} 0, x \in [a, b] \iff f(x) \overset{\mathrm{a.e.}}{=} g(x), x \in [a, b] \iff \tilde{f} = \tilde{g}$. 显见, $d(\cdot, \cdot)$ 还满足定理~\ref{thm:16.2.4} 中的 3 个条件. 因此, $d(\cdot, \cdot)$ 为 $\widetilde{R[a, b]}$ 上的一个距离或度量, 而 $(\widetilde{R[a, b]}, d(\cdot, \cdot))$ 为 $\widetilde{R[a, b]}$ 上的一个距离空间或度量空间. 如果 $f(x) \overset{\mathrm{a.e.}}{=} g(x), x \in [a, b]$, 即 $\tilde{f} = \tilde{g}$, 我们就视 $f$ 与 $g$ 是相等的, 并粗略地视 $(R[a, b], d(\cdot, \cdot))$ 为一个距离空间或度量空间.
+
+读者应牢记, $R[a,b]$ 中的内积、模与距离在不致混淆的情况下仍分别记为 $\langle\cdot,\cdot\rangle$, $\|\cdot\|$, $d(\cdot,\cdot)$.
+\end{remark}
+
+\begin{definition}\label{def:16.2.2}
+设 $f, g \in R[a, b]$ 满足
+\[
+  \langle f,g\rangle=\int_{a}^{b}f(x)g(x)\mathrm{d}x=0,
+\]
+则称 $f$ 与 $g$ 是\textbf{正交}的.
+
+设 $\{\varphi_{0},\varphi_{1},\cdots,\varphi_{n},\cdots\}\subseteq R[a,b]$ 为一个函数系, 如果
+\[
+  \langle\varphi_{k},\varphi_{l}\rangle=\int_{a}^{b}\varphi_{k}(x)\varphi_{l}(x)\mathrm{d}x=\begin{cases}
+    0, & k\neq l,\\
+    \lambda_{k}>0, & k=l,
+\end{cases}
+\]
+则称 $\{\varphi_{k}\mid k=0,1,2,\cdots\}$ 为 $R[a,b]$ 中的\textbf{正交系}. 若还有
+\[
+  \lambda_{k}=1,\quad k=0,1,2,\cdots,
+\]
+则称这函数系是\textbf{规范正交系}(或\textbf{标准正交系}).
+\end{definition}
+
+\begin{definition}\label{def:16.2.3}
+设 $\{\varphi_k\} = \{\varphi_k \mid k = 0, 1, 2, \cdots\}$ 为 $R[a, b]$ 中的一个给定的规范正交系. $\forall f \in R[a, b]$, 称
+\[
+  c_{k}=\langle f,\varphi_{k}\rangle=\int_{a}^{b}f(x)\varphi_{k}(x)\mathrm{d}x
+\]
+为 $f$ 关于规范正交系 $\{\varphi_{k}\}$ 的 \textbf{Fourier 系数}, 由此产生的级数 $\sum_{k=0}^{\infty} c_{k}\varphi_{k}(x)$ 称为 $f$ 关于规范正交系 $\{\varphi_{k}\}$ 的 \textbf{Fourier 级数}, 记为
+\[
+  f(x)\sim\sum_{k=0}^{\infty}c_{k}\varphi_{k}(x).
+\]
+上述 Fourier 级数的部分和
+\[
+  S_{n}(x)=\sum_{k=0}^{n}c_{k}\varphi_{k}(x)
+\]
+有下面的极值性质, 它是证明可积函数存在平方平均收敛于 $f$ 的三角多项式序列 $\{T_{n}(x)\}$ 的关键, 其中 $T_{n}(x)=\sum_{k=0}^{n}\alpha_{k}\varphi_{k}(x)$ 称为 $n$ 次 $\varphi$ 多项式, $\alpha_{k}$ 是任意给定的实数.
+\end{definition}
+
+\begin{theorem}\label{thm:16.2.5}
+设 $f \in R[a, b]$, $\{\varphi_k\}$ 为 $[a, b]$ 的一个规范正交系, $\{c_k\}$ 为 $f$ 关于 $\{\varphi_k\}$ 的 Fourier 系数, 则
+\begin{enumerate}
+  \item ($f$ 的部分和 $S_{n}$ 的极值性质) $\forall \alpha_{0}, \alpha_{1}, \cdots, \alpha_{n} \in \mathbb{R}$,
+  \[
+    \|f-T_{n}\|=\left\|f-\sum_{k=0}^{n}\alpha_{k}\varphi_{k}\right\|\geqslant\left\|f-\sum_{k=0}^{n}c_{k}\varphi_{k}\right\|=\|f-S_n\|,
+\]
+  即当 $\alpha_{k}=c_{k}, k=0,1,\cdots,n$ 时,
+  \[
+    \| f-T_{n}\|=\left[\int_{a}^{b}(f(x)-T_{n}(x))^{2}\mathrm{d}x\right]^{1/2}
+\]
+  达到最小值, 即平方平均误差最小;
+  \item $\left\|f - \sum_{k=0}^{n} c_{k}\varphi_{k}\right\|^{2} = \|f\|^{2} - \sum_{k=0}^{n} c_{k}^{2}$;
+  \item (Bessel 不等式) $\sum_{k=0}^{n} c_{k}^{2} \leqslant \| f \|^{2}$, $\sum_{k=0}^{\infty} c_{k}^{2} \leqslant \| f \|^{2}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1)、(2) $\|f-T_{n}\|^{2}=\langle f-T_{n},f-T_{n}\rangle$
+\[
+  \begin{aligned}
+    &=\left\langle f-\sum_{k=0}^{n}\alpha_{k}\varphi_{k},\ f-\sum_{l=0}^{n}\alpha_{l}\varphi_{l}\right\rangle\\
+    &=\langle f,f\rangle-\sum_{l=0}^{n}\alpha_{l}\langle f,\varphi_{l}\rangle-\sum_{k=0}^{n}\alpha_{k}\langle\varphi_{k},f\rangle+\sum_{k=0}^{n}\sum_{l=0}^{n}\alpha_{k}\alpha_{l}\langle\varphi_{k},\varphi_{l}\rangle\\
+    &=\langle f,f\rangle-2\sum_{k=0}^{n}\alpha_{k}\langle f,\varphi_{k}\rangle+\sum_{k=0}^{n}\alpha_{k}^{2}\\
+    &=\| f\|^{2}-2\sum_{k=0}^{n}\alpha_{k}c_{k}+\sum_{k=0}^{n}\alpha_{k}^{2}=\| f\|^{2}-\sum_{k=0}^{n}c_{k}^{2}+\sum_{k=0}^{n}(\alpha_{k}-c_{k})^{2}\\
+    &\geqslant\| f\|^{2}-\sum_{k=0}^{n}c_{k}^{2}.
+  \end{aligned}
+\]
+由此可见, 当且仅当
+\[
+  \alpha_{k}=c_{k},\quad k=0,1,2,\cdots,n
+\]
+时 $\| f-T_{n}\|^{2}$ 才达到最小值
+\[
+  \left\|f-\sum_{k=0}^{n}c_{k}\varphi_{k}\right\|^{2}=\| f\|^{2}-\sum_{k=0}^{n}c_{k}^{2}.
+\]
+
+(3) 从上式立即得到
+\[
+  \sum_{k=0}^{n}c_{k}^{2}\leqslant\sum_{k=0}^{n}c_{k}^{2}+\left\|f-\sum_{k=0}^{n}c_{k}\varphi_{k}\right\|^{2}=\| f\|^{2}.
+\]
+令 $n \to +\infty$, 有
+\[
+  \sum_{k=0}^{\infty}c_{k}^{2}\leqslant\| f\|^{2}.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:16.2.1}
+在定理~\ref{thm:16.2.5} 中, 有
+\[
+  \lim_{k\to+\infty}c_{k}=\lim_{k\to+\infty}\int_{a}^{b}f(x)\varphi_{k}(x)\mathrm{d}x=0.
+\]
+\end{corollary}
+
+\begin{proof}
+因为 $\sum_{k=0}^{\infty} c_{k}^{2} \leqslant \|f\|^2 < +\infty$, 所以根据定理~\ref{thm:12.1.2} 知, $\lim_{k \to +\infty} c_{k} = 0$.
+\end{proof}
+
+\begin{definition}\label{def:16.2.4}
+设 $\{\varphi_{k}\}$ 为 $R[a,b]$ 中的规范正交系, 如果定理~\ref{thm:16.2.5}(3) 中的不等式成为等式, 即
+\[
+  \sum_{k=0}^{\infty}c_{k}^{2}=\|f\|^{2},
+\]
+则称之为 \textbf{Parseval 等式}或\textbf{封闭公式}.
+
+Parseval 等式有明确的几何意义. 如果 $f(x) \in R[a,b]$ 能展开成 Fourier 级数, 即
+\[
+  f(x)=\sum_{k=0}^{\infty}c_{k}\varphi_{k}(x),
+\]
+则 $\{c_{0},c_{1},\cdots,c_{n},\cdots\}$ 可以视作向量 $f(x)$ 在基 $\{\varphi_{k}\}$ 下的坐标. 于是, Parseval 等式就类似于 Euclid 空间中的勾股定理.
+
+如果 $\forall f(x) \in R[a, b]$, 均有 Parseval 等式(或封闭公式)成立, 则称 $\{\varphi_k\}$ 是\textbf{封闭}的.
+\end{definition}
+
+从定理~\ref{thm:16.2.5} 立即可得下面定理.
+
+\begin{theorem}\label{thm:16.2.6}
+$\{\varphi_{k}\}$ 是封闭的 $\iff \forall f \in R[a,b]$ 有 $\lim_{n\to+\infty}\left\|f - \sum_{k=0}^{n}c_{k}\varphi_{k}\right\|^{2} = 0$, 即 $f$ 可用它的 Fourier 级数的部分和平方平均逼近.
+\end{theorem}
+
+\begin{proof}
+由定理~\ref{thm:16.2.5}(2),
+\[
+  \sum_{k=0}^{\infty}c_{k}^{2}=\|f\|^{2}\iff\lim_{n\to+\infty}\left\|f-\sum_{k=0}^{n}c_{k}\varphi_{k}\right\|^{2}=\lim_{n\to+\infty}\left[\|f\|^{2}-\sum_{k=0}^{n}c_{k}^{2}\right]=0.
+\]
+\end{proof}
+
+\begin{example}\label{ex:16.2.1}
+根据\extref{例 6.3.3} 知,
+\[
+  \{1,\cos x,\sin x,\cdots,\cos nx,\sin nx,\cdots\}
+\]
+为 $[-\pi, \pi]$ 上的正交系, 而三角函数系
+\[
+  \left\{\frac{1}{\sqrt{2\pi}},\frac{\cos x}{\sqrt{\pi}},\frac{\sin x}{\sqrt{\pi}},\cdots,\frac{\cos nx}{\sqrt{\pi}},\frac{\sin nx}{\sqrt{\pi}},\cdots\right\}
+\]
+为 $[-\pi,\pi]$ 上的规范正交系.
+
+令
+\[
+  \varphi_{0}(x)=\frac{1}{\sqrt{2\pi}},\quad\varphi_{2k-1}(x)=\frac{\cos k x}{\sqrt{\pi}},\quad\varphi_{2k}(x)=\frac{\sin k x}{\sqrt{\pi}},\quad k=1,2,\cdots,
+\]
+则 $\forall f(x) \in R[-\pi, \pi]$, 有
+\[
+  c_{0}=\int_{-\pi}^{\pi}f(x)\varphi_{0}(x)\mathrm{d}x=\frac{1}{\sqrt{2\pi}}\int_{-\pi}^{\pi}f(x)\mathrm{d}x=\sqrt{\frac{\pi}{2}}a_{0},
+\]
+\[
+  c_{2k-1}=\int_{-\pi}^{\pi}f(x)\varphi_{2k-1}(x)\mathrm{d}x=\frac{1}{\sqrt{\pi}}\int_{-\pi}^{\pi}f(x)\cos kx\,\mathrm{d}x=\sqrt{\pi}a_{k},\quad k=1,2,\cdots,
+\]
+\[
+  c_{2k}=\int_{-\pi}^{\pi}f(x)\varphi_{2k}(x)\mathrm{d}x=\frac{1}{\sqrt{\pi}}\int_{-\pi}^{\pi}f(x)\sin k x\,\mathrm{d}x=\sqrt{\pi}b_{k},\quad k=1,2,\cdots,
+\]
+这里 $a_{k}, b_{k}$ 是定义~\ref{def:16.1.1} 中定义的 Fourier 系数. 于是,
+\[
+  \sum_{k=0}^{2n}c_{k}\varphi_{k}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{n}\left(a_{k}\cos kx+b_{k}\sin kx\right),
+\]
+\[
+  \sum_{k=0}^{\infty}c_{k}\varphi_{k}(x)=\frac{a_{0}}{2}+\sum_{k=1}^{\infty}\left(a_{k}\cos k x+b_{k}\sin k x\right).
+\]
+此时, Bessel 不等式为
+\[
+  \frac{a_{0}^{2}}{2}+\sum_{k=1}^{n}(a_{k}^{2}+b_{k}^{2})=\frac{1}{\pi}\sum_{k=0}^{2n}c_{k}^{2}\leqslant\frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x,
+\]
+\[
+  \frac{a_{0}^{2}}{2}+\sum_{k=1}^{\infty}(a_{k}^{2}+b_{k}^{2})=\frac{1}{\pi}\sum_{k=0}^{\infty}c_{k}^{2}\leqslant\frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x.
+\]
+而 Parseval 等式为
+\[
+  \frac{a_{0}^{2}}{2}+\sum_{k=1}^{\infty}(a_{k}^{2}+b_{k}^{2})=\frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x.
+\]
+\end{example}
+
+\begin{theorem}\label{thm:16.2.7}
+$[-\pi,\pi]$ 上的三角函数系
+\[
+  \left\{\frac{1}{\sqrt{2\pi}},\frac{\cos x}{\sqrt{\pi}},\frac{\sin x}{\sqrt{\pi}},\cdots,\frac{\cos kx}{\sqrt{\pi}},\frac{\sin kx}{\sqrt{\pi}},\cdots\right\}
+\]
+是封闭的, 即总成立 Parseval 等式
+\[
+  \frac{a_{0}^{2}}{2}+\sum_{k=1}^{\infty}(a_{k}^{2}+b_{k}^{2})=\frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+分三步来证明.
+
+(1) 设 $f(x)$ 为 $[-\pi, \pi]$ 上的连续函数, 且 $f(-\pi) = f(\pi)$.
+
+根据 Weierstrass 定理~\ref{thm:14.3.8} 或 Fej\'er 定理 16.4.4 知, $\forall\varepsilon>0$, 总 $\exists n_{0}\in\mathbb{N}$, 使得
+\[
+  |f(x)-T_{n_{0}}(x)|<\frac{\sqrt{\varepsilon}}{\sqrt{2\pi}},\quad\forall x\in[-\pi,\pi],
+\]
+再根据 Fourier 级数部分和 $S_{n}$ 的极值性质, 有
+\[
+  \|f-S_{n_{0}}\|^{2}\leqslant\|f-T_{n_{0}}\|^{2}<\varepsilon.
+\]
+由定理~\ref{thm:16.2.5}(2) 可以看出, $\| f - S_n \|^2 = \left\| f - \sum_{k=0}^{n} c_k \varphi_k \right\|^2$ 随着 $n$ 的增大而递减. 因此, 当 $n > n_0$ 时, 有
+\[
+  \|f-S_{n}\|^{2}\leqslant\|f-S_{n_{0}}\|^{2}<\varepsilon.
+\]
+这就证明了 $\lim_{n\to\infty}\|f-S_{n}\|=0$, 故由定理~\ref{thm:16.2.6} 知道, Parseval 等式(或封闭公式)成立.
+
+(2) 设 $f$ 在 $[-\pi, \pi]$ 上 Riemann 可积, 故对 $\forall\varepsilon > 0$, 存在 $[-\pi, \pi]$ 的一个分割
+\[
+  -\pi=x_{0}<x_{1}<\cdots<x_{m-1}<x_{m}=\pi,
+\]
+使得
+\[
+  \sum_{i=1}^{m}\omega_{i}\Delta x_{i}<\frac{\varepsilon}{4\Omega+1},
+\]
+其中 $\omega_{i}=M_{i}-m_{i}$ 是 $f$ 在小区间 $[x_{i-1},x_{i}]$ 上的振幅, $\Omega=M-m$ 为 $[-\pi,\pi]$ 上的振幅. 令
+\[
+  g(x)=\begin{cases}
+    f(-\pi), & x=-\pi,\pi,\\
+    f(x_{i}), & x=x_i,\ i=1,2,\cdots,m-1,\\
+    g(x_{i-1})+\dfrac{g(x_{i})-g(x_{i-1})}{x_{i}-x_{i-1}}(x-x_{i-1}), & x\in(x_{i-1},x_{i}),\ i=1,2,\cdots,m.
+\end{cases}
+\]
+显然, $g(x)$ 为连续函数, 而且 $g(-\pi)=f(-\pi)=g(\pi)$. 从几何上看, 函数 $y=g(x)$ 的图形是连接 $(x_{i-1},g(x_{i-1}))$ 与 $(x_{i},g(x_{i}))$ 的一条折线. 根据 (1) 中证明的结论, 存在三角多项式 $T(x)$, 使得
+\[
+  \int_{-\pi}^{\pi}\left[g(x)-T(x)\right]^{2}\mathrm{d}x<\frac{\varepsilon}{4}.
+\]
+当 $x \in [x_{i-1}, x_{i}]$ 时, 显然有
+\[
+  m_{i}\leqslant f(x)\leqslant M_{i},\quad m_{i}\leqslant g(x)\leqslant M_i,
+\]
+因而,
+\[
+  |f(x)-g(x)|\leqslant M_{i}-m_{i}=\omega_{i},\quad x\in[x_{i-1},x_{i}].
+\]
+于是,
+\[
+  \begin{aligned}
+    \int_{-\pi}^{\pi}\left[f(x)-g(x)\right]^{2}\mathrm{d}x&=\sum_{i=1}^{m}\int_{x_{i-1}}^{x_{i}}\left[f(x)-g(x)\right]^{2}\mathrm{d}x\leqslant\sum_{i=1}^{m}\omega_{i}^{2}\Delta x_{i}\\
+    &\leqslant\Omega\sum_{i=1}^{m}\omega_{i}\Delta x_{i}<\Omega\cdot\frac{\varepsilon}{4\Omega+1}<\frac{\varepsilon}{4}.
+  \end{aligned}
+\]
+应用初等不等式 $(a+b)^2 \leqslant 2(a^2+b^2)$, 便有
+\[
+  \begin{aligned}
+    \| f-T\|^{2}&=\int_{-\pi}^{\pi}\left[f(x)-T(x)\right]^{2}\mathrm{d}x\\
+    &\leqslant2\int_{-\pi}^{\pi}\left[f(x)-g(x)\right]^{2}\mathrm{d}x+2\int_{-\pi}^{\pi}\left[g(x)-T(x)\right]^{2}\mathrm{d}x\\
+    &<2\cdot\frac{\varepsilon}{4}+2\cdot\frac{\varepsilon}{4}=\varepsilon.
+  \end{aligned}
+\]
+再用与 (1) 同样的推理, 根据 Fourier 级数部分和的极值性质, 有
+\[
+  \| f-S_{n_{0}}\|^{2}\leqslant\| f-T\|^{2}<\varepsilon,
+\]
+其中 $T = T_{n_{0}}$. 从定理~\ref{thm:16.2.5}(2) 可以看出, $\| f - S_{n} \|^{2}$ 随着 $n$ 的增大而递减. 因此, 当 $n > n_{0}$ 时, 便有
+\[
+  \| f-S_{n}\|^{2}\leqslant\| f-S_{n_{0}}\|^{2}<\varepsilon.
+\]
+这就证明了 $\lim_{n\to\infty}\|f-S_n\|=0$, 故由定理~\ref{thm:16.2.6} 知道, Parseval 等式(或封闭公式)成立.
+
+(3) 设 $f$ 在 $[-\pi, \pi]$ 上广义可积, 且 $f^{2}$ 也广义可积.
+
+不失一般性, 设 $\pi$ 为 $f$ 的瑕点. 于是, $\forall \varepsilon > 0, \exists \eta > 0$, 使得
+\[
+  \int_{\pi-\eta}^{\pi}f^{2}(x)\mathrm{d}x<\frac{\varepsilon}{4}.
+\]
+作函数
+\[
+  f_{1}(x)=\begin{cases}
+    f(x), & x\in[-\pi,\pi-\eta],\\
+    0, & x\in(\pi-\eta,\pi],
+\end{cases}\qquad
+  f_{2}(x)=\begin{cases}
+    0, & x\in[-\pi,\pi-\eta],\\
+    f(x), & x\in(\pi-\eta,\pi].
+\end{cases}
+\]
+显然, $f(x)=f_{1}(x)+f_{2}(x)$. 由于 $f_{1}$ 在 $[-\pi,\pi]$ 上 Riemann 可积, 故由 (2) 的结论, 存在三角多项式 $T(x)$, 使得
+\[
+  \int_{-\pi}^{\pi}\left[f_{1}(x)-T(x)\right]^{2}\mathrm{d}x<\frac{\varepsilon}{4}.
+\]
+于是,
+\[
+  \begin{aligned}
+    \int_{-\pi}^{\pi}\left[f(x)-T(x)\right]^{2}\mathrm{d}x&= \int_{-\pi}^{\pi}\left[f_{1}(x)+f_{2}(x)-T(x)\right]^{2}\mathrm{d}x\\
+    &\leqslant2\int_{-\pi}^{\pi}\left[f_{1}(x)-T(x)\right]^{2}\mathrm{d}x+2\int_{-\pi}^{\pi}f_{2}^{2}(x)\mathrm{d}x\\
+    &<2\cdot\frac{\varepsilon}{4}+2\int_{\pi-\eta}^{\pi}f^{2}(x)\mathrm{d}x<\frac{\varepsilon}{2}+2\cdot\frac{\varepsilon}{4}=\varepsilon.
+  \end{aligned}
+\]
+重复上面的讨论, 即得
+\[
+  \lim_{n\to+\infty}\| f-S_{n}\|=0.
+\]
+故由定理~\ref{thm:16.2.6}, Parseval 等式(或封闭公式)在这种情形也成立.
+\end{proof}
+
+从 Parseval 等式可以得到下面两个重要的推论.
+
+\begin{corollary}\label{cor:16.2.2}
+设 $f(x) \in R[-\pi,\pi]$ 与规范正交系
+\[
+  \left\{\frac{1}{\sqrt{2\pi}},\frac{\cos x}{\sqrt{\pi}},\frac{\sin x}{\sqrt{\pi}},\cdots,\frac{\cos nx}{\sqrt{\pi}},\frac{\sin nx}{\sqrt{\pi}},\cdots\right\}
+\]
+或三角函数系 $\{1,\cos x,\sin x,\cdots,\cos nx,\sin nx,\cdots\}$ 都正交, 则必有 $f(x)\overset{\mathrm{a.e.}}{=}0,x\in[-\pi,\pi]$. 特别当 $f$ 连续时, 有 $f\equiv0$.
+\end{corollary}
+
+\begin{proof}
+根据假定,
+\[
+  a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos n x\,\mathrm{d}x=0,\quad n=0,1,2,\cdots,
+\]
+\[
+  b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin n x\,\mathrm{d}x=0,\quad n=1,2,\cdots.
+\]
+于是, 由 Parseval 等式得到
+\[
+  \int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x=\pi\left[\frac{a_{0}^{2}}{2}+\sum_{k=1}^{\infty}(a_{k}^{2}+b_{k}^{2})\right]=0.
+\]
+从而 $f(x)\overset{\mathrm{a.e.}}{=}0, x\in[-\pi, \pi]$. 当 $f$ 连续时, 有 $f\equiv0$.
+\end{proof}
+
+\begin{corollary}[唯一性定理]\label{cor:16.2.3}
+设 $f, g \in R[-\pi, \pi]$, 且它们有相同的 Fourier 级数, 则 $f \overset{\mathrm{a.e.}}{=} g, x \in [-\pi, \pi]$. 特别当 $f, g$ 连续时, 有 $f \equiv g$.
+\end{corollary}
+
+\begin{proof}
+由于 $f, g$ 有相同的 Fourier 级数, 则它们有相同的 Fourier 系数, 从而 $f-g$ 的 Fourier 系数全为 $0$. 应用推论~\ref{cor:16.2.2} 知, $f-g\overset{\mathrm{a.e.}}{=}0, x\in[-\pi,\pi]$, 即 $f\overset{\mathrm{a.e.}}{=}g, x\in[-\pi,\pi]$. 当 $f,g$ 连续时, $f\equiv g$.
+\end{proof}
+
+Parseval 等式还可以推广到两个不同的函数.
+
+\begin{theorem}\label{thm:16.2.8}
+设 $f(x), g(x) \in R[-\pi, \pi]$, $a_n, b_n$ 与 $\alpha_n, \beta_n$ 分别为 $f(x)$ 与 $g(x)$ 的 Fourier 系数, 则
+\[
+  \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)g(x)\mathrm{d}x=\frac{a_{0}\alpha_{0}}{2}+\sum_{n=1}^{\infty}(a_{n}\alpha_{n}+b_{n}\beta_{n}).
+\]
+\end{theorem}
+
+\begin{proof}
+由 $f+g$ 与 $f-g$ 的 Parseval 等式得到
+\[
+  \begin{aligned}
+    \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)g(x)\mathrm{d}x&=\frac{1}{4}\left\{\frac{1}{\pi}\int_{-\pi}^{\pi}\left[f(x)+g(x)\right]^{2}\mathrm{d}x-\frac{1}{\pi}\int_{-\pi}^{\pi}\left[f(x)-g(x)\right]^{2}\mathrm{d}x\right\}\\
+    &=\frac{1}{4}\Biggl\{\frac{(a_{0}+\alpha_{0})^{2}}{2}+\sum_{n=1}^{\infty}\left[(a_{n}+\alpha_{n})^{2}+(b_{n}+\beta_{n})^{2}\right]-\frac{(a_{0}-\alpha_{0})^{2}}{2}\\
+    &\quad-\sum_{n=1}^{\infty}\left[(a_{n}-\alpha_{n})^{2}+(b_{n}-\beta_{n})^{2}\right]\Biggr\}\\
+    &=\frac{a_{0}\alpha_{0}}{2}+\sum_{n=1}^{\infty}(a_{n}\alpha_{n}+b_{n}\beta_{n}).
+  \end{aligned}
+\]
+\end{proof}
+
+作为定理~\ref{thm:16.2.8} 的应用, 下面证明 Fourier 级数的逐项积分定理.
+
+\begin{theorem}[逐项积分定理]\label{thm:16.2.9}
+设 $f(x) \in R[-\pi, \pi]$, 其 Fourier 级数为
+\[
+  f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\]
+则对任何闭区间 $[a,b]\subset[-\pi,\pi]$ 有
+\[
+  \int_{a}^{b}f(x)\mathrm{d}x=\int_{a}^{b}\frac{a_{0}}{2}\mathrm{d}x+\sum_{n=1}^{\infty}\int_{a}^{b}(a_{n}\cos nx+b_{n}\sin nx)\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+任取 $g(x) \in R[-\pi, \pi]$, 其 Fourier 级数为
+\[
+  g(x)\sim\frac{\alpha_{0}}{2}+\sum_{n=1}^{\infty}\left(\alpha_{n}\cos nx+\beta_{n}\sin nx\right).
+\]
+将 $g(x)$ 的 Fourier 系数
+\[
+  \alpha_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)\cos nx \,\mathrm{d}x,\quad n=0,1,2,\cdots,
+\]
+\[
+  \beta_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)\sin n x\,\mathrm{d}x,\quad n=1,2,\cdots
+\]
+代入推广的 Parseval 等式, 即得
+\[
+  \begin{aligned}
+    \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)g(x)\mathrm{d}x&=\frac{a_{0}\alpha_{0}}{2}+\sum_{n=1}^{\infty}(a_{n}\alpha_{n}+b_{n}\beta_{n})\\
+    &=\frac{1}{\pi}\int_{-\pi}^{\pi}\frac{a_{0}}{2}g(x)\mathrm{d}x+\sum_{n=1}^{\infty}\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)(a_{n}\cos nx+b_{n}\sin nx)\mathrm{d}x.
+  \end{aligned}
+\]
+上式对任何 $g(x) \in R[-\pi, \pi]$ 都成立. 今取
+\[
+  g(x)=\begin{cases}
+    1, & x\in[a,b],\\
+    0, & x\in[-\pi,a)\cup(b,\pi],
+\end{cases}
+\]
+则上式就变成
+\[
+  \int_{a}^{b}f(x)\mathrm{d}x=\int_{a}^{b}\frac{a_{0}}{2}\mathrm{d}x+\sum_{n=1}^{\infty}\int_{a}^{b}(a_{n}\cos nx+b_{n}\sin nx)\mathrm{d}x.
+\]
+\end{proof}
+
+值得注意的是, 不论 $f(x)$ 的 Fourier 级数是否收敛, 但永远可以逐项积分. 这是 Fourier 级数特有的性质.
+
+\begin{example}\label{ex:16.2.2}
+证明:
+\begin{enumerate}
+  \item $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^{2}} = \frac{\pi^{2}}{6}$;
+  \item $\displaystyle\sum_{k=1}^{\infty} \frac{1}{(2k-1)^{2}} = \frac{\pi^{2}}{8}$;
+  \item $\displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^{2}} = \frac{\pi^{2}}{12}$;
+  \item $\displaystyle\sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^{4}} = \frac{7\pi^{4}}{720}$;
+  \item $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^{4}} = \frac{\pi^{4}}{90}$.
+\end{enumerate}
+\end{example}
+
+\begin{solution}[证法 1]
+(1)、(2)、(3)、(5) 可由此方法证明.
+
+(1) 由例~\ref{ex:16.1.1}, 有
+\[
+  x=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{2}{n}\sin n x,\quad x\in(-\pi,\pi),
+\]
+应用 Parseval 等式得到
+\[
+  4\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{1}{\pi}\int_{-\pi}^{\pi}x^{2}\mathrm{d}x=\frac{1}{\pi}\cdot\left.\frac{x^{3}}{3}\right|_{-\pi}^{\pi}=\frac{2}{3}\pi^{2},
+\]
+故
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\pi^{2}}{6}.
+\]
+
+(2) 由 $\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}}+\sum_{k=1}^{\infty}\frac{1}{(2k)^{2}}$, 得
+\[
+  \sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}}=\frac{3}{4}\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{3}{4}\times\frac{\pi^{2}}{6}=\frac{\pi^{2}}{8}.
+\]
+
+(3)
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}=\sum_{k=1}^{\infty}\left[\frac{1}{(2k-1)^{2}}-\frac{1}{(2k)^{2}}\right]=\frac{\pi^{2}}{8}-\frac{1}{4}\times\frac{\pi^{2}}{6}=\frac{\pi^{2}}{12}.
+\]
+
+(5) 由例~\ref{ex:16.1.3}, 有
+\[
+  x^{2}=\frac{\pi^{2}}{3}+4\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\cos nx,\quad x\in[-\pi,\pi],
+\]
+应用 Parseval 等式得到
+\[
+  \frac{\left(\frac{2}{3}\pi^{2}\right)^{2}}{2}+16\sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{1}{\pi}\int_{-\pi}^{\pi}x^{4}\mathrm{d}x=\frac{2}{\pi}\cdot\left.\frac{x^{5}}{5}\right|_{0}^{\pi}=\frac{2}{5}\pi^{4},
+\]
+于是
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{1}{16}\left(\frac{2}{5}\pi^{4}-\frac{2}{9}\pi^{4}\right)=\frac{\pi^{4}}{90}.
+\]
+\noqedhere
+\end{solution}
+
+\begin{solution}[证法 2]
+将 $x(-\pi<x<\pi)$ 的 Fourier 展开式
+\[
+  x=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{2}{n}\sin n x,\quad x\in(-\pi,\pi)
+\]
+两边积分, 有
+\[
+  \begin{aligned}
+    \frac{1}{2}x^{2}&=2\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\left.\frac{-\cos nx}{n}\right|_{0}^{x}\\
+    &=2\sum_{n=1}^{\infty}\frac{(-1)^{n}\cos nx}{n^{2}}+2\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}},\quad x\in(-\pi,\pi).
+  \end{aligned}
+\]
+令 $x=\pi$, 得
+\[
+  \begin{aligned}
+    \frac{1}{2}\pi^{2}&=2\sum_{n=1}^{\infty}\frac{(-1)^{2n}}{n^{2}}+2\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}\\
+    &=2\sum_{n=1}^{\infty}\frac{1+(-1)^{n+1}}{n^{2}}=4\sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}},
+  \end{aligned}
+\]
+即
+\[
+  \sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}}=\frac{\pi^{2}}{8}.
+\]
+而由
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{2}}=\sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}}+\sum_{k=1}^{\infty}\frac{1}{(2k)^{2}},
+\]
+得
+\[
+  \frac{3}{4}\sum_{n=1}^{\infty}\frac{1}{n^{2}}=\sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}}=\frac{\pi^{2}}{8}.
+\]
+于是
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\pi^{2}}{6},
+\]
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}=\sum_{k=1}^{\infty}\frac{1}{(2k-1)^{2}}-\sum_{k=1}^{\infty}\frac{1}{(2k)^{2}}=\frac{\pi^{2}}{8}-\frac{1}{4}\cdot\frac{\pi^{2}}{6}=\frac{\pi^{2}}{12}.
+\]
+代入
+\[
+  \frac{1}{2}x^{2}=2\sum_{n=1}^{\infty}\frac{(-1)^{n}\cos nx}{n^{2}}+2\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}
+\]
+中, 得
+\[
+  x^{2}=\frac{\pi^{2}}{3}+4\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\cos nx,\quad x\in[-\pi,\pi].
+\]
+两边再积分,
+\[
+  \begin{aligned}
+    \frac{x^{3}}{3}&=\frac{\pi^{2}}{3}x+4\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\frac{\sin nx}{n}\\
+    &=\frac{\pi^{2}}{3}\cdot2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin nx}{n}+4\sum_{n=1}^{\infty}(-1)^{n}\frac{\sin nx}{n^{3}},
+  \end{aligned}
+\]
+\[
+  x^{3}=2\pi^{2}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\sin n x+12\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{3}}\sin n x,\quad x\in(-\pi,\pi).
+\]
+再两边积分, 得
+\[
+  \frac{x^{4}}{4}=2\pi^{2}\sum_{n=1}^{\infty}(-1)^{n+1}\frac{1-\cos nx}{n^{2}}+12\sum_{n=1}^{\infty}(-1)^{n}\frac{1-\cos nx}{n^{4}},
+\]
+\[
+  \begin{aligned}
+    x^{4}&=\left[8\pi^{2}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}+48\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{4}}\right]\\
+    &\quad+8\pi^{2}\sum_{n=1}^{\infty}(-1)^{n}\frac{\cos nx}{n^{2}}+48\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{4}}\cos nx,\quad x\in[-\pi,\pi],
+  \end{aligned}
+\]
+其中常数项由平均值计算:
+\[
+  8\pi^{2}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}+48\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{4}}=\frac{1}{2\pi}\int_{-\pi}^{\pi}x^{4}\mathrm{d}x=\frac{2}{2\pi}\cdot\left.\frac{x^{5}}{5}\right|_{0}^{\pi}=\frac{\pi^{4}}{5}.
+\]
+于是,
+\[
+  x^{4}=\frac{\pi^{4}}{5}+8\pi^{2}\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\cos nx+48\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{4}}\cos nx,\quad x\in[-\pi,\pi].
+\]
+令 $x=0$, 并移项就有
+\[
+  \begin{aligned}
+    \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{4}}&=\frac{1}{48}\left[-\frac{\pi^{4}}{5}-8\pi^{2}\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\right]\\
+    &=\frac{1}{48}\left(-\frac{\pi^{4}}{5}+8\pi^{2}\cdot\frac{\pi^{2}}{12}\right)=\frac{7}{720}\pi^{4}.
+  \end{aligned}
+\]
+再令 $x=\pi$, 代入得
+\[
+  \pi^{4}=\frac{\pi^{4}}{5}+8\pi^{2}\sum_{n=1}^{\infty}\frac{1}{n^{2}}-48\sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{\pi^{4}}{5}+8\pi^{2}\cdot\frac{\pi^{2}}{6}-48\sum_{n=1}^{\infty}\frac{1}{n^{4}},
+\]
+于是,
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{1}{48}\left(-\pi^{4}+\frac{\pi^{4}}{5}+\frac{4}{3}\pi^{4}\right)=\frac{1}{48}\cdot\frac{8}{15}\pi^{4}=\frac{\pi^{4}}{90}.
+\]
+\end{solution}
+
+\begin{example}\label{ex:16.2.3}
+证明: 级数 $\sum_{n=2}^{\infty} \frac{\sin nx}{\ln n}$ 收敛, 但不存在 $[-\pi, \pi]$ 上的可积与平方可积的函数 $f(x)$ 使得 $\sum_{n=2}^{\infty} \frac{\sin nx}{\ln n}$ 为其 Fourier 级数.
+\end{example}
+
+\begin{solution}[证法 1]
+当 $x = 2k\pi\ (k = 0, \pm 1, \pm 2, \cdots)$ 时, $\sum_{n=2}^{N} \sin n x = 0$; 当 $x \neq 2k\pi\ (k = 0, \pm 1, \pm 2, \cdots)$ 时,
+\[
+  \left|\sum_{n=2}^{N}\sin nx\right|=\left|\frac{\sum_{n=2}^{N}2\sin\frac{x}{2}\sin nx}{2\sin\frac{x}{2}}\right|=\left|\frac{\cos\frac{3}{2}x-\cos\left(N+\frac{1}{2}\right)x}{2\sin\frac{x}{2}}\right|\leqslant\frac{1}{\left|\sin\frac{x}{2}\right|}.
+\]
+又 $\frac{1}{\ln n}$ 单调减趋于 $0$, 根据 Dirichlet 判别法知, $\sum_{n=2}^{\infty}\frac{\sin nx}{\ln n}$ 收敛.
+
+[反证] 假设 $f(x) \in R[-\pi, \pi]$ 以 $\sum_{n=2}^{\infty} \frac{\sin nx}{\ln n}$ 为其 Fourier 级数, 则由 Fourier 级数的逐项积分定理有
+\[
+  \begin{aligned}
+    \int_{0}^{\pi}f(x)\mathrm{d}x&=\sum_{n=2}^{\infty}\int_{0}^{\pi}\frac{\sin nx}{\ln n}\mathrm{d}x=\sum_{n=2}^{\infty}\left.\frac{-\cos n x}{n\ln n}\right|_{0}^{\pi}=\sum_{n=2}^{\infty}\frac{1+(-1)^{n+1}}{n\ln n}\\
+    &=\sum_{k=1}^{\infty}\frac{2}{(2k+1)\ln(2k+1)}=+\infty,
+  \end{aligned}
+\]
+这与 $f(x)$ 可积矛盾.
+\noqedhere
+\end{solution}
+
+\begin{solution}[证法 2]
+[反证] 假设 $f(x) \in R[-\pi, \pi]$ 以 $\sum_{n=2}^{\infty} \frac{\sin nx}{\ln n}$ 为其 Fourier 级数, 根据 Parseval 等式
+\[
+  \frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x=\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{2}}.
+\]
+由于 $f(x)$ 平方可积, 上式左边为一个有限数, 而右边由
+\[
+  \lim_{n\to+\infty}\frac{\frac{1}{n}}{\frac{1}{(\ln n)^{2}}}=\lim_{n\to+\infty}\frac{(\ln n)^{2}}{n}=0
+\]
+知, $\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{2}}=+\infty$, 矛盾.
+\end{solution}
+
+\begin{example}\label{ex:16.2.4}
+设 $f(x)$ 在区间 $[-\pi, \pi]$ 上连续, 且在该区间上有可积与平方可积的导函数 $f'(x)$. 如果 $f(x)$ 满足 $f(-\pi) = f(\pi)$, $\int_{-\pi}^{\pi} f(x) \, \mathrm{d}x = 0$, 则有不等式
+\[
+  \int_{-\pi}^{\pi}\left[f'(x)\right]^{2}\mathrm{d}x\geqslant\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x;
+\]
+等号当且仅当 $f(x)=A\cos x+B\sin x$ 时才成立.
+\end{example}
+
+\begin{proof}
+因为
+\[
+  \begin{aligned}
+    a_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos nx \,\mathrm{d}x=\frac{1}{\pi}\left(\left.\frac{f(x)}{n}\sin nx\right|_{-\pi}^{\pi}-\frac{1}{n}\int_{-\pi}^{\pi}f'(x)\sin nx \,\mathrm{d}x\right)\\
+    &=-\frac{b_{n}'}{n},\quad n=1,2,\cdots,
+  \end{aligned}
+\]
+\[
+  a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\mathrm{d}x=0,
+\]
+\[
+  \begin{aligned}
+    b_{n}&=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin n x\,\mathrm{d}x=\frac{1}{\pi}\left(\left.f(x)\frac{-\cos n x}{n}\right|_{-\pi}^{\pi}+\frac{1}{n}\int_{-\pi}^{\pi}f'(x)\cos n x\,\mathrm{d}x\right)\\
+    &=\frac{a_{n}'}{n},\quad n=1,2,\cdots,
+  \end{aligned}
+\]
+由 Parseval 等式就得到
+\[
+  \begin{aligned}
+    \frac{1}{\pi}\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x&=\sum_{n=1}^{\infty}\left(a_{n}^{2}+b_{n}^{2}\right)=\sum_{n=1}^{\infty}\frac{1}{n^{2}}\left(b_{n}'^{2}+a_{n}'^{2}\right)\\
+    &\leqslant\sum_{n=1}^{\infty}\left(a_{n}'^{2}+b_{n}'^{2}\right)\leqslant\frac{a_{0}'^{2}}{2}+\sum_{n=1}^{\infty}\left(a_{n}'^{2}+b_{n}'^{2}\right)=\frac{1}{\pi}\int_{-\pi}^{\pi}\left[f'(x)\right]^{2}\mathrm{d}x,
+  \end{aligned}
+\]
+即
+\[
+  \int_{-\pi}^{\pi}\left[f'(x)\right]^{2}\mathrm{d}x\geqslant\int_{-\pi}^{\pi}f^{2}(x)\mathrm{d}x.
+\]
+由上式还知, 等号成立
+\[
+  \begin{aligned}
+    &\iff a_{0}'=0,\ a_{n}'=b_{n}'=0,\ n\geqslant2\\
+    &\iff a_{0}=0,\ a_{n}=b_{n}=0,\ n\geqslant2\\
+    &\iff f(x)=A\cos x+B\sin x.
+  \end{aligned}
+\]
+\end{proof}
+
+% ----------------------------------------------------------------------
+% 练习题 16.2
+% ----------------------------------------------------------------------
+\begin{exblock}{练习题 16.2}
+\textbf{1.} 利用 $f(x) = |x|$ 在 $[-\pi, \pi]$ 上的 Fourier 展开式与 Parseval 等式, 求级数 $\sum_{n=0}^{\infty} \frac{1}{(2n+1)^4}$ 之和.
+
+\textbf{2.} 写出函数 $f(x)=\begin{cases}1,&|x|<a,\\0,&a<|x|<\pi\end{cases}$ 的 Parseval 等式, 并求级数 $\sum_{n=1}^{\infty}\frac{\sin^{2}na}{n^{2}}$ 和 $\sum_{n=1}^{\infty}\frac{\cos^{2}na}{n^{2}}$ 的和.
+
+\textbf{3.} 对展开式
+\[
+  x=2\sum_{n=1}^{\infty}(-1)^{n+1}\frac{\sin n x}{n},\quad-\pi<x<\pi
+\]
+逐项积分, 证明: 函数 $x^{2}$, $x^{3}$ 与 $x^{4}$ 在区间 $(-\pi, \pi)$ 内的 Fourier 展开式分别为
+\[
+  \begin{aligned}
+    x^{2}&=4\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{2}}+4\sum_{n=1}^{\infty}\frac{(-1)^{n}\cos nx}{n^{2}}\\&=\frac{\pi^{2}}{3}+4\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\cos nx,
+  \end{aligned}
+\]
+\[
+  x^{3}=2\pi^{2}\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n}\sin n x+12\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{3}}\sin n x,
+\]
+\[
+  x^{4}=\frac{\pi^{4}}{5}+8\pi^2\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{2}}\cos nx+48\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n^{4}}\cos nx.
+\]
+进而, 再证明:
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{2}}=\frac{\pi^{2}}{6},\quad\sum_{n=1}^{\infty}\frac{1}{(2n-1)^{2}}=\frac{\pi^{2}}{8},\quad\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{2}}=\frac{\pi^{2}}{12},
+\]
+\[
+  \sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n^{4}}=\frac{7}{720}\pi^{4},\quad\sum_{n=1}^{\infty}\frac{1}{n^{4}}=\frac{\pi^{4}}{90}.
+\]
+
+\textbf{4.} 设 $f(x)=\begin{cases}\dfrac{\pi-1}{2}x,&0\leqslant x\leqslant1,\\[
+6pt]\dfrac{\pi-x}{2},&1\leqslant x\leqslant\pi,\end{cases}$ 并奇延拓至 $[-\pi,\pi]$.
+\begin{enumerate}
+  \item 证明: $f(x)=\sum_{n=1}^{\infty}\frac{\sin n}{n^{2}}\sin nx,\quad|x|\leqslant\pi;$
+  \item 利用 (1) 与例~\ref{ex:16.1.2} 的结果, 证明:
+  \[
+    \sum_{n=1}^{\infty}\frac{\sin n}{n}=\sum_{n=1}^{\infty}\left(\frac{\sin n}{n}\right)^{2}=\frac{\pi-1}{2};
+\]
+  \item 利用 (1) 中展开式相应的 Parseval 等式证明:
+  \[
+    \sum_{n=1}^{\infty}\frac{\sin^{2}n}{n^{4}}=\frac{(\pi-1)^{2}}{6}.
+\]
+\end{enumerate}
+
+\textbf{5.} 将函数
+\[
+  f(x)=\begin{cases}
+    x(\pi-x), & 0\leqslant x\leqslant\pi,\\
+    (\pi-x)(2\pi-x), & \pi<x\leqslant2\pi
+\end{cases}
+\]
+展开成周期为 $2\pi$ 的 Fourier 级数, 并由此证明:
+\[
+  \sum_{k=0}^{\infty}\frac{1}{(2k+1)^6}=\frac{\pi^6}{960}.
+\]
+\end{exblock}
+
+% ----------------------------------------------------------------------
+% 思考题 16.2
+% ----------------------------------------------------------------------
+\begin{exblock}{思考题 16.2}
+\textbf{1.} 设 $a_{n}, b_{n}$ 为 $f(x) \in R[-\pi, \pi]$ 的 Fourier 系数, 证明: $\sum_{n=1}^{\infty} \frac{a_{n}}{n}$, $\sum_{n=1}^{\infty} \frac{b_{n}}{n}$ 收敛.
+
+\textbf{2.} 证明: 三角级数 $\sum_{n=2}^{\infty} \frac{\sin nx}{\ln n}$ 在不包含 $2\pi$ 整数倍的闭区间中一致收敛. 但它不是 $R[-\pi, \pi]$ 中任意一个函数的 Fourier 级数.
+
+\textbf{3.} 设 $f(x)$ 是周期为 $2\pi$ 的连续函数, 令 $F(x) = \frac{1}{\pi}\int_{-\pi}^{\pi} f(t) f(x+t) \,\mathrm{d}t$, 并用 $a_{n}, b_{n}$ 与 $A_{n}, B_{n}$ 分别记 $f(x)$ 与 $F(x)$ 的 Fourier 系数. 证明:
+\[
+  A_{0}=a_{0}^{2},\quad A_{n}=a_{n}^{2}+b_{n}^{2},\quad B_{n}=0.
+\]
+由此推得 $f(x)$ 的 Parseval 等式.
+
+\textbf{4.} 设 $f(x) \in R[0, l]$, $a_n = \frac{2}{l} \int_0^l f(x) \cos \frac{n\pi}{l} x \, \mathrm{d}x, n = 0, 1, 2, \cdots$. 证明:
+\[
+  \frac{a_{0}^{2}}{2}+\sum_{n=1}^{\infty}a_{n}^{2}=\frac{2}{l}\int_{0}^{l}f^{2}(x)\mathrm{d}x.
+\]
+
+\textbf{5.} (1) 如果
+\[
+  \frac{a_{0}}{2}+\sum_{n=1}^{\infty}(a_{n}\cos nx+b_{n}\sin nx)
+\]
+在 $[-\pi, \pi]$ 上一致收敛于 $f(x)$, 则
+\[
+  a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos n x\,\mathrm{d}x,\quad n=0,1,2,\cdots,
+\]
+\[
+  b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin n x\,\mathrm{d}x,\quad n=1,2,\cdots;
+\]
+
+(2) 如果 $f(x)$ 在 $[-\pi, \pi]$ 上二阶可导, 且 $f''(x)$ 可积或绝对可积及 $f(\pi) = f(-\pi)$, $f'(\pi) = f'(-\pi)$, 则 $f(x)$ 的 Fourier 级数一致收敛于 $f(x)$.
+\end{exblock}

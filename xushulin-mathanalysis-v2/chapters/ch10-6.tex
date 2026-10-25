@@ -1,0 +1,743 @@
+\section{广义重积分}\label{sec:10.6}
+
+如前所知, $n$ 重积分作为多变量的 Riemann 积分, 要求积分域 $\Omega$ 是有界集, 被积函数
+$f\colon \Omega \to \mathbb{R}$ 为有界函数. 然而, 正如单变量函数的 Riemann 积分推广到广义积分（无穷积分与瑕积分）一样,
+我们也可考察无界集上的重积分与无界函数的重积分, 统称为广义（或反常）重积分.
+为简明起见, 仅讨论广义二重积分. 对广义 $n$ 重积分可类似论述.
+
+先研究无穷积分, 它是一类重要的广义二重积分.
+
+\begin{definition}[无界集上的二重积分]\label{def:10.6.1}
+设 $f(x, y)$ 为定义在无界集 $\Omega$ 上的二元函数.
+如果对平面 $\mathbb{R}^{2}$ 上任一包围原点的 $C^{1}$ 光滑封闭曲线 $\gamma$,
+$f(x, y)$ 在曲线 $\gamma$ 所围的有界区域 $E_{\gamma}$ 与 $\Omega$ 的交集
+$E_{\gamma} \cap \Omega = \Omega_{\gamma}$（图~\ref{fig:10.6.1}）上恒可积.
+令 $d_{\gamma} = \inf\left\{ \sqrt{x^{2} + y^{2}} \mid (x, y) \in \gamma \right\}$,
+如果极限
+\[
+\lim_{d_{\gamma} \to +\infty} \int\limits_{\Omega_{\gamma}} \int f(x,y) \mathrm{d}x\mathrm{d}y
+\]
+存在有限, 且与 $\gamma$ 的取法无关, 则称 $f(x, y)$ 在 $\Omega$ 上的无穷二重积分（或广义二重积分）收敛, 并记
+\[
+\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y
+= \lim_{d_{\gamma} \to +\infty} \iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y.
+\]
+否则称 $f(x, y)$ 在 $\Omega$ 上的无穷二重积分（或广义二重积分）发散.
+\end{definition}
+
+\begin{theorem}\label{thm:10.6.1}
+设在无界区域 $\Omega$ 上 $f(x, y) \geqslant 0$,
+$\gamma_{1}, \gamma_{2}, \cdots, \gamma_{n}, \cdots$ 为一列包围原点的 $C^{1}$ 光滑封闭曲线序列, 满足:
+\begin{enumerate}
+\item[(1)] $d_{n} = \inf\left\{ \sqrt{x^{2} + y^{2}} \mid (x, y) \in \gamma_{n} \right\}
+  \to +\infty (n \to +\infty)$;
+\item[(2)] $J = \sup\limits_{n} \iint\limits_{\Omega_{n}} f(x,y) \mathrm{d}x\mathrm{d}y < +\infty$.
+\end{enumerate}
+其中 $\Omega_{n}$ 为 $\gamma_{n}$ 所围的有界区域 $E_{n}$ 与 $\Omega$ 的交集, 即
+$\Omega_{n} = E_{n} \cap \Omega$, 则无穷二重积分（或广义二重积分）
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 收敛, 且
+\[
+\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y = J.
+\]
+\end{theorem}
+
+\begin{proof}
+设 $\tilde{\gamma}$ 为任何包围原点的 $C^{1}$ 光滑封闭曲线, 曲线所围区域为 $\widetilde{E}$,
+记 $\widetilde{\Omega} = \widetilde{E} \cap \Omega$.
+因为 $\lim\limits_{n \to +\infty} d_{n} = +\infty$,
+所以, $\exists n \in \mathbb{Z}_{+}$, s. t.\ $\widetilde{\Omega} \subset \Omega_{n} \subset \Omega$.
+由于 $f(x, y) \geqslant 0$, 故有
+\[
+\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y
+\leqslant \iint\limits_{\Omega_{n}} f(x,y) \mathrm{d}x\mathrm{d}y
+\leqslant J.
+\]
+另一方面, 因为
+\[
+J = \sup\limits_{n} \iint\limits_{\Omega_{n}} f(x,y) \mathrm{d}x\mathrm{d}y,
+\]
+所以, $\forall \varepsilon > 0$, 总 $\exists n_{0} \in \mathbb{Z}_{+}$, s. t.\
+\[
+\iint\limits_{\Omega_{n_{0}}} f(x,y) \mathrm{d}x\mathrm{d}y > J - \varepsilon.
+\]
+从而对充分大的 $d$, 当 $d_{\gamma} > d$ 时, $\Omega_{\gamma}$ 又可包含 $\Omega_{n_{0}}$ .
+于是,
+\[
+\begin{aligned}
+\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y
+&\geqslant \iint\limits_{\Omega_{n_{0}}} f(x,y) \mathrm{d}x\mathrm{d}y > J - \varepsilon, \notag\\
+J - \varepsilon &< \iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y
+\leqslant J < J + \varepsilon, \notag\\
+\lim_{d_{\gamma} \to +\infty} \iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y &= J. \notag
+\end{aligned}
+\]
+即 $f(x, y)$ 在 $\Omega$ 上的反常二重积分存在, 且等于
+$J = \sup\limits_{n} \iint\limits_{\Omega_{n}} f(x,y) \mathrm{d}x\mathrm{d}y$.
+\end{proof}
+
+\begin{theorem}\label{thm:10.6.2}
+设在无界区域 $\Omega$ 上 $f(x, y) \geqslant 0$, 则反常二重积分
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 收敛
+$\Leftrightarrow$ 在 $\Omega$ 的任何有界子区域上 $f(x, y)$ 可积, 且积分值有上界.
+\end{theorem}
+
+\begin{proof}
+（$\Leftarrow$）$J$ 为 $f(x, y)$ 在 $\Omega$ 的任何有界子区域上的积分值的上确界,
+则对任何 $C^{1}$ 光滑曲线 $\gamma$, 有
+\[
+\iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y \leqslant J.
+\]
+另一方面, 因为
+\[
+J = \sup\limits_{\tilde{\alpha}} \iint\limits_{\tilde{\alpha} \subset \Omega} f(x,y) \mathrm{d}x\mathrm{d}y,
+\]
+所以, $\forall \varepsilon > 0$, 总 $\exists \Omega_{0} \subset \Omega$, s. t.\
+\[
+\iint\limits_{\Omega_{0}} f(x,y) \mathrm{d}x\mathrm{d}y > J - \varepsilon.
+\]
+从而对充分大的 $d$, 当 $d_{\gamma} > d$ 时, 有 $\Omega_{\gamma} \supset \Omega_{0}$, 且
+\[
+\begin{aligned}
+\iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y
+&\geqslant \iint\limits_{\Omega_{0}} f(x,y) \mathrm{d}x\mathrm{d}y > J - \varepsilon, \notag\\
+J - \varepsilon &< \iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y
+\leqslant J < J + \varepsilon, \notag\\
+\lim_{d_{\gamma} \to +\infty} \iint\limits_{\Omega_{\gamma}} f(x,y) \mathrm{d}x\mathrm{d}y &= J. \notag
+\end{aligned}
+\]
+这就证明了反常二重积分 $\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 是收敛的.
+
+（$\Rightarrow$）因为 $f(x, y)$ 在 $\Omega$ 上的广义二重积分存在有限, 即
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y < +\infty$.
+对 $\Omega$ 的任何有界子区域 $\Omega_{0} \subset \Omega$, 必有 $\Omega_{r}$, 使
+$\Omega_{0} \subset \Omega_{r} \subset \Omega$.
+\[
+0 \leqslant \iint\limits_{\Omega_{0}} f(x,y) \mathrm{d}x\mathrm{d}y
+\leqslant \iint\limits_{\Omega_{r}} f(x,y) \mathrm{d}x\mathrm{d}y
+\leqslant \iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y < +\infty.
+\]
+所以, $\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 为 $f(x, y)$
+在 $\Omega$ 的任何有界子区域的积分值的上确界.
+\end{proof}
+
+\begin{theorem}\label{thm:10.6.3}
+设 $f(x,y)$ 在无界区域 $\Omega$ 的任何有界子区域上可积, 则
+$f(x,y)$ 在 $\Omega$ 上反常二重积分收敛
+$\Leftrightarrow |f(x,y)|$ 在 $\Omega$ 上反常二重积分收敛.
+\end{theorem}
+
+\begin{proof}
+（$\Leftarrow$）设 $\left| f(x,y) \right|$ 在 $\Omega$ 上反常二重积分收敛. 由
+\[
+f^{+}(x,y) = \frac{\left| f(x,y) \right| + f(x,y)}{2}, \qquad
+f^{-}(x,y) = \frac{\left| f(x,y) \right| - f(x,y)}{2},
+\]
+显然, $0 \leqslant f^{+}(x,y) \leqslant \left| f(x,y) \right|$,
+$0 \leqslant f^{-}(x,y) \leqslant \left| f(x,y) \right|$.
+因而在 $\Omega$ 的任何有界子区域 $\Omega_{0}$ 上, 恒有
+\[
+\begin{aligned}
+0 \leqslant \iint\limits_{\Omega_{0}} f^{+}(x,y) \mathrm{d}x\mathrm{d}y
+&\leqslant \iint\limits_{\Omega} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y = M < +\infty, \notag\\
+0 \leqslant \iint\limits_{\Omega_{0}} f^{-}(x,y) \mathrm{d}x\mathrm{d}y
+&\leqslant \iint\limits_{\Omega} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y = M < +\infty. \notag
+\end{aligned}
+\]
+所以, $f^{+}(x,y)$ 与 $f^{-}(x,y)$ 在 $\Omega$ 上的反常二重积分收敛. 所以,
+\[
+f(x,y) = f^{+}(x,y) - f^{-}(x,y)
+\]
+在 $\Omega$ 上的反常二重积分也收敛.
+
+（$\Rightarrow$）留作习题（有兴趣的读者可参阅\textsuperscript{\cite{fichtenholz1957}}第三卷第一分册
+p.587\textasciitilde{}588, p.220\textasciitilde{}225）.
+\end{proof}
+
+由定理~\ref{thm:10.6.1} 及定理~\ref{thm:10.6.2}, 立即有下面的结论.
+
+\begin{theorem}[无穷区域上的广义二重积分收敛的 Cauchy 准则]
+\label{thm:10.6.4}
+设 $\Omega_{\gamma} = B(0; \gamma) \cap \Omega$ 且在无界区域 $\Omega$ 上 $f(x,y) \geqslant 0$, 则无穷区域上广义积分
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 收敛
+$\Leftrightarrow \forall \varepsilon > 0, \exists \bar{r} > 0$,
+对任意 $r_{2} > r_{1} > \bar{r}$, 记 $\Omega_{r_{1}r_{2}} = \Omega_{2} \backslash \Omega_{1}$, 则有
+\[
+0 \leqslant \iint\limits_{\Omega_{r_{1}r_{2}}} f(x,y) \mathrm{d}x\mathrm{d}y < \varepsilon.
+\]
+\end{theorem}
+
+\begin{theorem}[无穷区域上的广义二重积分收敛的 Cauchy 判别法]
+\label{thm:10.6.5}
+设 $f(x, y)$ 在无界区域 $\Omega$ 的任何有界子区域上二重积分存在,
+$r = \sqrt{x^{2} + y^{2}}$ 为 $\Omega$ 内的点 $(x, y)$ 到原点的距离.
+\begin{enumerate}
+\item[(1)] 如果 $\left| f(x,y) \right| \leqslant \dfrac{c}{r^{2+\delta}}$,
+$r = \sqrt{x^{2} + y^{2}} \geqslant r_{0} > 0$, 其中 $(x, y) \in \Omega$,
+而 $c$ 与 $r_{0}$ 均为正的常数, 则当 $\delta > 0$ 时广义二重积分
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 收敛;
+\item[(2)] 如果 $\left| f(x,y) \right| \geqslant \dfrac{c}{r^{2-\delta}}$,
+$r = \sqrt{x^{2} + y^{2}} \geqslant r_{0} > 0$, 其中 $(x, y) \in \Omega$,
+$\Omega$ 是含有顶点为原点的无限扇形区域, 而 $c$ 为正的常数,
+则当 $\delta \geqslant 0$ 时, 广义二重积分
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 发散.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+（1）$\forall \varepsilon > 0, \exists \bar{r} > r_{0}$,
+s. t.\ $\dfrac{2c\pi}{\delta}\dfrac{1}{\bar{r}^{\delta}} < \varepsilon$.
+于是, 当 $r_{2} > r_{1} > \bar{r}$ 时, 有
+\[
+\begin{aligned}
+0 \leqslant \iint\limits_{\Omega_{r_{1}r_{2}}} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y
+&\leqslant \iint\limits_{\Omega_{r_{1}r_{2}}} \frac{c}{r^{2+\delta}} \mathrm{d}x\mathrm{d}y \notag\\
+&\reason{极坐标变换} c \int_{0}^{2\pi} \mathrm{d}\varphi \int_{r_{1}}^{r_{2}} \frac{1}{r^{2+\delta}} \cdot r \mathrm{d}r \notag\\
+&= c \cdot 2\pi \int_{r_{1}}^{r_{2}} \frac{\mathrm{d}r}{r^{1+\delta}}
+ = \frac{2c\pi}{\delta}\left( \frac{1}{r_{1}^{\delta}} - \frac{1}{r_{2}^{\delta}} \right)
+ < \frac{2c\pi}{\delta} \cdot \frac{1}{r_{1}^{\delta}} < \varepsilon. \notag
+\end{aligned}
+\]
+根据 Cauchy 收敛准则定理~\ref{thm:10.6.4} 知,
+$\iint\limits_{\Omega} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y$ 收敛.
+再根据定理~\ref{thm:10.6.3} 推得
+$\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 也收敛.
+
+（2）因为
+\[
+\begin{aligned}
+\iint\limits_{\Omega} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y
+&\geqslant \iint\limits_{\Omega} \frac{c}{r^{2-\delta}} \mathrm{d}x\mathrm{d}y \notag\\
+&\geqslant c \int_{\alpha}^{\beta} \mathrm{d}\varphi \int_{r_{0}}^{+\infty} \frac{1}{r^{2-\delta}} \cdot r \mathrm{d}r \notag\\
+&= c(\beta - \alpha) \int_{r_{0}}^{+\infty} \frac{\mathrm{d}r}{r^{1-\delta}} = +\infty, \notag
+\end{aligned}
+\]
+所以, $\iint\limits_{\Omega} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y = +\infty$, \linebreak
+从而 $\iint\limits_{\Omega} \left| f(x,y) \right| \mathrm{d}x\mathrm{d}y$ 发散, \linebreak
+再根据定理 10.6.3 知, $\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 也发散.
+\end{proof}
+
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=stealth]
+  % ---- 坐标轴 ----
+  \draw[->,thick] (-2.6,0) -- (3.1,0) node[below] {$x$};
+  \draw[->,thick] (0,-2.3) -- (0,2.5) node[left] {$y$};
+  \fill (0,0) circle (1.2pt) node[below right] {$O$};
+
+  % ---- 无界集 Omega：右上方阴影区域 ----
+  \begin{scope}
+    \clip (0.30,0.15) -- (3.0,0.15) -- (3.0,2.45) -- (0.30,2.45) -- cycle;
+    \fill[pattern=north east lines, pattern color=black!55]
+      (0.30,0.15) rectangle (3.0,2.45);
+  \end{scope}
+  \draw[thick] (0.30,0.15) -- (3.0,0.15);
+  \draw[thick] (0.30,0.15) -- (0.30,2.45);
+  \node at (2.42,2.10) {$\Omega$};
+
+  % ---- 曲线 gamma：包围原点的椭圆（近圆）----
+  \draw[thick] (0,0) ellipse [x radius=2.15, y radius=1.62];
+  \node at (-1.62,1.16) {$\gamma$};
+
+  % ---- E_gamma 标注 ----
+  \node at (-0.92,-0.60) {$E_{\gamma}$};
+
+  % ---- Omega_gamma = E_gamma ∩ Omega：右上角交集部分 ----
+  \begin{scope}
+    \clip (0.30,0.15) rectangle (3.0,2.45);
+    \begin{scope}
+      \clip (0,0) ellipse [x radius=2.15, y radius=1.62];
+      \fill[pattern=crosshatch dots, pattern color=black!60]
+        (0.30,0.15) rectangle (3.0,2.45);
+    \end{scope}
+  \end{scope}
+  \node at (1.62,0.95) {$\Omega_{\gamma}$};
+\end{tikzpicture}
+\caption{}\label{fig:10.6.1}
+\end{figure}
+
+\begin{example}\label{ex:10.6.1}
+设 $\Omega = [0, +\infty) \times [0, +\infty)$, 证明反常积分
+\[
+\iint\limits_{\Omega} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+\]
+收敛, 并求其积分值.
+\end{example}
+
+\begin{proof}
+设 $\Omega_{R}$ 是以原点为圆心半径为 $R$ 的圆片与 $\Omega$ 的交集, 即该圆片的第一象限部分.
+因为 $\mathrm{e}^{-(x^{2}+y^{2})} > 0$, 所以二重积分
+\[
+\iint\limits_{\Omega_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+\]
+的值随 $R$ 的增大而增大. 由于
+\[
+\begin{aligned}
+\iint\limits_{\Omega_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+&= \int_{0}^{\frac{\pi}{2}} \mathrm{d}\varphi \int_{0}^{R} \mathrm{e}^{-r^{2}} r \mathrm{d}r \notag\\
+&= \left. \frac{-\pi}{4} \mathrm{e}^{-r^{2}} \right|_{0}^{R}
+ = \frac{\pi}{4}\left( 1 - \mathrm{e}^{-R^{2}} \right), \notag
+\end{aligned}
+\]
+所以,
+\[
+\lim_{R \to +\infty} \iint\limits_{\Omega_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+= \lim_{R \to +\infty} \frac{\pi}{4}\left( 1 - \mathrm{e}^{-R^{2}} \right)
+= \frac{\pi}{4}.
+\]
+显然, 对 $\Omega$ 的任何有界子区域 $\tilde{\Omega}$, 总存在充分大的 $R$, 使
+$\tilde{\Omega} \subset \Omega_{R}$. 于是,
+\[
+\iint\limits_{\tilde{\Omega}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+\leqslant \iint\limits_{\Omega_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+\leqslant \frac{\pi}{4}.
+\]
+因此, 由定理~\ref{thm:10.6.2} 知, 反常二重积分
+\[
+\iint\limits_{\Omega} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+\]
+收敛, 并且由定理~\ref{thm:10.6.1} 得到
+\[
+\iint\limits_{\Omega} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y = \frac{\pi}{4}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.6.2}
+证明: 概率积分
+\[
+\int_{0}^{+\infty} \mathrm{e}^{-x^{2}} \mathrm{d}x = \frac{\sqrt{\pi}}{2}.
+\]
+\end{example}
+
+\begin{proof}
+我们考察 $S_{R} = [0,R] \times [0,R]$ 上的积分
+$\iint\limits_{S_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y$.
+因为
+\[
+\iint\limits_{S_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+= \int_{0}^{R} \mathrm{e}^{-x^{2}} \mathrm{d}x \int_{0}^{R} \mathrm{e}^{-y^{2}} \mathrm{d}y
+= \left( \int_{0}^{R} \mathrm{e}^{-x^{2}} \mathrm{d}x \right)^{2}
+\]
+以及 $\Omega_{R} \subset S_{R} \subset \Omega_{\sqrt{2}R}$（图~\ref{fig:10.6.2}）, 有
+\[
+\begin{aligned}
+\iint\limits_{\Omega_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+&\leqslant \iint\limits_{S_{R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y \notag\\
+&= \left( \int_{0}^{R} \mathrm{e}^{-x^{2}} \mathrm{d}x \right)^{2}
+ \leqslant \iint\limits_{\Omega_{\sqrt{2}R}} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y. \notag
+\end{aligned}
+\]
+令 $R \to +\infty$, 得到
+\[
+\begin{aligned}
+\iint\limits_{\Omega} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+&\leqslant \lim_{R \to +\infty} \left( \int_{0}^{R} \mathrm{e}^{-x^{2}} \mathrm{d}x \right)^{2} \notag\\
+&\leqslant \iint\limits_{\Omega} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y. \notag
+\end{aligned}
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=stealth]
+  \draw[->,thick] (0,-1.85) -- (3.15,0) node[below] {$x$};
+  \draw[->,thick] (0,-1.85) -- (0,2.75) node[left] {$y$};
+  \fill (0,0) circle (1.2pt) node[below left] {$O$};
+
+  \def\rA{1.45}   % 内圆半径 R
+  \def\rB{2.05}   % 外圆半径 sqrt2 R
+
+  % ---- Omega_R：四分之一圆盘（第一象限）----
+  \begin{scope}
+    \clip (0,0) -- (\rA,0) arc (0:90:\rA) -- cycle;
+    \fill[pattern=north east lines, pattern color=black!45]
+      (0,0) -- (\rA,0) arc (0:90:\rA) -- cycle;
+  \end{scope}
+  \draw[thick] (0,0) -- (\rA,0);
+  \draw[thick] (0,0) -- (0,\rA);
+  \draw[thick] (\rA,0) arc (0:90:\rA);
+  \node at (0.52,0.52) {$\Omega_{R}$};
+
+  % ---- Omega_sqrt2R：四分之一圆盘（外）----
+  \draw[thick] (\rB,0) arc (0:90:\rB);
+  \node at (2.16,0.86) {$\Omega_{\sqrt{2}R}$};
+
+  % ---- S_R：正方形 [0,R]^2 ----
+  \draw[thick, dashed] (0,\rA) -- (\rA,\rA) -- (\rA,0);
+  \node at (1.16,1.30) {$S_{R}$};
+
+  % ---- 刻度标注 ----
+  \draw[thin] (\rA,-0.10) -- (\rA,0.10) node[below, midway, xshift=-4pt] {$R$};
+  \draw[thin] (\rB,-0.10) -- (\rB,0.10) node[below, midway, xshift=-4pt] {$\sqrt{2}R$};
+  \draw[thin] (-0.10,\rB) -- (0.10,\rB) node[left, midway, yshift=4pt] {$\sqrt{2}R$};
+\end{tikzpicture}
+\caption{}\label{fig:10.6.2}
+\end{figure}
+
+\[
+\begin{aligned}
+\int_{0}^{+\infty} \mathrm{e}^{-x^{2}} \mathrm{d}x
+&= \left[ \iint\limits_{\Omega} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y
+  \right]^{\frac{1}{2}} \notag\\
+&\reason{例 \ref{ex:10.6.1}}
+ \left( \frac{\pi}{4} \right)^{\frac{1}{2}} = \frac{\sqrt{\pi}}{2}. \notag
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.6.3}
+设
+\[
+\Gamma(s) = \int_{0}^{+\infty} t^{s-1} \mathrm{e}^{-t} \mathrm{d}t
+\]
+与
+\[
+\mathrm{B}(p,q) = \int_{0}^{1} t^{p-1}(1-t)^{q-1} \mathrm{d}t
+\]
+分别称为 $\Gamma$ 函数与 $\mathrm{B}$ 函数.
+易证 $\Gamma(s)$ 的定义域为 $s > 0$, $\mathrm{B}(p,q)$ 的定义域为 $p > 0, q > 0$. 证明:
+\[
+\mathrm{B}(p,q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.
+\]
+\end{example}
+
+\begin{proof}
+对于 $\Gamma$ 函数有
+\[
+\Gamma(p) = \int_{0}^{+\infty} x^{p-1} \mathrm{e}^{-x} \mathrm{d}x
+\reasonb{$x = u^{2}$} {\mathrm{d}x = 2u\mathrm{d}u}
+ 2 \int_{0}^{+\infty} u^{2p-1} \mathrm{e}^{-u^{2}} \mathrm{d}u,
+\]
+从而
+\[
+\begin{aligned}
+\Gamma(p)\Gamma(q)
+&= 4 \int_{0}^{+\infty} x^{2p-1} \mathrm{e}^{-x^{2}} \mathrm{d}x
+   \cdot \int_{0}^{+\infty} y^{2q-1} \mathrm{e}^{-y^{2}} \mathrm{d}y \notag\\
+&= \lim_{R \to +\infty} 4 \int_{0}^{R} x^{2p-1} \mathrm{e}^{-x^{2}} \mathrm{d}x
+   \int_{0}^{R} y^{2q-1} \mathrm{e}^{-y^{2}} \mathrm{d}y \notag\\
+&= \lim_{R \to +\infty} 4 \iint\limits_{[0,R]^{2}}
+   x^{2p-1} y^{2q-1} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y \notag\\
+&= 4 \iint\limits_{[0,+\infty)^{2}}
+   x^{2p-1} y^{2q-1} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y \notag\\
+&= \lim_{R \to +\infty} 4 \iint\limits_{x^{2}+y^{2} \leqslant R^{2},\, x \geqslant 0,\, y \geqslant 0}
+   x^{2p-1} y^{2q-1} \mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x\mathrm{d}y \notag\\
+&\reason{极坐标变换}
+ \lim_{r \to +\infty} 4 \int_{0}^{\frac{\pi}{2}} \mathrm{d}\theta \int_{0}^{R}
+   r^{2(p+q)-2} \cos^{2p-1}\theta \sin^{2q-1}\theta \mathrm{e}^{-r^{2}} r \mathrm{d}r \notag\\
+&= \lim_{r \to +\infty} 2 \int_{0}^{\frac{\pi}{2}} \cos^{2p-1}\theta \sin^{2q-1}\theta \mathrm{d}\theta
+   \cdot 2 \int_{0}^{R} r^{2(p+q)-1} \mathrm{e}^{-r^{2}} \mathrm{d}r \notag\\
+&= \mathrm{B}(p,q)\Gamma(p+q), \notag
+\end{aligned}
+\]
+其中
+\[
+\begin{aligned}
+\mathrm{B}(p,q)
+&= \int_{0}^{1} t^{p-1}(1-t)^{q-1} \mathrm{d}t
+\reasonb{$t = \cos^{2}\theta$} {\mathrm{d}t = -2\cos\theta\sin\theta\,\mathrm{d}\theta}
+ \int_{\frac{\pi}{2}}^{0} \cos^{2p-2}\theta \sin^{2q-2}\theta
+   \cdot 2\cos\theta(-\sin\theta) \mathrm{d}\theta \notag\\
+&= 2 \int_{0}^{\frac{\pi}{2}} \cos^{2p-1}\theta \sin^{2q-1}\theta \mathrm{d}\theta. \notag
+\end{aligned}
+\]
+于是, 立即得到
+\[
+\mathrm{B}(p,q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.
+\]
+\end{proof}
+
+再研究瑕积分（即无界函数的二重积分）, 它是另一类重要的广义二重积分.
+
+\begin{definition}[无界函数广义二重积分——瑕积分]\label{def:10.6.2}
+设 $f\colon \Omega \to \mathbb{R}$ 在有界区域 $\Omega$ 内的某点
+$x^{0} = (x_{0}, y_{0}) \in \Omega$（或某曲线段 $\Gamma \subset \Omega$）附近无界,
+称之为瑕点（或瑕线）. 用 $\Omega$ 中的 $C^{1}$ 光滑闭曲线 $\gamma$ 隔开瑕点（或瑕线）.
+设 $\gamma$ 所围区域为 $\Omega_{\gamma} \subset \Omega$, 如图~\ref{fig:10.6.3} 所示.
+当 $\gamma$ 连续变化使 $\Omega_{\gamma}$ 收缩到瑕点（或瑕线）时,
+记为 $\Omega_{\gamma} \to x^{0} = (x_{0}, y_{0})$（或 $\Omega_{\gamma} \to \Gamma$）.
+如果 $f$ 在 $\Omega \setminus \Omega_{\gamma}$ 上可积, 则称极限
+\[
+\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y
+= \lim_{\Omega_{r} \to x^{0}} \iint\limits_{\Omega \backslash \Omega_{r}} f(x,y) \mathrm{d}x\mathrm{d}y
+  \left( \text{或}\ \lim_{\Omega_{r} \to \Gamma}
+  \iint\limits_{\Omega \backslash \Omega_{r}} f(x,y) \mathrm{d}x\mathrm{d}y \right)
+\]
+为 $\Omega$ 上无界函数的广义二重积分或瑕二重积分.
+
+若不论曲线 $\gamma$ 形状如何, 也不论收缩过程怎样, 上式均存在同一有限极限值,
+则称瑕积分 $\iint\limits_{\Omega} f(x, y) \mathrm{d}x\mathrm{d}y$ 收敛,
+又称无界函数 $f$ 在 $\Omega$ 上广义可积;
+若上述极限值不存在, 或极限值为 $\infty$, 或极限值依赖于曲线 $\gamma$ 的形状或
+$\Omega_{\gamma}$ 的收缩过程, 则称瑕积分
+$\iint\limits_{\Omega} f(x, y) \mathrm{d}x\mathrm{d}y$ 发散,
+或称无界函数 $f$ 在 $\Omega$ 上非广义可积.
+\end{definition}
+
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=stealth]
+  \draw[->,thick] (-2.5,0) -- (2.7,0) node[below] {$x$};
+  \draw[->,thick] (0,-2.4) -- (0,2.6) node[left] {$y$};
+  \fill (0,0) circle (1.2pt) node[below left] {$O$};
+
+  % ---- 有界区域 Omega：大椭圆 ----
+  \draw[thick] (0,0) ellipse [x radius=1.95, y radius=1.72];
+  \node at (-1.18,1.16) {$\Omega$};
+
+  % ---- 瑕线 Gamma：下方深色带 ----
+  \begin{scope}
+    \clip (0,0) ellipse [x radius=1.95, y radius=1.72];
+    \fill[pattern=crosshatch dots, pattern color=black!55]
+      (-0.62,-0.92) .. controls (-0.30,-0.52) and (-0.05,-1.28) ..
+      (0.34,-0.88) .. controls (0.68,-0.55) and (0.52,-1.05) ..
+      (0.98,-0.68) -- (0.80,-0.32) .. controls (0.42,-0.72) and (0.58,-0.22) ..
+      (0.24,-0.55) .. controls (-0.05,-0.95) and (-0.28,-0.18) ..
+      (-0.52,-0.58) -- cycle;
+  \end{scope}
+  \node at (1.28,-0.66) {$\Gamma$};
+
+  % ---- 瑕点 x^0：上方深色椭圆 ----
+  \begin{scope}
+    \clip (0,0) ellipse [x radius=1.95, y radius=1.72];
+    \fill[pattern=north east lines, pattern color=black!55]
+      (-0.46,0.66) ellipse [x radius=0.62, y radius=0.40];
+  \end{scope}
+  \draw[thick] (-0.46,0.66) ellipse [x radius=0.62, y radius=0.40];
+  \node at (-0.46,0.66) {$x^{0}$};
+\end{tikzpicture}
+\caption{}\label{fig:10.6.3}
+\end{figure}
+
+与无界区域上广义二重积分一样, 对无界函数的广义二重积分也可建立相应的各收敛性定理.
+
+\begin{example}[瑕二重积分的 Cauchy 判别法]\label{ex:10.6.4}
+设 $f(x,y)$ 在有界区域 $\Omega$ 上除点 $p = (x_{0}, y_{0})$ 外处处有定义,
+$p = (x_{0}, y_{0})$ 为它的瑕点, 则下面两个结论成立.
+\begin{enumerate}
+\item[(1)] 设在点 $p$ 附近有 $\left| f(x,y) \right| \leqslant \dfrac{c}{r^{2-\delta}}$,
+其中 $c$ 为常数, $r = \sqrt{(x-x_{0})^{2} + (y-y_{0})^{2}} > 0$, $\delta > 0$,
+则瑕积分 $\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 必收敛;
+\item[(2)] 设在点 $p = (x_{0}, y_{0})$ 附近有 $f(x,y) \geqslant \dfrac{c}{r^{2+\delta}}$,
+其中 $c$ 为正的常数, 且 $\Omega$ 为含有 $p$ 为顶点的扇形区域, $\delta \geqslant 0$,
+则瑕积分 $\iint\limits_{\Omega} f(x,y) \mathrm{d}x\mathrm{d}y$ 发散.
+\end{enumerate}
+\end{example}
+
+\begin{exblock}{练习题 10.6}
+
+1. 讨论下列无界区域上二重积分的收敛性:
+\begin{enumerate}
+\item[(1)] $\iint\limits_{x^{2}+y^{2} \geqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(x^{2}+y^{2})^{m}}$;
+\item[(2)] $\iint\limits_{\mathbb{R}^{2}} \dfrac{\mathrm{d}x\mathrm{d}y}{(1+|x|)^{p}(1+|y|)^{q}}$;
+\item[(3)] $\iint\limits_{0 \leqslant y \leqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(1+x^{2}+y^{2})^{p}}$
+\end{enumerate}
+
+2. 判别下列二重积分的收敛性:
+\begin{enumerate}
+\item[(1)] $\iint\limits_{x^{2}+y^{2} \leqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(x^{2}+y^{2})^{m}}$;
+\item[(2)] $\iint\limits_{x^{2}+y^{2} \leqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(1-x^{2}-y^{2})^{m}}$
+\end{enumerate}
+
+3. 计算无穷二重积分
+$\iint\limits_{\mathbb{R}^{2}} \mathrm{e}^{-(x^{2}+y^{2})} \cos(x^{2}+y^{2}) \mathrm{d}x\mathrm{d}y$.
+
+4. 计算二重广义积分
+$\iint\limits_{\mathbb{R}^{2}} \mathrm{e}^{2xy-2x^{2}-y^{2}} \mathrm{d}x\mathrm{d}y$.
+
+5. 设 $\boldsymbol{x}$ 为 $\mathbb{R}^{n}$ 中的列向量, $x^{T}Ax$ 为一个 $n$ 元正定二次型.
+计算广义 $n$ 重积分
+\[
+\int\limits_{\mathbb{R}^{n}} \cdots \int\limits_{\mathbb{R}^{n}}
+ \mathrm{e}^{x^{\mathrm{T}}Ax} \mathrm{d}x_{1} \mathrm{d}x_{2} \cdots \mathrm{d}x_{n}.
+\]
+
+6. 设 $F(t) = \iint\limits_{0 \leqslant x \leqslant t,\, 0 \leqslant y \leqslant t}
+e^{t x / y^{2}} \mathrm{d}x \mathrm{d}y$ ($t > 0$), 求 $F'(t)$.
+
+7. 证明: 广义二重积分
+$\iint\limits_{(-\infty,+\infty)^{2}} \dfrac{\mathrm{d}x\mathrm{d}y}{(1+|x|^{p})(1+|y|^{q})}$
+当 $p > 1, q > 1$ 时收敛; 当 $p, q$ 取其他值时发散.
+
+8. 证明: 广义二重积分
+$\iint\limits_{x+y \geqslant 1} \dfrac{\sin x \sin y}{(x+y)^{p}} \mathrm{d}x\mathrm{d}y$ 发散.
+（提示: 作变换 $u = x+y,\ v = y-x$, 并考虑区域 $[1,M] \times [-N\pi, N\pi]$.）
+
+9. 应用变换 $(x, y) = \left( (\cos\varphi)^{\frac{2}{p}}, (\sin\varphi)^{\frac{2}{q}} \right)$,
+证明: 广义二重积分
+\[
+\iint\limits_{|x|+|y| \geqslant 1} \frac{\mathrm{d}x\mathrm{d}y}{|x|^{p}+|y|^{q}}
+\qquad (p > 0, q > 0)
+\]
+当 $\dfrac{1}{p} + \dfrac{1}{q} < 1$ 时收敛; 而当
+$\dfrac{1}{p} + \dfrac{1}{q} \geqslant 1$ 时发散.
+
+10. 证明:
+\begin{enumerate}
+\item[(1)]
+\[
+\lim_{n \to +\infty} \iint\limits_{x^{2}+y^{2} \leqslant 2n\pi}
+\sin(x^{2}+y^{2}) \mathrm{d}x \mathrm{d}y
+\]
+（应用极坐标变换与已知结果
+$\int_{0}^{+\infty} \sin x^{2} \mathrm{d}x = \int_{0}^{+\infty} \cos x^{2} \mathrm{d}x
+= \frac{1}{2}\sqrt{\frac{\pi}{2}}$）;
+\item[(2)] $\displaystyle \lim_{n \to +\infty} \iint\limits_{|x| \leqslant n,\, |y| \leqslant n}
+\sin(x^{2}+y^{2}) \mathrm{d}x\mathrm{d}y = \pi$;
+\item[(3)] $\displaystyle \lim_{R \to +\infty} \iint\limits_{x^{2}+y^{2} \leqslant R^{2}}
+\sin(x^{2}+y^{2}) \mathrm{d}x \mathrm{d}y$ 不存在.
+\end{enumerate}
+问: 广义二重积分 $\iint\limits_{\mathbb{R}^{2}} \sin(x^{2}+y^{2}) \mathrm{d}x\mathrm{d}y$ 是否收敛？
+
+11. 证明:
+\begin{enumerate}
+\item[(1)] $\displaystyle \int_{1}^{+\infty} \mathrm{d}x \int_{1}^{+\infty}
+\dfrac{x^{2}-y^{2}}{(x^{2}+y^{2})^{2}} \mathrm{d}y = -\dfrac{\pi}{4}$, \qquad
+$\displaystyle \int_{1}^{+\infty} \mathrm{d}y \int_{1}^{+\infty}
+\dfrac{x^{2}-y^{2}}{(x^{2}+y^{2})^{2}} \mathrm{d}x = \dfrac{\pi}{4}$;
+\item[(2)] $\displaystyle \lim_{R \to +\infty} \iint\limits_{[1,2R] \times [1,R]}
+\dfrac{x^{2}-y^{2}}{(x^{2}+y^{2})^{2}} \mathrm{d}x\mathrm{d}y
+= \arctan 2 - \dfrac{\pi}{4} \neq 0$
+\end{enumerate}
+问: 广义二重积分
+$\iint\limits_{[1,+\infty)^{2}} \dfrac{x^{2}-y^{2}}{(x^{2}+y^{2})^{2}} \mathrm{d}x\mathrm{d}y$ 是否收敛？
+
+12. 设 $\varphi(x,y)$ 为连续函数, 且 $0 < m \leqslant |\varphi(x,y)| \leqslant M$. 证明:
+\begin{enumerate}
+\item[(1)] $\iint\limits_{x^{2}+y^{2} \geqslant 1} \dfrac{\varphi(x,y)}{(x^{2}+y^{2})^{p}} \mathrm{d}x\mathrm{d}y$
+当 $p > 1$ 时收敛; 当 $p \leqslant 1$ 时发散;
+\item[(2)] $\iint\limits_{0 \leqslant y \leqslant 1} \dfrac{\varphi(x,y)}{(1+x^{2}+y^{2})^{p}} \mathrm{d}x\mathrm{d}y$
+当 $p > \frac{1}{2}$ 时收敛; 当 $p \leqslant \frac{1}{2}$ 时发散.
+\end{enumerate}
+
+13. 作变换 $u = x,\ v = x + y$. 证明: 广义二重积分
+$\iint\limits_{x+y \geqslant 1,\, 0 \leqslant x \leqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(x+y)^{p}}$
+当 $p \leqslant 1$ 时发散; 当 $p > 1$ 时收敛, 并且
+\[
+\iint\limits_{x+y \geqslant 1,\, 0 \leqslant x \leqslant 1}
+\dfrac{\mathrm{d}x\mathrm{d}y}{(x+y)^{p}} = \frac{1}{p-1}.
+\]
+
+14. 作变换 $x = u,\ xy = v$, 即 $x = u,\ y = \dfrac{v}{u}$.
+证明: 广义二重积分 $\iint\limits_{xy \geqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{x^{p}y^{q}}$
+仅当 $p > q > 1$ 时收敛, 且
+\[
+\iint\limits_{xy \geqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{x^{p}y^{q}}
+= \frac{1}{(p-q)(q-1)}.
+\]
+
+15. 应用极坐标变换证明: 广义二重积分
+$\iint\limits_{x^{2}+y^{2} \geqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(x^{2}+y^{2})^{p}}$
+仅当 $p > 1$ 时收敛, 并且
+\[
+\iint\limits_{x^{2}+y^{2} \geqslant 1} \dfrac{\mathrm{d}x\mathrm{d}y}{(x^{2}+y^{2})^{p}}
+= \frac{\pi}{p-1}.
+\]
+
+16. 证明: $\displaystyle \iint\limits_{0 \leqslant x \leqslant y} \mathrm{e}^{-(x+y)} \mathrm{d}x \mathrm{d}y
+= \frac{1}{2}$.
+
+17. 应用极坐标变换证明: 瑕（以 $x^{2}+y^{2}=1$ 为瑕线）二重积分
+\[
+\iint\limits_{x^{2}+y^{2} \leqslant 1}
+\frac{\mathrm{d}x\mathrm{d}y}{\sqrt{1-x^{2}-y^{2}}} = 2\pi.
+\]
+
+18. 应用极坐标变换证明:
+\begin{enumerate}
+\item[(1)] $\displaystyle \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}
+\mathrm{e}^{-(x^{2}+y^{2})} \mathrm{d}x \mathrm{d}y = \pi$;
+\item[(2)] $\displaystyle \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}
+\mathrm{e}^{-(x^{2}+y^{2})} \cos(x^{2}+y^{2}) \mathrm{d}x\mathrm{d}y = \frac{\pi}{2}$;
+\item[(3)] $\displaystyle \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty}
+\mathrm{e}^{-(x^{2}+y^{2})} \sin(x^{2}+y^{2}) \mathrm{d}x\mathrm{d}y = \frac{\pi}{2}$.
+\end{enumerate}
+
+19. 应用广义极坐标变换证明:
+\[
+\iint\limits_{\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}} \geqslant 1}
+\mathrm{e}^{-\left( \frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}} \right)} \mathrm{d}x\mathrm{d}y
+= \frac{\pi ab}{\mathrm{e}}.
+\]
+
+20. 应用极坐标变换证明:
+\begin{enumerate}
+\item[(1)] $\displaystyle \iint\limits_{x^{2}+y^{2} \leqslant 1}
+\ln\dfrac{1}{\sqrt{x^{2}+y^{2}}} \mathrm{d}x\mathrm{d}y = \frac{\pi}{2}$;
+\item[(2)] $\displaystyle \iint\limits_{x^{2}+y^{2} \leqslant x}
+\dfrac{\mathrm{d}x\mathrm{d}y}{\sqrt{x^{2}+y^{2}}} = 2$.
+\end{enumerate}
+
+21. 证明: $\displaystyle \int_{0}^{a} \mathrm{d}x \int_{0}^{x}
+\dfrac{\mathrm{d}y}{\sqrt{(a-x)(x-y)}} = \pi a$.
+
+22. 设 $\varphi(x,y,z)$ 连续, 且 $0 < m \leqslant |\varphi(x,y,z)| \leqslant M$.
+应用球坐标变换证明:
+\begin{enumerate}
+\item[(1)] $\displaystyle \iiint\limits_{x^{2}+y^{2}+z^{2} > 1}
+\frac{\varphi(x,y,z)}{(x^{2}+y^{2}+z^{2})^{p}} \mathrm{d}x\mathrm{d}y\mathrm{d}z$
+当 $p > \frac{3}{2}$ 时收敛; 而当 $p \leqslant \frac{3}{2}$ 时发散;
+\item[(2)] $\displaystyle \iiint\limits_{x^{2}+y^{2}+z^{2} \leqslant 1}
+\frac{\varphi(x,y,z)}{(x^{2}+y^{2}+z^{2})^{p}} \mathrm{d}x\mathrm{d}y\mathrm{d}z$
+当 $p < \frac{3}{2}$ 时收敛; 而当 $p \geqslant \frac{3}{2}$ 时发散.
+\end{enumerate}
+
+23. 证明: 仅当 $p < 1, q < 1, r < 1$ 时, 广义三重积分
+$\displaystyle \int_{0}^{1} \int_{0}^{1} \int_{0}^{1}
+\dfrac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{x^{p}y^{q}z^{r}}$
+收敛, 且
+\[
+\iiint\limits_{[0,1]^{3}} \frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{x^{p}y^{q}z^{r}}
+= \frac{1}{(1-p)(1-q)(1-r)}.
+\]
+
+24. 应用球坐标证明:
+\begin{enumerate}
+\item[(1)] $\displaystyle \iiint\limits_{x^{2}+y^{2}+z^{2} > 1}
+\frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{(x^{2}+y^{2}+z^{2})^{3}} = \frac{4\pi}{3}$;
+\item[(2)] $\displaystyle \iiint\limits_{x^{2}+y^{2}+z^{2} \leqslant 1}
+\frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{(1-x^{2}-y^{2}-z^{2})^{p}}$
+仅当 $p < 1$ 时收敛, 且
+\[
+\iiint\limits_{x^{2}+y^{2}+z^{2} \leqslant 1}
+\frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{(1-x^{2}-y^{2}-z^{2})^{p}}
+= 2\pi \mathrm{B}\left( \frac{3}{2}, 1-p \right);
+\]
+\item[(3)] $\displaystyle \iint\limits_{(-\infty,+\infty)^{3}}
+\mathrm{e}^{-(x^{2}+y^{2}+z^{2})} \mathrm{d}x\mathrm{d}y\mathrm{d}z
+= 2\pi \Gamma\left( \frac{3}{2} \right) = \pi^{\frac{3}{2}}$
+（用到 $\Gamma(s+1) = s\Gamma(s)$, $\Gamma\left( \frac{1}{2} \right) = \pi^{\frac{1}{2}}$）.
+\end{enumerate}
+
+\end{exblock}
+
+\begin{exblock}{思考题 10.6}
+
+1. 证明定理~\ref{thm:10.6.3} 的必要性.
+
+2. 定理~\ref{thm:10.6.4} 中, 如果删去「$f(x,y) \geqslant 0$」结论如何？
+
+3. 作变换
+$(x,y,z) = \left( (r\sin\theta\cos\varphi)^{\frac{2}{p}},
+(r\sin\theta\sin\varphi)^{\frac{2}{q}}, (r\cos\theta)^{\frac{2}{r}} \right)$, 证明:
+\[
+\iiint\limits_{|x|+|y|+|z| > 1}
+\frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{|x|^{p}+|y|^{q}+|z|^{r}}
+\qquad (p > 0, q > 0, r > 0)
+\]
+仅当 $\dfrac{1}{p} + \dfrac{1}{q} + \dfrac{1}{r} < 1$ 时收敛, 且
+\[
+\begin{aligned}
+&\iiint\limits_{|x|+|y|+|z| > 1}
+\frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{|x|^{p}+|y|^{q}+|z|^{r}} \notag\\
+&\quad= \frac{2}{pqr}
+\frac{\Gamma\left( \frac{1}{p} \right)\Gamma\left( \frac{1}{q} \right)
+\Gamma\left( \frac{1}{r} \right)}
+{\Gamma\left( \frac{1}{p}+\frac{1}{q}+\frac{1}{r} \right)}
+\int_{1}^{+\infty} \frac{\mathrm{d}r}
+{r^{3-\left( \frac{2}{p}+\frac{2}{q}+\frac{2}{r} \right)}}. \notag
+\end{aligned}
+\]
+
+\end{exblock}
+

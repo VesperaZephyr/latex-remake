@@ -1,0 +1,481 @@
+% ============ §11 DVRs and Dedekind rings (原书 pp.78-86) ============
+\section{DVRs and Dedekind rings}\label{sec:11}\index{discrete valuation rings, section 11}\index{Dedekind rings, section 11}
+
+A valuation ring whose value group is isomorphic to $\Z$ is called
+a \emph{discrete valuation ring} (DVR).\index{discrete valuation ring} Discrete refers to the fact that the value
+group is a discrete subgroup of $\R$, and has nothing to do with the
+$m$-adic topology of the local ring being discrete.
+
+\begin{theorem}\label{thm:11.1}
+Let $R$ be a valuation ring. Then the following conditions are
+equivalent.
+\begin{enumerate}[(1)]
+  \item $R$ is a DVR;
+  \item $R$ is a principal ideal domain;
+  \item $R$ is Noetherian.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Let $K$ be the field of fractions of $R$ and $m$ its maximal ideal.
+
+$(1) \Rightarrow (2)$ Let $v_R$ the additive valuation of $R$ having value group $\Z$; this is
+called the \emph{normalised additive valuation} corresponding to $R$. There exists
+$t \in R$ such that $v_R(t) = 1$. For $0 \neq x \in m$, the valuation $v_R(x)$ is a positive
+integer, say $v_R(x) = n$; then $v_R(x/t^n) = 0$, so that we can write $x = t^nu$ with $u$ a
+unit of $R$. In particular $m = tR$. Let $I \neq (0)$ be any ideal of $R$; then
+$\{v_R(a) \mid 0 \neq a \in I\}$ is a set of non-negative integers, and so has a smallest
+element, say $n$. If $n = 0$ then $I$ contains a unit of $R$, so that $I = R$. If $n > 0$ then
+there exists an $x \in I$ such that $v_R(x) = n$; then $I = xR = t^nR$. Therefore $R$ is a
+principal ideal domain, and moreover every non-zero ideal of $R$ is a power
+of $m = tR$.
+
+$(2) \Rightarrow (3)$ is obvious.
+
+$(3) \Rightarrow (2)$ In general, given any two ideals of a valuation ring, one contains
+the other, so that any finitely generated ideal $a_1R + \cdots + a_nR$ is equal to one
+of the $a_iR$, and therefore principal. Hence, if $R$ is Noetherian every ideal of $R$
+is principal.
+
+$(2) \Rightarrow (1)$ We can write $m = xR$ for some $x$. Now if we set $I = \bigcap_{\nu \ge 1} x^\nu R$
+then this is also a principal ideal, so that we can write $I = yR$. If we set
+$y = xz$, then from $y \in x^\nu R$ we get $z \in x^{\nu-1}R$, and since this holds for every
+$\nu$, we have $z \in I$, hence we can write $z = yu$. Since $y = xz = xyu$, we have $y(1
+- xu) = 0$, but then since $x \in m$ we must have $y = 0$, and therefore $I = (0)$.
+Because of this, for every non-zero element $a \in R$, there is a well-defined
+integer $\nu \ge 0$ such that $a \in x^\nu R$ but $a \notin x^{\nu+1}R$; we then set $v(a) = \nu$. It is not
+difficult to see that if $a, b, c, d \in R - \{0\}$ satisfy $a/b = c/d$ then
+\[
+  v(a) - v(b) = v(c) - v(d);
+\]
+therefore setting $v(\xi) = v(a) - v(b)$ for $\xi = a/b \in K^*$ gives a map $v\colon K^* \to \Z$
+which can easily be seen to be an additive valuation of $K$ whose valuation
+ring is $R$. The value group of $v$ is clearly $\Z$, so that $R$ is a DVR.
+\end{proof}
+
+If $R$ is a DVR with maximal ideal $m$ then an element $t \in R$ such that
+$m = tR$ is called a \emph{uniformising element} of $R$.\index{uniformising element}
+
+\begin{remark}
+A valuation ring $S$ whose maximal ideal $m_S$ is principal does not
+have to be a DVR. To obtain a counter-example, let $K$ be a field, and $R$
+a DVR of $K$; set $k = R/m_R$, and suppose that $\bar{R}$ is a DVR of $k$. Now let
+$S$ be the composite of $R$ and $\bar{R}$. Let $f$ be a uniformising element of $R$, and
+$g \in S$ be any element mapping to a uniformising element $\bar{g}$ of $\bar{R}$. Then
+$\eta = fR \subset m_R \subset S \subset R$, and $m_S/m_R = \bar{g}\bar{R} = \sqrt{\bar{g}S/\bar{m}_R}$, and so
+\[
+  m_S = m_R + gS.
+\]
+On the other hand $g^{-1} \in R$, so that for any $h \in m_R$ we have $h/g \in m_R \subset S$, and
+hence $m_R \subset gS$, so that
+\[
+  m_S = gS.
+\]
+However, $m_R = fR$ is not finitely generated as an ideal of $S$, being generated
+by $f, fg^{-1}, fg^{-2}, \ldots$. The value group of $S$ is $\Z^2$, with the valuation
+$v\colon K^* \to \Z^2$ given by
+\[
+  v(x) = (n, m), \quad \text{where } n = v_R(x) \text{ and } m = v_{\bar{R}}(\bar{\varphi}(xf^{-n})),
+\]
+where $\varphi\colon R \to R/m_R = k$ is the natural homomorphism.
+\end{remark}
+
+The previous theorem gives a characterisation of DVRs among valuation
+rings; now we consider characterisations among all rings.
+
+\begin{theorem}\label{thm:11.2}
+Let $R$ be a ring; then the following conditions are
+equivalent:
+\begin{enumerate}[(1)]
+  \item $R$ is a DVR;
+  \item $R$ is a local principal ideal domain, and not a field;
+  \item $R$ is a Noetherian local ring, $\dim R > 0$ and the maximal ideal $m_R$ is
+        principal;
+  \item $R$ is a one-dimensional normal Noetherian local ring.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We saw $(1) \Rightarrow (2)$ in the previous theorem; $(2) \Rightarrow (3)$ is obvious.
+
+$(3) \Rightarrow (1)$ Let $xR$ be the maximal ideal of $R$. If $x$ were nilpotent then we
+would have $\dim R = 0$, and hence $x^\nu \neq 0$ for all $\nu$. By the Krull intersection
+theorem (Theorem~\ref{thm:8.10}, (i)) we have $\bigcap_{\nu \ge 1} x^\nu R = (0)$, so that for $0 \neq y \in R$
+there is a well-determined $\nu$ such that $y \in x^\nu R$ and $y \notin x^{\nu+1}R$. If $y = x^\nu u$, then
+since $u \notin xR$ it must be a unit. Similarly, for $0 \neq z \in R$ we have $z = x^\mu v$, with $v$ a
+unit. Therefore $yz = x^{\mu+\nu}uv \neq 0$, and so $R$ is an integral domain. Finally,
+any element $\xi$ of the fraction field of $R$ can be written $\xi = x^\nu u$, with $u$ a unit of
+$R$ and $\nu \in \Z$, and it is easy to see that setting $v(\xi) = \nu$ defines an additive
+valuation of the field of fractions of $R$ whose valuation ring is $R$.
+
+$(1) \Rightarrow (4)$ In a DVR the only ideals are $(0)$ and the powers of the maximal
+ideal, so that the only prime ideals of $R$ are $(0)$ and $m_R$, and hence
+$\dim R = 1$. By the previous theorem $R$ is Noetherian, and it is normal
+because it is a valuation ring.
+
+$(4) \Rightarrow (3)$ By assumption $R$ is an integral domain. Write $K$ for the field of
+fractions and $m$ for the maximal ideal of $R$. Then $m \neq 0$, so that by Theorem~\ref{thm:8.10}, $m \neq m^2$; choose some $x \in m - m^2$. Since $\dim R = 1$ the only prime
+ideals of $R$ are $(0)$ and $m$, so that $m$ must be a prime divisor of $xR$, and there
+exists $y \in R$ such that $xR:y = m$. Set $a = yx^{-1}$; then $a \notin R$, but $am \subset R$. Now
+we set $m^{-1} = \{\xi \in K \mid \xi m \subset R\}$, so that $R \subset m^{-1}$, and $R \neq m^{-1}$ since $a \in m^{-1}$.
+Consider the ideal $m^{-1}m$ of $R$; since $R \subset m^{-1}$ we have $m \subset m^{-1}m$. If we
+had $m = m^{-1}m$ then we would get $am \subset m$, and then $a$ would be integral
+over $R$ by Theorem~\ref{thm:2.1}, so that $a \in R$, which is a contradiction. Hence we
+must have $m^{-1}m = R$. Moreover, $xm^{-1} \subset R$ is an ideal, and if $xm^{-1} \subset m$
+then we would have $xR = xm^{-1}m \subset m^2$, contradicting $x \notin m^2$. Therefore
+$xm^{-1} = R$, and hence $xR = xm^{-1}m = m$, so that $m$ is principal.
+\end{proof}
+
+Quite generally, if $R$ is an integral domain and $K$ its fields of fractions, we
+say that an $R$-submodule $I$ of $K$ is a \emph{fractional ideal}\index{fractional ideal} of $R$ if $I \neq 0$, and
+there exists a non-zero element $\alpha \in R$ such that $\alpha I \subset R$ (see Ex.~\ref{ex:3.4-ex}). As
+an $R$-module we have $I \cong \alpha I$, so that if $R$ is a Noetherian integral domain
+then any fractional ideal is finitely generated. For $I$ a fractional ideal we
+set $I^{-1} = \{\alpha \in K \mid \alpha I \subset R\}$; we say that $I$ is \emph{invertible}\index{invertible ideal} if $I^{-1}I = R$.
+
+\begin{theorem}\label{thm:11.3}
+Let $R$ be an integral domain and $I$ a fractional ideal of $R$.
+Then the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $I$ is invertible;
+  \item $I$ is a projective $R$-module;
+  \item $I$ is finitely generated, and for every maximal ideal $P$ of $R$, the
+        fractional ideal $I_P = IR_P$ of $R_P$ is principal.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1) \Rightarrow (2)$ If $I^{-1}I = R$ then there exist $a_i \in I$ and $b_i \in I^{-1}$ such that
+$\sum_i a_ib_i = 1$. Then $a_1, \ldots, a_n$ generate $I$, since for any $x \in I$ we have $\sum (xb_i)a_i =
+x$, and $xb_i \in R$. Let $F = Re_1 + \cdots + Re_n$ be the free $R$-module with basis
+$e_1, \ldots, e_n$; we define the $R$-linear map $\varphi\colon F \to I$ by $\varphi(e_i) = a_i$, so that $\varphi$ is
+surjective. Then we define $\psi\colon I \to F$ by writing $\psi_i\colon I \to R$ for the map
+$\psi_i(x) = b_ix$, and setting $\psi(x) = \sum \psi_i(x)e_i$. We then have $\varphi\psi(x) = x$, so that $\varphi$
+splits, and $I$ is isomorphic to a direct summand of the free module $F$, and
+therefore projective.
+
+$(2) \Rightarrow (1)$ Every $R$-linear map from $I$ to $R$ is given by multiplication by
+some element of $K$ (prove this!). If we let $\varphi\colon F \to I$ be a surjective map from
+a free module $F = \bigoplus Re_i$, by assumption there exists a splitting $\psi\colon I \to F$
+such that $\varphi\psi = 1$. Write $\psi(x) = \sum \lambda_i(x)e_i$ for $x \in I$; then by what we have said,
+each $\lambda_i$ determines a $b_i \in K$ such that $\lambda_i(x) = b_ix$, and since for each $x$ there
+are only finitely many $i$ such that $\lambda_i(x) \neq 0$, we have $b_i = 0$ for all but finitely
+many $i$. Letting $b_1, \ldots, b_n$ be the non-zero ones, we have $\sum a_ib_ix = x$ for all
+$x \in I$, where $a_i = \varphi(e_i)$. Thus $\sum_i a_ib_i = 1$. Moreover, since $\lambda_iI = \lambda_i \subset R$ we
+have $b_i \in I^{-1}$, and therefore $I^{-1}I = R$.
+
+$(1) \Rightarrow (3)$ As we have already seen, $I$ is finitely generated. Now if $\sum a_ib_i = 1$
+and $P$ is any prime ideal then at least one of $a_ib_i$ must be a unit of $R_P$,
+and $I_P = a_iR_P$. Hence $I_P$ is a principal fractional ideal.
+
+$(3) \Rightarrow (1)$ If $I$ is finitely generated then $(I^{-1})_P = (I_P)^{-1}$. Indeed, the
+inclusion $\subset$ holds for any ideal; for $\supset$, if $I = a_1R + \cdots + a_nR$ and $x \in (I_P)^{-1}$
+then $xa_i \in R_P$, so there exist $c_i \in R - P$ such that $xa_ic_i \in R$, so that setting
+$c = c_1 \cdots c_n$ we have $(cx)a_i \in R$ for all $i$, which gives $cx \in I^{-1}$ and $x \in (I^{-1})_P$.
+From the fact that $I_P$ is principal, we get $I_P \cdot (I_P)^{-1} = R_P$. Now if $II^{-1} \neq R$
+then we can take a maximal ideal $P$ such that $II^{-1} \subset P$, and then
+$I_P \cdot (I_P)^{-1} = I_P(I^{-1})_P \subset PR_P$, which is a contradiction. Thus we must have
+$II^{-1} = R$.
+\end{proof}
+
+\begin{theorem}\label{thm:11.4}
+Let $R$ be a Noetherian integral domain, and $P$ a non-zero
+prime ideal of $R$. If $P$ is invertible then $\htop P = 1$ and $R_P$ is a DVR.
+\end{theorem}
+
+\begin{proof}
+If $P$ is invertible the maximal ideal $PR_P$ of $R_P$ is principal, and
+condition (3) of Theorem 2 is satisfied; thus $R_P$ is a DVR, and so $\dim R_P = 1$.
+\end{proof}
+
+\begin{theorem}\label{thm:11.5}
+Let $R$ be a normal Noetherian domain. Then we have
+\begin{enumerate}[(i)]
+  \item all the prime divisors of a non-zero principal ideal have height $1$;
+  \item $R = \bigcap_{\htop p = 1} R_p$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Suppose $0 \neq a \in R$ and that $P$ is one of the prime divisors of $aR$;
+then there exists an element $b \in R$ such that $aR:b = P$. We set $PR_P = m$, and
+then $aR_P:b = m$, so that $ba^{-1} \notin R_P$.
+If $ba^{-1}m \subset m$ then by the determinant trick $ba^{-1}$ is integral over $R_P$, which
+contradicts the fact that $R_P$ is integrally closed. Thus $ba^{-1}m = R_P$, so that $m^{-1}m = R_P$, and
+then by the previous theorem we get $\htop m = \htop P = 1$.
+
+(ii) It is sufficient to prove that for $a, b \in R$ with $a \neq 0$, $b \in aR_P$ for every
+height $1$ prime $P \in \Spec R$ implies $b \in aR$. Let $P_1, \ldots, P_r$ be the prime
+divisors of $aR$, and let $aR = q_1 \cap \cdots \cap q_r$ be a primary decomposition of
+$aR$, where $q_i$ is a $P_i$-primary ideal for each $i$. Then since $\htop P_i = 1$, we have
+$b \in aR_{P_i} \cap R = q_i$ for $i = 1, \ldots, n$, and therefore $b \in \bigcap q_i = aR$.
+\end{proof}
+
+\begin{corollary*}
+Let $R$ be a Noetherian domain. The following two conditions
+are necessary and sufficient for $R$ to be normal:
+\begin{enumerate}[(a)]
+  \item for $P$ a height $1$ prime ideal, $R_P$ is a DVR;
+  \item all the prime divisors of a non-zero principal ideal of $R$ have height $1$.
+\end{enumerate}
+\end{corollary*}
+
+\begin{proof}
+We have already seen necessity. For sufficiency, note that the proof
+of (ii) above shows that (b) implies $R = \bigcap_{\htop p = 1} R_p$. Then by (a) each $R_p$
+is normal, so that $R$ is normal.
+\end{proof}
+
+\begin{definition}
+An integral domain for which every non-zero ideal is invertible
+is called a \emph{Dedekind ring}\index{Dedekind ring} (sometimes \emph{Dedekind domain}).
+\end{definition}
+
+\begin{theorem}\label{thm:11.6}
+For an integral domain $R$ the following conditions are
+equivalent:
+\begin{enumerate}[(1)]
+  \item $R$ is a Dedekind ring;
+  \item $R$ is either a field or a one-dimensional Noetherian normal domain;
+  \item every non-zero ideal of $R$ can be written as a product of a finite
+        number of prime ideals.
+\end{enumerate}
+Moreover, the factorisation into primes in (3) is unique.
+\end{theorem}
+
+\begin{proof}
+$(1) \Rightarrow (2)$ Every non-zero ideal is invertible, and therefore finitely
+generated, so that $R$ is Noetherian. Let $P$ be a non-zero prime ideal of $R$;
+then by Theorem 4, the local ring $R_P$ is a DVR and $\htop P = 1$, and therefore
+either $R$ is a field or $\dim R = 1$. Also, by Theorem~\ref{thm:4.7} we know that $R$ is the
+intersection of the $R_P$ as $P$ runs through all the maximal ideals of $R$, but
+since each $R_P$ is a DVR it follows that $R$ is normal.
+
+$(2) \Rightarrow (1)$ If $R$ is a field there is no problem. If $R$ is not a field then for every
+maximal ideal $P$ of $R$ the local ring $R_P$ is a one-dimensional Noetherian
+local ring and is normal, so that by Theorem 2 it is a principal ideal ring.
+Thus by Theorem 3, $R$ is a Dedekind ring.
+
+$(1) \Rightarrow (3)$ Let $I$ be a non-zero ideal. If $I = R$ then we can view it as the
+product of zero ideals; if $I$ is itself maximal then it is the product of just one
+prime ideal. We have already seen that $R$ is Noetherian, so that we can use
+descending induction on $l(I)$, that is assume that $I \neq R$ and that every ideal
+strictly bigger than $I$ is a product of prime ideals. If $I \neq R$ then there is a
+maximal ideal $P$ containing $I$, and $I \subset IP^{-1} \subset R$. If $IP^{-1} = I$ then using
+$P^{-1}P = R$ we would have $I = IP$, and by NAK this would lead to a
+contradiction. Hence $IP^{-1} \neq I$, so that by induction we can write $IP^{-1} =
+Q_1 \cdots Q_s$, with $Q_i \in \Spec R$. Multiplying both sides by $P$ gives $I = Q_1 \cdots Q_sP$.
+
+The proof of $(3) \Rightarrow (1)$ is a little harder, and we break it up into four steps.
+
+\textbf{Step 1.} In general, any non-zero principal ideal $aR$ of an integral domain $R$
+is obviously invertible. Moreover, suppose that $I$ and $J$ are non-zero
+fractional ideals and $B = IJ$; then obviously $I$ and $J$ invertible implies $B$
+invertible, but the converse also holds. To see this, from $I^{-1}J^{-1}B \subset R$ we
+get $I^{-1}J^{-1} \subset B^{-1}$, and also from $B^{-1}IJ \subset R$ we get $B^{-1}I \subset J^{-1}$ and
+$B^{-1}J \subset I^{-1}$; now if $B$ is invertible then multiplying the last two inclusions
+together we get $B^{-1} = B^{-1}B^{-1}IJ \subset I^{-1}J^{-1}$, and hence $B^{-1} = I^{-1}J^{-1}$.
+Therefore
+\[
+  R = BB^{-1} = IJI^{-1}J^{-1} = (II^{-1})(JJ^{-1}),
+\]
+and we must have $II^{-1} = JJ^{-1} = R$.
+
+\textbf{Step 2.} Let $P$ be a non-zero prime ideal. Let us prove that if $I$ is an ideal
+strictly bigger than $P$ then $IP = P$. For this it is sufficient to show that if
+$I = P + aR$ with $a \notin P$ then $P \subset IP$. Consider expressions of $P^2$ and $a^2R + P$
+as product of prime ideals, $P^2 = P_1 \cdots P_r$ and $a^2R + P = Q_1 \cdots Q_s$. Then $P_i$
+and $Q_j$ are prime ideals containing $P^2$, and so are prime ideals strictly bigger than $P$,
+We now set $\bar{R} = R/P$, and write $-$ to denote the image in $\bar{R}$ of
+elements or ideals of $R$. Then we have
+\[
+  (*) \quad \bar{P}_1 \cdots \bar{P}_r = \bar{a}^2\bar{R} = \bar{Q}_1 \cdots \bar{Q}_s,
+\]
+and applying Step 1 to the domain $\bar{R}$ we find that $\bar{P}_i$ and $\bar{Q}_j$ are all invertible,
+and are prime ideals of $\bar{R}$. We can suppose that $\bar{P}_1$ is a minimal element of
+the set $\{\bar{P}_1, \ldots, \bar{P}_r\}$. Moreover, at least one of $\bar{Q}_1, \ldots, \bar{Q}_s$ is contained
+in $\bar{P}_1$, so that we can assume that $\bar{Q}_1 \subset \bar{P}_1$, and, on the other hand, since
+$\bar{Q}_1$ is also a prime ideal and $\bar{P}_1 \cdots \bar{P}_r \subset \bar{Q}_1$ we must have $\bar{Q}_1 \supset \bar{P}_i$
+for some $i$. Then $\bar{P}_i \subset \bar{Q}_1 \subset \bar{P}_1$, and by the minimality of $\bar{P}_1$ we have $\bar{P}_i =
+\bar{P}_1 = \bar{Q}_1$. Multiplying through both sides of $(*)$ by $\bar{P}_1^{-1}$ gives
+\[
+  \bar{P}_2 \cdots \bar{P}_r = \bar{Q}_2 \cdots \bar{Q}_s;
+\]
+proceeding in the same way, we see that $r = s$, and that after reordering the
+$\bar{Q}_j$ we can assume that $\bar{P}_i = \bar{Q}_i$ for $i = 1, \ldots, r$. From this we get $P_i = Q_i$, and
+$a^2R + P = (P + aR)^2 = P^2 + aP + a^2R$. Thus any element $x \in P$ can be
+written
+\[
+  x = y + az + a^2t \quad \text{with } y \in P^2, z \in P \text{ and } t \in R.
+\]
+Since $a \notin P$ we must have $t \in P$, and then as required we have
+$P \subset P^2 + aP = (P + aR)P$.
+
+\textbf{Step 3.} Let $b \in R$ be a non-zero element; then in the factorisation
+$bR = P_1 \cdots P_r$, every $P_i$ is a maximal ideal of $R$. Indeed, if $I$ is any ideal
+strictly greater than $P_i$ then $IP_i = P_i$, and by Step 1 $P_i$ is invertible, so that
+$I = R$.
+
+\textbf{Step 4.} Let $P$ be a prime ideal of $R$, and $0 \neq a \in P$. If $aR = P_1 \cdots P_r$ with
+$P_i \in \Spec R$ then $P$ must contain one of the $P_i$, but from Step 3 we know that
+$P_i$ is maximal, so that $P = P_i$. We deduce that $P$ is a maximal ideal and is
+invertible. If every non-zero prime ideal is invertible then any non-zero ideal
+of $R$ is invertible, since it can be written as a product of primes. This
+completes the proof of $(3) \Rightarrow (1)$.
+
+Finally, if (1), (2) and (3) hold, then as we have seen in Step 2 above, the
+uniqueness of factorisation into primes is a consequence of the fact that
+the prime ideals of $R$ are invertible.
+\end{proof}
+
+\begin{theorem}[the Krull--Akizuki theorem]\label{thm:11.7}
+Let $A$ be a one-dimensional
+Noetherian integral domain with field of fractions $K$, let $L$ be a finite
+algebraic extension field of $K$, and $B$ a ring with $A \subset B \subset L$; then $B$ is a
+Noetherian ring of dimension at most $1$, and if $J$ is a non-zero ideal of $B$ then
+$B/J$ is an $A$-module of finite length.
+\end{theorem}
+
+\begin{proof}
+We follow the method of proof of Akizuki [1] in the linear algebra
+formulation of [BS]. First of all we prove the following lemma.
+
+\begin{lemma}\label{lem:11.1}
+Let $A$ and $K$ be as in the theorem, and let $M$ be a torsion-free
+$A$-module (see Ex.~\ref{ex:10.2-ex}) of rank $r < \infty$. Then for $0 \neq a \in A$ we have
+\[
+  l(M/aM) \le r \cdot l(A/aA).
+\]
+\end{lemma}
+
+\begin{remark}
+The \emph{rank} of a module $M$ over an integral domain $A$ is the maximal
+number of elements of $M$ linearly independent over $A$; this is equal to the
+dimension of the $K$-vector space $M \otimes_A K$.
+\end{remark}
+
+\begin{proof}[Proof of the lemma]
+First we assume that $M$ is finitely generated. Choose
+elements $\xi_1, \ldots, \xi_r \in M$ linearly independent over $A$ and set $E = \sum A\xi_i$; then
+for any $\eta \in M$ there exists $t \in A$ with $t \neq 0$ such that $t\eta \in E$. If we set $C = M/E$
+then from the assumption on $M$ we see that $C$ is also finitely generated, so
+that $tC = 0$ for suitable $0 \neq t \in A$. Applying Theorem~\ref{thm:6.4} to $C$, we can find
+$C = C_0 \supset C_1 \supset \cdots \supset C_m = 0$, such that $C_{i-1}/C_i \cong A/p_i$, with $p_i \in \Spec A$.
+Now $t \in p_i$, and since $A$ is one-dimensional each $p_i$ is maximal, so that
+$l(C) = m < \infty$. If $0 \neq a \in A$ then the exact sequence
+\[
+  E/a^nE \to M/a^nM \to C/a^nC \to 0
+\]
+gives
+\[
+  (*) \quad l(M/a^nM) \le l(E/a^nE) + l(C) \quad \text{for all } n > 0.
+\]
+Now $E$ and $M$ are both torsion-free $A$-modules, and one sees easily that
+$aM/a^{i+1}M \cong M/aM$, and similarly for $E$. Hence $(*)$ can be written
+$n \cdot l(M/aM) \le n \cdot l(E/aE) + l(C)$ for all $n > 0$, which gives $l(M/aM) \le l(E/aE)$.
+Since $E \cong A^r$ we have $l(E/aE) = r \cdot l(A/aA)$. This completes the proof in the
+case that $M$ is finitely generated. If $M$ is not finitely generated, take a finitely
+generated submodule $\bar{M}_0 = A\bar{\xi}_1 + \cdots + A\bar{\xi}_r$ of $\bar{M} = M/aM$. Then choos-
+ing an inverse image $\omega_i$ in $M$ for each $\bar{\xi}_i$, and setting $M_0 = \sum A\omega_i$, we get
+\[
+  l(\bar{M}_0) = l(M_0/M_0 \cap aM) \le l(M_0/aM_0) \le r \cdot l(A/aA).
+\]
+The right-hand side is now independent of $\bar{M}_0$, so that $\bar{M}$ is in fact finitely
+generated, and $l(\bar{M}) \le r \cdot l(A/aA)$.
+\end{proof}
+
+We return to the proof of the theorem. We can replace $L$ by the field of
+fractions of $B$. Set $[L:K] = r$; then $B$ is a torsion-free $A$-module of rank $r$.
+Hence by the lemma, for any $0 \neq a \in A$ we have $l_A(B/aB) < \infty$. Now if $J \neq 0$ is
+an ideal of $B$ and $0 \neq b \in J$ then since $b$ is algebraic over $A$ it satisfies a
+relation
+\[
+  a_0b^m + a_1b^{m-1} + \cdots + a_{m-1}b + a_m = 0 \quad \text{with } a_i \in A.
+\]
+$B$ is an integral domain, so that we can assume $a_0 \neq 0$. Then $0 \neq a_0 \in J \cap A$
+and so
+\[
+  l_A(B/J) \le l_A(B/a_0B) < \infty.
+\]
+Moreover, one sees from $l_A(J/a_0B) \le l_A(B/a_0B) < \infty$ that $J/a_0B$
+is a finite $B$-module; hence, $J$ itself is a finite $B$-module, and therefore $B$ is
+Noetherian. If $P$ is a non-zero prime ideal of $B$ then $B/P$ is an Artinian
+ring and an integral domain, and therefore a field. Thus $P$ is maximal and
+$\dim B = 1$.
+\end{proof}
+
+\begin{corollary*}
+Let $A$ be a one-dimensional Noetherian integral domain, $K$ its
+field of fractions, and $L$ a finite algebraic extension field of $K$; write $B$ for the
+integral closure of $A$ in $L$. Then $B$ is a Dedekind ring, and for any maximal
+ideal $P$ of $A$ there are just a finite number of primes of $B$ lying over $P$.
+\end{corollary*}
+
+\begin{proof}
+By the theorem $B$ is a one-dimensional Noetherian integral domain
+and is normal by construction; hence it is a Dedekind ring. It is easy to see
+that if we factorise $PB$ as a product $PB = Q_1^{e_1} \cdots Q_r^{e_r}$ of a finite number of
+prime ideals, then $Q_1, \ldots, Q_r$ are all the prime ideals of $B$ lying over $P$.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:11}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:11.1-ex}
+Let $A$ be a DVR, $K$ its field of fractions, and $\bar{K}$ an algebraic closure of $K$;
+then any valuation ring of $\bar{K}$ dominating $A$ is a one-dimensional non-
+discrete valuation ring.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.2-ex}
+Let $A$ be a DVR, $K$ its field of fractions, and $L$ a finite extension field of $K$;
+then a valuation ring of $L$ dominating $A$ is a DVR.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.3-ex}
+Let $A$ be a DVR and $m$ its maximal ideal; then the $m$-adic completion $\hat{A}$ of
+$A$ is again a DVR.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.4-ex}
+Let $v\colon K \to \R \cup \{\infty\}$ be an Archimedean additive valuation of a field $K$,
+and let $c$ be a real number with $0 < c < 1$. For $\alpha, \beta \in K$, set $d(\alpha, \beta) = c^{v(\alpha-\beta)}$;
+then $d$ satisfies the axioms for a metric on $K$ (that is $d(\alpha, \beta) \ge 0$, $d(\alpha, \beta)
+= 0 \iff \alpha = \beta$, $d(\alpha, \beta) = d(\beta, \alpha)$ and $d(\alpha, \gamma) \le d(\alpha, \beta) + d(\beta, \gamma)$), and the to-
+pology of $K$ defined by $d$ does not depend on the choice of $c$. Let $R$ be the
+valuation ring of $v$ and $m$ its valuation ideal; if $R$ is a DVR then the
+topology determined by $d$ restricts to the $m$-adic topology on $R$.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.5-ex}
+Any ideal in a Dedekind ring can be generated by at most two elements.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.6-ex}
+Let $A$ be the integral closure of $\Z$ in $\Q(\sqrt{10})$; then $A$ is a Dedekind ring but
+not a principal ideal ring.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.7-ex}
+If a Dedekind ring $A$ is semilocal then it is a principal ideal ring.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.8-ex}
+A module over a Dedekind ring is flat if and only if it is torsion-free.
+\end{exercise}
+
+\begin{exercise}\label{ex:11.9-ex}
+Let $A$ be an integral domain (not necessarily Noetherian). The following
+two conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $A_P$ is a valuation ring for every maximal ideal $P$ of $A$;
+  \item an $A$-module is flat if and only if it is torsion-free. (An integral
+        domain satisfying these conditions is called a \emph{Pr\"ufer domain}.)
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}\label{ex:11.10-ex}
+A finite torsion-free module over a Dedekind ring is projective, and is
+isomorphic to a direct sum of ideals.
+\end{exercise}

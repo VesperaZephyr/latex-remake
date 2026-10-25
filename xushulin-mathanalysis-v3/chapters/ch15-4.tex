@@ -1,0 +1,876 @@
+% ====================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S15.4  Gamma 函数与 B 函数
+%  源：原书印刷页 222 起（PDF 物理页 228 起）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch15_15_4_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref（写作「定理 x.y.z」原文）；数学模式内的中文必须包text
+% ====================================================================
+\section{\texorpdfstring{$\Gamma$ 函数与 $\mathrm{B}$ 函数}{Gamma 函数与 B 函数}}\label{sec:15.4}
+
+在\extref{例 6.5.4}证明 $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{4}}=\frac{\pi}{2\sqrt{2}}$ 的证法 2 中, 我们借用了 $\Gamma$ 函数 $\displaystyle\Gamma(s)=\int_{0}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 与 $\mathrm{B}$ 函数 $\displaystyle\mathrm{B}(p,q)=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,\mathrm{d}t$. 前者是含一个参变量 $s$ 的广义积分, 它确定的函数 $\Gamma(s)$ 的定义域为 $\{s\mid 1-s<1\}=\{s\mid s>0\}=(0,+\infty)$. 后者是含两个参变量 $p,q$ 的广义积分, 它确定的二元函数 $\mathrm{B}(p,q)$ 的定义域为 $\{(p,q)\mid 1-p<1, 1-q<1\}=\{(p,q)\mid p>0, q>0\}$.
+
+\begin{theorem}\label{thm:15.4.1}
+$\Gamma(s)$ 在 $(0,+\infty)$ 上连续, 且有各阶连续导数.
+\end{theorem}
+
+\begin{proof}
+对任意 $\beta>\alpha>0$, 由于当 $s\in[\alpha,\beta]$ 时
+\[
+  0<t^{s-1}\mathrm{e}^{-t}\leqslant t^{\alpha-1}\mathrm{e}^{-t},\quad\forall t\in(0,1)
+\]
+及 $\displaystyle\int_{0}^{1}t^{\alpha-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 收敛, 所以 $\displaystyle\int_{0}^{1}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 在 $s\in[\alpha,\beta]$ 上一致收敛, 因而 $\displaystyle\int_{0}^{1}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 在 $s\in[\alpha,\beta]$ 上为连续函数. 因为
+\[
+  0<t^{s-1}\mathrm{e}^{-t}\leqslant t^{\beta-1}\mathrm{e}^{-t},\quad\forall t\in[1,+\infty),\ \forall s\in[\alpha,\beta]
+\]
+及 $\displaystyle\int_{1}^{+\infty}t^{\beta-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 收敛, 根据 Weierstrass 判别法知, $\displaystyle\int_{1}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 在 $s\in[\alpha,\beta]$ 上一致收敛, 因而 $\displaystyle\int_{1}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 为 $[\alpha,\beta]$ 上的连续函数. 由 $\beta>\alpha>0$ 的任意性知, $\Gamma(s)$ 在 $(0,+\infty)$ 上连续.
+
+对 $k\in\mathbb{N}$, 令 $\alpha=2\delta$, 则由
+\[
+  \lim_{t\to 0^{+}}\left|\frac{(\ln t)^{k}}{\left(\frac{1}{t}\right)^\delta}\mathrm{e}^{-t}\right|=\lim_{u\to+\infty}\left|\frac{(-\ln u)^{k}}{u^\delta}\mathrm{e}^{-\frac{1}{u}}\right|=0,
+\]
+\[
+  \left|\frac{(\ln t)^{k}}{\frac{1}{t}}\mathrm{e}^{-t}\right|\leqslant M_{k},\quad\forall t\in(0,+\infty), % 原书此处分母印为 1/t
+\]
+\[
+  \left|t^{s-1}(\ln t)^{k}\mathrm{e}^{-t}\right|\leqslant\left|t^{\alpha-1}(\ln t)^{k}\mathrm{e}^{-t}\right|=\left|t^{\delta-1}\frac{(\ln t)^{k}}{\left(\frac{1}{t}\right)^{\delta}}\mathrm{e}^{-t}\right|\leqslant\frac{M_{k}}{t^{1-\delta}},\quad\forall s\in[\alpha,\beta],
+\]
+再由 $\displaystyle\int_{0}^{1}\frac{\mathrm{d}t}{t^{1-\delta}}$ 收敛及 Weierstrass 判别法推得 $\displaystyle\int_{0}^{1}t^{s-1}(\ln t)^{k}\mathrm{e}^{-t}\,\mathrm{d}t$ 在 $s\in[\alpha,\beta]$ 上一致收敛, 因而
+\[
+  \frac{\mathrm{d}^{l}}{\mathrm{d}s^{l}}\left(\int_{0}^{1}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t\right)=\int_{0}^{1}\frac{\mathrm{d}^{l}}{\mathrm{d}s^{l}}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t=\int_{0}^{1}t^{s-1}(\ln t)^{l}\mathrm{e}^{-t}\,\mathrm{d}t,\quad l=1,2,\cdots.
+\]
+因为
+\[
+  \lim_{t\to+\infty}\frac{\left|t^{\beta-1}(\ln t)^{k}\mathrm{e}^{-t}\right|}{\frac{1}{t^{2}}}=\lim_{t\to+\infty}\frac{\left|t^{\beta+1}(\ln t)^{k}\right|}{\mathrm{e}^{t}}=0,\quad\int_{1}^{+\infty}\frac{\mathrm{d}t}{t^{2}}\ \text{收敛},
+\]
+所以, 根据\extref{定理 6.5.3$'$}(2)知, $\displaystyle\int_{1}^{+\infty}\left|t^{\beta-1}(\ln t)^{k}\mathrm{e}^{-t}\right|\mathrm{d}t$ 收敛. 又因为
+\[
+  \left|t^{s-1}(\ln t)^{k}\mathrm{e}^{-t}\right|\leqslant\left|t^{\beta-1}(\ln t)^{k}\mathrm{e}^{-t}\right|,\quad\forall t\in[1,+\infty),\ \forall s\in[\alpha,\beta]
+\]
+故 $\displaystyle\int_{1}^{+\infty}t^{s-1}(\ln t)^{k}\mathrm{e}^{-t}\,\mathrm{d}t$ 在 $s\in[\alpha,\beta]$ 上一致收敛. 因而由定理~\ref{thm:15.3.6}知
+\[
+  \frac{\mathrm{d}^{l}}{\mathrm{d}s^{l}}\left(\int_{1}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t\right)=\int_{1}^{+\infty}\frac{\mathrm{d}^{l}}{\mathrm{d}s^{l}}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t=\int_{1}^{+\infty}t^{s-1}(\ln t)^{l}\mathrm{e}^{-t}\,\mathrm{d}t,\quad l=1,2,\cdots.
+\]
+综上可知, 当 $\beta>\alpha>0$ 时,
+\[
+  \begin{aligned}
+    \Gamma^{(l)}(s)&=\left(\int_{0}^{1}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t\right)^{(l)}+\left(\int_{1}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t\right)^{(l)}\\
+    &=\int_{0}^{1}t^{s-1}(\ln t)^{l}\mathrm{e}^{-t}\,\mathrm{d}t+\int_{1}^{+\infty}t^{s-1}(\ln t)^{l}\mathrm{e}^{-t}\,\mathrm{d}t\\
+    &=\int_{0}^{+\infty}t^{s-1}(\ln t)^{l}\mathrm{e}^{-t}\,\mathrm{d}t.
+  \end{aligned}
+\]
+由 $\beta>\alpha>0$ 的任意性知, $\displaystyle\Gamma(s)=\int_{0}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$ 在 $(0,+\infty)$ 上有各阶导数, 因而有各阶连续导数.
+\end{proof}
+
+\begin{theorem}\label{thm:15.4.2}
+$\Gamma$ 函数具有下面的三条性质:
+\begin{enumerate}
+  \item $\forall s>0$, $\Gamma(s)>0$, 且 $\Gamma(1)=1$;
+  \item $\Gamma(s+1)=s\Gamma(s)$, $\forall s>0$;
+  \item $\ln\Gamma(s)$ 为 $(0,+\infty)$ 上的凸函数.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 因为 $t^{s-1}\mathrm{e}^{-t}$ 在 $t\in(0,+\infty)$ 上连续且恒大于 0, 故 $\displaystyle\Gamma(s)=\int_{0}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t>0$.
+
+又
+\[
+  \Gamma(1)=\int_{0}^{+\infty}t^{1-1}\mathrm{e}^{-t}\,\mathrm{d}t=\int_{0}^{+\infty}\mathrm{e}^{-t}\,\mathrm{d}t=-\left.\mathrm{e}^{-t}\right|_{0}^{+\infty}=1.
+\]
+
+(2)
+\[
+  \Gamma(s+1)=\int_{0}^{+\infty}t^{s}\mathrm{e}^{-t}\,\mathrm{d}t\xlongequal{\text{分部积分}}-\left.t^{s}\mathrm{e}^{-t}\right|_{0}^{+\infty}+s\int_{0}^{+\infty}t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t=s\Gamma(s).
+\]
+
+(3) 对 $p\in(1,+\infty)$, $\displaystyle\frac{1}{p}+\frac{1}{q}=1$, $s_{1},s_{2}\in(0,+\infty)$, 有
+\[
+  \begin{aligned}
+    \Gamma\left(\frac{s_{1}}{p}+\frac{s_{2}}{q}\right)&=\int_{0}^{+\infty}t^{\frac{s_{1}}{p}+\frac{s_{2}}{q}-1}\mathrm{e}^{-t}\,\mathrm{d}t=\int_{0}^{+\infty}\left(t^{\frac{s_{1}-1}{p}}\mathrm{e}^{-\frac{t}{p}}\right)\left(t^{\frac{s_{2}-1}{q}}\mathrm{e}^{-\frac{t}{q}}\right)\mathrm{d}t\\
+    &\stackrel{\mathrm{H\ddot{o}lder}}{\leqslant}\left(\int_{0}^{+\infty}t^{s_{1}-1}\mathrm{e}^{-t}\,\mathrm{d}t\right)^{\frac{1}{p}}\left(\int_{0}^{+\infty}t^{s_{2}-1}\mathrm{e}^{-t}\,\mathrm{d}t\right)^{\frac{1}{q}}=\Gamma^{\frac{1}{p}}(s_{1})\Gamma^{\frac{1}{q}}(s_{2}),
+  \end{aligned}
+\]
+\[
+  \ln\Gamma\left(\frac{s_{1}}{p}+\frac{s_{2}}{q}\right)\leqslant\ln\left[\Gamma^{\frac{1}{p}}(s_{1})\Gamma^{\frac{1}{q}}(s_{2})\right]=\frac{1}{p}\ln\Gamma(s_{1})+\frac{1}{q}\ln\Gamma(s_{2}),
+\]
+这就证明了 $\ln\Gamma(s)$ 为 $(0,+\infty)$ 上的凸函数.
+\end{proof}
+
+\begin{corollary}\label{cor:15.4.1}
+\begin{enumerate}
+  \item 设 $n\in\mathbb{N}$, 则 $\Gamma(n+1)=n!$ (故 $\Gamma$ 函数可视作阶乘函数的推广);
+  \item 设 $n\in\mathbb{N}$, $n<s\leqslant n+1$, 即 $0<s-n\leqslant 1$, 则 $\Gamma(s+1)=s(s-1)\cdots(s-n)\Gamma(s-n)$, 这表明 $\Gamma$ 的值完全由 $\Gamma$ 在 $(0,1]$ 中的值确定.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(1)
+\[
+  \begin{aligned}
+    \Gamma(n+1)&\xlongequal{\text{定理~\ref{thm:15.4.2}(2)}}n\Gamma(n)\xlongequal{\text{定理~\ref{thm:15.4.2}(2)}}n(n-1)\Gamma(n-1)\\
+    &=\cdots=n(n-1)\cdots 1\cdot\Gamma(1)=n!.
+  \end{aligned}
+\]
+
+(2)
+\[
+  \Gamma(s+1)\xlongequal{\text{定理~\ref{thm:15.4.2}(2)}}s\Gamma(s)=\cdots=s(s-1)\cdots(s-n)\Gamma(s-n),\quad\text{其中 }0<s-n\leqslant 1.
+\]
+\end{proof}
+
+出乎意料的是, Bohr 与 Mollerup 首先发现了: 在 $(0,+\infty)$ 上满足定理~\ref{thm:15.4.2} 中 3 条性质的函数一定是 $\Gamma$ 函数.
+
+\begin{theorem}[Bohr-Mollerup]\label{thm:15.4.3}
+如果 $(0,+\infty)$ 上的函数 $f(x)$ 满足:
+\begin{enumerate}
+  \item $\forall x>0$, $f(x)>0$ 且 $f(1)=1$;
+  \item $f(x+1)=xf(x)$, $\forall x>0$;
+  \item $\ln f(x)$ 为 $(0,+\infty)$ 上的凸函数.
+\end{enumerate}
+则 $f(x)=\Gamma(x)$, $\forall x\in(0,+\infty)$.
+\end{theorem}
+
+\begin{proof}
+由条件 (1) 与条件 (2) 知, $f(n)=(n-1)f(n-2)=\cdots=(n-1)!f(1)=(n-1)!$.
+
+设 $x\in(0,1)$, 由条件 (3), $\ln f(x)$ 为 $(0,+\infty)$ 上的凸函数, 根据\extref{定理 3.6.1}得到
+\[
+  \frac{\ln f(n)-\ln f(n-1)}{n-(n-1)}\leqslant\frac{\ln f(n+x)-\ln f(n)}{(n+x)-n}\leqslant\frac{\ln f(n+1)-\ln f(n)}{(n+1)-n},\quad n=2,3,\cdots.
+\]
+于是
+\[
+  \ln(n-1)!-\ln(n-2)!\leqslant\frac{\ln f(n+x)-\ln(n-1)!}{x}\leqslant\ln n!-\ln(n-1)!,
+\]
+即
+\[
+  x\ln(n-1)\leqslant\ln f(n+x)-\ln(n-1)!\leqslant x\ln n,
+\]
+\[
+  x\ln(n-1)+\ln(n-1)!\leqslant\ln f(n+x)\leqslant x\ln n+\ln(n-1)!,
+\]
+\[
+  \ln\left[(n-1)^{x}(n-1)!\right]\leqslant\ln f(n+x)\leqslant\ln\left[n^{x}(n-1)!\right],
+\]
+\[
+  (n-1)^{x}(n-1)!\leqslant f(n+x)\xlongequal{\text{由条件 (2)}}(n-1+x)\cdots(1+x)xf(x)\leqslant n^{x}(n-1)!,
+\]
+\[
+  \frac{(n-1)^{x}(n-1)!}{x(x+1)\cdots(x+n-1)}\leqslant f(x)\leqslant\frac{n^{x}(n-1)!}{x(x+1)\cdots(x+n-1)}.
+\]
+将左边不等式中的 $n-1$ 换成 $n$, 不等式仍然成立. 则有
+\[
+  \frac{n^{x}n!}{x(x+1)\cdots(x+n)}\leqslant f(x)\leqslant\frac{n^{x}n!}{x(x+1)\cdots(x+n)}\frac{x+n}{n},
+\]
+\[
+  \frac{n}{x+n}f(x)\leqslant\frac{n^{x}n!}{x(x+1)\cdots(x+n)}\leqslant f(x).
+\]
+由于 $\displaystyle\lim_{n\to+\infty}\frac{n}{x+n}f(x)=f(x)=\lim_{n\to+\infty}f(x)$ 及夹逼定理得到
+\[
+  \lim_{n\to+\infty}\frac{n^{x}n!}{x(x+1)\cdots(x+n)}=f(x).
+\]
+这就证明了 $f(x)$ ($x\in(0,1)$) 被左边的极限所惟一确定. 再由条件 (2) 推得 $f(x)$ ($x\in(0,+\infty)$) 由条件 (1)、(2)、(3) 所惟一确定, 即 $f(x)=\Gamma(x)$, $x\in(0,+\infty)$.
+\end{proof}
+
+\begin{theorem}[$\Gamma$ 函数的另一表达式]\label{thm:15.4.4}
+$\forall x>0$, 有
+\[
+  \Gamma(x)=\lim_{n\to+\infty}\frac{n^{x}n!}{x(x+1)\cdots(x+n)}.
+\]
+\end{theorem}
+
+\begin{proof}
+定理~\ref{thm:15.4.3} 的证明中, 已经证明当 $0<x\leqslant 1$ 时, 等式是成立的. 如果记
+\[
+  g(x)=\lim_{n\to+\infty}\frac{n^{x}n!}{x(x+1)\cdots(x+n)},
+\]
+由于
+\[
+  \begin{aligned}
+    g(x+1)&=\lim_{n\to+\infty}\frac{n^{x+1}n!}{(x+1)(x+2)\cdots(x+n+1)}\\
+    &=x\lim_{n\to+\infty}\frac{n^{x}n!}{x(x+1)\cdots(x+n)}\cdot\frac{n}{x+n+1}=xg(x),
+  \end{aligned}
+\]
+由此即知 $g(x)$ 在 $(0,1]$ 中的值完全确定了 $g(x)$ 在 $(0,+\infty)$ 上的值. 于是, 从 $g(x)=\Gamma(x)$, $x\in(0,1]$, $\Gamma(x+1)=x\Gamma(x)$, $g(x+1)=xg(x)$ 立刻知, $g(x)=\Gamma(x)$, $x>0$.
+\end{proof}
+
+表面上似乎不相关联的 $\Gamma$ 函数与 $\mathrm{B}$ 函数实际上有着密切的联系.
+
+\begin{theorem}[$\Gamma$ 函数与 $\mathrm{B}$ 函数的关联公式]\label{thm:15.4.5}
+$\forall p>0, q>0$, 有
+\[
+  \mathrm{B}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}.
+\]
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1}\quad 固定 $q>0$, 令
+\[
+  f(p)=\frac{\Gamma(p+q)\mathrm{B}(p,q)}{\Gamma(q)}.
+\]
+先证 $\mathrm{B}$ 函数有递推公式:
+\[
+  \mathrm{B}(p+1,q)=\frac{p}{p+q}\mathrm{B}(p,q).
+\]
+事实上
+\[
+  \begin{aligned}
+    \mathrm{B}(p+1,q)&=\int_{0}^{1}t^{p}(1-t)^{q-1}\,\mathrm{d}t=\int_{0}^{1}\left(\frac{t}{1-t}\right)^{p}(1-t)^{p+q-1}\,\mathrm{d}t\\
+    &=\int_{0}^{1}\left(\frac{t}{1-t}\right)^{p}\mathrm{d}\frac{-(1-t)^{p+q}}{p+q}=\left.\left(\frac{t}{1-t}\right)^{p}\cdot\frac{-(1-t)^{p+q}}{p+q}\right|_{0}^{1}\\
+    &\quad+\int_{0}^{1}p\left(\frac{t}{1-t}\right)^{p-1}\cdot\frac{1}{(1-t)^{2}}\frac{(1-t)^{p+q}}{p+q}\,\mathrm{d}t\\
+    &=\frac{p}{p+q}\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,\mathrm{d}t=\frac{p}{p+q}\mathrm{B}(p,q).
+  \end{aligned}
+\]
+或者
+\[
+  \begin{aligned}
+    \mathrm{B}(p+1,q)&=\int_{0}^{1}t^{p}(1-t)^{q-1}\,\mathrm{d}t=\int_{0}^{1}t^{p}\mathrm{d}\frac{-(1-t)^{q}}{q}\\
+    &=\left.t^{p}\frac{-(1-t)^{q}}{q}\right|_{0}^{1}+\int_{0}^{1}\frac{p}{q}t^{p-1}(1-t)^{q}\,\mathrm{d}t\\
+    &=\frac{p}{q}\int_{0}^{1}t^{p-1}(1-t)^{q}\,\mathrm{d}t=\frac{p}{q}\int_{0}^{1}t^{p-1}\left[(1-t)^{q-1}-(1-t)^{q-1}t\right]\mathrm{d}t\\
+    &=\frac{p}{q}\mathrm{B}(p,q)-\frac{p}{q}\mathrm{B}(p+1,q),
+  \end{aligned}
+\]
+\[
+  \mathrm{B}(p+1,q)=\frac{p}{p+q}\mathrm{B}(p,q).
+\]
+应用上式与 $\Gamma$ 函数的递推关系即得
+\[
+  \begin{aligned}
+    f(p+1)&=\frac{1}{\Gamma(q)}\Gamma(p+1+q)\mathrm{B}(p+1,q)\\
+    &=\frac{1}{\Gamma(q)}(p+q)\Gamma(p+q)\frac{p}{p+q}\mathrm{B}(p,q)\\
+    &=pf(p).
+  \end{aligned}
+\]
+所以 $f(x)$ 具有定理~\ref{thm:15.4.3} 中的性质 (2). 注意到
+\[
+  \mathrm{B}(1,q)=\int_{0}^{1}(1-t)^{q-1}\,\mathrm{d}t=-\left.\frac{(1-t)^{q}}{q}\right|_{0}^{1}=\frac{1}{q},
+\]
+可得
+\[
+  f(1)=\frac{\Gamma(1+q)\mathrm{B}(1,q)}{\Gamma(q)}=\frac{\Gamma(q+1)}{q\Gamma(q)}=\frac{\Gamma(q+1)}{\Gamma(q+1)}=1.
+\]
+此外显然有 $f(p)>0$, 可见 $f(x)$ 具有定理~\ref{thm:15.4.3} 中的性质 (1). 再证 $f(x)$ 具有定理~\ref{thm:15.4.3} 中的性质 (3). 由于 $q$ 固定, 故 $-\ln\Gamma(q)$ 为常值函数, 它为 $p$ 在 $(0,+\infty)$ 上的凸函数. 由定理~\ref{thm:15.4.2} 中的 (3) 知, $\ln\Gamma(p+q)$ 为 $p\in(0,+\infty)$ 上的凸函数. 对 $u\in(1,+\infty)$, $\displaystyle\frac{1}{u}+\frac{1}{v}=1$, $p_{1},p_{2}\in(0,+\infty)$, 有
+\[
+  \begin{aligned}
+    \mathrm{B}\left(\frac{p_{1}}{u}+\frac{p_{2}}{v},q\right)&=\int_{0}^{1}t^{\frac{p_{1}}{u}+\frac{p_{2}}{v}-1}(1-t)^{q-1}\,\mathrm{d}t\\
+    &=\int_{0}^{1}t^{\frac{p_{1}-1}{u}}(1-t)^{\frac{q-1}{u}}t^{\frac{p_{2}-1}{v}}(1-t)^{\frac{q-1}{v}}\mathrm{d}t\\
+    &\stackrel{\mathrm{H\ddot{o}lder}}{\leqslant}\left(\int_{0}^{1}t^{p_{1}-1}(1-t)^{q-1}\,\mathrm{d}t\right)^{\frac{1}{u}}\left(\int_{0}^{1}t^{p_{2}-1}(1-t)^{q-1}\,\mathrm{d}t\right)^{\frac{1}{v}}\\
+    &=\mathrm{B}^{\frac{1}{u}}(p_{1},q)\mathrm{B}^{\frac{1}{v}}(p_{2},q),
+  \end{aligned}
+\]
+\[
+  \ln\mathrm{B}\left(\frac{p_{1}}{u}+\frac{p_{2}}{v},q\right)\leqslant\ln\left[\mathrm{B}^{\frac{1}{u}}(p_{1},q)\mathrm{B}^{\frac{1}{v}}(p_{2},q)\right]=\frac{1}{u}\ln\mathrm{B}(p_{1},q)+\frac{1}{v}\ln\mathrm{B}(p_{2},q),
+\]
+这就证明了 $\ln\mathrm{B}(p,q)$ 为 $p\in(0,+\infty)$ 上的凸函数. 综上得到
+\[
+  \ln f(p)=\ln\frac{\Gamma(p+q)\mathrm{B}(p,q)}{\Gamma(q)}=\ln\Gamma(p+q)+\ln\mathrm{B}(p,q)-\ln\Gamma(q)
+\]
+为三个关于 $p\in(0,+\infty)$ 的凸函数之和, 应该仍为 $p\in(0,+\infty)$ 的凸函数. 由此推得 $f(p)$ 满足定理~\ref{thm:15.4.3} 中的条件 (1)、(2)、(3), 故 $f(p)=\Gamma(p)$, $\forall p\in(0,+\infty)$, 即
+\[
+  \frac{\Gamma(p+q)\mathrm{B}(p,q)}{\Gamma(q)}=f(p)=\Gamma(p),
+\]
+也就是
+\[
+  \mathrm{B}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)},\quad p>0,q>0.
+\]
+
+\textbf{证法 2}\quad 参阅\extref{例 10.6.3}.
+\end{proof}
+
+从 $\Gamma$ 函数的性质, 可直接推出 $\mathrm{B}$ 函数的一些性质.
+
+\begin{theorem}\label{thm:15.4.6}
+\begin{enumerate}
+  \item $\mathrm{B}(p,q)$ 在 $(0,+\infty)\times(0,+\infty)$ 上连续且有各阶连续偏导数;
+  \item $\mathrm{B}(p,q)=\mathrm{B}(q,p)$, $p>0, q>0$ (对称性);
+  \item $\displaystyle\mathrm{B}(p+1,q)=\frac{p}{p+q}\mathrm{B}(p,q)$;
+  \item $\displaystyle\mathrm{B}(p+1,q+1)=\frac{pq}{(p+q+1)(p+q)}\mathrm{B}(p,q)$, $p>0, q>0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 根据定理~\ref{thm:15.4.5}, 有
+\[
+  \mathrm{B}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)},
+\]
+再由定理~\ref{thm:15.4.1} 推得 $\mathrm{B}(p,q)$ 在 $(p,q)\in(0,+\infty)\times(0,+\infty)$ 上连续且有各阶连续偏导数.
+
+或者类似定理~\ref{thm:15.4.1} 直接证明 $\mathrm{B}(p,q)$ 在 $(0,+\infty)\times(0,+\infty)$ 上连续且有各阶连续偏导数.
+
+(2)
+\[
+  \mathrm{B}(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}=\frac{\Gamma(q)\Gamma(p)}{\Gamma(q+p)}=\mathrm{B}(q,p).
+\]
+或者
+\[
+  \mathrm{B}(p,q)=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,\mathrm{d}t\xlongequal{t=1-s}\int_{1}^{0}(1-s)^{p-1}s^{q-1}(-\mathrm{d}s)=\int_{0}^{1}s^{q-1}(1-s)^{p-1}\,\mathrm{d}s=\mathrm{B}(q,p).
+\]
+
+(3) 在定理~\ref{thm:15.4.5} 证法 1 中已证明.
+
+(4)
+\[
+  \begin{aligned}
+    \mathrm{B}(p+1,q+1)&\xlongequal{(3)}\frac{p}{p+(q+1)}\mathrm{B}(p,q+1)\xlongequal{(2),(3)}\frac{p}{p+q+1}\cdot\frac{q}{q+p}\mathrm{B}(p,q)\\
+    &=\frac{pq}{(p+q+1)(p+q)}\mathrm{B}(p,q).
+  \end{aligned}
+\]
+\end{proof}
+
+$\Gamma$ 函数还有加倍公式与余元公式这两个重要公式.
+
+\begin{theorem}[加倍公式]\label{thm:15.4.7}
+$\forall s>0$, 有
+\[
+  \Gamma(2s)=\frac{2^{2s-1}}{\sqrt{\pi}}\Gamma(s)\Gamma\left(s+\frac{1}{2}\right).
+\]
+\end{theorem}
+
+\begin{proof}
+显然
+\[
+  \Gamma(2s)=\frac{2^{2s-1}}{\sqrt{\pi}}\Gamma(s)\Gamma\left(s+\frac{1}{2}\right) \iff \Gamma(p)=\frac{2^{p-1}}{\sqrt{\pi}}\Gamma\left(\frac{p}{2}\right)\Gamma\left(\frac{p+1}{2}\right),\quad p=2s.
+\]
+为证后一式, 令
+\[
+  f(p)=\frac{2^{p-1}}{\sqrt{\pi}}\Gamma\left(\frac{p}{2}\right)\Gamma\left(\frac{p+1}{2}\right),
+\]
+则
+\[
+  f(1)=\frac{1}{\sqrt{\pi}}\Gamma\left(\frac{1}{2}\right)\Gamma(1)=\frac{1}{\sqrt{\pi}}\sqrt{\pi}\cdot 1=1,
+\]
+\[
+  \begin{aligned}
+    f(p+1)&=\frac{2^{p}}{\sqrt{\pi}}\Gamma\left(\frac{p+1}{2}\right)\Gamma\left(\frac{p+2}{2}\right)=\frac{2^{p}}{\sqrt{\pi}}\frac{p}{2}\Gamma\left(\frac{p}{2}\right)\Gamma\left(\frac{p+1}{2}\right)\\
+    &=pf(p).
+  \end{aligned}
+\]
+又因为
+\[
+  \ln f(p)=\ln\frac{2^{p-1}}{\sqrt{\pi}}+\ln\Gamma\left(\frac{p}{2}\right)+\ln\Gamma\left(\frac{p+1}{2}\right)
+\]
+为 $p\in(0,+\infty)$ 上的三个凸函数之和, 所以 $\ln f(p)$ 也为 $p\in(0,+\infty)$ 上的凸函数. 根据定理~\ref{thm:15.4.3} 可知
+\[
+  \Gamma(p)=f(p)=\frac{2^{p-1}}{\sqrt{\pi}}\Gamma\left(\frac{p}{2}\right)\Gamma\left(\frac{p+1}{2}\right).
+\]
+\end{proof}
+
+\begin{theorem}[余元公式]\label{thm:15.4.8}
+$\forall p\in(0,1)$, 有
+\[
+  \Gamma(p)\Gamma(1-p)=\frac{\pi}{\sin p\pi}.
+\]
+特别当 $p=\frac{1}{2}$ 时, $\Gamma^{2}\left(\frac{1}{2}\right)=\pi$, $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$.
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x&\xlongequal{t=x^{2}}\int_{0}^{+\infty}\mathrm{e}^{-t}\frac{\mathrm{d}t}{2\sqrt{t}}\\
+    &=\frac{1}{2}\int_{0}^{+\infty}t^{\frac{1}{2}-1}\mathrm{e}^{-t}\,\mathrm{d}t=\frac{1}{2}\Gamma\left(\frac{1}{2}\right)=\frac{\sqrt{\pi}}{2}.
+  \end{aligned}
+\]
+根据余元公式, 从 $\Gamma$ 函数在 $\left(0,\frac{1}{2}\right)$ 中的值, 便能算出 $\Gamma$ 函数在 $(0,1)$ 中的值, 从而算出 $\Gamma$ 函数在 $(0,+\infty)$ 中的值.
+\end{theorem}
+
+\begin{proof}
+\[
+  \begin{aligned}
+    \Gamma(p)\Gamma(1-p)&=\mathrm{B}(1-p,p)\Gamma(1-p+p)\\
+    &=\mathrm{B}(1-p,p)\Gamma(1)=\int_{0}^{1}t^{-p}(1-t)^{p-1}\,\mathrm{d}t\\
+    &\xlongequal[\displaystyle 1-t=\frac{x}{1+x}]{\displaystyle t=\frac{1}{1+x}}\int_{+\infty}^{0}\left(\frac{1}{1+x}\right)^{-p}\left(\frac{x}{1+x}\right)^{p-1}\frac{-\mathrm{d}x}{(1+x)^{2}}\\
+    &=\int_{0}^{+\infty}\frac{x^{p-1}}{1+x}\,\mathrm{d}x\xlongequal{\text{\extref{例 16.1.5}}}\frac{\pi}{\sin p\pi}.
+  \end{aligned}
+\]
+\end{proof}
+
+为了处理与 $n!$ 有关的问题, 我们来给出 $n!$ 的一个渐近表达式, 进而证明精细 Stirling 公式.
+
+\begin{lemma}\label{lem:15.4.1}
+\[
+  \int_{0}^{n}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t=\left(n+x+\frac{1}{2}\right)\ln(n+x)-\left(\frac{1}{2}+x\right)\ln x-\sum_{k=1}^{n}\ln(k+x)-n.
+\]
+\end{lemma}
+
+\begin{proof}
+\[
+  \begin{aligned}
+    \int_{0}^{n}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t&=\sum_{k=0}^{n-1}\int_{k}^{k+1}\frac{k-t+\frac{1}{2}}{t-x}\,\mathrm{d}t=\sum_{k=0}^{n-1}\int_{k}^{k+1}\left(\frac{k+\frac{1}{2}+x}{t+x}-1\right)\mathrm{d}t\\ % 原书第一项分母印为 t-x
+    &=\sum_{k=0}^{n-1}\left[\left(k+\frac{1}{2}+x\right)(\ln(k+1+x)-\ln(k+x))-1\right]\\
+    &=\sum_{k=1}^{n}\left(k+x-\frac{1}{2}\right)\ln(k+x)-\sum_{k=0}^{n-1}\left(k+\frac{1}{2}+x\right)\ln(k+x)-n\\
+    &=\sum_{k=1}^{n}\left(k+x+\frac{1}{2}\right)\ln(k+x)-\sum_{k=1}^{n}\ln(k+x)-\sum_{k=0}^{n-1}\left(k+x+\frac{1}{2}\right)\ln(k+x)-n\\
+    &=\left(n+x+\frac{1}{2}\right)\ln(n+x)-\left(\frac{1}{2}+x\right)\ln x-\sum_{k=1}^{n}\ln(k+x)-n.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:15.4.2}
+设 $u>0$, 则
+\[
+  0<\left(u+\frac{1}{2}\right)\ln\left(1+\frac{1}{u}\right)-1<\frac{1}{12}\left(\frac{1}{u}-\frac{1}{u+1}\right).
+\]
+\end{lemma}
+
+\begin{proof}
+\[
+  \begin{aligned}
+    0&<\left(u+\frac{1}{2}\right)\ln\left(1+\frac{1}{u}\right)-1=\frac{2u+1}{2}\ln\frac{1+\frac{1}{2u+1}}{1-\frac{1}{2u+1}}-1\\
+    &=\frac{2u+1}{2}\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n}\left[\left(\frac{1}{2u+1}\right)^{n}-\left(-\frac{1}{2u+1}\right)^{n}\right]-1\\
+    &=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}+1}{2n}\left(\frac{1}{2u+1}\right)^{n-1}-1=\sum_{k=1}^{\infty}\frac{1}{2k+1}\frac{1}{(2u+1)^{2k}}\\
+    &=\frac{1}{3}\sum_{k=1}^{\infty}\frac{3}{2k+1}\frac{1}{(2u+1)^{2k}}<\frac{1}{3}\sum_{k=1}^{\infty}\frac{1}{(2u+1)^{2k}}\\
+    &=\frac{1}{3(2u+1)^{2}}\frac{1}{1-\frac{1}{(2u+1)^{2}}}=\frac{1}{12u(u+1)}=\frac{1}{12}\left(\frac{1}{u}-\frac{1}{u+1}\right).
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{lemma}[Stirling 渐近表达式]\label{lem:15.4.3}
+\[
+  n!\sim\sqrt{2\pi n}\left(\frac{n}{\mathrm{e}}\right)^{n}\quad(n\to+\infty).
+\]
+\end{lemma}
+
+\begin{proof}
+应用\extref{例 6.4.5}(2)中 Wallis 公式
+\[
+  \lim_{n\to+\infty}\left[\frac{(2n)!!}{(2n-1)!!}\right]\frac{1}{2n+1}=\frac{\pi}{2} % 原书此处漏印平方，照录
+\]
+得到
+\[
+  \begin{aligned}
+    \lim_{n\to+\infty}\frac{(n!)^{2}2^{2n}}{(2n)!\sqrt{n}}&=\lim_{n\to+\infty}\frac{[(2n)!!]^{2}}{(2n-1)!!(2n)!!\sqrt{n}}=\lim_{n\to+\infty}\frac{(2n)!!}{(2n-1)!!\sqrt{n}}\\
+    &=\lim_{n\to+\infty}\sqrt{\left[\frac{(2n)!!}{(2n-1)!!}\right]^{2}\frac{1}{2n+1}}\sqrt{\frac{2n+1}{n}}\\
+    &=\sqrt{\frac{\pi}{2}}\cdot\sqrt{2}=\sqrt{\pi}.
+  \end{aligned}
+\]
+考虑数列 $\{a_{n}\}$:
+\[
+  a_{n}=\frac{n!\mathrm{e}^{n}}{n^{n+\frac{1}{2}}},\quad n=1,2,\cdots,
+\]
+则
+\[
+  \frac{a_{n}}{a_{n+1}}=\frac{\frac{n!\mathrm{e}^{n}}{n^{n+\frac{1}{2}}}}{\frac{(n+1)!\mathrm{e}^{n+1}}{(n+1)^{n+1+\frac{1}{2}}}}=\frac{1}{\mathrm{e}}\left(1+\frac{1}{n}\right)^{n+\frac{1}{2}}.
+\]
+取对数, 得
+\[
+  \ln\frac{a_{n}}{a_{n+1}}=\left(n+\frac{1}{2}\right)\ln\left(1+\frac{1}{n}\right)-1.
+\]
+根据引理~\ref{lem:15.4.2}, 有
+\[
+  \begin{gathered}
+    0<\ln\frac{a_{n}}{a_{n+1}}=\left(n+\frac{1}{2}\right)\ln\left(1+\frac{1}{n}\right)-1<\frac{1}{12}\left(\frac{1}{n}-\frac{1}{n+1}\right),\\
+    1<\frac{a_{n}}{a_{n+1}}<\mathrm{e}^{\frac{1}{12}\left(\frac{1}{n}-\frac{1}{n+1}\right)}.
+  \end{gathered}
+\]
+现在用 $n+j$ ($j=0,1,\cdots,k-1$) 代上述不等式中的 $n$ 得出
+\[
+  \begin{aligned}
+    1&<\frac{a_{n}}{a_{n+1}}<\mathrm{e}^{\frac{1}{12}\left(\frac{1}{n}-\frac{1}{n+1}\right)},\\
+    1&<\frac{a_{n+1}}{a_{n+2}}<\mathrm{e}^{\frac{1}{12}\left(\frac{1}{n+1}-\frac{1}{n+2}\right)},\\
+    &\ \vdots\\
+    1&<\frac{a_{n+k-1}}{a_{n+k}}<\mathrm{e}^{\frac{1}{12}\left(\frac{1}{n+k-1}-\frac{1}{n+k}\right)},
+  \end{aligned}
+\]
+将上述 $k$ 个不等式乘起来便有
+\[
+  1<\frac{a_{n}}{a_{n+k}}<\mathrm{e}^{\frac{1}{12}\left(\frac{1}{n}-\frac{1}{n+k}\right)}.
+\]
+$\displaystyle\frac{a_{n}}{a_{n+1}}>1$ 表明数列 $\{a_{n}\}$ 严格单调减少且有下界 0, 所以应当收敛于某个数 $\alpha$. 于是, 令 $k\to+\infty$, 得到
+\[
+  1<\frac{a_{n}}{\alpha}\leqslant\mathrm{e}^{\frac{1}{12n}}.
+\]
+由此可知 $\alpha>0$. 进而有
+\[
+  \begin{aligned}
+    \lim_{n\to+\infty}\frac{n!\mathrm{e}^{n}}{n^{n+\frac{1}{2}}}&=\lim_{n\to+\infty}a_{n}=\alpha=\lim_{n\to+\infty}\frac{a_{n}^{2}}{a_{2n}}=\lim_{n\to+\infty}\frac{\left(\frac{n!\mathrm{e}^{n}}{n^{n+\frac{1}{2}}}\right)^{2}}{\frac{(2n)!\mathrm{e}^{2n}}{(2n)^{2n+\frac{1}{2}}}}\\
+    &=\lim_{n\to+\infty}\frac{(n!)^{2}\cdot 2^{2n+\frac{1}{2}}}{(2n)!\sqrt{n}}=\sqrt{2\pi},
+  \end{aligned}
+\]
+即
+\[
+  \lim_{n\to+\infty}\frac{n!}{\sqrt{2n\pi}\left(\frac{n}{\mathrm{e}}\right)^{n}}=1,
+\]
+\[
+  n!\sim\sqrt{2n\pi}\left(\frac{n}{\mathrm{e}}\right)^{n},\quad n\to+\infty.
+\]
+\end{proof}
+
+\begin{theorem}[Stirling 公式]\label{thm:15.4.9}
+$\forall x>0$, $\exists\theta(x)\in(0,1)$, 使得
+\[
+  \Gamma(x+1)=\sqrt{2\pi x}\left(\frac{x}{\mathrm{e}}\right)^{x}\mathrm{e}^{\frac{\theta(x)}{12x}}.
+\]
+\end{theorem}
+
+\begin{proof}
+\[
+  \begin{aligned}
+    \ln\Gamma(x)&\xlongequal{\text{定理~\ref{thm:15.4.4}}}\ln\lim_{n\to+\infty}\frac{n^{x}n!}{x(x+1)\cdots(x+n)}=\lim_{n\to+\infty}\ln\frac{n^{x}n!}{x(x+1)\cdots(x+n)}\\
+    &=\lim_{n\to+\infty}\left[\ln n!+x\ln n-\sum_{k=0}^{n}\ln(x+k)\right]\\
+    &=\lim_{n\to+\infty}\left[\ln n!+n-\left(n+\frac{1}{2}\right)\ln n+\left(x-\frac{1}{2}\right)\ln x-\left(n+x+\frac{1}{2}\right)\ln\left(1+\frac{x}{n}\right)\right.\\
+    &\quad\left.+\left(n+x+\frac{1}{2}\right)\ln(n+x)-\left(\frac{1}{2}+x\right)\ln x-\sum_{k=1}^{n}\ln(k+x)-n\right]\\
+    &=\lim_{n\to+\infty}\left\{\left[\ln n!+n-\left(n+\frac{1}{2}\right)\ln n\right]+\left(x-\frac{1}{2}\right)\ln x-\left(n+x+\frac{1}{2}\right)\ln\left(1+\frac{x}{n}\right)\right.\\
+    &\quad\left.+\int_{0}^{n}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t\right\}\\
+    &=\lim_{n\to+\infty}\left\{\left[\ln n!+n-\left(n+\frac{1}{2}\right)\ln n\right]+\left(x-\frac{1}{2}\right)\ln x-\ln\left[\left(1+\frac{x}{n}\right)^{\frac{n}{x}}\right]^{\frac{n+x+\frac{1}{2}}{n}x}\right.\\
+    &\quad\left.+\int_{0}^{n}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t\right\}\\
+    &\xlongequal{\text{引理~\ref{lem:15.4.3}}}\ln\sqrt{2\pi}+\left(x-\frac{1}{2}\right)\ln x-x+\int_{0}^{+\infty}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t\\
+    &=\ln\sqrt{2\pi}+\left(x-\frac{1}{2}\right)\ln x-x+\frac{\theta(x)}{12x},
+  \end{aligned}
+\]
+即
+\[
+  \Gamma(x)=\sqrt{2\pi}x^{x-\frac{1}{2}}\mathrm{e}^{-x}\mathrm{e}^{\frac{\theta(x)}{12x}},
+\]
+于是
+\[
+  \Gamma(x+1)=x\Gamma(x)=\sqrt{2\pi x}\left(\frac{x}{\mathrm{e}}\right)^{x}\mathrm{e}^{\frac{\theta(x)}{12x}}.
+\]
+剩下的要证
+\[
+  \theta(x)=12x\int_{0}^{+\infty}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t\in(0,1).
+\]
+事实上, 由引理~\ref{lem:15.4.3}, 并取 $u=k+x$ 得到 % 原书此处笔误印为引理 15.4.3，实为引理 15.4.2，照录
+\[
+  \begin{aligned}
+    0<\theta(x)&=12x\int_{0}^{+\infty}\frac{[t]-t+\frac{1}{2}}{t+x}\,\mathrm{d}t=12x\sum_{k=0}^{\infty}\int_{k}^{k+1}\frac{k-t+\frac{1}{2}}{t+x}\,\mathrm{d}t\\
+    &=12x\sum_{k=0}^{\infty}\int_{k}^{k+1}\left(\frac{k+\frac{1}{2}+x}{t+x}-1\right)\mathrm{d}t\\
+    &=12x\sum_{k=0}^{\infty}\left[\left(k+\frac{1}{2}+x\right)\ln\left(1+\frac{1}{k+x}\right)-1\right]\\
+    &<12x\cdot\frac{1}{12}\sum_{k=0}^{\infty}\left(\frac{1}{k+x}-\frac{1}{k+x+1}\right)=x\cdot\frac{1}{x}=1.
+  \end{aligned}
+\]
+\end{proof}
+
+% ===== PART-B =====
+
+\begin{example}[$\mathrm{B}(p,q)$ 的其他形式]\label{ex:15.4.1}
+设 $p>0, q>0$, 则有
+\begin{enumerate}
+  \item $\displaystyle\mathrm{B}(p,q)=2\int_{0}^{\frac{\pi}{2}}\sin^{2q-1}\varphi\cos^{2p-1}\varphi\,\mathrm{d}\varphi$;
+  \item $\displaystyle\mathrm{B}(p,q)=\int_{0}^{+\infty}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y$;
+  \item $\displaystyle\mathrm{B}(p,q)=\int_{0}^{1}\frac{y^{p-1}+y^{q-1}}{(1+y)^{p+q}}\,\mathrm{d}y$.
+\end{enumerate}
+\end{example}
+\begin{proof}
+(1) $\displaystyle\mathrm{B}(p,q)=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,\mathrm{d}t$
+\[
+  \xlongequal{t=\cos^{2}\varphi}\int_{\frac{\pi}{2}}^{0}\cos^{2p-2}\varphi\sin^{2q-2}\varphi\cdot 2\cos\varphi(-\sin\varphi)\,\mathrm{d}\varphi
+  =2\int_{0}^{\frac{\pi}{2}}\sin^{2q-1}\varphi\cos^{2p-1}\varphi\,\mathrm{d}\varphi.
+\]
+
+(2) 令 $t=\frac{y}{1+y}$, $1-t=\frac{1}{1+y}$, $\mathrm{d}t=\frac{\mathrm{d}y}{(1+y)^{2}}$, 则有
+\[
+  \begin{aligned}
+    \mathrm{B}(p,q)&=\int_{0}^{1}t^{p-1}(1-t)^{q-1}\,\mathrm{d}t=\int_{0}^{+\infty}\left(\frac{y}{1+y}\right)^{p-1}\left(\frac{1}{1+y}\right)^{q-1}\frac{\mathrm{d}y}{(1+y)^{2}}\\
+    &=\int_{0}^{+\infty}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y.
+  \end{aligned}
+\]
+
+(3) $\displaystyle\mathrm{B}(p,q)\xlongequal{(2)}\int_{0}^{+\infty}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y=\int_{0}^{1}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y+\int_{1}^{+\infty}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y$
+\[
+  \begin{aligned}
+    &\xlongequal{y=\frac{1}{t}}\int_{0}^{1}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y+\int_{1}^{0}\frac{\left(\frac{1}{t}\right)^{p-1}}{\left(1+\frac{1}{t}\right)^{p+q}}\cdot\left(-\frac{\mathrm{d}t}{t^{2}}\right)\\
+    &=\int_{0}^{1}\frac{y^{p-1}}{(1+y)^{p+q}}\,\mathrm{d}y+\int_{0}^{1}\frac{t^{q-1}}{(1+t)^{p+q}}\,\mathrm{d}t=\int_{0}^{1}\frac{y^{p-1}+y^{q-1}}{(1+y)^{p+q}}\,\mathrm{d}y.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.4.2}
+证明：$\displaystyle\mathrm{B}(m,n)=\frac{(m-1)!(n-1)!}{(m+n-1)!}$.
+\end{example}
+\begin{proof}[证法 1]
+\[
+  \mathrm{B}(m,n)=\frac{\Gamma(m)\Gamma(n)}{\Gamma(m+n)}=\frac{(m-1)!(n-1)!}{(m+n-1)!}.
+\]
+\end{proof}
+\begin{proof}[证法 2]
+\[
+  \begin{aligned}
+    \mathrm{B}(m,n)&\xlongequal{\text{定理~\ref{thm:15.4.6}(3)}}\frac{m-1}{m+n-1}\cdot\frac{m-2}{m+n-2}\cdots\frac{1}{n+1}\mathrm{B}(1,n)\\
+    &=\frac{(m-1)!n!}{(m+n-1)!}\int_{0}^{1}(1-t)^{n-1}\,\mathrm{d}t=\left.\frac{(m-1)!n!}{(m+n-1)!}\frac{(1-t)^{n}}{-n}\right|_{0}^{1}\\
+    &=\frac{(m-1)!(n-1)!}{(m+n-1)!}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.4.3}
+证明：
+\begin{enumerate}
+  \item $\displaystyle\int_{0}^{\frac{\pi}{2}}\cos^{\alpha}x\sin^{\beta}x\,\mathrm{d}x=\frac{1}{2}\mathrm{B}\left(\frac{\beta+1}{2},\frac{\alpha+1}{2}\right)=\frac{1}{2}\frac{\Gamma\left(\frac{\beta+1}{2}\right)\Gamma\left(\frac{\alpha+1}{2}\right)}{\Gamma\left(\frac{\alpha+\beta}{2}+1\right)}$;
+  \item $\displaystyle\int_{0}^{\frac{\pi}{2}}\cos^{6}x\sin^{4}x\,\mathrm{d}x=\frac{3\pi}{512}$.
+\end{enumerate}
+\end{example}
+\begin{proof}
+(1)
+\[
+  \begin{aligned}
+    \int_{0}^{\frac{\pi}{2}}\cos^{\alpha}x\sin^{\beta}x\,\mathrm{d}x&\xlongequal{\begin{subarray}{c}t=\sin^{2}x\\\mathrm{d}t=2\sin x\cos x\,\mathrm{d}x\end{subarray}}\frac{1}{2}\int_{0}^{1}t^{\frac{\beta-1}{2}}(1-t)^{\frac{\alpha-1}{2}}\,\mathrm{d}t\\
+    &=\frac{1}{2}\mathrm{B}\left(\frac{\beta+1}{2},\frac{\alpha+1}{2}\right)=\frac{1}{2}\frac{\Gamma\left(\frac{\beta+1}{2}\right)\Gamma\left(\frac{\alpha+1}{2}\right)}{\Gamma\left(\frac{\alpha+\beta}{2}+1\right)}.
+  \end{aligned}
+\]
+
+(2) 因为
+\[
+  \begin{aligned}
+    \Gamma\left(\frac{5}{2}\right)&=\frac{3}{2}\Gamma\left(\frac{3}{2}\right)=\frac{3}{2}\cdot\frac{1}{2}\Gamma\left(\frac{1}{2}\right)=\frac{3}{4}\sqrt{\pi},\\
+    \Gamma\left(\frac{7}{2}\right)&=\frac{5}{2}\Gamma\left(\frac{5}{2}\right)=\frac{5}{2}\cdot\frac{3}{4}\sqrt{\pi}=\frac{15}{8}\sqrt{\pi},
+  \end{aligned}
+\]
+所以
+\[
+  \int_{0}^{\frac{\pi}{2}}\cos^{6}x\sin^{4}x\,\mathrm{d}x=\frac{1}{2}\frac{\Gamma\left(\frac{7}{2}\right)\Gamma\left(\frac{5}{2}\right)}{\Gamma\left(\frac{10}{2}+1\right)}=\frac{1}{2}\frac{\frac{15}{8}\sqrt{\pi}\cdot\frac{3}{4}\sqrt{\pi}}{5!}=\frac{3\pi}{512}.
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.4.4}
+证明：瑕积分
+\[
+  \int_{0}^{\frac{\pi}{2}}(\tan x)^{\alpha}\,\mathrm{d}x=\frac{\pi}{2\cos\frac{\alpha\pi}{2}},\quad |\alpha|<1.
+\]
+\end{example}
+\begin{proof}
+\[
+  \begin{aligned}
+    \int_{0}^{\frac{\pi}{2}}(\tan x)^{\alpha}\,\mathrm{d}x&=\int_{0}^{\frac{\pi}{2}}\sin^{\alpha}x\cos^{-\alpha}x\,\mathrm{d}x\xlongequal{\text{例~\ref{ex:15.4.3}(1)}}\frac{1}{2}\frac{\Gamma\left(\frac{\alpha+1}{2}\right)\Gamma\left(\frac{-\alpha+1}{2}\right)}{\Gamma\left(\frac{\alpha+(-\alpha)}{2}+1\right)}\\
+    &=\frac{1}{2}\Gamma\left(\frac{1+\alpha}{2}\right)\Gamma\left(\frac{1-\alpha}{2}\right)\xlongequal{\text{余元公式}}\frac{1}{2}\frac{\pi}{\sin\frac{1+\alpha}{2}\pi}=\frac{\pi}{2\cos\frac{\alpha\pi}{2}}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.4.5}
+证明：
+\begin{enumerate}
+  \item $\forall\alpha\in\mathbb{R}$, 有 $\displaystyle\lim_{x\to+\infty}\frac{x^{\alpha}\Gamma(x)}{\Gamma(x+\alpha)}=1$;
+  \item $\displaystyle\lim_{n\to+\infty}\sqrt{n}\int_{0}^{1}(1-x^{2})^{n}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}$.
+\end{enumerate}
+\end{example}
+\begin{proof}
+(1) 由 Stirling 公式,
+\[
+  \begin{aligned}
+    \lim_{x\to+\infty}\frac{x^{\alpha}\Gamma(x)}{\Gamma(x+\alpha)}&=\lim_{x\to+\infty}\frac{x^{\alpha}\sqrt{2\pi(x-1)}\left(\frac{x-1}{\mathrm{e}}\right)^{x-1}\mathrm{e}^{\frac{\theta(x-1)}{12(x-1)}}}{\sqrt{2\pi(x+\alpha-1)}\left(\frac{x+\alpha-1}{\mathrm{e}}\right)^{x+\alpha-1}\mathrm{e}^{\frac{\theta(x+\alpha-1)}{12(x+\alpha-1)}}}\\
+    &=\lim_{x\to+\infty}\sqrt{\frac{x-1}{x+\alpha-1}}\frac{1}{\left[\left(1+\frac{\alpha}{x-1}\right)^{\frac{x-1}{\alpha}}\right]^{\alpha}}\left(\frac{x}{x+\alpha-1}\right)^{\alpha}\cdot\mathrm{e}^{\alpha}\cdot\mathrm{e}^{\frac{\theta(x-1)}{12(x-1)}-\frac{\theta(x+\alpha-1)}{12(x+\alpha-1)}}\\
+    &=1\cdot\frac{1}{\mathrm{e}^{\alpha}}\cdot 1\cdot\mathrm{e}^{\alpha}\cdot 1=1.
+  \end{aligned}
+\]
+
+(2) $\displaystyle\int_{0}^{1}(1-x^{2})^{n}\,\mathrm{d}x\xlongequal{\begin{subarray}{c}t=x^{2}\\\mathrm{d}t=2x\,\mathrm{d}x\end{subarray}}\int_{0}^{1}(1-t)^{n}\cdot\frac{1}{2}t^{-\frac{1}{2}}\,\mathrm{d}t=\frac{1}{2}\mathrm{B}\left(\frac{1}{2},n+1\right)$
+\[
+  =\frac{1}{2}\frac{\Gamma\left(\frac{1}{2}\right)\Gamma(n+1)}{\Gamma\left(n+\frac{3}{2}\right)}=\frac{\sqrt{\pi}}{2}\frac{\Gamma(n+1)}{\Gamma\left(n+\frac{3}{2}\right)},
+\]
+\[
+  \lim_{n\to+\infty}\sqrt{n}\int_{0}^{1}(1-x^{2})^{n}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}\lim_{n\to+\infty}\frac{\sqrt{n}\Gamma(n+1)}{\Gamma\left(n+\frac{3}{2}\right)}=\frac{\sqrt{\pi}}{2}\lim_{n\to+\infty}\frac{n^{\frac{3}{2}}\Gamma(n)}{\Gamma\left(n+\frac{3}{2}\right)}\xlongequal{(1)}\frac{\sqrt{\pi}}{2}\cdot 1=\frac{\sqrt{\pi}}{2}.
+\]
+或者
+\[
+  \begin{aligned}
+    \lim_{n\to+\infty}\sqrt{n}\int_{0}^{1}(1-x^{2})^{n}\,\mathrm{d}x&=\frac{\sqrt{\pi}}{2}\lim_{n\to+\infty}\frac{\sqrt{n}\Gamma(n+1)}{\Gamma\left(n+\frac{3}{2}\right)}=\lim_{n\to+\infty}\frac{\sqrt{\pi}}{2}\cdot\frac{\sqrt{n}\cdot n!}{\frac{2n+1}{2}\cdots\frac{1}{2}\Gamma\left(\frac{1}{2}\right)}\\
+    &=\lim_{n\to+\infty}\frac{\sqrt{n}\cdot(2n)!!}{(2n+1)!!}\\
+    &\xlongequal{\text{\extref{例 6.4.5}(2)}}\lim_{n\to+\infty}\sqrt{\frac{n}{2n+1}}\sqrt{\left[\frac{(2n)!!}{(2n-1)!!}\right]^{2}\frac{1}{2n+1}}\\
+    &=\frac{1}{\sqrt{2}}\sqrt{\frac{\pi}{2}}=\frac{\sqrt{\pi}}{2}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.4.6}
+证明：
+\begin{enumerate}
+  \item $\displaystyle I=\int_{0}^{1}\ln\Gamma(x)\,\mathrm{d}x=\ln\sqrt{2\pi}$;
+  \item $\displaystyle J=\int_{0}^{1}\sin\pi x\ln\Gamma(x)\,\mathrm{d}x=\frac{1}{\pi}\left(1+\ln\frac{\pi}{2}\right)$.
+\end{enumerate}
+\end{example}
+\begin{proof}
+(1) 显然
+\[
+  I=\int_{0}^{1}\ln\Gamma(x)\,\mathrm{d}x\xlongequal{x=1-t}\int_{1}^{0}\ln\Gamma(1-t)(-\mathrm{d}t)=\int_{0}^{1}\ln\Gamma(1-t)\,\mathrm{d}t,
+\]
+则
+\[
+  \begin{aligned}
+    2I&=\int_{0}^{1}\ln\Gamma(x)\,\mathrm{d}x+\int_{0}^{1}\ln\Gamma(1-x)\,\mathrm{d}x=\int_{0}^{1}\ln[\Gamma(x)\Gamma(1-x)]\,\mathrm{d}x\\
+    &\xlongequal{\text{余元公式}}\int_{0}^{1}\ln\frac{\pi}{\sin\pi x}\,\mathrm{d}x=\ln\pi-\int_{0}^{1}\ln\sin\pi x\,\mathrm{d}x\xlongequal{\theta=\pi x}\ln\pi-\frac{1}{\pi}\int_{0}^{\pi}\ln\sin\theta\,\mathrm{d}\theta\\
+    &=\ln\pi-\frac{2}{\pi}\int_{0}^{\frac{\pi}{2}}\ln\sin\theta\,\mathrm{d}\theta\xlongequal{\text{\extref{例 6.5.18}}}\ln\pi-\frac{2}{\pi}\cdot\left(-\frac{\pi}{2}\ln 2\right)=\ln(2\pi),
+  \end{aligned}
+\]
+\[
+  I=\frac{1}{2}\ln(2\pi)=\ln\sqrt{2\pi}.
+\]
+
+(2) 显然
+\[
+  J=\int_{0}^{1}\sin\pi x\ln\Gamma(x)\,\mathrm{d}x\xlongequal{x=1-t}\int_{1}^{0}\sin\pi(1-t)\ln\Gamma(1-t)(-\mathrm{d}t)=\int_{0}^{1}\sin\pi t\ln\Gamma(1-t)\,\mathrm{d}t,
+\]
+故
+\[
+  \begin{aligned}
+    2J&=\int_{0}^{1}\sin\pi t[\ln\Gamma(t)+\ln\Gamma(1-t)]\,\mathrm{d}t=\int_{0}^{1}\sin\pi t\ln[\Gamma(t)\Gamma(1-t)]\,\mathrm{d}t\\
+    &\xlongequal{\text{余元公式}}\int_{0}^{1}\sin\pi x[\ln\pi-\ln\sin\pi x]\,\mathrm{d}x=\ln\pi\int_{0}^{1}\sin\pi x\,\mathrm{d}x-\int_{0}^{1}\sin\pi x\ln\sin\pi x\,\mathrm{d}x\\
+    &\xlongequal{t=\pi x}\frac{2}{\pi}\ln\pi-\frac{1}{\pi}\int_{0}^{\pi}\sin t\ln\sin t\,\mathrm{d}t=\frac{2}{\pi}\ln\pi-\frac{2}{\pi}\int_{0}^{\frac{\pi}{2}}\sin x\ln\sin x\,\mathrm{d}x\\
+    &=\frac{2}{\pi}\ln\pi-\frac{4}{\pi}\int_{0}^{\frac{\pi}{2}}\sin\frac{x}{2}\cos\frac{x}{2}\ln\sin x\,\mathrm{d}x\\
+    &=\frac{2}{\pi}\ln\pi-\frac{4}{\pi}\left(-\frac{1}{2}+\frac{1}{2}\ln 2\right)=\frac{2}{\pi}\ln\pi+\frac{2}{\pi}-\frac{2}{\pi}\ln 2.
+  \end{aligned}
+\]
+所以
+\[
+  J=\int_{0}^{1}\sin\pi x\ln\Gamma(x)\,\mathrm{d}x=\frac{1}{\pi}\left(1+\ln\frac{\pi}{2}\right).
+\]
+剩下需证的是
+\[
+  \begin{aligned}
+    \int_{0}^{\frac{\pi}{2}}\sin\frac{x}{2}\cos\frac{x}{2}\ln\sin x\,\mathrm{d}x&=\int_{0}^{\frac{\pi}{2}}\ln\sin x\,\mathrm{d}\sin^{2}\frac{x}{2}\\
+    &\xlongequal{\text{分部积分}}\left.\sin^{2}\frac{x}{2}\ln\sin x\right|_{0}^{\frac{\pi}{2}}-\int_{0}^{\frac{\pi}{2}}\sin^{2}\frac{x}{2}\frac{\cos x}{\sin x}\,\mathrm{d}x\\
+    &=-\frac{1}{2}\int_{0}^{\frac{\pi}{2}}\frac{\sin\frac{x}{2}\cos x}{\cos\frac{x}{2}}\,\mathrm{d}x=-\frac{1}{2}\int_{0}^{\frac{\pi}{2}}\frac{\sin\frac{x}{2}}{\cos\frac{x}{2}}\left(2\cos^{2}\frac{x}{2}-1\right)\mathrm{d}x\\
+    &\xlongequal{t=\cos\frac{x}{2}}\int_{1}^{\frac{\sqrt{2}}{2}}\frac{2t^{2}-1}{t}\,\mathrm{d}t=\left.(t^{2}-\ln t)\right|_{1}^{\frac{\sqrt{2}}{2}}\\
+    &=\left(\frac{1}{2}-\ln\frac{1}{\sqrt{2}}\right)-(1-0)=-\frac{1}{2}+\frac{1}{2}\ln 2.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.4.7}
+证明：级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\mathrm{C}_{2n}^{n}}=\frac{\pi}{3\sqrt{3}}$.
+\end{example}
+\begin{proof}
+\[
+  \begin{aligned}
+    \sum_{n=1}^{\infty}\frac{1}{n\mathrm{C}_{2n}^{n}}&=\sum_{n=1}^{\infty}\frac{1}{n}\frac{n!n!}{(2n)!}=\sum_{n=1}^{\infty}\frac{(n-1)!n!}{(2n)!}\\
+    &=\sum_{n=1}^{\infty}\frac{\Gamma(n)\Gamma(n+1)}{\Gamma(2n+1)}\xlongequal{\text{定理~\ref{thm:15.4.5}}}\sum_{n=1}^{\infty}\mathrm{B}(n,n+1)\\
+    &=\sum_{n=1}^{\infty}\mathrm{B}(n+1,n)=\sum_{n=1}^{\infty}\int_{0}^{1}t^{n}(1-t)^{n-1}\,\mathrm{d}t\\
+    &=\int_{0}^{1}\sum_{n=1}^{\infty}t^{n}(1-t)^{n-1}\,\mathrm{d}t=\int_{0}^{1}t\sum_{n=1}^{\infty}[t(1-t)]^{n-1}\,\mathrm{d}t\\
+    &=\int_{0}^{1}\frac{t}{1-t(1-t)}\,\mathrm{d}t=\int_{0}^{1}\frac{t}{t^{2}-t+1}\,\mathrm{d}t\\
+    &=\frac{1}{2}\int_{0}^{1}\frac{(2t-1)+1}{t^{2}-t+1}\,\mathrm{d}t=\frac{1}{2}\left[\int_{0}^{1}\frac{\mathrm{d}(t^{2}-t+1)}{t^{2}-t+1}+\int_{0}^{1}\frac{\mathrm{d}t}{t^{2}-t+1}\right]\\
+    &=\frac{1}{2}\left[\left.\ln(t^{2}-t+1)\right|_{0}^{1}+\left.\frac{2}{\sqrt{3}}\arctan\frac{t-\frac{1}{2}}{\frac{\sqrt{3}}{2}}\right|_{0}^{1}\right]\\
+    &=\frac{1}{\sqrt{3}}\left[\arctan\frac{1}{\sqrt{3}}-\left(-\arctan\frac{1}{\sqrt{3}}\right)\right]=\frac{\pi}{3\sqrt{3}}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}[$\Gamma$ 函数的延拓与其图像]\label{ex:15.4.8}
+因为 $\forall s>0$, $\Gamma(s)>0$ 与
+\[
+  \Gamma''(s)=\int_{0}^{+\infty}x^{s-1}(\ln x)^{2}\mathrm{e}^{-x}\,\mathrm{d}x>0,
+\]
+所以 $\Gamma(s)$ 的图形位于 $x$ 轴的上方, 且是向下凸的. 由于 $\Gamma(1)=\Gamma(2)=1$, 故 $\Gamma'(s)$ 在 $s\in(0,+\infty)$ 上存在唯一的极小值点 $s_{0}\in(1,2)$. 又由 $\Gamma''(s)>0$ 知 $\Gamma'(s)$ 严格单调增加. 根据 Fermat 定理知, $\Gamma'(s_{0})=0$. 由此推得
+\[
+  \Gamma'(s)
+  \begin{cases}
+    <0, & 0<s<s_{0},\ \Gamma(s)\text{ 严格单调减少},\\
+    >0, & s>s_{0},\ \Gamma(s)\text{ 严格单调增加}.
+\end{cases}
+\]
+从 $\Gamma(s)=\frac{s\Gamma(s)}{s}=\frac{\Gamma(s+1)}{s}\ (s>0)$ 及 $\lim_{s\to 0^{+}}\Gamma(s+1)=\Gamma(1)=1$, 有
+\[
+  \lim_{s\to 0^{+}}\Gamma(s)=\lim_{s\to 0^{+}}\frac{\Gamma(s+1)}{s}=+\infty.
+\]
+由 $\Gamma(n+1)=n!$ 及 $\Gamma(s)$ 在 $(s_{0},+\infty)$ 上严格单调增加可推得
+\[
+  \lim_{s\to+\infty}\Gamma(s)=+\infty.
+\]
+综上所述, $\Gamma$ 函数的图像如图~\ref{fig:15.4.1} 中 $s>0$ 部分所示.
+
+为延拓 $\Gamma(s)$, 我们改写公式 $\Gamma(s+1)=s\Gamma(s)\ (s>0)$ 为
+\[
+  \Gamma(s)=\frac{\Gamma(s+1)}{s}.
+\]
+当 $s\in(-1,0)$ 时, 上式右边有意义, 于是可应用它定义左边函数 $\Gamma(s)$ 在 $(-1,0)$ 内的值, 并且可推得 $\Gamma(s)<0$. 用同样的方法, 利用 $\Gamma(s)$ 已在 $(-1,0)$ 内有定义这一事实, $\Gamma(s)=\frac{\Gamma(s+1)}{s}$ 又可定义 $\Gamma(s)$ 在 $(-2,-1)$ 内的值, 而且这时 $\Gamma(s)>0$. 依次下去可将 $\Gamma(s)$ 延拓到 $\mathbb{R}\setminus\{0,-1,-2,\cdots\}$, 其图像如图~\ref{fig:15.4.1} 所示.
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=latex, scale=1.12]
+  \draw[->] (-3.8, 0) -- (4.2, 0) node[below] {$x$};
+  \draw[->] (0, -2.8) -- (0, 3.8) node[left] {$y$};
+  
+  \draw[thin] (-1, -2.5) -- (-1, 3.2);
+  \draw[thin] (-2, -2.5) -- (-2, 3.2);
+  \draw[thin] (-3, -2.5) -- (-3, 3.2);
+  
+  \draw (-3, 0) ++(0, 2pt) -- ++(0, -4pt) node[below left=-1pt] {$-3$};
+  \draw (-2, 0) ++(0, 2pt) -- ++(0, -4pt) node[below left=-1pt] {$-2$};
+  \draw (-1, 0) ++(0, 2pt) -- ++(0, -4pt) node[below left=-1pt] {$-1$};
+  \node[below right] at (0, 0) {$0$};
+  \draw (1.46, 0) ++(0, 2pt) -- ++(0, -4pt) node[below] {$s_0$};
+  \draw (2.8, 0) ++(0, 2pt) -- ++(0, -4pt);
+  
+  % 各分支曲线
+  \draw[thick] plot[smooth, tension=0.7] coordinates {(-2.9, -2.2) (-2.8, -1.5) (-2.5, -1.0) (-2.2, -1.5) (-2.1, -2.2)};
+  \draw[thick] plot[smooth, tension=0.7] coordinates {(-1.9, 2.5) (-1.8, 1.8) (-1.5, 1.3) (-1.2, 1.8) (-1.1, 2.5)};
+  \draw[thick] plot[smooth, tension=0.7] coordinates {(-0.9, -2.5) (-0.8, -1.8) (-0.5, -1.4) (-0.2, -1.8) (-0.1, -2.5)};
+  \draw[thick] plot[smooth, tension=0.8] coordinates {(0.15, 3.2) (0.35, 1.8) (0.8, 1.1) (1.46, 0.885) (2.2, 1.1) (2.8, 1.8) (3.3, 3.2)};
+  
+  \draw[dashed] (1.46, 0) -- (1.46, 0.885);
+\end{tikzpicture}
+\caption{$\Gamma$ 函数的延拓与其图像}\label{fig:15.4.1}
+\end{figure}
+
+\section*{练习题 15.4}
+\begin{enumerate}
+  \item 证明：$\Gamma(s)$ 可表示为
+  \begin{enumerate}
+    \item $\displaystyle\Gamma(s)=2\int_{0}^{+\infty}x^{2s-1}\mathrm{e}^{-x^{2}}\,\mathrm{d}x,\quad s>0$;
+    \item $\displaystyle\Gamma(s)=a^{s}\int_{0}^{+\infty}x^{s-1}\mathrm{e}^{-ax}\,\mathrm{d}x,\quad s>0, a>0$.
+  \end{enumerate}
+  \item 证明：$\mathrm{B}(p,q)$ 可表示为
+  \begin{enumerate}
+    \item $\displaystyle\mathrm{B}(p,q)=\int_{0}^{+\infty}\frac{t^{q-1}}{(1+t)^{p+q}}\,\mathrm{d}t,\quad p>0, q>0$;
+    \item $\displaystyle\mathrm{B}(p,q)=2\int_{0}^{\frac{\pi}{2}}\sin^{2p-1}\theta\cos^{2q-1}\theta\,\mathrm{d}\theta,\quad p>0, q>0$.
+  \end{enumerate}
+  \item 利用 $\Gamma$ 函数计算下列积分：
+  \begin{enumerate}
+    \item $\displaystyle\int_{0}^{1}\sqrt{x-x^{2}}\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\sqrt[4]{x}}{(1+x)^{2}}\,\mathrm{d}x$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{3}}$;
+    \item $\displaystyle\int_{0}^{\frac{\pi}{2}}\sin^{5}x\cos^{6}x\,\mathrm{d}x$.
+  \end{enumerate}
+  \item 计算极限
+  \[
+    \lim_{n\to+\infty}\sqrt{n}\int_{0}^{1}x^{\frac{3}{2}}(1-x^{5})^{n}\,\mathrm{d}x.
+\]
+  \item 证明：$\ln\mathrm{B}(p,q)$ 关于变量 $p$ 为 $(0,+\infty)$ 上的凸函数.
+  \item 证明：$\displaystyle\mathrm{B}\left(\frac{1}{3},\frac{1}{2}\right)=\frac{\sqrt{3}}{2\pi}\frac{\left[\Gamma\left(\frac{1}{3}\right)\right]^{3}}{\sqrt[3]{2}}$.
+  \item 作变量代换 $u=\sin^{2}\frac{x}{2}$, 证明：$\displaystyle\int_{0}^{\pi}\frac{\mathrm{d}x}{\sqrt{3-\cos x}}=\frac{1}{2\sqrt{2}}\mathrm{B}\left(\frac{1}{4},\frac{1}{2}\right)=\frac{1}{4\sqrt{\pi}}\Gamma^{2}\left(\frac{1}{4}\right)$.
+\end{enumerate}
+
+\section*{思考题 15.4}
+\begin{enumerate}
+  \item 讨论函数
+  \[
+    f(s,p,q)=\int_{0}^{+\infty}\frac{x^{s}}{(a+bx^{p})^{q}}\,\mathrm{d}x,\quad a>0, b>0, p>0
+\]
+  的定义域, 并用 $\Gamma$ 函数表示 $f(s,p,q)$.
+  \item 证明：$\displaystyle\int_{0}^{1}\ln\Gamma(x)\,\mathrm{d}x=\ln\sqrt{2\pi}$.
+  \item 证明：$\displaystyle\int_{0}^{1}\sin\pi x\ln\Gamma(x)\,\mathrm{d}x=\frac{1}{\pi}\left(\ln\frac{\pi}{2}+1\right)$.
+  \item 证明：
+  \[
+    \int_{0}^{+\infty}\mathrm{e}^{-x^{4}}\,\mathrm{d}x\int_{0}^{+\infty}x^{2}\mathrm{e}^{-x^{4}}\,\mathrm{d}x=\frac{\pi}{8\sqrt{2}}.
+\]
+  \item 证明：$\displaystyle\Gamma\left(\frac{1}{n}\right)\Gamma\left(\frac{2}{n}\right)\cdots\Gamma\left(\frac{n-1}{n}\right)=\frac{(2\pi)^{\frac{n-1}{2}}}{\sqrt{n}}$.
+  \item 设 $p,q,m>0$, 证明：
+  \[
+    \int_{0}^{1}x^{p-1}(1-x^{m})^{q-1}\,\mathrm{d}x=\frac{1}{m}\mathrm{B}\left(\frac{p}{m},q\right)=\frac{1}{m}\frac{\Gamma\left(\frac{p}{m}\right)\Gamma(q)}{\Gamma\left(\frac{p}{m}+q\right)},
+\]
+  并由此推得
+  \[
+    \int_{0}^{1}\frac{\mathrm{d}x}{\sqrt{1-x^{4}}}\int_{0}^{1}\frac{x^{2}\,\mathrm{d}x}{\sqrt{1-x^{4}}}=\frac{\pi}{4}.
+\]
+  \item 证明：
+  \begin{enumerate}
+    \item $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{n}}\,\mathrm{d}x=\Gamma\left(\frac{1}{n}+1\right)$;
+    \item $\displaystyle\lim_{n\to+\infty}\int_{0}^{+\infty}\mathrm{e}^{-x^{n}}\,\mathrm{d}x=1$.
+  \end{enumerate}
+  \item 设 $0\leqslant h<1$, 正整数 $n\geqslant 3$. 作变量代换 $t=hu$, 证明：
+  \[
+    \int_{0}^{h}(1-t^{2})^{\frac{n-3}{2}}\,\mathrm{d}t\geqslant h\int_{0}^{1}(1-u^{2})^{\frac{n-3}{2}}\,\mathrm{d}u=\frac{\sqrt{\pi}}{2}\frac{\Gamma\left(\frac{n-1}{2}\right)}{\Gamma\left(\frac{n}{2}\right)}h.
+\]
+  \item 设 $n>0$, 证明：$\displaystyle\int_{0}^{1}\frac{\mathrm{d}x}{\sqrt[n]{1-x^{n}}}=\frac{\pi}{n\sin\frac{\pi}{n}}$.
+  \item 设 $n>m>0$, 证明：$\displaystyle\int_{0}^{+\infty}\frac{x^{m-1}}{1+x^{n}}\,\mathrm{d}x=\frac{\pi}{n\sin\frac{m\pi}{n}}$.
+  \item 设 $0<p<1$, 应用余元公式证明：
+  \[
+    \int_{0}^{+\infty}\frac{x^{p-1}\ln x}{1+x}\,\mathrm{d}x=\int_{0}^{+\infty}\frac{\partial}{\partial p}\left(\frac{x^{p-1}}{1+x}\right)\mathrm{d}x=-\frac{\pi^{2}\cos p\pi}{\sin^{2}p\pi}.
+\]
+  \item 利用 Stirling 公式
+  \[
+    n!=\sqrt{2\pi n}n^{n}\mathrm{e}^{-n+\frac{\theta_{n}}{12n}},\quad 0<\theta_{n}<1
+\]
+  求下列极限：
+  \begin{enumerate}
+    \item $\displaystyle\lim_{n\to+\infty}\sqrt[n^{2}]{n!}$;
+    \item $\displaystyle\lim_{n\to+\infty}\frac{n}{\sqrt[n]{n!}}$;
+    \item $\displaystyle\lim_{n\to+\infty}\frac{n}{\sqrt[n]{(2n-1)!!}}$;
+    \item $\displaystyle\lim_{n\to+\infty}\frac{\ln n!}{\ln n^{n}}$.
+  \end{enumerate}
+\end{enumerate}

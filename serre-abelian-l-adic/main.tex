@@ -1,0 +1,171 @@
+%% main.tex -- Abelian l-Adic Representations and Elliptic Curves (J.-P. Serre)
+%% re-typeset. Build: xelatex -> biber -> xelatex x2
+\documentclass{serreladic}
+
+%% ---------- biblatex: numbering locked to the original [1]-[88] ----------
+\DeclareSortingTemplate{serre}{\sort{\field{sortkey}}}
+\DeclareBibliographyCategory{main}
+\DeclareBibliographyCategory{supp}
+
+%% ---- original-style bibliography rendering ----
+%% names: "E. ARTIN and J. TATE" (all caps, as in the original)
+\renewcommand*{\mkbibnamegiven}[1]{\MakeUppercase{#1}}
+\renewcommand*{\mkbibnamefamily}[1]{\MakeUppercase{#1}}
+%% titles roman, no quotes; no "In:"/"Vol." prefixes
+\DeclareFieldFormat{title}{#1\isdot}
+\DeclareFieldFormat[article,book,collection,proceedings,inbook,incollection,%
+                    inproceedings,techreport,misc,unpublished,periodical]{title}{#1\isdot}
+\DeclareFieldFormat{journaltitle}{#1}
+\DeclareFieldFormat{booktitle}{#1}
+\DeclareFieldFormat{volume}{#1}
+\DeclareFieldFormat{pages}{p.~#1}
+\DeclareFieldFormat{note}{#1}
+%% bibliography list layout: hanging label "[n]"
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+\defbibenvironment{bibserre}
+  {\list
+     {\printtext[labelnumberwidth]{\printfield{labelnumber}}}
+     {\setlength{\labelwidth}{2.6em}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{0.6em}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}}
+  {\endlist}
+  {\item}
+%% common pieces ---------------------------------------------------------
+\newbibmacro{serre-names}{%
+  \ifnameundef{author}
+    {\ifnameundef{editor}{}{\printnames{editor}}}
+    {\printnames{author}}}
+\newcommand{\serreafternames}{\addspace\textemdash\addspace}
+%% journal / volume / year / pages  (two punctuations: main vs supp)
+\newbibmacro{serre-jvp}{%
+  \usebibmacro{journal}%
+  \ifcategory{supp}{\setunit*{\addspace}}{\setunit*{\addcomma\addspace}}%
+  \printfield{volume}%
+  \setunit*{\addcomma\addspace}%
+  \printfield{year}%
+  \setunit*{\addcomma\addspace}%
+  \printfield{pages}}
+\newbibmacro{serre-booktail}{%
+  \printfield{series}%
+  \setunit*{\addcomma\addspace}%
+  \printlist{publisher}%
+  \setunit*{\addcomma\addspace}%
+  \printlist{location}%
+  \setunit*{\addcomma\addspace}%
+  \printfield{year}}
+%% drivers ---------------------------------------------------------------
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{serre-names}\serreafternames
+  \usebibmacro{title}%
+  \newunit\addspace
+  \iffieldundef{booktitle}{\usebibmacro{serre-jvp}}{\printfield{booktitle}}%
+  \setunit*{\addcomma\addspace}\printfield{note}%
+  \finentry}
+\DeclareBibliographyDriver{book}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{serre-names}\serreafternames
+  \usebibmacro{title}%
+  \newunit\addspace
+  \usebibmacro{serre-booktail}%
+  \setunit*{\addcomma\addspace}\printfield{note}%
+  \finentry}
+\DeclareBibliographyDriver{incollection}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{serre-names}\serreafternames
+  \usebibmacro{title}%
+  \newunit\addspace
+  \printfield{booktitle}%
+  \setunit*{\addcomma\addspace}\printfield{series}%
+  \setunit*{\addcomma\addspace}\printfield{volume}%
+  \setunit*{\addcomma\addspace}\printfield{pages}%
+  \setunit*{\addcomma\addspace}\printlist{publisher}%
+  \setunit*{\addcomma\addspace}\printfield{year}%
+  \setunit*{\addcomma\addspace}\printfield{note}%
+  \finentry}
+\DeclareBibliographyDriver{collection}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{serre-names}\serreafternames
+  \usebibmacro{title}%
+  \newunit\addspace
+  \usebibmacro{serre-booktail}%
+  \setunit*{\addcomma\addspace}\printfield{note}%
+  \finentry}
+\DeclareBibliographyDriver{proceedings}{%
+  \usebibmacro{bibindex}\usebibmacro{begentry}%
+  \usebibmacro{serre-names}\serreafternames
+  \usebibmacro{title}%
+  \newunit\addspace
+  \usebibmacro{serre-booktail}%
+  \setunit*{\addcomma\addspace}\printfield{note}%
+  \finentry}
+
+\DeclareFieldFormat{labelalphawidth}{\mkbibbrackets{#1}}
+\makeatletter
+\renewcommand*{\bibsetup}{\interlinepenalty=100\relax}
+\makeatother
+
+%% ---------- ToC typesetting (no dot leaders, as the original) ----------
+%% Each entry carries its own label (4th/3rd arg); the page number links to
+%% that label rather than to hyperref's per-page anchor, because hyperref
+%% omits the "page.<folio>" destination on some pages (measured: II-9, III-22,
+%% III-26, IV-14, IV-28), which left those TOC page numbers as dead links.
+\makeatletter
+\newcommand{\fml}[3]{%
+  \addvspace{1.5\baselineskip}\noindent
+  {\bfseries #1}\nobreak\hfill\hyperpage@serre{#2}{#3}\par}
+\newcommand{\chlc}[4]{%  chapter
+  \addvspace{1.6\baselineskip}\noindent
+  {\bfseries #1\quad #2}\nobreak\hfill\hyperpage@serre{#3}{#4}\par}
+\newcommand{\chls}[4]{%  §-section
+  \nobreak\vspace{1.0\baselineskip}\noindent
+  {\bfseries §#1\quad #2}\nobreak\hfill\hyperpage@serre{#3}{#4}\par}
+\newcommand{\chlapp}[4]{% appendix (chapter level)
+  \nobreak\vspace{1.0\baselineskip}\noindent
+  {\bfseries #1: #2}\nobreak\hfill\hyperpage@serre{#3}{#4}\par}
+\newcommand{\chlu}[4]{%  subsection
+  \par\noindent\hspace{2em}%
+  {\itshape #1\quad #2}\nobreak\hfill\hyperpage@serre{#3}{#4}\par}
+%% page number -> the entry's own label (falls back to the page anchor if the
+%% label is somehow undefined, so a TOC line never renders "??").
+\newcommand{\hyperpage@serre}[2]{%
+  \ifx\\#1\\\else
+    \@ifundefined{r@#2}{\hyperlink{page.#1}{#1}}{\hyperref[#2]{#1}}%
+  \fi}
+\makeatother
+
+%% bibliography entries, grouped by category
+\addbibresource{serre.bib}
+\input{bibs/categories}
+
+\begin{document}
+
+%% ================= title pages =================
+\input{front/titlepages}
+
+%% ================= front matter (roman pages) =================
+%% Switch to roman folio numbering starting at v; each block then uses
+%% \fmhead[original_folio]...  only jumps forward, never rewinds.
+\fmroman{5}
+\input{front/specpref}
+\input{front/preface}
+\input{front/vita}
+\input{front/contents}
+\input{front/introduction}
+\input{front/notations}
+
+%% ================= main text =================
+\input{chapters/ch1}
+\input{chapters/ch2}
+\input{chapters/ch3}
+\input{chapters/ch4}
+
+%% ================= bibliography =================
+\input{backm/bib}
+
+%% ================= index =================
+\input{backm/index}
+
+\end{document}

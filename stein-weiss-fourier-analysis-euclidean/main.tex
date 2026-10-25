@@ -1,0 +1,99 @@
+% ============================================================
+%  main.tex -- Introduction to Fourier Analysis on Euclidean Spaces
+%              (E. M. Stein & G. Weiss, PMS-32)
+%  Re-typeset from the PaddleOCR-VL-1.6 draft (the better of the two
+%  OCR sources, see ocr/OCR_COMPARISON.md).
+% ============================================================
+\documentclass{pms32}
+
+% The OCR-era inline formulas in this re-typesetting render ~4% wider than
+% they did in the printed book, so a handful of prose paragraphs whose last
+% line ends in a wide formula cannot be broken without an overfull box at the
+% class default of 2.5em.  Raise the emergency stretch to 4em: TeX consults
+% \emergencystretch *only* for paragraphs that would otherwise overflow, so
+% healthy paragraphs are unaffected.
+\setlength{\emergencystretch}{4em}
+
+% The book's two line drawings (the inverted cone of Ch. II §3 and the tube
+% with its boundary arcs of Ch. III §2) were originally embedded as scanned
+% bitmap crops.  They are redrawn here in TikZ, so they scale cleanly and
+% match the surrounding type.
+\usepackage{tikz}
+\usetikzlibrary{patterns,calc}
+
+% --- redrawn figures -------------------------------------------------------
+% Ch. II, printed p. 66: the inverted cone with vertex p and aperture alpha,
+% together with the cone Gamma_alpha(q) (dashed) whose vertex q lies in the
+% sphere cut out of E_n by the first cone.
+\newcommand{\figcone}{%
+\begin{tikzpicture}[scale=0.9, line width=0.55pt, line cap=round]
+  % the hyperplane E_n
+  \draw (-2.60,0) -- (5.00,0);
+  % cone with vertex p, axis perpendicular to E_n
+  \draw (2.00,3.70) -- (-0.29,0);
+  \draw (2.00,3.70) -- (4.29,0);
+  \draw[dashed] (2.00,3.70) -- (2.00,0);
+  % cone Gamma_alpha(q), same aperture, opening upwards
+  \draw[dashed] (0.85,0) -- (-2.44,5.30);
+  \draw[dashed] (0.85,0) -- (4.14,5.30);
+  \fill (2.00,3.70) circle (1.1pt);
+  \node[above right, inner sep=1.5pt] at (2.00,3.70) {$p$};
+  \node[below, inner sep=2.5pt] at (0.85,0) {$q$};
+  \node[below, inner sep=2.5pt] at (2.00,0) {$p'$};
+\end{tikzpicture}}
+
+% Ch. III, printed p. 96: the disk B (only the relevant boundary arc is shown)
+% with the two sectors sigma_k, sigma_{k+1} cut off by the lines l_k, l_{k+1}.
+\newcommand{\figtube}{%
+\begin{tikzpicture}[scale=0.68, line width=1.0pt, line cap=round]
+  \def\Ox{4.4}\def\Oy{3.4}\def\R{5.9}
+  % boundary arc of B
+  \draw (\Ox,\Oy) ++(88:\R) arc[start angle=88, end angle=272, radius=\R];
+  % the two sectors (lunes between the arc and the chord)
+  \fill[pattern=north east lines, pattern color=black]
+    (\Ox,\Oy) ++(146:\R) arc[start angle=146, end angle=188, radius=\R] -- cycle;
+  \fill[pattern=north east lines, pattern color=black]
+    (\Ox,\Oy) ++(226:\R) arc[start angle=226, end angle=256, radius=\R] -- cycle;
+  % the cutting lines, extended a little past the boundary
+  \coordinate (A) at ($(\Ox,\Oy)+(146:\R)$);
+  \coordinate (B) at ($(\Ox,\Oy)+(188:\R)$);
+  \coordinate (C) at ($(\Ox,\Oy)+(226:\R)$);
+  \coordinate (D) at ($(\Ox,\Oy)+(256:\R)$);
+  \draw ($(A)!-0.10!(B)$) -- ($(A)!1.10!(B)$);
+  \draw ($(C)!-0.07!(D)$) -- ($(C)!1.07!(D)$);
+  % the points y_k and y_{k+1} on the boundary
+  \node[left=6pt, inner sep=0pt] at ($(\Ox,\Oy)+(167:\R)$) {$y_k$};
+  \node[left=9pt, inner sep=0pt] at ($(\Ox,\Oy)+(241:\R)$) {$y_{k+1}$};
+  \node[above left=3pt, inner sep=0pt] at ($(A)!-0.10!(B)$) {$l_k$};
+  \node[above right, inner sep=1pt] at ($(D)!1.07!(C)$) {$l_{k+1}$};
+  % labels sigma_k, sigma_{k+1} with arrows into the sectors
+  \node (sk) at (1.30,5.30) {$\sigma_k$};
+  \draw[->] (sk.west) -- (-1.15,4.55);
+  \node (sk1) at (4.20,-3.30) {$\sigma_{k+1}$};
+  \draw[->] (sk1.west) -- (1.90,-1.75);
+  \node at (6.60,0.60) {$B$};
+\end{tikzpicture}}
+
+\addbibresource{refs.bib}
+
+\begin{document}
+
+\frontmatter
+\input{chapters/front}
+
+\cleardoublepage
+\tableofcontents
+
+\mainmatter
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+
+\backmatter
+\input{chapters/back}
+
+\end{document}

@@ -1,0 +1,201 @@
+% ============ 第五章 §1 Dirichlet 密度 (原书 pp.190-196) ============
+\section{Dirichlet 密度}\label{sec:ch5-s1}
+
+我们先从一个简单的例子讲起, 看一下如何利用 Dirichlet $L$-函数 $L(s,\chi)$ 的解析特性来证明算术级数中有无穷多个素数. 以下设
+\[
+  k\geqslant 2,\quad 1\leqslant l<k,\quad (l,k)=1,
+\]
+$A(k,l)$ 表示算术级数 $\{l+kt\mid t\geqslant 0\}=\{n>0:n\equiv l\ (\mathrm{mod}\ k)\}$, $\pi(x;k,l)=\sum\limits_{\substack{p\leqslant x\\ p\equiv l\ (\mathrm{mod}\ k)}}1$ 表示集合 $A(k,l)$ 中不超过 $x$ 的素数个数. 
+
+\begin{theorem}[Dirichlet]\label{thm:5.1}
+设 $k\geqslant 2$, $1\leqslant l<k$, $(l,k)=1$, 则算术级数 $A(k,l)$ 中有无穷多个素数. 
+\end{theorem}
+
+\begin{proof}
+以 $X$ 表示所有模 $k$ 的 Dirichlet 特征组成的集合. 对每个 $\chi\in X$, 当 $\operatorname{Re}(s)>1$ 时, 
+\[
+  \log L(s,\chi)=\sum\limits_p\log(1-\chi(p)p^{-s})^{-1}
+  =\sum\limits_p\sum\limits_{m=1}^{\infty}\frac{\chi(p)^m}{m}p^{-ms}
+  =\sum\limits_p\chi(p)p^{-s}+g_\chi(s),
+\]
+其中
+\[
+  g_\chi(s)=\sum\limits_p\sum\limits_{m=2}^{\infty}\frac{\chi(p)^m}{m}p^{-ms}.
+\]
+易知级数 $g_\chi(s)$ 在 $\operatorname{Re}(s)>\frac{1}{2}$ 中收敛, 从而 $g_\chi(s)$ 在 $s=1$ 处连续. 另一方面, 由特征的正交性质可知
+\begin{align*}
+  \sum\limits_{p\equiv l\ (\mathrm{mod}\ k)}p^{-s}
+  &=\frac{1}{\varphi(k)}\sum\limits_{\chi\in X}\overline{\chi}(l)\sum\limits_p\chi(p)p^{-s}\\
+  &=\frac{1}{\varphi(k)}\left(\sum\limits_{\chi\in X}\overline{\chi}(l)\log L(s,\chi)-\sum\limits_\chi\overline{\chi}(l)g_\chi(s)\right).
+\end{align*}
+如果 $\chi\neq\chi_0$, 则 $L(s,\chi)$ 在 $s=1$ 处正则. 而
+\[
+  \log L(s,\chi_0)\sim\log\zeta(s)\sim-\log(s-1)\qquad(\text{当 } s\to1^+\ \text{时}).
+\]
+此外, $\sum\limits_\chi\overline{\chi}(l)g_\chi(s)$ 在 $s=1$ 处正则. 因此
+\[
+  \sum\limits_{p\in A(k,l)}p^{-s}=\sum\limits_{p\equiv l\ (\mathrm{mod}\ k)}p^{-s}
+  \sim\frac{1}{\varphi(k)}(-\log(s-1))\qquad(\text{当 } s\to1^+\ \text{时}).
+\]
+这就表明当 $s\to1^+$ 时 $\sum\limits_{p\in A(k,l)}p^{-s}\to+\infty$. 特别地, $A(k,l)$ 中包含无限多个素数. 证毕. 
+\end{proof}
+
+这个定理的证明给出
+\begin{equation}  \lim\limits_{s\to1^+}\frac{\sum\limits_{p\in A(k,l)}p^{-s}}{-\log(s-1)}=\frac{1}{\varphi(k)},\tag{4}\end{equation}
+由此启发出如下的一个概念: 
+
+\begin{definition}\label{def:ch5-1}
+设 $K$ 是代数数域, $A$ 是 $O_K$ 的一个素理想集合. 如果极限
+\[
+  \lim\limits_{s\to1^+}\sum\limits_{\mathfrak{p}\in A}N(\mathfrak{p})^{-s}\big/-\log(s-1)
+\]
+存在, 称此极限为素理想集合 $A$ 的 \emph{Dirichlet 密度}（简称作 $D$-密度）, 表示成 $\delta(A)$. 
+\end{definition}
+
+\begin{example}
+取 $K=\Q$, 则整数环 $\Z$ 中的非零素理想和素数是一一对应的. 由 (4) 式可知对每个 $k\geqslant 2$, $1\leqslant l<k$, $(l,k)=1$, 满足 $p\equiv l\ (\mathrm{mod}\ k)$ 的素数 $p$ 组成的集合, 其 $D$-密度为 $\frac{1}{\varphi(k)}$. 
+\end{example}
+
+由 $D$-密度的定义立刻推出如下性质: 
+
+\begin{lemma}\label{lem:ch5-1}
+设 $K$ 是代数数域, $A$ 和 $A'$ 是 $O_K$ 的两个素理想集合. 
+\begin{enumerate}[(1)]
+  \item 如果 $A$ 是有限集合, 则 $\delta(A)=0$. 换句话说, 如果 $\delta(A)$ 存在并且 $\delta(A)>0$, 则 $A$ 为无限集合. 
+  \item 若 $A\subseteq A'$, 并且 $\delta(A)$ 和 $\delta(A')$ 均存在, 则 $\delta(A)\leqslant\delta(A')$. 
+  \item 若 $\delta(A)$ 存在, 则 $0\leqslant\delta(A)\leqslant 1$. 
+  \item 若 $A\cap A'=\varnothing$, 并且 $\delta(A)$ 和 $\delta(A')$ 均存在, 则 $\delta(A\cup A')$ 也存在, 并且 $\delta(A\cup A')=\delta(A)+\delta(A')$. 
+  \item 记 $A\Delta A'=(A\cup A')-(A\cap A')$. 如果 $\delta(A)$ 存在并且 $\delta(A\Delta A')=0$, 则 $\delta(A')$ 和 $\delta(A\cap A')$ 也存在并且均等于 $\delta(A)$. 
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) 若 $A$ 是有限集合, 则 $\sum\limits_{\mathfrak{p}\in A}N\mathfrak{p}^{-s}$ 有限. 但是当 $s\to1^+$ 时 $-\log(s-1)\to+\infty$. 所以 $\delta(A)=\lim\limits_{s\to1^+}\sum\limits_{\mathfrak{p}\in A}N\mathfrak{p}^{-s}/-\log(s-1)=0$. 
+
+(2) 由于 $\sum\limits_{\mathfrak{p}\in A}N\mathfrak{p}^{-s}=\sum\limits_{\mathfrak{p}\in A'}N\mathfrak{p}^{-s}-\sum\limits_{\mathfrak{p}\in A'-A}N\mathfrak{p}^{-s}\leqslant\sum\limits_{\mathfrak{p}\in A'}N\mathfrak{p}^{-s}$（当 $s>1$ 时）. 从而 $\delta(A)\leqslant\delta(A')$. 
+
+(3) 显然 $\delta(A)\geqslant 0$. 另一方面, 以 $P$ 表示 $O_K$ 中全体素理想组成的集合, 则由 (2) 可知 $\delta(A)\leqslant\delta(P)$. 我们现在证明 $\delta(P)=1$. 我们在上节已经证明 Dedekind zeta 函数
+\[
+  \zeta_K(s)=\prod_{\mathfrak{p}\in P}(1-N\mathfrak{p}^{-s})^{-1}
+\]
+在 $s=1$ 处有单极点, 并且 $\zeta_K(s)\sim\rho_K(s-1)^{-1}$（$\rho_K\neq 0$）（当 $s\to1^+$ 时）. 从而 $\log\zeta_K(s)\sim-\log(s-1)$. 但是
+\begin{align*}
+  \log\zeta_K(s)&=\sum\limits_{\mathfrak{p}\in P}\log(1-N\mathfrak{p}^{-s})^{-1}
+  =\sum\limits_{\mathfrak{p}\in P}\sum\limits_{m=1}^{\infty}\frac{N\mathfrak{p}^{-ms}}{m}\\
+  &=\sum\limits_{\mathfrak{p}\in P}N\mathfrak{p}^{-s}+\sum\limits_{\mathfrak{p}\in P}\sum\limits_{m=2}^{\infty}\frac{N\mathfrak{p}^{-ms}}{m},
+\end{align*}
+而右边第 $2$ 项当 $s\to1^+$ 时收敛, 因此, 
+\[
+  \lim\limits_{s\to1^+}\frac{\sum\limits_{\mathfrak{p}\in P}N\mathfrak{p}^{-s}}{-\log(s-1)}
+  =\lim\limits_{s\to1^+}\frac{\log\zeta_K(s)}{-\log(s-1)}=1.
+\]
+即 $\delta(P)=1$. 
+
+(4) 当 $A\cap A'=\varnothing$ 时, $\sum\limits_{\mathfrak{p}\in A}N\mathfrak{p}^{-s}+\sum\limits_{\mathfrak{p}\in A'}N\mathfrak{p}^{-s}=\sum\limits_{\mathfrak{p}\in A\cup A'}N\mathfrak{p}^{-s}$, 由此即知 $\delta(A\cup A')=\delta(A)+\delta(A')$. 
+
+(5) 由于 $A\cap A'\subseteq A$ 并且 $A-(A\cap A')\subseteq A\Delta A'$. 根据 $D$-密度的定义和 $\delta(A\Delta A')=0$, 易知 $\delta(A\cap A')$ 存在并且等于 $\delta(A)$. 再由 $A\cap A'\subseteq A'$ 并且 $A'-(A\cap A')\subseteq A\Delta A'$, 又知 $\delta(A')$ 存在并且等于 $\delta(A\cap A')=\delta(A)$. 
+\end{proof}
+
+\begin{remark}
+由引理 \ref{lem:ch5-1} 的证明可知, $O_K$ 中所有素理想组成的集合其 $D$-密度为 $1$. 注意前面的 (3) 式是更强的结果. 因为若 $A$ 是 $O_K$ 的一个素理想集合, 令 $\pi(x,A)$ 表示 $A$ 中范不超过 $x$ 的素理想的个数. 如果 $\lim\limits_{x\to\infty}\frac{\pi(x,A)}{x/\log x}=C(A)$, 则可以证明 $A$ 存在 $D$-密度并且 $\delta(A)=C(A)$. （证明从略）. 要想证明前面的 (1)、(2)、(3) 式, 还需要更精细的分析工具. 
+\end{remark}
+
+现在再给出计算 $D$-密度的新的例子. 
+
+\begin{theorem}\label{thm:5.2}
+设 $L/K$ 是数域的伽罗瓦扩张, $n=[L:K]$. 以 $A$ 表示 $O_K$ 中在 $L$ 完全分裂的那些素理想 $\mathfrak{p}$ 组成的集合, 则 $\delta(A)=\frac{1}{n}$. 
+\end{theorem}
+
+\begin{proof}
+当 $s>1$ 时
+\begin{equation}\tag{5}
+  \log\zeta_L(s)=\sum\limits_{\mathfrak{P}}N_{L/\Q}(\mathfrak{P})^{-s}+O(1)
+  =\sum\limits_{\mathfrak{p}}\sum\limits_{\mathfrak{P}\mid\mathfrak{p}}N_{L/\Q}(\mathfrak{P})^{-s}+O(1).
+\end{equation}
+由于只有有限个 $\mathfrak{p}$ 在 $L$ 中分歧, 它们不影响对 $\delta(A)$ 的计算. 从而将它们排除之后, 我们有 $\mathfrak{p}=\mathfrak{P}_1\cdots\mathfrak{P}_g$, $gf=n$. 当 $f\geqslant 2$ 时, $N_{L/\Q}(\mathfrak{P})^{-s}=N_{K/\Q}(\mathfrak{p})^{-fs}\leqslant N_{K/\Q}(\mathfrak{p})^{-2s}$. (5) 式右边对应于 $f\geqslant 2$ 的那些项在 $s\geqslant 1$ 时一致收敛. 而当 $f=1$（即 $\mathfrak{p}\in A$）时, $\mathfrak{p}$ 有 $n$ 个因子 $\mathfrak{P}$, $N_{L/\Q}(\mathfrak{P})=N_{K/\Q}(\mathfrak{p})$. 因此, 
+\[
+  \log\zeta_L(s)=\sum\limits_{\mathfrak{p}\in A}\sum\limits_{\mathfrak{P}\mid\mathfrak{p}}N_{L/\Q}(\mathfrak{P})^{-s}+O(1)
+  =n\sum\limits_{\mathfrak{p}\in A}N_{K/\Q}(\mathfrak{p})^{-s}+O(1).
+\]
+另一方面, $\log\zeta_L(s)=-\log(s-1)+O(1)$（$s\to1^+$）. 于是
+\[
+  \lim\limits_{s\to1^+}\frac{\sum\limits_{\mathfrak{p}\in A}N_{K/\Q}(\mathfrak{p})^{-s}}{-\log(s-1)}
+  =\lim\limits_{s\to1^+}\frac{\frac{1}{n}\log\zeta_L(s)+O(1)}{\log\zeta_L(s)+O(1)}=\frac{1}{n}.
+\]
+即 $\delta(A)=\frac{1}{n}$. 
+\end{proof}
+
+如果 $L/K$ 不是伽罗瓦扩张, 我们记 $N$ 为 $L$ 在 $K$ 上的伽罗瓦闭包, 即包含 $L$ 的 $K$ 之最小伽罗瓦扩域. 如果 $L=K(\alpha)$, 并且 $f(x)\in K[x]$ 是 $\alpha$ 在 $K$ 上的极小多项式, 则 $N$ 就是将 $f(x)$ 的所有根添加到 $K$ 上得到的域. 也就是说, $N$ 是 $L$ 的所有 $K$-共轭域的并. 
+
+\begin{sloppypar}
+\begin{corollary}[1]
+设 $L/K$ 是数域的扩张, $N$ 是 $L$ 在 $K$ 上的正规闭包, 令 $A=\{O_K\ \text{中素理想}\ \mathfrak{p}\mid\mathfrak{p}\ \text{在}\ L\ \text{中完全分裂}\}$, 则
+\[
+  \delta(A)=1/[N:K].
+\]
+\end{corollary}
+\end{sloppypar}
+
+\begin{proof}
+令 $A'=\{O_K\ \text{中素理想}\ \mathfrak{p}\mid\mathfrak{p}\ \text{在}\ N\ \text{中完全分裂}\}$. 由于 $K\subseteq L\subseteq N$, 可知对每个 $\sigma\in G=\Gal(N/K)$ 均有 $K\subseteq\sigma(L)\subseteq N$. 现设 $\mathfrak{p}\in A$, 令 $\mathfrak{P}$ 为 $N$ 中素理想, $\mathfrak{P}\mid\mathfrak{p}$. 由于 $\mathfrak{p}$ 在 $L$ 中完全分裂, 从而关于 $\mathfrak{P}$ 的分解域 $K_D\supseteq L$（为什么？）. 同样地, 对于每个 $\sigma\in G$, $\mathfrak{p}$ 在 $\sigma(L)$ 中也是完全分裂的（为什么？）. 因此 $K_D\supseteq\sigma(L)$. 于是 $N\supseteq K_D\supseteq\bigcup_{\sigma\in G}\sigma(L)=N$, 从而 $K_D=N$. 这表明 $\mathfrak{p}$ 在 $N$ 中完全分裂, 即 $\mathfrak{p}\in A'$. 反之, 若 $\mathfrak{p}\in A'$, 即 $\mathfrak{p}$ 在 $N$ 中完全分裂, 从而在 $L$ 中显然也完全分裂, 因此 $\mathfrak{p}\in A$, 这就表明 $A=A'$. 然后由定理 \ref{thm:5.2} 即知 $\delta(A)=\delta(A')=1/[N:K]$. 
+\end{proof}
+
+设 $K$ 为数域, $A$ 和 $A'$ 是 $O_K$ 的两个素理想集合. 如果 $\delta(A\Delta A')=0$, 即 $A$ 和 $A'$ 彼此不同的素理想组成 $D$-密度为 $0$ 的集合, 则称 $A$ 和 $A'$ \emph{几乎相等}. 引理 \ref{lem:ch5-1} 表明, 若 $A$ 和 $A'$ 几乎相等, 如果 $A$, $A'$, $A\cap A'$ 和 $A\cup A'$ 当中任何一个存在 $D$-密度, 则其余 $3$ 个也存在 $D$-密度, 并且这 $4$ 个集合的 $D$-密度相等（这是由于若 $A$ 和 $A'$ 几乎相等, 则 $A$, $A'$, $A\cap A'$ 和 $A\cup A'$ 当中任意两个都几乎相等）. 
+
+\begin{corollary}[2]
+设 $L_1/K$ 和 $L_2/K$ 均是数域的伽罗瓦扩张. 以 $S_i$ 表示在 $L_i$ 中完全分裂的 $O_K$ 中素理想构成的集合（$i=1,2$）. 如果 $S_1$ 和 $S_2$ 几乎相等, 则 $L_1=L_2$. 
+\end{corollary}
+
+\begin{proof}
+令 $L=L_1L_2$, 则 $L/K$ 也是伽罗瓦扩张. 以 $S$ 表示在 $L$ 完全分裂的 $O_K$ 中素理想构成的集合. 我们在第二章证明了: $O_K$ 的素理想 $\mathfrak{p}$ 在 $L$ 中完全分裂当且仅当 $\mathfrak{p}$ 在 $L_1$ 和 $L_2$ 中均完全分裂. 这意味着 $S=S_1\cap S_2$. 由于假设 $S_1$ 和 $S_2$ 几乎相等, 并且定理 \ref{thm:5.2} 表明 $\delta(S_i)=\frac{1}{[L_i:K]}$（$i=1,2$）, 可知 $\delta(S)=\delta(S_i)$（$i=1,2$）即 $[L:K]=\delta(S)^{-1}=\delta(S_i)^{-1}=[L_i:K]$（$i=1,2$）. 但是 $L\supseteq L_i$, 于是 $L=L_i$（$i=1,2$）. 即 $L_1=L=L_2$. 证毕. 
+\end{proof}
+
+\begin{remark}
+定理 \ref{thm:5.2} 表明, 如果 $L/K$ 是数域的伽罗瓦扩张, 则 $K$ 中存在相当多（$D$-密度为 $1/[L:K]$）的素理想 $\mathfrak{p}$ 在 $L$ 中完全分裂. 而推论 2 表明, 这些完全分裂的素理想组成的集合也完全决定了伽罗瓦扩域 $L$. 
+\end{remark}
+
+\begin{sloppypar}
+现在我们将定理 \ref{thm:5.2} 及其推论用于有限域上多项式的因子分解问题. 设 $L/K$ 是数域的扩张, $L=K(\theta)$, $\theta\in O_L$, $f(x)\in O_K[x]$ 是 $\theta$ 在 $K$ 上的极小多项式, 则 $f(x)$ 是不可约的首 $1$ 多项式, 并且 $\deg f(x)=n=[L:K]$. 我们在第二章中看到, 除了有限多个可能之外, 对于 $K$ 中每个在 $L$ 中不分歧的素理想 $\mathfrak{p}$, $\mathfrak{p}O_L$ 在 $O_L$ 中的分解型式（即 $\mathfrak{p}O_L=\mathfrak{P}_1\cdots\mathfrak{P}_g$ 的参数 $g$ 和 $f_i=f(\mathfrak{P}_i\mid\mathfrak{p})$（$1\leqslant i\leqslant g$）, $\sum\limits_{i=1}^{g}f_i=n$）与多项式 $f(x)$ 在有限域 $O_K/\mathfrak{p}$ 上的分解型式是一样的. 于是由定理 \ref{thm:5.2} 中关于 $\mathfrak{p}$ 的完全分裂性结果可以推得 $f(x)\ (\mathrm{mod}\ \mathfrak{p})$ 的完全分裂结果. 为简单起见我们只考虑 $K=\Q$ 的情形. 虽然对于一般情形其结果也是对的. 
+\end{sloppypar}
+
+\setcounter{definition}{2}% 原书定义编号跳号（无定义2）
+
+\begin{definition}\label{def:ch5-3}
+设 $f(x)\in\Z[x]$ 是 $\Z$ 上的首 $1$ 不可约 $n$ 次多项式, $p$ 为素数. 如果 $f(x)$ 在 $p$ 元域 $\Z/p\Z$ 上分解成 $n$ 个不同的一次因子之积（这相当于说 $f(x)$ 在 $\Z/p\Z$ 中有 $n$ 个不同的根）, 则称 $f(x)$ 对于模 $p$ 是\emph{完全分裂}的. 令 $S(f)=\{\text{素数 } p\mid f(x)\ \text{对模 } p\ \text{完全分裂}\}$. 
+\end{definition}
+
+令 $\theta\in\C$ 为 $f(x)$ 的一个根, $K=\Q(\theta)$. 如果 $K/\Q$ 是伽罗瓦、Abel 或者循环扩张, 则 $f(x)$ 也分别叫作是\emph{正规}、\emph{Abel} 或者\emph{循环}多项式. 
+
+根据上述素理想分解型式和多项式型式之间的关推论, 由定理 \ref{thm:5.2} 立即推出: 
+
+\begin{corollary}[3]
+设 $f(x),g(x)\in\Z[x]$ 均是首 $1$ 不可约正规多项式, $\alpha,\beta\in\C$ 分别是 $f(x)$ 和 $g(x)$ 的根. 如果 $S(f)$ 和 $S(g)$ 几乎相等, 则
+\[
+  \deg f=\deg g,
+\]
+并且 $\Q(\alpha)=\Q(\beta)$. 
+\end{corollary}
+
+\begin{remark}
+推论 3 中关于 $f$ 和 $g$ 均为``正规''多项式这一假定是不可去掉的. Kronecker 最早研究这一问题. Gassmann 于 $1926$ 年证明存在两个 $180$ 次（！）的不可约多项式 $f$ 和 $g$, 除了有限多个素数之外对于每个素数 $p$, $f(x)$ 和 $g(x)$ 模 $p$ 均有相同的分解型式. 但是对 $f(x)$ 的每个根 $\alpha\in\C$ 和 $g(x)$ 的每个根 $\beta\in\C$, 均有 $\Q(\alpha)\neq\Q(\beta)$. $1970$ 年 I. Gerst 给出更简单的例子: $f(x)=x^8-3\cdot2^4$ 和 $g(x)=x^8-3^7$ 具有上述性质. 
+\end{remark}
+
+从推论 1 立刻推得: 
+
+\begin{corollary}[4]
+设 $f(x)\in\Z[x]$ 是首 $1$ 不可约多项式, $N$ 是 $f(x)$ 的分裂域, 则 $\delta(S(f))=1/[N:\Q]$. 
+\end{corollary}
+
+同样地可以证得: 
+
+\begin{corollary}[5]
+设 $f(x),g(x)\in\Z[x]$ 均是首 $1$ 不可约多项式. $\alpha,\beta\in\C$ 分别为 $f(x)$ 和 $g(x)$ 的根. 如果 $\Q(\alpha)=\Q(\beta)$, 则 $S(f)$ 和 $S(g)$ 几乎相等. 
+\end{corollary}
+
+\begin{proof}
+事实上, 令 $K=\Q(\alpha)=\Q(\beta)$. 我们已经知道, 除了有限个之外的所有素数 $p$（即对所有 $p\nmid d(f)d(g)$ 的素数 $p$）, $p$ 在 $K$ 中素理想分解的型式与 $f(x)$ 和 $g(x)$ 模 $p$ 分解的型式均是相同的, 这就表明 $S(f)\Delta S(g)$ 是有限集合. 特别地, $S(f)$ 和 $S(g)$ 几乎相等. 
+\end{proof}
+
+\begin{example}
+可以证明 $f(x)=x^4+4x^3-4x^2-40x-56$ 和 $g(x)=x^4-8x^2-24x-20$ 均是 $\Z[x]$ 中不可约多项式, 并且有相同的判别式: $d(f)=d(g)=-2^{12}\cdot3^2\cdot31$. 但是对于 $p=13$, $f(2)\equiv 0\ (\mathrm{mod}\ 13)$, 而 $g(x)$ 在 $\Z/13\Z$ 中无根. 于是由推论 5 的证明即知对于 $f(x)$ 的任一根 $\alpha\in\C$ 和 $g(x)$ 的任一根 $\beta\in\C$, 均有 $\Q(\alpha)\neq\Q(\beta)$. 
+\end{example}

@@ -1,0 +1,1384 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S6.6  Riemann 积分与广义积分的应用
+%  源：原书印刷页 427--448（PDF 物理页 433--454）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch06_6_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref（写作「定理 x.y.z」原文）；数学模式内的中文必须包text
+% ====================================================================
+
+\section{Riemann 积分与广义积分的应用}\label{sec:6.6}
+
+Riemann 积分与广义积分来源于几何问题与物理问题. 由此我们建立了一整套的积分理论与计算积分的方法. 这一节主要研究一些具体的实例.
+
+\subsection*{1. 平面图形的面积}
+
+(1) 由连续曲线 $y=f(x)\geqslant0$, 直线 $x=a$, $x=b$ ($a<b$) 与 $x$ 轴所围的曲边梯形面积为
+
+\[
+S=\int_{a}^{b}f(x)\,\mathrm{d}x.
+\]
+
+如果 $y=f(x)$ 为 $[a,b]$ 上的一般连续曲线, 则所围的面积为
+
+\[
+S=\int_{a}^{b}|f(x)|\,\mathrm{d}x.
+\]
+
+而
+
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x
+\]
+
+为所围面积的代数和, 其中 $x$ 轴上方图形的面积为正, 下方图形的面积为负.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=0.82cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (6.5,0) node[below right] {$x$};
+  \draw[->] (0,-1.7) -- (0,2.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines]
+    (0.9,1.55) .. controls (1.8,2.15) and (2.7,2.10) .. (3.5,1.80)
+    .. controls (4.4,1.40) and (5.3,0.80) .. (5.9,0.45)
+    -- (5.9,-0.90) .. controls (5.2,-1.25) and (4.3,-1.05) .. (3.4,-0.30)
+    .. controls (2.5,0.40) and (1.7,1.00) .. (0.9,1.55) -- cycle;
+  \draw[very thick] (0.9,1.55) .. controls (1.8,2.15) and (2.7,2.10) .. (3.5,1.80)
+    .. controls (4.4,1.40) and (5.3,0.80) .. (5.9,0.45);
+  \draw[very thick] (0.9,1.55) .. controls (1.7,1.00) and (2.5,0.40) .. (3.4,-0.30)
+    .. controls (4.3,-1.05) and (5.2,-1.25) .. (5.9,-0.90);
+  \node[above] at (4.5,1.32) {$y=f_{2}(x)$};
+  \node[below] at (2.05,-0.72) {$y=f_{1}(x)$};
+  \node[below] at (0.9,-0.06) {$a$};
+  \node[below] at (5.9,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.1}
+\end{figure}
+
+更一般地, 由上、下两条连续曲线 $y=f_{2}(x)$ 与 $y=f_{1}(x)$ 以及两条直线 $x=a$ 与 $x=b$ ($a<b$) 所围图形的面积 (图~\ref{fig:6.6.1}) 计算公式为
+
+\[
+S=\int_{a}^{b}|f_{2}(x)-f_{1}(x)|\,\mathrm{d}x.
+\]
+
+(2) 如果曲线 $C$ 由极坐标方程
+
+\[
+r=r(\theta),\quad\theta\in[\alpha,\beta]
+\]
+
+给出, 其中 $r(\theta)$ 在 $[\alpha,\beta]$ 上连续, $\beta-\alpha\leqslant2\pi$. 由曲线 $C$ 与两条射线 $\theta=\alpha$, $\theta=\beta$ 所围图形 (扇形) 的面积 (图~\ref{fig:6.6.2}) 计算公式为
+
+\[
+S=\lim_{\|T\|\to0}\sum_{i=1}^{n}\frac{1}{2}r^{2}(\xi_{i})\Delta\theta_{i}=\frac{1}{2}\int_{\alpha}^{\beta}r^{2}(\theta)\,\mathrm{d}\theta.
+\]
+
+其中 $T:\alpha=\theta_{0}<\theta_{1}<\cdots<\theta_{n}=\beta$ 为 $[\alpha,\beta]$ 的一个分割, 而射线 $\theta=\theta_{i}$ ($i=1,\cdots,n-1$) 将扇形分成 $n$ 个小扇形. 第 $i$ 个小扇形面积近似为 $\dfrac{1}{2}r^{2}(\xi_{i})\Delta\theta_{i}$, $\xi_{i}\in[\theta_{i-1},\theta_{i}]$.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.4,0) node[below right] {$x$};
+  \node[below left] at (0,0) {$O$};
+  \coordinate (O) at (0,0);
+  \coordinate (Lo) at (10:5.6);
+  \coordinate (Hi) at (63:5.0);
+  \draw[thick] (O) -- (Lo);
+  \draw[thick] (O) -- (Hi);
+  \draw[very thick] (Lo) .. controls (2.6,1.35) and (2.0,3.2) .. (Hi);
+  \fill[pattern=north east lines]
+    (O) -- (24:5.6) .. controls (2.9,1.85) and (2.6,2.4) .. (30:4.65)
+    -- (O) -- cycle;
+  \draw[thin] (O) -- (24:4.2);
+  \draw (1.45,0) arc (0:20:1.45);
+  \node[right] at (1.5,0.18) {$\alpha$};
+  \node[above] at (Hi) {$\alpha=\beta$};
+  \node[right] at (Lo) {$\theta=\alpha$};
+  \node[right] at (30:4.72) {$\theta=\theta_{i-1}$};
+  \node[right] at (27:4.35) {$\theta=\xi_{i}$};
+  \node[right] at (24:4.0) {$\theta=\theta_{i}$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.2}
+\end{figure}
+
+(3) 如果曲线 $C$ 由参数方程
+
+\[
+\begin{cases}
+x=x(t),\\
+y=y(t),
+\end{cases}\quad t\in[\alpha,\beta]
+\]
+
+给出, 其中 $x=x(t)$, $y=y(t)$ 在 $[\alpha,\beta]$ 上连续可导. 记 $a=x(\alpha)$, $b=x(\beta)$ ($a<b$ 或 $b<a$), 则由曲线 $C$ 与直线 $x=a$, $x=b$ 及 $x$ 轴所围图形的面积公式为 (请证之)
+
+\[
+S=\int_{\alpha}^{\beta}|y(t)x'(t)|\,\mathrm{d}t
+\]
+
+或
+
+\[
+S=\int_{\alpha}^{\beta}|x(t)y'(t)|\,\mathrm{d}t.
+\]
+
+如果由参数方程
+
+\[
+\begin{cases}
+x=x(t),\\
+y=y(t),
+\end{cases}\quad\alpha\leqslant t\leqslant\beta
+\]
+
+所表示的曲线是封闭的, 且 $x(t)$, $y(t)$ 在 $[\alpha,\beta]$ 上连续可导, 即有
+
+\[
+(x(\alpha),y(\alpha))=(x(\beta),y(\beta)),
+\]
+
+且在 $(\alpha,\beta)$ 内曲线自身不再相交, 则由曲线自身所围图形的面积计算公式为
+
+\[
+S=\left|\int_{\alpha}^{\beta}y(t)x'(t)\,\mathrm{d}t\right|
+\]
+
+或
+
+\[
+S=\left|\int_{\alpha}^{\beta}x(t)y'(t)\,\mathrm{d}t\right|.
+\]
+
+\begin{example}\label{ex:6.6.1}
+求由抛物线 $y^{2}=x$ 与直线 $x-2y-3=0$ 所围图形的面积.
+\end{example}
+
+\begin{solution}[解法 1]
+易见抛物线 $y^{2}=x$ 与直线 $x-2y-3=0$ 的交点为 $(1,-1)$ 与 $(9,3)$. 于是, 所围图形的面积为 (图~\ref{fig:6.6.3})
+\[
+\begin{aligned}
+S&=\int_{-1}^{3}\left[(2y+3)-y^{2}\right]\mathrm{d}y=\left.\left(y^{2}+3y-\frac{y^{3}}{3}\right)\right|_{-1}^{3}\\
+&=(9+9-9)-\left(1-3+\frac{1}{3}\right)=\frac{32}{3}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{solution}[解法 2]
+$S=S_{1}+S_{2}$
+\[
+\begin{aligned}
+&=\int_{0}^{1}\left[\sqrt{x}-(-\sqrt{x})\right]\mathrm{d}x+\int_{1}^{9}\left(\sqrt{x}-\frac{x-3}{2}\right)\mathrm{d}x\\
+&=2\int_{0}^{1}\sqrt{x}\,\mathrm{d}x+\int_{1}^{9}\left(\sqrt{x}-\frac{x-3}{2}\right)\mathrm{d}x\\
+&=\left.\frac{4}{3}x^{\frac{3}{2}}\right|_{0}^{1}+\left.\left(\frac{2}{3}x^{\frac{3}{2}}-\frac{x^{2}}{4}+\frac{3}{2}x\right)\right|_{1}^{9}=\frac{32}{3}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.62cm,y=0.72cm,>=Stealth]
+  \draw[->] (-1.6,0) -- (10.6,0) node[below right] {$x$};
+  \draw[->] (0,-2.5) -- (0,3.9) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines]
+    (1,-1) -- (9,3) .. controls (7.2,2.72) and (3.0,1.62) .. (1,1) -- cycle;
+  \fill[pattern=north east lines]
+    (0,0) .. controls (0.5,0.7) and (0.8,0.9) .. (1,1) -- (1,-1)
+    .. controls (0.7,-0.85) and (0.4,-0.6) .. (0,0) -- cycle;
+  \draw[very thick] (0,0) .. controls (0.5,0.7) and (0.8,0.9) .. (1,1)
+    .. controls (2.0,1.42) and (4.0,2.0) .. (9,3);
+  \draw[very thick] (0,0) .. controls (0.4,-0.6) and (0.7,-0.85) .. (1,-1)
+    .. controls (2.0,-1.42) and (4.0,-2.0) .. (9,-3);
+  \draw[very thick] (-0.5,-1.75) -- (10.0,3.25);
+  \draw[thin] (1,-1) -- (1,1);
+  \draw[dotted] (9,3) -- (0,3);
+  \draw[dotted] (9,3) -- (9,0);
+  \draw[dotted] (1,-1) -- (0,-1);
+  \node[above right] at (9,3) {$Q$};
+  \node[below] at (1,-1.25) {$P$};
+  \node at (0.48,0.62) {$S_{1}$};
+  \node at (3.4,1.15) {$S_{2}$};
+  \node[below] at (1,-0.06) {1};
+  \node[below] at (3,-0.06) {3};
+  \node[below] at (6,-0.06) {6};
+  \node[below] at (9,-0.06) {9};
+  \node[left] at (0,3) {3};
+  \node[left] at (0,-1) {-1};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.3}
+\end{figure}
+
+\begin{example}\label{ex:6.6.2}
+求由摆线
+\[
+\begin{cases}
+x=a(t-\sin t),\\
+y=a(1-\cos t),
+\end{cases}\quad(a>0)
+\]
+的一拱与 $x$ 轴所围图形的面积 $S$ (图~\ref{fig:6.6.4}).
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+S&=\int_{0}^{2\pi a}y(x)\,\mathrm{d}x
+\xrightarrow[y=a(1-\cos t)]{x=a(t-\sin t)}\int_{0}^{2\pi}a(1-\cos t)\cdot a(1-\cos t)\,\mathrm{d}t\\
+&=a^{2}\int_{0}^{2\pi}\left(1-2\cos t+\frac{1+\cos2t}{2}\right)\mathrm{d}t\\
+&=a^{2}\left.\left(\frac{3}{2}t-2\sin t+\frac{\sin2t}{4}\right)\right|_{0}^{2\pi}\\
+&=a^{2}\left(\frac{3}{2}\cdot2\pi-0-0\right)=3\pi a^{2}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (7.6,0) node[below right] {$x$};
+  \draw[->] (0,-0.4) -- (0,2.9) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines]
+    plot[smooth] coordinates {(0.0000,0.0000) (0.0004,0.0086) (0.0030,0.0341) (0.0100,0.0761) (0.0236,0.1340) (0.0457,0.2066) (0.0783,0.2929) (0.1229,0.3912) (0.1812,0.5000) (0.2542,0.6173) (0.3431,0.7412) (0.4485,0.8695) (0.5708,1.0000) (0.7103,1.1305) (0.8667,1.2588) (1.0396,1.3827) (1.2284,1.5000) (1.4319,1.6088) (1.6491,1.7071) (1.8783,1.7934) (2.1180,1.8660) (2.3662,1.9239) (2.6210,1.9659) (2.8802,1.9914) (3.1416,2.0000) (3.4030,1.9914) (3.6622,1.9659) (3.9170,1.9239) (4.1652,1.8660) (4.4049,1.7934) (4.6341,1.7071) (4.8512,1.6088) (5.0548,1.5000) (5.2436,1.3827) (5.4165,1.2588) (5.5729,1.1305) (5.7124,1.0000) (5.8347,0.8695) (5.9401,0.7412) (6.0290,0.6173) (6.1020,0.5000) (6.1602,0.3912) (6.2049,0.2929) (6.2374,0.2066) (6.2596,0.1340) (6.2732,0.0761) (6.2802,0.0341) (6.2828,0.0086) (6.2832,0.0000)}
+    -- (6.2832,0) -- (0,0) -- cycle;
+  \draw[very thick] plot[smooth] coordinates {(0.0000,0.0000) (0.0004,0.0086) (0.0030,0.0341) (0.0100,0.0761) (0.0236,0.1340) (0.0457,0.2066) (0.0783,0.2929) (0.1229,0.3912) (0.1812,0.5000) (0.2542,0.6173) (0.3431,0.7412) (0.4485,0.8695) (0.5708,1.0000) (0.7103,1.1305) (0.8667,1.2588) (1.0396,1.3827) (1.2284,1.5000) (1.4319,1.6088) (1.6491,1.7071) (1.8783,1.7934) (2.1180,1.8660) (2.3662,1.9239) (2.6210,1.9659) (2.8802,1.9914) (3.1416,2.0000) (3.4030,1.9914) (3.6622,1.9659) (3.9170,1.9239) (4.1652,1.8660) (4.4049,1.7934) (4.6341,1.7071) (4.8512,1.6088) (5.0548,1.5000) (5.2436,1.3827) (5.4165,1.2588) (5.5729,1.1305) (5.7124,1.0000) (5.8347,0.8695) (5.9401,0.7412) (6.0290,0.6173) (6.1020,0.5000) (6.1602,0.3912) (6.2049,0.2929) (6.2374,0.2066) (6.2596,0.1340) (6.2732,0.0761) (6.2802,0.0341) (6.2828,0.0086) (6.2832,0.0000)};
+  \draw[dashed] (0,1) circle (1);
+  \node at (3.6,0.72) {$S$};
+  \node[left] at (0,1) {$a$};
+  \node[left] at (0,2) {$2a$};
+  \node[below] at (3.1416,-0.06) {$\pi a$};
+  \node[below] at (6.2832,-0.06) {$2\pi a$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.4}
+\end{figure}
+
+\begin{example}\label{ex:6.6.3}
+求椭圆 $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}=1$ 所围图形的面积 $S$ ($a>0$, $b>0$).
+\end{example}
+
+\begin{solution}[解法 1]
+椭圆的参数方程为
+\[
+\begin{cases}
+x=a\cos t,\\
+y=b\sin t,
+\end{cases}\quad t\in[0,2\pi].
+\]
+于是,
+\[
+\begin{aligned}
+S&=\left|\int_{0}^{2\pi}b\sin t\cdot(a\cos t)'\mathrm{d}t\right|=ab\int_{0}^{2\pi}\sin^{2}t\,\mathrm{d}t\\
+&=ab\int_{0}^{2\pi}\frac{1-\cos2t}{2}\,\mathrm{d}t=\left.\frac{ab}{2}\left(t-\frac{\sin2t}{2}\right)\right|_{0}^{2\pi}=\frac{ab}{2}(2\pi-0)=\pi ab.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{solution}[解法 2]
+\[
+\begin{aligned}
+S&\xlongequal{\text{对称性}}4\int_{0}^{a}b\sqrt{1-\frac{x^{2}}{a^{2}}}\,\mathrm{d}x
+\xlongequal{x=a\sin t}4b\int_{0}^{\frac{\pi}{2}}\sqrt{1-\sin^{2}t}\,(a\cos t)\,\mathrm{d}t\\
+&=4ab\int_{0}^{\frac{\pi}{2}}\cos^{2}t\,\mathrm{d}t=4ab\cdot\frac{1}{2}\cdot\frac{\pi}{2}=\pi ab.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{solution}[解法 3]
+椭圆 $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}=1$ 的极坐标方程为 $\dfrac{r^{2}\cos^{2}\theta}{a^{2}}+\dfrac{r^{2}\sin^{2}\theta}{b^{2}}=1$, 即
+\[
+r^{2}=r^{2}(\theta)=\frac{1}{\dfrac{\cos^{2}\theta}{a^{2}}+\dfrac{\sin^{2}\theta}{b^{2}}}.
+\]
+于是,
+\[
+\begin{aligned}
+S&=\frac{1}{2}\int_{0}^{2\pi}r^{2}(\theta)\,\mathrm{d}\theta=\frac{1}{2}\int_{0}^{2\pi}\frac{\mathrm{d}\theta}{\dfrac{\cos^{2}\theta}{a^{2}}+\dfrac{\sin^{2}\theta}{b^{2}}}\\
+&=2\int_{0}^{\frac{\pi}{2}}\frac{\mathrm{d}\tan\theta}{\dfrac{1}{a^{2}}+\dfrac{1}{b^{2}}\tan^{2}\theta}
+\xlongequal{u=\tan\theta}2a^{2}b^{2}\int_{0}^{+\infty}\frac{\mathrm{d}u}{b^{2}+a^{2}u^{2}}\\
+&=\left.2ab\arctan\frac{au}{b}\right|_{0}^{+\infty}=2ab\cdot\frac{\pi}{2}=\pi ab.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.6.4}
+求双纽线 $(x^{2}+y^{2})^{2}=a^{2}(x^{2}-y^{2})$ 所围图形的面积 $S$.
+\end{example}
+
+\begin{solution}
+双纽线的极坐标方程为
+\[
+r^{4}=a^{2}r^{2}\left(\cos^{2}\theta-\sin^{2}\theta\right)=a^{2}r^{2}\cos2\theta,\quad r^{2}=a^{2}\cos2\theta.
+\]
+因为 $r^{2}\geqslant0$, 故 $\cos2\theta\geqslant0$, 且 $\theta$ 的取值范围为 $\left[-\dfrac{\pi}{4},\dfrac{\pi}{4}\right]$ 与 $\left[\dfrac{3\pi}{4},\dfrac{5\pi}{4}\right]$. 再由图形的对称性 (图~\ref{fig:6.6.5}) 立即有
+\[
+S=4\cdot\frac{1}{2}\int_{0}^{\frac{\pi}{4}}r^{2}(\theta)\,\mathrm{d}\theta=2\int_{0}^{\frac{\pi}{4}}a^{2}\cos2\theta\,\mathrm{d}\theta=\left.a^{2}\sin2\theta\right|_{0}^{\frac{\pi}{4}}=a^{2}.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.55cm,y=1.35cm,>=Stealth]
+  \draw[->] (-2.1,0) -- (2.3,0) node[below right] {$x$};
+  \draw[->] (0,-1.25) -- (0,1.35) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines]
+    plot[smooth] coordinates {(1.0000,0.0000) (0.9936,0.0651) (0.9744,0.1283) (0.9427,0.1875) (0.8989,0.2409) (0.8434,0.2863) (0.7769,0.3218) (0.6998,0.3451) (0.6124,0.3536) (0.5144,0.3437) (0.4036,0.3097) (0.2716,0.2382) (0.0000,0.0000)}
+    -- (0,0) -- cycle;
+  \draw[very thick] plot[smooth] coordinates {(0.0000,-0.0000) (0.2716,-0.2382) (0.4036,-0.3097) (0.5144,-0.3437) (0.6124,-0.3536) (0.6998,-0.3451) (0.7769,-0.3218) (0.8434,-0.2863) (0.8989,-0.2409) (0.9427,-0.1875) (0.9744,-0.1283) (0.9936,-0.0651) (1.0000,0.0000) (0.9936,0.0651) (0.9744,0.1283) (0.9427,0.1875) (0.8989,0.2409) (0.8434,0.2863) (0.7769,0.3218) (0.6998,0.3451) (0.6124,0.3536) (0.5144,0.3437) (0.4036,0.3097) (0.2716,0.2382) (0.0000,0.0000)};
+  \draw[very thick] plot[smooth] coordinates {(-0.0000,0.0000) (-0.2716,0.2382) (-0.4036,0.3097) (-0.5144,0.3437) (-0.6124,0.3536) (-0.6998,0.3451) (-0.7769,0.3218) (-0.8434,0.2863) (-0.8989,0.2409) (-0.9427,0.1875) (-0.9744,0.1283) (-0.9936,0.0651) (-1.0000,-0.0000) (-0.9936,-0.0651) (-0.9744,-0.1283) (-0.9427,-0.1875) (-0.8989,-0.2409) (-0.8434,-0.2863) (-0.7769,-0.3218) (-0.6998,-0.3451) (-0.6124,-0.3536) (-0.5144,-0.3437) (-0.4036,-0.3097) (-0.2716,-0.2382) (-0.0000,-0.0000)};
+  \draw[thin] (0,0) -- (0.7854:1.4);
+  \draw[thin] (0,0) -- (-0.7854:1.4);
+  \node[right] at (0.7854:1.42) {$\theta=\dfrac{\pi}{4}$};
+  \node[right] at (-0.7854:1.42) {$\theta=-\dfrac{\pi}{4}$};
+  \node[below] at (1,-0.05) {$a$};
+  \node[anchor=west] at (0.75,1.15) {$(x^{2}+y^{2})^{2}=a^{2}(x^{2}-y^{2})$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.5}
+\end{figure}
+
+\subsection*{2. 平行截面间立体的体积}
+
+设 $\Omega$ 为 $\mathbb{R}^{3}$ 中一个立体, 它夹在垂直于 $x$ 轴的两平面 $x=a$ 与 $x=b$ 之间 ($a<b$), 并称 $\Omega$ 为位于 $[a,b]$ 上的立体. 记 $S(x)$ 为 $x\in[a,b]$ 点处垂直于 $x$ 轴的平面截 $\Omega$ 的截面面积函数, 如果它连续, 则立体 $\Omega$ 的体积公式为
+
+\[
+V=\int_{a}^{b}S(x)\,\mathrm{d}x.
+\]
+
+事实上, 设 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$ 为 $[a,b]$ 的一个分割, 过各个分点作垂直于 $x$ 轴的平面 $x=x_{i}$, $i=1,2,\cdots,n$, 它们将 $\Omega$ 切成 $n$ 个薄片 (就如切萝卜片). 设 $S(x)$ 在每个小区间 $\Delta_{i}=[x_{i-1},x_{i}]$ 上的最大值与最小值分别为 $M_{i}$ 与 $m_{i}$, 则每一薄片的体积 $\Delta V_{i}$ 满足
+
+\[
+m_{i}\Delta x_{i}\leqslant\Delta V_{i}\leqslant M_{i}\Delta x_{i},
+\]
+
+因此,
+
+\[
+\sum_{i=1}^{n}m_{i}\Delta x_{i}\leqslant\sum_{i=1}^{n}\Delta V_{i}\leqslant\sum_{i=1}^{n}M_{i}\Delta x_{i}.
+\]
+
+从而
+
+\[
+V=\lim_{\|T\|\to0}\sum_{i=1}^{n}M_{i}\Delta x_{i}=\lim_{\|T\|\to0}\sum_{i=1}^{n}m_{i}\Delta x_{i}=\int_{a}^{b}S(x)\,\mathrm{d}x.
+\]
+
+或者
+
+\[
+V=\lim_{\|T\|\to0}\sum_{i=1}^{n}S(\xi_{i})\Delta x_{i}=\int_{a}^{b}S(x)\,\mathrm{d}x,
+\]
+
+其中 $\xi_{i}\in[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$ (图~\ref{fig:6.6.6}).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (8.6,0) node[below right] {$x$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick]
+    (1.4,0.15) .. controls (2.2,1.35) and (4.4,1.45) .. (5.6,0.95)
+    .. controls (6.5,0.55) and (7.0,0.75) .. (7.6,1.05);
+  \draw[thick]
+    (1.4,-0.15) .. controls (2.2,-1.35) and (4.4,-1.45) .. (5.6,-0.95)
+    .. controls (6.5,-0.55) and (7.0,-0.75) .. (7.6,-1.05);
+  \draw[thick] (1.4,0.15) ellipse (0.34 and 0.16);
+  \draw[thick] (7.6,1.05) .. controls (7.9,0.6) and (7.9,-0.6) .. (7.6,-1.05);
+  \draw[thick] (7.6,1.05) .. controls (8.05,0.7) and (8.05,-0.7) .. (7.6,-1.05);
+  \draw[thick,dashed] (5.6,0.95) -- (5.6,-0.95);
+  \draw[thick] (5.6,0.95) ellipse (0.30 and 0.72);
+  \fill[pattern=north east lines] (5.15,0.95) .. controls (5.15,0.0) and (5.15,0.0) .. (5.15,-0.95)
+    -- (5.45,-0.95) .. controls (5.45,0.0) and (5.45,0.0) .. (5.45,0.95) -- cycle;
+  \draw[thin] (3.2,1.62) -- (3.2,0.15);
+  \draw[thin] (0,1.62) -- (3.2,1.62);
+  \draw[thin] (1.4,1.62) -- (1.4,0.15);
+  \node[above] at (2.3,1.66) {$S(x)$};
+  \node at (4.6,1.15) {$\Omega$};
+  \node[below] at (1.4,-0.06) {$a$};
+  \node[below] at (3.2,-0.06) {$x$};
+  \node[below] at (7.6,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.6}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (0,4.1) node[left] {$z$};
+  \draw[->] (0,0) -- (4.9,0) node[below right] {$y$};
+  \draw[->] (0,0) -- (-2.1,-1.55) node[below left] {$x$};
+  \node[below right] at (0,0) {$O$};
+  \draw[thick] (-1.0,-0.72) -- (-1.0,2.3) -- (2.5,2.3) -- (2.5,-0.72) -- cycle;
+  \draw[thick,dashed] (-1.0,2.3) -- (0.35,3.0) -- (3.85,3.0) -- (2.5,2.3);
+  \draw[thick] (-1.0,-0.72) -- (0.35,0.02) -- (3.85,0.02) -- (2.5,-0.72);
+  \draw[thick] (0.35,0.02) -- (0.35,3.0);
+  \draw[thick] (3.85,0.02) -- (3.85,3.0);
+  \draw[thick] (0.0,0.02) .. controls (0.55,1.0) and (1.45,1.95) .. (1.35,3.0);
+  \draw[thick] (0.0,0.02) .. controls (-0.55,1.0) and (-1.45,1.95) .. (-0.55,3.0);
+  \draw[thick,dotted] (1.35,3.0) .. controls (1.7,2.2) and (1.7,0.9) .. (1.35,0.02);
+  \fill[pattern=north east lines] (1.15,1.62) rectangle (1.55,2.55);
+  \draw (1.15,1.62) rectangle (1.55,2.55);
+  \node[below] at (0.35,-0.06) {$a$};
+  \node[below right] at (1.35,0.0) {$a$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.7}
+\end{figure}
+
+\begin{example}\label{ex:6.6.5}
+求由两个圆柱面 $x^{2}+y^{2}=a^{2}$, $z^{2}+x^{2}=a^{2}$ 所围立体的体积 $V$.
+\end{example}
+
+\begin{solution}
+由对称性 (图~\ref{fig:6.6.7}), 有
+\[
+\begin{aligned}
+V&=8\int_{0}^{a}S(x)\,\mathrm{d}x\\
+&=8\int_{0}^{a}\sqrt{a^{2}-x^{2}}\cdot\sqrt{a^{2}-x^{2}}\,\mathrm{d}x=8\int_{0}^{a}(a^{2}-x^{2})\,\mathrm{d}x\\
+&=\left.8\left(a^{2}x-\frac{x^{3}}{3}\right)\right|_{0}^{a}=\frac{16}{3}a^{3}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.6.6}
+求由椭球面 $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}+\dfrac{z^{2}}{c^{2}}=1$ 所围椭球体的体积.
+\end{example}
+
+\begin{solution}
+以平面 $x=x_{0}$ ($|x_{0}|\leqslant a$) 截椭球面得椭圆 (它在 $yOz$ 平面上的正投影) 为
+\[
+\frac{y^{2}}{b^{2}\left(1-\dfrac{x_{0}^{2}}{a^{2}}\right)}+\frac{z^{2}}{c^{2}\left(1-\dfrac{x_{0}^{2}}{a^{2}}\right)}=1.
+\]
+根据例~\ref{ex:6.6.3} 知, 该截面 (椭圆片) 的面积为
+\[
+S(x)=\pi\left(b\sqrt{1-\frac{x^{2}}{a^{2}}}\right)\left(c\sqrt{1-\frac{x^{2}}{a^{2}}}\right)=\pi bc\left(1-\frac{x^{2}}{a^{2}}\right),\quad x\in[-a,a].
+\]
+于是, 椭球体体积为
+\[
+\begin{aligned}
+V&=\int_{-a}^{a}S(x)\,\mathrm{d}x=\int_{-a}^{a}\pi bc\left(1-\frac{x^{2}}{a^{2}}\right)\mathrm{d}x\\
+&=\left.\pi bc\left(x-\frac{x^{3}}{3a^{2}}\right)\right|_{-a}^{a}=\frac{4}{3}\pi abc.
+\end{aligned}
+\]
+\end{solution}
+
+当 $a=b=c$ 时, 椭球体就为球体, 其体积为 $V=\dfrac{4}{3}\pi a^{3}$.
+
+\subsection*{3. 旋转体的体积}
+
+设 $f$ 为 $[a,b]$ 上的连续函数, $\Omega$ 是由平面图形
+
+\[
+\{(x,y)\mid a\leqslant x\leqslant b,\ 0\leqslant|y|\leqslant|f(x)|\}
+\]
+
+绕 $x$ 轴旋转一周所得的旋转体. 易知截面 (半径为 $|f(x)|$ 的圆片) 面积
+
+\[
+S(x)=\pi[f(x)]^{2},\quad x\in[a,b].
+\]
+
+于是, 旋转体 $\Omega$ 的体积公式 (图~\ref{fig:6.6.8}) 为
+
+\[
+V=\int_{a}^{b}S(x)\,\mathrm{d}x=\pi\int_{a}^{b}[f(x)]^{2}\,\mathrm{d}x.
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (7.6,0) node[below right] {$x$};
+  \draw[->] (0,-1.7) -- (0,2.1) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick,dashed] (1.3,0) ellipse (0.34 and 1.28);
+  \draw[thick] (1.3,0) ellipse (0.34 and 1.28);
+  \draw[thick] (5.6,0) ellipse (0.30 and 0.62);
+  \draw[thick] (1.3,1.28) .. controls (3.0,1.72) and (4.3,0.95) .. (5.6,0.62);
+  \draw[thick] (1.3,-1.28) .. controls (3.0,-1.72) and (4.3,-0.95) .. (5.6,-0.62);
+  \draw[thick,dashed] (1.3,-1.28) arc (-90:90:0.34 and 1.28);
+  \draw[thick] (1.3,1.28) arc (90:270:0.34 and 1.28);
+  \draw[thick,dashed] (5.6,-0.62) arc (-90:90:0.30 and 0.62);
+  \draw[thick] (5.6,0.62) arc (90:270:0.30 and 0.62);
+  \draw[thick] (3.35,1.55) ellipse (0.26 and 1.05);
+  \fill[pattern=north east lines] (3.09,1.55) .. controls (3.09,0.5) and (3.09,0.5) .. (3.09,-0.55)
+    -- (3.61,-0.55) .. controls (3.61,0.5) and (3.61,0.5) .. (3.61,1.55) -- cycle;
+  \draw[thick] (3.35,0) ellipse (0.26 and 1.05);
+  \node[above] at (3.35,1.62) {$S(x)$};
+  \node[above] at (4.7,1.20) {$y=f(x)$};
+  \node[below] at (1.3,-0.06) {$a$};
+  \node[below] at (3.35,-0.06) {$x$};
+  \node[below] at (3.98,-0.06) {$x+\mathrm{d}x$};
+  \node[below] at (5.6,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.8}
+\end{figure}
+
+\begin{example}\label{ex:6.6.7}
+证明: 高为 $h$, 底半径为 $r$ 的圆锥体的体积 $V=\dfrac{1}{3}\pi r^{2}h$.
+\end{example}
+
+\begin{proof}
+设正圆锥的高为 $h$, 底圆半径为 $r$ (见图~\ref{fig:6.6.9}). 该正圆锥体可由平面图形 $\{(x,y)\mid0\leqslant x\leqslant h,\allowbreak\ 0\leqslant|y|\leqslant\frac{r}{h}x\}$ 绕 $x$ 轴旋转一周得到, 所以其体积为
+\[
+V=\pi\int_{0}^{h}\left(\frac{r}{h}x\right)^{2}\mathrm{d}x=\left.\pi\frac{r^{2}}{h^{2}}\frac{x^{3}}{3}\right|_{0}^{h}=\frac{1}{3}\pi r^{2}h.
+\]
+\end{proof}
+
+进而, 任一高为 $h$, 底半径为 $r$ 的 (正或斜) 的圆锥, 它们在相同高处的截面为半径相同的圆片, 则其体积恒为 $\dfrac{1}{3}\pi r^{2}h$.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \coordinate (O) at (0,0);
+  \coordinate (Apex) at (0,0);
+  \coordinate (BaseC) at (4.6,0);
+  \draw[->] (-0.4,0) -- (5.8,0) node[below left] {$x$};
+  \draw[->] (0,-0.4) -- (0,2.05) node[left] {$y$};
+  \draw[->] (0,0) -- (-1.5,-1.15) node[below left] {$z$};
+  \node[above left] at (0,0) {$O$};
+  \draw[thick] (Apex) -- (4.6,1.62);
+  \draw[thick] (Apex) -- (4.6,-1.62);
+  \draw[thick] (4.6,0) ellipse (0.40 and 1.62);
+  \draw[thick] (4.6,0) -- (4.6,-1.62);
+  \draw[thick,dashed] (2.6,0) ellipse (0.24 and 0.92);
+  \draw[thick,dotted] (4.6,0) -- (1.9,1.55);
+  \node[right] at (4.72,1.05) {$r$};
+  \node[below] at (2.3,-0.06) {$h$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.9}
+\end{figure}
+
+\begingroup\xeCJKsetup{CJKglue={\hskip 0pt plus 1pt}}
+上述只是一个特殊结果, 更一般的结果是截面面积相等则体积也相等的原理 (图~\ref{fig:6.6.10}): 设 $\Omega_{A}$, $\Omega_{B}$ 为位于同一区间 $[a,b]$ 上的两个立体, 其体积分别为 $V_{A}$, $V_{B}$. 如果在 $[a,b]$ 上它们的截面函数 $S_{A}(x)$ 与 $S_{B}(x)$ 皆连续, 且 $S_{A}(x)=S_{B}(x)$. 则\endgroup
+
+\[
+V_{A}=\int_{a}^{b}S_{A}(x)\,\mathrm{d}x=\int_{a}^{b}S_{B}(x)\,\mathrm{d}x=V_{B}.
+\]
+
+这个原理早已为我国齐梁时代的数学家祖{\zmbhan 暅} (祖冲之 (429—500) 之子, 生卒年代约在公元 5 世纪末至 6 世纪初) 在计算球的体积时所发现. 17 世纪意大利数学家 Cavalieri (1598—1647) 也提出了类似的原理, 但要比祖{\zmbhan 暅}晚 1100 多年.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.4,0) -- (8.4,0) node[below right] {$x$};
+  \draw[->] (0,-3.0) -- (0,3.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (1.2,1.35) .. controls (2.4,2.35) and (4.6,2.5) .. (5.7,1.7)
+    .. controls (6.6,1.05) and (6.9,1.25) .. (7.5,1.55);
+  \draw[thick] (1.2,1.35) .. controls (2.1,0.85) and (3.2,0.72) .. (4.3,0.85)
+    .. controls (5.4,0.98) and (6.2,1.05) .. (7.5,1.55);
+  \draw[thick] (1.2,1.35) ellipse (0.30 and 0.14);
+  \draw[thick] (3.1,0.78) ellipse (0.28 and 0.46);
+  \draw[thick,dashed] (3.1,1.24) -- (3.1,0.32);
+  \draw[thick] (1.2,-1.35) .. controls (2.4,-2.35) and (4.6,-2.5) .. (5.7,-1.7)
+    .. controls (6.6,-1.05) and (6.9,-1.25) .. (7.5,-1.55);
+  \draw[thick] (1.2,-1.35) .. controls (2.1,-0.85) and (3.2,-0.72) .. (4.3,-0.85)
+    .. controls (5.4,-0.98) and (6.2,-1.05) .. (7.5,-1.55);
+  \draw[thick] (1.2,-1.35) ellipse (0.30 and 0.14);
+  \draw[thick] (3.1,-0.78) ellipse (0.28 and 0.46);
+  \draw[thick,dashed] (3.1,-0.32) -- (3.1,-1.24);
+  \draw[dotted] (3.1,1.24) -- (3.1,-0.32);
+  \node[above] at (4.4,2.12) {$S_{A}(x)$};
+  \node[above] at (4.5,-0.44) {$S_{B}(x)$};
+  \node[below] at (1.2,-0.06) {$a$};
+  \node[below] at (3.1,-0.06) {$x$};
+  \node[below] at (7.5,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.10}
+\end{figure}
+
+\begin{example}\label{ex:6.6.8}
+求由圆 $x^{2}+(y-R)^{2}\leqslant r^{2}$ ($0<r<R$) 绕 $x$ 轴旋转一周所得环状立体 (称为圆环体, 其边界为圆环面 (如救生圈)) 的体积 (图~\ref{fig:6.6.11}).
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-1.6,0) -- (1.6,0) node[below right] {$y$};
+  \draw[->] (0,-1.9) -- (0,2.6) node[left] {$x$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (0,0.85) circle (0.82);
+  \draw[thick] (0,0.85) -- (0.82,0.85);
+  \node[right] at (0.42,0.95) {$R$};
+  \node[above right] at (0.30,1.62) {$x^{2}+(y-R)^{2}\leqslant r^{2}$};
+\end{tikzpicture}
+\hspace{0.6cm}
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (3.9,0) node[right] {$z$};
+  \draw[->] (0,0) -- (-2.1,-0.85) node[below left] {$y$};
+  \draw[->] (0,0) -- (0,2.5) node[above] {$x$};
+  \node[below right] at (0,0) {$O$};
+  \draw[thick] (0,0.45) ellipse (1.75 and 0.68);
+  \draw[thick] (0,-0.45) ellipse (1.75 and 0.68);
+  \draw[thick] (-1.75,0.45) arc (180:360:1.75 and 0.68);
+  \draw[thick] (1.75,0.45) arc (0:180:1.75 and 0.68);
+  \draw[thick,dashed] (-1.75,-0.45) arc (180:360:1.75 and 0.68);
+  \draw[thick] (1.75,-0.45) arc (0:180:1.75 and 0.68);
+  \draw[thick] (1.75,0.45) arc (90:-90:0.62 and 0.45);
+  \draw[thick] (1.75,-0.45) arc (-90:90:0.62 and 0.45);
+\end{tikzpicture}
+\caption{}\label{fig:6.6.11}
+\end{figure}
+
+\begin{solution}
+如图~\ref{fig:6.6.11} 所示, 圆 $x^{2}+(y-R)^{2}=r^{2}$ 的上、下半圆分别为
+\[
+y=f_{2}(x)=R+\sqrt{r^{2}-x^{2}},
+\]
+\[
+y=f_{1}(x)=R-\sqrt{r^{2}-x^{2}},\quad|x|\leqslant r.
+\]
+故圆环体的截面面积函数为
+\[
+S(x)=\pi\left\{[f_{2}(x)]^{2}-[f_{1}(x)]^{2}\right\}=4\pi R\sqrt{r^{2}-x^{2}},\quad x\in[-r,r],
+\]
+于是, 圆环体的体积为
+\[
+\begin{aligned}
+V&=V_{1}-V_{2}=\int_{-r}^{r}\pi[f_{2}(x)]^{2}\,\mathrm{d}x-\int_{-r}^{r}\pi[f_{1}(x)]^{2}\,\mathrm{d}x\\
+&\xlongequal{\text{对称性}}8\pi R\int_{0}^{r}\sqrt{r^{2}-x^{2}}\,\mathrm{d}x
+\xlongequal{x=r\sin\theta}8\pi R\int_{0}^{\frac{\pi}{2}}\sqrt{r^{2}-r^{2}\sin^{2}\theta}\,r\cos\theta\,\mathrm{d}\theta\\
+&=8\pi Rr^{2}\int_{0}^{\frac{\pi}{2}}\cos^{2}\theta\,\mathrm{d}\theta=8\pi Rr^{2}\cdot\frac{1}{2}\cdot\frac{\pi}{2}\\
+&=2\pi^{2}r^{2}R.
+\end{aligned}
+\]
+\end{solution}
+
+\subsection*{4. 平面曲线与空间曲线的弧长}
+
+\begin{definition}\label{def:6.6.1}
+设 $C=\overset{\frown}{AB}$ 为 $\mathbb{R}^{3}$ 中的空间曲线, 在 $C$ 上依次从 $A$ 到 $B$ 取分点
+\[
+A=P_{0},\ P_{1},\ \cdots,\ P_{n-1},\ P_{n}=B,
+\]
+它们成为对曲线 $C$ 的一个分割, 记为 $T$. 然后, 用线段连结 $T$ 中每相邻两点得到 $C$ 的 $n$ 条弦 $\overline{P_{i-1}P_{i}}$ ($i=1,\cdots,n$), 这 $n$ 条弦又组成 $C$ 的一条内接折线 (图~\ref{fig:6.6.12}). 记
+\[
+\|T\|=\max_{1\leqslant i\leqslant n}|P_{i-1}P_{i}|,
+\]
+\[
+s_{T}=\sum_{i=1}^{n}|P_{i-1}P_{i}|,
+\]
+它们分别表示最长弦的长度与折线的总长度.
+如果
+\[
+\lim_{\|T\|\to0}s_{T}=s,
+\]
+即 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $\|T\|<\delta$ 时, 有
+\[
+|s_{T}-s|<\varepsilon,
+\]
+则称 $C$ 是可求长的, 并将极限 $s$ 称为曲线 $C$ 的弧长.
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (0,3.5) node[above] {$z$};
+  \draw[->] (0,0) -- (5.2,0) node[right] {$y$};
+  \draw[->] (0,0) -- (-1.7,-1.2) node[below left] {$x$};
+  \node[below right] at (0,0) {$O$};
+  \draw[very thick] (0.9,0.55) .. controls (1.6,2.7) and (3.6,3.0) .. (4.5,1.35);
+  \draw[thick] (0.9,0.55) -- (1.95,1.95) -- (3.1,2.2) -- (4.5,1.35);
+  \fill (0.9,0.55) circle (0.05); \fill (1.95,1.95) circle (0.05);
+  \fill (3.1,2.2) circle (0.05); \fill (4.5,1.35) circle (0.05);
+  \node[left] at (0.82,0.5) {$P_{0}=A(t=\alpha)$};
+  \node[above left] at (1.95,1.98) {$P_{1}(t=t_{1})$};
+  \node[above] at (3.1,2.26) {$P_{i-1}(t=t_{i-1})$};
+  \node[right] at (3.18,2.0) {$P_{i}(t=t_{i})$};
+  \node[above right] at (4.52,1.4) {$B=P_{n}(t=\beta)$};
+  \node[above] at (2.15,2.95) {$C$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.12}
+\end{figure}
+
+\begin{theorem}[可求长的充分条件]\label{thm:6.6.1}
+设 $\mathbb{R}^{3}$ 中的空间曲线 $C$ 由参数方程
+\[
+(x,y,z)=(x(t),y(t),z(t)),\quad t\in[\alpha,\beta]
+\]
+给出, 并且它为一条 $C^{1}$ 光滑的正则曲线 (即 $x(t)$, $y(t)$, $z(t)$ 均连续可导, 且 $x'^{2}(t)+y'^{2}(t)+z'^{2}(t)\neq0$, 满足此条件的曲线 $C$ 的点称为正则点), 则 $C$ 是可求长的, 且弧长为
+\[
+s=\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t.
+\]
+\end{theorem}
+
+\begin{proof}
+设
+\[
+T':\alpha=t_{0}<t_{1}<\cdots<t_{n-1}<t_{n}=\beta
+\]
+为区间 $[\alpha,\beta]$ 的一个分割, 相应于曲线 $C$ 的一个分割为
+\[
+T=\{P_{0},P_{1},\cdots,P_{n}\},
+\]
+其中 $P_{i}=(x(t_{i}),y(t_{i}),z(t_{i}))$, $i=0,1,\cdots,n$ (图~\ref{fig:6.6.12}). 在 $T'$ 所属的每个小区间 $[t_{i-1},t_{i}]$ 上, 由 Lagrange 中值定理得
+\[
+\Delta x_{i}=x(t_{i})-x(t_{i-1})=x'(\xi_{i})\Delta t_{i},\quad\xi_{i}\in[t_{i-1},t_{i}],
+\]
+\[
+\Delta y_{i}=y(t_{i})-y(t_{i-1})=y'(\eta_{i})\Delta t_{i},\quad\eta_{i}\in[t_{i-1},t_{i}],
+\]
+\[
+\Delta z_{i}=z(t_{i})-z(t_{i-1})=z'(\zeta_{i})\Delta t_{i},\quad\zeta_{i}\in[t_{i-1},t_{i}].
+\]
+又因为 $C$ 为光滑曲线, 当 $x'(t)\neq0$ 时, 在 $t$ 的某开邻域内 $x=x(t)$ 有连续的反函数, 故当 $\Delta x\to0$ 时 $\Delta t\to0$; 类似地, 当 $y'(t)\neq0$ 或 $z'(t)\neq0$ 时, 也能从 $\Delta y\to0$ 或 $\Delta z\to0$ 推知 $\Delta t\to0$. 所以,
+\[
+|P_{i-1}P_{i}|=\sqrt{\Delta x_{i}^{2}+\Delta y_{i}^{2}+\Delta z_{i}^{2}}\to0\Longleftrightarrow\Delta t\to0.
+\]
+由此知, 当曲线 $C$ 为光滑曲线时,
+\[
+\|T\|\to0\Longleftrightarrow\|T'\|\to0.
+\]
+由于 $\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}$ 在 $[\alpha,\beta]$ 上连续, 从而 Riemann 可积, 所以 $\forall\varepsilon>0$, $\exists\delta_{1}>0$, 当 $\|T'\|<\delta_{1}$ 时,
+\[
+\left|\sum_{i=1}^{n}\sqrt{x'^{2}(\xi_{i})+y'^{2}(\xi_{i})+z'^{2}(\xi_{i})}\Delta t_{i}-\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\right|<\frac{\varepsilon}{2}.
+\]
+又因 $y(t)$, $z(t)$ 在 $[\alpha,\beta]$ 上连续, 故一致连续. 从而 $\exists\delta\in(0,\delta_{1})$, 当 $\|T'\|<\delta$ 时, 有
+\[
+\begin{aligned}
+&\left|\sqrt{x'^{2}(\xi_{i})+y'^{2}(\eta_{i})+z'^{2}(\zeta_{i})}-\sqrt{x'^{2}(\xi_{i})+y'^{2}(\xi_{i})+z'^{2}(\xi_{i})}\right|\\
+\leqslant&\frac{|y'(\eta_{i})+y'(\xi_{i})||y'(\eta_{i})-y'(\xi_{i})|+|z'(\zeta_{i})+z'(\xi_{i})||z'(\zeta_{i})-z'(\xi_{i})|}{\sqrt{x'^{2}(\xi_{i})+y'^{2}(\eta_{i})+z'^{2}(\zeta_{i})}+\sqrt{x'^{2}(\xi_{i})+y'^{2}(\xi_{i})+z'^{2}(\xi_{i})}}\\
+\leqslant&|y'(\eta_{i})-y'(\xi_{i})|+|z'(\zeta_{i})-z'(\xi_{i})|<\frac{\varepsilon}{2(\beta-\alpha)}.
+\end{aligned}
+\]
+于是
+\[
+\begin{aligned}
+&\left|s_{T}-\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\right|\\
+=&\left|\sum_{i=1}^{n}\sqrt{\Delta x_{i}^{2}+\Delta y_{i}^{2}+\Delta z_{i}^{2}}-\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\right|\\
+=&\left|\sum_{i=1}^{n}\sqrt{x'^{2}(\xi_{i})+y'^{2}(\eta_{i})+z'^{2}(\zeta_{i})}\Delta t_{i}-\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\right|\\
+\leqslant&\sum_{i=1}^{n}\left|\sqrt{x'^{2}(\xi_{i})+y'^{2}(\eta_{i})+z'^{2}(\zeta_{i})}-\sqrt{x'^{2}(\xi_{i})+y'^{2}(\xi_{i})+z'^{2}(\xi_{i})}\right|\Delta t_{i}\\
+&+\left|\sum_{i=1}^{n}\sqrt{x'^{2}(\xi_{i})+y'^{2}(\xi_{i})+z'^{2}(\xi_{i})}\Delta t_{i}-\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\right|\\
+<&\frac{\varepsilon}{2(\beta-\alpha)}(\beta-\alpha)+\frac{\varepsilon}{2}=\varepsilon,
+\end{aligned}
+\]
+即
+\[
+\lim_{\|T\|\to0}s_{T}=\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t.
+\]
+\end{proof}
+
+如果空间曲线 $C$ 以直角坐标 $x$ 为参数, 即
+
+\[
+(x,y,z)=(x,y(x),z(x)),
+\]
+
+且 $y(x)$, $z(x)$ 在 $[a,b]$ 上连续可导, 则弧长公式为
+
+\[
+s=\int_{a}^{b}\sqrt{1+y'^{2}(x)+z'^{2}(x)}\,\mathrm{d}x.
+\]
+
+类似上面讨论, 或在上述公式中令 $z(t)=0$, 则有平面曲线的弧长公式为
+
+\[
+s=\int_{\alpha}^{\beta}\sqrt{x'^{2}(t)+y'^{2}(t)}\,\mathrm{d}t.
+\]
+
+如果直角坐标 $x$ 为参数, 即 $(x,y)=(x,y(x))$, 且 $y(x)$ 在 $[a,b]$ 上连续可导, 则弧长公式为
+
+\[
+s=\int_{a}^{b}\sqrt{1+y'^{2}(x)}\,\mathrm{d}x.
+\]
+
+如果平面曲线 $C$ 由极坐标方程
+
+\[
+r=r(\theta),\quad\theta\in[\alpha,\beta]
+\]
+
+给出, $r(\theta)$ 连续可导, 且
+
+\[
+(x,y)=(r(\theta)\cos\theta,r(\theta)\sin\theta),
+\]
+
+\[
+\begin{aligned}
+&x'^{2}(\theta)+y'^{2}(\theta)\\
+=&[r'(\theta)\cos\theta-r(\theta)\sin\theta]^{2}+[r'(\theta)\sin\theta+r(\theta)\cos\theta]^{2}\\
+=&r^{2}(\theta)+r'^{2}(\theta)\neq0,
+\end{aligned}
+\]
+
+则弧长公式为
+
+\[
+s=\int_{\alpha}^{\beta}\sqrt{x'^{2}(\theta)+y'^{2}(\theta)}\,\mathrm{d}\theta=\int_{\alpha}^{\beta}\sqrt{r^{2}(\theta)+r'^{2}(\theta)}\,\mathrm{d}\theta.
+\]
+
+\begin{remark}\label{rem:6.6.1}
+易见, 从曲线 $C$ 上定点 $P_{0}=(x(\alpha),y(\alpha),z(\alpha))$ 到动点 $P=(x(t),y(t),z(t))$ 的弧长为
+\[
+s(t)=\int_{\alpha}^{t}\sqrt{x'^{2}(\tau)+y'^{2}(\tau)+z'^{2}(\tau)}\,\mathrm{d}\tau.
+\]
+由于被积函数是连续的, 根据微积分基本定理, 有
+\[
+\frac{\mathrm{d}s}{\mathrm{d}t}=\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)},
+\]
+\[
+\begin{aligned}
+\mathrm{d}s&=\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\\
+&=\sqrt{\mathrm{d}x^{2}+\mathrm{d}y^{2}+\mathrm{d}z^{2}},
+\end{aligned}
+\]
+并称 $s(t)$ 的微分 $\mathrm{d}s$ 为弧长元或弧微分 (图~\ref{fig:6.6.13}).
+\end{remark}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (0,3.2) node[above] {$z$};
+  \draw[->] (0,0) -- (4.6,0) node[right] {$y$};
+  \draw[->] (0,0) -- (-1.5,-1.05) node[below left] {$x$};
+  \node[below right] at (0,0) {$O$};
+  \draw[very thick] (0.8,0.5) .. controls (1.5,2.5) and (3.3,2.9) .. (4.2,1.3);
+  \draw[thick] (0.8,0.5) -- (2.0,1.7) -- (3.0,1.95);
+  \draw[thick,dashed] (3.0,1.95) -- (4.2,1.3);
+  \fill (2.0,1.7) circle (0.05); \fill (3.0,1.95) circle (0.05);
+  \draw[thick] (2.0,1.7) -- (3.0,1.70);
+  \draw[thick] (3.0,1.95) -- (3.0,1.70);
+  \draw[->,thick] (2.0,1.7) -- (3.0,1.95) node[midway,above left,inner sep=1pt] {$\mathrm{d}s$};
+  \node[below] at (2.5,1.62) {$\mathrm{d}x$};
+  \node[right] at (3.06,1.82) {$\mathrm{d}z$};
+  \node[left] at (1.95,1.66) {$P$};
+  \node[right] at (3.10,1.95) {$Q$};
+  \node[above] at (1.42,2.58) {$T$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.13}
+\end{figure}
+
+特别当参数 $t$ 为弧长 $s$ 时, 有
+
+\[
+s(s)=\int_{\alpha}^{\beta}\sqrt{x'^{2}(\tau)+y'^{2}(\tau)+z'^{2}(\tau)}\,\mathrm{d}\tau,
+\]
+
+则
+
+\[
+\begin{aligned}
+1&=\frac{\mathrm{d}s}{\mathrm{d}s}\\
+&=\sqrt{x'^{2}(s)+y'^{2}(s)+z'^{2}(s)}\\
+&=\|(x'(s),y'(s),z'(s))\|,
+\end{aligned}
+\]
+
+即 $(x'(s),y'(s),z'(s))$ 为沿曲线 $C$ 的单位切向量场.
+
+\subsection*{5. 旋转曲面的面积}
+
+平面 $C^{1}$ 光滑正则曲线 $C$ (参数方程为 $x=x(t)$, $y=y(t)$, $t\in[\alpha,\beta]$, $y(t)\geqslant0$) 绕 $x$ 轴旋转所得旋转曲面的面积公式为
+
+\[
+\begin{aligned}
+S&=\lim_{\|T\|\to0}\sum_{i=1}^{n}2\pi y(\xi_{i})\cdot\sqrt{x'^{2}(\xi_{i})+y'^{2}(\xi_{i})}\Delta t_{i}\\
+&=\int_{\alpha}^{\beta}2\pi y(t)\sqrt{x'^{2}(t)+y'^{2}(t)}\,\mathrm{d}t=\int_{\alpha}^{\beta}2\pi y\,\mathrm{d}s.
+\end{aligned}
+\]
+
+如果直角坐标 $x$ 为参数, $y(x)$ 为连续可导的函数, 则上述公式就成为
+
+\[
+S=\int_{a}^{b}2\pi y(x)\sqrt{1+y'^{2}(x)}\,\mathrm{d}x.
+\]
+
+\begin{example}\label{ex:6.6.9}
+求摆线 $(x,y)=(a(t-\sin t),a(1-\cos t))$, $a>0$ 的一拱的弧长 $s$.
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+s&=\int_{0}^{2\pi}\sqrt{x'^{2}(t)+y'^{2}(t)}\,\mathrm{d}t\\
+&=\int_{0}^{2\pi}\sqrt{a^{2}(1-\cos t)^{2}+a^{2}\sin^{2}t}\,\mathrm{d}t\\
+&=\int_{0}^{2\pi}\sqrt{2a^{2}(1-\cos t)}\,\mathrm{d}t=2a\int_{0}^{2\pi}\sin\frac{t}{2}\,\mathrm{d}t\\
+&=\left.-4a\cos\frac{t}{2}\right|_{0}^{2\pi}=8a.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.6.10}
+求悬链线 $y=\dfrac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{2}$ 从 $x=0$ 到 $x=a>0$ 那一段的弧长 $s$.
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+s&=\int_{0}^{a}\sqrt{1+y'^{2}(x)}\,\mathrm{d}x=\int_{0}^{a}\sqrt{1+\left(\frac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{2}\right)^{2}}\,\mathrm{d}x\\
+&=\int_{0}^{a}\sqrt{\left(\frac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{2}\right)^{2}}\,\mathrm{d}x=\int_{0}^{a}\frac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{2}\,\mathrm{d}x\\
+&=\left.\frac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{2}\right|_{0}^{a}=\frac{\mathrm{e}^{a}-\mathrm{e}^{-a}}{2}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:6.6.11}
+求心脏线 (或心形线) $r=a(1+\cos\theta)$, $a>0$, $0\leqslant\theta\leqslant2\pi$ 的周长 (图~\ref{fig:6.6.14}).
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+S&=\int_{0}^{2\pi}\sqrt{r^{2}(\theta)+r'^{2}(\theta)}\,\mathrm{d}\theta\\
+&=\int_{0}^{2\pi}\sqrt{a^{2}(1+\cos\theta)^{2}+a^{2}(-\sin\theta)^{2}}\,\mathrm{d}\theta\\
+&\xlongequal{\text{对称性}}2a\int_{0}^{\pi}\sqrt{2(1+\cos\theta)}\,\mathrm{d}\theta=4a\int_{0}^{\pi}\cos\frac{\theta}{2}\,\mathrm{d}\theta\\
+&=\left.8a\sin\frac{\theta}{2}\right|_{0}^{\pi}=8a.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.15cm,y=1.15cm,>=Stealth]
+  \draw[->] (-1.35,0) -- (2.5,0) node[below right] {$x$};
+  \draw[->] (0,-1.35) -- (0,1.35) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[very thick] plot[smooth] coordinates {(2.0000,0.0000) (1.9886,0.1740) (1.9547,0.3447) (1.8989,0.5088) (1.8227,0.6634) (1.7277,0.8056) (1.6160,0.9330) (1.4902,1.0434) (1.3529,1.1352) (1.2071,1.2071) (1.0560,1.2584) (0.9026,1.2890) (0.7500,1.2990) (0.6012,1.2893) (0.4590,1.2611) (0.3258,1.2159) (0.2038,1.1558) (0.0948,1.0830) (0.0000,1.0000) (-0.0796,0.9094) (-0.1435,0.8138) (-0.1918,0.7159) (-0.2250,0.6183) (-0.2440,0.5233) (-0.2500,0.4330) (-0.2446,0.3493) (-0.2296,0.2736) (-0.2071,0.2071) (-0.1792,0.1504) (-0.1481,0.1037) (-0.1160,0.0670) (-0.0849,0.0396) (-0.0567,0.0206) (-0.0329,0.0088) (-0.0150,0.0026) (-0.0038,0.0003) (-0.0000,0.0000) (-0.0038,-0.0003) (-0.0150,-0.0026) (-0.0329,-0.0088) (-0.0567,-0.0206) (-0.0849,-0.0396) (-0.1160,-0.0670) (-0.1481,-0.1037) (-0.1792,-0.1504) (-0.2071,-0.2071) (-0.2296,-0.2736) (-0.2446,-0.3493) (-0.2500,-0.4330) (-0.2440,-0.5233) (-0.2250,-0.6183) (-0.1918,-0.7159) (-0.1435,-0.8138) (-0.0796,-0.9094) (-0.0000,-1.0000) (0.0948,-1.0830) (0.2038,-1.1558) (0.3258,-1.2159) (0.4590,-1.2611) (0.6012,-1.2893) (0.7500,-1.2990) (0.9026,-1.2890) (1.0560,-1.2584) (1.2071,-1.2071) (1.3529,-1.1352) (1.4902,-1.0434) (1.6160,-0.9330) (1.7277,-0.8056) (1.8227,-0.6634) (1.8989,-0.5088) (1.9547,-0.3447) (1.9886,-0.1740) (2.0000,-0.0000)};
+  \draw[thick] (0,0) -- (0.9:1.0);
+  \draw (0.55,0) arc (0:30:0.55);
+  \node at (0.72,0.20) {$\theta$};
+  \node[above right] at (1.6,0.62) {$r=a(1+\cos\theta)$};
+  \node[below left] at (1.95,0.02) {$2a$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.14}
+\end{figure}
+
+\begin{example}\label{ex:6.6.12}
+计算圆 $x^{2}+y^{2}=R^{2}$ 在 $[x_{1},x_{2}]\subset[-R,R]$ 上的弧段绕 $x$ 轴旋转所得球带的面积 $S$ (图~\ref{fig:6.6.15}).
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (4.9,0) node[right] {$x$};
+  \draw[->] (0,-2.2) -- (0,2.2) node[above] {$y$};
+  \draw[->] (0,0) -- (-1.5,-0.95) node[below left] {$z$};
+  \draw[thick] (0,0) circle (1.75);
+  \draw[thick] (0,0) ellipse (0.55 and 1.75);
+  \draw[thick] (0,1.75) arc (90:-90:0.55 and 1.75);
+  \draw[thick,dashed] (0,-1.75) arc (-90:90:0.55 and 1.75);
+  \fill[pattern=north east lines]
+    (1.05,1.40) .. controls (1.55,1.05) and (1.60,0.45) .. (1.40,0.10)
+    -- (0.72,0.06) .. controls (0.92,0.55) and (0.90,1.10) .. (0.60,1.55) -- cycle;
+  \draw[thick] (0.60,1.55) .. controls (0.90,1.10) and (0.92,0.55) .. (0.72,0.06);
+  \node[left] at (0.55,1.40) {$S$};
+  \draw[dotted] (1.40,0) -- (1.40,0.10);
+  \node[right] at (1.45,0.20) {$x_{2}$};
+  \node[below left] at (0.70,0.0) {$x_{1}$};
+  \node[below right] at (0,0) {$O$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.15}
+\end{figure}
+
+\begin{solution}
+圆 $x^{2}+y^{2}=R^{2}$ 在 $[x_{1},x_{2}]\subset[-R,R]$ 上弧段的显函数表达式为
+\[
+y=f(x)=\sqrt{R^{2}-x^{2}},
+\]
+则
+\[
+y'=f'(x)=\frac{-x}{\sqrt{R^{2}-x^{2}}}.
+\]
+于是所求面积为
+\[
+\begin{aligned}
+S&=\int_{x_{1}}^{x_{2}}2\pi f(x)\sqrt{1+f'^{2}(x)}\,\mathrm{d}x\\
+&=2\pi\int_{x_{1}}^{x_{2}}\sqrt{R^{2}-x^{2}}\sqrt{1+\frac{x^{2}}{R^{2}-x^{2}}}\,\mathrm{d}x\\
+&=2\pi R\int_{x_{1}}^{x_{2}}\mathrm{d}x=2\pi R(x_{2}-x_{1}).
+\end{aligned}
+\]
+\end{solution}
+
+特别地, 当 $x_{1}=-R$, $x_{2}=R$ 时, 所得球带的表面积为 $4\pi R^{2}$.
+
+\begin{example}\label{ex:6.6.13}
+计算由内摆线 $x^{\frac{2}{3}}+y^{\frac{2}{3}}=a^{\frac{2}{3}}$ (其参数表示为 $(x,y)=(a\cos^{3}t,a\sin^{3}t)$) 绕 $x$ 轴旋转所得旋转曲面的面积 $S$ (图~\ref{fig:6.6.16}).
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+S&\xlongequal{\text{对称性}}4\pi\int_{0}^{\frac{\pi}{2}}y(t)\sqrt{x'^{2}(t)+y'^{2}(t)}\,\mathrm{d}t\\
+&=4\pi\int_{0}^{\frac{\pi}{2}}a\sin^{3}t\sqrt{(-3a\cos^{2}t\sin t)^{2}+(3a\sin^{2}t\cos t)^{2}}\,\mathrm{d}t\\
+&=12\pi a^{2}\int_{0}^{\frac{\pi}{2}}\sin^{4}t\cos t\,\mathrm{d}t=\left.12\pi a^{2}\frac{\sin^{5}t}{5}\right|_{0}^{\frac{\pi}{2}}=\frac{12}{5}\pi a^{2}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.5cm,y=1.5cm,>=Stealth]
+  \draw[->] (-1.3,0) -- (1.5,0) node[below right] {$x$};
+  \draw[->] (0,-1.3) -- (0,1.3) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines]
+    plot[smooth] coordinates {(1.0000,0.0000) (0.9886,0.0007) (0.9551,0.0052) (0.9012,0.0173) (0.8298,0.0400) (0.7444,0.0755) (0.6495,0.1250) (0.5497,0.1887) (0.4495,0.2656) (0.3536,0.3536) (0.2656,0.4495) (0.1887,0.5497) (0.1250,0.6495) (0.0755,0.7444) (0.0400,0.8298) (0.0173,0.9012) (0.0052,0.9551) (0.0007,0.9886) (0.0000,1.0000)} -- (0,0) -- cycle;
+  \draw[very thick] plot[smooth] coordinates {(1.0000,0.0000) (0.9886,0.0007) (0.9551,0.0052) (0.9012,0.0173) (0.8298,0.0400) (0.7444,0.0755) (0.6495,0.1250) (0.5497,0.1887) (0.4495,0.2656) (0.3536,0.3536) (0.2656,0.4495) (0.1887,0.5497) (0.1250,0.6495) (0.0755,0.7444) (0.0400,0.8298) (0.0173,0.9012) (0.0052,0.9551) (0.0007,0.9886) (0.0000,1.0000) (-0.0007,0.9886) (-0.0052,0.9551) (-0.0173,0.9012) (-0.0400,0.8298) (-0.0755,0.7444) (-0.1250,0.6495) (-0.1887,0.5497) (-0.2656,0.4495) (-0.3536,0.3536) (-0.4495,0.2656) (-0.5497,0.1887) (-0.6495,0.1250) (-0.7444,0.0755) (-0.8298,0.0400) (-0.9012,0.0173) (-0.9551,0.0052) (-0.9886,0.0007) (-1.0000,0.0000) (-0.9886,-0.0007) (-0.9551,-0.0052) (-0.9012,-0.0173) (-0.8298,-0.0400) (-0.7444,-0.0755) (-0.6495,-0.1250) (-0.5497,-0.1887) (-0.4495,-0.2656) (-0.3536,-0.3536) (-0.2656,-0.4495) (-0.1887,-0.5497) (-0.1250,-0.6495) (-0.0755,-0.7444) (-0.0400,-0.8298) (-0.0173,-0.9012) (-0.0052,-0.9551) (-0.0007,-0.9886) (-0.0000,-1.0000) (0.0007,-0.9886) (0.0052,-0.9551) (0.0173,-0.9012) (0.0400,-0.8298) (0.0755,-0.7444) (0.1250,-0.6495) (0.1887,-0.5497) (0.2656,-0.4495) (0.3536,-0.3536) (0.4495,-0.2656) (0.5497,-0.1887) (0.6495,-0.1250) (0.7444,-0.0755) (0.8298,-0.0400) (0.9012,-0.0173) (0.9551,-0.0052) (0.9886,-0.0007) (1.0000,-0.0000)};
+  \node[below] at (1,-0.05) {$a$};
+  \node[anchor=west] at (0.35,1.05) {$x^{\frac{2}{3}}+y^{\frac{2}{3}}=a^{\frac{2}{3}}$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.16}
+\end{figure}
+
+\begin{example}\label{ex:6.6.14}
+证明: 圆柱螺线 $\boldsymbol{r}(t)=(x(t),y(t),z(t))=(a\cos t,a\sin t,bt)$, $t\in\mathbb{R}$, $(x^{2}(t)+y^{2}(t)=a^{2})$ 在每一点处的切向量 $\boldsymbol{r}'(t)=(x'(t),y'(t),z'(t))$ 与 $z$ 轴交成定角 $\theta$. 求出圆柱螺线的弧长公式, 讨论弧长 $s$ 与 $t$ 之间的关系 (图~\ref{fig:6.6.17}).
+\end{example}
+
+\begin{solution}
+$\boldsymbol{r}'(t)=(x'(t),y'(t),z'(t))=(-a\sin t,a\cos t,b)$, 单位切向量为
+\[
+\begin{aligned}
+\frac{\boldsymbol{r}'(t)}{\|\boldsymbol{r}'(t)\|}&=\frac{(-a\sin t,a\cos t,b)}{\sqrt{(-a\sin t)^{2}+(a\cos t)^{2}+b^{2}}}\\
+&=\frac{1}{\sqrt{a^{2}+b^{2}}}(-a\sin t,a\cos t,b).
+\end{aligned}
+\]
+于是,
+\[
+\cos\theta=\frac{\boldsymbol{r}'(t)}{\|\boldsymbol{r}'(t)\|}\cdot(0,0,1)=\frac{b}{\sqrt{a^{2}+b^{2}}}.
+\]
+\[
+\theta=\arccos\frac{b}{\sqrt{a^{2}+b^{2}}}
+\]
+为一个定角, 它的弧长公式为
+\[
+\begin{aligned}
+s&=\int_{0}^{t}\|\boldsymbol{r}'(t)\|\,\mathrm{d}t=\int_{0}^{t}\sqrt{x'^{2}(t)+y'^{2}(t)+z'^{2}(t)}\,\mathrm{d}t\\
+&=\frac{1}{\sqrt{a^{2}+b^{2}}}\int_{0}^{t}\mathrm{d}t=\frac{t}{\sqrt{a^{2}+b^{2}}},\\
+&\quad t=\sqrt{a^{2}+b^{2}}\,s.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (0,3.7) node[above] {$z$};
+  \draw[->] (0,0) -- (2.5,0) node[below right] {$y$};
+  \draw[->] (0,0) -- (-1.6,-0.95) node[below left] {$x$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (0,-0.45) ellipse (0.95 and 0.42);
+  \draw[thick] (0,0.9) ellipse (0.95 and 0.42);
+  \draw[thick] (0,2.25) ellipse (0.95 and 0.42);
+  \draw[thick] (0,3.15) ellipse (0.95 and 0.42);
+  \draw[thick] (-0.95,-0.45) -- (-0.95,3.15);
+  \draw[thick] (0.95,-0.45) -- (0.95,3.15);
+  \draw[very thick] (0.95,3.15) .. controls (1.75,2.6) and (0.05,2.0) .. (0.95,1.45)
+    .. controls (1.75,0.85) and (0.05,0.25) .. (0.95,-0.30);
+  \draw[->,very thick] (0.95,0.32) -- (1.30,0.06);
+  \node[right] at (1.06,0.32) {$\boldsymbol{r}(t)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.17}
+\end{figure}
+
+\subsection*{6. 液体静压力}
+
+\begin{example}\label{ex:6.6.15}
+图~\ref{fig:6.6.18} 所示为一管道的圆形闸门 (半径为 3m). 问水平面齐及直径时, 闸门所受到的水的静压力为多大?
+\end{example}
+
+\begin{solution}
+为方便起见, 取 $x$ 轴和 $y$ 轴如图, 此时圆的方程为
+\[
+x^{2}+y^{2}=9.
+\]
+由于在相同深度处水的静压强相同, 其值等于水的密度 $\nu$ 与深度 $x$ 的乘积, 故当 $\Delta x$ 很小时, 闸门上从深度 $x$ 到 $x+\Delta x$ 这一狭条 $\Delta A$ 上所受的静压力为
+\[
+\Delta P\approx\mathrm{d}P=2\nu x\sqrt{9-x^{2}}\,\mathrm{d}x.
+\]
+从而闸门上所受的总压力为
+\[
+P=\int_{0}^{3}2\nu x\sqrt{9-x^{2}}\,\mathrm{d}x=18\nu.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (0,-3.5) node[below] {$x$};
+  \draw[->] (0,0) -- (3.4,0) node[right] {$y$};
+  \node[above] at (0,0) {$O$};
+  \draw[thick] (0,0) circle (2.2);
+  \draw[thin] (0,0.4) -- (2.0,0.4);
+  \draw[thin] (0,0.4) -- (0,0.9);
+  \draw[thin] (0,0.9) -- (1.95,0.9);
+  \fill[pattern=north east lines] (-1.95,0.4) rectangle (1.95,0.9);
+  \node[left] at (0,0.9) {$x$};
+  \node[left] at (0,0.4) {$x+\Delta x$};
+  \node[right] at (2.05,0.65) {$\Delta A$};
+  \draw[<->,thin] (-2.55,-2.2) -- (-2.55,0);
+  \node[left] at (-2.62,-1.1) {3};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.18}
+\end{figure}
+
+\subsection*{7. 引力}
+
+\begin{example}\label{ex:6.6.16}
+一根长为 $l$ 的均匀细杆, 质量为 $M$, 在其中垂线上相距细杆 $a$ 处有一质量为 $m$ 的质点. 试求细杆对质点的万有引力.
+\end{example}
+
+\begin{solution}
+如图~\ref{fig:6.6.19} 所示, 细杆位于 $x$ 轴上的 $\left[-\dfrac{l}{2},\dfrac{l}{2}\right]$, 质点位于 $y$ 轴上的点 $a$. 任取 $[x,x+\mathrm{d}x]\subset\left[-\dfrac{l}{2},\dfrac{l}{2}\right]$, 当 $\mathrm{d}x$ 很小时可把这一小段细杆看作一个质点, 其质量为 $\mathrm{d}M=\dfrac{M}{l}\mathrm{d}x$. 于是它对质点 $m$ 的引力为
+\[
+\mathrm{d}F=\frac{km\,\mathrm{d}M}{r^{2}}=\frac{km}{a^{2}+x^{2}}\cdot\frac{M}{l}\mathrm{d}x.
+\]
+由于细杆上各点对质点 $m$ 的引力方向各不相同, 因此不能直接对 $\mathrm{d}F$ 进行积分 (不符合代数可加的条件). 为此, 将 $\mathrm{d}F$ 分解到 $x$ 轴和 $y$ 轴两个方向上, 得到
+\[
+\mathrm{d}F_{x}=\mathrm{d}F\cdot\sin\theta,\quad\mathrm{d}F_{y}=-\mathrm{d}F\cdot\cos\theta.
+\]
+由于质点 $m$ 位于细杆的中垂线上, 必使水平合力为零, 即
+\[
+F_{x}=\int_{-\frac{l}{2}}^{\frac{l}{2}}\mathrm{d}F_{x}=0.
+\]
+又由 $\cos\theta=\dfrac{a}{\sqrt{a^{2}+x^{2}}}$, 得垂直方向合力为
+\[
+\begin{aligned}
+F_{y}&=\int_{-\frac{l}{2}}^{\frac{l}{2}}\mathrm{d}F_{y}=-2\int_{0}^{\frac{l}{2}}\frac{kmMa}{l}(a^{2}+x^{2})^{-\frac{3}{2}}\,\mathrm{d}x\\
+&=-\frac{2kmMa}{l}\cdot\frac{1}{a^{2}}\cdot\left.\frac{x}{\sqrt{a^{2}+x^{2}}}\right|_{0}^{\frac{l}{2}}\\
+&=-\frac{2kmM}{a\sqrt{4a^{2}+l^{2}}},
+\end{aligned}
+\]
+负号表示合力方向与 $y$ 轴方向相反.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (-2.6,0) -- (3.0,0) node[below right] {$x$};
+  \draw[->] (0,-0.5) -- (0,3.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[very thick] (-1.9,0) -- (1.9,0);
+  \node[below] at (-1.9,-0.08) {$-\dfrac{l}{2}$};
+  \node[below] at (1.9,-0.08) {$\dfrac{l}{2}$};
+  \node[below] at (1.15,-0.08) {$x$};
+  \node[below] at (1.72,-0.08) {$x+\mathrm{d}x$};
+  \fill (2.0,0) circle (0.05);
+  \draw[thin] (2.0,0) -- (2.0,-0.35);
+  \fill (0,2.75) circle (0.06);
+  \node[above right] at (0.04,2.78) {$a$};
+  \draw[very thick,->] (0,2.75) -- (1.9,0);
+  \draw[very thick,->] (0,2.75) -- (1.05,1.35);
+  \draw[dotted] (1.05,1.35) -- (1.05,2.75);
+  \draw[thin] (0,1.55) arc (90:56:1.55);
+  \node at (0.35,1.68) {$\theta$};
+  \node[right] at (1.02,2.30) {$\mathrm{d}F$};
+  \node[right] at (1.10,1.30) {$\mathrm{d}F_{x}$};
+  \node[below left] at (0.06,2.45) {$\mathrm{d}F_{y}$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.19}
+\end{figure}
+
+\subsection*{8. 功}
+
+\begin{example}\label{ex:6.6.17}
+一圆锥形水池, 池口直径 30m, 深 10m, 池中盛满了水. 试求将全部池水抽出池外需做的功.
+\end{example}
+
+\begin{solution}
+为方便起见, 取坐标轴如图~\ref{fig:6.6.20} 所示. 由于抽出相同深度处单位体积的水需做相同的功 (等于水的密度 $\nu\times$ 深度), 因此首先考虑将池中深度为 $x$ 到 $x+\Delta x$ 的一薄层水 $\Delta\Omega$ 抽至池口需做的功 $\Delta W$. 当 $\Delta x$ 很小时, 把这一薄层水的深度都看作 $x$, 并作 $\Delta\Omega$ 的体积
+\[
+\Delta V\approx\pi\left[15\left(1-\frac{x}{10}\right)\right]^{2}\Delta x,
+\]
+这时有
+\[
+\Delta W\approx\mathrm{d}W=\pi\nu x\left[15\left(1-\frac{x}{10}\right)\right]^{2}\mathrm{d}x.
+\]
+从而将全部池水抽出池外需做的功为
+\[
+W=225\pi\nu\int_{0}^{10}x\left(1-\frac{x}{10}\right)^{2}\mathrm{d}x=1875\pi\nu.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=0.48cm,y=0.36cm,>=Stealth]
+  \draw[->] (0,0) -- (8.4,0) node[right] {$y$};
+  \draw[->] (0,0) -- (0,-7.4) node[below] {$x$};
+  \node[above left] at (0,0) {$O$};
+  \draw[thick] (0,0) -- (3.0,-6.0);
+  \draw[thick] (0,0) -- (-3.0,-6.0);
+  \draw[thick] (0,0) ellipse (3.0 and 0.63);
+  \draw[thick] (-3.0,-6.0) arc (180:360:3.0 and 0.63);
+  \draw[thick,dashed] (3.0,-6.0) arc (0:180:3.0 and 0.63);
+  \draw[thick] (0,-6.0) ellipse (1.32 and 0.28);
+  \draw[thick,dashed] (-1.32,-6.0) arc (180:360:1.32 and 0.28);
+  \fill[pattern=north east lines] (-2.05,-2.75) rectangle (2.05,-3.25);
+  \node[above] at (0,-0.45) {15};
+  \node[below] at (2.55,-2.75) {$\Delta\Omega$};
+  \node[left] at (0,-6.0) {$10$};
+  \draw[<->,thin] (4.2,-2.75) -- (4.2,-3.25);
+  \node[right] at (4.3,-3.0) {$\Delta x$};
+  \draw[thin] (-2.05,-3.0) -- (4.2,-3.0);
+\end{tikzpicture}
+\caption{}\label{fig:6.6.20}
+\end{figure}
+
+\begin{example}\label{ex:6.6.18}
+(第二宇宙速度) 在地球表面垂直向上发射火箭, 要使火箭克服地球引力无限远离地球. 试问: 初速度 $v_{0}$ 至少要多大?
+\end{example}
+
+\begin{solution}
+根据万有引力定律, 在距地心 $x$ ($\geqslant R$) 处火箭所受的引力为
+\[
+F=\frac{GMm}{x^{2}}=\frac{mgR^{2}}{x^{2}},
+\]
+其中 $G$ 为引力常数, $M$ 为地球的质量, $m$ 为火箭质量, $R$ 为地球半径, $g$ 为重力加速度. 因此, 在地球表面有 $\dfrac{GMm}{R^{2}}=mg$, $GM=gR^{2}$.
+
+于是, 火箭从地面上升到距离地心为 $r$ ($>R$) 处需做的功为 (图~\ref{fig:6.6.21})
+\[
+\int_{R}^{r}\frac{mgR^{2}}{x^{2}}\,\mathrm{d}x.
+\]
+从而火箭无限远离地球需做的功为
+\[
+\begin{aligned}
+W&=\lim_{r\to+\infty}\int_{R}^{r}\frac{mgR^{2}}{x^{2}}\,\mathrm{d}x\\
+&=\int_{R}^{+\infty}\frac{mgR^{2}}{x^{2}}\,\mathrm{d}x\\
+&=\left.-\frac{mgR^{2}}{x}\right|_{R}^{+\infty}=\frac{mgR^{2}}{R}=mgR.
+\end{aligned}
+\]
+再根据机械能守恒定律可求得初速度 $v_{0}$ 至少应使
+\[
+\frac{1}{2}mv_{0}^{2}=mgR,
+\]
+\[
+\begin{aligned}
+v_{0}&=\sqrt{2gR}=\sqrt{2\times9.81(\mathrm{m}/\mathrm{s}^{2})\times6.371\times10^{6}(\mathrm{m})}\\
+&\approx11.2(\mathrm{km}/\mathrm{s}).
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (0,3.1) node[above] {$x$};
+  \draw[->] (0,0) -- (3.1,0) node[below right] {$z$};
+  \draw[->] (0,0) -- (-1.7,-1.15) node[below left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (0,0) circle (1.75);
+  \draw[thick] (0,0) ellipse (0.62 and 1.75);
+  \draw[thick] (0,1.75) arc (90:-90:0.62 and 1.75);
+  \draw[thick,dashed] (0,-1.75) arc (-90:90:0.62 and 1.75);
+  \draw[thick,dashed] (1.75,0) .. controls (1.75,1.4) and (0.5,1.75) .. (0,1.75);
+  \node[left] at (0,1.75) {$r$};
+  \draw[thin] (0,0) -- (1.35,1.35);
+  \node[right] at (0.62,0.78) {$R$};
+  \draw[very thick,->] (0,1.75) -- (0,2.75);
+\end{tikzpicture}
+\caption{}\label{fig:6.6.21}
+\end{figure}
+
+我们称上述 $v_{0}$ 为第二宇宙速度.
+
+\begin{exblock}{练习题 6.6}
+\item 求由抛物线 $y=x^{2}$ 与 $y=2-x^{2}$ 所围图形的面积.
+\item 求由曲线 $y=|\ln x|$ 与直线 $x=\dfrac{1}{10}$, $x=10$, $y=0$ 所围图形的面积.
+\item 抛物线 $y^{2}=2x$ 将圆片 $x^{2}+y^{2}\leqslant8$ 分成两部分, 求这两部分的面积之比.
+\item 求两椭圆 $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}=1$ 与 $\dfrac{x^{2}}{b^{2}}+\dfrac{y^{2}}{a^{2}}=1$ ($a>0$, $b>0$) 所围公共部分的面积.
+\item 求内摆线 $x=a\cos^{3}t$, $y=a\sin^{3}t$ ($a>0$, 即 $x^{\frac{2}{3}}+y^{\frac{2}{3}}=a^{\frac{2}{3}}$) 所围图形 (图~\ref{fig:6.6.16}) 的面积.
+\item 求心形 (脏) 线 $r=a(1+\cos\theta)$ ($a>0$, 图~\ref{fig:6.6.14}) 所围图形的面积.
+\item 求三叶形曲线 $r=a\sin3\theta$ ($a>0$) 所围图形的面积.
+\item 求由曲线 $\sqrt{\dfrac{x}{a}}+\sqrt{\dfrac{y}{b}}=1$ ($a,b>0$) 与坐标轴所围图形的面积.
+\item 求两曲线 $r=\sin\theta$ 与 $r=\sqrt{3}\cos\theta$ 所围公共部分的面积.
+\item 求由曲线 $x=t-t^{3}$, $y=1-t^{4}$ 所围图形的面积.
+\item 如图~\ref{fig:6.6.22} 所示, 直椭圆柱体被通过底面短轴的斜平面所截. 试求截得楔形体的体积.
+\item 求下列平面曲线绕所给坐标轴旋转所围成立体的体积:
+\begin{enumerate}[label=(\arabic*)]
+\item $y=\sin x$, $0\leqslant x\leqslant\pi$, 绕 $x$ 轴;
+\item $x=a(t-\sin t)$, $y=a(1-\cos t)$ ($a>0$), $0\leqslant t\leqslant2\pi$, 绕 $x$ 轴;
+\item $r=a(1+\cos\theta)$ ($a>0$), 绕极轴;
+\item $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}=1$, 绕 $y$ 轴.
+\end{enumerate}
+\item 求曲线 $x=a\cos^{3}t$, $y=a\sin^{3}t$ 所围平面图形 (图~\ref{fig:6.6.16}) 绕 $x$ 轴旋转所得立体的体积.
+\item 求 $0\leqslant y\leqslant\sin x$, $0\leqslant x\leqslant\pi$ 所示平面图形分别绕 $x$ 轴和 $y$ 轴旋转所得立体的体积.
+\item 导出曲边梯形 $0\leqslant y\leqslant f(x)$, $a\leqslant x\leqslant b$ 绕 $y$ 轴旋转所得立体的体积公式
+\[
+V=2\pi\int_{a}^{b}xf(x)\,\mathrm{d}x.
+\]
+\item 设球的半径为 $r$, 证明: 高为 $h$ 的球缺 (图~\ref{fig:6.6.23}) 体积
+\[
+V=\pi h^{2}\left(r-\frac{h}{3}\right),\quad h\leqslant r.
+\]
+\item 求下列曲线的弧长:
+\begin{enumerate}[label=(\arabic*)]
+\item $y=x^{\frac{3}{2}}$, $0\leqslant x\leqslant4$;
+\item $\sqrt{x}+\sqrt{y}=1$;
+\item $x=a\cos^{3}t$, $y=a\sin^{3}t$, $0\leqslant t\leqslant2\pi$, 其中 $a>0$;
+\item $x=\mathrm{e}^{t}\cos t$, $y=\mathrm{e}^{t}\sin t$, $0\leqslant t\leqslant2\pi$;
+\item $x=a(\cos t+t\sin t)$, $y=a(\sin t-t\cos t)$, $0\leqslant t\leqslant2\pi$, 其中 $a>0$;
+\item $x=\dfrac{c^{2}}{a^{2}}\cos^{3}t$, $y=\dfrac{c^{2}}{b^{2}}\sin^{3}t$, $0\leqslant t\leqslant2\pi$, 其中常数 $a>b>0$, 且 $c^{2}=a^{2}-b^{2}$;
+\item $y^{2}=2px$, $0\leqslant x\leqslant a$, 其中 $p>0$;
+\item $y=\ln\cos x$, $x\in\left[0,\dfrac{\pi}{3}\right]$;
+\item $y=\sqrt{25-x^{2}}$, $x\in\left[0,\dfrac{5\sqrt{2}}{2}\right]$;
+\item $r=a\sin^{3}\dfrac{\theta}{3}$, $0\leqslant\theta\leqslant3\pi$, 其中 $a>0$;
+\item $r=a\theta$, $0\leqslant\theta\leqslant2\pi$, 其中 $a>0$;
+\item $x=t$, $y=3t^{2}$, $z=6t^{3}$, $0\leqslant t\leqslant2$;
+\item $x=\sin t$, $y=t$, $z=1-\cos t$, $0\leqslant t\leqslant2\pi$.
+\end{enumerate}
+\item 求 $a,b$ 的值, 使椭圆 $x=a\cos t$, $y=b\sin t$ 的周长等于正弦曲线 $y=\sin x$ 在 $0\leqslant x\leqslant2\pi$ 上一段的长.
+\item 证明: 半径为 $a$ 的球的表面积为 $4\pi a^{2}$.
+\item 求下列平面曲线绕指定轴旋转所得旋转曲面的面积:
+\begin{enumerate}[label=(\arabic*)]
+\item $y^{2}=x$, $0\leqslant x\leqslant1$, 绕 $x$ 轴;
+\item $y=\sin x$, $0\leqslant x\leqslant\pi$, 绕 $x$ 轴;
+\item $\dfrac{x^{2}}{a^{2}}+\dfrac{y^{2}}{b^{2}}=1$, 绕 $y$ 轴;
+\item $x^{2}+(y-a)^{2}=r^{2}$ ($r<a$), 绕 $x$ 轴;
+\item $x=a(t-\sin t)$, $y=a(1-\cos t)$, $0\leqslant t\leqslant2\pi$, 绕 $x$ 轴, 其中 $a>0$.
+\end{enumerate}
+\item 设平面 $C^{1}$ (连续可导) 光滑正则曲线由极坐标方程
+\[
+r=r(\theta),\quad\alpha\leqslant\theta\leqslant\beta\quad([\alpha,\beta]\subset[0,\pi],\ r(\theta)\geqslant0)
+\]
+给出. 试求它绕极轴旋转所得旋转曲面的面积计算公式.
+\item 求下列极坐标曲线绕极轴旋转所得旋转曲面的面积:
+\begin{enumerate}[label=(\arabic*)]
+\item 心形 (脏) 线 $r=a(1+\cos\theta)$, 其中 $a>0$;
+\item 双纽线 $r^{2}=2a^{2}\cos2\theta$, 其中 $a>0$.
+\end{enumerate}
+\item 有一等腰梯形闸门, 它的上、下两条底边各长为 10m 与 6m, 高为 20m. 计算当水面与上底边相齐时闸门一侧所受的静压力.
+\item 边长为 $a$ 与 $b$ 的矩形薄板, 与液面成 $\alpha$ ($0<\alpha<90^{\circ}$) 角斜沉于液体中. 设 $a>b$, 长边平行于液面, 上沿位于深 $h$ 处, 液体的密度为 $\nu$. 试求薄板每侧所受的静压力.
+\item 直径为 6m 的一个球浸入水中, 其球心在水平面下 10m 处, 求球面上所受的静压力.
+\item 设在坐标系的原点有一质量为 $m$ 的质点, 在区间 $[a,a+l]$ ($a>0$) 上有一质量为 $M$ 的均匀细杆. 试求质点与细杆之间的万有引力.
+\item 设有两条各长为 $l$ 的均匀细杆在同一直线上, 中间离开距离 $c$, 每根细杆的质量为 $M$. 试求它们之间的万有引力.
+\item 一个半球形 (直径为 20m) 的容器内盛满了水. 试问: 将水抽尽需做多少功?
+\item 长 10m 的铁索下垂于矿井中, 已知铁索每米的质量为 8kg. 问: 将此铁索提出地面需做多少功?
+\item 一物体在某介质中按 $x=ct^{3}$ 作直线运动, 介质的阻力与速度 $\dfrac{\mathrm{d}x}{\mathrm{d}t}$ 的平方成正比. 计算物体由 $x=0$ 移至 $x=a$ 时克服介质阻力所做的功.
+\item 半径为 $r$ 的球体沉入水中, 其比重与水相同. 试问: 将球体从水中捞出需做多少功?
+\end{exblock}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[thick] (-2.4,0.35) .. controls (-1.2,-1.05) and (1.2,-1.35) .. (2.4,-0.25);
+  \draw[thick] (-2.4,-0.85) .. controls (-1.2,-2.25) and (1.2,-2.55) .. (2.4,-1.45);
+  \draw[thick] (-2.4,0.35) .. controls (-2.85,-0.25) and (-2.85,-0.25) .. (-2.4,-0.85);
+  \draw[thick] (2.4,-0.25) .. controls (2.85,-0.85) and (2.85,-0.85) .. (2.4,-1.45);
+  \draw[thick] (-2.4,0.35) -- (0.0,-0.25);
+  \draw[thick] (0.0,-0.25) -- (2.4,-0.25);
+  \draw[thick] (-2.4,-0.85) -- (0.0,-1.45);
+  \draw[thick] (0.0,-1.45) -- (2.4,-1.45);
+  \draw[thick] (0.0,-0.25) -- (0.0,-1.45);
+  \draw[thick,dashed] (0.0,-0.25) -- (0.0,1.05) -- (0.0,-0.25);
+  \draw[thin] (2.55,-0.25) -- (2.55,0.95) -- (2.55,-0.25);
+  \draw[dashed] (0.0,0.95) -- (2.55,0.95);
+  \node[right] at (2.62,0.90) {6cm};
+  \node[left] at (-2.55,-0.6) {8cm};
+  \node[below] at (-1.2,-2.05) {10cm};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.22}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=1.0cm,>=Stealth]
+  \draw[thick] (0,0) circle (1.7);
+  \draw[thick,dashed] (0,0) ellipse (0.55 and 1.7);
+  \draw[thick] (0,1.7) arc (90:-90:0.55 and 1.7);
+  \draw[thick,dashed] (0,-1.7) arc (-90:90:0.55 and 1.7);
+  \draw[thick] (-1.7,0.35) .. controls (-1.0,1.05) and (1.0,1.05) .. (1.7,0.35);
+  \draw[thin,dashed] (0,0) -- (0,1.7);
+  \node[below left] at (0,0) {$O$};
+  \node[left] at (0,1.55) {$r$};
+  \draw[thin] (0,0.95) -- (0.72,0.95);
+  \node[above] at (1.05,0.78) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.6.23}
+\end{figure}

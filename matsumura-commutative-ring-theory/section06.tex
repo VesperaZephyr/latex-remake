@@ -1,0 +1,314 @@
+% ============ §6 Associated primes and primary decomposition (原书 pp.37-42) ============
+\section{Associated primes and primary decomposition}\label{sec:6}\index{associated primes, section 6}\index{primary decomposition, section 6}
+
+Most readers will presumably have come across primary decom-
+position of ideals in Noetherian rings. This was the first big theorem
+obtained by Emmy Noether in her abstract treatment of commutative
+rings. Nowadays, as exemplified by Bourbaki [B4], the notion of associated
+prime is considered more important than primary decomposition itself.
+
+Let $A$ be a ring and $M$ an $A$-module. A prime ideal $P$ of $A$ is called an
+\emph{associated prime ideal}\index{associated prime ideal} of $M$ if $P$ is the annihilator $\ann(x)$ of some $x \in M$. The
+set of associated primes of $M$ is written $\Ass(M)$ or $\Ass_A(M)$. For $I$ an ideal
+of $A$, the associated primes of the $A$-module $A/I$ are referred to as the
+\emph{prime divisors}\index{prime divisor} of $I$. We say that $a \in A$ is a \emph{zero-divisor} for $M$ if there is a non-zero
+$x \in M$ such that $ax = 0$, and otherwise that $a$ is \emph{$M$-regular}.\index{regular element}
+
+\begin{theorem}\label{thm:6.1}
+Let $A$ be a Noetherian ring and $M$ a non-zero $A$-module.
+\begin{enumerate}[(i)]
+  \item Every maximal element of the family of ideals $\mathcal{F} = \{\ann(x) \mid 0 \neq x \in M\}$
+        is an associated prime of $M$, and in particular $\Ass(M) \neq \emptyset$.
+  \item The set of zero-divisors for $M$ is the union of all the associated primes
+        of $M$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) We have to prove that if $\ann(x)$ is a maximal element of $\mathcal{F}$ then it is
+prime: if $a, b \in A$ are such that $abx = 0$ but $bx \neq 0$ then by maximality
+$\ann(bx) = \ann(x)$; hence, $ax = 0$.
+
+(ii) If $ax = 0$ for some $x \neq 0$ then $a \in \ann(x) \in \mathcal{F}$, and by (i) there is an
+associated prime of $M$ containing $\ann(x)$.
+\end{proof}
+
+\begin{theorem}\label{thm:6.2}
+Let $S \subset A$ be a multiplicative set, and $N$ an $A_S$-module.
+Viewing $\Spec(A_S)$ as a subset of $\Spec A$, we have $\Ass_A(N) = \Ass_{A_S}(N)$. If $A$
+is Noetherian then for an $A$-module $M$ we have $\Ass(M_S) =
+\Ass(M) \cap \Spec(A_S)$.
+\end{theorem}
+
+\begin{proof}
+For $x \in N$ we have $\ann_A(x) = \ann_{A_S}(x) \cap A$, so that if $P \in \Ass_{A_S}(N)$
+then $P \cap A \in \Ass_A(N)$. Conversely if $p \in \Ass_A(N)$ and we choose $x \in N$
+such that $p = \ann_A(x)$ then $x \neq 0$, and hence, $p \cap S = \emptyset$ and $pA_S$ is a prime
+ideal of $A_S$ with $pA_S = \ann_{A_S}(x)$. For the second part, if $p \in \Ass(M) \cap
+\Spec(A_S)$ then $p \cap S = \emptyset$, and $p = \ann_A(x)$ for some $x \in M$; if $(a/s)x = 0$ in
+$M_S$ then there is a $t \in S$ such that $tax = 0$ in $M$, and $t \notin p$, $ta \in p$ gives
+$a \in p$, so that $\ann_{A_S}(x) = pA_S$ and $pA_S \in \Ass(M_S)$. Conversely, if $P \in
+\Ass(M_S)$ then without loss of generality we have $P = \ann_{A_S}(x)$ with $x \in M$.
+Setting $p = P \cap A$ we have $P = pA_S$. Now $p$ is finitely generated since $A$ is
+Noetherian, and it follows that there exists some $t \in S$ such that $p =
+\ann_A(tx)$. Therefore $p \in \Ass_A(M)$.
+\end{proof}
+
+\begin{corollary*}
+For a Noetherian ring $A$, an $A$-module $M$ and a prime ideal $P$ of
+$A$ we have
+\[
+  P \in \Ass_A(M) \iff PA_P \in \Ass_{A_P}(M_P).
+\]
+\end{corollary*}
+
+\begin{theorem}\label{thm:6.3}
+Let $A$ be a ring and $0 \to M' \to M \to M'' \to 0$ an exact
+sequence of $A$-modules; then
+\[
+  \Ass(M) \subset \Ass(M') \cup \Ass(M'').
+\]
+\end{theorem}
+
+\begin{proof}
+If $P \in \Ass(M)$ then $M$ contains a submodule $N$ isomorphic to $A/P$.
+Since $P$ is prime, for any non-zero element $x$ of $N$ we have $\ann(x) = P$.
+Therefore if $N \cap M' \neq 0$ we have $P \in \Ass(M')$. If $N \cap M' = 0$ then the image
+of $N$ in $M''$ is also isomorphic to $A/P$, so that $P \in \Ass(M'')$.
+\end{proof}
+
+\begin{theorem}\label{thm:6.4}
+Let $A$ be a Noetherian ring and $M \neq 0$ a finite $A$-module.
+Then there exists a chain $0 = M_0 \subset M_1 \subset \cdots \subset M_r = M$ of submodules of $M$
+such that for each $i$ we have $M_i/M_{i-1} \cong A/P_i$ with $P_i \in \Spec A$.
+\end{theorem}
+
+\begin{proof}
+Choose any $P_1 \in \Ass(M)$; then there exists a submodule $M_1$ of $M$
+with $M_1 \cong A/P_1$. If $M_1 \neq M$ and we choose any $P_2 \in \Ass(M/M_1)$ then
+there exists $M_2 \subset M$ such that $M_2/M_1 \cong A/P_2$. Continuing in the same way and
+using the ascending chain condition, we eventually arrive at $M_r = M$.
+\end{proof}
+
+\begin{theorem}\label{thm:6.5}
+Let $A$ be a Noetherian ring and $M$ a finite $A$-module.
+\begin{enumerate}[(i)]
+  \item $\Ass(M)$ is a finite set.
+  \item $\Ass(M) \subset \Supp(M)$.
+  \item The set of minimal elements of $\Ass(M)$ and of $\Supp(M)$ coincide.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) follows from the previous two theorems; we need only note
+that $\Ass(A/P) = \{P\}$. For (ii), if $0 \to A/P \to M$ is exact then so is $0 \to
+A_P/PA_P \to M_P$, and therefore $M_P \neq 0$. For (iii) it is enough to show that
+if $P$ is a minimal element of $\Supp(M)$ then $P \in \Ass(M)$. We have $M_P \neq 0$
+so that by Theorem 2 and (ii),
+\[
+  \emptyset \neq \Ass(M_P) = \Ass(M) \cap \Spec(A_P) \subset \Supp(M) \cap \Spec(A_P)
+             = \{P\}.
+\]
+Therefore we must have $P \in \Ass(M)$.
+\end{proof}
+
+Let $A$ be a Noetherian ring and $M$ a finite $A$-module. Let $P_1, \ldots, P_r$ be the
+minimal elements of $\Supp(M)$; then $\Supp(M) = V(P_1) \cup \cdots \cup V(P_r)$, and the
+$V(P_i)$ are the irreducible components of the closed set $\Supp(M)$ (see
+Ex.~\ref{ex:4.11-ex}). The prime ideals $P_1, \ldots, P_r$ are called the \emph{isolated associated primes}\index{isolated associated prime}
+of $M$, and the remaining associated primes of $M$ are called \emph{embedded}
+\emph{primes}.\index{embedded prime} If $I$ is an ideal of $A$ then $\Supp_A(A/I)$ is the set of prime ideals
+containing $I$, and the \emph{minimal prime divisors} of $I$ (that is the minimal
+associated primes of the $A$-module $A/I$) are precisely the minimal prime
+ideals containing $I$. We have seen in Ex.~\ref{ex:4.12-ex} that there are only a finite
+number of such primes, and Theorem 5 now gives a new proof of this.
+(For examples of embedded primes see Ex.~\ref{ex:6.6-ex} and Ex.~\ref{ex:8.9-ex}.)
+
+\begin{definition}
+Let $A$ be a ring, $M$ an $A$-module and $N \subset M$ a submodule. We
+say that $N$ is a \emph{primary submodule}\index{primary submodule} of $M$ if the following condition holds for
+all $a \in A$ and $x \in M$:
+\[
+  x \notin N \text{ and } ax \in N \Rightarrow a^\nu M \subset N \text{ for some } \nu.
+\]
+This definition in fact only depends on the quotient module $M/N$. It can be
+restated as
+\[
+  \text{if } a \in A \text{ is a zero-divisor for } M/N \text{ then } a \in \sqrt{\ann(M/N)}.
+\]
+\end{definition}
+
+A primary ideal is just a primary submodule of the $A$-module $A$. One
+might wonder about trying to set up a notion of prime submodule
+generalising prime ideal, but this does not turn out to be useful.
+
+\begin{theorem}\label{thm:6.6}
+Let $A$ be a Noetherian ring and $M$ a finite $A$-module. Then a
+submodule $N \subset M$ is primary if and only if $\Ass(M/N)$ consists of one
+element only. In this case, if $\Ass(M/N) = \{P\}$ and $\ann(M/N) = I$ then $I$ is
+primary and $\sqrt{I} = P$.
+\end{theorem}
+
+\begin{proof}
+If $\Ass(M/N) = \{P\}$ then by the previous theorem $\Supp(M/N) =
+V(P)$, so that $P = \sqrt{\ann(M/N)}$. Now if $a \in A$ is a zero-divisor for $M/N$ it
+follows from Theorem 1 that $a \in P$, so that $a \in \sqrt{\ann(M/N)}$; hence, $N$ is a
+primary submodule of $M$. Conversely, if $N$ is a primary submodule and
+$P \in \Ass(M/N)$ then every $a \in P$ is a zero-divisor for $M/N$, so that by
+assumption $a \in \sqrt{I}$, where $I = \ann(M/N)$. Hence $P \subset \sqrt{I}$, but from the
+definition of associated prime we obviously have $I \subset P$, and hence $\sqrt{I} \subset P$,
+so that $P = \sqrt{I}$. Thus $\Ass(M/N)$ has just one element $\sqrt{I}$. We prove that in
+this case $I$ is a primary ideal: let $a, b \in A$ with $b \notin I$; if $ab \in I$ then $ab(M/N) = 0$,
+but $b(M/N) \neq 0$, so that $a$ is a zero-divisor for $M/N$, and therefore
+$a \in P = \sqrt{I}$.
+\end{proof}
+
+\begin{definition}
+If $\Ass(M/N) = \{P\}$ we say that $N \subset M$ is a \emph{$P$-primary} sub-
+module, or a \emph{primary submodule belonging to $P$}.
+\end{definition}
+
+\begin{theorem}\label{thm:6.7}
+If $N$ and $N'$ are $P$-primary submodules of $M$ then so is $N \cap N'$.
+\end{theorem}
+
+\begin{proof}
+We can embed $M/(N \cap N')$ as a submodule of $(M/N) \oplus (M/N')$, so
+that
+\[
+  \Ass(M/(N \cap N')) \subset \Ass(M/N) \cup \Ass(M/N') = \{P\}.
+\]
+\end{proof}
+
+If $N \subset M$ is a submodule, we say that $N$ is \emph{reducible}\index{reducible submodule} if it can be written as
+an intersection $N = N_1 \cap N_2$ of two submodules $N_1, N_2$ with $N_i \neq N$, and
+otherwise that $N$ is \emph{irreducible}; note that this has nothing to do with the
+notion of irreducible modules in representation theory (= no submodules
+other than $0$ and $M$), which is a condition on $M$ only.
+
+If $M$ is a Noetherian module then any submodule $N$ of $M$ can be written
+as a finite intersection of irreducible submodules. Proof: let $\mathcal{F}$ be the set
+of submodules $N \subset M$ having no such expression. If $\mathcal{F} \neq \emptyset$ then it has a
+maximal element $N_0$. Then $N_0$ is reducible, so that $N_0 = N_1 \cap N_2$, and
+$N_i \notin \mathcal{F}$. Now each of the $N_i$ is an intersection of a finite number of
+irreducible submodules, and hence so is $N_0$. This is a contradiction.
+
+\begin{remark}
+The representation as an intersection of irreducible submodules is
+in general not unique. For example, if $A$ is a field and $M$ an $n$-dimensional
+vector space over $A$ then the irreducible submodules of $M$ are just its
+$(n - 1)$-dimensional subspaces. An $(n - 2)$-dimensional subspace can be
+written in lots of ways as an intersection of $(n - 1)$-dimensional subspaces.
+\end{remark}
+
+In general we say that an expression of a set $N$ as an intersection
+$N = N_1 \cap \cdots \cap N_r$ is \emph{irredundant}\index{irredundant decomposition} if we cannot omit any $N_i$, that is if
+$N \neq N_1 \cap \cdots \cap N_{i-1} \cap N_{i+1} \cap \cdots \cap N_r$. If $M$ is an $A$-module, we call an
+expression $N = N_1 \cap \cdots \cap N_r$ of a submodule $N$ as an intersection of a finite
+number of submodules $N_i \subset M$ a \emph{decomposition} of $N$; if each of the $N_i$ is
+irreducible we speak of an \emph{irreducible decomposition}, if primary of a \emph{primary decomposition}.
+Let $N = N_1 \cap \cdots \cap N_r$ be an irredundant primary decompo-
+sition with $\Ass(M/N_i) = \{P_i\}$; if $P_i = P_j$ then $N_i \cap N_j$ is again primary, so
+that grouping together all of the $N_i$ belonging to the same prime ideal we get
+a primary decomposition such that $P_i \neq P_j$ for $i \neq j$. A decomposition with
+this property will be called a \emph{shortest primary decomposition}, and the $N_i$
+appearing in it the \emph{primary components} of $N$; if $N_i$ belongs to a prime $P$ we
+sometimes say that $N_i$ is the \emph{$P$-primary component} of $N$.
+
+\begin{theorem}\label{thm:6.8}
+Let $A$ be a Noetherian ring and $M$ a finite $A$-module.
+\begin{enumerate}[(i)]
+  \item An irreducible submodule of $M$ is a primary submodule.
+  \item If
+        \[
+          N = N_1 \cap \cdots \cap N_l \quad \text{with } \Ass(M/N_i) = \{P_i\}
+        \]
+        is an irredundant primary decomposition of a proper submodule $N \subset M$
+        then $\Ass(M/N) = \{P_1, \ldots, P_l\}$.
+  \item Every proper submodule $N$ of $M$ has a primary decomposition. If $N$ is
+        a proper submodule of $M$ and $P$ is a minimal associated prime of $M/N$ then
+        the $P$-primary component of $N$ is $\varphi_P^{-1}(N_P)$, where $\varphi_P\colon M \to M_P$ is the
+        canonical map, and therefore it is uniquely determined by $M$, $N$ and $P$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) It is enough to prove that a submodule $N \subset M$ which is not
+primary is reducible: replacing $M$ by $M/N$ we can assume that $N = 0$. By
+Theorem 6, $\Ass(M)$ has at least two elements $P_1$ and $P_2$. Then $M$ contains
+submodules $K_i$ isomorphic to $A/P_i$ for $i = 1, 2$. Now since $\ann(x) = P_i$ for
+any non-zero $x \in K_i$, we must have $K_1 \cap K_2 = 0$, and hence $0$ is reducible.
+
+(ii) We can again assume that $N = 0$. If $0 = N_1 \cap \cdots \cap N_l$ then $M$ is
+isomorphic to a submodule of $M/N_1 \oplus \cdots \oplus M/N_l$, so that
+\[
+  \Ass(M) \subset \bigcup_i \Ass(M/N_i) = \{P_1, \ldots, P_l\}.
+\]
+On the other hand $N_2 \cap \cdots \cap N_l \neq 0$, and taking $0 \neq x \in N_2 \cap \cdots \cap N_l$, we
+have $\ann(x) = 0:x \subset N_1:x$. But $N_1:M$ is a primary ideal belonging to $P_1$, so
+that $P_1^\nu M \subset N_1$ for some $\nu > 0$. Therefore $P_1^\nu x = 0$; hence there exists $i \ge 0$
+such that $P_1^i x \neq 0$ but $P_1^{i+1} x = 0$, and choosing $0 \neq y \in P_1^i x$ we have
+$P_1y = 0$. However, since $y \in N_2 \cap \cdots \cap N_l$ it follows that $y \notin N_1$, and by
+the definition of primary submodule $\ann(y) \subset P_1$, so that $P_1 = \ann(y)$ and
+$P_1 \in \Ass(M)$. The same works for the other $P_i$, and this proves that
+$\{P_1, \ldots, P_l\} \subset \Ass(M)$.
+
+(iii) We have already seen that a proper submodule has an irreducible
+decomposition, so that by (i) it has a primary decomposition. Suppose that
+$N = N_1 \cap \cdots \cap N_l$ is a shortest primary decomposition, and that $N_1$ is the
+$P$-primary component with $P = P_1$. By Ex.~\ref{ex:4.8-ex} we know that $N_P =
+(N_1)_P \cap \cdots \cap (N_l)_P$, and for $i > 1$ a power of $P_i$ is contained in $\ann(M/N_i)$;
+then since $P_i \neq P_1$ we have $(M/N_i)_P = 0$, and therefore $(N_i)_P = M_P$. Thus
+$N_P = (N_1)_P$ and hence $\varphi_P^{-1}(N_P) = \varphi_P^{-1}((N_1)_P)$; it is easy to check that
+the right-hand side is $N_1$.
+\end{proof}
+
+\begin{remark}
+The uniqueness of the $P$-primary component $N_1$ proved in (iii) for
+minimal primes $P$ does not hold in general; see Ex.~\ref{ex:6.6-ex}.
+\end{remark}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:6}}
+
+\begin{exercise}\label{ex:6.1-ex}
+Find $\Ass(M)$ for the $\Z$-module $M = \Z \oplus (\Z/3\Z)$.
+\end{exercise}
+
+\begin{exercise}\label{ex:6.2-ex}
+If $M$ is a finite module over a Noetherian ring $A$, and $M_1, M_2$ are
+submodules of $M$ with $M = M_1 + M_2$ then can we say that $\Ass(M) =
+\Ass(M_1) \cup \Ass(M_2)$?
+\end{exercise}
+
+\begin{exercise}\label{ex:6.3-ex}
+Let $A$ be a Noetherian ring and let $x \in A$ be an element which is neither a
+unit nor a zero-divisor; prove that the ideals $xA$ and $x^nA$ for $n = 1, 2, \ldots$
+have the same prime divisors:
+\[
+  \Ass_A(A/xA) = \Ass_A(A/x^nA).
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:6.4-ex}
+Let $I$ and $J$ be ideals of a Noetherian ring $A$. Prove that if $JA_P \subset IA_P$ for
+every $P \in \Ass_A(A/I)$ then $J \subset I$.
+\end{exercise}
+
+\begin{exercise}\label{ex:6.5-ex}
+Prove that the total ring of fractions of a reduced Noetherian ring $A$ is a
+direct product of fields.
+\end{exercise}
+
+\begin{exercise}\label{ex:6.6-ex}
+(Taken from [Nor 1], p. 30.) Let $k$ be a field. Show that in $k[X, Y]$ we have
+\[
+  (X^2, XY) = (X) \cap (X^2, Y) = (X) \cap (X^2, XY, Y^2).
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:6.7-ex}
+Let $f\colon A \to B$ be a homomorphism of Noetherian rings, and $M$ a finite $B$-
+module. Write ${}^a f\colon \Spec B \to \Spec A$ as in \S\ref{sec:4}. Prove that ${}^a f(\Ass_B(M)) =
+\Ass_A(M)$. (Consequently, $\Ass_A(M)$ is a finite set for such $M$.)
+\end{exercise}

@@ -1,0 +1,433 @@
+% ============ 第九章 §3 有理数域上的二次型 (原书 pp.341-354) ============
+\section{有理数域上的二次型}\label{sec:ch9-s3}
+
+设 $f(x_1,\cdots,x_n)$ 是有理数为系数的多项式. 数论的一个重要课题是研究方程 $f(x_1,\cdots,x_n)=0$ 的有理数解（是否存在有理数解? 解数有限还是无限? 求出全部有理数解等等）. 当 $f$ 是一次多项式时（$f(x_1,\cdots,x_n)=a_1x_1+\cdots+a_nx_n+a$, $a_i,a\in\Q$）问题是容易的. 接下来考虑 $n$ 元二次方程
+\begin{equation}\tag{1}
+  f(x_1,\cdots,x_n)=\sum_{i,j=1}^{n}a_{ij}x_ix_j
+  +\sum_{i=1}^{n}a_ix_i+b=0\qquad(a_{ij},a_i,b\in\Q).
+\end{equation}
+我们不妨设 $a_{ij}=a_{ji}$（否则, 将 $a_{ij}$ 和 $a_{ji}$ 都改用 $\frac{a_{ij}+a_{ji}}{2}$）, 于是 $A=(a_{ij})$ 是有理数域 $\Q$ 上的 $n$ 阶对称方阵. 记 $\boldsymbol{a}=(a_1,\cdots,a_n)\in\Q^n$（$\Q$ 上 $n$ 维空间中的向量）, $\boldsymbol{x}=(x_1,\cdots,x_n)$, 则方程 (1) 可写成
+\begin{equation}\tag{2}
+  \boldsymbol{x}A\boldsymbol{x}^{\mathrm{T}}+\boldsymbol{a}\boldsymbol{x}^{\mathrm{T}}+b=0,
+\end{equation}
+其中 $\boldsymbol{x}^{\mathrm{T}}$ 表示向量 $\boldsymbol{x}$ 的转置.
+
+设 $C$ 是 $\Q$ 上任意 $n$ 阶可逆方阵, 我们作变量代换 $\boldsymbol{x}=\boldsymbol{y}C$（$\boldsymbol{y}=(y_1,\cdots,y_n)$）, 则 $\boldsymbol{y}=\boldsymbol{x}C^{-1}$（注意 $C^{-1}$ 也是 $\Q$ 上 $n$ 阶可逆方阵）. 方程 (2) 变成同类型的方程
+\begin{equation}\tag{3}
+  \boldsymbol{y}CAC^{\mathrm{T}}\boldsymbol{y}^{\mathrm{T}}
+  +\boldsymbol{a}C^{\mathrm{T}}\boldsymbol{y}^{\mathrm{T}}+b=0,
+\end{equation}
+其中 $CAC^{\mathrm{T}}$ 仍是 $\Q$ 上对称方阵. 如果方程 (2) 有有理解 $(x_1,\cdots,x_n)=(c_1,\cdots,c_n)$, $c_i\in\Q$, 则 $\boldsymbol{y}=(c_1,\cdots,c_n)C^{-1}$ 是方程 (3) 的一组有理解, 反之亦然. 所以这两个方程的有理数解之间存在着一一对应. 我们称这两个方程是 $\Q$-等价的.
+
+线性代数的一个基本结果是说: 对于每个 $\Q$ 上的 $n$ 阶对称方阵 $A$, 均存在 $\Q$ 上 $n$ 阶可逆方阵 $C$, 使得 $CAC^{\mathrm{T}}$ 变成对角方阵
+\[
+  A'=\left(\begin{array}{ccc}a_{11}'& &\\ & \ddots &\\ & & a_{nn}'\end{array}\right)
+  \qquad(a_{ii}'\in\Q).
+\]
+所以方程 (2) $\Q$-等价于下面更简单的形式
+\begin{equation}\tag{4}
+  a_{11}'x_1^2+\cdots+a_{nn}'x_n^2+a_1'x_1+\cdots+a_n'x_n+b'=0.
+\end{equation}
+如果 $a_{11}'=0$, 则当 $a_1'=0$ 时 (4) 式变成 $x_2,\cdots,x_n$ 的方程; 而当 $a_1'\neq 0$ 时, (4) 式左边成为 $x_1$ 的一次函数:
+\[
+  a_1'x_1=-\left(a_{22}'x_2^2+\cdots+a_{nn}'x_n^2+a_2'x_2+\cdots+a_n'x_n+b'\right)
+  =g(x_2,\cdots,x_n).
+\]
+\begin{sloppypar}
+将 $x_2,\cdots,x_n$ 取成任意有理数 $c_2,\cdots,c_n$, 然后令 $c_1=\frac{g(c_2,\cdots,c_n)}{a_1'}$, 就得到方程 (4) 的一组有理解 $(x_1,\cdots,x_n)=(c_1,\cdots,c_n)$, 并且这样就给出方程 (4) 的全部有理解. 所以今后我们设 $a_{ii}'\ (1\leqslant i\leqslant n)$ 均不为零. 这相当于说 $A'$ 是可逆方阵. 由于 $A'=CAC^{\mathrm{T}}$ 而 $C$ 可逆, 从而这也相当于说 $A$ 是可逆方阵（即 $A$ 的行列式 $|A|\neq 0$）.
+\end{sloppypar}
+
+现在设 $a_{ii}'\neq 0\ (1\leqslant i\leqslant n)$. 我们还可把方程 (4) 的一次项消去. 令
+\begin{equation}\tag{5}
+  y_i=x_i+\frac{a_i'}{2a_{ii}'}\qquad(1\leqslant i\leqslant n),
+\end{equation}
+则
+\[
+  a_{ii}'x_i^2+a_i'x_i
+  =a_{ii}'\left(y_i-\frac{a_i'}{2a_{ii}'}\right)^2
+  +a_i'\left(y_i-\frac{a_i'}{2a_{ii}'}\right)
+  =a_{ii}'y_i^2-\frac{a_i'^2}{4a_{ii}'},
+\]
+从而方程 (4) 又 $\Q$-等价于方程
+\begin{equation}\tag{6}
+  a_{11}'y_1^2+\cdots+a_{nn}'y_n^2=a,
+\end{equation}
+其中 $a=\sum_{i=1}^{n}\frac{a_i'^2}{4a_{ii}'}-b'$.
+
+所以今后我们不失一般性, 主要研究方程
+\begin{equation}\tag{7}
+  a_1x_1^2+\cdots+a_nx_n^2=a,
+\end{equation}
+其中 $a_1,\cdots,a_n\in\Q^{\times}$, $a\in\Q$. 我们把二次型 $a_1x_1^2+\cdots+a_nx_n^2$ 也简记作 $\langle a_1,\cdots,a_n\rangle$.
+
+如果 $C$ 是 $\Q$ 上的 $n$ 阶可逆方阵, 使得
+\[
+  C\left(\begin{array}{ccc}a_1& &\\ & \ddots &\\ & & a_n\end{array}\right)
+  C^{\mathrm{T}}
+  =\left(\begin{array}{ccc}a_1'& &\\ & \ddots &\\ & & a_n'\end{array}\right),
+\]
+则称二次型 $\langle a_1,\cdots,a_n\rangle$ 和 $\langle a_1',\cdots,a_n'\rangle$ 是 $\Q$-等价, 表示成 $\langle a_1,\cdots,a_n\rangle\sim\langle a_1',\cdots,a_n'\rangle$. 这是一个等价关系.
+
+如果 $a=0$, 则方程 (7) 有平凡解 $(x_1,\cdots,x_n)=(0,\cdots,0)$. 我们要研究 $a_1x_1^2+\cdots+a_nx_n^2=0$ 是否有非零解. 所以引入以下的定义
+
+\begin{definition}\label{def:ch9-2}
+对于非零有理数 $a$, 如果方程 (7) 有有理解, 我们称二次型 $\langle a_1,\cdots,a_n\rangle$ \emph{表示} $a$. 如果 $a_1x_1^2+\cdots+a_nx_n^2=0$ 有非零有理解 $(x_1,\cdots,x_n)=(c_1,\cdots,c_n)$（即 $c_i\in\Q$ 并且至少有一个 $c_i\neq 0$）, 则称二次型 $\langle a_1,\cdots,a_n\rangle$ \emph{表示} $0$.
+\end{definition}
+
+我们的问题是:
+
+$1$. 二次型 $\langle a_1,\cdots,a_n\rangle$ 可以表示哪些有理数 $a$？即方程 (7) 对哪些 $a$ 存在有理解（当 $a=0$ 时要求是非零解）?
+
+$2$. 如何判别二次型 $\langle a_1,\cdots,a_n\rangle$ 和 $\langle a_1',\cdots,a_n'\rangle$ 是 $\Q$-等价的？
+
+一般的, 对于每个多项式 $f(x_1,\cdots,x_n)\in\Q[x_1,\cdots,x_n]$, 如果方程 $f(x_1,\cdots,x_n)=0$ 存在有理数解 $(x_1,\cdots,x_n)=(c_1,\cdots,c_n)$, 则这组解也是局部域 $\Q_p$ 中的解, 其中 $p$ 可为所有素数和 $\infty$, 这是因为 $\Q_p$ 是 $\Q$ 的扩域. 人们自然要问: 反过来, 如果方程 $f(x_1,\cdots,x_n)=0$ 在每个局部域 $\Q_p$（$p$ 为所有素数和 $\infty$）中都有解（在不同局部域 $\Q_p$ 中可能有不同的解）, 是否能保证 $f(x_1,\cdots,x_n)=0$ 具有有理解? 下面的例子表明在一般情况下这是不对的.
+
+\begin{example}
+$f(x)=(x^2-13)(x^2-17)(x^2-221)$. $f(x)=0$ 在 $\Q_{\infty}=\R$ 中有根 $x=\sqrt{13},\sqrt{17}$ 和 $\sqrt{221}$. 由 $17\equiv 1\ (\mathrm{mod}\ 8)$ 可知 $17\in\Q_2^{\times^2}$（Hensel 引理）, 即方程在 $\Q_2$ 中有根 $\sqrt{17}$. 对于 $p=13$, $17\equiv 2^2\ (\mathrm{mod}\ 13)$, 于是 $17\in\Q_{13}^{\times^2}$, 即方程在 $\Q_{13}$ 中有根 $\sqrt{17}$. 对于 $p=17$, $13\equiv 8^2\ (\mathrm{mod}\ 17)$, 所以方程在 $\Q_{17}$ 中有根 $\sqrt{13}$. 最后设 $p$ 是 $13$ 和 $17$ 以外的奇素数. 如果 $13$ 或 $17$ 是模 $p$ 的二次剩余, 则方程在 $\Q_p$ 中有根 $\sqrt{13}$ 或 $\sqrt{17}$. 如果 $13$ 和 $17$ 均是模 $p$ 的二次非剩余, 则 $221=13\cdot 17$ 是模 $p$ 的二次剩余, 于是方程在 $\Q_p$ 中有根 $\sqrt{221}$. 综合上述, 可知方程 $f(x)=0$ 在每个局部域 $\Q_p$ 中都有解, 但是它显然不存在有理解.
+\end{example}
+
+$p$ 进数域 $\Q_p$ 的概念于 $20$ 世纪初由 Hensel 引进. $30$ 年之后, 德国数学家 Hasse 证明了: 对于二次型的情形, 由所有局部性质可以推出相应的``整体''性质, 确切地说, 他证明了如下的美妙结果:
+
+\begin{theorem}[\emph{Hasse 局部--整体原则}]\label{thm:9.9}
+设 $a_i,a_i'\in\Q^{\times}\ (1\leqslant i\leqslant n)$,
+
+(1) 对每个非零有理数 $a$, 二次型 $\langle a_1,\cdots,a_n\rangle$ 在 $\Q$ 中表示 $a$, 当且仅当 $\langle a_1,\cdots,a_n\rangle$ 在每个 $\Q_p$ 中表示 $a$（即对每个素数 $p$ 和 $p=\infty$, 方程 $a_1x_1^2+\cdots+a_nx_n^2=a$ 在 $\Q_p$ 中均有解）.
+
+(2) 二次型 $\langle a_1,\cdots,a_n\rangle$ 在 $\Q$ 中表示 $0$, 当且仅当 $\langle a_1,\cdots,a_n\rangle$ 在每个 $\Q_p$ 中表示 $0$（即 $a_1x_1^2+\cdots+a_nx_n^2=0$ 在每个 $\Q_p$（$p$ 为所有素数和 $\infty$）中都有非零解）.
+
+(3) $\langle a_1,\cdots,a_n\rangle$ 和 $\langle a_1',\cdots,a_n'\rangle$ 是 $\Q$-等价, 当且仅当对每个素数 $p$（和 $p=\infty$）, 它们都是 $\Q_p$-等价, 即存在 $\Q_p$ 上 $n$ 阶可逆对称方阵 $C_p$, 使得
+\[
+  C_p\left(\begin{array}{ccc}a_1& &\\ & \ddots &\\ & & a_n\end{array}\right)
+  C_p^{\mathrm{T}}
+  =\left(\begin{array}{ccc}a_1'& &\\ & \ddots &\\ & & a_n'\end{array}\right).
+\]
+\end{theorem}
+
+我们略去这个定理的证明. 有兴趣的读者可参见: J. P. Serre, A Course in Arithmetic, 1973（中译本《数论教程》, 冯克勤译, 上海科学技术出版社, 1980）.
+
+初看起来, 我们把一个有理数域上的数论问题归结为无穷多个局部域上的相应数论问题, 似乎是把事情弄得更复杂了. 但事实并非如此, 像通常情形那样, 局部域上的问题比数域上要简单, 而且对每个具体的二次型, 我们只需考查有限多个局部域即可. 现在我们来看在局部域 $\Q_p$ 上如何解决二次型的等价和表示数的问题.
+
+首先注意, 若 $a_1=a_1'\beta^2$, 其中 $\beta\in\Q^{\times}$, 则 $\langle a_1,\cdots,a_n\rangle\sim\langle a_1',a_2,\cdots,a_n\rangle$（令 $x_1'=\beta x_1$ 而其余变量保持不变）. 所以 $a_1,\cdots,a_n$ 均可以任意乘上一个非零有理数的平方. 其次, 设 $a=a'\beta^2$, $\beta\in\Q^{\times}$, 则方程 $a_1x_1^2+\cdots+a_nx_n^2=a'$ 的解 $(c_1,\cdots,c_n)$ 和方程 $a_1x_1^2+\cdots+a_nx_n^2=a$ 的解 $(\beta c_1,\cdots,\beta c_n)$ 是一一对应的. 即二次型 $\langle a_1,\cdots,a_n\rangle$ 表示 $a$ 当且仅当它表示 $a'$. 因此, 我们常常把 $a_1,\cdots,a_n$ 和 $a$ 看成是乘法商群 $\Q^{\times}/\Q^{\times^2}$ 中的元素. 特别地, 我们总可把 $a_i$ 和 $a$ 取成无平方因子的整数. 类似地, 在研究局部域 $\Q_p$ 上二次型问题时, 也可把 $a_i$ 和 $a$ 看成是 $\Q_p^{\times}/\Q_p^{\times^2}$ 中元素. 当 $p=\infty$ 时, $\R^{\times}/\R^{\times^2}$ 只有两个元素（可表成 $\pm 1$）, 而
+\[
+  \Q_2^{\times}/\Q_2^{\times^2}=\{1,3,5,7,2,6,10,14\}=\{\pm 1,\pm 3,\pm 2,\pm 6\}.
+\]
+最后对奇素数 $p$, $\Q_p^{\times}/\Q_p^{\times^2}=\{1,c,p,cp\}$, 其中 $c$ 是模 $p$ 的任意一个二次非剩余. 所以在局部域 $\Q_p$ 上, $a_i$ 和 $a$ 只存在有限个选取方式. 从而对每个固定的 $n$, 二次型 $\langle a_1,\cdots,a_n\rangle$ 在局部域上本质上只有有限多个. 这件事在 $\Q_{\infty}=\R$ 上是熟知的, 即在实数域上每个实系数（非退化）二次型均等价于 $\langle\underbrace{1,\cdots,1}_{s},\underbrace{-1,\cdots,-1}_{t}\rangle$, 其中有 $s$ 个 $1$ 和 $t$ 个 $-1$, $s+t=n$（注意: 将 $a_1,\cdots,a_n$ 作任意置换, 得到的二次型与 $\langle a_1,\cdots,a_n\rangle$ 等价）. 而且前述几个问题在 $\Q_{\infty}=\R$ 上很容易解决: 设 $a_1,\cdots,a_n$ 为非零实数,
+
+(1) 对每个非零实数 $a$, 二次型 $\langle a_1,\cdots,a_n\rangle$ 在 $\R$ 上表示 $a$, 当且仅当存在某个 $a_i$ 与 $a$ 同符号（即 $aa_i>0$）.
+
+(2) 二次型 $\langle a_1,\cdots,a_n\rangle$ 在 $\R$ 上表示 $0$, 当且仅当存在 $i$ 和 $j$, 使得 $a_i>0$, $a_j<0$（即 $s,t\geqslant 1$）.
+
+(3) $\langle a_1,\cdots,a_n\rangle$ 和 $\langle a_1',\cdots,a_n'\rangle$ 是 $\R$-等价的, 当且仅当它们的 $s$ 值相同, 即 $a_i\ (1\leqslant i\leqslant n)$ 中为正数的个数等于 $a_i'\ (1\leqslant i\leqslant n)$ 中为正数的个数（于是两个二次型的 $t=n-s$ 也相等）.
+
+当 $p$ 为素数时, 在非阿局部域 $\Q_p$ 上的这些问题则采用了不同的解决方式, 其工具叫作 Hilbert 符号. 以下设 $p$ 为素数或 $\infty$.
+
+\begin{definition}\label{def:ch9-3}
+设 $a,b\in\Q_p^{\times}$. 定义 Hilbert 符号
+\[
+  (a,b)_p=\begin{cases}
+    1, & \text{如果二次型 } \langle a,b\rangle\ \text{表示 } 1,\\
+    -1, & \text{否则}.
+  \end{cases}
+\]
+\end{definition}
+
+如上所述, 我们可以把 $a,b$ 看成是 $\Q_p^{\times}/\Q_p^{\times^2}$ 中的元素. 从而 Hilbert 符号可以看成是映射
+\[
+  (\cdot,\cdot)_p\colon\Q_p^{\times}/\Q_p^{\times^2}\times\Q_p^{\times}/\Q_p^{\times^2}\to\{\pm 1\}.
+\]
+例如对 $\Q_{\infty}=\R$, $\R^{\times}/\R^{\times^2}=\{\pm 1\}$. 由定义易知
+\[
+  (1,1)_{\infty}=(1,-1)_{\infty}=(-1,1)_{\infty}=1,\qquad(-1,-1)_{\infty}=-1.
+\]
+对于素数 $p$, 计算 $(a,b)_p$ 可以基于 Hilbert 符号的以下性质:
+
+\begin{theorem}\label{thm:9.10}
+设 $p$ 为素数, $a,a',b,b'\in\Q_p^{\times}$.
+
+(1) $(a,b)_p=(b,a)_p$;
+
+(2) $(aa',b)_p=(a,b)_p(a',b)_p$;
+
+(3) $(a,-a)_p=1$, 并且当 $1-a\neq 0$ 时, $(a,1-a)_p=1$.
+\end{theorem}
+
+\begin{remark}
+由定义即知 (1) 成立. (2) 的证明从略. 由 (2) 可知 $(a,1)_p=1$（这也可由定义直接推出）. 由 (1) 和 (2) 可知 $(a,bb')_p=(a,b)_p(a,b')_p$. $(a,-a)_p=1$ 的证明也容易, 即要证 $ax^2-ay^2=1$ 在 $\Q_p$ 中有解. 将方程写成 $(x+y)(x-y)=a^{-1}$. 我们可取 $x+y=1$, $x-y=a^{-1}$, 即 $x=\frac{1+a^{-1}}{2}$, $y=\frac{1-a^{-1}}{2}$ 为方程的解. 证明 $(a,1-a)_p=1$ 也很容易, 因为方程 $ax^2+(1-a)y^2=1$ 有解 $x=y=1$.
+\end{remark}
+
+由以上这些性质可以推出计算 $(a,b)_p$ 的明显公式.
+
+\begin{theorem}\label{thm:9.11}
+设 $p$ 为素数, $a=p^{\alpha}u$, $b=p^{\beta}v$, 其中 $\alpha$ 和 $\beta$ 为 $0$ 或 $1$, $u$ 和 $v$ 是与 $p$ 互素的整数.
+
+(1) 当 $p\geqslant 3$ 时,
+\[
+  (a,b)_p=(-1)^{\alpha\beta\varepsilon(p)}
+  \left(\frac{u}{p}\right)^{\beta}\left(\frac{v}{p}\right)^{\alpha},
+\]
+其中对奇数 $u$, $\varepsilon(u)=\frac{u-1}{2}$, $\omega(u)=\frac{u^2-1}{8}$. 而 $\left(\frac{u}{p}\right)$ 为 Legendre 符号, 即
+\[
+  \left(\frac{u}{p}\right)=\begin{cases}
+    1, & \text{若 } u\ \text{为模 } p\ \text{二次剩余},\\
+    -1, & \text{若 } u\ \text{为模 } p\ \text{二次非剩余}.
+  \end{cases}
+\]
+
+(2) 当 $p=2$ 时,
+\[
+  (a,b)_2=(-1)^{\varepsilon(u)\varepsilon(v)+\alpha\omega(v)+\beta\omega(u)}.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) 当 $p\geqslant 3$ 时, 由定理可知: 若 $u$ 和 $v$ 是与 $p$ 互素的整数, 则
+\begin{equation}\tag{8}
+  (u,v)_p=1,\qquad(p,u)_p=\left(\frac{u}{p}\right).
+\end{equation}
+我们可以只记住这两个公式, 因为由它们和定理 \ref{thm:9.10} 可给出一般公式（为方便起见 $(a,b)_p$ 简写为 $(a,b)$）:
+\begin{align*}
+  (a,b)&=(p^{\alpha}u,p^{\beta}v)=(p^{\alpha},p^{\beta})(p^{\alpha},v)(u,p^{\beta})(u,v)\\
+  &=(p,p)^{\alpha\beta}(p,v)^{\alpha}(p,u)^{\beta}
+  =(p,-1)^{\alpha\beta}\left(\frac{u}{p}\right)^{\beta}\left(\frac{v}{p}\right)^{\alpha}\\
+  &=\left(\frac{-1}{p}\right)^{\alpha\beta}
+  \left(\frac{u}{p}\right)^{\beta}\left(\frac{v}{p}\right)^{\alpha}
+  =(-1)^{\alpha\beta\varepsilon(p)}\left(\frac{u}{p}\right)^{\beta}\left(\frac{v}{p}\right)^{\alpha},
+\end{align*}
+最后一个等式是因为熟知有 $\left(\frac{-1}{p}\right)=(-1)^{\varepsilon(p)}$.
+
+我们可以用 Hensel 引理来证明 (8) 式中的两个公式. 先证 $(p,u)_p=\left(\frac{u}{p}\right)$. 如果 $(p,u)_p=1$, 则方程 $px^2+uy^2=1$ 在 $\Q_p$ 中有解 $(x,y)=(c,d)$, 于是 $pc^2+ud^2-1=0$. 从而 $V_p(pc^2)$, $V_p(ud^2)$, $V_p(-1)$ 当中必有两个达到最小值. 但是 $V_p(pc^2)=1+2V_p(c)$ 为奇数, $V_p(ud^2)=2V_p(d)$ 和 $V_p(-1)=0$ 为偶数. 所以必然 $V_p(d)=0$ 并且 $V_p(c)\geqslant 0$（即 $d,c\in\Z_p$）. 于是 $pc^2+ud^2-1\equiv 0\ (\mathrm{mod}\ p)$, 即 $ud^2\equiv 1\ (\mathrm{mod}\ p)$. 这表明 $\left(\frac{u}{p}\right)=1$. 反之, 如果 $\left(\frac{u}{p}\right)=1$, 则存在整数 $d'$, $1\leqslant d'\leqslant p-1$, 使得 $d'^2u\equiv 1\ (\mathrm{mod}\ p)$. 由 Hensel 引理可知存在 $d\in\Z_p$, 使得 $d^2u=1$. 于是 $(x,y)=(0,d)$ 就是 $px^2+uy^2=1$ 的解. 从而 $(p,u)_p=1$. 这就表明 $(p,u)_p=\left(\frac{u}{p}\right)$.
+
+再证 $(u,v)_p=1$. 我们先证 $ux^2+vy^2=1$ 在 $\F_p$ 中有解. 当 $x$ 过 $\F_p$ 时, $x^2$ 共取 $\frac{p+1}{2}$ 个值（$\frac{p-1}{2}$ 个模 $p$ 二次剩余加上 $0$）, 所以 $\F_p$ 的子集合 $A=\{ux^2\mid x\in\F_p\}$ 共有 $\frac{p+1}{2}$ 个元素. 同样地, $\F_p$ 的子集合 $B=\{1-vy^2\mid y\in\F_p\}$ 也有 $\frac{p+1}{2}$ 个元素. 由于这两个子集合元素数之和 $\frac{p+1}{2}+\frac{p+1}{2}=p+1$ 超过了 $\F_p$ 中元素个数 $p$, 可知 $A$ 和 $B$ 必有公共元素, 所以存在 $c,d\in\F_p$, 使得 $uc^2=1-vd^2$, 即方程 $ux^2+vy^2=1$ 在 $\F_p$ 中有解 $(x,y)=(c,d)$. 换句话说, 我们证明了: 存在整数 $c,d$, 使得 $uc^2+vd^2-1\equiv 0\ (\mathrm{mod}\ p)$. 进而, 由此同余式易知 $c$ 和 $d$ 不能同时被 $p$ 除尽. 不妨设 $c\not\equiv 0\ (\mathrm{mod}\ p)$. 考虑多项式 $f(x)=ux^2+vd^2-1$, 则 $V_p(f(c))\geqslant 1$, $V_p(f'(c))=V_p(2uc)=0$. 由 Hensel 引理可知存在 $c'\in\Z_p$, 使得 $uc'^2+vd^2-1=0$, 于是方程 $ux^2+vy^2=1$ 在 $\Q_p$ 中有解 $(x,y)=(c',d)$. 所以 $(u,v)_p=1$.
+
+综合上述, 我们证明了 (1).
+
+(2) 类似地用 Hensel 引理可得（$u,v$ 为奇数）
+\[
+  (2,u)_2=(-1)^{\omega(u)},
+\]
+\[
+  (u,v)_2=(-1)^{\varepsilon(u)\varepsilon(v)}.
+\]
+而 $(2,2)_2=(2,-1)_2=1$. 然后由此可得到定理中的一般公式.
+\end{proof}
+
+现在我们可以介绍属 $p$ 域上二次型等价的判别法. 我们需要寻找二次型等价的不变量.
+
+设 $F$ 为 $\Q$ 或者 $\Q_p$, $a_i,b_i\in F^{\times}\ (1\leqslant i\leqslant n)$. 如果二次型 $f=\langle a_1,\cdots,a_n\rangle$ 和 $g=\langle b_1,\cdots,b_n\rangle$ 是 $F$-等价的, 则存在 $F$ 上 $n$ 阶可逆方阵 $C$, 使得
+\[
+  C\left(\begin{array}{ccc}a_1& &\\ & \ddots &\\ & & a_n\end{array}\right)
+  C^{\mathrm{T}}
+  =\left(\begin{array}{ccc}b_1& &\\ & \ddots &\\ & & b_n\end{array}\right),
+\]
+两边取行列式得到 $a_1\cdots a_n|C|^2=b_1\cdots b_n$, 其中 $|C|\in F^{\times}$. 如果把 $a_1\cdots a_n$ 看成是 $F^{\times}/F^{\times^2}$ 中的元素, 表示成 $d(f)$, 则 $d(f)=d(g)$. 换句话说, $d(f)$ 是二次型 $f$ 的 $F$-等价不变量.
+
+设 $f=\langle a_1,\cdots,a_n\rangle$, 对每个素数 $p$, 定义
+\[
+  \varepsilon_p(f)=\prod_{1\leqslant i<j\leqslant n}(a_i,a_j)_p,
+\]
+可以证明 $\varepsilon_p(f)$ 是二次型的 $\Q_p$-等价不变量. 并且还可以证明
+
+\begin{theorem}\label{thm:9.12}
+设 $a_i,b_i\in\Q_p^{\times}$（其中 $p$ 为素数）, $1\leqslant i\leqslant n$, 则二次型 $f=\langle a_1,\cdots,a_n\rangle$ 和 $g=\langle b_1,\cdots,b_n\rangle$ 是 $\Q_p$-等价的, 当且仅当 $d(f)=d(g)$ 并且 $\varepsilon_p(f)=\varepsilon_p(g)$（这里 $d(f),d(g)$ 看成 $\Q_p^{\times}/\Q_p^{\times^2}$ 中元素）.
+\end{theorem}
+
+由定理 \ref{thm:9.12} 和定理 \ref{thm:9.9} 的 (3), 我们便得到
+
+\begin{theorem}\label{thm:9.13}
+设 $a_i,b_i\in\Q^{\times}\ (1\leqslant i\leqslant n)$, 则二次型 $f=\langle a_1,\cdots,a_n\rangle$ 和 $g=\langle b_1,\cdots,b_n\rangle$ 是 $\Q$-等价的, 当且仅当下列 $3$ 个条件成立:
+
+(1) 作为 $\Q^{\times}/\Q^{\times^2}$ 中元素有 $d(f)=d(g)$;
+
+(2) 对每个素数 $p$, $\varepsilon_p(f)=\varepsilon_p(g)$;
+
+(3) $s(f)=s(g)$, 其中 $s(f)$ 表示 $a_1,\cdots,a_n$ 当中正实数个数.
+\end{theorem}
+
+\begin{example}
+试问 $f=\langle -21,6,14\rangle$ 和 $g=\langle -1,105,105\rangle$ 是否 $\Q$-等价.
+
+\emph{解} (1) $d(f)=-3^2\cdot 2^2\cdot 7^2=-1$, $d(g)=-1$, 所以 $d(f)=d(g)$.
+
+(2) $s(f)=s(g)=2$.
+
+(3) 对每个素数 $p$, 以下 $(a,b)_p$ 简记为 $(a,b)$,
+\[
+  \varepsilon_p(g)=(-1,105)(-1,105)(105,105)=(-1,105),
+\]
+\[
+  \begin{aligned}
+    \varepsilon_p(f)&=(-21,6)(-21,14)(6,14)
+    =(-21,21)(6,14)=(6,14)\\
+    &=(2,2)(2,7)(3,2)(3,7)
+    =(2,-1)(3,-1)(6,7)=(3,-1)(-1,7)=(-1,21).
+  \end{aligned}
+\]
+所以需要验证是否对每个素数 $p$, $(-1,105)_p=(-1,21)_p$, 而这相当于 $(-1,5)_p=1$. 当 $p\neq 2,5$ 时, $(-1,5)_p=1$. 而 $(-1,5)_5=\left(\frac{-1}{5}\right)=1$, $(-1,5)_2=(-1)^{\varepsilon(-1)\varepsilon(5)}=1$. 这就表明对每个素数 $p$ 均有 $\varepsilon_p(f)=\varepsilon_p(g)$. 从而定理 \ref{thm:9.13} 的 $3$ 个条件均满足. 因此 $\langle -21,6,14\rangle$ 和 $\langle -1,105,105\rangle$ 是等价的.
+\end{example}
+
+由定理 \ref{thm:9.13} 可推出一个重要结果: Witt 消去定理. 通常这个定理是先由代数或几何方法证出来, 作为推出其他结果的重要工具.
+
+\begin{theorem}[\emph{Witt 消去定理}]\label{thm:9.14}
+设 $a_i,b_i\in\Q^{\times}\ (1\leqslant i\leqslant n)$, 对于 $1\leqslant s\leqslant n-1$, 如果 $\langle a_1,\cdots,a_n\rangle$ 和 $\langle b_1,\cdots,b_n\rangle$ 是 $\Q$-等价, $\langle a_1,\cdots,a_s\rangle$ 和 $\langle b_1,\cdots,b_s\rangle$ 是 $\Q$-等价, 则 $\langle a_{s+1},\cdots,a_n\rangle$ 和 $\langle b_{s+1},\cdots,b_n\rangle$ 是 $\Q$-等价.
+\end{theorem}
+
+\begin{proof}
+记 $f=\langle a_{s+1},\cdots,a_n\rangle$, $g=\langle b_{s+1},\cdots,b_n\rangle$. 由题设知在 $\Q^{\times}/\Q^{\times^2}$ 中 $a_1\cdots a_n=b_1\cdots b_n$, $a_1\cdots a_s=b_1\cdots b_s$, 从而 $a_{s+1}\cdots a_n=b_{s+1}\cdots b_n$, 即 $d(f)=d(g)$. 进而, $s(f)=s(g)$ 也容易证明. 最后, 由题设知对每个素数 $p$, 以 $(a,b)$ 表示 $(a,b)_p$, 则
+\[
+  \prod_{1\leqslant i<j\leqslant n}(a_i,a_j)
+  =\prod_{1\leqslant i<j\leqslant n}(b_i,b_j),
+\]
+\[
+  \prod_{1\leqslant i<j\leqslant s}(a_i,a_j)
+  =\prod_{1\leqslant i<j\leqslant s}(b_i,b_j).
+\]
+从而
+\begin{equation}\tag{9}
+  \prod_{i=1}^{s}\prod_{j=s+1}^{n}(a_i,a_j)\cdot
+  \prod_{s+1\leqslant i<j\leqslant n}(a_i,a_j)
+  =\prod_{i=1}^{s}\prod_{j=s+1}^{n}(b_i,b_j)\cdot
+  \prod_{s+1\leqslant i<j\leqslant n}(b_i,b_j).
+\end{equation}
+但是
+\[
+  \prod_{i=1}^{s}\prod_{j=s+1}^{n}(a_i,a_j)
+  =(a_1\cdots a_s,a_{s+1}\cdots a_n)
+  =(b_1\cdots b_s,b_{s+1}\cdots b_n)
+  =\prod_{i=1}^{s}\prod_{j=s+1}^{n}(b_i,b_j),
+\]
+由此及 (9) 式即知对每个素数 $p$, $\varepsilon_p(f)=\varepsilon_p(g)$. 于是 $f$ 和 $g$ 是 $\Q$-等价的.
+\end{proof}
+
+现在讨论局部域上的二次型何时表示 $0$.
+
+\begin{theorem}\label{thm:9.15}
+设 $p$ 为素数, $f$ 是 $\Q_p$ 上 $n$ 变量（非退化）二次型, $\varepsilon=\varepsilon_p(f)$, $d=d(f)\in\Q_p^{\times}/\Q_p^{\times^2}$, 则 $f$ 在 $\Q_p$ 上表示 $0$ 当且仅当下列条件之一成立（记 $(a,b)_p$ 为 $(a,b)$）:
+
+(1) $n=2$ 而 $d=-1$;
+
+(2) $n=3$ 而 $(-1,-d)=\varepsilon$;
+
+(3) $n=4$ 而 $d\neq 1$, 或者 $d=1$ 并且 $\varepsilon=(-1,-1)$;
+
+(4) $n\geqslant 5$.
+
+特别的, 变量数 $\geqslant 5$ 的 $\Q_p$ 上任意（非退化）二次型在 $\Q_p$ 上均表示 $0$, 即对每个素数 $p$, 对任意的 $a_i\in\Q_p^{\times}\ (1\leqslant i\leqslant 5)$, 方程 $a_1x_1^2+\cdots+a_5x_5^2=0$ 均在 $\Q_p$ 中有非零解.
+\end{theorem}
+
+\begin{proof}
+(1) 设 $f=\langle a_1,a_2\rangle$. 若 $f$ 表示 $0$, 则 $a_1b^2+a_2c^2=0$, 其中 $b,c\in\Q_p$, 并且 $b$ 和 $c$ 不全为 $0$, 从而 $b$ 和 $c$ 均不为零. 于是在 $\Q_p^{\times}/\Q_p^{\times^2}$ 中 $a_1=-a_2(c/b)^2=-a_2$, 从而 $d=d(f)=a_1a_2=-a_2^2=-1$. 反之, 若 $d=a_1a_2=-1$, 则 $a_2=-a_1$, 于是 $f=\langle a_1,a_2\rangle\sim\langle a_1,-a_1\rangle$, 但是 $\langle a_1,-a_1\rangle$ 可表示 $0$（$a_1x^2-a_1y^2=0$ 有解 $(x,y)=(1,1)$）, 所以 $f$ 也表示 $0$.
+
+(2) 若 $f=\langle a_1,a_2,a_3\rangle$ 可表示 $0$, 则 $a_1x_1^2+a_2x_2^2+a_3x_3^2=0$ 有非零解. 如果 $x_1=0$, 则 $\langle a_2,a_3\rangle$ 表示 $0$, 由 (1) 知 $a_2=-a_3$. 于是 $d(f)=a_1a_2a_3=-a_1$. 而
+\[
+  \begin{aligned}
+    \varepsilon(f)&=(a_1,a_2)(a_1,a_3)(a_2,a_3)\\
+    &=(a_1,a_2a_3)(-a_3,a_3)\\
+    &=(a_1,-1)=(-1,-d(f)).
+  \end{aligned}
+\]
+如果 $x_3\neq 0$, 则 $-a_1a_3x_1^2-a_2a_3x_2^2=a_3^2x_3^2$, 于是 $\langle -a_1a_3,-a_2a_3\rangle$ 可表示 $1$. 由 Hilbert 符号的定义知 $(-a_1a_3,-a_2a_3)=1$. 但是
+\[
+  \begin{aligned}
+    &(-a_1a_3,-a_2a_3)\\
+    &\quad=(-1,-1)(-1,a_1)(-1,a_2)(a_3,a_3)\\
+    &\qquad\times(a_1,a_2)(a_1,a_3)(a_2,a_3)\\
+    &\quad=(-1,-1)(-1,a_1a_2a_3)(a_1,a_2)(a_1,a_3)(a_2,a_3)\\
+    &\quad=(-1,-d(f))\cdot\varepsilon(f).
+  \end{aligned}
+\]
+从而也有 $(-1,-d(f))=\varepsilon(f)$.
+
+反之, 若 $(-1,-d(f))=\varepsilon(f)$, 由上面推理知 $(-a_1a_3,-a_2a_3)=1$, 从而 $-a_1a_3A^2-a_2a_3B^2=1$, 其中 $A,B\in\Q_p$. 于是 $a_1(a_3A)^2+a_2(a_3B)^2+a_3=0$, 这说明 $\langle a_1,a_2,a_3\rangle$ 表示 $0$.
+
+对于 $n=4$ 和 $n\geqslant 5$ 的情形证明要复杂些, 此处从略.
+\end{proof}
+
+最后介绍局部域 $\Q_p$ 上二次型何时表示 $a\in\Q_p^{\times}$. 下面引理表明, 这个问题与二次型表示 $0$ 有密切关系.
+
+\begin{lemma}\label{lem:ch9-5}
+设 $F$ 为 $\Q$ 或者 $\Q_p$（其中 $p$ 为素数或 $\infty$）, $f=\langle a_1,\cdots,a_n\rangle$, $a_i\in F^{\times}$.
+
+(1) 如果 $f$ 在 $F$ 上可以表示 $b\in F^{\times}$, 则存在 $b_2,\cdots,b_n\in F^{\times}$, 使得 $f\sim\langle b,b_2,\cdots,b_n\rangle$（$\sim$ 表示 $F$-等价）.
+
+(2) 若 $f$ 在 $F$ 上可以表示 $0$, 则 $f$ 在 $F$ 上可以表示 $F$ 中任何非零元素.
+
+(3) $f$ 在 $F$ 上表示 $a\in F^{\times}$ 当且仅当 $\langle a_1,\cdots,a_n,-a\rangle$ 在 $F$ 上可以表示 $0$.
+\end{lemma}
+
+\begin{proof}
+(1) 这是线性代数的一个熟知事实: 如果 $a_1c_1^2+\cdots+a_nc_n^2=b$, $c_i\in F$, 则存在 $F$ 上 $n$ 阶可逆方阵 $C$ 以 $(c_1,\cdots,c_n)$ 为 $C$ 的第 $1$ 行, 使得
+\[
+  C\left(\begin{array}{ccc}a_1& &\\ & \ddots &\\ & & a_n\end{array}\right)C^{\mathrm{T}}
+\]
+为对角方阵. 易知这个对角方阵的第 $1$ 个元素为 $b$.
+
+(2) 我们对 $n$ 归纳. 由于 $\langle a_1\rangle\ (a_1\in F^{\times})$ 不能表示 $0$, 所以我们从 $n=2$ 开始. 若 $\langle a_1,a_2\rangle$ 表示 $0$, 由定理 \ref{thm:9.15} 可知 $a_1=-a_2$. 但是 $\langle -a_2,a_2\rangle$ 可表示 $F^{\times}$ 中任何数. 于是定理对 $n=2$ 成立. 现在设 $n\geqslant 3$, $\langle a_1,\cdots,a_n\rangle$ 表示 $0$, 则 $a_1c_1^2+\cdots+a_{n-1}c_{n-1}^2+a_nc_n^2=0$, 其中 $c_i\in F$, 并且 $c_1,\cdots,c_n$ 不全为 $0$. 如果 $c_n=0$, 则 $\langle a_1,\cdots,a_{n-1}\rangle$ 表示 $0$, 由归纳假设知 $\langle a_1,\cdots,a_{n-1}\rangle$ 可表示 $F$ 中任何元素, 从而 $\langle a_1,\cdots,a_n\rangle$ 也是如此. 如果 $c_n\neq 0$, 则 $\langle a_1,\cdots,a_{n-1}\rangle$ 表示 $-a_n$. 由 (1) 知 $\langle a_1,\cdots,a_{n-1}\rangle\sim\langle -a_n,b_1,\cdots,b_{n-2}\rangle$, 从而 $f=\langle a_1,\cdots,a_n\rangle\sim\langle -a_n,b_1,\cdots,b_{n-2},a_n\rangle=g$. 但是 $\langle -a_n,a_n\rangle$ 可表示 $F$ 中任何元素, 所以 $g$ 也是如此, 于是 $f$ 也是如此.
+
+(3) 若 $\langle a_1,\cdots,a_n\rangle$ 表示 $a\in F^{\times}$, 则 $a_1c_1^2+\cdots+a_nc_n^2-a=0$, 其中 $c_i\in F$, 于是 $a_1x_1^2+\cdots+a_nx_n^2-ax_{n+1}^2=0$ 有解 $(x_1,\cdots,x_{n+1})=(c_1,\cdots,c_n,1)$, 即 $\langle a_1,\cdots,a_n,-a\rangle$ 表示 $0$. 反之, 若 $\langle a_1,\cdots,a_n,-a\rangle$ 表示 $0$, 则 $a_1c_1^2+\cdots+a_nc_n^2-ac_{n+1}^2=0$, 其中 $c_i\in F$ 并且 $c_1,\cdots,c_{n+1}$ 不全为 $0$. 如果 $c_{n+1}\neq 0$, 则由上式即知 $\langle a_1,\cdots,a_n\rangle$ 表示 $a$. 如果 $c_{n+1}=0$, 则上式表明 $\langle a_1,\cdots,a_n\rangle$ 表示 $0$, 由 (2) 知 $\langle a_1,\cdots,a_n\rangle$ 可表示 $F$ 中任何元素, 特别地, 它可以表示 $a$.
+\end{proof}
+
+利用引理 \ref{lem:ch9-5} 的 (3) 和定理 \ref{thm:9.15}, 不难推出如下结果, 读者可自行练习.
+
+\begin{theorem}\label{thm:9.16}
+设 $p$ 为素数, $f=\langle a_1,\cdots,a_n\rangle$, $a_i\in\Q_p^{\times}\ (1\leqslant i\leqslant n)$, $d=d(f)\in\Q_p^{\times}/\Q_p^{\times^2}$, $\varepsilon=\varepsilon_p(f)$. 对于 $a\in\Q_p^{\times}$, $f$ 在 $\Q_p$ 上表示 $a$ 当且仅当下列条件之一成立:
+
+(1) $n=1$, $a=d$;
+
+(2) $n=2$, $(a,-d)=\varepsilon$;
+
+(3) $n=3$, $a\neq -d$, 或者 $a=-d$ 并且 $(-1,-d)=\varepsilon$;
+
+(4) $n\geqslant 4$.
+
+特别地当 $n\geqslant 4$ 时, $f$ 在 $\Q_p$ 上可表示 $\Q_p$ 中任何非零元素.
+\end{theorem}
+
+\begin{example}
+设 $p$ 为素数. $\Q_p$ 上 $4$ 变量的二次型 $f$ 不表示 $0$, 当且仅当 $f$ $\Q_p$-等价于 $\langle 1,-a,-b,ab\rangle$, 其中 $a$ 和 $b$ 是 $\Q_p^{\times}$ 中满足 $(a,b)_p=-1$ 的任意元素（例如当 $p\geqslant 3$ 时可取 $a=p$, 而 $b$ 是模 $p$ 的二次非剩余, 而 $p=2$ 时可取 $a=2$, $b=3$）. 进而, 所有这样的 $f$ 都是彼此 $\Q_p$-等价的.
+\end{example}
+
+\begin{proof}
+根据定理 \ref{thm:9.15}, $f$ 不表示 $0$ 当且仅当 $d(f)=1$ 并且 $\varepsilon_p(f)=-(-1,-1)_p$. 但是 $d(f)$ 和 $\varepsilon_p(f)$ 决定了 $f$ 的等价类（定理 \ref{thm:9.12}）, 所以这样的 $f$ 至多有一个等价类. 现设 $(a,b)_p=-1$, 考查 $f=\langle 1,-a,-b,ab\rangle$. 易知 $d(f)=1$ 而（记 $(a,b)_p$ 为 $(a,b)$）由 $(a,b)=-1$, 知
+\[
+  \begin{aligned}
+    \varepsilon_p(f)&=(-a,-b)(-a,ab)(-b,ab)\\
+    &=(-a,-b)(-a,b)(-b,a)\\
+    &=(-a,-1)(-b,a)=-(-a,-1)(-1,a)\\
+    &=-(-1,-1).
+  \end{aligned}
+\]
+所以 $\langle 1,-a,-b,ab\rangle$ 不表示 $0$.
+\end{proof}
+
+\begin{remark}
+根据定理 \ref{thm:9.16}, $f$ 可以表示 $\Q_p$ 中任何非零元素. 从而我们得到一个二次型的例子: 它可以表示任何非零元素, 但是不表示 $0$.
+\end{remark}
+
+\begin{Exercises}
+\item 设 $p$ 为素数或 $\infty$; $a,b\in\Q^{\times}$. 求证: $(a,b)_p=1$ 当且仅当在 $K=\Q_p(\sqrt{a})$ 中存在元素 $\alpha$, 使得 $a=N_{K/\Q_p}(\alpha)$.
+
+\item 设 $a,b,c\in\Q^{\times}$. 求证 $\langle a,b\rangle$ 和 $\langle c,cab\rangle$ 是 $\Q$-等价的当且仅当 $\langle a,b\rangle$ 在 $\Q$ 上可表示 $c$.
+
+\item （乘积公式）设 $a,b\in\Q^{\times}$. 求证 $\prod(a,b)_p=1$, 其中 $p$ 过所有素数和 $\infty$.
+
+\item 设 $n$ 为正整数. 求证: 方程 $2x^2-6y^2+15z^2=n$ 没有有理数解, 当且仅当 $n\equiv 5\ (\mathrm{mod}\ 8)$ 或者 $n=5m$, 其中 $m\equiv\pm 1\ (\mathrm{mod}\ 5)$.
+
+\item 试问二次型 $\langle -1,3,5\rangle$ 和 $\langle 1,7,-105\rangle$ 在 $\Q$ 上是否等价？
+
+\item 设 $a_i\in\Q^{\times}\ (1\leqslant i\leqslant 5)$ 并且这 $5$ 个数有正有负. 求证对每个有理数 $a$, $\langle a_1,a_2,a_3,a_4,a_5\rangle$ 在 $\Q$ 上均可表示 $a$.
+
+\item 设 $a_i\in\Q^{\times}\ (1\leqslant i\leqslant 4)$, 并且这 $4$ 个数有正有负, 则对每个非零有理数 $a$, 方程 $a_1x_1^2+a_2x_2^2+a_3x_3^2+a_4x_4^2=a$ 均有有理数解.
+
+\item 证明对每个有理数 $a$, 方程 $x^2+2y^2+5z^2-10w^2=a$ 均有有理数解 $(x,y,z,w)\neq(0,0,0,0)$.
+
+\item 设 $p,q,r,s$ 是不同的奇素数, 并且 $pqrs\not\equiv 1\ (\mathrm{mod}\ 8)$, 求证方程 $px^2+qy^2-rz^2-sw^2=0$ 有有理数解 $(x,y,z,w)\not\equiv(0,0,0,0)$.
+
+\item （Legendre）设 $a,b,c$ 是两两互素的非零整数, 并且有正有负. 求证: 方程 $ax^2+by^2+cz^2=0$ 有有理数解 $(x,y,z)\neq(0,0,0)$ 的充分必要条件是: 存在整数 $A,B,C$, 使得
+\[
+  -ab\equiv C^2\ (\mathrm{mod}\ c),\qquad
+  -bc\equiv A^2\ (\mathrm{mod}\ a),\qquad
+  -ca\equiv B^2\ (\mathrm{mod}\ b).
+\]
+
+\item 试问对哪些非零有理数 $a$, 方程 $3x^2-5y^2=a$ 具有有理数解？
+\end{Exercises}

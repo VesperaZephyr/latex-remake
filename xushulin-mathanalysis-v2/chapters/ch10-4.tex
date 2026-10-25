@@ -1,0 +1,1227 @@
+\section{二重积分的换元（变量代换）}\label{sec:10.4}
+
+在第 6 章中，我们讨论了一元函数定积分的换元公式：设 $x = \varphi(t)$ 将闭区间 $[\alpha, \beta]$ 映射到 $[a, b]$，$\varphi \in C^1([\alpha, \beta])$，$\varphi(\alpha)=a, \varphi(\beta)=b$（或 $\varphi(\alpha)=b, \varphi(\beta)=a$），$f$ 在 $[a, b]$ 上连续，则
+\[
+\int_a^b f(x)\,\mathrm{d}x = \int_\alpha^\beta f(\varphi(t)) \varphi'(t)\,\mathrm{d}t.
+\]
+对于二重积分，变量代换公式将涉及两个变量的变换，其本质是将平面上的一个区域映射到另一个区域，变换的导数行列式（Jacobi 行列式）反映了区域面积微元的放大率。
+
+\begin{theorem}[二重积分的换元公式]\label{thm:10.4.1}
+设 $\Omega \subset \mathbb{R}^2$ 为开集，映射
+\[
+\boldsymbol{F}\colon \Omega \to \mathbb{R}^2,\quad (u, v) \mapsto \boldsymbol{F}(u, v) = (x(u, v), y(u, v))
+\]
+满足：
+\begin{enumerate}
+  \item[$(1^\circ)$] $\boldsymbol{F} \in C^1(\Omega, \mathbb{R}^2)$；
+  \item[$(2^\circ)$] 处处有非零的 Jacobi 行列式，即
+  \[
+  \frac{\partial(x, y)}{\partial(u, v)} = \det \boldsymbol{J}\boldsymbol{F}(u, v) \neq 0,\quad \forall\, (u, v) \in \Omega;
+  \]
+  \item[$(3^\circ)$] $\boldsymbol{F}$ 在 $\Omega$ 上为单射.
+\end{enumerate}
+如果集合 $\Delta$ 为有面积集，且 $\overline{\Delta} \subset \Omega$，$f$ 为 $\boldsymbol{F}(\Omega)$ 上的连续函数，则 $\boldsymbol{F}(\Delta)$ 也为有面积集，且有换元公式
+\[
+\int_{\boldsymbol{F}(\Delta)} f = \int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|,
+\]
+即
+\[
+\iint_{\boldsymbol{F}(\Delta)} f(x, y)\,\mathrm{d}x\mathrm{d}y = \iint_\Delta f(x(u, v), y(u, v)) \left|\frac{\partial(x, y)}{\partial(u, v)}\right|\mathrm{d}u\mathrm{d}v.
+\]
+\end{theorem}
+
+\begin{proof}
+为了突出本定理的核心证明线索，所用到的一些辅助几何性质与分析工具我们将在定理后以引理形式补叙。
+
+因为 $\Delta$ 为有面积集，所以它有界，从而 $\overline{\Delta}$ 为有界闭集，即紧致集。由 $\boldsymbol{F}$ 连续知，$\boldsymbol{F}(\overline{\Delta})$ 也是紧致集。因 $f$ 连续，故 $f$ 在 $\boldsymbol{F}(\overline{\Delta})$ 上连续有界。又 $\boldsymbol{F} \in C^1(\Omega, \mathbb{R}^2)$，故 $(f \circ \boldsymbol{F}) |\det \boldsymbol{J}\boldsymbol{F}|$ 在 $\overline{\Delta}$ 上连续有界。
+
+根据引理 \ref{lem:10.4.1}，$\Delta$ 与 $\boldsymbol{F}(\Delta)$ 均为有面积集，因而积分
+\[
+\int_{\boldsymbol{F}(\Delta)} f \quad \text{与} \quad \int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|
+\]
+均存在（有限）。下面分两步证明它们相等：
+
+(1) 设 $f \geqslant 0$（非负函数的情形）.
+
+① 先证
+\[
+\int_{\boldsymbol{F}(\Delta)} f \leqslant \int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|.
+\]
+因为 $\overline{\Delta}$ 为紧致集，且 $\overline{\Delta} \subset \Omega$，故可作有界开集 $\Omega_0$，使得
+\[
+\overline{\Delta} \subset \Omega_0 \subset \overline{\Omega}_0 \subset \Omega.
+\]
+设在紧致集 $\overline{\Omega}_0$ 上，$\left|\det \boldsymbol{J}\boldsymbol{F}\right| \leqslant M$；在紧致集 $\boldsymbol{F}(\overline{\Delta})$ 上，有 $0 \leqslant f \leqslant N$。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.9, >=Latex]
+    \draw[step=0.6, gray!40, thin] (0,0) grid (6.6,5.4);
+    \draw[thick] plot [smooth cycle, tension=0.8] coordinates {(1.8,1.6) (4.8,1.3) (5.5,3.6) (3.6,4.4) (1.9,4.0)};
+    \node at (4.5, 2.5) {$\Delta$};
+    \foreach \x/\y in {1.2/1.2, 1.2/1.8, 1.8/1.2, 4.8/1.2, 5.4/1.2, 5.4/1.8, 5.4/3.0, 5.4/3.6, 4.8/4.2, 3.6/4.2, 3.0/4.2, 1.8/3.6, 1.2/3.6} {
+      \fill[pattern=crosshatch, pattern color=gray!60] (\x,\y) rectangle (\x+0.6,\y+0.6);
+      \draw[gray!70] (\x,\y) rectangle (\x+0.6,\y+0.6);
+    }
+    \draw[dashed, thick] plot [smooth cycle, tension=0.8] coordinates {(0.6,0.6) (6.2,0.6) (6.2,5.0) (0.6,5.0)};
+    \node[above right] at (5.8, 4.8) {$\Omega_0$};
+  \end{tikzpicture}
+  \caption{正方形网格分割与开集 $\Omega_0$}\label{fig:10.4.1}
+\end{figure}
+
+用平行于坐标轴的两族直线将 $\mathbb{R}^2$ 分割成大小相等的闭正方形，其中与 $\Delta$ 相交者构成正方形族
+\[
+T = \{I_1, I_2, \dots, I_n\}.
+\]
+设其中完全包含于 $\Delta$ 内部的正方形为 $I_1, I_2, \dots, I_m \subset \Delta$；而其余的 $I_{m+1}, I_{m+2}, \dots, I_n$ 既含有 $\Delta$ 中的点，也含有 $\Delta^c$ 中的点（即均与边界 $\partial\Delta$ 相交）。当细度 $\|T\|$ 足够小时，可保证
+\[
+I_j \subset \Omega_0,\quad j = 1, 2, \dots, n.
+\]
+考虑它们的像 $\boldsymbol{F}(I_j)$（$j = 1, 2, \dots, n$）。显然 $\boldsymbol{F}(I_j) \subset \boldsymbol{F}(\Delta)$（$j = 1, \dots, m$）；当 $m+1 \leqslant j \leqslant n$ 时，$\boldsymbol{F}(I_j)$ 既含有 $\boldsymbol{F}(\Delta)$ 中的点，又含有 $\boldsymbol{F}(\Delta)^c$ 中的点。
+
+于是，区域 $\boldsymbol{F}(\Delta)$ 被分割为
+\[
+\boldsymbol{F}(I_1),\; \boldsymbol{F}(I_2),\; \dots,\; \boldsymbol{F}(I_m),\; \boldsymbol{F}(I_{m+1} \cap \Delta),\; \dots,\; \boldsymbol{F}(I_n \cap \Delta).
+\]
+由引理 \ref{lem:10.4.2}，它们都是有面积集，且根据引理 \ref{lem:10.4.1} 与引理 \ref{lem:10.4.2}，它们两两之间仅在边界上相交，边界的像为零面积集，从而两两相交部分为零面积集。
+
+由 $f \geqslant 0$，利用引理 \ref{lem:10.4.4} 之 (2)，对每个完全包含的正方形有
+\[
+\sum_{j=1}^m \int_{\boldsymbol{F}(I_j)} f \leqslant \sum_{j=1}^m \int_{I_j} (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|.
+\]
+根据区域可加性（定理 \ref{thm:10.2.8}），有
+\begin{align*}
+\int_{\boldsymbol{F}(\Delta)} f &= \sum_{j=1}^m \int_{\boldsymbol{F}(I_j)} f + \sum_{j=m+1}^n \int_{\boldsymbol{F}(I_j \cap \Delta)} f \\
+&= \lim_{\|T\| \to 0} \sum_{j=1}^m \int_{\boldsymbol{F}(I_j)} f + \lim_{\|T\| \to 0} \sum_{j=m+1}^n \int_{\boldsymbol{F}(I_j \cap \Delta)} f \\
+&= \lim_{\|T\| \to 0} \sum_{j=1}^m \int_{\boldsymbol{F}(I_j)} f \leqslant \lim_{\|T\| \to 0} \sum_{j=1}^m \int_{I_j} (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| \\
+&= \lim_{\|T\| \to 0} \sum_{j=1}^m \int_{I_j} (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| + \lim_{\|T\| \to 0} \sum_{j=m+1}^n \int_{I_j \cap \Delta} (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| \\
+&= \int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|,
+\end{align*}
+其中极限为零利用了放缩：
+\begin{align*}
+0 &\leqslant \sum_{j=m+1}^n \int_{\boldsymbol{F}(I_j \cap \Delta)} f \leqslant N \sum_{j=m+1}^n \int_{\boldsymbol{F}(I_j)} 1 \\
+&\leqslant N \sum_{j=m+1}^n \int_{I_j} \left|\det \boldsymbol{J}\boldsymbol{F}\right| \leqslant MN \sum_{j=m+1}^n v(I_j) \xrightarrow{\|T\| \to 0} 0.
+\end{align*}
+
+② 反过来，对连续函数 $(f \circ \boldsymbol{F}) |\det \boldsymbol{J}\boldsymbol{F}|$ 与逆映射 $\boldsymbol{F}^{-1}$ 在集合 $\boldsymbol{F}^{-1}(\boldsymbol{F}(\Delta)) = \Delta$ 上再次应用第 ① 步已证的不等式，便有
+\begin{align*}
+\int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| &= \int_{\boldsymbol{F}^{-1}(\boldsymbol{F}(\Delta))} (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| \\
+&\leqslant \int_{\boldsymbol{F}(\Delta)} (f \circ \boldsymbol{F} \circ \boldsymbol{F}^{-1}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| \cdot \left|\det \boldsymbol{J}\boldsymbol{F}^{-1}\right| = \int_{\boldsymbol{F}(\Delta)} f.
+\end{align*}
+综合 ① 和 ②，即证得对于非负函数 $f \geqslant 0$，恒有
+\[
+\int_{\boldsymbol{F}(\Delta)} f = \int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|.
+\]
+
+(2) 一般连续函数 $f \in C^0(\boldsymbol{F}(\Delta), \mathbb{R})$.
+
+令
+\[
+f^+(\boldsymbol{P}) = \max\{f(\boldsymbol{P}), 0\} \geqslant 0,\quad f^-(\boldsymbol{P}) = -\min\{f(\boldsymbol{P}), 0\} \geqslant 0.
+\]
+则 $f = f^+ - f^-$，且 $f^+$ 与 $f^-$ 均在 $\boldsymbol{F}(\Omega)$ 上非负连续。由积分的线性性质及第 (1) 步的结论，立即推得
+\begin{align*}
+\int_{\boldsymbol{F}(\Delta)} f &= \int_{\boldsymbol{F}(\Delta)} f^+ - \int_{\boldsymbol{F}(\Delta)} f^- \\
+&= \int_\Delta (f^+ \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| - \int_\Delta (f^- \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right| \\
+&= \int_\Delta (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|. \qedhere
+\end{align*}
+\end{proof}
+
+下面我们给出定理证明中引用的四个基本引理：
+
+\begin{lemma}\label{lem:10.4.1}
+设 $\Omega \subset \mathbb{R}^2$ 为开集，$\boldsymbol{F}\colon \Omega \to \mathbb{R}^2$。如果 $\boldsymbol{F} \in C^1(\Omega, \mathbb{R}^2)$，$l$ 为零面积集，且 $\overline{l} \subset \Omega$，则像集 $\boldsymbol{F}(l)$ 也为零面积集.
+\end{lemma}
+
+\begin{proof}
+因为 $l$ 为零面积集，故 $l$ 有界，$\overline{l}$ 为紧致集。存在有界开集 $\Omega_0$，满足
+\[
+\overline{l} \subset \Omega_0 \subset \overline{\Omega}_0 \subset \Omega.
+\]
+从而距离 $\delta = \operatorname{dist}(\overline{l}, \partial\Omega_0) > 0$。任给 $\varepsilon > 0$，因 $l$ 为零面积集，可作有限个边长为 $2a$ 的闭正方形 $I_1, I_2, \dots, I_n$，使得 $\operatorname{diam} I_i = 2\sqrt{2}a < \delta$，且
+\[
+l \subset \bigcup_{i=1}^n I_i \subset \Omega_0 \subset \Omega,\quad 4n a^2 = \sum_{i=1}^n v(I_i) < \varepsilon.
+\]
+由 $\boldsymbol{F} \in C^1(\Omega, \mathbb{R}^2)$，导数范数 $\|\boldsymbol{J}\boldsymbol{F}\|$ 在紧集 $\overline{\Omega}_0$ 上有界，设其上界为 $M$。设 $\boldsymbol{p}^i$ 为正方形 $I_i$ 的中心，由拟微分中值定理，对任给 $\boldsymbol{p} \in I_i$，有
+\[
+\|\boldsymbol{F}(\boldsymbol{p}) - \boldsymbol{F}(\boldsymbol{p}^i)\| \leqslant M \|\boldsymbol{p} - \boldsymbol{p}^i\| \leqslant \sqrt{2} M a.
+\]
+因此，像集 $\boldsymbol{F}(I_i)$ 包含在中心为 $\boldsymbol{F}(\boldsymbol{p}^i)$、边长为 $2\sqrt{2} M a$ 的正方形中，其面积总和满足
+\[
+\sum_{i=1}^n (2\sqrt{2} M a)^2 = 8 M^2 n a^2 = 2 M^2 (4 n a^2) < 2 M^2 \varepsilon.
+\]
+由 $\varepsilon$ 的任意性，可知 $\boldsymbol{F}(l)$ 为零面积集.
+\end{proof}
+
+\begin{lemma}\label{lem:10.4.2}
+设 $\Omega \subset \mathbb{R}^2$ 为开集，映射 $\boldsymbol{F}\colon \Omega \to \mathbb{R}^2$ 满足定理 \ref{thm:10.4.1} 的条件 $(1^\circ)$、$(2^\circ)$ 和 $(3^\circ)$。则：
+\begin{enumerate}
+  \item 若有界集 $\Delta$ 满足 $\overline{\Delta} \subset \Omega$，则 $\partial\boldsymbol{F}(\Delta) = \boldsymbol{F}(\partial\Delta)$；
+  \item 若 $\Delta \subset \Omega$ 且 $\Delta$ 为有面积集，则 $\boldsymbol{F}(\Delta)$ 亦为有面积集.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) 因 $\overline{\Delta}$ 紧致且 $\boldsymbol{F}$ 连续，故 $\boldsymbol{F}(\overline{\Delta})$ 紧致。由拓扑包含关系：
+\[
+\partial\boldsymbol{F}(\Delta) \subset \overline{\boldsymbol{F}(\Delta)} \subset \boldsymbol{F}(\overline{\Delta}) = \boldsymbol{F}(\Delta^\circ) \cup \boldsymbol{F}(\partial\Delta).
+\]
+根据逆映射定理，$\boldsymbol{F}(\Delta^\circ)$ 为开集且包含于 $\boldsymbol{F}(\Delta)$，故 $\boldsymbol{F}(\Delta^\circ) \subset (\boldsymbol{F}(\Delta))^\circ$。因而
+\[
+\partial\boldsymbol{F}(\Delta) \subset \boldsymbol{F}(\partial\Delta).
+\]
+反之，若 $\boldsymbol{p} \in \boldsymbol{F}(\partial\Delta)$，存在 $\boldsymbol{t} \in \partial\Delta$ 使 $\boldsymbol{F}(\boldsymbol{t}) = \boldsymbol{p}$。存在序列 $\boldsymbol{t}_n \in \Delta$ 与 $\tilde{\boldsymbol{t}}_n \in \Delta^c$，均收敛到 $\boldsymbol{t}$。由连续性及 $\boldsymbol{F}$ 为单射知，$\boldsymbol{F}(\boldsymbol{t}_n) \in \boldsymbol{F}(\Delta)$，$\boldsymbol{F}(\tilde{\boldsymbol{t}}_n) \in (\boldsymbol{F}(\Delta))^c$，因此其极限点 $\boldsymbol{p} \in \partial\boldsymbol{F}(\Delta)$。故 $\boldsymbol{F}(\partial\Delta) \subset \partial\boldsymbol{F}(\Delta)$。综上有 $\partial\boldsymbol{F}(\Delta) = \boldsymbol{F}(\partial\Delta)$。
+
+(2) 由定理 \ref{thm:10.2.5}，$\Delta$ 为有面积集等价于 $\partial\Delta$ 为零面积集。由引理 \ref{lem:10.4.1}，$\boldsymbol{F}(\partial\Delta)$ 也是零面积集。结合 (1) 知 $\partial\boldsymbol{F}(\Delta) = \boldsymbol{F}(\partial\Delta)$ 为零面积集，故 $\boldsymbol{F}(\Delta)$ 为有面积集.
+\end{proof}
+
+\begin{lemma}\label{lem:10.4.3}
+设仿射变换
+\[
+\begin{pmatrix} x \\ y \end{pmatrix} = \boldsymbol{L}(u, v) = \boldsymbol{A} \begin{pmatrix} u \\ v \end{pmatrix} + \boldsymbol{w},\quad \boldsymbol{A} = \begin{pmatrix} a & b \\ c & d \end{pmatrix},\quad \det \boldsymbol{A} \neq 0.
+\]
+则 $\boldsymbol{L}$ 将闭矩形区间 $I = [u_0, u_1] \times [v_0, v_1]$ 映成平行四边形 $\boldsymbol{L}(I)$，且其面积为
+\[
+v(\boldsymbol{L}(I)) = |\det \boldsymbol{A}| v(I) = |\det \boldsymbol{J}\boldsymbol{L}| v(I).
+\]
+\end{lemma}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.75, >=Latex]
+    \begin{scope}[shift={(0,0)}]
+      \draw[->] (-0.5,0) -- (4.2,0) node[below] {$u$};
+      \draw[->] (0,-0.5) -- (0,4) node[left] {$v$};
+      \node[below left] at (0,0) {$O$};
+      \coordinate (A) at (1,1);
+      \coordinate (B) at (3,1);
+      \coordinate (C) at (3,3);
+      \coordinate (D) at (1,3);
+      \draw[dashed] (1,0) node[below] {$u_0$} -- (A) -- (0,1) node[left] {$v_0$};
+      \draw[dashed] (3,0) node[below] {$u_1$} -- (B);
+      \draw[dashed] (0,3) node[left] {$v_1$} -- (D);
+      \draw[very thick] (A) rectangle (C);
+      \draw[->, thick] (0,0) -- (A);
+      \draw[->, thick] (A) -- (B) node[midway, below, font=\footnotesize] {$\begin{pmatrix} u_1-u_0 \\ 0 \end{pmatrix}$};
+      \draw[->, thick] (A) -- (D) node[midway, left, font=\footnotesize] {$\begin{pmatrix} 0 \\ v_1-v_0 \end{pmatrix}$};
+    \end{scope}
+
+    \draw[->, thick] (4.8, 1.8) -- (6.2, 1.8) node[midway, above] {$\boldsymbol{L}$};
+
+    \begin{scope}[shift={(7,0)}]
+      \draw[->] (-0.5,0) -- (5.5,0) node[below] {$x$};
+      \draw[->] (0,-0.5) -- (0,4.5) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \coordinate (A2) at (1.5,1.2);
+      \coordinate (B2) at (4.2,1.8);
+      \coordinate (C2) at (4.8,3.8);
+      \coordinate (D2) at (2.1,3.2);
+      \draw[very thick] (A2) -- (B2) -- (C2) -- (D2) -- cycle;
+      \draw[->, thick] (0,0) -- (A2);
+      \draw[->, thick] (A2) -- (B2) node[midway, below right, font=\footnotesize] {$\boldsymbol{A}\begin{pmatrix} u_1-u_0 \\ 0 \end{pmatrix}$};
+      \draw[->, thick] (A2) -- (D2) node[midway, left, font=\footnotesize] {$\boldsymbol{A}\begin{pmatrix} 0 \\ v_1-v_0 \end{pmatrix}$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{仿射变换下矩形变为平行四边形}\label{fig:10.4.2}
+\end{figure}
+
+\begin{proof}
+矩形 $I$ 的面积为 $v(I) = (u_1-u_0)(v_1-v_0)$。其边界向量经线性变换后，两相邻边向量分别为
+\[
+\boldsymbol{\alpha} = \boldsymbol{A} \begin{pmatrix} u_1-u_0 \\ 0 \end{pmatrix} = \begin{pmatrix} a(u_1-u_0) \\ c(u_1-u_0) \end{pmatrix},\quad
+\boldsymbol{\beta} = \boldsymbol{A} \begin{pmatrix} 0 \\ v_1-v_0 \end{pmatrix} = \begin{pmatrix} b(v_1-v_0) \\ d(v_1-v_0) \end{pmatrix}.
+\]
+平行四边形的面积等于两向量的叉积模长：
+\[
+v(\boldsymbol{L}(I)) = \|\boldsymbol{\alpha} \times \boldsymbol{\beta}\| = \left|\det \begin{pmatrix} a(u_1-u_0) & b(v_1-v_0) \\ c(u_1-u_0) & d(v_1-v_0) \end{pmatrix}\right| = |\det \boldsymbol{A}| v(I). \qedhere
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:10.4.4}
+设 $\Omega \subset \mathbb{R}^2$ 为开集，映射 $\boldsymbol{F}\colon \Omega \to \mathbb{R}^2$ 满足定理 \ref{thm:10.4.1} 的条件 $(1^\circ)$、$(2^\circ)$ 与 $(3^\circ)$。如果 $f$ 为 $\boldsymbol{F}(\Omega)$ 上的非负连续函数，则有：
+\begin{enumerate}
+  \item 任给 $\boldsymbol{\tau}_0 \in \Omega$ 和 $\varepsilon > 0$，存在 $\boldsymbol{\tau}_0$ 的开邻域 $G$，对所有包含于 $G$ 的中心为 $\boldsymbol{\tau}_0$ 的正方形闭区间 $I$（边长为 $a$），均有
+  \[
+  \boldsymbol{F}(I) \subset \boldsymbol{L}(I_1),
+  \]
+  其中 $\boldsymbol{L}$ 为 $\boldsymbol{F}$ 在 $\boldsymbol{\tau}_0$ 处的仿射切映射，$I_1$ 为与 $I$ 同中心、边长为 $(1+\zeta)a$ 的正方形（$\zeta$ 由一致连续模量控制）；
+  \item $\displaystyle \int_{\boldsymbol{F}(I)} f \leqslant \int_I (f \circ \boldsymbol{F}) \left|\det \boldsymbol{J}\boldsymbol{F}\right|$。
+\end{enumerate}
+\end{lemma}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.85, >=Latex]
+    \draw[thick] (-2,-2) rectangle (2,2);
+    \node[above left] at (-2,2) {$I_1$};
+    \fill[gray!25] (-1.3,-1.3) rectangle (1.3,1.3);
+    \draw[very thick] (-1.3,-1.3) rectangle (1.3,1.3);
+    \node at (0,0.6) {$I$};
+    \fill (0,-0.2) circle (1.5pt) node[below] {$\boldsymbol{\tau}_0$};
+    \fill (0.7,0.7) circle (1.5pt) node[above right] {$\boldsymbol{\tau}$};
+    \fill (2.3,1.0) circle (1.5pt) node[right] {$\boldsymbol{\lambda}$};
+    \draw[<->] (-2, -0.5) -- (-1.3, -0.5) node[midway, above, font=\footnotesize] {$\frac{\zeta a}{2}$};
+    \draw[<->] (0.5, -2) -- (0.5, -1.3) node[midway, right, font=\footnotesize] {$\frac{\zeta a}{2}$};
+  \end{tikzpicture}
+  \caption{同中心正方形区间 $I$ 与外扩区间 $I_1$}\label{fig:10.4.3}
+\end{figure}
+
+\begin{remark}\label{rem:10.4.1}
+在实际计算中，若变换在区域的边界上（或个别零测集上）Jacobi 行列式等于零，或者不是一一对应的，只要在区域内部满足定理 \ref{thm:10.4.1} 的条件，换元公式依然成立。这是因为零面积集上的积分不改变整体的二重积分值。
+\end{remark}
+
+\subsection*{直角坐标下的换元计算}
+
+\begin{example}\label{ex:10.4.1}
+计算二重积分
+\[
+\iint_\Omega \frac{x-y+1}{x+y+2}\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 是以 $(-1, 0)$，$(0, -1)$，$(1, 0)$，$(0, 1)$ 为顶点的正方形闭区域（图 \ref{fig:10.4.4}）.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, >=Latex]
+    \draw[->] (-1.8,0) -- (1.8,0) node[below] {$x$};
+    \draw[->] (0,-1.8) -- (0,1.8) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \coordinate (A) at (1,0);
+    \coordinate (B) at (0,1);
+    \coordinate (C) at (-1,0);
+    \coordinate (D) at (0,-1);
+    \fill[gray!20] (A) -- (B) -- (C) -- (D) -- cycle;
+    \draw[thick] (A) -- (B) node[midway, above right, font=\footnotesize] {$x+y=1$};
+    \draw[thick] (B) -- (C) node[midway, above left, font=\footnotesize] {$y-x=1$};
+    \draw[thick] (C) -- (D) node[midway, below left, font=\footnotesize] {$x+y=-1$};
+    \draw[thick] (D) -- (A) node[midway, below right, font=\footnotesize] {$x-y=1$};
+    \node at (0.3,0.3) {$\Omega$};
+    \fill (A) circle (1.2pt) node[below right] {$1$};
+    \fill (B) circle (1.2pt) node[above left] {$1$};
+    \fill (C) circle (1.2pt) node[below left] {$-1$};
+    \fill (D) circle (1.2pt) node[below left] {$-1$};
+  \end{tikzpicture}
+  \caption{例 \ref{ex:10.4.1} 中的正方形积分区域 $\Omega$}\label{fig:10.4.4}
+\end{figure}
+
+\begin{proof}[解]
+区域 $\Omega$ 的四条边界线分别为 $x+y=\pm 1$ 与 $x-y=\pm 1$。令
+\[
+u = x+y,\quad v = x-y.
+\]
+解出 $x, y$ 得
+\[
+x = \frac{u+v}{2},\quad y = \frac{u-v}{2}.
+\]
+其 Jacobi 行列式为
+\[
+\frac{\partial(x, y)}{\partial(u, v)} = \det \begin{pmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & -\frac{1}{2} \end{pmatrix} = -\frac{1}{2}.
+\]
+在新变量 $(u, v)$ 下，积分区域变为 $\Delta = [-1, 1] \times [-1, 1]$。由换元公式得：
+\begin{align*}
+\iint_\Omega \frac{x-y+1}{x+y+2}\,\mathrm{d}x\mathrm{d}y &= \iint_\Delta \frac{v+1}{u+2} \left|-\frac{1}{2}\right|\mathrm{d}u\mathrm{d}v \\
+&= \frac{1}{2} \int_{-1}^1 \frac{\mathrm{d}u}{u+2} \int_{-1}^1 (v+1)\,\mathrm{d}v \\
+&= \frac{1}{2} \left[\ln(u+2)\right]_{-1}^1 \cdot \left[\frac{v^2}{2}+v\right]_{-1}^1 = \ln 3. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.2}
+设 $\Omega$ 为由直线 $x=0, y=0$ 与 $x+y=1$ 所围成的三角形闭区域，求二重积分
+\[
+\iint_\Omega \mathrm{e}^{\frac{x-y}{x+y}}\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=Latex]
+      \draw[->] (-0.3,0) -- (1.6,0) node[below] {$x$};
+      \draw[->] (0,-0.3) -- (0,1.6) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (0,0) -- (1,0) -- (0,1) -- cycle;
+      \draw[thick] (0,0) -- (1,0) node[below] {$1$} -- (0,1) node[left] {$1$} -- cycle;
+      \node at (0.3,0.3) {$\Omega$};
+      \node[above right, font=\footnotesize] at (0.5,0.5) {$x+y=1$};
+    \end{tikzpicture}
+    \caption{例 \ref{ex:10.4.2} 区域 $\Omega$}\label{fig:10.4.5}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=Latex]
+      \draw[->] (-0.3,0) -- (1.6,0) node[below] {$u$};
+      \draw[->] (0,-1.3) -- (0,1.3) node[left] {$v$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (0,0) -- (1,1) -- (1,-1) -- cycle;
+      \draw[thick] (0,0) -- (1,1) node[above right, font=\footnotesize] {$v=u$} -- (1,-1) node[below, font=\footnotesize] {$u=1$} -- cycle;
+      \node[below right, font=\footnotesize] at (0.5,-0.5) {$v=-u$};
+      \node at (0.6,0) {$\Delta$};
+    \end{tikzpicture}
+    \caption{变换后区域 $\Delta$}\label{fig:10.4.6}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解]
+令 $u = x+y, v = x-y$。则 $x = \frac{u+v}{2}, y = \frac{u-v}{2}$，Jacobi 行列式绝对值为 $\frac{1}{2}$。
+在 $(u, v)$ 平面上，边界变为：
+$x=0 \implies v=-u$；$y=0 \implies v=u$；$x+y=1 \implies u=1$。
+故新区域为 $\Delta = \{(u, v) \mid 0 \leqslant u \leqslant 1, -u \leqslant v \leqslant u\}$（图 \ref{fig:10.4.6}）。
+\begin{align*}
+\iint_\Omega \mathrm{e}^{\frac{x-y}{x+y}}\,\mathrm{d}x\mathrm{d}y &= \frac{1}{2} \int_0^1 \mathrm{d}u \int_{-u}^u \mathrm{e}^{\frac{v}{u}}\,\mathrm{d}v \\
+&= \frac{1}{2} \int_0^1 \left[ u \mathrm{e}^{\frac{v}{u}} \right]_{v=-u}^{v=u} \mathrm{d}u \\
+&= \frac{1}{2} (\mathrm{e} - \mathrm{e}^{-1}) \int_0^1 u\,\mathrm{d}u = \frac{\mathrm{e}^2 - 1}{4\mathrm{e}}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.3}
+设 $\Omega$ 为由四条抛物线
+\[
+y^2 = px,\quad y^2 = qx,\quad x^2 = ay,\quad x^2 = by\quad (0 < p < q,\; 0 < a < b)
+\]
+所围成的封闭区域（图 \ref{fig:10.4.7}）。计算 $\Omega$ 的面积及二重积分 $\iint_\Omega \frac{1}{xy}\,\mathrm{d}x\mathrm{d}y$ 和 $\iint_\Omega xy\,\mathrm{d}x\mathrm{d}y$。
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, >=Latex]
+    \draw[->] (-0.3,0) -- (3.5,0) node[below] {$x$};
+    \draw[->] (0,-0.3) -- (0,3.5) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw[thick, domain=0.2:2.8, smooth] plot (\x, {sqrt(2.5*\x)}) node[right, font=\footnotesize] {$y^2=qx$};
+    \draw[thick, domain=0.2:3.0, smooth] plot (\x, {sqrt(1.0*\x)}) node[right, font=\footnotesize] {$y^2=px$};
+    \draw[thick, domain=0.2:1.8, smooth] plot (\x, {1.2*\x*\x}) node[above, font=\footnotesize] {$x^2=ay$};
+    \draw[thick, domain=0.2:2.2, smooth] plot (\x, {0.6*\x*\x}) node[above, font=\footnotesize] {$x^2=by$};
+    \fill[gray!25] (0.86, 0.93) to[bend left=10] (1.35, 1.83) to[bend right=10] (1.92, 1.38) to[bend left=10] (1.20, 0.72) -- cycle;
+    \node at (1.3, 1.2) {$\Omega$};
+  \end{tikzpicture}
+  \caption{四条抛物线围成的区域 $\Omega$}\label{fig:10.4.7}
+\end{figure}
+
+\begin{proof}[解]
+作变量代换：
+\[
+u = \frac{y^2}{x},\quad v = \frac{x^2}{y}.
+\]
+则 $u \in [p, q], v \in [a, b]$。容易求得 $uv = xy$，$u^2 v = y^3$，$uv^2 = x^3$。
+计算 Jacobi 行列式：
+\[
+\frac{\partial(u, v)}{\partial(x, y)} = \det \begin{pmatrix} -\frac{y^2}{x^2} & \frac{2y}{x} \\ \frac{2x}{y} & -\frac{x^2}{y^2} \end{pmatrix} = 1 - 4 = -3.
+\]
+从而 $\left|\frac{\partial(x, y)}{\partial(u, v)}\right| = \frac{1}{3}$。因此：
+\[
+v(\Omega) = \iint_\Omega 1\,\mathrm{d}x\mathrm{d}y = \int_p^q \mathrm{d}u \int_a^b \frac{1}{3}\,\mathrm{d}v = \frac{(q-p)(b-a)}{3}.
+\]
+\[
+\iint_\Omega \frac{1}{xy}\,\mathrm{d}x\mathrm{d}y = \int_p^q \mathrm{d}u \int_a^b \frac{1}{3uv}\,\mathrm{d}v = \frac{1}{3} \ln\frac{q}{p} \ln\frac{b}{a}.
+\]
+\[
+\iint_\Omega xy\,\mathrm{d}x\mathrm{d}y = \int_p^q \mathrm{d}u \int_a^b \frac{uv}{3}\,\mathrm{d}v = \frac{(q^2-p^2)(b^2-a^2)}{12}. \qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.4.4}
+求二重积分
+\[
+\iint_\Omega (\sqrt{x} + \sqrt{y})\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 由 $\sqrt{x} + \sqrt{y} = 1, x = 0, y = 0$ 围成（图 \ref{fig:10.4.8}）.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.8, >=Latex]
+      \draw[->] (-0.2,0) -- (1.4,0) node[below] {$x$};
+      \draw[->] (0,-0.2) -- (0,1.4) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick, domain=0:1, smooth] plot (\x, {(1-sqrt(\x))*(1-sqrt(\x))});
+      \fill[gray!20, domain=0:1, smooth] (0,0) -- (0,1) plot (\x, {(1-sqrt(\x))*(1-sqrt(\x))}) -- (1,0) -- cycle;
+      \draw[thick] (0,1) node[left] {$1$} -- (0,0) -- (1,0) node[below] {$1$};
+      \node at (0.25,0.25) {$\Omega$};
+      \node[above right, font=\footnotesize] at (0.35,0.35) {$\sqrt{x}+\sqrt{y}=1$};
+    \end{tikzpicture}
+    \caption{例 \ref{ex:10.4.4} 区域 $\Omega$}\label{fig:10.4.8}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.8, >=Latex]
+      \draw[->] (-0.2,0) -- (1.4,0) node[below] {$\varphi$};
+      \draw[->] (0,-0.2) -- (0,1.4) node[left] {$r$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (0,0) rectangle (1.1,1);
+      \draw[thick] (0,0) -- (1.1,0) node[below] {$\frac{\pi}{2}$} -- (1.1,1) -- (0,1) node[left] {$1$} -- cycle;
+      \node at (0.55,0.5) {$\Delta$};
+    \end{tikzpicture}
+    \caption{广义极坐标变换后区域 $\Delta$}\label{fig:10.4.9}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解法 1]
+作广义极坐标变换（图 \ref{fig:10.4.9}）：
+\[
+x = r^2 \cos^4\varphi,\quad y = r^2 \sin^4\varphi,\quad r \in [0, 1],\;\varphi \in \left[0, \frac{\pi}{2}\right].
+\]
+此时 $\sqrt{x} + \sqrt{y} = r(\cos^2\varphi + \sin^2\varphi) = r$。计算其 Jacobi 行列式：
+\[
+\frac{\partial(x, y)}{\partial(r, \varphi)} = \det \begin{pmatrix} 2r \cos^4\varphi & -4r^2 \cos^3\varphi \sin\varphi \\ 2r \sin^4\varphi & 4r^2 \sin^3\varphi \cos\varphi \end{pmatrix} = 8r^3 \cos^3\varphi \sin^3\varphi.
+\]
+从而
+\begin{align*}
+\iint_\Omega (\sqrt{x} + \sqrt{y})\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}r \int_0^{\pi/2} r \cdot 8r^3 \cos^3\varphi \sin^3\varphi\,\mathrm{d}\varphi \\
+&= 8 \left(\int_0^1 r^4\,\mathrm{d}r\right) \left(\int_0^{\pi/2} \cos^3\varphi \sin^3\varphi\,\mathrm{d}\varphi\right) \\
+&= 8 \cdot \frac{1}{5} \cdot \frac{1}{2} B(2, 2) = \frac{8}{5} \cdot \frac{1}{12} = \frac{2}{15}.
+\end{align*}
+\end{proof}
+
+\begin{proof}[解法 2]
+也可以利用累次积分直接计算：
+\begin{align*}
+\iint_\Omega (\sqrt{x} + \sqrt{y})\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}x \int_0^{(1-\sqrt{x})^2} (\sqrt{x} + \sqrt{y})\,\mathrm{d}y \\
+&= \int_0^1 \left[ \sqrt{x}(1-\sqrt{x})^2 + \frac{2}{3}(1-\sqrt{x})^3 \right]\mathrm{d}x = \frac{2}{15}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.5}
+计算由曲线 $xy=1, xy=2$ 及直线 $y=x, y=4x$ 围成的图形 $\Omega$ 的面积（图 \ref{fig:10.4.10}，图 \ref{fig:10.4.11}）.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.4, >=Latex]
+      \draw[->] (-0.2,0) -- (2.6,0) node[below] {$x$};
+      \draw[->] (0,-0.2) -- (0,3.2) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick, domain=0.4:2.4, smooth] plot (\x, {1/\x}) node[below, font=\scriptsize] {$xy=1$};
+      \draw[thick, domain=0.7:2.4, smooth] plot (\x, {2/\x}) node[above right, font=\scriptsize] {$xy=2$};
+      \draw[thick, domain=0:2.0] plot (\x, {\x}) node[right, font=\scriptsize] {$y=x$};
+      \draw[thick, domain=0:0.75] plot (\x, {4*\x}) node[above, font=\scriptsize] {$y=4x$};
+      \fill[gray!25] (0.5,2) to[bend right=15] (0.707,2.83) to[bend left=10] (1.414,1.414) to[bend left=15] (1,1) -- cycle;
+      \node at (0.9,1.8) {$\Omega$};
+    \end{tikzpicture}
+    \caption{例 \ref{ex:10.4.5} 区域 $\Omega$}\label{fig:10.4.10}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.2, >=Latex]
+      \draw[->] (-0.2,0) -- (2.6,0) node[below] {$u$};
+      \draw[->] (0,-0.2) -- (0,4.5) node[left] {$v$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (1,1) rectangle (2,4);
+      \draw[thick] (1,1) rectangle (2,4);
+      \node at (1.5,2.5) {$\Delta$};
+      \draw[dashed] (1,0) node[below] {$1$} -- (1,1) -- (0,1) node[left] {$1$};
+      \draw[dashed] (2,0) node[below] {$2$} -- (2,4) -- (0,4) node[left] {$4$};
+    \end{tikzpicture}
+    \caption{矩形参数区域 $\Delta$}\label{fig:10.4.11}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解]
+令 $u = xy, v = \frac{y}{x}$。则 $u \in [1, 2], v \in [1, 4]$。解出 $x = \sqrt{u/v}, y = \sqrt{uv}$。
+计算 Jacobi 行列式：
+\[
+\frac{\partial(u, v)}{\partial(x, y)} = \det \begin{pmatrix} y & x \\ -\frac{y}{x^2} & \frac{1}{x} \end{pmatrix} = \frac{2y}{x} = 2v.
+\]
+从而 $\left|\frac{\partial(x, y)}{\partial(u, v)}\right| = \frac{1}{2v}$。
+所求面积为：
+\[
+v(\Omega) = \iint_\Omega 1\,\mathrm{d}x\mathrm{d}y = \int_1^2 \mathrm{d}u \int_1^4 \frac{1}{2v}\,\mathrm{d}v = (2-1) \cdot \frac{1}{2} \ln 4 = \ln 2. \qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.4.6}
+计算二重积分（图 \ref{fig:10.4.12}）
+\[
+\iint_{\substack{x^4+y^4 \leqslant 1 \\ x \geqslant 0,\; y \geqslant 0}} xy\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.8, >=Latex]
+    \draw[->] (-0.2,0) -- (1.5,0) node[below] {$x$};
+    \draw[->] (0,-0.2) -- (0,1.5) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw[thick, domain=0:1, samples=60, smooth] plot (\x, {(1-\x^4)^(0.25)});
+    \fill[gray!20, domain=0:1, samples=60, smooth] (0,0) -- (0,1) plot (\x, {(1-\x^4)^(0.25)}) -- (1,0) -- cycle;
+    \draw[thick] (0,1) node[left] {$1$} -- (0,0) -- (1,0) node[below] {$1$};
+    \node at (0.35,0.35) {$\Omega$};
+    \node[above right, font=\footnotesize] at (0.5,0.7) {$x^4+y^4=1$};
+  \end{tikzpicture}
+  \caption{区域 $x^4+y^4 \leqslant 1$}\label{fig:10.4.12}
+\end{figure}
+
+\begin{proof}[解]
+作广义极坐标代换：
+\[
+x^2 = r \cos\varphi,\quad y^2 = r \sin\varphi,\quad r \in [0, 1],\;\varphi \in \left[0, \frac{\pi}{2}\right].
+\]
+即 $x = \sqrt{r\cos\varphi}, y = \sqrt{r\sin\varphi}$。
+计算 Jacobi 行列式：
+\[
+\frac{\partial(x, y)}{\partial(r, \varphi)} = \frac{1}{4\sqrt{r\cos\varphi}\sqrt{r\sin\varphi}} \cdot r = \frac{1}{4\cos^{1/2}\varphi \sin^{1/2}\varphi}.
+\]
+从而被积元素为
+\[
+xy \left|\frac{\partial(x, y)}{\partial(r, \varphi)}\right|\mathrm{d}r\mathrm{d}\varphi = \sqrt{r\cos\varphi}\sqrt{r\sin\varphi} \cdot \frac{1}{4\sqrt{\cos\varphi\sin\varphi}}\,\mathrm{d}r\mathrm{d}\varphi = \frac{r}{4}\,\mathrm{d}r\mathrm{d}\varphi.
+\]
+故原积分为：
+\[
+\iint_\Omega xy\,\mathrm{d}x\mathrm{d}y = \int_0^{\pi/2} \mathrm{d}\varphi \int_0^1 \frac{r}{4}\,\mathrm{d}r = \frac{\pi}{2} \cdot \frac{1}{8} = \frac{\pi}{16}. \qedhere
+\]
+\end{proof}
+
+\subsection*{二维极坐标换元公式}
+
+平面极坐标变换为：
+\[
+x = r\cos\varphi,\quad y = r\sin\varphi.
+\]
+其 Jacobi 行列式为
+\[
+\frac{\partial(x, y)}{\partial(r, \varphi)} = \det \begin{pmatrix} \cos\varphi & -r\sin\varphi \\ \sin\varphi & r\cos\varphi \end{pmatrix} = r.
+\]
+因此面积微元为 $\mathrm{d}\sigma = r\,\mathrm{d}r\mathrm{d}\varphi$。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=Latex]
+    \draw[->] (-0.3,0) -- (4.8,0) node[below] {$x$};
+    \draw[->] (0,-0.3) -- (0,4.2) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw (0,0) -- (35:4.6) node[right, font=\footnotesize] {$\varphi$};
+    \draw (0,0) -- (55:4.6) node[above right, font=\footnotesize] {$\varphi+\mathrm{d}\varphi$};
+    \draw (30:2.8) arc (30:60:2.8) node[right, font=\footnotesize] {$r$};
+    \draw (30:3.8) arc (30:60:3.8) node[right, font=\footnotesize] {$r+\mathrm{d}r$};
+    \fill[gray!30] (35:2.8) arc (35:55:2.8) -- (55:3.8) arc (55:35:3.8) -- cycle;
+    \draw[thick] (35:2.8) arc (35:55:2.8) -- (55:3.8) arc (55:35:3.8) -- cycle;
+    \node at (45:3.3) [font=\scriptsize] {$\mathrm{d}\sigma$};
+    \draw[<->] (25:2.8) -- (25:3.8) node[midway, right, font=\footnotesize] {$\mathrm{d}r$};
+    \draw[->] (1,0) arc (0:35:1) node[midway, right, font=\footnotesize] {$\varphi$};
+    \draw[->] (1.3,0) arc (0:55:1.3);
+    \node at (45:1.5) [font=\footnotesize] {$\mathrm{d}\varphi$};
+  \end{tikzpicture}
+  \caption{极坐标网格微元的面积元素 $\mathrm{d}\sigma = r\,\mathrm{d}r\mathrm{d}\varphi$}\label{fig:10.4.13}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.9, >=Latex]
+      \draw[->] (-0.3,0) -- (3.6,0) node[below] {$x$};
+      \draw[->] (0,-0.3) -- (0,3.6) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \foreach \r in {1, 1.7, 2.4, 3.1} {
+        \draw[gray!60] (0:\r) arc (0:90:\r);
+      }
+      \foreach \ang in {15, 30, 45, 60, 75} {
+        \draw[gray!60] (0,0) -- (\ang:3.3);
+      }
+      \fill[pattern=north east lines, pattern color=gray] (30:1.7) arc (30:45:1.7) -- (45:2.4) arc (45:30:2.4) -- cycle;
+      \draw[thick] (30:1.7) arc (30:45:1.7) -- (45:2.4) arc (45:30:2.4) -- cycle;
+      \node at (37.5:2.05) [font=\scriptsize] {$I_{ij}$};
+    \end{tikzpicture}
+    \caption{$xy$ 平面极网格}\label{fig:10.4.14}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.9, >=Latex]
+      \draw[->] (-0.3,0) -- (3.6,0) node[below] {$r$};
+      \draw[->] (0,-0.3) -- (0,3.6) node[left] {$\varphi$};
+      \node[below left] at (0,0) {$O$};
+      \draw[step=0.7, gray!60] (0.7,0.7) grid (2.8,2.8);
+      \fill[pattern=north east lines, pattern color=gray] (1.4,1.4) rectangle (2.1,2.1);
+      \draw[thick] (1.4,1.4) rectangle (2.1,2.1);
+      \node at (1.75,1.75) [font=\scriptsize] {$\Delta_{ij}$};
+    \end{tikzpicture}
+    \caption{$r\varphi$ 平面矩形网格}\label{fig:10.4.15}
+  \end{minipage}
+\end{figure}
+
+\begin{theorem}[二维极坐标换元定理]\label{thm:10.4.2}
+设 $\Omega = (0, +\infty) \times (0, 2\pi)$，$\Delta \subset \overline{\Omega}$ 为有面积集，则 $\boldsymbol{F}(\Delta)$ 也为有面积集。如果 $f$ 在 $\boldsymbol{F}(\Delta)$ 上连续，则
+\[
+\iint_{\boldsymbol{F}(\Delta)} f(x, y)\,\mathrm{d}x\mathrm{d}y = \iint_\Delta f(r\cos\varphi, r\sin\varphi)\, r\,\mathrm{d}r\mathrm{d}\varphi.
+\]
+\end{theorem}
+
+\begin{example}\label{ex:10.4.7}
+计算二重积分
+\[
+\iint_{\frac{x^2}{a^2}+\frac{y^2}{b^2} \leqslant 1} \sqrt{\frac{x^2}{a^2}+\frac{y^2}{b^2}}\,\mathrm{d}x\mathrm{d}y,\quad a > 0,\; b > 0.
+\]
+\end{example}
+
+\begin{proof}[解]
+作广义极坐标变换：$x = ar\cos\varphi, y = br\sin\varphi$。
+此时 $\frac{\partial(x, y)}{\partial(r, \varphi)} = abr$，新区域为 $r \in [0, 1], \varphi \in [0, 2\pi]$。
+\begin{align*}
+\iint_\Omega \sqrt{\frac{x^2}{a^2}+\frac{y^2}{b^2}}\,\mathrm{d}x\mathrm{d}y &= \int_0^{2\pi} \mathrm{d}\varphi \int_0^1 r \cdot abr\,\mathrm{d}r \\
+&= 2\pi ab \int_0^1 r^2\,\mathrm{d}r = \frac{2}{3}\pi ab. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.8}
+计算椭圆 $\frac{x^2}{a^2}+\frac{y^2}{b^2} = 1$ 所围图形 $\Omega$ 的面积 $v(\Omega)$。
+\end{example}
+
+\begin{proof}[解法 1]
+应用广义极坐标变换 $x = ar\cos\varphi, y = br\sin\varphi$：
+\[
+v(\Omega) = \iint_\Omega \mathrm{d}x\mathrm{d}y = \int_0^{2\pi} \mathrm{d}\varphi \int_0^1 abr\,\mathrm{d}r = 2\pi ab \cdot \frac{1}{2} = \pi ab.
+\]
+\end{proof}
+
+\begin{proof}[解法 2]
+作压缩变换 $u = \frac{x}{a}, v = \frac{y}{b}$，将椭圆变为单位圆盘 $u^2+v^2 \leqslant 1$，其面积为 $\pi$。
+由于 Jacobi 行列式为 $ab$，故 $v(\Omega) = ab \cdot \pi = \pi ab$。
+\end{proof}
+
+\begin{example}\label{ex:10.4.9}
+计算二重积分
+\[
+\iint_{[0, a]^2} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.4, >=Latex]
+      \draw[->] (-0.2,0) -- (2.3,0) node[below] {$x$};
+      \draw[->] (0,-0.2) -- (0,2.3) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) rectangle (1.8,1.8);
+      \draw[dashed] (0,0) -- (1.8,1.8);
+      \fill[gray!20] (0,0) -- (1.8,0) -- (1.8,1.8) -- cycle;
+      \node at (1.2,0.5) {$\Omega_1$};
+      \node at (0.6,1.2) {$\Omega_2$};
+      \node[below] at (1.8,0) {$a$};
+      \node[left] at (0,1.8) {$a$};
+    \end{tikzpicture}
+    \caption{对称分割 $\Omega_1$ 与 $\Omega_2$}\label{fig:10.4.16}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.4, >=Latex]
+      \draw[->] (-0.2,0) -- (2.3,0) node[below] {$x$};
+      \draw[->] (0,-0.2) -- (0,2.3) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) rectangle (1.8,1.8);
+      \fill[gray!20] (0,0) -- (1.8,0) -- (1.8,1.8) -- cycle;
+      \draw[thick] (0,0) -- (1.8,1.8);
+      \draw[->, thick] (0,0) -- (25:1.98) node[right, font=\footnotesize] {$r=\frac{a}{\cos\varphi}$};
+      \draw[->] (0.8,0) arc (0:25:0.8) node[midway, right, font=\footnotesize] {$\varphi$};
+      \draw[->] (0.5,0) arc (0:45:0.5) node[midway, above right, font=\footnotesize] {$\frac{\pi}{4}$};
+    \end{tikzpicture}
+    \caption{极坐标射线穿过区域}\label{fig:10.4.17}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解]
+由区域关于直线 $y=x$ 的对称性（图 \ref{fig:10.4.16}）：
+\[
+\iint_{[0, a]^2} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y = 2 \iint_{\Omega_1} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y.
+\]
+在 $\Omega_1$ 上，极角 $\varphi \in [0, \pi/4]$，对固定的 $\varphi$，极径 $r$ 从 $0$ 变到直线 $x=a$ 上，即 $r = \frac{a}{\cos\varphi}$（图 \ref{fig:10.4.17}）。
+\begin{align*}
+\iint_{[0, a]^2} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y &= 2 \int_0^{\pi/4} \mathrm{d}\varphi \int_0^{\frac{a}{\cos\varphi}} r \cdot r\,\mathrm{d}r \\
+&= \frac{2a^3}{3} \int_0^{\pi/4} \frac{1}{\cos^3\varphi}\,\mathrm{d}\varphi.
+\end{align*}
+利用割线积分公式 $\int \sec^3\varphi\,\mathrm{d}\varphi = \frac{1}{2}(\sec\varphi\tan\varphi + \ln|\sec\varphi+\tan\varphi|)$，代入上、下限得：
+\[
+\iint_{[0, a]^2} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y = \frac{a^3}{3} \left[ \sqrt{2} + \ln(1+\sqrt{2}) \right]. \qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.4.10}
+计算二重积分
+\[
+\iint_\Omega \mathrm{e}^{\frac{y}{x+y}}\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 为以 $(0, 0)$，$(0, 1)$，$(1, 0)$ 为顶点的三角形闭区域（图 \ref{fig:10.4.18}）.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.31\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.3, >=Latex]
+      \draw[->] (-0.2,0) -- (1.5,0) node[below] {$x$};
+      \draw[->] (0,-0.2) -- (0,1.5) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (0,0) -- (1,0) -- (0,1) -- cycle;
+      \draw[thick] (0,0) -- (1,0) node[below] {$1$} -- (0,1) node[left] {$1$} -- cycle;
+      \node at (0.3,0.3) {$\Omega$};
+    \end{tikzpicture}
+    \caption{原区域 $\Omega$}\label{fig:10.4.18}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.31\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.3, >=Latex]
+      \draw[->] (-0.2,0) -- (1.5,0) node[below] {$v$};
+      \draw[->] (0,-0.2) -- (0,1.5) node[left] {$u$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (0,0) -- (1,0) -- (1,1) -- cycle;
+      \draw[thick] (0,0) -- (1,0) node[below] {$1$} -- (1,1) node[above right, font=\footnotesize] {$u=v$} -- cycle;
+      \node at (0.6,0.3) {$\Delta$};
+    \end{tikzpicture}
+    \caption{解法 1 区域}\label{fig:10.4.19}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.31\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.3, >=Latex]
+      \draw[->] (-0.2,0) -- (1.5,0) node[below] {$v$};
+      \draw[->] (0,-0.2) -- (0,1.5) node[left] {$u$};
+      \node[below left] at (0,0) {$O$};
+      \fill[gray!20] (0,0) -- (1,1) -- (0,1) -- cycle;
+      \draw[thick] (0,0) -- (1,1) node[below right, font=\footnotesize] {$u=v$} -- (0,1) node[left] {$1$} -- cycle;
+      \node at (0.3,0.6) {$\Delta$};
+    \end{tikzpicture}
+    \caption{解法 2 区域}\label{fig:10.4.20}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解法 1]
+令 $u = y, v = x+y$（图 \ref{fig:10.4.19}）。则 $x = v-u, y = u$。
+Jacobi 行列式绝对值为 $1$。区域变为 $0 \leqslant v \leqslant 1, 0 \leqslant u \leqslant v$。
+\begin{align*}
+\iint_\Omega \mathrm{e}^{\frac{y}{x+y}}\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}v \int_0^v \mathrm{e}^{\frac{u}{v}}\,\mathrm{d}u \\
+&= \int_0^1 \left[ v \mathrm{e}^{\frac{u}{v}} \right]_0^v \mathrm{d}v = (\mathrm{e}-1) \int_0^1 v\,\mathrm{d}v = \frac{\mathrm{e}-1}{2}.
+\end{align*}
+\end{proof}
+
+\begin{proof}[解法 2]
+也可以令 $u = x+y, v = \frac{y}{x+y}$。此时 $x = u(1-v), y = uv$。
+Jacobi 行列式为 $u$。新区域为 $u \in [0, 1], v \in [0, 1]$（矩形！）。
+\[
+\iint_\Omega \mathrm{e}^{\frac{y}{x+y}}\,\mathrm{d}x\mathrm{d}y = \int_0^1 \mathrm{e}^v\,\mathrm{d}v \int_0^1 u\,\mathrm{d}u = (\mathrm{e}-1) \cdot \frac{1}{2} = \frac{\mathrm{e}-1}{2}. \qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.4.11}
+计算二重积分
+\[
+\iint_{\substack{x^2+y^2 \leqslant R^2 \\ x \geqslant 0,\; y \geqslant 0}} \mathrm{e}^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{proof}[解]
+应用极坐标变换 $x = r\cos\varphi, y = r\sin\varphi$：
+\begin{align*}
+\iint_{\substack{x^2+y^2 \leqslant R^2 \\ x \geqslant 0,\; y \geqslant 0}} \mathrm{e}^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y &= \int_0^{\pi/2} \mathrm{d}\varphi \int_0^R \mathrm{e}^{-r^2} r\,\mathrm{d}r \\
+&= \frac{\pi}{2} \cdot \left[ -\frac{1}{2} \mathrm{e}^{-r^2} \right]_0^R = \frac{\pi}{4}(1-\mathrm{e}^{-R^2}). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.12}
+证明著名的概率积分（Euler-Poisson 积分）：
+\[
+I = \int_0^{+\infty} \mathrm{e}^{-x^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2}.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.4, >=Latex]
+    \draw[->] (-0.3,0) -- (3.5,0) node[below] {$x$};
+    \draw[->] (0,-0.3) -- (0,3.5) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw[thick] (0,0) rectangle (2,2);
+    \node[below] at (2,0) {$R$};
+    \node[left] at (0,2) {$R$};
+    \draw[thick, domain=0:90] plot ({2*cos(\x)}, {2*sin(\x)});
+    \draw[thick, domain=0:90] plot ({2.828*cos(\x)}, {2.828*sin(\x)});
+    \node[above right] at (45:2.828) {$\sqrt{2}R$};
+    \fill[gray!20] (0,0) -- (2,0) arc (0:90:2) -- cycle;
+    \node at (45:1.2) {$\Omega_1$};
+    \node at (45:2.3) {$\Omega_2$};
+  \end{tikzpicture}
+  \caption{正方形与内切、外接圆弧夹逼}\label{fig:10.4.21}
+\end{figure}
+
+\begin{proof}
+设 $I(R) = \int_0^R \mathrm{e}^{-x^2}\,\mathrm{d}x$。考虑在正方形区域 $[0, R]^2$ 上的积分：
+\[
+I^2(R) = \left(\int_0^R \mathrm{e}^{-x^2}\,\mathrm{d}x\right) \left(\int_0^R \mathrm{e}^{-y^2}\,\mathrm{d}y\right) = \iint_{[0, R]^2} \mathrm{e}^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y.
+\]
+构造四分之一圆扇区：
+\[
+\Omega_1 = \{(x, y) \mid x \geqslant 0, y \geqslant 0, x^2+y^2 \leqslant R^2\},
+\]
+\[
+\Omega_2 = \{(x, y) \mid x \geqslant 0, y \geqslant 0, x^2+y^2 \leqslant 2R^2\}.
+\]
+显然 $\Omega_1 \subset [0, R]^2 \subset \Omega_2$（图 \ref{fig:10.4.21}）。由于被积函数恒正，由积分保序性：
+\[
+\iint_{\Omega_1} \mathrm{e}^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y \leqslant I^2(R) \leqslant \iint_{\Omega_2} \mathrm{e}^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y.
+\]
+由例 \ref{ex:10.4.11}，左右两端的值分别为 $\frac{\pi}{4}(1-\mathrm{e}^{-R^2})$ 与 $\frac{\pi}{4}(1-\mathrm{e}^{-2R^2})$。
+令 $R \to +\infty$，由两边夹准则得到：
+\[
+\lim_{R \to +\infty} I^2(R) = \frac{\pi}{4} \implies I = \int_0^{+\infty} \mathrm{e}^{-x^2}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2}. \qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.4.13}
+计算极坐标曲线 $r = r(\varphi)$ 夹在 $\alpha \leqslant \varphi \leqslant \beta$ 之间的图形 $\Omega$ 的面积（图 \ref{fig:10.4.22}），其中 $r(\varphi)$ 为 $[\alpha, \beta]$ 上的非负连续函数。
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=Latex]
+      \draw[->] (-0.3,0) -- (3.5,0) node[below] {$x$};
+      \draw[->] (0,-0.3) -- (0,3) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw (0,0) -- (20:3.2) node[right, font=\footnotesize] {$\varphi=\alpha$};
+      \draw (0,0) -- (70:3.0) node[above, font=\footnotesize] {$\varphi=\beta$};
+      \draw[thick, domain=20:70, smooth] plot (\x: {1.8 + 0.8*cos(2*\x)});
+      \fill[gray!25, domain=20:70, smooth] (0,0) -- (20:{1.8+0.8*cos(40)}) plot (\x: {1.8 + 0.8*cos(2*\x)}) -- cycle;
+      \node at (45:1.5) {$\Omega$};
+      \node[above right, font=\footnotesize] at (50:2.3) {$r=r(\varphi)$};
+    \end{tikzpicture}
+    \caption{扇形曲边图形}\label{fig:10.4.22}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.9, >=Latex]
+      \draw[->] (-1.2,0) -- (3.2,0) node[below] {$x$};
+      \draw[->] (0,-2.2) -- (0,2.2) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick, domain=0:360, samples=100, smooth] plot ({1*(1+cos(\x))*cos(\x)}, {1*(1+cos(\x))*sin(\x)});
+      \fill[gray!20, domain=0:360, samples=100, smooth] plot ({1*(1+cos(\x))*cos(\x)}, {1*(1+cos(\x))*sin(\x)});
+      \node at (1.0,0.8) {$\Omega$};
+      \fill (2,0) circle (1.2pt) node[below right] {$2a$};
+      \node[above right, font=\footnotesize] at (1.5,1.5) {$r=a(1+\cos\varphi)$};
+    \end{tikzpicture}
+    \caption{心形线}\label{fig:10.4.23}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解]
+直接化为累次积分：
+\[
+v(\Omega) = \iint_\Omega \mathrm{d}x\mathrm{d}y = \int_\alpha^\beta \mathrm{d}\varphi \int_0^{r(\varphi)} r\,\mathrm{d}r = \frac{1}{2} \int_\alpha^\beta r^2(\varphi)\,\mathrm{d}\varphi. \qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:10.4.14}
+求心形线 $r = a(1+\cos\varphi)\; (a > 0)$ 所围图形 $\Omega$ 的面积（图 \ref{fig:10.4.23}）.
+\end{example}
+
+\begin{proof}[解]
+由心形线关于极轴的对称性，应用例 \ref{ex:10.4.13} 的公式：
+\begin{align*}
+v(\Omega) &= 2 \cdot \frac{1}{2} \int_0^\pi a^2 (1+\cos\varphi)^2\,\mathrm{d}\varphi \\
+&= a^2 \int_0^\pi (1 + 2\cos\varphi + \cos^2\varphi)\,\mathrm{d}\varphi \\
+&= a^2 \left(\pi + 0 + \frac{\pi}{2}\right) = \frac{3}{2}\pi a^2. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.15}
+计算二重积分
+\[
+\iint_\Omega (x^2+y^2)\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 为由双纽线 $(x^2+y^2)^2 = a^2(x^2-y^2)\; (a > 0)$ 所围成的闭区域（图 \ref{fig:10.4.24}）.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.3, >=Latex]
+    \draw[->] (-2.2,0) -- (2.2,0) node[below] {$x$};
+    \draw[->] (0,-1.3) -- (0,1.3) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw[thick, domain=-45:45, samples=80, smooth] plot ({1.8*sqrt(cos(2*\x))*cos(\x)}, {1.8*sqrt(cos(2*\x))*sin(\x)});
+    \draw[thick, domain=135:225, samples=80, smooth] plot ({1.8*sqrt(cos(2*(\x-180)))*cos(\x)}, {1.8*sqrt(cos(2*(\x-180)))*sin(\x)});
+    \fill[gray!20, domain=-45:45, samples=80, smooth] (0,0) -- plot ({1.8*sqrt(cos(2*\x))*cos(\x)}, {1.8*sqrt(cos(2*\x))*sin(\x)}) -- cycle;
+    \fill[gray!20, domain=135:225, samples=80, smooth] (0,0) -- plot ({1.8*sqrt(cos(2*(\x-180)))*cos(\x)}, {1.8*sqrt(cos(2*(\x-180)))*sin(\x)}) -- cycle;
+    \node at (1.0,0.3) {$\Omega$};
+    \fill (1.8,0) circle (1.2pt) node[below right] {$a$};
+    \fill (-1.8,0) circle (1.2pt) node[below left] {$-a$};
+    \draw[dashed] (-1.2,-1.2) -- (1.2,1.2);
+    \draw[dashed] (-1.2,1.2) -- (1.2,-1.2);
+  \end{tikzpicture}
+  \caption{双纽线区域 $\Omega$}\label{fig:10.4.24}
+\end{figure}
+
+\begin{proof}[解]
+在极坐标下，双纽线方程为 $r^4 = a^2 r^2 \cos(2\varphi) \implies r^2 = a^2 \cos(2\varphi)$。
+由对称性，只需求出第一象限部分并乘 4（此时 $\varphi \in [0, \pi/4]$）：
+\begin{align*}
+\iint_\Omega (x^2+y^2)\,\mathrm{d}x\mathrm{d}y &= 4 \int_0^{\pi/4} \mathrm{d}\varphi \int_0^{a\sqrt{\cos(2\varphi)}} r^2 \cdot r\,\mathrm{d}r \\
+&= 4 \int_0^{\pi/4} \left[ \frac{r^4}{4} \right]_0^{a\sqrt{\cos(2\varphi)}} \mathrm{d}\varphi \\
+&= a^4 \int_0^{\pi/4} \cos^2(2\varphi)\,\mathrm{d}\varphi = a^4 \cdot \frac{\pi}{8} = \frac{\pi a^4}{8}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.16}
+球体 $x^2+y^2+z^2 \leqslant a^2$ 被圆柱面 $x^2+y^2 = ax$ 所截，求截下的 Viviani 立体的体积 $V$（图 \ref{fig:10.4.25}，图 \ref{fig:10.4.26}）.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.52\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=Latex]
+      \draw[->] (0,0) -- (3,0) node[below] {$y$};
+      \draw[->] (0,0) -- (0,3) node[left] {$z$};
+      \draw[->] (0,0) -- (-135:2.2) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (2.5,0) arc (0:90:2.5);
+      \draw[thick] (0,2.5) arc (90:180:1.77 and 2.5);
+      \draw[thick, domain=0:90, samples=60, smooth] plot ({2.0*sin(\x)*cos(\x) - 0.707*2.0*cos(\x)*cos(\x)}, {-0.707*2.0*cos(\x)*cos(\x)});
+      \draw[very thick, domain=0:90, samples=60, smooth] plot ({2.0*sin(\x)*cos(\x) - 0.707*2.0*cos(\x)*cos(\x)}, {2.0*sin(\x) - 0.707*2.0*cos(\x)*cos(\x)});
+      \node at (0.3,0.8) {$V$};
+    \end{tikzpicture}
+    \caption{Viviani 立体第一卦限部分}\label{fig:10.4.25}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.42\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.4, >=Latex]
+      \draw[->] (-0.3,0) -- (2.2,0) node[below] {$x$};
+      \draw[->] (0,-0.3) -- (0,1.5) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick, domain=0:180] plot ({0.8 + 0.8*cos(\x)}, {0.8*sin(\x)});
+      \fill[gray!20, domain=0:180] (0,0) -- plot ({0.8 + 0.8*cos(\x)}, {0.8*sin(\x)}) -- (1.6,0) -- cycle;
+      \draw[thick] (0,0) -- (1.6,0) node[below] {$a$};
+      \fill (0.8,0) circle (1pt) node[below] {$\frac{a}{2}$};
+      \node at (0.8,0.5) {$\Omega$};
+    \end{tikzpicture}
+    \caption{底面半圆区域 $\Omega$}\label{fig:10.4.26}
+  \end{minipage}
+\end{figure}
+
+\begin{proof}[解]
+由立体的对称性，整个立体的体积等于第一卦限部分体积的 4 倍。第一卦限部分是以顶盖曲面 $z = \sqrt{a^2-x^2-y^2}$、底面为半圆域 $\Omega\colon x^2+y^2 \leqslant ax\; (y \geqslant 0)$ 的曲顶柱体。
+在极坐标下，底面圆周方程为 $r = a\cos\varphi$，$\varphi \in [0, \pi/2]$。
+因此：
+\begin{align*}
+V &= 4 \iint_\Omega \sqrt{a^2-x^2-y^2}\,\mathrm{d}x\mathrm{d}y \\
+&= 4 \int_0^{\pi/2} \mathrm{d}\varphi \int_0^{a\cos\varphi} \sqrt{a^2-r^2}\, r\,\mathrm{d}r \\
+&= 4 \int_0^{\pi/2} \left[ -\frac{1}{3} (a^2-r^2)^{3/2} \right]_0^{a\cos\varphi} \mathrm{d}\varphi \\
+&= \frac{4}{3} a^3 \int_0^{\pi/2} (1 - \sin^3\varphi)\,\mathrm{d}\varphi \\
+&= \frac{4}{3} a^3 \left( \frac{\pi}{2} - \frac{2}{3} \right) = \frac{2}{9}(3\pi - 4)a^3. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:10.4.17}
+计算二重积分
+\[
+\iint_{\substack{x^2+y^2 \leqslant a^2 \\ x \geqslant 0,\; y \geqslant 0}} \frac{\mathrm{d}x\mathrm{d}y}{(1+x^2+y^2)^2}.
+\]
+\end{example}
+
+\begin{proof}[解]
+应用极坐标变换：
+\begin{align*}
+\iint_\Omega \frac{\mathrm{d}x\mathrm{d}y}{(1+x^2+y^2)^2} &= \int_0^{\pi/2} \mathrm{d}\varphi \int_0^a \frac{r}{(1+r^2)^2}\,\mathrm{d}r \\
+&= \frac{\pi}{2} \cdot \left[ -\frac{1}{2(1+r^2)} \right]_0^a = \frac{\pi}{4} \left(1 - \frac{1}{1+a^2}\right) = \frac{\pi a^2}{4(1+a^2)}. \qedhere
+\end{align*}
+\end{proof}
+
+\begin{exblock}{练习题 10.4}
+1. 计算下列二重积分：
+\begin{enumerate}
+  \item $\displaystyle \iint_\Omega (x-y)^2 \sin(x+y)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega$ 是由四点 $(\pi, 0)$，$(2\pi, \pi)$，$(\pi, 2\pi)$，$(0, \pi)$ 顺次连成的正方形闭区域；
+  \item $\displaystyle \iint_\Omega (x+y)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega$ 由曲线 $y^2 = 2x, x+y = 4, x+y = 12$ 围成；
+  \item $\displaystyle \iint_\Omega (x^2+y^2)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega$ 由曲线 $x^2-y^2 = 1, x^2-y^2 = 2, xy = 1$ 与 $xy = 2$ 围成；
+  \item $\displaystyle \iint_\Omega (x-y^2)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega$ 由曲线 $y = 2, y^2-y-x = 0, y^2+2y-x = 0$ 围成.
+\end{enumerate}
+
+2. 计算下列二重积分：
+\begin{enumerate}
+  \item $\displaystyle \iint_{\pi^2 \leqslant x^2+y^2 \leqslant 4\pi^2} \sin\sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{x^2+y^2 \leqslant Rx} \sqrt{R^2-x^2-y^2}\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{\substack{x^2+y^2 \leqslant 1 \\ x \geqslant 0,\; y \geqslant 0}} \sqrt{xy}\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{x^2+y^2 \leqslant x+y} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{x^2+y^2 \leqslant x+y} (x+y)\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{x^2+y^2 \leqslant a^2} |xy|\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{|x|+|y| \leqslant 1} (x^2+y^2)\,\mathrm{d}x\mathrm{d}y$；
+  \item $\displaystyle \iint_{x^2+y^2 \leqslant R^2} f'(x^2+y^2)\,\mathrm{d}x\mathrm{d}y$，其中 $f$ 为连续可微的单变量函数.
+\end{enumerate}
+
+3. 计算由下列曲线围成的平面图形的面积：
+\begin{enumerate}
+  \item $(a_1 x + b_1 y + c_1)^2 + (a_2 x + b_2 y + c_2)^2 = 1$，其中 $a_1 b_2 - a_2 b_1 \neq 0$；
+  \item $\sqrt{x} + \sqrt{y} = \sqrt{a}, x = 0$ 与 $y = 0$（$a > 0$）；
+  \item $x+y=a, x+y=b, y=\alpha x, y=\beta x$（$0 < a < b,\; 0 < \alpha < \beta$）；
+  \item $\displaystyle \left(\frac{x^2}{a^2}+\frac{y^2}{b^2}\right)^2 = x^2+y^2$；
+  \item $(x^2+y^2)^2 = 2a^2(x^2-y^2)$（双纽线）与 $x^2+y^2 \geqslant a^2$；
+  \item $(x-y)^2 + x^2 = a^2$（$a > 0$）.
+\end{enumerate}
+
+4. 求由下列曲面所围立体 $\Omega$ 的体积 $v(\Omega)$：
+\begin{enumerate}
+  \item 由曲面 $z = x^2+y^2$ 与平面 $z = x+y$ 所围成的立体；
+  \item 由锥面 $z^2 = \frac{x^2}{4}+\frac{y^2}{9}$ 与椭圆抛物面 $2z = \frac{x^2}{4}+\frac{y^2}{9}$ 所围成的立体.
+\end{enumerate}
+
+5. 在下列积分中引入新变量 $u, v$ 后，再将它化为累次积分：
+\begin{enumerate}
+  \item $\displaystyle \int_0^2 \mathrm{d}x \int_{1-x}^{2-x} f(x, y)\,\mathrm{d}y$，令 $u = x+y, v = x-y$；
+  \item $\displaystyle \iint_\Omega f(x, y)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega = \{(x, y) \mid \sqrt{x}+\sqrt{y} \leqslant \sqrt{a}, x \geqslant 0, y \geqslant 0\}$（$a > 0$），令 $x = u\cos^4 v, y = u\sin^4 v$；
+  \item $\displaystyle \iint_\Omega f(x, y)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega = \{(x, y) \mid x+y \leqslant a, x \geqslant 0, y \geqslant 0\}$（$a > 0$），令 $x+y=u, y=uv$.
+\end{enumerate}
+
+6. 作适当的变量代换，计算积分
+\[
+\iint_\Omega (x+y)\sin(x-y)\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega = \{(x, y) \mid 0 \leqslant x+y \leqslant \pi,\; 0 \leqslant x-y \leqslant \pi\}$.
+
+7. 证明：
+\[
+\iint_{|x|+|y| \leqslant 1} f(x+y)\,\mathrm{d}x\mathrm{d}y = \int_{-1}^1 f(t)\,\mathrm{d}t.
+\]
+
+8. 设常数 $a, b$ 不全为零. 证明：
+\[
+\iint_{x^2+y^2 \leqslant 1} f(ax+by+c)\,\mathrm{d}x\mathrm{d}y = 2 \int_{-1}^1 \sqrt{1-t^2} f(t\sqrt{a^2+b^2}+c)\,\mathrm{d}t.
+\]
+
+9. 设 $\Omega$ 为由曲线 $xy=1, xy=2, y=x$ 与 $y=4x$ 围成的图形在第一象限中的那一部分. 证明：
+\[
+\iint_\Omega f(xy)\,\mathrm{d}x\mathrm{d}y = \ln 2 \int_1^2 f(t)\,\mathrm{d}t.
+\]
+\end{exblock}
+
+\begin{exblock}{思考题 10.4}
+1. 证明积分不等式：
+\[
+\int_0^a \mathrm{e}^{-\frac{x^2}{2}}\,\mathrm{d}x < \left[ \frac{\pi}{2}\left(1 - \mathrm{e}^{-\frac{2a^2}{\pi}}\right) \right]^{\frac{1}{2}}.
+\]
+（提示：设 $I = \int_0^a \mathrm{e}^{-\frac{x^2}{2}}\,\mathrm{d}x$，考察在两同心圆盘与正方形上的二重积分并利用保序性放缩.）
+
+2. 设 $F(t) = \iint_{(x-t)^2+(y-t)^2 \leqslant a^2} \sqrt{x^2+y^2}\,\mathrm{d}x\mathrm{d}y$，求导数 $F'(t)$。
+
+3. 设 $F(t) = \iint_{x^2+y^2 \leqslant t^2} f(x, y)\,\mathrm{d}x\mathrm{d}y\; (t > 0)$：
+\begin{enumerate}
+  \item 当 $f(x, y)$ 为连续函数时，应用极坐标变换求 $F'(t)$；
+  \item 当 $f(x, y)$ 具有连续偏导数时，应用变换 $(x, y) = (tu, tv)$ 求 $F'(t)$.
+\end{enumerate}
+
+4. 设 $f(x, y)$ 为连续函数. 证明：
+\[
+u(x, y) = \frac{1}{2} \int_0^x \mathrm{d}\xi \int_{\xi-x+y}^{x+y-\xi} f(\xi, \eta)\,\mathrm{d}\eta
+\]
+满足二阶波动方程：
+\[
+\frac{\partial^2 u}{\partial x^2} - \frac{\partial^2 u}{\partial y^2} = f(x, y).
+\]
+
+5. 应用极坐标变换计算下列曲线所界平面图形的面积：
+\begin{enumerate}
+  \item $(x^3+y^3)^2 = x^2+y^2,\; x \geqslant 0, y \geqslant 0$（图 \ref{fig:10.4.27}）；
+  \item $(x^2+y^2)^2 = a(x^3-3xy^2)\; (a > 0)$（图 \ref{fig:10.4.28}）.
+\end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.3, >=Latex]
+      \draw[->] (-0.2,0) -- (1.8,0) node[below] {$x$};
+      \draw[->] (0,-0.2) -- (0,1.8) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick, domain=0:90, samples=60, smooth] plot (\x: {1.2/( (cos(\x))^3 + (sin(\x))^3 )^(0.5)});
+      \fill[gray!20, domain=0:90, samples=60, smooth] (0,0) -- plot (\x: {1.2/( (cos(\x))^3 + (sin(\x))^3 )^(0.5)}) -- cycle;
+      \node at (0.5,0.5) {$\Omega$};
+    \end{tikzpicture}
+    \caption{曲线 $(x^3+y^3)^2 = x^2+y^2$}\label{fig:10.4.27}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=Latex]
+      \draw[->] (-1.3,0) -- (1.8,0) node[below] {$x$};
+      \draw[->] (0,-1.5) -- (0,1.5) node[left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick, domain=-30:30, samples=50, smooth] plot (\x: {1.4*cos(3*\x)});
+      \draw[thick, domain=90:150, samples=50, smooth] plot (\x: {1.4*cos(3*(\x-120))});
+      \draw[thick, domain=210:270, samples=50, smooth] plot (\x: {1.4*cos(3*(\x-240))});
+      \fill[gray!20, domain=-30:30, samples=50, smooth] (0,0) -- plot (\x: {1.4*cos(3*\x)}) -- cycle;
+      \fill[gray!20, domain=90:150, samples=50, smooth] (0,0) -- plot (\x: {1.4*cos(3*(\x-120))}) -- cycle;
+      \fill[gray!20, domain=210:270, samples=50, smooth] (0,0) -- plot (\x: {1.4*cos(3*(\x-240))}) -- cycle;
+      \node at (0.6,0) {$\Omega$};
+    \end{tikzpicture}
+    \caption{三叶玫瑰线}\label{fig:10.4.28}
+  \end{minipage}
+\end{figure}
+
+6. 应用广义的极坐标变换
+\[
+(x, y) = (a r \cos^\alpha\varphi,\; b r \sin^\alpha\varphi),\quad r \geqslant 0,
+\]
+求下列曲线所界平面图形的面积（参数 $a, b, h, k$ 均为正数）：
+\begin{enumerate}
+  \item $\displaystyle \frac{x^2}{a^2}+\frac{y^2}{b^2} = \frac{x}{h}+\frac{y}{k}$；
+  \item $\displaystyle \left(\frac{x}{a}+\frac{y}{b}\right)^4 = \frac{x^2}{h^2}+\frac{y^2}{k^2}\quad (x > 0, y > 0)$；
+  \item $\displaystyle \left(\frac{x}{a}+\frac{y}{b}\right)^4 = \frac{x^2}{h^2}-\frac{y^2}{k^2}\quad (x > 0, y > 0)$；
+  \item $\displaystyle \frac{x^3}{a^3}+\frac{y^3}{b^3} = \frac{x^2}{h^2}+\frac{y^2}{k^2},\quad x = 0, y = 0$；
+  \item $\displaystyle \sqrt[4]{\frac{x}{a}} + \sqrt[4]{\frac{y}{b}} = 1,\quad x = 0, y = 0$；
+  \item $\displaystyle \sqrt{\frac{x}{a}} + \sqrt{\frac{y}{b}} = 1,\; \sqrt{\frac{x}{a}} + \sqrt{\frac{y}{b}} = 2,\; \frac{x}{a} = \frac{y}{b},\; 4\frac{x}{a} = \frac{y}{b}$.
+\end{enumerate}
+
+7. 应用极坐标变换，求下列曲面所界立体的体积：
+\begin{enumerate}
+  \item $z^2 = xy,\; x^2+y^2 = a^2$；
+  \item $z = x+y,\; (x^2+y^2)^2 = 2xy,\; z = 0\; (x > 0, y > 0)$；
+  \item $z = x^2+y^2,\; x^2+y^2 = x,\; x^2+y^2 = 2x,\; z = 0$；
+  \item $x^2+y^2-az = 0,\; (x^2+y^2)^2 = a^2(x^2-y^2),\; z = 0\; (a > 0)$；
+  \item $z = \mathrm{e}^{-(x^2+y^2)},\; z = 0,\; x^2+y^2 = R^2$；
+  \item $z = x^2+y^2,\; z = x+y$.
+\end{enumerate}
+
+8. 证明：
+\[
+\lim_{R \to +\infty} \iint_{\substack{|x| \leqslant R \\ |y| \leqslant R}} (x^2+y^2)\mathrm{e}^{-(x^2+y^2)}\,\mathrm{d}x\mathrm{d}y = \pi.
+\]
+
+9. 平面上由 $2 \leqslant \frac{x}{x^2+y^2} \leqslant 4$ 与 $2 \leqslant \frac{y}{x^2+y^2} \leqslant 4$ 所确定的区域记为 $\Omega$（图 \ref{fig:10.4.29}）. 证明：
+\[
+\iint_\Omega \frac{1}{xy}\,\mathrm{d}x\mathrm{d}y = \ln^2 2.
+\]
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=2.2, >=Latex]
+    \draw[->] (-0.1,0) -- (0.8,0) node[below] {$x$};
+    \draw[->] (0,-0.1) -- (0,0.8) node[left] {$y$};
+    \node[below left] at (0,0) {$O$};
+    \draw[domain=0:90, gray!70] plot ({0.25*cos(\x)}, {0.25*sin(\x)});
+    \draw[domain=0:90, gray!70] plot ({0.125*cos(\x)}, {0.125*sin(\x)});
+    \fill[gray!30] (0.1,0.2) to[bend left=15] (0.2,0.25) to[bend left=15] (0.25,0.15) to[bend left=15] (0.12,0.1) -- cycle;
+    \draw[thick] (0.1,0.2) to[bend left=15] (0.2,0.25) to[bend left=15] (0.25,0.15) to[bend left=15] (0.12,0.1) -- cycle;
+    \node at (0.18,0.18) {$\Omega$};
+  \end{tikzpicture}
+  \caption{圆族相交确定的区域 $\Omega$}\label{fig:10.4.29}
+\end{figure}
+
+10. 设 $\Omega$ 为平面曲线 $xy=1, xy=3, y^2=x, y^2=3x$ 所围成的有界闭区域. 作变换 $(u, v) = \left(xy, \frac{y^2}{x}\right)$，证明：
+\[
+\iint_\Omega \frac{3x}{y^2+xy^3}\,\mathrm{d}x\mathrm{d}y = \frac{2}{3}\ln 2.
+\]
+
+11. 用两种方法证明：
+\[
+\iint_{|x|+|y| \leqslant 1} \frac{x^2-y^2}{\sqrt{x+y+3}}\,\mathrm{d}x\mathrm{d}y = 0.
+\]
+\end{exblock}

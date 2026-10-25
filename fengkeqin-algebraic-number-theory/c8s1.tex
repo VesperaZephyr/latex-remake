@@ -1,0 +1,279 @@
+% ============ 第八章 §1 完备赋值域 (原书 pp.267-275) ============
+\section{完备赋值域}\label{sec:ch8-s1}
+
+\begin{definition}\label{def:ch8-1}
+设 $(F,P)$ 是赋值域, $\varphi\in P$. $F$ 中序列 $\{a_n\}=\{a_1,a_2,\cdots,a_n,\cdots\}$ 叫作\emph{柯西序列}, 是指对每个 $\varepsilon>0$, 都存在自然数 $N$, 使得 $m,n>N$ 时, $\varphi(a_m-a_n)<\varepsilon$.
+
+$F$ 中序列 $\{a_n\}$ 叫作\emph{收敛}于 $a\in F$, 是指对每个 $\varepsilon>0$, 均存在自然数 $N$, 使得 $m>N$ 时, $\varphi(a_m-a)<\varepsilon$. 这表成 $\lim\limits_{n\to\infty}a_n=a$.
+
+由于 $P$ 的所有赋值给出 $F$ 的同一拓扑, 所以上述定义与 $\varphi$ 在 $P$ 中的选取方式无关, 即为拓扑域 $(F,P)$ 的性质.
+
+如果 $F$ 中每个柯西序列均收敛于 $F$ 中某个元素, 则 $(F,P)$ 叫作\emph{完备赋值域}, 或者称域 $F$ 是 $P$-完备的.
+
+$(\widehat{F},\widehat{P})$ 叫作是 $(F,P)$ 的\emph{完备化}, 是指
+
+(1) $(\widehat{F},\widehat{P})\supseteq(F,P)$;
+
+(2) $(\widehat{F},\widehat{P})$ 完备;
+
+(3) $F$ 在 $\widehat{F}$ 中稠密.
+\end{definition}
+
+\begin{example}
+$(\Q,\infty)$ 不是完备的赋值域, 即 $\Q$ 对于通常的绝对值不是完备的, 而 $\Q$ 对 $\infty$ 的完备化为 $(\R,\infty)$. 又如, 熟知 $(\C,\infty)$ 是完备赋值域.
+\end{example}
+
+在拓扑学中我们知道, 每个豪斯多夫拓扑空间 $X$ 都存在本质上惟一的完备化 $\widehat{X}$. 所谓本质上惟一是指: $X$ 的两个完备化拓扑空间是同胚的. 对于赋值域我们有类似结果.
+
+\begin{theorem}\label{thm:8.1}
+设 $(F,P)$ 是赋值域, 则
+
+(1) 存在 $(F,P)$ 的完备化赋值域.
+
+(2) 若赋值域 $(\widehat{F},\widehat{P})$ 和 $(\widetilde{F},\widetilde{P})$ 都是 $(F,P)$ 的完备化, 则存在惟一的 $F$-同构 $\sigma\colon\widehat{F}\to\widetilde{F}$, 使得 $\sigma(\widehat{P})=\widetilde{P}$.
+\end{theorem}
+
+\begin{proof}
+(1)（存在性）像拓扑学中所作的, 以 $R$ 表示 $F$ 的全部柯西序列所构成的集合, 在 $R$ 中定义
+\[
+  \{a_n\}\pm\{b_n\}=\{a_n\pm b_n\},\qquad\{a_n\}\cdot\{b_n\}=\{a_nb_n\}.
+\]
+不难验证, $R$ 对于上述运算形成交换环. 固定 $P$ 中一个赋值 $\varphi$, 并且设 $\varphi$ 满足三角形不等式. 由 $|\varphi(a)-\varphi(b)|\leqslant\varphi(a-b)$ 可知若 $\{a_n\}$ 是 $F$ 中柯西序列, 则 $\lim\varphi(a_n)$ 存在. 定义映射
+\[
+  \widehat{\varphi}\colon R\to\R,\qquad\{a_n\}\mapsto\lim\varphi(a_n),
+\]
+不难验证:
+\[
+  \text{(i) } \widehat{\varphi}(\{a_n\})\geqslant 0,
+\]
+\[
+  \text{(ii) } \widehat{\varphi}(\{a_n\}\cdot\{b_n\})=\widehat{\varphi}(\{a_n\})\widehat{\varphi}(\{b_n\}),
+\]
+\[
+  \text{(iii) } \widehat{\varphi}(\{a_n\}+\{b_n\})\leqslant\widehat{\varphi}(\{a_n\})+\widehat{\varphi}(\{b_n\}).
+\]
+由性质 (ii) 可知映射 $\widehat{\varphi}$ 是环的同态. 因此
+\[
+  K=\operatorname{Ker}\widehat{\varphi}
+  =\{\{a_n\}\in R\mid\lim\varphi(a_n)=0\}
+  =\{\{a_n\}\in R\mid a_n\to 0\}
+\]
+是 $R$ 中的理想, 并且是 $R$ 中的惟一极大理想. 从而 $\widehat{F}=R/K$ 是域, 并且 $\widehat{\varphi}$ 诱导出映射
+\[
+  \widehat{\varphi}\colon\widehat{F}\to\R.
+\]
+由上述性质 (i), (ii) 和 (iii) 可知 $\widehat{\varphi}$ 是域 $\widehat{F}$ 的赋值, 记 $\widehat{\varphi}$ 所在的素除子为 $\widehat{P}$. 于是 $(\widehat{F},\widehat{P})$ 是赋值域. 像在拓扑学中那样, 将 $F$ 中元素 $a$ 等同于 $\widehat{F}$ 中常数序列 $\{a\}$, 则 $F$ 可看成是 $\widehat{F}$ 的子域, 并且 $\widehat{F}$ 是 $F$ 的拓扑空间完备化（即 $\widehat{F}$ 对 $\widehat{\varphi}$-拓扑完备, 并且 $F$ 在 $\widehat{F}$ 中稠密）, 而且 $\widehat{\varphi}|_F=\varphi$, 所以赋值域 $(\widehat{F},\widehat{P})$ 是 $(F,P)$ 的完备化.
+
+(2)（惟一性）设 $(\widetilde{F},\widetilde{P})$ 是 $(F,P)$ 的另一个完备化赋值域. 对于 $\hat{\alpha}\in\widehat{F}$, 存在 $a_n\in F$, 使得在 $\widehat{F}$ 中 $\lim a_n=\hat{\alpha}$. 所以 $\{a_n\}$ 为 $F$ 中柯西序列, 从而在 $\widetilde{F}$ 中有极限 $\lim a_n=\tilde{\alpha}$, 作映射
+\[
+  \sigma\colon\widehat{F}\to\widetilde{F},\qquad\sigma(\hat{\alpha})=\tilde{\alpha},
+\]
+易知这个映射是可定义的（即 $\tilde{\alpha}$ 与 $a_n$ 的选取方式无关）, 并且 $\sigma$ 为域的 $F$-同构. 取 $\widehat{\varphi}\in\widehat{P}$, $\widetilde{\varphi}\in\widetilde{P}$, 则对于 $\hat{\alpha}\in\widehat{F}$, 取 $a_n\in F$, 使得 $\lim a_n=\hat{\alpha}$（在 $\widehat{F}$ 中）, 则
+\[
+  \widehat{\varphi}(\hat{\alpha})<1\Leftrightarrow\lim a_n^n=0\ (\text{在 } F\ \text{中})\Leftrightarrow\widetilde{\varphi}(\tilde{\alpha})=\widetilde{\varphi}(\sigma(\hat{\alpha}))<1.
+\]
+这就表明 $\sigma(\widehat{P})=\widetilde{P}$.
+\end{proof}
+
+\begin{theorem}\label{thm:8.2}
+设赋值域 $(\widehat{F},\widehat{P})$ 是 $(F,P)$ 的完备化, $P$（从而 $\widehat{P}$）是非阿素除子, 则
+
+(1) $e(\widehat{P}/P)=f(\widehat{P}/P)=1$, 特别地, $P$ 是离散的 $\Leftrightarrow\widehat{P}$ 是离散的.
+
+(2) 以 $\widehat{O}$ 表示 $\widehat{F}$ 对 $\widehat{P}$ 的赋值环, $O$ 为 $F$ 对 $P$ 的赋值环, 则 $\widehat{O}$ 是 $O$ 在 $\widehat{F}$ 中的拓扑闭包.
+\end{theorem}
+
+\begin{proof}
+(1) 令 $\hat{v}\in\widehat{P}$, $v=\hat{v}|_F\in P$. 对于 $0\neq\alpha\in\widehat{F}$, 存在 $0\neq a\in F$, 使得 $\hat{v}(a-\alpha)>\hat{v}(\alpha)$, 于是 $v(a)=\hat{v}(a)=\hat{v}(\alpha)$. 这表明 $\hat{v}(\widehat{F}^{\times})=v(F^{\times})$, 即 $e(\widehat{P}/P)=1$. 类似地, 设 $\bar{\alpha}$ 为 $(\widehat{F},\widehat{P})$ 的剩余类域中非零元素, $\alpha\in\widehat{O}$, 则存在 $a\in F$, 使得 $\hat{v}(a-\alpha)>0$. 但是 $\hat{v}(\alpha)=0$, 从而 $v(a)=0$. 于是 $a\in O\subseteq\widehat{O}$, $a-\alpha\in\widehat{\mathfrak{p}}$, 因此 $\bar{a}=\bar{\alpha}$. 这就表明 $f(\widehat{P}/P)=1$.
+
+(2) 令 $\hat{\varphi}\in\widehat{P}$ 满足三角形不等式, $\varphi=\hat{\varphi}|_F\in P$. 由 $|\varphi(a)-\varphi(b)|\leqslant\varphi(a-b)$ 可知 $\varphi$ 是拓扑空间 $(F,\varphi)$ 到实数拓扑空间 $(\R,\infty)$ 的（一致）连续函数. 所以若 $a_n\in O$, $\lim a_n=\alpha\in\widehat{F}$, 则 $\hat{\varphi}(\alpha)=\lim\varphi(a_n)\leqslant 1$, 即 $\alpha\in\widehat{O}$. 反之, 对 $\widehat{O}$ 中每个元素 $\alpha$, 存在 $a_n\in F$, 使得 $\lim a_n=\alpha$. 由于 $\hat{\varphi}(\alpha)\leqslant 1$, 可知对充分大的 $n$ 均有 $\hat{\varphi}(\alpha-a_n)<\hat{\varphi}(\alpha)$, 从而 $\varphi(a_n)=\hat{\varphi}(a_n)=\hat{\varphi}(\alpha)\leqslant 1$, 即对充分大的 $n$, $a_n\in O$. 这就证明了 $\widehat{O}$ 是 $O$ 的拓扑闭包.
+\end{proof}
+
+现在讨论完备赋值域的结构. 首先我们要证明, 完备的阿基米德赋值域本质上只有两个: 实数域和复数域（对赋值 $|\cdot|_{\infty}$）. 证明很初等, 但很有技巧性. 先证一个简单引理作为准备.
+
+\begin{lemma}\label{lem:ch8-1}
+(1) 设 $\varphi$ 是复数域 $\C$ 的赋值, 并且 $\varphi|_{\R}=|\cdot|$（通常绝对值）, 则 $\varphi$ 在 $\C$ 上也为 $|\cdot|$;
+
+(2) 设 $(\R,|\cdot|)\subseteq(F,\varphi)$ 是赋值域扩张, 则 $F=\R$ 或 $\C$, 并且 $\varphi=|\cdot|$.
+\end{lemma}
+
+\begin{proof}
+(1) 记 $i=\sqrt{-1}$, 则 $\varphi(i)=1$（因为 $i^4=1$）. 从而对复数 $\alpha=a+ib$（$a,b\in\R$）,
+\begin{align*}
+  \varphi(a+bi)&\leqslant\varphi(a)+\varphi(b)=|a|+|b|\\
+  &\leqslant\sqrt{2}\left|\sqrt{a^2+b^2}\right|=\sqrt{2}\,|\alpha|.
+\end{align*}
+对每个 $0\neq\alpha\in\C$, 令 $f(\alpha)=\varphi(\alpha)/|\alpha|$, 则 $0<f(\alpha)\leqslant\sqrt{2}$. 于是 $0<f(\alpha)=f(\alpha^n)^{\frac{1}{n}}\leqslant 2^{\frac{1}{2n}}$. 令 $n\to\infty$, 则 $0<f(\alpha)\leqslant 1$. 但是又有 $0<f(\alpha^{-1})=f(\alpha)^{-1}\leqslant 1$, 即 $f(\alpha)\geqslant 1$, 所以 $f(\alpha)=1$, 即对每个 $\alpha\in\C$, $\varphi(\alpha)=|\alpha|$.
+
+(2) 我们只需证明 $F/\R$ 是代数扩张（因为熟知 $\R$ 的代数扩域只有 $\R$ 和 $\C$, 再由 (1) 知 $\varphi=|\cdot|$）. 即要证 $F$ 中元素 $\xi$ 在 $\R$ 上均是代数的. 为此作映射
+\[
+  f\colon\C\to\R,\qquad f(\alpha)=\varphi\left(\xi^2-(\alpha+\bar{\alpha})\xi+\alpha\bar{\alpha}\right),
+\]
+其中 $\bar{\alpha}$ 表示 $\alpha$ 的复共轭. 我们只需证明存在 $\alpha\in\C$, 使得 $f(\alpha)=0$（于是 $\xi^2-(\alpha+\bar{\alpha})\xi+\alpha\bar{\alpha}=0$, 即 $\xi$ 在 $\R$ 上代数）.
+
+函数 $f$ 取非负实数值. 由
+\begin{align*}
+  |f(\alpha_1)-f(\alpha_2)|&\leqslant\varphi\left[\left(\alpha_1\bar{\alpha}_1-\alpha_2\bar{\alpha}_2\right)
+  +\left(\alpha_2+\bar{\alpha}_2-\alpha_1-\bar{\alpha}_1\right)\xi\right]\\
+  &\leqslant\left|\alpha_1\bar{\alpha}_1-\alpha_2\bar{\alpha}_2\right|
+  +\varphi(\xi)\left|\alpha_2+\bar{\alpha}_2-\alpha_1-\bar{\alpha}_1\right|
+\end{align*}
+可知 $f$ 是连续函数, 而且由
+\begin{align*}
+  f(\alpha)&\geqslant\varphi(\alpha\bar{\alpha})-\varphi\left((\alpha+\bar{\alpha})\xi\right)-\varphi(\xi)^2\\
+  &=|\alpha|^2-\varphi(\xi)|\alpha+\bar{\alpha}|-\varphi(\xi)^2
+\end{align*}
+可知 $\lim\limits_{|\alpha|\to\infty}f(\alpha)=+\infty$. 所以 $f(\alpha)$ 在 $\C$ 上达到它的最小值 $m\geqslant 0$. 我们只要证明 $m=0$. 如果 $m>0$, 则
+\[
+  S=\{\alpha\in\C\mid f(\alpha)=m\}
+\]
+是 $\C$ 的有界闭集. 令 $\alpha_0$ 为 $S$ 中绝对值最大者. 对于 $0<\varepsilon<m$, 以 $\alpha,\beta$ 表示实系数多项式 $x^2-(\alpha_0+\bar{\alpha}_0)x+\alpha_0\bar{\alpha}_0+\varepsilon$ 的两个复根, 则 $\alpha\beta=\alpha_0\bar{\alpha}_0+\varepsilon$. 所以 $|\alpha|$ 或 $|\beta|$ 大于 $|\alpha_0|$. 不妨设 $|\alpha|>|\alpha_0|$, 则 $\alpha\notin S$, 从而 $f(\alpha)>m$. 对 $n\geqslant 1$, 令
+\[
+  G(x)=\left[x^2-(\alpha_0+\bar{\alpha}_0)x+\alpha_0\bar{\alpha}_0\right]^n-(-\varepsilon)^n,
+\]
+则 $G(\alpha)=0$. 设 $G(x)$ 的 $2n$ 个复根为 $\beta_1,\cdots,\beta_{2n}$, 其中 $\beta_1=\alpha$, 则
+\[
+  G(x)=\prod_{i=1}^{2n}(x-\beta_i)=\prod_{i=1}^{2n}(x-\bar{\beta}_i),
+\]
+\[
+  G(x)^2=\prod_{i=1}^{2n}\left(x^2-(\beta_i+\bar{\beta}_i)x+\beta_i\bar{\beta}_i\right).
+\]
+于是
+\[
+  \varphi(G(\xi)^2)=\prod_{i=1}^{2n}f(\beta_i)\geqslant f(\alpha)m^{2n-1}.
+\]
+另一方面, $\varphi(G(\xi))\leqslant f(\alpha_0)^n+\varepsilon^n=m^n+\varepsilon^n$. 于是 $f(\alpha)m^{2n-1}\leqslant m^n+\varepsilon^n$. 令 $\varepsilon\to 0$ 就给出矛盾 $f(\alpha)\leqslant m$.
+\end{proof}
+
+\begin{theorem}[\emph{Ostrowski}]\label{thm:8.3}
+设 $(F,P)$ 是完备的阿基米德赋值域, 则 $F$ 同构于 $\R$ 或 $\C$, 并且在这种同构之下, $P$ 是素除子 $\infty$.
+\end{theorem}
+
+\begin{proof}
+由于阿基米德赋值域 $F$ 的特征为 $0$, 所以 $F$ 有子域 $\Q$, 而 $\Q$ 只有惟一的阿基米德赋值 $\infty$, 于是 $P|_{\Q}=\infty$, 即 $(\Q,\infty)\subseteq(F,P)$. 由于 $F$ 是完备的, 所以 $F$ 有子域同构于 $(\Q,\infty)$ 的完备化 $(\R,\infty)$. 再由引理 \ref{lem:ch8-1} 即得.
+\end{proof}
+
+现在考虑完备非阿赋值域的结构, 我们只讨论完备离散赋值域, 因为今后只涉及这种完备非阿赋值域.
+
+\begin{theorem}\label{thm:8.4}
+设 $(F,P)$ 是完备离散赋值域, $v$ 是 $P$ 中标准指数赋值, $\pi$ 为赋值环 $O$ 中的一个素元, $R$ 是 $O$ 对素理想 $\mathfrak{p}$ 的陪集完全代表系, 并且 $0\in R$（即取 $0$ 作为陪集 $\mathfrak{p}$ 的代表元）, 则 $F$ 的每个非零元素 $b$ 均可惟一表成（$\pi$-adic 展开）
+\[
+  b=\sum_{n=r}^{\infty}a_n\pi^n,\qquad a_n\in R\ (n\geqslant r),\ a_r\neq 0,
+\]
+其中 $r=v_P(b)$.
+\end{theorem}
+
+\begin{proof}
+设 $r=v(b)$, 则 $v(b/\pi^r)=0$, 于是 $0\neq\overline{(b/\pi^r)}\in\overline{F}=O/\mathfrak{p}$, 于是存在 $0\neq a_r\in R$, 使得 $\overline{(b/\pi^r)}=\overline{a}_r$. 所以 $(b/\pi^r)-a_r\in\mathfrak{p}=\pi O$, 即
+\[
+  b-a_r\pi^r\in\pi^{r+1}O.
+\]
+于是又存在 $a_{r+1}\in R$, 使得
+\[
+  (b-a_r\pi^r)/\pi^{r+1}\equiv a_{r+1}\ (\mathrm{mod}\ \mathfrak{p}),
+  \qquad b-a_r\pi^r-a_{r+1}\pi^{r+1}\in\pi^{r+2}O,
+\]
+如此继续下去, 即知
+\[
+  b-\left(a_r\pi^r+a_{r+1}\pi^{r+1}+\cdots+a_{r+s}\pi^{r+s}\right)\in\pi^{r+s+1}O,\qquad a_i\in R.
+\]
+令 $s\to+\infty$, 则
+\[
+  b=\lim_{s\to\infty}\sum_{n=r}^{r+s}a_n\pi^n=\sum_{n=r}^{\infty}a_n\pi^n.
+\]
+惟一性: 若又有
+\[
+  b=\sum_{n=s}^{\infty}b_n\pi^n,\qquad b_n\in R,\ b_s\neq 0,
+\]
+则 $r=v(b)=s$. 于是 $0=\sum_{n=r}^{\infty}(a_n-b_n)\pi^n$. 如果 $a_r\neq b_r$, 则因 $a_r$ 和 $b_r$ 是 $R$ 中不同元素, 因此 $a_r-b_r\in U$, 即 $v(a_r-b_r)=0$. 而
+\[
+  \infty=v(0)=v\left(\sum_{n=r}^{\infty}(a_n-b_n)\pi^n\right)=v\left((a_r-b_r)\pi^r\right)=r,
+\]
+这个矛盾表明 $a_r=b_r$, 于是 $0=\sum_{n=r+1}^{\infty}(a_n-b_n)\pi^n$, 从而又有 $a_{r+1}=b_{r+1}$. 如此下去即知对每个 $n\geqslant r$, 均有 $a_n=b_n$.
+\end{proof}
+
+\begin{corollary}
+在定理 \ref{thm:8.4} 的假定下, 若 $\overline{F}$ 是有限域, 则对每个 $r\in\Z$, $\mathfrak{p}^r$ 是 $F$ 的紧加法子群.
+\end{corollary}
+
+\begin{proof}
+由于 $\mathfrak{p}^r\to O$, $a\mapsto a\pi^{-r}$ 是同胚映射, 可知只需对 $O$ 证明紧性即可. 由 $\overline{F}=O/\mathfrak{p}$ 有限可知 $R$ 是有限集合（$|R|=|\overline{F}|$）, 而
+\[
+  O=\{\alpha\in F\mid v(\alpha)\geqslant 0\}
+  =\{\alpha=a_0+a_1\pi+a_2\pi^2+\cdots\mid a_i\in R\}.
+\]
+设 $\{\alpha_n\}$ 为 $O$ 中任意序列. 由于 $R$ 是有限集, 可知 $\{\alpha_n\}$ 有无限子列, 其 $\pi$-adic 展开有相同的 $a_0$. 同样地, 这个子列又有无限子列, 其展开式有相同的 $a_1$. 如此下去, 即得到一个子列收敛于 $a_0+a_1\pi+a_2\pi^2+\cdots\in O$, 从而 $O$ 是紧集.
+\end{proof}
+
+\begin{theorem}\label{thm:8.5}
+设 $(F,P)$ 是离散赋值域, $\pi$ 是其赋值环 $O$ 中的素元, $R$ 为 $O$ 对 $\mathfrak{p}$ 的陪集完全代表系, $0\in R$. $(\widehat{F},\widehat{P})$ 是 $(F,P)$ 的完备化, 则 $\pi$ 也是 $\widehat{F}$ 的赋值环中的素元, $R$ 也是 $\widehat{O}$ 对 $\widehat{\mathfrak{p}}$ 的陪集完全代表系, 所以 $\widehat{F}$ 中每个元素惟一表成 $\pi$-adic 展开
+\[
+  \alpha=\sum_{n=r}^{\infty}a_n\pi^n,\qquad a_n\in R\ (n\geqslant r),\ a_r\neq 0,
+\]
+其中 $r=\widehat{v}(\alpha)$, $\widehat{v}$ 为 $\widehat{P}$ 中标准指数赋值.
+\end{theorem}
+
+\begin{proof}
+由 $f(\widehat{P}/P)=1$ 可知 $\widehat{O}/\widehat{\mathfrak{p}}=O/\mathfrak{p}$, 所以 $R$ 也是 $\widehat{O}$ 对 $\widehat{\mathfrak{p}}$ 的陪集完全代表系. 由 $1=e(\widehat{P}/P)=[\widehat{v}(\widehat{F}^{\times}):v(F^{\times})]$ 可知 $\widehat{v}(\pi)=v(\pi)=1$, 即 $\pi$ 也是 $\widehat{O}$ 中素元. 其余由定理 \ref{thm:8.4} 推出.
+\end{proof}
+
+\begin{remark}
+若 $\overline{F}$ 是有限域, 定义 $O$ 中理想 $\mathfrak{p}^r$ 的范为
+\[
+  N(\mathfrak{p}^r)=|O/\mathfrak{p}^r|=|O/\mathfrak{p}|^r=|\overline{F}|^r,
+\]
+则 $N(\mathfrak{p}^r)=N(\mathfrak{p})^r$. 另一方面, 由定理 \ref{thm:8.5} 知集合
+\[
+  \{a_0+a_1\pi+\cdots+a_{r-1}\pi^{r-1}\mid a_i\in R\}
+\]
+同时是 $O/\mathfrak{p}^r$ 和 $\widehat{O}/\widehat{\mathfrak{p}}^r$ 的完全代表系. 因此 $O/\mathfrak{p}^r\cong\widehat{O}/\widehat{\mathfrak{p}}^r$. 特别地, $N(\mathfrak{p}^r)=N(\widehat{\mathfrak{p}}^r)$.
+
+环 $O/\mathfrak{p}^r$ 和 $\widehat{O}/\widehat{\mathfrak{p}}^r$ 也有相同的单位群, 元素个数为
+\[
+  \Phi(\mathfrak{p}^r)=\Phi(\widehat{\mathfrak{p}}^r)=N(\mathfrak{p}^r)-N(\mathfrak{p}^{r-1})
+  =(N(\mathfrak{p})-1)N(\mathfrak{p})^{r-1},
+\]
+其中 $N(\mathfrak{p})=|\overline{F}|$.
+\end{remark}
+
+下面举两个完备离散赋值域的例子.
+
+\begin{example}
+对每个素数 $p$, 我们以 $\Q_p$ 表示有理数域 $\Q$ 对于 $p$ 进赋值的完备化, 叫作 $p$ 进（数）域. $\Q_p$ 中元素叫作 $p$ 进数. 以 $\Z_p$ 表示 $\Q_p$ 的赋值环, 叫作 $p$ 进整数环, $\Z_p$ 中元素叫作 $p$ 进整数. $\Z_p$ 的素理想（惟一极大理想）为 $p\Z_p$（$p$ 是素元）, 剩余类域为 $\Z_p/p\Z_p\cong\Z/p\Z$（$p$ 元域）. 于是可取 $R=\{0,1,\cdots,p-1\}$. $v_p$ 和 $|\cdot|_p$ 到 $\Q_p$ 的扩充仍记为 $v_p$ 和 $|\cdot|_p$. 每个 $p$ 进数可惟一表示成
+\[
+  \alpha=\sum_{n=l}^{\infty}a_np^n,\qquad l\in\Z,\ 0\leqslant a_n\leqslant p-1,\ a_l\neq 0,
+\]
+其中 $l=v_p(\alpha)$, 并且 $\alpha$ 是 $p$ 进整数的充分必要条件为 $l\geqslant 0$. $\Q_p$ 是完备离散赋值域, 剩余类域为有限域, 所以 $\Z_p$ 和它的所有分式理想 $p^l\Z_p\ (l\in\Z)$ 都是紧集.
+
+对于 $\Q$ 的无限素除子 $\infty$, 其完备化 $\R$（实数域）也表示成 $\Q_{\infty}$.
+\end{example}
+
+\begin{example}
+设 $F$ 为域, $p=p(x)$ 是 $F[x]$ 中首 $1$ 不可约 $d$ 次多项式（$d\geqslant 1$）. $k=F(x)$ 对于素除子 $p$（第 $7$ 章习题 $3.1$）的完备化表示成 $k_p$. 它的剩余类域为 $F[x]/(p(x))$, 从而可以取
+\[
+  R=\{f(x)\in F[x]\mid\deg f<d\}.
+\]
+$p$ 为 $k_p$ 中素元, 从而 $k_p$ 中非零元素惟一表示成
+\[
+  \alpha=\sum_{n=l}^{\infty}a_np^n,\qquad l=v_p(\alpha)\in\Z,\ a_n\in R,\ a_l\neq 0.
+\]
+$k_p$ 是完备离散赋值域. 若 $F$ 为有限域 $\F_q$（$q$ 元域）, 则 $F[x]/(p(x))\cong\F_{q^d}$ 也是有限域, 这时 $k_p$ 的赋值环和分式理想都是紧集.
+
+对于 $k=F(x)$ 的无限素除子 $\infty$（第 $7$ 章习题 $3.2$, $\infty$ 是非阿离散素除子）, 以 $k_{\infty}$ 表示 $k$ 对 $\infty$ 的完备化, 则 $\frac{1}{x}$ 为素元, 剩余类域为 $F$. $k_{\infty}$ 中非零元素可惟一表为（取 $R=F$）
+\[
+  \alpha=\sum_{n=l}^{\infty}a_nx^{-n},\qquad l=v_{\infty}(\alpha),\ a_n\in F,\ a_l\neq 0.
+\]
+所以 $k_{\infty}=F\left(\left(\frac{1}{x}\right)\right)$（域 $F$ 上以 $\frac{1}{x}$ 为未定元的形式幂级数域）.
+\end{example}
+
+\begin{Exercises}
+\item 设 $f(x)\in\Z[x]$, 求证: $f(x)=0$ 在 $\Z_p$ 中有根 $\Leftrightarrow$ 对每个 $n\geqslant 1$, 同余方程 $f(x)\equiv 0\ (\mathrm{mod}\ p^n)$ 均有整数解.
+
+\item 设 $(F,\varphi)$ 是非阿赋值域, $a_n,a\in F$.
+
+(1) 若 $a_n\to a\neq 0$, 则对充分大的 $n$, $\varphi(a_n)=\varphi(a)$.
+
+(2) $\{a_n\}$ 对 $\varphi$-拓扑为柯西序列 $\Leftrightarrow(a_{n+1}-a_n)\to 0$.
+
+(3) 如果 $(F,\varphi)$ 是完备的, 则 $\sum_{n=1}^{\infty}a_n$ 收敛 $\Leftrightarrow a_n\to 0$.
+\end{Exercises}

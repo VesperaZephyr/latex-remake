@@ -1,0 +1,285 @@
+\section{Stolz 公式}
+\label{sec:1.6}
+
+下面介绍一种求极限时非常重要而且使用方便的方法，它就是 Stolz 公式：
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = \lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}.
+\]
+当 $y_n = \sum\limits_{k=1}^n a_k$ 时，特别有效.
+
+\begin{theorem}[$\frac{*}{\infty}$ 型 Stolz 公式]\label{thm:1.6.1}
+设有数列 $\{x_n\}$，$\{y_n\}$，其中 $\{x_n\}$ 严格增，且 $\lim\limits_{n\to+\infty} x_n = +\infty$（注意：不必 $\lim\limits_{n\to+\infty} y_n = +\infty$）。如果
+\[
+\lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = a\quad (\text{实数}, +\infty, -\infty),
+\]
+则
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = a = \lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) $a$ 为实数。
+
+$\forall \varepsilon > 0$，因为 $\lim\limits_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = a$，所以 $\exists N_1 \in \mathbb{N}$，当 $n > N_1$ 时，有
+\[
+\left|\frac{y_n - y_{n-1}}{x_n - x_{n-1}} - a\right| < \frac{\varepsilon}{2},
+\]
+即
+\[
+a - \frac{\varepsilon}{2} < \frac{y_n - y_{n-1}}{x_n - x_{n-1}} < a + \frac{\varepsilon}{2},
+\]
+\[
+\left(a - \frac{\varepsilon}{2}\right)(x_n - x_{n-1}) < y_n - y_{n-1} < \left(a + \frac{\varepsilon}{2}\right)(x_n - x_{n-1}).
+\]
+类推有
+\[
+\left(a - \frac{\varepsilon}{2}\right)(x_{n-1} - x_{n-2}) < y_{n-1} - y_{n-2} < \left(a + \frac{\varepsilon}{2}\right)(x_{n-1} - x_{n-2}),
+\]
+\[
+\cdots\cdots
+\]
+\[
+\left(a - \frac{\varepsilon}{2}\right)(x_{N_1+1} - x_{N_1}) < y_{N_1+1} - y_{N_1} < \left(a + \frac{\varepsilon}{2}\right)(x_{N_1+1} - x_{N_1}).
+\]
+上面各式相加得到
+\[
+\left(a - \frac{\varepsilon}{2}\right)(x_n - x_{N_1}) < y_n - y_{N_1} < \left(a + \frac{\varepsilon}{2}\right)(x_n - x_{N_1}),
+\]
+\[
+a - \frac{\varepsilon}{2} < \frac{y_n - y_{N_1}}{x_n - x_{N_1}} < a + \frac{\varepsilon}{2}.
+\]
+对\textbf{固定}的 $N_1$，因为 $\lim\limits_{n\to+\infty} x_n = +\infty$，所以，$\exists N > N_1$，s.t. 当 $n > N$ 时，有
+\[
+\left|\frac{y_{N_1} - a x_{N_1}}{x_n}\right| < \frac{\varepsilon}{2},\quad 0 < \frac{x_{N_1}}{x_n} < 1.
+\]
+于是，
+\begin{align*}
+\left|\frac{y_n}{x_n} - a\right| &= \left|\frac{y_n - y_{N_1}}{x_n} + \frac{y_{N_1} - a x_{N_1}}{x_n} - a\left(1 - \frac{x_{N_1}}{x_n}\right)\right|\\
+&= \left|\frac{y_{N_1} - a x_{N_1}}{x_n} + \left(1 - \frac{x_{N_1}}{x_n}\right)\left(\frac{y_n - y_{N_1}}{x_n - x_{N_1}} - a\right)\right|\\
+&\leqslant \left|\frac{y_{N_1} - a x_{N_1}}{x_n}\right| + \left|\frac{y_n - y_{N_1}}{x_n - x_{N_1}} - a\right| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\end{align*}
+这就证明了
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = a.
+\]
+
+(2) $a = +\infty$。
+
+因为 $\lim\limits_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = a = +\infty$，所以 $\exists N \in \mathbb{N}$，当 $n > N$ 时，$\frac{y_n - y_{n-1}}{x_n - x_{n-1}} > 1$，$y_n - y_{n-1} > x_n - x_{n-1} > 0$，即 $\{y_n\}$ 严格增。又由于
+\begin{align*}
+y_n - y_N &= (y_n - y_{n-1}) + (y_{n-1} - y_{n-2}) + \cdots + (y_{N+1} - y_N)\\
+&> (x_n - x_{n-1}) + (x_{n-1} - x_{n-2}) + \cdots + (x_{N+1} - x_N)\\
+&= x_n - x_N,
+\end{align*}
+根据 $\lim\limits_{n\to+\infty} x_n = +\infty$，知 $\lim\limits_{n\to+\infty} y_n = +\infty$。应用 (1) 的结果得到
+\[
+\lim_{n\to+\infty} \frac{x_n}{y_n} = \lim_{n\to+\infty} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = \lim_{n\to+\infty} 1 \bigg/ \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = 0.
+\]
+于是，
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = \lim_{n\to+\infty} 1 \bigg/ \frac{x_n}{y_n} = +\infty = \lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}.
+\]
+
+(3) $a = -\infty$。
+
+由 (2) 知，
+\begin{align*}
+\lim_{n\to+\infty} \frac{-y_n}{x_n} &= \lim_{n\to+\infty} \frac{(-y_n) - (-y_{n-1})}{x_n - x_{n-1}}\\
+&= -\lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = +\infty,
+\end{align*}
+即
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = -\lim_{n\to+\infty} \frac{-y_n}{x_n} = -\infty = \lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:1.6.1}
+当 $\lim\limits_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = \infty$ 时，$\{x_n\}$ 严格增且 $\lim\limits_{n\to+\infty} x_n = +\infty$ 时，并不能推出 $\lim\limits_{n\to+\infty} \frac{y_n}{x_n} = \infty$。
+
+反例：$x_n = n, y_n = \left[1 + (-1)^n\right]n^2$，此时，
+\[
+\lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = \infty,
+\]
+但 $\lim\limits_{n\to+\infty} \frac{y_n}{x_n} \neq \infty$。
+\end{remark}
+
+\begin{theorem}[$\frac{0}{0}$ 型 Stolz 公式]\label{thm:1.6.2}
+设 $\{x_n\}$ 严格减，且 $\lim\limits_{n\to+\infty} x_n = 0$，$\lim\limits_{n\to+\infty} y_n = 0$。若
+\[
+\lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = a\quad (\text{实数}, +\infty, -\infty),
+\]
+则
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = a = \lim_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}}.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) $a$ 为实数。
+
+$\forall \varepsilon > 0$，因为 $\lim\limits_{n\to+\infty} \frac{y_n - y_{n+1}}{x_n - x_{n+1}} = \lim\limits_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = a$，所以 $\exists N \in \mathbb{N}$，当 $n > N$ 时，有
+\[
+a - \frac{\varepsilon}{2} < \frac{y_n - y_{n+1}}{x_n - x_{n+1}} < a + \frac{\varepsilon}{2},\quad x_n - x_{n+1} > 0,
+\]
+\[
+\left(a - \frac{\varepsilon}{2}\right)(x_n - x_{n+1}) < y_n - y_{n+1} < \left(a + \frac{\varepsilon}{2}\right)(x_n - x_{n+1}).
+\]
+类似定理~\ref{thm:1.6.1}(1) 的证明有
+\[
+\left(a - \frac{\varepsilon}{2}\right)(x_n - x_{n+p}) < y_n - y_{n+p} < \left(a + \frac{\varepsilon}{2}\right)(x_n - x_{n+p}).
+\]
+令 $p \to +\infty$，则由 $x_{n+p} \to 0$，$y_{n+p} \to 0$，得到
+\[
+\left(a - \frac{\varepsilon}{2}\right)x_n \leqslant y_n \leqslant \left(a + \frac{\varepsilon}{2}\right)x_n.
+\]
+由于 $x_n > 0$，有
+\[
+a - \varepsilon < a - \frac{\varepsilon}{2} \leqslant \frac{y_n}{x_n} \leqslant a + \frac{\varepsilon}{2} < a + \varepsilon,
+\]
+所以，
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = a.
+\]
+
+(2) $a = +\infty$。
+
+$\forall A > 0$，因为 $\lim\limits_{n\to+\infty} \frac{y_n - y_{n+1}}{x_n - x_{n+1}} = \lim\limits_{n\to+\infty} \frac{y_n - y_{n-1}}{x_n - x_{n-1}} = +\infty$，所以 $\exists N \in \mathbb{N}$，当 $n \geqslant N$ 时，有
+\[
+\frac{y_n - y_{n+1}}{x_n - x_{n+1}} > 2A,
+\]
+类似上述论证有
+\[
+y_n - y_{n+p} > 2A(x_n - x_{n+p}).
+\]
+令 $p \to +\infty$，由 $y_{n+p} \to 0$，$x_{n+p} \to 0$，得到
+\[
+y_n \geqslant 2A x_n,\quad \frac{y_n}{x_n} \geqslant 2A > A,
+\]
+所以，
+\[
+\lim_{n\to+\infty} \frac{y_n}{x_n} = +\infty.
+\]
+
+(3) $a = -\infty$。
+
+类似 (2) 的证明或将 (2) 的结论应用到 $\{-y_n\}$ 即得。
+\end{proof}
+
+现在我们给出应用 Stolz 公式的典型例题。
+
+\begin{example}\label{ex:1.6.1}
+设 $\lim\limits_{n\to+\infty} a_n = a$（实数，$+\infty, -\infty$），则 $\lim\limits_{n\to+\infty} \frac{a_1 + a_2 + \cdots + a_n}{n} = a$。
+\end{example}
+
+\begin{proof}
+\textit{证法 1}\quad 应用 $\varepsilon\text{-}N, A\text{-}N$ 法，参阅例~\ref{ex:1.1.15}。
+
+\textit{证法 2}\quad 令 $y_n = a_1 + a_2 + \cdots + a_n$，$x_n = n$，则由 Stolz 公式得到
+\begin{align*}
+\lim_{n\to+\infty} \frac{a_1 + a_2 + \cdots + a_n}{n} &= \lim_{n\to+\infty} \frac{(a_1 + a_2 + \cdots + a_n) - (a_1 + a_2 + \cdots + a_{n-1})}{n - (n - 1)}\\
+&= \lim_{n\to+\infty} \frac{a_n}{1} = \lim_{n\to+\infty} a_n = a.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:1.6.2}
+设 $\lim\limits_{n\to+\infty} a_n = a$，则 $\lim\limits_{n\to+\infty} \frac{a_1 + 2a_2 + \cdots + n a_n}{n^2} = \frac{a}{2}$（$a$ 为实数，$+\infty, -\infty$）。
+\end{example}
+
+\begin{proof}
+\textit{证法 1}\quad 应用 $\varepsilon\text{-}N, A\text{-}N$ 法，参阅练习题~1.1 之第~9 题。
+
+\textit{证法 2}\quad 因为 $\lim\limits_{n\to\infty} a_n = a$，根据极限定义易证数列：
+\[
+a_1, a_2, a_2, a_3, a_3, a_3, \cdots, \underbrace{a_n, \cdots, a_n}_{n \text{ 个}}, \cdots
+\]
+的极限也为 $a$。应用例~\ref{ex:1.1.15}，有
+\begin{align*}
+\lim_{n\to+\infty} \frac{a_1 + 2a_2 + \cdots + n a_n}{n^2} &= \lim_{n\to+\infty} \frac{a_1 + 2a_2 + \cdots + n a_n}{\frac{n(n+1)}{2}} \cdot \frac{\frac{n(n+1)}{2}}{n^2}\\
+&= \lim_{n\to+\infty} \frac{a_1 + 2a_2 + \cdots + n a_n}{\frac{n(n+1)}{2}} \cdot \frac{1}{2}\left(1 + \frac{1}{n}\right)\\
+&= a \cdot \frac{1}{2}(1 + 0) = \frac{a}{2}.
+\end{align*}
+
+\textit{证法 3}\quad 
+\begin{align*}
+\lim_{n\to+\infty} \frac{a_1 + 2a_2 + \cdots + n a_n}{n^2} &\xlongequal{\text{Stolz 公式}} \lim_{n\to+\infty} \frac{n a_n}{2n - 1}\\
+&= \lim_{n\to+\infty} \frac{1}{2 - \frac{1}{n}} a_n = \frac{a}{2}.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:1.6.3}
+设 $k$ 为自然数。证明：
+\begin{enumerate}
+    \item 
+    \[
+    \lim_{n\to+\infty} \frac{1^k + 2^k + \cdots + n^k}{n^{k+1}} = \frac{1}{k+1};
+\]
+    \item 
+    \[
+    \lim_{n\to+\infty} n\left(\frac{1^k + 2^k + \cdots + n^k}{n^{k+1}} - \frac{1}{k+1}\right) = \frac{1}{2}.
+\]
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1) 
+\begin{align*}
+\lim_{n\to+\infty} \frac{1^k + 2^k + \cdots + n^k}{n^{k+1}} &\xlongequal{\text{Stolz 公式}} \lim_{n\to+\infty} \frac{n^k}{n^{k+1} - (n-1)^{k+1}}\\
+&\xlongequal{\text{二项式定理}} \lim_{n\to+\infty} \frac{n^k}{C_{k+1}^1 n^k - C_{k+1}^2 n^{k-1} + \cdots + (-1)^{k+1}}\\
+&= \frac{1}{C_{k+1}^1} = \frac{1}{k+1}.
+\end{align*}
+
+(2) 
+\begin{align*}
+&\lim_{n\to+\infty} n\left(\frac{1^k + 2^k + \cdots + n^k}{n^{k+1}} - \frac{1}{k+1}\right)\\
+=&\; \lim_{n\to+\infty} \frac{(k+1)(1^k + 2^k + \cdots + n^k) - n^{k+1}}{(k+1)n^k}\\
+\xlongequal{\text{Stolz 公式}}&\; \lim_{n\to+\infty} \frac{(k+1)n^k - \left[n^{k+1} - (n-1)^{k+1}\right]}{(k+1)\left[n^k - (n-1)^k\right]}\\
+\xlongequal{\text{二项式定理}}&\; \lim_{n\to+\infty} \frac{\frac{k(k+1)}{2} n^{k-1} + \cdots}{(k+1)\cdot k n^{k-1} + \cdots} = \frac{1}{2}.
+\end{align*}
+\end{proof}
+
+\begin{remark}\label{rem:1.6.2}
+当 $k \in (-1, +\infty)$ 但 $k$ 不为自然数时，不能应用二项式定理。但例~\ref{ex:1.6.3} 的结论仍成立，这就要用到后面的知识：
+\begin{enumerate}
+    \item 可由函数极限 $\lim\limits_{x\to 0} \frac{(1+x)^{k+1} - 1}{x} = k+1$ 推得，或用定积分定义及 Newton-Leibniz 公式得到。
+    \item 可由 $(1+x)^\alpha\;(\alpha > 0)$ 在 $x = 0$ 处的 Taylor 展开求得。
+\end{enumerate}
+\end{remark}
+
+\begin{example}\label{ex:1.6.4}
+设级数 $\sum\limits_{n=1}^\infty a_n$ 收敛，又 $\{p_n\}$ 为严格增的正数数列，且 $\lim\limits_{n\to+\infty} p_n = +\infty$。证明：
+\[
+\lim_{n\to+\infty} \frac{p_1 a_1 + \cdots + p_n a_n}{p_n} = 0.
+\]
+\end{example}
+
+\begin{proof}
+令 $S_n = a_1 + \cdots + a_n, n \in \mathbb{N}$，由 $\sum\limits_{n=1}^\infty a_n$ 收敛，记 $\lim\limits_{n\to+\infty} S_n = S$。于是，$a_1 = S_1, a_n = S_n - S_{n-1}, n = 2, 3, \cdots$，且
+\begin{align*}
+\lim_{n\to+\infty} \frac{p_1 a_1 + \cdots + p_n a_n}{p_n} &= \lim_{n\to+\infty} \frac{p_1 S_1 + p_2(S_2 - S_1) + \cdots + p_n(S_n - S_{n-1})}{p_n}\\
+&= \lim_{n\to+\infty} \left[\frac{S_1(p_1 - p_2) + S_2(p_2 - p_3) + \cdots + S_{n-1}(p_{n-1} - p_n)}{p_n} + S_n\right]\\
+&\xlongequal{\text{Stolz 公式}} \lim_{n\to+\infty} \left[\frac{S_n(p_n - p_{n+1})}{p_{n+1} - p_n} + S_n\right]\\
+&= \lim_{n\to+\infty} (-S_n + S_n) = \lim_{n\to+\infty} 0 = 0.
+\end{align*}
+\end{proof}
+
+\begin{exblock}{练习题 1.6}
+    \item 设 $C_n^k = \frac{n!}{k!(n-k)!}$ 为组合数。应用 Stolz 公式证明：
+    \[
+    \lim_{n\to+\infty} \frac{\sum\limits_{k=0}^n \ln C_n^k}{n^2} = \frac{1}{2}.
+\]
+
+    \item 应用 Stolz 公式证明：
+    \begin{enumerate}
+        \item $\lim\limits_{n\to+\infty} \frac{\sum\limits_{k=1}^n \sqrt{k}}{n^{\frac{3}{2}}} = \frac{2}{3}$;
+        \item $\lim\limits_{n\to+\infty} n \left[\frac{\sum\limits_{k=1}^n \sqrt{k}}{n^{\frac{3}{2}}} - \frac{2}{3}\right] = \frac{1}{2}$.
+    \end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 1.6}
+    \item 设 $0 < x_1 < 1$，$x_{n+1} = x_n(1 - x_n)$，$n = 1, 2, \cdots$。证明：$\lim\limits_{n\to+\infty} n x_n = 1$。进而设 $0 < x_1 < \frac{1}{q}$，其中 $0 < q \leqslant 1$，并且 $x_{n+1} = x_n(1 - q x_n)$，$n \in \mathbb{N}$。证明：$\lim\limits_{n\to+\infty} n x_n = \frac{1}{q}$。
+
+    \item 由 Toeplitz 定理导出 $\frac{\infty}{\infty}$ 型的 Stolz 公式。
+
+    \item 设数列 $\{a_n\}$ 满足 $\lim\limits_{n\to+\infty} a_n \sum\limits_{i=1}^n a_i^2 = 1$。证明：$\lim\limits_{n\to+\infty} \sqrt[3]{3n} a_n = 1$。
+\end{exblock}

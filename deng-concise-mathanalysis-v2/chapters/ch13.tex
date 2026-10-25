@@ -1,0 +1,745 @@
+% !TeX program = xelatex
+% 第十三章 幂级数
+\chapter{幂级数}
+
+前面讲述的一般的无穷级数理论，具体应用到表示函数，有两类特殊的级数是十分重要的．其中的一类是本章将要研究的幂级数．它是多项式的推广，是``无穷次''的多项式．它的收敛区域很特别：总是以某点为中心的一个区间（开、闭或半开闭），而且在区域的内部，和函数是无穷次可微的．这是要求读者特别注意的．本章还将给出初等函数的幂级数展开，一方面是为了试着用级数这一工具研究初等函数本身，另一方面即使是研究非初等函数也要依靠对初等函数更深入的了解．
+
+\section{幂级数的收敛半径与收敛区域}
+
+每一项都是常数乘以非负整次幂函数按升幂加起来的级数
+\[
+\begin{aligned}
+&\sum_{n=0}^{\infty}a_{n}(t-t_{0})^{n}\\
+={}&a_{0}+a_{1}(t-t_{0})+a_{2}(t-t_{0})^{2}+\cdots+a_{n}(t-t_{0})^{n}+\cdots,
+\end{aligned}
+\]
+称为\emph{幂级数}，其中常数 $a_{n}$（$n=0,1,2,\cdots$）称为幂级数的系数．作变量平移 $x=t-t_{0}$，便得到
+\[
+\sum_{n=0}^{\infty}a_{n}x^{n}=a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{n}x^{n}+\cdots.
+\]
+把后者研究清楚了，前者也就很容易搞清楚．因此，下面主要讨论形如后者的幂级数．
+
+幂级数形式十分简单，每一项都是整次幂函数乘以常数．但需指出的是，它是严格按升幂排序的，像
+\[
+1+x+x^{2}+x^{3}+\cdots+x^{n}+\cdots,
+\]
+\[
+1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+\cdots+\frac{(-1)^{k}}{(2k)!}x^{2k}+\cdots,
+\]
+\[
+x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4}+\cdots+(-1)^{n-1}\frac{x^{n}}{n}+\cdots
+\]
+等都是幂级数，虽然像其中的第二个，其奇次幂项都不出现，但我们可以认为它们的系数 $a_{2k+1}=0$．像
+\[
+1+\sum_{k=1}^{\infty}\left(x^{k}-x^{k-1}\right)
+\]
+就不是幂级数，虽然它的部分和是多项式，它本身也可以说是``无穷次''的多项式，但它不是按升幂的次序排列的．
+
+一个幂级数完全由系数构成的数列 $\{a_{n}\}$ 决定．$\{a_{n}\}$ 不同，对应的幂级数也不同．
+
+对幂级数来说，本节关心的问题是，幂级数在什么地方收敛？在什么地方一致收敛？如何计算用幂级数表示的函数的导数与积分．
+
+\begin{theorem}[阿贝尔第一定理]\label{thm:13-1}
+若幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在点 $x_{1}$（$\neq 0$）处收敛，则对满足不等式
+\[
+\left|x\right|<\left|x_{1}\right|
+\]
+的一切点 $x$，幂级数都绝对收敛；若幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{2}$（$\neq 0$）处发散，则对满足不等式
+\[
+\left|x\right|>\left|x_{2}\right|
+\]
+的一切点 $x$，幂级数都发散．
+\end{theorem}
+
+\begin{proof}
+先设幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{1}$（$\neq 0$）处收敛，即数项级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x_{1}^{n}$ 收敛．这时有
+\[
+\lim_{n\to\infty}a_{n}x_{1}^{n}=0.
+\]
+因而数列 $\left\{a_{n}x_{1}^{n}\right\}$ 有界，即存在常数 $M>0$，使得
+\[
+\left|a_{n}x_{1}^{n}\right|\leqslant M\quad(n=0,1,2,\cdots).
+\]
+对任意 $x$ 满足 $\left|x\right|<\left|x_{1}\right|$，有
+\[
+\left|a_{n}x^{n}\right|=\left|a_{n}x_{1}^{n}\left(\frac{x}{x_{1}}\right)^{n}\right|\leqslant M\left|\frac{x}{x_{1}}\right|^{n},\ n=0,1,2,\cdots,
+\]
+由数项级数 $\displaystyle\sum_{n=0}^{\infty}\left|\frac{x}{x_{1}}\right|^{n}$ 收敛，根据级数的比较判别法知 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 绝对收敛．
+
+再设幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{2}$（$\neq 0$）发散，$\left|x\right|>\left|x_{2}\right|$，要证幂级数在 $x$ 点发散．用反证法．如果不然，幂级数在 $x$ 点收敛，由前面已证的，则幂级数应在 $x_{2}$ 点绝对收敛，与假设矛盾．定理~\ref{thm:13-1} 证完．
+\end{proof}
+
+显然，任一幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x=0$ 收敛．这样幂级数收敛情况只可能有下述三种可能：
+
+（i）幂级数只在 $x=0$ 收敛，在其它 $x\neq 0$ 的地方均发散．例如
+\[
+\sum_{n=0}^{\infty}n!x^{n}=1+x+2!x^{2}+3!x^{3}+\cdots+n!x^{n}+\cdots,
+\]
+根据达朗贝尔判别法，只要 $x\neq 0$，有
+\[
+\left|\frac{(n+1)!\,x^{n+1}}{n!\,x^{n}}\right|=(n+1)\left|x\right|\to+\infty\quad(n\to\infty),
+\]
+故级数在 $x\neq 0$ 皆发散．
+
+（ii）幂级数在 $(-\infty,+\infty)$ 每点皆收敛．例如
+\[
+\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots+\frac{x^{n}}{n!}+\cdots,
+\]
+用达朗贝尔判别法知这级数对任意 $x$ 均绝对收敛．
+
+（iii）幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在某点 $x_{1}\neq 0$ 收敛，在某点 $x_{2}$ 发散．根据定理~\ref{thm:13-1}，必有 $\left|x_{1}\right|<\left|x_{2}\right|$．由定理~\ref{thm:13-1} 不妨设 $0<x_{1}<x_{2}$．记
+\[
+A=\{x\mid x>0,\sum_{n=0}^{\infty}a_{n}x^{n}\ \text{收敛}\},
+\]
+这时 $A$ 是有上界的非空实数集合，这是因为 $x_{1}\in A$，而 $x_{2}$ 是 $A$ 的一个上界．由上确界定理知 $A$ 有上确界 $r>0$．我们来证明，当 $\left|x\right|<r$ 时，$\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 收敛；当 $\left|x\right|>r$ 时，$\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 发散．事实上，对固定的 $\left|x_{1}^{\prime}\right|<r$，由上确界性质知存在 $x_{1}^{\prime\prime}\in A$，使 $\left|x_{1}^{\prime}\right|<x_{1}^{\prime\prime}\leqslant r$．由 $x_{1}^{\prime\prime}\in A$ 知 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{1}^{\prime\prime}$ 收敛，用定理~\ref{thm:13-1} 知 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{1}^{\prime}$ 收敛．同理对任意固定的 $\left|x_{2}^{\prime}\right|>r$，存在 $x_{2}^{\prime\prime}$ 使 $\left|x_{2}^{\prime}\right|>x_{2}^{\prime\prime}>r$．由 $x_{2}^{\prime\prime}\notin A$，知 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $x_{2}^{\prime\prime}$ 发散．由定理~\ref{thm:13-1} 知幂级数在 $x_{2}^{\prime}$ 发散．
+
+这样，在情形（iii），我们证明了，存在 $0<r<+\infty$，使幂级数在 $\left|x\right|<r$ 收敛，在 $\left|x\right|>r$ 发散．这时称 $r$ 为幂级数的\emph{收敛半径}．根据这样定义的收敛半径，在情形（i）时，自然理解为收敛半径为 $0$，在情形（ii），收敛半径为 $+\infty$．这样便把三种情形统一起来了．
+
+任何一幂级数，必属于上述三种情形之一，且只属于其中之一．这样，我们便证明了下面的定理．
+
+\begin{theorem}\label{thm:13-2}
+对任意给定的幂级数，必存在唯一的 $r$（$r$ 满足 $0\leqslant r\leqslant+\infty$），使得幂级数在 $\left|x\right|<r$ 绝对收敛，在 $\left|x\right|>r$ 发散．
+\end{theorem}
+
+定理中的 $r$ 称为幂级数的收敛半径．
+
+\begin{example}\label{ex:13-1-1}
+考虑幂级数（1）$\displaystyle\sum_{n=0}^{\infty}x^{n}$，（2）$\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n}$，（3）$\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n^{2}}$．容易知道，三个幂级数的收敛半径都是 $1$，因此它们都在 $(-1,1)$ 内绝对收敛．但容易看出，（1）在 $x=\pm 1$ 均发散，（2）在 $x=-1$ 收敛，但在 $x=1$ 发散，（3）在 $x=\pm 1$ 皆收敛．
+\end{example}
+
+可见，对每一幂级数，都存在一收敛半径 $r$，使级数在 $(-r,r)$ 内绝对收敛．但在此区间的两个端点，对幂级数的收敛性要作专门的讨论．
+
+然而幂级数的收敛半径怎么求呢？
+
+\begin{theorem}\label{thm:13-3}
+若幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 的相邻两项系数之比满足条件
+\[
+\lim_{n\to\infty}\frac{\left|a_{n+1}\right|}{\left|a_{n}\right|}=\rho,
+\]
+则幂级数的收敛半径 $r=\dfrac{1}{\rho}$（$\rho=0$ 时理解为 $r=+\infty$，$\rho=+\infty$ 时理解为 $r=0$）．
+\end{theorem}
+
+\begin{proof}
+用达朗贝尔判别法，
+\[
+\lim_{n\to\infty}\frac{\left|a_{n+1}x^{n+1}\right|}{\left|a_{n}x^{n}\right|}=\lim_{n\to\infty}\frac{\left|a_{n+1}\right|}{\left|a_{n}\right|}\left|x\right|=\rho\left|x\right|.
+\]
+若 $\rho\neq 0$，则当 $\left|x\right|<\dfrac{1}{\rho}$ 时级数绝对收敛，当 $\left|x\right|>\dfrac{1}{\rho}$ 时级数发散．若 $\rho=0$，则级数对任意 $x$ 绝对收敛．当 $\rho=+\infty$ 时，级数在 $x=0$ 外发散．定理~\ref{thm:13-3} 证完．
+\end{proof}
+
+\begin{example}\label{ex:13-1-2}
+求幂级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}\left(\frac{x}{2}\right)^{n}$ 的收敛半径与收敛域．
+\end{example}
+
+\begin{proof}[解]
+由
+\[
+\lim_{n\to+\infty}\frac{\dfrac{1}{n+1}\cdot\dfrac{1}{2^{n+1}}}{\dfrac{1}{n}\cdot\dfrac{1}{2^{n}}}=\frac{1}{2},
+\]
+故收敛半径等于 $2$．当 $x=2$ 时，级数为 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}$ 发散；当 $x=-2$ 时，级数为 $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n}$ 收敛，故收敛域为 $[-2,2)$．
+\end{proof}
+
+\begin{example}\label{ex:13-1-3}
+求
+\[
+\sum_{n=1}^{\infty}2^{n-1}x^{2n-1}=x+2x^{3}+2^{2}x^{5}+2^{3}x^{7}+\cdots
+\]
+的收敛半径与收敛域．
+\end{example}
+
+\begin{proof}[解]
+这个幂级数偶次幂的系数 $a_{2n}=0$，不能用定理~\ref{thm:13-3} 计算收敛半径，但可用达朗贝尔判别法直接求收敛区域：
+\[
+\lim_{n\to\infty}\frac{\left|2^{n}x^{2n+1}\right|}{\left|2^{n-1}x^{2n-1}\right|}=\lim_{n\to\infty}2\left|x\right|^{2}=2\left|x\right|^{2}.
+\]
+因此当 $2\left|x\right|^{2}<1$ 即 $\left|x\right|<\dfrac{1}{\sqrt{2}}$ 时，级数绝对收敛；当 $2\left|x\right|^{2}>1$ 即 $\left|x\right|>\dfrac{1}{\sqrt{2}}$ 时，级数发散．当 $x=\pm\dfrac{1}{\sqrt{2}}$ 时，级数一般项不趋向于 $0$，故级数发散．于是知道，级数收敛半径为 $\dfrac{1}{\sqrt{2}}$，收敛区域为 $\left(-\dfrac{1}{\sqrt{2}},\dfrac{1}{\sqrt{2}}\right)$．
+\end{proof}
+
+\begin{xiti}
+\item 求下列各幂级数的收敛域：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(2x)^{n}}{n!}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\ln(n+1)}{n+1}x^{n+1}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\left[\left(\frac{n+1}{n}\right)^{n}x\right]^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n^{2}}}{2^{n}}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\left[3+(-1)^{n}\right]^{n}}{n}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{3^{n}+(-2)^{n}}{n}(x+1)^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(2n)!!}{(2n+1)!!}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{-n^{2}}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n\sqrt[n]{n}}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{5^{n}+7^{n}}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(n!)^{2}}{(2n)!}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{2}+\cdots+\frac{1}{n}\right)x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}nx^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(x-2)^{2n-1}}{(2n-1)!}$；
+\item $\displaystyle\sum_{n=1}^{\infty}a^{n^{2}}x^{n}\quad(0<a<1)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n^{p}}$．
+\end{ziti}
+\item 设幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $R$，$\displaystyle\sum_{n=0}^{\infty}b_{n}x^{n}$ 的收敛半径为 $Q$，讨论下列级数的收敛半径：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}a_{n}x^{2n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\left(a_{n}+b_{n}\right)x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}a_{n}b_{n}x^{n}$．
+\end{ziti}
+\item 设 $\displaystyle\left|\sum_{k=0}^{n}a_{k}x_{1}^{k}\right|\leqslant M$（$n=0,1,\cdots$；$x_{1}>0$），求证：当 $0<x<x_{1}$ 时，有
+\begin{ziti}
+\item $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 收敛；
+\item $\displaystyle\left|\sum_{n=0}^{\infty}a_{n}x^{n}\right|\leqslant M$．
+\end{ziti}
+\end{xiti}
+
+\section{幂级数的性质}
+
+首先看幂级数在什么地方一致收敛．
+
+\begin{theorem}[阿贝尔第二定理]\label{thm:13-4}
+
+（1）若幂级数的收敛半径为 $r>0$，则对任意 $b$：$0<b<r$，幂级数在 $[-b,b]$ 一致收敛；
+
+（2）若幂级数的收敛半径为 $r>0$，且幂级数在 $r$ 收敛，则幂级数在 $[0,r]$ 一致收敛；
+
+（3）若幂级数的收敛半径为 $r>0$，且幂级数在 $-r$ 收敛，则幂级数在 $[-r,0]$ 一致收敛．
+\end{theorem}
+
+\begin{proof}
+（1）由于
+\[
+\left|a_{n}x^{n}\right|\leqslant\left|a_{n}b^{n}\right|\quad(\text{当 }\left|x\right|\leqslant b),
+\]
+而 $\displaystyle\sum_{n=0}^{\infty}\left|a_{n}b^{n}\right|$ 收敛，根据一致收敛的 $M$ 判别法，知幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[-b,b]$ 一致收敛．
+
+（2）已知 $\displaystyle\sum_{n=0}^{\infty}a_{n}r^{n}$ 收敛，而
+\[
+\sum_{n=0}^{\infty}a_{n}x^{n}=\sum_{n=0}^{\infty}a_{n}r^{n}\left(\frac{x}{r}\right)^{n},
+\]
+其中 $\left(\dfrac{x}{r}\right)^{n}$ 对任意 $x\in[0,r]$ 关于 $n$ 单调下降，且
+\[
+\left|\frac{x}{r}\right|^{n}\leqslant 1,\quad\forall\,x\in[0,r],\ n=0,1,2,\cdots.
+\]
+根据一致收敛的阿贝尔判别法知 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $[0,r]$ 一致收敛．
+
+（3）的证明与（2）相同，定理~\ref{thm:13-4} 证完．
+\end{proof}
+
+一般说来，若幂级数收敛半径为 $r$，不能断言幂级数在 $(-r,r)$ 一致收敛．例如，级数
+\[
+\sum_{n=0}^{\infty}x^{n}=1+x+x^{2}+x^{3}+\cdots+x^{n-1}+\cdots
+\]
+的收敛半径为 $r$，而幂级数在 $(-1,1)$ 不一致收敛．因为前面证明过，它的一般项构成的数列 $\{x^{n}\}$ 在 $(-1,1)$ 不一致趋向于 $0$．
+
+\begin{corollary}\label{cor:13-2-1}
+若幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $r>0$，则它的和函数在 $(-r,r)$ 连续．
+\end{corollary}
+
+\begin{proof}
+$\forall\,x_{0}\in(-r,r)$，令 $b=\dfrac{r+\left|x_{0}\right|}{2}$，则 $\left|x_{0}\right|<b<r$．由定理~\ref{thm:13-4} 知，幂级数在 $[-b,b]$ 一致收敛，而 $a_{n}x^{n}$ 在 $(-\infty,+\infty)$ 连续，因此和函数在 $[-b,b]$ 连续，特别地在 $x_{0}$ 连续．由 $x_{0}\in(-r,r)$ 的任意性，知和函数在 $(-r,r)$ 连续．
+\end{proof}
+
+\begin{corollary}\label{cor:13-2-2}
+若幂级数的收敛半径为 $r>0$，且幂级数在 $r$ 收敛，则它的和函数在 $[0,r]$ 连续．特别地
+\[
+\lim_{x\to r^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=\sum_{n=0}^{\infty}a_{n}r^{n}.
+\]
+\end{corollary}
+
+这是定理~\ref{thm:13-4} 第（2）部分的直接推论．
+
+对 $x=-r$ 有类似的结论．
+
+\begin{theorem}\label{thm:13-5}
+若幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $r$，和函数为 $S(x)$，即
+\begin{equation}
+\begin{aligned}
+S(x)&=\sum_{n=0}^{\infty}a_{n}x^{n}\\
+&=a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{n}x^{n}+\cdots,\quad -r<x<r,
+\end{aligned}
+\tag{1}
+\end{equation}
+则幂级数在收敛区间内部可以逐项微商与逐项积分，即
+\begin{equation}
+\begin{aligned}
+S^{\prime}(x)&=\sum_{n=1}^{\infty}na_{n}x^{n-1}\\
+&=a_{1}+2a_{2}x+3a_{3}x^{2}+\cdots+na_{n}x^{n-1}+\cdots,\quad -r<x<r,
+\end{aligned}
+\tag{2}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+\int_{0}^{x}S(t)\dd t&=\sum_{n=0}^{\infty}\frac{a_{n}}{n+1}x^{n+1}\\
+&=a_{0}x+\frac{a_{1}}{2}x^{2}+\frac{a_{2}}{3}x^{3}+\cdots+\frac{1}{n+1}a_{n}x^{n+1}+\cdots,\quad -r<x<r.
+\end{aligned}
+\tag{3}
+\end{equation}
+且（2）、（3）中的幂级数收敛半径仍然是 $r$．
+\end{theorem}
+
+\begin{proof}
+首先证明幂级数经逐项微商与逐项积分，收敛半径不变．为此只要证明（1）与（2）中的级数有相同的收敛半径，因为（1）与（3）中的级数有相同的收敛半径可完全类似证明．已知（1）的收敛半径为 $r$，设（2）的收敛半径为 $r^{\prime}$．对任意 $x_{0}\in(-r^{\prime},r^{\prime})$，有 $\displaystyle\sum_{n=1}^{\infty}na_{n}x_{0}^{n-1}$ 绝对收敛．由
+\[
+\left|a_{n}x_{0}^{n}\right|\leqslant\left|x_{0}\right|\left|na_{n}x_{0}^{n-1}\right|,
+\]
+根据比较定理知 $\displaystyle\sum_{n=0}^{\infty}a_{n}x_{0}^{n}$ 绝对收敛，故 $r^{\prime}\leqslant r$．反之，对任意 $x_{0}\in(-r,r)$，这时存在 $R>0$ 使得 $\left|x_{0}\right|<R<r$，而 $\displaystyle\sum_{n=0}^{\infty}a_{n}R^{n}$ 绝对收敛，注意到
+\[
+\left|na_{n}x_{0}^{n-1}\right|\leqslant\left|a_{n}R^{n}\right|\left|\frac{nx_{0}^{n-1}}{R^{n}}\right|,
+\]
+而
+\[
+\lim_{n\to\infty}\frac{\left|nx_{0}^{n-1}\right|}{R^{n}}=\lim_{n\to\infty}\frac{n}{R}\left|\frac{x_{0}}{R}\right|^{n-1}=0,
+\]
+故存在 $M>0$，使
+\[
+\left|\frac{nx_{0}^{n-1}}{R^{n}}\right|\leqslant M\quad(n=1,2,\cdots).
+\]
+根据比较定理知 $\displaystyle\sum_{n=1}^{\infty}na_{n}x_{0}^{n-1}$ 绝对收敛，于是 $r\leqslant r^{\prime}$．这就证明了 $r=r^{\prime}$．
+
+证明了（1）与（2）的级数有相同的收敛半径后，剩下要证的是（2）中级数收敛到 $S^{\prime}(x)$，（3）中级数收敛到 $\displaystyle\int_{0}^{x}S(t)\dd t$，对任意 $x\in(-r,r)$ 成立．这是定理~\ref{thm:13-4} 与函数项级数逐项微商与逐项积分定理的直接推论，定理~\ref{thm:13-5} 证完．
+\end{proof}
+
+重复应用定理~\ref{thm:13-5} 便得下面的定理~\ref{thm:13-6}．
+
+\begin{theorem}\label{thm:13-6}
+若幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $r>0$，则其和函数 $S(x)$ 在 $(-r,r)$ 内任意次可微，且 $S^{(k)}(x)$ 等于 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 逐项微商 $k$ 次所得的幂级数
+\[
+S^{(k)}(x)=\sum_{n=k}^{\infty}n(n-1)\cdots(n-k+1)a_{n}x^{n-k},\quad -r<x<r.
+\]
+\end{theorem}
+
+把已学过的关于幂级数的内容小结一下．
+
+（i）对每个幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$，都存在一收敛半径 $r$（$0\leqslant r\leqslant+\infty$），幂级数在 $(-r,r)$ 内绝对收敛，在 $\left|x\right|>r$ 发散，但在 $x=-r$，$r$ 要具体分析；
+
+（ii）幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在收敛区间内部可逐项微商与逐项积分，且收敛半径不变；
+
+（iii）幂级数在收敛区间内部所表示的函数是任意次可微的．
+
+所有上述讨论对幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n}$ 都有类似的结果，这时收敛区间为 $(x_{0}-r,x_{0}+r)$．
+
+回到最初引入级数时，为了解微分方程
+\[
+xy''+y'+xy=0,
+\]
+我们形式地用待定系数法，得到了级数
+\[
+y=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{x}{2}\right)^{2k}.
+\]
+现在知道，此级数的收敛半径为 $+\infty$．因此它在 $(-\infty,+\infty)$ 内可逐项微商任意多次．这样我们便证明了它的确是上述微分方程的解．这是非初等函数，我们现在只有它的幂级数表示，它的许多重要性质都可以从这个幂级数表示推导出来．类似的讨论可参考专门的教程，我们就不叙述了．
+
+\begin{xiti}
+\item 设 $\displaystyle f(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$ 当 $\left|x\right|<r$ 时收敛，那么当 $\displaystyle\sum_{n=0}^{\infty}\frac{a_{n}}{n+1}r^{n+1}$ 收敛时有
+\[
+\int_{0}^{r}f(x)\dd x=\sum_{n=0}^{\infty}\frac{a_{n}}{n+1}r^{n+1},
+\]
+不论 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 当 $x=r$ 时是否收敛．
+\item 利用上题证明 $\displaystyle\int_{0}^{1}\frac{\ln(1-x)}{x}\dd x=-\sum_{n=1}^{\infty}\frac{1}{n^{2}}$．
+\item 用逐项微分或逐项积分求下列级数的和：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}nx^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}n(n+1)x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{n(2n-1)}x^{2n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{4n-1}}{4n+1}$；
+\item $\displaystyle\sum_{n=0}^{\infty}\left(2^{n+1}-1\right)x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}n^{2}x^{n-1}$．
+\end{ziti}
+\item 求下列级数的和：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{2n-1}{2^{n}}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(2n+1)}$．
+\end{ziti}
+\item 证明：
+\begin{ziti}
+\item $\displaystyle\sum_{n=0}^{\infty}\frac{x^{4n}}{(4n)!}$ 满足方程 $y^{(4)}=y$；
+\item $\displaystyle\sum_{n=0}^{\infty}\frac{x^{n}}{(n!)^{2}}$ 满足方程 $xy''+y'-y=0$．
+\end{ziti}
+\item 设 $f(x)$ 是幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $(-R,R)$ 上的和函数，若 $f(x)$ 为奇函数，则级数中仅出现奇次幂的项；若 $f(x)$ 为偶函数，则级数中仅出现偶次幂的项．
+\item 设 $\displaystyle f(x)=\sum_{n=1}^{\infty}\frac{x^{n}}{n^{2}\ln(1+n)}$．
+\begin{ziti}
+\item 求证：$f(x)$ 在 $[-1,1]$ 连续，$f^{\prime}(x)$ 在 $(-1,1)$ 内连续；
+\item 求证：$f(x)$ 在点 $x=-1$ 可导；
+\item 求证：$\displaystyle\lim_{x\to 1^{-}}f^{\prime}(x)=+\infty$；
+\item 求证：$f(x)$ 在点 $x=1$ 不可导．
+\end{ziti}
+\end{xiti}
+
+\section{函数的幂级数展开}
+
+前面的讨论，都是从幂级数出发，看它所表示的函数（和函数）具有什么性质．本节则从函数出发，看它能否用幂级数表示．从而用幂级数这个工具研究函数．
+
+如果幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $(-r,r)$ 收敛到函数 $f(x)$：
+\[
+f(x)=\sum_{n=0}^{\infty}a_{n}x^{n},\quad -r<x<r,
+\]
+那么称 $f(x)$ 在 $(-r,r)$ 可以\emph{展开成幂级数}．类似地称 $f(x)$ 在 $(x_{0}-r,x_{0}+r)$ 可以展开成幂级数，如果
+\[
+f(x)=\sum_{n=0}^{\infty}a_{n}(x-x_{0})^{n},\quad -r<x-x_{0}<r.
+\]
+
+本节要讨论的问题是：函数 $f(x)$ 满足什么条件，就可以展开成幂级数？假如可以展开的话，如何求它的幂级数展开式？
+
+上节结果表明，$f(x)$ 在 $(-r,r)$ 可以展开成幂级数的必要条件是它在 $(-r,r)$ 内任意次可微（我们也称 $f(x)$ 在 $(-r,r)$ 无穷次可微）．但这条件是否充分呢？
+
+事实上，若
+\[
+f(x)=\sum_{k=0}^{\infty}a_{k}x^{k}=a_{0}+a_{1}x+\cdots+a_{n}x^{n}+\cdots,\quad -r<x<r,
+\]
+令 $x=0$，得 $f(0)=a_{0}$．逐项求微商，再令 $x=0$，得 $f^{\prime}(0)=a_{1}$．一般地，逐项求 $n$ 次微商，有
+\[
+f^{(n)}(x)=n!\,a_{n}+\frac{(n+1)!}{1!}a_{n+1}x+\cdots,\ n=0,1,2,\cdots.
+\]
+令 $x=0$，得
+\[
+f^{(n)}(0)=n!\,a_{n},
+\]
+或
+\[
+a_{n}=\frac{1}{n!}f^{(n)}(0).
+\]
+这样我们便得到了下面的定理．
+
+\begin{theorem}[唯一性]\label{thm:13-7}
+（i）如果函数 $f(x)$ 在 $(-r,r)$（$r>0$）可以展开成幂级数
+\[
+f(x)=\sum_{k=0}^{\infty}a_{k}x^{k}=a_{0}+a_{1}x+a_{2}x^{2}+\cdots+a_{k}x^{k}+\cdots,\quad -r<x<r,
+\]
+那么必有
+\[
+a_{k}=\frac{1}{k!}f^{(k)}(0),\ k=0,1,2,\cdots.
+\]
+
+（ii）如果函数 $f(x)$ 在 $(x_{0}-r,x_{0}+r)$（$r>0$）可以展开成幂级数
+\[
+\begin{aligned}
+f(x)&=\sum_{k=0}^{\infty}a_{k}(x-x_{0})^{k}\\
+&=a_{0}+a_{1}(x-x_{0})+\cdots+a_{k}(x-x_{0})^{k}+\cdots,\quad x_{0}-r<x<x_{0}+r,
+\end{aligned}
+\]
+那么系数 $a_{k}$ 满足
+\[
+a_{k}=\frac{1}{k!}f^{(k)}(x_{0}),\ k=0,1,2,\cdots.
+\]
+\end{theorem}
+
+通常称
+\[
+\sum_{k=0}^{\infty}\frac{f^{(k)}(0)}{k!}x^{k}=f(0)+f^{\prime}(0)x+\frac{f''(0)}{2!}x^{2}+\cdots+\frac{f^{(k)}(0)}{k!}x^{k}+\cdots
+\]
+为 $f(x)$ 的\emph{麦克劳林级数}，称
+\[
+\begin{aligned}
+&\sum_{k=0}^{\infty}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}\\
+={}&f(x_{0})+f^{\prime}(x_{0})(x-x_{0})\\
+&+\frac{1}{2!}f''(x_{0})(x-x_{0})^{2}+\cdots+\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}+\cdots
+\end{aligned}
+\]
+为 $f(x)$ 在 $x_{0}$ 的\emph{泰勒级数}．
+
+定理~\ref{thm:13-7} 说明，若函数 $f(x)$ 在 $(-r,r)$ 能展开成幂级数，则此幂级数只能是 $f(x)$ 的麦克劳林级数．若函数 $f(x)$ 在 $(x_{0}-r,x_{0}+r)$ 能展开成 $x-x_{0}$ 的幂级数，则此幂级数只能是 $f(x)$ 在 $x_{0}$ 的泰勒级数．故定理~\ref{thm:13-7} 称为唯一性定理．唯一性定理解决了如何找函数的幂级数展开式问题．
+
+下面的例子表明，函数无穷次可微并不是可以展开成幂级数的充分条件．
+
+\begin{example}\label{ex:13-3-1}
+\[
+f(x)=\begin{cases}
+\mathrm{e}^{-\left(\frac{1}{x}\right)^{2}}, & x\neq 0,\\
+\ \ \ 0, & x=0,
+\end{cases}
+\]
+它在 $(-\infty,+\infty)$ 任意次可微，但它不能在任何区间 $(-r,r)$（$r>0$）展开成幂级数．
+\end{example}
+
+事实上，当 $x\neq 0$ 时，$f(x)$ 显然任意次可微．当 $x=0$ 时，由于
+\[
+\lim_{\Delta x\to 0}\frac{f(\Delta x)}{\Delta x}=\lim_{\Delta x\to 0}\frac{\mathrm{e}^{-\left(\frac{1}{\Delta x}\right)^{2}}}{\Delta x}=\lim_{y\to\infty}y\mathrm{e}^{-y^{2}}=0,
+\]
+知
+\[
+f^{\prime}(x)=\begin{cases}
+\dfrac{2}{x^{3}}\mathrm{e}^{-\frac{1}{x^{2}}}, & x\neq 0,\\
+\ \ \ 0, & x=0,
+\end{cases}
+\]
+因此，$f(x)$ 在 $(-\infty,+\infty)$ 可微．用归纳法可证 $f(x)$ 在 $(-\infty,+\infty)$ 任意次可微，且 $f^{(k)}(0)=0$（$k=0,1,2,\cdots$）．
+
+如果 $f(x)$ 对某个 $r>0$ 在 $(-r,r)$ 可展成 $x$ 的幂级数．那么按定理~\ref{thm:13-7}，此幂级数的系数 $a_{k}=\dfrac{1}{k!}f^{(k)}(0)=0$，即幂级数每项皆为 $0$，由此推知 $f(x)$ 在 $(-r,r)$ 恒为 $0$，这显然是不正确的．故 $f(x)$ 在 $(-r,r)$（对任意 $r>0$）不能展开成幂级数．
+
+现在我们来回答，函数在什么条件下可以展开成幂级数？回忆在本教程第八章 \S1 讲泰勒多项式时，曾经讲过，如果 $f(x)$ 在 $(-r,r)$ 任意次可微，则对任意 $x\in(-r,r)$，有
+\begin{equation}
+f(x)=f(0)+f^{\prime}(0)x+\cdots+\frac{1}{n!}f^{(n)}(0)x^{n}+R_{n}(x),
+\tag{1}
+\end{equation}
+其中 $R_{n}(x)$ 为余项，具有下列形式
+\[
+\begin{aligned}
+R_{n}(x)&=\frac{1}{n!}\int_{0}^{x}(x-t)^{n}f^{(n+1)}(t)\dd t\\
+&=\frac{1}{(n+1)!}f^{(n+1)}(\xi)x^{n+1}\\
+&=\frac{1}{n!}f^{(n+1)}(\theta x)(1-\theta)^{n}x^{n+1},
+\end{aligned}
+\]
+其中 $\xi$ 在 $0$ 与 $x$ 之间，$0<\theta<1$．第一个式子称为余项的积分形式，第二个式子称为余项的拉格朗日形式，第三个式子称为余项的柯西形式．
+
+等式（1）表明，$f(x)$ 在 $(-r,r)$ 能展开为 $x$ 的幂级数，当且仅当对任意 $x\in(-r,r)$，有
+\[
+\lim_{n\to\infty}R_{n}(x)=0.
+\]
+这就是函数可以展开成幂级数的条件．对具体的函数，可尝试用上述余项的某种形式验证 $R_{n}(x)\to 0$（$n\to\infty$）是否成立．
+
+\begin{theorem}\label{thm:13-8}
+若 $f(x)$ 的各阶微商在 $(-r,r)$ 一致有界，即存在 $M>0$，使
+\[
+\left|f^{(n)}(x)\right|\leqslant M,\quad\forall\,x\in(-r,r),\ n=0,1,2,\cdots,
+\]
+则 $f(x)$ 在 $(-r,r)$ 可以展开成幂级数
+\[
+f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^{n},\quad -r<x<r.
+\]
+\end{theorem}
+
+\begin{proof}
+事实上，用余项的拉格朗日形式，有
+\[
+\left|R_{n}(x)\right|\leqslant\frac{\left|f^{(n+1)}(\xi)\right|}{(n+1)!}\left|x\right|^{n+1}\leqslant M\frac{\left|x\right|^{n+1}}{(n+1)!}\to 0\quad(n\to\infty)
+\]
+\[
+\forall\,x\in(-r,r),
+\]
+故 $f(x)$ 在 $(-r,r)$ 可以展成幂级数．
+\end{proof}
+
+下面我们给出基本初等函数的幂级数展开，这里需要用到本教程第八章 \S1 讲述的初等函数的泰勒公式．
+
+（i）$\mathrm{e}^{x}$ 的展开式：
+\[
+\begin{aligned}
+\mathrm{e}^{x}&=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots+\frac{x^{n}}{n!}+\cdots=\sum_{n=0}^{\infty}\frac{x^{n}}{n!},\\
+&\quad -\infty<x<+\infty.
+\end{aligned}
+\]
+这是因为，对任意固定的 $x$，当 $\xi$ 在 $0$ 与 $x$ 之间时有
+\[
+\left|\mathrm{e}^{\xi}\right|\leqslant\mathrm{e}^{\left|x\right|}.
+\]
+因此用余项的拉格朗日形式，知
+\[
+\left|R_{n}(x)\right|\leqslant\left|\frac{\mathrm{e}^{\xi}}{(n+1)!}x^{n+1}\right|\leqslant\frac{\mathrm{e}^{\left|x\right|}}{(n+1)!}\left|x\right|^{n+1}\to 0\quad(n\to\infty).
+\]
+这就证明了上述 $\mathrm{e}^{x}$ 的展开式在 $(-\infty,+\infty)$ 成立．
+
+（ii）$\sin x$ 和 $\cos x$ 的展开式：
+\[
+\begin{aligned}
+\sin x&=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}-\frac{x^{7}}{7!}+\cdots+(-1)^{k}\frac{x^{2k+1}}{(2k+1)!}+\cdots\\
+&=\sum_{k=0}^{\infty}(-1)^{k}\frac{x^{2k+1}}{(2k+1)!},\quad -\infty<x<+\infty;
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\cos x&=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+\cdots+(-1)^{k}\frac{x^{2k}}{(2k)!}+\cdots\\
+&=\sum_{k=0}^{\infty}(-1)^{k}\frac{x^{2k}}{(2k)!},\quad -\infty<x<+\infty.
+\end{aligned}
+\]这是因为 $\sin x$ 与 $\cos x$ 的 $n$ 阶微商
+\[
+(\sin x)^{(n)}=\sin\left(x+\frac{n\pi}{2}\right),
+\]
+\[
+(\cos x)^{(n)}=\cos\left(x+\frac{n\pi}{2}\right),
+\]
+对 $n=0,1,2,3,\cdots$ 与 $-\infty<x<+\infty$ 一致有界，然后用定理~\ref{thm:13-8}．
+
+这两个函数的展开，说明了无穷和与有穷和的确有许多本质的区别．因为在上面两个展开式中，左边两个函数都是周期函数
+\[
+\sin(x+2\pi)=\sin x,\quad\cos(x+2\pi)=\cos x,
+\]
+右边两个都是``无穷的''多项式．如果是多项式（有限项），则无论如何也不可能是周期函数．因此，单凭``直观''是很难看出展开式右边的两个级数是周期的．只有经过一长串的推导，我们证明了这两个展开式在 $(-\infty,+\infty)$ 成立，从而证明了右边的级数的确表示周期函数．应该说这就是数学理论的一种魅力．
+
+（iii）幂函数 $(1+x)^{\alpha}$ 的展开（二项式展开）：
+\[
+\begin{aligned}
+&(1+x)^{\alpha}\\
+={}&1+\alpha x+\frac{\alpha(\alpha-1)}{2!}x^{2}+\cdots+\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^{n}+\cdots\\
+={}&1+\sum_{n=1}^{\infty}\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^{n},\ -1<x<1.
+\end{aligned}
+\]
+这是因为
+\[
+f^{(n)}(x)=\alpha(\alpha-1)\cdots(\alpha-n+1)(1+x)^{\alpha-n},
+\]
+因此
+\[
+f^{(n)}(0)=\alpha(\alpha-1)\cdots(\alpha-n+1).
+\]
+用余项的柯西形式
+\[
+R_{n}(x)=\frac{\alpha(\alpha-1)(\alpha-2)\cdots(\alpha-n)}{n!}x^{n+1}\left(\frac{1-\theta}{1+\theta x}\right)^{n}(1+\theta x)^{\alpha-1}.
+\]
+由于当 $\left|x\right|<1$ 时，$\left|1+\theta x\right|\geqslant 1-\left|\theta x\right|\geqslant 1-\theta$，因此
+\[
+\left|\frac{1-\theta}{1+\theta x}\right|\leqslant 1,
+\]
+而
+\[
+\left|(1+\theta x)^{\alpha-1}\right|\leqslant\max\left(\left(1+\left|x\right|\right)^{\alpha-1},\left(1-\left|x\right|\right)^{\alpha-1}\right),
+\]
+故
+\[
+\left|R_{n}(x)\right|\leqslant\left|\frac{\alpha(\alpha-1)(\alpha-2)\cdots(\alpha-n)}{n!}x^{n+1}\right|\max\left(\left(1+\left|x\right|\right)^{\alpha-1},\left(1-\left|x\right|\right)^{\alpha-1}\right).
+\]
+用达朗贝尔判别法容易证明，当 $\left|x\right|<1$ 时，级数
+\[
+\sum_{n=1}^{\infty}\frac{\alpha(\alpha-1)(\alpha-2)\cdots(\alpha-n)}{n!}x^{n+1}
+\]
+绝对收敛，因而当 $\left|x\right|<1$ 时
+\[
+\lim_{n\to\infty}\frac{\alpha(\alpha-1)(\alpha-2)\cdots(\alpha-n)}{n!}x^{n+1}=0.
+\]
+这就证明了当 $\left|x\right|<1$ 时，$R_{n}(x)\to 0$（$n\to\infty$），也就证明了前面的二项式展开成立．
+
+（iv）对数函数 $\ln(1+x)$ 的展开：
+\[
+\begin{aligned}
+\ln(1+x)&=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4}+\cdots+(-1)^{n-1}\frac{x^{n}}{n}+\cdots\\
+&=\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{n}}{n},\quad -1<x\leqslant 1.
+\end{aligned}
+\]
+完全可以通过求微商，如同证明二项式展开那样用柯西形式的余项，证明 $R_{n}(x)\to 0$，但我们在这里用一个简单的方法．由几何级数求和知
+\[
+\frac{1}{1+x}=1-x+x^{2}-x^{3}+\cdots+(-1)^{n}x^{n}+\cdots,\quad -1<x<1.
+\]
+用逐项积分得
+\[
+\begin{aligned}
+\ln(1+x)&=\int_{0}^{x}\frac{\dd t}{1+t}\\
+&=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\cdots+(-1)^{n-1}\frac{x^{n}}{n}+\cdots,\quad -1<x<1.
+\end{aligned}
+\]
+由于当 $x=1$ 时，右边的级数
+\[
+1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots+\frac{(-1)^{n-1}}{n}+\cdots
+\]
+收敛，用阿贝尔第二定理知右边的幂级数在 $[0,1]$ 一致收敛，从而和函数在 $[0,1]$ 连续，特别地在 $x=1$ 左连续．而已知 $\ln(1+x)$ 在 $x=1$ 是连续的．故幂级数的和函数在 $x=1$ 应等于 $\ln(1+x)$ 在 $x=1$ 的值：
+\[
+\ln 2=1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\cdots+(-1)^{n-1}\frac{1}{n}+\cdots,
+\]
+从而
+\[
+\ln(1+x)=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4}+\cdots+(-1)^{n-1}\frac{x^{n}}{n}+\cdots
+\]
+在 $-1<x\leqslant 1$ 成立．
+
+下面我们用级数的运算来计算一些函数的展开，从而求出一些级数的和．
+
+\begin{example}\label{ex:13-3-2}
+已知
+\[
+\frac{1}{1+x}=1-x+x^{2}-x^{3}+\cdots+(-1)^{n}x^{n}+\cdots,\quad -1<x<1,
+\]
+用 $x^{2}$ 代替 $x$，得
+\[
+\frac{1}{1+x^{2}}=1-x^{2}+x^{4}-x^{6}+\cdots+(-1)^{n}x^{2n}+\cdots,\quad -1<x<1.
+\]
+逐项积分
+\[
+\begin{aligned}
+\arctan x&=\int_{0}^{x}\frac{\dd t}{1+t^{2}}\\
+&=x-\frac{x^{3}}{3}+\frac{x^{5}}{5}-\frac{x^{7}}{7}+\cdots+(-1)^{n}\frac{x^{2n+1}}{2n+1}+\cdots,\quad -1<x<1.
+\end{aligned}
+\]
+由于右边的级数在 $x=1$ 时是
+\[
+1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots+(-1)^{n}\frac{1}{2n+1}+\cdots,
+\]
+它是收敛的．用阿贝尔第二定理知和函数在 $[0,1]$ 连续，而 $\arctan x$ 在 $x=1$ 时是连续的，故
+\[
+\arctan x=x-\frac{x^{3}}{3}+\frac{x^{5}}{5}-\cdots+(-1)^{n}\frac{x^{2n+1}}{2n+1}+\cdots
+\]
+在 $-1<x\leqslant 1$ 成立．特别地令 $x=1$，有
+\[
+\frac{\pi}{4}=1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots.
+\]
+根据定义，$\pi$ 是圆周率，来源于求圆周的长度或圆的面积，很难想像 $\dfrac{\pi}{4}$ 可以表示成奇数倒数的这样一个交错级数之和．但现在我们却真实地证明了这是成立的．
+\end{example}
+
+\begin{example}\label{ex:13-3-3}
+已知
+\[
+\frac{1}{1-x}=\sum_{n=0}^{\infty}x^{n}=1+x+x^{2}+\cdots+x^{n}+\cdots,\quad -1<x<1.
+\]
+根据逐项微分定理，得
+\[
+\begin{aligned}
+\frac{1}{(1-x)^{2}}&=\sum_{n=1}^{\infty}nx^{n-1}\\
+&=1+2x+3x^{2}+4x^{3}+\cdots+nx^{n-1}+\cdots,\\
+&\quad -1<x<1.
+\end{aligned}
+\]
+两边乘以 $x$ 得
+\[
+\begin{aligned}
+\frac{x}{(1-x)^{2}}&=\sum_{n=1}^{\infty}nx^{n}\\
+&=x+2x^{2}+3x^{3}+4x^{4}+\cdots+nx^{n}+\cdots,\quad -1<x<1.
+\end{aligned}
+\]
+再逐项求微商，有
+\[
+\begin{aligned}
+\frac{1+x}{(1-x)^{3}}&=\sum_{n=1}^{\infty}n^{2}x^{n-1}\\
+&=1+2^{2}x+3^{2}x^{2}+4^{2}x^{3}+\cdots+n^{2}x^{n-1}+\cdots,\quad -1<x<1.
+\end{aligned}
+\]
+这样，通过逐项微分，我们可以得到许多新的级数展开．在上面两级数中，令 $x=\dfrac{1}{2}$，得
+\[
+2=\sum_{n=1}^{\infty}\frac{n}{2^{n}},
+\]
+\[
+12=\sum_{n=1}^{\infty}\frac{n^{2}}{2^{n-1}},
+\]
+还可以计算出很多特殊数项级数的和．
+\end{example}
+
+\begin{xiti}
+\item 利用基本初等函数的展式，将下列函数展开为麦克劳林级数，并说明收敛区间．
+\begin{ziti}
+\item $\displaystyle\frac{1}{a-x}$，$a\neq 0$；
+\item $\displaystyle\frac{1}{(1+x)^{2}}$；
+\item $\displaystyle\frac{1}{(1+x)^{3}}$；
+\item $\cos^{2}x$；
+\item $\sin^{3}x$；
+\item $\displaystyle\frac{x}{\sqrt{1-3x}}$；
+\item $(1+x)\mathrm{e}^{-x}$；
+\item $\ln(x+\sqrt{1+x^{2}})$；
+\item $\displaystyle\frac{1}{1-3x+2x^{2}}$；
+\item $\arcsin x$；
+\item $\ln(1+x+x^{2})$；
+\item $\displaystyle x\arctan x-\ln\sqrt{1+x^{2}}$；
+\item $\displaystyle\int_{0}^{x}\frac{\sin t}{t}\dd t$；
+\item $\displaystyle\int_{0}^{x}\cos t^{2}\dd t$．
+\end{ziti}
+\item 利用幂级数相乘求下列函数的麦克劳林展开式：
+\begin{ziti}
+\item $\displaystyle\frac{\ln(1+x)}{1+x}$；
+\item $(\arctan x)^{2}$；
+\item $\ln^{2}(1-x)$．
+\end{ziti}
+\item 将下列函数在指定点 $x_{0}$ 展开为泰勒级数：
+\begin{ziti}
+\item $\displaystyle\frac{1}{a-x}$，$x_{0}=b$（$\neq a$，$a\neq 0$）；
+\item $\displaystyle\ln\frac{1}{2+2x+x^{2}}$，$x_{0}=-1$；
+\item $\ln x$，$x_{0}=2$；
+\item $\mathrm{e}^{x}$，$x_{0}=1$．
+\end{ziti}
+\item 展开 $\displaystyle\frac{\mathrm{d}}{\mathrm{d}x}\left(\frac{\mathrm{e}^{x}-1}{x}\right)$ 为 $x$ 的幂级数，并推出 $\displaystyle 1=\sum_{n=1}^{\infty}\frac{n}{(n+1)!}$．
+\item 试将 $f(x)=\ln x$ 展开成 $\dfrac{x-1}{x+1}$ 的幂级数．
+\item 设函数 $f(x)$ 在区间 $(a,b)$ 内的各阶导数一致有界，即存在 $M>0$，对一切 $x\in(a,b)$，有
+\[
+\left|f^{(n)}(x)\right|\leqslant M,\quad n=1,2,\cdots,
+\]
+证明：对 $(a,b)$ 内任意点 $x$ 与 $x_{0}$，有
+\[
+f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_{0})}{n!}(x-x_{0})^{n}.
+\]
+\item 求下列级数的和：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{2}+1}{n!\,2^{n}}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}n^{3}}{(n+1)!}x^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(2n+1)^{2}}{n!}x^{2n+1}$．
+\end{ziti}
+\end{xiti}

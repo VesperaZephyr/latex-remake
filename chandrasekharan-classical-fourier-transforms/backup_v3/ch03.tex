@@ -1,0 +1,834 @@
+\chapter{Fourier-Stieltjes transforms (one variable)}
+\label{ch:III}
+
+\section{Basic Properties}
+\label{sec:III-1}
+
+We assume as known the fundamentals of the theory of Riemann--Stieltjes integrals.
+
+Let $F(y)$ be a function of bounded variation for $-\infty<y<\infty$. For $x$ real, let
+\begin{equation}\tag{1.1}\label{eq:III-1.1}
+\varphi(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF(y)\equiv\lim_{R\to\infty}\int_{-R}^{R}e^{ixy}\,dF(y),\qquad(R>0).
+\end{equation}
+We call $\varphi$ the Fourier--Stieltjes transform of $F$, or the Fourier transform of $dF$, and denote it sometimes by the symbol $\hat dF$.
+
+If, in particular,
+\begin{equation}\tag{1.2}\label{eq:III-1.2}
+F(y)=\int_{-\infty}^{y}f(t)\,dt,\qquad f\in L_{1}(-\infty,\infty),
+\end{equation}
+then \eqref{eq:III-1.1} reduces to the Fourier transform on $L_{1}(-\infty,\infty)$ studied in Ch.~I.
+
+The integral in \eqref{eq:III-1.1} converges absolutely and uniformly and $\varphi(x)$ is a bounded, continuous function of $x$ defined for every $x$ in $(-\infty,\infty)$. We have only to note that
+\[
+\bigl|\varphi(x)\bigr|\le\int_{-\infty}^{\infty}\bigl|dF(y)\bigr|<\infty,
+\]
+and for any real $h\neq0$,
+\begin{align*}
+\bigl|\varphi(x+h)-\varphi(x)\bigr|
+&\le\int_{-\infty}^{\infty}\bigl|e^{ihy}-1\bigr|\,\bigl|dF(y)\bigr|\\
+&\le|h|\int_{|y|<R}|y|\,\bigl|dF(y)\bigr|+2\int_{|y|\ge R}\bigl|dF(y)\bigr|=I_{1}+I_{2},
+\end{align*}
+say, where $R>0$. Given any $\varepsilon>0$, one can choose $R$ so large that $|I_{2}|<\varepsilon/2$, and $h$ so small that $|I_{1}|<\varepsilon/2$.
+
+But unlike the Fourier transform on $L_{1}(-\infty,\infty)$, $\varphi(x)$ does not necessarily tend to zero as $|x|\to\infty$. For example, if $F(x)=1$, for $x>0$; $F(x)=-1$, for $x<0$; and $F(0)=0$, then $\varphi(x)=2$.
+
+\begin{theorem}\label{thm:III-1}
+Let $F(x)$ be of bounded variation in $(-\infty,\infty)$, with
+\begin{equation}\tag{1.3}\label{eq:III-1.3}
+F(x)=\tfrac12\bigl\{F(x+0)+F(x-0)\bigr\},\qquad\text{for all }x,
+\end{equation}
+and
+\begin{equation}\tag{1.4}\label{eq:III-1.4}
+\varphi(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF(y).
+\end{equation}
+Then we have
+\begin{equation}\tag{1.5}\label{eq:III-1.5}
+F(x)-F(0)=\frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^{R}\varphi(t)\,\frac{e^{-itx}}{-it}\,dt
+\equiv\frac{1}{2\pi}\int_{-\infty}^{\infty}\varphi(t)\,\frac{e^{-itx}}{-it}\,dt,
+\end{equation}
+so that $\varphi$ determines $F$ up to an arbitrary, additive constant.
+\end{theorem}
+
+\begin{proof}
+If $h$ is real, and fixed, and $h\neq0$, then \eqref{eq:III-1.4} gives
+\begin{equation}\tag{1.6}\label{eq:III-1.6}
+\varphi(x)\,e^{-ihx}=\int_{-\infty}^{\infty}e^{ix(y-h)}\,dF(y)=\int_{-\infty}^{\infty}e^{ixy}\,dF(y+h).
+\end{equation}
+From this and \eqref{eq:III-1.4} we get
+\begin{equation}\tag{1.7}\label{eq:III-1.7}
+\varphi(x)\bigl[e^{-ihx}-1\bigr]=\int_{-\infty}^{\infty}e^{ixy}\,dG(y),\qquad G(y)=F(y+h)-F(y).
+\end{equation}
+
+Here $G$ is of bounded variation in $(-\infty,\infty)$, and $G\in L_{1}(-\infty,\infty)$. For if we suppose $h\ge0$, $h$ fixed; and suppose that $F$ is non-decreasing (since $F$ is expressible as the difference of two non-decreasing, bounded functions, if it is real-valued; and if it is complex-valued, one can consider the real and imaginary parts separately), then $G(y)\ge0$, and we have for $R>0$,
+\[
+\begin{aligned}
+\int_{-R}^{R}G(x)\,dx &= \int_{-R}^{R}\bigl\{F(x+h)-F(x)\bigr\}\,dx\\
+&= \int_{R}^{R+h}F(x)\,dx-\int_{-R}^{-R+h}F(x)\,dx\to h\bigl\{F(+\infty)-F(-\infty)\bigr\},
+\end{aligned}
+\]
+as $R\to+\infty$, and the limit is finite by hypothesis.
+
+We note that $G(x)\to0$, as $|x|\to\infty$ (by definition and by the hypothesis on $F$), and by partial integration,
+\[
+\lim_{R\to\infty}\Bigl[\int_{-R}^{R}e^{ixy}\,dG(y)\Bigr]
+=\lim_{R\to\infty}\Bigl[e^{ixy}G(y)\Bigr]_{y=-R}^{y=R}-ix\lim_{R\to\infty}\int_{-R}^{R}e^{ixy}G(y)\,dy,
+\]
+which gives
+\[
+\int_{-\infty}^{\infty}e^{ixy}\,dG(y)=-ix\int_{-\infty}^{\infty}e^{ixy}G(y)\,dy,
+\]
+so that, by \eqref{eq:III-1.7}, we have
+\[
+\varphi(x)\begin{bmatrix}\dfrac{e^{-ihx}-1}{-ix}\end{bmatrix}
+=\int_{-\infty}^{\infty}e^{ixy}G(y)\,dy.
+\]
+Since $F(x)=\frac12[F(x+0)+F(x-0)]$, this implies (by Theorem~5, Ch.~I) that
+\[
+G(x)=\frac{1}{2\pi}\lim_{R\to\infty}\int_{-R}^{R}\varphi(y)\,\frac{e^{-ihy}-1}{-iy}\,e^{-ixy}\,dy,
+\]
+for each $x$. For $x=0$, this gives \eqref{eq:III-1.5}.
+\end{proof}
+
+\begin{theorem}\label{thm:III-2}
+Let $F$ be of bounded variation in $(-\infty,+\infty)$, and let $F(x)=\frac12[F(x+0)+F(x-0)]$, for all $x$, and let $\varphi(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF(y)$. Then we have
+\begin{equation}\tag{1.8}\label{eq:III-1.8}
+\int_{0}^{x}\bigl\{F(y)-F(-y)\bigr\}\,dy=\frac{1}{\pi}\int_{-\infty}^{\infty}\varphi(y)\,\frac{1-\cos xy}{y^{2}}\,dy,
+\end{equation}
+the integral on the right-hand side converging absolutely (since $\varphi$ is bounded).
+\end{theorem}
+
+\begin{proof}
+We have, for $R>0$,
+\[
+\frac{1}{R\pi}\int_{-\infty}^{\infty}\varphi(y)\,\frac{1-\cos Ry}{2}\,dy
+=\frac{1}{\pi}\int_{-\infty}^{\infty}dF(y)\int_{-\infty}^{\infty}e^{ixy}\,\frac{1-\cos Ry}{2}\,dy
+\]
+\[
+=\int_{-R}^{R}\Bigl(1-\frac{|x|}{R}\Bigr)\,dF(x)
+=\frac{1}{R}\int_{0}^{R}\bigl[F(y)-F(-y)\bigr]\,dy.
+\]
+(see Ex.2, \S\ref{sec:I-1}, Ch.~I; also Ex.1, \S\ref{sec:I-8}, Ch.~I).
+\end{proof}
+
+\subsection*{Remarks}
+
+Let $F_{1}(x)$, $F_{2}(x)$, \dots, be non-decreasing, and bounded functions in $(-\infty<x<\infty)$, and let
+\begin{equation}\tag{1.9}\label{eq:III-1.9}
+\varphi_{n}(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF_{n}(y),\qquad n=1,2,\dots.
+\end{equation}
+The following examples show the difficulty in preserving the equality sign in \eqref{eq:III-1.9} after letting $n\to+\infty$.
+
+\noindent\textbf{(1.10)} Let $F_{n}(x)=0$, for $x<n$; $F_{n}(x)=1$, for $x\ge n$. Then $F_{n}(x)\to0$, for each $x$, as $n\to+\infty$, but $\varphi_{n}(x)=e^{inx}$ does not tend to a limit as $n\to+\infty$, except for $x=2\pi k$, where $k$ is an integer.
+
+\noindent\textbf{(1.11)} Let $F_{n}(x)$ be continuous, $F_{n}(x)=0$ for $x\le-n$, $F_{n}(x)=1$ for $x\ge n$, $F_{n}(x)=\frac{x}{2n}+\frac12$ for $-n<x<n$ (linear). Then $F_{n}(x)\to\frac12$, for each $x$, as $n\to\infty$, and
+\[
+\varphi_{n}(x)=\int_{-n}^{n}\frac{e^{ixy}}{2n}\,dy=\frac{\sin nx}{nx},
+\]
+so that $\varphi_{n}(x)\to0$, as $n\to\infty$, for each $x\neq0$, and $\varphi_{n}(x)\to1$, at $x=0$, as $n\to\infty$, so that
+\[
+\lim_{n\to\infty}\varphi_{n}(x)\neq\int_{-\infty}^{\infty}e^{ixy}\,d\Bigl(\lim_{n\to\infty}F_{n}(y)\Bigr).
+\]
+
+\section{Distribution functions, and characteristic functions}
+\label{sec:III-2}
+
+In order to avoid some of the difficulties pointed up by the above examples, we shall now consider non-decreasing functions $F(x)$, which have finite limits at $x=\pm\infty$. We suppose further that
+\begin{equation}\tag{2.1}\label{eq:III-2.1}
+F(-\infty)=0,\qquad F(+\infty)=1.
+\end{equation}
+We call such a function $F$ a distribution function. We call the Fourier--Stieltjes transform of such an $F$, namely
+\[
+\varphi(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF(y),
+\]
+a characteristic function, corresponding to the given distribution function $F$.
+
+It is clear that $\varphi$ is continuous and bounded. (Note that $|\varphi(x)|\le F(+\infty)-F(-\infty)=1$, and $\varphi(0)=1$). It is also hermitian, in the sense that $\overline{\varphi(-x)}=\varphi(x)$.
+
+Theorem~\ref{thm:III-1} implies that given $\varphi$, the distribution function $F$ is defined uniquely at the points of continuity of $F$, because $F(-\infty)=0$, $F(+\infty)=1$. The next theorem shows how the convergence of a sequence of distribution functions implies the convergence of the corresponding sequence of characteristic functions.
+
+\begin{theorem}\label{thm:III-3}
+Let $(F_{n})$ be a sequence of distribution functions, and $(\varphi_{n})$ the corresponding sequence of characteristic functions, so that
+\begin{equation}\tag{2.2}\label{eq:III-2.2}
+\varphi_{n}(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF_{n}(y).
+\end{equation}
+If $F_{n}$ converges to a distribution function $F$ as $n\to\infty$, at the points of continuity of $F$, and if $\varphi$ is the characteristic function of $F$, then
+\begin{equation}\tag{2.3}\label{eq:III-2.3}
+\varphi_{n}(x)\to\varphi(x)\qquad\text{as }n\to\infty,
+\end{equation}
+and the convergence is uniform in every finite interval.
+\end{theorem}
+
+\begin{proof}
+We note that the set of discontinuities of $F$ is countable. Given $\varepsilon>0$, we choose $R>0$, such that $F(x)$ is continuous both at $x=R$ and $x=-R$, with $F(-R)<\varepsilon$, $F(R)>1-\varepsilon$, and such that $F_{n}(\pm R)\to F(\pm R)$, as $n\to\infty$. Then we have, for $n\ge n_{0}$, also
+\[
+F_{n}(-R)<\varepsilon,\qquad F_{n}(R)>1-\varepsilon.
+\]
+Now
+\begin{align*}
+\varphi(x)-\varphi_{n}(x)
+&=\int_{|y|\le R}e^{ixy}\,d\bigl\{F(y)-F_{n}(y)\bigr\}+\int_{|y|>R}e^{ixy}\,dF(y)\\
+&\qquad-\int_{|y|>R}e^{ixy}\,dF_{n}(y)=I_{1}+I_{2}+I_{3},\quad\text{say.}
+\end{align*}
+Then we have
+\[
+|I_{2}|\le\bigl(1-F(R)+F(-R)\bigr)<2\varepsilon,\qquad\text{for all }x,
+\]
+while
+\[
+|I_{3}|\le\bigl(1-F_{n}(R)+F_{n}(-R)\bigr)<2\varepsilon,\qquad\text{for }n\ge n_{0},\text{ and all }x.
+\]
+On the other hand,
+\[
+I_{1}=\Bigl[\bigl(F(y)-F_{n}(y)\bigr)e^{ixy}\Bigr]_{y=-R}^{y=+R}-ix\int_{|y|\le R}\bigl\{F(y)-F_{n}(y)\bigr\}e^{ixy}\,dy.
+\]
+Since $F_{n}(\pm R)\to F(\pm R)$, as $n\to\infty$, the first term on the right-hand side tends to zero, uniformly in $x$. And
+\[
+\Bigl|-ix\int_{|y|\le R}\bigl\{F(y)-F_{n}(y)\bigr\}e^{ixy}\,dy\Bigr|
+\le|x|\int_{|y|\le R}\bigl|F(y)-F_{n}(y)\bigr|\,dy\to0,
+\]
+uniformly in each finite $x$-interval since $|F|\le1$, $|F_{n}|\le1$; hence so does $I_{1}$. Thus we have altogether
+\[
+\bigl|\varphi(x)-\varphi_{n}(x)\bigr|<\varepsilon+2\varepsilon+2\varepsilon,\qquad\text{for }n\ge n_{0},
+\]
+and for $x$ in any finite interval.
+\end{proof}
+
+The next result is a kind of converse to Theorem~\ref{thm:III-3}.
+
+\begin{theorem}\label{thm:III-4}
+If $\varphi_{n}(x)\to\varphi(x)$, for each $x$, as $n\to\infty$, where $\varphi_{n}$ is the characteristic function corresponding to the distribution function $F_{n}$, and if $\varphi$ is continuous at the origin, then $F_{n}$ converges to a distribution function $F$, at the points of continuity of $F$, and $\varphi$ is the characteristic function of $F$.
+\end{theorem}
+
+\begin{proof}
+Since $F_{n}(x)$ is a non-decreasing function of $x$ for $n=1,2,\dots$, and since $0\le F_{n}(x)\le1$, for all $x\in(-\infty,\infty)$, there exists (by Helly's theorem) a subsequence $F_{n_{k}}$ of $F_{n}$ of non-decreasing functions (of $x$) which converges, as $n_{k}\to\infty$, to a non-decreasing function $F(x)$. Clearly $0\le F(x)\le1$. We shall see that $F$ is a distribution function, and that $F_{n}\to F$, at every point of continuity of $F$.
+
+By definition, we have
+\[
+\varphi_{n}(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF_{n}(y).
+\]
+If we use formula \eqref{eq:III-1.8}, we get, for $R>0$,
+\begin{equation}\tag{2.4}\label{eq:III-2.4}
+\int_{0}^{R}\bigl\{F_{n_{k}}(y)-F_{n_{k}}(-y)\bigr\}\,dy
+=\frac{1}{\pi}\int_{-\infty}^{\infty}\varphi_{n_{k}}(y)\,\frac{1-\cos Ry}{y^{2}}\,dy.
+\end{equation}
+Since $|\varphi_{n}(x)|\le1$, for all $x\in(-\infty,\infty)$, and $\varphi_{n}(x)\to\varphi(x)$, for each $x$, as $n\to\infty$, we get on letting $n_{k}\to\infty$ in \eqref{eq:III-2.4},
+\[
+\int_{0}^{R}\bigl[F(y)-F(-y)\bigr]\,dy=\frac{1}{\pi}\int_{-\infty}^{\infty}\varphi(y)\,\frac{1-\cos Ry}{y^{2}}\,dy,
+\]
+or
+\begin{equation}\tag{2.5}\label{eq:III-2.5}
+\frac{1}{R}\int_{0}^{R}\bigl[F(y)-F(-y)\bigr]\,dy
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\varphi(y)\,H_{R}(y)\,dy,\qquad
+H_{R}(y)=\frac{\sin^{2}(Ry/2)}{R(y/2)^{2}}.
+\end{equation}
+Since $\varphi_{n}(0)=1$ for $n=1,2,\dots$, and $\varphi(x)=\lim_{n\to\infty}\varphi_{n}(x)$, we have $\varphi(0)=1$, and since $\int_{-\infty}^{\infty}\bigl(\frac{\sin\alpha}{\alpha}\bigr)^{2}d\alpha=\pi$, we have $\frac{1}{2\pi}\int_{-\infty}^{\infty}H_{R}(y)\,dy=1$. (cf.\ Ex.1, Th.13, Ch.~I). Hence, for a suitably chosen $\delta>0$, we have
+\begin{align*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\varphi(y)\,H_{R}(y)\,dy-1
+&=\frac{1}{2\pi}\int_{-\infty}^{\infty}\bigl\{\varphi(y)-\varphi(0)\bigr\}\,H_{R}(y)\,dy\\
+&=\frac{1}{2\pi}\Bigl(\int_{|y|<\delta}+\int_{|y|\ge\delta}\Bigr)\bigl\{\varphi(y)-\varphi(0)\bigr\}\,H_{R}(y)\,dy\\
+&=I_{1}+I_{2},\quad\text{say.}
+\end{align*}
+Because of the continuity of $\varphi$ at the origin, given $\varepsilon>0$, there exists a $\delta>0$, such that
+\[
+|I_{1}|\le\sup_{|y|<\delta}\bigl|\varphi(y)-\varphi(0)\bigr|\cdot1<\varepsilon,
+\]
+while
+\[
+|I_{2}|\le\frac{1}{\pi}\int_{|t|\ge R\delta}\Bigl(\frac{\sin t/2}{t/2}\Bigr)^{2}dt\to0,
+\]
+as $R\to\infty$ for a suitably chosen, but fixed, $\delta>0$. Hence
+\[
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-\infty}^{\infty}\varphi(y)\,H_{R}(y)\,dy=1,
+\]
+which implies, because of \eqref{eq:III-2.5}, that
+\begin{equation}\tag{2.6}\label{eq:III-2.6}
+\lim_{R\to\infty}\frac{1}{R}\int_{0}^{R}\bigl\{F(y)-F(-y)\bigr\}\,dy=1.
+\end{equation}
+The left-hand side equals $F(+\infty)-F(-\infty)$. Since $0\le F(x)\le1$, and $F$ is non-decreasing, we deduce that $F(+\infty)=1$, $F(-\infty)=0$. Hence $F$ is a distribution function. By Theorem~\ref{thm:III-3}, we have
+\[
+\lim_{n_{k}\to\infty}\varphi_{n_{k}}(x)=\varphi(x)=\int_{-\infty}^{\infty}e^{ixy}\,dF(y).
+\]
+If there exists a point of continuity $x_{0}$ of $F$, such that $F_{n}(x_{0})\not\to F(x_{0})$, then we can find a subsequence $F_{n_{k}'}$, which converges everywhere to a distribution function $F^{*}$, and such that $F^{*}(x_{0})\neq F(x_{0})$. If, for example, $F^{*}(x_{0})>F(x_{0})$, then since $F$ is continuous at $x_{0}$, and $F^{*}$ is non-decreasing, we have $F^{*}(x)>F(x)$, for $x\in(x_{0},x_{0}+\eta)$, for some $\eta>0$, sufficiently small. (Similarly if $F^{*}(x_{0})<F(x_{0})$, then $F^{*}(x)<F(x)$ for $x\in(x_{0}-\eta',x_{0})$ for some $\eta'>0$). This is impossible since, by Theorem~\ref{thm:III-3}, $\varphi$ is also the characteristic function of $F^{*}$, and the characteristic function determines the distribution function up to an additive constant (Theorem~\ref{thm:III-1}) and $F^{*}(-\infty)=F(-\infty)=0$.
+\end{proof}
+
+\section{Positive definite functions: the theorems of Bochner and of F. Riesz}
+\label{sec:III-3}
+
+We shall consider classes of functions $f$ which can be represented as Fourier--Stieltjes transforms.
+
+\begin{lemma}\label{lem:III-1}
+If $f(t)$ is a complex-valued function which is measurable and finite for $-\infty<t<\infty$, and satisfies the condition
+\begin{equation}\tag{3.1}\label{eq:III-3.1}
+\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}f(t_{\mu}-t_{\nu})\,\rho_{\mu}\,\overline{\rho}_{\nu}\ge0
+\end{equation}
+for any integer $m\ge1$, and arbitrary real numbers $t_{1},t_{2},\dots,t_{m}$ and arbitrary complex numbers $\rho_{1},\rho_{2},\dots,\rho_{m}$, then we have
+\begin{equation}\tag{3.2}\label{eq:III-3.2}
+f(0)\ge0;\qquad f(-t)=\overline{f(t)};\qquad |f(t)|\le f(0).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On taking $m=1$ in \eqref{eq:III-3.1}, we obtain
+\[
+|\rho_{1}|^{2}f(0)\ge0,
+\]
+so that $f(0)\ge0$.
+
+On taking $m=2$, $t_{1}=t$, $t_{2}=0$, we obtain
+\begin{equation}\tag{3.3}\label{eq:III-3.3}
+f(0)\bigl[|\rho_{1}|^{2}+|\rho_{2}|^{2}\bigr]+f(t)\rho_{1}\overline{\rho}_{2}+f(-t)\overline{\rho}_{1}\rho_{2}\ge0.
+\end{equation}
+If we choose $\rho_{2}=1$ in \eqref{eq:III-3.3}, we get
+\[
+f(0)\bigl[|\rho_{1}|^{2}+1\bigr]+f(t)\rho_{1}+f(-t)\overline{\rho}_{1}\ge0,
+\]
+and if in this we set $\rho_{1}=1$, $i$ respectively, we see that $f(t)+f(-t)$ is real (since $f(0)$ is real), and that $f(t)-f(-t)$ is purely imaginary, hence $f(-t)=\overline{f(t)}$.
+
+If $f(0)=0$, $\rho_{1}=1$, $\rho_{2}=-f(t)$, then \eqref{eq:III-3.3} gives $-2|f(t)|^{2}\ge0$, since $f(-t)=\overline{f(t)}$, hence $f(t)=0$, for all $t$.
+
+If $f(0)>0$, $\rho_{1}=f(0)$, $\rho_{2}=-f(t)$, then \eqref{eq:III-3.3} gives
+\[
+f(0)\bigl[|f(0)|^{2}+|f(t)|^{2}\bigr]>f(0)\bigl\{2|f(t)|\bigr\}^{2},
+\]
+which implies that $|f(t)|\le f(0)$, and \eqref{eq:III-3.2} is proved.
+\end{proof}
+
+\begin{lemma}[F. Riesz]\label{lem:III-2}
+For any complex-valued measurable function $f$, condition \eqref{eq:III-3.1} implies that
+\begin{equation}\tag{3.4}\label{eq:III-3.4}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(t-s)\,\rho(t)\,\overline{\rho}(s)\,ds\,dt\ge0,
+\end{equation}
+for any $\rho\in L_{1}(-\infty,\infty)$, provided that $f(0)$ is finite.
+\end{lemma}
+
+\begin{proof}
+If $A>0$, and $\rho\in L_{2}(-A,A)$, we take $\rho_{\mu}=\rho(t_{\mu})$ in \eqref{eq:III-3.1} and integrate with respect to $t_{\mu}$, $\mu=1,2,\dots,m$, where $m>1$. We get from each of the diagonal terms (in which $\mu=\nu$)
+\[
+(2A)^{m-1}f(0)\int_{-A}^{A}|\rho(t)|^{2}\,dt,
+\]
+while each of the remaining terms gives
+\[
+(2A)^{m-2}\int_{-A}^{A}\int_{-A}^{A}f(t-s)\,\rho(t)\,\overline{\rho}(s)\,ds\,dt.
+\]
+Hence we have
+\[
+m(2A)^{m-1}f(0)\int_{-A}^{A}|\rho(t)|^{2}\,dt
++m(m-1)(2A)^{m-2}\int_{-A}^{A}\int_{-A}^{A}f(t-s)\,\rho(t)\,\overline{\rho}(s)\,ds\,dt\ge0.
+\]
+On dividing throughout by $m(m-1)(2A)^{m-2}$, and then letting $m\to\infty$, we get
+\begin{equation}\tag{3.5}\label{eq:III-3.5}
+\int_{-A}^{A}\int_{-A}^{A}f(t-s)\,\rho(t)\,\overline{\rho}(s)\,ds\,dt\ge0,
+\end{equation}
+for any $\rho\in L_{2}(-A,A)$. If $\rho\in L_{1}(-A,A)$, \eqref{eq:III-3.5} still holds good, for if we define, for any integer $n\ge1$,
+\[
+\rho_{n}(t)=
+\begin{cases}
+\rho(t),&\text{if }|\rho(t)|\le n,\\
+n,&\text{if }|\rho(t)|>n,
+\end{cases}
+\]
+then we have $|\rho_{n}(t)|\le|\rho(t)|\in L_{1}(-A,A)$, and $|\rho_{n}(t)|\le n$, for all $t\in(-A,A)$. Hence $\rho_{n}\in L_{2}(-A,A)\cap L_{1}(-A,A)$, so that \eqref{eq:III-3.5} holds with $\rho_{n}(t)$ in place of $\rho(t)$. Since $\rho_{n}(t)\to\rho(t)$, as $n\to\infty$, and $|f(t)|\le f(0)$, and $f(0)$ is finite, we obtain \eqref{eq:III-3.5} for any $\rho\in L_{1}(-A,A)$. If we then let $A\to\infty$, we obtain \eqref{eq:III-3.4}.
+\end{proof}
+
+\begin{lemma}\label{lem:III-3}
+If a measurable function $f$ (as in Lemma~\ref{lem:III-1}) satisfies \eqref{eq:III-3.1}, and $f(0)$ is finite, then for any $\varepsilon>0$, the function
+\begin{equation}\tag{3.6}\label{eq:III-3.6}
+f_{\varepsilon}(x)=e^{-\varepsilon x^{2}}f(x),\qquad-\infty<x<\infty,\ \varepsilon>0,
+\end{equation}
+also satisfies \eqref{eq:III-3.1}; and $f_{\varepsilon}(x)\in L_{1}(-\infty<x<\infty)$.
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{align*}
+\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}f_{\varepsilon}(t_{\mu}-t_{\nu})\,\rho_{\mu}\,\overline{\rho}_{\nu}
+&=\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}\rho_{\mu}\,\overline{\rho}_{\nu}\,f(t_{\mu}-t_{\nu})\,e^{-\varepsilon(t_{\mu}-t_{\nu})^{2}}\\
+&=\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}\rho_{\mu}\,\overline{\rho}_{\nu}\,f(t_{\mu}-t_{\nu})\,
+\frac{1}{2(\pi\varepsilon)^{1/2}}\int_{-\infty}^{\infty}e^{-t^{2}/4\varepsilon+i(t_{\mu}-t_{\nu})t}\,dt,
+\end{align*}
+if we note that
+\begin{equation}\tag{3.7}\label{eq:III-3.7}
+\int_{-\infty}^{\infty}e^{-x^{2}+i\alpha x}\,dx=\sqrt{\pi}\,e^{-\alpha^{2}/4},\qquad(\text{see }\S\ref{sec:I-1},\text{ Ch.~I})
+\end{equation}
+and replace $x$ by $x/(2\sqrt{\varepsilon})$, and $\alpha$ by $2\alpha\sqrt{\varepsilon}$.
+
+Now the expression in \eqref{eq:III-3.7} equals the integral
+\[
+\int_{-\infty}^{\infty}e^{-t^{2}/4\varepsilon}
+\Biggl(\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}
+\bigl(\rho_{\mu}e^{it_{\mu}t}\bigr)\overline{\bigl(\rho_{\nu}e^{it_{\nu}t}\bigr)}\,f(t_{\mu}-t_{\nu})\Biggr)\,dt\ge0,
+\]
+since $f$ satisfies \eqref{eq:III-3.1} by hypothesis. It follows from \eqref{eq:III-3.7} that $f_{\varepsilon}$ satisfies \eqref{eq:III-3.1}. Since $f(0)$ is finite, and (by Lemma~\ref{lem:III-1}) $|f(t)|\le f(0)$, we note that $f$ is bounded, hence $f_{\varepsilon}\in L_{1}(-\infty,\infty)$ for every $\varepsilon>0$.
+\end{proof}
+
+\begin{lemma}\label{lem:III-4}
+Suppose that $f$ is a complex-valued measurable function on $(-\infty,\infty)$ which satisfies \eqref{eq:III-3.1}, with $f(0)$ finite. Let $f_{\varepsilon}(x)=e^{-\varepsilon x^{2}}f(x)$, $\varepsilon>0$, so that (by Lemma~\ref{lem:III-3}) $f_{\varepsilon}\in L_{1}(-\infty,\infty)$. Then we have
+\[
+\hat f_{\varepsilon}(\alpha)\ge0,\qquad \hat f_{\varepsilon}\in L_{1}(-\infty,\infty),\qquad-\infty<\alpha<\infty,
+\]
+and
+\begin{equation}\tag{3.8}\label{eq:III-3.8}
+f_{\varepsilon}(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f_{\varepsilon}(\alpha)\,e^{-i\alpha x}\,d\alpha,
+\end{equation}
+for almost all $x\in(-\infty,\infty)$. In particular, \eqref{eq:III-3.8} holds at every point of continuity $x$ of $f_{\varepsilon}$, and therefore of $f$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:III-2}, $f$ satisfies condition \eqref{eq:III-3.4}. In it we choose $\rho$, such that
+\[
+\rho(t)=e^{-2\varepsilon t^{2}}e^{i\alpha t},\qquad-\infty<t<\infty,
+\]
+where $\alpha$ is real and fixed. Then \eqref{eq:III-3.4} becomes
+\[
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x-y)\,e^{-2\varepsilon(x^{2}+y^{2})}\,e^{i\alpha(x-y)}\,dx\,dy\ge0.
+\]
+If we make the substitutions
+\[
+x-y=u,\qquad x+y=v,
+\]
+then we have
+\begin{align*}
+\frac12\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(u)\,e^{-\varepsilon(u^{2}+v^{2})}\,e^{iu\alpha}\,du\,dv
+&=\frac12\int_{-\infty}^{\infty}\Bigl(\int_{-\infty}^{\infty}e^{-\varepsilon v^{2}}\,dv\Bigr)e^{-\varepsilon u^{2}}f(u)\,e^{iu\alpha}\,du\\
+&=\frac12\int_{-\infty}^{\infty}\Bigl(\int_{-\infty}^{\infty}e^{-\varepsilon v^{2}}\,dv\Bigr)f_{\varepsilon}(u)\,e^{iu\alpha}\,du\ge0.
+\end{align*}
+Now $f_{\varepsilon}\in L_{1}(-\infty,\infty)$, and $f_{\varepsilon}$ is bounded on $(-\infty,\infty)$, since $f(0)$ is finite, and the last inequality shows that $f_{\varepsilon}$ has a positive Fourier transform. By Theorem~12 of Ch.~I, $\hat f_{\varepsilon}\in L_{1}(-\infty,\infty)$ and \eqref{eq:III-3.8} follows.
+\end{proof}
+
+\begin{lemma}\label{lem:III-5}
+Let
+\[
+K(\alpha)=
+\begin{cases}
+1-|\alpha|,&\text{for }|\alpha|\le1,\\
+0,&\text{for }|\alpha|>1,
+\end{cases}
+\]
+so that $K\in L_{1}(-\infty,\infty)$, and let $\hat K=H$. If, for $R>0$, $K_{R}(\alpha)\equiv K(\alpha/R)$, and $H_{R}(\alpha)=RH(R\alpha)$, then
+\[
+\hat K_{R}=H_{R}\qquad\text{and}\qquad\hat H_{R}=2\pi\,K_{R}.
+\]
+(If $f\in L_{1}(-\infty,\infty)$, $\hat f(\alpha)=\int_{-\infty}^{\infty}f(x)e^{i\alpha x}\,dx$, as in Ch.~I, \eqref{eq:I-8.1}). If $f_{\varepsilon}$ is defined for every $\varepsilon>0$ as in Lemma~\ref{lem:III-3}, then we have
+\begin{equation}\tag{3.9}\label{eq:III-3.9}
+\int_{-\infty}^{\infty}H_{R}(x-y)\,f_{\varepsilon}(y)\,dy
+=\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{i\alpha x}\,\hat f_{\varepsilon}(-\alpha)\,d\alpha.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Since $K$ is even, $H$ is even, so that the left-hand side of \eqref{eq:III-3.9} equals
+\[
+\int_{-\infty}^{\infty}H_{R}(y-x)\,f_{\varepsilon}(y)\,dy
+=\int_{-\infty}^{\infty}f_{\varepsilon}(x+t)\,H_{R}(t)\,dt.
+\]
+By the composition rule (Ch.~I, \eqref{eq:I-1.13}), this equals
+\[
+\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{-i\alpha x}\,\hat f_{\varepsilon}(\alpha)\,d\alpha
+=\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{+i\alpha x}\,\hat f_{\varepsilon}(-\alpha)\,d\alpha,
+\]
+since $f_{\varepsilon}\in L_{1}(-\infty,\infty)$ by Lemma~\ref{lem:III-4}, $K_{R}\in L_{1}(-\infty,\infty)$, $H_{R}\in L_{1}(-\infty,\infty)$, $K_{R}$ is even, and $\hat K_{R}=H_{R}$.
+\end{proof}
+
+\begin{lemma}\label{lem:III-6}
+Let $f$ be a complex-valued measurable function defined on $(-\infty,\infty)$, which satisfies condition \eqref{eq:III-3.1}, and is continuous for $x=0$. Let
+\begin{equation}\tag{3.10}\label{eq:III-3.10}
+f_{n}(x)=e^{-x^{2}/n}f(x),\qquad n\ge1,\ n\text{ integral},\ -\infty<x<\infty.
+\end{equation}
+Then there exists a non-decreasing, bounded function $V_{n}(t)$, $-\infty<t<\infty$, such that
+\begin{equation}\tag{3.11}\label{eq:III-3.11}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}H_{R}(x-y)\,f_{n}(y)\,dy
+=\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{i\alpha x}\,dV_{n}(\alpha),\qquad-\infty<x<\infty.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If $f$ is continuous at $x=0$, then $f(0)$ is finite, and by Lemma~\ref{lem:III-4}, $\hat f_{n}(-\alpha)\ge0$, for $-\infty<\alpha<\infty$, $\hat f_{n}\in L_{1}(-\infty,\infty)$. If we define
+\begin{equation}\tag{3.12}\label{eq:III-3.12}
+V_{n}(t)=\frac{1}{2\pi}\int_{-\infty}^{t}\hat f_{n}(-\alpha)\,d\alpha,\qquad-\infty<t<\infty,
+\end{equation}
+then $V_{n}(t)\ge0$, and $V_{n}(t)$ is a non-decreasing function of $t$ for $n=1,2,\dots$. If $f$ is continuous at the origin, then, by Lemma~\ref{lem:III-4}, we have
+\[
+f_{n}(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f_{n}(-\alpha)\,d\alpha,
+\]
+so that
+\begin{equation}\tag{3.13}\label{eq:III-3.13}
+0\le V_{n}(t)\le f_{n}(0)=f(0),\qquad\text{for }-\infty<t<\infty,\ n=1,2,\dots.
+\end{equation}
+Now \eqref{eq:III-3.9} gives \eqref{eq:III-3.11}.
+\end{proof}
+
+\begin{theorem}\label{thm:III-5}
+Let $f$ be a complex-valued measurable function defined on $(-\infty,\infty)$, which is continuous at the origin, and which satisfies condition \eqref{eq:III-3.1}. Then there exists a non-decreasing, bounded function $V(t)$, such that
+\begin{equation}\tag{3.14}\label{eq:III-3.14}
+f(x)=\int_{-\infty}^{\infty}e^{ixt}\,dV(t),\qquad-\infty<x<\infty,
+\end{equation}
+for almost all $x\in(-\infty,\infty)$. If $f$ is continuous everywhere, then \eqref{eq:III-3.14} holds for every $x\in(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+We have to let $n\to\infty$ in relation \eqref{eq:III-3.11} of Lemma~\ref{lem:III-6} just proved, and then let $R\to\infty$. Since $\{V_{n}(t)\}$ is uniformly bounded, by \eqref{eq:III-3.13}, by a theorem of Helly there exists a subsequence $(n_{k})$, and a non-decreasing function $V$, such that $|V(t)|\le f(0)$, and $V_{n_{k}}\to V$ pointwise on $(-\infty,\infty)$.
+
+Since $K_{R}(\alpha)$ in Lemma~\ref{lem:III-5} vanishes for $|\alpha|\ge R$, and is continuous, we have, by a theorem of Helly--Bray (see the Notes),
+\begin{equation}\tag{3.15}\label{eq:III-3.15}
+\lim_{k\to\infty}\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{i\alpha x}\,dV_{n_{k}}(\alpha)
+=\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{i\alpha x}\,dV(\alpha),
+\end{equation}
+for each $R>0$, on the right-hand side of \eqref{eq:III-3.11}. If we take the left-hand side of \eqref{eq:III-3.11}, and let $n\to\infty$, through the same subsequence $(n_{k})$ as in \eqref{eq:III-3.15}, we obtain, since $|f_{n}(y)|\le f_{n}(0)=f(0)$, and $f(0)$ is finite, and $H_{R}\in L_{1}(-\infty,\infty)$,
+\begin{equation}\tag{3.16}\label{eq:III-3.16}
+\lim_{k\to\infty}\frac{1}{2\pi}\int_{-\infty}^{\infty}H_{R}(x-y)\,f_{n_{k}}(y)\,dy
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}H_{R}(x-y)\,f(y)\,dy,
+\end{equation}
+by Lebesgue's theorem on dominated convergence. From \eqref{eq:III-3.16} and \eqref{eq:III-3.15}, and \eqref{eq:III-3.11}, we thus obtain
+\begin{equation}\tag{3.17}\label{eq:III-3.17}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}H_{R}(x-y)\,f(y)\,dy
+=\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{i\alpha x}\,dV(\alpha),\qquad(R>0).
+\end{equation}
+We now let $R\to\infty$. The function $K_{R}(\alpha)e^{i\alpha x}$ is continuous in $\alpha$, and vanishes outside $(-R,R)$, and $K_{R}(\alpha)\to1$, as $R\to\infty$, for each $\alpha$, while
+\[
+\int_{-\infty}^{\infty}\bigl|dV(\alpha)\bigr|\le V(+\infty)-V(-\infty)\le f(0)<\infty.
+\]
+Hence
+\begin{equation}\tag{3.18}\label{eq:III-3.18}
+\lim_{R\to\infty}\int_{-\infty}^{\infty}K_{R}(\alpha)\,e^{i\alpha x}\,dV(\alpha)
+=\int_{-\infty}^{\infty}e^{i\alpha x}\,dV(\alpha),
+\end{equation}
+on the right-hand side of \eqref{eq:III-3.17}. We shall show that the left-hand side of \eqref{eq:III-3.17} gives
+\begin{equation}\tag{3.19}\label{eq:III-3.19}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-\infty}^{\infty}f(y)\,H_{R}(x-y)\,dy
+=\lim_{R\to\infty}\frac{1}{2\pi}(f*H_{R})(x)=f(x),
+\end{equation}
+for almost all $x\in(-\infty,\infty)$, so that \eqref{eq:III-3.14} follows, and the theorem is proved.
+
+Let $\omega>0$, arbitrarily chosen and kept fixed, and let $f_{\omega}(y)=f(y)$, for $|y|<\omega$; while $f_{\omega}(y)=0$, for $|y|\ge\omega$. Since $f$ is bounded and measurable in $(-\omega,\omega)$, $f\in L_{1}(-\omega,\omega)$; hence $f_{\omega}\in L_{1}(-\infty,\infty)$. By Theorem~10 of Ch.~I, we have
+\[
+\lim_{R\to\infty}\frac{1}{2\pi}(f_{\omega}*H_{R})(x)=f_{\omega}(x),\qquad\text{for almost all }x\in(-\infty,\infty).
+\]
+That is to say that
+\begin{equation}\tag{3.20}\label{eq:III-3.20}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-\omega}^{\omega}f(y)\,H_{R}(x-y)\,dy=f(x),
+\end{equation}
+for almost all $x\in[-\omega,\omega]$. By a further conclusion in Theorem~10 of Ch.~I, this relation holds for every $x\in(-\omega,\omega)$, if $f$ is everywhere continuous.
+
+On the other hand, if $|x|<\omega$, we have
+\begin{equation}\tag{3.21}\label{eq:III-3.21}
+\Bigl|\frac{1}{2\pi}\int_{|y|\ge\omega}f(y)\,H_{R}(x-y)\,dy\Bigr|
+\le\frac{f(0)}{2\pi\,R}\int_{|y|\ge\omega}\frac{\sin^{2}[R(x-y)/2]}{[(x-y)/2]^{2}}\,dy\to0,
+\qquad\text{as }R\to\infty.
+\end{equation}
+Thus \eqref{eq:III-3.21} and \eqref{eq:III-3.20} lead to the relation
+\begin{equation}\tag{3.19}\label{eq:III-3.19b}
+\lim_{R\to\infty}\frac{1}{2\pi}(f*H_{R})(x)=f(x),
+\end{equation}
+for almost all $x\in[-\omega,\omega]$, where $\omega>0$ is arbitrary; and for every $x\in(-\omega,\omega)$ if $f$ is continuous everywhere. This combined with \eqref{eq:III-3.18} and \eqref{eq:III-3.17} proves the theorem.
+\end{proof}
+
+The next result is a kind of converse and easier to prove.
+
+\begin{theorem}[Bochner]\label{thm:III-6}
+Let $V(t)$ be a non-decreasing function of $t$, $-\infty<t<\infty$, which is bounded everywhere. Then the function
+\begin{equation}\tag{3.22}\label{eq:III-3.22}
+f(x)=\int_{-\infty}^{\infty}e^{ixt}\,dV(t),\qquad-\infty<x<\infty,
+\end{equation}
+is continuous, and bounded, and satisfies condition \eqref{eq:III-3.1}.
+\end{theorem}
+
+\begin{proof}
+As already remarked in \S\ref{sec:III-1}, $f$ is bounded and continuous. To verify \eqref{eq:III-3.1} we have only to note that
+\begin{align*}
+\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}f(t_{\mu}-t_{\nu})\,\rho_{\mu}\,\overline{\rho}_{\nu}
+&=\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}\rho_{\mu}\,\overline{\rho}_{\nu}
+\int_{-\infty}^{\infty}e^{it(t_{\mu}-t_{\nu})}\,dV(t)\\
+&=\int_{-\infty}^{\infty}\Bigl(\sum_{\mu=1}^{m}\rho_{\mu}e^{it_{\mu}t}\Bigr)
+\Bigl(\sum_{\nu=1}^{m}\overline{\rho}_{\nu}e^{-it_{\nu}t}\Bigr)\,dV(t)\\
+&=\int_{-\infty}^{\infty}\Bigl|\sum_{\mu=1}^{m}\rho_{\mu}e^{it_{\mu}t}\Bigr|^{2}\,dV(t)\ge0,
+\end{align*}
+since $V$ is non-decreasing, and the integrand is positive.
+\end{proof}
+
+\begin{nstmt}{3.23}\label{eq:III-3.23}
+Definition. A complex-valued function $f(x)$ defined for $-\infty<x<\infty$ is said to be \emph{positive definite}, if it is continuous, and bounded, and satisfies condition \eqref{eq:III-3.1}.
+\end{nstmt}
+
+Theorems \ref{thm:III-5} and \ref{thm:III-6} yield the following
+
+\begin{theorem}[Bochner]\label{thm:III-7}
+In order that a function $f(x)$ defined on $(-\infty,\infty)$ may be written as
+\[
+f(x)=\int_{-\infty}^{\infty}e^{ixt}\,dV(t),
+\]
+where $V$ is a non-decreasing, bounded function on $(-\infty,\infty)$, it is necessary and sufficient that $f$ be positive definite.
+\end{theorem}
+
+Since a positive definite function is, by definition, continuous in $(-\infty,\infty)$, the proof of Theorem~\ref{thm:III-7} does not require the full force of Theorem~\ref{thm:III-5}. The following theorem is sufficient.
+
+\begin{theorem}\label{thm:III-8}
+If $f$ is a complex-valued function defined on $(-\infty,\infty)$, which is continuous, and satisfies condition \eqref{eq:III-3.1}, then
+\begin{equation}\tag{3.24}\label{eq:III-3.24}
+f(x)=\int_{-\infty}^{\infty}e^{ixt}\,dV(t),
+\end{equation}
+where $V$ is a non-decreasing, bounded function of $t\in(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+Define for each integer $n$, $n>1$,
+\[
+f_{n}(x)=e^{-x^{2}/n}f(x),\qquad-\infty<x<\infty.
+\]
+Then we have $f_{n}\in L_{1}(-\infty,\infty)$, for every $n$, since $f$ is bounded, and by Lemma~\ref{lem:III-4}, with $\varepsilon=1/n$, we have $\hat f_{n}\in L_{1}(-\infty,\infty)$, and
+\begin{equation}\tag{3.25}\label{eq:III-3.25}
+f_{n}(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f_{n}(\alpha)\,e^{-i\alpha x}\,d\alpha
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f_{n}(-\alpha)\,e^{i\alpha x}\,d\alpha,
+\end{equation}
+where $\hat f_{n}(-\alpha)\ge0$, for $-\infty<\alpha<\infty$, for every $x\in(-\infty,\infty)$, since $f$ is continuous (see Th.11$'$, Ch.~I, p.~45).
+
+If we define, as in \eqref{eq:III-3.12},
+\[
+V_{n}(t)=\frac{1}{2\pi}\int_{-\infty}^{t}\hat f_{n}(-\alpha)\,d\alpha,\qquad-\infty<t<\infty,
+\]
+then \eqref{eq:III-3.25} becomes
+\begin{equation}\tag{3.26}\label{eq:III-3.26}
+f_{n}(x)=\int_{-\infty}^{\infty}e^{i\alpha x}\,dV_{n}(\alpha).
+\end{equation}
+Now $V_{n}(-\infty)=0$, while $V_{n}(+\infty)=f_{n}(0)=f(0)$.
+
+We consider two cases.
+
+\noindent\textbf{Case (i).} Let $f(0)=1$. Then $V_{n}$ is a distribution function, for each $n$, with $f_{n}$ as its characteristic function. Since $f_{n}(x)\to f(x)$, as $n\to\infty$, for each $x$, and $f$ is continuous (at the origin), Theorem~\ref{thm:III-4} implies that $V_{n}$ converges to a distribution function $V$ (at the points of continuity of $V$), whose characteristic function is $f$. That is to say, \eqref{eq:III-3.26} implies that
+\[
+f(x)=\int_{-\infty}^{\infty}e^{i\alpha x}\,dV(\alpha)
+\]
+as claimed.
+
+\noindent\textbf{Case (ii).} Let $f(0)\neq1$. Condition \eqref{eq:III-3.1} implies that $f(0)\ge0$. If $f(0)=0$, then $f$ is identically zero, and $V$ is a constant. If $f(0)\neq0$, then $f(0)>0$, and the function $g(x)=\frac{f(x)}{f(0)}$ is continuous, and satisfies condition \eqref{eq:III-3.1}, with $g(0)=1$. By what has been proved in Case~(i), it follows that
+\[
+f(x)=\int_{-\infty}^{\infty}e^{i\alpha x}\,d\bigl(f(0)\cdot V(\alpha)\bigr)
+=\int_{-\infty}^{\infty}e^{i\alpha x}\,dV_{1}(\alpha),
+\]
+where $V_{1}(\alpha)=f(0)\cdot V(\alpha)$, and $V_{1}$ is non-decreasing, and bounded.
+\end{proof}
+
+The above proof yields the following
+
+\begin{equation*}\tag{3.27}\label{eq:III-3.27}
+\text{Corollary. Positive definite functions $f$, with the property $f(0)=1$, are characteristic functions.}
+\end{equation*}
+
+An easy extension of Theorem~\ref{thm:III-7} is the following
+
+\begin{theorem}[Bochner]\label{thm:III-9}
+Let $g\in L_{2}(-\infty,\infty)$, and let
+\begin{equation}\tag{3.28}\label{eq:III-3.28}
+f(x)=\int_{-\infty}^{\infty}g(x+t)\,\overline{g(t)}\,dt.
+\end{equation}
+Then we have
+\[
+f(x)=\int_{-\infty}^{\infty}e^{ix\alpha}\,dV(\alpha),
+\]
+where $V$ is non-decreasing, and bounded, in $(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+Since
+\[
+|f(x)|^{2}\le\int_{-\infty}^{\infty}|g(x+t)|^{2}\,dt\int_{-\infty}^{\infty}|g(t)|^{2}\,dt=(f(0))^{2},
+\]
+which is finite, since $\|g\|_{2}$ is finite, $f$ is bounded.
+
+We also have, for any fixed $x$,
+\[
+|f(x)-f(x_{1})|^{2}\le\int_{-\infty}^{\infty}|g(x+t)-g(x_{1}+t)|^{2}\,dt\int_{-\infty}^{\infty}|g(t)|^{2}\,dt,
+\]
+and if we let $x_{1}\to x$, then the right-hand side tends to zero, so that $f$ is continuous.
+
+Since
+\[
+f(x-y)=\int_{-\infty}^{\infty}g(x-y+t)\,\overline{g}(t)\,dt
+=\int_{-\infty}^{\infty}g(x+t)\,\overline{g(y+t)}\,dt,
+\]
+we have
+\[
+\sum_{\mu=1}^{m}\sum_{\nu=1}^{m}f(x_{\mu}-x_{\nu})\,\sigma_{\mu}\,\overline{\sigma}_{\nu}
+=\int_{-\infty}^{\infty}\Bigl|\sum_{\mu=1}^{m}g(x_{\mu}+t)\sigma_{\mu}\Bigr|^{2}\,dt\ge0.
+\]
+It follows that $f$ is positive definite, and hence, by Theorem~\ref{thm:III-7}, that
+\[
+f(x)=\int_{-\infty}^{\infty}e^{ix\alpha}\,dV(\alpha).
+\]
+\end{proof}
+
+\section{A uniqueness theorem}
+\label{sec:III-4}
+
+For a special kind of Fourier transform, namely
+\[
+\int_{-\infty}^{\infty}e^{ixy}\varphi(y)\,dy,
+\]
+where $\varphi\in L_{1}(-\omega,\omega)$, for each finite $\omega>0$, we shall prove a theorem of uniqueness, which generalizes Theorem~7 of Ch.~I.
+
+\begin{theorem}[Offord]\label{thm:III-10}
+If $\varphi(u)\in L_{1}(-\omega<u<\omega)$, for every finite $\omega>0$, and if
+\begin{equation}\tag{4.1}\label{eq:III-4.1}
+\lim_{\omega\to\infty}\int_{-\omega}^{\omega}\varphi(u)\,e^{iux}\,du=0,
+\end{equation}
+for every real $x$, then $\varphi(u)=0$, for almost every $u\in(-\infty,\infty)$.
+\end{theorem}
+
+We first prove three preliminary lemmas.
+
+\begin{lemma}[Schwarz]\label{lem:III-7}
+If $f(x)$ is real-valued and continuous for $a\le x\le b$, $b>a$, and
+\begin{equation}\tag{4.2}\label{eq:III-4.2}
+\lim_{h\to0}\frac{f(x+h)+f(x-h)-2f(x)}{h^{2}}=0,
+\end{equation}
+for every $x\in[a,b]$, then $f$ is linear in $(a,b)$; that is to say, $f(x)=Ax+B$, where $A$ and $B$ are some constants.
+\end{lemma}
+
+\begin{proof}
+Let
+\[
+F(x)=\theta\bigl[f(x)-f(a)-\tfrac{x-a}{b-a}\bigl\{f(b)-f(a)\bigr\}\bigr],
+\]
+where $\theta=\pm1$, and let
+\[
+G(x)=F(x)-\tfrac12\varepsilon(x-a)(b-x),
+\]
+where $\varepsilon>0$. Then $G$ is a continuous function of $x$ for $x\in[a,b]$, with $G(a)=G(b)=0$; so is $F$, with $F(a)=F(b)=0$.
+
+\noindent\textbf{Case (i).} If $F(x)=0$, for every $x\in[a,b]$, the lemma is immediate since then we have
+\[
+f(x)=\frac{f(b)-f(a)}{b-a}\cdot x+\frac{bf(a)-af(b)}{b-a}.
+\]
+
+\noindent\textbf{Case (ii).} If there exists a point $c$ in $(a,b)$, such that $F(c)\neq0$, choose $\theta$ in such a way that $F(c)>0$, and choose $\varepsilon$ so small that $G(c)>0$. Since $G$ is continuous in $[a,b]$, it attains its maximum $M$, say, at a point $x_{0}\in(a,b)$, and $M>0$, since $G(c)>0$. We have, because of \eqref{eq:III-4.2},
+\[
+\lim_{h\to0}\frac{G(x_{0}+h)+G(x_{0}-h)-2G(x_{0})}{h^{2}}=\varepsilon>0.
+\]
+But $G(x_{0}+h)\le G(x_{0})$, and $G(x_{0}-h)\le G(x_{0})$, so that the above limit is negative or zero, which implies a contradiction. Hence $F(x)=0$ for all $x\in[a,b]$, and the lemma follows.
+\end{proof}
+
+\begin{lemma}\label{lem:III-8}
+Let $\varphi(u)\in L_{1}(-\omega<u<\omega)$, for each finite $\omega>0$, and let
+\begin{equation}\tag{4.3}\label{eq:III-4.3}
+\lim_{\omega\to\infty}I(\omega)\equiv\lim_{\omega\to\infty}\int_{-\omega}^{\omega}\varphi(u)\,du=0.
+\end{equation}
+If $\varphi(u)\to0$, as $|u|\to\infty$, then
+\begin{equation}\tag{4.4}\label{eq:III-4.4}
+\int_{-\infty}^{\infty}\varphi(u)\Bigl(\frac{\sin uh}{uh}\Bigr)^{2}du
+\end{equation}
+exists for every $h>0$, and tends to zero as $h\downarrow0$.
+\end{lemma}
+
+\begin{proof}
+Since $\int_{-\omega}^{\omega}\varphi(u)\,du=\int_{0}^{\omega}\Phi(u)\,du$, where $\Phi(u)=\varphi(u)+\varphi(-u)$, assumption \eqref{eq:III-4.3} implies that $I(\omega)=\int_{0}^{\omega}\Phi(u)\,du\to0$, as $\omega\to\infty$. The integral in \eqref{eq:III-4.4} equals
+\[
+\int_{0}^{\infty}\Bigl(\frac{\sin uh}{uh}\Bigr)^{2}\,dI(u),
+\]
+and this, in turn, equals, by partial integration,
+\[
+\Bigl[I(u)\Bigl(\frac{\sin uh}{uh}\Bigr)^{2}\Bigr]_{u=0}^{\infty}
+-\int_{0}^{\infty}I(u)\,\frac{d}{du}\Bigl[\Bigl(\frac{\sin uh}{uh}\Bigr)^{2}\Bigr]\,du
+=-\int_{0}^{\infty}I\Bigl(\frac{u}{h}\Bigr)\,H'(u)\,du,
+\]
+where $H'(u)\in L_{1}(0,\infty)$, $H(u)=\bigl(\frac{\sin u}{u}\bigr)^{2}$.
+
+Since $I(u/h)$ is bounded, we have by Lebesgue's theorem on dominated convergence,
+\[
+\lim_{h\downarrow0}\int_{0}^{\infty}I\Bigl(\frac{u}{h}\Bigr)\,H'(u)\,du
+=\int_{0}^{\infty}\lim_{h\downarrow0}I\Bigl(\frac{u}{h}\Bigr)\,H'(u)\,du=0.
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:III-9}
+Let $\varphi(u)\in L_{1}(-\omega<u<\omega)$, for each finite $\omega>0$; let
+\[
+\lim_{\omega\to\infty}\int_{-\omega}^{\omega}\varphi(u)\,e^{iux}\,du=0,
+\]
+for every real $x$, and $\varphi(u)\to0$, as $|u|\to\infty$. Then $\varphi(u)=0$ for all $u\in(-\infty,\infty)$.
+\end{lemma}
+
+\begin{proof}
+We take, as we may, $\varphi(u)e^{iux}$ instead of $\varphi(x)$ in Lemma~\ref{lem:III-8}. Then we have
+\begin{equation}\tag{4.5}\label{eq:III-4.5}
+\int_{-\infty}^{\infty}\varphi(u)\,e^{iux}\Bigl(\frac{\sin uh}{uh}\Bigr)^{2}du\to0,\qquad\text{as }h\downarrow0.
+\end{equation}
+Define
+\[
+F(x)=\int_{-\infty}^{\infty}\varphi(u)\,\frac{e^{iux}-L(x,u)}{-u^{2}}\,du,
+\]
+where
+\[
+L(x,u)=
+\begin{cases}
+1+iux,&\text{for }|u|<1,\\
+0,&\text{for }|u|\ge1.
+\end{cases}
+\]
+For a fixed $h\neq0$, consider the function
+\begin{align*}
+\frac{F(x+h)+F(x-h)-2F(x)}{h^{2}}
+&=\int_{-\infty}^{\infty}\frac{\varphi(u)}{(iuh)^{2}}\bigl\{e^{i(x+h)u}+e^{i(x-h)u}-2e^{iux}\bigr\}\,du\\
+&=\int_{-\infty}^{\infty}\frac{\varphi(u)}{(iuh)^{2}}e^{iux}\Bigl\{e^{iuh/2}-e^{-iuh/2}\Bigr\}^{2}\,du\\
+&=\int_{-\infty}^{\infty}\varphi(u)\,e^{iux}\Bigl(\frac{\sin(uh/2)}{uh/2}\Bigr)^{2}\,du.
+\end{align*}
+Because of \eqref{eq:III-4.5}, and Lemma~\ref{lem:III-7}, it follows that $F$ is linear, hence $F(x+h)+F(x-h)-2F(x)\equiv0$, which implies, in turn, that
+\[
+\int_{-\infty}^{\infty}\varphi(u)\,e^{iux}\Bigl(\frac{\sin\frac{uh}{2}}{uh/2}\Bigr)^{2}du\equiv0.
+\]
+But the integral on the left-hand side is the Fourier transform of a function belonging to $L_{1}(-\infty,\infty)$. Hence by Theorem~7 of Ch.~I, $\varphi(u)$ is zero for almost all $u\in(-\infty,\infty)$.
+\end{proof}
+
+We remark that this method of proof goes back to Riemann in his treatment of the uniqueness of trigonometric series.
+
+\noindent\textbf{Proof of Theorem~\ref{thm:III-10}.}
+
+Assumption \eqref{eq:III-4.1} holds with $y+x$, and $y-x$, in place of $x$ (where $y$ is real), so that it implies that
+\begin{equation}\tag{4.7}\label{eq:III-4.7}
+\int_{-\omega}^{\omega}\varphi(u)\,e^{iuy}\cos ux\,du\to0,\qquad\text{as }\omega\to\infty,
+\end{equation}
+for every real $y$ and $x$. If we set, for fixed $y$,
+\[
+\Psi(u)=\varphi(u)e^{iuy}+\varphi(-u)e^{-iuy},
+\]
+then \eqref{eq:III-4.7} becomes
+\begin{equation}\tag{4.8}\label{eq:III-4.8}
+\int_{0}^{\omega}\Psi(u)\cos ux\,du\to0,\qquad\text{as }\omega\to\infty,
+\end{equation}
+for every real $x$. Now let
+\[
+\Psi_{1}(v)=\int_{0}^{v}\Psi(u)\,du=\int_{-v}^{v}\varphi(u)\,e^{iuy}\,du,\qquad v>0.
+\]
+Then \eqref{eq:III-4.8} implies, in particular, that
+\begin{equation}\tag{4.9}\label{eq:III-4.9}
+\Psi_{1}(v)\to0,\qquad\text{as }v\to\infty.
+\end{equation}
+Since
+\[
+\int_{0}^{\omega}\Psi(u)\cos ux\,du
+=\Psi_{1}(\omega)\cos\omega x-\Psi_{1}(0)+x\int_{0}^{\omega}\Psi_{1}(u)\sin ux\,du,
+\]
+where $\Psi_{1}(0)=0$, \eqref{eq:III-4.9} implies that
+\[
+x\int_{0}^{\omega}\Psi_{1}(u)\sin ux\,du\to0,\qquad\text{as }\omega\to\infty,
+\]
+which implies that for every $x\neq0$, we have
+\[
+\int_{0}^{\omega}\Psi_{1}(u)\sin ux\,du\to0,\qquad\text{as }\omega\to\infty,
+\]
+where $\Psi_{1}(u)\to0$, as $u\to\infty$, by \eqref{eq:III-4.9}. By Lemma~\ref{lem:III-9}, $\Psi_{1}(u)=0$, for almost all $u\in(-\infty,\infty)$. Since $\Psi_{1}$ is absolutely continuous, it follows that $\Psi(u)$ is zero for almost all $u$, hence $\varphi(u)e^{iuy}+\varphi(-u)e^{-iuy}=0$, for almost all $u$. On setting $y=0$, we have: $\varphi(u)+\varphi(-u)=0$, or $\varphi(u)=-\varphi(-u)$, for almost all $u$. Hence
+\[
+\Psi(u)=2i\,\varphi(u)\sin uy,
+\]
+and therefore $\varphi(u)=0$ for almost all $u\in(-\infty,\infty)$.
+
+\begin{remark}\label{rem:III-1}
+If $\varphi(u)=e^{iu^{2}}$, then $\varphi(u)\notin L_{1}(-\infty<u<\infty)$, although
+\[
+\lim_{\omega\to\infty}\int_{-\omega}^{\omega}\varphi(u)\,e^{iux}\,du
+\]
+is finite for all $x\in(-\infty,\infty)$. (See Ex.10, Step (iii), \S\ref{sec:I-1}, Ch.~I).
+
+Another such example is provided by
+\[
+\varphi(u)=\exp(\alpha u+ie^{u}),\qquad0<\alpha<1.
+\]
+\end{remark}

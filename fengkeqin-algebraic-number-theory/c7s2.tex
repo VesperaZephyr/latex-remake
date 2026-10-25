@@ -1,0 +1,377 @@
+% ============ 第七章 §2 赋值和赋值域 (原书 pp.243-253) ============
+\section{赋值和赋值域}\label{sec:ch7-s2}
+
+现在我们开始叙述任意域上的赋值理论.
+
+\begin{definition}\label{def:ch7-1}
+设 $F$ 为域. 函数 $\varphi\colon F\to\R_{\geqslant 0}$ 叫作是域 $F$ 的一个\emph{赋值}, 是指满足如下 $3$ 个条件: 对于 $a,b\in F$,
+\[
+  (1)\ \varphi(a)=0\ \text{当且仅当 } a=0,
+\]
+\[
+  (2)\ \varphi(ab)=\varphi(a)\varphi(b),
+\]
+\[
+  (3)\ \text{存在常数 } c>0,\ \text{使得: 若 } \varphi(a)<1,\ \text{则 } \varphi(1+a)<c.
+\]
+若 $\varphi$ 是域 $F$ 的赋值, 则 $F$ 叫具有赋值 $\varphi$ 的赋值域, 表示成 $(F,\varphi)$.
+\end{definition}
+
+注意: (A) 条件 (3) 与上节的三角形不等式和超距不等式稍有不同. 我们以后会看到它们之间的联系.
+
+(B) 由条件 (1) 可知 $\varphi(F^{\times})\subseteq\R_{>0}$. 再由条件 (2) 知 $\varphi$ 是乘法群 $F^{\times}$ 到正实数乘法群中的群同态. 特别地:
+\[
+  \varphi(1)=1,\qquad\varphi\left(\frac{a}{b}\right)=\frac{\varphi(a)}{\varphi(b)}\quad(b\in F^{\times}).
+\]
+如果 $a$ 是域 $F$ 中 $n$ 次单位根（$n\geqslant 1$）, 则 $a^n=1$. 因此 $\varphi(a)^n=\varphi(a^n)=\varphi(1)=1$. 但是 $\varphi(a)$ 为正实数, 可知由 $\varphi(a)^n=1$ 必然 $\varphi(a)=1$. 特别地 $\varphi(-1)=1$. 于是 $\varphi(-a)=\varphi(a)$.
+
+(C) 当条件 (1) 和 (2) 成立时, 条件 (3) 等价于
+\[
+  (3')\ \varphi(a+b)\leqslant c\cdot\max(\varphi(a),\varphi(b)).
+\]
+事实上, 不妨设 $\varphi(a)\geqslant\varphi(b)$. 若 $\varphi(a)=0$, 则 $\varphi(b)=0$, 从而 $a=b=0$. 于是 $(3')$ 显然成立. 若 $\varphi(a)\neq 0$, 则 $a\neq 0$. 由条件 (2) 和 (3) 以及 $\varphi\left(\frac{b}{a}\right)\leqslant 1$ 得到
+\[
+  \varphi(a+b)=\varphi(a)\cdot\varphi\left(1+\frac{b}{a}\right)\leqslant c\varphi(a)
+  =c\cdot\max(\varphi(a),\varphi(b)),
+\]
+这就证明了条件 $(3')$. 反之若条件 $(3')$ 成立, 则当 $\varphi(a)\leqslant 1$ 时, $\varphi(1+a)\leqslant c\cdot\max(\varphi(1),\varphi(a))=c$. 这就推出条件 (3).
+
+于是, 可用条件 (1), (2) 和 $(3')$ 作为赋值的定义.
+
+\begin{example}
+对于任意域 $F$, $\varphi$ 把 $F$ 中非零元素均映成 $1$, 而 $\varphi(0)=0$, 则 $\varphi$ 是域 $F$ 的赋值. 这叫 $F$ 的\emph{平凡赋值}. 今后我们所谈的赋值均指非平凡赋值.
+
+设 $F$ 为有限域, $\varphi$ 为 $F$ 的赋值. 由于有限域 $F$ 中非零元素 $a$ 均是单位根, 所以 $\varphi(a)=1$. 换句话说, 有限域只有平凡赋值.
+
+有理数域、实数域和复数域中的通常绝对值都是（非平凡）赋值, 其中条件 (3) 或 $(3')$ 中的常数可取 $c=2$. 这个赋值今后表示成 $|\cdot|_{\infty}$. 有理数域上的 $p$ 进赋值（$p$ 为素数）的 $c$ 可取为 $1$.
+\end{example}
+
+按照赋值定义中的常数 $c$ 是否可取为 $1$, 我们把赋值分成两大类. 以后会看出这两类赋值有很大区别.
+
+\begin{definition}\label{def:ch7-2}
+设 $(F,\varphi)$ 为赋值域. 如果条件 (3) 或 $(3')$ 中常数 $c$ 可取为 $1$（即超距不等式成立）, 称 $\varphi$ 是\emph{非阿赋值}, 而 $(F,\varphi)$ 叫非阿赋值域. 否则, 即 $c$ 只能取大于 $1$ 的实数, 则 $\varphi$ 叫\emph{阿基米德赋值}, 而 $(F,\varphi)$ 叫阿基米德赋值域.
+\end{definition}
+
+例如对每个素数 $p$, 有理数域的 $p$ 进赋值为非阿赋值. 而通常的绝对值 $|\cdot|_{\infty}$ 不满足超距不等式. 所以 $|\cdot|_{\infty}$ 是阿基米德赋值.
+
+下面引理用来判别一个赋值何时是非阿的.
+
+\begin{lemma}\label{lem:ch7-2}
+域 $F$ 的赋值 $\varphi$ 是非阿的, 当且仅当对每个整数 $n$, $\varphi(n\cdot 1_F)\leqslant 1$（$1_F$ 表示域 $F$ 的幺元素）.
+\end{lemma}
+
+\begin{proof}
+我们把 $F$ 中元素 $n\cdot 1_F$ 简记为 $n$. 若 $\varphi$ 为非阿赋值, 则对每个正整数 $n$,
+\begin{align*}
+  \varphi(n)&\leqslant\max(\varphi(1),\varphi(n-1))\\
+  &\leqslant\max(\varphi(1),\varphi(1),\varphi(n-2))\leqslant\cdots\\
+  &\leqslant\max(\varphi(1),\varphi(1),\cdots,\varphi(1))=1.
+\end{align*}
+并且 $\varphi(-n)=\varphi(n)\leqslant 1$, $\varphi(0)=0<1$. 于是对每个整数 $n$, 均有 $\varphi(n)\leqslant 1$.
+
+现在设对每个 $n\in\Z$ 均有 $\varphi(n)\leqslant 1$. 我们来证 $\varphi$ 是非阿的. 由条件 $(3')$ 知存在 $c>0$, 使得
+\[
+  \varphi(a+b)\leqslant c(\varphi(a)+\varphi(b)),
+\]
+由此可归纳出: 对 $F$ 中任意 $2^l$ 个元素 $a_1,a_2,\cdots,a_{2^l}$,
+\[
+  \varphi(a_1+a_2+\cdots+a_{2^l})\leqslant c^l\left(\varphi(a_1)+\varphi(a_2)+\cdots+\varphi(a_{2^l})\right).
+\]
+对每个正整数 $n\geqslant 2$, 存在正整数 $l$, 使得 $2^{l-1}<n\leqslant 2^l$. 令 $a_{n+1}=a_{n+2}=\cdots=a_{2^l}=0$, 则
+\begin{align*}
+  \varphi(a_1+\cdots+a_n)&=\varphi(a_1+\cdots+a_{2^l})\\
+  &\leqslant c^l(\varphi(a_1)+\cdots+\varphi(a_{2^l}))\\
+  &=c^l(\varphi(a_1)+\cdots+\varphi(a_n)).
+\end{align*}
+于是对 $F$ 中任意元素 $a$ 和 $b$, 以及任意正整数 $m$,
+\begin{align*}
+  \varphi(a+b)^m=\varphi((a+b)^m)&=\varphi\left(\sum_{i=0}^{m}\binom{m}{i}a^ib^{m-i}\right)\\
+  &\leqslant c^l\sum_{i=0}^{m}\varphi\left(\binom{m}{i}a^ib^{m-i}\right)\qquad(\text{其中 } 2^{l-1}<(m+1)\leqslant 2^l)\\
+  &\leqslant c^l\sum_{i=0}^{m}\varphi(a)^i\varphi(b)^{m-i}\qquad\left(\text{由于 } \binom{m}{i}\in\Z,\ \varphi\left(\binom{m}{i}\right)\leqslant 1\right)\\
+  &\leqslant c^l(m+1)\cdot\max(\varphi(a)^m,\varphi(b)^m).
+\end{align*}
+于是
+\[
+  \varphi(a+b)\leqslant\left(c^l(m+1)\right)^{\frac{1}{m}}\cdot\max(\varphi(a),\varphi(b)),
+\]
+令 $m\to+\infty$, 由 $2^{l-1}<(m+1)\leqslant 2^l$ 易知 $(c^l(m+1))^{\frac{1}{m}}\to 1$. 所以上式取极限得到 $\varphi(a+b)\leqslant\max(\varphi(a),\varphi(b))$, 即超距不等式成立. 所以 $\varphi$ 是非阿赋值.
+\end{proof}
+
+\begin{remark}
+(1) 若 $(F,\varphi)$ 是赋值域, 则对 $F$ 的每个子域 $E$, $\varphi$ 在 $E$ 上的限制 $\varphi|_E$ 一定是 $E$ 的赋值. 我们称 $\varphi|_E$ 是赋值 $\varphi$ 在 $E$ 的限制, 而 $\varphi$ 称 $\varphi|_E$ 在大域 $F$ 上的扩充. 由引理 \ref{lem:ch7-2} 易知, $\varphi$ 是域 $F$ 的非阿赋值当且仅当 $\varphi$ 在 $F$ 的某个子域上的限制为非阿赋值. 由引理 \ref{lem:ch7-2} 还可推出, 特征为素数的域只能有非阿赋值.
+
+(2) 如果 $\varphi$ 为域 $F$ 的一个赋值, 则对每个正实数 $\alpha$, $\varphi^{\alpha}$（定义为 $\varphi^{\alpha}(x)=\varphi(x)^{\alpha}$）也是 $F$ 的赋值. 其中条件 (3) 和 $(3')$ 中的常数若对 $\varphi$ 取为 $c$, 则对 $\varphi^{\alpha}$ 可取为 $c^{\alpha}$. 所以 $\varphi$ 和 $\varphi^{\alpha}$ 或者均是非阿的, 或者均是阿基米德的. 我们要说明 $\varphi$ 和 $\varphi^{\alpha}$ 没有本质的区别. 为了清楚地说明这件事, 我们要弄清赋值 $\varphi$ 给出的域 $F$ 的拓扑结构.
+\end{remark}
+
+从拓扑学中知道, 一个集合 $S$ 叫作是拓扑空间, 是指 $S$ 有一个子集族 $\mathcal{O}$ 满足以下 $3$ 条性质（叫作开集公理, $\mathcal{O}$ 中每个子集叫作开集）:
+
+(1) 空集 $\varnothing$ 和 $S$ 均为开集（即均属于 $\mathcal{O}$）;
+
+(2) 任意多个开集的并集也是开集;
+
+(3) 有限多个开集的交集也是开集.
+
+一个拓扑空间 $S$ 叫作是豪斯多夫拓扑空间, 是指 $S$ 中任意两个不同元素 $a$ 和 $b$, 均有开集 $A$ 和 $B$ 分别包含 $a$ 和 $b$, 并且 $A$ 和 $B$ 不相交.
+
+\begin{lemma}\label{lem:ch7-3}
+设 $(F,\varphi)$ 是赋值域. 对于 $a\in F$, $\varepsilon>0$, 集合
+\[
+  U(a,\varepsilon)=\{x\in F\mid\varphi(a-x)<\varepsilon\}
+\]
+叫作以 $a$ 为中心以 $\varepsilon$ 为半径的\emph{开球}. 由任意多个开球作成的并集
+\[
+  \bigcup_{i\in I}U(a_i,\varepsilon_i)
+\]
+叫作域 $F$ 中的\emph{开集}, 则所有这些开集构成的集族满足拓扑空间的开集公理. 并且 $F$ 对于由这个开集族定义的拓扑是豪斯多夫拓扑空间（域 $F$ 的这个拓扑叫作 $\varphi$-拓扑, 表示成 $T(\varphi)$）.
+\end{lemma}
+
+\begin{proof}
+将赋值 $\varphi$ 改成赋值 $\varphi^{\alpha}(\alpha>0)$, 则对 $\varphi$ 的开球 $U(a,\varepsilon)$ 就是对 $\varphi^{\alpha}$ 的开球 $U(a,\varepsilon^{\alpha})$, 所以 $\varphi$ 和 $\varphi^{\alpha}$ 给出同样的开集族（从而给出同样的拓扑）. 我们在下面要补证: 存在 $\alpha>0$, 使得赋值 $\varphi^{\alpha}$ 满足三角形不等式（引理 \ref{lem:ch7-4}）. 所以我们不妨一开始就假定 $\varphi$ 满足三角形不等式: $\varphi(a+b)\leqslant\varphi(a)+\varphi(b)$.
+
+现在证上述开集族满足 $3$ 条开集公理. 由
+\[
+  \varnothing=\bigcup_{i\in\varnothing}U(a_i,\varepsilon_i),\qquad F=\bigcup_{a\in F}U(a,1)
+\]
+可知空集 $\varnothing$ 和 $F$ 为开集. 由集族的定义即知公理 (2) 成立. 最后, 设 $U_1=U(x,\varepsilon)$ 和 $U_2=U(y,\eta)$ 是两个开球. 若 $U_1$ 和 $U_2$ 不相交, 则 $\varnothing=U_1\cap U_2$ 是开集. 若 $U_1\cap U_2$ 相交, 对每个 $a\in U_1\cap U_2$, 由三角形不等式可知当 $0<\varepsilon_a<\min\{\varepsilon-\varphi(a-x),\eta-\varphi(a-y)\}$ 时, $U(a,\varepsilon_a)\subseteq U_1\cap U_2$. 于是
+\[
+  U_1\cap U_2=\bigcup_{a\in U_1\cap U_2}U(a,\varepsilon_a)
+\]
+是开集. 这表明任意两个开球的交集为开集. 进而, 由于
+\[
+  \left(\bigcup_iU(a_i,\varepsilon_i)\right)\cap\left(\bigcup_jU(b_j,\eta_j)\right)
+  =\bigcup_{i,j}\left(U(a_i,\varepsilon_i)\cap U(b_j,\eta_j)\right),
+\]
+可知任意两个开集的交集也是开集. 从而任意有限多个开集的交集也是开集. 这就证明了开集的 $3$ 条公理.
+
+最后证 $F$ 的拓扑 $T(\varphi)$ 是豪斯多夫的. 设 $a$ 和 $b$ 是 $F$ 中不同元素, 则 $\varepsilon=\varphi(a-b)>0$. 用三角形不等式可知开球 $U_1=U(a,\varepsilon/2)$ 和 $U_2=U(b,\varepsilon/2)$ 分别包含 $a$ 和 $b$, 并且 $U_1$ 和 $U_2$ 不相交. 因此 $T(\varphi)$ 是豪斯多夫拓扑.
+\end{proof}
+
+现在我们补证
+
+\begin{lemma}\label{lem:ch7-4}
+设 $\varphi$ 是域 $F$ 的赋值, 则存在正实数 $\alpha$, 使得赋值 $\varphi^{\alpha}$ 满足三角形不等式.
+\end{lemma}
+
+\begin{proof}
+若 $\varphi$ 是非阿的, 则 $\varphi$ 满足超距不等式, 从而满足三角形不等式. 若 $\varphi$ 是阿基米德的, 则赋值定义中的 $c>1$. 于是可取 $\alpha>0$, 使得 $c^{\alpha}=2$. 从而赋值 $\psi=\varphi^{\alpha}$ 满足 $\psi(a+b)\leqslant 2\max(\psi(a),\psi(b))$. 我们现在证明 $\psi$ 满足三角形不等式.
+
+由 $\psi(a+b)\leqslant 2\max(\psi(a),\psi(b))$ 可知
+\[
+  \psi(a_1+\cdots+a_{2^l})\leqslant 2^l\cdot\max\left(\psi(a_1),\cdots,\psi(a_{2^l})\right).
+\]
+对整数 $m\geqslant 1$, 存在 $l\geqslant 1$, 使得 $2^{l-1}<m\leqslant 2^l$. 取 $a_{m+1}=\cdots=a_{2^l}=0$, 则
+\begin{align*}
+  \psi(a_1+\cdots+a_m)&\leqslant 2^l\cdot\max(\psi(a_1),\cdots,\psi(a_m))\\
+  &\leqslant 2m\cdot\max(\psi(a_1),\cdots,\psi(a_m)).
+\end{align*}
+特别地, $\psi(n)\leqslant 2n\cdot\max(\psi(1),\cdots,\psi(1))=2n$. 并且对任意 $a,b\in F$,
+\begin{align*}
+  \psi(a+b)^n&=\psi((a+b)^n)=\psi\left(\sum_{i=0}^{n}\binom{n}{i}a^ib^{n-i}\right)\\
+  &\leqslant 2(n+1)\cdot\max_{0\leqslant i\leqslant n}\left\{\psi\left(\binom{n}{i}a^ib^{n-i}\right)\right\}\\
+  &\leqslant 4(n+1)\cdot\max_{0\leqslant i\leqslant n}\left\{\binom{n}{i}\psi(a)^i\psi(b)^{n-i}\right\}\\
+  &\leqslant 4(n+1)\sum_{i=0}^{n}\binom{n}{i}\psi(a)^i\psi(b)^{n-i}\\
+  &=4(n+1)(\psi(a)+\psi(b))^n.
+\end{align*}
+于是 $\psi(a+b)\leqslant(4(n+1))^{\frac{1}{n}}(\psi(a)+\psi(b))$. 令 $n\to\infty$ 即得三角形不等式.
+\end{proof}
+
+\begin{remark}
+(1) 由上述证明知赋值 $\varphi$ 和 $\varphi^{\alpha}(\alpha>0)$ 给出域 $F$ 的同一拓扑结构. 并且总可取 $\alpha>0$, 使得 $\varphi^{\alpha}$ 满足三角形不等式. 所以在第 $7.1$ 节中我们把三角形不等式作为赋值定义和本节的定义没有本质的区别.
+
+(2) 由三角形不等式可知, 若 $(F,\varphi)$ 为赋值域, 则域的诸运算对于 $F$ 的拓扑 $T(\varphi)$ 都是连续运算, 从而是拓扑域.
+\end{remark}
+
+\begin{definition}\label{def:ch7-3}
+设 $T_1$ 和 $T_2$ 是集合 $S$ 的两个拓扑. 如果对每个元素 $a\in S$ 和 $T_2$ 中包含 $a$ 的每个开集 $O_2$, 均有 $T_1$ 中包含 $a$ 的开集 $O_1$, 使得 $O_1\subseteq O_2$, 则称拓扑 $T_1$ 比 $T_2$ \emph{细}, 表示成 $T_1\geqslant T_2$. 如果 $T_1\geqslant T_2$ 和 $T_2\geqslant T_1$ 同时成立, 则称拓扑 $T_1$ 和 $T_2$ \emph{等价}, 表示成 $T_1\sim T_2$. 这是 $S$ 的所有拓扑结构的等价关系. 在拓扑学中, 彼此等价的拓扑认为是一样的, 它们给出集合 $S$ 上同样的拓扑结构.
+
+设 $\varphi_1$ 和 $\varphi_2$ 是域 $F$ 的两个赋值. 如果它们在 $F$ 中给出的拓扑是等价的, 即 $T(\varphi_1)\sim T(\varphi_2)$, 则称赋值 $\varphi_1$ 和 $\varphi_2$ \emph{等价}. 这是 $F$ 上全部赋值的等价关系.
+\end{definition}
+
+\begin{example}
+设 $\varphi$ 是域 $F$ 的平凡赋值, 即 $\varphi(0)=0$, 而 $a\in F^{\times}$ 时 $\varphi(a)=1$, 则 $U(a,1/2)=\{x\in F\mid\varphi(x-a)<1/2\}=\{a\}$. 即对于域 $F$ 的拓扑 $T(\varphi)$, 每个元素都是开集. 所以 $F$ 的每个子集都是开集. 这是 $F$ 的最细的拓扑, 叫作 $F$ 的\emph{离散拓扑}.
+\end{example}
+
+一般来说, 判别集合 $S$ 上两个拓扑是否等价是不容易的. 但是下面定理表明, 判别域 $F$ 上由两个赋值定义的拓扑是否等价是相当容易的.
+
+\begin{theorem}\label{thm:7.1}
+设 $\varphi_1$ 和 $\varphi_2$ 是域 $F$ 的两个赋值, 则下面 $3$ 个论断彼此等价:
+
+(1) $\varphi_1$ 和 $\varphi_2$ 等价;
+
+(2) 对每个 $a\in F$, $\varphi_1(a)<1$ 当且仅当 $\varphi_2(a)<1$;
+
+(3) 存在实数 $\alpha>0$, 使得 $\varphi_2=\varphi_1^{\alpha}$.
+\end{theorem}
+
+\begin{proof}
+$(1)\Rightarrow(2)$: 由 (1) 可知 $T(\varphi_1)\geqslant T(\varphi_2)$. 如果 $\varphi_1(a)<1$, 则当 $n\to\infty$ 时, $\varphi_1(a^n)=\varphi_1(a)^n\to 0$. 即序列 $\{a^n\}\ (n=0,1,2,\cdots)$ 对于拓扑 $T(\varphi_1)$ 极限为 $0$. 由拓扑学知, 对于比 $T(\varphi_1)$ 更粗的拓扑 $T(\varphi_2)$, $\{a^n\}$ 也以 $0$ 为极限. 于是 $\varphi_2(a)<1$. 同样地, 由 $T(\varphi_2)\geqslant T(\varphi_1)$ 可知: 若 $\varphi_2(a)<1$, 则 $\varphi_1(a)<1$.
+
+$(2)\Rightarrow(3)$: 由 $\varphi_1(a)<1\Leftrightarrow\varphi_2(a)<1$ 可知
+\[
+  \varphi_1(a)>1\Leftrightarrow\varphi_1(a^{-1})<1\Leftrightarrow\varphi_2(a^{-1})<1\Leftrightarrow\varphi_2(a)>1.
+\]
+于是 $\varphi_1(a)=1\Leftrightarrow\varphi_2(a)=1$. 所以若 $\varphi_1$ 为平凡赋值, 则 $\varphi_2$ 也为平凡赋值, 即 $\varphi_1=\varphi_2$. 现设 $\varphi_1$ 不平凡, 即存在 $x\in F$, 使得 $\varphi_1(x)>1$, 从而 $\varphi_2(x)>1$. 记
+\[
+  \alpha=\frac{\log\varphi_2(x)}{\log\varphi_1(x)}>0.
+\]
+对于 $F$ 中任意元素 $a$, 若 $\varphi_1(a)>1$, 则 $\varphi_2(a)>1$. 于是
+\[
+  \varphi_1(a)=\varphi_1(x)^{t_1},\qquad\varphi_2(a)=\varphi_2(x)^{t_2},
+\]
+其中
+\[
+  t_i=\frac{\log\varphi_i(a)}{\log\varphi_i(x)}>0\qquad(i=1,2).
+\]
+我们现在证明 $t_1=t_2$. 如果 $t_1\neq t_2$, 不妨设 $t_1<t_2$, 则存在有理数 $m/n$（$m,n$ 均为正整数）, 使得 $t_1<m/n<t_2$. 于是 $\varphi_1(a)=\varphi_1(x)^{t_1}<\varphi_1(x)^{\frac{m}{n}}$. 所以 $\varphi_1(a^n/x^m)<1$. 所以 $\varphi_2(a^n/x^m)<1$, 即 $\varphi_2(a)<\varphi_2(x)^{\frac{m}{n}}<\varphi_2(x)^{t_2}=\varphi_2(a)$. 这一矛盾表明 $t_1=t_2$. 于是
+\[
+  \frac{\log\varphi_1(a)}{\log\varphi_1(x)}=t_1=t_2=\frac{\log\varphi_2(a)}{\log\varphi_2(x)},
+\]
+这可写成
+\[
+  \frac{\log\varphi_2(a)}{\log\varphi_1(a)}=\frac{\log\varphi_2(x)}{\log\varphi_1(x)}=\alpha>0.
+\]
+这就表明对每个满足 $\varphi_1(a)>1$ 的元素 $a\in F$, 均有 $\varphi_2(a)=\varphi_1(a)^{\alpha}$. 如果 $\varphi_1(a)<1\ (a\neq 0)$, 则 $\varphi_1(a^{-1})>1$, 于是也有
+\[
+  \varphi_2(a)=\varphi_2(a^{-1})^{-1}=(\varphi_1(a^{-1}))^{-\alpha}=\varphi_1(a)^{\alpha}.
+\]
+最后当 $\varphi_1(a)=1$ 时, $\varphi_2(a)=1$. 从而也有 $\varphi_2(a)=\varphi_1(a)^{\alpha}$. 这就表明 $\varphi_2=\varphi_1^{\alpha}$.
+
+$(3)\Rightarrow(1)$: 我们已经证明了当 $\varphi_2=\varphi_1^{\alpha}\ (\alpha>0)$ 时, $T(\varphi_1)=T(\varphi_2)$. 从而 $\varphi_2$ 和 $\varphi_1$ 等价.
+\end{proof}
+
+\begin{remark}
+由上述定理可知平凡赋值只能与自己等价. 它给出域 $F$ 的离散拓扑. 所以非平凡赋值给出的域 $F$ 的拓扑是非离散拓扑.
+\end{remark}
+
+\begin{definition}\label{def:ch7-4}
+域 $F$ 的每个非平凡赋值等价类叫作域 $F$ 的一个\emph{素除子}（prime divisor）.
+\end{definition}
+
+设 $P$ 是域 $F$ 的一个素除子. 若 $\varphi\in P$, 则由上述定理知 $P$ 中所有赋值为 $\varphi^{\alpha}(\alpha>0)$. 它们给出 $F$ 的同一个拓扑. 这个拓扑也记成 $T(P)$. 而赋值域 $(F,\varphi)$ 也记成 $(F,P)$. 若 $\varphi$ 是非阿的, 则 $P$ 中所有赋值 $\varphi^{\alpha}(\alpha>0)$ 都是非阿的. 这时称 $P$ 是\emph{非阿素除子}. 类似地可谈阿基米德素除子. 引理 \ref{lem:ch7-4} 表明: 域 $F$ 的每个素除子中均有赋值满足三角形不等式. 而非阿素除子中每个（非阿）赋值满足更强的超距不等式 $\varphi(a+b)\leqslant\max(\varphi(a),\varphi(b))$. 这使得非阿赋值和非阿赋值域有许多特别性质. 下面是其中一个基本性质:
+
+\begin{lemma}\label{lem:ch7-5}
+设 $(F,\varphi)$ 是非阿赋值域.
+
+(1) 若 $a,b\in F$, $a\neq b$, 则 $\varphi(a+b)=\max(\varphi(a),\varphi(b))$.
+
+(2) 若 $n\geqslant 2$, $a_1,\cdots,a_n\in F$, $a_1+\cdots+a_n=0$, 则在 $\varphi(a_1),\cdots,\varphi(a_n)$ 当中至少有两个达到它们的最大值.
+\end{lemma}
+
+\begin{proof}
+(1) 不妨设 $\varphi(a)>\varphi(b)$, 则由 $a=(a+b)+(-b)$ 可知 $\varphi(a)\leqslant\max(\varphi(a+b),\varphi(b))$, 从而 $\varphi(a)\leqslant\varphi(a+b)$. 但另一方面, $\varphi(a+b)\leqslant\max(\varphi(a),\varphi(b))=\varphi(a)$. 于是
+\[
+  \varphi(a+b)=\varphi(a)=\max(\varphi(a),\varphi(b)).
+\]
+(2) 若 $\varphi(a_1),\cdots,\varphi(a_n)$ 当中只有一个等于它们的最大值. 不妨设 $\varphi(a_1)>\varphi(a_i)\ (2\leqslant i\leqslant n)$, 则
+\[
+  \varphi(a_1)>\max_{2\leqslant i\leqslant n}\{\varphi(a_i)\}\geqslant\varphi(a_2+\cdots+a_n)=\varphi(-a_1)=\varphi(a_1),
+\]
+这就导致矛盾.
+\end{proof}
+
+\begin{remark}
+设 $a,b,c$ 是 $F$ 中 $3$ 个不同元素, $\varphi$ 是 $F$ 的非阿赋值. 如果 $\varphi(a-b)\neq\varphi(b-c)$, 则 $\varphi(a-c)$ 必等于 $\varphi(a-b)$ 和 $\varphi(b-c)$ 当中最大的一个. 几何上这可说成: 非阿赋值域中每个三角形都是等腰三角形.
+
+设 $S=U(a,r)$ 是以 $a\in F$ 为中心以 $r(>0)$ 为半径的开球. $b$ 是 $S$ 中任意一点（即 $\varphi(a-b)<r$）, 则对 $S$ 中所有点 $x$, $\varphi(b-x)\leqslant\max(\varphi(b-a),\varphi(a-x))<r$. 这表明 $S$ 中所有的点都是球 $S$ 的中心（即 $S=U(b,r)$）.
+\end{remark}
+
+在第 $7.1$ 节我们给出了有理数域 $\Q$ 的许多赋值. 对每个素数 $p$, 所有 $p$ 进赋值 $|\cdot|_p^{\alpha}(\alpha>0)$ 构成一个非阿赋值等价类. 为节省符号, 这个非阿素除子也记成 $p$. 不同的 $p$ 代表 $\Q$ 的不同素除子. 此外, 通常绝对值的等价类 $|\cdot|_{\infty}^{\alpha}(\alpha>0)$ 形成一个阿基米德素除子, 表示成 $\infty$. 我们要证明: 以上给出了有理数域 $\Q$ 的全体素除子. 换句话说, 我们要证明
+
+\begin{theorem}\label{thm:7.2}
+有理数域 $\Q$ 的每个非平凡赋值均可表为 $|\cdot|_p^{\alpha}$, 其中 $\alpha>0$, $p$ 为素数或 $\infty$.
+\end{theorem}
+
+\begin{proof}
+设 $\varphi$ 是 $\Q$ 的非平凡赋值. 如果 $\varphi$ 是非阿的, 则对每个 $n\in\Z$, $\varphi(n)\leqslant 1$（引理 \ref{lem:ch7-2}）. 由于 $\varphi$ 非平凡, 故存在 $b\in\Z$, $b\neq 0$, 使得 $\varphi(b)<1$. 令
+\[
+  A=\{b\in\Z\mid\varphi(b)<1\}.
+\]
+由 $\varphi$ 的非阿性质易知 $A$ 是环 $\Z$ 的非零素理想. 于是 $A=p\Z$, 其中 $p$ 为素数. 令 $\gamma=\varphi(p)$, 由 $p\in A$ 可知 $0<\gamma<1$. 而 $\Q$ 中非零有理数均可表为
+\[
+  \alpha=p^k\cdot\frac{a}{b},\qquad k\in\Z,\ a,b\in\Z,\ (a,b,p)=1.
+\]
+由于 $a,b\notin p\Z$, 可知 $\varphi(a)=\varphi(b)=1$. 于是 $\varphi(\alpha)=\varphi(p)^k=\gamma^{v_p(\alpha)}$, 即 $\varphi$ 是 $p$ 进赋值.
+
+现设 $\varphi$ 是阿基米德赋值, 必要时将 $\varphi$ 改成与之等价的赋值, 不妨设 $\varphi$ 满足三角形不等式. 于是对每个正整数 $n$, $\varphi(n)\leqslant n$. 设 $n$ 和 $n'$ 均为大于 $1$ 的整数, 则 $n'$ 有 $n$ 进展开
+\[
+  n'=a_0+a_1n+\cdots+a_kn^k,
+\]
+其中 $k\geqslant 0$, $a_i\in\Z$, $0\leqslant a_i\leqslant n-1\ (0\leqslant i\leqslant k)$, 并且 $a_k\geqslant 1$. 于是
+\begin{align*}
+  \varphi(n')&\leqslant a_0+a_1\varphi(n)+\cdots+a_k\varphi(n)^k\\
+  &<n(1+\varphi(n)+\cdots+\varphi(n)^k)\\
+  &\leqslant n(k+1)\max(1,\varphi(n)^k).
+\end{align*}
+由 $n'\geqslant a_kn^k\geqslant n^k$ 可知 $k\leqslant\log n'/\log n$, 所以
+\[
+  \varphi(n')<n\left(\frac{\log n'}{\log n}+1\right)\cdot\max\left(1,\varphi(n)^{\frac{\log n'}{\log n}}\right).
+\]
+从而对每个正整数 $r$,
+\[
+  \varphi(n')^r=\varphi(n'^r)<n\left(\frac{r\log n'}{\log n}+1\right)\max\left(1,\varphi(n)^{\frac{r\log n'}{\log n}}\right),
+\]
+两边开 $r$ 次方得到
+\[
+  \varphi(n')<\left[n\left(\frac{r\log n'}{\log n}+1\right)\right]^{\frac{1}{r}}\max\left(1,\varphi(n)^{\frac{\log n'}{\log n}}\right),
+\]
+令 $r\to+\infty$, 给出
+\[
+  \varphi(n')\leqslant\max\left(1,\varphi(n)^{\frac{\log n'}{\log n}}\right).
+\]
+由于 $\varphi$ 是阿基米德赋值, 故存在正整数 $n'\geqslant 2$, 使得 $\varphi(n')>1$. 于是对每个 $n\geqslant 2$, 均有 $\varphi(n')\leqslant\varphi(n)^{\frac{\log n'}{\log n}}$, 所以 $\varphi(n)>1$, 并且 $\varphi(n')^{\frac{1}{\log n'}}\leqslant\varphi(n)^{\frac{1}{\log n}}$. 由于 $n'$ 和 $n$ 的对称性, 可知对所有整数 $n,n'\geqslant 2$, 均有
+\[
+  \varphi(n')^{\frac{1}{\log n'}}=\varphi(n)^{\frac{1}{\log n}}>1,
+\]
+从而 $\varphi(n)^{\frac{1}{\log n}}$ 为常数（$>1$）, 它的对数 $\frac{\log\varphi(n)}{\log n}$ 也为常数 $\alpha>0$. 这表明对每个整数 $n\geqslant 2$, 均有 $\varphi(n)=n^{\alpha}=|n|_{\infty}^{\alpha}$. 由此易知对每个有理数 $a$, 均有 $\varphi(a)=|a|_{\infty}^{\alpha}$, 即 $\varphi=|\cdot|_{\infty}^{\alpha}$.
+\end{proof}
+
+本节最后介绍域 $F$ 中有限个彼此不等价赋值的独立性和逼近定理.
+
+\begin{theorem}\label{thm:7.3}
+（独立性）设 $n\geqslant 2$, $\varphi_1,\cdots,\varphi_n$ 是域 $F$ 中彼此不等价的非平凡赋值, 则对每个 $k\ (1\leqslant k\leqslant n)$, 均存在 $a\in F$, 使得 $\varphi_k(a)>1$, 而当 $l\neq k$ 时 $\varphi_l(a)<1$.
+\end{theorem}
+
+\begin{proof}
+不妨设 $k=1$. 我们对 $n$ 归纳. 当 $n=2$ 时, 由于 $\varphi_1$ 和 $\varphi_2$ 不等价, 根据定理 \ref{thm:7.1} 可知存在 $b,c\in F$, 使得 $\varphi_1(b)<1$, $\varphi_2(b)\geqslant 1$, $\varphi_1(c)\geqslant 1$, $\varphi_2(c)<1$. 令 $a=cb^{-1}$, 可知 $\varphi_1(a)>1$, $\varphi_2(a)<1$.
+
+现设定理对 $n-1$ 成立（$n\geqslant 3$）, 则存在 $b,c\in F$, 使得
+\[
+  \varphi_1(b)>1,\ \varphi_2(b)<1,\cdots,\varphi_{n-1}(b)<1,\qquad
+  \varphi_1(c)\geqslant 1,\ \varphi_n(c)<1.
+\]
+如果 $\varphi_n(b)\leqslant 1$, 令 $a=b^rc$ 并且 $r$ 充分大, 就可使
+\[
+  \varphi_1(a)>1,\ \varphi_2(a)<1,\cdots,\varphi_n(a)<1.
+\]
+如果 $\varphi_n(b)>1$, 令 $a=cb^r/(1+b^r)$ 并且 $r$ 充分大, 则可达到同样目的.
+\end{proof}
+
+\begin{theorem}\label{thm:7.4}
+（逼近定理）设 $\varphi_1,\cdots,\varphi_n$ 是域 $F$ 的有限个彼此不等价的非平凡赋值, $a_1,\cdots,a_n\in F$, 则对每个 $\varepsilon>0$, 均存在 $a\in F$, 使得 $\varphi_i(a-a_i)<\varepsilon\ (1\leqslant i\leqslant n)$.
+\end{theorem}
+
+\begin{proof}
+由定理 \ref{thm:7.3} 知对每个 $k\ (1\leqslant k\leqslant n)$ 均存在 $b_k\in F$, 使得 $\varphi_k(b_k)>1$, $\varphi_l(b_k)<1$（当 $l\neq k$ 时）. 于是当 $r\to+\infty$ 时, 对拓扑 $T(\varphi_k)$, $b_k^r/(1+b_k^r)\to 1$; 而对拓扑 $T(\varphi_l)\ (l\neq k)$, $b_k^r/(1+b_k^r)\to 0$. 现在令
+\[
+  a=\sum_{k=1}^{n}a_kb_k^r/(1+b_k^r),
+\]
+并且取 $r$ 充分大, 则 $a$ 即为所求.
+\end{proof}
+
+\begin{Exercises}
+\item 设 $\varphi$ 为域 $F$ 的赋值, $\sigma$ 是域 $F$ 的自同构. 求证 $\varphi^{\sigma}$ 也是域 $F$ 的赋值, 这里 $\varphi^{\sigma}$ 定义为
+\[
+  \varphi^{\sigma}(a)=\varphi(\sigma(a))\qquad(a\in F).
+\]
+并且 $\varphi$ 是非阿赋值当且仅当 $\varphi^{\sigma}$ 是非阿赋值.
+
+\item 对于下列情形, 试问域 $F$ 的赋值 $\varphi_1$ 和 $\varphi_2$ 是否等价:
+
+(A) $F=\Q(\sqrt{-1})$, $\varphi_1=|\cdot|_{\infty}$, $\varphi_2=\varphi_1^{\sigma}$, 其中 $\sigma$ 为复共轭自同构;
+
+(B) $F=\Q(\sqrt{2})$, $\varphi_1=|\cdot|_{\infty}$, $\varphi_2=\varphi_1^{\sigma}$, 其中 $\sigma$ 为 $F$ 的自同构, $\sigma(a+b\sqrt{2})=a-b\sqrt{2}$（$a,b\in\Q$）.
+
+\item 设 $\varphi_1,\cdots,\varphi_n$ 是域 $F$ 的有限个彼此不等价的非阿赋值, $a_1,\cdots,a_n\in F^{\times}$, 则存在 $a\in F^{\times}$, 使得 $\varphi_i(a)=\varphi_i(a_i)\ (1\leqslant i\leqslant n)$.
+
+\item 求有理数 $\alpha$, 使得 $v_2\left(\alpha-\frac{1}{3}\right)\geqslant 2$, $v_3\left(\alpha-\frac{1}{2}\right)\geqslant 3$ 并且 $\left|\alpha-1\right|_{\infty}<\frac{1}{2}$.
+\end{Exercises}

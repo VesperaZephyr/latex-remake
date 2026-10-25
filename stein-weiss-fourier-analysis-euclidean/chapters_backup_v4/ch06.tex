@@ -1,0 +1,960 @@
+\chapter{Singular Integrals and Systems of Conjugate Harmonic Functions}
+\label{ch:c6}
+
+We have encountered the Hilbert Transform in the third and fifth chapter. In both instances its properties were developed in the context of the theory of functions of a single complex variable. In the first section we develop a part of the real-variable approach to the study of the Hilbert transform. In the second section we show how these results can be used to define and develop basic properties of a class of singular integral operators, the ones with an odd kernel. The third section is devoted to the introduction of a larger class of singular integral operators. Finally, in the fourth section we show that many such operators are related to systems of partial differential equations that extend the Cauchy--Riemann equations. These systems enable us to consider yet another approach to complex methods in Fourier analysis of several variables. In particular, we introduce a theory of $H^{p}$-spaces that, in a sense, parallels the one developed in the third chapter.
+
+\section{The Hilbert Transform}
+
+In the second section of the fifth chapter we introduced the Hilbert transform $\tilde{f}$ of a function $f \in L^p(-\infty, \infty)$, $1 \leq p < \infty$. We defined it as the limit, as $y > 0$ tends to 0, of $v(x, y) = (1/\pi)^{\int_{-\infty}^{\infty}} f(x - t)[t/(t^2 + y^2)]$ dt. Using properties of analytic functions we showed that this limit exists for almost all $x$. In view of this fact, it is natural to wonder if $\tilde{f}$ could not be defined directly by the equality $\tilde{f}(x) = (1/\pi)^{\int_{-\infty}^{\infty}} [f(x - t)/t]$ dt. Unfortunately, this integral is not defined even for very smooth $f \in L^p(-\infty, \infty)$. If, however, we consider this integral in the principal value sense (see \eqref{eq:c4-4-4} in Chapter IV) we do obtain
+
+\begin{equation}\label{eq:c6-1-1}
+\tilde{f}(x)=\lim_{\varepsilon\to0}\frac{1}{\pi}\int\limits_{0<\varepsilon\leq|t|}\frac{f(x-t)}{t}dt
+\end{equation}
+
+for almost every real number x. This is an immediate consequence of Lemma \ref{lem:c5-2-6} of Chapter V and the following result:
+
+\begin{lemma}
+\label{lem:c6-1-2}
+Suppose $f \in L^p(-\infty, \infty)$, $1 \leq p < \infty$, then
+\[
+\lim_{\varepsilon\to0}\left\{\int\limits_{-\infty}^{\infty}f(x-t)\frac{t}{t^{2}+\varepsilon^{2}}dt-\int\limits_{0<\varepsilon\leq|t|}\frac{f(x-t)}{t}dt\right\}=0
+\]
+
+at each point x in the Lebesgue set of f.
+\end{lemma}
+
+\textsc{Proof.}\ Let
+
+\[
+\varphi(t)=\left\{\begin{aligned}{}&{{}\frac{t}{t^{2}+1}-\frac{1}{t}\quad}&{\text{if }|t|}&{{}\geq1}\\ {}&{{}\frac{t}{t^{2}+1}}&{\text{if }|t|}&{{}<1}\\ \end{aligned}\right.
+\]
+
+and, for $\varepsilon > 0$, $\varphi_{\varepsilon}(t) = \varepsilon^{-1}\varphi(t/\varepsilon)$. Then
+
+\[
+\intop_{-\infty}^{\infty}f(x-t){\frac{t}{t^{2}+\varepsilon^{2}}}d t-\intop_{0<\varepsilon\leq|t|}{\frac{f(x-t)}{t}}d t=\intop_{-\infty}^{\infty}f(x-t)\varphi_{\varepsilon}(t)d t.
+\]
+
+Since
+
+\begin{equation}\label{eq:c6-1-3}
+\psi(x)=\sup_{|t|\geq|x|}\left|\varphi(t)\right|=\left\{\begin{matrix}\displaystyle\frac{1}{|x|(1+x^{2})}\quad&if|x|\geq1\\ \displaystyle\frac{1}{2}\quad&if|x|<1,\end{matrix}\right.
+\end{equation}
+
+it follows that $\psi\in L^{1}(-\infty,\infty)$. Thus, by Theorem \ref{thm:c1-1-25} of Chapter I and the fact that $\int_{-\infty}^{\infty}\varphi(t)dt=0$ (since $\varphi$ is odd), $\lim_{\varepsilon\to0}\int_{-\infty}^{\infty}f(x-t)\varphi_{\varepsilon}(t)dt=f(x)\int_{-\infty}^{\infty}\varphi(t)dt=0$ and the lemma is established.
+
+In the previous chapter we showed that the Hilbert\index{Hilbert transform@Hilbert transform!maximal@maximal} transform is of type $(p, p)$ for $1 < p < \infty$. We shall show that the maximal Hilbert transform which assigns to $f \in L^p(-\infty, \infty)$ the function whose values are
+
+\[
+\sup_{\varepsilon>0}\frac{1}{\pi}\left|\int\limits_{|t|>\varepsilon}f(x-t)\frac{d t}{t}\right|
+\]
+
+is also of type $(p, p)$. More precisely, we shall establish the following result:
+
+\begin{theorem}
+\label{thm:c6-1-4}
+If $f \in L^p(-\infty, \infty)$, $1 < p < \infty$, then
+\[
+(M f)(x)=\sup_{\varepsilon>0}\frac{1}{\pi}\Bigg|\int\limits_{[t]>\varepsilon}f(x-t)\frac{d t}{t}\Bigg|\leq\frac{1}{\pi}\left\|\psi\right\|_{1}m_{f}(x)+m_{\widetilde{\gamma}}(x),
+\]
+
+where $\psi$ is the function defined in \eqref{eq:c6-1-3} and $m_f$ and $m_f$ are the Hardy--Littlewood maximal functions of $f$ and $f$. In particular, there exists a constant $B_p$, independent $of f \in L^p(-\infty, \infty)$ such that
+\[
+\left\|M_{f}\right\|_{p}\leq B_{p}\|f\|_{p}.
+\]
+
+\end{theorem}
+
+\textsc{Proof.}\ We have
+
+\[
+\int\limits_{0<\varepsilon\leq|t|}\frac{f(x-t)}{t}dt=\int\limits_{-\infty}^{\infty}f(x-t)\frac{t}{t^{2}+\varepsilon^{2}}dt-\int\limits_{-\infty}^{\infty}f(x-t)\varphi_{\varepsilon}(t)dt.
+\]
+
+Since $\psi$ is radial and nonincreasing, it follows from \eqref{eq:c2-3-9} of Chapter II that
+
+\[
+\sup_{\varepsilon>0}\left|\intop_{-\infty}^{\infty}f(x-t)\varphi_{\varepsilon}(t)\;d t\right|\leq\|\psi\|_{1}m_{f}(x).
+\]
+
+Thus, the theorem is proved once we show that
+
+\[
+\sup_{\varepsilon>0}\frac{1}{\pi}\left|\int\limits_{-\infty}^{\infty}f(x-t)\frac{t}{t^{2}+\varepsilon^{2}}dt\right|\leq m_{\widetilde{t}}(x).
+\]
+
+But this inequality is a consequence of Theorem \ref{thm:c2-3-10} of Chapter II and the following equality:
+
+\begin{lemma}
+\label{lem:c6-1-5}
+If $f \in L^p(-\infty, \infty)$, $1 < p < \infty$, and $y > 0$ then
+\[
+\frac{1}{\pi}\int\limits_{-\infty}^{\infty}f(x-t)\frac{t}{t^{2}+y^{2}}dt=\frac{1}{\pi}\int\limits_{-\infty}^{\infty}\tilde{f}(x-t)\frac{y}{t^{2}+y^{2}}dt.
+\]
+
+\end{lemma}
+
+\textsc{Proof.}\ The left side of this equality is the convolution of $f$ with the conjugate Poisson kernel $Q_y(t) = (1/\pi)[t/(t^2 + y^2)]$ introduced in \eqref{frp:c3-6-13} of Chapter III, while the right side is the convolution of $\tilde{f}$ with the Poisson kernel $P_y(t) = (1/\pi)[y/(t^2 + y^2)]$. Since for each $y > 0$, $Q_y$ and $P_y$ belong to $L^{p'}(-\infty, \infty)$, $(1/p) + (1/p') = 1$, it follows from Hölder's inequality and \eqref{eq:c5-2-11} of Chapter V that it suffices to establish the lemma for $f$ belonging to a dense subset of $L^p$. Suppose, therefore, that $f$ belongs to the class $\mathcal{S}$ of testing functions introduced in the first chapter. Then, in particular, $f$ belongs to $L^2(-\infty, \infty)$ and, thus, by \eqref{eq:c5-2-11} of Chapter V $\tilde{f}$ also belongs to $L^2(-\infty, \infty)$ and its Fourier transform $(\tilde{f})^\wedge$ is defined. It is not hard to show that
+
+\begin{equation}\label{eq:c6-1-6}
+(\tilde{f})^{\wedge}(x)=(-i\text{sgn}x)\hat{f}(x).
+\end{equation}
+
+In fact, we showed in \eqref{frp:c3-6-13} of the third chapter that
+
+\[
+\hat{Q}_{y}(x)=(-i\text{sgn}x)e^{-2\pi|y x|}.
+\]
+
+Thus, $(Q_y * f)^{\wedge}(x) = \hat{Q}_y(x) \hat{f}(x) = (-i \text{sgn} x) e^{-2\pi |y \times x|} \hat{f}(x)$ and, by Plancherel's theorem it follows that, as y tends to 0, $Q_y * f$ tends (in the $L^2$-norm) to a function g whose Fourier transform is $(-i \text{sgn} x) \hat{f}(x)$. On the other hand, we know from Lemma \ref{lem:c5-2-6} of Chapter V that $(Q_y * f)(x) \to \tilde{f}(x)$ a.e. as $y \to 0$. Thus, $\tilde{f}$ and g must be equal almost everywhere and \eqref{eq:c6-1-6} follows. In order to establish \eqref{lem:c6-1-5} it suffices to show that the Fourier
+
+for the transforms of both sides are equal. From \eqref{eq:c1-1-6} and Theorem \ref{thm:c1-1-14} of Chapter I we have $(\tilde{f} * P_y)^{\wedge}(x) = (\tilde{f})^{\wedge}(x)e^{-2\pi|yx|} = (-i \text{sgn} x)\hat{f}(x)e^{-2\pi|yx|}$. But we observed above that this last expression is equal to $(f * Q_y)^{\wedge}(x)$. This proves the lemma and, consequently, Theorem \ref{thm:c6-1-4}.
+
+Our aim is to extend these results to n dimensions. In order to do so we must first find an appropriate generalization of the Hilbert transform. One way of introducing such a generalization is by introducing the kernel
+
+\begin{equation}\label{eq:c6-1-7}
+K(t)=\frac{\Omega(t)}{|t|^{n}},\qquad t\neq0,
+\end{equation}
+
+where $\Omega$ is an odd function that is homogeneous of degree zero (i.e., $\Omega(at) = \Omega(t)$ for all positive real numbers $a$). When $n = 1$ and $\Omega(t) = (\text{sgn } t)/\pi$ the convolution of $f$ with $K$ (in the principal value sense) yields the Hilbert transform of $f$. Thus, in view of the results presented in this section, it is natural to inquire whether the operator
+
+\begin{equation}\label{eq:c6-1-8}
+(H f)(x)=\lim\int_{\delta\geq|t|\geq\varepsilon>0}f(x-t)K(t)\;{d}t,\qquad\varepsilon\to0,\;\delta\to\infty
+\end{equation}
+
+is well-defined for $f\in L^p(E_n)$, $1<p<\infty$, and maps this space boundedly into itself.\footnote{In the one-dimensional case the integral $\int_0 < \varepsilon \leq |t|$ $[f(x - t)/t]$ dt is well defined since, for $f \in L^p(-\infty, \infty)$, $1 < p < \infty$, the integrand is the product of a translate of $f$ (which must also belong to $L^p$) and the $L^q$ function, $(1/p) + (1/q) = 1$, whose values are $1/t$ when $|t| \geq \varepsilon$ and is 0 otherwise. It is not immediately clear, however, that, if instead of \eqref{eq:c6-1-8}, we considered the integrals $\int_{|t| \geq \varepsilon > 0} f(x - t)K(t)$ dt we would then have a well-defined object. It can be shown that this integral has meaning, but we choose not to do this here (see \eqref{frp:c6-5-5} for details about this matter and related problems concerning the integrals considered in the next section). Observe that under the conditions imposed below, the integral \eqref{eq:c6-1-8} converges absolutely for almost every $x$.} In the next section we will show, in particular, that this is indeed the case if $\Omega$ is integrable when restricted to the surface of the unit sphere $\Sigma_{n-1}$ (i.e., if $\int_{\Sigma_{n-1}}|\Omega(t')|dt'<\infty$). Such an operator is known as a singular integral operator with odd kernel.
+
+Another more general kernel is obtained if we merely assume that the restriction of $\Omega$ to the surface of the unit sphere is integrable and
+
+\[
+\int\limits_{\Sigma_{n-1}}\Omega(t^{\prime})\,dt^{\prime}=0.
+\]
+
+This condition is clearly satisfied when $\Omega$ is an odd function. In the third section we shall discuss operators defined by \eqref{eq:c6-1-8} when the kernel K is of the form \eqref{eq:c6-1-7} with $\Omega$ satisfying this more general condition. The study of these operators, however, is more complicated than that of the singular
+
+integral operators with odd kernels. In order to show that such an operator is of type $(p, p)$, $1 < p < \infty$, for example, we have to assume more than integrability of $\Omega$ over $\Sigma_{n-1}$.
+
+\section{Singular Integral Operators with Odd Kernels}
+
+We suppose that $K$ is the kernel defined by \eqref{eq:c6-1-7} and $\Omega$ is an odd function, homogeneous of degree 0 and integrable over $\Sigma_{n-1}$. We first observe that for each $\varepsilon > 0$ and $f \in L^p(E_n)$, $1 \leq p < \infty$,
+
+\begin{equation}\label{eq:c6-2-1}
+\intop_{\substack{\delta\geq|t|\geq\varepsilon}}f(x-t)\frac{\Omega(t)}{|t|^{n}}d t=\frac12\intop_{\substack{\Sigma_{n-1}}}\Omega(t^{\prime})\Biggl\{\intop_{\substack{\delta\geq|r|\geq\varepsilon}}\frac{f(x-r t^{\prime})}{r}d r\Biggr\}d t^{\prime}.
+\end{equation}
+
+To show this equality we express $t$ in spherical coordinates $t = rt'$ with $|t| = r$ and $t' \in \Sigma_{n-1}$ and, thus, we have
+
+\[
+\begin{aligned}\int\limits_{\delta\geq|t|\geq\varepsilon}f(x-t)\frac{\Omega(t)}{|t|^{n}}dt&=\int\limits_{\varepsilon}^{\delta}\Biggl\{\int\limits_{\Sigma_{n-1}}f(x-rt^{\prime})\Omega(t^{\prime})dt^{\prime}\Biggr\}\frac{dr}{r}\\&=\int\limits_{\Sigma_{n-1}}\Omega(t^{\prime})\Biggl\{\int\limits_{c}^{\delta}f(x-rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}.\end{aligned}
+\]
+
+On the other hand, since $\Omega$ is odd the last expression is equal to
+
+\[
+\begin{aligned}\int\limits_{\Sigma_{n-1}}\Omega(-t^{\prime})\Biggl\{-\int\limits_{\varepsilon}^{\delta}f(x-rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}&=\int\limits_{\Sigma_{n-1}}\Omega(-t^{\prime})\Biggl\{\int\limits_{-\delta}^{-\varepsilon}f(x+rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}\\&=\int\limits_{\Sigma_{n-1}}\Omega(t^{\prime})\Biggl\{\int\limits_{-\delta}^{-\varepsilon}f(x-rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}.\end{aligned}
+\]
+
+Thus,
+
+\[
+\begin{aligned}2\int\limits_{\delta\geq|t|\geq\varepsilon}&f(x-t)\frac{\Omega(t)}{|t|^{n}}dt\\&=\int\limits_{\delta\geq|t|\geq\varepsilon}f(x-t)\frac{\Omega(t)}{|t|^{n}}dt+\int\limits_{\delta\geq|t|\geq\varepsilon}f(x-t)\frac{\Omega(t)}{|t|^{n}}dt\\&=\int\limits_{\Sigma_{n-1}}\Omega(t^{\prime})\Biggl\{\int\limits_{-\delta}^{-\varepsilon}f(x-rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}\\&\qquad+\int\limits_{\Sigma_{n-1}}\Omega(t^{\prime})\Biggl\{\int\limits_{\varepsilon}^{\delta}f(x-rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}\\&=\int\limits_{\Sigma_{n-1}}\Omega(t^{\prime})\Biggl\{\int\limits_{\delta\geq|r|\geq\varepsilon}f(x-rt^{\prime})\frac{dr}{r}\Biggr\}dt^{\prime}\end{aligned}
+\]
+
+and \eqref{eq:c6-2-1} is established.
+
+Let $1 = (1, 0, \ldots, 0) \in E_n$ be the first vector in the standard basis of $E_n$ and, for $x = (x_1, x_2, \ldots, x_n) \in E_n$, put
+
+\[
+(H_{\varepsilon,\delta}^{(1)}f)(x)=\intop_{\delta\ge|s|\ge\varepsilon}f(x-s1)\frac{d s}{s}=\intop_{\delta\ge|s|\ge\varepsilon}f(x_{1}-s,x_{2},\ldots,x_{n})\frac{d s}{s}.
+\]
+
+If $\sigma$ is a member of the rotation group $SO(n)$ acting on $E_n$ we let $R_\sigma$ be the operator on functions on $E_n$ defined by
+
+\[
+(R_{\sigma}f)(x)=f(\sigma x).
+\]
+
+\begin{lemma}
+\label{lem:c6-2-2}
+If $f \in L^{p}(E_{n})$, $1 \leq p < \infty$, then
+\[
+\intop_{\substack{\delta\geq|t|\geq\varepsilon}}f(x-t)\frac{\Omega(t^{\prime})}{|t|^{n}}d t=\frac{1}{2}\intop_{S O(n)}(R_{\sigma^{-1}}H_{\varepsilon,\delta}^{(1)}R_{\sigma}f)(x)\Omega(\sigma1)d\sigma,
+\]
+
+where $d\sigma$ is the element of Haar measure on the group $SO(n)$ so normalized that $\int_{SO(n)} d\sigma = |\Sigma_{n-1}|$ is the Lebesgue measure of $\Sigma_{n-1}$.
+\end{lemma}
+
+\textsc{Proof.}\ By \eqref{eq:c1-4-14} of Chapter I we have
+
+\[
+\begin{aligned}&\int\limits_{\Sigma_{n-1}}\Bigg\{\int\limits_{\substack{\delta\geq|r|\geq\varepsilon}}\frac{f(x-rt^{\prime})}{r}dr\Bigg\}\Omega(t^{\prime})dt^{\prime}\\&=\int\limits_{SO(n)}\left\{\int\limits_{\substack{\delta\geq|r|\geq\varepsilon}}\frac{f(x-r\sigma1)}{r}dr\right\}\Omega(\sigma1)d\sigma\\&=\int\limits_{SO(n)}\Bigg\{\int\limits_{\substack{\delta\geq|r|\geq\varepsilon}}(R_\sigma f)(\sigma^{-1}x-r1)\frac{dr}{r}\Bigg\}\Omega(\sigma1)d\sigma\\&=\int\limits_{SO(n)}(R_\sigma^{-1}H^{(1)}_{\varepsilon,\delta}R_\sigma f)(x)\Omega(\sigma1)d\sigma.\end{aligned}
+\]
+
+The lemma can now be seen to be an immediate consequence of equality \eqref{eq:c6-2-1}.
+
+An immediate consequence of this lemma is the fact that, for $f \in L^p(E_n)$, $1 \leq p < \infty$,
+
+\begin{equation}\label{eq:c6-2-3}
+\begin{aligned}2\cdot\sup_{\substack{\varepsilon>0\\ \delta>0}}\left|\int\limits_{\delta\geq|t|\geq\varepsilon}f(x-t)\frac{\Omega(t^{\prime})}{|t|^{n}}dt\right|\\\leq\int\limits_{SO(n)}\sup_{\substack{\varepsilon>0\\ \delta>0}}\left|(R_{\sigma^{-1}}H^{(1)}_{\varepsilon,\delta}R_{\sigma}f)(x)\Omega(\sigma\mathbb{1})\right|d\sigma.\end{aligned}
+\end{equation}
+
+Let $M_g^{(1)}$, for $g \in L^p(E_n)$, $1 < p \leq \infty$, be defined by
+
+\[
+M_{g}^{(1)}(x)=\sup_{r>0}\left(2r\right)^{-1}\int\limits_{|t|\leq r}\left|g(x_{1}\;-\;t,x_{2},\ldots,x_{n})\right|d t.
+\]
+
+As was observed in the second chapter, it follows from Theorem \ref{thm:c2-3-7} of that chapter that $M_g^{(1)} \in L^p(E_n)$ and
+
+\[
+\left\|M_{g}^{(1)}\right\|_{p}\leq b\left\|g\right\|_{p},
+\]
+
+where $b = b(p, n)$ depends on p and n, but not on g. But, by Theorem \ref{thm:c6-1-4} we have \footnote{Since $|\int_{\delta\geq|t|\geq\varepsilon}f(x-t)(dt/t)|\leq|\int_{|t|\geq\varepsilon}f(x-t)(dt/t)|+|\int_{|t|\geq\delta}f(x-t)(dt/t)|$ it follows from Theorem \ref{thm:c6-1-4} that $\sup_{\varepsilon>0,\delta>0}|\int_{\delta\geq|t|\geq\varepsilon}f(x-t)(dt/t)|\leq2\|\psi\|_{1}m_1(x)+\pi2m_2(x)$.}
+
+\[
+\sup_{\stackrel{\varepsilon>0}{\delta>0}}\left|(R_{\sigma^{-1}}H_{\varepsilon,\delta}^{(1)}R_{\sigma}f)(x)\right|\leq2\|\psi\|_{1}M_{R_{\sigma f}}^{(1)}(\sigma^{-1}x)+2\pi M_{H^{(1)}R_{\sigma f}}^{(1)}(\sigma^{-1}x).
+\]
+
+Consequently, it follows from Theorem \ref{thm:c6-1-4} and the fact that $R_\sigma$ is an isometry when restricted to $L^p(E_n)$, that for $1 < p < \infty$
+
+\begin{equation}\label{eq:c6-2-4}
+\begin{aligned}&{\left(\intop_{\tilde{E}_{n}}\left\{\sup_{\varepsilon>0\atop\delta>0}\left|(R_{\sigma^{-1}}H_{\varepsilon,\delta}^{(1)}R_{\sigma}f)(x)\right|\right\}^{p}d x\right)^{1/p}}\\&\leq2(b\|\psi\|_{1}+\pi B_{p})\|f\|_{p}=C_{p}\|f\|_{p}.\end{aligned}
+\end{equation}
+
+Thus, an application of Minkowski's integral inequality, \eqref{eq:c6-2-3} and \eqref{eq:c6-2-4} give us
+
+\begin{equation}\label{eq:c6-2-5}
+\begin{aligned}\left(\int\limits_{E_{n}}\left\{\sup_{\varepsilon>0\atop\delta>0}\left|\int\limits_{\delta\geq\|t\|\geq\varepsilon}f(x-t)\frac{\Omega(t^{\prime})}{|t|^{n}}dt\right|\right\}^{p} dx\right)^{1/p}\\\leq C_{p}\Bigg(\int\limits_{\Sigma_{n-1}}|\Omega(t^{\prime})|dt^{\prime}\Bigg)\|f\|_{p}=A_{p}\|f\|_{p},\end{aligned}
+\end{equation}
+
+We can therefore apply Theorem \ref{thm:c2-3-12} of Chapter II and obtain the following result on the existence and boundedness of singular integral operators with odd kernels:
+
+\begin{theorem}
+\label{thm:c6-2-6}
+If $f \in L^p(E_n)$, $1 < p < \infty$, then
+\[
+(H f)(x)=\lim_{\delta^{-1},\varepsilon\to0}\int_{\delta\geq|t|\geq\varepsilon>0}f(x-t)K(t)\;{d}t
+\]
+
+exists for almost every $x \in E_n$. Furthermore, there exists a constant $c = c(p, n)$ depending on p and the dimension n, but not on f, such that
+\[
+\left\|H f\right\|_{p}\leq c\left\|f\right\|_{p}.
+\]
+
+\end{theorem}
+
+An important class of singular integral operators with odd kernels is the one consisting of the $M$. Riesz transforms\index{Riesz transforms@Riesz transforms}. In $n$ dimensions these are the $n$
+
+singular integral operators $R_{1}, R_{2}, \ldots, R_{n}$ defined by the kernels
+
+\[
+K_{j}(x)=c_{n}(x_{j}^{\prime}/|x|^{n})=c_{n}(x_{j}/|x|^{n+1}),
+\]
+
+for
+
+\[
+x=(x_{1},x_{2},\ldots,x_{n})\in E_{n},j=1,2,\ldots,n\text{ and }c_{n}=\frac{\Gamma[(n+1)/2]}{\pi^{(n+1)/2}}
+\]
+
+(when n = 1 we obtain only one transform, the Hilbert transform). By Theorem \ref{thm:c4-4-5} of Chapter IV each such kernel induces a tempered distribution whose Fourier transform is the function whose value at $t = (t_1, t_2, \ldots, t_n)$ is
+
+\[
+\hat{K}_{j}(t)=-i\frac{t_{j}}{|t|}.
+\]
+
+Thus, if $\varphi$ is a testing function, $(K_j * \varphi)^\wedge(t) = -i(t_j / |t|) \hat{\varphi}(t)$ (see Theorem \ref{thm:c1-3-18} of Chapter I). It follows from Theorem \ref{thm:c6-2-6}, therefore, that
+
+\begin{equation}\label{eq:c6-2-7}
+(R_{i}f)^{\wedge}(t)=-i\frac{t_{j}}{|t|}\hat{f}(t)
+\end{equation}
+
+a.e. for any $f \in L^2(E_n)$. Moreover, since $R_j f$ must then also belong to $L^2(E_n)$, we have
+
+\[
+(R_{j}^{2}f)^{\wedge}(t)\:=\:-{\frac{t_{j}^{2}}{|t|^{2}}}\hat{f}(t).
+\]
+
+Hence,
+
+\begin{equation}\label{eq:c6-2-8}
+\left(\sum_{j=1}^{n}R_{j}^{2}f\right)^{\wedge}(t)=-\widehat{f}(t)
+\end{equation}
+
+for all $f \in L^2(E_n)$. It follows, therefore, that
+
+\begin{equation}\label{eq:c6-2-9}
+\sum_{j=1}^{n}R_{j}^{2}=-I,
+\end{equation}
+
+where $I$ is the identity operator (on $L^{p}(E_{n})$, $1 < p < \infty$).
+
+The identity \eqref{eq:c6-2-7} and Plancherel's theorem also implies the following ``unitary'' character of the Riesz transforms
+
+\begin{equation}\label{eq:c6-2-10}
+\sum_{j=1}^{n}\|R_{j}f\|_{2}^{2}=\|f\|_{2}^{2}.
+\end{equation}
+
+\section{Singular Integral Operators with Even Kernels}
+
+We shall now study the singular integral operators associated with kernels of the form \eqref{eq:c6-1-7} with $\Omega$ satisfying $\int_{\Sigma_{n-1}} \Omega(t') \, dt' = 0$, in addition to being homogeneous of degree 0 and integrable over $\Sigma_{n-1}$. Let us express
+
+$\Omega$ as the sum
+
+\[
+\Omega(t^{\prime})=\frac{\Omega(t^{\prime})-\Omega(-t^{\prime})}{2}+\frac{\Omega(t^{\prime})+\Omega(-t^{\prime})}{2}=\Omega^{(1)}(t^{\prime})+\Omega^{(2)}(t^{\prime}),
+\]
+
+where $\Omega^{(1)}$ and $\Omega^{(2)}$ are the odd and even parts of $\Omega$. Theorem \ref{thm:c6-2-6} then applies to the operator associated with the kernel $\Omega^{(1)}(t)/|t|^{n}$ and we can conclude, in particular, that this operator maps $L^{p}(E_{n})$ boundedly into itself. We mentioned at the end of the first section of this chapter, however, that we need to assume more about $\Omega$ in order to reach the same conclusion concerning the operator associated with the kernel $K(t)=\Omega(t)/|t|^{n}$. We will show that such an operator maps $L^{p}(E_{n})$ continuously into itself, $1<p<\infty$, provided $\|\Omega\|=(\int_{\Sigma_{n-1}}|\Omega(t^{\prime})|^{2}\,dt^{\prime})^{1/2}<\infty$. More precisely, we will prove the following theorem:
+
+\begin{theorem}
+\label{thm:c6-3-1}
+Suppose $K$ is a kernel of the form $K(t) = \Omega(t)/|t|^{n}$, where $\|\Omega\| = (\int_{\Sigma_{n-1}}|\Omega(t')|^{2}dt')^{1/2} < \infty$, $\int_{\Sigma_{n-1}}\Omega(t') dt' = 0$ and $\Omega$ is homogeneous of degree 0. Then $\lim_{\varepsilon \to 0} \int_{|t| \geq \varepsilon > 0} \varphi(x - t) K(t) dt = (K * \varphi)(x)$ exists for each $x \in E_n$ and testing function $\varphi \in \mathcal{S}$. Moreover, if $1 < p < \infty$ there exists a constant $c = c(p, n)$, depending only on $p$ and the dimension $n$, such that
+\[
+\left\|K*\varphi\right\|_{p}\leq c\left\|\varphi\right\|_{p}
+\]
+
+for all testing functions $\varphi$.
+\end{theorem}
+
+Since the condition $\|\Omega\| < \infty$ implies that this same property must hold for the even part $\Omega^{(2)}$ and, since we already know the above theorem to be valid for (more general) odd kernels, we can assume $\Omega$ to be even. Briefly, the idea of the proof of this theorem is then the following. If $T$ is the singular integral operator associated with $K$ we compose it with the Riesz transform $R_j$, $1 \leq j \leq n$, and show that this composition $R_j$ is a singular integral operator with odd kernel of the type studied in the last section. Thus, there exists a constant $a_p$ such that $\|R_j T\varphi\|_p \leq a_p \|\varphi\|_p$ for all $\varphi \in \mathcal{L}$. Hence, by Theorem \ref{thm:c6-2-6} $\|R_j(R_j T\varphi)\|_p \leq b_p \|R_j T\varphi\|_p \leq b_p a_p \|\varphi\|_p$. From \eqref{eq:c6-2-9}, however, we have $\|T\varphi\|_p = \big(\sum_{j=1}^n R_j^2\big) T\varphi\big|_p \leq \sum_{j=1}^n \|R_j(R_j T\varphi)\|_p \leq nb_p a_p \|\varphi\|_p = c\|\varphi\|_p$.
+
+The rest of this section will be devoted to making this argument precise. A number of results needed for this proof have already been developed in the fourth section of Chapter IV. The existence of the limit
+
+\[
+\lim_{\varepsilon\to0}\int\limits_{|t|\ge\varepsilon}\varphi(x-t)K(t)dt
+\]
+
+was shown in an argument preceding Theorem \ref{eq:c6-4-7}. By Theorem \ref{eq:c6-4-7} of
+
+that chapter, the Fourier transform of $K$, regarded as a principal value distribution, is a function that is homogeneous of degree zero. Thus, there exists $\Omega_0$, defined on $\Sigma_{n-1}$, such that $\hat{K}(x) = \Omega_0(x') = \Omega_0(x/|x|)$, $x \neq 0$. Moreover, if $\Omega = \sum_{k=1}^{\infty} Y^{(k)}$ is the development in spherical harmonics of $\Omega$ on $\Sigma_{n-1}(Y^{(k)}$ is a spherical harmonic of degree $k$ and the series is convergent in the norm of $L^2(\Sigma_{n-1}))$, then $\Omega_0$ has the development $\Omega_0 = \sum_{k=1}^{\infty} Y_0^{(k)}$, where $Y_0^{(k)} = \gamma_k Y^{(k)}$ with
+
+\begin{equation}\label{eq:c6-3-2}
+\gamma_{k}=i^{-k}\pi^{n/2}\frac{\Gamma(k/2)}{\Gamma[(n+k)/2]}=O(k^{-(n/2)}).
+\end{equation}
+
+By Corollary \ref{cor:c4-4-12} of Chapter IV the function $\Omega_0$ is continuous on $\Sigma_{n-1}$ and, hence, bounded.\footnote{The continuity of $\Omega_{0}$ was shown to be a consequence of the representation obtained in Theorem \ref{thm:c4-4-11} of the fourth chapter.} Consequently, the function $\hat{K}$ is also bounded. By Theorem \ref{thm:c1-3-18} of Chapter I, therefore, the operator $T$ assigning to each $\varphi \in \mathcal{S}$ the function $T\varphi = K*\varphi$ maps into $L^2(E_n)$, satisfies $\|T\varphi\|_2 = \|K*\varphi\|_2 \leq \|\hat{K}\|_{\infty}\|\varphi\|_2$ and $(T\varphi)^\wedge(t) = \hat{K}(t)\hat{\varphi}(t) = \Omega_0(t/|t|)\hat{\varphi}(t)$ for $t \neq 0$ in $E_n$.
+
+Since $T_{\varphi}$ belongs to $L^{2}(E_{n})$, the Riesz transform $R_{j}T_{\varphi}$ of $T_{\varphi}$ is well-defined (see Theorem \ref{thm:c6-2-6}) and belongs to $L^{2}(E_{n})$. Using \eqref{eq:c6-2-7}, therefore, we have
+
+\begin{equation}\label{eq:c6-3-3}
+(R_{j}T\varphi)^{\wedge}(t)\;=\;-i\;\frac{t_{j}}{|t|}\;{(T\varphi)^{\wedge}(t)}\;=\;-i\;\frac{t_{j}}{|t|}\;\Omega_{0}\biggl(\frac{t}{|t|}\biggr)\hat{\varphi}(t).
+\end{equation}
+
+Let $\omega_0(t') = -it'_j\Omega_0(t')$ for $t' = (t'_1, t'_2, \ldots, t'_n) \in \Sigma_{n-1}$ and consider the function that assigns to $t \neq 0$ in $E_n$ the value $\omega_0(t/|t|)$. We now show that this function is the Fourier transform of a principal value distribution defined by an odd kernel of the type discussed in Section 2. In order to do this we shall make use of the following result:
+
+\begin{lemma}
+\label{lem:c6-3-4}
+Suppose $Y^{(k)}$, $k \geq 1$, is a spherical harmonic of degree k and j is an integer satisfying $1 \leq j \leq n$. Then there exist spherical harmonics $W^{(k-1)}$ and $W^{(k+1)}$ of degrees k - 1 and k + 1, such that
+\[
+t_{j}Y^{(k)}(t)=W^{(k-1)}(t)+W^{(k+1)}(t)
+\]
+
+for all $t = (t_1, t_2, \ldots, t_n) \in \Sigma_{n-1}$.
+\end{lemma}
+
+\textsc{Proof.}\ By Corollaries 2.3 and 2.4 of Chapter IV it suffices to show that $\int_{\Sigma_{n-1}} t_j Y^{(k)}(t) W^{(l)}(t) \, dt = 0$ whenever $W^{(l)}$ is a spherical harmonic of degree $l \neq k - 1, k + 1$. Let $P^{(k)}$ and $Q^{(l)}$ be the corresponding solid spherical harmonics and put $u(x) = x_j P^{(k)}(x)$ and $v(x) = Q^{(l)}(x)$. Then $\Delta v \equiv 0$ and
+
+\[
+(\Delta u)(x)=x_{j}(\Delta P^{(k)})(x)+2\frac{\partial P^{(k)}}{\partial x_{j}}\left(x\right)=2\frac{\partial P^{(k)}}{\partial x_{j}}\left(x\right).
+\]
+
+Thus, by Green's theorem:
+
+\begin{equation}\label{eq:c6-3-5}
+\begin{aligned}-2\int\limits_{|x|\leq1}Q^{(1)}(x)&\frac{\partial P^{(k)}}{\partial x_{j}}\left(x\right)dx\\&=\int\limits_{|x|\leq1}\left[u(x)(\Delta v)(x)-v(x)(\Delta u)(x)\right]dx\\&=\int\limits_{\Sigma_{n-1}}\left[u(x^{\prime})\frac{\partial v}{\partial n}\left(x^{\prime}\right)-v(x^{\prime})\frac{\partial u}{\partial n}\left(x^{\prime}\right)\right]dx^{\prime}.\end{aligned}
+\end{equation}
+
+But $\partial P^{(k)}/\partial x_j$ is a solid harmonic of degree $k-1$; thus, if $l \neq k-1$ the first integral in \eqref{eq:c6-3-5} must be 0. If we write $x = rt$ with $r = |x|$, then $Q^{(l)}(x) = r^l W^{(l)}(t)$ and $(\partial Q^{(l)}/\partial n)(x) = (\partial/\partial r)(r^l W^{(l)}(t)) = lr^{l-1}W^{(l)}(t) = lW^{(l)}(t)$ is the derivative of $Q^{(l)}$ in the direction of the outward directed normal to $\Sigma_{n-1}$ at $t$. Similarly, the fact that $u(x) = r^{k+1}t_j Y^{(k)}(t)$ implies that $(\partial u/\partial n)(t) = (k+1)t_j Y^{(k)}(t)$. Consequently, if $l \neq k-1$,
+
+\[
+0=l\int\limits_{\Sigma_{n-1}}\boldsymbol{t}_{j}\boldsymbol{Y}^{(k)}(t)\boldsymbol{W}^{(l)}(t)d t-(k+1)\int\limits_{\Sigma_{n-1}}\boldsymbol{t}_{j}\boldsymbol{Y}^{(k)}(t)\boldsymbol{W}^{(l)}(t)d t.
+\]
+
+We can conclude, therefore, that if, in addition, $l \neq k + 1$ then
+
+\[
+\int\limits_{\Sigma_{n-1}}t_{j}Y^{(k)}(t)W^{(l)}(t)\;d t=0
+\]
+
+and the lemma is proved.
+
+Since $\Omega$ was assumed to belong to $L^2(\Sigma_{n-1})$ the spherical harmonics $\{Y^{(k)}\}$ representing $\Omega$ must satisfy $\sum_{k=1}^{\infty} \| Y^{(k)} \|^2 = \|\Omega\|^2 < \infty$. Because of \eqref{eq:c6-3-2}, therefore,
+
+\begin{equation}\label{eq:c6-3-6}
+\sum_{k=1}^{\infty}k^{n}\big\|Y_{0}^{(k)}\big\|^{2}=\sum_{k=1}^{\infty}k^{n}\big|\gamma_{k}\big|^{2}\big\|Y^{(k)}\big\|^{2}<\infty.
+\end{equation}
+
+Let $\sum_{k=1}^{\infty} y_{0}^{(k)}$ be the development in spherical harmonics of the function $\omega_{0}$ restricted to $\Sigma_{n-1}$. (Since $\omega_{0}$ is the product of an odd function with an even function, it must be odd. Thus, $\int_{\Sigma_{n-1}} \omega_{0} = 0$ and the development $\sum_{k=1}^{\infty} y_{0}^{(k)}$ does not involve a harmonic of degree 0). It follows immediately from Lemma \ref{lem:c6-3-4} and inequality \eqref{eq:c6-3-6} that
+
+\[
+\sum_{k=1}^{\infty}k^{n}\|y_{0}^{(k)}\|^{2}<\infty.
+\]
+
+By Theorem \ref{thm:c4-4-7} of Chapter IV $\omega_c$ is the Fourier transform of a principal value distribution having the form $J(x) = \omega(x')/|x|^n$ where $\omega \in L^2(\Sigma_{n-1})$
+
+and satisfies $\int_{\Sigma_{n-1}} \omega(x') \, dx' = 0$. Actually, this last equality is a consequence of the fact that $\omega$ is odd (since the Fourier transform of $J$ is an odd function). Thus, by Theorem \ref{thm:c6-2-6}, if $1 < p < \infty$, there exists a constant $A_p$, independent of $\varphi \in \mathcal{S}$ such that
+
+\[
+\left\|J*\varphi\right\|_{p}\leq A_{p}\|\varphi\|_{p}.
+\]
+
+Moreover, since $\varphi \in L^2(E_n)$ using Theorem \ref{thm:c1-3-18} of Chapter I we see that $(J * \varphi)^\wedge(t) = -i (t_j/|t|) \Omega_0(t/|t|)\hat{\varphi}(t)$. Since $J * \varphi \in L^p(E_n)$, $1 < p < \infty$, we can apply Theorem \ref{thm:c6-2-6} again and obtain the fact that $[R_j * (J * \varphi)](x) = \lim_{\varepsilon \to 0} \int_{|t| \geq \varepsilon} (J * \varphi)(x - t) K(t) \, dt$ exists for almost every $x \in E_n$ and
+
+\begin{equation}\label{eq:c6-3-7}
+\left\|R_{j}*(J*\varphi)\right\|_{p}\leq B_{p}\|\varphi\|_{p},
+\end{equation}
+
+where $B_p$ is independent of $\varphi$. Since, in particular, $J * \varphi \in L^2(E_n)$, approximating $J * \varphi$ by functions in $\mathcal{S}$ and using Theorem \ref{thm:c1-3-18} of Chapter I another time we obtain
+
+\[
+[R_{j}*(J*\varphi)]\hat{}\wedge(t)\;=\;-\;\frac{t_{j}^{2}}{|t|^{2}}\;\Omega_{0}\left(\frac{t}{|t|}\right)\;\hat{\varphi}(t).
+\]
+
+Hence,
+
+\[
+\begin{aligned}\sum_{j=1}^{n}[R_{j}*(J*\varphi)]^{\wedge}(t)&=-\sum_{j=1}^{n}\frac{t_{j}^{2}}{|t|^{2}}\Omega_{0}\left(\frac{t}{|t|}\right)\hat{\varphi}(t)\\&=-\Omega_{0}\left(\frac{t}{|t|}\right)\hat{\varphi}(t)=-(K*\varphi)^{\wedge}(t).\end{aligned}
+\]
+
+This shows that $\sum_{j=1}^{n} R_j * (J * \varphi) = -K * \varphi$ and, by \eqref{eq:c6-3-7},
+
+\[
+\left\|K*\varphi\right\|_{p}\leq\sum_{j=1}^{n}\left\|R_{j}*(J*\varphi)\right\|_{p}\leq n B_{p}\|\varphi\|_{p}.
+\]
+
+Theorem \ref{thm:c6-3-1} is thus proved with $c = c(p, n) = nB_{p}$.
+
+\section{$H^{p}$ Spaces of Conjugate Harmonic Functions}
+
+Toward the end of the first section of the third chapter we introduced spaces of certain vector valued functions
+
+\[
+F(x,y)=(u_{1}(x,y),\ldots,u_{n+1}(x,y))
+\]
+
+defined at all points $(x, y) \in E_{n+1}^{+}$, where $u_j, j = 1, 2, \ldots, n + 1$, satisfied the system of partial differential equations \eqref{eq:c3-1-6} of Chapter III and the inequalities
+
+\begin{equation}\label{eq:c6-4-1}
+\int\limits_{E_{n}}|u_{j}(x,y)|^{p} dx\leq A<\infty\qquad\text{for all }y>0.
+\end{equation}
+
+When $p > 1$ the existence of boundary values $\lim_{u \to 0} u_j(x, y) = u_j(\dot{x}, 0)$
+
+(both almost everywhere and in the norm) is an immediate consequence of Theorems \ref{thm:c2-2-5} and 3.16 of Chapter II, and this existence depends only on condition \eqref{eq:c6-4-1}. In fact, the latter theorem assures us that nontangential boundary values exist almost everywhere. Moreover, part (b) of Theorem \ref{eq:c6-2-5} can be used to show this is the case also when p = 1. If we only require, however, that the harmonic functions satisfy condition \eqref{eq:c6-4-1} and not the system of equations \eqref{eq:c6-1-6}, the convergence in the norm may fail. For example, if one of the harmonic functions $u(x, y) = u_j(x, y)$ is the Poisson-Stieltjes integral of the Dirac- $\delta$ measure $\mu$ (i.e., $\mu(A) = 0$ if $0 \notin A \subset E_n$ and $\mu(A) = 1$ if $0 \in A$) then $u(x, y)$ is the Poisson kernel
+
+\[
+P(x,y)=c_{n}\frac{y}{\left(\left|x\right|^{2}+y^{2}\right)^{(n+1)/2}}
+\]
+
+and, therefore, $u(x, y)$ tends to 0 as $(x, y)$ tends nontangentially to $(x_0, 0) = x_0 \in E_n$ as long as $x_0 \neq 0$. On the other hand,
+
+\[
+\lim_{y\to0}\int\limits_{E_{n}}\left|u(x,y)-u(x,0)\right|dx=\lim_{y\to0}\int\limits_{E_{n}}P(x,y)dx=1.
+\]
+
+When $n=1$, this situation illustrates an important difference in the boundary behavior of harmonic and analytic functions. If $u_1$ and $u_2$ are the real and imaginary parts of an analytic function in $E_2^+$ satisfying \eqref{eq:c6-4-1}, then the boundary values in question exist whenever $p>0$ (this is just the case $n=1$ of Theorem \ref{thm:c3-5-1} of Chapter III). The fact that the functions $u_1$ and $u_2$ are related by the Cauchy--Riemann equations allows one to obtain the existence of boundary values for the wider range of indices $p$. Equations \eqref{eq:c3-1-6} of Chapter III represent perhaps the most direct generalization of the Cauchy--Riemann equations. The basic property enjoyed by these systems of harmonic functions is the fact that there are indices $p<1$ for which $(|u_1|^2 + |u_2|^2 + \cdots + |u_{n+1}|^2)^{p/2}$ is subharmonic (see Theorem \ref{thm:c6-4-14} below). This extends the fact that $\log|F|$ is subharmonic when $F$ is an analytic function of a complex variable (see Example (3) in Section 4 of Chapter II). The following result shows how this property is used in order to obtain the desired boundary values.
+
+\begin{theorem}
+\label{thm:c6-4-2}
+Suppose $u_1, u_2, \ldots, u_k$ are real-valued harmonic functions defined in $E_{n+1}^+$ such that there exists a positive $p_0 < 1$ for which
+\[
+s=(u_{1}^{2}+u_{2}^{2}+\cdots+u_{k}^{2})^{p_{0}/2}
+\]
+
+is subharmonic. Let $F = (u_1, u_2, \ldots, u_k)$ and suppose, further, that inequality \eqref{eq:c6-4-1} is satisfied for all $y > 0$ for some $p > p_0$; then the limits
+\begin{equation}\label{eq:c6-4-3}
+u_{j}(x,0)=\lim\limits_{(w,y)\to(x,0)}u_{j}(w,y),
+\end{equation}
+
+where $(w, y)$ approaches $(x, 0)$ nontangentially, exist for almost every $x \in E_n$. Moreover,
+\begin{equation}\label{eq:c6-4-4}
+\begin{aligned}\lim_{y\to0}\int\limits_{E_{n}}|F(x,y)-F(x,0)|^{p} dx\\=\lim_{y\to0}\int\limits_{E_{n}}\int\limits_{j=1}^{k}\left(\sum_{j=1}^{k}(u_{j}(x,y)-u_{j}(x,0))^{2}\right)^{p/2}dx=0.\end{aligned}
+\end{equation}
+
+\end{theorem}
+
+\textsc{Proof.}\ Let $q = p/p_0 > 1$. Then since \eqref{eq:c6-4-1} is satisfied,
+
+\[
+\int\limits_{E_{n}}[s(x,y)]^{q} dx=\int\limits_{E_{n}}|F(x,y)|^{p} dx\leq A<\infty
+\]
+
+for all $y > 0$. Since, moreover, $s$ is subharmonic we know from Theorem \ref{thm:c2-4-6} of Chapter II that $s$ has a least-harmonic majorant $m$ which is the Poisson integral of a function $f \in L^q(E_n)$. By Theorem \ref{thm:c2-3-16} of Chapter II, therefore, $m$ has nontangential limits at almost every point of $E_n$. Thus, since $s \leq m$, the function $s$ must be nontangentially bounded at almost every point of $E_n$ and the same must be true for $|u_j| \leq s^{1/p_0}, j = 1, 2, 3, \ldots, k$. We can therefore apply Theorem \ref{thm:c2-3-19} of Chapter II and obtain the existence of the nontangential limits \eqref{eq:c6-4-3}. The convergence in the norm \eqref{eq:c6-4-4} is then a consequence of the existence of these limits and the dominated convergence theorem of Lebesgue since both $m$ and $f$ are dominated by the Hardy--Littlewood maximal function of $f$ which belongs to $L^q(E_n)$ (see Theorems \ref{thm:c2-3-10} and 3.7 of Chapter II). This proves the theorem.
+
+When $p = p_{0}$ and, thus, $q = 1$ we still have a least-harmonic majorant $m$ of $s$; however, we can only conclude that $m$ is a Poisson-Stieltjes integral of a finite Borel measure on $E_{n}$ (see the last part of Theorem \ref{thm:c2-4-6} in Chapter II). Consequently, we cannot apply the dominated convergence theorem as we did above in order to obtain the convergence \eqref{eq:c6-4-4} from the existence of the nontangential limits \eqref{eq:c6-4-3}. On the other hand, these nontangential limits do exist almost everywhere because the Poisson-Stieltjes integral $m$ has such limits\footnote{If $m$ is the Poisson--Stieltjes integral of the finite Borel measure $\mu$ and we introduce the maximal function $M_\mu(x) = \sup_{S_x} (1/|S_x|) \int_{S_x} d\mu(t)$, then it is easily checked that the arguments used in Section 3 of Chapter II can be used to establish the almost everywhere convergence of $m$ if we modify them appropriately by introducing $M_\mu$.} and, thus, $s$ must be nontangentially bounded.
+
+We see from this theorem, therefore, that we do obtain a meaningful extension of the classical $H^p$ space theory whenever the $k$ components of $F$ are so related that there exists a $p_0 < 1$ for which $s = |F|^p_0$ is subharmonic. When $n = 2 = k$ we have already observed that if these components satisfy the Cauchy--Riemann equations then $|F|^p$ is subharmonic
+
+for all $p > 0$ (in fact $\log |F|$ is subharmonic). It is natural, therefore, to consider the problem of determining which systems of linear first order partial differential equations with constant coefficients have the property that their solutions $F = (u_1, u_2, \ldots, u_k)$ are harmonic and have such a subharmonicity property. Now, any such system of partial differential equations can be written in the form
+
+\begin{equation}\label{eq:c6-4-5}
+\sum_{j=1}^{n}A_{j}\frac{\partial F}{\partial x_{j}}=0,
+\end{equation}
+
+where $A_j$ is an $l \times k$ constant matrix and $\partial F/\partial x_j$ is the (column) vector having components $\partial u_i/\partial x_j$, $i = 1, 2, \ldots, k$.\footnote{When we first introduced a system $F$ satisfying Eqs. \eqref{eq:c6-1-6} we assumed that it was a function of the $n + 1$ variables $(x_1, x_2, \ldots, x_n, y)$, where $y > 0$ and $x = (x_1, \ldots, x_n)$ was thought of as a point in $E_n$. The variable $y$ plays a special role as is evidenced by inequality \eqref{eq:c6-4-1} which is clearly needed for extending the notion of $H^p$ spaces. On the other hand, the property that $|F|^p$ is subharmonic for some $p > 0$ does not involve such a distinguished variable. It is for this reason that we introduce these systems for functions in a domain in $E_n$ and make no distinctions between the variables.}
+
+We shall call such a system of equations a Generalized Cauchy Riemann (GCR) System if each solution $F=(u_1,u_2,\ldots,u_k)$ has harmonic components $u_i$, $i=1,2,\ldots,k$. Such a solution will be called a system of conjugate harmonic functions\index{conjugate harmonic functions@conjugate harmonic functions}. We shall show that when n=2=k=l linear change reduces such a system to the ordinary Cauchy-Riemann\index{generalized Cauchy-Riemann (GCR) system@generalized Cauchy-Riemann (GCR) system} equations. Before doing this, however, we make some general observations.
+
+We say that the system \eqref{eq:c6-4-5} is elliptic\index{elliptic system@elliptic system} provided
+
+\begin{equation}\label{eq:c6-4-6}
+\sum_{j=1}^{n}\lambda_{j} A_{j} v=0
+\end{equation}
+
+for a $k$-dimensional (column) vector $v$ and an $n$-tuple $\lambda = (\lambda_1, \lambda_2, \ldots, \lambda_n)$ only if either $v$ or $\lambda$ is zero. We claim that every GCR system is elliptic. If this were not the case we could find nonzero $v$ and $\lambda$ satisfying \eqref{eq:c6-4-6}. But then $F(x) = \{\exp \sum_{j=1}^{n} \lambda_j x_j\}$ is a nonharmonic solution of \eqref{eq:c6-4-5}; hence, \eqref{eq:c6-4-5} could not be a GCR system.
+
+If the system under consideration is elliptic and $\lambda \neq 0$ then the mapping $v \to (\sum_{j=1}^{n} \lambda_j A_j) v$ from $k$-dimensional Euclidean space into $l$ dimensional Euclidean space must clearly be one to one (otherwise a nonzero vector $v$ would be mapped into the zero vector, contradicting ellipticity). It follows, therefore, that $l \geq k$. By choosing $\lambda$ so that $\lambda_j = 1$ and $\lambda_i = 0$, if $i \neq j$, we see that each of the matrices $A_{j}, j = 1, 2, \ldots, n$, represents a one to one mapping. In particular, if $k = l$ the matrices must be invertible. If, in addition, $n = 2 = k$ the system \eqref{eq:c6-4-5} is equivalent to a system of the form
+
+\begin{equation}\label{eq:c6-4-7}
+\frac{\partial F}{\partial x_{1}}+A\frac{\partial F}{\partial x_{2}}=0,
+\end{equation}
+
+where $A$ is a nonsingular matrix (since we can multiply both sides of \eqref{eq:c6-4-5}, in this case, by $A_{1}^{-1}$). Let us now suppose that \eqref{eq:c6-4-7} is a GCR system. Then it follows from the harmonicity of $F$ that
+
+\begin{equation}\label{eq:c6-4-8}
+\left(\boldsymbol{A}+\boldsymbol{A}^{-1}\right)\frac{\partial^{2}\boldsymbol{F}}{\partial x_{1}\partial x_{2}}=0
+\end{equation}
+
+for any solution $F$. But, given any two-dimensional vector $b$, there always exists a solution of \eqref{eq:c6-4-7} such that $\partial^2 F / \partial x_1 \partial x_2 \equiv b$. Indeed, $F(x_1, x_2) = 2x_1 x_2 b - (x_1^2 A b + x_2^2 A^{-1} b)$ is such a solution. Thus, since \eqref{eq:c6-4-8} must be satisfied we can conclude that $A + A^{-1} = 0$; or equivalently $A^2 = -I$. But this equation implies that $A$ must be of the form
+
+\[
+\begin{pmatrix}a&b\\c&-a\end{pmatrix}
+\]
+
+with $a^{2} + bc = -1$. This last equation implies that bc < 0; thus, the matrix
+
+\[
+Q=\begin{pmatrix}1&a\\ 0&c\end{pmatrix}
+\]
+
+has an inverse and satisfies
+
+\[
+Q^{-1}A Q=\left(\begin{matrix}{0}&{-1}\\ {1}&{0}\\ \end{matrix}\right).
+\]
+
+Hence, if we define G by letting
+
+\[
+\begin{pmatrix}v_{1}\\ v_{2}\end{pmatrix}=G=Q^{-1}F=Q^{-1}\begin{pmatrix}u_{1}\\ u_{2}\end{pmatrix},
+\]
+
+equation \eqref{eq:c6-4-7} is equivalent to
+
+\[
+\frac{\partial G}{\partial x_{1}}+\begin{pmatrix}0&-1\\ 1&0\end{pmatrix}\frac{\partial G}{\partial x_{2}}=Q^{-1}\Big[\frac{\partial F}{\partial x_{1}}+A\frac{\partial F}{\partial x_{2}}\Big]=0.
+\]
+
+But these are the classical Cauchy--Riemann equations for $v_{1}$ and $v_{2}$.
+
+We now introduce a function space associated with any fixed system of generalized Cauchy--Riemann equations. If $p > 0$ and $F = (u_1, u_2, \ldots, u_k)$ is a solution of this system in the domain $E_{n+1}^+$ we say that $F$ belongs to $H^p(E_{n+1}^+)$ if there exists $A < \infty$ such that
+
+\[
+\int\limits_{E_{n}}|F(x,y)|^{p} dx=\int\limits_{E_{n}}(|u_{1}(x,y)|^{2}+\cdots+|u_{k}(x,y)|^{2})^{p/2}dx\leq A
+\]
+
+for all $y > 0$. In view of the above comments, the spaces $H^{p}(E_{n+1}^{+})$ clearly extend the classical $H^{p}$ spaces of analytic functions in the upper half-plane. The following result, together with Theorem \ref{thm:c6-4-2}, shows that this\index{Hp spaces@$H^{p}(E_{n+1}^{+})$ spaces!of systems of conjugate harmonic functions@of systems of conjugate harmonic functions}
+
+definition allows us to develop a meaningful theory of these spaces for indices p < 1.
+
+\begin{theorem}
+\label{thm:c6-4-9}
+Suppose F is a solution of the Generalized Cauchy-Riemann system
+\[
+\sum_{j=1}^{n}A_{j}\frac{\partial F}{\partial x_{j}}=0,
+\]
+
+then $|F|^p$ is subharmonic for $p \geq 2 - (1/\alpha)$, where $\alpha$ is a positive number less than 1 depending only on the matrices $A_1, \ldots, A_n$.
+\end{theorem}
+
+\textsc{Proof.}\ By Theorem \ref{thm:c2-4-4} of Chapter II it suffices to show that $s = |F|^p$ has a nonnegative Laplacian on the set of all $x$ in the domain of $F$ such that $s(x) > 0$. Since $F$ has harmonic components we have, on this set,
+
+\[
+\Delta s=p|F|^{p-2}\biggl\{(p-2)|F|^{-2}\sum_{j=1}^{n}(F\cdot F_{j})^{2}+\sum_{j=1}^{n}|F_{j}|^{2}\biggr\},
+\]
+
+where $F_j = \partial F / \partial x_j$ and $F \cdot F_j = \sum_{i=1}^k u_i (\partial u_i / \partial x_j)$. Thus, the condition that $\Delta s \geq 0$ is equivalent to the inequality
+
+\begin{equation}\label{eq:c6-4-10}
+\sum_{j=1}^{n}(F\cdot F_{j})^{2}\leq\frac{1}{2-p}\;|F|^{2}\sum_{j=1}^{n}\;|F_{j}|^{2}.{}^{6}
+\end{equation}
+
+We now claim that there exists a positive $\alpha < 1$, depending only on $A_1, \ldots, A_n$, such that
+
+\begin{equation}\label{eq:c6-4-11}
+\max_{|\boldsymbol{v}|=1}\ \sum_{j=1}^{n}\ (u^{(j)}\cdot v)^{2}\ \leq\ \alpha\ \sum_{j=1}^{n}\ |u^{(j)}|^{2}
+\end{equation}
+
+whenever $u^{(1)}, \ldots, u^{(n)}$ are n k-tuples satisfying
+
+\begin{equation}\label{eq:c6-4-12}
+\sum_{j=1}^{n}A_{j}u^{(j)}=0.
+\end{equation}
+
+This would certainly imply \eqref{eq:c6-4-10}. In order to establish this claim we can clearly assume that $\sum_{j=1}^{n}|u^{(j)}|^2=1$. If there does not exist $\alpha<1$ for which \eqref{eq:c6-4-11} is valid, by compactness there exists $v$ and $u^{(1)},\ldots,u^{(n)}$ satisfying \eqref{eq:c6-4-12}, as well as $|v|^2=1=\sum_{j=1}^{n}|u^{(j)}|^2$, for which $\sum_{j=1}^{n}(u^{(j)}\cdot v)^2=1$. By the Cauchy--Schwarz inequality, however,
+
+\[
+\sum_{j=1}^{n}(u^{(j)}\cdot v)^{2}\leq\sum_{j=1}^{n}|u^{(j)}|^{2}|v|^{2}=\sum_{j=1}^{n}|u^{(j)}|^{2}=1.
+\]
+
+Hence, since $(u^{(j)}\cdot v)^2 \leq |u^{(j)}|^2|v|^2$, we must have $(u^{(j)}\cdot v)^2 = |u^{(j)}|^2|v|^2$ for $^6$ We are assuming, in deriving \eqref{eq:c6-4-10}, that $p < 2$; but, if $p \geq 2$ the fact that $\Delta s \geq 0$ is obvious.
+
+$j = 1, 2, \ldots, n$. Thus, by the equality case of the Cauchy--Schwarz inequality, there exists $\lambda = (\lambda_1, \lambda_2, \ldots, \lambda_n)$ such that $u^{(t)} = \lambda_j v$. But this would contradict the ellipticity condition \eqref{eq:c6-4-6} since we would then have
+
+\[
+0=\sum_{j=1}^{n}A_{j}u^{(j)}=\sum_{j=1}^{n}\lambda_{j}A_{j}v
+\]
+
+with $|\lambda|^2 = (\lambda_1^2 + \cdots + \lambda_n^2) = 1 = |v|^2$. Thus, such a number $\alpha$ does exist and the theorem is proved.
+
+The smallest number $\alpha$ for which Theorem \ref{thm:c6-4-9} holds clearly depends on the GCR system that F satisfies. In many important cases this number can be calculated. For example, if we consider the M. Riesz system\index{Riesz system@Riesz system!of partial differential equations@of partial differential equations} of partial differential equations
+
+\begin{equation}\label{eq:c6-4-13}
+\begin{aligned}\frac{\partial u_{1}}{\partial x_{1}}+\frac{\partial u_{2}}{\partial x_{2}}+\cdots+\frac{\partial u_{n}}{\partial x_{n}}&=0\\\frac{\partial u_{i}}{\partial x_{j}}=\frac{\partial u_{j}}{\partial x_{i}},\qquad i,j=1,2,\ldots,n,\end{aligned}
+\end{equation}
+
+which was introduced in Chapter III (see \eqref{eq:c3-1-6}), $\alpha = (n - 1)/n$. More precisely, we show the following result:
+
+\begin{theorem}
+\label{thm:c6-4-14}
+If $F = (u_1, u_2, \ldots, u_n)$ is a solution of the $M$. Riesz system \eqref{eq:c6-4-13} then $|F|^p$ is subharmonic for $p \geq (n-2)/(n-1)$. Moreover, there exists such a solution $F$ for which $|F|^p$ is not subharmonic if $0 < p < (n-2)/(n-1)$.
+\end{theorem}
+
+\textsc{Proof.}\ From the proof of Theorem \ref{thm:c6-4-9} we see that it suffices to find the smallest $\alpha$ satisfying \eqref{eq:c6-4-11} whenever $u^{(j)} = (u_{j1}, u_{j2}, \ldots, u_{jn})$, $j = 1, 2, \ldots, n$, are $n$-tuples satisfying
+
+\[
+\sum_{j=1}^{n}u_{jj}=0\qquad and\qquad u_{ij}=u_{ji},\qquad i,j=1,2,\ldots,n.
+\]
+
+If we let $\mathcal{M}$ denote the $n \times n$ matrix with coefficients $u_{ij}$ these last conditions are equivalent to the properties that $\mathcal{M}$ is symmetric and has trace 0. Inequality \eqref{eq:c6-4-11} can then be written in the form
+
+\begin{equation}\label{eq:c6-4-15}
+\max_{|v|=1}|{\mathcal M}v|^{2}\le\alpha\|\mathcal M\|^{2},
+\end{equation}
+
+where $\|\mathcal{M}\| = (\sum_{i,j=1}^{n} u_{ij}^{2})^{1/2}$ is the Hilbert--Schmidt\index{Hilbert-Schmidt norm@Hilbert-Schmidt norm} norm of the matrix $\mathcal{M}$. The left side of \eqref{eq:c6-4-15}, of course, is the square of the norm of the operator on $E_n$ mapping $v$ into $\mathcal{M}v$. But we know from elementary linear algebra that if $\lambda_1, \lambda_2, \ldots, \lambda_n$ are the characteristic roots of $\mathcal{M}$ (which must all be real since $\mathcal{M}$ is symmetric) then this operator norm is $\|\mathcal{M}\| = \max\{|\lambda_1|, |\lambda_2|, \ldots, |\lambda_n|\}$ while $\|\mathcal{M}\| = (\lambda_1^2 + \lambda_2^2 + \cdots + \lambda_n^2)^{1/2}$. Since trace
+
+$M = 0$ we must have, moreover, $\lambda_1 + \lambda_2 + \cdots + \lambda_n = 0$. Thus, if, say, $|\lambda_j| = \max\{|\lambda_1|, |\lambda_2|, \ldots, |\lambda_n|\}$ we have
+
+\[
+\|\mathcal{M}\|^{2}=|\lambda_{j}|^{2}=|-\sum_{i\neq j}\lambda_{i}|^{2}\leq(n-1)\sum_{i\neq j}\lambda_{i}^{2}.
+\]
+
+Adding $(n - 1)|\lambda_j|^2$ to both sides of this inequality we obtain
+
+\[
+n\|\mathcal{M}\|^{2}=n|\lambda_{j}|^{2}\leq(n-1)\sum_{i=1}^{n}\lambda_{i}^{2}=(n-1)\|\mathcal{M}\|^{2}
+\]
+
+and we obtain \eqref{eq:c6-4-15} with $\alpha = (n-1)/n$. From Theorem \ref{thm:c6-4-9} we then can conclude that $|F|^{p}$ is subharmonic for $p \geq 2 - (1/\alpha) = (n-2)/(n-1)$ whenever $F$ is a solution of the M. Riesz system.
+
+In order to show that, in general, $|F|^p$ is not subharmonic for exponents $p$ less than $(n - 2)/(n - 1)$ let $F$ be the gradient of the function $h$ whose values are $|x|^{(2 - n)}/(2 - n)$. Then a simple calculation shows that
+
+\begin{equation}\label{eq:c6-4-16}
+\Delta(|F|^{p})=\;\Delta(|\nabla h|^{p})=p(n-1)\{p(n-1)-(n-2)\}|x|^{p(1-n)-2}.
+\end{equation}
+
+Consequently $\Delta(|F|^{p}) < 0$ if $p < (n-2)/(n-1)$. By theorem \eqref{thm:c2-4-4} of Chapter II, therefore, $-|F|^{p}$ is subharmonic in $E_n - \{0\}$. Thus, $-|F|^{p}$ satisfies the mean-value inequality \eqref{eq:c2-4-2} of that chapter. If $|F|^{p}$ were subharmonic as well it would also satisfy this mean-value inequality and, therefore, must satisfy the mean-value property. By theorem \eqref{thm:c2-1-7} of Chapter II, therefore, $|F|^{p}$ must be harmonic, but, by equality \eqref{eq:c6-4-16}, it clearly cannot be harmonic for such a value of $p$.
+
+One can obtain a large class of systems of conjugate harmonic functions satisfying the M. Riesz equations \eqref{eq:c6-4-13} in the following way. Let $f$ be in $L^{p}(E_{n})$, $1 < p < \infty$, and consider the Poisson integral
+
+\[
+u(x,y)=c_{n}\int\limits_{E_{n}}f(t)\frac{y}{(|x-t|^{2}+y^{2})^{(n+1)/2}}dt
+\]
+
+together with the convolutions
+
+\[
+v_{j}(x,y)=c_{n}\int\limits_{E_{n}}f(t)\frac{(x_{j}-t_{j})}{(|x-t|^{2}+y^{2})^{(n+1)/2}}dt,
+\]
+
+$j=1,2\ldots,n,x\in E_n$ and $y>0$. By calculating the various partial derivatives involved we can easily check that $F=(u,V)=(u,v_1,v_2,\ldots,v_n)$ is an $M$. Riesz system defined in $E_{n+1}^+$ When $n=1$ then $v=v_1$ is the function we used originally to define the Hilbert transform $\tilde{f}$ of $f$ (see Section 1). Some of the basic properties of $v$ and $\tilde{f}$, easily deduced from our development of these functions, are the following: $F=u+iv$ is analytic in $E_2^+$ and $\sup_{y>0} \int_{-\infty}^{\infty} |F(x+iy)|^p dx<\infty$; thus, $F\in H^p(E_2^+)$.
+
+Consequently, $f + i\tilde{f}$ is the almost everywhere nontangential limit of F and, also, the limit in the $L^{p}$ norm of $F$ (i.e.,
+
+\[
+\lim_{y\to0}\int\limits_{-\infty}^{\infty}|u(x,y)+i v(x,y)-f(x)-i\tilde{f}(x)|^{p} dx=0).
+\]
+
+These properties as well as the other results developed in the first section extend easily to n dimensions and, in this sense, we may consider the M. Riesz transforms to be, among the various singular integral operators, the most natural extensions of the Hilbert transform. We now finish this section by showing how some of these extensions to higher dimensions are obtained.
+
+\begin{theorem}
+\label{thm:c6-4-17}
+Suppose $f \in L^p(E_n)$, $1 < p < \infty$, $\tilde{f}_j = R_j, j = 1, 2, \ldots$, $n$, are the $M$. Riesz transforms of $f$, $u(x, y)$ is the Poisson integral of $f$ and $v_j(x, y)$ is the convolution of $f$ with the kernel $c_n t_j / (|t|^2 + y^2)^{(n+1)/2}$. Then
+(i) The function $F = (u, v_1, \ldots, v_n) \in \mathbb{H}^p(E_{n+1}^+)$;
+\[
+\text{(ii)}\int\limits_{E_{n}}f(x-t)\frac{t_{j}}{(|t|^{2}+y^{2})^{(n+1)/2}}d t=\int\limits_{E_{n}}\tilde{f}_{j}(x-t)\frac{y}{(|t|^{2}+y^{2})^{(n+1)/2}}d t
+\]
+
+for j = 1, 2,..., n;
+\[
+\begin{aligned}(iii)\lim_{\varepsilon\to0}\left\{\int_{E_{n}}f(x-t)\frac{t_{j}}{(|t|^{2}+\varepsilon^{2})^{(n+1)/2}}dt\right.\\ \left.-\int\limits_{0<\varepsilon\leq|t|}f(x-t)\frac{t_{j}}{|t|^{n+1}}dt\right\}&=0\end{aligned}
+\]
+
+at each point of the Lebesgue set of f;
+(iv) $(\int_{E_n} \{\sup_{y>0} |v_j(x, y)|\}^p \, dx)^{1/p} \leq A \|f\|_p$, where $A$ is a constant depending only on the dimension $n$ and the index $p$.
+\end{theorem}
+
+\textsc{Proof.}\ All these facts are either easy consequences of theorems we have already established or can be obtained by modifying in an obvious way the proof of the corresponding one-dimensional result. For example, in order to show (iii) we can use essentially the same argument that we used in order to prove Lemma \ref{lem:c6-1-2}. Instead of the function defined in \eqref{eq:c6-1-3} we introduce
+
+\[
+\varphi(t)=\left\{\begin{aligned}{}&{{}\frac{t_{j}}{(1+|t|^{2})^{(n+1)/2}}-\frac{t_{j}}{|t|^{n+1}}}&{\quad\mathrm{\text{if } |t| \geq 1 }}\\ {}&{{}\frac{t_{j}}{(1+|t|^{2})^{(n+1)/2}}}&{\mathrm{\text{if } |t| < 1 }}\\ \end{aligned}\right.
+\]
+
+and, for $\varepsilon > 0$, $\varphi_{\varepsilon}(t) = \varepsilon^{-n}\varphi(t/\varepsilon)$. Then the expression within brackets in (iii) is simply $\int_{E_n} f(x - t)\varphi_{\varepsilon}(t)\,dt$. The fact that
+
+\[
+\psi(x)=\sup_{|t|\geq|x|}\left|\varphi(t)\right|\leq\left\{\begin{matrix}{\displaystyle\frac{\text{const}}{\vert x\vert^{n}(1+\vert x\vert^{2})}}&{}&{\text{if }\vert x\vert\geq1}\\ {\text{const}}&{}&{\text{if }\vert x\vert<1}\\ \end{matrix}\right.
+\]
+
+implies that $\psi \in L^1(E_n)$ and this allows us to apply Theorem \ref{thm:c1-1-25} of Chapter I to obtain
+
+\[
+\lim_{\varepsilon\rightarrow0}\int\limits_{E_{n}}f(x\mathrm{ - }t)\varphi_{\varepsilon}(t)dt=f(x)\int\limits_{E_{n}}\varphi(t)dt=0
+\]
+
+and (iii) is established.
+
+If $\varepsilon > 0$ we claim that
+
+\begin{equation}\label{eq:c6-4-18}
+\begin{aligned}&\frac{x_{j}}{(|x|^{2}+(y+\varepsilon)^{2})^{(n+1)/2}}=\\ &\quad c_{n}\int\limits_{E_{n}}\frac{y}{(|x-t|^{2}+y^{2})^{(n+1)/2}}\frac{t_{j}}{(|t|^{2}+\varepsilon^{2})^{(n+1)/2}}dt\\ \end{aligned}
+\end{equation}
+
+for $(x, y) \in E_{n+1}^+$. This is a direct application of Lemma \ref{lem:c2-2-7} of Chapter II, with
+
+\[
+u(x,y)=\frac{x_{f}}{(|x|^{2}+y^{2})^{(n+1)/2}},
+\]
+
+$y_2 = y$, and $y_1 = \varepsilon$.
+
+It now follows immediately from equality \eqref{eq:c6-4-18} that the j-th M. Riesz transform of the function $P_{y}$ having values
+
+\[
+P_{y}(x)=c_{n}\frac{y}{\left(\left|x\right|^{2}+y^{2}\right)^{(n+1)/2}}
+\]
+
+(i.e., the Poisson kernel) is the j-th Conjugate Poisson kernel\index{conjugate Poisson kernel@conjugate Poisson kernel}
+
+\[
+\begin{array}{r}{Q_{y}^{(j)}(x)=c_{n}\frac{x_{j}}{(|x|^{2}+y^{2})^{(n+1)/2}}.}\end{array}
+\]
+
+Property (ii) now follows easily from this since the Fourier transforms of both sides of the equality must then be the function whose value at $x \in E_n$ is
+
+\[
+- i e^{-2\pi|x|y}\hat{f}(x) \frac{x_{j}}{|x|}
+\]
+
+(see Theorem \ref{thm:c1-1-14} of Chapter I and \eqref{eq:c6-2-7} in this chapter). Property (i) is a
+
+consequence of (ii), inequality \eqref{eq:c2-2-2} of Chapter II and Theorem \ref{thm:c6-2-6}. From this last theorem, equality (ii), and Theorems \ref{thm:c2-3-10} and 3.7 of Chapter II we then obtain (iv).
+
+\section{Further Results}
+
+\frp{5}{1} In the classical theory of Fourier series the analog of the Hilbert transform is the conjugate function\index{conjugate function@conjugate function} of a function $f$ defined on the unit circle $\{z \in C: |z| = 1\}$. As was the case with the Hilbert transform, the conjugate function $\tilde{f}$ of $f$ can be defined by using methods of the theory of functions of a complex variable or by using pure real variable methods. If we consider $f$ to be a real valued integrable function of the variable $\theta \in [0, 2\pi]$ and let, for $0 < r < 1$,
+
+\[
+Q(r,\theta)=\frac{1}{\pi}\frac{r\sin\theta}{1-2r\cos\theta+r^{2}}
+\]
+
+be the conjugate Poisson kernel, then the function
+
+\[
+v(z)=v(r e^{i\theta})=\int_{-\pi}^{\pi}f(\theta-\phi)Q(r,\phi)d\phi
+\]
+
+is a harmonic conjugate to the Poisson integral
+
+\[
+\begin{aligned}{u(z)=u(r e^{i\theta})}&{{}=\intop_{-\pi}^{\pi}f(\theta-\phi)P(r,\phi)\mathop{}{d}\phi}\\ {}&{{}=\intop_{-\pi}^{\pi}f(\theta-\phi)\frac{1}{2\pi}\frac{1-r^{2}}{1-2r\cos\phi+r^{2}}\mathop{}{d}\phi.}\\ \end{aligned}
+\]
+
+That is, $F(z) = u(z) + iv(z)$ is analytic in the interior of the unit disk $\{z \in C: |z| < 1\}$. By making some simple changes in the proof of Lemma \ref{lem:c5-2-6} in Chapter V, we can show that $F(z)$ tends to a limit as $z$ approaches a boundary point $e^{it}$ nontangentially, for almost all $\theta$ in $[0, 2\pi]$ (for details see Zygmund [1], Chapter VII). The imaginary part of $F$, therefore, must also have nontangential boundary values almost everywhere. The function $f^c$ having these values is the conjugate function of $f$. That is, $f^c$ is defined almost everywhere by the equality
+
+\[
+f^{c}(\theta)=\lim_{r\to1}\int\limits_{-\pi}^{\pi}f(\theta-\phi)Q(r,\phi)d\phi.
+\]
+
+A simple modification of the proof of Lemma \ref{lem:c6-1-2} shows that $f^{c}$ can also be defined almost everywhere by the equality
+
+\[
+f^{c}(\theta)=\frac{1}{2\pi}\lim_{\varepsilon\to0}\int\limits_{0<\varepsilon\leq|\phi|\leq\pi}f(\theta-\phi)\frac{\sin\phi}{1-\cos\phi}d\phi.
+\]
+
+If $f$ belongs to $L^2(0, 2\pi)$ and its Fourier series is $\sum_{k=-\infty}^{\infty} c_k e^{ik\theta}$ an argument similar to that used for establishing \eqref{eq:c5-2-7} in Chapter V shows that $f^c$ also belongs to $L^2(0, 2\pi)$, its Fourier series is $\sum_{k=-\infty}^{\infty} (-i \text{sgn} k) c_k e^{ik\theta}$, and, hence, $\|f^c\|_2 \leq \|f\|_2$. We would expect, therefore, that an inequality analogous to \eqref{eq:c5-2-11} in Chapter V holds for the conjugate function. In fact, it can be shown that the mapping $f \to f^c$ is of weak type (1, 1) and, thus, with the aid of the Marcinkiewicz interpolation theorem we obtain the inequality $\|f^c\|_p \leq A_p \|f\|_p$ for $1 < p < \infty$, where $A_p$ depends on $p$ but not on $f \in L^p(0, 2\pi)$. By Theorem \ref{thm:c5-3-15} of Chapter V, however, it suffices to show that this mapping is of restricted weak type (1, 1). This can be done in a very simple way with the following argument:
+
+Let $E$ be a measurable subset of $[0, 2\pi]$ and $\chi_E$ its characteristic function. If $u(z)$ and $v(z)$ denote the Poisson integral and the conjugate Poisson integral of $\chi_E$ the function $F(z) = u(z) + iv(z)$ is analytic for $|z| < 1$. Thus, for each real number $y$, $\exp \{yF(z)\}$ is analytic for $|z| < 1$ and, by the mean value theorem,
+
+\[
+e^{y|E|/2\pi}=\frac{1}{2\pi}\int_{0}^{2\pi}\exp\left\{y F(r e^{\mathrm{i}0})\right\}d\theta
+\]
+
+for $0 \leq r < 1$. Letting $r$ tend to 1 and applying the dominated convergence theorem of Lebesgue, therefore, we have
+
+\[
+\frac{1}{2\pi}\;\int_{0}^{2\pi}\exp\left\{y[\chi_{E}(\theta)\;+\;i\chi_{E}^{c}(\theta)]\right\}d\theta\;=\;e^{y|E|/2\pi}
+\]
+
+for all real numbers $y$. Letting $E' = [0, 2\pi] - E$ we may write this equation in the form
+
+\[
+2\pi e^{y|E|/2\pi}= e^{y}\intop_{E}\exp\left\{i y\chi_{E}^{c}(\theta)\right\}d\theta + \intop_{E^{\prime}}\exp\left\{i y\chi_{E}^{c}(\theta)\right\}d\theta.
+\]
+
+By taking complex conjugates of both sides of this last equation with y replaced by -y we obtain
+
+\[
+2\pi e^{-y|E|/2\pi}=e^{-y}\int_{E}\exp\left\{i y\chi_{E}^{c}(\theta)\right\}d\theta+\int_{E^{\prime}}\exp\left\{i y\chi_{E}^{c}(\theta)\right\}d\theta
+\]
+
+for all real numbers $y$. Thus, we can solve for $\int_E \exp \{iy\chi_E^c(\theta)\} \, d\theta$ and $\int_{E'} \exp \{iy\chi_E^c(\theta)\} \, d\theta$ and we see that $\int_0^{2\pi} \exp \{iy\chi_E^c(\theta)\} \, d\theta$ depends only on $y$ and $|E|$. If we let $\eta(s) = |\{\theta \in [0, 2\pi]: \chi_E^c(\theta) > s\}|$ and $\nu(s) = |\{\theta \in [0, 2\pi]: \chi_E^c(\theta) < s\}|$ it follows that the integrals
+
+\[
+\intop_{-\infty}^{\infty}e^{\mathfrak{t}y s}d\eta(s)\qquad\text{and}\qquad\intop_{-\infty}^{\infty}e^{\mathfrak{t}y s}d\nu(s)
+\]
+
+are completely determined by $y$ and $|E|$. Since measures are completely determined by their Fourier transforms, $\eta$ and $\nu$ depend only on $|E|$. Since $\lambda(s) = |\{\theta: |\chi_E^c(\theta)| > s > 0\}| = \eta(s) + \nu(-s)$, the distribution function $\lambda$ of $\chi_E^c$ (see Section 2 of Chapter V) also depends only on $|E|$. If we let $\chi$ be the characteristic function of the interval $[0, |E|]$, the conjugate function $\chi_E^c$ and its distribution function are particularly simple to calculate and we obtain
+
+\[
+e^{i\lambda(s)/2}=\frac{\text{sinh}{(\pi s)}}{}+i\sin{(|E|/2)}\notag.
+\]
+
+From this, we can easily derive the restricted weak type $(1,1)$ of the conjugate function operator.
+
+\frp{5}{2} If $\lambda$ is the distribution function of the Hilbert transform of the characteristic function of the set $E \subset (-\infty, \infty)$ having finite measure it can be shown that
+
+\[
+\lambda(s)=2\left|\boldsymbol{E}\right|/\sinh\left(\pi s\right)
+\]
+
+for $s > 0$. This, of course, also implies that the Hilbert transform is of restricted weak type (1, 1). For the proof of this fact, as well as another proof of the functional relation at the end of \eqref{frp:c6-5-1} see Stein and G. Weiss [2]. For yet another proof of this last formula for $\lambda(s)$ see Calderón [1].
+
+\frp{5}{3} The equality in \eqref{frp:c6-5-2} can be rewritten in terms of the nonincreasing rearrangement of the Hilbert transform $\tilde{\chi}_{E}$ of $\chi_{E}$. If we do this we obtain the formula
+
+\[
+\tilde{\chi}_{E}^{*}(t)=\frac{1}{\pi}\sinh^{-1}(2|E|/t).
+\]
+
+If
+
+\[
+\begin{aligned}\tilde{f}(x)=\lim_{\substack{\varepsilon\to0\\ R\to\infty}}\int\limits_{R>|t|>\varepsilon}\frac{\Omega(t)}{\left|t\right|^{n}}f(x-t)dt\end{aligned}
+\]
+
+is a singular integral operator of the type discussed in Section 2 we can extend the above relation in the following way. Suppose $E$ is a measurable subset of $E_n$ of finite measure, $\chi_E$ its characteristic function and $m(t) = (1/t)\int_0^t \tilde{\chi}_E^*(s) \, ds$ (see Section 3 of Chapter V), then
+
+\[
+t m(t)\leq\frac{\|\Omega\|}{2}\int\limits_{0}^{t}\sinh^{-1}\left(2|E|/s\right)d s,
+\]
+
+where $\|\Omega\| = \int_{\Sigma_{n-1}} |\Omega(x')| \, dx'$. (See O'Neill and G. Weiss [1].) This result, together with the interpolation Theorem \ref{thm:c5-3-15} of Chapter V, gives us another proof of the fact that $f \to \tilde{f}$ is a bounded operator on $L^p(E_n)$ (Theorem \ref{thm:c6-2-6}).
+
+\frp{5}{4} We remarked in Section 3 that if the kernel $K(t) = \Omega(t)/|t|^n$ is even we needed to assume more than the integrability of $\Omega$ over $\Sigma_{n-1}$ in order to obtain a bounded singular integral operator on $L^p(E_n)$, $1 < p < \infty$ (though integrability suffered for the odd kernel case). In fact, we assumed that $\Omega$ was square integrable; this enabled us to use the (comparatively) simple argument given in Section 3. It can be shown, however, that Theorem \ref{thm:c6-3-1} is still valid if we replace the square integrability of $\Omega$ by the less restrictive condition
+
+\begin{equation}
+\tag{*}
+\int_{\Sigma_{n-1}}|\Omega(x^{\prime})\log^{+}|\Omega(x^{\prime})|\mid d x^{\prime}<\infty,
+\end{equation}
+
+where $\log^{+} s = \log s$ for $s \geq 1$ and is 0 for $0 \leq s < 1$ (see Calderón and Zygmund [4]).
+
+\frp{5}{5} Theorem \ref{thm:c6-3-1} is less general than Theorem \ref{thm:c6-2-6} in yet another way. While the latter assured us that the singular integral operator in question was defined (a.e.) for all $f \in L^p(E_n)$, in Theorem \ref{thm:c6-3-1} we restricted the domain of the operator to $\mathcal{S}$. When $\varphi \in \mathcal{S}$ the integral
+
+\[
+\int\limits_{|t|\ge\varepsilon}\varphi(x-t)\frac{\Omega(t)}{|t|^{n}}dt
+\]
+
+is well-defined and, thus, the problems described in the footnote following definition \eqref{eq:c6-1-8} do not appear here. It is not necessary, however, to restrict ourselves to $\mathcal{S}$ since it can be shown that the integrals
+
+\[
+\int\limits_{|t|\geq\varepsilon>0}f(x-t)\frac{\Omega(t)}{|t|^{n}}dt
+\]
+
+are absolutely convergent for almost every $x$, the limits, as $\varepsilon \to 0$, exist in the mean of order $p$, $1 < p < \infty$, and pointwise almost everywhere whenever $f \in L^p(E_n)$, even when the function $\Omega$ satisfies the weaker condition (*) of \eqref{frp:c6-5-4} (see Calderón and Zygmund [4]).
+
+\frp{5}{6} Simple arguments show that the Riesz transforms $R_1, R_2, \ldots, R_n$ satisfy the following properties:
+
+(1) Each $R_{i}$ commutes with translations;
+
+(2) Each $R_{r}$ commutes with dilations;
+
+(3) If $\rho$ is a rotation whose matrix is $(\rho_{jk})$ and $T_\rho$ is the operator on functions $f$ on $E_n$ defined by $(T_\rho f)(x) = f(\rho x)$, then
+
+\[
+T_{\rho^{-1}}R_{j}T_{\rho}=\sum_{k=1}^{n}\rho_{j k}R_{k}.
+\]
+
+Moreover, by Theorem \ref{thm:c6-2-6}:
+
+(4) each $R_{i}$ maps $L^{2}(E_{n})$ boundedly into itself.
+
+When $n \geq 3$, these four properties characterize the Riesz transforms. More precisely, if $R_1, R_2, \ldots, R_n$ are operators on $L^2(E_n)$ satisfying (1), (2), (3), and (4), then they are a fixed constant multiple of the Riesz transforms. We sketch a proof of this fact. By Theorems \ref{thm:c1-3-16} and 3.18 of Chapter I we see that properties (1) and (4) imply that each $R_j$, when restricted to $\mathcal{S}$, is a convolution operator of the form $R_j \varphi = u_j * \varphi$, $\varphi \in \mathcal{S}$, with $u_j$ a distribution whose Fourier transform $\tilde{u}_j = b_j$ is a bounded function. Property (2), together with \eqref{eq:c1-1-6} of Chapter I, implies that each $b_j$ is homogeneous of degree 0. Lastly, property (3), together with the fact that the operators $T_\rho$ commute with the Fourier transform (Theorem \ref{thm:c4-1-1} of Chapter IV), implies
+
+\[
+b_{j}(\rho^{-1}x)=\sum_{k=1}^{n}\rho_{k j}b_{k}(x)
+\]
+
+for all rotations $\rho$ and $x \in E_n$. Fixing $x \in E_n$, $x \neq 0$ and letting $\rho$ range through all the rotations we see that $b_j$ is completely determined by the values $(b_1(x), \ldots, b_n(x)) = b(x)$ (we are, of course, using the fact that $b_j$ is homogeneous of degree 0). If $y$ is any point in $E_n$ such that $|y| = |x|$ let $\sigma$ be a rotation satisfying $y = \sigma^{-1}x$. Then, for any rotation $\rho$ leaving $x$ fixed we have
+
+\[
+\sum_{k=1}^{n}\bigg(\sum_{l=1}^{n}\rho_{l j}\sigma_{k l}\bigg)b_{k}(x)=b_{j}(\sigma^{-1}\rho^{-1}x)=b_{j}(\sigma^{-1}x)=\sum_{k=1}^{n}\sigma_{k j}b_{k}(x).
+\]
+
+That is, the vector $b = b(x)$ has the property that $\sigma\rho b = \sigma b$ for all rotations $\rho$ leaving x fixed. But this means that $b(x)$ must be a multiple of x. This fact, together with equality \eqref{eq:c6-2-7}, clearly implies that $R_1, R_2, \ldots, R_n$ are constant multiples of the Riesz transforms. When n = 2 this argument fails since the fact that $\rho b = b$ for all rotations leaving x fixed does not imply that $b(x)$ is a multiple of x (a rotation in $E_2$ leaving a point fixed must be the identity). If we replace the rotation group by the orthogonal group, however, we do obtain a characterization of the Riesz transforms which is valid also when n = 2.
+
+\frp{5}{7} Singular integral operators are important tools in the theory of partial differential equations. For example, the Riesz transforms can be used to obtain estimates involving the Laplace operator
+
+\[
+\Delta=\frac{\partial^{2}}{\partial x_{1}^{2}}+\cdots+\frac{\partial^{2}}{\partial x_{n}^{2}}.
+\]
+
+Since the Fourier transforms of $\partial^2\varphi/\partial x_j\,\partial x_k$ and $-R_j R_k\Delta\varphi$, for $\varphi\in\mathcal{S}$, must be equal (this is an immediate consequence of \eqref{eq:c6-2-7} of this chapter and
+
+Theorem \ref{thm:c1-1-8} of Chapter I) we obtain the relation
+
+\[
+\frac{\partial^{2}\varphi}{\partial x_{j}\,\partial x_{k}}=-R_{j}R_{k}\,\Delta\varphi.
+\]
+
+Thus, by Theðrem 2.6 we have
+
+\[
+\left\|\frac{\partial^{2}\varphi}{\partial x_{j}\partial x_{k}}\right\|_{p}\leq A_{p}\|\Delta\varphi\|_{p},
+\]
+
+for $1 < p < \infty$ and $A_p$ is independent of $\varphi \in \mathcal{S}$. For generalizations of these estimates see Stein [3], Chapters III and IV.
+
+\frp{5}{8} If $\varphi$ is a testing function then its Riesz transform\index{Riesz transforms@Riesz transforms!of a measure@of a measure} $R_k\varphi$ is a bounded continuous function. This is the case since we can express $R_k\varphi$, after an integration by parts, as the convolution of the testing function $\partial\varphi/\partial x_k$ with $c_n/(1-n)|x|^n-1$. Thus, if $\mu$ is a finite Borel measure on $E_n$, the integral $\int_{E_n}(R_k\varphi)\,d\mu$ exists and can be used to define the Riesz transform $\nu_k$ of $\mu$, $k=1,2,\ldots,n$, to be the ``measure'' satisfying
+
+\[
+\int\limits_{E_{n}}\varphi d\nu_{k}=-\int\limits_{E_{n}}(R_{k}\varphi)d\mu
+\]
+
+for all testing functions $\varphi$. This defines the Riesz transform of $\mu$ to be a tempered distribution; however, it is not true, in general, that $\nu_k$ is also a finite Borel measure for $k = 1, 2, \ldots, n$. In fact, the theory of $H^p$ spaces developed in Section 4 can be used to show the following generalization of a classical theorem of F. and M. Riesz:
+
+If the Riesz transforms $\nu_1, \ldots, \nu_n$ of a finite Borel measure $\mu$ are also finite Borel measures, then $\mu, \nu_1, \ldots, \nu_n$ are all absolutely continuous with respect to Lebesgue measure (see Stein and G. Weiss [1]; an extension of this result can be found in Stein [3], Chapter VII).
+
+\frp{5}{9} An M. Riesz system (introduced in Section 4) can be realized as a gradient of a harmonic function $\nabla h = F = (u_1, u_2, \ldots, u_n)$ when the domain of F is simply connected. In fact, the second set of Eqs. \eqref{eq:c6-4-13} are precisely the condition for the existence of a function $h$ whose gradient is $F$, while the first equation asserts that the Laplacian of $h$ is 0. By considering the gradient $\nabla u_j = (u_{j1}, u_{j2}, \ldots, u_{jn})$ of each of the components $u_j$, $j = 1, 2, \ldots, n$, we obtain an $n^2$-tuple $F^{(2)} = (u_{11}, u_{12}, \ldots, u_{nn})$ which we shall call the second gradient of $h$. We can perform this operation again on each of the components of $F^{(2)}$ and obtain the third gradient of $h$. Continuing in this way we obtain the $k$-th gradient $F^{(k)}$ of $h$. Calderón and Zygmund [6] have shown that $|F^{(k)}|^p$ is subharmonic for $p \geq (n-2)/(k+n-2)$. Thus, by considering $H^p$ spaces of systems of harmonic functions on $E_{n+1}^p$ that are $k$-th gradients we obtain the boundary
+
+value results \eqref{eq:c6-4-3} and \eqref{eq:c6-4-4} for indices $p \geq (n - 1)/(k + n - 1)$ (observe that the dimension of the domain is $n + 1$). That is, we obtain an $H^p$ space theory for indices $p$ arbitrarily close to 0.
+
+There exists a class of generalized Cauchy--Riemann equations that is closely connected with the irreducible representations of the orthogonal group $SO(n)$. The $k$-th gradients can be realized as solutions of GCR systems belonging to this class. For details see Stein and G. Weiss [4].
+
+\frp{5}{10} The theory of singular integrals treated in this chapter involved kernels of the form $K(x) = \Omega(x)/|x|^n$ with $\Omega$ a homogeneous function satisfying certain integrability conditions on the surface $\Sigma_{n-1}$ of the unit sphere and, in particular, $\int_{\Sigma_{n-1}} \Omega(x') \, dx' = 0$. These were the kernels originally studied by Calderón and Zygmund in [3]. It was pointed out by Cotlar [1] and Hörmander [1] that their development applies, without any major change, to more general kernels $K$. The most general class consist of distributions $K$ that are locally integrable functions away from the origin satisfying (1) $\hat{K}(x)$ is bounded (where $\hat{K}$ is the Fourier transform of $K$ in the sense of tempered distributions) and (2)
+
+\[
+\int\limits_{|x|\geq2|y|}\left|K(x-y)-K(x)\right|dx\le A<\infty\qquad \text{for } all y in E_{n}
+\]
+
+(see Stein [3, Chapter II]).
+
+The advantage of this type of approach is that it gives results for $L^{1}(E_{n})$ also, and in particular leads to a generalization of the fact (see Lemma \ref{lem:c5-2-8} of Chapter V) that the Hilbert transform is of weak type (1,1).
+
+\bibnoteshead
+
+For further discussion on the Hilbert transform see Titchmarsh [2], Zygmund [1] and Loomis [1]. The rotation method discussed in the second section was first developed by Calderón and Zygmund [4]. For further properties of the Riesz transform see Hörvath [1]. The spaces $H^{p}(E_{n+1}^{+})$ were introduced by Stein and G. Weiss [1]. Systems of conjugate harmonic functions have also been studied by Calderón and Zygmund [6], Stein and G. Weiss [4], Küran [1] and Coifman and G. Weiss [2]. The fact that a harmonic solution $F$ of an elliptic system has the property that $|F|^{p}$ is subharmonic for some $p < 1$ was observed by Calderón.
+

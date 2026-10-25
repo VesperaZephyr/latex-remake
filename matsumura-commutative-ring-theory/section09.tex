@@ -1,0 +1,392 @@
+% ============ §9 Integral extensions (原书 pp.64-70) ============
+\section{Integral extensions}\label{sec:9}\index{integral extensions, section 9}
+
+If $A$ is a subring of a ring $B$ we say that $B$ is an \emph{extension ring} of $A$.
+In this case, an element $b \in B$ is said to be \emph{integral}\index{integral element} over $A$ if $b$ is a root of
+a monic polynomial with coefficients in $A$, that is if there is a relation of the
+form $b^n + a_1b^{n-1} + \cdots + a_n = 0$ with $a_i \in A$. If every element of $B$ is integral
+over $A$ we say that $B$ is \emph{integral over $A$}, or that $B$ is an \emph{integral extension} of $A$.
+
+\begin{theorem}\label{thm:9.1}
+Let $A$ be a ring and $B$ an extension of $A$.
+\begin{enumerate}[(i)]
+  \item An element $b \in B$ is integral over $A$ if and only if there exists a ring $C$
+        with $A \subset C \subset B$ and $b \in C$ such that $C$ is finitely generated as an $A$-module.
+  \item Let $\bar{A} \subset B$ be the set of elements of $B$ integral over $A$; then $\bar{A}$ is
+        a subring of $B$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) If $b$ is a root of $f(X) = X^n + a_1X^{n-1} + \cdots + a_n$, for any $P(X) \in
+A[X]$ let $r(X)$ be the remainder of $P$ on dividing by $f$; then $P(b) = r(b)$
+and $\deg r < n$. Hence
+\[
+  A[b] = A + Ab + \cdots + Ab^{n-1},
+\]
+so that we can take $C$ to be $A[b]$. Conversely if an extension ring $C$ of $A$ is a
+finite $A$-module then every element of $C$ is integral over $A$: for if $C = A\omega_1
++ \cdots + A\omega_n$ and $b \in C$ then
+\[
+  b\omega_i = \sum_j a_{ij}\omega_j \quad \text{with } a_{ij} \in A,
+\]
+so that by Theorem~\ref{thm:2.1} we get a relation $b^n + a_1b^{n-1} + \cdots + a_n = 0$. (The left-
+hand side is obtained by expanding out $\det(b\delta_{ij} - a_{ij})$.)
+
+(ii) If $b, b' \in \bar{A}$ then we see easily that $A[b, b']$ is finitely generated as an $A$-
+module, so that its elements $bb'$ and $b + b'$ are integral over $A$.
+\end{proof}
+
+The $\bar{A}$ appearing in (ii) above is called the \emph{integral closure}\index{integral closure} of $A$ in $B$; if
+$A = \bar{A}$ we say that $A$ is \emph{integrally closed} in $B$. In particular, if $A$ is an integral
+domain, and is integrally closed in its field of fractions, we say that $A$ is an
+\emph{integrally closed domain}\index{integrally closed domain}. If for every prime ideal $p$ of $A$ the localisation $A_p$ is
+an integrally closed domain we say that $A$ is a \emph{normal ring}\index{normal ring}.
+
+\begin{remark}
+`Normal ring' is often used to mean `integrally closed domain'; in
+this book we follow the usage of Serre and Grothendieck. If $A$ is a
+Noetherian ring which is normal in our sense, and $p_1, \ldots, p_r$ are all
+the minimal prime ideals of $A$ then it can be seen (see Ex.~\ref{ex:9.11-ex}) that
+$A = A/p_1 \times \cdots \times A/p_r$, and then each $A/p_i$ is an integrally closed domain
+(see Theorem~\ref{thm:4.7}). Conversely, the direct product of a finite number of
+integrally closed domains is normal (see Example 3 below).
+\end{remark}
+
+Let $A \subset C \subset B$ be a chain of ring extensions; if an element $b \in B$ is integral
+over $C$ and $C$ is integral over $A$ then $b$ is integral over $A$. Indeed, if
+$b^n + c_1b^{n-1} + \cdots + c_n = 0$ with $c_i \in C$ then
+\[
+  A[c_1, \ldots, c_n, b] = \sum_{\nu=0}^{n-1} A[c_1, \ldots, c_n]b^\nu,
+\]
+and since $A[c_1, \ldots, c_n]$ is a finite $A$-module, so is $A[c_1, \ldots, c_n, b]$. In
+particular, if we take $C$ to be the integral closure $\bar{A}$ of $A$ in $B$ we see that
+$\bar{A}$ is integrally closed in $B$.
+
+\begin{example}\label{ex:9.1}
+A UFD is an integrally closed domain -- the proof is easy.
+\end{example}
+
+\begin{example}\label{ex:9.2}
+Let $k$ be a field and $t$ an indeterminate over $k$; set $A =
+k[t^2, t^3] \subset B = k[t]$. Then $A$ and $B$ both have the same field of fractions
+$K = k(t)$. Since $B$ is a UFD, it is integrally closed; but $t$ is integral over
+$A$, so that $B$ is the integral closure of $A$ in $K$.
+
+Note that in this example $A \cong k[X, Y]/(Y^2 - X^3)$. Thus $A$ is the
+coordinate ring of the plane curve $Y^2 = X^3$, which has a singularity at the
+origin. The fact that $A$ is not integrally closed is related to the existence of
+this singularity.
+\end{example}
+
+\begin{example}\label{ex:9.3}
+If $B$ is an extension ring of $A$, $S \subset A$ is a multiplicative set, and $\bar{A}$
+is the integral closure of $A$ in $B$, then the integral closure of $A_S$ in $B_S$ is $\bar{A}_S$.
+The proof is again easy. It follows from this that if $A$ is an integrally closed
+domain, so is $A_S$.
+\end{example}
+
+\begin{theorem}\label{thm:9.2}
+Let $A$ be an integrally closed domain, $K$ the field of fractions
+of $A$, and $L$ an algebraic extension of $K$. Then an element $\alpha \in L$ is integral
+over $A$ if and only if its minimal polynomial over $K$ has all its coefficients
+in $A$.
+\end{theorem}
+
+\begin{proof}
+Let $f(X) = X^n + a_1X^{n-1} + \cdots + a_n$ be the minimal polynomial of $\alpha$
+over $K$. We have $f(\alpha) = 0$, so that if all the $a_i$ are in $A$ then $\alpha$ is integral over
+$A$. Conversely, if $\alpha$ is integral over $A$, then letting $\bar{L}$ be an algebraic closure of
+$L$ we have a splitting $f(X) = (X - \alpha_1) \cdots (X - \alpha_n)$ of $f(X)$ in $\bar{L}[X]$ into linear
+factors; each of the $\alpha_i$ is conjugate to $\alpha$ over $K$, so that there is an
+isomorphism $K[\alpha] \cong K[\alpha_i]$ fixing the elements of $K$ and taking $\alpha$ into $\alpha_i$,
+and therefore the $\alpha_i$ are also integral over $A$. Then $a_1, \ldots, a_n \in A[\alpha_1, \ldots, \alpha_n]$,
+and hence they are integral over $A$; but $a_i \in K$ and $A$ is integrally closed,
+so that finally $a_i \in A$.
+\end{proof}
+
+\begin{example}\label{ex:9.4}
+Let $A$ be a UFD in which $2$ is a unit. Let $f \in A$ be square-free,
+(that is, not divisible by the square of any prime of $A$). Then $A[\sqrt{f}]$ is an
+integrally closed domain.
+\end{example}
+
+\begin{proof}
+Let $\alpha$ be a square root of $f$. Let $K$ be the field of fractions of $A$; then
+$A$ is integrally closed in $K$ by Example 1, so that if $\alpha \in K$ we have $\alpha \in A$ and
+$A[\alpha] = A$, and the assertion is trivial. If $\alpha \notin K$ then the field of fractions of
+$A[\alpha]$ is $K(\alpha) = K + K\alpha$, and every element $\xi \in K(\alpha)$ can be written in a
+unique way as $\xi = x + y\alpha$ with $x, y \in K$. The minimal polynomial of $\xi$ over $K$
+is $X^2 - 2xX + (x^2 - y^2f)$, so that using the previous theorem, if $\xi$ is integral
+over $A$ we get $2x \in A$ and $x^2 - y^2f \in A$. By assumption, $2x \in A$ implies $x \in A$.
+Hence $y^2f \in A$. From this, if some prime $p$ of $A$ divides the denominator of $y$
+we get $p^2 \mid f$, which contradicts the square-free hypothesis. Thus $y \in A$, and
+$\xi \in A + A\alpha = A[\alpha]$, so that $A[\alpha]$ is integrally closed in $K(\alpha)$.
+\end{proof}
+
+\begin{lemma}\label{lem:9.1}
+Let $B$ be an integral domain and $A \subset B$ a subring such that $B$ is
+integral over $A$. Then
+\[
+  A \text{ is a field} \iff B \text{ is a field}.
+\]
+\end{lemma}
+
+\begin{proof}
+($\Rightarrow$) If $0 \neq b \in B$ then there is a relation of the form $b^n + a_1b^{n-1} + \cdots
++ a_n = 0$ with $a_i \in A$, and since $B$ is an integral domain we can assume $a_n \neq 0$.
+Then
+\[
+  b^{-1} = -a_n^{-1}(b^{n-1} + a_1b^{n-2} + \cdots + a_{n-1}) \in B.
+\]
+($\Leftarrow$) If $0 \neq a \in A$ then $a^{-1} \in B$, so that there is a relation $a^{-n} + c_1a^{-n+1}
++ \cdots + c_n = 0$ with $c_i \in A$. Then
+\[
+  a^{-1} = -(c_1 + c_2a + \cdots + c_na^{n-1}) \in A. \qquad\blacksquare
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:9.2}
+Let $A$ be a ring, and $B$ an extension ring which is integral over $A$.
+If $P$ is a maximal ideal of $B$ then $P \cap A$ is a maximal ideal of $A$. Conversely if
+$p$ is a maximal ideal of $A$ then there exists a prime ideal $P$ of $B$ lying over $p$,
+and any such $P$ is a maximal ideal of $B$.
+\end{lemma}
+
+\begin{proof}
+For $P \in \Spec B$ let $P \cap A = p$; then the extension $A/p \subset B/P$ is
+integral. Thus by Lemma~\hyperref[lem:9.1]{1} above, $P$ is maximal if and only if $p$ is maximal.
+Next, to prove that there exists $P$ lying over a given maximal ideal $p$ of $A$, it
+is enough to prove that $pB \neq B$. For then any maximal ideal $P$ of $B$
+containing $pB$ will satisfy $P \cap A \supset p$ and $1 \notin P \cap A$, so that $P \cap A = p$. By
+contradiction, assume that $pB = B$; then there is an expression $1 = \sum_{i=1}^{n} \pi_ib_i$
+with $b_i \in B$ and $\pi_i \in p$. If we set $C = A[b_1, \ldots, b_n]$ then $C$ is finite over $A$ and
+$pC = C$. Letting $C = A\omega_1 + \cdots + A\omega_n$ we get $\omega_i = \sum_j \pi_{ij}\omega_j$ for some $\pi_{ij} \in p$,
+so that $\Delta = \det(\delta_{ij} - \pi_{ij})$ satisfies $\Delta\omega_j = 0$ for each $j$, and hence $\Delta C = 0$. But
+$1 \in C$, so that $\Delta = 0$, and on the other hand $\Delta \equiv 1 \bmod p$; therefore $1 \in p$,
+which is a contradiction.
+\end{proof}
+
+\begin{theorem}\label{thm:9.3}
+Let $A$ be a ring, $B$ an extension ring which is integral over
+$A$ and $p$ a prime ideal of $A$.
+\begin{enumerate}[(i)]
+  \item There exists a prime ideal of $B$ lying over $p$.
+  \item There are no inclusions between prime ideals of $B$ lying over $p$.
+  \item Let $A$ be an integrally closed domain, $K$ its field of fractions, and $L$ a
+        normal field extension of $K$ in the sense of Galois theory (that is $K \subset L$ is
+        algebraic, and for any $\alpha \in L$, all the conjugates of $\alpha$ over $K$ are in $L$); if $B$ is the
+        integral closure of $A$ in $L$ then all the prime ideals of $B$ lying over $p$
+        are conjugate over $K$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Localising the exact sequence $0 \to A \to B$ at $p$ gives an exact
+sequence $0 \to A_p \to B_p = B \otimes_A A_p$ in which $B_p$ is an extension ring
+integral over $A_p$. From the commutative diagram
+\[
+  \begin{tikzcd}[column sep=large, row sep=large]
+    A \arrow[r] \arrow[d] & B \arrow[d] \\
+    A_p \arrow[r] & B_p
+  \end{tikzcd}
+\]
+we see that the prime ideals of $B$ lying over $p$ correspond bijectively with the
+maximal ideals of $B_p$ lying over the maximal ideal $pA_p$ of $A_p$. Hence, to prove
+(i) and (ii) it is enough to consider the case that $p$ is a maximal ideal, which
+has already been done in Lemma~\hyperref[lem:9.2]{2}.
+
+Now for (iii). Let $P_1$ and $P_2$ be prime ideals of $B$ lying over $p$. First of all
+we consider the case $[L:K] < \infty$; let $G = \{\sigma_1, \ldots, \sigma_l\}$ be the group of $K$-
+automorphisms of $L$. If $P_2 \neq \sigma_j^{-1}(P_1)$ for any $j$ then by (ii) we have
+$P_2 \not\subset \sigma_j^{-1}(P_1)$, so that there is an element $x \in P_2$ not contained in any
+$\sigma_j^{-1}(P_1)$ for $1 \le j \le l$ (see Ex.~\ref{ex:1.6-ex}). Set $y = (\prod_j \sigma_j(x))^q$, where $q = 1$ if $\operatorname{char}
+K = 0$, and $q = p^\nu$ for a sufficiently large integer $\nu$ if $\operatorname{char} K = p > 0$. Then
+$y \in K$, and is integral over $A$, so that $y \in A$. However, the identity map of $L$ is
+contained among the $\sigma_j$, so that $y \in P_2$, and hence $y \in P_2 \cap A = p \subset P_1$. This
+contradicts $\sigma_j(x) \notin P_1$ for all $j$. Therefore $P_2 = \sigma_j^{-1}(P_1)$ for some $j$.
+
+If $[L:K] = \infty$ we need Galois theory for infinite extensions. Let $K' \subset L$ be
+the fixed subfield of $G = \Aut(L/K)$; then $L$ is Galois over $K'$ and $K \subset K'$ is a
+purely inseparable extension. If $K' \neq K$ we must have $\operatorname{char} K = p > 0$, and
+setting $A'$ for the integral closure of $A$ in $K'$ we see easily that
+\[
+  p' = \{x \in A' \mid x^q \in p \text{ for some } q = p^r\}
+\]
+is the unique prime ideal of $A'$ lying over $p$. Thus replacing $K$ by $K'$ we can
+assume that $L$ is a Galois extension of $K$. For any finite Galois extension
+$K \subset L'$ contained in $L$ we now set
+\[
+  F(L') = \{\sigma \in G \mid \sigma(P_1) = P_2 \text{ in } L'\},
+\]
+then by the case of finite extensions we have just proved, $F(L') \neq \emptyset$.
+Moreover, $F(L') \subset G$ is closed in the Krull topology. (Recall that the Krull
+topology of $G$ is the topology induced by the inclusion of $G$ into the direct
+product of finite groups $\prod_{L'} \Aut(L'/K)$; with respect to this topology, $G$ is
+compact. For details see textbooks on field theory.) If $L_i$ for $1 \le i \le n$ are
+finite Galois extensions of $K$ contained in $L$ then their composite $L''$ is
+also a finite Galois extension of $K$, and $\bigcap_i F(L_i) \supset F(L'') \neq \emptyset$, so that the
+family $\{F(L') \mid L' \subset L \text{ is a finite Galois extension of } K\}$ of closed subsets
+of $G$ has the finite intersection property; since $G$ is compact,
+$\bigcap F(L') \neq \emptyset$. Taking $\sigma \in \bigcap F(L')$ we obviously have $\sigma(P_1) = P_2$.
+\end{proof}
+
+For a ring $A$ and an $A$-algebra $B$, the following statement is called the
+\emph{going-up theorem}\index{going-up theorem}: given two prime ideals $p \subset p'$ of $A$ and a prime ideal $P$ of $B$
+lying over $p$, there exists $P' \in \Spec B$ such that $P \subset P'$ and $P' \cap A = p'$.
+Similarly, the \emph{going-down theorem}\index{going-down theorem} is the following statement: given $p \subset p'$
+and $P' \in \Spec B$ lying over $p'$, there exists $P \in \Spec B$ such that $P \subset P'$ and
+$P \cap A = p$.
+
+\begin{theorem}\label{thm:9.4}
+\begin{enumerate}[(i)]
+  \item If $B \supset A$ is an extension ring which is integral over $A$ then
+        the going-up theorem holds.
+  \item If in addition $B$ is an integral domain and $A$ is integrally closed, the
+        going-down theorem also holds.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Suppose $p \subset p'$ and $P$ are given as above. Since $P \cap A = p$, we can
+think of $B/P$ as an extension ring of $A/p$, and it is integral over $A/p$ because
+the condition that an element of $B$ is integral over $A$ is preserved by the
+homomorphism $B \to B/P$. By (i) of the previous theorem there is a prime
+ideal of $B/P$ lying over $p'/p$, and writing $P'$ for its inverse image in $B$ we have
+$P' \in \Spec B$ and $P' \cap A = p'$.
+
+(ii) Let $K$ be the field of fractions of $A$, and let $L$ be a normal extension
+field of $K$ containing $B$; set $C$ for the integral closure of $A$ in $L$. Suppose
+given prime ideals $p \subset p'$ of $A$ and $P' \in \Spec B$ such that $P' \cap A = p'$, and
+choose $Q' \in \Spec C$ such that $Q' \cap B = P'$. Choose also a prime ideal $Q$ of $C$
+over $p$, so that using the going-up theorem we can find a prime ideal $Q_1$ of $C$
+containing $Q$ and lying over $p'$. Both $Q_1$ and $Q'$ lie over $p'$, so that by (iii) of
+the previous theorem there is an automorphism $\sigma \in \Aut(L/K)$ such that
+$\sigma(Q_1) = Q'$. Setting $\sigma(Q) = Q_2$ we have $Q_2 \subset Q'$, and $Q_2 \cap A = Q \cap A = p$,
+so that setting $P = Q_2 \cap B$ we get $P \cap A = p$, $P \subset Q' \cap B = P'$. (For
+a different proof of (ii) which does not use Theorem 3, (iii), see [AM], (5.16),
+or [Kunz].)
+\end{proof}
+
+We now treat another important case in which the going-down theorem
+holds.
+
+\begin{theorem}\label{thm:9.5}
+Let $A$ be a ring and $B$ a flat $A$-algebra; then the going-down
+theorem holds between $A$ and $B$.
+\end{theorem}
+
+\begin{proof}
+Let $p \subset p'$ be prime ideals of $A$, and let $P'$ be a prime ideal of $B$ lying
+over $p'$; then $B_{P'}$ is faithfully flat over $A_{p'}$, so that by Theorem~\ref{thm:7.3}
+$\Spec(B_{P'}) \to \Spec(A_{p'})$ is surjective. Hence there is a prime ideal $Q_1$
+of $B_{P'}$ lying over $pA_{p'}$, and setting $Q_1 \cap B = P$ we obviously have $P \subset P'$
+and $P \cap A = p$.
+\end{proof}
+
+\begin{theorem}\label{thm:9.6}
+Let $A \subset B$ be integral domains such that $A$ is integrally closed
+and $B$ is integral over $A$; then the canonical map $f\colon \Spec B \to \Spec A$ is
+open. More precisely, for $t \in B$, let $X^n + a_1X^{n-1} + \cdots + a_n$ be a monic poly-
+nomial with coefficients in $A$ having $t$ as a root and of minimal degree; then
+\[
+  f(D(t)) = \bigcup_{i=1}^{n} D(a_i),
+\]
+where the notation $D(\;)$ is as in \S\ref{sec:4}.
+\end{theorem}
+
+\begin{proof}[Proof (H. Seydi [4])]
+By Theorem 2, $F(X) = X^n + a_1X^{n-1} + \cdots + a_n$ is
+irreducible over the field of fractions of $A$; if we set $C = A[t]$ then
+$C \cong A[X]/(F(X))$, so $C$ is a free $A$-module with basis $1, t, t^2, \ldots, t^{n-1}$, and
+is hence faithfully flat over $A$. Suppose that $P \in D(t)$, so that $P \in \Spec B$
+with $t \notin P$, and set $p = P \cap A$; then $p \in \bigcup_i D(a_i)$, since otherwise $a_i \in p$ for
+all $i$, and so $t^n \in P$, hence $t \in P$, which is a contradiction.
+
+Conversely, given $p \in \bigcup_i D(a_i)$, suppose that $t \in \sqrt{pC}$; then for sufficiently
+large $m$ we have $t^m = \sum_{i=1}^{n} b_it^{n-i}$ with $b_i \in p$. We can take $m > n$. Then $X^m
+- \sum b_iX^{n-i}$ is divisible by $F(X)$ in $A[X]$, which implies that $\bar{X}^m$ is divisible
+by $\bar{F}(X) = X^n + \sum \bar{a}_iX^{n-i}$ in $(A/p)[X]$; since at least one of the $\bar{a}_i$ is non-
+zero, this is a contradiction. Thus $t \notin \sqrt{pC}$, so that there exists $Q \in \Spec C$
+with $t \notin Q$ and $pC \subset Q$. Setting $Q \cap A = q$ we have $p \subset q$, so that by
+the previous theorem there exists $P_1 \in \Spec C$ satisfying $P_1 \cap A = p$ and $P_1 \subset Q$.
+Since $B$ is integral over $C$ there exists $P \in \Spec B$ lying over $P_1$. We have
+$P \in D(t)$, since otherwise $t \in P \cap C = P_1 \subset Q$, which contradicts $t \notin Q$. This
+proves that
+\[
+  f(D(t)) \supset \bigcup_{i=1}^{n} D(a_i).
+\]
+Any open set of $\Spec B$ is a union of open sets of the form $D(t)$, and hence
+$f\colon \Spec B \to \Spec A$ is open.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:9}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:9.1-ex}
+Let $A$ be a ring, $A \subset B$ an integral extension, and $p$ a prime ideal of $A$.
+Suppose that $B$ has just one prime ideal $P$ lying over $p$; then $B_P = B_p$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.2-ex}
+Let $A$ be a ring and $A \subset B$ an integral extension ring. Then $\dim A =
+\dim B$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.3-ex}
+Let $A$ be a ring, $A \subset B$ a finitely generated integral extension of $A$, and $p$ a
+prime ideal of $A$. Then $B$ has only a finite number of prime ideals lying over
+$p$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.4-ex}
+Let $A$ be an integral domain and $K$ its field of fractions. We say that $x \in K$ is
+\emph{almost integral} over $A$ if there exists $0 \neq a \in A$ such that $ax^n \in A$ for all $n > 0$.
+If $x$ is integral over $A$ it is almost integral, and if $A$ is Noetherian the
+converse holds.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.5-ex}
+Let $A \subset K$ be as in the previous question. Say that $A$ is \emph{completely}
+\emph{integrally closed} if every $x \in K$ which is almost integral over $A$ belongs to $A$.
+If $A$ is completely integrally closed, so is $A[[X]]$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.6-ex}
+Let $A$ be an integrally closed domain, $K$ its field of fractions, and let
+$f(X) \in A[X]$ be a monic polynomial. Then if $f(X)$ is reducible in $K[X]$ it is
+also reducible in $A[X]$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.7-ex}
+Let $m \in \Z$ be square-free, and write $A$ for the integral closure of $\Z$ in
+$\Q(\sqrt{m})$. Then $A = \Z[(1 + \sqrt{m})/2]$ if $m \equiv 1 \bmod 4$, and $A =
+\Z[\sqrt{m}]$ otherwise.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.8-ex}
+Let $A$ be a ring and $A \subset B$ an integral extension. If $P$ is a prime ideal of $B$
+with $p = P \cap A$ then $\htop P \le \htop p$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.9-ex}
+Let $A$ be a ring and $B$ an $A$-algebra, and suppose that the going-down
+theorem holds between $A$ and $B$. If $P$ is a prime ideal of $B$ with $p = P \cap A$
+then $\htop P \ge \htop p$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.10-ex}
+Let $K$ be a field and $L$ an extension field of $K$. If $P$ is a prime ideal of
+$L[X_1, \ldots, X_n]$ and $p = P \cap K[X_1, \ldots, X_n]$ then $\htop P \le \htop p$, and equality
+holds if $L$ is an algebraic extension of $K$. Moreover, if two polynomials
+$f(X), g(X) \in K[X_1, \ldots, X_n]$ have no common factors in $K[X_1, \ldots, X_n]$,
+they have none in $L[X_1, \ldots, X_n]$.
+\end{exercise}
+
+\begin{exercise}\label{ex:9.11-ex}
+Let $A$ be a Noetherian ring and $p_1, \ldots, p_r$ all the minimal prime ideals of $A$.
+Suppose that $A_P$ is an integral domain for all $P \in \Spec A$. Then (i) $\Ass A
+= \{p_1, \ldots, p_r\}$; (ii) $p_1 \cap \cdots \cap p_r = \nil(A) = 0$; (iii) $p_i + \bigcap_{j \neq i} p_j = A$ for all $i$. It
+follows that $A \cong A/p_1 \times \cdots \times A/p_r$.
+\end{exercise}

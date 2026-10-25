@@ -1,0 +1,330 @@
+\section{可积性}
+
+在第七章中我们引进了定积分定义：设 $f(x)$ 定义在区间 $[a, b]$ 上，如果对 $[a, b]$ 的任意分法：
+\[
+a = x_0 < x_1 < \cdots < x_n = b,
+\]
+对任意的 $\xi_i \in [x_{i-1}, x_i]$，当 $\lambda = \max\limits_{1 \leqslant i \leqslant n} |\Delta x_i| \to 0$ 时（其中 $\Delta x_i = x_i - x_{i-1}$），黎曼和
+\[
+\sum_{i=1}^{n} f(\xi_i) \Delta x_i
+\]
+的极限存在，设为 $I$，则称 $f(x)$ 在 $[a, b]$ 是可积的，极限值 $I$ 称为 $f(x)$ 在 $[a, b]$ 的定积分，记为
+\[
+\int_{a}^{b} f(x) \mathrm{d}x = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) \Delta x_i.
+\]
+
+由定义知，如果知道了函数 $f(x)$ 在 $[a, b]$ 是可积的，那么对某一种满足 $\lambda \to 0$ 的分法，某种特殊取法的 $\xi_i$，其黎曼和的极限便是定积分．这对定积分的计算起了重要的作用．事实上，回忆微积分基本定理：设 $f(x)$ 在 $[a, b]$ 上可积，$F(x)$ 是 $f(x)$ 在 $[a, b]$ 的一个原函数，则
+\[
+\int_{a}^{b} f(x) \mathrm{d}x = F(b) - F(a).
+\]
+其证明是对 $[a, b]$ 的一种使 $\lambda \to 0$ 的分法，用微分中值定理，得到
+\[
+F(b) - F(a) = \sum_{i=1}^{n} \left( F(x_i) - F(x_{i-1}) \right) = \sum_{i=1}^{n} f(\xi_i) \Delta x_i,
+\]
+取极限便证得所要结果．注意，这里的 $\xi_i$ 是由微分中值定理决定的，只知 $\xi_i \in [x_{i-1}, x_i]$，具体在什么地方并不重要．由函数可积性，保证了和的极限存在，且极限值就是定积分．由此可见，事先知道一个函数可积是多么重要．我们曾经证明过连续函数可积，因此对任意连续函数，例如 $\cos x$，只要知道它的一个原函数，便可以计算定积分
+\[
+\int_{a}^{b} \cos x \mathrm{d}x = \sin b - \sin a.
+\]
+
+除了连续函数之外，还有什么函数是可积的呢？例如，直观告诉我们，如果函数 $f(x)$ 在 $[a, b]$ 除 $c \in (a, b)$ 点外连续，且 $c$ 是 $f(x)$ 的第一类间断点，则 $f(x)$ 在 $[a, b]$ 可积．自然会问，要使 $f(x)$ 可积，可允许它不连续的最大限度是什么？
+
+下面我们找出比直接用定义要好用的可积充分必要条件．回忆连续函数的情形，我们当时是用 $f(x)$ 在 $[x_{i-1}, x_i]$ 的最大值与最小值
+\[
+M_i = \max_{x_{i-1} \leqslant x \leqslant x_i} f(x), \qquad m_i = \min_{x_{i-1} \leqslant x \leqslant x_i} f(x)
+\]
+所对应的和来控制一般的黎曼和
+\[
+\sum_{i=1}^{n} m_i \Delta x_i \leqslant \sum_{i=1}^{n} f(\xi_i) \Delta x_i \leqslant \sum_{i=1}^{n} M_i \Delta x_i,
+\]
+而显然又知道曲线下的面积 $s_{ab}$ 也满足
+\[
+\bigg| \sum_{i=1}^{n} f(\xi_i) \Delta x_i - s_{ab} \bigg| \leqslant \sum_{i=1}^{n} \left( M_i - m_i \right) \Delta x_i,
+\]
+由函数的一致连续性知，只要 $\lambda$ 充分小，右边可以任意小．现在我们要对一般的不一定是连续的函数研究它的可积性，这时最大值、最小值不一定能达到，而相应于曲线下的面积 $s_{ab}$ 是什么也不那么明显．能找到这两者的“代替物”，便有可能得到好的结果．
+
+最大值、最小值的代替物，是容易想到的，因为已经证明过，函数可积的必要条件是有界．所以可以假设 $f(x)$ 在 $[a, b]$ 有界．因此它在任何小区间都有上下确界，这就是最大值、最小值的代替物．
+
+{\thmheadfont 定义 9.5}\quad 设 $f(x)$ 在 $[a, b]$ 有界，对 $[a, b]$ 的任意分法：
+\[
+a = x_0 < x_1 < \cdots < x_n = b,
+\]
+记
+\[
+M_i = \sup_{x_{i-1} \leqslant x \leqslant x_i} f(x), \qquad m_i = \inf_{x_{i-1} \leqslant x \leqslant x_i} f(x),
+\]
+分别称
+\[
+S = \sum_{i=1}^{n} M_i \Delta x_i, \qquad s = \sum_{i=1}^{n} m_i \Delta x_i
+\]
+为 $f(x)$ 对应于这一分法的达布（Darboux, 1842—1917）上和与达布下和，简称上和与下和．
+
+达布和有下列几条重要的性质．
+
+{\thmheadfont 引理 9.1}\quad 对于 $[a, b]$ 上的有界函数 $f(x)$ 与 $[a, b]$ 的任一个分法，达布上和 $S$ 是（随中间点 $\xi_i$ 的选取而变的一切）黎曼和的上确界，而达布下和是黎曼和的下确界，即
+\[
+\begin{aligned}
+S &= \sup_{\xi_i \in [x_{i-1}, x_i]} \sum_{i=1}^{n} f(\xi_i) \Delta x_i, \\
+s &= \inf_{\xi_i \in [x_{i-1}, x_i]} \sum_{i=1}^{n} f(\xi_i) \Delta x_i.
+\end{aligned}
+\]
+
+{\thmheadfont 证明}\quad 只证 $S$ 的情形．任给 $\varepsilon > 0$，由于 $M_i$ 是 $f(x)$ 在 $[x_{i-1}, x_i]$ 的上确界，知存在 $\xi_i \in [x_{i-1}, x_i]$，使得
+\[
+M_i - \frac{\varepsilon}{b - a} < f(\xi_i) \leqslant M_i,
+\]
+因此
+\[
+\sum_{i=1}^{n} \left( M_i - \frac{\varepsilon}{b - a} \right) \Delta x_i < \sum_{i=1}^{n} f(\xi_i) \Delta x_i \leqslant \sum_{i=1}^{n} M_i \Delta x_i,
+\]
+即
+\[
+S - \varepsilon < \sum_{i=1}^{n} f(\xi_i) \Delta x_i \leqslant S,
+\]
+即 $S - \varepsilon$ 不是上界，而显然 $S$ 是黎曼和的上界．这就证明了 $S$ 是黎曼和的上确界．$s$ 的情形证明类似．引理 9.1 证完．
+
+{\thmheadfont 引理 9.2}\quad 若在一个分法 $(\Delta)$ 的分点之外添加新的分点以构成新的分法 $(\Delta')$，则达布上和不增大而达布下和不减小：
+\[
+s \leqslant s' \leqslant S' \leqslant S,
+\]
+其中 $S$ 与 $s$ 为相应于 $(\Delta)$ 的达布和，而 $S'$ 与 $s'$ 为相应于 $(\Delta')$ 的达布和．
+
+{\thmheadfont 证明}\quad 不失一般性，不妨假定 $(\Delta')$ 是由 $\Delta$ 在区间 $[x_{k-1}, x_k]$ 中添加一个分点 $x'$ 而成的．记
+\[
+\begin{aligned}
+M'_k &= \sup_{x_{k-1} \leqslant x \leqslant x'} f(x), \\
+M''_k &= \sup_{x' \leqslant x \leqslant x_k} f(x).
+\end{aligned}
+\]
+显然 $M'_k \leqslant M_k$，$M''_k \leqslant M_k$，故
+\[
+M'_k \left( x' - x_{k-1} \right) + M''_k \left( x_k - x' \right) \leqslant M_k \left( x_k - x_{k-1} \right),
+\]
+而 $S$，$S'$ 中其他各项并无变动，因而 $S' \leqslant S$．同理可证 $s \leqslant s'$，引理 9.2 证完．
+
+{\thmheadfont 引理 9.3}\quad 任一个下和总不超过任一个上和，即使它们对应于不同的分法．
+
+{\thmheadfont 证明}\quad 设 $s$ 对应于分法 $(\Delta_1)$ 的下和，$S$ 是对应于分法 $(\Delta_2)$ 的上和，把 $(\Delta_1)$ 与 $(\Delta_2)$ 的分点合起来，构成 $[a, b]$ 的一个新的分法 $\Delta$，对应于它的上和与下和分别是 $S'$ 与 $s'$，由引理 9.2 可知
+\[
+s \leqslant s' \leqslant S' \leqslant S,
+\]
+这就证明了 $s \leqslant S$，引理 9.3 证完．
+
+记
+\[
+M = \sup_{a \leqslant x \leqslant b} f(x), \qquad m = \inf_{a \leqslant x \leqslant b} f(x),
+\]
+则上和的一个上界为 $M(b - a)$，下和的一个下界为 $m(b - a)$，它们分别也是全体下和的上界与全体上和的下界．根据确界定理，知全体下和有上确界 $\underline{I}$，称为 $f(x)$ 在 $[a, b]$ 的下积分；全体上和有下确界 $\overline{I}$，称为 $f(x)$ 在 $[a, b]$ 的上积分．
+
+{\thmheadfont 定理 9.6（达布定理）}\quad 当 $\lambda(\Delta) \to 0$ 时，达布上和 $S$ 的极限是上积分，达布下和 $s$ 的极限是下积分：
+\[
+\lim_{\lambda \to 0} S = \overline{I}, \qquad \lim_{\lambda \to 0} s = \underline{I},
+\]
+并且
+\[
+s \leqslant \underline{I} \leqslant \overline{I} \leqslant S.
+\]
+
+{\thmheadfont 证明}\quad 给定 $\varepsilon > 0$，存在 $[a, b]$ 的一个分法 $(\Delta')$，使对应的达布上和 $S' < \overline{I} + \dfrac{\varepsilon}{2}$．记 $\delta'$ 为 $(\Delta')$ 的最短小区间长度．设 $(\Delta)$ 为任一分法，其小区间的最大长度 $\lambda < \delta'$，而相应的达布和为 $S$ 与 $s$．把 $(\Delta)$ 与 $(\Delta')$ 的分点合起来构成一个新的分法 $(\Delta^*)$，相应的达布和记为 $S^*$ 与 $s^*$．由引理 9.2 知
+\[
+S^* \leqslant S, \qquad S^* \leqslant S',
+\]
+因而
+\[
+\begin{aligned}
+0 \leqslant S - \overline{I} &= \left( S - S^* \right) + \left( S^* - \overline{I} \right) \\
+&\leqslant \left( S - S^* \right) + \left( S' - \overline{I} \right) \\
+&\leqslant S - S^* + \frac{\varepsilon}{2}.
+\end{aligned}
+\]
+我们来估计 $S - S^*$．若 $(\Delta')$ 的分点都是 $(\Delta)$ 的分点，则 $S^* = S$，因而 $S - S^* = 0$，若 $(\Delta')$ 只有一个分点 $x'_i$ 不是 $(\Delta)$ 的分点，譬如说 $x'_i \in (x_{k-1}, x_k)$，则和数 $S$ 中的第 $k$ 项
+\[
+M_k \left( x_k - x_{k-1} \right)
+\]
+在和数 $S^*$ 中替换成两项之和：
+\[
+M_1^* \left( x'_i - x_{k-1} \right) + M_2^* \left( x_k - x'_i \right).
+\]
+因此
+\[
+S - S^* \leqslant 2M \left( x_k - x_{k-1} \right).
+\]
+于是，若 $(\Delta')$ 有 $h$ 个分点不是 $\Delta$ 的分点，则
+\[
+S - S^* \leqslant 2Mh\lambda \leqslant 2Mn'\lambda,
+\]
+其中 $n'$ 为 $(\Delta')$ 中的分点数目，可见，只要 $\lambda$ 充分小 $\left( \lambda < \dfrac{\varepsilon}{4Mn'} \right)$，便有
+\[
+S - S^* < \frac{\varepsilon}{2},
+\]
+从而
+\[
+0 \leqslant S - \overline{I} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+这就证明了当 $\lambda \to 0$ 时，$S \to \overline{I}$．同理可证 $s \to \underline{I}$．
+
+由不等式
+\[
+s \leqslant S,
+\]
+对 $\lambda \to 0$ 取极限，便得 $\underline{I} \leqslant \overline{I}$．由 $\overline{I}$，$\underline{I}$ 的定义，即得 $s \leqslant \underline{I} \leqslant \overline{I} \leqslant S$，定理 9.6 证完．
+
+现在我们可以证明可积的充分必要条件了．
+
+{\thmheadfont 定理 9.7}\quad $f(x)$ 在 $[a, b]$ 上（按黎曼意义）可积的充要条件是上积分等于下积分：
+\[
+\overline{I} = \underline{I}.
+\]
+
+{\thmheadfont 证明}\quad 必要性．设 $f(x)$ 在 $[a, b]$ 上可积．这时当 $\lambda \to 0$ 时，黎曼和 $\sigma$ 有极限 $I$．因此，任给 $\varepsilon > 0$，存在 $\delta > 0$，只要 $\lambda < \delta$，有
+\[
+\left| \sigma - I \right| < \frac{\varepsilon}{2}.
+\]
+由引理 9.1 知，对任意使 $\lambda < \delta$ 的分法，可取 $\xi_i$ 使得对应的黎曼和 $\sigma$ 与上和 $S$ 满足
+\[
+S - \sigma < \frac{\varepsilon}{2},
+\]
+因此，只要 $\lambda < \delta$，有
+\[
+\left| S - I \right| \leqslant \left| S - \sigma \right| + \left| \sigma - I \right| < \varepsilon,
+\]
+这就证明了 $\lim\limits_{\lambda \to 0} S = I$，由定理 9.6 可知 $\overline{I} = I$．同理可证 $\underline{I} = I$，于是 $\overline{I} = \underline{I}$．
+
+充分性．设 $\overline{I} = \underline{I}$，由定理 9.6 知
+\[
+\lim_{\lambda \to 0} S = \lim_{\lambda \to 0} s = \overline{I},
+\]
+而黎曼和 $\sigma$ 满足 $s \leqslant \sigma \leqslant S$，故
+\[
+\lim_{\lambda \to 0} \sigma = \overline{I},
+\]
+定理证完．
+
+定理 9.6 和定理 9.7 的结合，得
+
+{\thmheadfont 定理 9.8}\quad $f(x)$ 在 $[a, b]$ 可积的充要条件是
+\[
+\lim_{\lambda \to 0} \left( S - s \right) = 0.
+\]
+如果记
+\[
+\begin{aligned}
+\omega_i &= M_i - m_i \\
+&= \sup_{x_{i-1} \leqslant x \leqslant x_i} f(x) - \inf_{x_{i-1} \leqslant x \leqslant x_i} f(x),
+\end{aligned}
+\]
+则定理 9.8 的条件等价于
+\begin{align}
+\lim_{\lambda \to 0} \sum_{i=1}^{n} \omega_i \Delta x_i = 0. \tag{1}
+\end{align}
+读者很容易验证
+\[
+\omega_i = \sup_{x', x'' \in [x_{i-1}, x_i]} \left| f(x') - f(x'') \right|,
+\]
+它称为 $f(x)$ 在区间 $[x_{i-1}, x_i]$ 的振幅（见本章 §1 的习题 6）．
+
+由于达布定理 9.6，知极限 $\lim\limits_{\lambda \to 0} (S - s)$ 永远是存在的．因此，为了证明它的极限为 $0$，只要有一个满足 $\lambda \to 0$ 的分法序列，使得对应的 $S_n - s_n \to 0$ 就足够了．
+
+现在很容易用（1）这个条件，给出闭区间连续函数可积的一个新证明．事实上，任给 $\varepsilon > 0$，由函数在 $[a, b]$ 连续，知存在 $\delta > 0$，只要 $\lambda < \delta$，就有
+\[
+M_i - m_i < \frac{\varepsilon}{b - a}, \quad i = 1, 2, \cdots, n,
+\]
+因而
+\[
+\begin{aligned}
+\sum_{i=1}^{n} \omega_i \Delta x_i &= \sum_{i=1}^{n} \left( M_i - m_i \right) \Delta x_i \\
+&< \frac{\varepsilon}{b - a} \sum_{i=1}^{n} \Delta x_i = \varepsilon.
+\end{aligned}
+\]
+于是，$f(x)$ 在 $[a, b]$ 可积．
+
+这个证明和前面第七章的证明不同，它没有用到连续曲线下曲边梯形的面积 $S_{ab}$，是纯“分析”的证明．实际上，回忆可积充要条件的推导过程便知，我们在这里是用上积分（它等于下积分）代替了面积 $S_{ab}$．
+
+现在用定理 9.8 中可积的充要条件（1），已能很容易证明闭区间 $[a, b]$ 上的连续函数在 $[a, b]$ 可积，进一步还很容易用（1）证明下面的定理 9.9．
+
+{\thmheadfont 定理 9.9}\quad 在 $[a, b]$ 上有界且仅有限个间断点的函数 $f(x)$，必在 $[a, b]$ 可积．
+
+我们希望读者自己把证明写出来．
+
+{\thmheadfont 定理 9.10}\quad 若 $f(x)$ 在 $[a, b]$ 单调，则 $f(x)$ 在 $[a, b]$ 可积．
+
+{\thmheadfont 证明}\quad 不妨设 $f(x)$ 在 $[a, b]$ 单调上升，这时
+\[
+\omega_i = M_i - m_i = f(x_i) - f(x_{i-1}),
+\]
+因此当 $\lambda \to 0$ 时，
+\[
+\begin{aligned}
+0 \leqslant \sum_{i=1}^{n} \omega_i \Delta x_i &\leqslant \lambda \sum_{i=1}^{n} \left( f(x_i) - f(x_{i-1}) \right) \\
+&= \left( f(b) - f(a) \right) \lambda \to 0.
+\end{aligned}
+\]
+这就证明了 $f(x)$ 在 $[a, b]$ 可积．
+
+{\thmheadfont 例}\quad 分段函数
+\[
+f(x) = \begin{cases}
+0, & x \in \left[ 0, \dfrac{1}{2} \right), \\[2ex]
+\dfrac{2^n - 1}{2^n}, & x \in \left[ \dfrac{2^n - 1}{2^n}, \dfrac{2^{n+1} - 1}{2^{n+1}} \right), \quad n = 1, 2, \cdots \\[2ex]
+1, & x = 1,
+\end{cases}
+\]
+它在 $[0, 1]$ 是单调上升的，因而是可积的，虽然它有无穷个间断点 $1 - \dfrac{1}{2^n}$（$n = 1, 2, \cdots$）．它的图形如图~\ref{fig:9-1} 所示：
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.42\textwidth]{fig9-1.png}
+\figcap
+\label{fig:9-1}
+\end{figure}
+
+\begin{xiti}
+\item 判断下列函数在区间 $[0, 1]$ 上的可积性：
+\begin{ziti}
+\item $f(x)$ 在 $[0, 1]$ 上有界，不连续点为 $x = \dfrac{1}{n}$（$n = 1, 2, \cdots$）；
+\item $f(x) = \begin{cases} \sgn\left( \sin \dfrac{\pi}{x} \right), & x \in (0, 1], \\ 0, & x = 0; \end{cases}$
+\item $f(x) = \begin{cases} \dfrac{1}{x} - \left[ \dfrac{1}{x} \right], & x \in (0, 1], \\ 0, & x = 0; \end{cases}$
+\item $f(x) = \begin{cases} \dfrac{1}{\left[ \frac{1}{x} \right]}, & x \in (0, 1], \\ 0, & x = 0. \end{cases}$
+\end{ziti}
+\item 讨论 $f(x)$，$f^2(x)$，$|f(x)|$ 三者间可积性的关系．
+\item 设 $f(x)$，$g(x)$ 都在 $[a, b]$ 上可积，证明：
+\[
+M(x) = \max \left( f(x), g(x) \right), \quad m(x) = \min \left( f(x), g(x) \right)
+\]
+在 $[a, b]$ 上也是可积的．
+\item 设 $f(x)$ 在 $[a, b]$ 上可积，且 $f(x) \geqslant r > 0$，求证：
+\begin{ziti}
+\item $\dfrac{1}{f(x)}$ 在 $[a, b]$ 可积；
+\item $\ln f(x)$ 在 $[a, b]$ 可积．
+\end{ziti}
+\item 设 $f(x)$ 在 $[a, b]$ 可积，求证：任给 $\varepsilon > 0$，存在逐段为常数的函数 $\varphi(x)$，使
+\[
+\int_{a}^{b} \left| f(x) - \varphi(x) \right| \mathrm{d}x < \varepsilon.
+\]
+\item 若函数 $f(x)$ 在 $[A, B]$ 可积，证明：
+\[
+\lim_{h \to 0} \int_{a}^{b} \left| f(x + h) - f(x) \right| \mathrm{d}x = 0,
+\]
+其中 $A < a < b < B$（这一性质称为积分的平均连续性）．
+\item 设 $f(x) \geqslant 0$，$f''(x) \leqslant 0$，对任意 $x \in [a, b]$ 成立，求证：
+\[
+f(x) \leqslant \frac{2}{b - a} \int_{a}^{b} f(x) \mathrm{d}x.
+\]
+\item 设 $f(x)$ 在 $[a, b]$ 有连续的导函数，求证：
+\[
+\max_{a \leqslant x \leqslant b} \left| f(x) \right| \leqslant \left| \frac{1}{b - a} \int_{a}^{b} f(x) \mathrm{d}x \right| + \int_{a}^{b} \left| f'(x) \right| \mathrm{d}x.
+\]
+\item 设 $f(x)$ 在 $[a, b]$ 可积，求证：存在连续函数序列 $\varphi_n(x)$，$n = 1, 2, \cdots$，使
+\[
+\lim_{n \to \infty} \int_{a}^{b} \left| f(x) - \varphi_n(x) \right| \mathrm{d}x = 0.
+\]
+\item 设 $f(x)$ 在 $[a, b]$ 黎曼可积，求证：
+\begin{ziti}
+\item 存在区间序列 $\{[a_n, b_n]\}$ 使
+\[
+\left[ a_{n+1}, b_{n+1} \right] \subset \left( a_n, b_n \right) \subset (a, b),
+\]
+且 $\omega_f \left( [a_n, b_n] \right) < \dfrac{1}{n}$；
+\item 存在 $c \in \bigcap\limits_{n=1}^{\infty} \left[ a_n, b_n \right]$，使得 $f(x)$ 在 $c$ 点连续；
+\item $f(x)$ 在 $[a, b]$ 上有无穷多个连续点．
+\end{ziti}
+\end{xiti}

@@ -1,0 +1,582 @@
+% ============ §8 Completion and the Artin-Rees lemma (原书 pp.55-64) ============
+\section{Completion and the Artin--Rees lemma}\label{sec:8}\index{completion, section 8}\index{Artin-Rees lemma, section 8}
+
+Let $A$ be a ring and $M$ an $A$-module; for a directed set $\Lambda$, suppose
+that $\mathcal{Y} = \{M_\lambda\}_{\lambda \in \Lambda}$ is a family of submodules of $M$ indexed by $\Lambda$ and such
+that $\lambda < \mu \Rightarrow M_\lambda \supset M_\mu$. Then taking $\mathcal{Y}$ as a system of neighbourhoods
+of $0$ makes $M$ into a topological group under addition. In this topology, for any
+$x \in M$ a system of neighbourhoods of $x$ is given by $\{x + M_\lambda\}_{\lambda \in \Lambda}$. In $M$
+addition and subtraction are continuous, as is scalar multiplication $x \mapsto ax$
+for any $a \in A$. When $M = A$ each $M_\lambda$ is an ideal, so that multiplication is also
+continuous:
+\[
+  (a + M_\lambda)(b + M_\lambda) \subset ab + M_\lambda.
+\]
+This type of topology is called a \emph{linear topology}\index{linear topology} on $M$; it is separated
+(that is, Hausdorff) if and only if $\bigcap_\lambda M_\lambda = 0$. Each $M_\lambda \subset M$ is an open set,
+each coset $x + M_\lambda$ is again open, and the complement $M - M_\lambda$ of $M_\lambda$ is a
+union of cosets, so is also open. Hence $M_\lambda$ is an open and closed subset;
+the quotient module $M/M_\lambda$ is then discrete in the quotient topology.
+
+$M/\bigcap_\lambda M_\lambda$ is called the \emph{separated module} associated with $M$. Moreover,
+since for $\lambda < \mu$ there is a natural linear map $\varphi_{\mu\lambda}\colon M/M_\mu \to M/M_\lambda$,
+we can construct the inverse system $\{M/M_\lambda; \varphi_{\mu\lambda}\}$ of $A$-modules; its
+inverse limit $\varprojlim M/M_\lambda$ is called the \emph{completion} of $M$, and is written $\hat{M}$.
+We give each $M/M_\lambda$ the discrete topology, the direct product $\prod_\lambda M/M_\lambda$ the
+product topology, and $\hat{M}$ the subspace topology in $\prod_\lambda M/M_\lambda$.
+Let $\varphi\colon M \to \hat{M}$ be the natural $A$-linear map; then $\varphi$ is continuous, and $\varphi(M)$ is
+dense in $\hat{M}$. Write $p_\lambda\colon \hat{M} \to M/M_\lambda$ for the projection, and set $\Ker p_\lambda =
+\hat{M}_\lambda$; it is easy to see that the topology of $\hat{M}$ coincides with the linear
+topology defined by $\hat{\mathcal{Y}} = \{\hat{M}_\lambda\}_{\lambda \in \Lambda}$. The map $p_\lambda$ is surjective (in fact
+$p_\lambda(\varphi(M)) = M/M_\lambda$), so that $\hat{M}/\hat{M}_\lambda = M/M_\lambda$, and the completion of $\hat{M}$
+coincides with $\hat{M}$ itself. If $\varphi\colon M \to \hat{M}$ is an isomorphism, we say
+that $M$ is \emph{complete}\index{complete module}. (Caution: in Bourbaki terminology this is `complete and
+separated'; we shorten this to `complete' throughout.)
+
+If $\mathcal{Y}' = \{M'_\gamma\}_{\gamma \in \Gamma}$ is another family of submodules of $M$ indexed by a
+directed set $\Gamma$, then $\mathcal{Y}$ and $\mathcal{Y}'$ give the same topology on $M$ if and only if for
+each $M_\lambda$ there is a $\gamma \in \Gamma$ such that $M'_\gamma \subset M_\lambda$, and for every $M'_\gamma$, there is a $\lambda \in \Lambda$
+such that $M_\lambda \subset M'_\gamma$. It is then easy to see that there is an isomorphism of
+topological modules $\varprojlim M/M_\lambda \cong \varprojlim M/M'_\gamma$. Thus $\hat{M}$ depends only on
+the topology of $M$, as does the question of whether $M$ is complete.
+
+When $M = A$, $\{M/M_\lambda; \varphi_{\mu\lambda}\}$ becomes an inverse system of rings, $\hat{M} = \hat{A}$
+is a ring, and $\varphi\colon A \to \hat{A}$ a ring homomorphism. $\hat{M}_\lambda \subset \hat{A}$ is not just
+an $A$-submodule, but an ideal of $\hat{A}$; this is clear from the fact that
+$p_\lambda\colon \hat{A} \to A/M_\lambda$ is a ring homomorphism.
+
+If $N \subset M$ is a submodule, then the closure $\bar{N}$ of $N$ in $M$ is given by the
+following formula:
+\[
+  \bar{N} = \bigcap_\lambda (N + M_\lambda).
+\]
+Indeed,
+\[
+  x \in \bar{N} \iff (x + M_\lambda) \cap N \neq \emptyset \text{ for all } \lambda
+\]
+\[
+  \iff x \in N + M_\lambda \text{ for all } \lambda.
+\]
+If we write $\bar{M}_\lambda$ for the image of $M_\lambda$ in the quotient module $M/N$, the
+quotient topology of $M/N$ is just the linear topology defined by $\{\bar{M}_\lambda\}_{\lambda \in \Lambda}$.
+In fact, let $G \subset M$ be the inverse image of $G' \subset M/N$; then
+\begin{align*}
+  G' \text{ is open in the quotient topology of } M/N
+  &\iff G \text{ is open in } M \\
+  &\iff \forall x \in G \ \exists M_\lambda,\ x + M_\lambda \subset G \\
+  &\iff \forall x' \in G' \ \exists \bar{M}'_\lambda,\ x' + \bar{M}'_\lambda \subset G'.
+\end{align*}
+Hence the condition for $M/N$ to be separated is that $\bigcap_\lambda \bar{M}_\lambda = 0$, that is
+$\bigcap_\lambda (N + M_\lambda) = N$, or in other words, that $N$ is closed in $M$. Moreover, the
+subspace topology of $N$ is clearly the same thing as the linear topology
+defined by $\{N \cap M_\lambda\}_{\lambda \in \Lambda}$. Set $\bar{M} = M/N$; then
+\[
+  0 \to N/(N \cap M_\lambda) \to M/M_\lambda \to \bar{M}/\bar{M}_\lambda = M/(N + M_\lambda) \to 0
+\]
+is an exact sequence, so that taking the inverse limit, we see that
+\[
+  0 \to \hat{N} \to \hat{M} \to \widehat{(M/N)}
+\]
+is exact. If we view $N$ as a submodule of $\hat{M}$, the condition that $\xi = (\xi_\lambda)_{\lambda \in \Lambda} \in \hat{M}$
+belongs to $\hat{N}$ is that each $\xi_\lambda$ can be represented by an element of $N$, or in
+other words that $\xi \in \varphi(N) + \hat{M}_\lambda$ for each $\lambda$. Hence $\hat{N}$ is the same thing as the
+closure of $\varphi(N)$ in $\hat{M}$. In general it is not clear whether $\hat{M} \to \widehat{(M/N)}$ is
+surjective, but this holds in the case $\Lambda = \{1, 2, \ldots\}$. In fact then
+\[
+  \widehat{(M/N)} = \varprojlim M/(N + M_n);
+\]
+given an element $\xi' = (\xi'_1, \xi'_2, \ldots) \in \widehat{(M/N)}$ with $\xi'_n \in M/(N + M_n)$, let
+$x_1 \in M$ be an inverse image of $\xi'_1$, and $y_2 \in M$ an inverse image of $\xi'_2$;
+then $y_2 - x_1 \in N + M_1$, so that we can write
+\[
+  y_2 - x_1 = t + m_1 \quad \text{with } t \in N \text{ and } m_1 \in M_1.
+\]
+If we set $x_2 = y_2 - t$ then $x_2 \in M$ is also an inverse image of $\xi'_2$, and satisfies
+$x_2 - x_1 \in M_1$. Similarly we can successively choose inverse images $x_n \in M$ of
+the $\xi'_n$ in such a way that for $n = 1, 2, \ldots$, we have $x_{n+1} - x_n \in M_n$. If we set
+$\zeta_n \in M/M_n$ for the image of $x_n$, then by construction $\zeta = (\zeta_1, \zeta_2, \ldots)$ is an
+element of $\varprojlim M/M_n = \hat{M}$ which maps to $\xi'$ in $\widehat{(M/N)}$. This proves the
+following theorem.
+
+\begin{theorem}\label{thm:8.1}
+Let $A$ be a ring, $M$ an $A$-module with a linear topology, and
+$N \subset M$ a submodule. We give $N$ the subspace topology, and $M/N$ the
+quotient topology. Then these are both linear topologies, and we have:
+\begin{enumerate}[(i)]
+  \item $0 \to \hat{N} \to \hat{M} \to \widehat{(M/N)}$ is an exact sequence, and $\hat{N}$ is the closure
+        of $\varphi(N)$ in $\hat{M}$, where $\varphi\colon M \to \hat{M}$ is the natural map.
+  \item If moreover the topology of $M$ is defined by a decreasing chain of
+        submodules $M_1 \supset M_2 \supset \cdots$, then
+        \[
+          0 \to \hat{N} \to \hat{M} \to \widehat{(M/N)} \to 0
+        \]
+        is exact. In other words, $\widehat{(M/N)} = \hat{M}/\hat{N}$.
+\end{enumerate}
+\end{theorem}
+
+Now suppose that $M$ and $N$ are two $A$-modules with linear topologies,
+and let $f\colon M \to N$ be a continuous linear map. If the topologies of $M$ and
+$N$ are given by $\{M_\lambda\}_{\lambda \in \Lambda}$ and $\{N_\gamma\}_{\gamma \in \Gamma}$, then for any $\gamma \in \Gamma$ there
+exists $\lambda \in \Lambda$ such that $M_\lambda \subset f^{-1}(N_\gamma)$.
+Define $\varphi_\gamma\colon \hat{M} \to N/N_\gamma$ as the composite
+$\hat{M} \to M/M_\lambda \to N/N_\gamma$, where the first arrow is the natural
+map, and the second is induced by $f$; one sees at once that $\varphi_\gamma$ does not
+depend on the choice of $\lambda$ for which $M_\lambda \subset f^{-1}(N_\gamma)$.
+Also, for $\gamma < \gamma'$ if we
+let $\psi_{\gamma\gamma'}$ denote the natural map $N/N_\gamma \to N/N_{\gamma'}$, it is easy to see that
+$\varphi_\gamma = \psi_{\gamma\gamma'} \varphi_{\gamma'}$; hence there is a continuous linear map $\hat{f}\colon \hat{M} \to \hat{N}$
+defined by the $(\varphi_\gamma)_{\gamma \in \Gamma}$, and the following diagram is commutative (the
+vertical arrows are the natural maps):
+\[
+  \begin{tikzcd}[column sep=large, row sep=large]
+    M \arrow[r, "f"] \arrow[d] & N \arrow[d] \\
+    \hat{M} \arrow[r, "\hat{f}"] & \hat{N}
+  \end{tikzcd}
+\]
+Moreover, $\hat{f}$ is determined uniquely by this diagram and by continuity.
+Similarly, if $A$ and $B$ are rings with linear topologies, and $f\colon A \to B$ is
+a continuous ring homomorphism, then $f$ induces a continuous ring
+homomorphism $\hat{f}\colon \hat{A} \to \hat{B}$.
+
+Among the linear topologies, those defined by ideals are of particular
+importance. Let $I$ be an ideal of $A$ and $M$ an $A$-module; the topology on $M$
+defined by $\{I^nM\}_{n=1,2,\ldots}$ is called the \emph{$I$-adic topology}\index{I-adic topology}. If we also give $A$ the $I$-
+adic topology, the completions $\hat{A}$ and $\hat{M}$ of $A$ and $M$ are called \emph{$I$-adic
+completions}\index{I-adic completion}; it is easy to see that $\hat{M}$ is an $\hat{A}$-module: for $\alpha = (a_1, a_2, \ldots)
+\in \hat{A}$ with $a_n \in A/I^n$ and $\xi = (x_1, x_2, \ldots) \in \hat{M}$ with $x_n \in M/I^nM$ (for all $n$), we can
+just set
+\[
+  \alpha\xi = (a_1x_1, a_2x_2, \ldots) \in \hat{M}.
+\]
+
+As one can easily check, to say that $M$ is complete for the $I$-adic topology is
+equivalent to saying that for every sequence $x_1, x_2, \ldots$ of elements of $M$
+satisfying $x_i - x_{i+1} \in I^iM$ for all $i$, there exists a unique $x \in M$ such that
+$x - x_i \in I^iM$ for all $i$. We can define a Cauchy sequence in $M$ in the usual
+way ($\{x_i\}$ is Cauchy if and only if for every positive integer $r$ there is an
+$n_0$ such that $x_{n+1} - x_n \in I^rM$ for $n > n_0$), and completeness can then be
+expressed as saying that a Cauchy sequence has a unique limit.
+
+\begin{theorem}\label{thm:8.2}
+Let $A$ be a ring, $I$ an ideal, and $M$ an $A$-module.
+\begin{enumerate}[(i)]
+  \item If $A$ is $I$-adically complete then $I \subset \rad(A)$;
+  \item If $M$ is $I$-adically complete and $a \in I$, then multiplication by $1 + a$ is an
+        automorphism of $M$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) For $a \in I$, $1 - a + a^2 - a^3 + \cdots$ converges in $A$, and provides an
+inverse of $1 + a$; hence $1 + a$ is a unit of $A$. This means (see \S\ref{sec:1}) that
+$I \subset \rad(A)$.
+
+(ii) $\hat{M}$ is also an $\hat{A}$-module, and $1 + a$ (or rather, its image in $\hat{A}$) is a unit in
+$\hat{A}$, so that this is clear.
+\end{proof}
+
+The following two results show the usefulness of completeness.
+
+\begin{theorem}[Hensel's lemma]\label{thm:8.3}
+Let $(A, m, k)$ be a local ring, and suppose
+that $A$ is $m$-adically complete. Let $F(X) \in A[X]$ be a monic polynomial, and
+let $\bar{F} \in k[X]$ be the polynomial obtained by reducing the coefficients of $F$
+modulo $m$. If there are monic polynomials $g, h \in k[X]$ with $(g, h) = 1$
+and such that $\bar{F} = gh$, then there exist monic polynomials $G, H$ with coeffi-
+cients in $A$ such that $F = GH$, $\bar{G} = g$ and $\bar{H} = h$.
+\end{theorem}
+
+\begin{proof}
+If we take polynomials $G_1, H_1 \in A[X]$ such that $g = \bar{G}_1$, $h = \bar{H}_1$, then
+$F \equiv G_1H_1 \bmod m[X]$. Suppose by induction that monic polynomials $G_n$,
+$H_n$ have been constructed such that $F \equiv G_nH_n \bmod m^n[X]$, and $\bar{G}_n = g$,
+$\bar{H}_n = h$; then we can write
+\[
+  F - G_nH_n = \sum_i \delta_iU_i(X), \quad \text{with } \delta_i \in m^n \text{ and } \deg U_i < \deg F.
+\]
+Since $(g, h) = 1$ we can find $u_i, w_i \in k[X]$ such that $\bar{U}_i = gu_i + hw_i$. Replacing
+$u_i$ by its remainder modulo $h$, and making the corresponding correction to
+$w_i$ we can assume $\deg u_i < \deg h$. Then
+\[
+  \deg hw_i = \deg(\bar{U}_i - gu_i) < \deg F, \quad \text{hence } \deg w_i < \deg g.
+\]
+Choosing $V_i, W_i \in A[X]$ such that $\bar{V}_i = v_i$, $\deg V_i = \deg v_i$, $\bar{W}_i = w_i$,
+$\deg W_i = \deg w_i$, and setting $G_{n+1} = G_n + \sum \delta_iW_i$, $H_{n+1} = H_n + \sum \delta_i V_i$,
+we get
+\[
+  F - G_{n+1}H_{n+1} \in m^{n+1}[X].
+\]
+We construct in this way sequences of polynomials $G_n, H_n$ for $n = 1, 2, \ldots$;
+then $\lim G_n = G$ and $\lim H_n = H$ clearly exist and satisfy $F = GH$. Obvi-
+ously, $\bar{G} = \bar{G}_1 = g$, $\bar{H} = \bar{H}_1 = h$.
+\end{proof}
+
+\begin{theorem}\label{thm:8.4}
+Let $A$ be a ring, $I$ an ideal, and $M$ an $A$-module. Suppose
+that $A$ is $I$-adically complete, and $M$ is separated for the $I$-adic topology. If
+$M/IM$ is generated over $A/I$ by $\bar{\omega}_1, \ldots, \bar{\omega}_n$, and $\omega_i \in M$ is an arbitrary
+inverse image of $\bar{\omega}_i$ in $M$, then $M$ is generated over $A$ by $\omega_1, \ldots, \omega_n$.
+\end{theorem}
+
+\begin{proof}
+By assumption $M = \sum A\omega_i + IM$, so that $M = \sum A\omega_i + I(\sum A\omega_i +
+IM) = \sum A\omega_i + I^2M$, and similarly, $M = \sum A\omega_i + I^\nu M$ for all $\nu \ge 0$. For
+any $\xi \in M$, write $\xi = \sum a_{i,1}\omega_i + \xi_1$ with $\xi_1 \in IM$, then $\xi_1 = \sum a_{i,2}\omega_i + \xi_2$ with
+$a_{i,2} \in I$ and $\xi_2 \in I^2M$, and choose successively $a_{i,\nu} \in I^\nu$ and $\xi_\nu \in I^\nu M$ to satisfy
+\[
+  \xi_\nu = \sum a_{i,\nu+1}\omega_i + \xi_{\nu+1} \quad \text{for } \nu = 1, 2, \ldots.
+\]
+Then $a_i + a_{i,2} + a_{i,3} + \cdots$ converges in $A$. If we set $b_i$ for this sum then
+\[
+  \xi = \sum b_i\omega_i. \qquad\blacksquare
+\]
+\end{proof}
+
+This theorem is extremely handy for proving the finiteness of $M$. For a
+Noetherian ring $A$, the $I$-adic topology has several more important
+properties, which are based on the following theorem, proved independ-
+ently by E. Artin and D. Rees.
+
+\begin{theorem}[the Artin--Rees lemma]\label{thm:8.5}
+Let $A$ be a Noetherian ring, $M$ a
+finite $A$-module, $N \subset M$ a submodule, and $I$ an ideal of $A$. Then there exists
+a positive integer $c$ such that for every $n > c$, we have
+\[
+  I^nM \cap N = I^{n-c}(I^cM \cap N).
+\]
+\end{theorem}
+
+\begin{proof}
+The inclusion $\supset$ is obvious, so that we only have to prove $\subset$.
+Suppose that $I$ is generated by $r$ elements $a_1, \ldots, a_r$, and $M$ by $s$ elements
+$\omega_1, \ldots, \omega_s$. An element of $I^nM$ can be written as $\sum_i f_i(a)\omega_i$, where
+$f_i(X) = f_i(X_1, \ldots, X_r)$ is a homogeneous polynomial of degree $n$ with
+coefficients in $A$. Now set $A[X_1, \ldots, X_r] = B$, and for each $n > 0$ set
+\[
+  U_n = \left\{(f_1, \ldots, f_s) \in B^s \;\middle|\;
+    \begin{array}{l}
+      \text{the } f_i \text{ are homogeneous of degree } n \\
+      \text{and } \sum_i f_i(a)\omega_i \in N
+    \end{array} \right\};
+\]
+let $C \subset B^s$ be the $B$-submodule generated by $\bigcup_{n, \gamma} U_n$. Since $B$ is Noetherian,
+$C$ is a finite $B$-module, so that $C = \sum_{i=1}^{t} Bu_j$, where each $u_j$ is a linear
+combination of elements of $\bigcup_n U_n$; therefore $C$ is generated by finitely
+many elements of $\bigcup_n U_n$. Suppose
+\[
+  C = Bu_1 + \cdots + Bu_t, \quad \text{where } u_j = (u_{j1}, \ldots, u_{js}) \in U_{d_j} \text{ for } 1 \le j \le t.
+\]
+Set $c = \max(d_1, \ldots, d_t)$. Now if $\eta \in I^nM \cap N$, we can write $\eta = \sum_i f_i(a)\omega_i$ with
+$(f_1, \ldots, f_s) \in U_n$, and hence
+\[
+  (f_1, \ldots, f_s) = \sum_j P_j(X)u_j, \quad \text{with } P_j \in B = A[X_1, \ldots, X_r].
+\]
+The left-hand side is a vector made up of homogeneous polynomials of
+degree $n$ only, so that the terms of degree other than $n$ on the right-hand side
+must cancel out to give $0$. Hence we can suppose that the $P_j(X)$ are
+homogeneous of degree $n - d_j$. Then $\eta = \sum_i f_i(a)\omega_i = \sum_j P_j(a) \sum_i u_{ji}(a)\omega_i$,
+and $\sum_i u_{ji}(a)\omega_i \in I^{d_j}M \cap N$, so that if $n > c$, $P_j(a) \in I^{n-d_j} \supset I^{n-c}$, giving
+\[
+  \eta \in I^{n-c}(I^cM \cap N) \quad \text{for any } n > c. \qquad\blacksquare
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:8.6}
+In the notation of the above theorem, the $I$-adic topology of
+$N$ coincides with the topology induced by the $I$-adic topology of $M$ on the
+subspace $N \subset M$.
+\end{theorem}
+
+\begin{proof}
+By the previous theorem, for $n > c$, we have $I^nN \subset I^nM \cap N
+\subset I^{n-c}N$. The topology of $N$ as a subspace of $M$ is the linear topology
+defined by $\{I^nM \cap N\}_{n=1,2,\ldots}$, and the above formula says that this defines the
+same topology as $\{I^nN\}_{n=1,2,\ldots}$.
+\end{proof}
+
+\begin{theorem}\label{thm:8.7}
+Let $A$ be a Noetherian ring, $I$ an ideal, and $M$ a finite $A$-
+module. Writing $\hat{A}$, $\hat{M}$ for the $I$-adic completions of $M$ and $A$ we have
+\[
+  \hat{M} = M \otimes_A \hat{A}.
+\]
+Hence if $A$ is $I$-adically complete, so is $M$.
+\end{theorem}
+
+\begin{proof}
+By Theorems 1 and 6, the $I$-adic completion of an exact sequence of
+finite $A$-modules is again exact. Now given $M$, let $A^n \to A^m \to M \to 0$ be
+an exact sequence; the commutative diagram
+\[
+  \begin{tikzcd}[column sep=large, row sep=large]
+    \hat{A}^n \arrow[r] \arrow[d] & \hat{A}^m \arrow[r] \arrow[d] & \hat{M} \arrow[r] \arrow[d] & 0 \\
+    A^n \otimes_A \hat{A} \arrow[r] & A^m \otimes_A \hat{A} \arrow[r] & M \otimes_A \hat{A} \arrow[r] & 0
+  \end{tikzcd}
+\]
+has exact rows. Here the vertical arrows are the natural maps; since
+completion commutes with direct sums, the two left-hand arrows are
+obviously isomorphisms, and hence the right-hand arrow is an
+isomorphism, as required.
+\end{proof}
+
+\begin{theorem}\label{thm:8.8}
+Let $A$ be a Noetherian ring, $I$ an ideal, and $\hat{A}$ the $I$-adic
+completion of $A$; then $\hat{A}$ is flat over $A$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:7.7} it is enough to show that $a \otimes \hat{A} \to \hat{A}$ is injective
+for every ideal $a \subset A$; but $a \otimes \hat{A} = \hat{a}$, and by Theorems 1 and 6, $\hat{a} \to \hat{A}$ is
+injective.
+\end{proof}
+
+\begin{theorem}[Krull]\label{thm:8.9}
+Let $A$ be a Noetherian ring, $I$ an ideal, and $M$
+a finite $A$-module; set $\bigcap_{n \ge 0} I^nM = N$. Then there exists $a \in A$ such that
+$a \equiv 1 \bmod I$ and $aN = 0$.
+\end{theorem}
+
+\begin{proof}
+By NAK, it is enough to show that $N = IN$. By the Artin--Rees
+lemma, $I^nM \cap N \subset IN$ for sufficiently large $n$; now by definition of $N$, the
+left-hand side coincides with $N$.
+\end{proof}
+
+\begin{theorem}[the Krull intersection theorem]\label{thm:8.10}
+\begin{enumerate}[(i)]
+  \item Let $A$ be a Noetherian ring and $I$ an ideal of $A$ with $I \subset \rad A$; then for
+        any finite $A$-module the $I$-adic topology is separated, and any submodule is
+        a closed set.
+  \item If $A$ is a Noetherian integral domain and $I \subset A$ a proper ideal, then
+        \[
+          \bigcap_{n \ge 1} I^n = (0).
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) In this case the $a$ of the previous theorem is a unit of $A$, so that
+$N = 0$, and $M$ is separated. If $M' \subset M$ is a submodule then $M/M'$ is also
+$I$-adically separated, which is the same as saying that $M'$ is closed in $M$.
+
+(ii) Setting $M = A$ in the previous theorem, from $1 \notin I$ we get that $a \neq 0$,
+and since $a$ is not a zero-divisor, $N = 0$.
+\end{proof}
+
+\begin{theorem}\label{thm:8.11}
+Let $A$ be a Noetherian ring, $I$ and $J$ ideals of $A$, and $M$ a
+finite $A$-module; write $\hat{\;}$ for the completion of an $A$-module in the $I$-adic
+topology, and $\varphi\colon M \to \hat{M}$ for the natural map. Then
+\[
+  \widehat{(JM)} = J\hat{M} = \text{the closure of } \varphi(JM) \text{ in } \hat{M},
+\]
+and
+\[
+  \widehat{(M/JM)} = \hat{M}/J\hat{M}.
+\]
+\end{theorem}
+
+\begin{proof}
+By Theorems 1 and 6, $\widehat{(JM)}$ is the kernel of $\hat{M} \to \widehat{(M/JM)}$, and
+this is equal to the closure of $\varphi(JM)$ in $\hat{M}$ by Theorem 1. Now suppose $J
+= \sum_{i=1}^{r} a_iA$ and define $\varphi\colon M^r \to M$ by $(\xi_1, \ldots, \xi_r) \mapsto \sum a_i\xi_i$. Then the
+sequence
+\[
+  M^r \xrightarrow{\varphi} M \xrightarrow{\mu} M/JM \to 0,
+\]
+where $\mu$ is the natural map, is exact. The $I$-adic completion,
+\[
+  \hat{M}^r \xrightarrow{\hat{\varphi}} \hat{M} \xrightarrow{\hat{\mu}} \widehat{(M/JM)} \to 0,
+\]
+is again exact. On the other hand $\hat{\varphi}$ is given by the same formula
+$(\xi_1, \ldots, \xi_r) \mapsto \sum a_i\xi_i$ as $\varphi$, hence $\widehat{(JM)} = \Ker(\hat{\mu}) = \Im(\hat{\varphi}) = \sum a_i\hat{M} = J\hat{M}$.
+\end{proof}
+
+As is easily seen, the $(X_1, \ldots, X_n)$-adic completion of $A[X_1, \ldots, X_n]$
+is the formal power series ring
+\[
+  A[[X_1, \ldots, X_n]].
+\]
+Using this we get the following theorem.
+
+\begin{theorem}\label{thm:8.12}
+Let $A$ be a Noetherian ring, and $I = (a_1, \ldots, a_n)$ an ideal of
+$A$. Then the $I$-adic completion $\hat{A}$ of $A$ is isomorphic to
+$A[[X_1, \ldots, X_n]]/(X_1 - a_1, \ldots, X_n - a_n)$. Hence $\hat{A}$ is a Noetherian ring.
+\end{theorem}
+
+\begin{proof}
+Let $B = A[X_1, \ldots, X_n]$, and set $I' = \sum X_iB$, $J = \sum (X_i - a_i)B$;
+then $B/J \cong A$, and the $I'$-adic topology on $A$ considered as the $B$-module
+$B/J$ coincides with the $I$-adic topology of $A$. Now writing $\hat{\;}$ for the $I'$-adic
+completion of $B$-modules, we have
+\[
+  \hat{A} = \widehat{B/J} = \hat{B}/J\hat{B} = A[[X_1, \ldots, X_n]]/(X_1 - a_1, \ldots, X_n - a_n). \qquad\blacksquare
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:8.13}
+Let $A$ be a Noetherian ring, $I$ an ideal, $M$ a finite $A$-module,
+and $\hat{M}$ the $I$-adic completion of $M$; then the topology of $\hat{M}$ is the $I$-adic
+topology of $\hat{M}$ as an $A$-module, and is the $I\hat{A}$-adic topology of $\hat{M}$ as
+an $\hat{A}$-module.
+\end{theorem}
+
+\begin{proof}
+If we let $\hat{M}_n$ be the kernel of the map from $\hat{M} = \varprojlim (M/I^nM)$ to
+$M/I^nM$, the topology of $\hat{M}$ is that defined by $\{\hat{M}_n\}$. Thus it is enough to
+prove that $\hat{M}_n = I^n\hat{M}$. Since $M/I^nM$ is discrete in the $I$-adic topology, we
+have $\widehat{(M/I^nM)} = M/I^nM$, and the kernel of $\hat{M} \to \widehat{(M/I^nM)}$ is $I^n\hat{M}$ by
+Theorem 11. Therefore $\hat{M}_n = I^n\hat{M}$. Moreover, $I^n\hat{M}$ can also be written
+$(I^n\hat{A})\hat{M}$, and $I^n\hat{A} = \widehat{I^nA}$, so that the topology of $\hat{M}$ is also the $I\hat{A}$-adic
+topology.
+\end{proof}
+
+\begin{theorem}\label{thm:8.14}
+Let $A$ be a Noetherian ring and $I$ an ideal. If we consider $A$
+with the $I$-adic topology, the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $I \subset \rad(A)$;
+  \item every ideal of $A$ is a closed set;
+  \item the $I$-adic completion $\hat{A}$ of $A$ is faithfully flat over $A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+We have already seen $(1) \Rightarrow (2)$.
+
+$(2) \Rightarrow (3)$ Since $\hat{A}$ is flat over $A$, we need only prove that $m\hat{A} \neq \hat{A}$ for every
+maximal ideal $m$ of $A$. By assumption, $(0)$ is closed in $A$, so that we can
+assume that $A \subset \hat{A}$, and by Theorem 11, $m\hat{A}$ is the closure of $m$ in $\hat{A}$.
+However, $m$ is closed in $A$, so that $m\hat{A} \cap A = m$, and so $m\hat{A} \neq \hat{A}$.
+
+$(3) \Rightarrow (1)$ By Theorem~\ref{thm:7.5}, $m\hat{A} \cap A = m$ for every maximal ideal $m$ of $A$.
+Now $m\hat{A} \subset \hat{A}$ is a closed set by Theorems 2, (i) and 10, (i), and since the
+natural map $A \to \hat{A}$ is continuous, $m = m\hat{A} \cap A$ is closed in $A$. If $I \nsubseteq m$,
+then $I^n + m = A$ for every $n > 0$, so that $m$ is not closed. Thus $I \subset m$.
+\end{proof}
+
+If the conditions of the above theorem are satisfied, the topological ring $A$
+is said to be a \emph{Zariski ring}\index{Zariski ring}, and $I$ an \emph{ideal of definition} of $A$. An
+ideal of definition is not uniquely determined; any ideal defining the same
+topology will do. The most important example of a Zariski ring is a Noetherian
+local ring $(A, m)$ with the $m$-adic topology. When discussing the completion of a
+local ring, we will mean the $m$-adic completion unless otherwise specified.
+
+\begin{theorem}\label{thm:8.15}
+Let $A$ be a semilocal ring with maximal ideals $m_1, \ldots, m_n$,
+and set $I = \rad(A) = m_1m_2 \cdots m_n$. Then the $I$-adic completion $\hat{A}$ of $A$
+decomposes as a direct product
+\[
+  \hat{A} \cong \hat{A}_1 \times \cdots \times \hat{A}_n,
+\]
+where $A_i = A_{m_i}$, and $\hat{A}_i$ is the completion of the local ring $A_i$.
+\end{theorem}
+
+\begin{proof}
+Since for $i \neq j$ and any $n > 0$ we have $m_i^n + m_j^n = A$, Theorem~\ref{thm:1.4}
+gives
+\[
+  A/I^n = A/m_1^n \times \cdots \times A/m_n^n \quad \text{for } n > 0.
+\]
+Hence taking the limit we get
+\[
+  \hat{A} = \varprojlim A/I^n = \left(\varprojlim A/m_1^n\right) \times \cdots \times \left(\varprojlim A/m_n^n\right).
+\]
+If we set $A_i$ for the localisation of $A$ at $m_i$, then, since $A/m_i^n$ is already local,
+\[
+  A/m_i^n = (A/m_i^n)_{m_i} = A_i/m_i^nA_i,
+\]
+and so $\varprojlim A/m_i^n$ can be identified with $\hat{A}_i$.
+\end{proof}
+
+We now summarise the main points proved in this section for a local
+Noetherian ring. Let $(A, m)$ be a local Noetherian ring; then we have:
+\begin{enumerate}[(1)]
+  \item $\bigcap_{n \ge 0} m^n = (0)$.
+  \item For $M$ a finite $A$-module and $N \subset M$ a submodule,
+        \[
+          \bigcap_{n \ge 0} (N + m^nM) = N.
+        \]
+  \item The completion $\hat{A}$ of $A$ is faithfully flat over $A$; hence $A \subset \hat{A}$, and
+        $I\hat{A} \cap A = I$ for any ideal $I$ of $A$.
+  \item $\hat{A}$ is again a Noetherian local ring, with maximal ideal $m\hat{A}$, and it has
+        the same residue class field as $A$; moreover, $\hat{A}/m^n\hat{A} = A/m^n$ for all $n > 0$.
+  \item If $A$ is a complete local ring, then for any ideal $I \neq A$, $A/I$ is again a
+        complete local ring.
+\end{enumerate}
+
+\begin{remark}
+Even if $A$ is complete, the localisation $A_p$ of $A$ at a prime $p$ may
+not be.
+\end{remark}
+
+\begin{remark}
+An Artinian local ring $(A, m)$ is complete; in fact, it is clear from
+the proof of Theorem~\ref{thm:3.2} that there exists a $\nu$ such that $m^\nu = 0$, so that
+$A = \varprojlim A/m^n = A$.
+\end{remark}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:8}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:8.1-ex}
+If $A$ is a Noetherian ring, $I$ and $J$ are ideals of $A$, and $A$ is complete both for
+the $I$-adic and $J$-adic topologies, then $A$ is also complete for the $(I + J)$-
+adic topology.
+\end{exercise}
+
+\begin{exercise}\label{ex:8.2-ex}
+Let $A$ be a Noetherian ring, and $I, J$ ideals of $A$; if $A$ is $I$-adically
+complete, it is also $J$-adically complete.
+\end{exercise}
+
+\begin{exercise}\label{ex:8.3-ex}
+Let $A$ be a Zariski ring and $\hat{A}$ its completion. If $a \subset A$ is an ideal such that
+$a\hat{A}$ is principal, then $a$ is principal.
+\end{exercise}
+
+\begin{exercise}\label{ex:8.4-ex}
+According to Theorem~\ref{thm:8.12}, if $y \in \bigcap_{n} I^n$ then
+\[
+  y \in \sum_{i=1}^{n} (X_i - a_i)A[[X_1, \ldots, X_n]].
+\]
+Verify this directly in the special case $I = eA$, where $e^2 = e$.
+\end{exercise}
+
+\begin{exercise}\label{ex:8.5-ex}
+Let $A$ be a Noetherian ring and $I$ a proper ideal of $A$; consider the
+multiplicative set $S = 1 + I$ as in \S\ref{sec:4}, Example 3. Then $A_S$ is a Zariski ring
+with ideal of definition $IA_S$, and its completion coincides with the $I$-adic
+completion of $A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:8.6-ex}
+If $A$ is $I$-adically complete then $B = A[X]$ is $(IB + XB)$-adically complete.
+\end{exercise}
+
+\begin{exercise}\label{ex:8.7-ex}
+Let $(A, m)$ be a complete Noetherian local ring, and $a_1 \supset a_2 \supset \cdots$ a chain of
+ideals of $A$ for which $\bigcap_\nu a_\nu = (0)$; then for each $n$ there exists $\nu(n)$ for which
+$a_{\nu(n)} \subset m^n$. In other words, the linear topology defined by $\{a_\nu\}_{\nu=1,2,\ldots}$ is
+stronger than or equal to the $m$-adic topology (Chevalley's theorem).
+\end{exercise}
+
+\begin{exercise}\label{ex:8.8-ex}
+Let $A$ be a Noetherian ring, $a_1, \ldots, a_r$ ideals of $A$; if $M$ is a finite $A$-module
+and $N \subset M$ a submodule, then there exists $c > 0$ such that
+\[
+  a_1^{n_1} \cdots a_r^{n_r}M \cap N \subset a_1^{n_1-c} \cdots a_r^{n_r-c}(a_1^c \cdots a_r^c M \cap N).
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:8.9-ex}
+Let $A$ be a Noetherian ring and $P \in \Ass(A)$. Then there is an integer $c > 0$
+such that $P \in \Ass(A/I)$ for every ideal $I \subset P^c$ (hint: localise at $P$).
+\end{exercise}
+
+\begin{exercise}\label{ex:8.10-ex}
+Show by example that the conclusion of Ex.~\ref{ex:8.7-ex} does not necessarily hold
+if $A$ is not complete.
+\end{exercise}

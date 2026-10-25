@@ -1,0 +1,824 @@
+% ============ 第四章 §2 Riemann zeta 函数 ζ(s) 和 Dirichlet L-函数 L(s,χ) (原书 pp.147-173) ============
+\section{\texorpdfstring{Riemann zeta 函数 $\zeta(s)$ 和 Dirichlet $L$-函数 $L(s,\chi)$}{Riemann zeta 函数 zeta(s) 和 Dirichlet L-函数 L(s,chi)}}\label{sec:ch4-s2}
+
+\subsection{\texorpdfstring{$\zeta(s)$}{zeta(s)} 的函数方程, Riemann 猜想}\label{sec:ch4-s2-1}
+
+\begin{theorem}\label{thm:4.4}
+$\zeta(s)$ 可以解析延拓到整个复平面上，并且满足下面的函数方程
+\[
+  \pi^{-s/2}\Gamma(s/2)\zeta(s)=\pi^{-(1-s)/2}\Gamma\left(\frac{1-s}{2}\right)\zeta(1-s),
+\]
+其中 $\Gamma(s)$ 是 Gamma 函数。
+\end{theorem}
+
+在证明定理 \ref{thm:4.4} 之前，我们概要地叙述一下 Gamma 函数 $\Gamma(s)$ 的一些基本事实，然后介绍证明定理 \ref{thm:4.4} 的基本工具——Poisson 求和公式，最后给出定理的证明和一些推论。
+
+\paragraph{(1) Gamma 函数 $\Gamma(s)$}
+
+Gamma 函数的 Euler 定义是 $\Gamma(s)=\int_0^{\infty}x^{s-1}e^{-x}\mathrm{d}x$。右边积分在 $\operatorname{Re}(s)>0$ 时收敛。分部积分给出 $\Gamma(s+1)=s\Gamma(s)$。由此可将 $\Gamma(s)$ 解析延拓到整个复平面上，并且显然有 $\Gamma(n+1)=n!$。注意
+\[
+  \frac{1}{\Gamma(s)}=\frac{s}{\Gamma(s+1)}=\frac{s(s+1)\cdots(s+n)}{\Gamma(s+n+1)}
+  =\frac{\Gamma(n+1)}{\Gamma(s+n+1)}s(1+s/1)(1+s/2)\cdots(1+s/n).
+\]
+不幸的是，无穷乘积 $\prod_{n=1}^{\infty}(1+s/n)$ 发散。补救办法是加上``收敛因子'' $e^{-s/n}$，于是 $\prod_{n=1}^{\infty}(1+s/n)e^{-s/n}$ 收敛。由 $\sum_{k=1}^{n}\frac{1}{k}=\log n+\gamma+O\left(\frac{1}{n}\right)$（$\gamma$ 叫作是 \emph{Euler 常数}）和渐近公式 $\Gamma(n+s)\sim n^{s-1}\left(\frac{n}{e}\right)^n\cdot\sqrt{2\pi n}$，可以推导出 $1/\Gamma(s)$ 的 Weierstrass 无穷乘积展开式：
+\[
+  1/\Gamma(s)=se^{\gamma s}\prod_{n=1}^{\infty}(1+s/n)e^{-s/n}.
+\]
+从而 $\frac{1}{\Gamma(s)}$ 为整函数，零点为 $s=0,-1,-2,\cdots$，并且均是单零点。于是 $\Gamma(s)$ 在整个复平面上只有奇点 $s=0,-1,-2,\cdots$，并且均是单极点，且留数为 $\underset{s=-n}{\operatorname{res}}\Gamma(s)=(-1)^n/n!$。由 $1/\Gamma(s)$ 的无穷乘积展开式还可得到
+\[
+  1/\Gamma(s)\Gamma(-s)=s^2\prod_{n=1}^{\infty}(1-s^2/n^2)=-s\frac{\sin\pi s}{\pi},
+\]
+即 $\Gamma(s)\Gamma(1-s)=\pi/\sin\pi s$。由此可知 $\Gamma(1/2)=\sqrt{\pi}$。
+
+\paragraph{(2) Poisson 求和公式}
+
+\begin{sloppypar}
+设 $g(x)$ 是周期为 $1$ 的实变函数。在适当的条件下（见后），它有 Fourier 展开：
+\[
+  g(x)=\sum_{n=-\infty}^{\infty}a_ne^{2\pi inx},\qquad a_n=\int_0^1g(x)e^{-2\pi inx}\mathrm{d}x.
+\]
+现在设 $f(x)$ 是 $(-\infty,\infty)$ 上的连续函数，而 $g(x)=\sum_{n=-\infty}^{\infty}f(n+x)$。如果 $g(x)$ 有意义的话，$g(x)$ 显然是周期为 $1$ 的实变函数。这时，如果 $g(x)$ 可作 Fourier 展开，那么其 Fourier 系数为
+\begin{align*}
+  a_k&=\int_0^1\left(\sum_{n=-\infty}^{\infty}f(x+n)\right)e^{-2\pi ikx}\mathrm{d}x
+  =\sum_{n=-\infty}^{\infty}\int_0^1f(x+n)e^{-2\pi ikx}\mathrm{d}x\\
+  &=\sum_{n=-\infty}^{\infty}\int_n^{n+1}f(x)e^{-2\pi ikx}\mathrm{d}x
+  =\int_{-\infty}^{\infty}f(x)e^{-2\pi ikx}\mathrm{d}x.
+\end{align*}
+取 $x=0$ 即得到
+\[
+  \sum_{n=-\infty}^{\infty}f(n)=g(0)=\sum_{n=-\infty}^{\infty}a_n.
+\]
+以上推导中我们随意地写上 $\sum_{-\infty}^{\infty}\int_{-\infty}^{\infty}$ 以及交换 $\sum$ 和 $\int$ 的次序。作为微积分的很好练习，请读者自行验证，在下述引理诸条件 (a)$\sim$(d) 均成立的时候，上面的推导是合理的。这就使我们得到
+\end{sloppypar}
+
+\begin{lemma}[\emph{Poisson 求和公式}]\label{lem:ch4-4}
+假设 $f(x)$ 为实变函数，并且
+\begin{enumerate}[(a)]
+  \item $f(x)$ 在 $(-\infty,\infty)$ 上连续；
+  \item $\sum_{n=-\infty}^{\infty}f(x+n)$ 在每个有限区间 $a\leqslant x\leqslant b$ 上均一致收敛；
+  \item 积分 $\int_{-\infty}^{\infty}|f(x)|\mathrm{d}x$ 收敛；
+  \item 级数 $\sum_{k=-\infty}^{\infty}|a_k|$ 收敛，其中 $a_k=\int_{-\infty}^{\infty}f(x)e^{-2\pi ikx}\mathrm{d}x$，
+\end{enumerate}
+则
+\[
+  \sum_{n=-\infty}^{\infty}f(n)=\sum_{n=-\infty}^{\infty}a_n.
+\]
+\end{lemma}
+
+\paragraph{(3) 定理 4.4 的证明}
+
+\begin{sloppypar}
+当 $\operatorname{Re}(s)>1$，$t>0$ 时，
+\begin{align*}
+  \pi^{-s/2}\zeta(s)\Gamma(s/2)
+  &=\int_0^{\infty}\pi^{-s/2}\sum_{n=1}^{\infty}n^{-s}t^{s/2-1}e^{-t}\mathrm{d}t\qquad(t\mapsto\pi n^2t)\\
+  &=\int_0^{\infty}t^{s/2-1}\left(\sum_{n=1}^{\infty}e^{-\pi n^2t}\right)\mathrm{d}t
+  =\int_0^1+\int_1^{\infty}\\
+  &=\int_1^{\infty}x^{s/2-1}w(x)\mathrm{d}x+\int_1^{\infty}x^{-s/2-1}w(x^{-1})\mathrm{d}x,\tag{*}
+\end{align*}
+其中 $w(x)=\sum_{n=1}^{\infty}e^{-n^2\pi x}$。令 $\theta(x)=\sum_{n=-\infty}^{\infty}e^{-n^2\pi x}=1+2w(x)$。在 Poisson 公式中取 $f(t)=e^{-t^2\pi x}$，则 $a_n=\int_{-\infty}^{\infty}f(t)e^{-2\pi int}\mathrm{d}t=\frac{1}{\sqrt{x}}e^{-\pi n^2/x}$。不难验证引理 \ref{lem:ch4-4} 中诸条件均成立（原因是当 $|t|\to\infty$ 时 $f(t)$ 下降很快）。于是
+\[
+  \theta(x)=\sum_{n=-\infty}^{\infty}f(n)=\frac{1}{\sqrt{x}}\sum_{n=-\infty}^{\infty}e^{-\pi n^2/x}=\frac{1}{\sqrt{x}}\theta(1/x),
+\]
+从而 $w(1/x)=-\frac{1}{2}+\frac{\sqrt{x}}{2}+\sqrt{x}w(x)$。将此代入 (*) 式得到
+\[
+  \pi^{-s/2}\Gamma(s/2)\zeta(s)
+  =-\frac{1}{s}-\frac{1}{1-s}+\int_1^{\infty}x^{s/2-1}w(x)\mathrm{d}x+\int_1^{\infty}x^{\frac{1-s}{2}-1}w(x)\mathrm{d}x.
+\]
+但是上式右边两个积分对于任何 $s$ 值均有意义，所以通过上式将 $\zeta(s)$ 解析延拓到整个复平面上，并且如果将 $s$ 改成 $1-s$，上式右边不变，从而
+\[
+  \pi^{-s/2}\Gamma(s/2)\zeta(s)=\pi^{-(1-s)/2}\Gamma\left(\frac{1-s}{2}\right)\zeta(1-s).
+\]
+\end{sloppypar}
+
+\begin{corollarynonum}
+\begin{enumerate}[(a)]
+  \item $\zeta(s)$ 在整个复平面上只有一个奇点 $s=1$，并且是留数为 $1$ 的单极点。
+  \item $s=-2,-4,-6,\cdots$ 是 $\zeta(s)$ 的单零点（称作是 $\zeta(s)$ 的\emph{平凡零点}）。而 $\zeta(s)$ 的其他零点均在区域 $0<\operatorname{Re}(s)<1$ 之内，并且这些零点对于垂直线 $\operatorname{Re}(s)=1/2$ 是对称的。
+\end{enumerate}
+\end{corollarynonum}
+
+\begin{proof}
+当 $\operatorname{Re}(s)>1$ 时，$\zeta(s)$ 有收敛的无穷乘积展开式，从而 $\zeta(s)$ 无零点也无奇点。当 $\operatorname{Re}(s)<0$ 时，
+\begin{equation}\tag{*}
+  \zeta(s)=\pi^{s-1/2}\zeta(1-s)\Gamma(1-s/2)/\Gamma(s/2).
+\end{equation}
+由于 $\operatorname{Re}(1-s)>1$，从而这时 $\zeta(s)$ 的奇点与零点只与 Gamma 函数有关。由于 $\Gamma(s)$ 无零点，而只有极点 $0,-1,-2,\cdots$，并且均是单极点，$\operatorname{res}_{s=-n}\Gamma(s)=(-1)^n/n!$。从而由 (*) 式即知 $\zeta(s)$ 在 $\operatorname{Re}(s)<0$ 中没有极点，而零点只有 $s=-2,-4,-6,\cdots$，并且均是单零点（注意在 $s=0$ 处，
+\[
+  \zeta(0)=\lim_{s\to0}\frac{\pi^{-1/2}\zeta(1-s)\Gamma(1/2)}{\Gamma(s/2)}=-1/2\neq 0
+\]
+）。在 $0<\operatorname{Re}(s)\leqslant 1$ 中，我们已经证明了 $\zeta(s)$ 只有一个极点 $s=1$。由 (*) 式即知在直线 $\operatorname{Re}(s)=0$ 上 $\zeta(s)$ 无奇点。于是在整个复平面上只有一个（单）奇点 $s=1$。最后，下面引理 \ref{lem:ch4-5} 表明 $\zeta(s)$ 在直线 $s=1+it$ 上无零点，从而由 (*) 式表明 $\zeta(s)$ 在直线 $s=it$ 上也无零点，这就表明 $\zeta(s)$ 的非平凡零点均在区域 $0<\operatorname{Re}(s)<1$ 中。并且若 $s_0$ 是 $\zeta(s)$ 在此区域中的零点，则由 (*) 式可知 $1-s_0$ 也是 $\zeta(s)$ 在此区域中的零点，从而非平凡零点关于直线 $\operatorname{Re}(s)=1/2$ 是对称的。
+\end{proof}
+
+\begin{remark}
+著名的 Riemann 猜想是说：$\zeta(s)$ 的非平凡零点均在直线 $\operatorname{Re}(s)=\frac{1}{2}$ 之上。人们已经验证了，按照零点绝对值的大小，前 $1.5\times10^8$ 个非平凡零点均在 $\operatorname{Re}(s)=1/2$ 直线上。例如其中前 $8$ 个零点为：$\frac{1}{2}\pm i(14.134725\cdots)$，$\frac{1}{2}\pm i(21.022040\cdots)$，$\frac{1}{2}\pm i(25.010856\cdots)$ 和 $\frac{1}{2}\pm i(30.424878\cdots)$，但是 Riemann 猜想至今未被证明或推翻。
+\end{remark}
+
+\begin{lemma}\label{lem:ch4-5}
+对于任意 $t\in\R$，$\zeta(1+it)\neq 0$。
+\end{lemma}
+
+\begin{proof}
+令 $s=\sigma+it$。当 $\sigma>1$ 时 $\zeta(s)=\prod_p(1-p^{-s})^{-1}$，从而
+\[
+  \log\zeta(s)=-\sum_p\log(1-p^{-s})=\sum_p\sum_{m=1}^{\infty}\frac{1}{mp^{ms}}.
+\]
+\begin{sloppypar}
+因此若令 $\exp(\alpha)=e^{\alpha}$，则 $\zeta(s)=\exp\left(\sum_p\sum_{m=1}^{\infty}e^{-imt\log p}/mp^{m\sigma}\right)$，从而 $|\zeta(s)|=\exp\left\{\sum_p\sum_{m=1}^{\infty}\cos(mt\log p)/mp^{m\sigma}\right\}$，于是
+\end{sloppypar}
+\[
+  \zeta^3(\sigma)|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|
+  =\exp\left\{\sum_p\sum_{m=1}^{\infty}A_m/mp^{m\sigma}\right\},
+\]
+其中
+\begin{align*}
+  A_m&=3+4\cos(mt\log p)+\cos(2mt\log p)\\
+  &=2\{\cos(mt\log p)+1\}^2\geqslant 0.
+\end{align*}
+从而 $\zeta^3(\sigma)|\zeta(\sigma+it)|^4|\zeta(\sigma+2it)|\geqslant 1$（当 $\sigma>1$ 时），或者写成：
+\[
+  ((\sigma-1)\zeta(\sigma))^3\left|\frac{\zeta(\sigma+it)}{\sigma-1}\right|^4|\zeta(\sigma+2it)|
+  \geqslant\frac{1}{\sigma-1}\qquad(\sigma>1\ \text{时}).
+\]
+我们已经知道 $s=1$ 是 $\zeta(s)$ 的奇点；另一方面，如果 $1+it$（$t\neq 0$）为 $\zeta(s)$ 的零点，由定理 \ref{thm:4.4} 的系可知当 $\sigma\to1$ 时，上式左边为常数，而右边 $\to\infty$，这就导致矛盾。
+\end{proof}
+
+\subsection{有限 Abel 群的特征}\label{sec:ch4-s2-2}
+
+\begin{definition}\label{def:ch4-3}
+设 $G$ 是有限 Abel 群（运算记为乘法），从 $G$ 到乘法群 $\C^*=\C-\{0\}$ 的每个同态 $\chi\colon G\to\C^*$ 均叫作是群 $G$ 的\emph{特征}。
+\end{definition}
+
+如果 $|G|=n$，则对于每个 $g\in G$，$\chi(g)^n=\chi(g^n)=\chi(1_G)=1$。因此特征 $\chi$ 的取值均是 $n$ 次单位根。
+
+\begin{example}
+$\chi\equiv 1$ 显然是 $G$ 的特征，称作是 $G$ 的\emph{主特征}，记为 $\chi_0$。
+\end{example}
+
+\begin{example}
+设 $C_n=\langle a\mid a^n=1\rangle$ 是 $n$ 阶循环群，$\chi$ 为 $C_n$ 的特征。由上述可知 $\chi(a)=\omega^t$，$\omega=e^{2\pi i/n}$，$0\leqslant t\leqslant n-1$。并且 $\chi$ 由它在 $a$ 处的取值所完全决定：$\chi(a^j)=\omega^{tj}$（$0\leqslant j\leqslant n-1$）。这个特征记为 $\chi_t$，于是 $\{\chi_0,\chi_1,\dots,\chi_{n-1}\}$ 就是 $C_n$ 的全部 $n$ 个不同的特征。
+\end{example}
+
+以 $\widehat{G}$ 表示有限 Abel 群 $G$ 的全部特征所构成的集合。对于 $\chi,\chi'\in\widehat{G}$，定义特征的乘法 $\chi\chi'$ 为 $\chi\chi'(g)=\chi(g)\chi'(g)$（$g\in G$），易知 $\chi\chi'$ 也是群 $G$ 的特征，并且 $\widehat{G}$ 由此形成 Abel 群，叫作是 $G$ 的\emph{特征群}。$\widehat{G}$ 中单位元素即是主特征 $\chi_0$。若 $\chi^{-1}$ 表示特征 $\chi$ 的逆，则 $\chi^{-1}(g)=\chi(g)^{-1}=\overline{\chi(g)}$（注意 $\chi(g)$ 是单位根），即 $\chi^{-1}(g)$ 是 $\chi(g)$ 的复共轭。因此也将 $\chi^{-1}$ 表示成 $\overline{\chi}$，称作是 $\chi$ 的共轭特征。
+
+\begin{theorem}\label{thm:4.5}
+设 $G$ 为有限 Abel 群，则其特征群 $\widehat{G}$ 与 $G$ 正则同构。
+\end{theorem}
+
+\begin{proof}
+我们知道，每个有限 Abel 群 $G$ 均是有限个循环群的直积：$G=C_{n_1}\times C_{n_2}\times\cdots\times C_{n_r}$，$C_{n_t}=\langle a_t\mid a_t^{n_t}=1\rangle$ 为 $G$ 的 $n_t$ 阶循环子群（$1\leqslant t\leqslant r$）。设 $\chi\in\widehat{G}$，$\chi$ 在每个子群 $C_{n_t}$ 上的限制显然为 $C_{n_t}$ 的特征，从而由例 2 知 $\chi(a_t)=\zeta_{n_t}^{j_t}$（$0\leqslant j_t\leqslant n_t-1$）。由于 $G$ 中元素惟一地表示成 $a_1^{i_1}\cdots a_r^{i_r}$（$0\leqslant i_t\leqslant n_t-1$，$1\leqslant t\leqslant r$），从而
+\[
+  \chi(a_1^{i_1}\cdots a_r^{i_r})=\chi(a_1)^{i_1}\cdots\chi(a_r)^{i_r}
+  =\zeta_{n_1}^{i_1j_1}\cdots\zeta_{n_r}^{i_rj_r}
+\]
+对于每组 $(j_1,\cdots,j_r)$。易知上式定义的函数均是 $G$ 的特征。将它表示成 $\chi_{j_1,\cdots,j_r}$，则 $\{\chi_{j_1,\cdots,j_r}\mid j_t\in\Z,\ 1\leqslant t\leqslant r\}$ 就是 $G$ 的全部可能的特征，易知
+\[
+  \chi_{j_1,\dots,j_r}=\chi_{j'_1,\dots,j'_r}\Leftrightarrow j_t\equiv j'_t\ (\mathrm{mod}\ n_t)\ (1\leqslant t\leqslant r).
+\]
+从而若将 $j_t$ 看成是 $\Z/n_t\Z$ 中元素，则
+\[
+  \{\chi_{j_1,\dots,j_r}\mid j_t\in\Z/n_t\Z,\ 1\leqslant t\leqslant r\}
+  =\{\chi_{j_1,\dots,j_r}\mid 0\leqslant j_t\leqslant n_t-1,\ 1\leqslant t\leqslant r\}
+\]
+就是 $G$ 的全部特征，并且两两不同。又易证
+\[
+  \chi_{j_1,\dots,j_r}\cdot\chi_{j'_1,\dots,j'_r}=\chi_{j_1+j'_1,\dots,j_r+j'_r}.
+\]
+从而映射
+\[
+  \psi\colon\widehat{G}\to G,\qquad \chi_{j_1,\dots,j_r}\mapsto a_1^{j_1}\cdots a_r^{j_r}
+\]
+是群 $\widehat{G}$（$\cong\Z/n_1\Z\oplus\cdots\oplus\Z/n_r\Z$）与群 $G=C_{n_1}\times\cdots\times C_{n_r}$ 的同构。
+\end{proof}
+
+\setcounter{example}{0}% 原书例编号分组
+
+\begin{example}
+$5$ 阶循环群 $C_5=\langle a\mid a^5=1\rangle$ 的特征群为
+\[
+  \widehat{G}_5=\langle\chi\rangle,
+\]
+其中 $\chi(a)=\omega$，$\omega=e^{2\pi i/5}$。从而全部特征取值如下表所示：
+\[
+  \begin{array}{c|ccccc}
+    & 1 & a & a^2 & a^3 & a^4\\ \hline
+    \chi_0=\chi^0 & 1 & 1 & 1 & 1 & 1\\
+    \chi & 1 & \omega & \omega^2 & \omega^3 & \omega^4\\
+    \chi^2 & 1 & \omega^2 & \omega^4 & \omega & \omega^3\\
+    \chi^3 & 1 & \omega^3 & \omega & \omega^4 & \omega^2\\
+    \chi^4 & 1 & \omega^4 & \omega^3 & \omega^2 & \omega
+  \end{array}
+\]
+\end{example}
+
+\begin{example}
+$(2,2)$ 型 Abel 群 $C_2\times C_2=\langle a,b\mid a^2=b^2=1,\ ab=ba\rangle$ 的特征群为 $\widehat{G}=\{\chi_0,\chi_1,\chi_2,\chi_1\chi_2\}$，其值为
+\[
+  \begin{array}{c|cccc}
+    & 1 & a & b & ab\\ \hline
+    \chi_0 & 1 & 1 & 1 & 1\\
+    \chi_1 & 1 & -1 & 1 & -1\\
+    \chi_2 & 1 & 1 & -1 & -1\\
+    \chi_1\chi_2 & 1 & -1 & -1 & 1
+  \end{array}
+\]
+\end{example}
+
+\begin{theorem}[\emph{正交关系}]\label{thm:4.6}
+设 $G$ 为 $n$ 阶 Abel 群，则
+\begin{enumerate}[(a)]
+  \item $\sum_{g\in G}\chi(g)=\begin{cases}n, & \text{如果}\ \chi=\chi_0;\\ 0, & \text{否则}.\end{cases}$
+  \item $\sum_{\chi\in\widehat{G}}\chi(g)=\begin{cases}n, & \text{如果}\ g=1_G;\\ 0, & \text{否则}.\end{cases}$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) 显然 $\sum_{g\in G}\chi_0(g)=\sum_{g\in G}1=|G|=n$。如果 $\chi\neq\chi_0$，则存在 $b\in G$，使得 $\chi(b)\neq 1$，于是
+\[
+  \sum_{g\in G}\chi(g)=\sum_{g\in G}\chi(bg)=\sum_{g\in G}\chi(b)\chi(g)=\chi(b)\sum_{g\in G}\chi(g).
+\]
+但是 $\chi(b)\neq 1$，从而必然 $\sum_{g\in G}\chi(g)=0$。
+
+(b) 显然 $\sum_{\chi\in\widehat{G}}\chi(1)=\sum_{\chi\in\widehat{G}}1=|\widehat{G}|=|G|=n$。如果 $g\neq 1$，令 $G'=\langle g\rangle$ 为元素 $g$ 生成的 $G$ 之子群，则 $|G'|>1$，于是 $|G/G'|<n$。令 $H=\{\chi\in\widehat{G}\mid\chi(g)=1\}$，则对于每个 $\chi\in H$，同态 $\chi\colon G\to\C^*$ 的核 $\ker\chi\supseteq G'$，从而自然诱导出商群 $G/G'$ 的特征 $\widetilde{\chi}\colon G/G'\to\C^*$。并且对于 $H$ 中两个不同的特征 $\chi$ 和 $\chi'$，$\widetilde{\chi}$ 与 $\widetilde{\chi}'$ 也不相同。但是 $G/G'$ 的特征共有 $|G/G'|$ 个，这就表明
+\[
+  |H|\leqslant|\widehat{G/G'}|=|G/G'|<n=|\widehat{G}|.
+\]
+于是 $H\subsetneqq\widehat{G}$，从而存在 $\psi\in\widehat{G}$，使得 $\psi(g)\neq 1$，于是
+\[
+  \sum_{\chi\in\widehat{G}}\chi(g)=\sum_{\chi\in\widehat{G}}\psi\chi(g)
+  =\sum_{\chi\in\widehat{G}}\psi(g)\chi(g)=\psi(g)\sum_{\chi\in\widehat{G}}\chi(g).
+\]
+由于 $\psi(g)\neq 1$，因此必然 $\sum_{\chi\in\widehat{G}}\chi(g)=0$。
+\end{proof}
+
+\begin{definition}\label{def:ch4-4}
+加法群 $\Z/m\Z$ 的每个特征 $\lambda$ 叫作是\emph{模 $m$ 加法特征}。由于 $\Z/m\Z$ 是 $m$ 阶循环群，从而它的特征群也是 $m$ 阶循环群。其生成元可取为 $\lambda\colon\Z/m\Z\to\C^*$，$\lambda(1)=\zeta_m$。从而模 $m$ 加法特征群为 $\{\lambda^a\mid 0\leqslant a\leqslant m-1\}$，其中 $\lambda^a(n)=e^{2\pi ina/m}=\zeta_m^{an}$（$\overline{n}\in\Z/m\Z$）。
+\end{definition}
+
+乘法群 $(\Z/m\Z)^{\times}$ 的每个特征叫作是\emph{模 $m$ 乘法特征}，通常也称作是模 $m$ 的 \emph{Dirichlet 特征}，简称作模 $m$ 的 $D$-特征。从定理 \ref{thm:4.5} 的证明可知，为了决定模 $m$ 的全部 $D$-特征，我们只需弄清有限 Abel 群 $(\Z/m\Z)^{\times}$ 的结构。这是初等数论的内容。详言之，设 $m=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ 为 $m$ 的素因子分解式，则由中国剩余定理知道
+\[
+  (\Z/m\Z)^{\times}\cong(\Z/p_1^{\alpha_1}\Z)^{\times}\times\cdots\times(\Z/p_r^{\alpha_r}\Z)^{\times}.
+\]
+而 $(\Z/p^n\Z)^{\times}$ 的结构为：
+
+(a) 当 $p\geqslant 3$，$n\geqslant 1$ 时 $(\Z/p^n\Z)^{\times}$ 是 $\varphi(p^n)$ 阶循环群，其生成元 $g$ 可取为模 $p^n$ 的任何一个原根。
+
+(b) $(\Z/2\Z)^{\times}=\{1\}$，$(\Z/4\Z)^{\times}=\{\pm1\}$（$2$ 阶循环群），而当 $n\geqslant 3$ 时，$(\Z/2^n\Z)^{\times}=\langle-1\rangle\times\langle5\rangle$，其中 $-1$ 和 $5$ 分别生成 $(\Z/2^n\Z)^{\times}$ 的 $2$ 阶和 $2^{n-2}$ 阶循环子群。
+
+由此完全决定了乘法群 $(\Z/m\Z)^{\times}$ 的结构，然后不难写出全部 $\varphi(m)$ 个模 $m$ 的 $D$-特征。
+
+\setcounter{example}{0}% 原书例编号分组
+
+\begin{example}
+$(\Z/4\Z)^{\times}=\{\pm1\}$，从而模 $4$ 有两个 $D$-特征：$\chi_0$ 和 $\chi_1$。
+\[
+  \begin{array}{c|cc}
+    & 1 & -1(=3)\\ \hline
+    \chi_0 & 1 & 1\\
+    \chi_1 & 1 & -1
+  \end{array}
+\]
+\end{example}
+
+\begin{example}
+$(\Z/8\Z)^{\times}=\langle-1\rangle\times\langle5\rangle$，而 $-1$ 和 $5$ 均生成 $2$ 阶循环群。从而模 $8$ 有 $4$ 个 $D$-特征：$\chi_0,\chi_1,\chi_2,\chi_3=\chi_1\chi_2$。
+\[
+  \begin{array}{c|cccc}
+    & 1 & -1=7 & 5 & -5=3\\ \hline
+    \chi_0 & 1 & 1 & 1 & 1\\
+    \chi_1 & 1 & -1 & 1 & -1\\
+    \chi_2 & 1 & 1 & -1 & -1\\
+    \chi_1\chi_2=\chi_3 & 1 & -1 & -1 & 1
+  \end{array}
+\]
+\end{example}
+
+\begin{example}
+$(\Z/5\Z)^{\times}=\langle3\rangle$，即是由模 $5$ 的原根 $3$ 生成的 $4$ 阶循环群。从而模 $5$ 的 $4$ 个 $D$-特征为 $\chi_0,\chi,\chi^2$ 和 $\chi^3$，其中 $\chi(3)=i=\sqrt{-1}$。
+\[
+  \begin{array}{c|cccc}
+    & 1 & 3 & 3^2=4 & 3^3=2\\ \hline
+    \chi_0 & 1 & 1 & 1 & 1\\
+    \chi & 1 & i & -1 & -i\\
+    \chi^2 & 1 & -1 & 1 & -1\\
+    \overline{\chi}=\chi^3 & 1 & -i & -1 & i
+  \end{array}
+\]
+\end{example}
+
+\begin{definition}\label{def:ch4-5}
+设 $\chi$ 为模 $m$ 的 $D$-特征，由于 $\chi(-1)^2=\chi(1)=1$，从而 $\chi(-1)=\pm1$。如果 $\chi(-1)=1$，称 $\chi$ 为\emph{偶特征}；如果 $\chi(-1)=-1$，称 $\chi$ 为\emph{奇特征}。
+\end{definition}
+
+\begin{lemma}\label{lem:ch4-6}
+设 $\chi$ 是模 $m$ 的 $D$-特征，$d\mid m$，则下列 $3$ 个条件彼此等价。
+\begin{enumerate}[(a)]
+  \item 存在模 $d$ 的 $D$-特征 $\chi'$，使得当 $(a,m)=1$（从而 $(a,d)=1$）时，$\chi(a)=\chi'(a)$；
+  \item $(a,m)=1$，$a\equiv 1\ (\mathrm{mod}\ d)\Rightarrow\chi(a)=1$；
+  \item $(a,m)=(a',m)=1$，$a\equiv a'\ (\mathrm{mod}\ d)\Rightarrow\chi(a)=\chi(a')$。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$(a)\Rightarrow(b)\Rightarrow(c)$ 是显然的。剩下只需再证 $(c)\Rightarrow(a)$。我们如下定义一个函数 $\chi'$：若 $(a,d)=1$，则由中国剩余定理，存在 $a'\in\Z$，使得 $a'\equiv a\ (\mathrm{mod}\ d)$ 并且 $(a',m)=1$（例如对每个满足 $p\mid m$，$p\nmid d$ 的素数 $p$，要求 $a'\equiv 1\ (\mathrm{mod}\ p)$ 即可）。如果条件 (c) 成立，则我们可以定义函数 $\chi'(a)=\chi(a')$。易知这是模 $d$ 的 $D$-特征，并且当 $(a,m)=1$ 时，$\chi'(a)=\chi(a')=\chi(a)$。
+\end{proof}
+
+\begin{sloppypar}
+如果引理 \ref{lem:ch4-6} 中的条件成立，并且 $d$ 是 $m$ 的真因子（即 $d\mid m$，$1\leqslant d<m$），则称 $\chi$ 是模 $m$ 的\emph{非本原 $D$-特征}。因为 $\chi$ 是由 $\chi'$ 诱导出来的，而 $\chi'$ 有比 $\chi$ 小的模，否则，如果不存在 $m$ 的真因子 $d$ 使得引理 \ref{lem:ch4-6} 中的条件成立，便称 $\chi$ 是模 $m$ 的\emph{本原 $D$-特征}。而满足引理 \ref{lem:ch4-6} 中条件的最小正数 $d$ 称作是特征 $\chi$ 的\emph{导子}（conductor，德文 Führer），记为 $\operatorname{cond}(\chi)$。
+\end{sloppypar}
+
+\begin{lemma}\label{lem:ch4-7}
+设 $\chi$ 为模 $m$ 的 $D$-特征，$\operatorname{cond}(\chi)=d$，则 $\chi$ 是由模 $d$ 的某个本原 $D$-特征诱导出来的。
+\end{lemma}
+
+\begin{proof}
+根据定义可知 $\chi$ 可由模 $d$ 的某个 $D$-特征 $\chi'$ 诱导出来，即 $(a,m)=1$ 时，$\chi(a)=\chi'(a)$。如果 $\chi'$ 不是模 $d$ 本原特征，则存在 $d$ 的真因子 $d'$ 和模 $d'$ 的 $D$-特征 $\chi''$，使得 $(a,d)=1$ 时 $\chi'(a)=\chi''(a)$。于是当 $(a,m)=1$（从而 $(a,d)=1$）时，$\chi(a)=\chi''(a)$。即 $\chi$ 也是由 $\chi''$ 诱导出来的。但是 $\chi''$ 具有模 $d'<d$，这就与 $\operatorname{cond}(\chi)=d$ 相矛盾，从而 $\chi'$ 必为模 $d$ 的本原 $D$-特征。
+\end{proof}
+
+比如：前面给出模 $8$ 的 $4$ 个 $D$-特征中，$\chi_2$ 和 $\chi_3$ 是模 $8$ 的本原特征：$\operatorname{cond}(\chi_2)=\operatorname{cond}(\chi_3)=8$，而 $\chi_1$ 是由模 $4$ 本原特征``$\chi(1)=1,\chi(-1)=-1$''诱导出来的，从而 $\operatorname{cond}(\chi_1)=4$。最后，主特征 $\chi_0$ 的导子必为 $1$。
+
+最后我们来计算将模 $m$ 加法特征与乘法特征放在一起的一个和式——Gauss 和，它在数论中起着重要的作用。设 $\lambda$ 和 $\chi$ 分别是模 $m$ 的加法特征与 $D$-特征。为方便起见，当 $(m,a)>1$ 时，我们规定 $\chi(a)=0$。
+
+\begin{definition}\label{def:ch4-6}
+$G(\lambda,\chi)=\sum_{n=0}^{m-1}\lambda(n)\chi(n)$ 叫作模 $m$ 的 \emph{Gauss 和}。由于模 $m$ 的加法特征均有形式 $\lambda_k(n)=e^{2\pi ikn/m}$（$0\leqslant k\leqslant m-1$），从而 Gauss 和也可写成
+\[
+  G(k,\chi)=\sum_{n=0}^{m-1}\chi(n)e^{2\pi ikn/m}.
+\]
+\end{definition}
+
+\begin{remark}
+我们在第三章中计算过和式 $G_p(r)=\sum_{n=1}^{p-1}\left(\frac{n}{p}\right)e^{2\pi irn/p}$，这是一个模 $p$ 的 Gauss 和，因为 $\left(\frac{n}{p}\right)=\chi(n)$ 为模 $p$ 的 $D$-特征。
+\end{remark}
+
+\begin{theorem}\label{thm:4.7}
+\begin{enumerate}[(a)]
+  \item 若 $(k,m)=1$，则 $G(k,\chi)=\overline{\chi}(k)G(1,\chi)$；
+  \item 若 $\chi$ 为模 $m$ 的本原 $D$-特征，则 $|G(1,\chi)|=\sqrt{m}$。并且当 $(k,m)>1$ 时，$G(k,\chi)=0$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) 如果 $(k,m)=1$，则
+\begin{align*}
+  G(k,\chi)&=\sum_{n=0}^{m-1}\chi(n)e^{\frac{2\pi ikn}{m}}
+  =\sum_{n=0}^{m-1}\overline{\chi}(k)\chi(nk)e^{2\pi ikn/m}\\
+  &=\overline{\chi}(k)\sum_{n=0}^{m-1}\chi(n)e^{2\pi in/m}
+  =\overline{\chi}(k)G(1,\chi).
+\end{align*}
+
+(b) 如果 $(k,m)=d>1$，令 $k=k'd$，$m=m'd$，则 $m'<m$。由于 $\chi$ 是模 $m$ 本原 $D$-特征，由引理 \ref{lem:ch4-6} 可知存在 $r\in\Z$，$r\equiv 1\ (\mathrm{mod}\ m')$，$(r,m)=1$，而 $\chi(r)\neq 1$。于是
+\begin{align*}
+  G(k,\chi)&=\sum_{n=0}^{m-1}\chi(n)e^{2\pi ink'/m'}
+  =\sum_{\lambda=0}^{m'-1}e^{2\pi ik'\lambda/m'}\sum_{\substack{n=0\\ n\equiv\lambda\ (\mathrm{mod}\ m')}}^{m-1}\chi(n)\\
+  &=\sum_{\lambda=0}^{m'-1}e^{2\pi ik'\lambda/m'}\sum_{\substack{n=0\\ n\equiv\lambda\ (\mathrm{mod}\ m')}}^{m-1}\chi(nr)\\
+  &=\chi(r)\sum_{\lambda=0}^{m'-1}e^{2\pi ik'\lambda/m'}\sum_{\substack{n=0\\ n\equiv\lambda\ (\mathrm{mod}\ m')}}^{m-1}\chi(n)=\chi(r)G(k,\chi).
+\end{align*}
+但是 $\chi(r)\neq 1$，从而 $G(k,\chi)=0$。另一方面，
+\begin{align*}
+  |G(1,\chi)|^2&=G(1,\chi)\overline{G(1,\chi)}=G(1,\chi)\sum_{n=0}^{m-1}\overline{\chi}(n)e^{-2\pi in/m}\\
+  &=\sum_{n=0}^{m-1}G(n,\chi)e^{-2\pi in/m}\\
+  &=\sum_{n,n'=0}^{m-1}\chi(n')e^{(2\pi in'n-2\pi in)/m}\\
+  &=\sum_{n'=0}^{m-1}\chi(n')\sum_{n=0}^{m-1}e^{2\pi in(n'-1)/m}\\
+  &=m\chi(1)=m.
+\end{align*}
+从而 $|G(1,\chi)|=\sqrt{m}$。
+\end{proof}
+
+\subsection{\texorpdfstring{Dirichlet $L$ 函数}{Dirichlet L 函数}}\label{sec:ch4-s2-3}
+
+设 $\chi$ 为模 $m$ 的 $D$-特征。当 $(m,n)>1$ 时规定 $\chi(n)=0$。如下定义一个 $D$-级数：
+\[
+  L(s,\chi)=\sum_{n=1}^{\infty}\chi(n)n^{-s},
+\]
+称作是 \emph{Dirichlet $L$ 函数}。当 $\chi\neq\chi_0$ 时由于 $\{\chi(n)\mid n=1,2,\cdots\}$ 的部分和是有界的（习题 12），从而 $L(s,\chi)$ 的收敛横坐标为 $\sigma_0=0$，而绝对收敛横坐标显然为 $\sigma_1=1$。于是它在半平面 $\operatorname{Re}(s)>0$ 内定义了一个正则函数。由于特征 $\chi$ 是完全积性的，于是当 $\operatorname{Re}(s)>\sigma_1=1$ 时有 Euler 乘积展开：
+\[
+  L(s,\chi)=\prod_p(1-\chi(p)p^{-s})^{-1}
+  =\prod_{p\nmid m}(1-\chi(p)p^{-s})^{-1}\qquad(\operatorname{Re}(s)>1).
+\]
+如果 $\operatorname{cond}\chi=m'\mid m$，并且 $\chi$ 是由模 $m'$ 的本原 $D$-特征 $\chi'$ 诱导出来的（引理 \ref{lem:ch4-6}），则
+\begin{align*}
+  L(s,\chi)&=\prod_{p\nmid m}(1-\chi(p)p^{-s})^{-1}=\prod_{p\nmid m}(1-\chi'(p)p^{-s})^{-1}\\
+  &=\prod_p(1-\chi'(p)p^{-s})^{-1}\cdot\prod_{p\mid m}(1-\chi'(p)p^{-s})\\
+  &=L(s,\chi')\cdot\prod_{p\mid m}(1-\chi'(p)p^{-s}).
+\end{align*}
+于是 $L(s,\chi)$ 和 $L(s,\chi')$ 只相差一个有限乘积。所以只需研究对本原 $D$-特征的 $L$ 函数即可。特别对于模 $m$ 的主特征 $\chi_0$，我们有
+\[
+  L(s,\chi_0)=\zeta(s)\prod_{p\mid m}(1-p^{-s}).
+\]
+与 $\zeta(s)$ 一样，为了将 $L(s,\chi)$ 延拓到整个复平面上，需要利用函数方程。
+
+\begin{theorem}\label{thm:4.8}
+设 $\chi$ 为模 $N$ 的本原 $D$-特征。令
+\[
+  \delta(\chi)=\delta=\begin{cases}
+    0, & \text{若}\ \chi(-1)=1;\\
+    1, & \text{若}\ \chi(-1)=-1,
+  \end{cases}
+\]
+\[
+  \xi(s,\chi)=\left(\frac{N}{\pi}\right)^{s/2}\Gamma\left(\frac{s+\delta}{2}\right)L(s,\chi),
+\]
+则 $L(s,\chi)$ 可以解析延拓到整个复平面上并且满足如下的函数方程
+\[
+  \xi(s,\chi)=\frac{G(1,\chi)}{i^{\delta}\sqrt{N}}\xi(1-s,\overline{\chi}).
+\]
+\end{theorem}
+
+\begin{proof}
+基本工具仍是 Poisson 求和公式。我们分两种情况考虑。
+
+(a) $\chi$ 为偶特征。即 $\chi(-1)=1$，此时 $\delta=0$。由于
+\[
+  \left(\frac{N}{\pi}\right)^{s/2}\Gamma(s/2)n^{-s}=\int_0^{\infty}e^{-n^2\pi x/N}x^{s/2-1}\mathrm{d}x,
+\]
+从而当 $\operatorname{Re}(s)=\sigma>1$ 时，
+\begin{align*}
+  \xi(s,\chi)&=\left(\frac{N}{\pi}\right)^{s/2}\Gamma(s/2)\sum_{n=1}^{\infty}\chi(n)n^{-s}\\
+  &=\int_0^{\infty}x^{s/2-1}\left(\sum_{n=1}^{\infty}\chi(n)e^{-n^2\pi x/N}\right)\mathrm{d}x\\
+  &=\frac{1}{2}\int_0^{\infty}x^{s/2-1}\psi(x,\chi)\mathrm{d}x,
+\end{align*}
+其中 $\psi(x,\chi)=\sum_{n=-\infty}^{\infty}\chi(n)e^{-n^2\pi x/N}$。于是
+\begin{align*}
+  G(1,\overline{\chi})\psi(x,\chi)
+  &=\sum_{n=-\infty}^{\infty}G(1,\overline{\chi})\chi(n)e^{-n^2\pi x/N}\\
+  &=\sum_{m=1}^{N}\overline{\chi}(m)\sum_{n=-\infty}^{\infty}e^{-\frac{n^2\pi x}{N}+2\pi i\frac{mn}{N}}.\tag{*}
+\end{align*}
+在 Poisson 公式中取 $f(t)=e^{-\frac{t^2\pi x}{N}+2\pi i\frac{mt}{N}}$，则其 Fourier 系数为
+\[
+  a_n=\int_{-\infty}^{\infty}e^{-\frac{t^2\pi x}{N}+2\pi i\frac{mt}{N}-2\pi int}\mathrm{d}t
+  =\sqrt{\frac{N}{x}}e^{-\frac{\pi}{Nx}(m-nN)^2}.
+\]
+于是由 Poisson 公式可知（从 (*) 式）
+\begin{align*}
+  G(1,\overline{\chi})\psi(x,\chi)
+  &=\sum_{m=1}^{N}\overline{\chi}(m)\sqrt{\frac{N}{x}}\sum_{n=-\infty}^{\infty}e^{-\frac{\pi}{Nx}(nN+m)^2}\\
+  &=\sqrt{\frac{N}{x}}\sum_{l=-\infty}^{\infty}\overline{\chi}(l)e^{-\frac{\pi l^2}{Nx}}\\
+  &=\sqrt{\frac{N}{x}}\psi(x^{-1},\overline{\chi}).
+\end{align*}
+从而
+\begin{align*}
+  \xi(s,\chi)&=\frac{1}{2}\int_1^{\infty}x^{s/2-1}\psi(x,\chi)\mathrm{d}x+\frac{1}{2}\int_1^{\infty}x^{-s/2-1}\psi(x^{-1},\chi)\mathrm{d}x\\
+  &=\frac{1}{2}\int_1^{\infty}x^{s/2-1}\psi(x,\chi)\mathrm{d}x\\
+  &\qquad+\frac{1}{2}\frac{\sqrt{N}}{G(1,\overline{\chi})}\int_1^{\infty}x^{\frac{1-s}{2}-1}\psi(x,\overline{\chi})\mathrm{d}x.
+\end{align*}
+但是上式右边的积分对于任何 $s\in\C$ 均收敛。并且当 $\chi$ 为模 $m$ 本原 $D$-特征时，$|G(1,\overline{\chi})|=\sqrt{N}\neq 0$。这就将 $\xi(s,\chi)$ 从而将 $L(s,\chi)$ 解析延拓到整个复平面上，并且
+\begin{align*}
+  \xi(1-s,\overline{\chi})&=\frac{1}{2}\int_1^{\infty}x^{\frac{1-s}{2}-1}\psi(x,\overline{\chi})\mathrm{d}x\\
+  &\qquad+\frac{1}{2}\frac{\sqrt{N}}{G(1,\chi)}\int_1^{\infty}x^{s/2-1}\psi(x,\chi)\mathrm{d}x\\
+  &=\frac{\sqrt{N}}{G(1,\chi)}\xi(s,\chi),
+\end{align*}
+其中用到公式 $G(1,\chi)G(1,\overline{\chi})=N$（因 $\chi$ 为偶特征）。
+
+(b) 若 $\chi$ 为奇特征，即 $\chi(-1)=-1$，此时 $\delta(\chi)=1$。而
+\[
+  \left(\frac{N}{\pi}\right)^{\frac{1}{2}(s+1)}\Gamma\left(\frac{1}{2}(s+1)\right)n^{-s}
+  =\int_0^{\infty}ne^{-\frac{n^2\pi x}{N}}x^{\frac{1}{2}s-1/2}\mathrm{d}x,
+\]
+从而
+\[
+  \left(\frac{N}{\pi}\right)^{\frac{1}{2}(s+1)}\Gamma\left(\frac{1}{2}(s+1)\right)L(s,\chi)
+  =\frac{1}{2}\int_0^{\infty}\psi_1(x,\chi)x^{\frac{1}{2}(s-1)}\mathrm{d}x,
+\]
+其中 $\psi_1(x,\chi)=\sum_{n=-\infty}^{\infty}n\chi(n)e^{-n^2\pi x/N}$。由 Poisson 公式可得到
+\[
+  \sum_{n=-\infty}^{\infty}e^{-n^2\pi y+2\pi ina}=y^{-1/2}\sum_{n=-\infty}^{\infty}e^{-(n+a)^2\pi/y}\qquad(y\neq 0),
+\]
+对 $\alpha$ 微商给出
+\[
+  2\pi i\sum_{n=-\infty}^{\infty}ne^{-n^2\pi y+2\pi in\alpha}
+  =-2\pi y^{-3/2}\sum_{n=-\infty}^{\infty}(n+\alpha)e^{-(n+\alpha)^2\pi/y}.
+\]
+因此（$y=x/N$，$\alpha=m/N$）
+\[
+  \sum_{n=-\infty}^{\infty}ne^{-\frac{n^2\pi x}{N}+\frac{2\pi imn}{N}}
+  =i\left(\frac{N}{x}\right)^{3/2}\sum_{n=-\infty}^{\infty}\left(n+\frac{m}{N}\right)e^{-\pi\left(n+\frac{m}{N}\right)^2N/x}.
+\]
+由此可得到 $G(1,\overline{\chi})\psi_1(x,\chi)=iN^{1/2}x^{-3/2}\psi_1(x^{-1},\overline{\chi})$。从而
+\begin{align*}
+  \xi(s,\chi)&=\frac{1}{2}\left[\int_1^{\infty}\psi_1(x,\chi)x^{-(1-s)/2}\mathrm{d}x\right.\\
+  &\qquad\left.+\frac{1}{2}\frac{i\sqrt{N}}{G(1,\overline{\chi})}\int_1^{\infty}\psi_1(x,\overline{\chi})x^{-s/2}\mathrm{d}x\right].
+\end{align*}
+于是又将 $L(s,\chi)$ 解析延拓到整个复平面上，并且由
+\[
+  G(1,\chi)\cdot G(1,\overline{\chi})=\chi(-1)N=-N
+\]
+即可证得
+\[
+  \xi(1-s,\overline{\chi})=\frac{i\sqrt{N}}{G(1,\chi)}\xi(s,\chi).
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:ch4-8}
+设 $\chi$ 为模 $N$ 本原 $D$-特征，则对任意 $t\in\R$，$L(1+it,\chi)\neq 0$。
+\end{lemma}
+
+\begin{proof}
+与证明引理 \ref{lem:ch4-5} 相仿，当 $\sigma>1$，$s=\sigma+it$ 时，
+\[
+  \log L(s,\chi)=-\sum_p\log(1-\chi(p)p^{-s})
+  =\sum_p\sum_{m=1}^{\infty}\chi(p)^m/mp^{ms}.
+\]
+从而
+\[
+  \zeta^3(\sigma)L^4(\sigma+it,\chi)L(\sigma+2it,\chi^2)
+  =\exp\left(\sum_p\sum_{m=1}^{\infty}\frac{3+4(\chi(p)p^{-ti})^m+(\chi(p)p^{-ti})^{2m}}{mp^{m\sigma}}\right),
+\]
+而
+\[
+  \operatorname{Re}(3+4(\chi(p)p^{-ti})^m+(\chi(p)p^{-ti})^{2m})
+  =3+4\cos m\theta+\cos 2m\theta
+  =2(\cos m\theta+1)^2\geqslant 0.
+\]
+因此
+\begin{equation}  |\zeta^3(\sigma)L^4(\sigma+it,\chi)L(\sigma+2it,\chi^2)|
+  =\exp\left(\sum_p\sum_{m=1}^{\infty}\frac{2(\cos m\theta+1)^2}{mp^{m\sigma}}\right)\geqslant 1.\tag{*}\end{equation}
+如果 $t\neq 0$ 或者 $t=0$ 而 $\chi^2\neq\chi_0$，则 $1+2it$ 不是 $L(s,\chi^2)$ 的极点。又知 $1$ 为 $\zeta^3(s)$ 的 $3$ 阶极点。如果 $s=1+it$ 为 $L(s,\chi)$ 的零点，则 $L^4(s,\chi)$ 在 $s=1+it$ 处至少有 $4$ 阶零点。从而当 $\sigma+it\to 1+it$ 时，(*) 式左边 $\to 0$ 而右边 $\geqslant 1$，这就导致矛盾。于是当 $t\neq 0$ 或者 $t=0$ 而 $\chi^2\neq\chi_0$ 时，$L(1+it,\chi)\neq 0$。
+
+如果 $t=0$ 并且 $\chi^2=\chi_0$，这时 $\chi$ 为实特征（即 $\chi$ 只取值 $\pm1$）。我们考虑（$\operatorname{Re}(s)>1$）
+\begin{align*}
+  \zeta(s)L(s,\chi)&=\prod_p(1-p^{-s})^{-1}(1-\chi(p)p^{-s})^{-1}\\
+  &=\prod_{\chi(p)=0}(1-p^{-s})^{-1}\prod_{\chi(p)=1}(1-p^{-s})^{-2}\cdot\prod_{\chi(p)=-1}(1-p^{-2s})^{-1}\\
+  &=\prod_{\chi(p)=0}(1+p^{-s}+p^{-2s}+\cdots)\cdot\prod_{\chi(p)=1}(1+2p^{-s}+3p^{-2s}+\cdots)\\
+  &\qquad\cdot\prod_{\chi(p)=-1}(1+p^{-2s}+p^{-4s}+\cdots)\\
+  &=\sum_{n=1}^{\infty}\rho(n)n^{-s}.
+\end{align*}
+可知 $\rho(n)\geqslant 0$，并且 $\rho(n^2)\geqslant 1$。如果 $L(1,\chi)=0$，则 $\zeta(s)L(s,\chi)$ 在 $\operatorname{Re}(s)>0$ 中正则。根据定理 \ref{thm:4.2}，$\sum\rho(n)n^{-s}$ 对于 $\sigma>0$ 收敛。但是在 $s=1/2$ 处：
+\[
+  \sum_{n=1}^{\infty}\rho(n)n^{-1/2}\geqslant\sum_{n=1}^{\infty}\rho(n^2)n^{-1}\geqslant\sum_{n=1}^{\infty}n^{-1}=\infty.
+\]
+这就导致矛盾。
+\end{proof}
+
+\begin{lemma}\label{lem:ch4-9}
+设 $\chi$ 是模 $N$ 本原 $D$-特征，$N\geqslant 2$，则 $L(s,\chi)$ 是整个复平面上的解析函数。并且 $s=-\delta(\chi)-2n$（$n=0,1,2,\cdots$）是 $L(s,\chi)$ 的单零点，叫作是 $L(s,\chi)$ 的\emph{平凡零点}。而 $L(s,\chi)$ 的其他零点均在带状区域 $0<\operatorname{Re}(s)<1$ 之内。
+\end{lemma}
+
+\begin{proof}
+由 $N\geqslant 2$ 而 $\chi$ 是模 $N$ 本原特征，可知 $\chi\neq\chi_0$。由函数方程得到
+\begin{equation}\tag{*}
+  L(s,\chi)=\left(\frac{N}{\pi}\right)^{-s/2+(1-s)/2}\frac{\Gamma\left(\frac{1-s+\delta}{2}\right)}{\Gamma\left(\frac{s+\delta}{2}\right)}
+  \cdot L(1-s,\overline{\chi})\frac{G(1,\chi)}{i^{\delta}\sqrt{N}}.
+\end{equation}
+注意 $|G(1,\chi)/i^{\delta}\sqrt{N}|=1$。当 $\operatorname{Re}(s)>0$ 时 $L(s,\chi)$ 没有奇点。当 $\operatorname{Re}(s)\leqslant 0$ 时，由 Gamma 函数的性质知上式右边无极点，从而 $L(s,\chi)$ 无极点，于是 $L(s,\chi)$ 是整个复平面上的解析函数。当 $\operatorname{Re}(s)>1$ 时 $L(s,\chi)$ 有收敛的 Euler 乘积展开式，从而 $L(s,\chi)\neq 0$，而当 $\operatorname{Re}(s)<0$ 时，考虑 (*) 式右边可知 $L(s,\chi)$ 的零点只有 $\frac{s+\delta}{2}=0,-1,-2,\cdots$ 时，即 $s=-\delta-2n$（$n=0,1,2,\cdots$），并且它们均是单零点（包括 $s=0$ 的情形，因为已证了 $L(1,\overline{\chi})\neq 0$）。进而，引理 \ref{lem:ch4-8} 表明 $L(s,\chi)$ 在 $s=1+it$（$t\neq 0$）处无零点，从而由函数方程可知在 $s=it$（$t\neq 0$）处也无零点。从而非平凡零点均在 $0<\operatorname{Re}(s)<1$ 之内。
+\end{proof}
+
+\begin{remark}
+所谓广义 Riemann 猜想即是：对于每个模 $N\geqslant 2$ 本原 $D$-特征，$L(s,\chi)$ 的非平凡零点均在直线 $\operatorname{Re}(s)=\frac{1}{2}$ 之上！
+\end{remark}
+
+\subsection{Dirichlet 级数在负整数处的值, Bernoulli 数}\label{sec:ch4-s2-4}
+
+\begin{theorem}\label{thm:4.9}
+假设 $a_n\in\C$（$n=1,2,\cdots$），并且级数 $F(s)=\sum_{n=1}^{\infty}a_nn^{-s}$ 的收敛横坐标 $\sigma_0<+\infty$。令 $f(t)=\sum_{n=1}^{\infty}a_ne^{-nt}$，则 $f(t)$ 在 $t>0$ 时收敛，并且
+
+(a) 若 $t\to0$ 时 $f(t)$ 有如下的渐近展开：$f(t)\sim b_0+b_1t+b_2t^2+\cdots$（即意味着：对每个 $N$ 均有 $f(t)=\sum_{0\leqslant n<N}b_nt^n+O(t^N)$，$t\to0$），则 $F(s)$ 可以解析延拓成整个复平面上的全纯函数，并且 $F(-n)=(-1)^nn!b_n$（$n=0,1,2,\cdots$）。
+
+(b) 如果 $f(t)$ 在 $t\to0$ 时有如下的渐近展开 $f(t)\sim\frac{b_{-1}}{t}+b_0+b_1t+\cdots$，则 $F(s)$ 可以解析延拓到整个复平面上，$F(s)-\frac{b_{-1}}{s-1}$ 为全纯函数，并且仍有 $F(-n)=(-1)^nn!b_n$（$n=0,1,2,\cdots$）。
+\end{theorem}
+
+\begin{proof}
+由于 $\sigma_0<+\infty$，可知 $A(N)=\sum_{n=1}^{N}a_n=O(N^{\sigma_0+\varepsilon})$（定理 \ref{thm:4.1}）。从而 $a_n=A(n)-A(n-1)=O(n^{\sigma_0+\varepsilon})$，由此即知
+\[
+  f(t)=\sum_{n=1}^{\infty}a_ne^{-nt}
+\]
+在 $t>0$ 时收敛。考虑（$\operatorname{Re}(s)>\sigma_0+1$）：
+\begin{align*}
+  \Gamma(s)F(s)&=\int_0^{\infty}t^{s-1}e^{-t}\sum_{n=1}^{\infty}a_nn^{-s}\mathrm{d}t
+  =\int_0^{\infty}t^{s-1}\sum_{n=1}^{\infty}a_ne^{-nt}\mathrm{d}t\\
+  &=\int_0^{\infty}t^{s-1}f(t)\mathrm{d}t=\int_1^{\infty}+\int_0^1.
+\end{align*}
+由 $f(t)$ 的解析特性知积分 $\int_1^{\infty}$ 在整个 $s$ 平面上全纯。另一方面，由 $f(t)=\sum_{n<N}b_nt^n+O(t^N)$，可知
+\[
+  \int_0^1f(t)t^{s-1}\mathrm{d}t
+  =\sum_{n<N}\frac{b_n}{s+n}+\int_0^1\left(f(t)-\sum_{n<N}b_nt^n\right)t^{s-1}\mathrm{d}t,
+\]
+当 $\operatorname{Re}(s)>-N$ 时，后边积分收敛，从而
+\begin{equation}\tag{*}
+  \Gamma(s)F(s)=\sum_{n<N}\frac{b_n}{s+n}+G(s),
+\end{equation}
+$G(s)$ 在 $\operatorname{Re}(s)>-N$ 中正则。由于 $N$ 可取充分大的整数，从而 $F(s)$ 由此解析延拓到整个复平面上。
+
+(a) 若 $f(t)\sim b_0+b_1t+b_2t^2+\cdots$（$t\to0$），则 (*) 式右边在 $s=0,-1,-2,\cdots$ 有一阶极点，而 $\Gamma(s)$ 也恰好如此。因此 $F(s)$ 在整个复平面上全纯，并且
+\[
+  F(-n)=b_n/\underset{s=-n}{\operatorname{res}}\Gamma(s)=(-1)^nn!b_n\qquad(n=0,1,2,\dots).
+\]
+
+(b) 若 $f(t)\sim\frac{b_{-1}}{t}+b_0+b_1t+\cdots$（$t\to0$），则 (*) 式右边第 $1$ 项为 $b_{-1}/(s-1)$，而 $\Gamma(1)=1$，从而 $F(s)-b_{-1}/(s-1)$ 在整个复平面上全纯，并且仍有
+\[
+  F(-n)=b_n/\underset{s=-n}{\operatorname{res}}\Gamma(s)=(-1)^nn!b_n\qquad(n=0,1,2,\dots).
+\]
+\end{proof}
+
+现在我们用此定理求 $\zeta(s)$ 和 $L(s,\chi)$ 在 $s=n$（$n=0,-1,-2,\cdots$）处的值。这些值用 Bernoulli 数和广义 Bernoulli 数来表达。我们先介绍这些数。
+
+\begin{definition}\label{def:ch4-7}
+由下面 Taylor 展开式定义的系数 $B_n$ 叫作是 \emph{Bernoulli 数}：
+\[
+  \frac{t}{e^t-1}=\sum_{n=0}^{\infty}\frac{B_n}{n!}t^n.
+\]
+$B_n$ 的前几个值为
+\[
+  \begin{array}{c|ccccccccccccccc}
+    n & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14\\ \hline
+    B_n & 1 & -\frac{1}{2} & \frac{1}{6} & 0 & -\frac{1}{30} & 0 & \frac{1}{42} & 0 & -\frac{1}{30} & 0 & \frac{5}{66} & 0 & -\frac{691}{2730} & 0 & \frac{7}{6}
+  \end{array}
+\]
+\end{definition}
+
+对于 $n\geqslant 0$，$B_n(x)=\sum_{k=0}^{n}\binom{n}{k}B_{n-k}x^k$ 叫作是 \emph{Bernoulli 多项式}。例如：$B_0(x)=1$，$B_1(x)=x-\frac{1}{2}$，$B_2(x)=x^2-x+\frac{1}{6}$，$B_3(x)=x^3-\frac{3}{2}x^2+\frac{1}{2}x,\cdots$。
+
+最后，设 $\chi$ 是模 $N$ 的 $D$-特征，定义\emph{广义 Bernoulli 数}为
+\[
+  B_{n,\chi}=N^{n-1}\sum_{m=1}^{N}\chi(m)B_n\left(\frac{m}{N}\right),
+\]
+其中 $B_n\left(\frac{m}{N}\right)$ 为 Bernoulli 多项式 $B_n(x)$ 在 $x=\frac{m}{N}$ 处的值。
+
+\begin{theorem}[\emph{Bernoulli 数的基本性质}]\label{thm:4.10}
+\begin{enumerate}[(a)]
+  \item 形式地定义 $(1+B)^n=\sum_{k=0}^{n}\binom{n}{k}B_k$，则当 $n\geqslant 2$ 时 $(1+B)^n=B_n$。从而得到递归公式：
+  \[
+    -nB_{n-1}=B_0+\binom{n}{1}B_1+\cdots+\binom{n}{n-2}B_{n-2}\qquad(n\geqslant 2).
+  \]
+  由此可知 $B_n\in\Q$。
+  \item $\frac{te^{xt}}{e^t-1}=\sum_{n=0}^{\infty}\frac{B_n(x)}{n!}t^n$，$\frac{t}{e^{Nt}-1}\sum_{m=1}^{N}\chi(m)e^{mt}=\sum_{n=0}^{\infty}\frac{B_{n,\chi}}{n!}t^n$（$\chi\neq\chi_0$ 时）。
+  \item $B_1=-1/2$，而当 $2\nmid n\geqslant 3$ 时，$B_n=0$。若 $\chi\neq\chi_0$，$n\geqslant 1$，则 $\delta(\chi)+n\equiv 1\ (\mathrm{mod}\ 2)$ 时 $B_{n,\chi}=0$。
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) 由 $B_n$ 的定义即知
+\begin{align*}
+  t&=\left(\sum_{n=0}^{\infty}t^n/n!\right)\left(\sum_{n=0}^{\infty}\frac{B_n}{n!}t^n\right)-\sum_{n=0}^{\infty}\frac{B_n}{n!}t^n\\
+  &=\sum_{n=0}^{\infty}t^n\sum_{k+l=n}\frac{B_k}{k!l!}-\sum_{n=0}^{\infty}\frac{B_n}{n!}t^n\\
+  &=\sum_{n=0}^{\infty}\frac{t^n(1+B)^n}{n!}-\sum_{n=0}^{\infty}\frac{B_n}{n!}t^n.
+\end{align*}
+比较 $t^n$ 的系数，便知当 $n\geqslant 2$ 时，$B_n=(1+B)^n$。由此不难得到 (a) 中的其他结论。
+
+(b)
+\begin{align*}
+  \sum_{n=0}^{\infty}\frac{B_n(x)}{n!}t^n
+  &=\sum_{n=0}^{\infty}\frac{t^n}{n!}\sum_{k=0}^{n}\binom{n}{k}B_kx^{n-k}
+  =\sum_{n=0}^{\infty}\sum_{k+l=n}\frac{B_kt^k}{k!}\frac{x^lt^l}{l!}\\
+  &=\left(\sum_{k=0}^{\infty}\frac{B_k}{k!}t^k\right)\left(\sum_{l=0}^{\infty}\frac{1}{l!}(xt)^l\right)=\frac{te^{xt}}{e^t-1}.
+\end{align*}
+而
+\begin{align*}
+  \sum_{n=0}^{\infty}\frac{B_{n,\chi}}{n!}t^n
+  &=\sum_{n=0}^{\infty}\frac{1}{n!}N^{n-1}\sum_{m=1}^{N}\chi(m)B_n\left(\frac{m}{N}\right)t^n\\
+  &=\frac{1}{N}\sum_{m=1}^{N}\chi(m)\sum_{n=0}^{\infty}\frac{B_n\left(\frac{m}{N}\right)}{n!}(tN)^n\\
+  &=\frac{1}{N}\sum_{m=1}^{N}\chi(m)\frac{Nte^{mt}}{e^{Nt}-1}
+  =\frac{t}{e^{Nt}-1}\sum_{m=1}^{N}\chi(m)e^{mt}.
+\end{align*}
+
+(c)
+\begin{align*}
+  2\sum_{\substack{n=0\\ 2\nmid n}}^{\infty}\frac{B_n}{n!}t^n
+  &=\sum_{n=0}^{\infty}\frac{B_n}{n!}t^n-\sum_{n=0}^{\infty}\frac{B_n}{n!}(-t)^n\\
+  &=\frac{t}{e^t-1}-\frac{-t}{e^{-t}-1}=-t.
+\end{align*}
+于是 $B_1=-1/2$，而当 $2\nmid n\geqslant 3$ 时，$B_n=0$。对于广义 Bernoulli 数，当 $\chi(-1)=1$ 时，
+\begin{align*}
+  2\sum_{\substack{n=0\\ 2\nmid n}}^{\infty}\frac{B_{n,\chi}}{n!}t^n
+  &=\sum_{n=0}^{\infty}\frac{B_{n,\chi}}{n!}t^n-\sum_{n=0}^{\infty}\frac{B_{n,\chi}}{n!}(-t)^n\\
+  &=\frac{t}{e^{Nt}-1}\left(\sum_{m=1}^{N}\chi(m)e^{mt}-\sum_{m=1}^{N}\chi(m)e^{-mt}\right)\\
+  &=\frac{t}{e^{Nt}-1}\left(\sum_{m=1}^{N}\chi(m)e^{mt}-\sum_{m=1}^{N}\chi(-m)e^{mt}\right)=0.
+\end{align*}
+因此在 $\chi(-1)=1$ 而 $2\nmid n$ 时，$B_{n,\chi}=0$。同样可证在 $\chi(-1)=-1$ 而 $2\mid n$ 时 $B_{n,\chi}=0$。
+\end{proof}
+
+现在我们求 $\zeta(s)$ 和 $L(s,\chi)$ 在负整数处的值。我们同时（不用函数方程）给出它们在整个复平面上的解析延拓。
+
+\begin{theorem}\label{thm:4.11}
+(a) 令 $\zeta(s)=\sum_{n=1}^{\infty}n^{-s}$（$\operatorname{Re}(s)>1$），则 $\zeta(s)-\frac{1}{s-1}$ 可解析延拓成整个复平面上的全纯函数，并且 $\zeta(0)=-1/2$，而当 $n\geqslant 1$ 时，$\zeta(-n)=-\frac{B_{n+1}}{n+1}$。
+
+(b) 设 $\chi$ 为模 $N$ 的 $D$-特征，则
+\[
+  L(s,\chi)=\sum_{n=1}^{\infty}\chi(n)n^{-s}\qquad(\operatorname{Re}(s)>1)
+\]
+可解析延拓成整个复平面上的亚纯函数。进而，若 $\chi\neq\chi_0$，则 $L(s,\chi)$ 在整个复平面上全纯。而 $\chi=\chi_0$ 时只有 $s=1$ 是 $L(s,\chi_0)$ 的极点并且是单极点，$\underset{s=1}{\operatorname{res}}L(s,\chi_0)=\varphi(N)/N$。最后，
+\[
+  L(-n,\chi)=-\frac{B_{n+1,\chi}}{n+1}\qquad(n=0,1,2,\dots).
+\]
+\end{theorem}
+
+\begin{proof}
+(a) 在定理 \ref{thm:4.9} 中取 $F(s)=\zeta(s)$，则 $a_n\equiv 1$。于是
+\[
+  f(t)=\sum_{n=1}^{\infty}a_ne^{-nt}=\frac{1}{e^t-1}\sim\frac{1}{t}+\sum_{n=0}^{\infty}\frac{B_{n+1}}{(n+1)!}t^n\qquad(t\to0),
+\]
+从而由定理 \ref{thm:4.9} 即得 (a) 中的结论。
+
+(b) 在定理 \ref{thm:4.9} 中取 $a_n=\chi(n)$。这时，
+\begin{align*}
+  f(t)&=\sum_{n=1}^{\infty}\chi(n)e^{-nt}=\sum_{m=1}^{N}\chi(m)\sum_{n=0}^{\infty}e^{-(m+nN)t}\\
+  &=\sum_{m=1}^{N}\chi(m)\frac{e^{-mt}}{1-e^{-Nt}}\\
+  &=\sum_{m=1}^{N-1}\chi(m)\left(\sum_{k=0}^{\infty}(-1)^k\frac{m^k}{k!}t^k\right)\left(\sum_{r=0}^{\infty}\frac{(-1)^rB_r}{r!}(Nt)^{r-1}\right)\\
+  &=\sum_{m=1}^{N-1}\chi(m)\sum_{k,r=0}^{\infty}\frac{(-1)^{k+r}m^kN^{r-1}B_r}{k!r!}t^{k+r-1}.
+\end{align*}
+当 $t\to0$ 时，$f(t)$ 渐近展开式中 $t^n$ 项的系数为
+\[
+  b_n=\sum_{m=1}^{N-1}\chi(m)\sum_{\substack{k,r\geqslant 0\\ k+r=n+1}}\frac{(-1)^{n+1}m^kN^{r-1}B_r}{k!r!}\qquad(n=-1,0,1,\dots).
+\]
+当 $n=-1$ 时，
+\[
+  b_{-1}=\frac{1}{N}\sum_{m=1}^{N-1}\chi(m)=\begin{cases}
+    0, & \chi\neq\chi_0\ \text{时};\\
+    \varphi(N)/N, & \chi=\chi_0\ \text{时}.
+  \end{cases}
+\]
+而当 $n\geqslant 0$ 时，
+\begin{align*}
+  b_n&=\frac{(-1)^{n+1}}{(n+1)!}N^n\sum_{m=1}^{N}\chi(m)\sum_{k=0}^{n+1}\binom{n+1}{k}\left(\frac{m}{N}\right)^kB_{n+1-k}\\
+  &=\frac{(-1)^{n+1}}{(n+1)!}N^n\sum_{m=1}^{N}\chi(m)B_{n+1}\left(\frac{m}{N}\right)\\
+  &=\frac{(-1)^{n+1}}{(n+1)!}B_{n+1,\chi}.
+\end{align*}
+于是由定理 \ref{thm:4.9} 即知
+\[
+  L(-n,\chi)=(-1)^nn!b_n=-\frac{B_{n+1,\chi}}{n+1}\qquad(n=0,1,2,\dots),
+\]
+并且 (b) 中其他结论也是对的。
+\end{proof}
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 利用函数方程计算 $\zeta(0)$ 和 $\zeta(-1)$。
+  \item 求证：(a) $\xi(s)=\frac{1}{2}s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s)$ 是复平面上的全纯函数，并且 $\xi(s)=\xi(1-s)$；(b) $\xi(s)$ 的全部零点均在带状区域 $0<\operatorname{Re}(s)<1$ 之内，并且零点对于直线 $\operatorname{Im}(s)=0$（实轴）和 $\operatorname{Re}(s)=\frac{1}{2}$ 均是对称的。
+  \item 求证当 $n=1,3,5,7,\cdots$ 时 $\zeta(1-2n)<0$，而当 $n=2,4,6,8,\cdots$ 时，$\zeta(1-2n)>0$。
+  \item 设 $H$ 是有限 Abel 群 $G$ 的子群。求证 $H^{\perp}=\{\chi\in\widehat{G}\mid\chi(H)=1\}$ 是 $\widehat{G}$ 的子群，并且 $H^{\perp}$ 同构于 $G/H$。
+  \item （正交关系的矩阵形式）设 $G=\{g_1,\cdots,g_n\}$ 为有限 Abel 群，$\widehat{G}=\{\chi_1,\cdots,\chi_n\}$。$A=(a_{ij})$ 为 $n$ 阶复方阵，$a_{ij}=\chi_i(g_j)$。求证：$A^*A=AA^*=nI_n$，其中 $A^*=(\overline{a}_{ji})$ 而 $I_n$ 为 $n$ 阶单位方阵。
+  \item 设 $G=\{g_1,\cdots,g_n\}$ 为 $n$ 阶 Abel 群，$\{a_{g_1},\cdots,a_{g_n}\}$ 为 $n$ 个复数。定义 $n$ 阶复方阵 $A=(\alpha_{ij})$，其中 $\alpha_{ij}=a_{g_ig_j}$（$1\leqslant i,j\leqslant n$）。求证
+  \[
+    \det A=\prod_{\chi\in\widehat{G}}\left(\sum_{g\in G}a_g\chi(g)\right).
+  \]
+  \item (a) 对于 $n=4$ 和 $6$，用上题计算
+  \[
+    A_n=\begin{pmatrix}
+      a_0 & a_1 & a_2 & \dots & a_{n-1}\\
+      a_{n-1} & a_0 & a_1 & \dots & a_{n-2}\\
+      \dots & \dots & \dots & \dots & \dots\\
+      a_1 & a_2 & a_3 & \dots & a_0
+    \end{pmatrix}
+  \]
+  的行列式；(b) 计算 $\begin{pmatrix}a_0 & a_1 & a_2 & a_3\\ a_1 & a_0 & a_3 & a_2\\ a_2 & a_3 & a_0 & a_1\\ a_3 & a_2 & a_1 & a_0\end{pmatrix}$ 的行列式。
+  \item 对于 $m=3,7,12$，写出模 $m$ 的全部加法特征和 $D$-特征。
+  \item 设 $p$ 为奇素数，求证 Legendre 符号 $\left(\frac{-}{p}\right)\colon(\Z/p\Z)^{\times}\to\{\pm1\}$ 是模 $p$ 的 $D$-特征，并且是模 $p$ 惟一的非平凡实特征。如果 $\chi$ 为 $(\Z/p\Z)^{\times}$ 的特征群的生成元，试问 $\left(\frac{-}{p}\right)$ 为 $\chi$ 的多少次方？
+  \item 当 $m\geqslant 3$ 时，求证在模 $m$ 的 $D$-特征中，奇特征与偶特征各占一半。
+  \item 设 $\chi$ 为模 $m$ 的 $D$-特征并且 $\chi\neq\chi_0$。对于 $(m,a)>1$，规定 $\chi(a)=0$。求证：对于任意 $a,b\in\Z$，均有 $\left|\sum_{n=a}^{b}\chi(n)\right|\leqslant\varphi(m)/2$。
+  \item $m\geqslant 3$，求证（左边求和过模 $m$ 的全部奇 Dirichlet 特征）
+  \[
+    \sum_{\chi(-1)=-1}\chi(n)=\begin{cases}
+      \frac{1}{2}\varphi(m), & \text{当}\ n\equiv 1\ (\mathrm{mod}\ m)\ \text{时};\\
+      -\frac{1}{2}\varphi(m), & \text{当}\ n\equiv -1\ (\mathrm{mod}\ m)\ \text{时};\\
+      0, & \text{否则}.
+    \end{cases}
+  \]
+  \item (a) 若 $\chi$ 为模 $m$ 的偶 Dirichlet 特征，$\chi\neq\chi_0$，则 $\sum_{a=0}^{m-1}\chi(a)a=0$；(b) 若 $\chi$ 为模 $m$ 的奇 Dirichlet 特征，则 $\sum_{a=1}^{m-1}\chi(a)a^2=m\sum_{a=1}^{m-1}\chi(a)a$。
+  \item (a) 列出模 $10$ 的全部 $D$-特征。求出它们的导子。试问哪些是本原的？(b) 列出 $\operatorname{cond}(\chi)=3$ 的全部模 $9$ 的 $D$-特征 $\chi$。
+  \item 以 $f(m)$ 表示模 $m$ 的本原 $D$-特征个数，求证：(a) $f(m)$ 是积性数论函数（参考第 19 题）；(b) $f(p^\alpha)=\begin{cases}1, & p=2,\ \alpha=1;\\ 2, & p=2,\ \alpha=2;\\ 4, & p=2,\ \alpha\geqslant 3;\\ p^\alpha-2p^{\alpha-1}, & p\geqslant 3,\ \alpha\geqslant 2;\\ p-2, & p\geqslant 3,\ \alpha=1;\end{cases}$ (c) $f(m)=0\Leftrightarrow m\equiv 2\ (\mathrm{mod}\ 4)$。
+  \item （有限 Fourier 变换）假设 $a_1,\cdots,a_m,c_1,\cdots,c_m\in\C$，则
+  \[
+    c_\lambda=\sum_{n=1}^{m}a_ne^{2\pi in\lambda/m}\ (1\leqslant\lambda\leqslant m)
+    \Leftrightarrow a_\mu=\frac{1}{m}\sum_{n=1}^{m}c_\lambda e^{-2\pi in\mu/m}\ (1\leqslant\mu\leqslant m).
+  \]
+  \item 设 $f(x)\in\Z[x]$，(a) 以 $N_m(n)$ 表示同余方程 $f(x)\equiv n\ (\mathrm{mod}\ m)$ 的模 $m$ 解的个数。求证：
+  \[
+    N_m(n)=\frac{1}{m}\sum_{\lambda=0}^{m-1}\sum_{x=0}^{m-1}e^{2\pi i(f(x)-n)\lambda/m};
+  \]
+  (b) 以 $N_M(n)$ 表示方程 $f(x)=n$，$|x|\leqslant M$ 的有理整数解的个数。求证
+  \[
+    N_M(n)=\int_0^1\sum_{x=-M}^{M}e^{2\pi i(f(x)-n)y}\mathrm{d}y.
+  \]
+  以上两个公式是解析数论中指数和方法的起点。
+  \item (a) 设 $p$ 为奇素数，$f(x)=(ax+b)x$，$a,b\in\Z$，$(a,p)=(b,p)=1$。求证 $\sum_{x=1}^{p-1}\left(\frac{f(x)}{p}\right)=-\left(\frac{a}{p}\right)$；(b) 设 $p$ 为奇素数，$\alpha,\beta\in\{\pm1\}$。定义
+  \[
+    S(\alpha,\beta)=\left\{x\mid 1\leqslant x\leqslant p-2,\ \left(\frac{x}{p}\right)=\alpha,\ \left(\frac{x+1}{p}\right)=\beta\right\},
+  \]
+  \[
+    N(\alpha,\beta)=|S(\alpha,\beta)|.
+  \]
+  求证：
+  \[
+    N(\alpha,\beta)=\frac{1}{4}\sum_{x=1}^{p-2}\left(1+\alpha\left(\frac{x}{p}\right)\right)\left(1+\beta\left(\frac{x+1}{p}\right)\right);
+  \]
+  (c) 求证：
+  \[
+    N(1,1)=\frac{1}{4}\left(p-4-\left(\frac{-1}{p}\right)\right),
+  \]
+  \[
+    N(1,-1)=1+N(1,1),
+  \]
+  \[
+    N(-1,-1)=N(-1,1)=\frac{1}{4}\left(p-2+\left(\frac{-1}{p}\right)\right).
+  \]
+  \item 设 $m=p_1^{\alpha_1}\cdots p_r^{\alpha_r}$ 是 $m\geqslant 2$ 的素因子分解式。求证：每个模 $m$ 的 $D$-特征均可惟一地写成 $\chi=\chi_1\cdots\chi_r$，其中 $\chi_i$ 为模 $p_i^{\alpha_i}$ 的 $D$-特征（$1\leqslant i\leqslant r$）。进而，$\chi$ 为模 $m$ 的本原 $D$-特征 $\Leftrightarrow$ 每个 $\chi_i$ 均是模 $p_i^{\alpha_i}$ 的本原 $D$-特征（$1\leqslant i\leqslant r$）。
+  \item 设 $\chi$ 为模 $4$（惟一的）本原 $D$-特征。试计算 $L(1,\chi)$ 和 $L(0,\chi)$。
+  \item 求证当 $n\geqslant 1$ 时，$B_{4n}<0$，$B_{4n-2}>0$。
+  \item 求证 $1^n+2^n+\cdots+N^n=\frac{1}{n+1}(B_{n+1}(N+1)-B_{n+1})$，其中 $B_{n+1}(N+1)$ 是 Bernoulli 多项式 $B_{n+1}(x)$ 在 $x=N+1$ 处的取值。
+  \item 当 $k\geqslant 1$ 时，求证 $\zeta(2k)=(-1)^{k+1}\frac{(2\pi)^{2k}B_{2k}}{2\cdot(2k)!}$。
+  \item 设 $\chi$ 为模 $m$ 的 $D$-特征，$\chi\neq\chi_0$，求证 $L(0,\chi)=-\frac{1}{m}\sum_{n=1}^{m}\chi(n)n$。
+  \item 设 $\chi$ 为模 $m$ 的本原 $D$-特征，求证 $G(1,\chi)G(1,\overline{\chi})=\chi(-1)m$。
+  \item 设 $G$ 为 $fg$ 阶 Abel 群，$\alpha$ 为 $G$ 中一个 $f$ 阶元素，则
+  \[
+    \prod_{\chi\in\widehat{G}}(1-\chi(a)x)=(1-x^f)^g.
+  \]
+\end{Exercises}

@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage[backend=biber,style=numeric,sorting=serre]{biblatex}
+\DeclareSortingTemplate{serre}{\sort{\field{sortkey}}}
+\addbibresource{../../serre.bib}
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+\defbibenvironment{bibserre}
+  {\list
+     {\printfield{labelnumberwidth}}
+     {\setlength{\labelwidth}{2.2em}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{0.6em}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}}
+  {\endlist}
+  {\item}
+\begin{document}
+x\cite{cebotarev}
+\nocite{*}
+\printbibliography[env=bibserre]
+\end{document}

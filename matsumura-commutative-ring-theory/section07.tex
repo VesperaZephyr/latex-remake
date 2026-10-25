@@ -1,0 +1,555 @@
+% ============ §7 Flatness (原书 pp.45-53) ============
+\section{Flatness}\label{sec:7}\index{flatness, section 7}
+
+Let $A$ be a ring and $M$ an $A$-module. Writing $\mathcal{Y}$ to stand for a
+sequence $\cdots \to N' \to N \to N'' \to \cdots$ of $A$-modules and linear
+maps, we let $\mathcal{Y} \otimes_A M$, or simply $\mathcal{Y} \otimes M$ stand for the induced sequence $\cdots
+\to N' \otimes_A M \to N \otimes_A M \to N'' \otimes_A M \to \cdots$.
+
+\begin{definition}
+$M$ is \emph{flat}\index{flat module} over $A$ if for every exact sequence $\mathcal{Y}$ the sequence
+$\mathcal{Y} \otimes_A M$ is again exact. We sometimes shorten this to $A$-flat.
+
+$M$ is \emph{faithfully flat}\index{faithfully flat module} if for every sequence $\mathcal{Y}$,
+\[
+  \mathcal{Y} \text{ is exact} \iff \mathcal{Y} \otimes_A M \text{ is exact}.
+\]
+\end{definition}
+
+Any exact sequence $\mathcal{Y}$ can be broken up into short exact sequences of
+the form $0 \to N_1 \to N_2 \to N_3 \to 0$, so that in the definition of flatness
+we need only consider short exact sequences $\mathcal{Y}$. Moreover, in view of the
+right-exactness of tensor product (see Appendix A, Formula 8) we can
+restrict attention to exact sequences $\mathcal{Y}$ of the form $0 \to N_1 \to N_2$ and
+need only check the exactness of $\mathcal{Y} \otimes M$: $0 \to N_1 \otimes M \to N_2 \otimes M$.
+
+If $f\colon A \to B$ is a homomorphism of rings and $B$ is flat as an $A$-module,
+we say that $f$ is a \emph{flat homomorphism}, or that $B$ is a \emph{flat $A$-algebra}. For
+example, the localisation $A_S$ of $A$ is a flat $A$-algebra (Theorems 4.4 and 4.5).
+
+\emph{Transitivity.} Let $B$ be an $A$-algebra and $M$ a $B$-module. Then the following
+hold;
+\begin{enumerate}[(1)]
+  \item $B$ is flat over $A$ and $M$ is flat over $B \Rightarrow M$ is flat over $A$;
+  \item $B$ is faithfully flat over $A$ and $M$ is faithfully flat over $B \Rightarrow M$ is
+        faithfully flat over $A$;
+  \item $M$ is faithfully flat over $B$ and flat over $A \Rightarrow B$ is flat over $A$;
+  \item $M$ is faithfully flat over both $A$ and $B \iff B$ is faithfully flat over $A$.
+\end{enumerate}
+Each of these follows easily from the fact that $(\mathcal{Y} \otimes_A B) \otimes_B M = \mathcal{Y} \otimes_A M$ for
+any sequence of $A$-modules $\mathcal{Y}$.
+
+\emph{Change of coefficient ring.} Let $B$ be an $A$-algebra and $M$ an $A$-module.
+Then the following hold:
+\begin{enumerate}[(1)]
+  \item $M$ is flat over $A \Rightarrow M \otimes_A B$ is flat over $B$;
+  \item $M$ is faithfully flat over $A \Rightarrow M \otimes_A B$ is faithfully flat over $B$.
+\end{enumerate}
+These follow from that fact that $\mathcal{Y} \otimes_A (B \otimes_A M) = \mathcal{Y} \otimes_A M$ for any
+sequence of $B$-modules $\mathcal{Y}$.
+
+\begin{theorem}\label{thm:7.1}
+Let $A \to B$ be a homomorphism of rings and $M$ a $B$-
+module. A necessary and sufficient condition for $M$ to be flat over $A$ is that
+for every prime ideal $P$ of $B$, the localisation $M_P$ is flat over $A_p$, where
+$p = P \cap A$ (or the same condition for every maximal ideal $P$ of $B$).
+\end{theorem}
+
+\begin{proof}
+First of all we make the following observation: if $S \subset A$ is a
+multiplicative set and $M, N$ are $A_S$-modules, then $M \otimes_{A_S} N = M \otimes_A N$.
+This follows from the fact that in $N \otimes_A M$ we have
+\[
+  \frac{a}{s}x \otimes y = x \otimes \frac{a}{s}y \quad \text{for } x \in M, y \in N, a \in A \text{ and } s \in S.
+\]
+(In general, if $B$ is an $A$-algebra and $M$ and $N$ are $B$-modules, it can be seen from the construction of the
+tensor product that $M \otimes_B N$ is the quotient of $M \otimes_A N$ by the submodule generated
+by $\{bx \otimes y - x \otimes by \mid x \in M, y \in N \text{ and } b \in B\}$.)
+
+Assume now that $M$ is $A$-flat. The map $A \to B$ induces $A_p \to B_P$,
+and $M_P$ is a $B_P$-module, therefore an $A_p$-module. Let $\mathcal{Y}$ be an exact
+sequence of $A_p$-modules; then, by the above observation,
+\[
+  \mathcal{Y} \otimes_{A_p} M_P = \mathcal{Y} \otimes_A M_P = (\mathcal{Y} \otimes_A M) \otimes_B B_P,
+\]
+and the right-hand side is an exact sequence, so that $M_P$ is $A_p$-flat.
+
+Next, suppose that $M_P$ is $A_p$-flat for every maximal ideal $P$ of $B$.
+Let $0 \to N' \to N$ be an exact sequence of $A$-modules, and write $K$
+for the kernel of the $B$-linear map $N' \otimes_A M \to N \otimes_A M$, so that
+$0 \to K \to N' \otimes_A M \to N \otimes_A M$ is an exact sequence of $B$-modules. For
+any $P \in \text{m-Spec } B$ the localisation
+\[
+  0 \to K_P \to N' \otimes_A M_P \to N \otimes_A M_P
+\]
+is exact, and since $N' \otimes_A M_P = N' \otimes_A (A_p \otimes_{A_p} M_P) = N'_p \otimes_{A_p} M_P$, and
+similarly $N \otimes_A M_P = N_p \otimes_{A_p} M_P$, we have $K_P = 0$ by hypothesis. There-
+fore by Theorem~\ref{thm:4.6} we have $K = 0$, and this is what we have to prove.
+\end{proof}
+
+\begin{theorem}\label{thm:7.2}
+Let $A$ be a ring and $M$ an $A$-module. Then the following
+conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $M$ is faithfully flat over $A$;
+  \item $M$ is $A$-flat, and $N \otimes_A M \neq 0$ for any non-zero $A$-module $N$;
+  \item $M$ is $A$-flat, and $mM \neq M$ for every maximal ideal $m$ of $A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1) \Rightarrow (2)$. Let $\mathcal{Y}$ be the sequence $0 \to N \to 0$. If $N \otimes M = 0$ then
+$\mathcal{Y} \otimes M$ is exact, so $\mathcal{Y}$ is exact, and therefore $N = 0$.
+
+$(2) \Rightarrow (3)$. This is clear from $M/mM = (A/m) \otimes_A M$.
+
+$(3) \Rightarrow (2)$. If $N \neq 0$ and $0 \neq x \in N$ then $Ax \cong A/\ann(x)$, so that taking a
+maximal ideal $m$ containing $\ann(x)$, we have $M \neq mM \supset \ann(x) \cdot M$;
+hence, $Ax \otimes M \neq 0$. By the flatness assumption, $Ax \otimes M \to N \otimes M$ is
+injective, so that $N \otimes M \neq 0$.
+
+$(2) \Rightarrow (1)$. Consider a sequence of $A$-modules
+\[
+  \mathcal{Y}\colon \quad N' \xrightarrow{f} N \xrightarrow{g} N''.
+\]
+If
+\[
+  \mathcal{Y} \otimes M\colon \quad N' \otimes M \xrightarrow{f_M} N \otimes M \xrightarrow{g_M} N'' \otimes M
+\]
+is exact then $g_M f_M = (gf)_M = 0$, so that by flatness, $\Im(gf) \otimes M =
+\Im(g_M f_M) = 0$. By assumption we then have $\Im(gf) = 0$, that is $gf = 0$;
+hence $\Ker g \supset \Im f$. If we set $H = \Ker g/\Im f$ then by flatness,
+\[
+  H \otimes M = \Ker(g_M)/\Im(f_M) = 0,
+\]
+so that the assumption gives $H = 0$. Therefore $\mathcal{Y}$ is exact.
+\end{proof}
+
+A ring homomorphism $f\colon A \to B$ induces a map ${}^a f\colon \Spec B \to \Spec A$,
+under which a point $p \in \Spec A$ has an inverse image ${}^a f^{-1}(p) =
+\{P \in \Spec B \mid P \cap A = p\}$ which is homeomorphic to $\Spec(B \otimes_A \kappa(p))$.
+Indeed, setting $C = B \otimes_A \kappa(p)$ and $S = A - p$, and defining $g\colon B \to C$ by
+$g(b) = b \otimes 1$, then since $\kappa(p) = (A/p) \otimes_A A_p$, we have
+\[
+  C = B \otimes_A \kappa(p) \cong B \otimes_A (A/p) \otimes_A A_p = (B/pB) \otimes_A A_p = (B/pB)_{\bar{S}},
+\]
+where $\bar{S}$ is the image of $S$ in $A/p$. Thus ${}^a g\colon \Spec C \to \Spec B$ has the image
+\[
+  \{P \in \Spec B \mid P \supset pB \text{ and } P \cap f(S) = \emptyset\}
+   = \{P \in \Spec B \mid P \cap A = p\},
+\]
+which is ${}^a f^{-1}(p)$, and ${}^a g$ induces a homeomorphism of $\Spec C$ with
+${}^a f^{-1}(p)$. For this reason we call $\Spec C = \Spec(B \otimes \kappa(p))$ the \emph{fibre} over $p$.
+The inverse map ${}^a f^{-1}(p) \to \Spec C$ takes $P \in {}^a f^{-1}(p)$ into $PC = PB_P/pB_P$.
+
+For $P^* \in \Spec C$ we set $P = P^* \cap B$; then by Theorems 4.2 and 4.3, we have
+\[
+  P^* = PC \quad \text{and} \quad C_{P^*} = (B_P/pB_P)_{P^*} = B_P/pB_P = B_P \otimes_{A_P} \kappa(p).
+\]
+
+\begin{theorem}\label{thm:7.3}
+Let $f\colon A \to B$ be a ring homomorphism and $M$ a $B$-
+module. Then
+\begin{enumerate}[(i)]
+  \item $M$ is faithfully flat over $A \iff {}^a f(\Supp(M)) = \Spec A$.
+  \item If $M$ is a finite $B$-module then
+        \[
+          M \text{ is $A$-flat and } {}^a f(\Supp(M)) \supset \text{m-Spec } A \iff M \text{ is faithfully flat over } A.
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) For $p \in \Spec A$, by faithful flatness we have $M \otimes_A \kappa(p) \neq 0$. Hence,
+if we set $C = B \otimes_A \kappa(p)$ and $M' = M \otimes_A \kappa(p) = M \otimes_B C$, the $C$-module
+$M' \neq 0$, so that there is a $P^* \in \Spec C$ such that $M'_{P^*} \neq 0$. Now set
+$P = P^* \cap B$; then
+\[
+  M_P = M \otimes_B C_{P^*} = M \otimes_B (B_P \otimes_{B_P} C_{P^*}) = M_P \otimes_{B_P} C_{P^*},
+\]
+so that $M_P \neq 0$, that is $P \in \Supp(M)$. But $P^* \in \Spec(B \otimes \kappa(p))$, so that as
+we have seen $P \cap A = p$. Therefore $p \in {}^a f(\Supp(M))$.
+
+(ii) It is enough to show that $M/mM \neq 0$ for any maximal ideal $m$ of $A$. By
+assumption there is a prime ideal $P$ of $B$ such that $P \cap A = m$ and
+$M_P \neq 0$. By NAK, since $M_P$ is finite over $B_P$, we have $M_P/PM_P \neq 0$, and
+a fortiori $M_P/mM_P = (M/mM)_P \neq 0$, so that $M/mM \neq 0$.
+\end{proof}
+
+Let $(A, m)$ and $(B, n)$ be local rings, and $f\colon A \to B$ a ring homomor-
+phism; $f$ is said to be a \emph{local homomorphism}\index{local homomorphism} if $f(m) \subset n$. If this happens then
+by Theorem 2, or by Theorem 3, (ii), we see that it is equivalent to say that $f$
+is flat or faithfully flat.
+
+Let $S$ be a multiplicative set of $A$. Then it is easy to see that $\Spec(A_S)
+\to \Spec A$ is surjective only if $S$ consists of units, that is $A = A_S$. Thus
+from the above theorem, if $A \neq A_S$ then $A_S$ is flat but not faithfully flat over
+$A$.
+
+\begin{theorem}\label{thm:7.4}
+\begin{enumerate}[(i)]
+  \item Let $A$ be a ring, $M$ a flat $A$-module, and $N_1, N_2$ two submodules of an
+        $A$-module $N$. Then as submodules of $N \otimes M$ we have
+        \[
+          (N_1 \cap N_2) \otimes M = (N_1 \otimes M) \cap (N_2 \otimes M).
+        \]
+  \item Let $A \to B$ be a flat ring homomorphism, and let $I_1$ and $I_2$ be
+        ideals of $A$. Then
+        \[
+          (I_1 \cap I_2)B = I_1B \cap I_2B.
+        \]
+  \item If in addition $I_2$ is finitely generated then
+        \[
+          (I_1:I_2)B = I_1B:I_2B.
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Define $\varphi\colon N \to N/N_1 \oplus N/N_2$ by $\varphi(x) = (x + N_1, x + N_2)$; then
+$0 \to N_1 \cap N_2 \to N \to N/N_1 \oplus N/N_2$ is exact, and hence so is
+\[
+  0 \to (N_1 \cap N_2) \otimes M \to N \otimes M \to
+      (N \otimes M)/(N_1 \otimes M) \oplus (N \otimes M)/(N_2 \otimes M).
+\]
+This is the assertion in (i).
+
+(ii) This is a particular case of (i) with $N = A$, $M = B$, in view of the fact
+that for an ideal $I$ of $A$ the subset $I \otimes_A B$ of $A \otimes_A B = B$ coincides with $IB$.
+
+(iii) If $I_2 = Aa_1 + \cdots + Aa_n$ then since $(I_1:I_2) = \bigcap_i (I_1:a_i)$, we can use
+(ii) to reduce to the case that $I_2$ is principal. For $a \in A$ we have the exact
+sequence
+\[
+  0 \to (I_1:a) \to A \xrightarrow{a} A/I_1,
+\]
+and tensoring this with $B$ gives the assertion.
+\end{proof}
+
+\begin{example*}
+Let $k$ be a field, and consider the subring $A = k[x^2, x^3]$ of the
+polynomial ring $B = k[x]$ in an indeterminate $x$. Then $x^2A \cap x^3A$ is the set
+of polynomials made up of terms of degree $\ge 5$ in $x$, so that $(x^2A \cap x^3A)B
+= x^5B$, but on the other hand $x^2B \cap x^3B = x^3B$. Therefore by the above
+theorem, $B$ is not flat over $A$.
+\end{example*}
+
+\begin{theorem}\label{thm:7.5}
+Let $f\colon A \to B$ be a faithfully flat ring homomorphism.
+\begin{enumerate}[(i)]
+  \item For any $A$-module $M$, the map $M \to M \otimes_A B$ defined by $m \mapsto m \otimes 1$
+        is injective; in particular $f\colon A \to B$ is itself injective.
+  \item If $I$ is an ideal of $A$ then $IB \cap A = I$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Let $0 \neq m \in M$. Then $(Am) \otimes B$ is a $B$-submodule of $M \otimes B$ which
+can be identified with $(m \otimes 1)B$. But by Theorem 2, $(Am) \otimes B \neq 0$, so that
+$m \otimes 1 \neq 0$.
+
+(ii) follows by applying (i) to $M = A/I$, using $(A/I) \otimes B = B/IB$.
+\end{proof}
+
+\begin{theorem}\label{thm:7.6}
+Let $A$ be a ring and $M$ a flat $A$-module. If $a_{ij} \in A$ and $x_j \in M$
+(for $1 \le i \le l$ and $1 \le j \le n$) satisfy
+\[
+  \sum_j a_{ij}x_j = 0 \quad \text{for all } i,
+\]
+then there exists an integer $s$ and $b_{jk} \in A$, $y_k \in M$ (for $1 \le j \le n$ and $1 \le k \le s$)
+such that
+\[
+  \sum_j a_{ij}b_{jk} = 0 \text{ for all } i, k, \quad \text{and} \quad x_j = \sum_k b_{jk}y_k \text{ for all } j.
+\]
+Thus the solutions in a flat module $M$ of a system of simultaneous linear
+equations with coefficients in $A$ can be expressed as a linear combination of
+solutions in $A$. Conversely, if the above conclusion holds for the case of a
+single equation (that is for $l = 1$), then $M$ is flat.
+\end{theorem}
+
+\begin{proof}
+Set $\varphi\colon A^n \to A^l$ for the linear map defined by the matrix $(a_{ij})$, and
+let $\varphi_M\colon M^n \to M^l$ be the same thing for $M$; then $\varphi_M = \varphi \otimes 1$, where $1$ is
+the identity map of $M$. Setting $K = \Ker \varphi$ and tensoring the exact sequence
+\[
+  0 \to K \to A^n \xrightarrow{\varphi} A^l
+\]
+with $M$, we get the exact sequence
+\[
+  0 \to K \otimes M \to M^n \xrightarrow{\varphi_M} M^l.
+\]
+By assumption $\varphi_M(x_1, \ldots, x_n) = 0$, so that we can write
+\[
+  (x_1, \ldots, x_n) = (i \otimes 1)\left(\sum_k \beta_k \otimes y_k\right) \quad \text{with } \beta_k \in K \text{ and } y_k \in M.
+\]
+If we write out $\beta_k$ as an element of $A^n$ in the form $\beta_k = (b_{1k}, \ldots, b_{nk})$ with
+$b_{jk} \in A$ then the conclusion follows. The converse will be proved after the
+next theorem.
+\end{proof}
+
+\begin{theorem}\label{thm:7.7}
+Let $A$ be a ring and $M$ an $A$-module. Then $M$ is flat over $A$ if
+and only if for every finitely generated ideal $I$ of $A$ the canonical map
+$I \otimes_A M \to A \otimes_A M$ is injective, and therefore $I \otimes M \cong IM$.
+\end{theorem}
+
+\begin{proof}
+The `only if' is obvious, and we prove the `if'. Firstly, every ideal
+of $A$ is the direct limit of the finitely generated ideals contained in it, so
+that by Theorems A1 and A2 of Appendix A, $I \otimes M \to M$ is injective for
+every ideal $I$. Moreover, if $N$ is an $A$-module and $N' \subset N$ a submodule,
+then since $N$ is the direct limit of modules of the form $N' + F$, with $F$
+finitely generated, to prove that $N' \otimes M \to N \otimes M$ is injective we can
+assume that $N = N' + A\omega_1 + \cdots + A\omega_n$. Then setting $N_i = N' + A\omega_1
++ \cdots + A\omega_i$ (for $1 \le i \le n$), we need only show that each step in the
+chain
+\[
+  N' \otimes M \to N_1 \otimes M \to N_2 \otimes M \to \cdots \to N \otimes M
+\]
+is injective, and finally that if $N = N' + A\omega$ then $N' \otimes M \to N \otimes M$
+is injective. Now we set $I = \{a \in A \mid a\omega \in N'\}$, and get the exact sequence
+\[
+  0 \to N' \to N \to A/I \to 0.
+\]
+This induces a long exact sequence (see Appendix B, p. 279)
+\[
+  \cdots \to \Tor^A(M, A/I) \to N' \otimes M \to N \otimes M \to (A/I) \otimes M \to 0;
+\]
+hence it is enough to prove that
+\[
+  (*) \quad \Tor^A_1(M, A/I) = 0.
+\]
+For this consider the short exact sequence
+\[
+  0 \to I \to A \to A/I \to 0
+\]
+and the induced long exact sequence
+\[
+  \Tor^A_1(M, A) = 0 \to \Tor^A_1(M, A/I) \to I \otimes M \to M \to \cdots;
+\]
+since $I \otimes M \to M$ is injective, $(*)$ must hold.
+\end{proof}
+
+From this theorem we can prove the converse of Theorem 6. Indeed, if
+$I = Au_1 + \cdots + Au_n$ is a finitely generated ideal of $A$ then an element $\xi$ of
+$I \otimes M$ can be written as $\xi = \sum_i a_i \otimes m_i$ with $m_i \in M$. Suppose that $\xi$ is $0$ in $M$,
+that is that $\sum a_im_i = 0$. Now if the conclusion of Theorem 6 holds for $M$,
+there exist $b_{ij} \in A$ and $y_j \in M$ such that
+\[
+  \sum_i u_ib_{ij} = 0 \text{ for all } j, \quad \text{and} \quad m_i = \sum_j b_{ij}y_j \text{ for all } i.
+\]
+Then $\xi = \sum a_i \otimes m_i = \sum_{i,j} u_ib_{ij} \otimes y_j = 0$, so that $I \otimes M \to M$ is injec-
+tive, and therefore $M$ is flat.
+
+\begin{theorem}\label{thm:7.8}
+Let $A$ be a ring and $M$ an $A$-module. The following
+conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $M$ is flat;
+  \item for every $A$-module $N$ we have $\Tor^A_i(M, N) = 0$ for $i > 0$;
+  \item $\Tor^A_1(M, A/I) = 0$ for every finitely generated ideal $I$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$(1) \Rightarrow (2)$ If we let $\cdots \to L_i \to L_{i-1} \to \cdots \to L_0 \to N \to 0$
+be a projective resolution of $N$ then
+\[
+  \cdots \to L_i \otimes M \to L_{i-1} \otimes M \to \cdots \to L_0 \otimes M
+\]
+is exact, so that $\Tor^A_i(M, N) = 0$ for all $i > 0$.
+
+$(2) \Rightarrow (3)$ is obvious.
+
+$(3) \Rightarrow (1)$ The short exact sequence $0 \to I \to A \to A/I \to 0$ induces a
+long exact sequence
+\[
+  \Tor^A_1(M, A/I) = 0 \to I \otimes M \to M \to M \otimes A/I \to 0,
+\]
+and hence $I \otimes M \to M$ is injective; therefore by the previous theorem $M$
+is flat.
+\end{proof}
+
+\begin{theorem}\label{thm:7.9}
+Let $0 \to M' \to M \to M'' \to 0$ be an exact sequence of $A$-
+modules; then if $M'$ and $M''$ are both flat, so is $M$.
+\end{theorem}
+
+\begin{proof}
+For any $A$-module $N$ the sequence $\Tor_1(M', N) \to \Tor_1(M, N)
+\to \Tor_1(M'', N)$ is exact, and since the first and third groups are zero,
+also $\Tor_1(M, N) = 0$. Therefore by the previous theorem $M$ is flat.
+\end{proof}
+
+A free module is obviously faithfully flat (if $F$ is free and $\mathcal{Y}$ is a sequence of
+$A$-modules then $\mathcal{Y} \otimes F$ is just a sum of copies of $\mathcal{Y}$ in number equal to the
+cardinality of a basis of $F$). Conversely, over a local ring the following
+theorem holds, so that for finite modules flat, faithfully flat and free are
+equivalent conditions.
+
+\begin{theorem}\label{thm:7.10}
+Let $(A, m)$ be a local ring and $M$ a flat $A$-module. If
+$x_1, \ldots, x_n \in M$ are such that their images $\bar{x}_1, \ldots, \bar{x}_n$ in $\bar{M} = M/mM$ are
+linearly independent over the field $A/m$ then $x_1, \ldots, x_n$ are linearly
+independent over $A$. Hence if $M$ is finite, or if $m$ is nilpotent, then any
+minimal basis of $M$ (see \S\ref{sec:2}) is a basis of $M$, and $M$ is a free module.
+\end{theorem}
+
+\begin{proof}
+By induction on $n$. If $n = 1$, and $a \in A$ is such that $ax_1 = 0$ then
+by Theorem 6 there are $b_1, \ldots, b_s \in A$ such that $ab_i = 0$ and $x_1 \in \sum b_iM$; by
+assumption $x_1 \notin mM$, so that among the $b_i$ there must be one not contained
+in $m$. This $b_i$ is then a unit, so that we must have $a = 0$.
+
+For $n > 1$, let $\sum a_ix_i = 0$; then there are $b_{ij} \in A$ and $y_j \in M$ (for $1 \le j \le s$)
+such that $\sum a_ib_{ij} = 0$ and $x_i = \sum_j b_{ij}y_j$. Now $x_n \notin mM$, so that among the $b_{nj}$ at
+least one is a unit. Hence $a_n$ is a linear combination of $a_1, \ldots, a_{n-1}$, that
+is $a_n = \sum_{i=1}^{n-1} a_ic_i$ for some $c_i \in A$. Therefore we have
+\[
+  a_1(x_1 + c_1x_n) + \cdots + a_{n-1}(x_{n-1} + c_{n-1}x_n) = 0;
+\]
+however, the $(n - 1)$ elements $\bar{x}_1 + \bar{c}_1\bar{x}_n, \ldots, \bar{x}_{n-1} + \bar{c}_{n-1}\bar{x}_n$ of $\bar{M}$ are
+linearly independent over $A/m$, so that by induction, $a_1 = \cdots = a_{n-1} = 0$. Hence also
+$a_n = 0$.
+\end{proof}
+
+\begin{theorem}\label{thm:7.11}
+Let $A$ be a ring, $M$ and $N$ two $A$-modules, and $B$ a flat $A$-
+algebra. If $M$ is of finite presentation then we have
+\[
+  \Hom_A(M, N) \otimes_A B = \Hom_B(M \otimes_A B, N \otimes_A B).
+\]
+\end{theorem}
+
+\begin{proof}
+Fixing $N$ and $B$, we define contravariant functors $F$ and $G$ of an
+$A$-module $M$ by
+\[
+  F(M) = \Hom_A(M, N) \otimes_A B
+\]
+and
+\[
+  G(M) = \Hom_B(M \otimes_A B, N \otimes_A B);
+\]
+then we can define a morphism of functors $\lambda\colon F \to G$ by
+\[
+  \lambda(f \otimes b) = b \cdot (f \otimes 1_B) \quad \text{for } f \in \Hom_A(M, N) \text{ and } b \in B.
+\]
+Both $F$ and $G$ are left-exact functors.
+
+Now if $M$ is of finite presentation there is an exact sequence of the form
+$A^p \to A^q \to M \to 0$, and from this we get a commutative diagram
+\[
+  \begin{tikzcd}[column sep=large, row sep=large]
+    0 \arrow[r] & F(M) \arrow[r] \arrow[d, "\lambda"] & F(A^q) \arrow[r] \arrow[d, "\lambda"] & F(A^p) \arrow[d, "\lambda"] \\
+    0 \arrow[r] & G(M) \arrow[r] & G(A^q) \arrow[r] & G(A^p)
+  \end{tikzcd}
+\]
+having two exact rows. Now $F(A^p) = N^p \otimes B$ and $G(A^p) = (N \otimes B)^p$, so that
+the right-hand $\lambda$ is an isomorphism, and similarly the middle $\lambda$ is an
+isomorphism. Thus, as one sees easily, the left-hand $\lambda$ is also an
+isomorphism.
+\end{proof}
+
+\begin{corollary*}
+Let $A$, $M$ and $N$ be as in the theorem, and let $p$ be a prime ideal of
+$A$. Then
+\[
+  \Hom_A(M, N) \otimes_A A_p = \Hom_{A_p}(M_p, N_p).
+\]
+\end{corollary*}
+
+\begin{theorem}\label{thm:7.12}
+Let $A$ be a ring and $M$ an $A$-module of finite presentation.
+Then $M$ is a projective $A$-module if and only if $M_m$ is a free $A_m$-module for
+every maximal ideal $m$ of $A$.
+\end{theorem}
+
+\begin{proof}[Proof of `only if']
+If $M$ is projective it is a direct summand of a free module
+and this property is preserved by localisation, so that $M_m$ is projective over
+$A_m$, and is therefore free by Theorem~\ref{thm:2.5}.
+\end{proof}
+
+\begin{proof}[Proof of `if']
+Let $N_1 \to N_2 \to 0$ be an exact sequence of $A$-modules.
+Write $C$ for the cokernel of
+\[
+  \Hom_A(M, N_1) \to \Hom_A(M, N_2);
+\]
+then for any maximal ideal $m$ of $A$ we have
+\[
+  C_m = \Coker\{\Hom_{A_m}(M_m, (N_1)_m) \to \Hom_{A_m}(M_m, (N_2)_m)\} = 0.
+\]
+Hence $C = 0$ by Theorem~\ref{thm:4.6}, and this is what we had to prove.
+\end{proof}
+
+\begin{corollary*}
+If $A$ is a ring and $M$ is an $A$-module of finite presentation, then
+$M$ is flat if and only if it is projective.
+\end{corollary*}
+
+\begin{proof}
+This follows from Theorems 1, 12 and 10.
+\end{proof}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:7}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:7.1-ex}
+If $B$ is a faithfully flat $A$-algebra then for an $A$-module $M$ we have
+\[
+  B \otimes_A M \text{ is $B$-flat} \iff M \text{ is $A$-flat},
+\]
+and similarly for faithfully flat.
+\end{exercise}
+
+\begin{exercise}\label{ex:7.2-ex}
+Let $A$ and $B$ be integral domains with $A \subset B$, and suppose that $A$ and $B$
+have the same field of fractions; if $B$ is faithfully flat over $A$ then $A = B$.
+\end{exercise}
+
+\begin{exercise}\label{ex:7.3-ex}
+Let $B$ be a faithfully flat $A$-algebra; for an $A$-module $M$ we can view $M$ as a
+submodule of $B \otimes_A M$ (by Theorem~\ref{thm:7.5}). Then if $\{m_\lambda\}$ is a subset of $M$
+which generates $B \otimes M$ over $B$, it also generates $M$ over $A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:7.4-ex}
+Let $A$ be a Noetherian ring and $\{M_\lambda\}_{\lambda \in \Lambda}$ a family of flat $A$-modules; then
+the direct product module $\prod_{\lambda \in \Lambda} M_\lambda$ is also flat. In particular the formal
+power series $A[[X_1, \ldots, X_n]]$ is a flat $A$-algebra (Chase [1]).
+\end{exercise}
+
+\begin{exercise}\label{ex:7.5-ex}
+Let $A$ be a ring and $N$ a flat $A$-module; if $a \in A$ is $A$-regular, it is also $N$-
+regular.
+\end{exercise}
+
+\begin{exercise}\label{ex:7.6-ex}
+Let $A$ be a ring, and $C_\bullet$ a complex of $A$-modules; for an $A$-module $N$ we
+write $C_\bullet \otimes N$ for the complex $\cdots \to C_{i+1} \otimes N \to C_i \otimes N \to \cdots$. If
+$N$ is flat over $A$ then $H_i(C_\bullet) \otimes N = H_i(C_\bullet \otimes N)$ for all $i$.
+\end{exercise}
+
+\begin{exercise}\label{ex:7.7-ex}
+Let $A$ be a ring and $B$ a flat $A$-algebra; then if $M$ and $N$ are $A$-modules,
+\[
+  \Tor^A_i(M, N) \otimes_A B = \Tor^B_i(M \otimes B, N \otimes B) \quad \text{for all } i.
+\]
+If in addition $M$ is finitely generated and $A$ is Noetherian then
+\[
+  \Ext^i_A(M, N) \otimes_A B = \Ext^i_B(M \otimes_A B, N \otimes_A B) \quad \text{for all } i.
+\]
+\end{exercise}
+
+\begin{exercise}\label{ex:7.8-ex}
+Theorem~\ref{thm:7.4}, (i) does not hold for the intersection of infinitely many
+submodules; explain why, and construct a counter-example.
+\end{exercise}
+
+\begin{exercise}\label{ex:7.9-ex}
+If $B$ is a faithfully flat $A$-algebra and $B$ is Noetherian then $A$ is Noetherian.
+\end{exercise}

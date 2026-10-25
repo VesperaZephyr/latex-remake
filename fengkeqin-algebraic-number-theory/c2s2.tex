@@ -1,0 +1,584 @@
+% ============ 第二章 §2 分歧指数,剩余类域次数和分裂次数 (原书 pp.50-71) ============
+\section{分歧指数,剩余类域次数和分裂次数}\label{sec:ch2-s2}
+
+\subsection{\texorpdfstring{$e, f, g$}{e, f, g}}\label{sec:ch2-s2-1}
+
+现在我们开始研究数域中素理想分解的基本问题.设 $L/K$ 是数域的扩张,$\mathfrak{a}$ 是 $O_K$ 的一个理想.基本问题是:$O_L$ 中的理想 $\mathfrak{a}O_L$ 如何分解成 $O_L$ 中素理想的乘积?由于每个理想 $\mathfrak{a}$ 均是 $O_K$ 中一些素理想的乘积,因此我们只要对 $O_K$ 中每个素理想 $\mathfrak{p}$ 弄清 $\mathfrak{p}O_L$ 在 $O_L$ 中的素理想分解式就可以了.
+
+对于 $O_K$ 中每个素理想 $\mathfrak{p}$,显然 $\mathfrak{p}O_L\subsetneq O_L$.从而 $\mathfrak{p}O_L$ 在 $O_L$ 中分解成
+\[
+  \mathfrak{p}O_L=\mathfrak{P}_1^{e_1}\mathfrak{P}_2^{e_2}\cdots\mathfrak{P}_g^{e_g},
+\]
+其中 $g\geqslant 1$,$\mathfrak{P}_1,\cdots,\mathfrak{P}_g$ 是 $L$ 中不同的素理想,而 $e_i\geqslant 1$($1\leqslant i\leqslant g$).对于每个 $\mathfrak{P}_i$,我们有 $\mathfrak{P}_i\mid\mathfrak{p}O_L$,这也常常简写成 $\mathfrak{P}_i\mid\mathfrak{p}$,并且称 $O_L$ 中素理想 $\mathfrak{P}_i$ 是 $O_K$ 中素理想 $\mathfrak{p}$ 的因子(即指是 $O_L$ 中理想 $\mathfrak{p}O_L$ 的因子).这就首先遇到一个问题:如何判别 $O_L$ 中一个素理想 $\mathfrak{P}$ 是 $\mathfrak{p}$ 的因子?
+
+\begin{lemma}\label{lem:ch2-10}
+设 $L/K$ 是数域的扩张,$\mathfrak{P}$ 为 $O_L$ 的素理想,则
+\begin{enumerate}[(1)]
+  \item $\mathfrak{P}\cap O_K$ 为 $O_K$ 的素理想,并且 $\mathfrak{P}\cap O_K=\mathfrak{p}\Leftrightarrow\mathfrak{P}\mid\mathfrak{p}$;
+  \item 若 $\mathfrak{P}\cap O_K=\mathfrak{p}$,则 $O_K/\mathfrak{p}$ 和 $O_L/\mathfrak{P}$ 均是有限域,并且前者可看成是后者的子域.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) 容易验证 $\mathfrak{P}\cap O_K$ 是 $O_K$ 的理想.进而,若 $a,b\in O_K$,$ab\in\mathfrak{P}\cap O_K$,则 $ab\in\mathfrak{P}$.由于 $\mathfrak{P}$ 为 $O_L$ 中的素理想,并且 $a,b\in O_L$,从而 $a\in\mathfrak{P}$ 或者 $b\in\mathfrak{P}$.于是 $a\in\mathfrak{P}\cap O_K$ 或者 $b\in\mathfrak{P}\cap O_K$.这就证明了 $\mathfrak{P}\cap O_K$ 是 $O_K$ 的素理想.
+
+若 $\mathfrak{P}\cap O_K=\mathfrak{p}$,则 $\mathfrak{P}\supseteq\mathfrak{p}$,从而 $\mathfrak{P}\supseteq\mathfrak{p}O_L$,于是 $\mathfrak{P}\mid\mathfrak{p}O_L$,即 $\mathfrak{P}\mid\mathfrak{p}$.反之,若 $\mathfrak{p}$ 为 $O_K$ 中的素理想并且 $\mathfrak{P}\mid\mathfrak{p}$,则 $\mathfrak{P}\mid\mathfrak{p}O_L$,于是 $\mathfrak{P}\supseteq\mathfrak{p}O_L\supseteq\mathfrak{p}$,从而 $\mathfrak{P}\cap O_K\supseteq\mathfrak{p}\cap O_K=\mathfrak{p}$.但是 $\mathfrak{P}\cap O_K$ 和 $\mathfrak{p}$ 均为 $O_K$ 的素理想,从而均为 $O_K$ 的极大理想,所以必然 $\mathfrak{P}\cap O_K=\mathfrak{p}$.
+
+(2) 作映射
+\[
+  \varphi\colon O_K\to O_L/\mathfrak{P},\qquad \varphi(x)=x+\mathfrak{P}\quad (x\in O_K),
+\]
+易知这是环的同态,而 $\operatorname{Ker}\varphi=O_K\cap\mathfrak{P}=\mathfrak{p}$.从而由同态 $\varphi$ 可将环 $O_K/\mathfrak{p}$ 看成是 $O_L/\mathfrak{P}$ 的子环.我们过去已经证明了 $O_K/\mathfrak{p}$ 和 $O_L/\mathfrak{P}$ 均是有限环(元素个数分别为 $N_K(\mathfrak{p})$ 和 $N_L(\mathfrak{P})$).由于 $\mathfrak{p}$ 和 $\mathfrak{P}$ 分别是 $O_K$ 和 $O_L$ 的极大理想,从而 $O_K/\mathfrak{p}$ 和 $O_L/\mathfrak{P}$ 均是有限域,而前者是后者的子域.
+\end{proof}
+
+\begin{remark}
+对于每个数域 $K$ 和每个素数 $p$,显然 $O_K$ 中均有素理想 $\mathfrak{p}$ 使得 $\mathfrak{p}\mid p$.另一方面,如果 $p$ 和 $p'$ 为不同的素数,而 $\mathfrak{p}$ 和 $\mathfrak{p}'$ 为 $O_K$ 中素理想,$\mathfrak{p}\mid p$,$\mathfrak{p}'\mid p'$,则 $\mathfrak{p}\cap\Z=p\neq p'=\mathfrak{p}'\cap\Z$,这就表明 $\mathfrak{p}\neq\mathfrak{p}'$.由于熟知存在无限多个素数 $p$,从而对于每个数域 $K$,$O_K$ 中存在着无限多个素理想.
+\end{remark}
+
+现在可以引进素理想分解的 $3$ 个最基本参量.设 $L/K$ 为数域的扩张.对于 $O_K$ 中的素理想 $\mathfrak{p}$,$\mathfrak{p}O_L$ 在 $O_L$ 中的素理想分解式为:
+\[
+  \mathfrak{p}O_L=\mathfrak{P}_1^{e_1}\mathfrak{P}_2^{e_2}\cdots\mathfrak{P}_g^{e_g},\quad e_i\geqslant 1,\quad g\geqslant 1.
+\]
+$\mathfrak{p}$ 在 $O_L$ 中的 $g$ 个素理想因子 $\mathfrak{P}_i$($1\leqslant i\leqslant g$)可以用 $\mathfrak{P}_i\cap O_K=\mathfrak{p}$ 来刻画.$e_i$ 叫作是 $\mathfrak{P}_i$ 的\emph{分歧指数}(这个名称来源于代数几何),表示成 $e_i=e(\mathfrak{P}_i/\mathfrak{p})$.如果 $e_i\geqslant 2$,称 $\mathfrak{P}_i$ 是(对于扩张 $L/K$ 的)分歧素理想.否则便称 $\mathfrak{P}_i$ 是不分歧的.如果 $e_1,\cdots,e_g$ 中至少有一个大于 $2$,即 $\mathfrak{P}_1,\cdots,\mathfrak{P}_g$ 中至少有一个是分歧的,便称 $\mathfrak{p}$(对于扩张 $L/K$)是\emph{分歧}的.否则,如果 $\mathfrak{P}_1,\cdots,\mathfrak{P}_g$ 均是不分歧的,便称 $\mathfrak{p}$ 是不分歧的.数 $g$ 叫作是\emph{分裂次数}.最后,根据引理 \ref{lem:ch2-10} 可知 $O_K/\mathfrak{p}$ 和 $O_L/\mathfrak{P}_i$ 均是有限域,并且后者是前者的扩域.这显然是有限(次)扩张.其扩张次数 $[O_L/\mathfrak{P}_i:O_K/\mathfrak{p}]$ 叫作是 $\mathfrak{P}_i$(对于扩张 $L/K$)的\emph{剩余类域次数},表示成 $f(\mathfrak{P}_i/\mathfrak{p})$,这 $3$ 个基本参量 $g$,$e(\mathfrak{P}_i/\mathfrak{p})$ 和 $f(\mathfrak{P}_i/\mathfrak{p})$($1\leqslant i\leqslant g$)之间有如下关系:
+
+\begin{theorem}\label{thm:2.5}
+设 $L/K$ 是数域的扩张,$n=[L:K]$,$\mathfrak{p}$ 为 $O_K$ 的素理想,$\mathfrak{p}O_L=\mathfrak{P}_1^{e_1}\cdots\mathfrak{P}_g^{e_g}$ 为 $\mathfrak{p}O_L$ 在 $O_L$ 中的素理想分解式,$e_i=e(\mathfrak{P}_i/\mathfrak{p})$,$f_i=f(\mathfrak{P}_i/\mathfrak{p})$($1\leqslant i\leqslant g$).则 $\sum_{i=1}^{g}e_if_i=n$.
+\end{theorem}
+
+\begin{proof}
+由 $\mathfrak{p}O_L$ 的素理想分解式可知 $N_L(\mathfrak{p}O_L)=\prod_{i=1}^{g}N_L(\mathfrak{P}_i)^{e_i}$,但是 $N_L(\mathfrak{P}_i)=|O_L/\mathfrak{P}_i|$,而 $O_L/\mathfrak{P}_i$ 是有限域 $O_K/\mathfrak{p}$ 上的 $f_i$ 维向量空间,从而 $N_L(\mathfrak{P}_i)=|O_L/\mathfrak{P}_i|=|O_K/\mathfrak{p}|^{f_i}$,于是
+\[
+  N_L(\mathfrak{p}O_L)=\prod_{i=1}^{g}|O_K/\mathfrak{p}|^{e_if_i}=|O_K/\mathfrak{p}|^{\sum_{i=1}^{g}e_if_i}.
+\]
+另一方面,作映射 $\varphi\colon O_K\to O_L/\mathfrak{p}O_L$,$\varphi(x)=\bar{x}=x+\mathfrak{p}O_L$($x\in O_K$),则 $\varphi$ 是环同态,并且 $\operatorname{Ker}\varphi=O_K\cap\mathfrak{p}O_L=\mathfrak{p}$(为什么?).从而有限域 $O_K/\mathfrak{p}$ 可看成是有限环 $O_L/\mathfrak{p}O_L$ 的子域,于是 $V=O_L/\mathfrak{p}O_L$ 是有限域 $\overline{K}=O_K/\mathfrak{p}$ 上的向量空间.记这个向量空间的维数为 $\widetilde{n}=\dim_{\overline{K}}V$,则
+\[
+  N_L(\mathfrak{p}O_L)=|O_L/\mathfrak{p}O_L|=|V|=|\overline{K}|^{\widetilde{n}}=|O_K/\mathfrak{p}|^{\widetilde{n}},
+\]
+从而 $\widetilde{n}=\sum_{i=1}^{g}e_if_i$,于是我们只需再证明 $\widetilde{n}=n$ 即可.
+
+我们先证明 $\widetilde{n}\leqslant n$(这等价于 $\sum_{i=1}^{g}e_if_i\leqslant n$).设 $x_1,\cdots,x_{n+1}$ 是 $O_L$ 中任意 $n+1$ 个元素,由于 $[L:K]=n$,从而存在不全为 $0$ 的 $\alpha_1,\cdots,\alpha_{n+1}\in K$,使得
+\begin{equation}  \alpha_1x_1+\cdots+\alpha_{n+1}x_{n+1}=0.\tag{*}\end{equation}
+必要时将 $\alpha_1,\cdots,\alpha_{n+1}$ 乘以 $O_K$ 中同一个适当的非零整数(例如乘以 $\alpha_1,\cdots,\alpha_{n+1}$ 的"公分母"),我们可以假设 $\alpha_1,\cdots,\alpha_{n+1}$ 均属于 $O_K$.现在令 $\mathfrak{a}=(\alpha_1,\cdots,\alpha_{n+1})$,这是 $O_K$ 中的理想,于是有整理想 $\mathfrak{b}$,使得 $\mathfrak{ab}=(\alpha)$($\alpha\in O_K$),并且 $\mathfrak{ab}\not\subset(\alpha)\mathfrak{p}$,从而存在 $\beta\in\mathfrak{b}$,使得 $\beta\mathfrak{a}\not\subset(\alpha)\mathfrak{p}$.因此:(i) $(\beta/\alpha)\mathfrak{a}=\beta\cdot\mathfrak{b}^{-1}\subseteq O_K$,由此可知 $(\beta/\alpha)\cdot\alpha_i\in O_K$($1\leqslant i\leqslant n+1$);(ii) $(\beta/\alpha)\mathfrak{a}\not\subset\mathfrak{p}$.由此可知,至少有一个 $i$ 使得 $(\beta/\alpha)\cdot\alpha_i\notin\mathfrak{p}$.换句话说,如果令 $\gamma_i=(\beta/\alpha)\cdot\alpha_i$,则 $\gamma_i\in O_K$($1\leqslant i\leqslant n+1$),并且至少有一个 $i$,使得 $\gamma_i\notin\mathfrak{p}$,即在 $\overline{K}=O_K/\mathfrak{p}$ 中 $\overline{\gamma}_i\neq\overline{0}$.现在将 (*) 式诸项乘以 $\beta/\alpha$,即得到 $\gamma_1x_1+\cdots+\gamma_{n+1}x_{n+1}=0$.然后转到商环 $O_L/\mathfrak{p}O_L$ 中,则为 $\overline{\gamma}_1\overline{x}_1+\cdots+\overline{\gamma}_{n+1}\overline{x}_{n+1}=\overline{0}$,并且 $\overline{\gamma}_1,\cdots,\overline{\gamma}_{n+1}$ 不全为 $\overline{0}$.这就表明 $V=O_L/\mathfrak{p}O_L$ 中任意 $n+1$ 个元素 $\overline{x}_1,\cdots,\overline{x}_{n+1}$ 在 $\overline{K}=O_K/\mathfrak{p}$ 上都是线性相关的,从而 $\widetilde{n}=\dim_{\overline{K}}V\leqslant n$.
+
+现在我们进而证明 $\widetilde{n}=n$.当 $K=\Q$ 时证明是容易的.因为这时 $\mathfrak{p}$ 即为主理想 $(p)$,$p$ 为素数,而 $O_K/\mathfrak{p}=\Z/(p)$ 为 $p$ 元域.设 $\{\omega_1,\cdots,\omega_n\}$ 为 $O_L$ 的一组整基,则
+\begin{align*}
+  O_L/(p)O_L&=(\Z\omega_1\oplus\cdots\oplus\Z\omega_n)/(\Z p\omega_1\oplus\cdots\oplus\Z p\omega_n)\\
+  &\cong\Z\omega_1/\Z p\omega_1\oplus\cdots\oplus\Z\omega_n/\Z p\omega_n\\
+  &\cong\Z/(p)\oplus\cdots\oplus\Z/(p)\ (\text{$n$ 个}),
+\end{align*}
+因此 $\widetilde{n}=n$.从而对于 $K=\Q$ 这一特殊情形我们也就证明了定理.现在考虑一般情形:上述证明不能直接用于一般的 $K$,因为 $K$ 中素理想 $\mathfrak{p}$ 不一定是主理想,而 $O_L$ 在 $O_K$ 上也不一定有相对整基,但是我们可借助于 $\Q$.我们知道,$\mathfrak{p}\cap\Z$ 是 $\Z$ 中的素理想,从而 $\mathfrak{p}\cap\Z=p\Z$,$p$ 为素数,于是 $\mathfrak{p}\mid p$.设
+\[
+  pO_K=\mathfrak{p}_1^{\widetilde{e}_1}\cdots\mathfrak{p}_r^{\widetilde{e}_r}
+\]
+是理想 $pO_K$ 在 $O_K$ 中的素理想分解式,$\widetilde{e}_i=e(\mathfrak{p}_i/p)$,$\widetilde{f}_i=f(\mathfrak{p}_i/p)$,则 $\mathfrak{p}$ 为某个 $\mathfrak{p}_i$.并且上面已经证明了 $\sum_{i=1}^{r}\widetilde{e}_i\widetilde{f}_i=[K:\Q]=m$.又令 $\overline{K}_i=O_K/\mathfrak{p}_i$,$V_i=O_L/\mathfrak{p}_iO_L$,则 $V_i$ 是域 $\overline{K}_i$ 上的向量空间.令维数为 $\widetilde{n}_i=\dim_{\overline{K}_i}V_i$,我们上面也已经证明了 $\widetilde{n}_i\leqslant n$($1\leqslant i\leqslant r$),由于
+\[
+  pO_L=(\mathfrak{p}_1O_L)^{\widetilde{e}_1}\cdots(\mathfrak{p}_rO_L)^{\widetilde{e}_r},
+\]
+从而
+\begin{align*}
+  |O_L/pO_L|&=N_L(pO_L)=\prod_{i=1}^{r}N_L(\mathfrak{p}_iO_L)^{\widetilde{e}_i}\\
+  &=\prod_{i=1}^{r}|O_L/\mathfrak{p}_iO_L|^{\widetilde{e}_i}
+  =\prod_{i=1}^{r}|O_K/\mathfrak{p}_i|^{\widetilde{n}_i\widetilde{e}_i}
+  =\prod_{i=1}^{r}p^{\widetilde{n}_i\widetilde{f}_i\widetilde{e}_i}.
+\end{align*}
+另一方面,我们已经知道 $|O_L/pO_L|=p^{[L:\Q]}=p^{mn}$.于是
+\[
+  mn=\sum_{i=1}^{r}\widetilde{n}_i\widetilde{f}_i\widetilde{e}_i
+  \leqslant\sum_{i=1}^{r}n\widetilde{f}_i\widetilde{e}_i
+  =n\sum_{i=1}^{r}\widetilde{f}_i\widetilde{e}_i=nm,
+\]
+从而必然要 $\widetilde{n}_i$($1\leqslant i\leqslant r$)均等于 $n$ 才行.而 $\widetilde{n}$ 是某个 $\widetilde{n}_i$,因此 $\widetilde{n}=n$,这就完成了定理 \ref{thm:2.5} 的证明.
+\end{proof}
+
+由定理 \ref{thm:2.5} 可知,$g$ 的最大值为 $n=[L:K]$.并且当 $g=n$ 时,$e_i$ 和 $f_i$ 均为 $1$,即
+\[
+  \mathfrak{p}O_L=\mathfrak{P}_1\mathfrak{P}_2\cdots\mathfrak{P}_n,\qquad
+  e(\mathfrak{P}_i/\mathfrak{p})=f(\mathfrak{P}_i/\mathfrak{p})=1\quad (1\leqslant i\leqslant n),
+\]
+这时我们称 $O_K$ 的素理想 $\mathfrak{p}$ 在 $L$ 中\emph{完全分裂}.另一个极端是 $e=n$ 的情形,此时 $g=1$,于是 $\mathfrak{p}O_L=\mathfrak{P}^n$(从而 $e(\mathfrak{P}/\mathfrak{p})=n$,$f(\mathfrak{P}/\mathfrak{p})=1$),这时称 $\mathfrak{p}$ 在 $L$ 中\emph{完全分歧}.最后,若 $\mathfrak{p}O_L=\mathfrak{P}$($g=1$,$e(\mathfrak{P}/\mathfrak{p})=1$,$f(\mathfrak{P}/\mathfrak{p})=n$),则称 $\mathfrak{p}$ 在 $L$ 中是\emph{惯性}的,这是因为 $O_K$ 中素理想扩充成 $O_L$ 中理想 $\mathfrak{p}O_L$ 之后,仍旧是素理想.
+
+\begin{theorem}[\emph{传递公式}]\label{thm:2.6}
+设 $L/M$ 和 $M/K$ 均是数域的扩张,$\mathfrak{p}$,$\mathfrak{P}$,$P$ 分别是 $O_K$,$O_M$,$O_L$ 的素理想,并且 $P\mid\mathfrak{P}\mid\mathfrak{p}$,则
+\[
+  e(P/\mathfrak{p})=e(P/\mathfrak{P})\cdot e(\mathfrak{P}/\mathfrak{p}),\qquad
+  f(P/\mathfrak{p})=f(P/\mathfrak{P})\cdot f(\mathfrak{P}/\mathfrak{p}).
+\]
+\end{theorem}
+
+\begin{proof}
+由于 $\mathfrak{p}O_M=\mathfrak{P}^{e(\mathfrak{P}/\mathfrak{p})}\cdots$,$\mathfrak{P}O_L=P^{e(P/\mathfrak{P})}\cdots$,从而
+\begin{align*}
+  \mathfrak{p}O_L&=(\mathfrak{p}O_M)O_L=(\mathfrak{P}^{e(\mathfrak{P}/\mathfrak{p})}\cdots)O_L
+  =(\mathfrak{P}O_L)^{e(\mathfrak{P}/\mathfrak{p})}\cdots\\
+  &=P^{e(P/\mathfrak{P})e(\mathfrak{P}/\mathfrak{p})}\cdots.
+\end{align*}
+另一方面,$\mathfrak{p}O_L=P^{e(P/\mathfrak{p})}\cdots$,因此 $e(P/\mathfrak{p})=e(P/\mathfrak{P})e(\mathfrak{P}/\mathfrak{p})$.类似地考虑有限域的扩张 $O_K/\mathfrak{p}\subseteq O_M/\mathfrak{P}\subseteq O_L/P$,即知
+\begin{align*}
+  f(P/\mathfrak{p})&=[O_L/P:O_K/\mathfrak{p}]
+  =[O_L/P:O_M/\mathfrak{P}]\cdot[O_M/\mathfrak{P}:O_K/\mathfrak{p}]\\
+  &=f(P/\mathfrak{P})\cdot f(\mathfrak{P}/\mathfrak{p}).
+\end{align*}
+\end{proof}
+
+\subsection{素理想分解和多项式分解}\label{sec:ch2-s2-2}
+
+上一小节中我们介绍了 $3$ 个基本参量 $e, f, g$ 和基本关系 $n=\sum_{i=1}^{g}e_if_i$.在一般情形下,这对于决定数值 $g, e_i, f_i$ 是不够的.给了 $O_K$ 中素理想 $\mathfrak{p}$,我们希望有办法能够求出 $g, e_i, f_i$ 的数值以及 $\mathfrak{p}$ 在 $O_L$ 中的全部素理想因子 $\mathfrak{P}_1,\cdots,\mathfrak{P}_g$.在这方面,下面定理是很有用的.
+
+\begin{theorem}\label{thm:2.7}
+设 $L/K$ 是数域的扩张,$L=K(\alpha)$,$\alpha\in O_L$,$n=[L:K]$.$f(x)=x^n+c_1x^{n-1}+\cdots+c_n\in O_K[x]$ 是整数 $\alpha$ 在 $K$ 上的极小多项式,则
+\begin{enumerate}[(a)]
+  \item $O_K[\alpha]$ 是 $O_L$ 的子环,并且加法商群 $O_L/O_K[\alpha]$ 是有限群;
+  \item 设 $p$ 是素数,$\mathfrak{p}$ 为 $O_K$ 的素理想,$\mathfrak{p}\mid p$,则 $O_K/\mathfrak{p}$ 是特征 $p$ 的有限域;
+  \item 如果 $\mathfrak{p}\nmid|O_L/O_K[\alpha]|$,令 $\bar{f}(x)$ 在 $O_K/\mathfrak{p}[x]$ 中分解成
+        \[
+          \bar{f}(x)=\bar{p}_1(x)^{e_1}\bar{p}_2(x)^{e_2}\cdots\bar{p}_g(x)^{e_g},
+        \]
+        其中 $p_1(x),\cdots,p_g(x)$ 均为 $O_K[x]$ 中的首 $1$ 多项式,并且看作是 $O_K/\mathfrak{p}[x]$ 中的多项式时(即多项式系数看作是域 $O_K/\mathfrak{p}$ 中的元素)为两两不同的不可约多项式,则 $\mathfrak{p}$ 在 $O_L$ 中的分解式为
+        \[
+          \mathfrak{p}O_L=\mathfrak{P}_1^{e_1}\cdots\mathfrak{P}_g^{e_g},
+        \]
+        其中 $\mathfrak{P}_i=(\mathfrak{p},p_i(\alpha))$,$e_i=e(\mathfrak{P}_i/\mathfrak{p})$,而 $f(\mathfrak{P}_i/\mathfrak{p})=\deg p_i(x)$($1\leqslant i\leqslant g$).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(a) $O_K[\alpha]$ 显然是 $O_L$ 的子环.由于加法群 $O_L$ 和 $O_K[\alpha]$ 均是秩 $[L:\Q]$ 的自由 Abel 群,由 Abel 群基本定理不难看出加法商群 $O_L/O_K[\alpha]$ 是有限的.
+
+(b) 由于 $\mathfrak{p}\cap\Z=p$,并且 $O_K/\mathfrak{p}$ 是 $p$ 元域 $\Z/p\Z$ 的扩域,从而 $O_K/\mathfrak{p}$ 是特征 $p$ 的有限域.
+
+(c) 令 $f_i=\deg p_i(x)$($1\leqslant i\leqslant g$).我们先依次证明以下 $3$ 件事情:
+
+(i) 对于每个 $i$,或者 $\mathfrak{P}_i=O_L$,或者 $O_L/\mathfrak{P}_i$ 是 $|O_K/\mathfrak{p}|^{f_i}$ 元域.这是因为:$p_i(x)$ 在 $O_K/\mathfrak{p}[x]$ 中不可约,从而 $F_i=O_K/\mathfrak{p}[x]/(p_i(x))$ 为域.自然同态 $\varphi\colon O_K[x]\to O_K/\mathfrak{p}[x]/(p_i(x))$ 是满同态,并且 $\operatorname{Ker}\varphi=(\mathfrak{p},p_i(x))$,从而有同构 $O_K[x]/(\mathfrak{p},p_i(x))\cong O_K/\mathfrak{p}[x]/(p_i(x))=F_i$.从而左边也是域.因此 $(\mathfrak{p},p_i(x))$ 是 $O_K[x]$ 的极大理想.再作映射 $\pi\colon O_K[x]\to O_L/\mathfrak{P}_i$,$\pi(f(x))=f(\alpha)+\mathfrak{P}_i$,这是环同态.由于 $\mathfrak{P}_i=(\mathfrak{p},p_i(\alpha))$,从而 $(\mathfrak{p},p_i(x))\subseteq\operatorname{Ker}\pi$,但是 $(\mathfrak{p},p_i(x))$ 是 $O_K[x]$ 的极大理想.因此 $\operatorname{Ker}\pi=(\mathfrak{p},p_i(x))$ 或者 $O_K[x]$.我们再证 $\pi$ 是满同态,这只要证明 $O_K[\alpha]+\mathfrak{P}_i=O_L$ 即可.由于 $p\in\mathfrak{p}\subseteq\mathfrak{P}_i$,从而 $pO_L\subseteq\mathfrak{P}_i$,于是只要证明 $O_K[\alpha]+pO_L=O_L$ 即可.这是由于 $p\nmid|O_L/O_K[\alpha]|$,而 $|O_L/pO_L|=p^{[L:\Q]}$,从而 $|O_L/(O_K[\alpha]+pO_L)|$ 可除尽 $(|O_L/O_K[\alpha]|,|O_L/pO_L|)=1$,因此 $|O_L/(O_K[\alpha]+pO_L)|=1$,即 $O_L=O_K[\alpha]+pO_L$,从而 $\pi$ 为满同态.于是 $O_L/\mathfrak{P}_i$ 或者同构于 $O_K[x]/(\mathfrak{p},p_i(x))\cong F_i$,从而 $O_L/\mathfrak{P}_i$ 为 $|O_K/\mathfrak{p}|^{f_i}$ 元域;或者同构于零环,即 $\mathfrak{P}_i=O_L$.
+
+(ii) 当 $i\neq j$ 时,$(\mathfrak{P}_i,\mathfrak{P}_j)=1$.这是由于 $p_i(x)$ 和 $p_j(x)$ 是 $O_K/\mathfrak{p}[x]$ 中不同的不可约多项式,而 $O_K/\mathfrak{p}[x]$ 为主理想整环,从而存在 $h(x),k(x)\in O_K/\mathfrak{p}[x]$,使得 $hp_i+kp_j\equiv 1\ (\mathrm{mod}\ \mathfrak{p})$.代入 $x=\alpha$ 即知
+\[
+  p_i(\alpha)h(\alpha)+p_j(\alpha)k(\alpha)\equiv 1\ (\mathrm{mod}\ \mathfrak{p}O_L),
+\]
+于是 $1\in(\mathfrak{p},p_i(\alpha),p_j(\alpha))=(\mathfrak{P}_i,\mathfrak{P}_j)$.
+
+(iii) $\mathfrak{p}O_L\mid\mathfrak{P}_1^{e_1}\cdots\mathfrak{P}_g^{e_g}$.这是因为:令 $\gamma_i=p_i(\alpha)$,则 $\mathfrak{P}_i=(\mathfrak{p},\gamma_i)$,由 (ii) 知当 $i\neq j$ 时,$(\mathfrak{p},\gamma_i,\gamma_j)=1$.令 $\mathfrak{a}=(\mathfrak{p},\gamma_1^{e_1}\cdots\gamma_g^{e_g})$,则
+\[
+  \mathfrak{P}_1\mathfrak{P}_2=(\mathfrak{p},\gamma_1)(\mathfrak{p},\gamma_2)
+  =(\mathfrak{p}^2,\mathfrak{p}\gamma_1,\mathfrak{p}\gamma_2,\gamma_1\gamma_2)
+  =(\mathfrak{p}(\mathfrak{p},\gamma_1,\gamma_2),\gamma_1\gamma_2)
+  =(\mathfrak{p},\gamma_1\gamma_2),
+\]
+\[
+  \mathfrak{P}_1^2=(\mathfrak{p},\gamma_1)^2=(\mathfrak{p}^2,\mathfrak{p}\gamma_1,\gamma_1^2)\subseteq(\mathfrak{p},\gamma_1^2).
+\]
+由此归纳下去,即知
+\[
+  \mathfrak{P}_1^{e_1}\cdots\mathfrak{P}_g^{e_g}\subseteq(\mathfrak{p},\gamma_1^{e_1}\cdots\gamma_g^{e_g})=\mathfrak{a},
+\]
+只需再证 $\mathfrak{a}=\mathfrak{p}O_L$ 即可.为证此将 $x=\alpha$ 代入 $f(x)\equiv p_1(x)^{e_1}\cdots p_g(x)^{e_g}\ (\mathrm{mod}\ \mathfrak{p})$,便得到
+\[
+  \gamma_1^{e_1}\cdots\gamma_g^{e_g}\equiv f(\alpha)=0\ (\mathrm{mod}\ \mathfrak{p}O_L),
+\]
+即 $\gamma_1^{e_1}\cdots\gamma_g^{e_g}\in\mathfrak{p}O_L$,从而 $\mathfrak{a}=(\mathfrak{p},\gamma_1^{e_1}\cdots\gamma_g^{e_g})=\mathfrak{p}O_L$.
+
+现在我们证明 (c):由 (i) 我们不妨假设 $\mathfrak{P}_1,\cdots,\mathfrak{P}_s$ 均不为 $O_L$,而 $\mathfrak{P}_{s+1}=\cdots=\mathfrak{P}_g=O_L$,则 $\mathfrak{P}_i$($1\leqslant i\leqslant s$)均为 $O_L$ 的素理想,并且 $\mathfrak{P}_i\supseteq\mathfrak{p}$,$f(\mathfrak{P}_i/\mathfrak{p})=[O_L/\mathfrak{P}_i:O_K/\mathfrak{p}]=f_i$($1\leqslant i\leqslant s$).由 (ii) 知 $\mathfrak{P}_1,\cdots,\mathfrak{P}_s$ 两两相异,由 (iii) 知 $\mathfrak{p}O_L\mid\mathfrak{P}_1^{e_1}\cdots\mathfrak{P}_s^{e_s}$,于是 $\mathfrak{p}O_L=\mathfrak{P}_1^{d_1}\cdots\mathfrak{P}_s^{d_s}$,$d_i\leqslant e_i$($1\leqslant i\leqslant s$).由定理 \ref{thm:2.5} 即知
+\[
+  n=d_1f_1+\cdots+d_sf_s\leqslant e_1f_1+\cdots+e_gf_g.
+\]
+但是由 $f(x)\equiv p_1(x)^{e_1}\cdots p_g(x)^{e_g}\ (\mathrm{mod}\ \mathfrak{p})$ 对次数取度可知 $e_1f_1+\cdots+e_gf_g=\deg f=n$.从而必然 $s=g$ 并且 $e_i=d_i$($1\leqslant i\leqslant g$).这就完成了定理 \ref{thm:2.7} 的证明.
+\end{proof}
+
+\begin{remark}
+特别,若存在 $\alpha\in O_L$,使得 $O_L=O_K[\alpha]$,即 $\{1,\alpha,\cdots,\alpha^{n-1}\}$ 形成扩张 $L/K$ 的相对整基,则对于 $O_K$ 的每个素理想 $\mathfrak{p}$,均可利用定理 \ref{thm:2.7} 得到 $\mathfrak{p}O_L$ 的分解式.这就是 $\{1,\alpha,\cdots,\alpha^{n-1}\}$ 型(相对)整基的一个好处.
+\end{remark}
+
+\begin{example}\label{ex:ch2-s2-2-1}
+易证 $f(x)=x^3+x+1$ 是 $\Q[x]$ 中不可约多项式.设 $\omega$ 是它的一个根,则 $K=\Q(\omega)$ 为三次域.由于 $d_K(1,\omega,\omega^2)=d_K(f)=-31$ 没有平方因子,从而 $\{1,\omega,\omega^2\}$ 为 $O_K$ 的一组整基,即 $O_K=\Z[\omega]$.于是对于每个素数 $p$,我们均可利用定理 \ref{thm:2.7} 给出 $pO_K$ 的素理想分解式.例如:
+
+对于 $p=2$,$f(x)=x^3+x+1$ 在 $\F_2[x]$ 中仍不可约(因为 $f(x)$ 在 $\F_2$ 中无根).从而 $2O_K$ 为 $O_K$ 中素理想,即 $2$ 在 $K$ 中是惯性的.
+
+对于 $p=3$,$f(x)$ 在 $\F_3[x]$ 中分解为 $f(x)=(x-1)(x^2+x-1)$,而 $(x^2+x-1)$ 在 $\F_3[x]$ 中不可约.于是 $3O_K=\mathfrak{p}_1\mathfrak{p}_2$,其中 $\mathfrak{p}_1=(3,\omega-1)$ 和 $\mathfrak{p}_2=(3,\omega^2+\omega-1)$ 为 $O_K$ 中两个不同的素理想,并且剩余类域次数分别为 $f_1=1$ 和 $f_2=2$.于是 $N_K(\mathfrak{p}_1)=3$,$N_K(\mathfrak{p}_2)=9$,而 $3$ 在 $K$ 中不分歧.
+
+对于 $p=31$,$x^3+x+1\equiv(x-3)(x-14)^2\ (\mathrm{mod}\ 31)$.从而 $31O_K=\mathfrak{p}_1\mathfrak{p}_2^2$,$\mathfrak{p}_1=(31,\omega-3)$,$\mathfrak{p}_2=(31,\omega-14)$,$N_K(\mathfrak{p}_1)=N_K(\mathfrak{p}_2)=31$.$\mathfrak{P}_2$ 是分歧素理想,从而 $31$ 在 $K$ 中分歧.
+\end{example}
+
+\subsection{应用:素数在二次域中的分解,二平方和定理}\label{sec:ch2-s2-3}
+
+利用定理 \ref{thm:2.7},我们可以完全决定素数 $p$ 在二次域中的素理想分解.设 $K=\Q(\sqrt{d})$,$d\in\Z$,无平方因子.我们已经知道 $O_K=\Z\oplus\Z\omega$,其中
+\[
+  \omega=\begin{cases}
+    \sqrt{d}, & \text{当 } d\equiv 2,3\ (\mathrm{mod}\ 4)\text{ 时};\\[2pt]
+    \frac{1}{2}(1+\sqrt{d}), & \text{当 } d\equiv 1\ (\mathrm{mod}\ 4)\text{ 时},
+  \end{cases}
+\]
+而 $d(K)=\begin{cases}4d,\\ d.\end{cases}$ 我们还需要 Legendre 符号 $\left(\dfrac{d}{p}\right)$,它定义为:
+
+设 $p$ 为素数,$p\nmid d$,如果 $d$ 为模 $p$ 的二次剩余(即存在 $a\in\Z$,使得 $d\equiv a^2\ (\mathrm{mod}\ p)$),定义 $\left(\dfrac{d}{p}\right)=1$;如果 $d$ 为模 $p$ 的非二次剩余,就定义 $\left(\dfrac{d}{p}\right)=-1$.
+
+\begin{theorem}\label{thm:2.8}
+设 $K=\Q(\sqrt{d})$,$p$ 为素数,$N=N_K$.
+\begin{enumerate}[(a)]
+  \item 如果 $p\mid d(K)$,则 $pO_K=\mathfrak{p}^2$,$N(\mathfrak{p})=p$,即 $p$ 在 $K$ 中分歧;
+  \item 若 $p\geqslant 3$,并且 $p\nmid d(K)$,则当 $\left(\dfrac{d}{p}\right)=1$ 时,$pO_K=\mathfrak{p}_1\mathfrak{p}_2$,$\mathfrak{p}_1\neq\mathfrak{p}_2$,$N(\mathfrak{p}_1)=N(\mathfrak{p}_2)=p$,即 $p$ 在 $K$ 中完全分裂;而当 $\left(\dfrac{d}{p}\right)=-1$ 时,$pO_K=\mathfrak{p}$,$N(\mathfrak{p})=p^2$,即 $p$ 在 $K$ 中惯性;
+  \item 若 $p=2$ 并且 $p\nmid d(K)$,则必然 $d\equiv 1\ (\mathrm{mod}\ 4)$.如果 $d\equiv 1\ (\mathrm{mod}\ 8)$,则 $2$ 在 $K$ 中完全分裂;如果 $d\equiv 5\ (\mathrm{mod}\ 8)$,则 $2$ 在 $K$ 中惯性.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+由于 $O_K$ 有形如 $\{1,\omega\}$ 的整基,从而对于每个素数 $p$ 均可用定理 \ref{thm:2.7}.
+
+(i) 设 $d\equiv 2,3\ (\mathrm{mod}\ 4)$.这时 $\omega=\sqrt{d}$,它的极小多项式为 $x^2-d$,$d(K)=4d$.
+
+设 $p\geqslant 3$.当 $p\nmid d$ 时,如果 $\left(\dfrac{d}{p}\right)=1$,即有 $a\in\Z$,使得 $d\equiv a^2\ (\mathrm{mod}\ p)$,则 $x^2-d\equiv(x-a)(x+a)\ (\mathrm{mod}\ p)$.由 $p\nmid d$ 可知 $a\not\equiv-a\ (\mathrm{mod}\ p)$.即 $x-a$ 和 $x+a$ 是 $\Z/p\Z[x]$ 中不同的多项式.因此 $pO_K=\mathfrak{p}_1\mathfrak{p}_2$,$\mathfrak{p}_1=(p,\sqrt{d}-a)\neq(p,\sqrt{d}+a)=\mathfrak{p}_2$,$N(\mathfrak{p}_1)=N(\mathfrak{p}_2)=p$.如果 $\left(\dfrac{d}{p}\right)=-1$,则 $x^2-d$ 为 $\mathrm{mod}\ p$ 不可约的多项式,从而 $pO_K=\mathfrak{p}$,$N(\mathfrak{p})=p^2$.如果 $p\mid d$,则 $x^2-d\equiv x^2\ (\mathrm{mod}\ p)$,因此 $pO_K=\mathfrak{p}^2$,$\mathfrak{p}=(p,\sqrt{d})$,$N(\mathfrak{p})=p$.
+
+再设 $p=2$.当 $d\equiv 2\ (\mathrm{mod}\ 4)$ 时,$x^2-d\equiv x^2\ (\mathrm{mod}\ 2)$,从而 $2O_K=\mathfrak{p}^2$,$\mathfrak{p}=(2,\sqrt{d})$,$N(\mathfrak{p})=2$.如果 $d\equiv 3\ (\mathrm{mod}\ 4)$,则 $x^2-d\equiv(x+1)^2\ (\mathrm{mod}\ 2)$,从而 $2O_K=\mathfrak{p}^2$,$\mathfrak{p}=(2,\sqrt{d}+1)$,$N(\mathfrak{p})=2$.因此不论如何,$2$ 在 $K$ 中总是分歧的.
+
+(ii) 现在设 $d\equiv 1\ (\mathrm{mod}\ 4)$.这时 $\omega=\frac{1}{2}(1+\sqrt{d})$,它的极小多项式为 $x^2-x-\frac{1}{4}(d-1)\in\Z[x]$,$d(K)=d$.
+
+先设 $p\geqslant 3$.这时我们仍用 $\Z[\sqrt{d}]$.因为 $|O_K/\Z[\sqrt{d}]|=|\Z[\omega]/\Z[\sqrt{d}]|=2$,于是 $p\nmid|O_K/\Z[\sqrt{d}]|$.从而利用定理 \ref{thm:2.7},可知其结论与 $d\equiv 2,3\ (\mathrm{mod}\ 4)$ 的情形完全相同.
+
+再设 $p=2$.当 $d\equiv 1\ (\mathrm{mod}\ 8)$ 时,$x^2-x-\frac{1}{4}(d-1)\equiv x(x-1)\ (\mathrm{mod}\ 2)$.于是 $2O_K=\mathfrak{p}_1\mathfrak{p}_2$,$\mathfrak{p}_1=(2,\omega)\neq(2,\omega-1)=\mathfrak{p}_2$,$N(\mathfrak{p}_1)=N(\mathfrak{p}_2)=2$;而当 $d\equiv 5\ (\mathrm{mod}\ 8)$ 时,$x^2-x-\frac{1}{4}(d-1)\equiv x^2+x+1\ (\mathrm{mod}\ 2)$ 是不可约的.于是 $2$ 在 $K$ 中惯性.这就完成了定理的证明.
+\end{proof}
+
+作为定理 \ref{thm:2.8} 的应用,我们来谈谈高斯当年如何用二次域的素理想分解来解决"二平方和"问题.高斯的代数工具是虚二次域 $\Q(i)$ 和它的整数环 $\Z[i]$,$i=\sqrt{-1}$.(后人将 $\Q(i)$ 和 $\Z[i]$ 分别称作高斯数域和高斯整数环.)大家在抽象代数中已经学过,$\Z[i]$ 是主理想整环(或者参见本书第三章),从而 $\Z[i]$ 中每个理想均有形式 $\mathfrak{a}=(a+bi)$,$a,b\in\Z$,于是 $N(\mathfrak{a})=N(a+ib)=(a+ib)(a-ib)=a^2+b^2$ 正好是两个有理整数的平方和.换句话说,我们证明了下面的
+
+(a) $n\in\Z$ 可表为两个有理整数的平方和 $\Leftrightarrow n$ 是 $\Z[i]$ 中某个(主)理想的范;
+
+(b) 若 $n$ 和 $m$ 均可表成两个有理整数的平方和,则 $nm$ 亦然.(这是因为 $n=N(\alpha)$,$m=N(\beta)$,$\alpha,\beta\in\Z[i]$,则 $nm=N(\alpha\beta)$.)
+
+有了这些简单的准备,我们就可以证明:
+
+\begin{theorem}[\emph{高斯,二平方和定理}]\label{thm:2.9}
+设 $n$ 为正整数,$n=m^2n_0$,$m\in\Z$,$n_0$ 是 $n$ 的无平方因子部分,则:$n$ 是两个有理整数的平方和 $\Leftrightarrow n_0$ 没有素因子 $p\equiv 3\ (\mathrm{mod}\ 4)$.
+\end{theorem}
+
+\begin{proof}
+$\Leftarrow$:如果 $n_0=1$,则 $n=m^2+0^2$.若 $n_0\geqslant 2$,则 $n_0=p_1\cdots p_s$,$p_1,\cdots,p_s$ 为 $s\geqslant 1$ 个不同的素数,并且 $p_i=2$ 或者 $p_i\equiv 1\ (\mathrm{mod}\ 4)$.若 $p_i=2$,则 $p_i=1^2+1^2$.若 $p_i\equiv 1\ (\mathrm{mod}\ 4)$,则 $\left(\dfrac{-1}{p_i}\right)=1$.由定理 \ref{thm:2.8} 知 $p_i$ 在 $\Z[i]$ 中完全分裂,即 $p_i=\mathfrak{p}_1\mathfrak{p}_2$,$N(\mathfrak{p}_1)=p_i$.于是由前面的 (a) 知 $p_i$ 可表成二平方和.再由 (b) 即知 $n_0=p_1\cdots p_s$,从而 $n=m^2n_0$ 均可表为二个整数的平方和.
+
+$\Rightarrow$:假设 $n$ 可表成二平方和,则 $\Z[i]$ 中有理想 $\mathfrak{a}$ 使得 $N(\mathfrak{a})=n$.如果存在素数 $p\equiv 3\ (\mathrm{mod}\ 4)$,使得 $p\mid n_0$,则 $n=m^2n_0$ 中的素因子分解式中包含 $p$ 的奇次幂.但是另一方面,$\left(\dfrac{-1}{p}\right)=-1$,从而由定理 \ref{thm:2.8} 可知 $pO_K=\mathfrak{p}$ 为 $O_K=\Z[i]$ 中的素理想,$N(\mathfrak{p})=p^2$,并且 $\mathfrak{p}$ 是 $\Z[i]$ 中惟一的素理想使得 $p\mid N(\mathfrak{p})$,因此,若令 $\mathfrak{a}$ 的素理想分解式中 $\mathfrak{p}$ 的个数为 $t\geqslant 0$,$t\in\Z$,则 $n=N(\mathfrak{a})=p^{2t}\cdots$,即 $n$ 中包含偶数个 $p$,这就导致矛盾.从而 $n_0$ 中不存在素因子 $p\equiv 3\ (\mathrm{mod}\ 4)$.
+\end{proof}
+
+\begin{remark}
+我们不但能够判别不定方程 $x^2+y^2=n$ 何时有整数解,还可决定出解的个数.我们以 $N(n)$ 表示此方程有理整数解 $(x,y)$ 的个数.令
+\begin{equation}  n=2^{l}p_1^{e_1}\cdots p_s^{e_s}q_1^{f_1}\cdots q_r^{f_r},\tag{*}\end{equation}
+其中 $l,s,r\geqslant 0$,$e_i,f_i\geqslant 1$,$p_1,\cdots,p_s,q_1,\cdots,q_r$ 是不同的奇素数,并且 $p_i\equiv 1\ (\mathrm{mod}\ 4)$($1\leqslant i\leqslant s$),$q_j\equiv 3\ (\mathrm{mod}\ 4)$($1\leqslant j\leqslant r$).由定理 \ref{thm:2.9} 可知 $N(n)\geqslant 1$ 的充分必要条件是 $2\mid f_j$($1\leqslant j\leqslant r$).
+
+现在假设 $f_j$($1\leqslant j\leqslant r$)均是偶数.$(x,y)=(a,b)$ 是方程 $x^2+y^2=n$ 的一组解,$a,b\in\Z$.这相当于 $N_K(a+b\sqrt{-1})=n$.所以 $N(n)$ 相当于 $O_K=\Z[\sqrt{-1}]$ 中范为 $n$ 的元素个数.对于 $\alpha\in O_K$,若 $N_K(\alpha)=n$,则主理想 $(\alpha)=\alpha O_K$ 的范也是 $n$.由于 $O_K$ 中理想均是主理想,并且每个主理想的范为 $n$ 当且仅当它由范为 $n$ 的元素生成,从而 $N(n)$ 等于 $O_K$ 中范为 $n$ 的理想个数 $M(n)$ 乘以 $4$(因为 $\pm 1,\pm\sqrt{-1}$ 均是 $O_K$ 的单位).由定理 \ref{thm:2.8} 给出 $n$ 的素因子在 $O_K$ 中的素理想分解:
+\[
+  (2)=\mathfrak{p}^2,\quad N_K(\mathfrak{p})=2,
+\]
+\[
+  (p_i)=\mathfrak{p}_i\mathfrak{p}_i',\quad
+  N_K(\mathfrak{p}_i)=N_K(\mathfrak{p}_i')=p_i,\quad \mathfrak{p}_i\neq\mathfrak{p}_i',
+\]
+$(q_j)$ 在 $O_K$ 中仍为素理想,$N_K((q_j))=q_j^2$.
+
+所以由 $n$ 的素因子分解式 (*) 给出 $O_K$ 中理想分解式:
+\[
+  (n)=\mathfrak{p}^{2l}\prod_{i=1}^{s}(\mathfrak{p}_i\mathfrak{p}_i')^{e_i}\prod_{j=1}^{r}(q_j)^{f_j}.
+\]
+若 $A$ 是 $O_K$ 中范为 $n$ 的理想,则 $n\in A$,即 $A\mid(n)$.从而 $A$ 的素理想因子必是 $(n)$ 的素理想因子的一部分.即 $A$ 的素理想分解式可写成
+\[
+  A=\mathfrak{p}^{L}\cdot\prod_{i=1}^{s}\mathfrak{p}_i^{E_i}\cdot\prod_{i=1}^{s}\mathfrak{p}_i'^{E_i'}\cdot\prod_{j=1}^{r}(q_j)^{F_j}.
+\]
+于是
+\[
+  n=N_K(A)=2^{L}\prod_{i=1}^{s}p_i^{E_i+E_i'}\cdot\prod_{j=1}^{r}q_j^{2F_j}.
+\]
+将此式与 (*) 式比较,便得到
+\[
+  L=l,\qquad E_i+E_i'=e_i\ (1\leqslant i\leqslant s),\qquad F_j=\frac{f_j}{2}\ (1\leqslant j\leqslant r).
+\]
+所以 $L$ 和 $F_j$ 由 $l$ 和 $f_j$ 完全决定,而 $(E_i,E_i')$ 共有 $e_i+1$ 个可能 $(E_i,E_i')=(0,e_i),(1,e_i-1),\cdots,(e_i-1,1),(e_i,0)$.这就表明 $O_K$ 中范为 $n$ 的理想个数为 $M(n)=\prod_{i=1}^{s}(e_i+1)$.所以不定方程 $x^2+y^2=n$ 的整解个数为(当 $2\mid f_j$($1\leqslant j\leqslant r$)时)
+\[
+  N(n)=4\prod_{i=1}^{s}(e_i+1).
+\]
+\end{remark}
+
+\subsection{判别式定理}\label{sec:ch2-s2-4}
+
+在这一小节里我们要解决这样一个问题:如何判别素数 $p$ 在数域 $K$ 中是否分歧?对于二次域 $K$ 的情形,从定理 \ref{thm:2.8} 可以看出,$p$ 在 $K$ 中分歧的充要条件是 $p\mid d(K)$.Dedekind 成功地证明了这个结论对于任意数域都是对的.为了证明这个结果,我们需要一些准备工作.
+
+\setcounter{definition}{4}   % 原书此处为定义 5(定义 4 在正文中未标注,按原书编号)
+
+\begin{definition}\label{def:ch2-5}
+如果 $B$ 是域 $F$ 上的有限维向量空间,并且 $B$ 本身又是环,同时对任意 $\xi,\eta\in B$,$a\in F$,均有
+\begin{equation}  a(\xi\eta)=(a\xi)\eta=\xi(a\eta),\tag{*}\end{equation}
+我们就称 $B$ 是域 $F$ 上的\emph{代数}.
+\end{definition}
+
+例如,设 $L/K$ 为数域的扩张,则 $L$ 显然是 $K$ 上的代数.又如,设 $\mathfrak{p}$ 为数域 $K$ 的素理想,$\mathfrak{p}\mid p$($p$ 是有理素数),则 $p\in\mathfrak{p}^e\cap\Z$,$e=e(\mathfrak{p}\mid p)$,从而 $p\Z\subseteq\mathfrak{p}^e\cap\Z$.但是 $1\notin\mathfrak{p}^e$,于是 $p\Z\subseteq\mathfrak{p}^e\cap\Z\subseteq\Z$.由于 $p\Z$ 是 $\Z$ 的极大理想,因此必然 $\mathfrak{p}^e\cap\Z=p\Z$.作自然同态 $\varphi\colon\Z\to O_K/\mathfrak{p}^e$,核为 $\operatorname{Ker}\varphi=\mathfrak{p}^e\cap\Z=p\Z$,从而 $p$ 元域 $\Z/p\Z$ 可看成是有限环 $O_K/\mathfrak{p}^e$ 的子域.于是环 $O_K/\mathfrak{p}^e$ 为域 $\Z/p\Z$ 上的有限维向量空间.而定义中的 (*) 式也显然成立.从而 $O_K/\mathfrak{p}^e$ 为 $\Z/p\Z$ 上的代数.
+
+设环 $B$ 是域 $F$ 上的代数.$\{\xi_1,\cdots,\xi_n\}$ 是 $F$ 上向量空间 $B$ 的一组基.对于每个 $\xi\in B$,我们有
+\begin{equation}  \xi(\xi_1,\cdots,\xi_n)=(\xi\xi_1,\cdots,\xi\xi_n)=(\xi_1,\cdots,\xi_n)A(\xi),\tag{1}\end{equation}
+其中 $A(\xi)$ 是元素属于域 $F$ 的 $n$ 阶方阵.如果改用向量空间 $B$ 的另一组基,则方阵 $A(\xi)$ 改成另一个与之相似的方阵,从而方阵的迹 $\Tr A(\xi)$ 与基 $(\xi_1,\cdots,\xi_n)$ 的选取无关,叫作是元素 $\xi$ 对于 $B/F$ 的\emph{迹},表示成 $T_{B/F}(\xi)$.当 $B/F$ 是数域的扩张时,$T_{B/F}(\xi)$ 与我们在第一章中定义的迹是一致的(第 1 节习题 13).
+
+对于 $B$ 中 $n$ 个元素 $\xi_1,\cdots,\xi_n$,我们也定义它们的\emph{判别式}为
+\[
+  d_{B/F}(\xi_1,\cdots,\xi_n)=\det(T_{B/F}(\xi_i\xi_j))\ (\in F).
+\]
+
+\begin{lemma}\label{lem:ch2-11}
+设 $B_1,B_2$ 均为域 $F$ 上的代数,则环的直和 $B=B_1\oplus B_2$ 也是 $F$ 上的代数.此外,若 $\{\xi_1,\cdots,\xi_n\}$ 和 $\{\eta_1,\cdots,\eta_m\}$ 分别是 $F$ 上向量空间 $B_1$ 和 $B_2$ 的基,则 $\{\xi_1,\cdots,\xi_n,\eta_1,\cdots,\eta_m\}$ 是 $B_1\oplus B_2$ 的一组基,并且
+\begin{equation}  d_{B/F}(\xi_1,\cdots,\xi_n,\eta_1,\cdots,\eta_m)
+  =d_{B_1/F}(\xi_1,\cdots,\xi_n)\cdot d_{B_2/F}(\eta_1,\cdots,\eta_m).\tag{2}\end{equation}
+\end{lemma}
+
+\begin{proof}
+直接验证即可(注意 $\xi_i\eta_j=0$).
+\end{proof}
+
+设 $K$ 为数域,有理素数 $p$ 在 $O_K$ 中分解为 $pO_K=\mathfrak{p}_1^{e_1}\cdots\mathfrak{p}_g^{e_g}$,则由中国剩余定理我们有
+\[
+  O_K/pO_K\cong O_K/\mathfrak{p}_1^{e_1}\oplus\cdots\oplus O_K/\mathfrak{p}_g^{e_g}.
+\]
+我们已经说过,每个 $O_K/\mathfrak{p}_i^{e_i}$ 均是 $p$ 元域 $\Z/p\Z$ 上的代数,从而由引理 \ref{lem:ch2-11} 可知 $O_K/pO_K$ 也是如此.
+
+\begin{lemma}\label{lem:ch2-12}
+(a) 设 $\{\omega_1,\cdots,\omega_n\}$ 为 $O_K$ 的一组整基,则 $\{\bar{\omega}_1,\cdots,\bar{\omega}_n\}$ 为 $B=O_K/pO_K$ 的一组 $\F_p$-基,其中对 $\lambda\in O_K$,我们以 $\bar{\lambda}$ 表示 $\lambda$ 的模 $pO_K$ 剩余类,而 $\F_p$ 表示 $p$ 元域;
+
+(b) $\lambda\in O_K$,则 $T_{B/\F_p}(\bar{\lambda})=\overline{T_{K/\Q}(\lambda)}$,$d_{B/\F_p}(\bar{\omega}_1,\cdots,\bar{\omega}_n)=\overline{d(K)}$.
+\end{lemma}
+
+\begin{proof}
+(a) $B$ 中元素均可写成 $\overline{\gamma}$,$\gamma\in O_K$.由于 $\gamma=\sum_{i=1}^{n}c_i\omega_i$($c_i\in\Z$),从而 $\overline{\gamma}=\sum_{i=1}^{n}\overline{c}_i\overline{\omega}_i$($\overline{c}_i\in\F_p$).另一方面,如果 $\sum_{i=1}^{n}\overline{c}_i\overline{\omega}_i=0$($\overline{c}_i\in\F_p$,$c_i\in\Z$),则 $\sum_{i=1}^{n}c_i\omega_i\in pO_K$,于是 $\sum_{i=1}^{n}c_i\omega_i=p(\sum_{i=1}^{n}d_i\omega_i)$,$d_i\in\Z$,从而 $c_i=pd_i$($1\leqslant i\leqslant n$),即 $\overline{c}_i=\overline{0}$($1\leqslant i\leqslant n$).这就表明 $\{\overline{\omega}_1,\cdots,\overline{\omega}_n\}$ 是 $B$ 的一组 $\F_p$-基.
+
+(b) 对于 $\lambda\in O_K$.令 $\lambda(\omega_1,\cdots,\omega_n)=(\omega_1,\cdots,\omega_n)A(\lambda)$,$A(\lambda)=(a_{ij})$,$a_{ij}\in\Z$,$\mathrm{mod}\ p$ 之后为
+\[
+  \bar{\lambda}(\bar{\omega}_1,\cdots,\bar{\omega}_n)=(\bar{\omega}_1,\cdots,\bar{\omega}_n)\overline{A}(\bar{\lambda}),
+  \qquad \overline{A}(\bar{\lambda})=(\bar{a}_{ij}),\ \bar{a}_{ij}\in\F_p,
+\]
+于是
+\[
+  T_{B/\F_p}(\bar{\lambda})=\Tr(\overline{A}(\bar{\lambda}))=\overline{\Tr(A(\lambda))}=\overline{T_{K/\Q}(\lambda)};
+\]
+\[
+  d_{B/\F_p}(\bar{\omega}_1,\cdots,\bar{\omega}_n)=\det(T_{B/\F_p}(\bar{\omega}_i\bar{\omega}_j))
+  =\overline{\det(T_{K/\Q}(\omega_i\omega_j))}=\overline{d(K)}.
+\]
+\end{proof}
+
+现在考虑 $\F_p$ 上的代数 $B_i=O_K/\mathfrak{p}_i^{e_i}$.由于 $|O_K/\mathfrak{p}_i^{e_i}|=N(\mathfrak{p}_i^{e_i})=p^{e_if_i}$,从而向量空间 $B_i$ 在域 $\F_p$ 上的维数是 $e_if_i$.
+
+\begin{lemma}\label{lem:ch2-13}
+设 $\eta_1,\cdots,\eta_{e_if_i}$ 是向量空间 $B_i$ 的一组 $\F_p$-基,则
+\[
+  d_{B_i/\F_p}(\eta_1,\cdots,\eta_{e_if_i})=0\Leftrightarrow e_i\geqslant 2.
+\]
+\end{lemma}
+
+\begin{proof}
+为符号简单起见,我们去掉 $B_i$,$e_i$,$f_i$,$\mathfrak{p}_i$ 的下标 $i$,对于 $\mu\in O_K$,以 $\bar{\mu}$ 表示 $\mu$ 的模 $\mathfrak{p}^e$ 剩余类.
+
+如果 $e\geqslant 2$,取 $\pi\in\mathfrak{p}-\mathfrak{p}^2$,则 $\overline{\pi}\neq\overline{0}$,$\overline{\pi}^e=\overline{0}$.熟知我们可以取 $B_i$ 的一组 $\F_p$ 基 $\{\xi_1,\cdots,\xi_{ef}\}$,使得 $\xi_1=\overline{\pi}$,于是 $(\overline{\pi}\xi_j)^e=\overline{0}$($1\leqslant j\leqslant ef$).考虑
+\[
+  (\bar{\pi}\xi_j)(\xi_1,\cdots,\xi_{ef})=(\xi_1,\cdots,\xi_{ef})A(\bar{\pi}\xi_j).
+\]
+从而
+\[
+  (\overline{0},\cdots,\overline{0})=(\overline{\pi}\xi_j)^e(\xi_1,\cdots,\xi_{ef})
+  =(\xi_1,\cdots,\xi_{ef})A(\overline{\pi}\xi_j)^e,
+\]
+因此 $A(\overline{\pi}\xi_j)^e=0$,即 $A(\overline{\pi}\xi_j)$ 为幂零方阵.从而它的全部特征根均为 $\overline{0}$.于是
+\[
+  T_{B/\F_p}(\xi_1\xi_j)=\Tr(A(\overline{\pi}\xi_j))=\overline{0}\quad (1\leqslant j\leqslant ef),
+\]
+从而方阵 $(T_{B/\F_p}(\xi_i\xi_j))$ 的第一行元素均为 $0$.于是
+\[
+  d_{B/\F_p}(\xi_1,\cdots,\xi_{ef})=\det(T_{B/\F_p}(\xi_i\xi_j))=\overline{0}.
+\]
+\begin{sloppypar}
+由于 $d_{B/\F_p}(\eta_1,\cdots,\eta_{ef})$ 与 $d_{B/\F_p}(\xi_1,\cdots,\xi_{ef})$ 相差 $\F_p$ 中一个非零元素的平方,从而 $d_{B/\F_p}(\eta_1,\cdots,\eta_{ef})=0$.
+\end{sloppypar}
+
+如果 $e=1$,则 $B=O_K/\mathfrak{p}$ 为 $\F_p=\Z/p\Z$ 的 $f$ 次扩域,即 $B$ 为 $p^f$ 元域.于是 $B/\F_p$ 为单扩张:$B=\F_p(\overline{\lambda})$,$\overline{\lambda}$ 在 $\F_p$ 上的极小多项式为 $\F_p[x]$ 中不可约 $f$ 次多项式 $f(x)$,$f(x)$ 的全部根为 $\overline{\lambda},\overline{\lambda}^p,\cdots,\overline{\lambda}^{p^{f-1}}$.并且 $\overline{1},\overline{\lambda},\cdots,\overline{\lambda}^{f-1}$ 是向量空间 $B$ 的一组 $\F_p$-基,对于 $\overline{\mu}\in B$,令
+\[
+  \bar{\mu}(\overline{1},\overline{\lambda},\cdots,\overline{\lambda}^{f-1})
+  =(\overline{1},\overline{\lambda},\cdots,\overline{\lambda}^{f-1})A(\bar{\mu}),
+\]
+则 $A(\bar{\mu})$ 为 $\F_p$ 上 $f$ 阶方阵.易知 $f(A(\bar{\lambda}))=A(f(\bar{\lambda}))=A(0)=0$.由于 $f(x)$ 在 $\F_p[x]$ 中不可约,可知 $f(x)$ 就是 $A(\bar{\lambda})$ 的特征多项式,从而 $A(\bar{\lambda})$ 有 $f$ 个不同的特征根 $\bar{\lambda},\bar{\lambda}^p,\cdots,\bar{\lambda}^{p^{f-1}}$,所以 $A(\bar{\lambda}^j)=A(\bar{\lambda})^j$ 的特征根为 $\bar{\lambda}^j,\bar{\lambda}^{jp},\cdots,\bar{\lambda}^{j(p^{f-1})}$,因此
+\[
+  T_{B/\F_p}(\bar{\lambda}^j)=\Tr(A(\overline{\lambda}^j))=\sum_{i=0}^{f-1}(\overline{\lambda}^j)^{p^i}.
+\]
+于是
+\begin{align*}
+  d_{B/\F_p}(\overline{1},\overline{\lambda},\cdots,\overline{\lambda}^{f-1})
+  &=\begin{vmatrix}
+    \overline{1} & \overline{\lambda} & \cdots & \overline{\lambda}^{f-1}\\
+    \overline{1} & \overline{\lambda}^p & \cdots & (\overline{\lambda}^p)^{f-1}\\
+    \vdots & \vdots & & \vdots\\
+    \overline{1} & \overline{\lambda}^{p^{f-1}} & \cdots & (\overline{\lambda}^{p^{f-1}})^{f-1}
+  \end{vmatrix}^2\\
+  &=\prod_{0\leqslant j<k\leqslant f-1}(\overline{\lambda}^{p^j}-\overline{\lambda}^{p^k})\neq 0.
+\end{align*}
+从而对 $B$ 的任意一组 $\F_p$-基 $\eta_1,\cdots,\eta_f$,也有 $d_{B/\F_p}(\eta_1,\cdots,\eta_f)\neq 0$.
+\end{proof}
+
+有了上面的准备,不难得到下面的著名结果:
+
+\begin{theorem}[\emph{Dedekind,判别式定理}]\label{thm:2.10}
+有理素数 $p$ 在数域 $K$ 中分歧的充要条件是 $p\mid d(K)$.
+\end{theorem}
+
+\begin{proof}
+我们有 $pO_K=\mathfrak{p}_1^{e_1}\cdots\mathfrak{p}_g^{e_g}$,
+\[
+  O_K/pO_K\cong O_K/\mathfrak{p}_1^{e_1}\oplus\cdots\oplus O_K/\mathfrak{p}_g^{e_g}.
+\]
+由于 $\overline{\omega}_1,\cdots,\overline{\omega}_n$ 是 $B=O_K/pO_K$ 的一组 $\F_p$-基,并且 $d_{B/\F_p}(\overline{\omega}_1,\cdots,\overline{\omega}_n)=\overline{d(K)}$,因此
+\[
+  p\mid d(K)\Leftrightarrow d_{B/\F_p}(\overline{\omega}_1,\cdots,\overline{\omega}_n)=\overline{0}.
+\]
+另一方面,设 $\{\xi_{i1},\cdots,\xi_{i,e_if_i}\}$ 为 $B_i=O_K/\mathfrak{p}_i^{e_i}$ 的一组 $\F_p$-基.由引理 \ref{lem:ch2-11} 知道 $\{\xi_{ij}\mid 1\leqslant i\leqslant g,\ 1\leqslant j\leqslant e_if_i\}$ 是 $B$ 的一组 $\F_p$-基,并且
+\begin{equation}  d_{B/\F_p}(\xi_{ij}\mid 1\leqslant i\leqslant g,\ 1\leqslant j\leqslant e_if_i)
+  =\prod_{i=1}^{g}d_{B_i/\F_p}(\xi_{ij}\mid 1\leqslant j\leqslant e_if_i).\tag{1}\end{equation}
+于是
+\[
+  p\mid d(K)
+  \Leftrightarrow d_{B/\F_p}(\bar{\omega}_1,\cdots,\bar{\omega}_n)=\bar{0}
+  \Leftrightarrow (1)\text{ 式左边为 }0
+  \Leftrightarrow (1)\text{ 式右边至少有一个因子为 }\bar{0},
+\]
+\[
+  \Leftrightarrow \text{至少有一个 }e_i\geqslant 2
+  \Leftrightarrow p\text{ 在 }K\text{ 中分歧}.
+\]
+\end{proof}
+
+由定理 \ref{thm:2.10} 立刻推出
+
+\begin{corollarynonum}
+对于每个数域 $K$,只有有限多个素数 $p$ 在 $K$ 中分歧.
+\end{corollarynonum}
+
+\begin{remark}
+我们在第三章中要证明,当 $K\neq\Q$ 时,$|d(K)|\geqslant 2$.这就表明对于每个数域 $K\neq\Q$,至少存在一个素数 $p$ 在 $K$ 中分歧.
+\end{remark}
+
+\begin{example}\label{ex:ch2-s2-4-1}
+三次域 $K=\Q(\omega)$($\omega^3+\omega+1=0$)的判别式为 $d(K)=-31$.从而只有 $p=31$ 在 $K$ 中分歧.
+\end{example}
+
+\begin{example}\label{ex:ch2-s2-4-2}
+我们在第一章已经计算出,分圆域 $K=\Q(\zeta)$($\zeta=\zeta_{p^n}$)的判别式是素数 $p$ 的方幂.所以只有 $p$ 在 $K$ 中分歧.令 $\mathfrak{p}_k=(1-\zeta^k)O_K$.由于我们已经算出过
+\[
+  \prod_{\substack{1\leqslant k\leqslant p^n\\ p\nmid k}}(1-\zeta^k)=p,
+\]
+因此
+\[
+  pO_K=\prod_{\substack{1\leqslant k\leqslant p^n\\ p\nmid k}}(1-\zeta^k)O_K=\prod_{\substack{1\leqslant k\leqslant p^n\\ p\nmid k}}\mathfrak{p}_k.
+\]
+当 $p\nmid k$ 时,令 $k'k\equiv 1\ (\mathrm{mod}\ p^n)$,则
+\[
+  \frac{1-\zeta^k}{1-\zeta}=1+\zeta+\cdots+\zeta^{k-1}
+\]
+和
+\[
+  \frac{1-\zeta}{1-\zeta^k}=\frac{1-\zeta^{k'}}{1-\zeta^k}=1+\zeta^k+\zeta^{2k}+\cdots+\zeta^{(k'-1)k}
+\]
+均为 $O_K$ 中整数,从而 $(1-\zeta)$ 和 $1-\zeta^k$ 是相伴的元素,于是 $\mathfrak{p}_k=(1-\zeta^k)O_K=(1-\zeta)O_K=\mathfrak{p}_1$,从而 $pO_K=\mathfrak{p}_1^{\varphi(p^n)}$.由于 $\varphi(p^n)=[K:\Q]$,这就表明 $\mathfrak{p}_1=(1-\zeta)O_K$ 必然是素理想,并且 $p$ 在 $K=\Q(\zeta)$ 中是完全分歧的.
+\end{example}
+
+\subsection{应用:纯三次域的整基}\label{sec:ch2-s2-5}
+
+设 $f(x)=x^n+a_1x^{n-1}+\cdots+a_n\in\Z[x]$,$p$ 为素数并且 $p\mid a_i$($1\leqslant i\leqslant n$),$p^2\nmid a_n$.由 Eisenstein 判别法可知 $f(x)$ 是 $\Q[x]$ 中不可约多项式,令 $\omega$ 是 $f(x)$ 的一个根,则 $n$ 次数域 $K=\Q(\omega)$ 叫作是对于 $p$ 的 Eisenstein 型数域,简称作 $(E,p)$ 型数域.
+
+\begin{lemma}\label{lem:ch2-14}
+设 $K=\Q(\omega)$ 为上述的 $(E,p)$ 型数域,则 $p$ 在 $K$ 中完全分歧,并且 $p\nmid|O_K/\Z[\omega]|$.
+\end{lemma}
+
+\begin{proof}
+设 $\mathfrak{p}$ 为 $K$ 中素理想,$\mathfrak{p}\mid p$,$e=e(\mathfrak{p}\mid p)$,则 $1\leqslant e\leqslant n$.由于 $\omega^n+a_1\omega^{n-1}+\cdots+a_n=0$,并且 $p\mid a_i$($1\leqslant i\leqslant n$),从而 $\omega^n\in\mathfrak{p}$,于是 $\omega\in\mathfrak{p}$.设 $\omega\in\mathfrak{p}^s-\mathfrak{p}^{s+1}$,则 $s\geqslant 1$.以 $t_0,t_1,\cdots,t_n$ 分别表示主理想 $(\omega^n)$,$(a_1\omega^{n-1})$,$\cdots$,$(a_n)$ 中出现的 $\mathfrak{p}$ 因子的指数,则 $t_0=ns$,$t_1\geqslant e+(n-1)s>e$,$\cdots$,$t_{n-1}\geqslant e+s>e$,$t_n=e$.由于 $t_0,t_1,\cdots,t_n$ 中的最小值至少在两个 $t_i$ 处达到(第 1 节习题 8),这只可能是 $ns=e$.但是 $e\leqslant n$,从而只有 $s=1$,$e=n$,即 $\mathfrak{p}$ 在 $K$ 中完全分歧:$pO_K=\mathfrak{p}^n$.
+
+如果 $p\mid|O_K/\Z[\omega]|$,则加法群 $O_K/\Z[\omega]$ 中有 $p$ 阶元素.即存在 $\mu\in O_K-\Z[\omega]$,使得
+\[
+  p\mu=x_0+x_1\omega+\cdots+x_{n-1}\omega^{n-1},\quad x_i\in\Z.
+\]
+由于 $pO_K=\mathfrak{p}^n$,$\omega\in\mathfrak{p}-\mathfrak{p}^2$(因为 $s=1$),从而
+\begin{align*}
+  x_0+x_1\omega+\cdots+x_{n-1}\omega^{n-1}=p\mu\in\mathfrak{p}^n
+  &\Rightarrow x_0\in\mathfrak{p}\Rightarrow x_0\in\mathfrak{p}\cap\Z=p\Z\Rightarrow p\mid x_0\\
+  &\Rightarrow x_0\in\mathfrak{p}^n\Rightarrow x_1\omega\in\mathfrak{p}^2\Rightarrow x_1\in\mathfrak{p}\Rightarrow p\mid x_1\\
+  &\Rightarrow x_1\in\mathfrak{p}^n\Rightarrow x_2\omega^2\in\mathfrak{p}^3\Rightarrow x_2\in\mathfrak{p}\Rightarrow p\mid x_2\\
+  &\Rightarrow\cdots\Rightarrow p\mid x_{n-1}.
+\end{align*}
+于是 $\mu\in\Z[\omega]$,这与假设 $\mu\notin\Z[\omega]$ 相矛盾,从而 $p\nmid|O_K/\Z[\omega]|$.
+\end{proof}
+
+\begin{example}\label{ex:ch2-s2-5-1}
+对于每个素数 $p$ 和 $n\geqslant 2$,$K=\Q(\sqrt[n]{p})$ 为 $(E,p)$ 型数域,因为 $\sqrt[n]{p}$ 的极小多项式为 $x^n-p$,从而 $p$ 在 $K$ 中完全分歧并且 $p\nmid|O_K/\Z[\sqrt[n]{p}]|$.
+\end{example}
+
+现在我们来完全决定纯三次域的整基.所谓纯三次域即指 $K=\Q(\sqrt[3]{m})$,$\sqrt[3]{m}\notin\Q$.不妨设 $m\in\Z$,$m>0$ 并且 $m$ 没有立方因子.于是 $m$ 可以惟一地写成 $m=ab^2$,其中 $a$ 和 $b$ 是没有平方因子并且彼此互素的正有理整数.我们令
+\[
+  \alpha=\sqrt[3]{ab^2}=\sqrt[3]{m},\qquad
+  \beta=\frac{1}{b}\alpha^2=\sqrt[3]{a^2b},
+\]
+则 $K=\Q(\alpha)=\Q(\beta)$,并且 $\{1,\alpha,\beta\}$ 是域 $K$ 的一组 $\Q$-基,这是因为
+\[
+  d_K(1,\alpha,\beta)=\frac{1}{b^2}d_K(1,\alpha,\alpha^2)=-27a^2b^2\neq 0.
+\]
+
+\begin{theorem}\label{thm:2.11}
+设 $K=\Q(\sqrt[3]{m})$,$a,b,\alpha,\beta$ 如上所述.
+
+(1) 若 $a^2\not\equiv b^2\ (\mathrm{mod}\ 9)$,则 $\{1,\alpha,\beta\}$ 为 $O_K$ 的一组整基;若 $a^2\equiv b^2\ (\mathrm{mod}\ 9)$,则 $\{\alpha,\beta,\gamma=(1+a\alpha+b\beta)/3\}$ 为 $O_K$ 的一组整基.
+
+(2) $d(K)=\begin{cases}-27a^2b^2, & \text{若 } a^2\not\equiv b^2\ (\mathrm{mod}\ 9);\\ -3a^2b^2, & \text{若 } a^2\equiv b^2\ (\mathrm{mod}\ 9).\end{cases}$
+
+(3) 如果 $p\mid ab$,则 $p$ 在 $K$ 中完全分歧.对于 $p=3$,则当 $a^2\not\equiv b^2\ (\mathrm{mod}\ 9)$ 时 $3$ 在 $K$ 中完全分歧;而当 $a^2\equiv b^2\ (\mathrm{mod}\ 9)$ 时 $3=\mathfrak{p}_1^2\mathfrak{p}_2$,$\mathfrak{p}_1\neq\mathfrak{p}_2$.
+\end{theorem}
+
+\begin{proof}
+由 $K=\Q(\alpha)=\Q(\beta)$ 可知 $\alpha$ 和 $\beta$ 的极小多项式分别为 $f_1(x)=x^3-ab^2$ 和 $f_2(x)=x^3-a^2b$.由于 $a$ 没有平方因子并且 $(a,b)=1$.因此对于 $a$ 的每个素因子 $p$,利用 $f_1(x)$ 可知 $K$ 是 $(E,p)$ 型数域.于是由引理 \ref{lem:ch2-14} 可知 $p$ 在 $K$ 中完全分歧(从而 $p\mid d(K)$)并且 $p\nmid|O_K/\Z[\alpha]|$.类似地,用 $f_2(x)$ 可知对于 $b$ 的每个素因子 $p'$ 亦有 $p'\mid d(K)$,$p'$ 在 $K$ 中完全分歧,并且 $p'\nmid|O_K/\Z[\beta]|$.这就证明了:对于每个 $p\mid ab$,$p$ 在 $K$ 中均完全分歧,并且 $ab\mid d(K)$.但是 $d_K(1,\alpha,\beta)=-27a^2b^2$,而 $d_K(1,\alpha,\beta)$ 与 $d(K)$ 相差一个平方因子,从而 $d(K)=-3a^2b^2$ 或者 $-27a^2b^2$.
+
+如果 $3\mid ab$,由上述可知 $3$ 在 $K$ 中完全分歧.并且当 $3\mid a$ 时 $3\nmid|O_K/\Z[\alpha]|$,而当 $3\mid b$ 时 $3\nmid|O_K/\Z[\beta]|$.令 $N=\Z\oplus\Z\alpha\oplus\Z\beta$.由于 $\alpha^2=b\beta\in N$,$\beta^2=a\alpha\in N$,从而 $\Z[\alpha]\subseteq N$,$\Z[\beta]\subseteq N$.于是 $|O_K/N|$ 同时除尽 $|O_K/\Z[\alpha]|$ 和 $|O_K/\Z[\beta]|$.因此总有 $3\nmid|O_K/N|$.但是
+\[
+  d_K(1,\alpha,\beta)=-27a^2b^2=|O_K/N|^2\cdot d(K),
+\]
+而 $d(K)=-3a^2b^2$ 或 $-27a^2b^2$.从而 $|O_K/N|$ 只能为 $1$ 或 $3$,于是必然 $|O_K/N|=1$,即 $N=O_K$.这就证明了:当 $3\mid ab$ 时,$\{1,\alpha,\beta\}$ 是 $O_K$ 的一组整基.
+
+如果 $3\nmid ab$,则 $a^2\equiv b^2\equiv 1\ (\mathrm{mod}\ 3)$,即 $3\mid(a^2-b^2)$.令 $\mu=\alpha-a\in O_K$,则 $K=\Q(\mu)$,而 $\mu$ 的极小多项式为
+\[
+  g(x)=(x+a)^3-ab=x^3+3ax^2+3a^2x+a(a^2-b^2).
+\]
+如果 $a^2\not\equiv b^2\ (\mathrm{mod}\ 9)$,考虑 $g(x)$ 的诸系数可知 $K$ 为 $(E,3)$ 型数域,从而 $3$ 在 $K$ 中完全分歧,并且 $3\nmid|O_K/\Z[\mu]|=|O_K/\Z[\alpha]|$.由于 $N\supseteq\Z[\alpha]$,从而与上面一样可证得 $\{1,\alpha,\beta\}$ 是 $O_K$ 的整基,从而对全部 $a^2\not\equiv b^2\ (\mathrm{mod}\ 9)$ 的情形,$d(K)=d_K(1,\alpha,\beta)=-27a^2b^2$.
+
+最后设 $3\nmid ab$,$a^2\equiv b^2\ (\mathrm{mod}\ 9)$.我们已经证明了 $3$ 在 $K$ 中分歧(因为 $3\mid d(K)$).为了证明 $3=\mathfrak{p}_1^2\mathfrak{p}_2$,$\mathfrak{p}_1\neq\mathfrak{p}_2$,只需再证 $3$ 在 $K$ 中不完全分歧即可.证明用反证法:假如 $3O_K=\mathfrak{p}^3$,由于
+\[
+  \mu^3+3a\mu^2+3a^2\mu+a(a^2-b^2)=0,
+\]
+可知 $3\mid\mu^3$,即 $\mu\in\mathfrak{p}$.令 $\mu\in\mathfrak{p}^s-\mathfrak{p}^{s+1}$,则 $s\geqslant 1$.如果 $s\geqslant 3$,则 $\mu=3\lambda$,$\lambda\in O_K$.以 $\mu^{(1)},\mu^{(2)},\mu^{(3)}$ 表示 $\mu$ 的 $3$ 个共轭元素,则 $\mu^{(i)}=3\lambda^{(i)}$.从而
+\[
+  3a^2=\mu^{(1)}\mu^{(2)}+\mu^{(1)}\mu^{(3)}+\mu^{(2)}\mu^{(3)}
+  =9(\lambda^{(1)}\lambda^{(2)}+\lambda^{(1)}\lambda^{(3)}+\lambda^{(2)}\lambda^{(3)}),
+\]
+于是 $3\mid a^2$,这与假设 $3\nmid a$ 相矛盾,所以 $1\leqslant s\leqslant 2$.由于 $\alpha=\mu+a$,从而
+\[
+  \mu^3+3a\alpha\mu+a(a^2-b^2)=\mu^3+3a\mu^2+3a^2\mu+a(a^2-b^2)=0.
+\]
+由于 $3\nmid ab$,从而 $((3),(\alpha))=1$,于是 $\mathfrak{p}\nmid(\alpha)$.又由于 $9\mid(a^2-b^2)$,从而 $a^2-b^2$ 中素因子 $3$ 的指数 $r\geqslant 2$.于是上式左边各项中 $\mathfrak{p}$ 的指数分别为 $3s$,$3+s$ 和 $3r$,它们至少有两个为其最小值.由 $1\leqslant s\leqslant 2$ 可知 $3s\neq 3+s$,由 $r\geqslant 2$ 可知 $3r\neq 3+s$,从而必然 $3s=3r<3+s$.但是这在 $r\geqslant 2$,$1\leqslant s\leqslant 2$ 时是不可能的.这一矛盾表明 $3$ 在 $K$ 中不能完全分歧,从而只能是 $3O_K=\mathfrak{p}_1^2\mathfrak{p}_2$,$\mathfrak{p}_1\neq\mathfrak{p}_2$.
+
+于是 $\mu^3\in 3O_K=\mathfrak{p}_1^2\mathfrak{p}_2$,从而 $\mu\in\mathfrak{p}_1\mathfrak{p}_2$,因此
+\[
+  \mu^2\in\mathfrak{p}_1^2\mathfrak{p}_2^2\subseteq\mathfrak{p}_1^2\mathfrak{p}_2=3O_K,
+\]
+即 $3\mid\mu^2=\alpha^2-2a\alpha+a^2=(1+a\alpha+b\beta)+(a^2-1-3a\alpha)$,于是 $3\mid(1+a\alpha+b\beta)$.从而
+\[
+  \gamma=\frac{1}{3}(1+a\alpha+b\beta)\in O_K.
+\]
+由于 $\gamma\notin N$,从而 $O_K\neq N$,于是 $|O_K/N|=3$.令 $N'=\Z\alpha\oplus\Z\beta\oplus\Z\gamma$,则 $N\not\subseteq N'\subseteq O_K$,从而 $N'=O_K$.这就证明了:当 $a^2\equiv b^2\ (\mathrm{mod}\ 9)$ 时,$\alpha,\beta,\gamma$ 为 $O_K$ 的一组整基,并且 $d(K)=-3a^2b^2$.
+\end{proof}
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item (a) 求素数 $p=3,7,11,13$ 在 $K=\Q(\sqrt{-5})$ 中的素理想分解式;
+        (b) 求素数 $p=3,5,11,13$ 在 $K=\Q(\sqrt{7})$ 中的素理想分解式.
+  \item 设 $K=\Q(\omega)$,$\omega^3=\omega-1$,求 $p=2,3,5$ 在 $K$ 中的素理想分解式.试问哪些素数在 $K$ 中分歧?
+  \item 何种正整数 $n$ 可表成 $n=a^2+2b^2$,$a,b\in\Z$?(提示:$\Z[\sqrt{-2}]$ 为主理想整环.)
+  \item 设 $p$ 为奇素数,$a\in\Z$,$\sqrt[p]{a}\notin\Z$.求证 $p$ 在 $K=\Q(\sqrt[p]{a})$ 中必分歧.
+  \item (a) 设 $L/K$ 为数域的扩张.如果数域 $K$ 的某个素理想 $\mathfrak{p}$ 在 $L$ 中不分歧,则它在每个中间域 $M$($K\subseteq M\subseteq L$)中也不分歧;
+        (b) 将"不分歧"改成"完全分歧",则上述命题 (a) 也是对的.改成"完全分裂"也是如此.改成"惯性"呢?
+  \item 设 $L/K$ 和 $L'/K$ 均为数域的扩张,如果 $K$ 中某个素理想 $\mathfrak{p}$ 在 $L$ 中完全分歧而在 $L'$ 中不分歧,则 $L\cap L'=K$.
+  \item (Dedekind) 设 $K=\Q(\lambda)$,$\lambda^3-\lambda^2-2\lambda-8=0$.求证:
+        (a) $[K:\Q]=3$;
+        (b) $\mu=\frac{1}{2}(\lambda^2-\lambda)-1\in O_K$.并且 $\{1,\lambda,\mu\}$ 是 $O_K$ 的一组整基;
+        (c) $2$ 在 $K$ 中完全分裂;
+        (d) 求 $p=503$ 在 $K$ 中的素理想分解式.
+  \item 设 $K$ 是 $(E,p)$ 型 $n$ 次数域.求证对于每个 $\gamma\in O_K$,均有 $a\in\Z$,使得 $N_{K/\Q}(\gamma)\equiv a^n\ (\mathrm{mod}\ p)$.
+\end{Exercises}

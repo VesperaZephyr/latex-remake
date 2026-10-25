@@ -1,0 +1,246 @@
+% ====================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S16.4  Fourier 级数的 Cesaro 求和
+%  源：原书印刷页 299–304（PDF 物理页 305–310）
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align 或 aligned；
+%        跨册引用一律用 extref；数学模式内的中文必须包 text
+% ====================================================================
+\section{Fourier 级数的 Cesaro 求和}\label{sec:16.4}
+
+Dini 的收敛判别法指出, 除了要求 $f(x)$ 在 $x_{0}$ 处连续外, 还要求 $f(x)$ 在 $x_{0}$ 处有一阶导数, 或有广义的左右导数. 自然要问: 仅有 $f(x)$ 的连续性, 是否能保证它的 Fourier 级数收敛于自己? $1876$ 年, Du Bois-Reymond 举出了一个连续函数, 它的 Fourier 级数在若干点是发散的. 从而否定地回答了上述提出的问题.
+
+转而, 人们不再在连续函数上加条件, 而是去改进级数收敛的定义, 使得在新的收敛意义下, 连续函数的 Fourier 级数能收敛于自己.
+
+设 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 为一个无穷级数, $S_{n}=\displaystyle\sum_{k=1}^{n}a_{k}$ 为它的部分和. 我们曾定义, 如果 $\lim\limits_{n\to+\infty}S_{n}=S$, 就称级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛于 $S$ 且 $S$ 为它的和. 这个定义既自然又直观, 它与人们通常的认识是一致的. 但它的不足之处是一些很简单的级数, 在上述意义下却没有和. 例如级数
+\[
+  \sum_{n=1}^{\infty}(-1)^{n-1}=1-1+1-1+\cdots
+\]
+就是如此.
+
+新给出的收敛定义, 必须使得在原来意义下收敛的级数, 在新的意义下仍然收敛, 而且有相同的和; 而一些在原来意义下发散的级数, 在新的意义下却是收敛的. 换句话说, 新的定义必须比原来的定义能使更多的级数有和. 下面介绍的 Cesaro 求和就能满足这样的要求.
+
+\begin{definition}\label{def:16.4.1}
+设 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 为一个无穷级数, $\{S_{n}\}$ 为它的部分和数列. 如果 $\{S_{n}\}$ 的算术平均值数列
+\[
+  \sigma_{n}=\frac{S_{1}+S_{2}+\cdots+S_{n}}{n},\quad n=1,2,\cdots
+\]
+是一个收敛数列, 即 $\lim\limits_{n\to+\infty}\sigma_{n}=\sigma$, 则称级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 在 \textbf{Cesaro 意义下收敛}或\textbf{均值意义下收敛}, $\sigma$ 就称为级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 的 \textbf{Cesaro 和}, 记为 $\displaystyle\sum_{n=1}^{\infty}a_{n}=\sigma\ (\mathrm{C})$, 此时称级数\textbf{可以 Cesaro 求和}.
+\end{definition}
+
+\begin{theorem}\label{thm:16.4.1}
+如果级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 在通常意义下收敛于 $S$, 即 $\lim\limits_{n\to+\infty}S_{n}=S$, 则 $\{S_{n}\}$ 的算术平均值数列
+\[
+  \sigma_{n}=\frac{S_{1}+S_{2}+\cdots+S_{n}}{n}
+\]
+也收敛于 $S$, 即 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 在 Cesaro 意义下也收敛, 而且有相同的和 $S$. 但反之不成立, 即存在级数在 Cesaro 意义下收敛, 而在通常意义下是发散的.
+\end{theorem}
+
+\begin{proof}
+根据\extref{例 1.1.15} 知, 从 $\lim\limits_{n\to+\infty}S_{n}=S$ 立即推得
+\[
+  \lim_{n\to+\infty}\sigma_{n}=\lim_{n\to+\infty}\frac{S_{1}+S_{2}+\cdots+S_{n}}{n}=S.
+\]
+但反之并不一定成立. 例如, $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}$, $a_{n}=(-1)^{n-1}$,
+\[
+  S_{n}=\begin{cases}
+    1,&n\text{ 为奇数},\\
+    0,&n\text{ 为偶数},
+\end{cases}
+\]
+在通常意义下 $\{S_{n}\}$ 是发散的. 但由
+\[
+  \sigma_{2k}=\frac{S_{1}+S_{2}+\cdots+S_{2k}}{2k}=\frac{k}{2k}=\frac{1}{2},
+\]
+\[
+  \sigma_{2k+1}=\frac{S_{1}+S_{2}+\cdots+S_{2k-1}}{2k+1}=\frac{k+1}{2k+1}\to\frac{1}{2}\quad(k\to+\infty),
+\]
+得
+\[
+  \sum_{n=1}^{\infty}(-1)^{n-1}=\lim_{n\to+\infty}\sigma_{n}(\mathrm{C})=\frac{1}{2}(\mathrm{C}).
+\]
+\end{proof}
+
+现在将 Cesaro 求和法用到 Fourier 级数上去. 可以证明: 连续函数 $f(x)$ 的 Fourier 级数在 Cesaro 意义下一定收敛于自己.
+
+设 $f(x)$ 是周期为 $2\pi$ 且在 $[-\pi,\pi]$ 上可积或绝对可积的函数.
+\[
+  f(x)\sim\frac{a_{0}}{2}+\sum_{n=1}^{\infty}\left(a_{n}\cos nx+b_{n}\sin nx\right),
+\]
+它的部分和为
+\[
+  S_{n}(x_{0})=\frac{1}{\pi}\int_{0}^{\pi}\left[f(x_{0}+t)+f(x_{0}-t)\right]\frac{\sin\left(n+\frac{1}{2}\right)t}{2\sin\frac{t}{2}}\mathrm{d}t.
+\]
+利用三角恒等式
+\[
+  \sum_{k=0}^{n-1}\sin\left(k+\frac{1}{2}\right)t=\frac{\sin^{2}\frac{nt}{2}}{\sin\frac{t}{2}}
+\]
+得到 $S_{0}(x_{0})$, $S_{1}(x_{0})$, $\cdots$, $S_{n-1}(x_{0})$ 的算术平均
+\begin{align*}
+  \sigma_{n}(x_{0})&=\frac{1}{n}\sum_{k=0}^{n-1}S_{k}(x_{0})\\
+  &=\frac{1}{n\pi}\int_{0}^{\pi}\left[f(x_{0}+t)+f(x_{0}-t)\right]\sum_{k=0}^{n-1}\frac{\sin\left(k+\frac{1}{2}\right)t}{2\sin\frac{t}{2}}\mathrm{d}t\\
+  &=\frac{1}{2n\pi}\int_{0}^{\pi}\left[f(x_{0}+t)+f(x_{0}-t)\right]\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t.
+\end{align*}
+特别地, 取 $f(x)=1$, 则 $S_{n}(x)=1$, $\sigma_{n}(x_{0})=1$, 代入上式得到
+\[
+  \frac{1}{n\pi}\int_{0}^{\pi}\left(\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right)^{2}\mathrm{d}t=1.
+\]
+
+\begin{theorem}[Fej\'er 定理]\label{thm:16.4.2}
+设 $f(x)$ 是周期为 $2\pi$ 且在 $[-\pi,\pi]$ 上可积或绝对可积的函数. 如果 $f(x)$ 在 $x_{0}$ 处有左、右极限 $f(x_{0}-0)$ 与 $f(x_{0}+0)$, 则它的 Fourier 级数在 $x_{0}$ 处的 Cesaro 和为
+\[
+  \frac{1}{2}\left[f(x_{0}+0)+f(x_{0}-0)\right].
+\]
+特别地, 当 $f(x)$ 在 $x_{0}$ 处连续时, 它的 Fourier 级数的 Cesaro 和为 $f(x_{0})$.
+\end{theorem}
+
+\begin{proof}
+记 $s=\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$, $\varphi(t)=f(x_{0}+t)+f(x_{0}-t)-2s$, 则
+\begin{align*}
+  \sigma_{n}(x_{0})-s&=\frac{1}{2n\pi}\int_{0}^{\pi}\left[f(x_{0}+t)+f(x_{0}-t)-2s\right]\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\\
+  &=\frac{1}{2n\pi}\int_{0}^{\pi}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t.
+\end{align*}
+由于 $f(x)$ 的左、右极限 $f(x_{0}-0)$ 与 $f(x_{0}+0)$ 都存在, 故 $\forall\varepsilon>0$, $\exists\delta\in(0,\pi)$, 当 $0<t<\delta$ 时,
+\[
+  |f(x_{0}+t)-f(x_{0}+0)|<\frac{\varepsilon}{2},\quad|f(x_{0}-t)-f(x_{0}-0)|<\frac{\varepsilon}{2},
+\]
+\begin{align*}
+  |\varphi(t)|&=|f(x_{0}+t)+f(x_{0}-t)-2s|\\
+  &\leqslant|f(x_{0}+t)-f(x_{0}+0)|+|f(x_{0}-t)-f(x_{0}-0)|\\
+  &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+\begin{align*}
+  \left|\frac{1}{2n\pi}\int_{0}^{\delta}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\right|
+  &\leqslant\frac{1}{2n\pi}\int_{0}^{\delta}|\varphi(t)|\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\\
+  &<\frac{\varepsilon}{2n\pi}\int_{0}^{\delta}\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t
+  <\frac{\varepsilon}{2n\pi}\int_{0}^{\pi}\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t=\frac{\varepsilon}{2},
+\end{align*}
+\begin{align*}
+  \left|\frac{1}{2n\pi}\int_{\delta}^{\pi}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\right|
+  &\leqslant\frac{1}{2n\pi}\int_{\delta}^{\pi}|\varphi(t)|\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\\
+  &\leqslant\frac{1}{2n\pi\sin^{2}\frac{\delta}{2}}\int_{0}^{\pi}|\varphi(t)|\mathrm{d}t=\frac{A}{n},
+\end{align*}
+其中 $A=\dfrac{1}{2\pi\sin^{2}\frac{\delta}{2}}\displaystyle\int_{0}^{\pi}|\varphi(t)|\mathrm{d}t$ 为一个常数. 故当 $n>\dfrac{2A}{\varepsilon}$ 时,
+\begin{align*}
+  \left|\sigma_{n}(x_{0})-s\right|
+  &=\left|\frac{1}{2n\pi}\int_{0}^{\delta}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t+\frac{1}{2n\pi}\int_{\delta}^{\pi}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\right|\\
+  &\leqslant\left|\frac{1}{2n\pi}\int_{0}^{\delta}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\right|+\left|\frac{1}{2n\pi}\int_{\delta}^{\pi}\varphi(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\right|\\
+  &<\frac{\varepsilon}{2}+\frac{A}{n}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+这就证明了 $f(x)$ 的 Fourier 级数在 $x_{0}$ 处的 Cesaro 和为
+\[
+  \lim_{n\to+\infty}\sigma_{n}=s=\frac{1}{2}\left[f(x_{0}+0)+f(x_{0}-0)\right].
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:16.4.1}
+设 $f(x)$ 是周期为 $2\pi$ 且在 $[-\pi,\pi]$ 上可积或绝对可积的函数. 如果 $f(x)$ 在 $x_{0}$ 处有左、右极限, 且其 Fourier 级数在 $x_{0}$ 处收敛, 则必收敛于 $\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$.
+\end{corollary}
+
+\begin{proof}
+设 $f(x)$ 的 Fourier 级数在 $x_{0}$ 处收敛于 $s$, 则其 Cesaro 和也必为 $s$. 根据定理~\ref{thm:16.4.2}, 其 Cesaro 和为 $\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$, 故得 $s=\dfrac{1}{2}[f(x_{0}+0)+f(x_{0}-0)]$.
+\end{proof}
+
+更进一步地, 有下面定理.
+
+\begin{theorem}[Fej\'er 定理]\label{thm:16.4.3}
+设 $f(x)$ 是周期为 $2\pi$ 的连续函数, 则它的 Fourier 级数在 Cesaro 意义下一致收敛于 $f(x)$.
+\end{theorem}
+
+\begin{proof}
+设 $\varphi_{x}(t)=f(x+t)+f(x-t)-2f(x)$, 则
+\[
+  \sigma_{n}(x)-f(x)=\frac{1}{2n\pi}\int_{0}^{\pi}\varphi_{x}(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t.
+\]
+由于 $f(x)$ 为整个数轴上的连续函数, 故在闭区间 $[-2\pi,2\pi]$ 上一致连续. 对于给定的 $\varepsilon>0$, $\exists\delta\in(0,\pi)$, 使得 $\forall t\in(0,\delta)$ 有
+\[
+  |f(x+t)-f(x)|<\frac{\varepsilon}{2},\quad|f(x-t)-f(x)|<\frac{\varepsilon}{2},\quad\forall x\in[-\pi,\pi].
+\]
+因而
+\begin{align*}
+  |\varphi_{x}(t)|&=|f(x+t)+f(x-t)-2f(x)|\\
+  &\leqslant|f(x+t)-f(x)|+|f(x-t)-f(x)|\\
+  &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,\quad\forall x\in[-\pi,\pi].
+\end{align*}
+于是, 当 $n>\dfrac{4M}{\varepsilon\sin^{2}\frac{\delta}{2}}$ 时(其中 $M=\max\limits_{x\in[-\pi,\pi]}|f(x)|$), 有
+\begin{align*}
+  |\sigma_{n}(x)-f(x)|
+  &=\left|\frac{1}{2n\pi}\int_{0}^{\delta}\varphi_{x}(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t+\frac{1}{2n\pi}\int_{\delta}^{\pi}\varphi_{x}(t)\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\right|\\
+  &\leqslant\frac{1}{2n\pi}\int_{0}^{\delta}|\varphi_{x}(t)|\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t+\frac{1}{2n\pi}\int_{\delta}^{\pi}|\varphi_{x}(t)|\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t\\
+  &<\frac{\varepsilon}{2n\pi}\int_{0}^{\pi}\left[\frac{\sin\frac{nt}{2}}{\sin\frac{t}{2}}\right]^{2}\mathrm{d}t+\frac{2M}{n\sin\frac{\delta}{2}}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,
+\end{align*}
+因此
+\[
+  \sigma_{n}(x)\Rightarrow f(x),\quad x\in[-\pi,\pi],\ n\to+\infty.
+\]
+再由周期性, 有 $\sigma_{n}(x)\Rightarrow f(x)$, $x\in(-\infty,+\infty)$, $n\to+\infty$, 即 $f(x)$ 的 Fourier 级数在 Cesaro 意义下一致收敛于 $f(x)$.
+\end{proof}
+
+作为 Fej\'er 定理~\ref{thm:16.4.3} 与 Cesaro 意义下求和的应用, 我们来证明下面的 Weierstrass 定理.
+
+\begin{theorem}[Weierstrass]\label{thm:16.4.4}
+设 $f(x)$ 在 $[-\pi,\pi]$ 上连续, 且 $f(-\pi)=f(\pi)$, 则 $f(x)$ 必能用三角多项式一致逼近.
+\end{theorem}
+
+\textbf{证法 1}\quad 根据假定, 我们能将 $f(x)$ 延拓为整个数轴上的以 $2\pi$ 为周期的连续函数. 于是, 应用 Fej\'er 定理, $f(x)$ 能在 $(-\infty,+\infty)$ 中用序列 $\{\sigma_{n}(x)\}$ 一致逼近. 因为 $f(x)$ 的 Fourier 级数的 $k$ 次部分和 $S_{k}(x)$ 是一个 $k$ 次三角多项式, 因而
+\[
+  \sigma_{n}(x)=\frac{1}{n}\left[S_{0}(x)+S_{1}(x)+\cdots+S_{n-1}(x)\right]
+\]
+是一个 $n-1$ 次三角多项式, 它就是一个一致逼近 $f(x)$ 的三角多项式序列.
+
+\textbf{证法 2}\quad 参阅定理~\ref{thm:14.3.8}.
+
+% ----------------------------------------------------------------------
+% 练习题 16.4
+% ----------------------------------------------------------------------
+\begin{exblock}{练习题 16.4}
+\textbf{1.} 求下列级数的 Cesaro 和:
+\begin{enumerate}
+\item $1+0-1+1+0-1+\cdots$;
+\item $\dfrac{1}{2}+\cos x+\cos 2x+\cdots+\cos nx+\cdots,\quad 0<x<2\pi$;
+\item $\sin x+\sin 2x+\sin 3x+\cdots,\quad 0<x<2\pi.$
+\end{enumerate}
+
+\textbf{2.} 利用 Fej\'er 定理~\ref{thm:16.4.2} 证明: $[0,\pi]$ 上的连续函数可用余弦多项式一致逼近.
+
+\textbf{3.} 证明: 级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}$ 可以 Cesaro 求和的必要条件是 $a_{n}=o(n)$, $n\to+\infty$ (参阅思考题 12.1 题 5(3)).
+\end{exblock}
+
+% ----------------------------------------------------------------------
+% 思考题 16.4
+% ----------------------------------------------------------------------
+\begin{exblock}{思考题 16.4}
+\textbf{1.} 设由无穷级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}$ 产生的幂级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 的收敛半径为 $1$. 如果
+\[
+  \lim_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=s,
+\]
+则称级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}$ 在 \textbf{Abel 意义下}收敛于 $s$, $s$ 称为级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}$ 的 \textbf{Abel 和}, 记为 $\displaystyle\sum_{n=0}^{\infty}a_{n}=s(\mathrm{A})$. 此时, 称 $\displaystyle\sum_{n=0}^{\infty}a_{n}$ \textbf{可以 Abel 求和}.
+
+\textbf{证明:} (1) 如果级数 $\displaystyle\sum_{n=0}^{\infty}a_{n}$ 在通常意义下收敛于 $s$, 则必有
+\[
+  \sum_{n=0}^{\infty}a_{n}=s(\mathrm{A}).
+\]
+(2) $\displaystyle\sum_{n=0}^{\infty}(-1)^{n}=\frac{1}{2}(\mathrm{A})$. 注意: $\displaystyle\sum_{n=0}^{\infty}(-1)^{n}=\frac{1}{2}(\mathrm{C})$, 但通常意义下它不收敛.
+
+\textbf{2.} 证明: 如果 $\displaystyle\sum_{n=0}^{\infty}a_{n}=s(\mathrm{C})$, 则必有 $\displaystyle\sum_{n=0}^{\infty}a_{n}=s(\mathrm{A})$.
+
+\textbf{提示:} 按下列步骤论证
+
+(1) $\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$ 在 $(-1,1)$ 中绝对收敛;
+
+(2) 记 $f(x)=\displaystyle\sum_{n=0}^{\infty}a_{n}x^{n}$, 则
+\[
+  f(x)=(1-x)^{2}\sum_{n=0}^{\infty}(n+1)\sigma_{n+1}x^{n+1},\quad x\in(-1,1);
+\]
+(3) 从
+\[
+  f(x)-s=(1-x)^{2}\sum_{n=0}^{\infty}(n+1)(\sigma_{n+1}-s)x^{n}
+\]
+推得
+\[
+  \lim_{x\to1^{-}}\sum_{n=0}^{\infty}a_{n}x^{n}=s.
+\]
+
+\textbf{3.} 证明: 级数 $\displaystyle\sum_{n=0}^{\infty}(-1)^{n}(n+1)=\frac{1}{4}(\mathrm{A})$. 但它不能用 Cesaro 求和. 由此及题 1(2) 知, 通常求和最强, Cesaro 求和次强, Abel 求和最弱.
+
+\textbf{4.} 证明: $\displaystyle\sum_{n=2}^{\infty}(-1)^{n}\ln n=\frac{1}{2}\ln\frac{\pi}{2}(\mathrm{C})$.
+\end{exblock}

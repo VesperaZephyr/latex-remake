@@ -1,0 +1,919 @@
+\section{带各种余项的 Taylor 公式}\label{sec:4.1}
+
+实系数 $n$ 次多项式函数
+\[
+P(x)=b_{0}+b_{1}x+\cdots+b_{n}x^{n},\quad b_{n}\neq 0,
+\]
+或更一般地,
+\[
+P(x)=a_{0}+a_{1}(x-x_{0})+\cdots+a_{n}(x-x_{0})^{n},\quad a_{n}\neq 0,
+\]
+这是人们熟悉的函数, 它有许多便于应用的性质. 计算其 $k$ ($k=0,1,\cdots,n$) 阶导数, 有
+\begin{align*}
+P^{(k)}(x)&=k!a_{k}+(k+1)k\cdots 2a_{k+1}(x-x_{0})\\
+&\quad+\cdots+n(n-1)\cdots(n-k+1)a_{n}(x-x_{0})^{n-k},\\
+P^{(k)}(x_{0})&=k!a_{k}.
+\end{align*}
+从而得到第 $k$ 项的系数 $a_{k}=\frac{P^{(k)}(x_{0})}{k!}$, 所以它又可以写成
+\begin{align*}
+P(x)&=P^{(0)}(x_{0})+P'(x_{0})(x-x_{0})+\cdots+\frac{P^{(n)}(x_{0})}{n!}(x-x_{0})^{n}\\
+&=\sum_{k=0}^{n}\frac{P^{(k)}(x_{0})}{k!}(x-x_{0})^{k},
+\end{align*}
+其中 $P^{(0)}(x_{0})=P(x_{0})$.
+
+对于一般的有 $n$ 阶导数的函数 $f(x)$, 是否可以用多项式来逼近? 选择什么样的多项式 $P(x)$ 能与 $f(x)$ 有 $n$ 阶逼近(即 $f(x)-P(x)=o((x-x_{0})^{n})$)? $P(x)$ 的系数有什么要求? 这是首要解决的问题.
+
+\begin{theorem}[惟一性]\label{thm:4.1.1}
+设
+\begin{align*}
+f(x)&=\sum_{k=0}^{n}a_{k}(x-x_{0})^{k}+o((x-x_{0})^{n})\\
+&=\sum_{k=0}^{n}b_{k}(x-x_{0})^{k}+o((x-x_{0})^{n}),
+\end{align*}
+则 $a_{k}=b_{k}$, $k=0,1,\cdots,n$.
+\end{theorem}
+
+\begin{proof}[证明(归纳法)]
+在上述等式中令 $x\to x_{0}$, 得到 $a_{0}=b_{0}$. 假设 $a_{i}=b_{i}$, $0\leqslant i\leqslant j-1\leqslant n-1$, 则两式相减推出
+\[
+0=(a_{j}-b_{j})(x-x_{0})^{j}+\sum_{k=j+1}^{n}(a_{k}-b_{k})(x-x_{0})^{k}+o((x-x_{0})^{n}).
+\]
+于是, 当 $x\neq x_{0}$ 时, 有
+\[
+0=(a_{j}-b_{j})+\sum_{k=j+1}^{n}(a_{k}-b_{k})(x-x_{0})^{k-j}+o((x-x_{0})^{n-j}),
+\]
+再令 $x\to x_{0}$, 得 $a_{j}-b_{j}=0$, 即 $a_{j}=b_{j}$. 于是对 $k=0,1,\cdots,n$ 有 $a_{k}=b_{k}$.
+\end{proof}
+
+设 $f(x)$ 在点 $x_{0}$ 有直至 $n$ 阶的导数, 我们称多项式 $\sum\limits_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}$ 为 $f(x)$ 在 $x_{0}$ 处的 $n$ 次 \textbf{Taylor 多项式}.
+
+\begin{theorem}[带 Peano(佩亚诺)型余项的 Taylor 公式]\label{thm:4.1.2}
+设 $f$ 在点 $x_{0}$ 有直至 $n$ 阶的导数, 则有
+\begin{align*}
+f(x)&=\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}+R_{n}(x),\\
+R_{n}(x)&=o((x-x_{0})^{n})\quad (x\to x_{0}).
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+设
+\[
+T_{n}(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}
+\]
+为 $f$ 的 $n$ 次 Taylor 多项式, 易见
+\[
+f^{(k)}(x_{0})=T_{n}^{(k)}(x_{0}),\quad k=0,1,\cdots,n.
+\]
+所以
+\[
+R_{n}(x_{0})=R_{n}'(x_{0})=\cdots=R_{n}^{(n)}(x_{0})=0.
+\]
+此外, 显然有
+\begin{gather*}
+(x-x_{0})^{n}\big|_{x_{0}}=\left[(x-x_{0})^{n}\right]'\big|_{x_{0}}=\cdots=\left[(x-x_{0})^{n}\right]^{(n-1)}\big|_{x_{0}}=0,\\
+\left[(x-x_{0})^{n}\right]^{(n)}=n!.
+\end{gather*}
+因为 $f^{(n)}(x_{0})$ 存在且有限, 所以在 $x_{0}$ 的某开邻域内, $f$ 有 $n-1$ 阶导函数. 于是, 允许接连使用 L'Hospital 法则 $n-1$ 次, 得到
+\begin{align*}
+\lim_{x\to x_{0}}\frac{R_{n}(x)}{(x-x_{0})^{n}}&=\lim_{x\to x_{0}}\frac{R_{n}'(x)}{n(x-x_{0})^{n-1}}\\
+&=\cdots=\lim_{x\to x_{0}}\frac{R_{n}^{(n-1)}(x)}{n(n-1)\cdots 2\,(x-x_{0})}\\
+&=\lim_{x\to x_{0}}\frac{f^{(n-1)}(x)-f^{(n-1)}(x_{0})-f^{(n)}(x_{0})(x-x_{0})}{n(n-1)\cdots 2\,(x-x_{0})}\\
+&=\frac{1}{n!}\lim_{x\to x_{0}}\left[\frac{f^{(n-1)}(x)-f^{(n-1)}(x_{0})}{x-x_{0}}-f^{(n)}(x_{0})\right]\\
+&=\frac{1}{n!}(f^{(n)}(x_{0})-f^{(n)}(x_{0}))=0,
+\end{align*}
+即
+\[
+R_{n}(x)=o((x-x_{0})^{n})\quad (x\to x_{0}),
+\]
+并称它为 $f$ 在 $x_{0}$ 处的 \textbf{Peano 余项}.
+\end{proof}
+
+当 $x_{0}=0$ 时, 带 Peano 余项的 Taylor 公式又称为 \textbf{Maclaurin 公式}:
+\[
+f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(0)}{k!}x^{k}+o(x^{n}).
+\]
+
+\begin{example}\label{ex:4.1.1}
+如果 $f$ 在点 $x_{0}$ 附近满足
+\[
+f(x)=P_{n}(x)+o((x-x_{0})^{n}),
+\]
+其中 $P_{n}(x)=\sum\limits_{k=0}^{n}a_{k}(x-x_{0})^{k}$ 为 $n$ 次多项式. 问: $P_{n}(x)$ 是否一定为 $f$ 的 Taylor 多项式 $T_{n}(x)=\sum\limits_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}$?
+\end{example}
+
+\begin{solution}
+不一定.
+
+反例: 设 $f(x)=x^{n+1}D(x)$ ($n\in\mathbb{N}$), 其中 $D(x)$ 为 Dirichlet 函数. 显然,
+\[
+\lim_{x\to 0}\frac{f(x)}{x^{n}}=\lim_{x\to 0}\frac{x^{n+1}D(x)}{x^{n}}=\lim_{x\to 0}xD(x)=0,
+\]
+故
+\[
+f(x)=o(x^{n})=\sum_{k=0}^{n}0x^{k}+o(x^{n}).
+\]
+但由于 $f$ 在 $x\neq 0$ 处不连续, 因而不可导, 无法定义 $f''(0)$, $f'''(0)$, $\cdots$, 也无法构造出高于 $1$ 次的 Taylor 多项式 $T_{n}(x)$, 因为在 $x=0$ 处,
+\[
+f'(0)=\lim_{x\to 0}\frac{x^{n+1}D(x)-0}{x-0}=\lim_{x\to 0}x^{n}D(x)=0,
+\]
+故 $1$ 次 Taylor 多项式为
+\[
+T_{1}(x)=f(0)+\frac{f'(0)}{1!}x=0+0x.
+\]
+\end{solution}
+
+\begin{theorem}[带 Lagrange 余项与 Cauchy 余项的 Taylor 公式]\label{thm:4.1.3}
+设函数 $f$ 在区间 $I$ 上有 $n$ 阶连续导数, 在 $\mathring{I}$ 内有 $n+1$ 阶导数, $x_{0}\in\mathring{I}$,
+\[
+f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}+R_{n}(x),\quad \forall x\in I.
+\]
+当 $x\neq x_{0}$ 时, 记 $I_{x}=[x_{0},x]$ (或 $[x,x_{0}]$). 设 $G(t)$ 在 $I_{x}$ 上连续, 在 $\mathring{I}_{x}$ 内可导, 且 $G'(t)\neq 0$, $\forall t\in\mathring{I}_{x}$, 则 $\exists \xi\in\mathring{I}_{x}$, s.t.
+\[
+R_{n}(x)=\frac{f^{(n+1)}(\xi)}{n!G'(\xi)}(x-\xi)^{n}\left[G(x)-G(x_{0})\right].
+\]
+特别地, 有下面两类余项:
+\begin{enumerate}[label=(\arabic*)]
+  \item 若取 $G(t)=(x-t)^{n+1}$ 就得 \textbf{Lagrange 余项}
+  \[
+  R_{n}(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1};
+\]
+  \item 若取 $G(t)=x-t$ 就得 \textbf{Cauchy 余项}
+  \[
+  R_{n}(x)=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}(x-x_{0}).
+\]
+\end{enumerate}
+进而, 当 $n=0$ 时, 带 Lagrange 余项的 Taylor 公式就是 Lagrange 中值定理 $f(x)=f(x_{0})+f'(\xi)(x-x_{0})$.
+\end{theorem}
+
+\begin{proof}
+令
+\[
+F(t)=f(t)+\sum_{k=1}^{n}\frac{f^{(k)}(t)}{k!}(x-t)^{k},\quad t\in I,
+\]
+则 $F(t)$ 在 $I$ 上连续, 在 $\mathring{I}$ 内可导, 且当 $t\in\mathring{I}$ 时,
+\begin{align*}
+F'(t)&=f'(t)+\sum_{k=1}^{n}\left[\frac{f^{(k+1)}(t)}{k!}(x-t)^{k}-\frac{f^{(k)}(t)}{(k-1)!}(x-t)^{k-1}\right]\\
+&=f'(t)+\sum_{j=2}^{n+1}\frac{f^{(j)}(t)}{(j-1)!}(x-t)^{j-1}-\sum_{k=2}^{n}\frac{f^{(k)}(t)}{(k-1)!}(x-t)^{k-1}-f'(t)\\
+&=\frac{f^{(n+1)}(t)}{n!}(x-t)^{n},\quad t\in\mathring{I}.
+\end{align*}
+对 $F(t), G(t)$ 在 $I_{x}$ 上应用 Cauchy 中值定理, $\exists \xi\in\mathring{I}_{x}$, s.t.
+\[
+\frac{F(x)-F(x_{0})}{G(x)-G(x_{0})}=\frac{F'(\xi)}{G'(\xi)}=\frac{\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}}{G'(\xi)}=\frac{f^{(n+1)}(\xi)}{n!G'(\xi)}(x-\xi)^{n},
+\]
+\begin{align*}
+R_{n}(x)&=f(x)-\left[f(x_{0})+\sum_{k=1}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}\right]\\
+&=F(x)-F(x_{0})\\
+&=\frac{f^{(n+1)}(\xi)}{n!G'(\xi)}(x-\xi)^{n}\left[G(x)-G(x_{0})\right].
+\end{align*}
+(1) 取 $G(t)=(x-t)^{n+1}$, 则 $G'(t)=-(n+1)(x-t)^{n}$, $G(x)=0$, $G(x_{0})=(x-x_{0})^{n+1}$, 于是
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{-n!(n+1)(x-\xi)^{n}}(x-\xi)^{n}\left[-(x-x_{0})^{n+1}\right]\\
+&=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}.
+\end{align*}
+(2) 取 $G(t)=x-t$, 则 $G'(t)=-1$, $G(x)=0$, $G(x_{0})=x-x_{0}$, 于是
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{n!(-1)}(x-\xi)^{n}\left[0-(x-x_{0})\right]\\
+&=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}(x-x_{0}).
+\end{align*}
+\end{proof}
+
+\begin{remark}\label{rem:4.1.1}
+为了给出 Lagrange 余项与 Cauchy 余项的另一证明, 设 $F(t)$ 如前所述. 再令可导函数 $\lambda(t)$ 适合 $\lambda(x_{0})=1, \lambda(x)=0$. 构造函数
+\[
+\varphi(t)=F(t)-\left[\lambda(t)F(x_{0})+(1-\lambda(t))F(x)\right].
+\]
+易见 $\varphi(x_{0})=0=\varphi(x)$, 应用 Rolle 定理可知存在 $x_{0}$ 与 $x$ 之间的点 $\xi$, 使得
+\[
+0=\varphi'(\xi)=F'(\xi)-\lambda'(\xi)\left[F(x_{0})-F(x)\right].
+\]
+如果 $\lambda'(t)$ 在 $x_{0}$ 与 $x$ 之间没有零点, 由上式可得
+\[
+F(x)-F(x_{0})=-\frac{F'(\xi)}{\lambda'(\xi)}.
+\]
+于是
+\[
+R_{n}(x)=f(x)-\sum_{k=0}^{n}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}=F(x)-F(x_{0})=-\frac{F'(\xi)}{\lambda'(\xi)}.
+\]
+(1) 取 $\lambda(t)=\left(\frac{x-t}{x-x_{0}}\right)^{n+1}$, 则
+\[
+\lambda'(t)=-(n+1)\left(\frac{x-t}{x-x_{0}}\right)^{n}\frac{1}{x-x_{0}},
+\]
+\begin{align*}
+R_{n}(x)&=-\frac{F'(\xi)}{\lambda'(\xi)}=-\frac{\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}}{-(n+1)\left(\frac{x-\xi}{x-x_{0}}\right)^{n}\frac{1}{x-x_{0}}}\\
+&=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_{0})^{n+1}.
+\end{align*}
+这就是 Lagrange 余项.
+
+(2) 取 $\lambda(t)=\frac{x-t}{x-x_{0}}$, 则 $\lambda'(t)=-\frac{1}{x-x_{0}}$,
+\begin{align*}
+R_{n}(x)&=-\frac{F'(\xi)}{\lambda'(\xi)}=-\frac{\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}}{-\frac{1}{x-x_{0}}}\\
+&=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}(x-x_{0}).
+\end{align*}
+这就是 Cauchy 余项.
+\end{remark}
+
+\begin{remark}\label{rem:4.1.2}
+$\xi$ 在 $x_{0}$ 与 $x$ 之间, 则可表示为
+\[
+\xi=x_{0}+\theta(x-x_{0}),\quad 0<\theta<1.
+\]
+于是, Lagrange 余项
+\[
+R_{n}(x)=\frac{f^{(n+1)}(x_{0}+\theta(x-x_{0}))}{(n+1)!}(x-x_{0})^{n+1},
+\]
+Cauchy 余项
+\[
+R_{n}(x)=\frac{f^{(n+1)}(x_{0}+\theta(x-x_{0}))}{n!}(1-\theta)^{n}(x-x_{0})^{n+1}.
+\]
+$x_{0}=0$ 时的 Taylor 公式称为 Maclaurin 公式, 即
+\[
+f(x)=\sum_{k=0}^{n}\frac{f^{(k)}(0)}{k!}x^{k}+R_{n}(x).
+\]
+Peano 余项
+\[
+R_{n}(x)=o(x^{n}),
+\]
+Lagrange 余项
+\[
+R_{n}(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}=\frac{f^{(n+1)}(\theta x)}{(n+1)!}x^{n+1},
+\]
+Cauchy 余项
+\[
+R_{n}(x)=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}x=\frac{f^{(n+1)}(\theta x)}{n!}(1-\theta)^{n}x^{n+1}.
+\]
+\end{remark}
+
+下面给出 5 个重要的 Maclaurin 公式(展开式)及其 Lagrange 余项与 Cauchy 余项.
+
+\begin{example}\label{ex:4.1.2}
+$f(x)=\mathrm{e}^{x}$.
+\end{example}
+
+\begin{solution}
+因为 $f^{(k)}(x)=\mathrm{e}^{x}$, $f^{(k)}(0)=1$, $k=0,1,\cdots,n$, 故
+\[
+\mathrm{e}^{x}=\sum_{k=0}^{n}\frac{f^{(k)}(0)}{k!}x^{k}+R_{n}(x)=\sum_{k=0}^{n}\frac{x^{k}}{k!}+R_{n}(x).
+\]
+Lagrange 余项
+\[
+R_{n}(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}=\frac{\mathrm{e}^{\xi}}{(n+1)!}x^{n+1}=\frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1}.
+\]
+Cauchy 余项
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}x=\frac{\mathrm{e}^{\xi}}{n!}(x-\xi)^{n}x\\
+&=\frac{\mathrm{e}^{\theta x}}{n!}(1-\theta)^{n}x^{n+1},
+\end{align*}
+$\xi$ 介于 $0$ 与 $x$ 之间, $0<\theta<1$.
+\end{solution}
+
+\begin{example}\label{ex:4.1.3}
+$f(x)=\sin x$.
+\end{example}
+
+\begin{solution}
+因为 $f^{(k)}(x)=\sin\left(x+\frac{k\pi}{2}\right)$, 所以
+\[
+f^{(k)}(0)=\sin\frac{k\pi}{2}=\begin{cases}
+0, & k=2j,\\
+(-1)^{j-1}, & k=2j-1,\quad j=1,2,\cdots.
+\end{cases}
+\]
+取 $n=2m$, 得
+\[
+\sin x=\sum_{k=0}^{2m}\frac{f^{(k)}(0)}{k!}x^{k}+R_{2m}(x)=\sum_{j=1}^{m}\frac{(-1)^{j-1}}{(2j-1)!}x^{2j-1}+R_{2m}(x).
+\]
+Lagrange 余项
+\begin{align*}
+R_{2m}(x)&=\frac{f^{(2m+1)}(\xi)}{(2m+1)!}x^{2m+1}=\frac{\sin\left(\xi+\frac{2m+1}{2}\pi\right)}{(2m+1)!}x^{2m+1}\\
+&=\frac{(-1)^{m}\cos\xi}{(2m+1)!}x^{2m+1}=\frac{(-1)^{m}\cos\theta x}{(2m+1)!}x^{2m+1}.
+\end{align*}
+Cauchy 余项
+\begin{align*}
+R_{2m}(x)&=\frac{f^{(2m+1)}(\xi)}{(2m)!}(x-\xi)^{2m}x=\frac{(-1)^{m}\cos\xi}{(2m)!}(x-\xi)^{2m}x\\
+&=\frac{(-1)^{m}\cos\theta x}{(2m)!}(1-\theta)^{2m}x^{2m+1}.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.1.4}
+$f(x)=\cos x$.
+\end{example}
+
+\begin{solution}
+已知 $f^{(k)}(x)=\cos\left(x+\frac{k\pi}{2}\right)$, 故
+\[
+f^{(k)}(0)=\cos\frac{k\pi}{2}=\begin{cases}
+0, & k=2j+1,\\
+(-1)^{j}, & k=2j,\quad j=0,1,2,\cdots.
+\end{cases}
+\]
+\[
+\cos x=\sum_{j=0}^{m}(-1)^{j}\frac{x^{2j}}{(2j)!}+R_{2m+1}(x).
+\]
+Lagrange 余项
+\begin{align*}
+R_{2m+1}(x)&=\frac{f^{(2m+2)}(\xi)}{(2m+2)!}x^{2m+2}=\frac{\cos\left(\xi+\frac{2m+2}{2}\pi\right)}{(2m+2)!}x^{2m+2}\\
+&=\frac{(-1)^{m+1}\cos\xi}{(2m+2)!}x^{2m+2}=\frac{(-1)^{m+1}\cos\theta x}{(2m+2)!}x^{2m+2}.
+\end{align*}
+Cauchy 余项
+\begin{align*}
+R_{2m+1}(x)&=\frac{f^{(2m+2)}(\xi)}{(2m+1)!}(x-\xi)^{2m+1}x=\frac{(-1)^{m+1}\cos\xi}{(2m+1)!}(x-\xi)^{2m+1}x\\
+&=\frac{(-1)^{m+1}\cos\theta x}{(2m+1)!}(1-\theta)^{2m+1}x^{2m+2},
+\end{align*}
+$\xi$ 介于 $0$ 与 $x$ 之间, $0<\theta<1$.
+\end{solution}
+
+\begin{example}\label{ex:4.1.5}
+$f(x)=\ln(1+x)$, $x>-1$.
+\end{example}
+
+\begin{solution}
+\[
+f'(x)=\frac{1}{1+x}=(1+x)^{-1},\quad f^{(k)}(x)=\frac{(-1)^{k-1}(k-1)!}{(1+x)^{k}},
+\]
+\[
+f^{(k)}(0)=(-1)^{k-1}(k-1)!,\quad k\geqslant 1.
+\]
+\begin{align*}
+\ln(1+x)&=0+\sum_{k=1}^{n}\frac{(-1)^{k-1}(k-1)!}{k!}x^{k}+R_{n}(x)\\
+&=\sum_{k=1}^{n}\frac{(-1)^{k-1}}{k}x^{k}+R_{n}(x).
+\end{align*}
+Lagrange 余项
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}=\frac{(-1)^{n}n!}{(n+1)!(1+\xi)^{n+1}}x^{n+1}\\
+&=\frac{(-1)^{n}}{(n+1)(1+\xi)^{n+1}}x^{n+1}=\frac{(-1)^{n}}{(n+1)(1+\theta x)^{n+1}}x^{n+1}.
+\end{align*}
+Cauchy 余项
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}x=\frac{(-1)^{n}n!}{n!(1+\xi)^{n+1}}(x-\xi)^{n}x\\
+&=\frac{(-1)^{n}}{(1+\xi)^{n+1}}(x-\xi)^{n}x=\frac{(-1)^{n}}{(1+\theta x)^{n+1}}(1-\theta)^{n}x^{n+1},
+\end{align*}
+$\xi$ 介于 $0$ 与 $x$ 之间, $0<\theta<1$.
+\end{solution}
+
+\begin{example}\label{ex:4.1.6}
+$f(x)=(1+x)^{\alpha}$, $x>-1$, $\alpha\in\mathbb{R}$ 为常数.
+\end{example}
+
+\begin{solution}
+$f^{(k)}(x)=\alpha(\alpha-1)\cdots(\alpha-k+1)(1+x)^{\alpha-k}$,
+\[
+f^{(k)}(0)=\alpha(\alpha-1)\cdots(\alpha-k+1),\quad k=1,2,\cdots,
+\]
+\[
+f(x)=1+\sum_{k=1}^{n}\frac{\alpha(\alpha-1)\cdots(\alpha-k+1)}{k!}x^{k}+R_{n}(x),\quad x>-1.
+\]
+Lagrange 余项
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{(n+1)!}x^{n+1}=\frac{\alpha(\alpha-1)\cdots(\alpha-n)}{(n+1)!}(1+\xi)^{\alpha-n-1}x^{n+1}\\
+&=\frac{\alpha(\alpha-1)\cdots(\alpha-n)}{(n+1)!}(1+\theta x)^{\alpha-n-1}x^{n+1}.
+\end{align*}
+Cauchy 余项
+\begin{align*}
+R_{n}(x)&=\frac{f^{(n+1)}(\xi)}{n!}(x-\xi)^{n}x=\frac{\alpha(\alpha-1)\cdots(\alpha-n)}{n!}(1+\xi)^{\alpha-n-1}(x-\xi)^{n}x\\
+&=\frac{\alpha(\alpha-1)\cdots(\alpha-n)}{n!}(1+\theta x)^{\alpha-n-1}(1-\theta)^{n}x^{n+1},
+\end{align*}
+$\xi$ 介于 $0$ 与 $x$ 之间, $0<\theta<1$.
+
+特别地, 当 $\alpha=-1$ 时, 带有 Lagrange 余项的 Taylor 公式为
+\begin{align*}
+\frac{1}{1+x}&=(1+x)^{-1}=1+\sum_{k=1}^{n}(-1)^{k}x^{k}+\frac{(-1)^{n+1}x^{n+1}}{(1+\xi)^{n+2}}\\
+&=\sum_{k=0}^{n}(-1)^{k}x^{k}+\frac{(-1)^{n+1}x^{n+1}}{(1+\theta x)^{n+2}},
+\end{align*}
+$\xi$ 介于 $0$ 与 $x$ 之间, $0<\theta<1$.
+
+\begin{align*}
+\frac{1}{1-x}&=[1+(-x)]^{-1}=1+\sum_{k=1}^{n}(-1)^{k}(-x)^{k}+\frac{(-1)^{n+1}(-x)^{n+1}}{(1+\xi)^{n+2}}\\
+&=1+\sum_{k=1}^{n}x^{k}+\frac{x^{n+1}}{(1+\xi)^{n+2}}=\sum_{k=0}^{n}x^{k}+\frac{x^{n+1}}{(1-\theta x)^{n+2}},
+\end{align*}
+$\xi$ 介于 $0$ 与 $-x$ 之间, $0<\theta<1$.
+
+当 $\alpha=\frac{1}{2}$ 时, 带有 Lagrange 余项的 Taylor 公式为
+\begin{align*}
+\sqrt{1+x}&=(1+x)^{\frac{1}{2}}=1+\sum_{k=1}^{n}\frac{\frac{1}{2}\left(\frac{1}{2}-1\right)\cdots\left(\frac{1}{2}-k+1\right)}{k!}x^{k}+R_{n}(x)\\
+&=1+\sum_{k=1}^{n}\frac{(-1)^{k-1}(2k-3)!!}{(2k)!!}x^{k}+R_{n}(x),
+\end{align*}
+\begin{align*}
+R_{n}(x)&=\frac{(-1)^{n}(2n-1)!!}{(2n+2)!!}\frac{x^{n+1}}{(1+\xi)^{n+\frac{1}{2}}}=\frac{(-1)^{n}(2n-1)!!}{(2n+2)!!}\frac{x^{n+1}}{(1+\theta x)^{n+\frac{1}{2}}},
+\end{align*}
+$\xi$ 介于 $0$ 与 $x$ 之间, $0<\theta<1$.
+\end{solution}
+
+根据惟一性定理~\ref{thm:4.1.1}, 我们可以应用各种各样的方法来计算带 Peano 余项的 Maclaurin 公式.
+
+\begin{example}\label{ex:4.1.7}
+将多项式 $P(x)=2+3x+x^{2}+4x^{3}+x^{4}$ 表示为 $x+1$ 的多项式(即为 $x_{0}=-1$ 处的 Taylor 展开式).
+\end{example}
+
+\begin{solution}
+\textbf{解法 1}
+\begin{align*}
+P(x)&=x^{4}+4x^{3}+x^{2}+3x+2\\
+&=(x+1)^{4}-(4x^{3}+6x^{2}+4x+1)+(4x^{3}+x^{2}+3x+2)\\
+&=(x+1)^{4}-5(x+1)^{2}+10x+5-x+1\\
+&=(x+1)^{4}-5(x+1)^{2}+9(x+1)-3.
+\end{align*}
+这是按降幂凑的方法.
+
+\textbf{解法 2} $P(-1)=-3$,
+\begin{gather*}
+P'(x)=3+2x+12x^{2}+4x^{3},\quad P''=2+24x+12x^{2},\\
+P'''(x)=24+24x,\quad P^{(4)}(x)=24,
+\end{gather*}
+所以
+\begin{align*}
+P(x)&=\sum_{k=0}^{4}\frac{P^{(k)}(-1)}{k!}(x+1)^{k}\\
+&=\frac{24}{4!}(x+1)^{4}+\frac{0}{3!}(x+1)^{3}+\frac{-10}{2!}(x+1)^{2}+\frac{9}{1!}(x+1)+(-3)\\
+&=(x+1)^{4}-5(x+1)^{2}+9(x+1)-3.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.1.8}
+写出 $f(x)=\mathrm{e}^{-\frac{x^{2}}{2}}$ 的 Maclaurin 公式, 并求 $f^{(98)}(0)$ 与 $f^{(99)}(0)$.
+\end{example}
+
+\begin{solution}
+\[
+\mathrm{e}^{-\frac{x^{2}}{2}}=\sum_{k=0}^{n}\frac{1}{k!}\left(-\frac{x^{2}}{2}\right)^{k}+o(x^{2n})=\sum_{k=0}^{n}\frac{(-1)^{k}}{k!2^{k}}x^{2k}+o(x^{2n}).
+\]
+\[
+\frac{1}{98!}f^{(98)}(0)=\frac{(-1)^{49}}{49!2^{49}},\quad f^{(98)}(0)=-\frac{98!}{49!2^{49}}.
+\]
+\[
+\frac{1}{99!}f^{(99)}(0)=0,\quad f^{(99)}(0)=0.
+\]
+\end{solution}
+
+\begin{example}\label{ex:4.1.9}
+求 $y=f(x)=\tan x$ 的 $5$ 次 Maclaurin 展开.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1(待定系数法)} 设
+\[
+\frac{\sin x}{\cos x}=\tan x=f(x)=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+o(x^{5}),
+\]
+则
+\begin{align*}
+\sin x&=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}+o(x^{5})=\cos x\cdot f(x)\\
+&=\left(1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}+o(x^{5})\right)(a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+o(x^{5}))\\
+&=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+o(x^{5})\\
+&\quad-\frac{a_{0}}{2}x^{2}-\frac{a_{1}}{2}x^{3}-\frac{a_{2}}{2}x^{4}-\frac{a_{3}}{2}x^{5}+o(x^{5})+\frac{a_{0}}{24}x^{4}+\frac{a_{1}}{24}x^{5}+o(x^{5})\\
+&=a_{0}+a_{1}x+\left(a_{2}-\frac{a_{0}}{2}\right)x^{2}+\left(a_{3}-\frac{a_{1}}{2}\right)x^{3}+\left(a_{4}-\frac{a_{2}}{2}+\frac{a_{0}}{24}\right)x^{4}\\
+&\quad+\left(a_{5}-\frac{a_{3}}{2}+\frac{a_{1}}{24}\right)x^{5}+o(x^{5}).
+\end{align*}
+由惟一性定理~\ref{thm:4.1.1} 知,
+\[
+\begin{cases}
+a_{0}=0,\\
+a_{1}=1,\\
+a_{2}-\frac{a_{0}}{2}=0,\\
+a_{3}-\frac{a_{1}}{2}=-\frac{1}{6},\\
+a_{4}-\frac{a_{2}}{2}+\frac{a_{0}}{24}=0,\\
+a_{5}-\frac{a_{3}}{2}+\frac{a_{1}}{24}=\frac{1}{120},
+\end{cases}\quad \text{即}\quad
+\begin{cases}
+a_{0}=0,\\
+a_{1}=1,\\
+a_{2}=\frac{a_{0}}{2}=0,\\
+a_{3}=\frac{a_{1}}{2}-\frac{1}{6}=\frac{1}{2}-\frac{1}{6}=\frac{1}{3},\\
+a_{4}=\frac{a_{2}}{2}-\frac{a_{0}}{24}=0-0=0,\\
+a_{5}=\frac{a_{3}}{2}-\frac{a_{1}}{24}+\frac{1}{120}=\frac{1}{6}-\frac{1}{24}+\frac{1}{120}=\frac{2}{15}.
+\end{cases}
+\]
+从而
+\[
+\tan x=x+\frac{x^{3}}{3}+\frac{2}{15}x^{5}+o(x^{5}).
+\]
+
+\textbf{解法 2} 设 $y=\tan x=\frac{\sin x}{\cos x}$, 则 $y(0)=0$, 且
+\begin{gather*}
+y\cos x=\sin x,\\
+y'\cos x-y\sin x=\cos x,\quad y'(0)=1,\\
+y''\cos x-2y'\sin x-y\cos x=-\sin x,\quad y''(0)=0,\\
+y'''\cos x-3y''\sin x-3y'\cos x+y\sin x=-\cos x,\quad y'''(0)=2,\\
+y^{(4)}\cos x-4y'''\sin x-6y''\cos x+4y'\sin x+y\cos x=\sin x,\quad y^{(4)}(0)=0,\\
+y^{(5)}\cos x-5y^{(4)}\sin x-10y'''\cos x+10y''\sin x+5y'\cos x-y\sin x=\cos x,\quad y^{(5)}(0)=16.
+\end{gather*}
+所以
+\begin{align*}
+y=\tan x&=x+\frac{2}{3!}x^{3}+\frac{16}{5!}x^{5}+o(x^{5})\\
+&=x+\frac{x^{3}}{3}+\frac{2}{15}x^{5}+o(x^{5}).
+\end{align*}
+
+\textbf{解法 3} 通过直接对 $y=\tan x$ 求导得(此方法较麻烦)
+\[
+y(0)=0,\quad y'(0)=1,\quad y''(0)=0,\quad y'''(0)=2,\quad y^{(4)}(0)=0,\quad y^{(5)}(0)=16.
+\]
+于是,
+\begin{align*}
+y=\tan x&=\sum_{k=0}^{5}\frac{y^{(k)}(0)}{k!}x^{k}+o(x^{5})\\
+&=x+\frac{x^{3}}{3}+\frac{2}{15}x^{5}+o(x^{5}).
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.1.10}
+求 $f(x)=\ln\cos x$ 的 $6$ 次 Maclaurin 展开.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1}
+\[
+\cos x=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+o(x^{7}),
+\]
+\[
+\ln(1+u)=u-\frac{u^{2}}{2}+\frac{u^{3}}{3}+o(u^{3}),
+\]
+\begin{align*}
+\ln\cos x&=\ln\left(1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+o(x^{7})\right)\\
+&=\left(-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+o(x^{7})\right)-\frac{1}{2}\left(-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}+o(x^{5})\right)^{2}+\frac{1}{3}\left(-\frac{x^{2}}{2!}+o(x^{3})\right)^{3}\\
+&=\left(-\frac{x^{2}}{2}+\frac{x^{4}}{24}-\frac{x^{6}}{720}+o(x^{7})\right)-\frac{1}{2}\left(\frac{x^{4}}{4}-\frac{x^{6}}{24}+o(x^{7})\right)-\frac{x^{6}}{24}+o(x^{7})\\
+&=-\frac{x^{2}}{2}-\frac{x^{4}}{12}-\frac{x^{6}}{45}+o(x^{6}).
+\end{align*}
+
+\textbf{解法 2} $f(x)=\ln\cos x$, $f(0)=0$, $f'(x)=-\frac{\sin x}{\cos x}=-\tan x$, $f'(0)=0$. 由例~\ref{ex:4.1.9} 得
+\[
+f''(0)=-1,\quad f'''(0)=0,\quad f^{(4)}(0)=-2,\quad f^{(5)}(0)=0,\quad f^{(6)}(0)=-16,
+\]
+\begin{align*}
+\ln\cos x&=\sum_{k=0}^{6}\frac{f^{(k)}(0)}{k!}x^{k}+o(x^{6})\\
+&=-\frac{x^{2}}{2}-\frac{x^{4}}{12}-\frac{x^{6}}{45}+o(x^{6}).
+\end{align*}
+
+\textbf{解法 3(待定系数法)} 令
+\[
+\sum_{k=0}^{6}a_{k}x^{k}+o(x^{6})=\ln\cos x,
+\]
+\[
+\sum_{k=1}^{6}a_{k}kx^{k-1}+o(x^{5})=-\frac{\sin x}{\cos x}\xlongequal{\text{例~\ref{ex:4.1.9}}}-x-\frac{x^{3}}{3}-\frac{2}{15}x^{5}+o(x^{5}).
+\]
+根据惟一性定理~\ref{thm:4.1.1} 得到
+\[
+a_{1}=0,\quad a_{2}=-\frac{1}{2},\quad a_{3}=0,\quad a_{4}=-\frac{1}{12},\quad a_{5}=0,\quad a_{6}=-\frac{1}{45},
+\]
+而 $a_{0}=f(0)=\ln\cos 0=0$, 所以
+\[
+\ln\cos x=-\frac{x^{2}}{2}-\frac{x^{4}}{12}-\frac{x^{6}}{45}+o(x^{6}).
+\]
+\end{solution}
+
+\begin{example}\label{ex:4.1.11}
+求 $f(x)=\cos(\sin x)$ 的 $5$ 次 Maclaurin 展开.
+\end{example}
+
+\begin{solution}
+设 $u=\sin x$, 则
+\begin{align*}
+f(x)&=\cos u=1-\frac{u^{2}}{2!}+\frac{u^{4}}{4!}+o(u^{5})\\
+&=1-\frac{\sin^{2}x}{2}+\frac{\sin^{4}x}{24}+o(\sin^{5}x)\\
+&=1-\frac{1}{2}\left(x-\frac{x^{3}}{3!}+o(x^{4})\right)^{2}+\frac{1}{24}\left(x-\frac{x^{3}}{3!}+o(x^{4})\right)^{4}+o(x^{5})\\
+&=1-\frac{1}{2}\left(x^{2}-\frac{x^{4}}{3}+o(x^{5})\right)+\frac{1}{24}(x^{4}+o(x^{5}))+o(x^{5})\\
+&=1-\frac{x^{2}}{2}+\frac{5}{24}x^{4}+o(x^{5}).
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.1.12}
+求 $f(x)=\frac{1+x}{1+x^{2}}$ 的 Maclaurin 展开, 要求到 $x^{5}$ 项.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1} 根据例~\ref{ex:4.1.6}, 有
+\begin{align*}
+f(x)&=\frac{1+x}{1+x^{2}}=(1+x)(1-x^{2}+x^{4}-x^{6}+o(x^{6}))\\
+&=1-x^{2}+x^{4}-x^{6}+o(x^{6})+x-x^{3}+x^{5}-x^{7}+o(x^{7})\\
+&=1+x-x^{2}-x^{3}+x^{4}+x^{5}+o(x^{5}).
+\end{align*}
+
+\textbf{解法 2(待定系数法)} 令
+\[
+\frac{1+x}{1+x^{2}}=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+o(x^{5}),
+\]
+于是,
+\begin{align*}
+1+x&=(1+x^{2})(a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+o(x^{5}))\\
+&=a_{0}+a_{1}x+a_{2}x^{2}+a_{3}x^{3}+a_{4}x^{4}+a_{5}x^{5}+o(x^{5})\\
+&\quad+a_{0}x^{2}+a_{1}x^{3}+a_{2}x^{4}+a_{3}x^{5}+o(x^{5})\\
+&=a_{0}+a_{1}x+(a_{0}+a_{2})x^{2}+(a_{1}+a_{3})x^{3}+(a_{2}+a_{4})x^{4}+(a_{3}+a_{5})x^{5}+o(x^{5}).
+\end{align*}
+由惟一性定理~\ref{thm:4.1.1} 知,
+\[
+\begin{cases}
+a_{0}=1,\\
+a_{1}=1,\\
+a_{0}+a_{2}=0,\\
+a_{1}+a_{3}=0,\\
+a_{2}+a_{4}=0,\\
+a_{3}+a_{5}=0,
+\end{cases}\quad \text{即}\quad
+\begin{cases}
+a_{0}=1,\\
+a_{1}=1,\\
+a_{2}=-a_{0}=-1,\\
+a_{3}=-a_{1}=-1,\\
+a_{4}=-a_{2}=1,\\
+a_{5}=-a_{3}=1.
+\end{cases}
+\]
+所以
+\[
+\frac{1+x}{1+x^{2}}=1+x-x^{2}-x^{3}+x^{4}+x^{5}+o(x^{5}).
+\]
+
+\textbf{解法 3} 设 $y=\frac{1+x}{1+x^{2}}$, 则 $y(0)=1$, 又
+\begin{gather*}
+(1+x^{2})y=1+x,\\
+2xy+(1+x^{2})y'=1,\quad y'(0)=1;\\
+2y+4xy'+(1+x^{2})y''=0,\quad y''(0)=-2y(0)=-2;\\
+6y'+6xy''+(1+x^{2})y'''=0,\quad y'''(0)=-6y'(0)=-6;\\
+12y''+8xy'''+(1+x^{2})y^{(4)}=0,\quad y^{(4)}(0)=-12y''(0)=24;\\
+20y'''+10xy^{(4)}+(1+x^{2})y^{(5)}=0,\quad y^{(5)}(0)=-20y'''(0)=120.
+\end{gather*}
+所以
+\begin{align*}
+y&=\frac{1+x}{1+x^{2}}=\sum_{k=0}^{5}\frac{y^{(k)}(0)}{k!}x^{k}+o(x^{5})\\
+&=1+\frac{1}{1!}x+\frac{-2}{2!}x^{2}+\frac{-6}{3!}x^{3}+\frac{24}{4!}x^{4}+\frac{120}{5!}x^{5}+o(x^{5})\\
+&=1+x-x^{2}-x^{3}+x^{4}+x^{5}+o(x^{5}).
+\end{align*}
+
+\textbf{解法 4}
+\begin{gather*}
+f(x)=\frac{1+x}{1+x^{2}},\quad f(0)=1.\\
+f'(x)=\frac{1-2x-x^{2}}{(1+x^{2})^{2}},\quad f'(0)=1.\\
+f''(x)=\frac{2(x^{3}+3x^{2}-3x-1)}{(1+x^{2})^{3}},\quad f''(0)=-2.\\
+f'''(x)=\frac{-6(x^{4}+4x^{3}-6x^{2}-4x+1)}{(1+x^{2})^{4}},\quad f'''(0)=-6.\\
+f^{(4)}(x)=\frac{24(x^{5}+5x^{4}-10x^{3}-10x^{2}+5x+1)}{(1+x^{2})^{5}},\quad f^{(4)}(0)=24.\\
+f^{(5)}(x)=\frac{-120(x^{6}+6x^{5}-15x^{4}-20x^{3}+15x^{2}+6x-1)}{(1+x^{2})^{6}},\quad f^{(5)}(0)=120.
+\end{gather*}
+于是 $f$ 的 Maclaurin 展开式为
+\begin{align*}
+f(x)&=\frac{1+x}{1+x^{2}}=\sum_{k=0}^{5}\frac{f^{(k)}(0)}{k!}x^{k}+o(x^{5})\\
+&=1+x-x^{2}-x^{3}+x^{4}+x^{5}+o(x^{5}).
+\end{align*}
+从此解法可看出, 直接用定理~\ref{thm:4.1.2} 展开, 有时需要做复杂的求导运算, 这往往是一个笨方法.
+\end{solution}
+
+\begin{example}\label{ex:4.1.13}
+将 $f(x)=\sin x$ 在 $x=\pi$ 处进行 Taylor 展开到 $6$ 次.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1} 因为 $f(\pi)=0$, $f'(x)=\cos x$, $f'(\pi)=-1$:
+\begin{gather*}
+f''(x)=-\sin x,\quad f''(\pi)=0;\\
+f'''(x)=-\cos x,\quad f'''(\pi)=1;\\
+f^{(4)}(x)=\sin x,\quad f^{(4)}(\pi)=0;\\
+f^{(5)}(x)=\cos x,\quad f^{(5)}(\pi)=-1;\\
+f^{(6)}(x)=-\sin x,\quad f^{(6)}(\pi)=0.
+\end{gather*}
+所以, $f(x)=\sin x$ 的 Taylor 展开为
+\[
+\sin x=-(x-\pi)+\frac{(x-\pi)^{3}}{3!}-\frac{(x-\pi)^{5}}{5!}+o((x-\pi)^{6}).
+\]
+
+\textbf{解法 2}
+\begin{align*}
+\sin x&=\sin(x-\pi+\pi)=-\sin(x-\pi)\\
+&=-\left[(x-\pi)-\frac{(x-\pi)^{3}}{3!}+\frac{(x-\pi)^{5}}{5!}+o((x-\pi)^{6})\right]\\
+&=-(x-\pi)+\frac{(x-\pi)^{3}}{3!}-\frac{(x-\pi)^{5}}{5!}+o((x-\pi)^{6}).
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:4.1.14}
+设 $f(x)$ 在 $[0,1]$ 上 $2$ 阶可导, $|f(0)|\leqslant 1$, $|f(1)|\leqslant 1$, $|f''(x)|\leqslant 2$, $\forall x\in[0,1]$. 证明: $|f'(x)|\leqslant 3$, $\forall x\in[0,1]$.
+\end{example}
+
+\begin{proof}
+由 Taylor 公式
+\[
+f(1)=f(x)+f'(x)(1-x)+\frac{1}{2}f''(\xi)(1-x)^{2},\quad \xi\in(x,1),
+\]
+\[
+f(0)=f(x)+f'(x)(0-x)+\frac{1}{2}f''(\eta)(0-x)^{2},\quad \eta\in(0,x),
+\]
+得到
+\[
+f(1)-f(0)=f'(x)+\frac{1}{2}f''(\xi)(1-x)^{2}-\frac{1}{2}f''(\eta)x^{2},
+\]
+\begin{align*}
+|f'(x)|&=\left|f(1)-f(0)-\frac{1}{2}f''(\xi)(1-x)^{2}+\frac{1}{2}f''(\eta)x^{2}\right|\\
+&\leqslant |f(1)|+|f(0)|+\frac{1}{2}|f''(\xi)|(1-x)^{2}+\frac{1}{2}|f''(\eta)|x^{2}\\
+&\leqslant 2+(1-x)^{2}+x^{2}\leqslant 2+1=3.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:4.1.15}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 上 $3$ 阶可导, 并且 $f(x)$ 与 $f'''(x)$ 在 $(-\infty,+\infty)$ 上有界. 证明: $f'(x)$ 与 $f''(x)$ 在 $(-\infty,+\infty)$ 上也有界.
+\end{example}
+
+\begin{proof}
+由 Taylor 公式知
+\[
+f(x+1)=f(x)+f'(x)+\frac{1}{2}f''(x)+\frac{1}{6}f'''(\xi),\quad \xi\in(x,x+1),
+\]
+\[
+f(x-1)=f(x)-f'(x)+\frac{1}{2}f''(x)-\frac{1}{6}f'''(\eta),\quad \eta\in(x-1,x).
+\]
+两式相减得
+\[
+f(x+1)-f(x-1)=2f'(x)+\frac{1}{6}[f'''(\xi)+f'''(\eta)],
+\]
+\begin{align*}
+|f'(x)|&=\frac{1}{2}\left|f(x+1)-f(x-1)-\frac{1}{6}[f'''(\xi)+f'''(\eta)]\right|\\
+&\leqslant\frac{1}{2}\left[|f(x+1)|+|f(x-1)|+\frac{1}{6}|f'''(\xi)|+\frac{1}{6}|f'''(\eta)|\right]\\
+&\leqslant\frac{1}{2}\left(M_{0}+M_{0}+\frac{1}{6}M_{3}+\frac{1}{6}M_{3}\right)\\
+&=M_{0}+\frac{1}{6}M_{3}<+\infty,\quad \forall x\in(-\infty,+\infty),
+\end{align*}
+其中 $M_{k}=\sup\limits_{-\infty<x<+\infty}|f^{(k)}(x)|$.
+
+同理, 两式相加得到
+\[
+f(x+1)+f(x-1)=2f(x)+f''(x)+\frac{1}{6}[f'''(\xi)-f'''(\eta)],
+\]
+所以
+\begin{align*}
+|f''(x)|&=\left|f(x+1)+f(x-1)-2f(x)-\frac{1}{6}[f'''(\xi)-f'''(\eta)]\right|\\
+&\leqslant |f(x+1)|+|f(x-1)|+2|f(x)|+\frac{1}{6}|f'''(\xi)|+\frac{1}{6}|f'''(\eta)|\\
+&\leqslant 4M_{0}+\frac{1}{6}\cdot 2M_{3}\\
+&=4M_{0}+\frac{1}{3}M_{3}<+\infty,\quad \forall x\in(-\infty,+\infty).
+\end{align*}
+于是, $f'(x)$ 与 $f''(x)$ 在 $(-\infty,+\infty)$ 上有界.
+\end{proof}
+
+\begin{example}\label{ex:4.1.16}
+设 $f(x)$ 在 $(-\infty,+\infty)$ 上 $2$ 次可导, $M_{k}=\sup\limits_{-\infty<x<+\infty}|f^{(k)}(x)|$, $k=0,1,2$. 如果 $M_{k}<+\infty$, $k=0,2$. 证明: $M_{1}^{2}\leqslant 2M_{0}M_{2}$. 由此知 $M_{1}<+\infty$.
+\end{example}
+
+\begin{proof}
+\textbf{证法 1} 由 Taylor 公式得到
+\[
+f(x+h)=f(x)+f'(x)h+\frac{1}{2}f''(\xi)h^{2},
+\]
+$\xi$ 介于 $x$ 与 $x+h$ 之间,
+\[
+f(x-h)=f(x)-f'(x)h+\frac{1}{2}f''(\eta)h^{2},
+\]
+$\eta$ 介于 $x-h$ 与 $x$ 之间. 两式相减得
+\[
+f(x+h)-f(x-h)=2f'(x)h+\frac{h^{2}}{2}(f''(\xi)-f''(\eta)),
+\]
+\begin{align*}
+2|f'(x)|h&\leqslant 2|f'(x)h|=\left|f(x+h)-f(x-h)-\frac{h^{2}}{2}(f''(\xi)-f''(\eta))\right|\\
+&\leqslant |f(x+h)|+|f(x-h)|+\frac{h^{2}}{2}(|f''(\xi)|+|f''(\eta)|)\\
+&\leqslant 2M_{0}+h^{2}M_{2},
+\end{align*}
+\[
+M_{2}h^{2}-2|f'(x)|h+2M_{0}\geqslant 0,\quad \forall h\in(-\infty,+\infty).
+\]
+则当 $M_{2}>0$ 时, 上述 $h$ 的二次三项式的判别式
+\[
+\Delta=4(|f'(x)|^{2}-2M_{0}M_{2})\leqslant 0,
+\]
+\[
+|f'(x)|^{2}\leqslant 2M_{0}M_{2},
+\]
+\[
+M_{1}^{2}=\left(\sup_{-\infty<x<+\infty}|f'(x)|\right)^{2}\leqslant 2M_{0}M_{2}<+\infty.
+\]
+当 $M_{2}=0$, 则 $f''(x)=0$, $f'(x)\equiv c$, $f(x)\equiv cx+d$. 如果 $c\neq 0$, 则 $M_{0}=\sup\limits_{-\infty<x<+\infty}|cx+d|=+\infty$, 这与题设 $M_{0}<+\infty$ 相矛盾. 因此, $c=0$, 从而 $f(x)=d$, $f'(x)\equiv 0$, $M_{1}^{2}=0=2M_{0}\cdot 0=2M_{0}M_{2}$.
+
+\textbf{证法 2} 在证法 1 中, 有
+\[
+2|f'(x)|h\leqslant 2M_{0}+h^{2}M_{2},\quad \forall h\in(-\infty,+\infty),
+\]
+\[
+|f'(x)|\leqslant\frac{M_{0}}{h}+\frac{hM_{2}}{2},\quad \forall h>0.
+\]
+而 $\frac{M_{0}}{h}\frac{hM_{2}}{2}=\frac{1}{2}M_{0}M_{2}$ 为常数, 故上述不等式的右端作为 $h$ 的函数时, 当
+\[
+\frac{M_{0}}{h}=\frac{hM_{2}}{2}\Longleftrightarrow h=\sqrt{\frac{2M_{0}}{M_{2}}}
+\]
+时达最小值. 代入得
+\[
+|f'(x)|\leqslant 2\sqrt{\frac{1}{2}M_{0}M_{2}}=\sqrt{2M_{0}M_{2}},\quad M_{1}^{2}\leqslant 2M_{0}M_{2}.
+\]
+\end{proof}
+
+\begin{exblock}{练习题 4.1}
+  \item 设函数 $f$ 在 $[a,b]$ 上 $2$ 阶可导, 且 $f'(a)=f'(b)=0$. 证明: $\exists c\in(a,b)$, s.t.
+  \[
+  |f''(c)|\geqslant\frac{4}{(b-a)^{2}}|f(b)-f(a)|.
+\]
+  提示: (1) 对 $f(d)=\frac{1}{2}[f(a)+f(b)]$ 在 $a$ 或 $b$ 进行 $2$ 阶 Taylor 展开; (2) 对 $f\left(\frac{a+b}{2}\right)$ 在 $a$ 与 $b$ 进行 Taylor 展开; (3) $f$ 与 $(x-a)^{2}$ 在 $\left[a,\frac{a+b}{2}\right]$ 上两次应用 Cauchy 中值定理; $f$ 与 $(b-x)^{2}$ 在 $\left[\frac{a+b}{2},b\right]$ 上两次应用 Cauchy 中值定理.
+
+  \item 设 $f$ 在 $[a,b]$ 上 $3$ 阶可导, 证明: $\exists \xi\in(a,b)$, s.t.
+  \[
+  f(b)=f(a)+\frac{1}{2}(b-a)[f'(a)+f'(b)]-\frac{1}{12}(b-a)^{3}f'''(\xi).
+\]
+  提示: (1) 令 $F(x)=f(x)-f(a)-\frac{1}{2}(x-a)[f'(a)+f'(x)]-\frac{1}{12}(x-a)^{3}M$, 并取 $M$ 使 $F(b)=0$, 再对 $F(x)$ 两次应用 Rolle 定理; (2) $F(x)$ 在 $a$ 作 $2$ 阶 Taylor 展开; (3) 对 $F(x)=f(x)-f(a)-\frac{1}{2}(x-a)[f'(a)+f'(x)]$ 与 $G(x)=-\frac{(x-a)^{3}}{12}$ 两次应用 Cauchy 中值定理.
+
+  \item 应用 Taylor 公式或 L'Hospital 法则证明:
+  \[
+  \lim_{x\to 0}\left[\frac{(1+x)^{\frac{1}{x}}}{\mathrm{e}}\right]^{\frac{1}{x}}=\mathrm{e}^{-\frac{1}{2}}.
+\]
+
+  \item 用初等方法或 L'Hospital 法则或 Taylor 公式证明:
+  \[
+  \lim_{x\to+\infty}\left[\sqrt[n]{(x-a_{1})(x-a_{2})\cdots(x-a_{n})}-x\right]=-\frac{a_{1}+a_{2}+\cdots+a_{n}}{n}.
+\]
+
+  \item 应用 Taylor 公式或 L'Hospital 法则证明:
+  \[
+  \lim_{x\to\infty}x\left[\left(1+\frac{1}{x}\right)^{x}-\mathrm{e}\right]=-\frac{\mathrm{e}}{2}.
+\]
+
+  \item 应用 Taylor 公式或 L'Hospital 法则证明:
+  \[
+  \lim_{x\to 0}\frac{\cos x-\mathrm{e}^{-\frac{x^{2}}{2}}+\frac{x^{4}}{12}}{x^{6}}=\frac{7}{360}.
+\]
+
+  \item 将多项式 $P(x)=1+2x+3x^{2}+4x^{3}+5x^{4}$ 按 $x+1$ 的幂展开.
+
+  \item 按指定的次数写出函数 $f(x)$ 在 $x=0$ 的带 Peano 型余项的 Maclaurin 公式:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(x)=\mathrm{e}^{2x-x^{2}}$, $5$ 次;
+    \item $f(x)=\ln(\cos x)$, $6$ 次;
+    \item $f(x)=\tan x$, $5$ 次;
+    \item $f(x)=\frac{1}{\sqrt{1+x}}$, $6$ 次;
+    \item $f(x)=\arctan x$, $5$ 次;
+    \item $f(x)=\frac{1}{\sqrt{1-x^{2}}}$, $6$ 次;
+    \item $f(x)=\frac{x}{\mathrm{e}^{x}-1}$, $4$ 次;
+    \item $f(x)=\frac{1+x+x^{2}}{1-x+x^{2}}$, $4$ 次.
+  \end{enumerate}
+
+  \item 按指定的次数写出函数 $f(x)$ 在指定点 $x_{0}$ 处带 Peano 型余项的 Taylor 公式:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $f(x)=\sin x$, $x_{0}=\frac{\pi}{2}$, $2n$ 次;
+    \item $f(x)=\cos x$, $x_{0}=\pi$, $2n$ 次;
+    \item $f(x)=\mathrm{e}^{x}$, $x_{0}=1$, $n$ 次;
+    \item $f(x)=\ln x$, $x_{0}=2$, $n$ 次;
+    \item $f(x)=\frac{x}{1+x^{2}}$, $x_{0}=0$, $2n+1$ 次;
+    \item $f(x)=x\mathrm{e}^{-x^{2}}$, $x_{0}=-1$, $2n+1$ 次.
+  \end{enumerate}
+
+  \item 设函数 $f$ 在点 $x_{0}$ 邻近可表示为
+  \[
+  f(x)=\sum_{k=0}^{n}a_{k}(x-x_{0})^{k}+o((x-x_{0})^{n}).
+\]
+  是否必定有 $a_{k}=\frac{f^{(k)}(x_{0})}{k!}$, $k=0,1,\cdots,n$?
+
+  \item 设 $f(x)$ 在 $[0,1]$ 上 $2$ 阶可导, 且 $f(0)=f(1)$, $|f''(x)|\leqslant 1$, $\forall x\in[0,1]$. 证明:
+  \[
+  |f'(x)|\leqslant\frac{1}{2},\quad \forall x\in[0,1].
+\]
+
+  \item 设 $f:[0,2]\to\mathbb{R}$ $2$ 阶可导, 且对 $\forall x\in[0,2]$ 有 $|f(0)|\leqslant 1$, $|f(2)|\leqslant 1$ 与 $|f''(x)|\leqslant 1$, $\forall x\in[0,2]$. 证明: $|f'(x)|\leqslant 2$, $\forall x\in[0,2]$.
+\end{exblock}
+
+\begin{exblock}{思考题 4.1}
+  \item 证明:
+  \begin{enumerate}[label=(\arabic*)]
+    \item 设 $f(x)$ 在 $(a,+\infty)$ 上可导, 若 $\lim\limits_{x\to+\infty}f(x)$, $\lim\limits_{x\to+\infty}f'(x)$ 都存在且有限, 则 $\lim\limits_{x\to+\infty}f'(x)=0$.
+    \item 设 $f(x)$ 在 $(a,+\infty)$ 上 $3$ 阶可导, 若 $\lim\limits_{x\to+\infty}f(x)$, $\lim\limits_{x\to+\infty}f'''(x)$ 都存在且有限. 证明:
+    \[
+    \lim_{x\to+\infty}f'(x)=\lim_{x\to+\infty}f''(x)=\lim_{x\to+\infty}f'''(x)=0.
+\]
+    \item 设 $f(x)$ 在 $(a,+\infty)$ 上 $n$ 阶可导. 若 $\lim\limits_{x\to+\infty}f(x)$, $\lim\limits_{x\to+\infty}f^{(n)}(x)$ 都存在且有限, 则
+    \[
+    \lim_{x\to+\infty}f^{(k)}(x)=0,\quad k=1,2,\cdots,n.
+\]
+  \end{enumerate}
+
+  \item 设 $h>0$, 函数 $f$ 在 $\mathrm{U}(a;h)$ 内具有 $n+2$ 阶连续导数, 且 $f^{(n+2)}(a)\neq 0$. $f$ 在 $\mathrm{U}(a;h)$ 内的 Taylor 公式为
+  \[
+  f(a+h)=f(a)+f'(a)h+\cdots+\frac{f^{(n)}(a)}{n!}h^{n}+\frac{f^{(n+1)}(a+\theta(h)h)}{(n+1)!}h^{n+1},\quad 0<\theta(h)<1.
+\]
+  证明: $\lim\limits_{h\to 0}\theta(h)=\frac{1}{n+2}$.
+
+  \item 设函数 $f(x)$ 在点 $x_{0}$ 处有 $n+1$ 阶导数, 且 $f^{(n+1)}(x_{0})\neq 0$. 将 $f(x)$ 在 $x_{0}$ 处按 Taylor 公式展开:
+  \[
+  f(x_{0}+h)=f(x_{0})+f'(x_{0})h+\cdots+\frac{f^{(n-1)}(x_{0})}{(n-1)!}h^{n-1}+\frac{h^{n}}{n!}f^{(n)}(x_{0}+\theta(h)h),\quad \theta(h)\in(0,1).
+\]
+  证明: $\lim\limits_{h\to 0}\theta(h)=\frac{1}{n+1}$.
+
+  \item 设 $f(x)$ 在 $(x_{0}-\delta,x_{0}+\delta)$ 内有 $n$ 阶连续导数, 且
+  \[
+  f''(x_{0})=f'''(x_{0})=\cdots=f^{(n-1)}(x_{0})=0,
+\]
+  但 $f^{(n)}(x_{0})\neq 0$. 当 $0<|h|<\delta$ 时,
+  \[
+  f(x_{0}+h)-f(x_{0})=hf'(x_{0}+\theta(h)h),\quad 0<\theta(h)<1.
+\]
+  证明: $\lim\limits_{h\to 0}\theta(h)=\frac{1}{\sqrt[n-1]{n}}$.
+
+  \item 设函数 $f(x)$ 与 $g(x)$ 在 $(-1,1)$ 内无限次可导, 且
+  \[
+  |f^{(n)}(x)-g^{(n)}(x)|\leqslant n!\,|x|,\quad |x|<1,\quad n=0,1,2,\cdots.
+\]
+  证明: $f(x)=g(x)$.
+
+  \item 设函数 $f(x)$ 在 $[0,1]$ 上 $2$ 阶可导, $f(0)=f(1)=0$, 并且在 $[0,1]$ 上 $f(x)$ 的最小值为 $-1$. 证明: $\exists \xi_{1},\xi_{2}\in(0,1)$, s.t. $f''(\xi_{1})\geqslant 8$, $f''(\xi_{2})\leqslant 8$.
+
+  \item 设 $f(x)$ 在 $(x_{0}-R,x_{0}+R)$ 内有各阶导数, 且对 $\forall n\in\mathbb{N}$, 有
+  \[
+  |f^{(n)}(x)|\leqslant M(\text{常数}),\quad \forall x\in(x_{0}-R,x_{0}+R).
+\]
+  证明: $f(x)$ 在 $(x_{0}-R,x_{0}+R)$ 内可展开为无穷 Taylor 级数, 即
+  \[
+  f(x)=\sum_{k=0}^{\infty}\frac{f^{(k)}(x_{0})}{k!}(x-x_{0})^{k}.
+\]
+
+  \item 设 $f(x)$ 在 $(-1,1)$ 内 $2$ 阶可导, $f(0)=f'(0)=0$, $|f''(x)|\leqslant |f(x)|+|f'(x)|$. 分别应用 Taylor 公式和 Lagrange 中值定理证明: $\exists \delta>0$, s.t. $f(x)=0$, $\forall x\in(-\delta,\delta)$.
+\end{exblock}

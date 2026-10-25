@@ -1,0 +1,624 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S15.2  含参变量广义积分的一致收敛
+%  源：原书印刷页 185-200（PDF 物理页 191-206）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch15_15_2_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  带撇编号：定理 15.2.6'（函数项级数的逐项无穷积分）用 theoremp
+%           + \setcounter{theorem}{6}，见 _make_ch15_2b.py
+%  已订正的 OCR 错误与原书照录清单见 tools/_make_ch15_2a.py 头部说明
+% ==================================================================
+\section{含参变量广义积分的一致收敛}\label{sec:15.2}
+
+在 6.5 节研究了广义积分的敛散性, 而在 15.1 节中引进了参变量的正常积分 $\displaystyle\int_{a}^{b}f(x,u)\mathrm{d}x$, 并给出了关于 $u$ 的连续、导数及积分的重要定理.
+
+现考虑参变量广义积分, 它既是参变量积分, 又是广义积分, 它是两者的结合. 设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 上连续. 如果对 $[\alpha,\beta]$ 中的任意 $u$, 无穷积分
+\[
+  \int_{a}^{+\infty}f(x,u)\mathrm{d}x
+\]
+都收敛, 则它就确定了 $[\alpha,\beta]$ 上的一个函数
+\[
+  \varphi(u)=\int_{a}^{+\infty}f(x,u)\mathrm{d}x.
+\]
+如何研究 $\varphi(u)$ 的连续、可导、积分等分析性质? 在第 13 章中已经看到, 研究由函数项级数所确定的函数的分析性质时, 函数项级数 $\sum_{n=1}^{\infty}u_{n}(x)$ 关于 $x\in I$ 的一致收敛概念起了关键的作用. 这里 $x$ 起到参量的作用, 它相当于 $\displaystyle\int_{1}^{+\infty}f(x,u)\mathrm{d}x$ 中的参变量 $u$.
+
+对 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$, 类似的概念也起着同样重要的作用. 设积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 对任意 $u\in[\alpha,\beta]$ 都收敛, 即 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon,u)>a$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{a}^{A}f(x,u)\mathrm{d}x-\int_{a}^{+\infty}f(x,u)\mathrm{d}x\right|=\left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|<\varepsilon.
+\]
+概括这样的考察, 就引出了下面类似于函数项级数的一致收敛概念.
+
+\begin{definition}\label{def:15.2.1}
+如果 $\forall\varepsilon>0$, 总 $\exists A_{0}=A_{0}(\varepsilon)$ (仅与 $\varepsilon$ 有关, 而与 $x\in I$ 无关!) $>a$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|<\varepsilon,\quad\forall u\in[\alpha,\beta],
+\]
+则称参变量无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 关于 $u$ 在 $[\alpha,\beta]$ 上一致收敛.
+\end{definition}
+
+对于瑕积分也有类似的定义.
+
+\begin{definition}\label{def:15.2.2}
+设 $a$ 为瑕点, $\forall u\in I$, $\displaystyle\int_{a}f(x,u)\mathrm{d}x$ 收敛. 如果 $\forall\varepsilon>0$, $\exists\delta_{0}=\delta_{0}(\varepsilon)$ (仅与 $\varepsilon$ 有关, 而与 $x\in I$ 无关!) $>0$, 当 $\delta\in(0,\delta_{0})$, 有
+\[
+  \left|\int_{a}^{a+\delta}f(x,u)\mathrm{d}x\right|=\left|\int_{a+\delta}^{b}f(x,u)\mathrm{d}x-\int_{a}^{b}f(x,u)\mathrm{d}x\right|<\varepsilon,\quad\forall u\in[\alpha,\beta],
+\]
+则称瑕积分 $\displaystyle\int_{a}^{b}f(x,u)\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛.
+\end{definition}
+
+上面两个定义中的 $[\alpha,\beta]$ 可以是开区间也可以是无穷区间.
+
+与广义积分收敛判别法一样, 这里也有一系列和函数项级数类似的一致收敛判别法.
+
+下面只对无穷积分来讨论这些判别法. 而对于瑕积分也有类似的结果, 就不再一一说明了.
+
+\begin{theorem}\label{thm:15.2.1}
+设 $\eta(A)=\sup\limits_{u\in[\alpha,\beta]}\left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|$, 则无穷积分
+\[
+  \int_{a}^{+\infty}f(x,u)\mathrm{d}x\ \text{在}\ [\alpha,\beta]\ \text{上一致收敛}\ \Leftrightarrow\ \lim_{A\to+\infty}\eta(A)=0.
+\]
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$) 因为 $\lim\limits_{A\to+\infty}\eta(A)=0$, 所以 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A>A_{0}$ 时, 有
+\[
+  \eta(A)=|\eta(A)-0|<\varepsilon.
+\]
+于是, 当 $A>A_{0}$ 时, 有
+\[
+  \begin{aligned}
+    \left|\int_{a}^{A}f(x,u)\mathrm{d}x-\int_{a}^{+\infty}f(x,u)\mathrm{d}x\right|&=\left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|<\sup_{v\in[\alpha,\beta]}\left|\int_{A}^{+\infty}f(x,v)\mathrm{d}x\right|\\
+    &=\eta(A)<\varepsilon,
+  \end{aligned}
+\]
+这就证明无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛.
+
+($\Rightarrow$) 设无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛, 故 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|=\left|\int_{a}^{A}f(x,u)\mathrm{d}x-\int_{a}^{+\infty}f(x,u)\mathrm{d}x\right|<\frac{\varepsilon}{2},\quad\forall u\in[\alpha,\beta].
+\]
+于是, 当 $A>A_{0}$ 时, 有
+\[
+  \eta(A)=\sup_{u\in[\alpha,\beta]}\left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|\leqslant\frac{\varepsilon}{2}<\varepsilon,
+\]
+即
+\[
+  \lim_{A\to+\infty}\eta(A)=0.
+\]
+\end{proof}
+
+\begin{example}\label{ex:15.2.1}
+讨论无穷积分 $\displaystyle\int_{0}^{+\infty}ue^{-xu}\mathrm{d}x$ 分别在 (1) $u\in[\delta,+\infty)$, $\delta>0$, (2) $u\in(0,+\infty)$ 上关于 $u$ 的一致收敛性.
+\end{example}
+
+\begin{proof}
+解法 1
+
+(1) 因 $\delta>0$, 故
+\[
+  \begin{aligned}
+    \eta(A)&=\sup_{u\in[\delta,+\infty)}\left|\int_{A}^{+\infty}u\mathrm{e}^{-xu}\mathrm{d}x\right|=\sup_{u\in[\delta,+\infty)}\left|-\mathrm{e}^{-xu}\right|_{A}^{+\infty}\\
+    &=\sup_{u\in[\delta,+\infty)}\mathrm{e}^{-Au}=\mathrm{e}^{-A\delta}\to0\quad(A\to+\infty).
+  \end{aligned}
+\]
+根据定理~\ref{thm:15.2.1} 知, 无穷积分 $\displaystyle\int_{0}^{+\infty}ue^{-xu}\mathrm{d}x$ 在 $[\delta,+\infty)$ ($\delta>0$) 上关于 $u$ 一致收敛.
+
+(2) 因 $\eta(A)=\sup\limits_{u\in(0,+\infty)}\left|\int_{A}^{+\infty}ue^{-xu}\mathrm{d}x\right|=\sup\limits_{u\in(0,+\infty)}\left|-\mathrm{e}^{-xu}\right|_{A}^{+\infty}=\sup\limits_{u\in(0,+\infty)}\mathrm{e}^{-Au}=1$,
+根据定理~\ref{thm:15.2.1} 知, 无穷积分 $\displaystyle\int_{0}^{+\infty}ue^{-xu}\mathrm{d}x$ 在 $(0,+\infty)$ 上关于 $u$ 不一致收敛.
+
+解法 2 显然, $\forall u\geqslant0$, $\displaystyle\int_{0}^{+\infty}ue^{-xu}\mathrm{d}x$ 收敛.
+
+(1) 当 $u\geqslant\delta>0$ 时, $\forall\varepsilon>0$, 取 $A_{0}=A_{0}(\varepsilon)>\dfrac{-\ln\varepsilon}{\delta}$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}u\mathrm{e}^{-xu}\mathrm{d}x\right|=\left|-\mathrm{e}^{-xu}\right|_{A}^{+\infty}=\mathrm{e}^{-Au}\leqslant\mathrm{e}^{-A_{0}\delta}<\varepsilon,\quad\forall u\in[\delta,+\infty).
+\]
+所以, $\displaystyle\int_{0}^{+\infty}ue^{-xu}\mathrm{d}x$ 在 $u\in[\delta,+\infty)$ 中一致收敛.
+
+(2) (反证) 假设 $\displaystyle\int_{0}^{+\infty}ue^{-xu}\mathrm{d}x$ 在 $[0,+\infty)$ 中一致收敛, 则对 $\varepsilon_{0}=\frac{1}{4}>0$, $\exists A_{0}>0$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}u\mathrm{e}^{-xu}\mathrm{d}x\right|=\left|-\mathrm{e}^{-xu}\right|_{A}^{+\infty}=\mathrm{e}^{-Au}<\varepsilon_{0}=\frac{1}{4},\quad\forall u\in(0,+\infty).
+\]
+取定 $A>A_{0}$, 令 $u=\dfrac{1}{A}$, 则
+\[
+  \mathrm{e}^{-A\cdot\frac{1}{A}}=\mathrm{e}^{-1}=\frac{1}{\mathrm{e}}<\frac{1}{4},
+\]
+或令 $u\to0^{+}$ 得
+\[
+  1=\lim_{u\to0^{+}}\mathrm{e}^{-Au}\leqslant\frac{1}{4},
+\]
+矛盾.
+\end{proof}
+
+\begin{theorem}[参变量无穷积分的 Cauchy 收敛准则]\label{thm:15.2.2}
+无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛 $\Leftrightarrow$ $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)$ (仅与 $\varepsilon$ 有关, 而与 $x\in[\alpha,\beta]$ 无关!) $>a$, 当 $A'$, $A''>A_{0}$ 时, 有
+\[
+  \left|\int_{a}^{A''}f(x,u)\mathrm{d}x-\int_{a}^{A'}f(x,u)\mathrm{d}x\right|=\left|\int_{A'}^{A''}f(x,u)\mathrm{d}x\right|<\varepsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) 设 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛, 则 $\forall\varepsilon>0$, $\exists A_{0}=A(\varepsilon)>a$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|=\left|\int_{a}^{A}f(x,u)\mathrm{d}x-\int_{a}^{+\infty}f(x,u)\mathrm{d}x\right|<\frac{\varepsilon}{2},\quad\forall u\in[\alpha,\beta].
+\]
+所以, 当 $A'$, $A''>A_{0}$ 时, 有
+\[
+  \begin{aligned}
+    \left|\int_{A'}^{A''}f(x,u)\mathrm{d}x\right|&=\left|\int_{A'}^{+\infty}f(x,u)\mathrm{d}x-\int_{A''}^{+\infty}f(x,u)\mathrm{d}x\right|\\
+    &\leqslant\left|\int_{A'}^{+\infty}f(x,u)\mathrm{d}x\right|+\left|\int_{A''}^{+\infty}f(x,u)\mathrm{d}x\right|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+  \end{aligned}
+\]
+
+($\Leftarrow$) 由右边条件, $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A$, $A'>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{A'}f(x,u)\mathrm{d}x\right|<\frac{\varepsilon}{2},\quad\forall u\in[\alpha,\beta].
+\]
+固定 $A$, 令 $A'\to+\infty$ 得到
+\[
+  \left|\int_{A}^{+\infty}f(x,u)\mathrm{d}x\right|\leqslant\frac{\varepsilon}{2}<\varepsilon,\quad\forall u\in[\alpha,\beta].
+\]
+这就证明了无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛.
+\end{proof}
+
+\begin{theorem}[参变量无穷积分的 Weierstrass 判别法——优函数判别法]\label{thm:15.2.3}
+设 $f(x,u)$ 对 $x$ 在 $[a,+\infty)$ 上连续. 如果存在 $[a,+\infty)$ 上的连续函数 $F$, 使得 $\displaystyle\int_{a}^{+\infty}F(x)\mathrm{d}x$ 收敛, 而且对一切充分大的 $x$ 及 $[\alpha,\beta]$ 上的一切 $u$, 都有
+\[
+  |f(x,u)|\leqslant F(x),
+\]
+则无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛.
+\end{theorem}
+
+\begin{proof}
+因为 $\displaystyle\int_{a}^{+\infty}F(x)\mathrm{d}x$ 收敛, 故由无穷积分的 Cauchy 收敛准则 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 只要 $A'$, $A''>A_{0}$, 便有
+\[
+  \left|\int_{A'}^{A''}F(x)\mathrm{d}x\right|<\varepsilon.
+\]
+由此便知
+\[
+  \left|\int_{A'}^{A''}f(x,u)\mathrm{d}x\right|\leqslant\int_{A'}^{A''}|f(x,u)|\mathrm{d}x\leqslant\left|\int_{A'}^{A''}F(x)\mathrm{d}x\right|<\varepsilon,\quad\forall u\in[\alpha,\beta].
+\]
+根据参变量无穷积分一致收敛的 Cauchy 收敛准则知, $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛.
+\end{proof}
+
+\begin{example}\label{ex:15.2.2}
+证明: (1) $\displaystyle\int_{1}^{+\infty}\frac{\sin ux}{x^{2}}\mathrm{d}x$; (2) $\displaystyle\int_{0}^{+\infty}\frac{\cos ux}{1+x^{2}}\mathrm{d}x$ 在 $u\in(-\infty,+\infty)$ 中一致收敛.
+\end{example}
+
+\begin{proof}
+(1) 因为
+\[
+  \left|\frac{\sin ux}{x^{2}}\right|\leqslant\frac{1}{x^{2}},\quad\forall u\in(-\infty,+\infty),
+\]
+而 $\displaystyle\int_{1}^{+\infty}\frac{\mathrm{d}x}{x^{2}}$ 收敛, 根据 Weierstrass 判别法 (定理~\ref{thm:15.2.3}) 知, $\displaystyle\int_{1}^{+\infty}\frac{\sin ux}{x^{2}}\mathrm{d}x$ 在 $(-\infty,+\infty)$ 上一致收敛.
+
+(2) 因为
+\[
+  \left|\frac{\cos ux}{1+x^{2}}\right|\leqslant\frac{1}{1+x^{2}},\quad\forall u\in(-\infty,+\infty),
+\]
+而 $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{2}}$ 收敛, 根据 Weierstrass 判别法 (定理~\ref{thm:15.2.3}) 知, $\displaystyle\int_{0}^{+\infty}\frac{\cos ux}{1+x^{2}}\mathrm{d}x$ 在 $(-\infty,+\infty)$ 上一致收敛.
+\end{proof}
+
+\begin{example}\label{ex:15.2.3}
+证明: 无穷积分
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}t\quad(\alpha>0\ \text{为固定常数})
+\]
+在 $u\in[0,+\infty)$ 中一致收敛.
+\end{example}
+
+\begin{proof}
+因为
+\[
+  \left|\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\right|\leqslant\mathrm{e}^{-\alpha t},\quad t\in[0,+\infty),\ u\in[0,+\infty),
+\]
+而 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\alpha t}\mathrm{d}t=-\frac{1}{\alpha}\left.\mathrm{e}^{-\alpha t}\right|_{0}^{+\infty}=\frac{1}{\alpha}$ 收敛, 故由 Weierstrass 判别法 (定理~\ref{thm:15.2.3}) 知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}t$ 在 $u\in[0,+\infty)$ 中一致收敛.
+\end{proof}
+
+\begin{example}\label{ex:15.2.4}
+证明: 无穷积分
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u\quad(\alpha\geqslant0\ \text{为固定常数})
+\]
+在 $t\in[0,+\infty)$ 中一致收敛.
+\end{example}
+
+\begin{proof}
+因为
+\[
+  \lim_{t\to0^{+}}\frac{\mathrm{e}^{-\alpha t}\sin t}{\sqrt{t}}=\lim_{t\to0^{+}}\frac{\sin t}{t}\mathrm{e}^{-\alpha t}\sqrt{t}=1\cdot0=0,
+\]
+所以, $\forall\varepsilon>0$, $\exists\delta>0$, 当 $t\in(0,\delta)$ 时, 有
+\[
+  \left|\frac{\mathrm{e}^{-\alpha t}\sin t}{\sqrt{t}}\right|<\frac{2\varepsilon}{\sqrt{\pi}}.
+\]
+于是, $\forall A>0$, 有
+\[
+  \begin{aligned}
+    \left|\int_{A}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u\right|&=\left|\mathrm{e}^{-\alpha t}\sin t\int_{A}^{+\infty}\mathrm{e}^{-tu^{2}}\mathrm{d}u\right|\\
+    &\xlongequal{x=\sqrt{t}u}\left|\frac{\mathrm{e}^{-\alpha t}\sin t}{\sqrt{t}}\int_{\sqrt{t}A}^{+\infty}\mathrm{e}^{-x^{2}}\mathrm{d}x\right|<\frac{2\varepsilon}{\sqrt{\pi}}\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\mathrm{d}x=\varepsilon,\quad\forall t\in(0,\delta).
+  \end{aligned}
+\]
+由于 $t=0$ 时, 上式显然也成立, 因此, $\forall t\in[0,\delta)$, $\forall A>0$, 有
+\[
+  \left|\int_{A}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u\right|<\varepsilon.
+\]
+当 $t\in[\delta,+\infty)$ 时, 由于
+\[
+  \left|\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\right|\leqslant\mathrm{e}^{-\delta(\alpha+u^{2})}\leqslant\mathrm{e}^{-\delta u^{2}},
+\]
+而 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-\delta u^{2}}\mathrm{d}u$ 收敛, 故由 Weierstrass 判别法 (定理~\ref{thm:15.2.3}) 知, 无穷积分 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u$ 在 $t\in[\delta,+\infty)$ 中一致收敛. 因而, $\exists A_{0}>0$, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u\right|<\varepsilon
+\]
+对任意的 $t\in[\delta,+\infty)$ 成立. 综合上述知, 当 $A>A_{0}$ 时, 有
+\[
+  \left|\int_{A}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u\right|<\varepsilon
+\]
+对任意 $t\in[0,+\infty)$ 成立. 这就证明了无穷积分
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-(u^{2}+\alpha)t}\sin t\,\mathrm{d}u
+\]
+在 $t\in[0,+\infty)$ 中一致收敛.
+\end{proof}
+
+更细致的判别法有下面的定理.
+
+\begin{theorem}[参变量无穷积分的 Dirichlet 判别法]\label{thm:15.2.4}
+如果函数 $f(x,u)$, $g(x,u)$ 满足:
+
+(1) $g(x,u)$ 为 $x$ 的单调函数, 且当 $x\to+\infty$ 时关于 $u\in[\alpha,\beta]$ 一致趋于 $0$, 即 $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $x>A_{0}$ 时, $|g(x,u)|<\varepsilon$;
+
+(2) $\forall A\geqslant a$, $\displaystyle\int_{a}^{A}f(x,u)\mathrm{d}x$ 对 $u\in[\alpha,\beta]$ 一致有界, 即 $\exists M>0$ ($M$ 为常数), 使得
+\[
+  \left|\int_{a}^{A}f(x,u)\mathrm{d}x\right|\leqslant M,\quad\forall u\in[\alpha,\beta],
+\]
+则 $\displaystyle\int_{a}^{+\infty}f(x,u)g(x,u)\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+\end{theorem}
+
+\begin{proof}
+$\forall\varepsilon>0$, 由条件 (1), $\exists A_{0}=A_{0}(\varepsilon)>0$, 当 $x>A_{0}$ 时, 有
+\[
+  |g(x,u)|<\frac{\varepsilon}{4M},\quad\forall u\in[\alpha,\beta].
+\]
+于是, 当 $A''>A'>A_{0}$ 时, 由一般的第二积分中值定理, $\exists\xi\in[A',A'']$ 使
+\[
+  \begin{aligned}
+    \left|\int_{A'}^{A''}f(x,u)g(x,u)\mathrm{d}x\right|
+    &=\left|g(A',u)\int_{A'}^{\xi}f(x,u)\mathrm{d}x+g(A'',u)\int_{\xi}^{A''}f(x,u)\mathrm{d}x\right|\\
+    &\leqslant|g(A',u)|\left|\int_{A'}^{\xi}f(x,u)\mathrm{d}x\right|+|g(A',u)|\left|\int_{\xi}^{A''}f(x,u)\mathrm{d}x\right|\\
+    &<\frac{\varepsilon}{4M}\left|\int_{a}^{\xi}f(x,u)\mathrm{d}x-\int_{a}^{A'}f(x,u)\mathrm{d}x\right|\\
+    &\quad+\frac{\varepsilon}{4M}\left|\int_{a}^{A''}f(x,u)\mathrm{d}x-\int_{a}^{\xi}f(x,u)\mathrm{d}x\right|\\
+    &\leqslant\frac{\varepsilon}{4M}(2M+2M)=\varepsilon,\quad\forall u\in[\alpha,\beta].
+  \end{aligned}
+\]
+再由参变量无穷积分的 Cauchy 收敛准则知, $\displaystyle\int_{a}^{+\infty}f(x,u)g(x,u)\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+\end{proof}
+
+\begin{theorem}[参变量无穷积分的 Abel 判别法]\label{thm:15.2.5}
+如果 $f(x,u)$, $g(x,u)$ 满足:
+
+(1) $g(x,u)$ 对 $x$ 单调, 且关于 $u\in[\alpha,\beta]$ 一致有界, 即 $\exists M>0$ (常数), 使得
+\[
+  |g(x,u)|\leqslant M,\quad(x,u)\in[a,+\infty)\times[\alpha,\beta];
+\]
+
+(2) 无穷积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 关于 $u\in[\alpha,\beta]$ 一致收敛.
+
+则 $\displaystyle\int_{a}^{+\infty}f(x,u)g(x,u)\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+\end{theorem}
+
+\begin{proof}
+由条件 (1), $|g(x,u)|\leqslant M$, $(x,u)\in[a,+\infty)\times[\alpha,\beta]$.
+
+由条件 (2), $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A''>A'>A_{0}$ 时, 有
+\[
+  \left|\int_{A'}^{A}f(x,u)\mathrm{d}x\right|<\frac{\varepsilon}{2M},\quad u\in[\alpha,\beta].
+\]
+于是, 由一般的第二积分中值定理, $\exists\xi\in[A',A'']$ 使
+\[
+  \begin{aligned}
+    \left|\int_{A'}^{A''}f(x,u)g(x,u)\mathrm{d}x\right|
+    &=\left|g(A',u)\int_{A'}^{\xi}f(x,u)\mathrm{d}x+g(A'',u)\int_{\xi}^{A''}f(x,u)\mathrm{d}x\right|\\
+    &\leqslant|g(A',u)|\left|\int_{A'}^{\xi}f(x,u)\mathrm{d}x\right|+|g(A'',u)|\left|\int_{\xi}^{A''}f(x,u)\mathrm{d}x\right|\\
+    &<M\left(\frac{\varepsilon}{2M}+\frac{\varepsilon}{2M}\right)=\varepsilon,\quad\forall u\in[\alpha,\beta].
+  \end{aligned}
+\]
+再由参变量无穷积分的 Cauchy 收敛准则知, $\displaystyle\int_{a}^{+\infty}f(x,u)g(x,u)\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+\end{proof}
+
+\begin{example}\label{ex:15.2.5}
+证明: 无穷积分 $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-xu}\frac{\sin x}{x}\mathrm{d}x$ 在 $u\in[0,+\infty)$ 上一致收敛.
+\end{example}
+
+\begin{proof}
+由\extref{例 6.5.12} 知, $\displaystyle\int_{0}^{+\infty}\frac{\sin x}{x}\mathrm{d}x$ 收敛 (当然关于 $u\in[0,+\infty)$ 是一致收敛的), 而函数 $\mathrm{e}^{-xu}$ 对 $x$ 单调减少, 且 $0\leqslant\mathrm{e}^{-xu}\leqslant1$, $\forall(x,u)\in[0,+\infty)\times[0,+\infty)$. 故根据参变量无穷积分的 Abel 判别法 (定理~\ref{thm:15.2.5}) 知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-xu}\frac{\sin x}{x}\mathrm{d}x$ 在 $u\in[0,+\infty)$ 中一致收敛.
+\end{proof}
+
+\begin{example}\label{ex:15.2.6}
+证明: 无穷积分 $\displaystyle\int_{0}^{+\infty}\frac{x\sin ux}{a^{2}+x^{2}}\mathrm{d}x$ 在 $[\delta,+\infty)$ 中一致收敛, 其中 $a$, $\delta>0$ 为常数.
+\end{example}
+
+\begin{proof}
+$\forall A>0$, 有
+\[
+  \left|\int_{0}^{A}\sin ux\,\mathrm{d}x\right|=\left|-\frac{\cos ux}{u}\right|_{0}^{A}\left|=\frac{1-\cos uA}{u}\leqslant\frac{2}{\delta},\quad\forall u\in[\delta,+\infty).
+\]
+另一方面, 由于
+\[
+  \left(\frac{x}{a^{2}+x^{2}}\right)'=\frac{a^{2}-x^{2}}{(a^{2}+x^{2})^{2}}\begin{cases}
+    >0, & 0\leqslant x<a,\ y(x)\ \text{单调增加},\\
+    =0, & x=a,\quad y(a)\ \text{达最大值},\\
+    <0, & x>a,\ y(x)\ \text{单调减少},
+\end{cases}
+\]
+故当 $x\geqslant a$ 时, $\dfrac{x}{a^{2}+x^{2}}$ 单调减少, 且
+\[
+  \lim_{x\to+\infty}\frac{x}{a^{2}+x^{2}}=0.
+\]
+根据参变量无穷积分的 Abel 判别法 (定理~\ref{thm:15.2.5}) 知, $\displaystyle\int_{a}^{+\infty}\frac{x\sin ux}{a^{2}+x^{2}}\mathrm{d}x$ 在 $[\delta,+\infty)$ 中一致收敛. 再由
+\[
+  \left|\int_{0}^{A}f(x,u)\mathrm{d}x-\int_{0}^{+\infty}f(x,u)\mathrm{d}x\right|=\left|\int_{a}^{A}f(x,u)\mathrm{d}x-\int_{a}^{+\infty}f(x,u)\mathrm{d}x\right|
+\]
+知, $\displaystyle\int_{0}^{+\infty}\frac{x\sin ux}{a^{2}+x^{2}}\mathrm{d}x$ 在 $[\delta,+\infty)$ 中一致收敛.
+\end{proof}
+
+\begin{remark}\label{rem:15.2.1}
+例~\ref{ex:15.2.6} 可看到, 从
+\[
+  \left|\int_{a}^{A}f(x,u)\mathrm{d}x-\int_{a}^{+\infty}f(x,u)\mathrm{d}x\right|=\left|\int_{b}^{A}f(x,u)\mathrm{d}x-\int_{b}^{+\infty}f(x,u)\mathrm{d}x\right|,
+\]
+可推得
+$\displaystyle\int_{a}^{+\infty}f(x,u)\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛 $\Leftrightarrow\displaystyle\int_{b}^{+\infty}f(x,u)\mathrm{d}x$ 在 $u\in[\alpha,\beta]$ 上一致收敛.
+\end{remark}
+
+\begin{example}\label{ex:15.2.7}
+证明: 瑕积分
+\[
+  \int_{0}^{1}\frac{\sin\frac{1}{x}}{x^{p}}\mathrm{d}x,
+\]
+(1) 当 $p<1$ 时绝对收敛; 当 $1\leqslant p<2$ 时条件收敛; 当 $2\leqslant p<+\infty$ 时发散.
+
+(2) 关于 $p\in(0,2-\delta]$ 一致收敛, 其中 $\delta>0$.
+
+(3) 关于 $p\in(0,2)$ 非一致收敛.
+\end{example}
+
+\begin{proof}
+作变换 $t=\dfrac{1}{x}$, 则 $x=\dfrac{1}{t}$, 且
+\[
+  \int_{0}^{1}\frac{\sin\frac{1}{x}}{x^{p}}\mathrm{d}x=\int_{+\infty}^{1}\frac{\sin t}{\left(\frac{1}{t}\right)^{p}}\cdot\frac{-\mathrm{d}t}{t^{2}}=\int_{1}^{+\infty}\frac{\sin t}{t^{2-p}}\mathrm{d}t.
+\]
+显然, 它的敛散性、一致收敛性与 $\displaystyle\int_{0}^{1}\frac{\sin\frac{1}{x}}{x^{p}}\mathrm{d}x$ 完全一致.
+
+(1) 根据\extref{例 6.5.12} 知, 上述两广义积分当 $2-p>1$, 即 $p<1$ 时绝对收敛; 当 $0<2-p\leqslant1$, 即 $1\leqslant p<2$ 时条件收敛; $2-p\leqslant0$, 即 $2\leqslant p<+\infty$ 时发散.
+
+(2) 因为 $0<p\leqslant2-\delta$, 所以 $2-p\geqslant\delta$, 且
+\[
+  0<\frac{1}{t^{2-p}}\leqslant\frac{1}{t^{\delta}}.
+\]
+由此知, 当 $t\to+\infty$ 时, $\dfrac{1}{t^{2-p}}$ 单调减少一致趋于 $0$. 另外
+\[
+  \left|\int_{1}^{A}\sin t\,\mathrm{d}t\right|=|\cos1-\cos A|\leqslant2
+\]
+(一致有界). 根据 Dirichlet 判别法, $\displaystyle\int_{1}^{+\infty}\frac{\sin t}{t^{2-p}}\mathrm{d}t$ 在 $p\in(0,2-\delta]$ 上一致收敛.
+
+(3) (反证) 假设 $\displaystyle\int_{1}^{+\infty}\frac{\sin t}{t^{2-p}}\mathrm{d}t$ 在 $p\in(0,2)$ 上一致收敛, 则对 $\varepsilon_{0}=1$, $\exists A_{0}=A_{0}(\varepsilon_{0})>a=1$, 只要 $A''>A'$, $A_{0}$, 便有
+\[
+  \left|\int_{A'}^{A''}\frac{\sin t}{t^{2-p}}\mathrm{d}t\right|<\varepsilon_{0}=1,\quad\forall p\in(0,2).
+\]
+今取 $A'=2k\pi$, $A''=(2k+1)\pi$, 则当 $k$ 充分大时, $A''>A'>A_{0}$. 于是, 由上面不等式得
+\[
+  1=\varepsilon_{0}>\left|\int_{2k\pi}^{(2k+1)\pi}\frac{\sin t}{t^{2-p}}\mathrm{d}t\right|\geqslant\frac{1}{[(2k+1)\pi]^{2-p}}\int_{2k\pi}^{(2k+1)\pi}\sin t\,\mathrm{d}t=\frac{2}{[(2k+1)\pi]^{2-p}},
+\]
+$\forall p\in(0,2)$. 令 $p\to2^{-}$ 即得 $1\geqslant2>1$, 矛盾.
+\end{proof}
+
+% ===== PART-B =====
+
+下面给出几个参变量广义积分一致收敛的应用.
+
+\begin{theorem}[无穷区间上极限号与广义积分号可交换的充分条件]\label{thm:15.2.6}
+设函数列 $\{f_{n}(x)\}$ 在 $[a,+\infty)$ 上收敛于 $f(x)$. 如果:
+\begin{enumerate}
+  \item $\forall A>a$, $\{f_{n}(x)\}$ 在 $[a,A]$ 上一致收敛于 $f(x)$, 即 $\forall\varepsilon>0$, $\exists N_{0}=N_{0}(\varepsilon)\in\mathbb{N}$, 当 $n>N_{0}$ 时, 有
+  \[
+    |f_{n}(x)-f(x)|<\varepsilon,\quad\forall x\in[a,A];
+\]
+  \item 无穷积分 $\displaystyle\int_{a}^{+\infty}f_{n}(x)\,\mathrm{d}x$ 对 $n\in\mathbb{N}$ 一致收敛.
+\end{enumerate}
+则无穷积分 $\displaystyle\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 且
+\[
+  \int_{a}^{+\infty}f(x)\,\mathrm{d}x=\int_{a}^{+\infty}\lim_{n\to+\infty}f_{n}(x)\,\mathrm{d}x=\lim_{n\to+\infty}\int_{a}^{+\infty}f_{n}(x)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+由条件 (2), $\forall\varepsilon>0$, $\exists A_{0}=A_{0}(\varepsilon)>a$, 当 $A''>A'\geqslant A_{0}$ 时, 便有
+\[
+  \left|\int_{A'}^{A''}f_{n}(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{2},\quad\forall n\in\mathbb{N}\quad(n\text{ 视为参数}).
+\]
+因为 $\{f_{n}(x)\}$ 在 $[A',A'']$ 上 Riemann 可积, 且由条件 (1) 推得 $\{f_{n}(x)\}$ 在 $[A',A'']$ 上一致收敛于 $f(x)$, 故由定理~\ref{thm:13.2.3}, 有
+\[
+  \begin{aligned}
+    \left|\int_{A'}^{A''}f(x)\,\mathrm{d}x\right|&=\left|\int_{A'}^{A''}\lim_{n\to+\infty}f_{n}(x)\,\mathrm{d}x\right|=\left|\lim_{n\to+\infty}\int_{A'}^{A''}f_{n}(x)\,\mathrm{d}x\right|\\
+    &=\lim_{n\to+\infty}\left|\int_{A'}^{A''}f_{n}(x)\,\mathrm{d}x\right|\leqslant\frac{\varepsilon}{2}<\varepsilon.
+  \end{aligned}
+\]
+根据无穷积分收敛的 Cauchy 收敛准则, $\displaystyle\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛.
+
+由条件 (2) 无穷积分 $\displaystyle\int_{a}^{+\infty}f_{n}(x)\,\mathrm{d}x$ 对 $n\in\mathbb{N}$ 一致收敛及上面已证得 $\displaystyle\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 故 $\forall\varepsilon>0$, $\exists A_{1}=A_{1}(\varepsilon)>a$, 使得
+\[
+  \left|\int_{A_{1}}^{+\infty}f_{n}(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{3},\quad n\in\mathbb{N},
+\]
+\[
+  \left|\int_{A_{1}}^{+\infty}f(x)\,\mathrm{d}x\right|<\frac{\varepsilon}{3}.
+\]
+对固定的 $A_{1}=A_{1}(\varepsilon)$, 由条件 (1) $\exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  |f_{n}(x)-f(x)|<\frac{\varepsilon}{3(A_{1}-a)},\quad\forall x\in[a,A_{1}].
+\]
+因而, 当 $n>N$ 时, 有
+\[
+  \begin{aligned}
+    &\left|\int_{a}^{+\infty}f_{n}(x)\,\mathrm{d}x-\int_{a}^{+\infty}f(x)\,\mathrm{d}x\right|\\
+    &\quad\leqslant\int_{a}^{A_{1}}|f_{n}(x)-f(x)|\,\mathrm{d}x+\left|\int_{A_{1}}^{+\infty}f_{n}(x)\,\mathrm{d}x\right|+\left|\int_{A_{1}}^{+\infty}f(x)\,\mathrm{d}x\right|\\
+    &\quad<\frac{\varepsilon}{3(A_{1}-a)}\cdot(A_{1}-a)+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon.
+  \end{aligned}
+\]
+这就证明了
+\[
+  \lim_{n\to+\infty}\int_{a}^{+\infty}f_{n}(x)\,\mathrm{d}x=\int_{a}^{+\infty}f(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+与定理~\ref{thm:15.2.6} 对偶的函数项级数的逐项广义积分定理为下面的形式.
+
+\setcounter{theorem}{6}
+\begin{theoremp}[函数项级数的逐项无穷积分——求和号与广义积分可交换]\label{thm:15.2.6p}
+设 $u_{n}(x)$ 在 $[a,+\infty)$ 上为连续函数, $n\in\mathbb{N}$. $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,+\infty)$ 上收敛于函数 $S(x)$. 如果:
+\begin{enumerate}
+  \item $\forall A>a$, 函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,A]$ 中一致收敛;
+  \item 无穷积分 $\displaystyle\int_{a}^{+\infty}\sum_{k=1}^{n}u_{k}(x)\,\mathrm{d}x$ 对 $n\in\mathbb{N}$ 一致收敛.
+\end{enumerate}
+则无穷积分 $\displaystyle\int_{a}^{+\infty}\sum_{n=1}^{\infty}u_{n}(x)\,\mathrm{d}x$ 收敛, 且
+\[
+  \int_{a}^{+\infty}\sum_{n=1}^{\infty}u_{n}(x)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{a}^{+\infty}u_{n}(x)\,\mathrm{d}x.
+\]
+\end{theoremp}
+
+\begin{proof}
+令 $S_{n}(x)=\displaystyle\sum_{k=1}^{n}u_{k}(x)$, $S(x)=\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$, 则 $S_{n}(x)$ 与 $S(x)$ 满足定理~\ref{thm:15.2.6} 中 $f_{n}(x)$ 与 $f(x)$ 所满足的条件, 故
+\[
+  \begin{aligned}
+    \int_{a}^{+\infty}\sum_{k=1}^{\infty}u_{k}(x)\,\mathrm{d}x&=\int_{a}^{+\infty}S(x)\,\mathrm{d}x=\int_{a}^{+\infty}\lim_{n\to+\infty}S_{n}(x)\,\mathrm{d}x\\
+    &=\lim_{n\to+\infty}\int_{a}^{+\infty}S_{n}(x)\,\mathrm{d}x=\lim_{n\to+\infty}\int_{a}^{+\infty}\sum_{k=1}^{n}u_{k}(x)\,\mathrm{d}x\\
+    &=\lim_{n\to+\infty}\sum_{k=1}^{n}\int_{a}^{+\infty}u_{k}(x)\,\mathrm{d}x=\sum_{k=1}^{\infty}\int_{a}^{+\infty}u_{k}(x)\,\mathrm{d}x.
+  \end{aligned}
+\]
+为使读者熟悉函数项级数的描述, 建议将定理~\ref{thm:15.2.6} 证明过程对偶地用函数项级数加以证明.
+\end{proof}
+
+\begin{theorem}\label{thm:15.2.7}
+设 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,+\infty)$ 上收敛于 $S(x)$. 如果:
+\begin{enumerate}
+  \item $u_{n}(x)$ 在 $[a,+\infty)$ 上非负连续;
+  \item $S(x)$ 在 $[a,+\infty)$ 上连续;
+  \item 无穷积分 $\displaystyle\int_{a}^{+\infty}S(x)\,\mathrm{d}x$ 收敛.
+\end{enumerate}
+则
+\[
+  \int_{a}^{+\infty}S(x)\,\mathrm{d}x=\int_{a}^{+\infty}\sum_{n=1}^{\infty}u_{n}(x)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{a}^{+\infty}u_{n}(x)\,\mathrm{d}x
+\]
+(可逐项无穷积分).
+\end{theorem}
+
+\begin{proof}
+由条件 (1)、(2) 及 Dini 定理~\ref{thm:13.2.5p} 知, 函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,A]$ 上一致收敛 (其中 $A>a$). 因 $u_{n}(x)\geqslant0$, 故
+\[
+  0\leqslant S_{n}(x)\leqslant S(x),\quad n\in\mathbb{N}.
+\]
+从条件 (3), 无穷积分 $\displaystyle\int_{a}^{+\infty}S(x)\,\mathrm{d}x$ 收敛. 根据 Weierstrass 判别法, 无穷积分 $\displaystyle\int_{a}^{+\infty}S_{n}(x)\,\mathrm{d}x$ 对 $n\in\mathbb{N}$ 一致收敛. 应用定理~\ref{thm:15.2.6} 得到
+\[
+  \int_{a}^{+\infty}\sum_{n=1}^{\infty}u_{n}(x)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{a}^{+\infty}u_{n}(x)\,\mathrm{d}x.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:15.2.2}
+定理~\ref{thm:15.2.7} 关于函数列的对偶定理为: 设函数列 $\{S_{n}(x)\}$ 在 $[a,+\infty)$ 上收敛于 $S(x)$. 如果:
+\begin{enumerate}
+  \item $S_{n}(x)$ 在 $[a,+\infty)$ 上连续, 且 $S_{n}(x)\geqslant S_{n-1}(x)$, $\forall n\in\mathbb{N}$;
+  \item $S(x)$ 在 $[a,+\infty)$ 上连续;
+  \item 无穷积分 $\displaystyle\int_{a}^{+\infty}S(x)\,\mathrm{d}x$ 收敛.
+\end{enumerate}
+则
+\[
+  \int_{a}^{+\infty}S(x)\,\mathrm{d}x=\int_{a}^{+\infty}\lim_{n\to+\infty}S_{n}(x)\,\mathrm{d}x=\lim_{n\to+\infty}\int_{a}^{+\infty}S_{n}(x)\,\mathrm{d}x.
+\]
+\end{remark}
+
+\begin{remark}\label{rem:15.2.3}
+在注~\ref{rem:15.2.2} 中, 如果 $S_{n}(x)\leqslant S_{n-1}(x)$, 则结论仍正确. 只需用 $-S_{n}(x)$ 代 $S_{n}(x)$.
+\end{remark}
+
+\begin{example}[Euler-Poisson 积分]\label{ex:15.2.8}
+证明: Euler-Poisson 积分
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}.
+\]
+\end{example}
+
+\begin{proof}
+证法 1, 2 (参阅\extref{例 6.5.7}, \extref{例 10.6.2}).
+
+证法 3 因为 $\left(1+\dfrac{1}{x}\right)^{x}$ ($x>0$) 为严格单调增加的函数, 所以 $S_{n}(x)=\left(1+\dfrac{x^{2}}{n}\right)^{-n}$ 对 $n$ 单调减少, 且每个 $n\in\mathbb{N}$, $S_{n}(x)=\left(1+\dfrac{x^{2}}{n}\right)^{-n}$ 关于 $x\in[0,+\infty)$ 为连续函数, 于是
+\[
+  S(x)=\lim_{n\to+\infty}S_{n}(x)=\lim_{n\to+\infty}\left(1+\frac{x^{2}}{n}\right)^{-n}=\begin{cases}
+    \lim\limits_{n\to+\infty}1=1, & x=0,\\
+    \lim\limits_{n\to+\infty}\left[\left(1+\dfrac{x^{2}}{n}\right)^{\frac{n}{x^{2}}}\right]^{-x^{2}}=\mathrm{e}^{-x^{2}}, & x\neq0
+\end{cases}
+\]
+$=\mathrm{e}^{-x^{2}}$ 在 $[0,+\infty)$ 上连续. 此外, 由于
+\[
+  \lim_{x\to+\infty}\frac{\mathrm{e}^{-x^{2}}}{\frac{1}{1+x^{2}}}=\lim_{x\to+\infty}\frac{1+x^{2}}{\mathrm{e}^{x^{2}}}=\lim_{u\to+\infty}\frac{1+u}{\mathrm{e}^{u}}=\lim_{u\to+\infty}\frac{1}{\mathrm{e}^{u}}=0
+\]
+及 $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+x^{2}}$ 收敛, 所以根据比较判别法的极限形式知, $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x$ 也收敛. 于是
+\[
+  \begin{aligned}
+    \int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x&=\int_{0}^{+\infty}\lim_{n\to+\infty}\left(1+\frac{x^{2}}{n}\right)^{-n}\mathrm{d}x\xlongequal{\text{注~\ref{rem:15.2.3}}}\lim_{n\to+\infty}\int_{0}^{+\infty}\left(1+\frac{x^{2}}{n}\right)^{-n}\mathrm{d}x\\
+    &\xlongequal{x=\sqrt{n}t}\lim_{n\to+\infty}\int_{0}^{+\infty}(1+t^{2})^{-n}\sqrt{n}\,\mathrm{d}t=\lim_{n\to+\infty}\sqrt{n}\int_{0}^{+\infty}\frac{\mathrm{d}t}{(1+t^{2})^{n}}\\
+    &\xlongequal{t=\tan\theta}\lim_{n\to+\infty}\sqrt{n}\int_{0}^{\frac{\pi}{2}}\frac{\sec^{2}\theta}{(1+\tan^{2}\theta)^{n}}\,\mathrm{d}\theta=\lim_{n\to+\infty}\sqrt{n}\int_{0}^{\frac{\pi}{2}}\cos^{2n-2}\theta\,\mathrm{d}\theta\\
+    &=\lim_{n\to+\infty}\sqrt{n}\frac{(2n-3)!!}{(2n-2)!!}\frac{\pi}{2}=\lim_{n\to+\infty}\sqrt{\frac{n}{2n-1}}\sqrt{\frac{1}{\left[\frac{(2n-2)!!}{(2n-3)!!}\right]^{2}}\frac{1}{2n-1}\frac{\pi}{2}}\\
+    &\xlongequal{\text{\extref{例 6.4.5}}}\frac{1}{\sqrt{2}}\sqrt{\frac{1}{\frac{\pi}{2}}}\cdot\frac{\pi}{2}=\frac{\sqrt{\pi}}{2}.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{remark}\label{rem:15.2.4}
+上述计算中最关键的一步是
+\[
+  \int_{0}^{+\infty}\mathrm{e}^{-x^{2}}\,\mathrm{d}x=\int_{0}^{+\infty}\lim_{n\to+\infty}\left(1+\frac{x^{2}}{n}\right)^{-n}\mathrm{d}x=\lim_{n\to+\infty}\int_{0}^{+\infty}\left(1+\frac{x^{2}}{n}\right)^{-n}\mathrm{d}x.
+\]
+大胆地将极限号搬到无穷积分号中去, 然后计算出结果 $\dfrac{\sqrt{\pi}}{2}$. 最后, 再来检查是否满足注~\ref{rem:15.2.3} 中条件. 大胆设想, 严格检查是每一个研究数学的学生必须具备的素质.
+\end{remark}
+
+\begin{exblock}[练习题 15.2]
+\begin{enumerate}
+  \item 研究下列参变量广义积分在指定区间上的一致收敛性:
+  \begin{enumerate}
+    \item $\displaystyle\int_{0}^{+\infty}\mathrm{e}^{-ux}\sin x\,\mathrm{d}x$, $0<u_{0}\leqslant u<+\infty$;
+    \item $\displaystyle\int_{-\infty}^{+\infty}\frac{x^{2}\cos ux}{1+x^{4}}\,\mathrm{d}x$, $-\infty<u<+\infty$;
+    \item $\displaystyle\int_{0}^{+\infty}\frac{\mathrm{d}x}{1+(x+u)^{2}}$, $0\leqslant u<+\infty$;
+    \item $\displaystyle\int_{1}^{+\infty}\mathrm{e}^{-\alpha x}\frac{\cos x}{\sqrt{x}}\,\mathrm{d}x$, $0\leqslant\alpha<+\infty$;
+    \item $\displaystyle\int_{0}^{+\infty}\sqrt{u}\mathrm{e}^{-ux^{2}}\,\mathrm{d}x$, $0\leqslant u<+\infty$.
+  \end{enumerate}
+  \item 证明: $\displaystyle\int_{-\infty}^{+\infty}\mathrm{e}^{-(x-\alpha)^{2}}\,\mathrm{d}x$ 在 $a\leqslant\alpha\leqslant b$ 上一致收敛; 在 $-\infty<\alpha<+\infty$ 上非一致收敛.
+  \item 证明: $\displaystyle\int_{0}^{+\infty}\frac{x\sin\alpha x}{\alpha(1+x^{2})}\,\mathrm{d}x$ 在 $0<\alpha<+\infty$ 上非一致收敛.
+  \item 证明: $\displaystyle\int_{0}^{1}\frac{1}{x^{\alpha}}\sin\frac{1}{x}\,\mathrm{d}x$ 在 $0<\alpha<2$ 上非一致收敛.
+  \item 证明: $\displaystyle\int_{0}^{1}(1+x+x^{2}+\cdots+x^{n})\left(\ln\frac{1}{x}\right)^{\frac{1}{2}}\mathrm{d}x$ 关于 $n=1,2,\cdots$ 一致收敛.
+  \item 证明: $I(\alpha)=\displaystyle\int_{0}^{+\infty}\frac{\mathrm{e}^{-x}}{|\sin x|^{\alpha}}\,\mathrm{d}x$ 对 $\alpha\in[0,b]$ (其中 $0<b<1$) 一致收敛.
+  \item 证明: 参变量无穷积分 $\displaystyle\int_{1}^{+\infty}\mathrm{e}^{-\frac{1}{\alpha^{2}}\left(x-\frac{1}{\alpha}\right)^{2}}\,\mathrm{d}x$ 在 $0<\alpha<1$ 上虽然绝对一致收敛, 但并不能用 Weierstrass 判别法进行判断.
+  \item 证明: $\displaystyle\int_{0}^{+\infty}\frac{\cos x^{2}}{x^{p}}\,\mathrm{d}x$ 在 $|p|\leqslant p_{0}<1$ 上一致收敛.
+  \item 设函数在 $x>0$ 时连续, 积分 $\displaystyle\int_{0}^{+\infty}x^{\alpha}f(x)\,\mathrm{d}x$ 在 $\alpha=a,\alpha=b$ ($a<b$) 时收敛. 证明: 该积分在 $\alpha\in[a,b]$ 上一致收敛.
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}[思考题 15.2]
+\begin{enumerate}
+  \item 证明: 参变量广义积分 $\displaystyle\int_{0}^{+\infty}\frac{x\sin\alpha x}{\alpha(1+x^{2})}\,\mathrm{d}x$ 在 $\alpha\in[\alpha_{0},+\infty)$ 中一致收敛, 在 $\alpha\in(0,\delta)$ 中不一致收敛, 其中 $\alpha_{0}$ 与 $\delta$ 是任意正数.
+  \item 证明: 参变量广义积分 $\displaystyle\int_{0}^{+\infty}\frac{\sin ux}{x}\,\mathrm{d}x$ 在任何不包含 $u=0$ 的闭区间 $[a,b]$ 上一致收敛, 在包含 $u=0$ 的闭区间上非一致收敛.
+  \item 证明: 参变量广义积分 $\displaystyle\int_{0}^{+\infty}\frac{\sin3x}{x+u}\mathrm{e}^{-ux}\,\mathrm{d}x$ 在 $u\in[0,+\infty)$ 中一致收敛.
+  \item 设 $f(x,u)$ 在 $[a,+\infty)\times[\alpha,\beta]$ 中连续. 如果对每个 $u\in[\alpha,\beta)$, 参变量广义积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 都收敛, 但广义积分 $\displaystyle\int_{a}^{+\infty}f(x,\beta)\,\mathrm{d}x$ 发散, 证明: $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $[\alpha,\beta)$ 上非一致收敛.
+  \item 证明: 参变量广义积分 $\displaystyle\int_{a}^{+\infty}f(x,u)\,\mathrm{d}x$ 在 $[\alpha,\beta]$ 上一致收敛等价于对任一单调增加趋于 $+\infty$ 的数列 $\{A_{n}\}$ ($A_{1}=a$), 函数项级数
+  \[
+    \sum_{n=1}^{\infty}\int_{A_{n}}^{A_{n+1}}f(x,u)\,\mathrm{d}x
+\]
+  在 $[\alpha,\beta]$ 上一致收敛.
+  \item 证明: $g(\alpha)=\displaystyle\int_{0}^{+\infty}\frac{\ln(1+x^{3})}{x^{\alpha}}\,\mathrm{d}x$ 在 $\alpha\in(1,4)$ 上收敛, 在任何内闭区间 $[a,b]$ 上一致收敛, $g(\alpha)$ 在 $(1,4)$ 上连续.
+  \item 设 $\displaystyle\int_{-\infty}^{+\infty}|f(x)|\,\mathrm{d}x$ 收敛, 证明:
+  \[
+    g(\alpha)=\int_{-\infty}^{+\infty}f(x)\cos\alpha x\,\mathrm{d}x
+\]
+  在 $\alpha\in(-\infty,+\infty)$ 上一致收敛, 且 $g(\alpha)$ 在 $(-\infty,+\infty)$ 上为一致连续函数.
+\end{enumerate}
+\end{exblock}

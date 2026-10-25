@@ -1,0 +1,261 @@
+% ============ 第六章 §2 二次域的类数公式 (原书 pp.217-221) ============
+\section{二次域的类数公式}\label{sec:ch6-s2}
+
+根据上节的理论, 为了得到二次域 $K$ 的类数公式, 我们需要决定域 $K$ 的特征群 $\widehat{K}$. 由于 $\Gal(K/\Q)$ 为二元群, $K$ 只有一个非平凡特征, 我们暂时将它记为 $\lambda(\neq\chi_0)$. 显然 $\lambda^2=\chi_0$. 令 $K=\Q(\sqrt{d})$, $d$ 无平方因子. 我们已经证明了 $\operatorname{cond}(K)=|d(K)|$. 因此 $\lambda$ 可看作是模 $|d(K)|$ 的 D-特征. 于是 $\zeta_K(s)=\zeta(s)\cdot L(s,\lambda^*)$. 对于因子 $L(s,\lambda^*)$, 我们需要知道
+
+(a) $\lambda$ 的导子 $f_\lambda$ 是什么？
+
+(b) 能否给出 D-特征 $\lambda$ 的明显表达式？
+
+问题 (a) 容易解决: 利用判别式——导子公式（引理 \ref{lem:ch6-7}）, 对于二次域 $K=\Q(\sqrt{d})$ 则为 $f_\lambda=|d(K)|$. 因此 $\lambda$ 应当是模 $|d(K)|$ 的本原特征. 为了回答问题 (b), 我们需要二次域中的素理想分解定律. 如下定义 $\chi_K(p)$:
+
+(i) 对于奇素数 $p$, 令
+\[
+  \chi_K(p)=\begin{cases}
+    \left(\dfrac{d(K)}{p}\right)=\left(\dfrac{d}{p}\right), & \text{如果 } p\nmid d;\\[0.5em]
+    0, & \text{如果 } p\mid d.
+  \end{cases}
+\]
+(ii) $\chi_K(2)=\begin{cases}
+  1, & \text{若 } d\equiv 1\ (\mathrm{mod}\ 8);\\
+  -1, & \text{若 } d\equiv 5\ (\mathrm{mod}\ 8);\\
+  0, & \text{否则}.
+\end{cases}$
+
+根据第二章所述, 有理素数 $p$ 在二次域 $K=\Q(\sqrt{d})$ 中分解规律为:
+
+分歧: $p=\mathfrak{p}^2$, 如果 $\chi_K(p)=0$（即 $p\mid d(K)$）;
+
+完全分裂: $p=\mathfrak{p}_1\mathfrak{p}_2$, $\mathfrak{p}_1\neq\mathfrak{p}_2$, 如果 $\chi_K(p)=1$;
+
+惯性: $p=\mathfrak{p}$, 如果 $\chi_K(p)=-1$.
+
+现在我们将 $\chi_K$ 完全积性地将定义域扩充到全体自然数集合上. 换句话说, 如果 $n=p_1^{\alpha_1}\cdots p_s^{\alpha_s}$, 定义 $\chi_K(n)=\chi_K(p_1)^{\alpha_1}\cdots\chi_K(p_s)^{\alpha_s}$. 由于 $|\chi_K(n)|=0$ 或者 $1$, 从而 D-级数 $\sum_{n=1}^{\infty}\chi_K(n)n^{-s}$ 在 $\operatorname{Re}(s)>1$ 中定义出正则函数, 并且有 Euler 展开
+\[
+  \sum_{n=1}^{\infty}\chi_K(n)n^{-s}=\prod_p(1-\chi_K(p)p^{-s})^{-1}\qquad(\operatorname{Re}(s)>1).
+\]
+
+\begin{lemma}\label{lem:ch6-8}
+$\lambda=\chi_K$.
+\end{lemma}
+
+\begin{proof}
+我们已经知道 $\zeta_K(s)=\zeta(s)\sum_{n=1}^{\infty}\lambda(n)n^{-s}$. 根据 D-级数的惟一性定理, 我们只需再证明 $\zeta_K(s)=\zeta(s)\sum_{n=1}^{\infty}\chi_K(n)n^{-s}\ (\operatorname{Re}(s)>1)$ 即可. 由于上式两边均有 Euler 乘积展开, 从而只需对于每个有理素数 $p$ 证明
+\begin{equation}\tag{*}
+  \prod_{\mathfrak{p}\mid p}(1-N(\mathfrak{p})^{-s})=(1-p^{-s})(1-\chi_K(p)p^{-s})
+\end{equation}
+即可. 事实上,
+\[
+  (*)\ \text{式左边}=\begin{cases}
+    1-p^{-s}, & (\text{若 } p\ \text{分歧})\\
+    (1-p^{-s})^2, & (\text{若 } p\ \text{完全分裂})\\
+    (1-p^{-2s}), & (\text{若 } p\ \text{惯性})
+  \end{cases}
+  =(1-p^{-s})(1-\chi_K(p)p^{-s})=(*)\ \text{式右边}.
+\]
+于是证明了引理.
+\end{proof}
+
+现在很容易给出二次域的类数公式:
+
+\begin{theorem}\label{thm:6.3}
+(a) 设 $K$ 为虚二次域并且 $K\neq\Q(\sqrt{-1})$ 和 $\Q(\sqrt{-3})$, 则
+\[
+  h_K=\frac{1}{|d(K)|}\sum_{k=1}^{|d(K)|}\chi_K(k)k
+  =\frac{1}{2-\chi_K(2)}\left|\sum_{1\leqslant k<|d(K)|/2}\chi_K(k)\right|.
+\]
+(b) 对于实二次域 $K$, 令 $\varepsilon>1$ 为 $K$ 的基本单位, 则
+\[
+  h_K=\frac{1}{\log\varepsilon}\left|\sum_{1\leqslant k<|d(K)|/2}\chi_K(k)\log\sin\frac{\pi k}{|d(K)|}\right|.
+\]
+\end{theorem}
+
+\begin{proof}
+(a) 对于虚二次域 $K=\Q(\sqrt{-d})$, $d>0$, $r=r_1+r_2-1=0$, 从而 $R_K=1$. 并且当 $|d(K)|>4$ 时, $w_K=2$. （对于 $|d(K)|\leqslant 3$, 则 $K=\Q(\sqrt{-1})$ 和 $\Q(\sqrt{-3})$, 我们在第三章中已经知道它们类数均为 $1$）. 然后由定理 \ref{thm:6.2} 和引理 \ref{lem:ch6-8} 即得 (a) 中类数公式.
+
+(b) 对于实二次域 $K$, $w_K=2$, $r=1$, $R_K=\log\varepsilon$, 从而由定理 \ref{thm:6.2} 和引理 \ref{lem:ch6-8} 即得 (b) 中类数公式.
+\end{proof}
+
+\setcounter{example}{0}% 原书例编号分组
+
+\begin{example}
+$K=\Q(\sqrt{-5})$, $|d(K)|=20$, $\chi_K(2)=0$, $\chi_K$ 为模 $20$ 的本原 D-特征. 由 $\chi_K$ 的定义算出: $\chi_K$（偶数）$=0$, $\chi_K(1)=\chi_K(9)=1$, $\chi_K(3)=\left(\frac{-5}{3}\right)=1$, $\chi_K(5)=0$, $\chi_K(7)=\left(\frac{-5}{7}\right)=1$. 于是
+\[
+  h_K=\frac{1}{2}\left|\chi(1)+\chi(3)+\chi(7)+\chi(9)\right|=2.
+\]
+\end{example}
+
+\begin{example}
+$K=\Q(\sqrt{2})$, $|d(K)|=8$, $\chi_K(2)=0$, $\chi_K(1)=1$, $\chi_K(3)=-1$. 基本单位为 $\varepsilon=1+\sqrt{2}$. 于是
+\[
+  h_K=\frac{1}{\log(1+\sqrt{2})}\left|\chi(1)\log\sin\frac{\pi}{8}+\chi(3)\log\sin\frac{3\pi}{8}\right|
+  =\log\left(\frac{\sin\frac{3\pi}{8}}{\sin\frac{\pi}{8}}\right)\Big/\log(1+\sqrt{2}).
+\]
+即
+\[
+  (1+\sqrt{2})^{h_K}=\sin\frac{3\pi}{8}\Big/\sin\frac{\pi}{8}=1+2\cos\frac{\pi}{4}=1+\sqrt{2},
+\]
+从而 $h_K=1$.
+\end{example}
+
+在 Боревич 和 Шафаревич 的书《数论》（俄文, $1964$ 年）中列出了 $\Q(\sqrt{-a})$, $1\leqslant a\leqslant 500$ 和 $\Q(\sqrt{d})$, $1\leqslant d\leqslant 500$ 的类数表, 下面是其中的一部分.
+
+（I）虚二次域 $\Q(\sqrt{-a})$, $1\leqslant a\leqslant 100.$
+
+\begin{center}
+\begin{tabular}{|c|cccccccccc|}
+\hline
+$a$ & 1 & 2 & 3 & 5 & 6 & 7 & 10 & 11 & 13 & 14 \\
+\hline
+$h$ & 1 & 1 & 1 & 2 & 2 & 1 & 2 & 1 & 2 & 4 \\
+\hline
+$a$ & 15 & 17 & 19 & 21 & 22 & 23 & 26 & 29 & 30 & 31 \\
+\hline
+$h$ & 2 & 4 & 1 & 4 & 2 & 3 & 6 & 6 & 4 & 3 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccccccccc|}
+\hline
+$a$ & 33 & 34 & 35 & 37 & 38 & 39 & 41 & 42 & 43 & 46 \\
+\hline
+$h$ & 4 & 4 & 2 & 2 & 6 & 4 & 8 & 4 & 1 & 4 \\
+\hline
+$a$ & 47 & 51 & 53 & 55 & 57 & 58 & 59 & 61 & 62 & 65 \\
+\hline
+$h$ & 5 & 2 & 6 & 4 & 4 & 2 & 3 & 6 & 8 & 8 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccccccccc|}
+\hline
+$a$ & 66 & 67 & 69 & 70 & 71 & 73 & 74 & 77 & 78 & 79 \\
+\hline
+$h$ & 8 & 1 & 8 & 4 & 7 & 4 & 10 & 8 & 4 & 5 \\
+\hline
+$a$ & 82 & 83 & 85 & 86 & 87 & 89 & 91 & 93 & 94 & 95 \\
+\hline
+$h$ & 4 & 3 & 4 & 10 & 6 & 12 & 2 & 4 & 8 & 8 \\
+\hline
+$a$ & 97 & & & & & & & & & \\
+\hline
+$h$ & 4 & & & & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+
+（II）实二次域 $\Q(\sqrt{d})$（$2\leqslant d\leqslant 101$）. $\varepsilon>1$ 表示基本单位, $\omega=\frac{1+\sqrt{d}}{2}$（如果 $d\equiv 1\ (\mathrm{mod}\ 4)$）, $\omega=\sqrt{d}$（如果 $d\equiv 2,3\ (\mathrm{mod}\ 4)$）.
+
+\begin{center}
+\begin{tabular}{|c|ccccccccccc|}
+\hline
+$d$ & 2 & 3 & 5 & 6 & 7 & 10 & 11 & 13 & 14 & 15 & 17 \\
+\hline
+$h$ & 1 & 1 & 1 & 1 & 1 & 2 & 1 & 1 & 1 & 2 & 1 \\
+\hline
+$\varepsilon$ & $1+\omega$ & $2+\omega$ & $\omega$ & $5+2\omega$ & $8+3\omega$ & $3+\omega$ & $10+3\omega$ & $1+\omega$ & $15+4\omega$ & $4+\omega$ & $3+2\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccccccc|}
+\hline
+$d$ & 19 & 21 & 22 & 23 & 26 & 29 & 30 & 31 \\
+\hline
+$h$ & 1 & 1 & 1 & 1 & 1 & 2 & 1 & 2 \\
+\hline
+$\varepsilon$ & $170+39\omega$ & $2+\omega$ & $197+42\omega$ & $24+5\omega$ & $5+\omega$ & $2+\omega$ & $11+2\omega$ & $1520+273\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccccccc|}
+\hline
+$d$ & 33 & 34 & 35 & 37 & 38 & 39 & 41 & 42 \\
+\hline
+$h$ & 1 & 2 & 2 & 1 & 1 & 2 & 1 & 1 \\
+\hline
+$\varepsilon$ & $19+8\omega$ & $35+6\omega$ & $6+\omega$ & $5+2\omega$ & $37+6\omega$ & $25+4\omega$ & $27+10\omega$ & $13+2\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|ccccccc|}
+\hline
+$d$ & 43 & 46 & 47 & 51 & 53 & 55 & 57 \\
+\hline
+$h$ & 1 & 1 & 1 & 1 & 2 & 1 & 2 \\
+\hline
+$\varepsilon$ & $2482+531\omega$ & $24335+3588\omega$ & $48+7\omega$ & $50+7\omega$ & $3+\omega$ & $89+12\omega$ & $131+40\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|ccccccc|}
+\hline
+$d$ & 58 & 59 & 61 & 62 & 65 & 66 & 67 \\
+\hline
+$h$ & 2 & 1 & 1 & 1 & 2 & 2 & 1 \\
+\hline
+$\varepsilon$ & $99+13\omega$ & $530+69\omega$ & $17+5\omega$ & $63+8\omega$ & $7+2\omega$ & $65+8\omega$ & $48842+5967\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|ccccccc|}
+\hline
+$d$ & 69 & 70 & 71 & 73 & 74 & 77 & 78 \\
+\hline
+$h$ & 1 & 2 & 1 & 1 & 2 & 1 & 2 \\
+\hline
+$\varepsilon$ & $11+3\omega$ & $251+30\omega$ & $3480+413\omega$ & $943+250\omega$ & $43+5\omega$ & $4+\omega$ & $53+6\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|ccccccc|}
+\hline
+$d$ & 79 & 82 & 83 & 85 & 86 & 87 & 89 \\
+\hline
+$h$ & 3 & 4 & 1 & 2 & 1 & 2 & 1 \\
+\hline
+$\varepsilon$ & $80+9\omega$ & $9+\omega$ & $82+9\omega$ & $4+\omega$ & $10405+1122\omega$ & $28+3\omega$ & $447+106\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|cccccc|}
+\hline
+$d$ & 91 & 93 & 94 & 95 & 97 & 101 \\
+\hline
+$h$ & 2 & 1 & 1 & 2 & 1 & 1 \\
+\hline
+$\varepsilon$ & $1574+165\omega$ & $13+2\omega$ & $2143295+221064\omega$ & $39+4\omega$ & $5035+1138\omega$ & $9+2\omega$ \\
+\hline
+\end{tabular}
+\end{center}
+
+利用二次域的类数公式, 我们可以对类数的下界给出一些估计（习题 6）. 关于二次域的类数问题, Gauss 有两个著名的猜想:
+
+(1) 只有有限多个虚二次域类数为 $1$;
+
+(2) 存在着无限多个类数为 $1$ 的实二次域.
+
+关于猜想 (1), Gauss 本人计算出当 $K=\Q(\sqrt{-d})$, $d=1,2,3,7,11,19,43,67$ 和 $163$ 时, $h_K=1$. 他预言只有这九个虚二次域的类数为 $1$. $1934$ 年, Heilbronn 证明了猜想 (1), 确切地说, Heilbronn 证明了: 当 $d>163$ 时至多还有一个虚二次域类数为 $1$. 至于这个例外的域是否存在, 是一个长期未解决的问题. 一直到 $1967$ 年才由英国数学家 Baker 和美国数学家 Stark 独立地解决: 那个例外的域是不存在的. 换句话说, 类数为 $1$ 的虚二次域只有 Gauss 发现的那 $9$ 个. 另一方面, 关于 Gauss 猜想 (2), 人们至今未能解决. 实二次域比虚二次域类数问题要困难, 其主要原因是类数公式中多了一个因子 $\log\varepsilon$.
+
+关于二次域类数的估计问题, 对于实二次域
+\[
+  K=\Q(\sqrt{d})\qquad(d>0),
+\]
+华罗庚证明了 $h_K<\sqrt{d}$. 这个结果本质上已是最好的可能, 因为在另一方面, 人们证明了: 对于每个 $\varepsilon>0$, 均存在无限多个实二次域 $K=\Q(\sqrt{d})$ 使得 $h_K>d^{\frac{1}{2}-\varepsilon}$. 对于虚二次域 $K=\Q(\sqrt{d})(d<0)$, 类似地证明了当 $|d|>e^{24}$ 时, $h_K\leqslant\frac{1}{3}|d|^{\frac{1}{2}}\log|d|$. 并且对每个 $\varepsilon>0$, 当 $|d|$ 充分大时, 均有 $h_K>|d|^{\frac{1}{2}-\varepsilon}$.

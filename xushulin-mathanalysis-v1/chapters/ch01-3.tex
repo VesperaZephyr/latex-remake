@@ -1,0 +1,749 @@
+\section{实数理论、实数连续性命题}\label{sec:1.3}
+
+前面已讲过，实数是数学分析研究对象的根。为了进一步讨论数列极限的重要性，需要引进实数连续性命题，而实数连续性命题有七个，它们是彼此等价的。证明等价的方法是极其重要的，以后经常要引用。要想学好数学分析，一定要牢牢掌握这些内容和方法，以便今后灵活应用实数连续性的等价命题。
+
+\begin{definition}\label{def:1.3.1}
+如果数列 $\{a_{n}\}$ 满足：对任何自然数 $m, n$，$m < n$，有 $a_m \leqslant a_n$（或 $a_m \geqslant a_n$），则称数列 $\{a_n\}$ 为\textbf{单调增}（或\textbf{减}）\textbf{数列}，也称为\textbf{递增}（或\textbf{减}）\textbf{数列}。
+
+如果数列 $\{a_{n}\}$ 满足：对任何自然数 $m, n$，$m < n$，有 $a_m < a_n$（或 $a_m > a_n$），则称数列 $\{a_n\}$ 为\textbf{严格增}（或\textbf{减}）\textbf{数列}，也称为\textbf{严格递增}（或\textbf{减}）\textbf{数列}。
+
+单调增与单调减数列统称为\textbf{单调数列}；严格增与严格减数列统称为\textbf{严格单调数列}。
+\end{definition}
+
+\begin{definition}\label{def:1.3.2}
+设 $A$ 为实数集 $\mathbb{R}$ 的子集（即 $A \subset \mathbb{R}$）。如果存在实数 $M$，使对任何 $x \in A$，有 $x \leqslant M$（或 $x \geqslant M$），则称 $M$ 为数集 $A$ 的一个\textbf{上}（或\textbf{下}）\textbf{界}。
+
+如果数集 $A$ 既有上界又有下界，则称 $A$ 为\textbf{有界集}。
+
+显然，$A$ 有界的充分必要条件是存在实数 $M$，使得对任意 $x \in A$，有 $|x| \leqslant M$。
+
+由下面的实数连续性命题（一），有上（下）界的非空数集必有最小（大）上（下）界，因此可以定义上（下）确界。
+\end{definition}
+
+\begin{definition}\label{def:1.3.3}
+如果非空数集 $A$ 有上（下）界，则称其最小（大）上（下）界为 $A$ 的\textbf{上}（或\textbf{下}）\textbf{确界}，记为 $\sup A$（$\inf A$）。
+
+如果非空数集 $A$ 无上（下）界，则定义 $A$ 的上（下）确界为 $+\infty$（$-\infty$），即 $\sup A = +\infty$（$\inf A = -\infty$）。
+\end{definition}
+
+对自然数集 $\mathbb{N}$，有理数集 $\mathbb{Q}$，实数集 $\mathbb{R}$，容易看出：
+\[
+\inf \mathbb{N} = 1,\quad \sup \mathbb{N} = +\infty,\quad \inf \mathbb{Q} = -\infty,\quad \sup \mathbb{Q} = +\infty,\quad \inf \mathbb{R} = -\infty,\quad \sup \mathbb{R} = +\infty.
+\]
+
+\begin{example}\label{ex:1.3.1}
+\begin{align*}
+&\inf[0,1) = 0,\quad \sup[0,1) = 1; \\
+&\inf(0,1) = 0,\quad \sup(0,1) = 1; \\
+&\inf\{\sin x \mid x \in \mathbb{R}\} = -1,\quad \sup\{\sin x \mid x \in \mathbb{R}\} = 1; \\
+&\inf\{\operatorname{arctan} x \mid x \in \mathbb{R}\} = -\frac{\pi}{2},\quad \sup\{\operatorname{arctan} x \mid x \in \mathbb{R}\} = \frac{\pi}{2}; \\
+&\inf\left\{\frac{1}{n}\;\middle|\; n \in \mathbb{N}\right\} = 0,\quad \sup\left\{\frac{1}{n}\;\middle|\; n \in \mathbb{N}\right\} = 1; \\
+&\inf\{a_1, a_2, \cdots, a_m\} = \min\{a_1, a_2, \cdots, a_m\}; \\
+&\sup\{a_1, a_2, \cdots, a_m\} = \max\{a_1, a_2, \cdots, a_m\}.
+\end{align*}
+\end{example}
+
+\begin{definition}\label{def:1.3.4}
+设 $U \subset \mathbb{R}$，如果对任意的 $x \in U$，存在 $\delta(x) > 0$，使得集合
+\[
+B(x;\delta(x)) = \{y \in \mathbb{R} \mid \rho(y, x) < \delta(x)\} = (x - \delta(x), x + \delta(x)) \subset U,
+\]
+则称 $U$ 为 $\mathbb{R}$ 中的\textbf{开集}，含 $x \in U$ 的开集称为 $x$ 的\textbf{开邻域}。显然，任何（有限或无限）开区间都为 $\mathbb{R}$ 中的开集。
+
+如果 $F$（$\subset \mathbb{R}$）的补（余）集 $F^c = \mathbb{R} \setminus F$ 为 $\mathbb{R}$ 中的开集，则称 $F$ 为 $\mathbb{R}$ 中的\textbf{闭集}。例如，$[a,b], (-\infty, a], [a, +\infty)$ 都为闭集。
+\end{definition}
+
+\begin{definition}\label{def:1.3.5}
+设 $A \subset \mathbb{R}$，$x_0 \in \mathbb{R}$（未必 $x_0 \in A$）。如果对 $x_0$ 的任何开邻域 $U$，均含有 $A$ 中异于 $x_0$ 的点，即
+\[
+U \cap (A \setminus \{x_0\}) \neq \varnothing,
+\]
+则称 $x_0$ 为 $A$ 的一个\textbf{聚点}。$A$ 的聚点的全体记为 $A'$。$\overline{A} = A \cup A'$ 称为 $A$ 的\textbf{闭包}。
+
+易证，$x_0$ 为 $A$ 的聚点 $\iff x_0$ 的任何开邻域 $U$，均含 $A$ 中无限个点。
+
+显然，$\mathbb{Q}' = \mathbb{R}$，$(\mathbb{R} \setminus \mathbb{Q})' = \mathbb{R}$。
+\end{definition}
+
+\begin{definition}\label{def:1.3.6}
+设 $\{a_n\}$ 为 $\mathbb{R}$ 中的一个数列，如果 $\forall \varepsilon > 0$，$\exists N \in \mathbb{N}$，当 $m, n > N$ 时，有
+\[
+\rho(a_n, a_m) = |a_n - a_m| < \varepsilon,
+\]
+则称 $\{a_n\}$ 为 \textbf{Cauchy 数列}或\textbf{基本数列}。它等价于 $\forall \varepsilon > 0$，$\exists N \in \mathbb{N}$，当 $n > N$ 时，$\forall p \in \mathbb{N}$，有
+\[
+\rho(a_n, a_{n+p}) = |a_n - a_{n+p}| < \varepsilon.
+\]
+\end{definition}
+
+下面将给出七个彼此等价的实数连续性命题，它渗透到微分学与积分学，即数学分析的每一个角落，是数学分析的极其重要的基础。读者必须清楚它的理论知识与方法，更重要的是能熟练地应用它。
+
+\begin{proposition}[实数连续性命题（一），确界存在定理]\label{prop:cont:1}
+有上（下）界的非空数集必有属于 $\mathbb{R}$ 的最小（大）上（下）界，即有有限的上（下）确界。
+\end{proposition}
+
+\begin{proposition}[实数连续性命题（二），单调有界原理]\label{prop:cont:2}
+单调增（减）有上（下）界的数列必收敛。
+\end{proposition}
+
+\begin{proposition}[实数连续性命题（三），闭区间套原理，Cantor]\label{prop:cont:3}
+设递降闭区间序列
+\[
+[a_1, b_1] \supset [a_2, b_2] \supset \cdots \supset [a_n, b_n] \supset \cdots,
+\]
+其长度 $b_n - a_n \to 0$（$n \to +\infty$），则 $\exists_1 x_0 \in \bigcap\limits_{n=1}^\infty [a_n, b_n]$，即 $x_0 \in [a_n, b_n]$，$\forall n \in \mathbb{N}$（$\exists_1$ 表示存在惟一）。
+\end{proposition}
+
+\begin{proposition}[实数连续性命题（四），有限覆盖定理，Heine-Borel]\label{prop:cont:4}
+$[a,b]$ 的任何开覆盖 $\mathcal{I}$（$\mathcal{I}$ 中的元素均为开集，且对 $\forall x \in [a,b]$，必有开集 $U \in \mathcal{I}$，使得 $x \in U$，或 $[a,b] \subset \bigcup\limits_{U \in \mathcal{I}} U$）必有有限子覆盖（即存在 $\{U_1, U_2, \cdots, U_m\} \subset \mathcal{I}$ 覆盖 $[a,b]$，即 $[a,b] \subset \bigcup\limits_{k=1}^m U_k$）。
+\end{proposition}
+
+\begin{proposition}[实数连续性命题（五），Weierstrass 聚点定理]\label{prop:cont:5}
+有界无限数集 $A$ 必有聚点 $x_0 \in \mathbb{R}$。
+\end{proposition}
+
+\begin{proposition}[实数连续性命题（六），Bolzano-Weierstrass 致密性定理]\label{prop:cont:6}
+有界数列必有收敛子列。
+\end{proposition}
+
+\begin{proposition}[实数连续性命题（七），Cauchy 完备性原理]\label{prop:cont:7}
+Cauchy 数列（基本数列）必收敛（此时，$(\mathbb{R}, \rho)$ 称为完备度量空间）。
+\end{proposition}
+
+\begin{theorem}[实数连续性等价命题]\label{thm:1.3.1}
+七个实数连续性命题是彼此等价的。
+\end{theorem}
+
+\begin{proof}
+我们按（一）$\implies$（二）$\implies$（三）$\implies$（四）$\implies$（五）$\implies$（六）$\implies$（七）$\implies$（一）进行循环证明。
+
+\textbf{（一）$\implies$（二）} 设数列 $\{a_n\}$ 单调增有上界，根据实数连续性命题（一），它有有限的上确界 $\alpha = \sup\limits_{n\in\mathbb{N}} a_n < +\infty$。
+
+$\forall \varepsilon > 0$，根据 $\alpha$ 为上确界的定义，$\alpha - \varepsilon$（$< \alpha$）不是数列 $\{a_n\}$ 的上界，因此存在 $n_\varepsilon \in \mathbb{N}$，使得 $a_{n_\varepsilon} > \alpha - \varepsilon$。又因 $\{a_n\}$ 单调增，故当 $n > n_\varepsilon$ 时，有
+\[
+\alpha - \varepsilon < a_{n_\varepsilon} \leqslant a_n \leqslant \alpha < \alpha + \varepsilon.
+\]
+所以，
+\[
+\lim_{n\to+\infty} a_n = \alpha = \sup_{n\in\mathbb{N}} a_n.
+\]
+对单调减有下界的情形类似可证 $\lim\limits_{n\to+\infty} a_n = \inf\limits_{n\in\mathbb{N}} a_n$，或者应用上述结论于 $\{-a_n\}$。
+
+\textbf{（二）$\implies$（三）} 由题设得到两个单调有界数列
+\[
+b_1 \geqslant b_2 \geqslant \cdots \geqslant b_n \geqslant \cdots \geqslant a_1,
+\]
+\[
+a_1 \leqslant a_2 \leqslant \cdots \leqslant a_n \leqslant \cdots \leqslant b_1.
+\]
+根据实数连续性命题（二）知，数列 $\{a_n\}$ 与 $\{b_n\}$ 均收敛。又由题设，有
+\[
+\lim_{n\to+\infty} b_n - \lim_{n\to+\infty} a_n = \lim_{n\to+\infty} (b_n - a_n) = 0,
+\]
+即数列 $\{a_n\}$ 与 $\{b_n\}$ 收敛于同一数，记为 $x_0$。再由实数连续性命题（二），
+\[
+\sup_{n\in\mathbb{N}} a_n = \lim_{n\to+\infty} a_n = x_0 = \lim_{n\to+\infty} b_n = \inf_{n\in\mathbb{N}} b_n.
+\]
+所以，
+\[
+a_n \leqslant \sup_{m\in\mathbb{N}} a_m = x_0 = \inf_{m\in\mathbb{N}} b_m \leqslant b_n,\quad \forall n \in \mathbb{N},
+\]
+即
+\[
+x_0 \in \bigcap_{n=1}^\infty [a_n, b_n].
+\]
+如果还有 $x_1 \in \bigcap\limits_{n=1}^\infty [a_n, b_n]$，则
+\[
+|x_1 - x_0| \leqslant b_n - a_n,\quad \forall n \in \mathbb{N}.
+\]
+从而
+\[
+0 \leqslant |x_1 - x_0| \leqslant \lim_{n\to+\infty} (b_n - a_n) = 0 \implies x_1 - x_0 = 0 \implies x_1 = x_0.
+\]
+这就证明了 $\exists_1 x_0 \in \bigcap\limits_{n=1}^\infty [a_n, b_n]$。
+
+\textbf{（三）$\implies$（四）} （反证）反设区间 $[a,b]$ 不能被 $\mathcal{I}$ 中有限个开集所覆盖。将 $[a,b]$ 等分为两个闭区间 $\left[a, \frac{a+b}{2}\right]$ 与 $\left[\frac{a+b}{2}, b\right]$，则此两个区间中必有一个不能被 $\mathcal{I}$ 中有限个开集所覆盖，记此区间为 $[a_1, b_1]$。再将 $[a_1, b_1]$ 等分为二，二者中又必有一个不能被 $\mathcal{I}$ 中有限个开集所覆盖，记此区间为 $[a_2, b_2]$。如此下去，得一递降闭区间序列：
+\[
+[a_1, b_1] \supset [a_2, b_2] \supset \cdots \supset [a_n, b_n] \supset \cdots,
+\]
+其中每一个都不能被 $\mathcal{I}$ 中有限个开集所覆盖，且长度
+\[
+b_n - a_n = \frac{b-a}{2^n} \to 0\quad (n \to +\infty).
+\]
+因此，由连续性命题（三）（闭区间套原理），$\exists_1 x_0 \in \bigcap\limits_{n=1}^\infty [a_n, b_n]$。由于 $\mathcal{I}$ 覆盖 $[a,b]$，故必存在 $U_0 \in \mathcal{I}$，使得 $x_0 \in U_0$。但 $U_0$ 为开集，显然，$\exists N \in \mathbb{N}$，当 $n > N$ 时，有
+\[
+x_0 \in [a_n, b_n] \subset U_0.
+\]
+于是，区间 $[a_n, b_n]$ 被 $\mathcal{I}$ 中的一个（当然是有限个）开集所覆盖。这与上面构造 $[a_n, b_n]$ 不被 $\mathcal{I}$ 中有限个开集所覆盖相矛盾。
+
+\textbf{（四）$\implies$（五）} 设 $A$ 为有界无限集，即 $A \subset [a,b]$。（反证）反设 $A$ 无聚点，则 $\forall x \in [a,b]$，$x$ 不为 $A$ 的聚点，故必有开区间（当然它为开集）$I_x \ni x$，且 $I_x$ 中最多只含 $A$ 的一个点 $x$。显然，开区间族
+\[
+\mathcal{I} = \{I_x \mid x \in [a,b]\}
+\]
+覆盖了 $[a,b]$。根据连续性命题（四）（紧致性）知，$\exists \{I_{x_1}, I_{x_2}, \cdots, I_{x_m}\} \subset \mathcal{I}$，使得 $[a,b] \subset \bigcup\limits_{k=1}^m I_{x_k}$。
+
+因此，$\bigcup\limits_{k=1}^m I_{x_k}$ 也覆盖住 $A$。但是，每个 $I_{x_k}$ 至多含 $A$ 的一个点。由此推得 $\bigcup\limits_{k=1}^m I_{x_k}$ 至多只含 $A$ 的有限个点，而不能覆盖住整个无限集 $A$，矛盾。
+
+\textbf{（五）$\implies$（六）} 设数列 $\{a_n\}$ 有界，即 $a \leqslant a_n \leqslant b$，$\forall n \in \mathbb{N}$。如果 $\{a_n \mid n \in \mathbb{N}\}$ 为有限集，则数列 $\{a_n\}$ 必有无限项相同，这些项依下标从小到大排列得到 $\{a_n\}$ 的一个收敛子列；如果 $A = \{a_n \mid n \in \mathbb{N}\}$ 为无限集，根据连续性命题（五）知，这个无限集 $A$ 必有一个聚点 $x_0$。由聚点定义，$(x_0 - 1, x_0 + 1)$ 中必有 $A$ 中一点 $a_{n_1} \neq x_0$。令
+\[
+\delta_1 = \min\left\{\frac{1}{2}, \rho(a_i, x_0) > 0 \;\middle|\; i = 1, 2, \cdots, n_1\right\} > 0,
+\]
+再由聚点定义知，$(x_0 - \delta_1, x_0 + \delta_1)$ 中必有 $A$ 中一点 $a_{n_2} \neq x_0$。显然，$0 < \delta_1 < \frac{1}{2}$，$n_1 < n_2$。依此类推，令
+\[
+\delta_k = \min\left\{\frac{1}{k+1}, \rho(a_i, x_0) > 0 \;\middle|\; i = 1, 2, \cdots, n_k\right\} > 0.
+\]
+由聚点定义知，$(x_0 - \delta_k, x_0 + \delta_k)$ 中必有 $A$ 中一点 $a_{n_{k+1}} \neq x_0$。显然 $0 < \delta_k < \frac{1}{k+1}$，$n_k < n_{k+1}$。容易看出 $\{a_{n_k}\}$ 为收敛于 $x_0$ 的数列 $\{a_n\}$ 的子列。
+
+\textbf{（六）$\implies$（七）} 设 $\{a_n\}$ 为 Cauchy 数列（基本数列）。先证 $\{a_n\}$ 有界。取 $\varepsilon = 1$，故 $\exists n_1 \in \mathbb{N}$，使得当 $m, n > n_1$ 时，有
+\[
+|a_m - a_n| < \varepsilon = 1.
+\]
+于是，当 $n > n_1$ 时，
+\[
+|a_n| \leqslant |a_n - a_{n_1+1}| + |a_{n_1+1}| < 1 + |a_{n_1+1}|.
+\]
+由此得到
+\[
+|a_n| \leqslant \max\{|a_1|, \cdots, |a_{n_1}|, 1 + |a_{n_1+1}|\} = M < +\infty,
+\]
+即数列 $\{a_n\}$ 是有界的。
+
+根据实数连续性命题（六）（序列紧性）知，有界数列 $\{a_n\}$ 有收敛子列 $\{a_{n_k}\}$。设 $a = \lim\limits_{k\to+\infty} a_{n_k}$。下面证 $\{a_n\}$ 也收敛于 $a$。
+
+事实上，$\forall \varepsilon > 0$，$\exists K_\varepsilon \in \mathbb{N}$，当 $k > K_\varepsilon$ 时，有 $|a_{n_k} - a| < \frac{\varepsilon}{2}$。又因 $\{a_n\}$ 为 Cauchy 数列（基本数列），所以又有 $n_\varepsilon \in \mathbb{N}$，当 $m, n > n_\varepsilon$ 时，
+\[
+|a_m - a_n| < \frac{\varepsilon}{2}.
+\]
+再取 $k \in \mathbb{N}$，使得 $k > \max\{K_\varepsilon, n_\varepsilon\}$，则 $n_k \geqslant k > \max\{K_\varepsilon, n_\varepsilon\}$。当 $n > n_\varepsilon$ 时，
+\[
+|a_n - a| \leqslant |a_n - a_{n_k}| + |a_{n_k} - a| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+\]
+从而，$\{a_n\}$ 收敛于 $a$。
+
+\textbf{（七）$\implies$（一）} 设非空数集 $A$ 有上界 $M$（有下界的情形类似证明；或考虑数集 $-A = \{-x \mid x \in A\}$）。
+
+若 $M \in A$，则显然 $M = \sup A$。
+
+若 $M \notin A$，在 $A$ 中任取一个数 $m$，则闭区间 $[m, M]$ 有 $A$ 中之数。将 $[m, M]$ 等分为二：$\left[m, \frac{m+M}{2}\right]$ 与 $\left[\frac{m+M}{2}, M\right]$。如果 $\left[\frac{m+M}{2}, M\right]$ 中有 $A$ 中之数，取 $a_1 = \frac{m+M}{2}, b_1 = M$；反之，取 $a_1 = m, b_1 = \frac{m+M}{2}$。于是，$b_1$ 为 $A$ 的上界，$[a_1, b_1]$ 有 $A$ 中之数。将 $[a_1, b_1]$ 等分为二：$\left[a_1, \frac{a_1+b_1}{2}\right]$ 与 $\left[\frac{a_1+b_1}{2}, b_1\right]$。如果 $\left[\frac{a_1+b_1}{2}, b_1\right]$ 中有 $A$ 中之数，取 $a_2 = \frac{a_1+b_1}{2}, b_2 = b_1$；反之，取 $a_2 = a_1, b_2 = \frac{a_1+b_1}{2}$。于是，$b_2$ 为 $A$ 的上界，$[a_2, b_2]$ 有 $A$ 中之数。如此下去，得到两个数列 $\{a_n\}$ 与 $\{b_n\}$，它们满足：
+\begin{enumerate}
+  \item $b_n$（$n \in \mathbb{N}$）都为 $A$ 的上界；
+  \item $[a_n, b_n]$（$n \in \mathbb{N}$）都有 $A$ 中之数；
+  \item $b_n - a_n = \dfrac{M-m}{2^n}$（$n \in \mathbb{N}$）；
+  \item $|a_n - a_{n+1}| \leqslant \dfrac{M-m}{2^{n+1}},\quad |b_n - b_{n+1}| \leqslant \dfrac{M-m}{2^{n+1}}$（$n \in \mathbb{N}$）。
+\end{enumerate}
+
+易见，$\{a_n\}$ 与 $\{b_n\}$ 都为 Cauchy 数列（基本数列）。事实上，$\forall \varepsilon > 0$，取 $N \in \mathbb{N}$，使得 $N > \log_2 \frac{M-m}{\varepsilon}$，当 $n > N$ 时，$\forall p \in \mathbb{N}$，有
+\begin{align*}
+|a_n - a_{n+p}| &\leqslant |a_n - a_{n+1}| + |a_{n+1} - a_{n+2}| + \cdots + |a_{n+p-1} - a_{n+p}| \\
+&\leqslant \frac{M-m}{2^{n+1}}\left(1 + \frac{1}{2} + \cdots + \frac{1}{2^{p-1}}\right) \\
+&= \frac{M-m}{2^{n+1}}\frac{1-\frac{1}{2^p}}{1-\frac{1}{2}} < \frac{M-m}{2^n} < \frac{M-m}{2^N} < \varepsilon,
+\end{align*}
+故 $\{a_n\}$ 为 Cauchy 数列。类似可证 $\{b_n\}$ 也为 Cauchy 数列。
+
+由实数连续性命题（七），已知 $\mathbb{R}$ 是完备的，因此 Cauchy 数列 $\{a_n\}$ 与 $\{b_n\}$ 均收敛。于是，由 (3)，$\{a_n\}$ 与 $\{b_n\}$ 收敛于同一数 $a$。又由 (1) 可知，$a$ 为 $A$ 的上界，所以区间 $(a, b_n]$（$n \in \mathbb{N}$）皆无 $A$ 中之数。根据 (2)，$[a_n, a]$（$n \in \mathbb{N}$）都有 $A$ 中之数，而 $a_n \to a$（$n \to +\infty$），故 $a$ 为 $A$ 的上确界（$\forall \varepsilon > 0$，$\exists a_n$，使得 $a - \varepsilon < a_n \leqslant a$，从而 $a - \varepsilon$ 不为 $A$ 的上界）。
+\end{proof}
+
+\begin{theorem}\label{thm:1.3.2}
+设数列 $\{a_n\}$ 单调增（减）无上（下）界，则
+\[
+\lim_{n\to+\infty} a_n = +\infty\quad (-\infty).
+\]
+\end{theorem}
+
+\begin{proof}
+设 $\{a_n\}$ 单调增无上界，$\forall A > 0$，它不是 $\{a_n\}$ 的上界，故 $\exists N \in \mathbb{N}$，使得 $a_N > A$。当 $n \geqslant N$ 时，由 $\{a_n\}$ 单调增，可得
+\[
+a_n \geqslant a_N > A,
+\]
+这就证明了 $\lim\limits_{n\to+\infty} a_n = +\infty$。
+
+类似可证，当 $\{a_n\}$ 单调减无下界时 $\lim\limits_{n\to+\infty} a_n = -\infty$。或应用上述结果于 $\{-a_n\}$，并由定理~\ref{thm:1.2.7}(6) 推得。
+\end{proof}
+
+\begin{corollary}\label{cor:1.3.1}
+单调数列 $\{a_n\}$ 必有极限。
+\end{corollary}
+
+\begin{proof}
+由定理~\ref{thm:1.3.1}（二）及定理~\ref{thm:1.3.2} 知，当 $\{a_n\}$ 为单调增时，
+\[
+\lim_{n\to+\infty} a_n = \sup_{n\in\mathbb{N}} a_n = \begin{cases}
+\text{收敛于数 }\sup\limits_{n\in\mathbb{N}} a_n, & \text{当 }\{a_n\}\text{ 有上界时}, \\
+\text{发散于 }+\infty, & \text{当 }\{a_n\}\text{ 无上界时};
+\end{cases}
+\]
+当 $\{a_n\}$ 为单调减时，
+\[
+\lim_{n\to+\infty} a_n = \inf_{n\in\mathbb{N}} a_n = \begin{cases}
+\text{收敛于数 }\inf\limits_{n\in\mathbb{N}} a_n, & \text{当 }\{a_n\}\text{ 有下界时}, \\
+\text{发散于 }-\infty, & \text{当 }\{a_n\}\text{ 无下界时}.
+\end{cases}
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:1.3.2}
+单调数列收敛 $\iff$ 单调数列有一个收敛子列。
+\end{corollary}
+
+\begin{proof}
+($\Rightarrow$) 设单调数列 $\{a_n\}$ 收敛，显然 $\{a_n\}$ 为一个特殊的子列 $\{a_{n_k}\}$（$n_k = k$）。因此，$\{a_n\}$ 本身为 $\{a_n\}$ 的一个收敛子列。
+
+($\Leftarrow$) 不妨设数列 $\{a_n\}$ 是单调增的，它有一子列 $\{a_{n_k}\}$ 收敛。记 $\lim\limits_{k\to+\infty} a_{n_k} = a$。$\forall \varepsilon > 0$，$\exists K \in \mathbb{N}$，当 $k > K$ 时，
+\[
+a - \varepsilon < a_{n_k} \leqslant a < a + \varepsilon.
+\]
+令 $N = n_{K+1}$，则对任意的 $n > N$ 时，必有 $K' \in \mathbb{N}$，使得 $n_{K'} > n$，则
+\[
+a - \varepsilon < a_{n_{K+1}} \leqslant a_n \leqslant a_{n_{K'}} \leqslant a < a + \varepsilon,
+\]
+\[
+\lim_{n\to+\infty} a_n = a.
+\]
+这就证明了数列 $\{a_n\}$ 收敛于 $a$。
+\end{proof}
+
+\begin{theorem}[数列的 Cauchy 收敛准则或收敛原理]\label{thm:1.3.3}
+数列 $\{a_n\}$ 收敛 $\iff \{a_n\}$ 为 Cauchy 数列（基本数列）。
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) 设 $\{a_n\}$ 收敛，记 $\lim\limits_{n\to+\infty} a_n = a$，则 $\forall \varepsilon > 0$，$\exists N \in \mathbb{N}$，当 $n, m > N$ 时，有
+\[
+|a_n - a| < \frac{\varepsilon}{2},\quad |a_m - a| < \frac{\varepsilon}{2},
+\]
+因而，
+\[
+|a_n - a_m| \leqslant |a_n - a| + |a - a_m| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+\]
+这就证明了 $\{a_n\}$ 为 Cauchy 数列（基本数列）。
+
+($\Leftarrow$) 由定理~\ref{thm:1.3.1}（六）$\implies$（七）。
+\end{proof}
+
+为揭示有理数与实数之间的本质差别，我们引入至多可数集与不可数集的概念。
+
+\begin{definition}\label{def:1.3.7}
+与自然数集 $\mathbb{N}$ 一一对应的集合称为\textbf{可数集}。有限集与可数集统称为\textbf{至多可数集}。不是至多可数集的集合称为\textbf{不可数集}。
+\end{definition}
+
+\begin{lemma}\label{lem:1.3.1}
+\begin{enumerate}
+  \item 至多可数集的子集仍为至多可数集；
+  \item 有限个至多可数集的并仍为至多可数集；
+  \item 可数个至多可数集的并仍为至多可数集；
+  \item 设 $A_1, A_2, \cdots, A_n$ 都为至多可数集，则笛卡尔积集合
+  \[
+  A_1 \times A_2 \times \cdots \times A_n = \{(a_1, a_2, \cdots, a_n) \mid a_i \in A_i, i = 1, 2, \cdots, n\}
+\]
+  为至多可数集。
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) 设 $X$ 为至多可数集。记 $X = \{x_1, \cdots, x_n, \cdots\}$，则它的子集可记为 $\{x_{n_k} \mid n_1 < n_2 < \cdots\}$，显然，它仍为至多可数集。
+
+(2) 设有限个可数集为
+\begin{align*}
+A_1 &= \{a_{11}, a_{12}, a_{13}, \cdots\}, \\
+A_2 &= \{a_{21}, a_{22}, a_{23}, \cdots\}, \\
+A_3 &= \{a_{31}, a_{32}, a_{33}, \cdots\}, \\
+&\ \ \vdots \\
+A_n &= \{a_{n1}, a_{n2}, a_{n3}, \cdots\},
+\end{align*}
+则 $\bigcup\limits_{i=1}^n A_i = \{a_{11}, a_{21}, \cdots, a_{n1}, a_{12}, a_{22}, \cdots, a_{n2}, \cdots\}$，如有重复者只排第 1 个，由此知 $\bigcup\limits_{i=1}^n A_i$ 仍为至多可数集。
+
+或者按斜线排列为 $\bigcup\limits_{i=1}^n A_i = \{a_{11}, a_{21}, a_{12}, a_{31}, a_{22}, a_{13}, \cdots\}$，如有重复者只排第 1 个，由此知 $\bigcup\limits_{i=1}^n A_i$ 仍为至多可数集。
+
+(3) 仿照 (2) 中第二种证法。
+
+(4) 设
+\begin{align*}
+A_1 &= \{a_1^1, a_1^2, a_1^3, \cdots\}, \\
+A_2 &= \{a_2^1, a_2^2, a_2^3, \cdots\}, \\
+A_3 &= \{a_3^1, a_3^2, a_3^3, \cdots\}, \\
+&\ \ \vdots \\
+A_n &= \{a_n^1, a_n^2, a_n^3, \cdots\}.
+\end{align*}
+则 $A_1 \times A_2 \times \cdots \times A_n$ 按 $(a_1^{i_1}, a_2^{i_2}, \cdots, a_n^{i_n})$ 中 $i_1 + i_2 + \cdots + i_n$ 从小到大排列，故积集合 $A_1 \times A_2 \times \cdots \times A_n$ 为至多可数集。
+\end{proof}
+
+\begin{lemma}\label{lem:1.3.2}
+有理数集 $\mathbb{Q}$ 为至多可数集。
+\end{lemma}
+
+\begin{proof}
+将正有理数集按如下对角线箭头方向排列：
+\[
+\begin{array}
+{ccccc}
+\dfrac{1}{1} & \dfrac{2}{1} & \dfrac{3}{1} & \dfrac{4}{1} & \cdots \\[2mm]
+\dfrac{1}{2} & \dfrac{2}{2} & \dfrac{3}{2} & \dfrac{4}{2} & \cdots \\[2mm]
+\dfrac{1}{3} & \dfrac{2}{3} & \dfrac{3}{3} & \dfrac{4}{3} & \cdots \\[2mm]
+\dfrac{1}{4} & \dfrac{2}{4} & \dfrac{3}{4} & \dfrac{4}{4} & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{array}
+\]
+列为
+\[
+\mathbb{Q} = \left\{0, \frac{1}{1}, -\frac{1}{1}, \frac{1}{2}, -\frac{1}{2}, \frac{2}{1}, -\frac{2}{1}, \frac{1}{3}, -\frac{1}{3}, \frac{3}{1}, -\frac{3}{1}, \frac{1}{4}, -\frac{1}{4}, \frac{2}{3}, -\frac{2}{3}, \frac{3}{2}, -\frac{3}{2}, \frac{4}{1}, -\frac{4}{1}, \cdots\right\}
+\]
+（遇到重复元素如 $\frac{1}{1}, \frac{2}{2}, \frac{3}{3}, \cdots$，只保留第 1 个遇到的元素，如 $\frac{1}{1}$）。因此，$\mathbb{Q}$ 为可数集。
+\end{proof}
+
+\textbf{问}：实数集 $\mathbb{R}$ 是否为可数集？即是否可将 $\mathbb{R}$ 与 $\mathbb{N}$ 一一对应，或者是否可将 $\mathbb{R}$ 依次全部排列出来？\textbf{答}：否。
+
+\begin{theorem}\label{thm:1.3.4}
+实数集 $\mathbb{R}$ 为不可数集。
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1} （反证）反设 $\mathbb{R}$ 不是不可数集，则无限集 $\mathbb{R}$ 为可数集。于是，$\mathbb{R}$ 的无限子集 $[0,1]$ 也为可数集，记为 $[0,1] = \{x_1, x_2, \cdots, x_n, \cdots\}$。将 $[0,1]$ 三等分，则至少有一等分不含 $x_1$。记此等分为 $[a_1, b_1]$，又将 $[a_1, b_1]$ 三等分，则至少有一等分不含 $x_2$，记此等分为 $[a_2, b_2]$。以此类推得到一个递降的闭区间套：
+\[
+[0,1] \supset [a_1, b_1] \supset [a_2, b_2] \supset \cdots \supset [a_n, b_n] \supset \cdots,
+\]
+使得 $b_n - a_n = \frac{1}{3^n}$，$x_n \notin [a_n, b_n]$。根据实数连续性命题（三）（闭区间套原理）可知，$\exists_1 x_0 \in \bigcap\limits_{n=1}^\infty [a_n, b_n]$。显然 $x_0 \in [0,1]$ 但 $x_0 \neq x_n$，$\forall n \in \mathbb{N}$，所以 $x_0 \notin \{x_n \mid n \in \mathbb{N}\} = [0,1]$，矛盾。
+
+\textbf{证法 2} （反证）反设 $\mathbb{R}$ 不是不可数集，则无限集 $\mathbb{R}$ 为可数集。于是 $\mathbb{R}$ 的无限子集 $(0,1]$ 也为可数集，记 $(0,1] = \{x_1, x_2, \cdots, x_n, \cdots\}$，
+\begin{align*}
+x_1 &= 0.x_{11}x_{12}x_{13}x_{14}\cdots, \\
+x_2 &= 0.x_{21}x_{22}x_{23}x_{24}\cdots, \\
+x_3 &= 0.x_{31}x_{32}x_{33}x_{34}\cdots, \\
+&\ \ \vdots
+\end{align*}
+其中所有的 $x_{ij}$ 都是 $0, 1, \cdots, 9$ 十个数字中的一个，并且对每个 $i$，数列 $\{x_{ij} \mid j = 1, 2, \cdots\}$ 中有无限个不为 $0$（即 $x_i$ 若有两种表示，则用一种。如 $0.5$ 采用 $0.4999\cdots = 0.4\dot{9}$，而不用 $0.5 = 0.500\cdots$）。
+
+作十进位小数
+\[
+\alpha = 0.\alpha_1\alpha_2\alpha_3\cdots,
+\]
+使得 $\alpha_i \neq x_{ii}, \alpha_i \neq 0, \forall i \in \mathbb{N}$（如果 $x_{ii} = 1$，令 $\alpha_i = 2$；如果 $x_{ii} \neq 1$，令 $\alpha_i = 1$）。于是 $\alpha \in (0,1]$，但 $\alpha \neq x_i, \forall i \in \mathbb{N}$（因为 $\alpha_i \neq x_{ii}$）。从而 $\alpha$ 未被排列出来，矛盾。
+\end{proof}
+
+\begin{definition}\label{def:1.3.8}
+设 $A \subset \mathbb{R}$，如果对 $\forall r \in \mathbb{R}$ 及 $r$ 的任何开邻域（含 $r$ 的开集）$U$，均有 $A \cap U \neq \varnothing$，即 $\overline{A} = \mathbb{R}$，则称 $A$ 为 $\mathbb{R}$ 中的\textbf{稠密集}。
+\end{definition}
+
+\begin{theorem}\label{thm:1.3.5}
+有理数集 $\mathbb{Q}$ 与无理数集 $\mathbb{R} \setminus \mathbb{Q}$ 均为 $\mathbb{R}$ 中的稠密集。
+
+此外，$\forall r \in \mathbb{R}$，必有有理数列 $\{r_n\}$ 收敛于 $r$；也必有无理数列 $\{s_n\}$ 收敛于 $r$。
+\end{theorem}
+
+\begin{proof}
+\textbf{证法 1} $\forall r \in \mathbb{R}, \forall \varepsilon > 0$，则必有 $n \in \mathbb{N}$，使得 $\frac{1}{10^n} < \frac{\sqrt{2}}{10^n} < \varepsilon$，从而必有 $m \in \mathbb{Z}$，$s \in \mathbb{Z} \setminus \{0\}$，使得
+\[
+\frac{m}{10^n} \in \mathbb{Q} \cap (r - \varepsilon, r + \varepsilon)
+\]
+与
+\[
+\frac{s\sqrt{2}}{10^n} \in (\mathbb{R} \setminus \mathbb{Q}) \cap (r - \varepsilon, r + \varepsilon).
+\]
+因此，$\mathbb{Q}$ 与 $\mathbb{R} \setminus \mathbb{Q}$ 均为 $\mathbb{R}$ 中的稠密集。
+
+\textbf{证法 2} $\forall r \in \mathbb{R}$，记 $r = \pm r_0.r_1\cdots r_n\cdots$，则有理数列 $\pm r_0.r_1\cdots r_n \to r$，无理数列 $\pm r_0.r_1\cdots r_n + \frac{\sqrt{2}}{10^n} \to r + 0 = r$。因此，$\forall \varepsilon > 0$，必有 $N \in \mathbb{N}$，当 $n > N$ 时，有
+\[
+\pm r_0.r_1\cdots r_n \in (r - \varepsilon, r + \varepsilon)\quad \text{及}\quad \pm r_0.r_1\cdots r_n + \frac{\sqrt{2}}{10^n} \in (r - \varepsilon, r + \varepsilon),
+\]
+这就证明了 $\mathbb{Q}$ 与 $\mathbb{R} \setminus \mathbb{Q}$ 均为 $\mathbb{R}$ 中的稠密集。
+\end{proof}
+
+\begin{definition}\label{def:1.3.9}
+设 $A \subset \mathbb{R}$，$a \in A$，如果存在开集 $U$，使得 $a \in U \subset A$，则称 $a$ 为 $A$ 的一个\textbf{内点}。$A$ 的内点的全体记为 $\mathring{A}$ 或 $A^\circ$ 或 $A^i$ 或 $\operatorname{int} A$。例如：闭圆的内点集为其开圆部分。$\mathring{\mathbb{Q}} = \varnothing$，$(\mathbb{R} \setminus \mathbb{Q})^\circ = \varnothing$。
+\end{definition}
+
+\begin{theorem}[Baire 纲定理]\label{thm:1.3.6}
+设 $A, A_m \subset \mathbb{R}$，$A = \bigcup\limits_{m \in \Gamma} A_m$（$\Gamma$ 为至多可数集），闭集 $A_m$ 的内点集 $\mathring{A}_m = \varnothing$，则 $\mathring{A} = \varnothing$。
+
+由此，$\mathbb{R}$ 中任何含内点的集合都不能表示成至多可数个无内点的闭集的并。
+\end{theorem}
+
+\begin{proof}
+（反证）假设 $x_0 \in \mathring{A}$，则 $\exists \delta_0 > 0$，使闭球（闭区间）$\overline{B(x_0; \delta_0)} = [x_0 - \delta_0, x_0 + \delta_0] \subset A$。因 $\mathring{A}_1 = \varnothing$，故 $\exists x_1 \in B(x_0; \delta_0) \setminus A_1$。又 $A_1$ 为闭集，所以可取 $\delta_1 \in (0, 1)$，使得
+\[
+\overline{B(x_1; \delta_1)} \cap A_1 = \varnothing,\quad \overline{B(x_1; \delta_1)} \subset B(x_0; \delta_0).
+\]
+再从 $B(x_1; \delta_1)$ 出发，以类似的推理如法炮制可得到闭球（闭区间）套：
+\[
+\overline{B(x_1; \delta_1)} \supset \overline{B(x_2; \delta_2)} \supset \cdots \supset \overline{B(x_m; \delta_m)} \supset \cdots,\quad \delta_m \in \left(0, \frac{1}{m}\right).
+\]
+根据闭球（闭区间）套原理，
+\[
+\exists_1 \xi \in \bigcap_{m=1}^\infty \overline{B(x_m; \delta_m)} \subset A,
+\]
+显然，这与构造中 $\xi \notin \bigcup\limits_{m=1}^\infty A_m = A$ 相矛盾（如果 $\Gamma$ 为有限集，其元素个数为 $k$，则令 $A_m = \varnothing, m > k$）。
+\end{proof}
+
+上面已证明了七个实数连续性命题是彼此等价的，但必须证明其中一个命题是正确的，从而其他六个命题也是正确的。反复仔细琢磨，问题归纳为实数的如何引入。
+
+下面，从有理数域 $\mathbb{Q}$ 出发，介绍 3 种引进实数的方法。
+
+\subsection*{（1）用十进位小数定义}
+有理数集
+\begin{align*}
+\mathbb{Q} &= \left\{\frac{p}{q} \;\middle|\; p \in \mathbb{Z}, q \in \mathbb{N}\right\} \\
+&= \{\text{无限循环小数 } \pm \alpha_0.\alpha_1\cdots\alpha_n \dot{\beta}_1\cdots\dot{\beta}_m\text{，包括有限小数} \\
+&\qquad \pm\alpha_0.\alpha_1\cdots\alpha_n = \pm\alpha_0.\alpha_1\cdots\alpha_n \dot{0} = \pm\alpha_0.\alpha_1\cdots(\alpha_n-1)\dot{9}\}.
+\end{align*}
+无限不循环小数称为无理数。用反证法可证 $0.1010010001\cdots$，$\sqrt{2} = 1.4142\cdots$，以及下面出现的 $e = 2.71828\cdots$，$\pi = 3.14159\cdots$ 都为无理数。
+
+实数集 $\mathbb{R} = \text{有理数集 }\mathbb{Q} \cup \text{无理数集 }(\mathbb{R} \setminus \mathbb{Q})$。
+
+\begin{corollary}\label{cor:1.3.3}
+无理数集 $\mathbb{R} \setminus \mathbb{Q}$ 为不可数集。
+\end{corollary}
+
+\begin{proof}
+（反证）假设 $\mathbb{R} \setminus \mathbb{Q}$ 为可数集，由引理~\ref{lem:1.3.2} 可知，$\mathbb{Q}$ 为可数集，根据引理~\ref{lem:1.3.1}(2)，$\mathbb{R} = \mathbb{Q} \cup (\mathbb{R} \setminus \mathbb{Q})$ 为可数集，这与定理~\ref{thm:1.3.4} 的结论相矛盾。
+\end{proof}
+
+推论~\ref{cor:1.3.3} 表明，无理数比有理数多得多。
+
+观察下面的对应：
+\[
+\begin{aligned}
+&\text{实数集 }\mathbb{R} \\
+&\alpha_0 \\
+&\alpha_0.\alpha_1 \\
+&\alpha_0.\alpha_1\alpha_2 \\
+&\ \ \vdots \\
+&\alpha_0.\alpha_1\cdots\alpha_n \\
+&\ \ \vdots
+\end{aligned}
+\quad\xlongleftrightarrow{\quad}\quad
+\begin{aligned}
+&\text{实数轴} \\
+&[\alpha_0, \alpha_0 + 1] \\
+&\left[\alpha_0.\alpha_1, \alpha_0.\alpha_1 + \frac{1}{10}\right] \\
+&\left[\alpha_0.\alpha_1\alpha_2, \alpha_0.\alpha_1\alpha_2 + \frac{1}{10^2}\right] \\
+&\ \ \vdots \\
+&\left[\alpha_0.\alpha_1\cdots\alpha_n, \alpha_0.\alpha_1\cdots\alpha_n + \frac{1}{10^n}\right] \\
+&\ \ \vdots
+\end{aligned}
+\]
+确定惟一的实数 $\alpha = \alpha_0.\alpha_1\cdots\alpha_n\cdots$ 套出实数轴上的一点。这就是实数集 $\mathbb{R}$ 与实数轴之间的一一对应。
+
+采用十进位小数，按通常的方法定义了 $+ , \times$，然后派生出 $- , \div, \cdots$。这样就可证明实数连续性命题（一），再根据实数连续性等价定理~\ref{thm:1.3.1} 推得所有七个实数连续性命题都是正确的。
+
+\begin{theorem}[实数连续性命题（一）]\label{thm:1.3.7}
+有上（下）界的非空数集有最小（大）上（下）界，即有上（下）确界。
+\end{theorem}
+
+\begin{proof}
+设数集 $A$ 非空有上界。不失一般性，可假定 $A$ 中至少有一个正数（否则用 $A + |a| + 1 = \{x + |a| + 1 \mid x \in A\}$ 代替 $A$，其中 $a \in A$ 为一个固定数）。考虑 $A$ 中各数的整数部分。设最大的整数部分为 $\alpha_0$。由于 $A$ 有上界，这最大的整数部分显然是存在的。又由 $A$ 中有正数，所以 $\alpha_0 \geqslant 0$，记
+\[
+A_0 = \{x \in A \mid [x] = \alpha_0\},
+\]
+其中 $[x]$ 表示 $x$ 的整数部分，即不超过 $x$ 的最大整数。则 $A_0 \neq \varnothing$。
+
+若 $x \in A$，而 $x \notin A_0$，则 $x < \alpha_0$；若 $x \in A_0$，则 $\alpha_0 \leqslant x < \alpha_0 + 1$。
+
+再考虑 $A_0$ 中各数的第一位小数，设最大的第一位小数为 $\alpha_1$，记
+\[
+A_1 = \{x \in A_0 \mid x\text{ 的第一位小数为 }\alpha_1\},
+\]
+则 $A_1 \neq \varnothing$。
+
+若 $x \in A_0$，而 $x \notin A_1$，则 $x < \alpha_0.\alpha_1$；若 $x \in A_1$，则 $\alpha_0.\alpha_1 \leqslant x < \alpha_0.\alpha_1 + \frac{1}{10}$。
+
+再考虑 $A_1$ 中各数的第二位小数，设其最大者为 $\alpha_2$，记
+\[
+A_2 = \{x \in A_1 \mid x\text{ 的第二位小数为 }\alpha_2\},
+\]
+则 $A_2 \neq \varnothing$。
+
+如此下去，就得到一串递降非空数集
+\[
+A \supset A_0 \supset A_1 \supset A_2 \supset \cdots,
+\]
+同时也得到一串有理数
+\[
+\alpha_0,\quad \alpha_0.\alpha_1,\quad \alpha_0.\alpha_1\alpha_2,\quad \alpha_0.\alpha_1\alpha_2\alpha_3,\quad \cdots.
+\]
+于是，它惟一确定了一个实数
+\[
+\alpha = \alpha_0.\alpha_1\alpha_2\alpha_3\cdots = \lim_{n\to+\infty} \alpha_0.\alpha_1\cdots\alpha_n.
+\]
+先证 $\alpha$ 为 $A$ 的一个上界。事实上，若 $x \in A$，而 $x \notin A_0$，则 $x < \alpha_0 \leqslant \alpha$；若 $x \in A_n$，而 $x \notin A_{n+1}$ 对某个 $n = 0, 1, 2, \cdots$ 成立，则 $x < \alpha_0.\alpha_1\cdots\alpha_n\alpha_{n+1} \leqslant \alpha$。
+
+若 $x \in A_n,\forall n = 0, 1, 2, \cdots$，则 $\alpha_0.\alpha_1\cdots\alpha_n \leqslant x < \alpha_0.\alpha_1\cdots\alpha_n + \frac{1}{10^n}, n = 0, 1, 2, \cdots$。令 $n \to +\infty$ 可得
+\[
+\alpha = \lim_{n\to+\infty} \alpha_0.\alpha_1\cdots\alpha_n \leqslant x \leqslant \lim_{n\to+\infty} \left(\alpha_0.\alpha_1\cdots\alpha_n + \frac{1}{10^n}\right) = \alpha + 0 = \alpha,
+\]
+所以，$x = \alpha$。
+
+综合上述，可得 $\alpha$ 为 $A$ 的上界。
+
+再证 $\alpha = \sup A$。事实上，任取 $\beta < \alpha$，由 $\alpha = \alpha_0.\alpha_1\alpha_2\alpha_3\cdots = \lim\limits_{n\to+\infty} \alpha_0.\alpha_1\cdots\alpha_n$ 知，$\exists N \in \mathbb{N}$，使得
+\[
+\beta < \alpha_0.\alpha_1\cdots\alpha_N \leqslant \alpha.
+\]
+因此，当 $x \in A_N$（$\neq \varnothing$）时，
+\[
+x \geqslant \alpha_0.\alpha_1\cdots\alpha_N > \beta,
+\]
+从而，$\beta$ 不为 $A$ 的上界，而 $\beta$ 是任取的，故 $\alpha$ 为 $A$ 的最小上界，即 $\alpha = \sup A$。
+\end{proof}
+
+\subsection*{（2）用有理数的 Cauchy 数列定义}
+设 $\{a_n\}$ 为有理数列，如果 $\forall \varepsilon \in \mathbb{Q}, \varepsilon > 0$，$\exists N \in \mathbb{N}$，$\forall m, n \in \mathbb{N}$，当 $m, n > N$ 时，$|a_m - a_n| < \varepsilon$，则称 $\{a_n\}$ 为有理 Cauchy（基本）数列。令
+\[
+E = \{\text{有理 Cauchy 数列 } \{a_n\}\}.
+\]
+显然，有理常数列 $\{a, a, \cdots \mid a \in \mathbb{Q}\} \in E$，所以 $E \neq \varnothing$。$\forall \{a_n\}, \{b_n\} \in E$，定义
+\[
+\{a_n\} \sim \{b_n\} \iff \forall \varepsilon \in \mathbb{Q}, \varepsilon > 0,\ \exists N \in \mathbb{N},\ \text{当 } n > N \text{ 时},\ |a_n - b_n| < \varepsilon.
+\]
+易见，“$\sim$”为 $E$ 上的一个等价关系，即满足自反性、对称性与传递性。
+
+我们称 $\{a_n\}$ 的等价类 $\widetilde{\{a_n\}}$ 为一个实数，例如 $\widetilde{\{a, a, \cdots\}}$（$a \in \mathbb{Q}$）为一个有理数（当然 $\left\{\widetilde{a + \frac{1}{n}}\right\}$ 也为该有理数），简记为 $a$。再如：
+\[
+a_1 = 1,\quad a_2 = 1.4,\quad a_3 = 1.41,\quad a_4 = 1.414,\quad a_5 = 1.4142,\quad \cdots
+\]
+定义了一个有理数列 $\{a_n\}$，它的等价类确定了一个实数 $\sqrt{2}$（它不是有理数，称它为一个无理数）。
+
+由有理数列 $\left\{\left(1 + \frac{1}{n}\right)^n\right\}$ 的等价类确定了一个实数 $e$（下节将证明它不是有理数，也称它为一个无理数，并且 $e = 2.7182818\cdots$）。
+
+我们称 $E$ 关于 $\sim$ 的商集合
+\[
+\mathbb{R} = E/{\sim} = \{\widetilde{\{a_n\}} \mid \{a_n\} \in E\}
+\]
+为实数集。
+
+设 $\widetilde{\{a_n\}}, \widetilde{\{b_n\}} \in \mathbb{R}$，定义
+\[
+\widetilde{\{a_n\}} + \widetilde{\{b_n\}} = \widetilde{\{a_n + b_n\}},\quad \widetilde{\{a_n\}} \times \widetilde{\{b_n\}} = \widetilde{\{a_n b_n\}}.
+\]
+易见，上述加法与乘法与等价类中代表元的选取无关，因此它们的定义是合理的。
+
+从上述定义出发可以证明下面的定理。
+
+\begin{theorem}[实数连续性命题（七）]\label{thm:1.3.8}
+$\mathbb{R}$ 是完备的，即 $\mathbb{R}$ 中任何 Cauchy 数列必在 $\mathbb{R}$ 中收敛。
+\end{theorem}
+
+\subsection*{（3）用 R. Dedekind 分划（割）定义}
+如果有理数集 $\mathbb{Q} = A \cup B$，$A \cap B = \varnothing$，$A \neq \varnothing, B \neq \varnothing$；且 $\forall a \in A, b \in B$，有 $a < b$，则称它为有理数集 $\mathbb{Q}$ 的一个分划（割），并记作 $A \mid B$。$A$ 称为此分划的下组，$B$ 称为此分划的上组。
+
+易见，分划有 3 种类型：
+\begin{enumerate}
+  \item 下组 $A$ 中无最大数，而上组 $B$ 中有最小数；
+  \item 下组 $A$ 中有最大数，而上组 $B$ 中无最小数；
+  \item 下组 $A$ 中无最大数，而上组 $B$ 中也无最小数。
+\end{enumerate}
+
+第 1、2 两种分划都定义了有理数。第 3 种分划定义了一个新的数——无理数。有理数与无理数统称为实数，并用 $\mathbb{R}$ 记实数的全体。
+
+例如：由
+\[
+A = \{x \in \mathbb{Q} \mid x^2 < 2\} \cup \{x \in \mathbb{Q} \mid x < 0\},\quad B = \{x \in \mathbb{Q} \mid x^2 > 2, x > 0\}
+\]
+确定的分划 $A \mid B$ 属于第 3 种类型，它定义了无理数 $\sqrt{2}$。
+
+再如：由
+\[
+B = \left\{x \in \mathbb{Q} \;\middle|\; x \geqslant \left(1 + \frac{1}{n}\right)^n, \forall n \in \mathbb{N}\right\},\quad A = \mathbb{Q} \setminus B
+\]
+确定的分划 $A \mid B$ 属于第 3 种类型，它定义了无理数 $e$。
+
+用 R. Dedekind 分划可定义 $\mathbb{R}$ 中的 $+ , \times$，然后派生出 $- , \div$，并讨论其性质。还可证明定理~\ref{thm:1.3.7}。
+
+上面已经介绍了 3 种实数引入的方法，无论用何种方式引进实数，都应证明七个实数连续性等价命题之一成立，因此其他六个也成立，进而还应从此种方式论述实数的四条公理：
+
+\begin{enumerate}
+  \item $(\mathbb{R}, +, \times)$ 为一个域，称为实数域。满足加法交换群（Abel 群）公理、乘法（除零外）交换群公理与分配律。从加法与乘法可派生出减法与除法：
+  \[
+  a - b \xlongequal{\text{def}} a + (-b),\quad \frac{a}{b} \xlongequal{\text{def}} a \times b^{-1}\quad (b \neq 0).
+\]
+  \item $\mathbb{R}$ 为一个全序集。对于 $\forall x, y \in \mathbb{R}$，定义 $x \leqslant y \iff y - x \geqslant 0$。且 $\forall x, y \in \mathbb{R}$，下列三个关系：
+  \[
+  x < y,\quad y < x,\quad x = y
+\]
+  中有且只有一个成立（三歧性）。
+  \item $\mathbb{R}$ 满足 Archimedes 公理：设 $b \in \mathbb{R}, a > 0$，则 $\exists n \in \mathbb{N}$，使得 $na > b$。
+  \item $\mathbb{R}$ 有连续性：$\mathbb{R}$ 是完备的，即 $\mathbb{R}$ 中一切 Cauchy 数列都收敛。
+\end{enumerate}
+
+四条公理可综合为：
+
+\begin{axiom}[实数公理]\label{ax:real}
+实数空间 $\mathbb{R}$ 是一个完备的 Archimedes 序域。
+\end{axiom}
+
+\begin{exblock}{练习题 1.3}
+\item 在实数连续性等价命题中，证明：（三）$\implies$（一），（三）$\implies$（二），（三）$\implies$（五），（三）$\implies$（六），（四）$\implies$（二），（四）$\implies$（五），（四）$\implies$（六），（四）$\implies$（七），（六）$\implies$（二），（七）$\implies$（二）。
+
+\item 证明：
+\begin{enumerate}
+  \item 有界数列 $\{a_n\}$ 必有一个收敛子列；
+  \item 无上（下）界的数列 $\{a_n\}$ 必有一个子列，其极限为 $+\infty$（$-\infty$）；
+  \item 有界发散数列 $\{a_n\}$ 必有两个子列收敛于不同的数；
+  \item 发散数列 $\{a_n\}$ 必有两个子列有极限，且它们的极限不相同。
+\end{enumerate}
+
+\item 指出下列数集的上确界、下确界，并指出它们是否为该集合的最大值与最小值：
+\begin{enumerate}
+  \item $\{-1, 3, 8, 9, 20000\}$；
+  \item $\{a_1, a_2, \cdots, a_n\}$；
+  \item $\{x \in \mathbb{Q} \mid x^2 < 3\}$；
+  \item $\left\{x \;\middle|\; \sin \frac{\pi}{x} = 0, x > 0\right\}$；
+  \item $\left\{\sin \frac{\pi}{n} \;\middle|\; n \in \mathbb{N}\right\}$；
+  \item $\left\{\left(1 + \frac{1}{n}\right)^n \;\middle|\; n \in \mathbb{N}\right\}$；
+  \item $\left\{x \;\middle|\; x > \left(1 + \frac{1}{n}\right)^n, n \in \mathbb{N}\right\}$；
+  \item $\{x \mid |\ln x| < 1\}$。
+\end{enumerate}
+
+\item 设函数 $f$ 在 $[a,b]$ 上有定义，$x_0 \in [a,b]$，如果 $\exists \delta_{x_0} > 0, M_{x_0} > 0$，使得
+\[
+|f(x)| \leqslant M_{x_0},\quad \forall x \in (x_0 - \delta_{x_0}, x_0 + \delta_{x_0}) \cap [a,b],
+\]
+则称 $f$ 在 $x_0$ 近旁有界。证明：如果 $f$ 在 $[a,b]$ 上每一点近旁有界，则 $f$ 在 $[a,b]$ 上有界，即 $\exists M > 0$，使得
+\[
+|f(x)| \leqslant M,\quad \forall x \in [a,b].
+\]
+
+\item 
+\begin{enumerate}
+  \item 验证：数集 $\left\{(-1)^n + \frac{1}{n}\right\}$ 有且只有两个聚点 $1$ 与 $-1$；
+  \item 证明：任何有限数集都无聚点；
+  \item 在直线上，证明：$x_0$ 为 $A$ 的聚点 $\iff x_0$ 的开邻域 $U$，均含 $A$ 中无限个点。
+\end{enumerate}
+
+\item 设 $\{[a_n, b_n] \mid n \in \mathbb{N}\}$ 为一个严格闭区间套，即满足
+\[
+a_1 < a_2 < \cdots < a_n < b_n < \cdots < b_2 < b_1,
+\]
+且 $\lim\limits_{n\to+\infty} (b_n - a_n) = 0$。证明：$\exists_1 \xi \in (a_n, b_n), \forall n \in \mathbb{N}$，即 $\xi \in \bigcap\limits_{n=1}^\infty (a_n, b_n)$。
+
+\item 证明：
+\begin{enumerate}
+  \item 单调增（减）数列 $\{x_n\}$，若它无上（下）界，则集合 $\{x_n \mid n \in \mathbb{N}\}$ 无聚点；
+  \item 单调增（减）有上（下）界的数列 $\{x_n\}$，当集合 $\{x_n \mid n \in \mathbb{N}\}$ 为有限集时，它无聚点；当集合 $\{x_n \mid n \in \mathbb{N}\}$ 为无限集时，它有惟一的聚点 $\lim\limits_{n\to+\infty} x_n = \sup\{x_n \mid n \in \mathbb{N}\}$（$\inf\{x_n \mid n \in \mathbb{N}\}$）。
+\end{enumerate}
+
+\item 证明：
+\begin{enumerate}
+  \item 直线上两两不相交的开区间族是至多可数个；
+  \item 直线上有理开区间（两个端点都为有理数）族至多可数个；
+  \item 直线上以有理点为中心，正有理数为半径的开区间族至多可数个。
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 1.3}
+\item 证明：直线上任何区间 $I$（开的，闭的，半开半闭的）都是连通的，即
+\[
+I \neq (U \cap I) \cup (V \cap I),
+\]
+其中 $U, V$ 为直线上的开集，但 $(U \cap I) \cap (V \cap I) = \varnothing$，$U \cap I \neq \varnothing$，$V \cap I \neq \varnothing$。（提示：应用确界定理）
+
+\item 若函数 $f: \mathbb{R} \to \mathbb{R}$ 逐点严格增（即 $\forall x \in \mathbb{R}$，$\exists \delta > 0$，当 $x_1, x_2 \in (x - \delta, x + \delta)$ 且 $x_1 < x < x_2$ 时，必有 $f(x_1) < f(x) < f(x_2)$），则 $f$ 在 $\mathbb{R}$ 上严格增（即 $\forall x_1, x_2 \in \mathbb{R}$，当 $x_1 < x_2$ 时，必有 $f(x_1) < f(x_2)$）。（提示：应用实数连续性等价命题）
+
+\item 应用反证法与闭区间套原理证明：直线上任何开区间（有穷开区间或无穷开区间）不能表示成至多可数个两两不相交的闭区间的并。如果将“闭区间”改为“闭集”，上述结论是否仍正确。
+
+\item 设 $f: \mathbb{R} \to \mathbb{R}$ 为实函数，如果 $\forall x_0 \in \mathbb{R}$ 都为 $f$ 的极大（小）值点，即 $\exists \delta > 0$，当 $x \in (x_0 - \delta, x_0 + \delta)$ 时，有
+\[
+f(x) \leqslant f(x_0)\quad (f(x) \geqslant f(x_0)),
+\]
+则 $f$ 的函数值的全体 $\{f(x) \mid x \in \mathbb{R}\}$ 为至多可数集。
+
+如果上述“$f$ 的极大（小）值点”改为“$f$ 的极大或极小值点”，其结论是否仍成立。
+\end{exblock}

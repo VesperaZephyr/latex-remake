@@ -1,0 +1,1233 @@
+\section{化二重积分为累次积分}\label{sec:10.3}
+
+在第 \ref{sec:10.1} 节中，我们建立了二重积分的定义，并且证明了二重积分具有类似于定积分的许多性质。
+但是，直接由定义计算二重积分，即使对比较简单的函数与区域来说，也是很困难的。
+为了求出二重积分的值，必须寻找更方便的计算方法。
+在微积分学中，计算重积分的基本方法是：把重积分化为一连串的一元函数的定积分（通常称为累次积分或多次积分）来计算。
+本节我们来讨论如何把二重积分化为两次定积分来计算。
+
+首先，我们讨论在闭矩形区间上的情形。
+
+\begin{theorem}\label{thm:10.3.1}
+设 $I = [a, b] \times [c, d]$ 为 $\mathbb{R}^2$ 中的闭区间，$f\colon I \to \mathbb{R}$ 可积，则单变量函数
+\[
+I_1(x) = \overline{\int_c^d} f(x, y)\,\mathrm{d}y, \quad I_2(x) = \underline{\int_c^d} f(x, y)\,\mathrm{d}y
+\]
+在 $[a, b]$ 上都可积，且
+\[
+\int_a^b \overline{\int_c^d} f(x, y)\,\mathrm{d}y\,\mathrm{d}x = \int_a^b \underline{\int_c^d} f(x, y)\,\mathrm{d}y\,\mathrm{d}x = \iint_I f(x, y)\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{theorem}
+
+\begin{proof}
+设 $T_1 = \{a = x_0 < x_1 < \cdots < x_m = b\}$ 与 $T_2 = \{c = y_0 < y_1 < \cdots < y_k = d\}$ 分别为 $[a, b]$ 与 $[c, d]$ 的任意分割。
+它们构成了闭区间 $I$ 的一个网格分割 $T = T_1 \times T_2$。
+记
+\[
+I_{ij} = [x_{i-1}, x_i] \times [y_{j-1}, y_j], \quad v(I_{ij}) = \Delta x_i \Delta y_j = (x_i - x_{i-1})(y_j - y_{j-1}),
+\]
+\[
+m_{ij} = \inf_{(x, y) \in I_{ij}} f(x, y), \quad M_{ij} = \sup_{(x, y) \in I_{ij}} f(x, y).
+\]
+对于固定的 $x \in [x_{i-1}, x_i]$，记
+\[
+m_j(x) = \inf_{y \in [y_{j-1}, y_j]} f(x, y), \quad M_j(x) = \sup_{y \in [y_{j-1}, y_j]} f(x, y).
+\]
+显然对任意 $y \in [y_{j-1}, y_j]$，恒有 $m_{ij} \leqslant m_j(x) \leqslant f(x, y) \leqslant M_j(x) \leqslant M_{ij}$。
+从而根据上、下积分的定义与性质，有
+\[
+\sum_{j=1}^k m_{ij} \Delta y_j \leqslant \sum_{j=1}^k m_j(x) \Delta y_j \leqslant \underline{\int_c^d} f(x, y)\,\mathrm{d}y \leqslant \overline{\int_c^d} f(x, y)\,\mathrm{d}y \leqslant \sum_{j=1}^k M_j(x) \Delta y_j \leqslant \sum_{j=1}^k M_{ij} \Delta y_j.
+\]
+上式对任意 $x \in [x_{i-1}, x_i]$ 均成立。
+故在区间 $[x_{i-1}, x_i]$ 上分别取 $I_1(x) = \overline{\int_c^d} f(x, y)\,\mathrm{d}y$ 与 $I_2(x) = \underline{\int_c^d} f(x, y)\,\mathrm{d}y$ 的下确界与上确界，即知
+\[
+\sum_{j=1}^k m_{ij} \Delta y_j \leqslant \inf_{x \in [x_{i-1}, x_i]} I_2(x) \leqslant \sup_{x \in [x_{i-1}, x_i]} I_1(x) \leqslant \sum_{j=1}^k M_{ij} \Delta y_j.
+\]
+两边同乘以 $\Delta x_i$，并对 $i = 1, 2, \dots, m$ 求和，得
+\[
+s(T, f) = \sum_{i=1}^m \sum_{j=1}^k m_{ij} \Delta x_i \Delta y_j \leqslant s(T_1, I_2) \leqslant s(T_1, I_1) \leqslant S(T_1, I_1) \leqslant S(T, f).
+\]
+同理亦有
+\[
+s(T, f) \leqslant s(T_1, I_2) \leqslant S(T_1, I_2) \leqslant S(T_1, I_1) \leqslant S(T, f).
+\]
+因 $f$ 在 $I$ 上可积，故当 $\|T\| \to 0$ 时，Darboux 和极限存在且
+\[
+\lim_{\|T\| \to 0} s(T, f) = \lim_{\|T\| \to 0} S(T, f) = \iint_I f(x, y)\,\mathrm{d}x\mathrm{d}y.
+\]
+注意 $\|T_1\| \leqslant \|T\|$，由夹逼准则立即推得：$I_1(x)$ 与 $I_2(x)$ 在 $[a, b]$ 上均满足 Riemann 可积准则，从而在 $[a, b]$ 上可积，且极限值恰为 $\iint_I f(x, y)\,\mathrm{d}x\mathrm{d}y$。
+\end{proof}
+
+由定理 \ref{thm:10.3.1} 立即得到下面两个重要推论：
+
+\begin{theorem}[闭区间上化二重积分为累次积分]\label{thm:10.3.2}
+设 $f$ 在闭区间 $I = [a, b] \times [c, d]$ 上可积。如果对每个固定的 $x \in [a, b]$，函数 $f(x, \cdot)$ 在 $[c, d]$ 上都可积，则
+\[
+\iint_I f(x, y)\,\mathrm{d}x\mathrm{d}y = \int_a^b \mathrm{d}x \int_c^d f(x, y)\,\mathrm{d}y = \int_a^b \left( \int_c^d f(x, y)\,\mathrm{d}y \right) \mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+因 $f(x, \cdot)$ 在 $[c, d]$ 上可积，故对每个 $x \in [a, b]$，其上积分与下积分相等：
+\[
+\overline{\int_c^d} f(x, y)\,\mathrm{d}y = \underline{\int_c^d} f(x, y)\,\mathrm{d}y = \int_c^d f(x, y)\,\mathrm{d}y.
+\]
+代入定理 \ref{thm:10.3.1} 即得所证。
+\end{proof}
+
+同理，若先对 $x$ 积分再对 $y$ 积分，亦有完全对称的结论：
+
+\begin{theorem}[闭区间上化二重积分为累次积分]\label{thm:10.3.3}
+设 $f$ 在 $I = [a, b] \times [c, d]$ 上可积，且对每个 $x \in [a, b]$，$f(x, \cdot)$ 在 $[c, d]$ 上可积；又对每个 $y \in [c, d]$，$f(\cdot, y)$ 在 $[a, b]$ 上可积，则
+\[
+\iint_I f(x, y)\,\mathrm{d}x\mathrm{d}y = \int_a^b \mathrm{d}x \int_c^d f(x, y)\,\mathrm{d}y = \int_c^d \mathrm{d}y \int_a^b f(x, y)\,\mathrm{d}x.
+\]
+特别地，当 $f$ 在 $I$ 上连续时，上述可积性条件自然满足，累次积分顺序可以任意交换。
+\end{theorem}
+
+现在，我们把闭矩形区间上的结论推广到一般的有界有面积集 $\Omega \subset \mathbb{R}^2$ 上。
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.0]
+  \draw[->] (-0.3,0) -- (5.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,4.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \coordinate (A) at (1.0,0);
+  \coordinate (X) at (2.2,0);
+  \coordinate (B) at (4.4,0);
+  \coordinate (C) at (0,0.8);
+  \coordinate (Y) at (0,2.3);
+  \coordinate (D) at (0,3.6);
+
+  \node[below] at (A) {$a$};
+  \node[below] at (X) {$x$};
+  \node[below] at (B) {$b$};
+  \node[left] at (C) {$c$};
+  \node[left] at (Y) {$y$};
+  \node[left] at (D) {$d$};
+
+  \draw[dashed] (1.0,0) -- (1.0,3.8);
+  \draw[dashed] (4.4,0) -- (4.4,3.8);
+  \draw[dashed] (0,0.8) -- (4.8,0.8);
+  \draw[dashed] (0,3.6) -- (4.8,3.6);
+
+  \draw[dashed] (2.2,0) -- (2.2,1.35);
+  \draw[dashed] (2.2,2.95) -- (2.2,3.8);
+  \draw[dashed] (0,2.3) -- (1.35,2.3);
+  \draw[dashed] (3.65,2.3) -- (4.8,2.3);
+
+  \draw[thick, fill=black!15] 
+    (1.3, 2.0) .. controls (1.5, 2.9) and (2.5, 3.1) .. (3.2, 2.8)
+    .. controls (3.6, 2.6) and (3.8, 2.3) .. (4.2, 2.7)
+    -- (4.2, 1.4)
+    .. controls (3.8, 1.8) and (3.6, 1.5) .. (3.2, 1.3)
+    .. controls (2.5, 1.0) and (1.5, 1.2) .. (1.3, 2.0) -- cycle;
+
+  \draw[very thick] (2.2, 1.15) -- (2.2, 2.97);
+  \node[right] at (2.2, 1.7) {$\Omega_x$};
+
+  \draw[very thick] (1.33, 2.3) -- (3.68, 2.3);
+  \node[above] at (1.8, 2.3) {$\Omega^y$};
+
+  \node at (2.9, 2.0) {$\Omega$};
+
+  \draw[decorate, decoration={brace, mirror, amplitude=5pt}] (1.0, -0.3) -- (4.4, -0.3) node[midway, below=5pt] {$I$};
+  \draw[decorate, decoration={brace, amplitude=5pt}] (-0.3, 0.8) -- (-0.3, 3.6) node[midway, left=5pt] {$J$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.1}
+\end{figure}
+
+\begin{theorem}[有界集上化二重积分为累次积分]\label{thm:10.3.4}
+设 $\Omega \subset \mathbb{R}^2$ 为有面积集，$f\colon \Omega \to \mathbb{R}$ 有界且连续。记 $\Omega$ 在 $x$ 轴上的垂直投影（图 \ref{fig:10.3.1}）为
+\[
+I = \{x \in \mathbb{R} \mid \exists y, \text{ s.t. } (x, y) \in \Omega\}.
+\]
+如果对每个 $x \in I$，截线集 $\Omega_x = \{y \in \mathbb{R} \mid (x, y) \in \Omega\}$ 为一个或有限个区间的并（可以退缩为单点），则
+\[
+\iint_\Omega f = \int_I \mathrm{d}x \int_{\Omega_x} f(x, y)\,\mathrm{d}y.
+\]
+同样，记 $\Omega$ 在 $y$ 轴上的垂直投影（图 \ref{fig:10.3.1}）为
+\[
+J = \{y \in \mathbb{R} \mid \exists x, \text{ s.t. } (x, y) \in \Omega\}.
+\]
+如果对每个 $y \in J$，截线集 $\Omega^y = \{x \in \mathbb{R} \mid (x, y) \in \Omega\}$ 为一个或有限个区间的并（可以退缩为单点），则
+\[
+\iint_\Omega f = \int_J \mathrm{d}y \int_{\Omega^y} f(x, y)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+作闭区间 $[a, b] \times [c, d] \supset \Omega$（图 \ref{fig:10.3.1}）。
+因为 $f$ 在 $\Omega$ 上有界连续，并且 $\Omega \subset \mathbb{R}^2$ 为有面积集，根据定理 \ref{thm:10.2.6}，$f$ 在 $\Omega$ 上可积。
+再由定义 \ref{def:10.2.1}，零延拓函数 $f_\Omega$ 在 $[a, b] \times [c, d]$ 上可积，且
+\[
+\iint_\Omega f = \iint_{[a, b] \times [c, d]} f_\Omega.
+\]
+当 $x \in I$ 时，函数 $f(x, \cdot)$ 在区间 $\Omega_x$ 上有界且连续，所以 $f(x, \cdot)$ 在 $\Omega_x$ 上可积。
+又因在 $[c, d] \setminus \Omega_x$ 上 $f_\Omega(x, y) = 0$，故 $f_\Omega(x, \cdot)$ 在 $[c, d]$ 上可积，且
+\[
+\int_c^d f_\Omega(x, y)\,\mathrm{d}y = \int_{\Omega_x} f(x, y)\,\mathrm{d}y.
+\]
+当 $x \in [a, b] \setminus I$ 时，对一切 $y \in [c, d]$ 均有 $f_\Omega(x, y) = 0$，从而
+\[
+\int_c^d f_\Omega(x, y)\,\mathrm{d}y = 0.
+\]
+根据定理 \ref{thm:10.3.2}，有
+\begin{align*}
+\iint_\Omega f &= \iint_{[a, b] \times [c, d]} f_\Omega = \int_a^b \mathrm{d}x \int_c^d f_\Omega(x, y)\,\mathrm{d}y \\
+&= \int_I \mathrm{d}x \int_c^d f_\Omega(x, y)\,\mathrm{d}y = \int_I \mathrm{d}x \int_{\Omega_x} f(x, y)\,\mathrm{d}y.
+\end{align*}
+对称地可证第二式。
+\end{proof}
+
+考虑应用中最常见的两类特殊区域（通常称为 $X$-型区域与 $Y$-型区域）：
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \coordinate (A) at (0.9,0);
+  \coordinate (X) at (1.9,0);
+  \coordinate (B) at (3.5,0);
+  \node[below] at (A) {$a$};
+  \node[below] at (X) {$x$};
+  \node[below] at (B) {$b$};
+
+  \draw[dashed] (0, 0.8) node[left] {$c$} -- (3.8, 0.8);
+  \draw[dashed] (0, 3.2) node[left] {$d$} -- (3.8, 3.2);
+
+  \draw[dashed] (0.9, 0) -- (0.9, 1.0);
+  \draw[dashed] (3.5, 0) -- (3.5, 1.1);
+
+  \draw[thick, fill=black!15]
+    (0.9, 1.0) .. controls (1.8, 1.6) and (2.6, 0.8) .. (3.5, 1.1)
+    -- (3.5, 2.9)
+    .. controls (2.6, 3.2) and (1.8, 2.6) .. (0.9, 2.7)
+    -- cycle;
+
+  \draw[dashed] (1.9,0) -- (1.9, 1.25);
+  \draw[very thick] (1.9, 1.25) -- (1.9, 2.85);
+  \node[right] at (1.9, 2.1) {$\Omega_x$};
+
+  \node[below] at (3.0, 1.0) {$y=y_1(x)$};
+  \node[above] at (3.0, 2.9) {$y=y_2(x)$};
+  \node at (3.1, 2.0) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.2}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[dashed] (0, 0.9) node[left] {$c$} -- (3.8, 0.9);
+  \draw[dashed] (0, 3.2) node[left] {$d$} -- (3.8, 3.2);
+
+  \draw[dashed] (1.5, 0) -- (1.5, 3.5);
+  \draw[dashed] (3.5, 0) -- (3.5, 3.5);
+
+  \draw[thick, fill=black!15]
+    (1.7, 0.9) .. controls (1.5, 1.8) and (2.2, 2.4) .. (1.8, 3.2)
+    -- (3.4, 3.2)
+    .. controls (3.8, 2.4) and (3.1, 1.8) .. (3.3, 0.9)
+    -- cycle;
+
+  \draw[dashed] (0, 2.1) node[left] {$y$} -- (1.85, 2.1);
+  \draw[very thick] (1.85, 2.1) -- (3.3, 2.1);
+  \node[above] at (2.6, 2.1) {$\Omega^y$};
+
+  \node[left] at (1.7, 1.4) {$x=x_1(y)$};
+  \node[right] at (3.3, 1.4) {$x=x_2(y)$};
+  \node at (2.7, 1.3) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.3}
+\end{minipage}
+\end{figure}
+
+\begin{theorem}[有界集上化二重积分为累次积分]\label{thm:10.3.5}
+设
+\[
+\Omega = \{(x, y) \in \mathbb{R}^2 \mid y_1(x) \leqslant y \leqslant y_2(x), a \leqslant x \leqslant b\},
+\]
+其中函数 $y_1$ 与 $y_2$ 在 $[a, b]$ 上连续（图 \ref{fig:10.3.2}），函数 $f$ 在 $\Omega$ 上可积。
+如果对每个 $x \in [a, b]$，单变量积分 $\int_{y_1(x)}^{y_2(x)} f(x, y)\,\mathrm{d}y$ 存在，则
+\[
+\iint_\Omega f = \int_a^b \mathrm{d}x \int_{y_1(x)}^{y_2(x)} f(x, y)\,\mathrm{d}y.
+\]
+\end{theorem}
+
+\begin{proof}
+取闭区间 $[a, b] \times [c, d] \supset \Omega$。
+对于固定的 $x \in [a, b]$，因为 $f(x, \cdot)$ 在 $[y_1(x), y_2(x)]$ 上可积，且在 $[c, y_1(x))$ 与 $(y_2(x), d]$ 上零延拓值恒为 $0$，故 $f_\Omega(x, \cdot)$ 在 $[c, d]$ 上可积，且
+\begin{align*}
+\int_c^d f_\Omega(x, y)\,\mathrm{d}y &= \int_c^{y_1(x)} f_\Omega(x, y)\,\mathrm{d}y + \int_{y_1(x)}^{y_2(x)} f_\Omega(x, y)\,\mathrm{d}y + \int_{y_2(x)}^d f_\Omega(x, y)\,\mathrm{d}y \\
+&= 0 + \int_{y_1(x)}^{y_2(x)} f(x, y)\,\mathrm{d}y + 0 = \int_{y_1(x)}^{y_2(x)} f(x, y)\,\mathrm{d}y.
+\end{align*}
+根据定理 \ref{thm:10.3.2}，
+\[
+\iint_\Omega f = \int_a^b \mathrm{d}x \int_c^d f_\Omega(x, y)\,\mathrm{d}y = \int_a^b \mathrm{d}x \int_{y_1(x)}^{y_2(x)} f(x, y)\,\mathrm{d}y. \qedhere
+\]
+\end{proof}
+
+对称地，对于 $Y$-型区域（图 \ref{fig:10.3.3}），有：
+
+\begin{theorem}[有界集上化二重积分为累次积分]\label{thm:10.3.6}
+设
+\[
+\Omega = \{(x, y) \in \mathbb{R}^2 \mid x_1(y) \leqslant x \leqslant x_2(y), c \leqslant y \leqslant d\},
+\]
+其中函数 $x_1$ 与 $x_2$ 在 $[c, d]$ 上连续（图 \ref{fig:10.3.3}），函数 $f$ 在 $\Omega$ 上可积。
+如果对每个 $y \in [c, d]$，单变量积分 $\int_{x_1(y)}^{x_2(y)} f(x, y)\,\mathrm{d}x$ 存在，则
+\[
+\iint_\Omega f = \int_c^d \mathrm{d}y \int_{x_1(y)}^{x_2(y)} f(x, y)\,\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+类似定理 \ref{thm:10.3.5} 的证明。
+\end{proof}
+
+下面我们通过一系列典型例题，详细介绍化二重积分为累次积分的具体计算方法、技巧与几何应用。
+
+\begin{example}\label{ex:10.3.1}
+计算二重积分
+\[
+\iint_{\substack{0 \leqslant x \leqslant 1 \\ 0 \leqslant y \leqslant 1}} x \mathrm{e}^{xy}\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{solution}
+积分区域为闭矩形区间 $I = [0, 1] \times [0, 1]$，被积函数连续。
+若先对 $x$ 积分，需要用分部积分法；而若先对 $y$ 积分，计算则极为简便：
+\begin{align*}
+\iint_I x \mathrm{e}^{xy}\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}x \int_0^1 x \mathrm{e}^{xy}\,\mathrm{d}y = \int_0^1 \left[ \mathrm{e}^{xy} \Big|_{y=0}^{y=1} \right] \mathrm{d}x \\
+&= \int_0^1 (\mathrm{e}^x - 1)\,\mathrm{d}x = (\mathrm{e}^x - x)\Big|_0^1 = \mathrm{e} - 2. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.2}
+计算二重积分
+\[
+\iint_{[0, \pi] \times [0, 1]} y \sin(xy)\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{solution}
+先对 $x$ 积分再对 $y$ 积分：
+\begin{align*}
+\iint_{[0, \pi] \times [0, 1]} y \sin(xy)\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}y \int_0^\pi y \sin(xy)\,\mathrm{d}x = \int_0^1 \left[ -\cos(xy) \Big|_{x=0}^{x=\pi} \right] \mathrm{d}y \\
+&= \int_0^1 (1 - \cos(\pi y))\,\mathrm{d}y = \left( y - \frac{\sin(\pi y)}{\pi} \right) \Bigg|_0^1 = 1. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.3}
+计算
+\[
+\iint_{\substack{0 \leqslant x \leqslant 1 \\ 0 \leqslant y \leqslant 1}} x \mathrm{e}^{x^2+y^2}\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{solution}
+由于被积函数可以分离变量 $x \mathrm{e}^{x^2+y^2} = (x \mathrm{e}^{x^2})(\mathrm{e}^{y^2})$，且积分区域为矩形，故累次积分可拆为两个独立的单变量定积分之积：
+\[
+\iint_{\substack{0 \leqslant x \leqslant 1 \\ 0 \leqslant y \leqslant 1}} x \mathrm{e}^{x^2+y^2}\,\mathrm{d}x\mathrm{d}y = \left( \int_0^1 x \mathrm{e}^{x^2}\,\mathrm{d}x \right) \left( \int_0^1 \mathrm{e}^{y^2}\,\mathrm{d}y \right) = \frac{1}{2}(\mathrm{e} - 1) \int_0^1 \mathrm{e}^{y^2}\,\mathrm{d}y.
+\]
+注意 $\int_0^1 \mathrm{e}^{y^2}\,\mathrm{d}y$ 的原函数不能用初等函数表示，但作为定积分其值是一个确定的常数。
+\end{solution}
+
+\begin{example}\label{ex:10.3.4}
+计算二重积分
+\[
+\iint_\Omega x y^3 \mathrm{e}^{x^2+y^2}\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega = [0, 1] \times [0, 1]$。
+\end{example}
+
+\begin{solution}
+利用乘积可分离性，有
+\begin{align*}
+\iint_\Omega x y^3 \mathrm{e}^{x^2+y^2}\,\mathrm{d}x\mathrm{d}y &= \left( \int_0^1 x \mathrm{e}^{x^2}\,\mathrm{d}x \right) \left( \int_0^1 y^3 \mathrm{e}^{y^2}\,\mathrm{d}y \right) \\
+&= \frac{1}{2}(\mathrm{e} - 1) \cdot \frac{1}{2} \int_0^1 t \mathrm{e}^t\,\mathrm{d}t \quad (\text{令 } t = y^2) \\
+&= \frac{1}{4}(\mathrm{e} - 1) \left[ t \mathrm{e}^t \Big|_0^1 - \int_0^1 \mathrm{e}^t\,\mathrm{d}t \right] \\
+&= \frac{1}{4}(\mathrm{e} - 1) (\mathrm{e} - (\mathrm{e} - 1)) = \frac{1}{4}(\mathrm{e} - 1). \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.5}
+计算二重积分
+\[
+\iint_{\substack{0 \leqslant x \leqslant 2 \\ 0 \leqslant y \leqslant 2}} [x + y]\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $[u]$ 表示不超过 $u$ 的最大整数。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (-0.2,0) -- (2.6,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,2.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick] (0,0) rectangle (2,2);
+  \node[left] at (0,1) {$1$};
+  \node[left] at (0,2) {$2$};
+  \node[below] at (1,0) {$1$};
+  \node[below] at (2,0) {$2$};
+
+  \draw[thick] (0,1) -- (1,0);
+  \draw[thick] (0,2) -- (2,0);
+  \draw[thick] (1,2) -- (2,1);
+
+  \draw[dashed] (1,0) -- (1,2);
+
+  \node[above right, font=\footnotesize] at (0.3, 0.6) {$y=1-x$};
+  \node[above right, font=\footnotesize] at (0.8, 1.1) {$y=2-x$};
+  \node[above right, font=\footnotesize] at (1.3, 1.6) {$y=3-x$};
+  \draw[thick] (1.7, 2.3) -- (2.3, 1.7) node[above right, font=\footnotesize] {$y=4-x$};
+  \fill (2,2) circle (1.2pt) node[above left, font=\footnotesize] {$(2,2)$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.4}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (-0.2,0) -- (2.6,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,2.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \node[left] at (0,1) {$1$};
+  \node[left] at (0,2) {$2$};
+  \node[below] at (1,0) {$1$};
+  \node[below] at (2,0) {$2$};
+
+  \draw[thick] (0,0) rectangle (2,2);
+  \draw[thick] (0,1) -- (1,0);
+  \draw[thick] (0,2) -- (2,0);
+  \draw[thick] (1,2) -- (2,1);
+
+  \fill[black!20] (0,0) -- (1,0) -- (0,1) -- cycle;
+  \node[font=\footnotesize] at (0.35, 0.35) {$\Omega_1$};
+  \node[font=\footnotesize] at (0.2, 0.65) {$f=0$};
+
+  \node[font=\footnotesize] at (0.9, 0.25) {$\Omega_2$};
+  \node[font=\footnotesize] at (0.45, 0.95) {$f=1$};
+  \node[rotate=-45, font=\tiny] at (0.8, 0.7) {$x+y=1$};
+
+  \fill[pattern=horizontal lines, pattern color=black!70] (0,2) -- (2,0) -- (2,1) -- (1,2) -- cycle;
+  \node[font=\footnotesize] at (1.6, 0.5) {$\Omega_3$};
+  \node[font=\footnotesize] at (0.75, 1.75) {$f=2$};
+  \node[rotate=-45, font=\tiny] at (1.2, 1.2) {$x+y=2$};
+
+  \fill[pattern=north east lines, pattern color=black!80] (1,2) -- (2,1) -- (2,2) -- cycle;
+  \node[font=\footnotesize] at (1.8, 1.7) {$\Omega_4$};
+  \node[font=\footnotesize] at (1.4, 1.85) {$f=3$};
+  \node[rotate=-45, font=\tiny] at (1.65, 1.65) {$x+y=3$};
+
+  \draw[thick] (1.7, 2.3) -- (2.3, 1.7);
+  \fill (2,2) circle (1.2pt) node[above left, font=\footnotesize] {$(2,2)$};
+  \node[above right, font=\footnotesize] at (2.05, 1.95) {$x+y=4$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.5}
+\end{minipage}
+\end{figure}
+
+\begin{solution}
+本题给出两种解法。
+
+\textbf{解法 1}：从图 \ref{fig:10.3.4} 可知，当 $0 \leqslant x \leqslant 1$ 时，内层积分中 $y$ 从 $0$ 到 $2$ 分为三段：$[0, 1-x]$（此时 $0 \leqslant x+y < 1$，$f=0$）、$[1-x, 2-x]$（此时 $1 \leqslant x+y < 2$，$f=1$）和 $[2-x, 2]$（此时 $2 \leqslant x+y \leqslant 3$，$f=2$）；
+当 $1 \leqslant x \leqslant 2$ 时，内层积分中 $y$ 从 $0$ 到 $2$ 分为三段：$[0, 2-x]$（$f=1$）、$[2-x, 3-x]$（$f=2$）和 $[3-x, 2]$（$f=3$）。
+于是
+\begin{align*}
+\iint_{\substack{0 \leqslant x \leqslant 2 \\ 0 \leqslant y \leqslant 2}} [x+y]\,\mathrm{d}x\mathrm{d}y &= \int_0^2 \mathrm{d}x \int_0^2 [x+y]\,\mathrm{d}y \\
+&= \int_0^1 \mathrm{d}x \int_0^2 [x+y]\,\mathrm{d}y + \int_1^2 \mathrm{d}x \int_0^2 [x+y]\,\mathrm{d}y \\
+&= \int_0^1 \left[ \int_0^{1-x} 0\,\mathrm{d}y + \int_{1-x}^{2-x} 1\,\mathrm{d}y + \int_{2-x}^2 2\,\mathrm{d}y \right] \mathrm{d}x \\
+&\quad + \int_1^2 \left[ \int_0^{2-x} 1\,\mathrm{d}y + \int_{2-x}^{3-x} 2\,\mathrm{d}y + \int_{3-x}^2 3\,\mathrm{d}y \right] \mathrm{d}x \\
+&= \int_0^1 [(2-x) - (1-x) + 2(2 - (2-x))]\,\mathrm{d}x \\
+&\quad + \int_1^2 \{(2-x) + 2[(3-x)-(2-x)] + 3[2-(3-x)]\}\,\mathrm{d}x \\
+&= \int_0^1 (1 + 2x)\,\mathrm{d}x + \int_1^2 (1 + 2x)\,\mathrm{d}x = \int_0^2 (1 + 2x)\,\mathrm{d}x = (x + x^2)\Big|_0^2 = 6.
+\end{align*}
+
+\textbf{解法 2}：从图 \ref{fig:10.3.5} 还可知，$\Omega = [0, 2]^2$ 上的二重积分等于 $\Omega_1, \Omega_2, \Omega_3, \Omega_4$ 上二重积分之和。
+由几何面积易知：
+\[
+v(\Omega_1) = \frac{1}{2} \cdot 1 \cdot 1 = \frac{1}{2}, \quad v(\Omega_2) = \frac{1}{2} \cdot 2^2 - \frac{1}{2} = \frac{3}{2},
+\]
+\[
+v(\Omega_4) = \frac{1}{2} \cdot 1 \cdot 1 = \frac{1}{2}, \quad v(\Omega_3) = 4 - v(\Omega_1) - v(\Omega_2) - v(\Omega_4) = 4 - \frac{1}{2} - \frac{3}{2} - \frac{1}{2} = \frac{3}{2}.
+\]
+而在各个子区域上，$f(x, y) = [x+y]$ 恰好为常数 $0, 1, 2, 3$（不计边界零面积集）。从而
+\begin{align*}
+\iint_\Omega [x+y]\,\mathrm{d}x\mathrm{d}y &= 0 \cdot v(\Omega_1) + 1 \cdot v(\Omega_2) + 2 \cdot v(\Omega_3) + 3 \cdot v(\Omega_4) \\
+&= 0 \cdot \frac{1}{2} + 1 \cdot \frac{3}{2} + 2 \cdot \frac{3}{2} + 3 \cdot \frac{1}{2} = \frac{3}{2} + 3 + \frac{3}{2} = 6. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.6}
+计算二重积分
+\[
+\iint_\Omega x^2 y^2\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 为由 $y = \frac{b}{a}x$, $y = 0$, $x = a$ 三条直线围成的三角形（图 \ref{fig:10.3.6}，$a > 0, b > 0$）。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.1]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \coordinate (A) at (3.0,0);
+  \coordinate (B) at (3.0,2.4);
+  \coordinate (Y) at (0,1.5);
+  \coordinate (X) at (1.875,0);
+
+  \draw[thick, fill=black!20] (0,0) -- (3.0,0) -- (3.0,2.4) -- cycle;
+  \draw[very thick] (0,0) -- (3.0,2.4) node[midway, above left] {$y=\frac{b}{a}x$};
+  \draw[thick] (3.0,0) -- (3.0,2.4);
+
+  \node[below] at (A) {$a$};
+  \node[left] at (0,2.4) {$b$};
+  \draw[dashed] (0,2.4) -- (3.0,2.4) node[above right] {$(a,b)$};
+
+  \draw[dashed] (X) node[below] {$x$} -- (1.875,1.5);
+  \draw[very thick] (1.875,0) -- (1.875,1.5);
+  \node[right] at (1.875,0.75) {$\Omega_x$};
+
+  \draw[dashed] (Y) node[left] {$y$} -- (1.875,1.5);
+  \draw[very thick] (1.875,1.5) -- (3.0,1.5);
+  \node[above] at (2.4,1.5) {$\Omega^y$};
+
+  \node at (1.0, 0.4) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.6}
+\end{figure}
+
+\begin{solution}
+本题给出两种次序的解法。
+
+\textbf{解法 1}（看成 $X$-型区域，先对 $y$ 积分）：
+\[
+\Omega = \left\{ (x, y) \in \mathbb{R}^2 \;\middle|\; 0 \leqslant y \leqslant \frac{b}{a}x, \; 0 \leqslant x \leqslant a \right\}.
+\]
+\begin{align*}
+\iint_\Omega x^2 y^2\,\mathrm{d}x\mathrm{d}y &= \int_0^a \mathrm{d}x \int_0^{\frac{b}{a}x} x^2 y^2\,\mathrm{d}y = \int_0^a x^2 \left[ \frac{y^3}{3} \Bigg|_0^{\frac{b}{a}x} \right] \mathrm{d}x \\
+&= \frac{1}{3} \left( \frac{b}{a} \right)^3 \int_0^a x^5\,\mathrm{d}x = \frac{b^3}{18 a^3} x^6 \Big|_0^a = \frac{1}{18} a^3 b^3.
+\end{align*}
+
+\textbf{解法 2}（看成 $Y$-型区域，先对 $x$ 积分）：
+\[
+\Omega = \left\{ (x, y) \in \mathbb{R}^2 \;\middle|\; \frac{a}{b}y \leqslant x \leqslant a, \; 0 \leqslant y \leqslant b \right\}.
+\]
+\begin{align*}
+\iint_\Omega x^2 y^2\,\mathrm{d}x\mathrm{d}y &= \int_0^b \mathrm{d}y \int_{\frac{a}{b}y}^a x^2 y^2\,\mathrm{d}x = \int_0^b y^2 \left[ \frac{x^3}{3} \Bigg|_{\frac{a}{b}y}^a \right] \mathrm{d}y \\
+&= \frac{1}{3} \int_0^b y^2 \left( a^3 - \frac{a^3}{b^3} y^3 \right) \mathrm{d}y = \frac{a^3}{3} \left[ \frac{y^3}{3} - \frac{y^6}{6 b^3} \right]_0^b \\
+&= \frac{a^3}{3} \left( \frac{b^3}{3} - \frac{b^3}{6} \right) = \frac{1}{18} a^3 b^3. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.7}
+计算二重积分
+\[
+\iint_\Omega (x^2 + y^2)\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 是由直线 $y = x$, $y = x + a$, $y = a$, $y = 3a$ 所围成的平行四边形（图 \ref{fig:10.3.7}，$a > 0$）。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[dashed] (0,1.0) node[left] {$a$} -- (1.0,1.0);
+  \draw[dashed] (0,3.0) node[left] {$3a$} -- (3.0,3.0);
+  \draw[dashed] (1.0,0) -- (1.0,1.0) node[below=8pt] {$(a,a)$};
+  \draw[dashed] (3.0,0) -- (3.0,3.0);
+
+  \draw[thick, fill=black!10] (0,1.0) -- (2.0,3.0) -- (3.0,3.0) -- (1.0,1.0) -- cycle;
+  \draw[thick] (0,1.0) -- (2.0,3.0) node[midway, above left, rotate=45, font=\footnotesize] {$x=y-a$};
+  \draw[thick] (1.0,1.0) -- (3.0,3.0) node[midway, below right, rotate=45, font=\footnotesize] {$x=y$};
+
+  \draw[dashed] (0,2.0) node[left] {$y$} -- (1.0,2.0);
+  \draw[very thick] (1.0,2.0) -- (2.0,2.0);
+  \node[above] at (1.5,2.0) {$\Omega^y$};
+
+  \node[above] at (2.0,3.0) {\footnotesize $(2a,3a)$};
+  \node[above right] at (2.8,3.0) {\footnotesize $(3a,3a)$};
+  \node at (2.3, 2.4) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.7}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=0.95]
+  \draw[->] (-0.3,0) -- (4.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[dashed] (0,1.0) node[left] {$a$} -- (1.0,1.0);
+  \draw[dashed] (0,3.0) node[left] {$3a$} -- (3.0,3.0);
+  \draw[dashed] (1.0,0) -- (1.0,3.0);
+  \draw[dashed] (2.0,0) -- (2.0,3.0);
+  \draw[dashed] (3.0,0) -- (3.0,3.0);
+
+  \draw[thick] (0,1.0) -- (2.0,3.0) -- (3.0,3.0) -- (1.0,1.0) -- cycle;
+  \draw[thick] (0,1.0) -- (2.0,3.0) node[midway, above left, rotate=45, font=\footnotesize] {$y=x+a$};
+  \draw[thick] (1.0,1.0) -- (3.0,3.0) node[midway, below right, rotate=45, font=\footnotesize] {$y=x$};
+
+  \node[above] at (2.0,3.0) {\footnotesize $(2a,3a)$};
+  \node[above right] at (2.8,3.0) {\footnotesize $(3a,3a)$};
+  \node[below] at (1.0,0) {\footnotesize $(a,a)$};
+
+  \node at (0.5, 1.4) {$\Omega_1$};
+  \node at (1.5, 2.0) {$\Omega_2$};
+  \node at (2.4, 2.6) {$\Omega_3$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.8}
+\end{minipage}
+\end{figure}
+
+\begin{solution}
+从图 \ref{fig:10.3.7} 可看出，先对 $x$ 积分再对 $y$ 积分比较方便：
+对于任意给定的 $y \in [a, 3a]$，$x$ 的变动范围为 $y - a \leqslant x \leqslant y$。从而
+\begin{align*}
+\iint_\Omega (x^2 + y^2)\,\mathrm{d}x\mathrm{d}y &= \int_a^{3a} \mathrm{d}y \int_{y-a}^y (x^2 + y^2)\,\mathrm{d}x = \int_a^{3a} \left[ \frac{x^3}{3} \Bigg|_{y-a}^y + y^2(y - (y - a)) \right] \mathrm{d}y \\
+&= \int_a^{3a} \left[ \frac{y^3}{3} - \frac{(y - a)^3}{3} + a y^2 \right] \mathrm{d}y = \left[ \frac{y^4}{12} - \frac{(y - a)^4}{12} + \frac{a y^3}{3} \right]_a^{3a} \\
+&= \left( \frac{81}{12} a^4 - \frac{16}{12} a^4 + 9 a^4 \right) - \left( \frac{1}{12} a^4 + \frac{1}{3} a^4 \right) = 14 a^4.
+\end{align*}
+
+反之，从图 \ref{fig:10.3.8} 可以看出，如果先对 $y$ 积分再对 $x$ 积分，必须将积分区域 $\Omega$ 分成 $\Omega_1, \Omega_2, \Omega_3$ 三块，肯定比先对 $x$ 积分再对 $y$ 积分复杂得多，越复杂越容易算错。应用第二种方法的具体计算留给读者。
+\end{solution}
+
+\begin{example}\label{ex:10.3.8}
+计算二重积分
+\[
+\iint_\Omega y^2\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega$ 是由摆线 $(x, y) = (a(t - \sin t), a(1 - \cos t))$ 与 $x$ 轴所围成的区域（图 \ref{fig:10.3.9}）。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.1]
+  \draw[->] (-0.5,0) -- (6.8,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,2.7) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick, domain=0:6.283, samples=100, variable=\t, fill=black!15]
+    plot ({0.95*(\t - sin(\t r))}, {0.95*(1 - cos(\t r))}) -- (5.969, 0) -- (0,0) -- cycle;
+
+  \node[below] at (5.969,0) {$2\pi a$};
+  \node[left] at (0,1.9) {$2a$};
+  \node[left] at (0,0.95) {$a$};
+
+  % 滚动圆辅助虚线
+  \draw[dashed] (1.5, 0.95) circle (0.95);
+  \draw[dashed] (1.5, 0) -- (1.5, 0.95);
+  \draw (1.5, 0.95) -- (0.85, 0.3);
+  \draw (1.5, 0.6) arc (-90:-135:0.35) node[midway, below] {$t$};
+  \node[right] at (1.5, 0.5) {$a$};
+
+  \draw[dashed] (0, 1.9) -- (2.98, 1.9);
+  \draw (2.98, 0) -- (2.98, 1.9);
+
+  \fill (2.98, 1.9) circle (1.2pt) node[above] {$(a(t-\sin t), a(1-\cos t))$};
+  \node at (3.5, 1.1) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.9}
+\end{figure}
+
+\begin{solution}
+先对 $y$ 积分再对 $x$ 积分：
+\[
+\iint_\Omega y^2\,\mathrm{d}x\mathrm{d}y = \int_0^{2\pi a} \mathrm{d}x \int_0^{y(x)} y^2\,\mathrm{d}y = \frac{1}{3} \int_0^{2\pi a} y^3(x)\,\mathrm{d}x.
+\]
+利用参数方程做换元：$x = a(t - \sin t)$，$\mathrm{d}x = a(1 - \cos t)\,\mathrm{d}t$，$y = a(1 - \cos t)$。
+当 $x$ 从 $0$ 变到 $2\pi a$ 时，$t$ 从 $0$ 变到 $2\pi$。故
+\begin{align*}
+\iint_\Omega y^2\,\mathrm{d}x\mathrm{d}y &= \frac{1}{3} \int_0^{2\pi} a^3(1 - \cos t)^3 \cdot a(1 - \cos t)\,\mathrm{d}t = \frac{a^4}{3} \int_0^{2\pi} (1 - \cos t)^4\,\mathrm{d}t \\
+&= \frac{a^4}{3} \int_0^{2\pi} \left( 2 \sin^2 \frac{t}{2} \right)^4 \mathrm{d}t = \frac{16 a^4}{3} \int_0^{2\pi} \sin^8 \frac{t}{2}\,\mathrm{d}t \\
+&= \frac{32 a^4}{3} \int_0^\pi \sin^8 u\,\mathrm{d}u = \frac{64 a^4}{3} \int_0^{\frac{\pi}{2}} \sin^8 u\,\mathrm{d}u \\
+&= \frac{64 a^4}{3} \cdot \frac{7!!}{8!!} \cdot \frac{\pi}{2} = \frac{64 a^4}{3} \cdot \frac{7 \cdot 5 \cdot 3 \cdot 1}{8 \cdot 6 \cdot 4 \cdot 2} \cdot \frac{\pi}{2} = \frac{35}{12} \pi a^4. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.9}
+计算二重积分
+\[
+\iint_\Omega x y^2\,\mathrm{d}x\mathrm{d}y,
+\]
+其中 $\Omega = \{(x, y) \mid |x| + |y| \leqslant 1\}$（图 \ref{fig:10.3.10}）。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (-1.5,0) -- (1.6,0) node[below] {$x$};
+  \draw[->] (0,-1.5) -- (0,1.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
+  \fill[black!20] (-1,0) -- (0,1) -- (1,0) -- cycle;
+
+  \node[above] at (0,1) {$(0,1)$};
+  \node[below] at (0,-1) {$\Omega_{\text{下}}$};
+  \node[above left] at (-1,0) {$(-1,0)$};
+  \node[above right] at (1,0) {$(1,0)$};
+  \node at (0.2, 0.4) {$\Omega_{\text{上}}$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.10}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (-1.5,0) -- (1.6,0) node[below] {$x$};
+  \draw[->] (0,-1.5) -- (0,1.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick] (-1,0) -- (0,1) -- (1,0) -- (0,-1) -- cycle;
+  \fill[black!20] (-1,0) -- (0,1) -- (0,-1) -- cycle;
+
+  \node[above] at (0,1) {$(0,1)$};
+  \node[above left] at (-1,0) {$(-1,0)$};
+  \node[above right] at (1,0) {$(1,0)$};
+  \node at (-0.4, 0) {$\Omega_{\text{左}}$};
+  \node at (0.4, 0) {$\Omega_{\text{右}}$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.11}
+\end{minipage}
+\end{figure}
+
+\begin{solution}
+将 $\Omega$ 分成上下两个对称区域 $\Omega_{\text{上}}$ 与 $\Omega_{\text{下}}$（图 \ref{fig:10.3.10}）。
+在每个固定的 $y$ 处，被积函数关于 $x$ 是奇函数：
+\begin{align*}
+\iint_\Omega x y^2\,\mathrm{d}x\mathrm{d}y &= \iint_{\Omega_{\text{上}}} x y^2\,\mathrm{d}x\mathrm{d}y + \iint_{\Omega_{\text{下}}} x y^2\,\mathrm{d}x\mathrm{d}y \\
+&= \int_0^1 y^2\,\mathrm{d}y \int_{y-1}^{1-y} x\,\mathrm{d}x + \int_{-1}^0 y^2\,\mathrm{d}y \int_{-1-y}^{1+y} x\,\mathrm{d}x \\
+&\reason{奇函数} \int_0^1 y^2 \cdot 0\,\mathrm{d}y + \int_{-1}^0 y^2 \cdot 0\,\mathrm{d}y = 0.
+\end{align*}
+注意：如果将 $\Omega$ 分成左与右对称的两个区域 $\Omega_{\text{左}}$ 与 $\Omega_{\text{右}}$（图 \ref{fig:10.3.11}），由于先对 $y$ 积分时被积函数不是 $y$ 的奇函数，因此计算将比第一种算法复杂许多。
+\end{solution}
+
+\begin{example}\label{ex:10.3.10}
+求二重积分
+\[
+\iint_{[0, \pi]^2} |\cos(x + y)|\,\mathrm{d}x\mathrm{d}y.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (-0.2,0) -- (3.6,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,3.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick] (0,0) rectangle (3.14,3.14);
+  \node[below] at (3.14,0) {$(\pi,0)$};
+  \node[left] at (0,3.14) {$(0,\pi)$};
+  \node[above right] at (3.14,3.14) {$(\pi,\pi)$};
+
+  \coordinate (P1) at (1.57,0);
+  \coordinate (P2) at (0,1.57);
+  \coordinate (P3) at (3.14,1.57);
+  \coordinate (P4) at (1.57,3.14);
+
+  \node[below] at (P1) {$(\frac{\pi}{2},0)$};
+  \node[left] at (P2) {$(0,\frac{\pi}{2})$};
+  \node[right] at (P3) {$(\pi,\frac{\pi}{2})$};
+  \node[above] at (P4) {$(\frac{\pi}{2},\pi)$};
+
+  \draw[thick] (P2) -- (P1) node[midway, above right, rotate=-45, font=\tiny] {$x+y=\frac{\pi}{2}$};
+  \draw[thick] (0,3.14) -- (3.14,0) node[midway, above right, rotate=-45, font=\tiny] {$x+y=\pi$};
+  \draw[thick] (P4) -- (P3) node[midway, above right, rotate=-45, font=\tiny] {$x+y=\frac{3}{2}\pi$};
+
+  \fill[black!20] (0,0) -- (P1) -- (P2) -- cycle;
+  \node at (0.5,0.5) {$\Omega_1$};
+
+  \node at (1.0,2.3) {$\Omega_2$};
+
+  \fill[pattern=north east lines, pattern color=black!70] (0,3.14) -- (3.14,0) -- (P3) -- (P4) -- cycle;
+  \node at (2.5,1.0) {$\Omega_3$};
+
+  \node at (2.7,2.7) {$\Omega_4$};
+
+  \draw[dashed] (P1) -- (P4);
+  \draw[thick] (2.8, 3.48) -- (3.48, 2.8) node[above right, font=\tiny] {$x+y=2\pi$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.12}
+\end{figure}
+
+\begin{solution}
+以图 \ref{fig:10.3.12} 将 $\Omega = [0, \pi]^2$ 分为 $\Omega_1, \Omega_2, \Omega_3, \Omega_4$ 四个区域。
+在各区域中，确定 $\cos(x+y)$ 的符号：
+在 $\Omega_1$ 与 $\Omega_4$ 上，$\cos(x+y) \geqslant 0$；在 $\Omega_2$ 与 $\Omega_3$ 上，$\cos(x+y) \leqslant 0$。
+于是有
+\begin{align*}
+\iint_{[0, \pi]^2} |\cos(x + y)|\,\mathrm{d}x\mathrm{d}y &= \int_0^{\frac{\pi}{2}} \mathrm{d}x \int_0^{\frac{\pi}{2}-x} \cos(x + y)\,\mathrm{d}y + \int_0^{\frac{\pi}{2}} \mathrm{d}x \int_{\frac{\pi}{2}-x}^\pi [-\cos(x + y)]\,\mathrm{d}y \\
+&\quad + \int_{\frac{\pi}{2}}^\pi \mathrm{d}x \int_0^{\frac{3}{2}\pi-x} [-\cos(x + y)]\,\mathrm{d}y + \int_{\frac{\pi}{2}}^\pi \mathrm{d}x \int_{\frac{3}{2}\pi-x}^\pi \cos(x + y)\,\mathrm{d}y \\
+&= \int_0^{\frac{\pi}{2}} \left( \sin \frac{\pi}{2} - \sin x \right) \mathrm{d}x + \int_0^{\frac{\pi}{2}} \left[ \sin \frac{\pi}{2} - \sin(\pi + x) \right] \mathrm{d}x \\
+&\quad + \int_{\frac{\pi}{2}}^\pi \left( \sin x - \sin \frac{3}{2}\pi \right) \mathrm{d}x + \int_{\frac{\pi}{2}}^\pi \left[ \sin(\pi + x) - \sin \frac{3}{2}\pi \right] \mathrm{d}x \\
+&= \int_0^{\frac{\pi}{2}} (2 - 2\sin x)\,\mathrm{d}x + \int_{\frac{\pi}{2}}^\pi (2 + 2\sin x)\,\mathrm{d}x \\
+&= [2x + 2\cos x]_0^{\frac{\pi}{2}} + [2x - 2\cos x]_{\frac{\pi}{2}}^\pi \\
+&= (\pi - 2) + (2\pi + 2 - \pi) = 2\pi. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.11}
+计算累次积分
+\[
+\int_0^1 \mathrm{d}y \int_y^{\sqrt{y}} \frac{\sin x}{x}\,\mathrm{d}x.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=2.0]
+  \draw[->] (-0.2,0) -- (1.5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,1.4) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick, domain=0:1, samples=60, fill=black!20] 
+    plot (\x, {\x*\x}) -- (0,0);
+
+  \draw[thick] (0,0) -- (1,1) node[midway, above left] {$x=y$};
+  \draw[thick, domain=0:1.1, samples=60] plot (\x, {\x*\x}) node[right] {$x=\sqrt{y}$};
+
+  \draw[dashed] (1,0) -- (1,1);
+  \draw[dashed] (0,1) node[left] {$1$} -- (1,1);
+  \node[above] at (1,1) {$(1,1)$};
+
+  \node at (0.55, 0.4) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.13}
+\end{figure}
+
+\begin{solution}
+由于 $\frac{\sin x}{x}$ 的原函数不能用初等函数表达，按照题中顺序直接计算累次积分是不可能的。
+我们先将累次积分还原为二重积分，再交换累次积分的顺序。
+由题意，积分区域 $\Omega$ 是由直线 $y = 0, y = 1$ 及曲线 $x = y, x = \sqrt{y}$ 所围成的区域（图 \ref{fig:10.3.13}）。
+对照图 \ref{fig:10.3.13}，将累次积分改变成先对 $y$ 积分再对 $x$ 积分的顺序：
+\begin{align*}
+\int_0^1 \mathrm{d}y \int_y^{\sqrt{y}} \frac{\sin x}{x}\,\mathrm{d}x &= \iint_\Omega \frac{\sin x}{x}\,\mathrm{d}x\mathrm{d}y = \int_0^1 \mathrm{d}x \int_{x^2}^x \frac{\sin x}{x}\,\mathrm{d}y \\
+&= \int_0^1 \frac{\sin x}{x} (x - x^2)\,\mathrm{d}x = \int_0^1 (1 - x)\sin x\,\mathrm{d}x \\
+&= \left[ -(1 - x)\cos x \Big|_0^1 - \int_0^1 \cos x\,\mathrm{d}x \right] \\
+&= 1 - \sin 1. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.12}
+改变下列累次积分的次序：
+\begin{enumerate}
+\item $\int_0^{\frac{\pi}{2}} \mathrm{d}x \int_0^{\cos x} f(x, y)\,\mathrm{d}y + \int_{\frac{\pi}{2}}^\pi \mathrm{d}x \int_{\cos x}^0 f(x, y)\,\mathrm{d}y$;
+\item $\int_0^1 \mathrm{d}x \int_0^x f(x, y)\,\mathrm{d}y + \int_1^2 \mathrm{d}x \int_0^{2-x} f(x, y)\,\mathrm{d}y$.
+\end{enumerate}
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.1]
+  \draw[->] (-0.3,0) -- (3.6,0) node[below] {$x$};
+  \draw[->] (0,-1.4) -- (0,1.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[domain=0:3.14, samples=80, thick] plot ({0.95*\x}, {cos(\x r)});
+  \node[above right, font=\footnotesize] at (0.8, 0.7) {$y=\cos x$};
+  \node[above right, font=\footnotesize] at (0.8, 0.35) {$x=\arccos y$};
+
+  \fill[black!20] (0,0) -- plot[domain=0:1.57, samples=40] ({0.95*\x}, {cos(\x r)}) -- cycle;
+  \node at (0.4, 0.3) {$\Omega_1$};
+
+  \draw[dashed] (0, -1.0) node[left] {$-1$} -- (2.98, -1.0);
+  \draw[thick] (2.98, 0) node[below=8pt] {$\pi$} -- (2.98, -1.0);
+  \node[below] at (1.49, 0) {$\frac{\pi}{2}$};
+  \node[left] at (0, 1.0) {$1$};
+
+  \node at (1.8, -0.4) {$\Omega_2$};
+  \draw[dashed] (0, 0.45) node[left] {$y$} -- (0.95*1.1, 0.45);
+\end{tikzpicture}
+\caption{}\label{fig:10.3.14}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.4]
+  \draw[->] (-0.2,0) -- (2.4,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,1.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick, fill=black!20] (0,0) -- (1,1) -- (2,0) -- cycle;
+  \draw[thick] (0,0) -- (1,1) node[midway, above left, rotate=45, font=\footnotesize] {$y=x$};
+  \draw[thick] (1,1) -- (2,0) node[midway, above right, rotate=-45, font=\footnotesize] {$y=2-x$};
+
+  \draw[dashed] (0,1) node[left] {$1$} -- (1,1);
+  \draw[dashed] (1,0) -- (1,1);
+  \node[below] at (2,0) {$2$};
+
+  \draw[dashed] (0,0.5) node[left] {$y$} -- (0.5,0.5);
+  \draw[very thick] (0.5,0.5) -- (1.5,0.5);
+  \node[above] at (1.0,0.5) {$\Omega^y$};
+
+  \node at (0.7,0.25) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.15}
+\end{minipage}
+\end{figure}
+
+\begin{solution}
+(1) 从图 \ref{fig:10.3.14} 得到，区域由 $\Omega_1$ 与 $\Omega_2$ 组成。
+在 $\Omega_1$ 上，$y \in [0, 1]$ 时 $x$ 从 $0$ 到 $\arccos y$；在 $\Omega_2$ 上，$y \in [-1, 0]$ 时 $x$ 从 $\arccos y$ 到 $\pi$。从而
+\begin{align*}
+&\quad \int_0^{\frac{\pi}{2}} \mathrm{d}x \int_0^{\cos x} f(x, y)\,\mathrm{d}y + \int_{\frac{\pi}{2}}^\pi \mathrm{d}x \int_{\cos x}^0 f(x, y)\,\mathrm{d}y \\
+&= \iint_{\Omega_1} f(x, y)\,\mathrm{d}x\mathrm{d}y - \iint_{\Omega_2} f(x, y)\,\mathrm{d}x\mathrm{d}y \\
+&= \int_0^1 \mathrm{d}y \int_0^{\arccos y} f(x, y)\,\mathrm{d}x - \int_{-1}^0 \mathrm{d}y \int_{\arccos y}^\pi f(x, y)\,\mathrm{d}x.
+\end{align*}
+
+(2) 从图 \ref{fig:10.3.15} 得到，积分区域为由 $y = 0, y = x, y = 2 - x$ 围成的三角形区域 $\Omega$。
+对于固定的 $y \in [0, 1]$，$x$ 从 $y$ 变到 $2 - y$。从而
+\[
+\int_0^1 \mathrm{d}x \int_0^x f(x, y)\,\mathrm{d}y + \int_1^2 \mathrm{d}x \int_0^{2-x} f(x, y)\,\mathrm{d}x = \iint_\Omega f(x, y)\,\mathrm{d}x\mathrm{d}y = \int_0^1 \mathrm{d}y \int_y^{2-y} f(x, y)\,\mathrm{d}x. \qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:10.3.13}
+证明（参阅第一册练习题 6.4 题 13）：
+\[
+\int_0^a \left( \int_0^x f(y)\,\mathrm{d}y \right) \mathrm{d}x = \int_0^a f(x)(a - x)\,\mathrm{d}x.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (-0.3,0) -- (3.2,0) node[below] {$x$};
+  \draw[->] (0,-0.3) -- (0,3.0) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick, fill=black!20] (0,0) -- (2.4,0) -- (2.4,2.4) -- cycle;
+  \draw[thick] (0,0) -- (2.4,2.4) node[midway, above left] {$y=x$};
+  \draw[thick] (2.4,0) node[below] {$a$} -- (2.4,2.4);
+
+  \draw[dashed] (0,2.4) node[left] {$a$} -- (2.4,2.4);
+
+  \draw[dashed] (0,1.2) -- (1.2,1.2);
+  \draw[very thick] (1.2,1.2) -- (2.4,1.2);
+  \node[above] at (1.8,1.2) {$\Omega^y$};
+
+  \node at (1.6,0.6) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.16}
+\end{figure}
+
+\begin{proof}
+本题给出三种证法。
+
+\textbf{证法 1}（利用二重积分交换积分次序）：
+从图 \ref{fig:10.3.16} 可得到积分区域为 $\Omega = \{(x, y) \mid 0 \leqslant y \leqslant x, 0 \leqslant x \leqslant a\}$。从而
+\begin{align*}
+\int_0^a \left( \int_0^x f(y)\,\mathrm{d}y \right) \mathrm{d}x &= \iint_\Omega f(y)\,\mathrm{d}x\mathrm{d}y = \int_0^a \mathrm{d}y \int_y^a f(y)\,\mathrm{d}x \\
+&= \int_0^a f(y)(a - y)\,\mathrm{d}y = \int_0^a f(x)(a - x)\,\mathrm{d}x.
+\end{align*}
+
+\textbf{证法 2}（利用分部积分法）：
+\begin{align*}
+\int_0^a \left( \int_0^x f(y)\,\mathrm{d}y \right) \mathrm{d}x &\reason{分部积分} x \int_0^x f(y)\,\mathrm{d}y \Bigg|_0^a - \int_0^a x \mathrm{d} \left( \int_0^x f(y)\,\mathrm{d}y \right) \\
+&= a \int_0^a f(y)\,\mathrm{d}y - \int_0^a x f(x)\,\mathrm{d}x = \int_0^a f(x)(a - x)\,\mathrm{d}x.
+\end{align*}
+
+\textbf{证法 3}（利用变上限积分求导法）：
+令
+\[
+F(x) = \int_0^x \left( \int_0^t f(y)\,\mathrm{d}y \right) \mathrm{d}t, \quad G(x) = \int_0^x f(y)(x - y)\,\mathrm{d}y,
+\]
+则
+\[
+F'(x) = \int_0^x f(y)\,\mathrm{d}y.
+\]
+而对于 $G(x) = x \int_0^x f(y)\,\mathrm{d}y - \int_0^x y f(y)\,\mathrm{d}y$，求导得
+\[
+G'(x) = \int_0^x f(y)\,\mathrm{d}y + x f(x) - x f(x) = \int_0^x f(y)\,\mathrm{d}y.
+\]
+因此 $F'(x) = G'(x)$。由于 $F(0) = G(0) = 0$，故对一切 $x \in [0, a]$ 恒有 $F(x) = G(x)$。
+特别地取 $x = a$，即得所证结论。
+\end{proof}
+
+\begin{example}\label{ex:10.3.14}
+计算由抛物线 $y = x^2$ 与 $y^2 = x$ 围成的平面图形 $\Omega$ 的面积（图 \ref{fig:10.3.17}）。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.8]
+  \draw[->] (-0.2,0) -- (1.5,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,1.5) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick, domain=0:1, samples=60, fill=black!20] 
+    plot (\x, {sqrt(\x)}) -- plot[domain=1:0, samples=60] (\x, {\x*\x}) -- cycle;
+
+  \draw[domain=0:1.15, samples=60] plot (\x, {\x*\x}) node[above] {$y=x^2$};
+  \draw[domain=0:1.15, samples=60] plot (\x, {sqrt(\x)}) node[right] {$x=y^2$};
+
+  \draw[dashed] (1,0) node[below] {$1$} -- (1,1);
+  \draw[dashed] (0,1) node[left] {$1$} -- (1,1);
+  \fill (1,1) circle (1.0pt);
+
+  \node at (0.45, 0.45) {$\Omega$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.17}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (0,0) -- (2.5,0) node[below] {$y$};
+  \draw[->] (0,0) -- (0,2.5) node[left] {$x$};
+  \draw[->] (0,0) -- (-1.5,-1.5) node[below left] {$z$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick] (0,1.8) arc[start angle=90, end angle=0, x radius=1.8, y radius=1.8];
+  \draw[thick] (0,1.8) -- (-0.8, 1.0);
+  \draw[thick] (1.8,0) -- (1.0, -0.8);
+  \draw[thick] (-0.8, 1.0) arc[start angle=90, end angle=0, x radius=1.8, y radius=1.8];
+
+  \draw[dashed] (0,0) -- (-0.8, -0.8);
+  \draw[dashed] (-0.8,-0.8) -- (1.0,-0.8);
+  \draw[dashed] (-0.8,-0.8) -- (-0.8,1.0);
+
+  \draw[dashed] (-0.8, -0.8) -- (-0.8, 0.2);
+  \draw[dashed] (-0.8, -0.8) -- (0.2, -0.8);
+
+  \draw[thick] (-0.8, 1.0) -- (-1.4, -0.8);
+  \draw[thick] (1.0, -0.8) -- (0.4, -1.4);
+  \draw[thick] (-1.4, -0.8) arc[start angle=90, end angle=0, x radius=1.8, y radius=0.6];
+
+  \node[right] at (1.8, 1.5) {$x^2+y^2=a^2$};
+  \node[right] at (1.0, -0.2) {$x^2+z^2=a^2$};
+  \node[above] at (0.3, 1.0) {$a$};
+  \node[above] at (1.1, 0) {$a$};
+  \node[left] at (-0.9, -1.0) {$a$};
+
+  \foreach \i in {1,2,3,4,5,6} {
+    \draw[dashed, thin] (-0.8 + 0.25*\i, -0.8) -- (-0.8 + 0.25*\i, 0.8 - 0.1*\i);
+  }
+\end{tikzpicture}
+\caption{}\label{fig:10.3.18}
+\end{minipage}
+\end{figure}
+
+\begin{solution}
+两抛物线的交点为 $(0, 0)$ 与 $(1, 1)$。本题给出两种解法。
+
+\textbf{解法 1}：
+\begin{align*}
+v(\Omega) &= \iint_\Omega 1\,\mathrm{d}x\mathrm{d}y = \int_0^1 \mathrm{d}x \int_{x^2}^{\sqrt{x}} \mathrm{d}y = \int_0^1 (\sqrt{x} - x^2)\,\mathrm{d}x \\
+&= \left( \frac{2}{3} x^{\frac{3}{2}} - \frac{x^3}{3} \right) \Bigg|_0^1 = \frac{2}{3} - \frac{1}{3} = \frac{1}{3}.
+\end{align*}
+
+\textbf{解法 2}：
+\[
+v(\Omega) = \iint_\Omega 1\,\mathrm{d}x\mathrm{d}y = \int_0^1 \mathrm{d}y \int_{y^2}^{\sqrt{y}} \mathrm{d}x \reason{同解法 1} \frac{1}{3}. \qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:10.3.15}
+计算由两个圆柱面 $x^2 + y^2 = a^2$ 与 $x^2 + z^2 = a^2$ 所围成的空间立体的体积 $V$（图 \ref{fig:10.3.18}，$a > 0$）。
+\end{example}
+
+\begin{solution}
+由于对称性，该立体包含 8 个对称的卦限部分，其在第一卦限（$x \geqslant 0, y \geqslant 0, z \geqslant 0$）中的部分由曲面 $z = \sqrt{a^2 - x^2}$ 在 $Oxy$ 平面上的投影区域 $\Omega = \{(x, y) \mid x \geqslant 0, y \geqslant 0, x^2 + y^2 \leqslant a^2\}$ 上的曲顶柱体构成。
+于是所求体积为
+\begin{align*}
+V &= 8 \iint_\Omega z\,\mathrm{d}x\mathrm{d}y = 8 \iint_\Omega \sqrt{a^2 - x^2}\,\mathrm{d}x\mathrm{d}y \\
+&= 8 \int_0^a \mathrm{d}x \int_0^{\sqrt{a^2-x^2}} \sqrt{a^2 - x^2}\,\mathrm{d}y = 8 \int_0^a \sqrt{a^2 - x^2} \left[ y \Big|_0^{\sqrt{a^2-x^2}} \right] \mathrm{d}x \\
+&= 8 \int_0^a (a^2 - x^2)\,\mathrm{d}x = 8 \left( a^2 x - \frac{x^3}{3} \right) \Bigg|_0^a = 8 \left( a^3 - \frac{a^3}{3} \right) = \frac{16}{3} a^3. \qedhere
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:10.3.16}
+求由马鞍面 $z = xy$，平面 $x + y + z = 1$ 与 $z = 0$ 所围成立体的体积 $V$。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.3]
+  \draw[->] (0,0) -- (3.0,0) node[below] {$x$};
+  \draw[->] (0,0) -- (0,2.6) node[left] {$z$};
+  \draw[->] (0,0) -- (1.5,1.5) node[above right] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \coordinate (X1) at (2.2,0);
+  \coordinate (Y1) at (1.35,1.35);
+  \coordinate (Z1) at (0,2.0);
+
+  \draw[thick] (Z1) node[left] {$1$} -- (X1);
+  \draw[thick] (Z1) -- (Y1) node[above] {$1$};
+  \draw[thick] (X1) -- (Y1);
+
+  \draw[dashed] (0,0) -- (X1);
+  \draw[dashed] (0,0) -- (Y1);
+
+  % 投影平面双曲线分割
+  \draw[thick, domain=0.2:2.0, samples=40] 
+    plot ({0.75 + 0.6*\x}, {1.5 - 0.6*\x});
+
+  \fill[black!20] (0.8, 1.4) .. controls (1.1, 0.9) and (1.6, 0.4) .. (2.2, 0) -- (Y1) -- cycle;
+  \node at (1.4, 0.6) {$\Omega_2$};
+  \node at (0.6, 0.4) {$\Omega_1$};
+
+  \draw[thick] (0.8, 1.4) -- (0.8, 1.6);
+  \draw[thick] (0, 2.0) -- (0.8, 1.6);
+  \draw[thick] (2.2, 0) -- (0.8, 1.6);
+
+  \node[right, font=\footnotesize] at (1.8, 1.0) {$y=1-x$};
+  \node[right, font=\footnotesize] at (1.9, 0.6) {$y=\frac{1-x}{1+x}$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.19}
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1.8]
+  \draw[->] (-0.2,0) -- (1.6,0) node[below] {$x$};
+  \draw[->] (0,-0.2) -- (0,1.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick] (0,1) node[left] {$1$} -- (1,0) node[below] {$1$};
+  \draw[thick, domain=0:1, samples=60] plot (\x, {(1 - \x)/(1 + \x)});
+
+  \fill[black!20] (0,1) -- plot[domain=0:1, samples=60] (\x, {(1 - \x)/(1 + \x)}) -- (1,0) -- cycle;
+
+  \node[above right, font=\footnotesize] at (0.5, 0.5) {$y=1-x$};
+  \node[below left, font=\footnotesize] at (0.45, 0.35) {$y=\frac{1-x}{1+x}$};
+
+  \node at (0.25, 0.2) {$\Omega_1$};
+  \node at (0.6, 0.3) {$\Omega_2$};
+\end{tikzpicture}
+\caption{}\label{fig:10.3.20}
+\end{minipage}
+\end{figure}
+
+\begin{solution}
+首先，马鞍面 $z = xy$ 与平面 $z = 1 - x - y$ 在立体内部的交线满足方程 $xy = 1 - x - y$，即
+\[
+y(1 + x) = 1 - x \implies y = \frac{1 - x}{1 + x}.
+\]
+这条双曲线经过 $Oxy$ 平面上的点 $(1, 0)$ 与 $(0, 1)$，并且以 $x = -1$ 与 $y = -1$ 为其渐近线。
+其次，从平面 $z = 0$，平面 $z = 1 - x - y$ 及马鞍面可以看出所围成的立体在 $Oxy$ 平面上的投影为
+\[
+\Omega = \{(x, y) \mid x \geqslant 0, y \geqslant 0, x + y \leqslant 1\},
+\]
+它是三角形区域，也是求立体体积的底面积分区域。
+上述双曲线一支将积分区域 $\Omega$ 分成 $\Omega_1$ 与 $\Omega_2$ 两部分（图 \ref{fig:10.3.19}，图 \ref{fig:10.3.20}）。
+
+在 $\Omega_1$ 上，由于 $xy < 1 - x - y$，故鞍面 $z_1 = xy$ 在平面 $z_2 = 1 - x - y$ 之下；
+在 $\Omega_2$ 上，由于 $1 - x - y < xy$，故平面 $z_2 = 1 - x - y$ 在马鞍面 $z_1 = xy$ 之下。
+由此得到所求体积为
+\[
+V = \iint_{\Omega_1} xy\,\mathrm{d}x\mathrm{d}y + \iint_{\Omega_2} (1 - x - y)\,\mathrm{d}x\mathrm{d}y.
+\]
+为简便计算，我们利用整体三角形 $\Omega = \Omega_1 \cup \Omega_2$ 上的全积分做代换：
+\begin{align*}
+V &= \iint_{\Omega_1} xy\,\mathrm{d}x\mathrm{d}y + \left[ \iint_\Omega (1 - x - y)\,\mathrm{d}x\mathrm{d}y - \iint_{\Omega_1} (1 - x - y)\,\mathrm{d}x\mathrm{d}y \right] \\
+&= \iint_\Omega (1 - x - y)\,\mathrm{d}x\mathrm{d}y - \iint_{\Omega_1} (1 - x - y - xy)\,\mathrm{d}x\mathrm{d}y.
+\end{align*}
+其中
+\begin{align*}
+\iint_\Omega (1 - x - y)\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}x \int_0^{1-x} (1 - x - y)\,\mathrm{d}y \\
+&= \int_0^1 \left[ (1 - x)y - \frac{y^2}{2} \right]_0^{1-x} \mathrm{d}x = \int_0^1 \frac{(1 - x)^2}{2}\,\mathrm{d}x = \frac{1}{6}.
+\end{align*}
+而对 $\Omega_1$ 上的积分：
+\begin{align*}
+\iint_{\Omega_1} (1 - x - y - xy)\,\mathrm{d}x\mathrm{d}y &= \int_0^1 \mathrm{d}x \int_0^{\frac{1-x}{1+x}} [(1 - x) - y(1 + x)]\,\mathrm{d}y \\
+&= \int_0^1 \left[ (1 - x) \frac{1 - x}{1 + x} - \frac{1 + x}{2} \left( \frac{1 - x}{1 + x} \right)^2 \right] \mathrm{d}x \\
+&= \frac{1}{2} \int_0^1 \frac{(1 - x)^2}{1 + x}\,\mathrm{d}x \reason{令 } 1 + x = t \frac{1}{2} \int_1^2 \frac{(2 - t)^2}{t}\,\mathrm{d}t \\
+&= \frac{1}{2} \int_1^2 \left( t - 4 + \frac{4}{t} \right) \mathrm{d}t = \frac{1}{2} \left[ \frac{t^2}{2} - 4t + 4\ln t \right]_1^2 \\
+&= \frac{1}{2} \left( 2 - 8 + 4\ln 2 - \frac{1}{2} + 4 \right) = 2\ln 2 - \frac{5}{4}.
+\end{align*}
+从而
+\[
+V = \frac{1}{6} - \left( 2\ln 2 - \frac{5}{4} \right) = \frac{17}{12} - 2\ln 2. \qedhere
+\]
+\end{solution}
+
+\begin{exblock}{练习题 10.3}
+1. 计算二重积分：
+\begin{enumerate}
+\item $\iint_{[0, 1]^2} \frac{x^2}{1 + y^2}\,\mathrm{d}x\mathrm{d}y$;
+\item $\iint_{[0, \frac{\pi}{2}] \times [0, 1]} x \cos(xy)\,\mathrm{d}x\mathrm{d}y$;
+\item $\iint_{[0, \pi]^2} \sin(x + y)\,\mathrm{d}x\mathrm{d}y$.
+\end{enumerate}
+
+2. 计算二重积分 $\iint_I f$，其中 $I = [0, 1]^2$：
+\begin{enumerate}
+\item $f(x, y) = \begin{cases} 1, & y \leqslant x^2, \\ 0, & y > x^2; \end{cases}$
+\item $f(x, y) = \begin{cases} 1 - x - y, & x + y \leqslant 1, \\ 0, & x + y > 1; \end{cases}$
+\item $f(x, y) = \begin{cases} x + y, & x^2 \leqslant y \leqslant 2x^2, \\ 0, & y < x^2 \text{ 或 } y > 2x^2. \end{cases}$
+\end{enumerate}
+
+3. 设函数 $f$ 在闭区间 $[a, b] \times [c, d]$ 上有连续的二阶偏导数，计算二重积分
+\[
+\iint_{[a, b] \times [c, d]} \frac{\partial^2 f}{\partial x \partial y}(x, y)\,\mathrm{d}x\mathrm{d}y.
+\]
+
+4. 计算下列二重积分：
+\begin{enumerate}
+\item $\iint_\Omega \cos(x + y)\,\mathrm{d}x\mathrm{d}y$，其中 $\Omega$ 由 $x = 0, y = x, y = \pi$ 围成；
+\item $\iint_\Omega x y^2\,\mathrm{d}x\mathrm{d}y$，$\Omega$ 由 $y^2 = 4x$ 与 $x = 1$ 围成；
+\item $\iint_\Omega \mathrm{e}^{x+y}\,\mathrm{d}x\mathrm{d}y$，$\Omega = \{(x, y) \mid |x| + |y| \leqslant 1\}$；
+\item $\iint_\Omega |xy|\,\mathrm{d}x\mathrm{d}y$，$\Omega = \{(x, y) \mid x^2 + y^2 \leqslant a^2\}$，$a > 0$；
+\item $\iint_\Omega x \cos(xy)\,\mathrm{d}x\mathrm{d}y$，$\Omega = \{(x, y) \mid x^2 + y^2 \leqslant a^2\}$，$a > 0$；
+\item $\iint_\Omega |\cos(x + y)|\,\mathrm{d}x\mathrm{d}y$，$\Omega = [0, 1]^2$；
+\item $\iint_\Omega y^2\,\mathrm{d}x\mathrm{d}y$，$\Omega$ 由旋轮线
+\[
+\begin{cases} x = a(t - \sin t), \\ y = a(1 - \cos t), \end{cases} \quad 0 \leqslant t \leqslant 2\pi
+\]
+与 $y = 0$ 围成。
+\end{enumerate}
+
+5. 改变下列累次积分的次序：
+\begin{enumerate}
+\item $\int_0^1 \mathrm{d}x \int_0^{x^2} f(x, y)\,\mathrm{d}y$;
+\item $\int_1^{\mathrm{e}} \mathrm{d}x \int_0^{\ln x} f(x, y)\,\mathrm{d}y$;
+\item $\int_0^1 \mathrm{d}x \int_{x^2}^x f(x, y)\,\mathrm{d}y$;
+\item $\int_a^b \mathrm{d}x \int_a^x f(x, y)\,\mathrm{d}y$;
+\item $\int_{-1}^1 \mathrm{d}x \int_{-\sqrt{1-x^2}}^{1-x^2} f(x, y)\,\mathrm{d}y$;
+\item $\int_0^1 \mathrm{d}x \int_{x-1}^{1-x} f(x, y)\,\mathrm{d}y$;
+\item $\int_0^\pi \mathrm{d}x \int_0^{\cos x} f(x, y)\,\mathrm{d}y$;
+\item $\int_0^{2a} \mathrm{d}x \int_{\sqrt{2ax-x^2}}^{\sqrt{2ax}} f(x, y)\,\mathrm{d}y$ ($a > 0$);
+\item $\int_0^1 \mathrm{d}x \int_0^{x^2} f(x, y)\,\mathrm{d}y + \int_1^3 \mathrm{d}x \int_0^{\frac{1}{2}(3-x)} f(x, y)\,\mathrm{d}y$.
+\end{enumerate}
+
+6. 设 $f$ 为一元连续函数，证明：
+\[
+\int_0^a \mathrm{d}x \int_0^x f(x) f(y)\,\mathrm{d}y = \frac{1}{2} \left( \int_0^a f(t)\,\mathrm{d}t \right)^2.
+\]
+\end{exblock}

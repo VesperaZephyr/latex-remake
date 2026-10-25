@@ -1,0 +1,1513 @@
+% ==============================================================================
+% Chapter 12: New Moduli Problems in Characteristic p; Igusa Curves
+% ==============================================================================
+\chapter{New Moduli Problems in Characteristic \texorpdfstring{$p$}{p}; Igusa Curves}
+\label{ch:12}
+
+\section{Frobenius}
+\label{sec:12.1}
+
+\kmitem\label{item:12.1.0}
+Throughout this chapter, $p$ is a fixed prime number. For any $\mathbb{F}_p$-scheme $S$, we denote by
+\begin{equation}\label{eq:12.1.1}
+F_{\mathrm{abs}} : S \to S
+\end{equation}
+the morphism ``absolute Frobenius'', which on affine rings corresponds to the endomorphism $x \mapsto x^p$.
+
+If we are given a scheme $X/S/\mathbb{F}_p$, we denote by $X^{(p)}/S$ the scheme defined by the cartesian diagram
+\begin{equation}\label{eq:12.1.2}
+\begin{tikzcd}
+X^{(p)} \arrow[r] \arrow[d] & X \arrow[d] \\
+S \arrow[r, "F_{\mathrm{abs}}"] & S .
+\end{tikzcd}
+\end{equation}
+
+If we are given a contravariant functor
+\begin{equation}\label{eq:12.1.3}
+\mathcal{F} : (\mathrm{Sch}/S) \to (\mathrm{sets}) ,
+\end{equation}
+$S$ being an $\mathbb{F}_p$-scheme, we denote by $\mathcal{F}^{(p)}$ the functor on $(\mathrm{Sch}/S)$ defined by
+\begin{equation}\label{eq:12.1.4}
+\mathcal{F}^{(p)}(X/S) = \mathcal{F}(X^{(p)}/S) .
+\end{equation}
+If $\mathcal{F}$ is representable, by an $S$-scheme $T$, then $\mathcal{F}^{(p)}$ is represented by $T^{(p)}$.
+
+For a scheme $X/S/\mathbb{F}_p$, the absolute Frobenius of $X$ has a canonical factorization as
+\[
+\begin{tikzcd}[row sep=2.5em, column sep=2.5em]
+X \arrow[r, "F_{X/S}"] \arrow[dr] \arrow[rr, "F_{\mathrm{abs}}", bend left=30] & X^{(p)} \arrow[r] \arrow[d] & X \arrow[d] \\
+& S \arrow[r, "F_{\mathrm{abs}}"] & S
+\end{tikzcd}
+\]
+where the relative Frobenius $F = F_{X/S}$
+\[
+F : X \to X^{(p)}
+\]
+is $S$-linear. If $S$ is affine, $S = \Spec(A)$, then locally on $X$ we have $X = \Spec(B)$ with
+\[
+B = A[X_1, X_2, \dots]/(\dots, f_i(X), \dots) ,
+\]
+while $X^{(p)}$ is $\Spec(B^{(p)})$ with
+\[
+B^{(p)} = A[X_1, X_2, \dots]/(\dots, f_i^{(p)}(X), \dots)
+\]
+where $f_i^{(p)}(X) \in A[X]$ are the polynomials obtained from the polynomials $f_i \in A[X]$ by raising coefficients to the $p$'th power. The relative Frobenius map $F : X \to X^{(p)}$ is the map whose effect on $R$-valued points, $R$ any $A$-algebra, is
+\[
+\begin{matrix}
+(x_1, x_2, \dots) & \longmapsto & (x_1^p, x_2^p, \dots) \\[3pt]
+\text{solutions of} & & \text{solutions of} \\[2pt]
+f_i = 0 & & f_i^{(p)} = 0 .
+\end{matrix}
+\]
+
+\section{Basic lemmas}
+\label{sec:12.2}
+
+\begin{klem}\label{lem:12.2.1}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme. Then for every $n \ge 1$, the iterated relative Frobenius
+\[
+F^n : E \to E^{(p^n)}
+\]
+is a cyclic $p^n$-isogeny.
+\end{klem}
+
+\begin{proof}
+Because $E/S$ is smooth of relative dimension one, $F^n$ is finite locally free of rank $p^n$. It is cyclic because the origin $P = 0$ is a generator of $\Ker(F^n)$.
+\end{proof}
+
+\kmitem\label{item:12.2.2}
+Given $E/S/\mathbb{F}_p$, the dual isogeny to $F : E \to E^{(p)}$ is the \emph{Verschiebung} denoted
+\[
+V : E^{(p)} \to E .
+\]
+The dual of $F^n : E \to E^{(p^n)}$ is the iterated Verschiebung
+\[
+V^n : E^{(p^n)} \to E .
+\]
+
+\begin{klem}\label{lem:12.2.3}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme. Then for every $n \ge 1$, the iterated Verschiebung
+\[
+V^n : E^{(p^n)} \to E
+\]
+is a cyclic $p^n$-isogeny.
+\end{klem}
+
+\begin{proof}
+By (\ref{cor:5.5.4}, (3)), the dual of a cyclic isogeny is cyclic.
+\end{proof}
+
+\begin{klem}\label{lem:12.2.4}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme, $n \ge 1$ an integer. Then
+\begin{enumerate}[label=(\arabic*)]
+\item The ``standard factorization'' (\ref{km:6.7.6}) of $F^n$ into a sequence of $n$ $p$-isogenies is
+\[
+E \xrightarrow{\ F\ } E^{(p)} \xrightarrow{\ F\ } E^{(p^2)} \xrightarrow{\quad} \cdots \xrightarrow{\ F\ } E^{(p^n)} .
+\]
+\item The ``standard factorization'' of $V^n$ into a sequence of $n$ $p$-isogenies is
+\[
+E^{(p^n)} \xrightarrow{\ V\ } E^{(p^{n-1})} \xrightarrow{\quad} \cdots \xrightarrow{\ V\ } E .
+\]
+\end{enumerate}
+\end{klem}
+
+\begin{proof}
+By (\ref{thm:6.7.9}), it suffices to prove (1), and (1) is obvious, using the origin as generator of $\Ker(F^n)$ to compute its standard cyclic subgroups.
+\end{proof}
+
+\begin{klem}\label{lem:12.2.5}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme, $n \ge 1$ an integer. Then the $p^{2n}$-isogeny
+\[
+p^n : E \to E
+\]
+is cyclic, and its standard factorization into two cyclic $p^n$-isogenies is
+\[
+E \xrightarrow{\ F^n\ } E^{(p^n)} \xrightarrow{\ V^n\ } E .
+\]
+\end{klem}
+
+\begin{proof}
+Certainly $p^n = V^n \circ F^n$, and both $V^n$ and $F^n$ are cyclic. It suffices to show that $(F^n, V^n)$ are cyclic in standard order. Locally f.p.p.f.\ on $S$, we may choose a generator $Q$ of $\Ker V^n$, and a point $P$ on $E$ with $F^n(P) = Q$. By the standard-order criterion (\ref{thm:6.7.13}), we must show that $p^n P$ generates $\Ker(F^n)$. But $p^n P = V^n F^n P = V^n Q = 0$, and $0$ does generate $\Ker(F^n)$.
+\end{proof}
+
+\begin{kcor}\label{cor:12.2.6}
+Let $S$ be an arbitrary scheme, $p$ a prime number, $n \ge 1$ an integer, and $E/S$ an elliptic curve. Then $S$ is an $\mathbb{F}_p$-scheme if and only if the $p^{2n}$-isogeny
+\[
+p^n : E \to E
+\]
+is cyclic.
+\end{kcor}
+
+\begin{proof}
+If $p^n : E \to E$ is cyclic, locally f.p.p.f.\ on $S$ we may choose a generator $P$, which will consequently have ``exact order $p^{2n}$''. Therefore $p^n P = 0$ has ``exact order $p^n$'' on $E$, whence by (\ref{prop:5.3.3}) $S$ is an $\mathbb{F}_p$-scheme.
+\end{proof}
+
+\begin{kprop}\label{prop:12.2.7}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme, $n \ge 1$ an integer, and $P \in E[p^n](S)$ a point killed by $p^n$. The following conditions are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item $P$ generates $\Ker(p^n : E \to E)$.
+\item $F^n(P)$ generates $\Ker(V^n : E^{(p^n)} \to E)$.
+\item $(0, P)$ is a Drinfeld $p^n$-basis on $E$.
+\item There exists an elliptic curve $E_n/S$ and an isomorphism
+\[
+E \simeq E_n^{(p^n)} ,
+\]
+under which $P$ generates $\Ker(V^n : E_n^{(p^n)} \to E_n)$.
+\end{enumerate}
+\end{kprop}
+
+\begin{proof}
+That $(1) \iff (2)$ is by the standard-order criterion (\ref{thm:6.7.13}), applied to the standard factorization $(F^n, V^n)$ of $p^n$, and the point $P$. That $(2) \iff (3)$ results from (\ref{cor:5.5.5}), applied to $(0, P)$; the origin having exact order $p^n$ and generating $\Ker(F^n)$, $(0, P)$ is a $p^n$-basis on $E$ if and only if $F^n(P)$ on $E^{(p^n)}$ generates the dual isogeny $V^n : E^{(p^n)} \to E$. To prove $(3) \implies (4)$, we apply (\ref{cor:5.5.5}) to the Drinfeld $p^n$-basis $(P, 0)$. The point $P$ must have ``exact order $p^n$'', so let $K \subset E$ denote the cyclic subgroup of order $p^n$ it generates, and let $E_n$ denote the quotient of $E$ by $K$, $\pi_n : E \to E_n$ the projection. The image of the second point $0$ in $E_n$ must generate the dual $p^n$-isogeny. But this image is the origin in $E_n$, which as point of exact order $p^n$ generates $\Ker(F^n : E_n \to E_n^{(p^n)})$. Therefore our diagram of dual isogenies is
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=large]
+E \arrow[r, shift left=1ex, "\pi_n"] & E_n \arrow[l, shift left=1ex, "F^n"'] \\
+E_n^{(p^n)} \arrow[u, "\wr" description] &
+\end{tikzcd}
+\]
+with $P$ generating $\Ker(\pi_n)$. Because $\pi_n$ is the dual of $F^n$, we have $\pi_n = V^n : E_n^{(p^n)} \to E_n$, so $E \simeq E_n^{(p^n)}$ with $P$ generating $\Ker(V^n)$, as required.
+
+To show that $(4) \implies (1)$, let $E_n$ be an elliptic curve over $S$, and $P \in E_n^{(p^n)}(S)$ a generator of $\Ker(V^n : E_n^{(p^n)} \to E_n)$. We must show that $P$ is a generator of the composite
+\[
+E_n^{(p^n)} \xrightarrow{\ V^n\ } E_n \xrightarrow{\ F^n\ } E_n^{(p^n)} ,
+\]
+whose standard factorization is
+\[
+E_n^{(p^n)} \xrightarrow{\ F^n\ } E_n^{(p^{2n})} \xrightarrow{\ V^n\ } E_n^{(p^n)} .
+\]
+By the standard order criterion (\ref{thm:6.7.13}), we must show that
+\[
+\left\{\begin{aligned}
+& p^n P \text{ generates } \Ker(F^n : E_n^{(p^n)} \to E_n^{(p^{2n})}) \\
+& F^n(P) \text{ generates } \Ker(V^n : E_n^{(p^{2n})} \to E_n^{(p^n)}) .
+\end{aligned}\right.
+\]
+The first condition holds because $p^n P = F^n V^n P = F^n 0 = 0$ generates $\Ker F^n$; the second because $P$ generates $\Ker(V^n : E_n^{(p^n)} \to E_n)$, and the situation at hand is obtained from this one by the change of base
+\[
+S \xrightarrow{\ F_{\mathrm{abs}}^n\ } S . \qedhere
+\]
+\end{proof}
+
+\section{Igusa structures}
+\label{sec:12.3}
+
+\kmitem\label{item:12.3.1}
+\textsc{Definition.} Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme, $n \ge 0$ an integer. An \emph{Igusa-structure of level $p^n$} on $E/S$ is a point $P \in E^{(p^n)}(S)$ which generates the kernel of
+\[
+V^n : E^{(p^n)} \to E .
+\]
+We denote by $[\mathrm{Ig}(p^n)]$ the corresponding moduli problem on $(\mathrm{Ell}/\mathbb{F}_p)$:
+\begin{equation}\label{eq:12.3.1.1}
+[\mathrm{Ig}(p^n)](E/S) = \text{generators of } \Ker(V^n : E^{(p^n)} \to E) .
+\end{equation}
+
+\begin{kprop}\label{prop:12.3.2}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme, $n \ge 1$ an integer. Then
+\begin{enumerate}[label=(\arabic*)]
+\item a point $P \in E(S)$ generates $\Ker(p^n : E \to E)$ if and only if the point $p^{n-1}P$ generates $\Ker(p : E \to E)$.
+\item a point $P \in E(S)$ generates $\Ker(p^n : E \to E)$ if and only if the point $p^{n-1}F(P) \in E^{(p)}(S)$ generates $\Ker(V : E^{(p)} \to E)$.
+\item a point $Q \in E^{(p^n)}(S)$ generates $\Ker(V^n : E^{(p^n)} \to E)$ if and only if the point $V^{n-1}(Q) \in E^{(p)}(S)$ generates $\Ker(V : E^{(p)} \to E)$.
+\end{enumerate}
+\end{kprop}
+
+\begin{proof}
+For (1), use the fact that $P$ generates $\Ker(p^n)$ if and only if $(P, 0)$ is a Drinfeld $p^n$-basis, and the general fact (\ref{thm:5.5.7}) that $(P, Q)$ is a Drinfeld $p^n$-basis if and only if $(p^{n-1}P, p^{n-1}Q)$ is a Drinfeld $p$-basis.
+Assertion (2) is the Backing-up Theorem (\ref{thm:6.7.11}), applied to the standard factorization of $p^n : E \to E$ as $(p^{n-1}F, V)$:
+\[
+\begin{tikzcd}[column sep=1.8em]
+E \arrow[r, "F"] \arrow[rrrr, "p^{n-1}F"', bend right=30] & \cdots \arrow[r, "F"] & E^{(p^n)} \arrow[r, "V"] & \cdots \arrow[r, "V"] & E^{(p)} \arrow[r, "V"] & E .
+\end{tikzcd}
+\]
+Assertion (3) is the Backing-up theorem applied to the standard factorization of $V^n : E^{(p^n)} \to E$ as $(V^{n-1}, V)$:
+\[
+\begin{tikzcd}[column sep=1.8em]
+E^{(p^n)} \arrow[r, "V"] \arrow[rr, "V^{n-1}"', bend right=30] & \cdots \arrow[r, "V"] & E^{(p)} \arrow[r, "V"] & E .
+\end{tikzcd} \qedhere
+\]
+\end{proof}
+
+\begin{kprop}\label{prop:12.3.3}
+Let $k$ be an algebraically closed field of characteristic $p$, $E/k$ an elliptic curve, $P \in E^{(p)}(k)$ a point which generates $\Ker(V : E^{(p)} \to E)$. (Such points exist because $\Ker V$ is cyclic, and $k$ is algebraically closed.) Then
+\begin{enumerate}[label=(\arabic*)]
+\item If $P = 0$, then for every $n \ge 1$ the origin in $E(k)$ generates $\Ker(p^n : E \to E)$, and the origin in $E^{(p^n)}(k)$ generates $\Ker V^n : E^{(p^n)} \to E$. In particular, we have $\Ker(p^n : E \to E) = \Ker(F^{2n} : E \to E^{(p^{2n})})$, and we have $\Ker(V^n : E^{(p^n)} \to E) = \Ker(F^n : E^{(p^n)} \to E^{(p^{2n})})$.
+\item If $P \ne 0$, then $V : E^{(p)} \to E$ is etale. If we choose points $P_n \in E^{(p^n)}(k)$ with $P_1 = P$, $V P_{n+1} = P_n$, then $P_n$ generates $\Ker(V^n : E^{(p^n)} \to E)$, $V^n$ is etale, and $P_n$ defines an isomorphism
+\[
+\Z/p^n\Z \xrightarrow{\ \sim\ } \Ker(V^n : E^{(p^n)} \to E) .
+\]
+\end{enumerate}
+\end{kprop}
+
+\begin{proof}
+If $P = 0$ generates $\Ker(V : E^{(p)} \to E)$, then the previous proposition shows that the origin generates $\Ker(p^n)$ and $\Ker(V^n)$ for all $n \ge 1$. If $P \ne 0$ generates $\Ker(V : E^{(p)} \to E)$, then $\Ker(V)$ must be etale because over a field $k$, a group of rank $p$ is either etale or connected, and in the latter case it has no non-trivial $k$-points. Therefore $V : E^{(p)} \to E$ is etale, so also (by the base change $F_{\mathrm{abs}}^n$ on $k$) $V : E^{(p^{n+1})} \to E^{(p^n)}$ is etale for all $n \ge 1$. By the previous proposition, $P_n$ generates $\Ker(V^n)$, so by (\ref{lem:1.8.3}) it defines an isomorphism $\Z/p^n\Z \xrightarrow{\sim} \Ker(V^n)$ as required.
+\end{proof}
+
+\begin{kcor}\label{cor:12.3.4}
+Let $k$ be an algebraically closed field of characteristic $p$, $E/k$ an elliptic curve. Then either $p : E(k) \to E(k)$ is bijective, or for every $n \ge 1$ the group $E[p^n](k)$ is cyclic of order $p^n$.
+\end{kcor}
+
+\begin{proof}
+If $P = 0$ in the preceding proposition, then $\Ker(p) = \Ker(F^2)$ has no non-trivial $k$-valued points. Because $k$ is algebraically closed the maps $p^n : E \to E$ are always surjective on $k$-valued points. If $P \ne 0$, then the $P_n$'s of the preceding proposition give isomorphisms
+\[
+\Z/p^n\Z \xrightarrow{\ \sim\ } \Ker(V^n : E^{(p^n)} \to E) ,
+\]
+whose Cartier duals are isomorphisms
+\[
+\mu_{p^n} \xleftarrow{\ \sim\ } \Ker(F^n : E \to E^{(p^n)}) .
+\]
+So in this case the standard factorization of $p^n$ as $(F^n, V^n)$ yields the short exact sequence of $k$-group-schemes
+\[
+0 \to \mu_{p^n} \to E[p^n] \to \Z/p^n\Z \to 0 .
+\]
+Because $k$ is algebraically closed, this exact sequence yields an isomorphism of $k$-points
+\[
+E[p^n](k) \xrightarrow{\ \sim\ } \Z/p^n\Z . \qedhere
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.3.5}
+Let $k$ be an algebraically closed field of characteristic $p$, and $E/k$ an elliptic curve. Then either $\Ker(p^n) = \Ker(F^{2n})$ for every $n \ge 1$, or there exists an isomorphism of $p$-divisible groups
+\[
+E[p^\infty] \simeq \mu_{p^\infty} \times \Q_p/\Z_p .
+\]
+\end{kcor}
+
+\begin{proof}
+The first case occurs when $\Ker(V : E^{(p)} \to E)$ is generated by $P = 0$, the second when $P \ne 0$. Then the compatible $P_n \in E^{(p^n)}(k)$ with $V P_{n+1} = P_n$, $P_1 = P$ lead as above to an exact sequence
+\[
+0 \to \mu_{p^\infty} \to E[p^\infty] \to \Q_p/\Z_p \to 0 .
+\]
+Any compatible choice of points $Q_n \in E(k)$ with $F^n(Q_n) = P_n$ splits it.
+\end{proof}
+
+\par\smallskip
+Recall (cf.~\ref{thm:2.9.3}, \ref{thm:2.9.4}) that an elliptic curve $E$ over an algebraically closed field $k$ of characteristic $p > 0$ is called \emph{ordinary} if $E(k)$ has non-trivial points of order $p$, \emph{supersingular} if not. An elliptic curve $E/S/\mathbb{F}_p$ over an $\mathbb{F}_p$-scheme is called \emph{ordinary} if every one of its geometric fibers is ordinary.
+
+\begin{kprop}\label{prop:12.3.6}
+Let $E/S/\mathbb{F}_p$ be an elliptic curve over an $\mathbb{F}_p$-scheme. The following conditions are equivalent:
+\begin{enumerate}[label=(\arabic*), start=0]
+\item $E/S/\mathbb{F}_p$ is ordinary.
+\item The Verschiebung $V : E^{(p)} \to E$ is etale.
+\item For some integer $n \ge 1$, $V^n : E^{(p^n)} \to E$ is etale.
+\item For every integer $n \ge 1$, $V^n : E^{(p^n)} \to E$ is etale.
+\item The tangent map of Verschiebung $\mathrm{tg}(V) : \Lie(E/S)^{(p)} \to \Lie(E/S)$ is an isomorphism.
+\item For every geometric point $\Spec(k) \to S$ of $S$, the group $(E \underset{S}{\otimes} k)(k)$ contains exactly $p^n$ points killed by $p^n$, for every $n \ge 1$.
+\item For some $n \ge 1$, and every geometric point $\Spec(k) \to S$ of $S$, the group $(E \underset{S}{\otimes} k)(k)$ contains exactly $p^n$ points killed by $p^n$.
+\item For every geometric point $\Spec(k) \to S$ of $S$, the group $(E \underset{S}{\otimes} k)(k)$ contains a non-trivial point of order $p$.
+\item For every geometric point $\Spec(k) \to S$ of $S$, the group $(E \underset{S}{\otimes} k)(k)$ contains infinitely many points of $p$-power order.
+\end{enumerate}
+\end{kprop}
+
+\begin{proof}
+Clearly each of the conditions holds if and only if it holds on each geometric fiber, so we are reduced to the case $S = \Spec(k)$ with $k$ algebraically closed of characteristic $p$, in which case the result is immediate from (\ref{cor:12.3.5}).
+\end{proof}
+
+\begin{kcor}\label{cor:12.3.7}
+If $E \to E'$ is an isogeny of elliptic curves over an $\mathbb{F}_p$-scheme $S$, then $E/S$ is ordinary if and only if $E'/S$ is ordinary.
+\end{kcor}
+
+\begin{proof}
+Obvious from (8) above.
+\end{proof}
+\section{The Hasse invariant}
+\label{sec:12.4}
+
+\kmitem\label{item:12.4.1}
+Given $E/S/\mathbb{F}_p$, formation of the tangent map to Verschiebung
+\[
+\begin{aligned}
+\mathrm{tg}(V) &\in \Hom_S(\Lie(E/S)^{(p)}, \Lie(E/S)) \\
+&= \Hom_S((\Lie(E/S))^{\otimes p}, \Lie(E/S)) \\
+&= H^0(S, (\underline{\omega}_{E/S})^{\otimes (p-1)})
+\end{aligned}
+\]
+may be viewed as defining a modular form of weight $p-1$, the \emph{Hasse invariant}, denoted $A$. Here are four concrete ways to calculate this modular form. Suppose that $S$ is affine, $S = \Spec(R)$ with $R$ an $\mathbb{F}_p$-algebra, and that, (Zariski localizing on $R$ if necessary) the invertible $R$-module
+\[
+\underline{\omega}_{E/R} = H^0(E, \Omega^1_{E/R})
+\]
+of invariant one-forms on $E/R$ admits an $R$-basis $\omega$, i.e., $\omega$ is a nowhere vanishing invariant one-form on $E/R$.
+
+Let $D$ be the invariant derivation of $E/R$ dual to $\omega$, and let $X$ be a parameter for the formal group $\widehat{E}/R$ which is adapted to $\omega$ in the sense that
+\[
+\omega | \widehat{E} = (1 + \text{higher terms})\, dX .
+\]
+In terms of the bases $D^{(p)}$, $D$ of $\Lie(E/S)^{(p)}$ and $\Lie(E/S)$ respectively, we have $\mathrm{tg}(V) = A(E,\omega) \in R$.
+
+\kmitem\label{item:12.4.1.1}
+\emph{First calculation.} In the formal-group expression of the endomorphism ``multiplication by $p$'' as a power series in $X$,
+\[
+[p](X) = V(F(X)) = V(X^p) ,
+\]
+we see that
+\[
+A(E,\omega) = \mathrm{tg}(V) = \text{coefficient of } X^p \text{ in } [p](X) .
+\]
+
+\kmitem\label{item:12.4.1.2}
+\emph{Second calculation.} Use autoduality of elliptic curves to view $\Lie(E/R)$ as $H^1(E, \mathcal{O}_E)$. Then $\mathrm{tg}(V)$, viewed as a $p$-linear endomorphism of $\Lie(E/R)$, is the $p$-linear endomorphism of $H^1(E, \mathcal{O}_E)$ induced by $F_{\mathrm{abs}}$ on $\mathcal{O}_E$. Therefore if we denote by $\eta \in H^1(E, \mathcal{O}_E)$ the Serre-dual basis to $\omega$, we have
+\[
+F_{\mathrm{abs}}(\eta) = A(E,\omega)\eta \quad \text{in } H^1(E, \mathcal{O}_E) .
+\]
+
+\kmitem\label{item:12.4.1.3}
+\emph{Third calculation.} In terms of the invariant derivation $D$ dual to $\omega$, we have
+\[
+D^p = A(E,\omega) \cdot D .
+\]
+
+\kmitem\label{item:12.4.1.4}
+\emph{Fourth calculation.} Denote by $\omega^{(p)}$ the invariant one-form on $E^{(p)}/S$ obtained by extension of scalars $S \xrightarrow{\ F_{\mathrm{abs}}\ } S$ from $\omega$. The Cartier isomorphism (cf.~\cite{K1}) of sheaves on $E^{(p)}$
+\[
+\mathcal{H}^i(F_*\Omega^{\bullet}_{E/S}) \xrightarrow[\sim]{\ \mathcal{C}\ } \Omega^i_{E^{(p)}/S} ,
+\]
+induces an $S$-linear map, the Cartier operator $C$,
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=small]
+H^0(E,\Omega^1_{E/S}) \arrow[r, "\sim"] \arrow[drr, dashed, "C"'] & H^0(E^{(p)}, F_*\Omega^1_{E/S}) \arrow[r] & H^0(E^{(p)}, \mathcal{H}^1(F_*\Omega^{\bullet}_{E/S})) \arrow[d, "\mathcal{C}"] \\
+& & H^0(E^{(p)}, \Omega^1_{E^{(p)}/S}) ,
+\end{tikzcd}
+\]
+and we have
+\[
+C(\omega) = A(E,\omega) \cdot \omega^{(p)} .
+\]
+
+\begin{kthm}\label{thm:12.4.2}
+Over any $\mathbb{F}_p$-algebra $R$, the value of the Hasse invariant on the Tate curve $\Tate(q)/R((q))$ is given by
+\[
+A(\Tate(q), \omega_{\mathrm{can}}) = 1 .
+\]
+\end{kthm}
+
+\begin{proof}
+The differential $\omega_{\mathrm{can}}$ is $\phi_{\mathrm{can}}^*(dX/X)$, where $\phi_{\mathrm{can}}$ is the canonical isomorphism (\ref{sec:8.8}, T.2)
+\[
+\phi_{\mathrm{can}} : \widehat{\Tate}(q) \xrightarrow{\ \sim\ } \widehat{\mathbb{G}}_m
+\]
+and $X$ is the standard multiplicative coordinate on $\widehat{\mathbb{G}}_m$. The dual-to-$\omega_{\mathrm{can}}$ derivation $D$ of $\Tate(q)/R((q))$ thus induces the standard invariant derivation $X\frac{d}{dX}$ of $\widehat{\mathbb{G}}_m$. Because $R$ is an $\mathbb{F}_p$-algebra, we have
+\[
+\left(X\frac{d}{dX}\right)^p = X\frac{d}{dX} ,
+\]
+whence $A(\Tate(q), \omega_{\mathrm{can}}) = 1$, as required.
+\end{proof}
+
+\begin{kthm}[Igusa]\label{thm:12.4.3}
+The Hasse invariant has simple zeroes, i.e., if $k$ is a perfect field of characteristic $p$, and $R$ an artin local $k$-algebra with residue field $k$, then for any elliptic curve $E/R$, the following conditions are equivalent:
+\begin{enumerate}[label=(\arabic*)]
+\item The Verschiebung $V : E^{(p)} \to E$ has $\mathrm{tg}(V) = 0$.
+\item There exists a supersingular elliptic curve $E_0/k$ and an $R$-isomorphism $E_0 \underset{k}{\otimes} R \simeq E$.
+\end{enumerate}
+\end{kthm}
+
+\begin{proof}
+Clearly $(2) \implies (1)$. If $\mathrm{tg}(V) = 0$, then $\Ker(V)$ lies in $\widehat{E}^{(p)}$. Take a coordinate $X$ for the formal group $\widehat{E}$ which linearizes the action of $\mu_{p-1} \subset \mathbb{Z}_p^\times$, and use the induced coordinate on $\widehat{E}^{(p)}$. Then the power series expression for any homomorphism $f : \widehat{E}^{(p)} \to \widehat{E}$ has the form
+\[
+f(X) = \sum_{n \ge 1} a(n) X^n, \quad a(n) = 0 \text{ unless } n \equiv 1 \pmod{p-1},
+\]
+\[
+a(1) = \mathrm{tg}(f) .
+\]
+Therefore if $\mathrm{tg}(V) = 0$, we have
+\[
+V(X) = a(p) X^p + \text{higher terms} .
+\]
+We know that $a(p)$ lies in $R^\times$, because modulo $\max(R)$, $E$ becomes supersingular, and $\Ker(V : E^{(p)} \to E) = \Ker(F : E^{(p)} \to E^{(p^2)})$. Therefore
+\[
+V(X) = X^p \times (\text{invertible series in } X) ,
+\]
+whence
+\[
+\Ker(V : E^{(p)} \to E) = (X^p = 0) = \Ker(F : E^{(p)} \to E^{(p^2)}) .
+\]
+Therefore we obtain an $R$-isomorphism
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=large]
+E^{(p)}/\Ker V \arrow[d, "\wr"', "V"] \arrow[r, equal] & E^{(p)}/\Ker F \arrow[d, "\wr"', "F"] \\
+E \arrow[r, "\sim"] & E^{(p^2)} .
+\end{tikzcd}
+\]
+Iterating this isomorphism, we obtain
+\[
+E \xrightarrow{\ \sim\ } E^{(p^2)} \xrightarrow{\ \sim\ } E^{(p^4)} \xrightarrow{\ \sim\ } \cdots \xrightarrow{\ \sim\ } E^{(p^{2n})} \xrightarrow{\ \sim\ } \cdots .
+\]
+Because $R$ is an artin local $k$-algebra with (perfect) residue field $k$, for $n \gg 0$ the $p^{2n}$'th-power map $R \to R$ factors through the subring $k$ of $R$:
+\[
+\begin{tikzcd}[row sep=1.6em, column sep=small]
+& k \arrow[dr, "X \mapsto X^{p^{2n}}"] & & \\
+R \arrow[ur] \arrow[rr, "X \mapsto X^{p^{2n}}"] \arrow[rrr, bend right=40, "X \mapsto X^{p^{2n}}"'] & & k \arrow[r, phantom, "\subset"] & R
+\end{tikzcd}
+\]
+whence
+\[
+E \xrightarrow{\ \sim\ } E^{(p^{2n})} \simeq ((E \underset{R}{\otimes} k)^{(p^{2n})}) \underset{k}{\otimes} R . \qedhere
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.4.4}
+Let $k$ be an algebraically closed field of characteristic $p$, $E/k$ a supersingular elliptic curve, $E/k[[T]]$ its universal formal deformation (to artin local $k$-algebras). There exists a nowhere vanishing invariant one-form $\omega$ on $E/k[[T]]$ in terms of which $A(E,\omega) = T$.
+\end{kcor}
+
+\begin{proof}
+For any choice of $\omega$, we have, by Igusa's theorem (\ref{thm:12.4.3}),
+\[
+\begin{aligned}
+A(E,\omega) &= T \times (\text{an invertible series in } T) \\
+&= T \times (a \in k^\times) \times (\phi(T) \in 1 + T k[[T]]) .
+\end{aligned}
+\]
+Then the new choice
+\[
+\frac{1}{(a^{\frac{1}{p-1}})(\phi(T))^{\frac{1}{p-1}}} \cdot \omega
+\]
+gives the result.
+\end{proof}
+
+\begin{kthm}\label{thm:12.4.5}
+Let $k$ be an algebraically closed field of characteristic $p$, $\mathcal{P}$ a representable moduli problem on $(\mathrm{Ell}/k)$ which is finite etale over $(\mathrm{Ell}/k)$ of degree $\deg(\mathcal{P})$. Then the number of supersingular points on the modular curve $\overline{\mathfrak{M}}(\mathcal{P})$ is given by the formula
+\[
+\# \text{ supersingular points on } \overline{\mathfrak{M}}(\mathcal{P}) = \frac{p-1}{24} \deg(\mathcal{P}) .
+\]
+\end{kthm}
+
+\begin{proof}
+Let $\mathcal{P}$ and $\mathcal{P}'$ be two such problems. Then the simultaneous problem $(\mathcal{P},\mathcal{P}')$ is a third, and the maps
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=small]
+& \overline{\mathfrak{M}}(\mathcal{P}, \mathcal{P}') \arrow[dl, bend right=15, "\text{degree } = \deg(\mathcal{P}')"'] \arrow[dr, bend left=15, "\text{degree } = \deg(\mathcal{P})"] & \\
+\overline{\mathfrak{M}}(\mathcal{P}) & & \overline{\mathfrak{M}}(\mathcal{P}')
+\end{tikzcd}
+\]
+are finite etale of the indicated degrees.
+
+Therefore it suffices to verify the formula for a single $\mathcal{P}$. Choose any integer $N \ge 3$ prime to $p$, a primitive $N$'th root of unity $\zeta_N \in k$, and consider
+\[
+\mathcal{P} = [\Gamma(N)]^{\mathrm{can}} \underset{\mathbb{Z}[\zeta_N]}{\otimes} k .
+\]
+On $\overline{\mathfrak{M}}(\mathcal{P})$, the supersingular points are the zeroes of the Hasse invariant $A$. By (\ref{thm:12.4.2}), $A$ extends to a section of $\underline{\omega}^{\otimes (p-1)}$ over all of $\overline{\mathfrak{M}}(\mathcal{P})$, and near the cusps it is an invertible section of $\underline{\omega}^{\otimes (p-1)}$. By Igusa's theorem, $A$ has only simple zeroes. Therefore (cf.~\ref{cor:10.13.12})
+\[
+\# (\text{supersingular points on } \overline{\mathfrak{M}}(\mathcal{P}))
+\]
+\[
+\begin{aligned}
+&= \text{total number of zeroes, counting multiplicity,} \\
+&\qquad \text{of } A \text{ on } \overline{\mathfrak{M}}(\mathcal{P}) \\
+&= \deg(\underline{\omega}^{\otimes (p-1)}) \\
+&= (p-1) \deg(\underline{\omega}) = (p-1) \times \frac{1}{24}\deg(\mathcal{P}) . \qedhere
+\end{aligned}
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.4.6}
+We have the formula
+\[
+\frac{p-1}{24} = \sum_{\substack{j \in \overline{\mathbb{F}}_p \\ \text{supersingular}}} 1/\#\Aut(E_j)
+\]
+where $E_j$ denotes a supersingular elliptic curve over $\overline{\mathbb{F}}_p$ with $j$-invariant $j$.
+\end{kcor}
+
+\begin{proof}
+Let $\mathcal{P}$ be a representable moduli problem on $(\mathrm{Ell}/\overline{\mathbb{F}}_p)$ which is finite etale over $(\mathrm{Ell}/\overline{\mathbb{F}}_p)$ of degree $\deg(\mathcal{P})$, and consider the map
+\[
+\mathfrak{M}(\mathcal{P}) \xrightarrow{\ j\ } \mathbb{A}^1_{\overline{\mathbb{F}}_p} .
+\]
+For each $j \in \overline{\mathbb{F}}_p$, the fiber over it is the set of isomorphism classes of pairs $(E_j, \alpha \in \mathcal{P}(E_j))$ where $E_j/\overline{\mathbb{F}}_p$ is an elliptic curve with $j$-invariant $j$, and $\alpha$ is a level $\mathcal{P}$-structure on $E_j$. Up to $\overline{\mathbb{F}}_p$-isomorphism, $E_j$ is determined by its $j$, so the cardinality of the fiber over $j$ is
+\[
+\#(\mathcal{P}(E_j)/\Aut(E_j)) .
+\]
+Because $\mathcal{P}$ is representable, $\Aut(E_j)$ acts freely, so this cardinality is
+\[
+\frac{\#\mathcal{P}(E_j)}{\#\Aut(E_j)} = \frac{\deg(\mathcal{P})}{\#\Aut(E_j)} .
+\]
+Thus we find
+\[
+\# \text{ supersingular points on } \mathfrak{M}(\mathcal{P})
+\]
+\[
+\begin{aligned}
+&= \sum_{\text{supersingular } j} \#(\text{fiber of } \mathfrak{M}(\mathcal{P}) \xrightarrow{\ j\ } \mathbb{A}^1 \text{ over } j) \\
+&= \deg(\mathcal{P}) \sum_{\text{s/s } j} 1/\#\Aut(E_j) .
+\end{aligned}
+\]
+Comparing this with the formula
+\[
+\# \text{ s/s points on } \mathfrak{M}(\mathcal{P}) = \frac{p-1}{24} \times \deg(\mathcal{P})
+\]
+gives the required formula.
+\end{proof}
+
+\section{Ordinary curves}
+\label{sec:12.5}
+
+\kmitem\label{item:12.5.1}
+\textsc{Definition.} We denote by $[\mathrm{ord}]$ the moduli problem on $(\mathrm{Ell}/\mathbb{F}_p)$ defined by
+\[
+[\mathrm{ord}](E/S) = \begin{cases}
+\text{the set with one element, if } E/S \text{ is ordinary}; \\
+\text{the empty set, if not.}
+\end{cases}
+\]
+
+\begin{klem}\label{lem:12.5.2}
+The moduli problem $[\mathrm{ord}]$ is relatively representable, affine and an open immersion over $(\mathrm{Ell}/\mathbb{F}_p)$.
+\end{klem}
+
+\begin{proof}
+Indeed given $E/S/\mathbb{F}_p$, $[\mathrm{ord}]$ is relatively represented by the $S$-scheme
+\[
+[\mathrm{ord}]_{E/S} = \begin{cases}
+\text{the open subscheme of } S \text{ where} \\
+\text{the section } \mathrm{tg}(V) \text{ of the line} \\
+\text{bundle } \underline{\omega}^{\otimes (p-1)} \text{ is invertible,}
+\end{cases}
+\]
+which locally on $S$ is defined by inverting a single function.
+\end{proof}
+
+\kmitem\label{item:12.5.3}
+For any moduli problem $\mathcal{P}$ on $(\mathrm{Ell}/R/\mathbb{F}_p)$, we denote by $(\mathcal{P},\mathrm{ord})$, or $\mathcal{P}^{\mathrm{ord}}$, the simultaneous moduli problem:
+\[
+\mathcal{P}^{\mathrm{ord}}(E/S) = \begin{cases}
+\text{the set of level } \mathcal{P} \text{ structures} \\
+\text{on } E/S, \text{ if } E/S \text{ is ordinary}; \\
+\text{the empty set, if not.}
+\end{cases}
+\]
+
+\begin{klem}\label{lem:12.5.4}
+There exists a monic polynomial $\Phi^{\mathrm{s.s.}}(j) \in \mathbb{F}_p[j]$ such that for any $E/S/\mathbb{F}_p$, $E/S$ is ordinary if and only if $\Phi^{\mathrm{s.s.}}(j(E))$ is invertible on $S$. All roots of $\Phi^{\mathrm{s.s.}}$ lie in $\mathbb{F}_{p^2}$.
+\end{klem}
+
+\begin{proof}
+Because ``ordinary'' is checked fiber by fiber, we are reduced to the case $S = \Spec(k)$ with $k$ algebraically closed of characteristic $p$. Whether $E/k$ is ordinary or supersingular depends only on the isomorphism class of $E/k$, so only on $j(E)$, $k$ being algebraically closed. We must show that if $E/k$ is supersingular, then $j(E) \in \mathbb{F}_{p^2}$. But we have seen that if $E/k$ is supersingular, then $\Ker(V : E^{(p)} \to E) = \Ker(F : E^{(p)} \to E^{(p^2)})$, whence
+\[
+E \xrightarrow{\ \sim\ } E^{(p^2)} ,
+\]
+and this gives
+\[
+j(E) = j(E^{(p^2)}) = j(E)^{p^2} . \qedhere
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.5.5}
+For any moduli problem $\mathcal{P}$ on $(\mathrm{Ell}/R/\mathbb{F}_p)$ which is relatively representable and affine over $(\mathrm{Ell}/R/\mathbb{F}_p)$, the coarse moduli schemes of $\mathcal{P}$ and $\mathcal{P}^{\mathrm{ord}}$ are related by
+\[
+M(\mathcal{P}^{\mathrm{ord}}) = M(\mathcal{P})[1/\Phi^{\mathrm{s.s.}}]
+\]
+as schemes over $\Spec(R[j])$.
+\end{kcor}
+
+\begin{proof}
+If $\mathcal{P}$ is representable, this is obvious from the general fact that for any $E/S/R$, we have
+\[
+(\mathcal{P}^{\mathrm{ord}})_{E/S} = \mathcal{P}_{E/S}[1/\Phi^{\mathrm{s.s.}}] .
+\]
+In general, choose an odd prime $\ell \neq p$, and compute
+\[
+\begin{aligned}
+M(\mathcal{P}^{\mathrm{ord}}) &= \mathfrak{M}(\mathcal{P}^{\mathrm{ord}}, [\Gamma(\ell)]) / \GL(2,\mathbb{F}_\ell) \\
+&= (\mathfrak{M}(\mathcal{P}, [\Gamma(\ell)])[1/\Phi^{\mathrm{s.s.}}]) / \GL(2,\mathbb{F}_\ell) \\
+&= (\mathfrak{M}(\mathcal{P}, [\Gamma(\ell)]) / \GL(2,\mathbb{F}_\ell))[1/\Phi^{\mathrm{s.s.}}] \\
+&= M(\mathcal{P})[1/\Phi^{\mathrm{s.s.}}] . \qedhere
+\end{aligned}
+\]
+\end{proof}
+
+\section{First analysis of the Igusa curve}
+\label{sec:12.6}
+
+\begin{kthm}[Igusa]\label{thm:12.6.1}
+\begin{enumerate}[label=(\arabic*)]
+\item The moduli problem $[\mathrm{Ig}(p^n)]$ on $(\mathrm{Ell}/\mathbb{F}_p)$ is relatively representable, finite and flat over $(\mathrm{Ell}/\mathbb{F}_p)$ of rank $\phi(p^n)$.
+\item It is regular one-dimensional (so, being of finite type over $\mathbb{F}_p$, it is smooth of relative dimension one over $\mathbb{F}_p$).
+\item The group $(\mathbb{Z}/p^n\mathbb{Z})^\times$ operates on $[\mathrm{Ig}(p^n)]$ by
+\[
+(a \in (\mathbb{Z}/p^n\mathbb{Z})^\times, P \text{ gen of } \Ker V^n) \mapsto a P .
+\]
+For every integer $0 \le a \le n$, let $1 + (p^a)$ denote the subgroup of $(\mathbb{Z}/p^n\mathbb{Z})^\times$ sitting in the exact sequence
+\[
+0 \to 1 + (p^a) \to (\mathbb{Z}/p^n\mathbb{Z})^\times \to (\mathbb{Z}/p^a\mathbb{Z})^\times \to 0 .
+\]
+The natural map of moduli problems on $(\mathrm{Ell}/\mathbb{F}_p)$
+\[
+\begin{aligned}
+{[\mathrm{Ig}(p^n)]} &\to [\mathrm{Ig}(p^a)] \\
+(P \text{ gen of } \Ker V^n) &\mapsto V^{n-a}(P)
+\end{aligned}
+\]
+is $1 + (p^a)$ equivariant.
+\item The induced map
+\[
+[\mathrm{Ig}(p^n)]^{\mathrm{ord}} \to [\mathrm{Ig}(p^a)]^{\mathrm{ord}}
+\]
+is a finite etale $1 + (p^a)$-torsor.
+\item The induced map of quotients is an isomorphism
+\[
+[\mathrm{Ig}(p^n)]/(1 + (p^a)) \xrightarrow{\ \sim\ } [\mathrm{Ig}(p^a)]
+\]
+of moduli problems on $(\mathrm{Ell}/\mathbb{F}_p)$.
+\item For any subgroup $H \subset (\mathbb{Z}/p^n\mathbb{Z})^\times$, the quotient $[\mathrm{Ig}(p^n)]/H$ is regular one-dimensional, finite and flat over $(\mathrm{Ell}/\mathbb{F}_p)$.
+\end{enumerate}
+\end{kthm}
+
+\begin{proof}
+That $[\mathrm{Ig}(p^n)]$ is relatively representable, finite and flat of degree $\phi(p^n)$ is clear from (\ref{lem:12.2.3}) and (\ref{thm:6.1.1}): indeed for any $E/S/\mathbb{F}_p$, we have
+\[
+\begin{aligned}
+[\mathrm{Ig}(p^n)]_{E/S} = G^\times, &\text{ the scheme of generators of} \\
+&G = \Ker(V^n : E^{(p^n)} \to E) .
+\end{aligned}
+\]
+If $E/S/\mathbb{F}_p$ is ordinary, then $\Ker(V^n)$ is etale and cyclic of order $p^n$, so $[\mathrm{Ig}(p^n)]^{\mathrm{ord}}$ is a finite etale $(\mathbb{Z}/p^n\mathbb{Z})^\times$ torsor over $[\mathrm{ord}] = [\mathrm{Ig}(p^0)]^{\mathrm{ord}}$.
+The maps
+\[
+\begin{aligned}
+{[\mathrm{Ig}(p^n)]} &\to [\mathrm{Ig}(p^a)] \\
+P &\mapsto V^{n-a}(P)
+\end{aligned}
+\]
+are well defined (by the Backing-up theorem (\ref{thm:6.7.11})), obviously $1 + (p^a)$ equivariant, and are obviously finite etale $1 + (p^a)$ torsors over ordinary $E/S/\mathbb{F}_p$'s. So as usual we are left with understanding what happens at the supersingular points.
+
+Thus let $k$ be an algebraically closed field of characteristic $p$, $E/k$ a supersingular elliptic curve, $E/k[[T]]$ its universal formal deformation (to artin local $k$-algebras), $X$ a parameter for the formal group $\widehat{E}$. The chosen $X$ gives a parameter on each $\widehat{E}^{(p^n)}$ by extension of scalars. We must show that the finite flat $k[[T]]$-scheme
+\[
+[\mathrm{Ig}(p^n)]_{E/k[[T]]}
+\]
+is regular and one-dimensional. We know that it is \emph{local}, because its $k$-points ``are'' the generators of $\Ker(V^n : E^{(p^n)} \to E)$ at $T = 0$ with values in $k$, and the unique $k$-point in this kernel is the origin. Therefore this local ring, being finite flat over $k[[T]]$, is certainly one-dimensional. To show it is regular, it suffices to exhibit a parameter. We claim that the ``$X$-coordinate'' of the given generator of $\Ker(V^n)$ is a parameter. This amounts to showing that
+\begin{quote}
+if $R$ is an artin local $k$-algebra\footnote{With residue field $k$.} and $E/R$ is an elliptic curve such that $0$ generates $\Ker(V^n : E^{(p^n)} \to E)$, then $E/R$ is constant.
+\end{quote}
+But this is clear, for $0$ as point of ``exact order $p^n$'' generates $\Ker(F^n)$ so we find $\Ker(V^n) = \Ker(F^n)$, whence
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=large]
+E^{(p^n)}/\Ker(V^n) \arrow[d, "\wr"', "V^n"] \arrow[r, equal] & E^{(p^n)}/\Ker(F^n) \arrow[d, "\wr"', "F^n"] \\
+E \arrow[r, "\sim"] & E^{(p^{2n})} .
+\end{tikzcd}
+\]
+Iterating this isomorphism as in \ref{thm:12.4.3}, we get
+\[
+E \xrightarrow{\ \sim\ } E^{(p^{2n})} \xrightarrow{\ \sim\ } E^{(p^{4n})} \xrightarrow{\ \sim\ } \cdots \xrightarrow{\ \sim\ } E^{(p^{2mn})} \xrightarrow{\ \sim\ } \cdots ,
+\]
+and we find that $E$ is constant, as required.
+
+It remains to show that the map
+\[
+[\mathrm{Ig}(p^n)]/(1 + (p^a)) \to [\mathrm{Ig}(p^a)]
+\]
+is an isomorphism. We know it is so over the ordinary part. To see that it is so everywhere, it suffices to prove that the quotient
+\[
+[\mathrm{Ig}(p^n)]/(1 + (p^a))
+\]
+is regular one-dimensional. For the map is then a finite map (finite because source and target are finite over $(\mathrm{Ell}/\mathbb{F}_p)$) between regular schemes of the same dimension, so automatically finite and flat.
+
+So we are reduced to showing that for any $H \subset (\mathbb{Z}/p^n\mathbb{Z})^\times$, the quotient problem $[\mathrm{Ig}(p^n)]/H$ is regular one-dimensional. But being the quotient of a regular one-dimensional problem by a finite group, it is \emph{normal} and one-dimensional, hence regular.
+\end{proof}
+
+\begin{kcor}[Igusa]\label{cor:12.6.2}
+Let $k$ be an algebraically closed field of characteristic $p$, $\mathcal{P}$ a representable moduli problem on $(\mathrm{Ell}/k)$ which is etale and surjective over $(\mathrm{Ell}/k)$. Then
+\begin{enumerate}[label=(\arabic*)]
+\item The covering $\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \mathfrak{M}(\mathcal{P})$ is a finite flat map of smooth curves over $k$. It is finite etale outside the supersingular points, with Galois group $(\mathbb{Z}/p^n\mathbb{Z})^\times$. It is fully ramified over each supersingular point of $\mathfrak{M}(\mathcal{P})$.
+\item If $\mathfrak{M}(\mathcal{P})$ is connected, then $\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)])$ is connected.
+\end{enumerate}
+\end{kcor}
+
+\begin{proof}
+The fully-ramifiedness over supersingular points is again the fact that for $E/k$ supersingular, and $n \ge 0$, the origin is the unique $k$-rational generator of $\Ker(V^n : E^{(p^n)} \to E)$. That it is a finite etale $(\mathbb{Z}/p^n\mathbb{Z})^\times$-torsor over $\mathfrak{M}(\mathcal{P}^{\mathrm{ord}})$ is the special case $a = 0$ of the fact that
+\[
+[\mathrm{Ig}(p^n)]^{\mathrm{ord}} \to [\mathrm{Ig}(p^a)]^{\mathrm{ord}}
+\]
+is a finite etale $1 + (p^a)$-torsor. The connectedness assertion (2) is an immediate consequence of having a finite flat map of noetherian schemes $X \to Y$ with $Y$ connected, which is fully ramified over some point of $Y$. For if $U \subset X$ is an open and closed subscheme, the composite $U \subset X \to Y$ is still both finite and flat, so locally free over all of $Y$ of some degree $\ge 1$. So if $V = X - U$ is non-empty, it too is finite flat over $Y$, so also locally free over $Y$ of some degree $\ge 1$. Then $X$ is a disjoint union of two surjective $Y$-schemes, contradicting the fully-ramifiedness.
+\end{proof}
+
+\begin{kcor}\label{cor:12.6.3}
+If $p^n \ge 3$, then $[\mathrm{Ig}(p^n)]^{\mathrm{ord}}$ is representable, by a smooth geometrically connected curve over $\mathbb{F}_p$.
+\end{kcor}
+
+\begin{proof}
+The problem $[\mathrm{Ig}(p^n)]^{\mathrm{ord}}$ is relatively representable and affine over $(\mathrm{Ell}/\mathbb{F}_p)$, so it is representable if and only if it is rigid. Thus let $k$ be a field of characteristic $p$, $E/k$ an ordinary elliptic curve, and $P \in E^{(p^n)}(k)$ a generator of $\Ker(V^n)$. Then $P$ defines an isomorphism $\mathbb{Z}/p^n\mathbb{Z} \xrightarrow{\sim} \Ker V^n \subset E^{(p^n)}$. We must see that any automorphism $\epsilon$ of $E/k$ which operates trivially on this $\mathbb{Z}/p^n\mathbb{Z}$ is the identity.
+
+By functoriality, any $\lambda \in \End(E/k)$ operates on $\Ker(V^n) \simeq \mathbb{Z}/p^n\mathbb{Z}$, by multiplication by some $\alpha(\lambda) \in \mathbb{Z}/p^n\mathbb{Z}$, and $\lambda \mapsto \alpha(\lambda)$ is a ring homomorphism
+\[
+\End(E/k) \to \mathbb{Z}/p^n\mathbb{Z} .
+\]
+We must see that the unique $\epsilon \in \Aut(E/k)$ with $\alpha(\epsilon) = 1$ is $\epsilon = 1$, if $p^n \ge 3$. We do this in cases.
+
+\emph{Case 1.} $\Aut(E/k) = \pm 1$. Here $\alpha(-1) = -1 \not\equiv 1 \pmod{p^n}$, because $p^n \ge 3$.
+
+\emph{Case 2.} $\Aut(E/k) \neq \pm 1$. Any automorphism $\epsilon \neq \pm 1$ satisfies either $\epsilon^2 + 1 = 0$ or $\epsilon^2 + \epsilon + 1 = 0$ or $\epsilon^2 - \epsilon + 1 = 0$ in the ring $\End(E/k)$. If such an $\epsilon$ has $\alpha(\epsilon) = 1$, then we have respectively $2 \equiv 0 \pmod{p^n}$, $3 \equiv 0 \pmod{p^n}$, $2 \equiv 0 \pmod{p^n}$. The first and last are incorrect if $p^n \ge 3$, the middle one incorrect if $p^n \ge 4$. It remains to treat the case $p = 3$, $\epsilon^2 + \epsilon + 1 = 0$. But this curve has CM by $\mathbb{Q}(\zeta_3)$, so has $j = 0 = 1728$ in $\overline{\mathbb{F}}_3$ and is the unique supersingular curve in characteristic three. So this case does not arise.
+\end{proof}
+
+\section{Analysis of the cusps}
+\label{sec:12.7}
+
+\begin{kthm}\label{thm:12.7.1}
+Let $R$ be an $\mathbb{F}_p$-algebra which is noetherian, regular and excellent, $\mathcal{P}$ a moduli problem on $(\mathrm{Ell}/R)$ which is representable and finite over $(\mathrm{Ell}/R)$, and normal near infinity (cf.~\ref{item:8.6.2}). Then
+\begin{enumerate}[label=(\arabic*)]
+\item the morphism of $R[[q]]$-schemes (cf.~(\ref{prop:10.13.4}))
+\[
+Z(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to Z(\mathcal{P})
+\]
+is completely decomposed: we have a canonical isomorphism of $R[[q]]$-schemes
+\[
+Z(\mathcal{P}, [\mathrm{Ig}(p^n)]) \xrightarrow{\ \sim\ } \coprod_{(\mathbb{Z}/p^n\mathbb{Z})^\times} Z(\mathcal{P}) ,
+\]
+with $\pm 1$ operating compatibly with its action on $(\mathbb{Z}/p^n\mathbb{Z})^\times$.
+\item if the group $\pm 1$ acts freely on $Z(\mathcal{P})$ (cf.~\ref{prop:10.13.7}, \ref{cor:10.13.8}, \ref{cor:10.13.9}), then the morphism of completed schemes of cusps (\eqref{eq:8.6.3.3})
+\[
+\widehat{\Cusps}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \widehat{\Cusps}(\mathcal{P})
+\]
+is a finite etale $(\mathbb{Z}/p^n\mathbb{Z})^\times$-torsor.
+\item if $p^n \ge 3$, the group $\pm 1$ operates freely on $Z(\mathcal{P}, [\mathrm{Ig}(p^n)])$; consequently (cf.~(\ref{prop:10.13.4})) the line bundle $\underline{\omega}$ extends to $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$.
+\end{enumerate}
+\end{kthm}
+
+\begin{proof}
+We first deduce assertions (2) and (3) from (1). Assertion (3) is just the fact that for $p^n \ge 3$, the group $\pm 1$ operates freely on the group $(\mathbb{Z}/p^n\mathbb{Z})^\times$. Assertion (2) follows from (1) because the morphism
+\[
+\widehat{\Cusps}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \widehat{\Cusps}(\mathcal{P})
+\]
+is (cf.~(\ref{prop:10.13.4}) and (\ref{thm:8.11.10})) obtained from the morphism
+\[
+Z(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to Z(\mathcal{P})
+\]
+by dividing both source and target by the group $\pm 1$. Therefore if $\pm 1$ acts freely on $Z(\mathcal{P})$, the second of these maps is obtained from the first by the finite etale surjective base-change
+\[
+Z(\mathcal{P}) \to \widehat{\Cusps}(\mathcal{P}) = Z(\mathcal{P})/\pm 1 .
+\]
+To prove (1), it suffices, by normalization, to show that we have an isomorphism of $R((q))$-schemes
+\[
+(\mathcal{P}, [\mathrm{Ig}(p^n)])_{\Tate(q)/R((q))} \simeq \coprod_{(\mathbb{Z}/p^n\mathbb{Z})^\times} \mathcal{P}_{\Tate(q)/R((q))} ,
+\]
+with $\pm 1$ operating compatibly with its action on $(\mathbb{Z}/p^n\mathbb{Z})^\times$. As for any simultaneous moduli problem, we have
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+(\mathcal{P}, [\mathrm{Ig}(p^n)])_{\Tate(q)/R((q))} \simeq (\mathcal{P}_{\Tate(q)/R((q))}) \fib{R((q))} [\mathrm{Ig}(p^n)]_{\Tate(q)/R((q))} .
+$}
+\]
+We are reduced to showing that
+\[
+[\mathrm{Ig}(p^n)]_{\Tate(q)/R((q))} \xrightarrow{\ \sim\ } \coprod_{(\mathbb{Z}/p^n\mathbb{Z})^\times} \Spec(R((q))) .
+\]
+On $\Tate(q)/R((q))$, we have a canonical short exact sequence (cf.~\ref{sec:8.8})
+\[
+0 \to \mu_{p^n} \to \Tate(q)[p^n] \to \mathbb{Z}/p^n\mathbb{Z} \to 0
+\]
+which defines a canonical isomorphism of $R((q))$-group-schemes
+\[
+\Ker(V^n : \Tate(q)^{(p^n)} \to \Tate(q)) \simeq \mathbb{Z}/p^n\mathbb{Z} .
+\]
+Therefore
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+[\mathrm{Ig}(p^n)]_{\Tate(q)/R((q))} \simeq (\text{the scheme of generators of } \mathbb{Z}/p^n\mathbb{Z}) \tens{\mathbb{Z}} R((q)) .
+$} \qedhere
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.7.2}
+Suppose $k$ is a perfect field of characteristic $p$, and $\mathcal{P}$ is a representable moduli problem which is finite etale over $(\mathrm{Ell}/k)$, such that $\pm 1$ acts freely on $Z(\mathcal{P})$. Then $\overline{\mathfrak{M}}(\mathcal{P})$ is a complete smooth curve over $k$, $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$ is a complete smooth curve over $k$, and the map
+\[
+\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \overline{\mathfrak{M}}(\mathcal{P})
+\]
+is finite etale galois with group $(\mathbb{Z}/p^n\mathbb{Z})^\times$ outside the supersingular points of $\overline{\mathfrak{M}}(\mathcal{P})$. The map is fully ramified over each supersingular point of $\overline{\mathfrak{M}}(\mathcal{P})$, and it is completely decomposed over the scheme of cusps of $\overline{\mathfrak{M}}(\mathcal{P})$. If $\overline{\mathfrak{M}}(\mathcal{P})$ is geometrically connected, so is $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$.
+\end{kcor}
+
+\begin{proof}
+$\overline{\mathfrak{M}}(\mathcal{P})$ is normal one-dimensional, so regular, and being finite over $\Spec(k[j])$ it is of finite type over $k$, so smooth over $k$. The other assertions result from (\ref{cor:12.6.2}) and (\ref{thm:12.7.1}).
+\end{proof}
+
+\section{The equation defining \texorpdfstring{$\mathrm{Ig}(p)$}{Ig(p)}, and a theorem of Serre}
+\label{sec:12.8}
+
+\kmitem\label{item:12.8.1}
+For an elliptic curve $E/S/\mathbb{F}_p$, recall that its Hasse invariant $A$ is the global section over $S$ of the line bundle
+\begin{align*}
+\underline{\omega}^{\otimes(p-1)} &\simeq \underline{\Hom}_{\mathcal{O}_S}(\Lie(E/S)^{\otimes p}, \Lie(E/S)) \\
+&= \underline{\Hom}_{\mathcal{O}_S}(\Lie(E^{(p)}/S), \Lie(E/S))
+\end{align*}
+provided by $\mathrm{tg}(V : E^{(p)} \to E)$.
+
+We construct a moduli problem $[A^{1/(p-1)}]$ on $(\mathrm{Ell}/\mathbb{F}_p)$ by defining
+\begin{equation}\label{eq:12.8.1.1}
+\begin{aligned}
+{}[A^{1/(p-1)}](E/S) = {}& \text{the set of elements } \omega \in H^0(S, \underline{\omega}_{E/S}) \\
+&\text{such that } \omega^{p-1} = A \text{ in } H^0(S, \underline{\omega}^{\otimes(p-1)}) .
+\end{aligned}
+\end{equation}
+
+\begin{kthm}\label{thm:12.8.2}
+There is a natural isomorphism of moduli problems on $(\mathrm{Ell}/\mathbb{F}_p)$
+\[
+[\mathrm{Ig}(p)] \xrightarrow{\ \sim\ } [A^{1/(p-1)}] .
+\]
+\end{kthm}
+
+\begin{proof}[Construction-proof]
+We begin by defining the morphism in question. Suppose we are given $E/S/\mathbb{F}_p$, and a point $P \in E^{(p)}(S)$ which generates $\Ker(V : E^{(p)} \to E)$. We must associate to this data a global section $\omega(P) \in H^0(S, \underline{\omega}_{E/S}) = H^0(S, \Omega^1_{E/S})$ which satisfies the equation
+\[
+\omega(P)^{\otimes(p-1)} = A .
+\]
+We perform this construction as follows. By Cartier duality, a point $P \in \Ker(V : E^{(p)}(S) \to E(S))$, when viewed as a homomorphism of $S$-groups $\mathbb{Z}/p\mathbb{Z} \to \Ker(V)$, gives rise to a homomorphism of $S$-groups
+\[
+\phi_P : \Ker(F : E \to E^{(p)}) \to \mu_p \hookrightarrow \mathbb{G}_m .
+\]
+The standard invariant one-form $\dd X/X$ on $\mathbb{G}_m$ gives rise by inverse image to an invariant one-form on $\Ker(F)$,
+\[
+\phi_P^*(\dd X/X) \quad\text{on}\quad \Ker(F : E \to E^{(p)}) .
+\]
+Because $S$ is an $\mathbb{F}_p$-scheme, the restriction map
+\[
+\begin{pmatrix}
+\text{invariant one-forms} \\
+\text{on } E/S
+\end{pmatrix}
+\to
+\begin{pmatrix}
+\text{invariant one-forms} \\
+\text{on } \Ker(F)
+\end{pmatrix}
+\]
+is an isomorphism. We define $\omega(P)$ to be the unique invariant one-form on $E/S$ such that
+\[
+\omega(P)|\Ker(F) = \phi_P^*(\dd X/X) .
+\]
+We must show that if $P$ generates $\Ker(V)$, then
+\[
+\omega(P)^{\otimes(p-1)} = A .
+\]
+By ``reduction to the universal case'', it suffices to verify this first when $S$ is a smooth geometrically connected curve over $\mathbb{F}_p$ containing a finite number of supersingular points, then over $S - \{\text{supersingular points}\}$.
+
+Passing to a finite etale covering, it suffices to check in the case $S = \mathfrak{M}([\mathrm{Ig}(p^n)]^{\mathrm{ord}})$, and, passing to the limit, it suffices to check over $S = \varprojlim \mathfrak{M}([\mathrm{Ig}(p^n)]^{\mathrm{ord}})$. In this case, the morphism
+\[
+\phi_P : \Ker(F) \to \mu_p \hookrightarrow \mathbb{G}_m
+\]
+is the restriction to $\Ker(F)$ of an isomorphism of formal groups
+\[
+\phi : \widehat{E} \xrightarrow{\ \sim\ } \widehat{\mathbb{G}}_m ,
+\]
+and we have
+\[
+\omega(P)|\widehat{E} = \phi^*(\dd X/X) .
+\]
+Then $\omega(P)$ is a nowhere-vanishing invariant one-form on $\widehat{E}$, so nowhere vanishing on $E$, and the dual derivation $D_P$ to $\omega(P)$ induces $X\dd/\dd X$ on $\mathbb{G}_m$, so satisfies
+\[
+(D_P)^p = D_P .
+\]
+Therefore
+\[
+A(E, \omega(P)) = 1 ,
+\]
+i.e.,
+\[
+A = \omega(P)^{\otimes(p-1)}
+\]
+as required.
+
+To see that this map
+\begin{align*}
+[\mathrm{Ig}(p)] &\to [A^{1/(p-1)}] \\
+P &\mapsto \omega(P)
+\end{align*}
+is an isomorphism of moduli problems on $(\mathrm{Ell}/\mathbb{F}_p)$, we argue as follows. By Igusa's theorem, $A$ has \emph{simple zeros}. Because $p-1$ is prime to $p$, it follows that $[A^{1/(p-1)}]^{\mathrm{ord}}$ is a finite etale $\mathbb{F}_p^\times$-torsor over $[\mathrm{ord}]$, and that $[A^{1/(p-1)}]$ is a regular one-dimensional moduli problem, fully ramified over each supersingular point, finite and flat of degree $p-1$ over $(\mathrm{Ell}/\mathbb{F}_p)$. The morphism
+\[
+[\mathrm{Ig}(p)] \to [A^{1/(p-1)}]
+\]
+is finite, because source and target are finite over $(\mathrm{Ell}/\mathbb{F}_p)$, so finite and flat, because both source and target are regular one-dimensional. Therefore it is finite and flat, necessarily of degree one, because source and target are each finite flat over $(\mathrm{Ell}/\mathbb{F}_p)$ of degree $p-1$ and connected in the sense of (\ref{cor:12.6.2}, (2)).
+\end{proof}
+
+\begin{kcor}\label{cor:12.8.3}
+Let $R$ be an $\mathbb{F}_p$-algebra which is noetherian, regular and excellent, $\mathcal{P}$ a moduli problem on $(\mathrm{Ell}/R)$ which is representable and finite over $(\mathrm{Ell}/R)$, and normal near infinity. Then $A$ extends to a global section over $\overline{\mathfrak{M}}(\mathcal{P})$ of $\underline{\omega}^{\otimes(p-1)}$. If $\pm 1$ operates freely on $Z(\mathcal{P})$ (cf.~\ref{thm:12.7.1}), then $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$ is the covering of $\overline{\mathfrak{M}}(\mathcal{P})$ defined by extracting the $p-1$'st root of $A$.
+\end{kcor}
+
+\begin{proof}
+That $A$ extends to a section of $\underline{\omega}^{\otimes(p-1)}$ over all of $\overline{\mathfrak{M}}(\mathcal{P})$ is obvious from the way that $\underline{\omega}$ is extended from $\mathfrak{M}(\mathcal{P})$ to $\overline{\mathfrak{M}}(\mathcal{P})$ (cf.~(\ref{item:10.13.2})), and from the formula
+\[
+A(\Tate(q), \omega_{\mathrm{can}}) = 1 .
+\]
+The covering of $\overline{\mathfrak{M}}(\mathcal{P})$ defined by extracting the $p-1$'st root of $A$ is finite etale with group $\mathbb{F}_p^\times$ over a neighborhood of the cusps. Therefore it is normal near infinity, finite over $\overline{\mathfrak{M}}(\mathcal{P})$, and by the theorem it coincides with $\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p)])$ over $\mathfrak{M}(\mathcal{P})$. Therefore it is the normalization of $\overline{\mathfrak{M}}(\mathcal{P})$ in $\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p)])$, just as is $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$.
+\end{proof}
+
+\begin{kcor}\label{cor:12.8.4}
+Hypotheses and notations as in the above corollary, suppose that $\pm 1$ operates freely on $Z(\mathcal{P})$. Then the finite flat covering $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$ of $\overline{\mathfrak{M}}(\mathcal{P})$ is the relatively affine $\overline{\mathfrak{M}}(\mathcal{P})$-scheme defined by
+\[
+\Spec_{\overline{\mathfrak{M}}(\mathcal{P})}\!\biggl( \mathrm{Symm}_{\overline{\mathfrak{M}}(\mathcal{P})}(\underline{\omega}^{-1})/\mathcal{I} \biggr)
+\]
+where $\mathcal{I}$ is the sheaf of ideals
+\[
+\mathcal{I} = (A-1)\Bigl( \bigoplus_{n \ge p-1} \underline{\omega}^{\otimes(-n)} \Bigr) .
+\]
+\end{kcor}
+
+\begin{proof}
+The relatively affine scheme in question tautologically represents the functor on $\overline{\mathfrak{M}}(\mathcal{P})$-schemes
+\[
+\begin{tikzcd}[row sep=1.2em]
+X \arrow[d, "\pi"'] \\
+\overline{\mathfrak{M}}(\mathcal{P})
+\end{tikzcd}
+\quad\longmapsto\quad
+\left\{
+\begin{aligned}
+&\text{sections } \alpha \in H^0(X, \pi^*(\underline{\omega})) \\
+&\text{such that } \alpha^{p-1} = A .
+\end{aligned}
+\right. \qedhere
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.8.5}
+For $\mathcal{P}$ as in the preceding corollary, denote by
+\[
+\mathrm{pr} : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)]) \to \overline{\mathfrak{M}}(\mathcal{P})
+\]
+the projection. Then we have a canonical isomorphism of locally-free sheaves on $\overline{\mathfrak{M}}(\mathcal{P})$
+\[
+\mathrm{pr}_*(\mathcal{O}_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])}) \xrightarrow{\ \sim\ } \bigoplus_{0 \le k \le p-2} (\underline{\omega}^{-1})^{\otimes k} .
+\]
+\end{kcor}
+
+\begin{proof}
+By the preceding corollary,
+\begin{align*}
+\mathrm{pr}_*(\mathcal{O}) &= \Bigl( \bigoplus_{k \ge 0} (\underline{\omega}^{-1})^{\otimes k} \Bigr) \Big/ (A-1)\Bigl( \bigoplus_{k \ge p-1} (\underline{\omega}^{-1})^{\otimes k} \Bigr) \\
+&\xleftarrow{\ \sim\ } \bigoplus_{0 \le k \le p-2} (\underline{\omega}^{-1})^{\otimes k} . \qedhere
+\end{align*}
+\end{proof}
+
+\begin{kcor}\label{cor:12.8.6}
+Let $k$ be a field of characteristic $p$, $\mathcal{P}$ a representable moduli problem on $(\mathrm{Ell}/k)$ which is finite etale over $(\mathrm{Ell}/k)$, such that $\pm 1$ acts freely on $Z(\mathcal{P})$. Then for the projection
+\[
+\mathrm{pr} : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)]) \to \overline{\mathfrak{M}}(\mathcal{P})
+\]
+we have canonical isomorphisms of line-bundles on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$
+\begin{enumerate}[label=(\arabic*)]
+\item
+\[
+\mathcal{O} \xrightarrow{\ \sim\ } I(\mathrm{s.s.}) \otimes \mathrm{pr}^*(\underline{\omega}) , \qquad 1 \mapsto A^{1/(p-1)} ,
+\]
+where $I(\mathrm{s.s.})$ denotes the ideal sheaf of the supersingular points on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$, and a canonical isomorphism
+\item
+\[
+\mathrm{pr}^*(\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})/k}) \xrightarrow{\ \sim\ } \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k} \otimes (I(\mathrm{s.s.}))^{\otimes(p-2)} .
+\]
+\end{enumerate}
+\end{kcor}
+
+\begin{proof}
+(1) holds because by Igusa's theorem the tautological section $A^{1/(p-1)}$ of $\mathrm{pr}^*(\underline{\omega})$ on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$ has simple zeroes precisely at the supersingular points of $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$, and elsewhere it is invertible. (2) holds because $\mathrm{pr}$ is etale except over the supersingular points of $\overline{\mathfrak{M}}(\mathcal{P})$, where it is defined by extracting the $p-1$'st root of a local parameter (cf.~\ref{cor:12.4.4}).
+\end{proof}
+
+\begin{kthm}\label{thm:12.8.7}
+Let $k$ be a field of characteristic $p$, $\mathcal{P}$ a representable moduli problem on $(\mathrm{Ell}/k)$ which is finite etale over $(\mathrm{Ell}/k)$. Suppose that $\pm 1$ acts freely on $Z(\mathcal{P})$. Assume that the Kodaira-Spencer isomorphism on $\mathfrak{M}(\mathcal{P})$ extends to an isomorphism
+\[
+\underline{\omega}^{\otimes 2} \simeq \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})/k}(\log\mathrm{cusps}) \quad\text{on}\quad \overline{\mathfrak{M}}(\mathcal{P}) ,
+\]
+a condition which is automatically fulfilled (cf.~(\ref{thm:10.13.11})) whenever $\mathcal{P}$ is the extension of scalars of a finite etale representable problem over an excellent noetherian regular domain of generic characteristic zero. Then we have a canonical isomorphism of line bundles on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$
+\[
+\mathrm{pr}^*(\underline{\omega}^{\otimes p}) \xrightarrow{\ \sim\ } \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k}(\log\mathrm{cusps}) ,
+\]
+and a canonical isomorphism of locally free sheaves on $\overline{\mathfrak{M}}(\mathcal{P})$
+\[
+\mathrm{pr}_*(\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k}) \xrightarrow{\ \sim\ } \bigoplus_{2 \le k \le p} (\underline{\omega}^{\otimes k} \otimes I(\mathrm{cusps})) .
+\]
+\end{kthm}
+
+\begin{proof}
+Because $\mathrm{pr} : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)]) \to \overline{\mathfrak{M}}(\mathcal{P})$ is finite etale near the cusps, we have
+\begin{align*}
+\mathrm{pr}^*(\underline{\omega}^{\otimes p}) &\simeq \mathrm{pr}^*(\underline{\omega}^{\otimes 2}) \otimes (\mathrm{pr}^*(\underline{\omega}))^{\otimes(p-2)} \\
+&\simeq \mathrm{pr}^*(\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})/k}(\log\mathrm{cusps})) \otimes (I^{-1}(\mathrm{s.s.}))^{\otimes(p-2)} \\
+&\simeq (\mathrm{pr}^*(\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})/k}) \otimes I^{-1}(\mathrm{cusps})) \otimes (I^{-1}(\mathrm{s.s.}))^{\otimes(p-2)} \\
+&\simeq \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k} \otimes (I(\mathrm{s.s.}))^{\otimes(p-2)} \\
+&\quad\qquad {}\otimes I^{-1}(\mathrm{cusps}) \otimes (I^{-1}(\mathrm{s.s.}))^{\otimes(p-2)} \\
+&\simeq (\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k}) \otimes I^{-1}(\mathrm{cusps}) .
+\end{align*}
+This gives the first isomorphism. The second is obtained by rewriting the first as
+\[
+\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k} \xrightarrow{\ \sim\ } \mathrm{pr}^*(\underline{\omega}^{\otimes p} \otimes I(\mathrm{cusps})) ,
+\]
+then applying $\mathrm{pr}_*$:
+\begin{align*}
+\mathrm{pr}_*(\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k}) &\simeq \underline{\omega}^{\otimes p} \otimes I(\mathrm{cusps}) \otimes \mathrm{pr}_*(\mathcal{O}) \\
+&\simeq \underline{\omega}^{\otimes p} \otimes I(\mathrm{cusps}) \otimes \biggl( \bigoplus_{0 \le k \le p-2} (\underline{\omega}^{-1})^{\otimes k} \biggr) \\
+&\simeq \bigoplus_{2 \le k \le p} \underline{\omega}^{\otimes k} \otimes I(\mathrm{cusps}) . \qedhere
+\end{align*}
+\end{proof}
+
+\begin{kthm}[Serre]\label{thm:12.8.8}
+Let $N \ge 1$ be an integer prime to $p$, $\Gamma \subset \GL(2, \mathbb{Z}/N\mathbb{Z})$ a subgroup such that $([\Gamma(N)]/\Gamma) \tens{\mathbb{Z}} \mathbb{Z}[1/N]$ is representable, $A$ the ring $(\mathbb{Z}[\zeta_N])^{\det(\Gamma)}$, $k$ a field of characteristic $p$, $A \to k$ a ring homomorphism, and $\mathcal{P}$ the moduli problem on $(\mathrm{Ell}/k)$ defined by
+\[
+\mathcal{P} = ([\Gamma(N)]/\Gamma)^{A\text{-\rm can}} \tens{A} k .
+\]
+Suppose that $\pm 1$ acts freely on $Z(\mathcal{P})$. Then $\mathcal{P}$ satisfies all the hypotheses of the preceding theorem, and we have an isomorphism of $k$-vector spaces
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+\bigoplus_{2 \le k \le p} \begin{pmatrix}
+\text{holomorphic cusp forms of} \\
+\text{weight } k \text{ on } \overline{\mathfrak{M}}(\mathcal{P})
+\end{pmatrix}
+\xrightarrow{\ \sim\ }
+\begin{pmatrix}
+\text{global holomorphic one-} \\
+\text{forms on } \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])
+\end{pmatrix}
+$}
+\]
+given explicitly as follows: to a weight-$k$ cusp form $\phi_k$ on $\overline{\mathfrak{M}}(\mathcal{P})$, $2 \le k \le p$,
+\[
+\phi_k \in H^0(\overline{\mathfrak{M}}(\mathcal{P}), \underline{\omega}^{\otimes(k-2)} \otimes \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})/k})
+\]
+is associated the holomorphic one-form on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$
+\[
+\omega(\phi_k) = \frac{\mathrm{pr}^*(\phi_k)}{(A^{1/(p-1)})^{k-2}} .
+\]
+If $k$ contains the primitive $N$'th roots of unity, then at any cusp of $\overline{\mathfrak{M}}(\mathcal{P})$ a uniformizing parameter is $q^{1/f}$ for some divisor $f$ of $N$; at the cusp of $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])$ lying over this one where $A^{1/(p-1)}/\omega_{\mathrm{can}} = 1$, the same $q^{1/f}$ is a uniformizing parameter, and the $q^{1/f}$-expansions of $\phi_k$ and of $\omega(\phi_k)$ are related by
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+\omega(\phi_k) \sim \bigl[ \phi_k(\Tate(q), \omega_{\mathrm{can}}, a \in \mathcal{P}(\Tate(q) \tens{k((q))} k((q^{1/f})))) \bigr] \dd\log(q) .
+$}
+\]
+\end{kthm}
+
+\begin{proof}
+On $\overline{\mathfrak{M}}(\mathcal{P})$, we have already obtained isomorphisms of locally free sheaves
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+\bigoplus_{0 \le k \le p-2} \underline{\omega}^{\otimes k} \otimes \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})} \xrightarrow[(\mathrm{K\text{-}S})]{\ \sim\ } \bigoplus_{2 \le k \le p} \underline{\omega}^{\otimes k} \otimes I(\mathrm{cusps}) \xleftarrow{\ \sim\ } \mathrm{pr}_*(\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p)])/k}) .
+$}
+\]
+Taking global sections gives the required isomorphism.
+\end{proof}
+
+\section{Numerology of Igusa curves}
+\label{sec:12.9}
+
+\begin{kthm}\label{thm:12.9.1}\label{item:12.9.1}
+Let $k$ be a field of characteristic $p$, $\mathcal{P}$ a representable moduli problem on $(\mathrm{Ell}/k)$ which is finite etale over $(\mathrm{Ell}/k)$, such that $\pm 1$ acts freely on $Z(\mathcal{P})$, and for which the Kodaira-Spencer isomorphism on $\mathfrak{M}(\mathcal{P})$ extends to an isomorphism
+\[
+\underline{\omega}^{\otimes 2} \simeq \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})/k}(\log\mathrm{cusps}) \quad\text{on}\quad \overline{\mathfrak{M}}(\mathcal{P}) .
+\]
+[For example, $\mathcal{P} = [\Gamma_1(N)] \tens{\mathbb{Z}} k$ for any $N \ge 5$ prime to $p$, or $\mathcal{P} = [\Gamma(N)]^{\mathrm{can}} \tens{\mathbb{Z}[\zeta_N]} k$ for any $N \ge 3$ prime to $p$, if $k$ contains a primitive $N$'th root of unity, or $\cdots$ cf.~(\ref{cor:10.13.9}).] Then for any $n \ge 1$, denoting by
+\[
+\mathrm{pr} : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \overline{\mathfrak{M}}(\mathcal{P})
+\]
+the projection, we have an isomorphism of line bundles on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$
+\[
+\mathrm{pr}^*(\underline{\omega}^{\otimes p^n}) \simeq \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])/k}(\log\mathrm{cusps}) .
+\]
+\end{kthm}
+
+\begin{proof}
+We have already proven this for $n = 1$. We will proceed by induction on $n$. For each integer $n \ge 0$, let us denote by
+\[
+\Omega(n) ,\quad I(n, \mathrm{s.s.}) ,\quad I(n, \mathrm{cusps})
+\]
+the invertible sheaves on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$
+\[
+\Omega^1_{\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])} ,\quad I(\mathrm{s.s.}) ,\quad I(\mathrm{cusps})
+\]
+respectively, and let us denote by
+\[
+\mathrm{pr}(n) : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^{n+1})]) \to \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])
+\]
+the projection induced by the morphism of moduli problems
+\begin{align*}
+[\mathrm{Ig}(p^{n+1})] &\to [\mathrm{Ig}(p^n)] \\
+P &\mapsto V(P) .
+\end{align*}
+\end{proof}
+
+\begin{klem}\label{lem:12.9.2}
+For $n \ge 1$, we have canonically
+\begin{align*}
+\mathrm{pr}(n)^*(I(n, \mathrm{s.s.})) &= I(n+1, \mathrm{s.s.})^{\otimes p} \\
+\mathrm{pr}(n)^*(I(n, \mathrm{cusps})) &= I(n+1, \mathrm{cusps}) .
+\end{align*}
+\end{klem}
+
+\begin{proof}
+For $n \ge 1$, $\mathrm{pr}(n)$ is fully ramified of degree $p$ over each supersingular point, and it is finite etale over the cusps.
+\end{proof}
+
+\begin{klem}\label{lem:12.9.3}
+For $n \ge 1$, we have canonically
+\[
+\mathrm{pr}(n)^*(\Omega(n)) \simeq \Omega(n+1) \otimes I(n+1, \mathrm{s.s.})^{\otimes p^{2n}(p-1)} .
+\]
+\end{klem}
+
+\begin{proof}
+We may assume $k$ algebraically closed. The map $\mathrm{pr}(n)$ is finite etale except over the supersingular points. So what we must show is that for each supersingular point of $\overline{\mathfrak{M}}(\mathcal{P})$, corresponding to an elliptic curve $E/k$ together with a level $\mathcal{P}$-structure, if we denote by $X_n$ any formal parameter on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$ at the unique supersingular point of $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$ lying over it, then
+\[
+\mathrm{pr}(n)^*(\dd X_n) = (\mathrm{unit}) \times (X_{n+1})^{p^{2n}(p-1)} \dd X_{n+1} .
+\]
+This we verify as follows. The formal group $\widehat{E}$ of $E/k$ is ``the'' unique one-parameter group of height two over $k$. We wish to choose a particularly simple model for it.
+
+By Lubin-Tate theory, there exists a one-parameter formal group over $\mathbb{Z}_p$ for which the series for multiplication by $p$ is given by
+\[
+[p](X) = pX + X^{p^2} .
+\]
+(This is ``the'' Lubin-Tate group for $W(\mathbb{F}_{p^2})$, with parameter $p$.) Its reduction $\bmod p$ is then a height two group, say $G$, over $\mathbb{F}_p$, in which
+\[
+[p](X) = F^2(X) = X^{p^2} = V(F(X)) = V(X^p) .
+\]
+Therefore Verschiebung is given by
+\[
+V(X) = X^p .
+\]
+The parameter $X$ is already linearized for the action of $\mu_{p-1}$ (in fact for the action of $\mu_{p^2-1}$, as is obvious from the form of $[p](X)$ and Lubin-Tate theory).
+
+Now consider the universal formal deformation $E/k[[T]]$ of $E/k$ (to artin local $k$-algebras). In terms of a formal parameter $X$ for $\widehat{E}$ which is linearized for $\mu_{p-1}$ and which coincides with the above Lubin-Tate parameter $X$ at $T = 0$, the expression for
+\[
+V : \widehat{E}^{(p)} \to \widehat{E}
+\]
+is, for a suitable choice of $T$ (cf.~(\ref{cor:12.4.4})),
+\begin{align*}
+V(X) &= TX + a(T)X^p + (TX^{2p-1}) , \\
+&\quad\text{with } a(T) \equiv 1 \bmod (T) .
+\end{align*}
+We obtain parameters $X_1, X_2, \ldots$ for the unique supersingular point in $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$, $n = 1, 2, \ldots$ lying over as follows. For $X_1$, we take the $X$-coordinate of a generator of $\Ker(V)$. By the theory of cyclicity (cf.~\ref{cor:6.7.5}), the scheme of generators $\Ker(V)^\times$ of $\Ker V$ is given as Cartier divisor inside $\widehat{E}^{(p)}$ by
+\[
+\Ker(V) = [0] + \Ker(V)^\times .
+\]
+Therefore $X_1$ is any solution of $V(X)/X = 0$, i.e., of
+\[
+0 = T + a(T)X^{p-1} + (TX^{2p-2}) .
+\]
+The parameter $X_2$ is the $X$-coordinate of any point on $\widehat{E}^{(p^2)}$ which maps by $V$ to the point of $\widehat{E}^{(p)}$ with coordinate $X_1$. The expression for
+\[
+V : \widehat{E}^{(p^2)} \to \widehat{E}^{(p)}
+\]
+is given by
+\[
+V(X) = T^p X + a(T)^p X^p + (T^p X^{2p-1}) .
+\]
+Thus $X_2$ is any solution of
+\[
+X_1 = T^p X + a(T)^p X^p + (T^p X^{2p-1}) .
+\]
+Proceeding inductively, we have, for $n \ge 1$, the description of $X_{n+1}$ as any solution of
+\[
+X_n = T^{p^n} X + a(T)^{p^n} X^p + (T^{p^n} X^{2p-1}) .
+\]
+Thus we have the equation
+\[
+X_n = T^{p^n} X_{n+1} + a(T)^{p^n}(X_{n+1})^p + (T^{p^n} X_{n+1}^{2p-1}) .
+\]
+Differentiating, we find
+\[
+\dd X_n = T^{p^n} \dd X_{n+1} + (T^{p^n} X_{n+1}^{2p-2}) \dd X_{n+1} ,
+\]
+so certainly
+\[
+\dd X_n = (\mathrm{unit}) T^{p^n} \cdot \dd X_{n+1} .
+\]
+Because $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^{n+1})])$ is fully ramified over $\overline{\mathfrak{M}}(\mathcal{P})$ at each supersingular point, of degree $\phi(p^{n+1})$, we have
+\[
+T = (X_{n+1})^{\phi(p^{n+1})} \times (\mathrm{unit}) ,
+\]
+so that all in all
+\[
+\dd X_n = (\mathrm{unit}) (X_{n+1})^{p^{2n}(p-1)} \cdot \dd X_{n+1} ,
+\]
+as required.
+\end{proof}
+
+\begin{proof}[End of Proof of Theorem~\ref{thm:12.9.1}]
+We can now complete the proof of the theorem (\ref{thm:12.9.1}). We already have proven (cf.~(\ref{cor:12.8.6}), (\ref{thm:12.8.7})) that
+\begin{align*}
+\mathrm{pr}(0)^*(\underline{\omega}) &\simeq I(1, \mathrm{s.s.})^{-1} \\
+\mathrm{pr}(0)^*(\underline{\omega}^{\otimes p}) &\simeq \Omega(1) \otimes I(1, \mathrm{cusps})^{-1} .
+\end{align*}
+The first relation, when pulled back successively by\linebreak $\mathrm{pr}(1), \ldots, \mathrm{pr}(n-1)$, gives, by (\ref{lem:12.9.2})
+\begin{equation}\tag{A}\label{eq:12.9.A}
+\mathrm{pr}^*(\underline{\omega}) \simeq I(n, \mathrm{s.s.})^{-p^{n-1}} .
+\end{equation}
+The second gives, successively, by (\ref{lem:12.9.3})
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+\begin{aligned}
+\mathrm{pr}(1)^*\mathrm{pr}(0)^*(\underline{\omega}^{\otimes p}) &\simeq \Omega(2) \otimes I(2, \mathrm{s.s.})^{p^2(p-1)} \otimes I(2, \mathrm{cusps})^{-1} \\
+\mathrm{pr}(2)^*(\text{\quad ''\quad }) &\simeq \Omega(3) \otimes I(3, \mathrm{s.s.})^{p^4(p-1)} \otimes I(3, \mathrm{s.s.})^{p^3(p-1)} \otimes I(3, \mathrm{cusps})^{-1} \\
+&\;\;\vdots
+\end{aligned}
+$}
+\]
+\begin{equation}\tag{B}\label{eq:12.9.B}
+\resizebox{0.91\linewidth}{!}{$\displaystyle
+\mathrm{pr}^*(\underline{\omega}^{\otimes p}) \simeq \Omega(n) \otimes (I(n, \mathrm{s.s.}))^{\otimes(p-1)[p^{2n-2} + p^{2n-3} + \cdots + p^n]} \otimes I(n, \mathrm{cusps})^{-1} ,
+$}
+\end{equation}
+whence finally
+\[
+\mathrm{pr}^*(\underline{\omega}^{\otimes p}) \simeq \Omega(n) \otimes I(n, \mathrm{cusps})^{-1} \otimes I(n, \mathrm{s.s.})^{\otimes(p^{2n-1} - p^n)} .
+\]
+Using (\ref{eq:12.9.A}), we have
+\[
+\mathrm{pr}^*(\underline{\omega}^{\otimes p}) = (\mathrm{pr}^*(\underline{\omega}))^{\otimes p} \simeq I(n, \mathrm{s.s.})^{-p^n} ,
+\]
+and comparing the above two expressions we see that
+\[
+I(n, \mathrm{s.s.})^{-p^{2n-1}} \simeq \Omega(n) \otimes I(n, \mathrm{cusps})^{-1} ,
+\]
+which together with (\ref{eq:12.9.A}) gives the desired relation
+\[
+\mathrm{pr}^*(\underline{\omega}^{\otimes p^n}) \simeq \Omega(n) \otimes I(n, \mathrm{cusps})^{-1} . \qedhere
+\]
+\end{proof}
+
+\begin{kcor}\label{cor:12.9.4}
+Hypotheses and notations as in the theorem (\ref{thm:12.9.1}) suppose that $\overline{\mathfrak{M}}(\mathcal{P})$ is geometrically connected. Let us denote, for each $n \ge 1$
+\begin{itemize}[leftmargin=2.5em, itemsep=2pt, topsep=3pt]
+\item $g(n, \mathcal{P}) = {}$ the genus of $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$
+\item $c(n, \mathcal{P}) = {}$ the number of cusps on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$
+\item $\mathrm{s.s.}(n, \mathcal{P}) = {}$ the number of supersingular points on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$
+\item $\deg(n, \mathcal{P}) = {}$ the degree with which $(\mathcal{P}, [\mathrm{Ig}(p^n)])$ is finite flat over $(\mathrm{Ell}/k)$
+\item $\deg(\underline{\omega}_{n, \mathcal{P}}) = {}$ the degree of $\mathrm{pr}^*(\underline{\omega}) (= \text{``the'' } \underline{\omega})$\linebreak on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)])$.
+\end{itemize}
+Then we have the formulas, for all $n \ge 1$, (compare \ref{cor:10.13.12})
+\begin{align*}
+p^n \cdot \deg(\underline{\omega}_{n, \mathcal{P}}) &= 2g(n, \mathcal{P}) - 2 + c(n, \mathcal{P}) \\
+c(n, \mathcal{P}) &= \phi(p^n) \cdot c(\mathcal{P}) \\
+\mathrm{s.s.}(n, \mathcal{P}) &= \mathrm{s.s.}(0, \mathcal{P}) = \frac{p-1}{24} \deg(\mathcal{P}) \\
+\deg(\underline{\omega}_{n, \mathcal{P}}) &= \phi(p^n) \cdot \deg(\underline{\omega}_{\mathcal{P}}) = \phi(p^n) \cdot \frac{1}{24} \cdot \deg(\mathcal{P}) \\
+\deg(n, \mathcal{P}) &= \phi(p^n) \deg(\mathcal{P}) .
+\end{align*}
+\end{kcor}
+
+\section{\texorpdfstring{``Exotic''}{"Exotic"} projections from Igusa curves; \texorpdfstring{``exotic''}{"exotic"} Igusa structures}
+\label{sec:12.10}
+
+\kmitem\label{item:12.10.1}
+Let $k$ be a perfect field of characteristic $p$, $\sigma : k \to k$ its absolute Frobenius automorphism. For any integer $i \in \mathbb{Z}$, and any $k$-scheme $S$, we denote by $S^{(\sigma^i)}$ the $k$-scheme
+\[
+S^{(\sigma^i)} = S \tens{k, \sigma^i} k .
+\]
+Given a moduli problem $\mathcal{P}$ on $(\mathrm{Ell}/k)$, we denote by $\mathcal{P}^{(\sigma^i)}$ the moduli problem on $(\mathrm{Ell}/k)$ obtained from $\mathcal{P}$ by extension of scalars $k \xrightarrow{\sigma^i} k$.
+
+For any $E/S/k$, we have canonically
+\[
+\mathcal{P}(E/S) = \mathcal{P}^{(\sigma^i)}(E^{(\sigma^i)}/S^{(\sigma^i)}) .
+\]
+If $\mathcal{P}$ is relatively representable, then so is $\mathcal{P}^{(\sigma^i)}$, and we have
+\[
+(\mathcal{P}^{(\sigma^i)})_{E^{(\sigma^i)}/S^{(\sigma^i)}} = (\mathcal{P}_{E/S})^{(\sigma^i)} .
+\]
+If $\mathcal{P}$ is representable, so is $\mathcal{P}^{(\sigma^i)}$ and we have
+\[
+\mathfrak{M}(\mathcal{P}^{(\sigma^i)}) = \mathfrak{M}(\mathcal{P})^{(\sigma^i)} .
+\]
+If $\mathcal{P}$ is finite over $(\mathrm{Ell}/k)$ and normal near infinity, so is $\mathcal{P}^{(\sigma^i)}$, and we have
+\[
+\overline{\mathfrak{M}}(\mathcal{P}^{(\sigma^i)}) = \overline{\mathfrak{M}}(\mathcal{P})^{(\sigma^i)} .
+\]
+For example, if $N \ge 1$ is any integer, and $\zeta_N \in k$ is a ``primitive'' $N$'th root of unity, then for $\mathcal{P}$ the moduli problem ``$[\Gamma(N)]$-structures $(P, Q)$ with $e_N(P, Q) = \zeta_N$'', $\mathcal{P}^{(\sigma^i)}$ is the analogous moduli problem defined with respect to $\zeta_N^{\sigma^i}$. Similarly for $\mathcal{P}$ the moduli problem ``$\mathrm{bal.}\ \Gamma_1(N)$-structures with $\langle P, Q \rangle = \zeta_N$''. For the moduli problem $\mathcal{P} = [\Gamma_1(N)]$ or $[\Gamma_0(N)]$, we have $\mathcal{P}^{(\sigma^i)} = \mathcal{P}$, as we do for any $\mathcal{P}$ which begins life on $(\mathrm{Ell}/\mathbb{F}_p)$.
+
+\kmitem\label{item:12.10.2}
+For any $\mathcal{P}$ on $(\mathrm{Ell}/k)$, any $i \ge 1$, there is a natural map of sets, for any $E/S/k$,
+\begin{equation}\label{eq:12.10.2.1}
+\begin{aligned}
+\mathcal{P}(E/S) &\to \mathcal{P}^{(\sigma^i)}(E^{(p^i)}/S) , \\
+\alpha \text{ on } E/S &\mapsto \text{the induced structure } \alpha^{(p^i)} \text{ on } E^{(p^i)}/S .
+\end{aligned}
+\end{equation}
+which is the composite of the canonical identification
+\[
+\mathcal{P}(E/S) = \mathcal{P}^{(\sigma^i)}(E^{(\sigma^i)}/S^{(\sigma^i)})
+\]
+with the map on $\mathcal{P}^{(\sigma^i)}$ induced by the morphism in $(\mathrm{Ell}/k)$
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=large]
+E^{(p^i)} \arrow[r] \arrow[d] & E^{(\sigma^i)} \arrow[d] \\
+S \arrow[r, "F^i_{S/k}"'] & S^{(\sigma^i)}
+\end{tikzcd}
+\]
+If $\mathcal{P}$ is relatively representable and etale over $(\mathrm{Ell}/k)$, this map (\ref{eq:12.10.2.1}) is always \emph{bijective} (cf.~SGA $4\frac{1}{2}$, Rapport, 1.2).
+
+For example, if $\mathcal{P}$ is $[\Gamma_1(N)]$, this map (\ref{eq:12.10.2.1}) is
+\[
+E/S,\ P \text{ of exact order } N \longmapsto E^{(p^i)}/S,\ F^i(P) .
+\]
+Similarly, if $\mathcal{P}$ is ``$[\Gamma(N)]$-structures $(P, Q)$ with $e_N(P, Q) = \zeta_N$'', this map is
+\[
+E/S,\ (P, Q) \longmapsto E^{(p^i)}/S,\ (F^i(P), F^i(Q)) .
+\]
+When $N$ is prime to $p$, the inverse maps are, respectively
+\[
+E/S,\ \frac{1}{p^i} V^i(P) \longmapsfrom E^{(p^i)}/S,\ P
+\]
+and
+\[
+E/S,\ \Bigl(\frac{1}{p^i} V^i(P), \frac{1}{p^i} V^i(Q)\Bigr) \longmapsfrom E^{(p^i)}/S,\ (P, Q) .
+\]
+When $\mathcal{P}$ is representable, the induced map on moduli schemes obtained by passing to isomorphism classes is none other than the $i$-fold iterated relative-to-$k$ Frobenius,
+\[
+F^i_{\mathfrak{M}(\mathcal{P})/k} : \mathfrak{M}(\mathcal{P}) \to \mathfrak{M}(\mathcal{P})^{(\sigma^i)} .
+\]
+Similarly, if $\mathcal{P}$ is relatively representable, and affine over $(\mathrm{Ell}/k)$, the induced map of coarse moduli schemes is
+\[
+F^i_{\mathrm{M}(\mathcal{P})/k} : \mathrm{M}(\mathcal{P}) \to \mathrm{M}(\mathcal{P}^{(\sigma^i)}) = \mathrm{M}(\mathcal{P})^{(\sigma^i)} ,
+\]
+sitting over the $i$-fold relative Frobenius on the affine $j$-line ``over $k$''
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=huge]
+\mathrm{M}(\mathcal{P}) \arrow[r, "F^i"] \arrow[d, "j"'] & \mathrm{M}(\mathcal{P})^{(\sigma^i)} \arrow[d, "j"] \\
+\Spec(k[j]) \arrow[r, "F^i"'] & \Spec(k[j]) .
+\end{tikzcd}
+\]
+If $\mathcal{P}$ is relatively representable, finite over $(\mathrm{Ell}/k)$, and normal near infinity, this diagram shows that we get an induced map of compactified coarse moduli schemes
+\[
+\begin{tikzcd}[row sep=1.8em, column sep=huge]
+\overline{\mathrm{M}}(\mathcal{P}) \arrow[r, "F^i"] \arrow[d, "j"'] & \overline{\mathrm{M}}(\mathcal{P})^{(\sigma^i)} \arrow[d, "j"] \\
+\mathbb{P}^1_k \arrow[r, "F^i"'] & \mathbb{P}^1_k .
+\end{tikzcd}
+\]
+
+\kmitem\label{item:12.10.3}
+For any representable moduli problem $\mathcal{P}$ on $(\mathrm{Ell}/k)$, any integer $i \ge 0$, and any integer $n \ge 0$, we denote by
+\[
+\mathrm{pr}_i : \mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \mathfrak{M}(\mathcal{P})^{(\sigma^i)}
+\]
+the map deduced by passage to isomorphism classes from the construction (\ref{eq:12.10.2.1}):
+\[
+\begin{pmatrix}
+E/S,\ \alpha \in \mathcal{P}(E/S), \\
+P \in E^{(p^n)}(S)\ \text{gen.\ of } \Ker(V^n)
+\end{pmatrix}
+\longmapsto (E^{(p^i)}/S,\ \alpha^{(p^i)}) .
+\]
+Thus $\mathrm{pr}_0$ is ``the'' projection denoted $\mathrm{pr}$ earlier, and for any $i \ge 1$ we have
+\[
+\mathrm{pr}_i = F^i \circ \mathrm{pr} ,
+\]
+i.e., the diagram below is commutative
+\[
+\begin{tikzcd}[row sep=2.2em, column sep=huge]
+\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \arrow[r, "F^i"] \arrow[d, "\mathrm{pr}"'] \arrow[rd, "\mathrm{pr}_i"] & \mathfrak{M}(\mathcal{P}^{(\sigma^i)}, [\mathrm{Ig}(p^n)]) \arrow[d, "\mathrm{pr}"] \\
+\mathfrak{M}(\mathcal{P}) \arrow[r, "F^i"'] & \mathfrak{M}(\mathcal{P}^{(\sigma^i)}) .
+\end{tikzcd}
+\]
+
+\kmitem\label{item:12.10.4}
+If $\mathcal{P}$ is representable and finite etale over $(\mathrm{Ell}/k)$, we have a commutative diagram of compactifications
+\[
+\begin{tikzcd}[row sep=2em, column sep=huge]
+\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \arrow[r, "F^i"] \arrow[d, "\mathrm{pr}"'] \arrow[rd, "\mathrm{pr}_i"] & \overline{\mathfrak{M}}(\mathcal{P}^{(\sigma^i)}, [\mathrm{Ig}(p^n)]) \arrow[d, "\mathrm{pr}"] \\
+\overline{\mathfrak{M}}(\mathcal{P}) \arrow[r, "F^i"] \arrow[d, "j"'] & \overline{\mathfrak{M}}(\mathcal{P}^{(\sigma^i)}) \arrow[d, "j"] \\
+\mathbb{P}^1_k \arrow[r, "F^i"'] & \mathbb{P}^1_k .
+\end{tikzcd}
+\]
+
+\kmitem\label{item:12.10.5}
+For each $1 \le i \le n$, the projection
+\[
+\mathrm{pr}_i : \mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \to \mathfrak{M}(\mathcal{P}^{(\sigma^i)})
+\]
+allows a simple reinterpretation of $\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)])$ as a modular scheme, for any representable $\mathcal{P}$ which is etale over $(\mathrm{Ell}/k)$.
+
+For $1 \le i \le n$, let us denote by
+\[
+[\mathrm{ExIg}(p^n, i)]
+\]
+the moduli problem on $(\mathrm{Ell}/\mathbb{F}_p)$ defined by
+\begin{equation}\label{eq:12.10.5.1}
+\begin{aligned}
+{}[\mathrm{ExIg}(p^n, i)](E/S) = {}& \text{a point } P \in E(S) \text{ such that } (0, P) \text{ is a} \\
+&\text{Drinfeld } p^i\text{-basis of } E/S\text{, plus a point} \\
+&Q \in E^{(p^{n-i})}(S) \text{ such that } V^{n-i}(Q) = P .
+\end{aligned}
+\end{equation}
+
+\begin{kthm}\label{thm:12.10.6}
+For $1 \le i \le n$, there is an exotic isomorphism of moduli problems on $(\mathrm{Ell}/\mathbb{F}_p)$
+\[
+[\mathrm{Ig}(p^n)] \xrightarrow{\ \sim\ } [\mathrm{ExIg}(p^n, i)]
+\]
+defined by
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+\begin{pmatrix}
+E/S\ \text{plus a point} \\
+P \in E^{(p^n)}(S)\ \text{generating} \\
+\Ker(V^n : E^{(p^n)} \to E)
+\end{pmatrix}
+\longmapsto
+\begin{pmatrix}
+\text{the curve } E^{(p^i)}/S\text{, the point} \\
+V^{n-i}(P) \in E^{(p^i)}(S)\text{, the point} \\
+P \in (E^{(p^i)})^{(p^{n-i})}(S)
+\end{pmatrix} .
+$}
+\]
+For any representable $\mathcal{P}$ etale over $(\mathrm{Ell}/k)$, $k$ a perfect field, this construction together with
+\[
+a \in \mathcal{P}(E/S) \longmapsto a^{(p^i)} \in \mathcal{P}^{(\sigma^i)}(E^{(p^i)}/S) ,
+\]
+defines an exotic isomorphism of moduli problems on $(\mathrm{Ell}/k)$
+\[
+(\mathcal{P}, [\mathrm{Ig}(p^n)]) \xrightarrow{\ \sim\ } (\mathcal{P}^{(\sigma^i)}, [\mathrm{ExIg}(p^n, i)]) .
+\]
+The induced isomorphism of moduli schemes sits in a commutative diagram
+\[
+\begin{tikzcd}[row sep=2em, column sep=huge]
+\mathfrak{M}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \arrow[r, "\sim"] \arrow[d, "\mathrm{pr}"'] \arrow[rd, "\mathrm{pr}_i"] & \mathfrak{M}(\mathcal{P}^{(\sigma^i)}, [\mathrm{ExIg}(p^n, i)]) \arrow[d, "\mathrm{pr}"] \\
+\mathfrak{M}(\mathcal{P}) \arrow[r, "F^i"] \arrow[d, "j"'] & \mathfrak{M}(\mathcal{P}^{(\sigma^i)}) \arrow[d, "j"] \\
+\Spec(k[j]) \arrow[r, "F^i"'] & \Spec(k[j]) .
+\end{tikzcd}
+\]
+If $\mathcal{P}$ is finite etale over $(\mathrm{Ell}/k)$, this diagram extends to a diagram of compactified moduli schemes
+\[
+\begin{tikzcd}[row sep=2em, column sep=huge]
+\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{Ig}(p^n)]) \arrow[r, "\sim"] \arrow[d, "\mathrm{pr}"'] \arrow[rd, "\mathrm{pr}_i"] & \overline{\mathfrak{M}}(\mathcal{P}^{(\sigma^i)}, [\mathrm{ExIg}(p^n, i)]) \arrow[d, "\mathrm{pr}"] \\
+\overline{\mathfrak{M}}(\mathcal{P}) \arrow[r, "F^i"] \arrow[d, "j"'] & \overline{\mathfrak{M}}(\mathcal{P}^{(\sigma^i)}) \arrow[d, "j"] \\
+\mathbb{P}^1_k \arrow[r, "F^i"'] & \mathbb{P}^1_k .
+\end{tikzcd}
+\]
+\end{kthm}
+
+\begin{proof}
+This results immediately from (\ref{prop:12.2.7}) and (\ref{prop:12.3.2}), and the preceding discussion.
+\end{proof}
+
+\begin{kcor}\label{cor:12.10.7}
+Let $k$ be a perfect field of characteristic $p$. Suppose that $\mathcal{P}$ is representable, finite etale over $(\mathrm{Ell}/k)$, that $\pm 1$ acts freely on $Z(\mathcal{P})$, and that the Kodaira-Spencer isomorphism on $\mathfrak{M}(\mathcal{P})$ extends to an isomorphism on $\overline{\mathfrak{M}}(\mathcal{P})$
+\[
+\underline{\omega}^{\otimes 2} \simeq \Omega^1_{\overline{\mathfrak{M}}(\mathcal{P})}(\log\mathrm{cusps}) .
+\]
+Then for $1 \le i \le n$, the projection
+\[
+\mathrm{pr} : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{ExIg}(p^n, i)]) \to \overline{\mathfrak{M}}(\mathcal{P})
+\]
+leads to an isomorphism of invertible sheaves\linebreak on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{ExIg}(p^n, i)])$
+\[
+\mathrm{pr}^*(\underline{\omega}^{\otimes p^{n-i}}) \simeq \Omega^1(\log\mathrm{cusps}) .
+\]
+\end{kcor}
+
+\begin{proof}
+This is just a rewriting of (\ref{thm:12.9.1}), in view of the above commutative diagram.
+\end{proof}
+
+\begin{kcor}\label{cor:12.10.8}
+Hypotheses as above, consider the special case $i = n \ge 1$, when
+\begin{align*}
+{}[\mathrm{ExIg}(p^n, n)](E/S) = \bigl\{&\text{points } P \in E(S) \text{ such that } (P, 0) \text{ is a} \\
+&\text{Drinfeld } p^n\text{-basis on } E/S\bigr\} .
+\end{align*}
+For the projection
+\[
+\mathrm{pr} : \overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{ExIg}(p^n, n)]) \to \overline{\mathfrak{M}}(\mathcal{P}) ,
+\]
+we have an isomorphism of line bundles on $\overline{\mathfrak{M}}(\mathcal{P}, [\mathrm{ExIg}(p^n, n)])$
+\[
+\mathrm{pr}^*(\underline{\omega}) \simeq \Omega^1(\log\mathrm{cusps}) .
+\]
+\end{kcor}
+
+\begin{proof}
+This is the case $i = n$ of the previous result.
+\end{proof}
+
+\begin{krem}\label{rem:12.10.9}
+It is this remarkable formula, which is ``off by a factor of two'' from the formula (\ref{thm:10.13.11})
+\[
+\underline{\omega}^{\otimes 2} \simeq \Omega^1(\log\mathrm{cusps})
+\]
+which holds on $\overline{\mathfrak{M}}(\mathcal{P})$ itself, which underlies all the phenomena of ``good reduction'' we will exhibit in Chapter 14.
+\end{krem}

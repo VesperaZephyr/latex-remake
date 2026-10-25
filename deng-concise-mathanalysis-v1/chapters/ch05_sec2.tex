@@ -1,0 +1,358 @@
+\section{洛必达法则}\label{sec:5.2}
+
+在求数列与函数的极限时，一般说来，如果极限式中各部分的极限都存在，则由四则运算定理便可直接求出所要求的极限值．然而，有很多重要的极限，如
+\[
+\lim_{x\to0} \frac{\sin x}{x},\qquad \lim_{x\to0} (1+x)^{\frac{1}{x}},
+\]
+它们的分子分母都趋于零，因而不能直接利用四则运算定理．这类极限统称为待定型，常见的基本形式有 $\frac{0}{0}$ 型与 $\frac{\infty}{\infty}$ 型．此外还有 $0\cdot\infty$、$\infty-\infty$、$0^0$、$1^\infty$、$\infty^0$ 等待定型，它们都可以化为 $\frac{0}{0}$ 或 $\frac{\infty}{\infty}$ 型．
+
+利用柯西中值定理，可以导出求待定型极限的简便而有效的方法，这就是著名的洛必达（L'H\^opital）法则．
+
+\subsection{\texorpdfstring{$\frac{0}{0}$}{0/0} 型待定型}
+
+\begin{theorem}\label{thm:5-6}
+设
+\begin{enumerate}[(1)]
+\item 在点 $a$ 的右邻域 $(a, a+\delta)$ 内，$f(x)$ 与 $g(x)$ 可导，且 $g'(x) \neq 0$；
+\item $\lim_{x\to a^+} f(x) = 0$，$\lim_{x\to a^+} g(x) = 0$；
+\item $\lim_{x\to a^+} \frac{f'(x)}{g'(x)} = A$（$A$ 可以是有限数，也可以是 $+\infty, -\infty$ 或 $\infty$）．
+\end{enumerate}
+则
+\[
+\lim_{x\to a^+} \frac{f(x)}{g(x)} = \lim_{x\to a^+} \frac{f'(x)}{g'(x)} = A.
+\]
+\end{theorem}
+
+\begin{proof}
+补充定义 $f(a) = g(a) = 0$，则 $f(x)$ 与 $g(x)$ 在 $[a, a+\delta)$ 上连续．对任意 $x \in (a, a+\delta)$，在区间 $[a, x]$ 上应用柯西中值定理，存在 $\xi \in (a, x)$，使得
+\[
+\frac{f(x)}{g(x)} = \frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f'(\xi)}{g'(\xi)}.
+\]
+当 $x \to a^+$ 时，显然 $\xi \to a^+$．由条件 (3)，有
+\[
+\lim_{x\to a^+} \frac{f(x)}{g(x)} = \lim_{\xi\to a^+} \frac{f'(\xi)}{g'(\xi)} = A.
+\]
+定理 5.6 证毕．
+\end{proof}
+
+显然，对于左极限 $x \to a^-$ 以及极限 $x \to a$，都有相应的定理．
+
+定理 5.6 的直观意义是容易理解的：两个无穷小量的比的极限，等于它们变化速度的比．
+
+\begin{example}
+求 $\lim_{x\to0} \frac{1 - \cos x}{x^2}$．
+\end{example}
+
+\begin{proof}[解]
+这是 $\frac{0}{0}$ 型待定型，连续应用两次洛必达法则，得
+\[
+\lim_{x\to0} \frac{1 - \cos x}{x^2} = \lim_{x\to0} \frac{\sin x}{2x} = \lim_{x\to0} \frac{\cos x}{2} = \frac{1}{2}.
+\]
+\end{proof}
+
+\begin{example}
+求 $\lim_{x\to0^+} \frac{\sqrt{x}}{1 - e^{2\sqrt{x}}}$．
+\end{example}
+
+\begin{proof}[解]
+这是 $\frac{0}{0}$ 型待定型．应用洛必达法则，
+\[
+\lim_{x\to0^+} \frac{\sqrt{x}}{1 - e^{2\sqrt{x}}} = \lim_{x\to0^+} \frac{\frac{1}{2\sqrt{x}}}{-2\frac{1}{2\sqrt{x}}e^{2\sqrt{x}}} = \lim_{x\to0^+} \frac{1}{-2e^{2\sqrt{x}}} = -\frac{1}{2}.
+\]
+\end{proof}
+
+对于自变量趋于无穷大的情形，有如下定理：
+
+\begin{theorem}\label{thm:5-7}
+设
+\begin{enumerate}[(1)]
+\item 当 $x > M$ 时，$f(x)$ 与 $g(x)$ 可导，且 $g'(x) \neq 0$；
+\item $\lim_{x\to+\infty} f(x) = 0$，$\lim_{x\to+\infty} g(x) = 0$；
+\item $\lim_{x\to+\infty} \frac{f'(x)}{g'(x)} = A$（$A$ 为有限数或 $\infty$）．
+\end{enumerate}
+则
+\[
+\lim_{x\to+\infty} \frac{f(x)}{g(x)} = \lim_{x\to+\infty} \frac{f'(x)}{g'(x)} = A.
+\]
+\end{theorem}
+
+\begin{proof}
+作变量代换 $x = \frac{1}{t}$．当 $x \to +\infty$ 时，$t \to 0^+$．应用定理 5.6，
+\[
+\lim_{x\to+\infty} \frac{f(x)}{g(x)} = \lim_{t\to0^+} \frac{f(\frac{1}{t})}{g(\frac{1}{t})} = \lim_{t\to0^+} \frac{f'(\frac{1}{t})(-\frac{1}{t^2})}{g'(\frac{1}{t})(-\frac{1}{t^2})} = \lim_{t\to0^+} \frac{f'(\frac{1}{t})}{g'(\frac{1}{t})} = \lim_{x\to+\infty} \frac{f'(x)}{g'(x)} = A.
+\]
+定理 5.7 证毕．
+\end{proof}
+
+类似地，对于 $x \to -\infty$ 或 $x \to \infty$，也有相应结论．
+
+\begin{example}
+求极限 $\lim_{x\to+\infty} \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}}$．
+\end{example}
+
+\begin{proof}[解]
+这是 $\frac{0}{0}$ 型待定型，利用定理 5.7，
+\[
+\lim_{x\to+\infty} \frac{\frac{\pi}{2} - \arctan x}{\frac{1}{x}} = \lim_{x\to+\infty} \frac{-\frac{1}{1+x^2}}{-\frac{1}{x^2}} = \lim_{x\to+\infty} \frac{x^2}{1+x^2} = 1.
+\]
+\end{proof}
+
+\subsection{\texorpdfstring{$\frac{\infty}{\infty}$}{infty/infty} 型待定型}
+
+\begin{theorem}\label{thm:5-8}
+设
+\begin{enumerate}[(1)]
+\item 在 $(a, a+\delta)$ 内，$f(x)$ 与 $g(x)$ 可导，且 $g'(x) \neq 0$，其中 $\delta > 0$；
+\item $\lim_{x\to a^+} f(x) = \lim_{x\to a^+} g(x) = \infty$；
+\item $\lim_{x\to a^+} \frac{f'(x)}{g'(x)} = A$，
+\end{enumerate}
+则
+\[
+\lim_{x\to a^+} \frac{f(x)}{g(x)} = A.
+\]
+\end{theorem}
+
+在证明之前，我们先分析证明的思路．一个想法是把它化为 $\frac{0}{0}$ 待定型：
+\[
+\frac{f(x)}{g(x)} = \frac{\frac{1}{g(x)}}{\frac{1}{f(x)}}.
+\]
+而
+\[
+\lim_{x\to a^+}\frac{\left(\frac{1}{g(x)}\right)'}{\left(\frac{1}{f(x)}\right)'}
+= \lim_{x\to a^+}\frac{\frac{g'(x)}{(g(x))^2}}{\frac{f'(x)}{(f(x))^2}}
+= \lim_{x\to a^+}\left(\frac{f(x)}{g(x)}\right)^2\frac{g'(x)}{f'(x)},
+\]
+但右边的极限不知是否存在，更无从计算．因此这个方法不可行．
+
+另一个想法是用定理 5.6 的证明方法．但这时不可能补充定义 $f(a)$ 和 $g(a)$，使得柯西中值定理可以直接应用．我们尝试修改一下定理 5.6 的证明方法．考虑充分接近于 $a$ 的一点 $x_0 > a$，这时
+\[
+\frac{f(x) - f(x_0)}{g(x) - g(x_0)} = \frac{f'(\xi)}{g'(\xi)}.
+\]
+只要 $x$，$x_0$ 充分接近于 $a$，它们便与 $A$ 任意接近，问题在于
+\[
+\frac{f(x)}{g(x)}\ \text{与}\ \frac{f(x) - f(x_0)}{g(x) - g(x_0)}
+\]
+是否任意接近？看它的差
+\begin{equation}
+\frac{f(x)}{g(x)} - \frac{f(x) - f(x_0)}{g(x) - g(x_0)}
+= \frac{-f(x)g(x_0) + g(x)f(x_0)}{g(x)\left[g(x) - g(x_0)\right]},
+\tag*{(1)}
+\end{equation}
+其中第二项
+\[
+\frac{f(x_0)}{g(x) - g(x_0)}
+\]
+在 $x_0$ 固定后可任意小（因 $g(x) \to \infty$），问题在第一项
+\[
+\frac{f(x)}{g(x)}\cdot\frac{g(x_0)}{g(x) - g(x_0)}
+\]
+仍保留了 $\frac{f(x)}{g(x)}$ 的形式，需把它化为 $\frac{f(x) - f(x_0)}{g(x) - g(x_0)}$ 的形式．这似乎不容易做，但幸好，这两项之和也就是 (1) 式可以写成
+\begin{align*}
+&\frac{f(x)}{g(x)} - \frac{f(x) - f(x_0)}{g(x) - g(x_0)}\\
+={}&\frac{g(x)f(x_0) - f(x)g(x_0)}{g(x)\left[g(x) - g(x_0)\right]}\\
+={}&\frac{g(x)f(x_0) - f(x_0)g(x_0) + f(x_0)g(x_0) - f(x)g(x_0)}{g(x)\left[g(x) - g(x_0)\right]}\\
+={}&\frac{f(x_0)}{g(x)} - \frac{f(x) - f(x_0)}{g(x) - g(x_0)}\cdot\frac{g(x_0)}{g(x)},
+\tag*{(2)}
+\end{align*}
+$x_0$ 固定后，当 $x$ 充分靠近 $a$ 时，两项的绝对值均可以任意小．
+
+\begin{proof}[定理 5.8 的证明]
+不妨对 $A \neq \infty$ 的情形加以证明，$A = \infty$ 的情形只需把证明略加修改即可．对任意 $\varepsilon > 0$（不妨设 $\varepsilon < 1$），由假设知存在 $\delta_1 > 0$（不妨设 $\delta_1 < \delta$），使对 $a < x < a + \delta_1$ 的任意 $x$，有
+\[
+\left|\frac{f'(x)}{g'(x)} - A\right| < \frac{\varepsilon}{2}.
+\]
+在 $(a, a+\delta_1)$ 内取定 $x_0$，则对 $a < x < a+\delta_1$ 中任意 $x \neq x_0$，有
+\[
+\left|\frac{f(x) - f(x_0)}{g(x) - g(x_0)} - A\right|
+= \left|\frac{f'(\xi)}{g'(\xi)} - A\right| < \frac{\varepsilon}{2},
+\]
+其中 $\xi$ 在 $x$ 与 $x_0$ 之间，同时还有
+\[
+\left|\frac{f(x) - f(x_0)}{g(x) - g(x_0)}\right|
+\leqslant |A| + \frac{\varepsilon}{2} < |A| + 1 = M.
+\]
+注意到 (2)，知
+\begin{align*}
+\frac{f(x)}{g(x)} - A
+={}& \frac{f(x)}{g(x)} - \frac{f(x) - f(x_0)}{g(x) - g(x_0)}
++ \frac{f(x) - f(x_0)}{g(x) - g(x_0)} - A\\
+={}& \frac{f(x_0)}{g(x)} - \frac{f(x) - f(x_0)}{g(x) - g(x_0)}\cdot\frac{g(x_0)}{g(x)}
++ \frac{f(x) - f(x_0)}{g(x) - g(x_0)} - A,
+\end{align*}
+则只要 $a < x < a + \delta_1$ 且 $x \neq x_0$，有
+\begin{align*}
+\left|\frac{f(x)}{g(x)} - A\right|
+\leqslant{}& \left|\frac{f(x_0)}{g(x)}\right|
++ \left|\frac{f(x) - f(x_0)}{g(x) - g(x_0)}\right|\left|\frac{g(x_0)}{g(x)}\right|
++ \frac{\varepsilon}{2}\\
+\leqslant{}& \left[|f(x_0)| + M|g(x_0)|\right]\frac{1}{|g(x)|} + \frac{\varepsilon}{2}.
+\end{align*}
+对固定的 $x_0$，由 $\lim_{x\to a^+} g(x) = \infty$，知存在 $\delta_2 > 0$（$\delta_2 < \delta$），只要 $a < x < a + \delta_2$，有
+\[
+\frac{|f(x_0)| + M|g(x_0)|}{|g(x)|} < \frac{\varepsilon}{2}.
+\]
+取 $\delta' = \min(x_0 - a, \delta_2)$，则只要 $a < x < a + \delta'$，就有
+\[
+\left|\frac{f(x)}{g(x)} - A\right| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+\]
+定理 5.8 证毕．
+\end{proof}
+
+仿定理 5.7 的证明，可得当 $x \to \infty$ 时 $\frac{\infty}{\infty}$ 待定型的洛必达法则．
+
+\begin{example}
+证明 $\lim\limits_{n\to\infty}\dfrac{n^{2}}{a^{n}} = 0$，其中 $a > 1$．
+\end{example}
+
+\begin{proof}[解]
+用洛必达法则，有
+\[
+\lim_{x\to+\infty}\frac{x^{2}}{a^{x}}
+= \lim_{x\to+\infty}\frac{2x}{a^{x}\ln a}
+= \lim_{x\to+\infty}\frac{2}{a^{x}(\ln a)^{2}} = 0,
+\]
+根据函数极限与数列极限的关系，便得所要证的结果．
+\end{proof}
+
+\begin{example}
+证明 $\lim\limits_{n\to\infty}\dfrac{\ln n}{n^{\varepsilon}} = 0$，其中 $\varepsilon > 0$．
+\end{example}
+
+\begin{proof}[解]
+用洛必达法则，有
+\[
+\lim_{x\to+\infty}\frac{\ln x}{x^{\varepsilon}}
+= \lim_{x\to+\infty}\frac{\frac{1}{x}}{\varepsilon x^{\varepsilon-1}}
+= \lim_{x\to+\infty}\frac{1}{\varepsilon x^{\varepsilon}} = 0,
+\]
+再根据函数极限与数列极限的关系，便得所要的结果．
+\end{proof}
+
+其他类型的待定型，可化为上述两种待定型解决．
+
+\textbf{$0\cdot\infty$ 待定型}\quad 若 $\lim f(x) = 0$，$\lim g(x) = \infty$，则
+\[
+f(x)g(x) = \frac{f(x)}{\frac{1}{g(x)}} = \frac{g(x)}{\frac{1}{f(x)}},
+\]
+可化为 $\frac{0}{0}$ 或 $\frac{\infty}{\infty}$ 待定型．
+
+\textbf{$\infty - \infty$ 待定型}\quad 若 $\lim f(x) = \lim g(x) = +\infty$，则
+\[
+f(x) - g(x) = \frac{1}{\frac{1}{f(x)}} - \frac{1}{\frac{1}{g(x)}}
+= \frac{\frac{1}{g(x)} - \frac{1}{f(x)}}{\frac{1}{f(x)g(x)}},
+\]
+可化为 $\frac{0}{0}$ 待定型．
+
+\textbf{$1^{\infty}$ 待定型}\quad 若 $\lim f(x) = 1$，$\lim g(x) = \infty$，则
+\[
+f(x)^{g(x)} = \mathrm{e}^{g(x)\ln f(x)},
+\]
+可化为 $\infty\cdot 0$ 待定型．
+
+同理可把 $0^{0}$，$\infty^{0}$ 待定型化为 $0\cdot\infty$ 待定型．
+
+\begin{example}
+求 $\lim\limits_{x\to 0^{+}} x^{\varepsilon}\ln x$，其中 $\varepsilon > 0$．
+\end{example}
+
+\begin{proof}[解]
+这是 $0\cdot\infty$ 待定型，可化为 $\frac{\infty}{\infty}$ 解决．
+\[
+\lim_{x\to 0^{+}} x^{\varepsilon}\ln x
+= \lim_{x\to 0^{+}} \frac{\ln x}{x^{-\varepsilon}}
+= \lim_{x\to 0^{+}} \frac{\frac{1}{x}}{-\varepsilon x^{-\varepsilon-1}}
+= \lim_{x\to 0^{+}} \left(-\frac{1}{\varepsilon}x^{\varepsilon}\right) = 0.
+\]
+\end{proof}
+
+在用洛必达法则求待定型时，应注意以下几点：
+
+（1）在 $\frac{0}{0}$ 或 $\frac{\infty}{\infty}$ 待定型中，$\lim\dfrac{f'(x)}{g'(x)}$ 不存在，并不能断言 $\lim\dfrac{f(x)}{g(x)}$ 不存在．例如
+\[
+\lim_{x\to\infty}\frac{\sin x + x}{x} = 1,
+\]
+但
+\[
+\lim_{x\to\infty}\frac{\cos x + 1}{1}
+\]
+不存在．
+
+（2）只有待定型才能用洛必达法则，否定会引导到荒谬的结果．例如
+\[
+\lim_{x\to\infty}\frac{x - \sin x}{x + \sin x}
+= \lim_{x\to\infty}\frac{1 - \cos x}{1 + \cos x}
+= \lim_{x\to\infty}\left(-\frac{\sin x}{\sin x}\right) = -1,
+\]
+而实际上
+\[
+\lim_{x\to\infty}\frac{x - \sin x}{x + \sin x}
+= \lim_{x\to\infty}\frac{1 - \frac{\sin x}{x}}{1 + \frac{\sin x}{x}} = 1.
+\]
+问题出在前面的第二个等式
+\[
+\lim_{x\to\infty}\frac{1 - \cos x}{1 + \sin x}
+= \lim_{x\to\infty}\left(-\frac{\sin x}{\sin x}\right),
+\]
+左边既不是 $\frac{0}{0}$，也不是 $\frac{\infty}{\infty}$．
+
+（3）谁放分子，谁放分母是有讲究的，例如
+\[
+\lim_{x\to+\infty} x\mathrm{e}^{-x}
+= \lim_{x\to+\infty}\frac{x}{\mathrm{e}^{x}}
+= \lim_{x\to+\infty}\frac{1}{\mathrm{e}^{x}} = 0.
+\]
+如果像下面这样做，
+\[
+\lim_{x\to+\infty} x\mathrm{e}^{-x}
+= \lim_{x\to+\infty}\frac{\mathrm{e}^{-x}}{\frac{1}{x}}
+= \lim_{x\to+\infty}\frac{-\mathrm{e}^{-x}}{-\frac{1}{x^{2}}} = \cdots,
+\]
+就可能得不到任何结果．
+
+\begin{xiti}
+\item 求下列待定型的极限：
+\begin{ziti}
+\item $\lim_{x\to0} \frac{\tan ax}{\sin bx}$；
+\item $\lim_{x\to0} \frac{1 - \cos x^2}{x^3 \sin x}$；
+\item $\lim_{x\to0} \frac{\ln(1+x)-x}{\cos x-1}$；
+\item $\lim_{x\to0} \frac{\tan x - x}{x - \sin x}$；
+\item $\lim_{x\to0} \left( \frac{1}{x} - \frac{1}{e^x - 1} \right)$；
+\item $\lim_{x\to0} \frac{\ln \cos ax}{\ln \cos bx}$；
+\item $\lim_{x\to\frac{\pi}{2}} \frac{\tan x - 6}{\sec x + 5}$；
+\item $\lim_{x\to1} \left( \frac{1}{\ln x} - \frac{1}{x-1} \right)$；
+\item $\lim_{x\to\pi} (\pi - x) \tan \frac{x}{2}$；
+\item $\lim_{x\to1} x^{\frac{1}{1-x}}$；
+\item $\lim_{x\to+\infty} \frac{x^b}{e^{ax}}$ ($a, b > 0$)；
+\item $\lim_{x\to+\infty} \frac{\frac{\pi}{2} - \arctan x}{\sin \frac{1}{x}}$；
+\item $\lim_{x\to+\infty} \frac{\ln^c x}{x^b}$ ($b, c > 0$)；
+\item $\lim_{x\to0^+} x^b \ln^c x$ ($b, c > 0$)；
+\item $\lim_{x\to\frac{\pi}{6}} \frac{1 - 2\sin x}{\cos 3x}$；
+\item $\lim_{x\to0^+} \frac{\ln x}{\cot x}$；
+\item $\lim_{x\to0} \frac{(1+x)^{\frac{1}{x}} - e}{x}$；
+\item $\lim_{x\to0^+} x^{\sin x}$；
+\item $\lim_{x\to0^+} \left( \ln \frac{1}{x} \right)^x$；
+\item $\lim_{x\to0} \left( \frac{\tan x}{x} \right)^{\frac{1}{x^2}}$；
+\item $\lim_{x\to0} \left( \frac{1}{x^2} - \frac{1}{\sin^2 x} \right)$；
+\item $\lim_{x\to0^+} \sin x \ln x$．
+\end{ziti}
+\item 对函数 $f(x)$ 在 $[0, x]$ 上应用拉格朗日中值定理有
+\[
+f(x) - f(0) = f'(\theta x)x,\quad \theta \in (0, 1),
+\]
+试证对下列函数有 $\lim_{x\to0^+} \theta = \frac{1}{2}$：
+\begin{ziti}
+\item $f(x) = \ln(1+x)$；
+\item $f(x) = e^x$．
+\end{ziti}
+\item 设 $f(x)$ 二阶可导，求证：
+\[
+\lim_{h\to0} \frac{f(x+2h) - 2f(x+h) + f(x)}{h^2} = f''(x).
+\]
+\item 试说明下列极限不能用洛必达法则求出，并求出它们的极限：
+\begin{ziti}
+\item $\lim_{x\to0} \frac{x^2 \sin\frac{1}{x}}{\sin x}$；
+\item $\lim_{x\to\infty} \frac{x + \sin x - \cos x}{x}$；
+\item $\lim_{x\to\infty} \frac{2x + \sin 2x}{(2x + \sin x)e^{\sin x}}$；
+\item $\lim_{x\to1} \frac{(x^2 - 1)\sin x}{\ln(1 + \sin \frac{\pi}{2}x)}$．
+\end{ziti}
+\end{xiti}

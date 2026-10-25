@@ -1,0 +1,668 @@
+% §11.6 场论
+
+\section{场论}
+
+曲线积分, 曲面积分及相关的定理, 对于物理学有着特别重要的意义. 它们在电磁学, 流体力学, 理论力学和理论物理等物理分支中, 有着广泛的应用. 物理学家在使用这些数学理论时, 往往采用一些特殊的术语和记号. 场是最重要的物理概念之一, 不外乎数量场 (如: 温度场), 它是函数; 还有向量场 (如: 引力场, 磁场, 流速场, 电场).
+
+我们将外微分形式与场论之间的对偶理论给出详细的描述.
+
+\begin{definition}\label{def:11.6.1}
+设 $U\subset\mathbb{R}^{n}$, $u:U\to\mathbb{R}$ 为函数, 则称 $u$ 为分布在 $U$ 上的一个\textbf{数量场}.
+
+如果 $u\in C^{0}(U,\mathbb{R})$, 则称 $u$ 为连续的数量场或 $C^{0}$ 数量场.
+
+如果 $U\subset\mathbb{R}^{n}$ 为开集, $u\in C^{r}(U,\mathbb{R})$, $r=1,2,\cdots,\infty,\omega$, 则称 $u$ 为 $C^{r}$ 数量场.
+
+例如: 温度场就是一个数量场.
+\end{definition}
+
+\begin{definition}\label{def:11.6.2}
+设 $U\subset\mathbb{R}^{n}$, 映射 $\boldsymbol{F}=(F_{1},F_{2},\cdots,F_{n}):U\to\mathbb{R}^{n}$ 称为分布在 $U$ 上的一个\textbf{向量场}.
+
+如果 $\boldsymbol{F}\in C^{0}(U,\mathbb{R}^{n})\ (\Leftrightarrow F_{i}\in C^{0}(U,\mathbb{R}),\,i=1,2,\cdots,n)$, 则称 $\boldsymbol{F}$ 为连续向量场或 $C^{0}$ 向量场.
+
+如果 $U\subset\mathbb{R}^{n}$ 为开集, 且 $\boldsymbol{F}\in C^{r}(U,\mathbb{R}^{n})\ (\Leftrightarrow F_{i}\in C^{r}(U,\mathbb{R}),\,i=1,2,\cdots,n)$, $r=1,2,\cdots,\infty,\omega$, 则称 $\boldsymbol{F}$ 为 $C^{r}$ 向量场.
+
+例如: 引力场, 磁场, 流速场, 电场, 曲线的切向量场, 曲面的法向量场.
+\end{definition}
+
+\begin{definition}\label{def:11.6.3}
+设 $U\subset\mathbb{R}^{n}$ 为开集, $u:U\to\mathbb{R}$ 为 $C^{r}\ (r\geqslant1)$ 数量场 ($C^{r}$ 函数), 称 $u$ 的 Jacobi, 即 $\mathrm{grad}\,u:U\to\mathbb{R}^{n}$,
+\[
+\boldsymbol{x}\mapsto\mathrm{grad}\,u=\left(\frac{\partial u}{\partial x_{1}},\frac{\partial u}{\partial x_{2}},\cdots,\frac{\partial u}{\partial x_{n}}\right)\Big|_{\boldsymbol{x}}=\sum_{i=1}^{n}\frac{\partial u}{\partial x_{i}}\boldsymbol{e}_{i}
+\]
+为数量场 $u$ 在 $\boldsymbol{x}$ 点处的\textbf{梯度} (gradient). $\mathrm{grad}\,u$ 为 $U$ 上的一个向量场, 称为\textbf{梯度场}.
+
+回忆一下 $u$ 在 $\boldsymbol{p}\in U$ 沿 $\boldsymbol{e}=(\cos\alpha_{1},\cos\alpha_{2},\cdots,\cos\alpha_{n})$ 方向的变化率, 即 $u$ 在点 $\boldsymbol{p}\in U$ 沿 $\boldsymbol{e}$ 方向的方向导数 (设 $u$ 在 $\boldsymbol{p}$ 点处可微)为
+\[
+\begin{aligned}
+\frac{\partial u}{\partial\boldsymbol{e}}&=\lim_{t\to0}\frac{u(\boldsymbol{p}+t\boldsymbol{e})-u(\boldsymbol{p})}{t}=\frac{\mathrm{d}u(\boldsymbol{p}+t\boldsymbol{e})}{\mathrm{d}t}\Big|_{t=0}=\sum_{i=1}^{n}\frac{\partial u}{\partial x_{i}}\cos\alpha_{i}\\
+&=\mathrm{grad}\,u\cdot\boldsymbol{e}=\|\mathrm{grad}\,u\|\cos\theta,
+\end{aligned}
+\]
+其中 $\theta$ 为 $\mathrm{grad}\,u$ 与 $\boldsymbol{e}$ 的夹角. 显然, 当 $\cos\theta=1$, 即 $\theta=0$ 时, $\dfrac{\partial u}{\partial\boldsymbol{e}}$ 达到最大值 $\|\mathrm{grad}\,u\|$. 此外, $\mathrm{grad}\,u=\left(\dfrac{\partial u}{\partial x_{1}},\dfrac{\partial u}{\partial x_{2}},\cdots,\dfrac{\partial u}{\partial x_{n}}\right)$ 为 $u$ 的等值面 $u(x_{1},x_{2},\cdots,x_{n})=c$ 的法向量场. 而等值面族将数量场 $u$ 的定义域分了 ``层''. 例如: $z=z(x,y)$ 的等高线为 $z(x,y)=c$; $u=u(x,y,z)=x^{2}+y^{2}+z^{2}$ 的等值面为 $u(x,y,z)=x^{2}+y^{2}+z^{2}=c$ ($c<0$ 时为空集; $c=0$ 时为点 $(0,0,0)$; $c>0$ 时为半径 $\sqrt{c}$ 的球面).
+
+当 $\|\mathrm{grad}\,u\|>0$ 时, $\mathrm{grad}\,u$ 指向等值面增加的方向, 即 $c_{1}<c_{2}$, 则 $\mathrm{grad}\,u$ 从 $u=c_{1}$ 指向 $u=c_{2}$. 如果 $\|\mathrm{grad}\,u\|$ 越大, 则 $u$ 沿该梯度方向的变化率 (方向导数)就越大. 因而, 这个方向上的等值面就越密.
+\end{definition}
+
+\begin{definition}\label{def:11.6.4}
+设 $U\subset\mathbb{R}^{3}$ 为开区域, $\theta,P,Q,R$ 为 $U$ 上的 $C^{r}(r\geqslant1)$ 函数, $\boldsymbol{F}=P\boldsymbol{e}_{1}+Q\boldsymbol{e}_{2}+R\boldsymbol{e}_{3}$ 或 $P\boldsymbol{i}+Q\boldsymbol{j}+R\boldsymbol{k}$ 或 $(P,Q,R)$ 为 $U$ 上的 $C^{r}$ 向量场.
+
+记算符:
+\[
+\nabla=\frac{\partial}{\partial x}\boldsymbol{e}_{1}+\frac{\partial}{\partial y}\boldsymbol{e}_{2}+\frac{\partial}{\partial z}\boldsymbol{e}_{3}\ (\text{假向量}),
+\]
+\[
+\Delta=\frac{\partial^{2}}{\partial x^{2}}+\frac{\partial^{2}}{\partial y^{2}}+\frac{\partial^{2}}{\partial z^{2}}\ (\text{Laplace 算符}).
+\]
+则
+\[
+\mathrm{grad}\,\theta=\frac{\partial\theta}{\partial x}\boldsymbol{e}_{1}+\frac{\partial\theta}{\partial y}\boldsymbol{e}_{2}+\frac{\partial\theta}{\partial z}\boldsymbol{e}_{3}=\left(\frac{\partial}{\partial x}\boldsymbol{e}_{1}+\frac{\partial}{\partial y}\boldsymbol{e}_{2}+\frac{\partial}{\partial z}\boldsymbol{e}_{3}\right)\theta=\nabla\theta
+\]
+称为 $\theta$ 的\textbf{梯度场};
+\[
+\begin{aligned}
+\mathrm{rot}\,\boldsymbol{F}&=\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}\\
+&=\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)\boldsymbol{e}_{1}+\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)\boldsymbol{e}_{2}+\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\boldsymbol{e}_{3}\\
+&=\nabla\times\boldsymbol{F}
+\end{aligned}
+\]
+称为 $\boldsymbol{F}$ 的\textbf{旋度} (rotation) 场. 而
+\[
+\mathrm{div}\,\boldsymbol{F}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}=\left(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\right)\cdot(P,Q,R)=\nabla\cdot\boldsymbol{F}
+\]
+称为 $\boldsymbol{F}$ 的\textbf{散度} (divergence) 场.
+
+对 $r\geqslant2$,
+\[
+\Delta\theta=\left(\frac{\partial^{2}}{\partial x^{2}}+\frac{\partial^{2}}{\partial y^{2}}+\frac{\partial^{2}}{\partial z^{2}}\right)\theta=\frac{\partial^{2}\theta}{\partial x^{2}}+\frac{\partial^{2}\theta}{\partial y^{2}}+\frac{\partial^{2}\theta}{\partial z^{2}}=\nabla\cdot\nabla\theta=\mathrm{div}(\mathrm{grad}\,\theta)
+\]
+称为函数 $\theta$ 的 Laplace.
+
+上述梯度场, 散度场, Laplace 都可推广到 $\mathbb{R}^{n}$. 此时, $\boldsymbol{F}=\sum_{i=1}^{n}P_{i}\boldsymbol{e}_{i}$
+\[
+\nabla=\sum_{i=1}^{n}\frac{\partial}{\partial x_{i}}\boldsymbol{e}_{i},\qquad\Delta=\sum_{i=1}^{n}\frac{\partial^{2}}{\partial x_{i}^{2}}.
+\]
+则
+\[
+\mathrm{grad}\,\theta=\sum_{i=1}^{n}\frac{\partial\theta}{\partial x_{i}}\boldsymbol{e}_{i}=\left(\sum_{i=1}^{n}\frac{\partial}{\partial x_{i}}\boldsymbol{e}_{i}\right)\theta=\nabla\theta,
+\]
+\[
+\mathrm{div}\,\boldsymbol{F}=\sum_{i=1}^{n}\frac{\partial F_{i}}{\partial x_{i}}=\left(\frac{\partial}{\partial x_{1}},\frac{\partial}{\partial x_{2}},\cdots,\frac{\partial}{\partial x_{n}}\right)\cdot(F_{1},F_{2},\cdots,F_{n})=\nabla\cdot\boldsymbol{F},
+\]
+\[
+\Delta\theta=\left(\sum_{i=1}^{n}\frac{\partial^{2}}{\partial x_{i}^{2}}\right)\theta=\sum_{i=1}^{n}\frac{\partial^{2}\theta}{\partial x_{i}^{2}}=\nabla\cdot\nabla\theta=\mathrm{div}(\mathrm{grad}\,\theta).
+\]
+\end{definition}
+
+\begin{lemma}\label{lem:11.6.1}
+(1) $\nabla(cu)=c\nabla u$ ($c$ 为实常数), $\nabla(u_{1}+u_{2})=\nabla u_{1}+\nabla u_{2}$, 即 $\nabla(c_{1}u_{1}+c_{2}u_{2})=c_{1}\nabla u_{1}+c_{2}\nabla u_{2}$ (线性性), $c_{1},c_{2}$ 为实常数, $u_{1},u_{2}$ 为 $C^{r}(r\geqslant1)$ 函数;
+
+(2) $\nabla(u_{1}u_{2})=u_{1}\nabla u_{2}+u_{2}\nabla u_{1}$ (导性), $u_{1},u_{2}$ 为 $C^{r}(r\geqslant1)$ 函数;
+
+(3) $\nabla(f\circ u)=f'\circ u\,\nabla u$, $f\in C^{r}(\mathbb{R},\mathbb{R})$, $u$ 为 $x_{1},x_{2},\cdots,x_{n}$ 的 $C^{r}(r\geqslant1)$ 函数;
+
+(4) $\nabla\left(\dfrac{u_{1}}{u_{2}}\right)=\dfrac{1}{u_{2}^{2}}(u_{2}\nabla u_{1}-u_{1}\nabla u_{2})$, $u_{1},u_{2}$ 为 $C^{r}(r\geqslant1)$ 函数, $u_{2}$ 处处不为 $0$.
+\end{lemma}
+
+\begin{proof}
+(1) 显然.
+
+(2)
+\[
+\begin{aligned}
+\nabla(u_{1}u_{2})&=\left(\frac{\partial(u_{1}u_{2})}{\partial x_{1}},\frac{\partial(u_{1}u_{2})}{\partial x_{2}},\cdots,\frac{\partial(u_{1}u_{2})}{\partial x_{n}}\right)\\
+&=\left(u_{1}\frac{\partial u_{2}}{\partial x_{1}}+u_{2}\frac{\partial u_{1}}{\partial x_{1}},\cdots,u_{1}\frac{\partial u_{2}}{\partial x_{n}}+u_{2}\frac{\partial u_{1}}{\partial x_{n}}\right)\\
+&=u_{1}\left(\frac{\partial u_{2}}{\partial x_{1}},\frac{\partial u_{2}}{\partial x_{2}},\cdots,\frac{\partial u_{2}}{\partial x_{n}}\right)+u_{2}\left(\frac{\partial u_{1}}{\partial x_{1}},\frac{\partial u_{1}}{\partial x_{2}},\cdots,\frac{\partial u_{1}}{\partial x_{n}}\right)\\
+&=u_{1}\nabla u_{2}+u_{2}\nabla u_{1}.
+\end{aligned}
+\]
+
+(3)
+\[
+\nabla(f\circ u)=\left(\frac{\partial(f\circ u)}{\partial x_{1}},\cdots,\frac{\partial(f\circ u)}{\partial x_{n}}\right)=\left(f'\circ u\frac{\partial u}{\partial x_{1}},\cdots,f'\circ u\frac{\partial u}{\partial x_{n}}\right)=f'\circ u\,\nabla u.
+\]
+
+(4)
+\[
+\begin{aligned}
+\nabla\left(\frac{u_{1}}{u_{2}}\right)&=\left(\frac{\partial}{\partial x_{1}}\frac{u_{1}}{u_{2}},\cdots,\frac{\partial}{\partial x_{n}}\frac{u_{1}}{u_{2}}\right)\\
+&=\left(\frac{1}{u_{2}^{2}}\left(\frac{\partial u_{1}}{\partial x_{1}}u_{2}-u_{1}\frac{\partial u_{2}}{\partial x_{1}}\right),\cdots,\frac{1}{u_{2}^{2}}\left(\frac{\partial u_{1}}{\partial x_{n}}u_{2}-u_{1}\frac{\partial u_{2}}{\partial x_{n}}\right)\right)\\
+&=\frac{1}{u_{2}^{2}}\left[u_{2}\left(\frac{\partial u_{1}}{\partial x_{1}},\cdots,\frac{\partial u_{1}}{\partial x_{n}}\right)-u_{1}\left(\frac{\partial u_{2}}{\partial x_{1}},\cdots,\frac{\partial u_{2}}{\partial x_{n}}\right)\right]\\
+&=\frac{1}{u_{2}^{2}}(u_{2}\nabla u_{1}-u_{1}\nabla u_{2}).
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:11.6.2}
+设 $U\subset\mathbb{R}^{n}$ 为开集, $\boldsymbol{F}$, $\boldsymbol{G}$ 为 $U$ 上的 $C^{r}(r\geqslant1)$ 向量场, $\varphi$ 为 $U$ 上的 $C^{r}$ 函数, $c$ 为实常数, 则
+
+(1) $\nabla\cdot(c\boldsymbol{F})=c\nabla\cdot\boldsymbol{F}$;
+
+(2) $\nabla\cdot(\boldsymbol{F}+\boldsymbol{G})=\nabla\cdot\boldsymbol{F}+\nabla\cdot\boldsymbol{G}$;
+
+(3) $\nabla\cdot(\varphi\boldsymbol{F})=\boldsymbol{F}\cdot\mathrm{grad}\,\varphi+\varphi\,\mathrm{div}\,\boldsymbol{F}=\boldsymbol{F}\cdot\nabla\varphi+\varphi\nabla\cdot\boldsymbol{F}$.
+\end{lemma}
+
+\begin{proof}
+(1), (2) 显然.
+
+(3)
+\[
+\begin{aligned}
+\nabla\cdot(\varphi\boldsymbol{F})&=\sum_{i=1}^{n}\frac{\partial(\varphi F_{i})}{\partial x_{i}}=\sum_{i=1}^{n}\left(\frac{\partial\varphi}{\partial x_{i}}F_{i}+\varphi\frac{\partial F_{i}}{\partial x_{i}}\right)\\
+&=\boldsymbol{F}\cdot\mathrm{grad}\,\varphi+\varphi\,\mathrm{div}\,\boldsymbol{F}=\boldsymbol{F}\cdot\nabla\varphi+\varphi\nabla\cdot\boldsymbol{F}.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:11.6.3}
+设 $U\subset\mathbb{R}^{3}$ 为开集, $\boldsymbol{F}$, $\boldsymbol{G}$ 为 $U$ 上的 $C^{r}(r\geqslant1)$ 向量场, $\varphi$ 为 $U$ 上的 $C^{r}$ 函数, $c$ 为实常数, 则
+
+(1) $\nabla\times(c\boldsymbol{F})=c\nabla\times\boldsymbol{F}$;
+
+(2) $\nabla\times(\boldsymbol{F}+\boldsymbol{G})=\nabla\times\boldsymbol{F}+\nabla\times\boldsymbol{G}$;
+
+(3) $\nabla\times(\varphi\boldsymbol{F})=\varphi\nabla\times\boldsymbol{F}+\nabla\varphi\times\boldsymbol{F}$.
+\end{lemma}
+
+\begin{proof}
+(1), (2) 显然.
+
+(3)
+\[
+\begin{aligned}
+\nabla\times(\varphi\boldsymbol{F})&=\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ \varphi P&\varphi Q&\varphi R\end{vmatrix}\\
+&=\left(\frac{\partial\varphi}{\partial y}R+\varphi\frac{\partial R}{\partial y}-\frac{\partial\varphi}{\partial z}Q-\varphi\frac{\partial Q}{\partial z}\right)\boldsymbol{e}_{1}\\
+&\quad+\left(\frac{\partial\varphi}{\partial z}P+\varphi\frac{\partial P}{\partial z}-\frac{\partial\varphi}{\partial x}R-\varphi\frac{\partial R}{\partial x}\right)\boldsymbol{e}_{2}\\
+&\quad+\left(\frac{\partial\varphi}{\partial x}Q+\varphi\frac{\partial Q}{\partial x}-\frac{\partial\varphi}{\partial y}P-\varphi\frac{\partial P}{\partial y}\right)\boldsymbol{e}_{3}\\
+&=\varphi\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}+\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial\varphi}{\partial x}&\dfrac{\partial\varphi}{\partial y}&\dfrac{\partial\varphi}{\partial z}\\ P&Q&R\end{vmatrix}\\
+&=\varphi\nabla\times\boldsymbol{F}+\nabla\varphi\times\boldsymbol{F}.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{definition}\label{def:11.6.5}
+(外微分形式与场论的对偶)设 $U\subset\mathbb{R}^{3}$ 为开区域, $\theta$ 为 $U$ 上的 $C^{r+1}(r\geqslant1)$ 函数, $P,Q,R,B_{1},B_{2},B_{3}$ 为 $U$ 上的 $C^{r}$ 函数. $\overrightarrow{C}$ 为任意封闭的分段 $C^{1}$ 曲线 (分成有限段, 在每一段上为 $C^{1}$ 曲线, 整个是 $C^{0}$ 曲线). 将外微分形式 $\omega$ 与相应的向量场对应起来, 就有下列结果:
+
+(1) 外微分形式 $\omega=P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z$, 向量场 $\boldsymbol{F}=(P,Q,R)$;
+
+$\omega=\mathrm{d}\theta$ 为恰当微分形式, $\theta$ 为 $\omega$ 的原函数
+\[
+\begin{aligned}
+&\Longleftrightarrow\boldsymbol{F}=\mathrm{grad}\,\theta=\nabla\theta=\left(\frac{\partial\theta}{\partial x},\frac{\partial\theta}{\partial y},\frac{\partial\theta}{\partial z}\right)\ \text{为有势场},\ \theta\ \text{为}\ \boldsymbol{F}\ \text{的势函数}\\
+&\Longleftrightarrow(P,Q,R)=\left(\frac{\partial\theta}{\partial x},\frac{\partial\theta}{\partial y},\frac{\partial\theta}{\partial z}\right)\\
+&\Longleftrightarrow\oint_{\overrightarrow{C}}\omega=\oint_{\overrightarrow{C}}P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z=\oint_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}=\oint_{\overrightarrow{C}}\boldsymbol{F}\cdot\boldsymbol{\tau}\,\mathrm{d}s=0,
+\end{aligned}
+\]
+$\boldsymbol{\tau}$ 为与 $\overrightarrow{C}$ 同向的单位切向量. 称沿定向曲线 $\overrightarrow{C}$ 的环量 $\oint_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}=0$ 的向量场 $\boldsymbol{F}$ 为\textbf{保守场}.
+
+(2) $\omega=P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z$ 为闭形式, 即向量场 $\boldsymbol{F}=(P,Q,R)$ 为\textbf{无旋场}, 即
+\[
+\mathrm{d}\omega=\begin{vmatrix}\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}=0,\qquad
+\mathrm{rot}\,\boldsymbol{F}=\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}=\boldsymbol{0}
+\]
+\[
+\Longleftrightarrow\begin{cases}
+\dfrac{\partial R}{\partial y}-\dfrac{\partial Q}{\partial z}=0,\\[4pt]
+\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{\partial y}=0,\\[4pt]
+\dfrac{\partial P}{\partial z}-\dfrac{\partial R}{\partial x}=0.
+\end{cases}
+\]
+
+(3) $\eta=B_{1}\mathrm{d}x+B_{2}\mathrm{d}y+B_{3}\mathrm{d}z$, $\omega=P\,\mathrm{d}y\wedge\mathrm{d}z+Q\,\mathrm{d}z\wedge\mathrm{d}x+R\,\mathrm{d}x\wedge\mathrm{d}y$, $\boldsymbol{B}=(B_{1},B_{2},B_{3})$.
+
+$\omega$ 为 $2$ 次恰当微分形式, 即
+\[
+\omega=\mathrm{d}\eta=\begin{vmatrix}\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ B_{1}&B_{2}&B_{3}\end{vmatrix}
+\]
+$\boldsymbol{F}=(P,Q,R)$ 有\textbf{向量势} $\boldsymbol{B}$, 即
+\[
+\boldsymbol{F}=\mathrm{rot}\,\boldsymbol{B}=\nabla\times\boldsymbol{B}=\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ B_{1}&B_{2}&B_{3}\end{vmatrix}
+\]
+\[
+\Longleftrightarrow(P,Q,R)=\left(\frac{\partial B_{3}}{\partial y}-\frac{\partial B_{2}}{\partial z},\frac{\partial B_{1}}{\partial z}-\frac{\partial B_{3}}{\partial x},\frac{\partial B_{2}}{\partial x}-\frac{\partial B_{1}}{\partial y}\right).
+\]
+且
+\[
+\mathrm{d}\omega=\mathrm{d}(\mathrm{d}\eta)=0,\qquad\nabla\cdot(\nabla\times\boldsymbol{B})=\mathrm{div}(\mathrm{rot}\,\boldsymbol{B})=0.
+\]
+
+(4) $\omega=P\,\mathrm{d}y\wedge\mathrm{d}z+Q\,\mathrm{d}z\wedge\mathrm{d}x+R\,\mathrm{d}x\wedge\mathrm{d}y$ 为 $2$ 次闭微分形式, 即 $\boldsymbol{F}=(P,Q,R)$ 为\textbf{无源场} (或\textbf{管形场}), 即
+\[
+\mathrm{div}\,\boldsymbol{F}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}=0
+\]
+\[
+\mathrm{d}\omega=\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z=0.
+\]
+\end{definition}
+
+从定义 \ref{def:11.6.5} 立即可以看出, 从外微分形式与场论的对偶关系, 只要外微分形式有的结论, 场论也必有相应的对偶结论, 不必重新去探讨, 研究, 照搬地翻译过来就行. 如果没有的结论, 也需在外微分形式情况去研究, 得到结论后再翻译为场论的结论.
+
+根据定理 \ref{thm:11.5.1} 与定理 \ref{thm:11.5.2}, 有相应场论的结论:
+
+$\boldsymbol{F}$ 为有势场 $\Longleftrightarrow$ $\boldsymbol{F}$ 为保守场 $\Rightarrow$ $\boldsymbol{F}$ 为无旋场.
+
+$\boldsymbol{F}=\left(-\dfrac{y}{x^{2}+y^{2}},\dfrac{x}{x^{2}+y^{2}},0\right)$ 为无旋场, 但不为有势场, 不为保守场.
+
+根据定理 \ref{thm:11.5.1} 知, $\boldsymbol{F}$ 有向量势 $\Rightarrow$ $\boldsymbol{F}$ 为无源场.
+
+问题是, $\boldsymbol{F}$ 为无源场是否一定有向量势? 请参看例 \ref{ex:11.6.2}.
+
+根据定理 \ref{thm:11.5.5} 可求势函数 $\theta$. 根据定理 \ref{thm:11.5.6} 可求向量势 $\boldsymbol{B}$.
+
+\begin{example}\label{ex:11.6.1}
+设 $\boldsymbol{r}=(x,y,z)$, $r=\|\boldsymbol{r}\|=\sqrt{x^{2}+y^{2}+z^{2}}$. 求:
+
+(1) $\nabla r$ 与 $(\boldsymbol{r}\cdot\nabla)\boldsymbol{r}$;
+
+(2) $\nabla\cdot(r^{n}\boldsymbol{r})$;
+
+(3) $\nabla\times(\varphi\boldsymbol{r})$, $\varphi(r)$ 为 $C^{1}$ 函数. $\boldsymbol{F}=\varphi\boldsymbol{r}$ 称为\textbf{有心} (心为原点)\textbf{场} (图 \ref{fig:11.6.1}). 并证明: 有心场必为无旋场.
+\end{example}
+
+\begin{solution}
+(1)
+\[
+\nabla r=\left(\frac{\partial r}{\partial x},\frac{\partial r}{\partial y},\frac{\partial r}{\partial z}\right)=\left(\frac{x}{r},\frac{y}{r},\frac{z}{r}\right)=\frac{\boldsymbol{r}}{r}=\frac{\boldsymbol{r}}{\|\boldsymbol{r}\|}.
+\]
+\[
+\begin{aligned}
+(\boldsymbol{r}\cdot\nabla)\boldsymbol{r}&=\left(x\frac{\partial}{\partial x}+y\frac{\partial}{\partial y}+z\frac{\partial}{\partial z}\right)\boldsymbol{r}\\
+&=\left(x\frac{\partial}{\partial x}+y\frac{\partial}{\partial y}+z\frac{\partial}{\partial z}\right)(x,y,z)\\
+&=x(1,0,0)+y(0,1,0)+z(0,0,1)\\
+&=(x,y,z)=\boldsymbol{r}.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-2.2,0) -- (2.2,0) node[below right] {$x$};
+    \draw[->] (0,-2.2) -- (0,2.2) node[above left] {$y$};
+    \fill (0,0) circle (1.5pt) node[below left] {$O$};
+    
+    % 从原点向外的辐射有心场
+    \foreach \a in {0, 45, 90, 135, 180, 225, 270, 315} {
+      \draw[->, thick, ThemeColor] ({\a}:0.35) -- ({\a}:1.2);
+      \draw[->, very thick, ThemeColor] ({\a}:1.2) -- ({\a}:1.95);
+    }
+    \foreach \a in {22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5} {
+      \draw[->, thin, ThemeColor!80] ({\a}:0.45) -- ({\a}:1.55);
+    }
+    \node at (1.5,-1.5) {$\boldsymbol{F}=\varphi(r)\boldsymbol{r}$};
+  \end{tikzpicture}
+  \caption{有心场 $\boldsymbol{F}=\varphi(r)\boldsymbol{r}$}\label{fig:11.6.1}
+\end{figure}
+
+\begin{solution}
+(2)
+\[
+\begin{aligned}
+\nabla\cdot(r^{n}\boldsymbol{r})&\reason{引理 \ref{lem:11.6.2}(3)}\boldsymbol{r}\cdot\nabla r^{n}+r^{n}\nabla\cdot\boldsymbol{r}\\
+&=\boldsymbol{r}\,nr^{n-1}\frac{\boldsymbol{r}}{r}+r^{n}(1+1+1)\\
+&=nr^{n}+3r^{n}=(n+3)r^{n}.
+\end{aligned}
+\]
+
+当 $n=-3$ 时, 有 $\nabla\cdot(r^{-3}\boldsymbol{r})=0$, 即 $\mathrm{div}\left(\dfrac{\boldsymbol{r}}{r^{3}}\right)=0$.
+
+(3) 因为
+\[
+\nabla\times\boldsymbol{r}=\begin{vmatrix}\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ x&y&z\end{vmatrix}=\boldsymbol{0},
+\]
+所以
+\[
+\begin{aligned}
+\nabla\times(\varphi\boldsymbol{r})&\reason{引理 \ref{lem:11.6.3}(3)}\varphi\nabla\times\boldsymbol{r}+\nabla\varphi\times\boldsymbol{r}\\
+&\reason{引理 \ref{lem:11.6.1}(3)}\varphi\cdot\boldsymbol{0}+\varphi'(r)\nabla r\times\boldsymbol{r}\\
+&=\varphi'(r)\frac{\boldsymbol{r}}{r}\times\boldsymbol{r}=\boldsymbol{0}.
+\end{aligned}
+\]
+
+由此得到有心场 $\boldsymbol{F}=\varphi\boldsymbol{r}$ 为无旋场.
+\end{solution}
+
+\begin{example}\label{ex:11.6.2}
+由例 \ref{ex:11.6.1}(3) 知, $\nabla\times(\varphi\boldsymbol{r})=\boldsymbol{0}$, 即有心场 $\boldsymbol{F}=\varphi(\boldsymbol{r})\boldsymbol{r}$ 为无旋场. 由于定义域 $\mathbb{R}^{3}$ 满足定理 \ref{thm:11.5.5} 的条件, 故 $\boldsymbol{F}=\varphi(r)\boldsymbol{r}$ 为有势场. 并由定理 \ref{thm:11.5.5} 的证明, 可以得到势函数 (图 \ref{fig:11.6.2})
+\[
+\begin{aligned}
+\theta(x_{0},y_{0},z_{0})&=\int_{(0,0,0)}^{(x_{0},y_{0},z_{0})}\varphi(r)(x\,\mathrm{d}x+y\,\mathrm{d}y+z\,\mathrm{d}z)\\
+&=\frac{1}{2}\int_{(0,0,0)}^{(x_{0},y_{0},z_{0})}\varphi(r)\,\mathrm{d}(x^{2}+y^{2}+z^{2})\\
+&=\int_{(0,0,0)}^{(x_{0},y_{0},z_{0})}\varphi(r)r\,\mathrm{d}r\reason{$r$ 作参数}\int_{0}^{r_{0}}\varphi(r)r\,\mathrm{d}r,
+\end{aligned}
+\]
+其中 $r_{0}=\sqrt{x_{0}^{2}+y_{0}^{2}+z_{0}^{2}}$, $r$ 作参数时的变换为
+\[
+(x,y,z)=\left(\frac{x_{0}}{\sqrt{x_{0}^{2}+y_{0}^{2}+z_{0}^{2}}},\frac{y_{0}}{\sqrt{x_{0}^{2}+y_{0}^{2}+z_{0}^{2}}},\frac{z_{0}}{\sqrt{x_{0}^{2}+y_{0}^{2}+z_{0}^{2}}}\right)r,
+\]
+\[
+x\,\mathrm{d}x+y\,\mathrm{d}y+z\,\mathrm{d}z=\frac{1}{2}\mathrm{d}(x^{2}+y^{2}+z^{2})=\frac{1}{2}\mathrm{d}r^{2}=r\,\mathrm{d}r.
+\]
+
+于是, 有心场的原函数为
+\[
+\theta(x,y,z)=\int_{0}^{\sqrt{x^{2}+y^{2}+z^{2}}}\varphi(r)r\,\mathrm{d}r.
+\]
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+    % 原点与同心圆
+    \fill (0,0) circle (1.5pt) node[below left] {$O$};
+    \draw[thick, dashed] (0,0) circle (1.3);
+    
+    % 有心辐射场
+    \foreach \a in {0, 45, 90, 135, 180, 225, 270, 315} {
+      \draw[->, thick, ThemeColor] ({\a}:0.35) -- ({\a}:1.05);
+      \draw[->, thick, ThemeColor] ({\a}:1.45) -- ({\a}:1.95);
+    }
+    
+    % 径向射线连接原点到 (x,y,z)
+    \draw[very thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[very thick]{>}}}]
+      (0,0) -- (1.8,1.35);
+    \fill (1.8,1.35) circle (1.8pt) node[above right] {$(x,y,z)$};
+    \node[above left] at (0.9,0.7) {$L$};
+  \end{tikzpicture}
+  \caption{有心场的势函数}\label{fig:11.6.2}
+\end{figure}
+
+\begin{example}\label{ex:11.6.3}
+$\boldsymbol{F}$ 为无源场, 它一定具有向量势吗? 这是一个物理问题, 对于不知外微分形式理论的物理学家要回答这个问题会有点困难. 上面我们已经熟悉了外微分形式与场论之间的对偶关系, 自然可将这问题化为: 闭形式 $\omega=P\,\mathrm{d}y\wedge\mathrm{d}z+Q\,\mathrm{d}z\wedge\mathrm{d}x+R\,\mathrm{d}x\wedge\mathrm{d}y$ 是否一定是恰当微分形式? 即存在一次 $C^{r+1}$ 微分形式 $\eta$, 使得 $\omega=\mathrm{d}\eta$. 如果回答是肯定的, 根据 $\mathrm{d}\omega=0$ 找出 $\eta$ 使 $\omega=\mathrm{d}\eta$; 如果回答是否定的, 就要像定理 \ref{thm:11.5.1} 那样, 举出一个反例. 通过反复思考, 结论是否定的. 为举反例, 应该到无源场中去找! 发现例 \ref{ex:11.6.1}(2) 中, 有 $\mathrm{div}\dfrac{\boldsymbol{r}}{r^{3}}=0$, 场 $\dfrac{\boldsymbol{r}}{r^{3}}$ 的定义域为 $\mathbb{R}^{3}\setminus\{(0,0,0)\}$. $\dfrac{\boldsymbol{r}}{r^{3}}$ 为 $\mathbb{R}^{3}\setminus\{(0,0,0)\}$ 中的无源场, 但它是否有向量势 $\boldsymbol{B}$? 即 $\dfrac{\boldsymbol{r}}{r^{3}}=\mathrm{rot}\,\boldsymbol{B}$, 相应于 $\dfrac{\boldsymbol{r}}{r^{3}}$ 的 $2$ 次外微分形式为
+\[
+\omega=\frac{1}{r^{3}}(x\,\mathrm{d}y\wedge\mathrm{d}z+y\,\mathrm{d}z\wedge\mathrm{d}x+z\,\mathrm{d}x\wedge\mathrm{d}y),\qquad r=\sqrt{x^{2}+y^{2}+z^{2}}.
+\]
+
+现证 $\omega$ 不为恰当微分形式.(反证)假设 $\omega$ 为恰当微分形式, 则存在一次 $C^{r+1}$ 外微分形式 $\eta$, 使 $\omega=\mathrm{d}\eta$. 则在外法向的单位球面 $\overrightarrow{S}^{2}$ 上, 有
+\[
+\iint_{\overrightarrow{S}^{2}}\omega=\iint_{\overrightarrow{S}^{2}}\mathrm{d}\eta\reason{Stokes 公式}\iint_{\overrightarrow{\partial S}^{2}}\eta=\iint_{\overrightarrow{\varnothing}}\eta=0.
+\]
+
+或者将 $\overrightarrow{S}^{2}$ 分成上, 下两个定向半球面 $\overrightarrow{S}^{2}_{\text{上}}$, $\overrightarrow{S}^{2}_{\text{下}}$, 两个半球面公共边界为 $C$, 相应的诱导定向曲线为 $\overrightarrow{C}$, $\overrightarrow{C}^{-}$, 则
+\[
+\begin{aligned}
+\iint_{\overrightarrow{S}^{2}}\omega&=\iint_{\overrightarrow{S}^{2}_{\text{上}}}\omega+\iint_{\overrightarrow{S}^{2}_{\text{下}}}\omega=\iint_{\overrightarrow{S}^{2}_{\text{上}}}\mathrm{d}\eta+\iint_{\overrightarrow{S}^{2}_{\text{下}}}\mathrm{d}\eta\\
+&\reason{Stokes 公式}\oint_{\overrightarrow{C}}\eta+\oint_{\overrightarrow{C}^{-}}\eta\\
+&=\oint_{\overrightarrow{C}}\eta-\oint_{\overrightarrow{C}}\eta=0.
+\end{aligned}
+\]
+
+但是,
+\[
+\begin{aligned}
+\iint_{\overrightarrow{S}^{2}}\omega&=\iint_{\overrightarrow{S}^{2}}\frac{1}{r^{3}}(x\,\mathrm{d}y\wedge\mathrm{d}z+y\,\mathrm{d}z\wedge\mathrm{d}x+z\,\mathrm{d}x\wedge\mathrm{d}y)\\
+&=\iint_{S^{2}}\frac{1}{r^{3}}(x\cos\alpha+y\cos\beta+z\cos\gamma)\,\mathrm{d}\sigma\\
+&=\iint_{S^{2}}\frac{1}{r^{3}}(x^{2}+y^{2}+z^{2})\,\mathrm{d}\sigma\\
+&=\iint_{S^{2}}\mathrm{d}\sigma=4\pi\neq0,
+\end{aligned}
+\]
+矛盾.
+
+更一般地,
+\[
+\omega=\sum_{i=1}^{n}(-1)^{i-1}\frac{x_{i}}{r^{n}}\mathrm{d}x_{1}\wedge\cdots\wedge\widehat{\mathrm{d}x_{i}}\wedge\cdots\wedge\mathrm{d}x_{n}
+\]
+为 $\mathbb{R}^{n}\setminus\{\boldsymbol{0}\}$ 上的 $C^{\infty}$ 的 $n-1$ 次微分形式, 其中 $r=\sqrt{\sum_{i=1}^{n}x_{i}^{2}}$, 且
+\[
+\mathrm{d}\omega=\sum_{i=1}^{n}(-1)^{i-1}\left(\frac{1}{r^{n}}-\frac{nx_{i}\cdot\frac{x_{i}}{r}}{r^{n+1}}\right)\mathrm{d}x_{i}\wedge\mathrm{d}x_{1}\wedge\cdots\wedge\widehat{\mathrm{d}x_{i}}\wedge\cdots\wedge\mathrm{d}x_{n}=0,
+\]
+故 $\omega$ 为 $\mathbb{R}^{n}\setminus\{\boldsymbol{0}\}$ 上的 $n-1$ 次闭形式. 再证 $\omega$ 不为恰当微分形式.(反证)假设 $\omega$ 为恰当微分形式, 即存在 $\mathbb{R}^{n}\setminus\{\boldsymbol{0}\}$ 上的 $n-2$ 次 $C^{r+1}(r\geqslant1)$ 微分形式 $\eta$, 使 $\omega=\mathrm{d}\eta$. 则
+\[
+\int_{\overrightarrow{S}^{n-1}}\!\!\!\cdots\int\omega=\int_{\overrightarrow{S}^{n-1}}\!\!\!\cdots\int\mathrm{d}\eta\reason{Stokes 公式}\int_{\overrightarrow{\partial S}^{n-1}}\!\!\!\cdots\int\eta=0.
+\]
+(或类似 $\overrightarrow{S}^{2}$ 的第二种方法可算得 $\iint_{\overrightarrow{S}^{n}}\omega=0$). 但是,
+\[
+\int_{\overrightarrow{S}^{n-1}}\!\!\!\cdots\int\omega=\int\!\cdots\!\int_{S^{n-1}}\sum_{i=1}^{n}(-1)^{i-1}\frac{x_{i}}{r^{n}}\mathrm{d}x_{1}\wedge\cdots\wedge\widehat{\mathrm{d}x_{i}}\wedge\cdots\wedge\mathrm{d}x_{n}
+\]
+\[
+\reason{类似 $n=3$}\int\!\cdots\!\int_{S^{n-1}}\left(\sum_{i=1}^{n}\frac{x_{i}}{r^{n}}\cos\alpha_{i}\right)\mathrm{d}\sigma=\int\!\cdots\!\int_{S^{n-1}}\frac{1}{r^{n-1}}\mathrm{d}\sigma=\frac{2\pi^{\frac{n}{2}}}{\Gamma\left(\frac{n}{2}\right)}\neq0,
+\]
+矛盾.
+\end{example}
+
+\begin{example}\label{ex:11.6.4}
+设向量场 $\boldsymbol{F}$ 在 $\mathbb{R}^{3}$ 中是 $C^{2}$ 类的. 证明: 在 $\mathbb{R}^{3}$ 上存在 $C^{2}$ 的数量场 $u$ 与 $C^{1}$ 向量场 $\boldsymbol{B}$, 使得
+\[
+\boldsymbol{F}=\nabla u+\nabla\times\boldsymbol{B}.
+\]
+\end{example}
+
+\begin{proof}
+由 Poisson 方程 $\Delta u=\nabla\cdot\boldsymbol{F}$ 有解知, 存在函数 $u$ 满足上述方程. 又因
+\[
+\nabla\cdot(\boldsymbol{F}-\nabla u)=\nabla\cdot\boldsymbol{F}-\nabla\cdot(\nabla u)=\Delta u-\Delta u=0,
+\]
+所以, $\boldsymbol{F}-\nabla u$ 为 $\mathbb{R}^{3}$ 中的无源场, 再根据定义 \ref{def:11.6.5}(3) 及定理 \ref{thm:11.5.6}, $\boldsymbol{F}-\nabla u$ 有向量势 $\boldsymbol{B}$, 即
+\[
+\boldsymbol{F}-\nabla u=\nabla\times\boldsymbol{B},
+\]
+\[
+\boldsymbol{F}=\nabla u+\nabla\times\boldsymbol{B}.\qedhere
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:11.6.1}
+(Green 公式, Stokes 公式, Gauss 公式与场论的对偶)设 $\partial M$ 为 $M$ 的边界, $\overrightarrow{\partial M}$ 取 $\overrightarrow{M}$ 的诱导定向.
+
+Stokes 公式:
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}P\,\mathrm{d}x+Q\,\mathrm{d}y+R\,\mathrm{d}z&=\iint_{\overrightarrow{M}}\begin{vmatrix}\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}\\
+&=\iint_{\overrightarrow{M}}\begin{vmatrix}\cos\alpha&\cos\beta&\cos\gamma\\ \dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\ P&Q&R\end{vmatrix}\mathrm{d}\sigma
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}&=\iint_{\overrightarrow{M}}\mathrm{rot}\,\boldsymbol{F}\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma\\
+&=\iint_{\overrightarrow{M}}(\nabla\times\boldsymbol{F})\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma
+\end{aligned}
+\]
+其中 $\boldsymbol{n}_{0}$ 为与 $M$ 定向一致的连续单位法向量场.
+
+Green 公式:
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}P\,\mathrm{d}x+Q\,\mathrm{d}y&=\iint_{\overrightarrow{M}}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{\overrightarrow{M}}\mathrm{rot}\,\boldsymbol{F}\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma\\
+&=\iint_{\overrightarrow{M}}(\nabla\times\boldsymbol{F})\cdot\boldsymbol{e}_{3}\,\mathrm{d}\sigma
+\end{aligned}
+\]
+其中 $\boldsymbol{F}=(P,Q,0)$, $\boldsymbol{n}_{0}=\boldsymbol{e}_{3}$.
+
+Gauss 公式:
+\[
+\oint_{\overrightarrow{\partial M}}P\,\mathrm{d}y\wedge\mathrm{d}z+Q\,\mathrm{d}z\wedge\mathrm{d}x+R\,\mathrm{d}x\wedge\mathrm{d}y=\iiint_{\overrightarrow{M}}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z
+\]
+\[
+\oint_{\overrightarrow{\partial M}}\boldsymbol{F}\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma=\iiint_{M}\mathrm{div}\,\boldsymbol{F}\,\mathrm{d}v=\iiint_{M}\nabla\cdot\boldsymbol{F}\,\mathrm{d}v
+\]
+
+Newton-Leibniz 公式:
+\[
+\theta(B)-\theta(A)=\int_{\overrightarrow{\partial M}}\theta=\int_{\overrightarrow{M}}\frac{\partial\theta}{\partial x}\mathrm{d}x+\frac{\partial\theta}{\partial y}\mathrm{d}y+\frac{\partial\theta}{\partial z}\mathrm{d}z
+\]
+\[
+\int_{\overrightarrow{\partial M}}\theta=\int_{\overrightarrow{M}}\mathrm{grad}\,\theta\cdot\mathrm{d}\boldsymbol{x}=\int_{\overrightarrow{M}}\nabla\theta\cdot\mathrm{d}\boldsymbol{x}
+\]
+\end{theorem}
+
+\begin{theorem}\label{thm:11.6.2}
+设 $M\subset\mathbb{R}^{3}$ 为 Gauss 公式中的闭区域, $f$ 与 $g$ 都为 $M$ 上的 $C^{2}$ 函数, $\boldsymbol{n}_{0}$ 为 $\partial M$ 的连续的单位外法向量场, $\overrightarrow{\partial M}$ 取 $\overrightarrow{M}$ 的诱导方向. 则
+
+(1) $\displaystyle\iint_{\partial M}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma=\iiint_{M}\Delta f\,\mathrm{d}v$.
+
+(2)(Green 第一公式)
+\[
+\iint_{\partial M}g\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma=\iiint_{M}\nabla f\cdot\nabla g\,\mathrm{d}v+\iiint_{M}g\Delta f\,\mathrm{d}v.
+\]
+
+(3)(Green 第二公式)
+\[
+\iint_{\partial M}\begin{vmatrix}\dfrac{\partial f}{\partial\boldsymbol{n}_{0}}&\dfrac{\partial g}{\partial\boldsymbol{n}_{0}}\\ f&g\end{vmatrix}\mathrm{d}\sigma=\iiint_{M}\begin{vmatrix}\Delta f&\Delta g\\ f&g\end{vmatrix}\mathrm{d}v.
+\]
+\end{theorem}
+
+\begin{proof}
+(1)
+\[
+\begin{aligned}
+\iint_{\partial M}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma&=\iint_{\partial M}\left(\frac{\partial f}{\partial x}\cos\alpha+\frac{\partial f}{\partial y}\cos\beta+\frac{\partial f}{\partial z}\cos\gamma\right)\mathrm{d}\sigma\\
+&=\iint_{\partial M}\nabla f\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma\reason{Gauss 公式}\iiint_{M}\nabla\cdot(\nabla f)\,\mathrm{d}v=\iiint_{M}\Delta f\,\mathrm{d}v.
+\end{aligned}
+\]
+
+(2)
+\[
+\begin{aligned}
+\iint_{\partial M}g\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma&=\iint_{\partial M}g\left(\frac{\partial f}{\partial x}\cos\alpha+\frac{\partial f}{\partial y}\cos\beta+\frac{\partial f}{\partial z}\cos\gamma\right)\mathrm{d}\sigma\\
+&=\iint_{\partial M}g\nabla f\cdot\boldsymbol{n}_{0}\,\mathrm{d}\sigma\reason{Gauss 公式}\iiint_{M}\nabla\cdot(g\nabla f)\,\mathrm{d}v\\
+&\reason{引理 \ref{lem:11.6.2}(3)}\iiint_{M}\nabla g\cdot\nabla f\,\mathrm{d}v+\iiint_{M}g\nabla\cdot(\nabla f)\,\mathrm{d}v\\
+&=\iiint_{M}\nabla f\cdot\nabla g\,\mathrm{d}v+\iiint_{M}g\Delta f\,\mathrm{d}v.
+\end{aligned}
+\]
+
+(3) 由 (2) 得到
+\[
+\begin{aligned}
+\iint_{\partial M}\begin{vmatrix}\dfrac{\partial f}{\partial\boldsymbol{n}_{0}}&\dfrac{\partial g}{\partial\boldsymbol{n}_{0}}\\ f&g\end{vmatrix}\mathrm{d}\sigma&=\left(\iiint_{M}\nabla f\cdot\nabla g\,\mathrm{d}v+\iiint_{M}g\Delta f\,\mathrm{d}v\right)\\
+&\quad-\left(\iiint_{M}\nabla g\cdot\nabla f\,\mathrm{d}v+\iiint_{M}f\Delta g\,\mathrm{d}v\right)\\
+&=\iiint_{M}\begin{vmatrix}\Delta f&\Delta g\\ f&g\end{vmatrix}\mathrm{d}v.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:11.6.3}
+设 $f$ 在闭区域 $M\subset\mathbb{R}^{3}$ 上为 $C^{2}$ 函数, 且满足 $\Delta f=0$, 则称 $f$ 为 $M$ 上的\textbf{调和函数}. $M$ 为 Gauss 公式中的闭区域, $\overrightarrow{\partial M}$ 取 $\overrightarrow{M}$ 的诱导方向, 且为外法向, $\boldsymbol{n}_{0}$ 为连续的单位外法向量场. 则
+
+(1)
+\[
+\iint_{\partial M}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma=0.
+\]
+
+(2)
+\[
+\iint_{\partial M}f\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma=\iiint_{M}\|\nabla f\|^{2}\,\mathrm{d}v.
+\]
+
+(3)
+\[
+f(\boldsymbol{p}_{0})=\frac{1}{4\pi}\iint_{\overrightarrow{\partial M}}\left[f(\boldsymbol{p})\frac{\cos\langle\boldsymbol{p},\boldsymbol{n}_{0}\rangle}{p^{2}}+\frac{1}{p}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma,
+\]
+其中 $\boldsymbol{p}_{0}$ 为 $M$ 中任一点, $\boldsymbol{p}$ 为从 $\boldsymbol{p}_{0}$ 到 $\partial M$ 上的向量, $p=\|\boldsymbol{p}\|$. 此公式表示调和函数由其边界上的值完全确定.
+
+(4)(平均值定理)$\displaystyle f(\boldsymbol{p}_{0})=\frac{1}{4\pi R^{2}}\iint_{S^{2}(\boldsymbol{p}_{0},R)}f(\boldsymbol{p})\,\mathrm{d}\sigma$.
+
+(5) 若 $f$ 不为常值函数, 则 $f$ 只能在 $\partial M$ 上达到最大值与最小值.
+\end{theorem}
+
+\begin{proof}
+(1) 由定理 \ref{thm:11.6.2}(1), 有
+\[
+\iint_{\partial M}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma=\iiint_{M}\Delta f\,\mathrm{d}v=\iiint_{M}0\,\mathrm{d}v=0.
+\]
+
+(2) 在定理 \ref{thm:11.6.2}(2) 中, 令 $g=f$, 且由 $\Delta f=0$ 有
+\[
+\iint_{\partial M}f\frac{\partial f}{\partial\boldsymbol{n}_{0}}\mathrm{d}\sigma=\iiint_{M}\nabla f\cdot\nabla f\,\mathrm{d}v+\iiint_{M}f\Delta f\,\mathrm{d}v=\iiint_{M}\|\nabla f\|^{2}\,\mathrm{d}v.
+\]
+
+(3) 设 $S^{2}_{\varepsilon}$ 为以 $\boldsymbol{p}_{0}$ 为中心, $\varepsilon$ 为半径的球面, 它的定向为小球 $S^{2}_{\varepsilon}$ 的外法向, 该连续的单位外法向量场记为 $\boldsymbol{n}_{0}$, $\partial M$ 与 $S^{2}_{\varepsilon}$ 围成的定向区域为 $\overrightarrow{M}_{\varepsilon}$, 它与 $\overrightarrow{M}$ 的方向一致. 于是,
+\[
+\begin{aligned}
+&\left(\iint_{\partial M}-\iint_{\overrightarrow{S}^{2}_{\varepsilon}}\right)\left[f(\boldsymbol{p})\frac{\cos\langle\boldsymbol{p},\boldsymbol{n}_{0}\rangle}{p^{2}}+\frac{1}{p}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma\\
+&\quad=\left(\iint_{\partial M}-\iint_{S^{2}_{\varepsilon}}\right)\left[-f(\boldsymbol{p})\frac{\partial\left(\frac{1}{p}\right)}{\partial\boldsymbol{n}_{0}}+\frac{1}{p}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma\\
+&\quad\reason{定理 \ref{thm:11.6.2}(3)}\iiint_{M_{\varepsilon}}\begin{vmatrix}\Delta f&\Delta\left(\frac{1}{p}\right)\\ f(\boldsymbol{p})&\frac{1}{p}\end{vmatrix}\mathrm{d}v=\iiint_{M_{\varepsilon}}\begin{vmatrix}0&0\\ f(\boldsymbol{p})&\frac{1}{p}\end{vmatrix}\mathrm{d}v=0.
+\end{aligned}
+\]
+
+因此,
+\[
+\begin{aligned}
+&\frac{1}{4\pi}\oint_{\partial M}\left[f(\boldsymbol{p})\frac{\cos\langle\boldsymbol{p},\boldsymbol{n}_{0}\rangle}{p^{2}}+\frac{1}{p}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma\\
+&\quad=\frac{1}{4\pi}\oint_{S^{2}_{\varepsilon}}\left[f(\boldsymbol{p})\frac{1}{\varepsilon^{2}}+\frac{1}{\varepsilon}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma\\
+&\quad=\frac{1}{4\pi\varepsilon^{2}}\oint_{S^{2}_{\varepsilon}}f(\boldsymbol{p})\,\mathrm{d}\sigma+\frac{1}{4\pi\varepsilon}\iiint_{B(\boldsymbol{p}_{0},\varepsilon)}\Delta f\,\mathrm{d}v\\
+&\quad\reason{积分中值定理}f(\boldsymbol{p}_{\varepsilon})\longrightarrow f(\boldsymbol{p}_{0})\quad(\varepsilon\to0^{+}).
+\end{aligned}
+\]
+
+于是, 这就证明了
+\[
+f(\boldsymbol{p}_{0})=\frac{1}{4\pi}\iint_{\partial M}\left[f(\boldsymbol{p})\frac{\cos\langle\boldsymbol{p},\boldsymbol{n}_{0}\rangle}{p^{2}}+\frac{1}{p}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma.
+\]
+
+(4)
+\[
+\begin{aligned}
+f(\boldsymbol{p}_{0})&\reason{(3)}\frac{1}{4\pi}\iint_{S^{2}(\boldsymbol{p}_{0},R)}\left[f(\boldsymbol{p})\frac{\cos\langle\boldsymbol{p},\boldsymbol{n}_{0}\rangle}{p^{2}}+\frac{1}{p}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\right]\mathrm{d}\sigma\\
+&\reason{$\boldsymbol{p}\parallel\boldsymbol{n}_{0}$}\frac{1}{4\pi R^{2}}\iint_{S^{2}(\boldsymbol{p}_{0},R)}f(\boldsymbol{p})\,\mathrm{d}\sigma+\frac{1}{4\pi R}\iint_{S^{2}(\boldsymbol{p}_{0},R)}\frac{\partial f}{\partial\boldsymbol{n}_{0}}\,\mathrm{d}\sigma\\
+&\reason{(1)}\frac{1}{4\pi R^{2}}\iint_{S^{2}(\boldsymbol{p}_{0},R)}f\,\mathrm{d}\sigma.
+\end{aligned}
+\]
+
+(5)(反证)假设 $f$ 在 $\boldsymbol{p}_{0}\in M$ 达到最大值. 作以 $\boldsymbol{p}_{0}$ 为中心, $\delta$ 为半径的小闭球 $\overline{B(\boldsymbol{p}_{0};\delta)}\subset\mathring{M}$, 则 $\forall\boldsymbol{p}\in\overline{B(\boldsymbol{p}_{0};\delta)}$,
+\[
+f(\boldsymbol{p})\leqslant f(\boldsymbol{p}_{0}).
+\]
+
+可以证明, $f|_{\partial B(\boldsymbol{p}_{0};\delta)}\equiv f(\boldsymbol{p}_{0})$. 事实上, (反证)假设 $\exists\boldsymbol{p}_{1}\in\partial B(\boldsymbol{p}_{0};\delta)$, 使得 $f(\boldsymbol{p}_{1})<f(\boldsymbol{p}_{0})$, 故由 $f$ 连续与 (4)(平均值定理), 有
+\[
+f(\boldsymbol{p}_{0})=\frac{1}{4\pi\delta^{2}}\iint_{\partial B(\boldsymbol{p}_{0};\delta)}f(\boldsymbol{p})\,\mathrm{d}\sigma<f(\boldsymbol{p}_{0}),
+\]
+矛盾. 由于 $\delta$ 是任取的, 所以恒有
+\[
+f|_{B(\boldsymbol{p}_{0};\delta)}\equiv f(\boldsymbol{p}_{0}).
+\]
+
+从而 $f$ 为局部常值函数. 令
+\[
+U=\{\boldsymbol{p}\mid\boldsymbol{p}\in\mathring{M},\,f(\boldsymbol{p})=f(\boldsymbol{p}_{0})\},
+\]
+\[
+V=\{\boldsymbol{p}\mid\boldsymbol{p}\in\mathring{M},\,f(\boldsymbol{p})\neq f(\boldsymbol{p}_{0})\}.
+\]
+易见, $U$ 与 $V$ 都为开集, 且 $\boldsymbol{p}_{0}\in U$, 故 $U$ 非空. 因为开区域 $\mathring{M}$ 是连通的, 所以必有 $V=\varnothing$, $U=\mathring{M}$, 即 $f|_{\mathring{M}}\equiv f(\boldsymbol{p}_{0})$. 再由 $f$ 在 $M$ 上连续知, $f|_{M}\equiv f(\boldsymbol{p}_{0})$ 为常值, 这与题设 $f$ 不为常值函数相矛盾.
+
+类似可证 $f$ 只能在 $\partial M$ 上达到最小值. 或者用 $-f$ 代 $f$ 并应用上面结论推得 $-f$ 只能在 $\partial M$ 上达到最大值, 从而 $f$ 只能在 $\partial M$ 上达到最小值.
+\end{proof}
+
+\begin{exblock}{练习题 11.6}
+\item 设 $u$ 为一个 $C^{r}(r\geqslant1)$ 的数量场, $\boldsymbol{f}$ 为一个 $C^{r}$ 的向量场. 计算 $\nabla(u\circ\boldsymbol{f})$.
+
+\item 设 $\boldsymbol{p}=(x,y,z)$, $p=\|\boldsymbol{p}\|$, $f$ 为 $C^{r}(r\geqslant1)$ 的单变量函数. 计算:
+
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+
+  \item $\nabla\ln p$;
+
+  \item $\nabla f(p)$;
+
+  \item $\nabla f(p^{2})$;
+
+  \item $\nabla(f(p)\boldsymbol{p}\cdot\boldsymbol{a})$, $\boldsymbol{a}$ 为常向量.
+
+  \end{enumerate}
+
+\item 求数量场 $f$ 沿数量场 $g$ 的梯度方向的变化率. 问: 何时这个变化率等于零.
+
+\item 在 $\mathbb{R}^{2}$ 中, 令 $\boldsymbol{p}=(x,y)$ 且 $p=\|\boldsymbol{p}\|$. 证明: 当 $p>0$ 时, $\ln p$ 为调和函数.
+
+\item 证明: $\Delta(fg)=f\Delta g+g\Delta f+2\nabla f\cdot\nabla g$.
+\end{exblock}
+
+\begin{exblock}{思考题 11.6}
+\item 设 $f$, $g$ 为连续可导的函数, $f(0)=g(0)=1$, 且第二型曲线积分
+\[
+\int_{A}^{B}yf(x)\mathrm{d}x+(f(x)+zg(y))\mathrm{d}y+g(y)\mathrm{d}z
+\]
+与路径无关, 只与起点 $A$, 终点 $B$ 有关. 求出 $f$, $g$ 以及向量场 $\boldsymbol{F}(x,y,z)=(yf(x),f(x)+zg(y),g(y))$ 的势函数 $\theta$.
+
+\item 设 $M$ 为 Gauss 公式中的闭区域, $\boldsymbol{n}_{0}$ 为 $\partial M$ 上的单位外法向量场, 数量场 $u\in C^{1}(M,\mathbb{R})$, 点 $\boldsymbol{p}\in M$. 证明:
+\[
+\nabla u(\boldsymbol{p})=\lim_{M\to\boldsymbol{p}}\frac{1}{v(M)}\oint_{\partial M}u\boldsymbol{n}_{0}\,\mathrm{d}\sigma.
+\]
+
+\item 证明: $\nabla\times(\nabla\times\boldsymbol{F})=\nabla(\nabla\cdot\boldsymbol{F})-\nabla^{2}\boldsymbol{F}$.
+\end{exblock}

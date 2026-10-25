@@ -1,0 +1,435 @@
+\section{函数的升降、凸性和函数作图}\label{sec:5.3}
+
+在本节中，我们将利用导数的方法来研究函数的各种形态，从而可以准确地画出函数的图形．
+
+\subsection{函数的单调性}
+
+在 §1 中，作为拉格朗日中值定理的推论，我们已经给出了函数 $f(x)$ 在 $(a,b)$ 单调（严格单调）的充分条件．事实上对非严格单调情形，该条件还是必要的．即有下述定理：
+
+\begin{theorem}\label{thm:5-9}
+设 $f(x)$ 在 $[a,b]$ 上连续，在 $(a,b)$ 内可导，则 $f(x)$ 在 $[a,b]$ 上单调上升（下降）的充要条件是在 $(a,b)$ 内 $f'(x) \geqslant 0$（$f'(x) \leqslant 0$）．
+\end{theorem}
+
+\begin{proof}
+充分性已在 §1 中由拉格朗日中值定理证明，现证明必要性．
+
+设 $f(x)$ 在 $[a,b]$ 上单调上升，任取一点 $x_0 \in (a,b)$，当 $x \in (a,b)$ 且 $x \neq x_0$ 时，商
+\[
+\frac{f(x) - f(x_0)}{x - x_0} \geqslant 0,
+\]
+由极限保号性，便有
+\[
+f'(x_0) = \lim_{x\to x_0} \frac{f(x) - f(x_0)}{x - x_0} \geqslant 0.
+\]
+由 $x_0$ 的任意性，即知必要性成立．单调下降的情形同理可证．
+\end{proof}
+
+\begin{example}
+证明：当 $x > 0$ 时，$\sin x < x$．
+\end{example}
+
+\begin{proof}[证]
+设 $f(x) = x - \sin x$．易知 $f(x)$ 在 $[0, +\infty)$ 上连续且可导，其导数
+\[
+f'(x) = 1 - \cos x \geqslant 0.
+\]
+由定理 5.9，$f(x)$ 在 $[0, +\infty)$ 上单调上升．又因 $f'(x) = 1 - \cos x$ 仅在孤立点 $x = 2k\pi$ 处为零，故 $f(x)$ 在 $[0, +\infty)$ 上严格单调上升．因此当 $x > 0$ 时，有
+\[
+f(x) > f(0) = 0,\quad \text{即 }\sin x < x.
+\]
+\end{proof}
+
+\begin{example}
+求函数 $f(x) = 2x^3 - 3x^2 - 12x + 5$ 的单调区间．
+\end{example}
+
+\begin{proof}[解]
+函数在 $(-\infty, +\infty)$ 上可导，
+\[
+f'(x) = 6x^2 - 6x - 12 = 6(x+1)(x-2).
+\]
+令 $f'(x) = 0$，解得稳定点 $x_1 = -1$，$x_2 = 2$．这两个点把整个实数轴分为三个开区间：
+\[
+(-\infty, -1),\quad (-1, 2),\quad (2, +\infty).
+\]
+在 $(-\infty, -1)$ 上，$f'(x) > 0$，故函数在 $(-\infty, -1]$ 上严格单调上升；\\
+在 $(-1, 2)$ 上，$f'(x) < 0$，故函数在 $[-1, 2]$ 上严格单调下降；\\
+在 $(2, +\infty)$ 上，$f'(x) > 0$，故函数在 $[2, +\infty)$ 上严格单调上升．
+\end{proof}
+
+\subsection{函数的极值}
+
+为利用导数来求可导函数 $f(x)$ 在定义域中的极值点，我们的基本思路是从定义域中确定所有可能的极值点，然后再判断这些点是否确是极值点．
+
+费马定理给出了可导函数在点 $x_0$ 取极值的必要条件：如果点 $x_0$ 是 $f(x)$ 的极值点，且 $f'(x_0)$ 存在，则必有 $f'(x_0)=0$．我们称满足 $f'(x)=0$ 的点 $x$ 为\emph{稳定点}．于是，可导函数的极值点必是稳定点．由此可见，可能的极值点只能是稳定点或不可导点．
+
+那么，稳定点和不可导点是否就是极值点呢？$x=0$ 是函数 $f(x)=x^3$ 的稳定点，但显然不是极值点；又如函数
+\[
+f(x)=\begin{cases}
+x\sin\frac{1}{x}, & x\neq0,\\
+0, & x=0
+\end{cases}
+\]
+在 $x=0$ 处连续但不可导，然而 $x=0$ 也不是极值点．
+
+\begin{theorem}[极值第一充分条件]\label{thm:5-10}
+设函数 $f(x)$ 在点 $x_{0}$ 的某个邻域 $U(x_{0})$ 内连续，在去心邻域 $\mathring{U}(x_{0})$ 内可导．
+\begin{enumerate}[(1)]
+\item 若当 $x$ 从 $x_{0}$ 左侧变到右侧时，$f'(x)$ 的符号由正变负（即在左侧 $f'(x)>0$，在右侧 $f'(x)<0$），则 $f(x_{0})$ 是极大值；
+\item 若当 $x$ 从 $x_{0}$ 左侧变到右侧时，$f'(x)$ 的符号由负变正（即在左侧 $f'(x)<0$，在右侧 $f'(x)>0$），则 $f(x_{0})$ 是极小值；
+\item 若 $f'(x)$ 在 $x_{0}$ 两侧同号，则 $x_{0}$ 不是极值点．
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+先证 (1)．设当 $x \in (x_0 - \delta, x_0)$ 时，$f'(x) > 0$；当 $x \in (x_0, x_0 + \delta)$ 时，$f'(x) < 0$．
+
+任取 $x \in (x_0 - \delta, x_0)$，在 $[x, x_0]$ 上应用拉格朗日中值定理，有
+\[
+f(x) - f(x_0) = f'(\xi)(x - x_0).
+\]
+因 $\xi \in (x, x_0)$，故 $f'(\xi) > 0$；而 $x - x_0 < 0$，因此 $f(x) - f(x_0) < 0$，即 $f(x) < f(x_0)$．
+
+同理，当 $x \in (x_0, x_0 + \delta)$ 时，在 $[x_0, x]$ 上应用拉格朗日中值定理，可得 $f(x) < f(x_0)$．
+
+由此可知，$f(x_0)$ 是极大值．(2) 与 (3) 同理可证．
+\end{proof}
+
+\begin{theorem}[极值第二充分条件]\label{thm:5-11}
+设函数 $f(x)$ 在点 $x_{0}$ 处具有二阶导数，且 $f'(x_{0})=0$，$f''(x_{0})\neq0$．
+\begin{enumerate}[(1)]
+\item 若 $f''(x_{0})<0$，则 $f(x_{0})$ 为极大值；
+\item 若 $f''(x_{0})>0$，则 $f(x_{0})$ 为极小值．
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+由泰勒公式或二阶导数定义，
+\[
+f''(x_0) = \lim_{x\to x_0} \frac{f'(x) - f'(x_0)}{x - x_0} = \lim_{x\to x_0} \frac{f'(x)}{x - x_0}.
+\]
+若 $f''(x_0) < 0$，由极限保号性，存在 $\delta > 0$，使得当 $x \in (x_0 - \delta, x_0)$ 时，$x - x_0 < 0$，故必有 $f'(x) > 0$；当 $x \in (x_0, x_0 + \delta)$ 时，$x - x_0 > 0$，故必有 $f'(x) < 0$．即导数由正变负，由定理 5.10 知 $f(x_0)$ 为极大值．
+
+若 $f''(x_0) > 0$ 同理可证 $f(x_0)$ 为极小值．
+\end{proof}
+
+\begin{example}
+求函数 $f(x) = (x-2)\sqrt[3]{x^2}$ 的极值．
+\end{example}
+
+\begin{proof}[解]
+函数的定义域为 $(-\infty, +\infty)$．当 $x \neq 0$ 时，
+\[
+f'(x) = \frac{5x - 4}{3\sqrt[3]{x}}.
+\]
+令 $f'(x) = 0$，得稳定点 $x = \frac{4}{5}$．此外，在 $x = 0$ 处导数不存在，故可能的极值点为 $x = 0$ 与 $x = \frac{4}{5}$．
+
+列表讨论导数符号：
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+\toprule
+$x$ & $(-\infty, 0)$ & $0$ & $(0, \frac{4}{5})$ & $\frac{4}{5}$ & $(\frac{4}{5}, +\infty)$ \\
+\midrule
+$f'(x)$ & $+$ & 不存在 & $-$ & $0$ & $+$ \\
+$f(x)$ & $\nearrow$ & 极大值 $0$ & $\searrow$ & 极小值 $-\frac{6}{5}\sqrt[3]{\frac{16}{25}}$ & $\nearrow$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+故在 $x = 0$ 处取得极大值 $f(0) = 0$；在 $x = \frac{4}{5}$ 处取得极小值 $f(\frac{4}{5}) = -\frac{6}{5}\sqrt[3]{\frac{16}{25}}$．
+\end{proof}
+
+\begin{example}
+求函数 $f(x) = (x-1)\sqrt[3]{(x-5)^2}$ 的极值并画出草图．
+\end{example}
+
+\begin{proof}[解]
+定义域为 $(-\infty, +\infty)$．当 $x \neq 5$ 时，
+\[
+f'(x) = \sqrt[3]{(x-5)^2} + \frac{2(x-1)}{3\sqrt[3]{x-5}} = \frac{5x - 17}{3\sqrt[3]{x-5}}.
+\]
+解得稳定点 $x = \frac{17}{5} = 3.4$；不可导点为 $x = 5$．
+列表分析可得 $x = 3.4$ 为极小值点，极小值为 $f(3.4) \approx 3.29$；$x = 5$ 为极大值点（导数从正变负），极大值为 $f(5) = 0$．
+草图见图~\ref{fig:5-6}．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-6.png}
+\figcap{图 5-6}\label{fig:5-6}
+\end{figure}
+
+\subsection{函数的凸性}
+
+\begin{definition}\label{def:5-2}
+设 $f(x)$ 在区间 $I$ 上有定义．若对任意 $x_1, x_2 \in I$ ($x_1 \neq x_2$) 及任意 $\lambda \in (0, 1)$，均有
+\[
+f(\lambda x_1 + (1-\lambda)x_2) \leqslant \lambda f(x_1) + (1-\lambda) f(x_2),
+\]
+则称 $f(x)$ 为区间 $I$ 上的\emph{向下凸函数}（简称\emph{凸函数}）．若上式中的“$\leqslant$”换为严格不等式“$<$”，则称 $f(x)$ 为 $I$ 上的\emph{严格凸函数}．类似地，若不等号方向相反，则称为\emph{向上凸函数}（或\emph{凹函数}）．
+\end{definition}
+
+几何上，凸函数意味着连接曲线上任意两点的弦总位于曲线弧的上方（见图~\ref{fig:5-7}）．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-7.png}
+\figcap{图 5-7}\label{fig:5-7}
+\end{figure}
+
+\begin{theorem}\label{thm:5-12}
+设 $f(x)$ 在区间 $I$ 上二阶可导．则 $f(x)$ 在 $I$ 上是凸函数的充要条件是：在 $I$ 内恒有
+\[
+f''(x) \geqslant 0.
+\]
+若在 $I$ 内除个别孤立点外 $f''(x) > 0$，则 $f(x)$ 是严格凸函数．
+\end{theorem}
+
+\begin{proof}
+充分性：任取 $x_1, x_2 \in I$ ($x_1 < x_2$)，设 $x = \lambda x_1 + (1-\lambda)x_2$ ($\lambda \in (0, 1)$)．由拉格朗日中值定理，
+\[
+f(x) - f(x_1) = f'(\xi_1)(x - x_1) = f'(\xi_1)(1-\lambda)(x_2 - x_1)\quad (\xi_1 \in (x_1, x)),
+\]
+\[
+f(x_2) - f(x) = f'(\xi_2)(x_2 - x) = f'(\xi_2)\lambda(x_2 - x_1)\quad (\xi_2 \in (x, x_2)).
+\]
+两式分别乘以 $\lambda$ 与 $1-\lambda$ 并相减，注意到 $f''(x) \geqslant 0$ 蕴含 $f'(x)$ 单调上升，故 $f'(\xi_1) \leqslant f'(\xi_2)$，由此立即可得
+\[
+f(\lambda x_1 + (1-\lambda)x_2) \leqslant \lambda f(x_1) + (1-\lambda) f(x_2).
+\]
+必要性：反证法，若某点 $x_0$ 处 $f''(x_0) < 0$，由连续性可在某邻域内二阶导数均负，与凸性矛盾．
+\end{proof}
+
+\begin{theorem}[切线判定法]\label{thm:5-13}
+设 $f(x)$ 在区间 $I$ 上一阶可导，则 $f(x)$ 在 $I$ 上是凸函数的充要条件是：曲线总位于其任意切线的上方（见图~\ref{fig:5-8}），即对任意 $x, x_0 \in I$，有
+\[
+f(x) \geqslant f(x_0) + f'(x_0)(x - x_0).
+\]
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-8.png}
+\figcap{图 5-8}\label{fig:5-8}
+\end{figure}
+
+\subsection{曲线的拐点}
+
+\begin{definition}\label{def:5-3}
+连续曲线 $y=f(x)$ 上凹凸性发生改变的分界点称为该曲线的\emph{拐点}（或反曲点）．
+\end{definition}
+
+\begin{theorem}\label{thm:5-14}
+设 $f(x)$ 在点 $x_0$ 处二阶可导，且 $(x_0, f(x_0))$ 是曲线的拐点，则必有 $f''(x_0) = 0$．反之，若在点 $x_0$ 左右两侧 $f''(x)$ 异号，则 $(x_0, f(x_0))$ 必为曲线的拐点．
+\end{theorem}
+
+\subsection{渐近线}
+
+\begin{definition}\label{def:5-4}
+若曲线 $C$ 上的动点 $M$ 沿着曲线无限远离原点时，点 $M$ 到某固定直线 $L$ 的距离趋近于零，则称直线 $L$ 为曲线 $C$ 的\emph{渐近线}．
+\end{definition}
+
+常见渐近线有三种：
+\begin{enumerate}[(1)]
+\item \emph{铅直渐近线}：若 $\lim_{x\to x_0^+} f(x) = \infty$ 或 $\lim_{x\to x_0^-} f(x) = \infty$，则直线 $x = x_0$ 为铅直渐近线．
+\item \emph{水平渐近线}：若 $\lim_{x\to+\infty} f(x) = b$ 或 $\lim_{x\to-\infty} f(x) = b$，则直线 $y = b$ 为水平渐近线（见图~\ref{fig:5-10}）．
+\item \emph{斜渐近线}：若直线 $y = ax + b$ 为曲线当 $x \to +\infty$（或 $-\infty$）时的斜渐近线（见图~\ref{fig:5-9}），则系数 $a, b$ 可由下列公式确定：
+\[
+a = \lim_{x\to+\infty} \frac{f(x)}{x},\qquad b = \lim_{x\to+\infty} [f(x) - ax].
+\]
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\textwidth]{fig5-9.png}
+\figcap{图 5-9}\label{fig:5-9}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\includegraphics[width=0.9\textwidth]{fig5-10.png}
+\figcap{图 5-10}\label{fig:5-10}
+\end{minipage}
+\end{figure}
+
+\subsection{函数作图}
+
+根据上面的讨论，我们可以利用微商与极限的工具，作出函数比较精确的图形．
+
+\begin{example}
+作函数 $y = \dfrac{2x}{1+x^2}$ 的图形．
+\end{example}
+
+\begin{proof}[解]
+1$^{\circ}$ 函数的定义域是 $(-\infty, +\infty)$，又显然函数为奇函数，故只要研究 $x > 0$ 部分，由对称性即可得整个函数的图形．
+
+2$^{\circ}$ 考察曲线的稳定点与拐点．为此，求微商
+\[
+y' = \frac{2(1+x^2) - 4x^2}{(1+x^2)^2} = \frac{2(1-x^2)}{(1+x^2)^2},
+\]
+\[
+y'' = \frac{-4x(1+x^2)^2 - 2(1+x^2)\cdot 4x(1-x^2)}{(1+x^2)^4} = \frac{4x(x^2-3)}{(1+x^2)^3}.
+\]
+令 $y' = 0$ 得 $x = \pm 1$；令 $y'' = 0$ 得 $x = 0$，$\pm\sqrt{3}$．
+
+3$^{\circ}$ 根据 1$^{\circ}$，2$^{\circ}$，我们把区间 $(0, +\infty)$ 分成三段 $(0,1)$，$(1,\sqrt{3})$，$(\sqrt{3}, +\infty)$，分别考虑函数在各个区间的升降性和凹凸性，得下表：
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c}
+ & $0$ & $(0,1)$ & $1$ & $(1,\sqrt{3})$ & $\sqrt{3}$ & $(\sqrt{3},+\infty)$ \\
+\hline
+$y'$ & & $+$ & $0$ & $-$ & & $-$ \\
+\hline
+$y''$ & $0$ & $-$ & & $-$ & $0$ & $+$ \\
+\hline
+$y$ & & $\nearrow$ & 极大值 $1$ & $\searrow$ & 拐点 $\left(\sqrt{3},\,\dfrac{\sqrt{3}}{2}\right)$ & $\searrow$
+\end{tabular}
+\end{center}
+
+4$^{\circ}$ 由 $\lim\limits_{x\to+\infty}\dfrac{2x}{1+x^2} = 0$，知 $y = 0$ 是曲线的水平渐近线．于是我们可以作出函数的图形（见图~\ref{fig:5-11}）．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.55\textwidth]{fig5-11.png}
+\figcap{图 5-11}\label{fig:5-11}
+\end{figure}
+
+\begin{example}
+设 $y = \dfrac{x^3}{2(1+x)^2}$，作出函数的图形．
+\end{example}
+
+\begin{proof}[解]
+1$^{\circ}$ 函数的定义域为 $x \neq -1$．
+
+2$^{\circ}$ 考虑曲线的稳定点与拐点．求微商：
+\[
+y' = \frac{3x^2(1+x)^2 - 2(1+x)x^3}{2(1+x)^4} = \frac{x^2(x+3)}{2(1+x)^3},\qquad
+y'' = \frac{3x}{(1+x)^4}.
+\]
+令 $y' = 0$ 得 $x = 0$，$-3$；令 $y'' = 0$ 得 $x = 0$．
+
+3$^{\circ}$ 根据 1$^{\circ}$，2$^{\circ}$，把 $(-\infty, +\infty)$ 分成 $(-\infty,-3)$，$(-3,-1)$，$(-1,0)$，$(0,+\infty)$ 四个区间，分别研究曲线的升降性与凸性，得下表：
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c}
+ & $(-\infty,-3)$ & $-3$ & $(-3,-1)$ & $(-1,0)$ & $0$ & $(0,+\infty)$ \\
+\hline
+$y'$ & $+$ & $0$ & $-$ & $+$ & $0$ & $+$ \\
+\hline
+$y''$ & $-$ & & $-$ & $-$ & $0$ & $+$ \\
+\hline
+$y$ & $\nearrow$ & 极大值 $-\dfrac{27}{8}$ & $\searrow$ & $\nearrow$ & $0$ & $\nearrow$
+\end{tabular}
+\end{center}
+
+4$^{\circ}$ 由 $\lim\limits_{x\to-1}\dfrac{x^3}{2(1+x)^2} = -\infty$，知曲线有垂直渐近线 $x = -1$．
+\[
+\lim_{x\to\pm\infty}\frac{f(x)}{x} = \lim_{x\to\pm\infty}\frac{x^2}{2(1+x)^2} = \frac{1}{2},
+\]
+\[
+\lim_{x\to\pm\infty}\left(f(x) - \frac{1}{2}x\right) = \lim_{x\to\pm\infty}-\frac{x+2x^2}{2(1+x)^2} = -1,
+\]
+故曲线有斜渐近线 $y = \dfrac{1}{2}x - 1$．根据上面的讨论，可以作出函数的图形（见图~\ref{fig:5-12}）．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.55\textwidth]{fig5-12.png}
+\figcap{图 5-12}\label{fig:5-12}
+\end{figure}
+
+\begin{xiti}
+\item 应用函数的单调性证明下列不等式：
+\begin{ziti}
+\item $\dfrac{2}{\pi}x < \sin x < x$，$x \in \left(0,\, \dfrac{\pi}{2}\right)$；
+\item $x < \sin x < x - \dfrac{x^3}{6}$，$x < 0$；
+\item $x - \dfrac{x^2}{2} < \ln(1+x) < x$，$x > 0$；
+\item $\tan x > x + \dfrac{x^3}{3}$，$x \in \left(0,\, \dfrac{\pi}{2}\right)$；
+\item $2\sqrt{x} > 3 - \dfrac{1}{x}$，$x > 1$．
+\end{ziti}
+\item 确定下列函数的单调区间：
+\begin{ziti}
+\item $y = x^3 - 6x$；
+\item $y = \sqrt{2x - x^2}$；
+\item $y = 2x^2 - \ln x$；
+\item $y = \dfrac{x^2-1}{x}$；
+\item $y = 2x^2 - \sin x$；
+\item $y = x^n \mathrm{e}^{-x}$（$n > 0$，$x \geqslant 0$）．
+\end{ziti}
+\item 求下列函数的极值：
+\begin{ziti}
+\item $y = x - \ln(1+x)$；
+\item $y = x + \dfrac{1}{x}$；
+\item $y = \dfrac{1+3x}{\sqrt{4+5x^2}}$；
+\item $y = \dfrac{(\ln x)^2}{x}$；
+\item $y = 2x^3 - x^4$；
+\item $y = \arctan x - \dfrac{1}{2}\ln\left(1+x^2\right)$．
+\end{ziti}
+\item 设 $f(x) = \begin{cases} x^4 \sin^2\dfrac{1}{x}, & x \neq 0, \\ 0, & x = 0. \end{cases}$
+\begin{ziti}
+\item 证明：$x = 0$ 是函数的极小值点；
+\item 说明在 $f$ 的极小值点 $x = 0$ 处是否满足极值的第一充分条件或第二充分条件．
+\end{ziti}
+\item 证明：若函数 $f(x)$ 在点 $x_0$ 处有 $f'_+(x_0) < 0$，$f'_-(x_0) > 0$，则 $x_0$ 为 $f$ 的极大值点．
+\item 设 $f(x) = a\ln x + bx^2 + x$ 在 $x_1 = 1$，$x_2 = 2$ 处都取得极值，试定出 $a$ 与 $b$ 的值；并问这时 $f$ 在 $x_1$ 与 $x_2$ 是取得极大值还是极小值？
+\item
+\begin{ziti}
+\item 求函数 $f(x) = ax - \ln x$ 在 $x > 0$ 上的极值；
+\item 求方程 $ax = \ln x$ 有两个正实根的条件．
+\end{ziti}
+\item 设 $f(x)$，$g(x)$ 在实轴上连续可微，且
+\[
+\begin{vmatrix} f(x) & g(x) \\ f'(x) & g'(x) \end{vmatrix} > 0.
+\]
+求证：$f(x) = 0$ 的两实根之间一定有 $g(x) = 0$ 的根．
+\item 确定下列函数的凸性区间与拐点：
+\begin{ziti}
+\item $y = 3x^2 - x^3$；
+\item $y = x^2 + \dfrac{1}{x}$；
+\item $y = \ln(1+x^2)$；
+\item $y = \sqrt{1+x^2}$．
+\end{ziti}
+\item 证明曲线 $y = \dfrac{x+1}{x^2+1}$ 有位于同一直线上的三个拐点．
+\item 问 $a$，$b$ 为何值时，点 $(1,3)$ 为曲线 $y = ax^3 + bx^2$ 的拐点？
+\item 证明：
+\begin{ziti}
+\item 若 $f(x)$ 为下凸函数，$\lambda$ 为非负实数，则 $\lambda f(x)$ 为下凸函数；
+\item 若 $f(x)$、$g(x)$ 均为下凸函数，则 $f(x) + g(x)$ 为下凸函数；
+\item 若 $f(x)$ 为区间 $I$ 上的下凸函数，$g(x)$ 为 $J$ 上的下凸递增函数，$f(I) \subset J$，则 $g\circ f(x)$ 为 $I$ 上的下凸函数．
+\end{ziti}
+\item 设 $f(x)$ 为区间 $I$ 上严格下凸函数，证明：若 $x_0 \in I$ 为 $f(x)$ 的极小值点，则 $x_0$ 为 $f(x)$ 在 $I$ 上唯一的极小值点．
+\item 应用下凸函数概念证明如下不等式：
+\begin{ziti}
+\item 对任意实数 $a$，$b$，有
+\[
+\mathrm{e}^{\frac{a+b}{2}} \leqslant \frac{1}{2}\left(\mathrm{e}^a + \mathrm{e}^b\right);
+\]
+\item 对任何非负实数 $a$，$b$，有
+\[
+2\arctan\frac{a+b}{2} \geqslant \arctan a + \arctan b.
+\]
+\end{ziti}
+\item 证明：若函数 $f(x)$ 在区间 $[a,b]$ 上恒有 $f''(x) \geqslant 0$，则在 $[a,b]$ 内任意两点 $x_1$，$x_2$，都有
+\[
+\frac{f(x_1) + f(x_2)}{2} \geqslant f\left(\frac{x_1+x_2}{2}\right).
+\]
+\item 如何选择参数 $h > 0$，方能使曲线
+\[
+y = \frac{h}{\sqrt{\pi}}\mathrm{e}^{-h^2x^2}
+\]
+在 $x = \pm\sigma$（$\sigma > 0$ 为给定的常数）处有拐点．
+\item 求 $y = \dfrac{x^2}{x^2+1}$ 的极值及拐点，并求拐点处的切线方程．
+\item 作出下列函数的图形：
+\begin{ziti}
+\item $y = x^3 - 6x$；
+\item $y = \mathrm{e}^{-(x-1)^2}$；
+\item $y = \dfrac{1}{x^2-1}$；
+\item $y = \ln\dfrac{1+x}{1-x}$；
+\item $y = x - 2\arctan x$；
+\item $y = x\mathrm{e}^{-x}$；
+\item $y = \dfrac{x^2-2x-3}{x^2+1}$；
+\item $y = \dfrac{(x-1)^3}{(x+1)^3}$；
+\item $y = \dfrac{x^4}{(1+x)^3}$．
+\end{ziti}
+\end{xiti}

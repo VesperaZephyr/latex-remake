@@ -1,0 +1,209 @@
+% cftsetup.sty -- Template customisations for
+%   "Classical Fourier Transforms" (Universitext), K. Chandrasekharan, 1989
+% Engine: XeLaTeX.  Designed to match the original Springer Universitext edition.
+\ProvidesPackage{cftsetup}[2026/09/12 v1.0 Template for Classical Fourier Transforms]
+
+%-----------------------------------------------------------------------
+% Fonts (XeLaTeX)
+%-----------------------------------------------------------------------
+\RequirePackage{fontspec}
+\setmainfont{Latin Modern Roman}
+\setsansfont{Latin Modern Sans}
+\setmonofont{Latin Modern Mono}
+\RequirePackage{unicode-math}
+\setmathfont{Latin Modern Math}
+
+%-----------------------------------------------------------------------
+% Page geometry -- Universitext trim size 235 mm x 155 mm
+%-----------------------------------------------------------------------
+\RequirePackage{geometry}
+\geometry{
+  paperwidth  = 155mm,
+  paperheight = 235mm,
+  inner  = 22mm,
+  outer  = 18mm,
+  top    = 20mm,
+  bottom = 18mm,
+  headsep = 8mm,
+  footskip = 10mm,
+  headheight = 14pt,
+  bindingoffset = 0mm
+}
+
+%-----------------------------------------------------------------------
+% Mathematics
+%-----------------------------------------------------------------------
+\RequirePackage{amsmath}
+\RequirePackage{mathtools}
+\RequirePackage{amsthm}
+\RequirePackage{enumitem}
+
+% Equation numbers per section: (1.1), (2.1), ... (matches the source book)
+\numberwithin{equation}{section}
+
+%-----------------------------------------------------------------------
+% Theorem-like environments (each numbered independently per chapter,
+% matching the source book: Theorem 1..28, Lemma 1..6, Example 1..10 ...)
+%-----------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[chapter]
+
+% Theorems/lemmas/etc. are numbered per chapter but printed with the plain
+% Arabic number (the source book writes "Theorem 8", "Lemma 1", not "Theorem I.8").
+\renewcommand{\thetheorem}{\arabic{theorem}}
+\renewcommand{\thelemma}{\arabic{lemma}}
+\renewcommand{\theproposition}{\arabic{proposition}}
+\renewcommand{\thecorollary}{\arabic{corollary}}
+\renewcommand{\thedefinition}{\arabic{definition}}
+\renewcommand{\theexample}{\arabic{example}}
+\renewcommand{\theremark}{\arabic{remark}}
+
+%-----------------------------------------------------------------------
+% Chapter / section headings
+%   Chapter I.  <title>          (Roman numerals)
+%   §1.  Basic properties ...    (section sign, no chapter prefix)
+%-----------------------------------------------------------------------
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\numberwithin{section}{chapter}
+\renewcommand{\thesection}{\arabic{section}}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\large}
+  {\MakeUppercase{\chaptername}~\thechapter}
+  {1.2ex}
+  {\LARGE\bfseries}
+\titlespacing*{\chapter}{0pt}{24pt}{18pt}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\S\thesection.}
+  {0.5em}
+  {}
+\titlespacing*{\section}{0pt}{2.6ex plus 1ex minus .2ex}{1.4ex plus .2ex}
+
+% Unnumbered sub-headings (e.g. "The space D", "Examples", "Remarks")
+\titleformat{name=\subsection,numberless}
+  {\normalfont\normalsize\bfseries\itshape}
+  {}
+  {0pt}
+  {}
+\titlespacing*{name=\subsection,numberless}{0pt}{2ex plus .4ex}{.8ex}
+
+%-----------------------------------------------------------------------
+% Running heads / page style
+%-----------------------------------------------------------------------
+\RequirePackage{fancyhdr}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\thepage\hfill\slshape\leftmark}
+\fancyhead[RO]{\slshape\rightmark\hfill\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%-----------------------------------------------------------------------
+% Cross-reference / hyperlink colours and PDF bookmarks
+%-----------------------------------------------------------------------
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks   = true,
+  linkcolor    = blue,
+  citecolor    = red,
+  urlcolor     = MidnightBlue,
+  linktoc      = all,
+  bookmarksnumbered = true,
+  bookmarksopen     = true,
+  bookmarksopenlevel = 1
+}
+\RequirePackage{bookmark}
+
+% Bookmarks: make appendix / notes / references / bibliography top-level
+\AtBeginDocument{%
+  \@ifpackageloaded{biblatex}{%
+    \pretocmd{\printbibliography}{\bookmarksetup{startatroot}}{}{}%
+  }{}%
+}
+\pretocmd{\tableofcontents}{\bookmarksetup{startatroot}}{}{}
+
+%-----------------------------------------------------------------------
+% Bibliography (biblatex + biber, mandatory)
+%-----------------------------------------------------------------------
+\RequirePackage[backend=biber, style=numeric, sorting=nyt,
+  hyperref=auto, backref=true, backrefstyle=three]{biblatex}
+
+%-----------------------------------------------------------------------
+% Figures / commutative diagrams
+%-----------------------------------------------------------------------
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{tikz-cd}
+
+%-----------------------------------------------------------------------
+% Justification: allow extra stretch so that long inline formulas do not
+% overflow the narrow (155 mm) measure.
+%-----------------------------------------------------------------------
+\setlength{\emergencystretch}{2em}
+
+%-----------------------------------------------------------------------
+% Numbered displayed statements (Definition / Theorem / Corollary ...)
+%   The source sets these as numbered displays,
+%       \begin{equation*}\tag{2.6}\label{eq:II-2.6}\text{...}\end{equation*}
+%   but \text{} inside a display is an unbreakable box, so a paragraph-long
+%   statement runs far off a 155 mm page.  Instead use
+%       \begin{nstmt}{2.6}\label{eq:II-2.6}
+%         \textbf{Definition}. ...
+%       \end{nstmt}
+%   The statement is then set as ordinary (page-breakable) text, with the
+%   number "(2.6)" flush right at the end; \ref / \eqref keep working.
+%-----------------------------------------------------------------------
+\makeatletter
+\newenvironment{nstmt}[1]{%
+  \par\addvspace{\abovedisplayskip}%
+  \refstepcounter{equation}%
+  \gdef\@currentlabel{#1}%
+  \gdef\nstmt@tag{#1}%
+  \noindent\ignorespaces
+}{%
+  \unskip\nobreak\hfill(\nstmt@tag)\par
+  \addvspace{\belowdisplayskip}%
+}
+% Anchor for a numbered statement/item (e.g. the source's "(3.5)" items) so
+% that it can be cross-referenced with \eqref.
+\newcommand{\stmtref}[2]{%
+  \refstepcounter{equation}%
+  \gdef\@currentlabel{#1}%
+  \label{#2}%
+  \textbf{(#1)}%
+}
+\makeatother
+
+%-----------------------------------------------------------------------
+% Small typographic helpers
+%-----------------------------------------------------------------------
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\T}{\mathbb{T}}
+\AtBeginDocument{\renewcommand{\emptyset}{\varnothing}}
+\endinput

@@ -1,0 +1,1204 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S12.2  正项级数的判别法（一）判别法体系
+%  源：原书印刷页 10-22（PDF 物理页 16-28）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch12_12_2_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误见 tools/_make_ch12_2a.py 头部说明
+% ==================================================================
+\section{正项级数的判别法}\label{sec:12.2}
+
+我们先来给出正项级数的各种判别法. 它们都是根据级数的通项 $a_{n}$ 的性质来判定无穷级数 $\sum_{n=1}^{\infty}a_{n}$ 的敛散性, 从而得到了部分和 $S_{n}=\sum_{k=1}^{n}a_{k}$ 所组成的数列的敛散性. 这也是从 $a_{n}$ 这局部性态反映和 $\sum_{n=1}^{\infty}a_{n}$ 的整体性质.
+
+\begin{definition}\label{def:12.2.1}
+设 $a_{n}\geqslant0\ (a_{n}>0),\ n=1,2,\cdots$, 则称级数 $\sum_{n=1}^{\infty}a_{n}$ 为(严格)正项级数.
+
+显然, (严格)正项级数的部分和数列 $S_{n}=S_{n-1}+a_{n}\geqslant S_{n-1}\ (>S_{n-1})$ 是(严格)单调增的. 因此, 有下面的定理.
+\end{definition}
+
+\begin{theorem}\label{thm:12.2.1}
+正项级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛 $\Leftrightarrow$ 部分和 $S_{n}=\sum_{k=1}^{n}a_{k}$ 有界.
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$) 因 $S_{n}$ 单调增有界, 故 $S_{n}$ 收敛, 它等价于 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+($\Rightarrow$) $\sum_{n=1}^{\infty}a_{n}$ 收敛, 它等价于 $S_{n}$ 收敛. 根据\extref{定理 1.2.2} 知, $S_{n}$ 有界.
+\end{proof}
+
+由定理~\ref{thm:12.2.1} 可推出下面几个重要的比较判别法.
+
+\begin{theorem}[Cauchy 积分比较判别法]\label{thm:12.2.2}
+设 $f(x)$ 为 $[a,+\infty)$ 上的非负单调减的连续函数, 其中 $a>0$. 则级数
+\[
+  \sum_{n=1}^{\infty}f(a+n)
+\]
+与广义积分
+\[
+  \int_{a}^{+\infty}f(x)\,\mathrm{d}x
+\]
+同敛散.
+\end{theorem}
+
+\begin{proof}
+由 $f(x)$ 单调减, 故当 $a+k\leqslant x\leqslant a+k+1$ 时, $f(a+k+1)\leqslant f(x)\leqslant f(a+k)$. 于是,
+\[
+  f(a+k+1)=\int_{a+k}^{a+k+1}f(a+k+1)\,\mathrm{d}x
+  \leqslant\int_{a+k}^{a+k+1}f(x)\,\mathrm{d}x
+  \leqslant\int_{a+k}^{a+k+1}f(a+k)\,\mathrm{d}x=f(a+k),
+  \quad k=0,1,2,\cdots,
+\]
+\[
+  \sum_{k=0}^{n}f(a+k+1)\leqslant\sum_{k=0}^{n}\int_{a+k}^{a+k+1}f(x)\,\mathrm{d}x
+  =\int_{a}^{a+n+1}f(x)\,\mathrm{d}x\leqslant\sum_{k=0}^{n}f(a+k).
+\]
+如果 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛, 则
+\[
+  \sum_{k=0}^{n}f(a+k+1)\leqslant\int_{a}^{a+n+1}f(x)\,\mathrm{d}x
+  \leqslant\int_{a}^{+\infty}f(x)\,\mathrm{d}x<+\infty.
+\]
+根据定理~\ref{thm:12.2.1} 知, $\sum_{k=0}^{\infty}f(a+k+1)$, 从而 $\sum_{n=1}^{\infty}f(a+n)$ 收敛.
+
+如果 $\sum_{n=1}^{\infty}f(a+n)$ 收敛(即 $\sum_{k=0}^{\infty}f(a+k)$ 收敛), 则 $\forall A>a$, 有充分大的 $n$, 使得 $A<a+n+1$,
+\[
+  \int_{a}^{A}f(x)\,\mathrm{d}x\leqslant\int_{a}^{a+n+1}f(x)\,\mathrm{d}x
+  \leqslant\sum_{k=0}^{n}f(a+k)\leqslant\sum_{k=0}^{\infty}f(a+k)<+\infty.
+\]
+从而 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.1}
+对于级数
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{x}}=1+\frac{1}{2^{x}}+\frac{1}{3^{x}}+\cdots,
+\]
+证明: 当 $x>1$ 时, 此级数收敛; 当 $x\leqslant1$ 时, 此级数发散. 于是, $\zeta(x)=\sum_{n=1}^{\infty}\frac{1}{n^{x}}$ 定义了 $(1,+\infty)$ 上的一个函数, 称为 Riemann $\zeta$ 函数.
+\end{example}
+
+\begin{proof}
+证法 1 参阅\extref{例 1.4.2}.
+
+证法 2 应用定理~\ref{thm:12.2.2} 知
+\[
+  \sum_{n=1}^{\infty}\frac{1}{n^{x}}\text{ 敛散}\ \Leftrightarrow\ \int_{1}^{+\infty}\frac{\mathrm{d}t}{t^{x}}\text{ 敛散}.
+\]
+而当 $x>1$ 时, $\int_{1}^{+\infty}\frac{\mathrm{d}t}{t^{x}}$ 收敛; 当 $x\leqslant1$ 时, $\int_{1}^{+\infty}\frac{\mathrm{d}t}{t^{x}}$ 发散.
+
+因此, 当 $x>1$ 时, $\sum_{n=1}^{\infty}\frac{1}{n^{x}}$ 收敛; 当 $x\leqslant1$ 时, $\sum_{n=1}^{\infty}\frac{1}{n^{x}}$ 发散.
+\end{proof}
+
+\begin{example}\label{ex:12.2.2}
+证明: 级数
+\[
+  \sum_{n=3}^{\infty}\frac{1}{n^{\alpha}\ln^{\beta}n\ln^{\gamma}\ln n}
+\]
+当 $\alpha>1$ 时收敛, 当 $\alpha<1$ 时发散; 当 $\alpha=1,\ \beta>1$ 时收敛, 当 $\alpha=1,\ \beta<1$ 时发散; 当 $\alpha=1,\ \beta=1,\ \gamma>1$ 时收敛, 当 $\alpha=1,\ \beta=1,\ \gamma\leqslant1$ 时发散.
+\end{example}
+
+\begin{proof}
+由\extref{例 6.5.1} 知, 当 $\alpha>1$ 时, $\int_{3}^{+\infty}\frac{\mathrm{d}x}{x^{\alpha}}$ 收敛; 当 $\alpha\leqslant1$ 时, $\int_{3}^{+\infty}\frac{\mathrm{d}x}{x^{\alpha}}$ 发散.
+
+当 $\alpha>1$ 时, 令 $\alpha=1+2\varepsilon,\ \varepsilon>0$, 则
+\[
+  \frac{1}{x^{\alpha}\ln^{\beta}x\ln^{\gamma}\ln x}
+  =\frac{1}{x^{1+\varepsilon}}\frac{1}{x^{\varepsilon}\ln^{\beta}x\ln^{\gamma}\ln x},
+\]
+\[
+  \lim_{x\to+\infty}\frac{\dfrac{1}{x^{\alpha}\ln^{\beta}x\ln^{\gamma}\ln x}}{\dfrac{1}{x^{1+\varepsilon}}}
+  =\lim_{x\to+\infty}\frac{1}{x^{\varepsilon}\ln^{\beta}x\ln^{\gamma}\ln x}=0.
+\]
+因此, 由 $\int_{3}^{+\infty}\frac{\mathrm{d}x}{x^{1+\varepsilon}}$ 收敛知, $\sum_{n=3}^{\infty}\frac{1}{n^{\alpha}\ln^{\beta}n\ln^{\gamma}\ln n}$ 收敛.
+
+当 $\alpha<1$ 时, 令 $\alpha=1-2\varepsilon,\ \varepsilon>0$, 则
+\[
+  \frac{1}{x^{\alpha}\ln^{\beta}x\ln^{\gamma}\ln x}
+  =\frac{1}{x^{1-\varepsilon}}\frac{x^{\varepsilon}}{\ln^{\beta}x\ln^{\gamma}\ln x},
+\]
+\[
+  \lim_{x\to+\infty}\frac{\dfrac{1}{x^{\alpha}\ln^{\beta}x\ln^{\gamma}\ln x}}{\dfrac{1}{x^{1-\varepsilon}}}
+  =\lim_{x\to+\infty}\frac{x^{\varepsilon}}{\ln^{\beta}x\ln^{\gamma}\ln x}=+\infty.
+\]
+因此, 由 $\int_{3}^{+\infty}\frac{\mathrm{d}x}{x^{1-\varepsilon}}$ 发散知, $\sum_{n=3}^{\infty}\frac{1}{n^{\alpha}\ln^{\beta}n\ln^{\gamma}\ln n}$ 发散.
+
+当 $\alpha=1$ 时, 因为
+\[
+  \int_{3}^{+\infty}\frac{\mathrm{d}x}{x\ln^{\beta}x\ln^{\gamma}\ln x}
+  \xrightarrow{u=\ln x}\int_{\ln3}^{+\infty}\frac{\mathrm{d}u}{u^{\beta}\ln^{\gamma}u},
+\]
+所以, 当 $\beta>1$ 时, 积分收敛; 当 $\beta<1$ 时, 积分发散; 当 $\beta=1$ 时, 积分
+\[
+  \int_{\ln3}^{+\infty}\frac{\mathrm{d}u}{u\ln^{\gamma}u}
+  =\int_{\ln\ln3}^{+\infty}\frac{\mathrm{d}v}{v^{\gamma}}.
+\]
+因此, 当 $\gamma>1$ 时, 此积分收敛; 当 $\gamma\leqslant1$ 时, 此积分发散.
+
+根据上述结果以及积分判别法(定理~\ref{thm:12.2.2}) 得到级数
+\[
+  \sum_{n=3}^{\infty}\frac{1}{n^{\alpha}\ln^{\beta}n\ln^{\gamma}\ln n}
+\]
+当 $\alpha>1$ 时收敛; 当 $\alpha<1$ 时发散; 当 $\alpha=1,\ \beta>1$ 时收敛; 当 $\alpha=1,\ \beta<1$ 时发散; 当 $\alpha=1,\ \beta=1,\ \gamma>1$ 时收敛; 当 $\alpha=1,\ \beta=1,\ \gamma\leqslant1$ 时发散.
+\end{proof}
+
+\begin{theorem}[比较判别法]\label{thm:12.2.3}
+设 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 都为正项级数. 如果 $\exists N\in\mathbb{N}$, 使得当 $n>N$ 时, 有 $a_{n}\leqslant b_{n}$. 则:
+\begin{enumerate}
+  \item $\sum_{n=1}^{\infty}b_{n}$ 收敛 $\Rightarrow$ $\sum_{n=1}^{\infty}a_{n}$ 也收敛;
+  \item $\sum_{n=1}^{\infty}a_{n}$ 发散 $\Rightarrow$ $\sum_{n=1}^{\infty}b_{n}$ 也发散.
+\end{enumerate}
+
+大的级数收敛, 小的级数也收敛; 小的级数发散, 大的级数也发散.
+\end{theorem}
+
+\begin{proof}
+从 $N+1$ 项开始, 有 $a_{n}\leqslant b_{n}$. 并设 $S_{n}=\sum_{k=1}^{n}a_{k},\ S_{n}^{\prime}=\sum_{k=1}^{n}b_{k}$.
+
+(1) 由 $\sum_{k=1}^{\infty}b_{k}$ 收敛推得 $S_{n}^{\prime}$ 有界, 则当 $n>N+1$ 时, 有
+\begin{align*}
+  S_{n}&=a_{1}+\cdots+a_{n}=a_{1}+\cdots+a_{N}+a_{N+1}+\cdots+a_{n} \\
+       &\leqslant a_{1}+\cdots+a_{N}+b_{N+1}+\cdots+b_{n} \\
+       &=\sum_{k=1}^{n}b_{k}+\sum_{k=1}^{N}a_{k}-\sum_{k=1}^{N}b_{k}
+        =S_{n}^{\prime}+\sum_{k=1}^{N}a_{k}-\sum_{k=1}^{N}b_{k}<+\infty,
+\end{align*}
+故 $S_{n}$ 也有界. 根据定理~\ref{thm:12.2.1}, $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2)(反证) 假设 $\sum_{n=1}^{\infty}b_{n}$ 收敛, 由 (1) 知, $\sum_{n=1}^{\infty}a_{n}$ 也收敛, 这与已知 $\sum_{n=1}^{\infty}b_{n}$ 发散相矛盾.
+\end{proof}
+
+\begin{theoremp}[比较判别法的极限形式]\label{thm:12.2.3p}
+设 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 为两个正项级数, 且有极限
+\[
+  \lim_{n\to+\infty}\frac{a_{n}}{b_{n}}=l.
+\]
+则:
+\begin{enumerate}
+  \item 若 $0<l<+\infty$, 则 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 同敛散;
+  \item 若 $l=0$, 则 $\sum_{n=1}^{\infty}b_{n}$ 收敛蕴涵着 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 若 $l=+\infty$, 则 $\sum_{n=1}^{\infty}b_{n}$ 发散蕴涵着 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{enumerate}
+\end{theoremp}
+
+\begin{proof}
+(1) 因为 $\lim_{n\to+\infty}\frac{a_{n}}{b_{n}}=l,\ 0<l<+\infty$, 则对 $\varepsilon=\frac{l}{2}$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  0<\frac{l}{2}=l-\frac{l}{2}<\frac{a_{n}}{b_{n}}<l+\frac{l}{2}=\frac{3l}{2},
+\]
+即
+\[
+  \frac{l}{2}b_{n}<a_{n}<\frac{3}{2}lb_{n}.
+\]
+如果 $\sum_{n=1}^{\infty}b_{n}$ 收敛, 则 $\sum_{n=1}^{\infty}\frac{3}{2}lb_{n}$ 也收敛. 根据定理~\ref{thm:12.2.3}(1), $\sum_{n=1}^{\infty}a_{n}$ 收敛. 如果 $\sum_{n=1}^{\infty}b_{n}$ 发散, 则 $\sum_{n=1}^{\infty}\frac{l}{2}b_{n}$ 也发散. 根据定理~\ref{thm:12.2.3}(2), $\sum_{n=1}^{\infty}a_{n}$ 发散. 这就证明了 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 同敛散.
+
+(2) 因为 $\lim_{n\to+\infty}\frac{a_{n}}{b_{n}}=0$, 所以 $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  0\leqslant\frac{a_{n}}{b_{n}}\leqslant1,\quad\text{即}\quad a_{n}\leqslant b_{n}.
+\]
+根据定理~\ref{thm:12.2.3}(1), $\sum_{n=1}^{\infty}b_{n}$ 收敛蕴涵着 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(3) 因为 $\lim_{n\to+\infty}\frac{a_{n}}{b_{n}}=+\infty$, 所以 $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  \frac{a_{n}}{b_{n}}>1,\quad\text{即}\quad a_{n}>b_{n}>0.
+\]
+根据定理~\ref{thm:12.2.3}(2), $\sum_{n=1}^{\infty}b_{n}$ 发散蕴涵着 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{proof}
+
+应用比较判别法, 就可派生出几个常用的判别法.
+
+将正项级数与几何(即等比)级数比较, 就派生出 Cauchy 判别法与 d'Alembert 判别法.
+
+将正项级数与收敛较慢的级数 $\sum_{n=1}^{\infty}\frac{1}{n^{\alpha}}\ (\alpha>1)$ 作比较, 就派生出 Raabe 判别法.
+
+将正项级数与收敛更慢的级数 $\sum_{n=2}^{\infty}\frac{1}{n\ln^{\alpha}n}\ (\alpha>1)$ 作比较, 就派生出 Gauss 判别法.
+
+一般来说, 用于比较的级数收敛越慢, 所派生出的判别法就越精细, 它能判别的级数越广泛.
+
+\begin{theorem}[Cauchy 判别法]\label{thm:12.2.4}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为正项级数.
+\begin{enumerate}
+  \item 如果 $\exists q\in[0,1)$, 使得
+  \[
+    \sqrt[n]{a_{n}}\leqslant q<1\quad(n\geqslant N,\ N\in\mathbb{N}\text{ 为某个自然数}),
+\]
+  则级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 如果 $\sqrt[n]{a_{n}}\geqslant1$ 对无穷个 $n$ 成立, 则级数 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 由于 $\sqrt[n]{a_{n}}\leqslant q<1\ (n\geqslant N)$, 故
+\[
+  0\leqslant a_{n}\leqslant q^{n}.
+\]
+再由等比级数 $\sum_{n=1}^{\infty}q^{n}$ 收敛及定理~\ref{thm:12.2.3}(1) 知, $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2) 由于 $\sqrt[n]{a_{n}}\geqslant1$ 对无穷个 $n$ 成立, 故 $a_{n}\geqslant1$ 对无穷个 $n$ 成立, 它蕴涵着 $\lim_{n\to+\infty}a_{n}\neq0$. 根据推论~\ref{cor:12.1.1}, 级数 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{proof}
+
+\begin{theoremp}[Cauchy 判别法的极限形式]\label{thm:12.2.4p}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为正项级数, 且
+\[
+  \varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}=q,
+\]
+则:
+\begin{enumerate}
+  \item 当 $0\leqslant q<1$ 时, 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 当 $q>1$ 时, 级数 $\sum_{n=1}^{\infty}a_{n}$ 发散;
+  \item 当 $q=1$ 时, 不能判定级数 $\sum_{n=1}^{\infty}a_{n}$ 敛散性.
+\end{enumerate}
+\end{theoremp}
+
+\begin{proof}
+(1) 由 $\lim_{n\to+\infty}\sqrt[n]{a_{n}}=q<1$. 取 $\varepsilon>0$, 使 $q+\varepsilon<1$. 于是, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, $\sqrt[n]{a_{n}}<q+\varepsilon<1$. 根据定理~\ref{thm:12.2.4}, $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2) 由 $\lim_{n\to+\infty}\sqrt[n]{a_{n}}=q>1$, 则存在 $\{a_{n}\}$ 的子列 $\{a_{n_{k}}\}$ 使
+\[
+  \lim_{k\to+\infty}\sqrt[n_{k}]{a_{n_{k}}}>1.
+\]
+故有无穷个 $n$ 使 $\sqrt[n]{a_{n}}\geqslant1$. 根据定理~\ref{thm:12.2.4}(2) 知, $\sum_{n=1}^{\infty}a_{n}$ 发散.
+
+(3) 对于级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 与 $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 有
+\[
+  \lim_{n\to+\infty}\sqrt[n]{\frac{1}{n}}=\lim_{n\to+\infty}\frac{1}{\sqrt[n]{n}}=1,
+  \quad\lim_{n\to+\infty}\sqrt[n]{\frac{1}{n^{2}}}
+  =\lim_{n\to+\infty}\left(\frac{1}{\sqrt[n]{n}}\right)^{2}=1,
+\]
+但 $\sum_{n=1}^{\infty}\frac{1}{n}$ 发散, $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 收敛.
+\end{proof}
+
+\begin{theorem}[d'Alembert 判别法]\label{thm:12.2.5}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数.
+\begin{enumerate}
+  \item 若 $\exists q\in(0,1)$, 使得
+  \[
+    \frac{a_{n+1}}{a_{n}}\leqslant q<1\quad(n\geqslant N,\ \text{某个 }N\in\mathbb{N}),
+\]
+  则级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 若 $\frac{a_{n+1}}{a_{n}}\geqslant1\ (n\geqslant N$, 某个 $N\in\mathbb{N})$, 则级数 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 由条件得
+\[
+  \frac{a_{N+1}}{a_{N}}\leqslant q,\quad\frac{a_{N+2}}{a_{N+1}}\leqslant q,\quad\cdots,\quad\frac{a_{n}}{a_{n-1}}\leqslant q,\quad\cdots,
+\]
+于是
+\[
+  \frac{a_{n}}{a_{N}}=\frac{a_{n}}{a_{n-1}}\cdots\frac{a_{N+2}}{a_{N+1}}\frac{a_{N+1}}{a_{N}}\leqslant q^{n-N},
+\]
+\[
+  0\leqslant a_{n}\leqslant q^{n-N}a_{N}=\frac{a_{N}}{q^{N}}q^{n},\quad n\geqslant N,\quad q\in(0,1).
+\]
+由等比级数 $\sum_{n=1}^{\infty}q^{n}$ 从而 $\sum_{n=1}^{\infty}\frac{a_{N}}{q^{N}}q^{n}$ 收敛, 以及定理~\ref{thm:12.2.3}(1) 知, $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2) 由条件, 当 $n\geqslant N$ 时, 有
+\[
+  a_{n+1}\geqslant a_{n}\geqslant\cdots\geqslant a_{N+1}\geqslant a_{N}.
+\]
+由此知, $\{a_{n}\}\ (n\geqslant N)$ 单调增. 又因 $a_{n}>0$, 故 $\lim_{n\to+\infty}a_{n}\neq0$. 根据推论~\ref{cor:12.1.1}, $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{proof}
+
+\begin{theoremp}[d'Alembert 判别法的极限形式]\label{thm:12.2.5p}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数.
+\begin{enumerate}
+  \item 若 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q\in(0,1)$, 则 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 若 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q'>1$, 则 $\sum_{n=1}^{\infty}a_{n}$ 发散;
+  \item 当 $q=1$ 或 $q'=1$ 时, $\sum_{n=1}^{\infty}a_{n}$ 的敛散性不能加以判定.
+\end{enumerate}
+\end{theoremp}
+
+\begin{proof}
+(1) 取 $\varepsilon>0$, 使 $0<q+\varepsilon<1$. 于是, 由 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q$, $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时,
+\[
+  \frac{a_{n+1}}{a_{n}}<q+\varepsilon<1,
+\]
+则由定理~\ref{thm:12.2.5}(1), $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2) 先取 $\varepsilon>0$ 使 $q'-\varepsilon>1$. 由下极限定义, $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  \frac{a_{n+1}}{a_{n}}>q'-\varepsilon>1.
+\]
+则由定理~\ref{thm:12.2.5}(2) 知, $\sum_{n=1}^{\infty}a_{n}$ 发散.
+
+(3) 对级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 与 $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 有
+\[
+  \varlimsup_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\varliminf_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=1.
+\]
+但 $\sum_{n=1}^{\infty}\frac{1}{n}$ 发散, $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 收敛. 因此, 当 $q=1$ 或 $q'=1$ 时, $\sum_{n=1}^{\infty}a_{n}$ 的敛散性不能判定.
+\end{proof}
+
+Cauchy 判别法与 d'Alembert 判别法哪个强些? 根据下面引理~\ref{lem:12.2.1} 可以看出: 凡用 d'Alembert 判别法可判定的, 用 Cauchy 判别法也一定能判定(若 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q<1$, 则 $\lim_{n\to+\infty}\sqrt[n]{a_{n}}\leqslant\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q<1$; 若 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q'>1$, 则 $\lim_{n\to+\infty}\sqrt[n]{a_{n}}\geqslant\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q'\geqslant1$). 但反之不然(参阅例~\ref{ex:12.2.14}). 由此可见, Cauchy 判别法比 d'Alembert 判别法适用的面要宽一些. 理论上, Cauchy 判别法比 d'Alembert 判别法要强! 但在有些场合下, 使用 d'Alembert 判别法要方便些, 特别是 $\frac{a_{n+1}}{a_{n}}$ 简单或 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}$ 好算的情形! 因此, 它还是受欢迎的.
+
+但总的来说, 这两个判别法的适用面都不宽, 原因是它们只能判别比某个几何(等比)级数收敛得还快的级数(参阅引理~\ref{lem:12.2.2}). 所谓级数 $\sum_{n=1}^{\infty}a_{n}$ 比 $\sum_{n=1}^{\infty}b_{n}$ 收敛得快, 是指
+\[
+  \lim_{n\to+\infty}\frac{a_{n}}{b_{n}}=0.
+\]
+例如: 当 $0<q<1$, $\alpha>1$, $\beta>1$ 时, $\sum_{n=1}^{\infty}q^{n}$ 比 $\sum_{n=1}^{\infty}\frac{1}{n^{\alpha}}$ 收敛得快; $\sum_{n=1}^{\infty}\frac{1}{n^{\alpha}}$ 比 $\sum_{n=1}^{\infty}\frac{1}{n(\ln n)^{\beta}}$ 收敛得快.
+
+\begin{lemma}\label{lem:12.2.1}
+设 $a_{n}>0\ (n=1,2,\cdots)$, 则
+\[
+  \varliminf_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  \leqslant\varliminf_{n\to+\infty}\sqrt[n]{a_{n}}
+  \leqslant\varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}
+  \leqslant\varlimsup_{n\to+\infty}\frac{a_{n+1}}{a_{n}}.
+\]
+\end{lemma}
+
+\begin{proof}
+先证 $\varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}\leqslant\varlimsup_{n\to+\infty}\frac{a_{n+1}}{a_{n}}$.
+
+设 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q$. 若 $q=+\infty$, 则不等式自然成立.
+
+若 $0<q<+\infty$, 则 $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, 有
+\[
+  \frac{a_{n+1}}{a_{n}}<q+\varepsilon.
+\]
+因而,
+\[
+  \frac{a_{N+1}}{a_{N}}<q+\varepsilon,\quad\frac{a_{N+2}}{a_{N+1}}<q+\varepsilon,\quad\cdots,\quad\frac{a_{N+k}}{a_{N+k-1}}<q+\varepsilon.
+\]
+各式相乘得
+\[
+  \frac{a_{N+k}}{a_{N}}<(q+\varepsilon)^{k},\quad\text{即}\quad a_{N+k}<a_{N}(q+\varepsilon)^{k},
+\]
+或
+\[
+  a_{n}<a_{N}(q+\varepsilon)^{n-N}=a_{N}(q+\varepsilon)^{-N}(q+\varepsilon)^{n}.
+\]
+于是
+\[
+  \sqrt[n]{a_{n}}<\sqrt[n]{a_{N}(q+\varepsilon)^{-N}}\,(q+\varepsilon),
+\]
+所以, $\varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}\leqslant q+\varepsilon$. 令 $\varepsilon\to0^{+}$ 得到
+\[
+  \varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}\leqslant q=\varlimsup_{n\to+\infty}\frac{a_{n+1}}{a_{n}}.
+\]
+
+再证 $\varliminf_{n\to+\infty}\frac{a_{n+1}}{a_{n}}\leqslant\varliminf_{n\to+\infty}\sqrt[n]{a_{n}}$.
+
+若 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=0$, 则不等式显然成立.
+
+若 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q>0$, 则 $\forall\varepsilon>0$ 且 $q-\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, 有
+\[
+  0<q-\varepsilon<\frac{a_{n+1}}{a_{n}}.
+\]
+特别地, 有
+\[
+  \frac{a_{N+1}}{a_{N}}>q-\varepsilon,\quad\frac{a_{N+2}}{a_{N+1}}>q-\varepsilon,\quad\cdots,\quad\frac{a_{n}}{a_{n-1}}>q-\varepsilon.
+\]
+各式相乘得
+\[
+  \frac{a_{n}}{a_{N}}>(q-\varepsilon)^{n-N},\quad\text{即}\quad a_{n}>a_{N}(q-\varepsilon)^{-N}(q-\varepsilon)^{n},
+\]
+于是
+\[
+  \sqrt[n]{a_{n}}>\sqrt[n]{a_{N}(q-\varepsilon)^{-N}}\,(q-\varepsilon),
+\]
+所以, $\varliminf_{n\to+\infty}\sqrt[n]{a_{n}}\geqslant q-\varepsilon$. 再令 $\varepsilon\to0^{+}$ 得到
+\[
+  \varliminf_{n\to+\infty}\sqrt[n]{a_{n}}\geqslant q=\varliminf_{n\to+\infty}\frac{a_{n+1}}{a_{n}}.
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:12.2.2}
+设级数 $\sum_{n=1}^{\infty}a_{n}$ 满足 Cauchy 判别法或 d'Alembert 判别法判定收敛的条件($\overline{\lim}_{n\to+\infty}\sqrt[n]{a_{n}}=q<1$ 或 $\overline{\lim}_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q<1$), 则必 $\exists r\in(q,1)$, 使得
+\[
+  \lim_{n\to+\infty}\frac{a_{n}}{r^{n}}=0,
+\]
+即 $\sum_{n=1}^{\infty}a_{n}$ 比几何(等比)级数 $\sum_{n=1}^{\infty}r^{n}$ 收敛得快.
+\end{lemma}
+
+\begin{proof}
+(1) 取 $r,\ \varepsilon>0$, 使 $q+\varepsilon<r<1$. 因为
+\[
+  \varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}=q<1,
+\]
+所以, $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, $\sqrt[n]{a_{n}}<q+\varepsilon<r$, 即 $a_{n}<(q+\varepsilon)^{n}<r^{n}$. 于是,
+\[
+  \frac{a_{n}}{r^{n}}=\frac{a_{n}}{(q+\varepsilon)^{n}}\left(\frac{q+\varepsilon}{r}\right)^{n}\to0\quad(n\to+\infty).
+\]
+这就表明 $\sum_{n=1}^{\infty}a_{n}$ 比 $\sum_{n=1}^{\infty}r^{n}$ 收敛得快.
+
+(2) $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q<1$, 则 $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, $\frac{a_{n+1}}{a_{n}}<q+\varepsilon<r$, 所以
+\[
+  a_{n}=\frac{a_{n}}{a_{n-1}}\frac{a_{n-1}}{a_{n-2}}\cdots\frac{a_{N+1}}{a_{N}}a_{N}
+  <a_{N}(q+\varepsilon)^{n-N}=a_{N}(q+\varepsilon)^{-N}(q+\varepsilon)^{n}\leqslant a_{N}r^{-N}r^{n}.
+\]
+于是
+\[
+  \frac{a_{n}}{r^{n}}=\frac{a_{n}}{(q+\varepsilon)^{n}}\left(\frac{q+\varepsilon}{r}\right)^{n}\to0\quad(n\to+\infty).
+\]
+这就表明 $\sum_{n=1}^{\infty}a_{n}$ 比 $\sum_{n=1}^{\infty}r^{n}$ 收敛得快.
+\end{proof}
+
+如果 $\sum_{n=1}^{\infty}a_{n}$ 比任何几何(等比)级数收敛得慢(如 $\sum_{n=1}^{\infty}\frac{1}{n^{\alpha}},\ \alpha>1$), 必须有更精细的判别法. $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}\frac{1}{n^{\alpha}}$ 相比较得到 Raabe 判别法.
+
+\begin{theorem}[Raabe 判别法]\label{thm:12.2.6}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数.
+\begin{enumerate}
+  \item 若 $\exists r>1,\ \exists N_{0}\in\mathbb{N}$, 使得当 $n\geqslant N_{0}$ 时, 有
+  \[
+    n\left(\frac{a_{n}}{a_{n+1}}-1\right)\geqslant r,
+\]
+  则级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 若 $\exists N_{0}\in\mathbb{N}$, 使得当 $n\geqslant N_{0}$ 时, 有
+  \[
+    n\left(\frac{a_{n}}{a_{n+1}}-1\right)\leqslant1,
+\]
+  则级数 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 取 $\alpha\in(1,r)$. 易知,
+\[
+  \lim_{n\to+\infty}\frac{\left(1+\frac{1}{n}\right)^{\alpha}-1}{\frac{1}{n}}
+  \xlongequal{\text{L'Hospital 法则}}\lim_{x\to0}\frac{(1+x)^{\alpha}-1}{x}
+  =\lim_{x\to0}\frac{\alpha(1+x)^{\alpha-1}}{1}
+  =\alpha<r.
+\]
+故 $\exists N\in\mathbb{N}$, 当 $n>N$ 时,
+\[
+  \frac{\left(1+\frac{1}{n}\right)^{\alpha}-1}{\frac{1}{n}}<r,
+\]
+\[
+  \left(1+\frac{1}{n}\right)^{\alpha}<1+\frac{r}{n}.
+\]
+由条件, 当 $n>\max\{N_{0},N\}$ 时, 有
+\[
+  \frac{a_{n}}{a_{n+1}}\geqslant1+\frac{r}{n}>\left(1+\frac{1}{n}\right)^{\alpha}=\frac{(n+1)^{\alpha}}{n^{\alpha}},
+\]
+\[
+  n^{\alpha}a_{n}>(n+1)^{\alpha}a_{n+1},
+\]
+即 $\{n^{\alpha}a_{n}\mid n>\max\{N_{0},N_{1}\}\}$ 单调减且大于零, 故 $\{n^{\alpha}a_{n}\}$ 有界, 从而 $\exists M>0$ 使
+\[
+  n^{\alpha}a_{n}>M\quad(n=1,2,\cdots),\qquad\text{即}\quad a_{n}<\frac{M}{n^{\alpha}}\quad(n=1,2,\cdots).
+\]
+由 $\alpha>1$ 知 $\sum_{n=1}^{\infty}\frac{M}{n^{\alpha}}$ 收敛, 根据定理~\ref{thm:12.2.3}(1) 得到 $\sum_{n=1}^{\infty}a_{n}$ 是收敛的.
+
+(2) 由条件, 当 $n>N_{0}$ 时,
+\[
+  \frac{a_{n}}{a_{n+1}}\leqslant1+\frac{1}{n}=\frac{n+1}{n},
+\]
+\[
+  na_{n}\leqslant(n+1)a_{n+1},
+\]
+即数列 $\{na_{n}\mid n\geqslant N_{0}\}$ 单调增. 于是,
+\[
+  na_{n}\geqslant N_{0}a_{N_{0}},\quad n\geqslant N_{0},
+\]
+\[
+  a_{n}\geqslant\frac{N_{0}a_{N_{0}}}{n}>0,\quad n\geqslant N_{0}.
+\]
+从 $\sum_{n=1}^{\infty}\frac{N_{0}a_{N_{0}}}{n}$ 发散及定理~\ref{thm:12.2.3}(2) 知 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{proof}
+
+\begin{theoremp}[Raabe 判别法的极限形式]\label{thm:12.2.6p}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数.
+\begin{enumerate}
+  \item 若 $\lim_{n\to+\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)=l>1$, 则 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item 若 $\lim_{n\to+\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)=l'<1$, 则 $\sum_{n=1}^{\infty}a_{n}$ 发散;
+  \item 若 $l=1$ 或 $l'=1$, 则 $\sum_{n=1}^{\infty}a_{n}$ 不能断定敛散.
+\end{enumerate}
+\end{theoremp}
+
+\begin{proof}
+(1) 由于 $\lim_{n\to+\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)=l>1$, 取 $r\in(1,l)$, 则 $\exists N_{0}\in\mathbb{N}$, 当 $n\geqslant N_{0}$, 有
+\[
+  n\left(\frac{a_{n}}{a_{n+1}}-1\right)>r>1.
+\]
+由定理~\ref{thm:12.2.6}(1) 知, 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2) 因为 $\lim_{n\to+\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)=l'<1$, 故 $\exists N_{0}\in\mathbb{N}$, 当 $n\geqslant N_{0}$ 时,
+\[
+  n\left(\frac{a_{n}}{a_{n+1}}-1\right)<1.
+\]
+由定理~\ref{thm:12.2.6}(2) 知, 级数 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+
+(3) 考虑级数 $\sum_{n=2}^{\infty}\frac{1}{n\ln^{2}n}$ 与 $\sum_{n=2}^{\infty}\frac{1}{n}$. 显然,
+\begin{align*}
+  n\left(\frac{1}{n\ln^{2}n}-\frac{1}{(n+1)\ln^{2}(n+1)}-1\right)
+  &=n\left(\frac{(n+1)\ln^{2}(n+1)}{n\ln^{2}n}-1\right) \\
+  &=\frac{(n+1)\ln^{2}(n+1)-n\ln^{2}n}{\ln^{2}n} \\
+  &=\frac{\ln^{2}(n+1)}{\ln^{2}n}
+   +\frac{n\bigl[\ln(n+1)+\ln n\bigr]\bigl[\ln(n+1)-\ln n\bigr]}{\ln^{2}n} \\
+  &=\frac{\ln^{2}(n+1)}{\ln^{2}n}
+   +\frac{\bigl[\ln(n+1)+\ln n\bigr]\ln\left(1+\frac{1}{n}\right)^{n}}{\ln^{2}n}
+   \to1+0\cdot1 \\
+  &=1\quad(n\to+\infty),
+\end{align*}
+\[
+  n\left(\frac{1}{n}-\frac{1}{n+1}-1\right)=n\frac{(n+1)-n}{n}=1\to1\quad(n\to+\infty).
+\]
+但是, $\sum_{n=2}^{\infty}\frac{1}{n}$ 发散; 而由
+\[
+  \int_{2}^{+\infty}\frac{\mathrm{d}x}{x\ln^{2}x}
+  =\int_{2}^{+\infty}\frac{\mathrm{d}\ln x}{\ln^{2}x}
+  =-\left.\frac{1}{\ln x}\right|_{2}^{+\infty}
+  =\frac{1}{\ln2}
+\]
+收敛及积分比较判别法可知, $\sum_{n=2}^{\infty}\frac{1}{n\ln^{2}n}$ 收敛.
+\end{proof}
+
+如果级数 $\sum_{n=1}^{\infty}a_{n}$ 与比 $\sum_{n=2}^{\infty}\frac{1}{n^{\alpha}}\ (\alpha>1)$ 收敛得更慢的级数 $\sum_{n=2}^{\infty}\frac{1}{n\ln^{\beta}n}\ (\beta>1)$ 相比较就得到 Gauss 判别法.
+
+\begin{theorem}[Gauss 判别法]\label{thm:12.2.7}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数, 且
+\[
+  \frac{a_{n}}{a_{n+1}}=1+\frac{1}{n}+\frac{\delta}{n\ln n}+o\left(\frac{1}{n\ln n}\right),\quad n\to+\infty.
+\]
+则级数 $\sum_{n=1}^{\infty}a_{n}$:
+\begin{enumerate}
+  \item 当 $\delta>1$ 时, 收敛;
+  \item 当 $\delta<1$ 时, 发散;
+  \item 当 $\delta=1$ 时, 不能判定敛散性.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 因为 $\delta>1$, 故可取 $\beta$ 使 $\delta>\beta>1$. 下面证明: $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, 有 $a_{n}\leqslant\frac{M}{n\ln^{\beta}n}$($M$ 为正的常数), 从而由例~\ref{ex:12.2.2} 知 $\sum_{n=2}^{\infty}\frac{M}{n\ln^{\beta}n}$ 收敛, 再由比较判别法(定理~\ref{thm:12.2.3}) 推得 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+因为
+\[
+  \frac{\ln(n+1)}{\ln n}
+  =\frac{\ln n+\ln\left(1+\frac{1}{n}\right)}{\ln n}
+  =1+\frac{\frac{1}{n}+o\left(\frac{1}{n}\right)}{\ln n}
+  =1+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right),
+\]
+所以,
+\[
+  \left[\frac{\ln(n+1)}{\ln n}\right]^{\beta}
+  =\left[1+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right]^{\beta}
+  =1+\frac{\beta}{n\ln n}+o\left(\frac{1}{n\ln n}\right).
+\]
+于是,
+\begin{align*}
+  \frac{n+1}{n}\left[\frac{\ln(n+1)}{\ln n}\right]^{\beta}
+  &=\left(1+\frac{1}{n}\right)\left[1+\frac{\beta}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right] \\
+  &=1+\frac{1}{n}+\frac{\beta}{n\ln n}+\frac{\beta}{n^{2}\ln n}+o\left(\frac{1}{n\ln n}\right) \\
+  &=1+\frac{1}{n}+\frac{\beta}{n\ln n}+o\left(\frac{1}{n\ln n}\right).
+\end{align*}
+由此推得
+\begin{align*}
+  \frac{a_{n}}{a_{n+1}}-\frac{n+1}{n}\left[\frac{\ln(n+1)}{\ln n}\right]^{\beta}
+  &\xlongequal{\text{题设}}\left[1+\frac{1}{n}+\frac{\delta}{n\ln n}
+     +o\left(\frac{1}{n\ln n}\right)\right]
+   -\left[1+\frac{1}{n}+\frac{\beta}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right] \\
+  &=\frac{\delta-\beta}{n\ln n}+o\left(\frac{1}{n\ln n}\right)
+   =\frac{1}{n\ln n}\left[\delta-\beta
+     +\frac{o\left(\frac{1}{n\ln n}\right)}{n\ln n}\right]
+   \quad(n\to+\infty).
+\end{align*}
+因为 $\delta-\beta>0$, 故 $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, 上式为正, 即
+\[
+  \frac{a_{n}}{a_{n+1}}-\frac{n+1}{n}\left[\frac{\ln(n+1)}{\ln n}\right]^{\beta}>0,
+\]
+于是
+\[
+  n\ln^{\beta}n\,a_{n}>(n+1)\ln^{\beta}(n+1)\,a_{n+1}.
+\]
+这就表明数列 $\{n\ln^{\beta}n\,a_{n}\mid n\geqslant N\}$ 单调减有下界 $0$, 所以它有界, 即 $\exists M>0$, 使得
+\[
+  n\ln^{\beta}n\,a_{n}<M,
+\]
+\[
+  a_{n}<\frac{M}{n\ln^{\beta}n}.
+\]
+由例~\ref{ex:12.2.2}, $\sum_{n=2}^{\infty}\frac{M}{n\ln^{\beta}n}\ (\beta>1)$ 收敛. 根据比较判别法(定理~\ref{thm:12.2.3}(1)) 得到 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+
+(2) 因为 $\delta<1$, 在 (1) 的式中取 $\beta=1$ 就有
+\[
+  \frac{a_{n}}{a_{n+1}}-\frac{n+1}{n}\frac{\ln(n+1)}{\ln n}
+  =\frac{\delta-1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\quad(n\to+\infty).
+\]
+故 $\exists N\in\mathbb{N}$, 当 $n\geqslant N$ 时, 上式为负, 即
+\[
+  \frac{a_{n}}{a_{n+1}}-\frac{n+1}{n}\frac{\ln(n+1)}{\ln n}<0,
+\]
+于是
+\[
+  n\ln n\,a_{n}<(n+1)\ln(n+1)\,a_{n+1}.
+\]
+这就表明数列 $\{n\ln n\,a_{n}\mid n\geqslant N\}$ 单调增, 从而
+\[
+  n\ln n\,a_{n}\geqslant N\ln N\,a_{N}>0,
+\]
+\[
+  a_{n}\geqslant\frac{N\ln N\,a_{N}}{n\ln n}.
+\]
+由 $\sum_{n=2}^{\infty}\frac{N\ln N\,a_{N}}{n\ln n}$ 发散与比较判别法(定理~\ref{thm:12.2.3}(2)) 得到 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+
+(3) 由例~\ref{ex:12.2.2} 知, $\sum_{n=2}^{\infty}\frac{1}{n\ln n}$ 发散, 而 $\sum_{n=3}^{\infty}\frac{1}{n\ln n(\ln\ln n)^{2}}$ 收敛.
+
+另一方面, 由于
+\[
+  \frac{\ln(n+1)}{\ln n}
+  =\frac{\ln n+\ln\left(1+\frac{1}{n}\right)}{\ln n}
+  =\frac{\ln n+\frac{1}{n}+o\left(\frac{1}{n}\right)}{\ln n}
+  =1+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right),
+\]
+\begin{align*}
+  \frac{\ln\ln(n+1)}{\ln\ln n}
+  &=\frac{\ln\left[\ln n+\frac{1}{n}+o\left(\frac{1}{n}\right)\right]}{\ln\ln n} \\
+  &=\frac{\ln\left\{\ln n\left[1+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right]\right\}}{\ln\ln n} \\
+  &=\frac{\ln\ln n+\ln\left[1+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right]}{\ln\ln n} \\
+  &=\frac{\ln\ln n+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)}{\ln\ln n}
+   =1+o\left(\frac{1}{n\ln n}\right),
+\end{align*}
+我们有
+\begin{align*}
+  \frac{\dfrac{1}{n\ln n}}{\dfrac{1}{(n+1)\ln(n+1)}}
+  &=\left(1+\frac{1}{n}\right)\frac{\ln(n+1)}{\ln n}
+   =\left(1+\frac{1}{n}\right)\left[1+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right] \\
+  &=1+\frac{1}{n}+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right),
+\end{align*}
+\begin{align*}
+  \frac{\dfrac{1}{n\ln n(\ln\ln n)^{2}}}
+        {\dfrac{1}{(n+1)\ln(n+1)\left[\ln\ln(n+1)\right]^{2}}}
+  &=\left(1+\frac{1}{n}\right)\frac{\ln(n+1)}{\ln n}
+   \frac{\left[\ln\ln(n+1)\right]^{2}}{(\ln\ln n)^{2}} \\
+  &=\left[1+\frac{1}{n}+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right)\right]
+   \left[1+o\left(\frac{1}{n\ln n}\right)\right]^{2} \\
+  &=1+\frac{1}{n}+\frac{1}{n\ln n}+o\left(\frac{1}{n\ln n}\right).
+\end{align*}
+这表明级数 $\sum_{n=2}^{\infty}\frac{1}{n\ln n}$ 与 $\sum_{n=3}^{\infty}\frac{1}{n\ln n(\ln\ln n)^{2}}$ 都不能用 Gauss 判别法判定.
+\end{proof}
+
+完全类似的证明可以得到推广的 Gauss 判别法.
+
+\begin{theoremp}[推广的 Gauss 判别法]\label{thm:12.2.7p}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数, 且
+\[
+  \frac{a_{n}}{a_{n+1}}=1+\frac{1}{n}+\frac{\delta_{n}}{n\ln n}
+   +o\left(\frac{1}{n\ln n}\right),\quad n\to+\infty.
+\]
+如果 $\lim_{n\to+\infty}\delta_{n}=\delta\in\mathbb{R}$, 则级数 $\sum_{n=1}^{\infty}a_{n}$:
+\begin{enumerate}
+  \item 当 $\delta>1$ 时, 收敛;
+  \item 当 $\delta<1$ 时, 发散;
+  \item 当 $\delta=1$ 时, 不能判定敛散性.
+\end{enumerate}
+\end{theoremp}
+
+\begin{remark}\label{rem:12.2.1}
+如果定理~\ref{thm:12.2.7} 中, $\delta=1$, 则应用 Gauss 判别法不能判定级数 $\sum_{n=1}^{\infty}a_{n}$ 的敛散性. 若要用比较判别法, 则需找出一个比 $\sum_{n=2}^{\infty}\frac{1}{n\ln^{\beta}n}\ (\beta>1)$ 收敛得更慢的级数来比较, 例如 $\sum_{n=2}^{\infty}\frac{1}{n\ln n\ln^{\gamma}\ln n}\ (\gamma>1)$ 就是这样的级数.
+\end{remark}
+
+根据下面的例~\ref{ex:12.2.3} 与例~\ref{ex:12.2.17}, 收敛得最慢的级数是不存在的. 因此, 与一个已知级数作比较来建立判断一切级数的敛散性的"万能"判别法是不存在的. 不过上面介绍的这些判别法, 对于相当广泛的级数已经足够用了.
+% ===== PART-B =====
+
+\begin{example}\label{ex:12.2.3}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为收敛的严格正项级数, 如果
+\[
+  \lim_{n\to+\infty}\sqrt[n]{a_{n}}=q\in\left[0,1\right)
+  \quad\text{或}\quad
+  \varlimsup_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q\in\left[0,1\right),
+\]
+则
+\[
+  \varlimsup_{n\to+\infty}\sqrt[n]{na_{n}}=q\in[0,1)
+  \quad\text{或}\quad
+  \varlimsup_{n\to+\infty}\frac{(n+1)a_{n+1}}{na_{n}}=q\in[0,1),
+\]
+因此 $\sum_{n=1}^{\infty}na_{n}$ 也收敛. 此外, 由
+\[
+  \varlimsup_{n\to+\infty}\frac{a_{n}}{na_{n}}=\varlimsup_{n\to+\infty}\frac{1}{n}=0
+\]
+知 $\sum_{n=1}^{\infty}na_{n}$ 比 $\sum_{n=1}^{\infty}a_{n}$ 收敛得更慢.
+\end{example}
+
+\begin{example}\label{ex:12.2.4}
+证明: 级数 $\sum_{n=1}^{\infty}\frac{1}{n!}$ 收敛.
+\end{example}
+
+\begin{proof}
+证法 1 当 $n\geqslant2$ 时, $\frac{1}{n!}\leqslant\frac{1}{(n-1)n}$, 由 $\sum_{n=2}^{\infty}\frac{1}{(n-1)n}$ 收敛及比较判别法定理~\ref{thm:12.2.3}(1) 知, $\sum_{n=1}^{\infty}\frac{1}{n!}$ 也收敛.
+
+证法 2 因为 $\frac{a_{n+1}}{a_{n}}=\frac{n!}{(n+1)!}=\frac{1}{n+1}\leqslant\frac{1}{2}<1$, 故由 d'Alembert 判别法得到 $\sum_{n=1}^{\infty}\frac{1}{n!}$ 收敛.
+
+证法 3 因为几何平均数小于算术平均数, 故
+\[
+  0<\sqrt[n]{\frac{1}{n!}}
+  \leqslant\frac{1+\frac{1}{2}+\cdots+\frac{1}{n}}{n}
+  \rightarrow\lim_{n\to+\infty}\frac{1}{n}=0\quad(n\to+\infty),
+\]
+所以 $\lim_{n\to+\infty}\sqrt[n]{\frac{1}{n!}}=0<1$. 根据 Cauchy 判别法的极限形式知, $\sum_{n=1}^{\infty}\frac{1}{n!}$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.5}
+证明: 级数 $\sum_{n=1}^{\infty}\frac{1}{\sqrt{n(n^{2}+1)}}$ 收敛.
+\end{example}
+
+\begin{proof}
+因为
+\[
+  \frac{1}{\sqrt{n(n^{2}+1)}}<\frac{1}{\sqrt{n\cdot n^{2}}}=\frac{1}{n^{3/2}},
+\]
+又 $\sum_{n=1}^{\infty}\frac{1}{n^{3/2}}$ 收敛, 根据比较判别法定理~\ref{thm:12.2.3}(1) 知, 级数 $\sum_{n=1}^{\infty}\frac{1}{\sqrt{n(n^{2}+1)}}$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.6}
+证明: 级数 $\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{\ln n}}$ 收敛.
+\end{example}
+
+\begin{proof}
+因为当 $n>\mathrm{e}^{\mathrm{e}^{2}}$ 时, 有
+\[
+  (\ln n)^{\ln n}=\mathrm{e}^{\ln n\ln\ln n}
+  =\left(\mathrm{e}^{\ln n}\right)^{\ln\ln n}
+  =n^{\ln\ln n}>n^{2},
+\]
+所以,
+\[
+  \frac{1}{(\ln n)^{\ln n}}<\frac{1}{n^{2}}.
+\]
+再由 $\sum_{n=2}^{\infty}\frac{1}{n^{2}}$ 收敛及比较判别法定理~\ref{thm:12.2.3}(1) 得到级数 $\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{\ln n}}$ 收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.7}
+研究级数 $\sum_{n=1}^{\infty}\left(1-\cos\frac{x}{n}\right)$ 的敛散性.
+\end{example}
+
+\begin{proof}
+因为
+\begin{align*}
+  \lim_{n\to+\infty}\frac{1-\cos\dfrac{x}{n}}{\dfrac{1}{n^{2}}}
+  &=\lim_{n\to+\infty}\frac{2\sin^{2}\dfrac{x}{2n}}{1} \\
+  &=\left\{\begin{array}{ll}
+  0, & x=0,\\[
+2pt]
+  \displaystyle\lim_{n\to+\infty}
+  \left(\frac{\sin\dfrac{x}{2n}}{\dfrac{x}{2n}}\right)^{2}\cdot\frac{x^{2}}{2}, & x\neq0,
+  \end{array}\right. \\
+  &=\frac{x^{2}}{2}\geqslant0,
+\end{align*}
+所以由 $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 收敛及比较判别法的极限形式(定理~\ref{thm:12.2.3p}(1)、(2)) 知, 级数 $\sum_{n=1}^{\infty}\left(1-\cos\frac{x}{n}\right)$ 收敛.
+\end{proof}
+\begin{example}\label{ex:12.2.8}
+讨论级数 $\sum_{n=1}^{\infty}\left[\frac{1}{n}-\ln\left(1+\frac{1}{n}\right)\right]$ 的敛散性.
+\end{example}
+\begin{proof}
+从\extref{定理 1.4.2}(3) 中不等式
+\[
+  \frac{1}{n+1}<\ln\left(1+\frac{1}{n}\right)<\frac{1}{n},
+\]
+得到
+\[
+  0<\frac{1}{n}-\ln\left(1+\frac{1}{n}\right)
+  <\frac{1}{n}-\frac{1}{n+1}=\frac{1}{n(n+1)}<\frac{1}{n^{2}}.
+\]
+再由 $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 收敛及比较判别法定理~\ref{thm:12.2.3}(1) 知, $\sum_{n=1}^{\infty}\left[\frac{1}{n}-\ln\left(1+\frac{1}{n}\right)\right]$ 收敛, 其和记为
+\begin{align*}
+  C&=\sum_{n=1}^{\infty}\left[\frac{1}{n}-\ln\left(1+\frac{1}{n}\right)\right]
+   =\lim_{n\to+\infty}\sum_{k=1}^{n}\left[\frac{1}{k}-\ln\left(1+\frac{1}{k}\right)\right] \\
+  &=\lim_{n\to+\infty}\left[\sum_{k=1}^{n}\frac{1}{k}-\sum_{k=1}^{n}\bigl(\ln(k+1)-\ln k\bigr)\right] \\
+  &=\lim_{n\to+\infty}\left[\sum_{k=1}^{n}\frac{1}{k}-\ln(n+1)\right]
+   =\lim_{n\to+\infty}\left[\sum_{k=1}^{n}\frac{1}{k}-\ln n-\ln\left(1+\frac{1}{n}\right)\right] \\
+  &=\lim_{n\to+\infty}\left(\sum_{k=1}^{n}\frac{1}{k}-\ln n\right),
+\end{align*}
+并称它为 Euler 常数, 可证 $C=0.577215\cdots$. 记
+\[
+  \varepsilon_{n}=1+\frac{1}{2}+\cdots+\frac{1}{n}-\ln n-C,
+\]
+则 $\lim_{n\to+\infty}\varepsilon_{n}=C-C=0$, 且有
+\[
+  1+\frac{1}{2}+\cdots+\frac{1}{n}=\ln n+C+\varepsilon_{n},
+\]
+这是调和级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 部分和的一个渐近表达式. 由此得到
+\[
+  \lim_{n\to+\infty}\frac{1+\frac{1}{2}+\cdots+\frac{1}{n}}{\ln n}
+  =\lim_{n\to+\infty}\frac{\ln n+C+\varepsilon_{n}}{\ln n}
+  =\lim_{n\to+\infty}\left(1+\frac{C+\varepsilon_{n}}{\ln n}\right)=1+0=1.
+\]
+\end{proof}
+
+\begin{example}\label{ex:12.2.9}
+判别级数 $\sum_{n=1}^{\infty}\frac{1}{2^{n}}\left(1+\frac{1}{n}\right)^{n^{2}}$ 的敛散性.
+\end{example}
+
+\begin{proof}
+解法 1 因为 $\lim_{n\to+\infty}\sqrt[n]{a_{n}}=\lim_{n\to+\infty}\frac{1}{2}\left(1+\frac{1}{n}\right)^{n}=\frac{\mathrm{e}}{2}>1$, 故应用 Cauchy 判别法的极限形式(定理~\ref{thm:12.2.4p}(2)) 知, 级数 $\sum_{n=1}^{\infty}\frac{1}{2^{n}}\left(1+\frac{1}{n}\right)^{n^{2}}$ 发散.
+
+解法 2 因为 $\lim_{n\to+\infty}a_{n}=\lim_{n\to+\infty}\frac{1}{2^{n}}\left(1+\frac{1}{n}\right)^{n}=\lim_{n\to+\infty}\left[\frac{(1+\frac{1}{n})^{n}}{2}\right]^{n}=+\infty\neq0$, 故由推论~\ref{cor:12.1.1} 推得 $\sum_{n=1}^{\infty}\frac{1}{2^{n}}\left(1+\frac{1}{n}\right)^{n^{2}}$ 发散.
+\end{proof}
+
+\begin{example}\label{ex:12.2.10}
+讨论级数 $\sum_{n=1}^{\infty}n!x^{n}\ (x\geqslant0)$ 的敛散性.
+\end{example}
+
+\begin{proof}
+因为当 $x>0$ 时,
+\[
+  \lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\lim_{n\to+\infty}\frac{(n+1)!x^{n+1}}{n!x^{n}}
+  =\lim_{n\to+\infty}(n+1)x=+\infty,
+\]
+故根据 d'Alembert 判别法的极限形式(定理~\ref{thm:12.2.5p}(2)) 知, $\sum_{n=1}^{\infty}n!x^{n}\ (x\geqslant0)$ 仅当 $x=0$ 时收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.11}
+讨论级数 $\sum_{n=1}^{\infty}\frac{n!}{n^{n}}x^{n}\ (x\geqslant0)$ 的敛散性.
+\end{example}
+
+\begin{proof}
+因为当 $x>0$ 时,
+\[
+  \lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\lim_{n\to+\infty}
+  \frac{\dfrac{(n+1)!}{(n+1)^{n+1}}x^{n+1}}{\dfrac{n!}{n^{n}}x^{n}}
+  =\lim_{n\to+\infty}\frac{x}{\left(1+\frac{1}{n}\right)^{n}}
+  =\frac{x}{\mathrm{e}}
+  \begin{cases}
+  <1, & 0<x<\mathrm{e},\\
+  =1, & x=\mathrm{e},\\
+  >1, & x>\mathrm{e},
+\end{cases}
+\]
+故根据 d'Alembert 判别法的极限形式(定理~\ref{thm:12.2.5p}(1)、(2)) 知, 级数 $\sum_{n=1}^{\infty}\frac{n!}{n^{n}}x^{n}$ 当 $0<x<\mathrm{e}$ 时收敛; 当 $x>\mathrm{e}$ 时此级数发散.
+
+当 $x=\mathrm{e}$ 时, $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=\frac{\mathrm{e}}{\mathrm{e}}=1$, 不能应用定理~\ref{thm:12.2.5} 判定. 但由于
+\[
+  \frac{a_{n+1}}{a_{n}}=\frac{x}{\left(1+\frac{1}{n}\right)^{n}}=\frac{\mathrm{e}}{\left(1+\frac{1}{n}\right)^{n}}>1,
+\]
+根据 d'Alembert 判别法(定理~\ref{thm:12.2.5}(2)) 知, 级数 $\sum_{n=1}^{\infty}\frac{n!}{n^{n}}\mathrm{e}^{n}$ 发散.
+
+综上得到级数 $\sum_{n=1}^{\infty}\frac{n!}{n^{n}}x^{n}$ 仅当 $0\leqslant x<\mathrm{e}$ 时收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.12}
+讨论级数 $\sum_{n=1}^{\infty}\frac{n!}{(x+1)(x+2)\cdots(x+n)}$ 当 $x\geqslant0$ 时的敛散性.
+\end{example}
+
+\begin{proof}
+由于 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=\lim_{n\to+\infty}\frac{n+1}{n+1+x}=1$($x$ 固定), 故不能用 d'Alembert 判别法判定. 因为
+\[
+  \lim_{n\to+\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)=\lim_{n\to+\infty}\frac{nx}{n+1}=x,
+\]
+所以根据 Raabe 判别法的极限形式(定理~\ref{thm:12.2.6p}(1)、(2)) 知, 当 $x>1$ 时, 级数 $\sum_{n=1}^{\infty}\frac{n!}{(x+1)(x+2)\cdots(x+n)}$ 收敛; 当 $0\leqslant x<1$ 时此级数发散.
+
+当 $x=1$ 时, 虽然用 Raabe 判别法不能判定, 但是原级数
+\[
+  \sum_{n=1}^{\infty}\frac{n!}{(1+1)(1+2)\cdots(1+n)}
+  =\sum_{n=1}^{\infty}\frac{1}{n+1}
+\]
+发散.
+
+综上得到级数 $\sum_{n=1}^{\infty}\frac{n!}{(x+1)(x+2)\cdots(x+n)}$ 仅当 $x>1$ 时收敛.
+\end{proof}
+
+\begin{example}\label{ex:12.2.13}
+设 $p>0$, $q>0$, 问: $p,q$ 取何值时, 级数
+\[
+  \sum_{n=1}^{\infty}\frac{p(p+1)\cdots(p+n-1)}{n!}\frac{1}{n^{q}}
+\]
+收敛.
+\end{example}
+
+\begin{proof}
+因为
+\begin{align*}
+  \frac{a_{n}}{a_{n+1}}
+  &=\frac{n+1}{n+p}\left(1+\frac{1}{n}\right)^{q}
+   =\left(1+\frac{1-p}{n+p}\right)\left(1+\frac{q}{n}+o\left(\frac{1}{n}\right)\right) \\
+  &=1+\frac{q}{n}+\frac{1-p}{n+p}+o\left(\frac{1}{n}\right)
+   =1+\frac{q+1-p}{n}+o\left(\frac{1}{n}\right),
+\end{align*}
+故
+\[
+  n\left(\frac{a_{n}}{a_{n+1}}-1\right)
+  =q-p+1+o\left(\frac{1}{n}\right)\to q-p+1\quad(n\to+\infty).
+\]
+所以, 根据 Raabe 判别法, 级数当 $q>p$ 时收敛; 当 $q<p$ 时此级数发散.
+\end{proof}
+
+\begin{example}\label{ex:12.2.14}
+证明: 级数
+\[
+  \frac{1}{2}+\frac{1}{3}+\frac{1}{2^{2}}+\frac{1}{3^{2}}+\frac{1}{2^{3}}+\frac{1}{3^{3}}
+  +\frac{1}{2^{4}}+\frac{1}{3^{4}}+\cdots
+\]
+收敛.
+\end{example}
+
+\begin{proof}
+因为
+\[
+  \varlimsup_{n\to+\infty}\sqrt[n]{a_{n}}
+  =\lim_{n\to+\infty}\sqrt[2n-1]{\frac{1}{2^{n}}}
+  =\lim_{n\to+\infty}\left(\frac{1}{2}\right)^{\frac{n}{2n-1}}
+  =\left(\frac{1}{2}\right)^{\frac{1}{2}}
+  =\frac{1}{\sqrt{2}}<1,
+\]
+所以由 Cauchy 判别法的极限形式(定理~\ref{thm:12.2.4p}(1)) 知, 该级数收敛. 但是,
+\[
+  \lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\lim_{n\to+\infty}\frac{\left(\frac{1}{3}\right)^{n}}{\left(\frac{1}{2}\right)^{n}}
+  =\lim_{n\to+\infty}\left(\frac{2}{3}\right)^{n}=0,
+\]
+\[
+  \varlimsup_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\lim_{n\to+\infty}\frac{\dfrac{1}{3^{n+1}}}{\dfrac{1}{2^{n}}}
+  =\frac{1}{2}\lim_{n\to+\infty}\left(\frac{3}{2}\right)^{n}=+\infty,
+\]
+故用 d'Alembert 判别法的极限形式不能判定此级数的敛散性.
+\end{proof}
+
+\begin{example}\label{ex:12.2.15}
+讨论级数 $\sum_{n=1}^{\infty}\frac{x^{n}}{(1+x)(1+x^{2})\cdots(1+x^{n})}\ (x\geqslant0)$ 的敛散性.
+\end{example}
+
+\begin{proof}
+当 $x>0$ 时, 由
+\begin{align*}
+  \lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  &=\lim_{n\to+\infty}\frac{x}{1+x^{n+1}}
+   =\begin{cases}
+   x, & 0<x<1,\\[
+2pt]
+   \dfrac{1}{2}, & x=1,\\[2pt]
+   0, & x>1
+   \end{cases} <1,
+\end{align*}
+根据 d'Alembert 判别法的极限形式(定理~\ref{thm:12.2.5p}(1)) 知, 原级数当 $x\geqslant0$ 时都收敛(其中 $x=0$ 时, 原级数为 $\sum_{n=1}^{\infty}0$ 收敛).
+\end{proof}
+\begin{example}\label{ex:12.2.16}
+研究超几何级数
+\[
+  F(\alpha,\beta,\gamma,x)=1+\sum_{n=1}^{\infty}
+  \frac{\alpha(\alpha+1)\cdots(\alpha+n-1)\beta(\beta+1)\cdots(\beta+n-1)}
+       {n!\gamma(\gamma+1)\cdots(\gamma+n-1)}x^{n}
+\]
+的敛散性, 其中 $\alpha,\beta,\gamma$ 皆为正数, $x\geqslant0$.
+\end{example}
+
+\begin{proof}
+令
+\[
+  a_{n}=\frac{\alpha(\alpha+1)\cdots(\alpha+n-1)\beta(\beta+1)\cdots(\beta+n-1)}
+             {n!\gamma(\gamma+1)\cdots(\gamma+n-1)}x^{n},
+\]
+则
+\[
+  \lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}
+  =\lim_{n\to+\infty}\frac{(n+\alpha)(n+\beta)x}{(n+1)(n+\gamma)}=x.
+\]
+根据 d'Alembert 判别法的极限形式(定理~\ref{thm:12.2.5p}(1)、(2)):
+\begin{enumerate}
+  \item[(1)] 当 $0\leqslant x<1$ 时, $F(\alpha,\beta,\gamma,x)$ 收敛;
+  \item[(2)] 当 $x>1$ 时, $F(\alpha,\beta,\gamma,x)$ 发散;
+  \item[(3)] 当 $x=1$ 时, 有
+\end{enumerate}
+\begin{align*}
+  \lim_{n\to+\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)
+  &=\lim_{n\to+\infty}n\left[\frac{(n+1)(n+\gamma)}{(n+\alpha)(n+\beta)}-1\right] \\
+  &=\lim_{n\to+\infty}
+   \frac{(\gamma+1-\alpha-\beta)n^{2}+(\gamma-\alpha\beta)n}
+        {n^{2}+(\alpha+\beta)n+\alpha\beta} \\
+  &=\gamma+1-\alpha-\beta.
+\end{align*}
+应用 Raabe 判别法的极限形式(定理~\ref{thm:12.2.6p}(1)、(2)) 推得:
+\begin{enumerate}
+  \item[①] 当 $\gamma+1-\alpha-\beta>1$(即 $\gamma>\alpha+\beta$)时, $F(\alpha,\beta,\gamma,x)$ 收敛;
+  \item[②] 当 $\gamma+1-\alpha-\beta<1$(即 $\gamma<\alpha+\beta$)时, $F(\alpha,\beta,\gamma,x)$ 发散;
+  \item[③] 当 $\gamma+1-\alpha-\beta=1$(即 $\gamma=\alpha+\beta$)时, 应进一步讨论.
+\end{enumerate}
+
+因为 $\alpha,\beta$ 皆为正数, 所以
+\begin{align*}
+  n\left(\frac{a_{n}}{a_{n+1}}-1\right)-1
+  &=\frac{(\gamma+1-\alpha-\beta)n^{2}+(\gamma-\alpha\beta)n}{n^{2}+(\alpha+\beta)n+\alpha\beta}-1 \\
+  &=\frac{n^{2}+(\gamma-\alpha\beta)n}{n^{2}+(\alpha+\beta)n+\alpha\beta}-1
+   =\frac{(\gamma-\alpha-\beta-\alpha\beta)n-\alpha\beta}{n^{2}+(\alpha+\beta)n+\alpha\beta} \\
+  &=\frac{-\alpha\beta n-\alpha\beta}{n^{2}+(\alpha+\beta)n+\alpha\beta}<0.
+\end{align*}
+于是, $\forall n\in\mathbb{N}$, 恒有
+\[
+  n\left(\frac{a_{n}}{a_{n+1}}-1\right)<1.
+\]
+根据 Raabe 判别法(定理~\ref{thm:12.2.6}) 可知 $F(\alpha,\beta,\gamma,x)$ 发散.
+
+或由
+\begin{align*}
+  \frac{a_{n}}{a_{n+1}}
+  &=\frac{(n+1)(n+\gamma)}{(n+\alpha)(n+\beta)}
+   =\frac{n^{2}+(\gamma+1)n+\gamma}{n^{2}+(\alpha+\beta)n+\alpha\beta} \\
+  &=1+\frac{(\gamma+1-\alpha-\beta)n+\gamma-\alpha\beta}{n^{2}+(\alpha+\beta)n+\alpha\beta} \\
+  &=1+\frac{n+\gamma-\alpha\beta}{n^{2}+(\alpha+\beta)n+\alpha\beta} \\
+  &=1+\frac{1}{n}+\frac{0}{n\ln n}
+   +\frac{-\alpha\beta n-\alpha\beta}{n\bigl[n^{2}+(\alpha+\beta)n+\alpha\beta\bigr]} \\
+  &=1+\frac{1}{n}+\frac{0}{n\ln n}+o\left(\frac{1}{n\ln n}\right),
+\end{align*}
+根据 Gauss 判别法(定理~\ref{thm:12.2.7}(2)), $F(\alpha,\beta,\gamma,x)$ 发散.
+\end{proof}
+
+\begin{example}\label{ex:12.2.17}
+设 $\sum_{n=1}^{\infty}a_{n}$ 为一个收敛的正项级数, 试作一收敛的严格正项级数 $\sum_{n=1}^{\infty}b_{n}$, 使得
+\[
+  \lim_{n\to+\infty}\frac{a_{n}}{b_{n}}=0.
+\]
+这表明收敛得最慢的正项级数是不存在的.
+\end{example}
+
+\begin{proof}
+第 1 步 设 $\sum_{n=1}^{\infty}a_{n}$ 为严格正项级数, 记 $\sum_{n=1}^{\infty}a_{n}=S$, $S_{0}=0$, $S_{n}=\sum_{k=1}^{n}a_{k}$, $\beta_{n}=S-S_{n-1}$, 则 $\beta_{n}\ (>0)$ 严格减且 $\lim_{n\to+\infty}\beta_{n}=\lim_{n\to+\infty}(S-S_{n-1})=S-S=0$. 令 $b_{n}=\sqrt{\beta_{n}}-\sqrt{\beta_{n+1}}$, 则 $b_{n}>0$ 且
+\[
+  \sum_{k=1}^{n}b_{k}
+  =\sum_{k=1}^{n}\left(\sqrt{\beta_{k}}-\sqrt{\beta_{k+1}}\right)
+  =\sqrt{\beta_{1}}-\sqrt{\beta_{n+1}}
+  \rightarrow\sqrt{\beta_{1}}-0=\sqrt{\beta_{1}}\quad(n\to+\infty),
+\]
+即 $\sum_{n=1}^{\infty}b_{n}=\sqrt{\beta_{1}}=\sqrt{S-S_{0}}=\sqrt{S}$. 此外,
+\begin{align*}
+  \frac{a_{n}}{b_{n}}
+  &=\frac{a_{n}}{\sqrt{\beta_{n}}-\sqrt{\beta_{n+1}}}
+   =\frac{a_{n}\left(\sqrt{\beta_{n}}+\sqrt{\beta_{n+1}}\right)}{\beta_{n}-\beta_{n+1}} \\
+  &\quad =\frac{a_{n}\left(\sqrt{\beta_{n}}+\sqrt{\beta_{n+1}}\right)}{S_{n}-S_{n-1}}
+   =\sqrt{\beta_{n}}+\sqrt{\beta_{n+1}}\rightarrow0\quad(n\to+\infty).
+\end{align*}
+所以, $\sum_{n=1}^{\infty}b_{n}$ 就是要找的正项的级数.
+
+第 2 步 设 $\sum_{n=1}^{\infty}a_{n}$ 为正项级数, 则 $a_{n}\geqslant0$. 令
+\[
+  \tilde{a}_{n}=
+  \begin{cases}
+  a_{n}, & a_{n}>0,\\[2pt]
+  \dfrac{1}{2^{n}}, & a_{n}=0,
+\end{cases}
+\]
+则 $\sum_{n=1}^{\infty}\tilde{a}_{n}$ 为收敛的严格正项级数. 根据第 1 步, 存在收敛的严格正项级数 $\sum_{n=1}^{\infty}b_{n}$, 使得,
+\[
+  \lim_{n\to+\infty}\frac{\tilde{a}_{n}}{b_{n}}=0.
+\]
+由于
+\[
+  0\leqslant\frac{a_{n}}{b_{n}}\leqslant\frac{\tilde{a}_{n}}{b_{n}}\to0\quad(n\to+\infty)
+\]
+及夹逼定理知,
+\[
+  \lim_{n\to+\infty}\frac{b_{n}}{a_{n}}=0.
+\]
+因此, $\sum_{n=1}^{\infty}b_{n}$ 就是比 $\sum_{n=1}^{\infty}a_{n}$ 收敛得慢的严格正项级数.
+\end{proof}
+
+\begin{exblock}{练习题 12.2}
+\begin{enumerate}
+  \item 用比较判别法讨论下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{3n^{2}+5}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n2^{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n^{2}}{3n^{2}+1}\right)^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}\sin\frac{1}{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n+1}{n(n+2)}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{1+\frac{1}{n}}}$;
+    \item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{\ln n}}$;
+    \item $\displaystyle\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{\ln\ln n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(n\ln\frac{2n+1}{2n-1}-1\right)$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}\sin\sqrt{n^{2}+1}\,\pi}{n^{\alpha}}$.
+  \end{enumerate}
+  \item 讨论下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}n\tan\frac{\pi}{2^{n+1}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{2}}{3^{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{5}}{3^{n}}\left[\sqrt{3}+(-1)^{n}\right]^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{2}}{\left(1+\frac{1}{n}\right)^{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{n+\frac{1}{n}}}{\left(n+\frac{1}{n}\right)^{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n!}\ (x\geqslant0)$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n-4}{3n+1}\right)^{n}$;
+    \item $\displaystyle\sum_{n=2}^{\infty}\frac{n^{\ln n}}{(\ln n)^{n}}$.
+  \end{enumerate}
+  \item 应用 Raabe 判别法, 讨论下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{\sqrt{n!}}{(a+\sqrt{1})(a+\sqrt{2})\cdots(a+\sqrt{n})},\ a>0$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n!n^{-p}}{q(q+1)\cdots(q+n)},\ p>0,\ q>0$.
+  \end{enumerate}
+  \item 证明: 级数 $\sum_{n=2}^{\infty}\frac{1}{n\ln n\ln\ln n}$ 发散.
+  \item 问 $p,q$ 取何值时, 级数 $\sum_{n=3}^{\infty}\frac{1}{n(\ln n)^{p}(\ln\ln n)^{q}}$ 收敛.
+  \item 设正项级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 证明: $\sum_{n=1}^{\infty}a_{n}^{2}$ 也收敛. 但反之不然, 举例说明之. 构造一个收敛级数 $\sum_{n=1}^{\infty}a_{n}$, 但 $\sum_{n=1}^{\infty}a_{n}^{2}$ 发散.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}^{2}$, $\sum_{n=1}^{\infty}b_{n}^{2}$ 收敛, 证明: $\sum_{n=1}^{\infty}\left|a_{n}b_{n}\right|$, $\sum_{n=1}^{\infty}(a_{n}+b_{n})^{2}$ 也收敛.
+  \item 设正项级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛. 证明: 级数 $\sum_{n=1}^{\infty}\sqrt{a_{n}a_{n+1}}$ 也收敛. 举例说明逆命题不成立. 但若 $\{a_{n}\}$ 为单调减数列, 则逆命题也成立.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 为一个收敛的正项级数. 证明: $\forall\delta>0$, 级数 $\sum_{n=1}^{\infty}n^{-\frac{1+\delta}{2}}\sqrt{a_{n}}<+\infty$. 问: 当 $\delta=0$ 时, 结论是否还成立?
+  \item 设 $\delta>0$, $a_{n}>0$, $n=1,2,\cdots$. 证明:
+  \begin{enumerate}
+    \item[(1)] 如果当 $n>N$ 时, 有 $\left(\ln\frac{1}{a_{n}}\right)(\ln n)^{-1}\geqslant1+\delta$, 则 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+    \item[(2)] 如果当 $n>N$ 时, 有 $\left(\ln\frac{1}{a_{n}}\right)(\ln n)^{-1}\leqslant1$, 则 $\sum_{n=1}^{\infty}a_{n}$ 发散;
+    \item[(3)] 应用上面的结果, 证明 $\sum_{n=2}^{\infty}\frac{1}{(\ln n)^{\ln n}}$, $\sum_{n=1}^{\infty}\frac{1}{3^{\ln n}}$ 都收敛.
+  \end{enumerate}
+  \item 设 $p\geqslant0$. 证明: 级数
+  \[
+    \sum_{n=1}^{\infty}\frac{n!}{(p+1)(p+2)\cdots(p+n)}
+\]
+  当 $p>1$ 时收敛; 当 $0\leqslant p\leqslant1$ 时发散.
+  \item 设 $a_{n}\geqslant0$, 证明: 级数 $\sum_{n=1}^{\infty}\frac{a_{n}}{(1+a_{1})(1+a_{2})\cdots(1+a_{n})}$ 收敛.
+  \item 设 $a=A_{0}<A_{1}<A_{2}<\cdots<A_{n}<\cdots$, $A_{n}\to+\infty\ (n\to+\infty)$ 为任意给定的序列, $f(x)>0$, 则 $\int_{a}^{+\infty}f(x)\,\mathrm{d}x$ 与 $\sum_{n=1}^{\infty}\int_{A_{n-1}}^{A_{n}}f(x)\,\mathrm{d}x$ 同敛散, 且当收敛时, 有
+  \[
+    \int_{a}^{+\infty}f(x)\,\mathrm{d}x=\sum_{n=1}^{\infty}\int_{A_{n-1}}^{A_{n}}f(x)\,\mathrm{d}x.
+\]
+  \item 设 $a_{n}\neq0,\ n=1,2,\cdots$, 且 $\lim_{n\to+\infty}a_{n}=a\neq0$. 证明: 级数 $\sum_{n=1}^{\infty}\left|a_{n+1}-a_{n}\right|$ 与 $\sum_{n=1}^{\infty}\left|\frac{1}{a_{n+1}}-\frac{1}{a_{n}}\right|$ 同时敛散.
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 12.2}
+\begin{enumerate}
+  \item 证明: 级数 $\sum_{n=1}^{\infty}x^{1+\frac{1}{2}+\cdots+\frac{1}{n}}$ 当 $0<x<\mathrm{e}^{-1}$ 时收敛; 当 $x\geqslant\mathrm{e}^{-1}$ 时, 发散.
+  \item 设 $a_{n}>0$, $S_{n}=\sum_{k=1}^{n}a_{k}$. 证明:
+  \begin{enumerate}
+    \item[(1)] 若 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 则 $\sum_{n=1}^{\infty}\frac{a_{n}}{S_{n}}$ 也收敛;
+    \item[(2)] 若 $\sum_{n=1}^{\infty}a_{n}$ 发散, 则 $\frac{a_{k}}{S_{n}^{2}}\leqslant\frac{1}{S_{k-1}}-\frac{1}{S_{k}}$ 且 $\sum_{n=1}^{\infty}\frac{a_{n}}{S_{n}^{2}}$ 收敛;
+    \item[(3)] 若 $\sum_{n=1}^{\infty}a_{n}$ 发散, 则当 $\alpha>1$ 时, $\sum_{n=1}^{\infty}\frac{a_{n}}{S_{n}}$ 收敛; 当 $\alpha\leqslant1$ 时, $\sum_{n=1}^{\infty}\frac{a_{n}}{S_{n}^{\alpha}}$ 发散.
+  \end{enumerate}
+  \item 设 $\{a_{n}\}$ 为单调减的正数列. 证明: 级数 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}2^{n}a_{2^{n}}$ 同敛散. 应用上述结果证明:
+  \begin{enumerate}
+    \item[(1)] $\sum_{n=1}^{\infty}\frac{1}{n^{1+\alpha}}$ 当 $\alpha>0$ 时收敛, 当 $\alpha\leqslant0$ 时发散;
+    \item[(2)] $\sum_{n=2}^{\infty}\frac{1}{n\ln n}$ 发散.
+  \end{enumerate}
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 为一个发散的正项级数.
+  \begin{enumerate}
+    \item[(1)] 证明: $\sum_{n=1}^{\infty}\frac{a_{n}}{1+a_{n}}$ 发散, $\sum_{n=1}^{\infty}\frac{a_{n}}{1+n^{2}a_{n}}$ 收敛.
+    \item[(2)] 研究 $\sum_{n=1}^{\infty}\frac{a_{n}}{1+a_{n}^{2}}$, $\sum_{n=1}^{\infty}\frac{a_{n}}{1+na_{n}}$ 的敛散性.
+  \end{enumerate}
+  \item 证明: 从调和级数 $\sum_{n=1}^{\infty}\frac{1}{n}$ 中划去所有分母中含有数字 9 的那些项(例如: $\frac{1}{9}$, $\frac{1}{19}$, $\frac{1}{29}$, $\cdots$)之后, 所得的新级数是收敛的, 且其和不超过 80.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 为一个正项级数, 如果 $\lim_{n\to+\infty}\frac{a_{n+1}}{a_{n}}=q<1$ 或 $\lim_{n\to+\infty}\sqrt[n]{a_{n}}=q<1$, 则 $\forall r\in(q,1)$, 总有 $\lim_{n\to+\infty}\frac{a_{n}}{r^{n}}=0$. 这说明能用 d'Alembert 判别法的极限形式或 Cauchy 判别法的极限形式判定收敛的级数 $\sum_{n=1}^{\infty}a_{n}$ 总比等比(几何)级数 $\sum_{n=1}^{\infty}\frac{1}{r^{n}}$ 收敛得快.
+  \item 研究下列级数的敛散性:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\frac{1}{\sqrt{n}}-\sqrt{\ln\frac{n+1}{n}}\right)$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(a^{\frac{1}{n}}-\frac{b^{\frac{1}{n}}+c^{\frac{1}{n}}}{2}\right),\ a>0,\ b>0,\ c>0$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(n^{\frac{1}{n^{2}+1}}-1\right)$.
+  \end{enumerate}
+  \item 设 $a_{n}\geqslant0$, $n=1,2,\cdots$, $\sum_{n=1}^{\infty}a_{n}$ 收敛. 证明: $\lim_{m\to+\infty}\frac{1}{m}\sum_{n\leqslant m}1=0$, 其中 $\sum_{n\leqslant m}1$ 表示 $a_{1},\cdots,a_{m}$ 中满足 $a_{n}>\frac{1}{n}$ 的 $a_{n}$ 的个数.
+  \item 设 $a_{n}>0\ (n=1,2,\cdots)$, $\sum_{n=1}^{\infty}a_{n}$ 收敛, 令 $r_{n}=\sum_{k=n}^{\infty}a_{k}$, 证明: 级数 $\sum_{k=1}^{\infty}\frac{a_{k}}{r_{k}}$ 发散.
+  \item 设 $\lim_{n\to+\infty}\left(n^{2n\sin\frac{1}{n}}a_{n}\right)=1$, 证明: 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+  \item 设 $a_{n}=\left(l-\frac{p\ln n}{n}\right)^{n}$, 证明:
+  \begin{enumerate}
+    \item[(1)] $a_{n}\sim\frac{1}{n^{p}}\ (n\to+\infty)$;
+    \item[(2)] 级数 $\sum_{n=1}^{\infty}a_{n}$ 当 $p>1$ 时收敛, 当 $p\leqslant1$ 时发散.
+  \end{enumerate}
+  \item 设 $0<p_{1}<p_{2}<\cdots<p_{n}<\cdots$, 证明:
+  \[
+    \sum_{n=1}^{\infty}\frac{1}{p_{n}}\text{ 收敛}\ \Leftrightarrow\
+    \sum_{n=1}^{\infty}\frac{n}{p_{1}+p_{2}+\cdots+p_{n}}\text{ 收敛}.
+\]
+  \item 设 $a_{n}\geqslant0$, 且 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 证明: 当 $p>\frac{1}{2}$ 时, 级数 $\sum_{n=1}^{\infty}\frac{\sqrt{a_{n}}}{n^{p}}$ 收敛.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 为正项级数, 满足:
+  \begin{enumerate}
+    \item[(1)] $\sum_{k=1}^{n}(a_{k}-a_{n})$ 对 $n$ 有界;
+    \item[(2)] 当 $n$ 趋于 $+\infty$ 时, $\{a_{n}\}$ 单调减趋于 $0$.
+  \end{enumerate}
+  证明: 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛.
+  \item 应用 d'Alembert 判别法证明级数
+  \[
+    \sqrt{2-\sqrt{2}}+\sqrt{2-\sqrt{2}}\sqrt{2+\sqrt{2}}
+    +\sqrt{2-\sqrt{2+\sqrt{2}}}\sqrt{2+\sqrt{2+\sqrt{2}}}+\cdots
+\]
+  收敛.
+  \item 设级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛, $a_{n}\geqslant0$, $\{a_{n}\}$ 单调减, 证明: $\lim_{n\to+\infty}na_{n}=0$, 即 $a_{n}=o\left(\frac{1}{n}\right)\ (n\to+\infty)$. 举例说明, 删去条件"$\{a_{n}\}$ 单调减", 上述结论不成立. 进而给出 $a_{n}>0\ (n=1,2,\cdots)$ 的反例.
+  \item 设 $\{a_{n}\}$ 为正的单调减数列, $\sum_{n=1}^{\infty}a_{n}$ 发散. 证明:
+  \[
+    \lim_{n\to+\infty}\frac{a_{2}+a_{4}+\cdots+a_{2n}}{a_{1}+a_{3}+\cdots+a_{2n-1}}=1.
+\]
+  \item 设 $\{a_{n}\}$ 为正的单调增加的数列. 证明: 级数 $\sum_{n=1}^{\infty}\left(1-\frac{a_{n}}{a_{n+1}}\right)$ 当 $\{a_{n}\}$ 有界时收敛; 而当 $\{a_{n}\}$ 无界时发散.
+\end{enumerate}
+\end{exblock}

@@ -1,0 +1,353 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  S12.4  级数的乘法
+%  源：原书印刷页 55-62（PDF 物理页 61-68）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch12_12_4_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误见 tools/_make_ch12_4.py 头部说明
+% ==================================================================
+\section{级数的乘法}\label{sec:12.4}
+
+设有两个收敛级数 $\sum_{n=1}^{\infty}a_{n}=A$, $\sum_{n=1}^{\infty}b_{n}=B$. 这两个无穷级数如何相乘? 对于有限和的乘法, 有
+\[
+  \begin{aligned}
+    \sum_{i=1}^{m}a_{i}\cdot\sum_{j=1}^{n}b_{j}&=(a_{1}+a_{2}+\cdots+a_{m})(b_{1}+b_{2}+\cdots+b_{n})\\
+    &=a_{1}b_{1}+a_{2}b_{1}+\cdots+a_{m}b_{1}\\
+    &\quad+a_{1}b_{2}+a_{2}b_{2}+\cdots+a_{m}b_{2}+\cdots\\
+    &\quad+a_{1}b_{n}+a_{2}b_{n}+\cdots+a_{m}b_{n}.
+  \end{aligned}
+\]
+
+形式地套到无穷级数的乘积上, 可以写作:
+\[
+  \begin{aligned}
+    &a_{1}b_{1}+a_{2}b_{1}+a_{3}b_{1}+\cdots+a_{m}b_{1}+\cdots\\
+    &+a_{1}b_{2}+a_{2}b_{2}+a_{3}b_{2}+\cdots+a_{m}b_{2}+\cdots\\
+    &+a_{1}b_{3}+a_{2}b_{3}+a_{3}b_{3}+\cdots+a_{m}b_{3}+\cdots\\
+    &+a_{1}b_{n}+a_{2}b_{n}+a_{3}b_{n}+\cdots+a_{m}b_{n}+\cdots\\
+    &=\sum_{i,j=1}^{\infty}a_{i}b_{j}.
+  \end{aligned}
+\]
+
+这些项如何求它的部分和? 通常有两种方法:
+
+(1) 沿对角线相加:
+\[
+  \begin{aligned}
+    &a_{1}b_{1}+(a_{1}b_{2}+a_{2}b_{1})+(a_{1}b_{3}+a_{2}b_{2}+a_{3}b_{1})+(a_{1}b_{4}+a_{2}b_{3}+a_{3}b_{2}+a_{4}b_{1})+\cdots\\
+    &+(a_{1}b_{n}+a_{2}b_{n-1}+\cdots+a_{n-1}b_{2}+a_{n}b_{1})+\cdots=\sum_{n=1}^{\infty}c_{n},
+  \end{aligned}
+\]
+\[
+  c_{n}=\sum_{i=1}^{n}a_{i}b_{n-i+1}=a_{1}b_{n}+a_{2}b_{n-1}+\cdots+a_{n-1}b_{2}+a_{n}b_{1}.
+\]
+
+(2) 沿方块相加:
+\[
+  \begin{aligned}
+    &a_{1}b_{1}+(a_{1}b_{2}+a_{2}b_{2}+a_{2}b_{1})+(a_{1}b_{3}+a_{2}b_{3}+a_{3}b_{3}+a_{3}b_{2}+a_{3}b_{1})\\
+    &+\left(a_{1}b_{4}+a_{2}b_{4}+a_{3}b_{4}+a_{4}b_{4}+a_{5}b_{4}+a_{6}b_{3}+a_{7}b_{3}+a_{8}b_{2}+a_{9}b_{1}\right)+\cdots=\sum_{n=1}^{\infty}d_{n},
+  \end{aligned}
+\]
+其中 $d_{n}=a_{1}b_{n}+a_{2}b_{n}+\cdots+a_{n}b_{n}+a_{n}b_{n-1}+\cdots+a_{n}b_{1}$（共 $2n-1$ 项）.
+
+用得较多的是对角线法. 问题是 $\sum_{n=1}^{\infty}c_{n}=AB$? 先观察例子.
+
+\begin{example}\label{ex:12.4.1}
+设 $a_{n}=b_{n}=\frac{(-1)^{n-1}}{\sqrt{n}}$, 由 Leibniz 判别法知, $\sum_{n=1}^{\infty}a_{n}=\sum_{n=1}^{\infty}b_{n}=\sum_{n=1}^{\infty}\frac{(-1)^{n-1}}{\sqrt{n}}$ 收敛. 而从
+\[
+  \begin{aligned}
+    c_{n}&=\sum_{i=1}^{n}a_{i}b_{n-i+1}=a_{1}b_{n}+a_{2}b_{n-1}+a_{3}b_{n-2}+\cdots+a_{n}b_{1}\\
+    &=1\cdot\frac{(-1)^{n-1}}{\sqrt{n}}+\frac{-1}{\sqrt{2}}\cdot\frac{(-1)^{n-2}}{\sqrt{n-1}}+\frac{(-1)^{2}}{\sqrt{3}}\cdot\frac{(-1)^{n-3}}{\sqrt{n-2}}+\cdots+\frac{(-1)^{n-1}}{\sqrt{n}}\cdot1\\
+    &=(-1)^{n-1}\left[\frac{1}{\sqrt{1\cdot n}}+\frac{1}{\sqrt{2(n-1)}}+\frac{1}{\sqrt{3(n-2)}}+\cdots+\frac{1}{\sqrt{n\cdot1}}\right],
+  \end{aligned}
+\]
+\[
+  |c_{n}|=\sum_{k=1}^{n}\frac{1}{\sqrt{k(n-k+1)}}\geqslant\frac{n}{\frac{k+(n-k+1)}{2}}=\frac{2n}{n+1}\to2\neq0\quad(n\to+\infty),
+\]
+即 $\lim\limits_{n\to+\infty}c_{n}\neq0$ 以及定理~\ref{thm:12.1.2} 立即推得 $\sum_{n=1}^{\infty}c_{n}$ 发散.
+\end{example}
+
+这表明收敛级数的乘积按对角线求和未必收敛. 但是, 如果 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 都是绝对收敛的级数, 情形就不一样了.
+
+\begin{theorem}[Cauchy]\label{thm:12.4.1}
+设级数 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 都绝对收敛, 其和分别为 $A$ 与 $B$, 则 $\sum_{n=1}^{\infty}c_{n}$ 也是绝对收敛的级数, 且 $\sum_{n=1}^{\infty}c_{n}=AB$, 其中 $c_{n}=\sum_{i=1}^{n}a_{i}b_{n-i+1}$.
+\end{theorem}
+
+\begin{proof}
+设 $A_{N}=\sum_{n=1}^{N}a_{n}$, $B_{N}=\sum_{n=1}^{N}b_{n}$ 为部分和. 由条件知
+\[
+  \lim_{N\to+\infty}A_{N}=A,\quad\lim_{N\to+\infty}B_{N}=B.
+\]
+再设
+\[
+  A_{N}^{*}=\sum_{n=1}^{N}|a_{n}|,\quad B_{N}^{*}=\sum_{n=1}^{N}|b_{n}|,\quad A^{*}=\lim_{N\to+\infty}A_{N}^{*},\quad B^{*}=\lim_{N\to+\infty}B_{N}^{*}.
+\]
+
+(1)
+\[
+  \begin{aligned}
+    C_{N}^{*}&=\sum_{n=1}^{N}|c_{n}|=\sum_{n=1}^{N}\left|a_{1}b_{n}+a_{2}b_{n-1}+\cdots+a_{n}b_{1}\right|\\
+    &\leqslant\sum_{n=1}^{N}\bigl[|a_{1}b_{n}|+|a_{2}b_{n-1}|+\cdots+|a_{n}b_{1}|\bigr]\\
+    &=|a_{1}b_{1}|+(|a_{1}b_{2}|+|a_{2}b_{1}|)+\cdots+(|a_{1}b_{N}|+\cdots+|a_{N}b_{1}|)\\
+    &=|a_{1}b_{1}|+|a_{2}b_{1}|+\cdots+|a_{N}b_{1}|\\
+    &\quad+|a_{1}b_{2}|+|a_{2}b_{2}|+\cdots+|a_{N}b_{2}|+\cdots\\
+    &\quad+|a_{1}b_{N}|+|a_{2}b_{N}|+\cdots+|a_{N}b_{N}|\\
+    &=\sum_{n=1}^{N}|a_{n}|\cdot\sum_{n=1}^{N}|b_{n}|=A_{N}^{*}B_{N}^{*}\leqslant A^{*}B^{*},
+  \end{aligned}
+\]
+即部分和 $\sum_{n=1}^{N}|c_{n}|$ 有上界, 因此, $\sum_{n=1}^{\infty}|c_{n}|$ 收敛, 从而 $\sum_{n=1}^{\infty}c_{n}$ 绝对收敛.
+
+(2) 再证 $\sum_{n=1}^{\infty}c_{n}=AB$. 令
+\[
+  \begin{aligned}
+    C_{N}&=\sum_{n=1}^{N}c_{n}=a_{1}b_{1}+(a_{1}b_{2}+a_{2}b_{1})+(a_{1}b_{3}+a_{2}b_{2}+a_{3}b_{1})+\cdots\\
+    &\quad+(a_{1}b_{N}+a_{2}b_{N-1}+\cdots+a_{N}b_{1})\to C\quad(N\to+\infty).
+  \end{aligned}
+\]
+由于 $\sum_{n=1}^{\infty}|c_{n}|=|a_{1}b_{1}|+(|a_{1}b_{2}|+|a_{2}b_{1}|)+\cdots+(|a_{1}b_{n}|+\cdots+|a_{n}b_{1}|)+\cdots$ 绝对收敛, 故打开括号
+\[
+  |a_{1}b_{1}|+|a_{1}b_{2}|+|a_{2}b_{1}|+|a_{1}b_{3}|+|a_{2}b_{2}|+|a_{3}b_{1}|+\cdots
+\]
+也收敛, 即级数
+\[
+  a_{1}b_{1}+a_{1}b_{2}+a_{2}b_{1}+a_{1}b_{3}+a_{2}b_{2}+a_{3}b_{1}+\cdots
+\]
+绝对收敛. 根据定理~\ref{thm:12.3.6}, 可以任意交换它的无穷多项, 且任意结合所得新级数也绝对收敛, 且和不变. 因此, 可按方块形式相加得
+\[
+  C=\lim_{N\to+\infty}A_{N}B_{N}=\lim_{N\to+\infty}A_{N}\cdot\lim_{N\to+\infty}B_{N}=AB.
+\]
+\end{proof}
+
+如果将定理~\ref{thm:12.4.1} 中条件减弱为有一个级数绝对收敛, 而另一个级数收敛, 则有下面的定理.
+
+\begin{theorem}[Mertens]\label{thm:12.4.2}
+设级数 $\sum_{n=1}^{\infty}a_{n}$ 绝对收敛, $\sum_{n=1}^{\infty}b_{n}$ 收敛, 且 $\sum_{n=1}^{\infty}a_{n}=A$, $\sum_{n=1}^{\infty}b_{n}=B$, 则
+\[
+  \sum_{n=1}^{\infty}c_{n}=AB,
+\]
+其中 $c_{n}=a_{1}b_{n}+a_{2}b_{n-1}+\cdots+a_{n}b_{1}=\sum_{i=1}^{n}a_{i}b_{n-i+1}$.
+\end{theorem}
+
+\begin{proof}
+令 $A_{n}=\sum_{k=1}^{n}a_{k}$, $B_{n}=\sum_{k=1}^{n}b_{k}$, $C_{n}=\sum_{k=1}^{n}c_{k}$. 则 $\lim\limits_{n\to+\infty}A_{n}=A$, $\lim\limits_{n\to+\infty}B_{n}=B$. 再令 $\beta_{n}=B-B_{n}$, 显然有
+\[
+  \lim_{n\to+\infty}\beta_{n}=\lim_{n\to+\infty}(B-B_{n})=B-B=0.
+\]
+于是,
+\[
+  \begin{aligned}
+    C_{n}&=\sum_{k=1}^{n}c_{k}=a_{1}b_{1}+(a_{1}b_{2}+a_{2}b_{1})+\cdots+(a_{1}b_{n}+a_{2}b_{n-1}+\cdots+a_{n}b_{1})\\
+    &\xlongequal{\text{重新组合}}a_{1}(b_{1}+\cdots+b_{n})+a_{2}(b_{1}+\cdots+b_{n-1})+\cdots+a_{n}b_{1}\\
+    &=a_{1}B_{n}+a_{2}B_{n-1}+\cdots+a_{n}B_{1}=a_{1}(B-\beta_{n})+a_{2}(B-\beta_{n-1})+\cdots+a_{n}(B-\beta_{1})\\
+    &=(a_{1}+a_{2}+\cdots+a_{n})B-(a_{1}\beta_{n}+a_{2}\beta_{n-1}+\cdots+a_{n}\beta_{1})\\
+    &\xrightarrow{}AB-0=AB\quad(n\to+\infty).
+  \end{aligned}
+\]
+这就证明了 $\sum_{n=1}^{\infty}c_{n}=\lim\limits_{N\to+\infty}C_{N}=AB$.
+
+最后, 我们来证明 $\lim\limits_{n\to+\infty}(a_{1}\beta_{n}+\cdots+a_{n}\beta_{1})=0$. 事实上, 由于 $\lim\limits_{n\to+\infty}\beta_{n}=0$, 故 $|\beta_{n}|<M$, $\forall n\in\mathbb{N}$. 且 $\forall\varepsilon>0$, $\exists N_{1}\in\mathbb{N}$, 当 $n>N_{1}$ 时,
+\[
+  |\beta_{n}|<\frac{\varepsilon}{2A^{*}+1},\quad\text{其中}\quad A^{*}=\sum_{n=1}^{\infty}|a_{n}|.
+\]
+又由 $\sum_{n=1}^{\infty}|a_{n}|$ 绝对收敛, 故从级数的 Cauchy 收敛准则, $\exists N_{2}\in\mathbb{N}$, 当 $n>N_{2}$ 时,
+\[
+  |a_{n+1}|+\cdots+|a_{n+p}|<\frac{\varepsilon}{2M}.
+\]
+取 $N=N_{1}+N_{2}$, 当 $n>N$ 时, $n-N_{1}>N-N_{1}=N_{2}$, 有
+\[
+  \begin{aligned}
+    &\left|a_{1}\beta_{n}+a_{2}\beta_{n-1}+\cdots+a_{n}\beta_{1}\right|\\
+    &\leqslant\left|a_{1}\beta_{n}\right|+\cdots+\left|a_{n-N_{1}}\beta_{N_{1}+1}\right|+\left|a_{n-N_{1}+1}\beta_{N_{1}}\right|+\cdots+\left|a_{n}\beta_{1}\right|\\
+    &<\left(\left|a_{1}\right|+\cdots+\left|a_{n-N_{1}}\right|\right)\frac{\varepsilon}{2A^{*}+1}+M\bigl(\left|a_{n-N_{1}+1}\right|+\cdots+\left|a_{n}\right|\bigr)\\
+    &<A^{*}\cdot\frac{\varepsilon}{2A^{*}+1}+M\cdot\frac{\varepsilon}{2M}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+  \end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:12.4.2}
+证明: $\sum_{n=1}^{\infty}nx^{n-1}=\frac{1}{(1-x)^{2}}$, $|x|<1$.
+\end{example}
+
+证法 1 因为
+\[
+  1+x+x^{2}+\cdots+x^{n-1}+\cdots=\frac{1}{1-x},\quad|x|<1
+\]
+绝对收敛, 所以
+\[
+  \begin{aligned}
+    \frac{1}{(1-x)^{2}}&=\left(\frac{1}{1-x}\right)^{2}=\left(\sum_{n=1}^{\infty}x^{n-1}\right)^{2}\xlongequal[\text{或定理~\ref{thm:12.4.2}}]{\text{定理~\ref{thm:12.4.1}}}\sum_{n=1}^{\infty}c_{n}\\
+    &=\sum_{n=1}^{\infty}(1\cdot x^{n-1}+x\cdot x^{n-2}+\cdots+x^{n-1}\cdot1)=\sum_{n=1}^{\infty}nx^{n-1}.
+  \end{aligned}
+\]
+
+证法 2 根据幂级数的逐项求导定理 定理~\ref{thm:14.1.4} 得到.
+\[
+  \frac{1}{(1-x)^{2}}=\left(\frac{1}{1-x}\right)'=\left(\sum_{n=0}^{\infty}x^{n}\right)'\xlongequal{\text{逐项求导}}\sum_{n=0}^{\infty}\left(x^{n}\right)'=\sum_{n=1}^{\infty}nx^{n-1},\quad|x|<1.
+\]
+
+\begin{example}\label{ex:12.4.3}
+考察幂级数
+\[
+  E(x)\xlongequal{\mathrm{def}}\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\cdots+\frac{x^{n}}{n!}+\cdots,
+\]
+证明: $E(x)$ 收敛, 因而定义了 $\mathbb{R}$ 上的一个函数, 并且
+\[
+  E(x)E(y)=E(x+y).
+\]
+如果记 $E(x)=\mathrm{e}^{x}$, 则 $\mathrm{e}^{x}\cdot\mathrm{e}^{y}=\mathrm{e}^{x+y}$.
+\end{example}
+
+证法 1 因为
+\[
+  \frac{|a_{n+1}|}{|a_{n}|}=\frac{\left|\frac{x^{n}}{n!}\right|}{\left|\frac{x^{n-1}}{(n-1)!}\right|}=\frac{|x|}{n}\to0<1\quad(n\to+\infty),
+\]
+根据 d'Alembert 判别法知, 对 $\forall x\in\mathbb{R}$, 级数 $\sum_{n=1}^{\infty}\frac{x^{n}}{n!}$ 绝对收敛. 从而 $E(x)=\sum_{n=1}^{\infty}\frac{x^{n}}{n!}$ 为定义在 $\mathbb{R}$ 上的一个函数. 并且
+\[
+  \begin{aligned}
+    E(x)\cdot E(y)&=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}\cdot\sum_{n=0}^{\infty}\frac{y^{n}}{n!}\xlongequal[\text{或定理~\ref{thm:12.4.2}}]{\text{定理~\ref{thm:12.4.1}}}\sum_{n=0}^{\infty}c_{n}(x,y)\\
+    &=\sum_{n=0}^{\infty}\frac{(x+y)^{n}}{n!}=E(x+y),
+  \end{aligned}
+\]
+其中
+\[
+  c_{0}(x,y)=1,\quad c_{1}(x,y)=1\cdot y+x\cdot1=x+y,\quad\cdots,
+\]
+\[
+  \begin{aligned}
+    c_{n}(x,y)&=1\cdot\frac{y^{n}}{n!}+\frac{x}{1!}\cdot\frac{y^{n-1}}{(n-1)!}+\frac{x^{2}}{2!}\cdot\frac{y^{n-2}}{(n-2)!}+\cdots+\frac{x^{n-1}}{(n-1)!}\cdot\frac{y}{1!}+\frac{x^{n}}{n!}\cdot1\\
+    &=\sum_{k=0}^{n}\frac{x^{k}\cdot y^{n-k}}{k!(n-k)!}=\frac{1}{n!}\sum_{k=0}^{n}\frac{n!}{k!(n-k)!}x^{k}y^{n-k}\\
+    &=\frac{1}{n!}\sum_{k=0}^{n}C_{n}^{k}x^{k}y^{n-k}=\frac{(x+y)^{n}}{n!}.
+  \end{aligned}
+\]
+
+证法 2 根据幂级数的逐项求导定理 定理~\ref{thm:14.1.4} 得到
+\[
+  E'(x)=\left(\sum_{n=0}^{\infty}\frac{x^{n}}{n!}\right)'=\sum_{n=0}^{\infty}\left(\frac{x^{n}}{n!}\right)'=\sum_{n=1}^{\infty}\frac{x^{n-1}}{(n-1)!}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=E(x).
+\]
+于是,
+\[
+  \begin{aligned}
+    \frac{\partial}{\partial x}\left[\frac{E(x+y)}{E(x)E(y)}\right]&=\frac{E'(x+y)E(x)E(y)-E(x+y)E'(x)E(y)}{E^{2}(x)E^{2}(y)}\\
+    &=\frac{E(x+y)E(x)E(y)-E(x+y)E(x)E(y)}{E^{2}(x)E^{2}(y)}=0.
+  \end{aligned}
+\]
+同理,
+\[
+  \frac{\partial}{\partial y}\left[\frac{E(x+y)}{E(x)E(y)}\right]=0.
+\]
+根据\extref{定理 8.2.10}, 有
+\[
+  \frac{E(x+y)}{E(x)E(y)}=\frac{E(0+0)}{E(0)E(0)}=\frac{1}{1\cdot1}=1,
+\]
+即
+\[
+  E(x+y)=E(x)E(y).
+\]
+
+证法 3 设 $a>0$.
+
+当 $m,n\in\mathbb{N}$ 时,
+\[
+  \begin{aligned}
+    a^{m}\cdot a^{n}&=(\underbrace{a\cdots a}_{\text{$m$ 个}})\cdot(\underbrace{a\cdots a}_{\text{$n$ 个}})=\underbrace{a\cdots a}_{\text{$m+n$ 个}}=a^{m+n},
+  \end{aligned}
+\]
+\[
+  a^{-m}\cdot a^{n}=\underbrace{\frac{1}{a\cdots a}}_{\text{$m$ 个}}\cdot(\underbrace{a\cdots a}_{\text{$n$ 个}})=a^{-m+n},
+\]
+同理 $a^{m}\cdot a^{-n}=a^{m-n}$; 此外, 还有
+\[
+  a^{-m}\cdot a^{-n}=\underbrace{\frac{1}{a\cdots a}}_{\text{$m$ 个}}\cdot\underbrace{\frac{1}{a\cdots a}}_{\text{$n$ 个}}=\frac{1}{a^{m+n}}=a^{-(m+n)}=a^{-m-n}.
+\]
+
+当 $m=0$, $n\in\mathbb{Z}$（整数集）时,
+\[
+  a^{m}\cdot a^{n}=a^{0}\cdot a^{n}=1\cdot a^{n}=a^{n}=a^{0+n}=a^{m+n}.
+\]
+同理, 当 $m\in\mathbb{Z}$, $n=0$ 时, 也有 $a^{m}\cdot a^{n}=a^{m+n}$.
+
+当 $m,p\in\mathbb{Z}$, $n,q\in\mathbb{Z}$ 时,
+\[
+  \begin{aligned}
+    a^{\frac{m}{n}}\cdot a^{\frac{p}{q}}&=a^{\frac{mq}{nq}}\cdot a^{\frac{np}{nq}}=\left(a^{\frac{1}{nq}}\right)^{mq}\cdot\left(a^{\frac{1}{nq}}\right)^{np}\\
+    &=\left(a^{\frac{1}{nq}}\right)^{mq+np}=a^{\frac{mq+np}{nq}}=a^{\frac{m}{n}+\frac{p}{q}}.
+  \end{aligned}
+\]
+
+当 $x,y\in\mathbb{R}$ 时, 取有理数列 $x_{n}$ 与 $y_{n}$, 使得 $\lim\limits_{n\to+\infty}x_{n}=x$, $\lim\limits_{n\to+\infty}y_{n}=y$. 于是,
+\[
+  a^{x}\cdot a^{y}=\lim_{n\to+\infty}a^{x_{n}}\cdot\lim_{n\to+\infty}a^{y_{n}}=\lim_{n\to+\infty}\bigl(a^{x_{n}}\cdot a^{y_{n}}\bigr)=\lim_{n\to+\infty}a^{x_{n}+y_{n}}=a^{x+y}.
+\]
+
+另一方面, 由证法 2 知, $E'(x)=E(x)$, 即 $(\ln E(x))'=\frac{E'(x)}{E(x)}=1$. 由 Newton-Leibniz 公式得到
+\[
+  \ln E(x)=\ln E(0)+\int_{0}^{x}(\ln E(x))'\mathrm{d}x=\ln1+\int_{0}^{x}\mathrm{d}x=x,
+\]
+\[
+  E(x)=\mathrm{e}^{x}.
+\]
+于是,
+\[
+  E(x)E(y)=\mathrm{e}^{x}\cdot\mathrm{e}^{y}=\mathrm{e}^{x+y}=E(x+y).
+\]
+
+证法 4 由\extref{例 4.1.2} 知,
+\[
+  \mathrm{e}^{x}=\sum_{k=0}^{n}\frac{x^{k}}{k!}+R_{n}(x)=\sum_{k=0}^{n}\frac{x^{k}}{k!}+\frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1},\quad\theta\in(0,1).
+\]
+另一方面, 由\extref{例 1.1.5}, 有 $\lim\limits_{n\to+\infty}\frac{|x|^{n+1}}{(n+1)!}=0$, 或者由
+\[
+  \lim_{n\to+\infty}\frac{\frac{|x|^{n+1}}{(n+1)!}}{\frac{|x|^{n}}{n!}}=\lim_{n\to+\infty}\frac{|x|}{n+1}=0
+\]
+及 d'Alembert 判别法推得 $\sum_{n=0}^{\infty}\frac{|x|^{n}}{n!}$ 收敛. 再由定理~\ref{thm:12.1.2}, $\lim\limits_{n\to+\infty}\frac{|x|^{n+1}}{(n+1)!}=0$. 于是,
+\[
+  \left|\frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1}\right|\leqslant\mathrm{e}^{|x|}\frac{|x|^{n+1}}{(n+1)!}\to0\quad(n\to+\infty),
+\]
+\[
+  \begin{aligned}
+    E(x)&=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=\lim_{n\to+\infty}\sum_{k=0}^{n}\frac{x^{k}}{k!}=\lim_{n\to+\infty}\left[\mathrm{e}^{x}-\frac{\mathrm{e}^{\theta x}}{(n+1)!}x^{n+1}\right]\\
+    &=\mathrm{e}^{x}-0=\mathrm{e}^{x},
+  \end{aligned}
+\]
+\[
+  E(x)E(y)=\mathrm{e}^{x}\cdot\mathrm{e}^{y}=\mathrm{e}^{x+y}=E(x+y).
+\]
+
+\begin{exblock}{练习题 12.4}
+\begin{enumerate}
+  \item 设 $|q|<1$, 证明:
+  \[
+    \Big(\sum_{n=0}^{\infty}q^{n}\Big)^{2}=\sum_{n=0}^{\infty}(n+1)q^{n}.
+\]
+  \item 设级数 $\sum_{n=0}^{\infty}a_{n}x^{n}$, $\sum_{n=0}^{\infty}b_{n}x^{n}$ 对 $(-R,R)$ 中的 $x$ 绝对收敛. 证明:
+  \[
+    \left(\sum_{n=0}^{\infty}a_{n}x^{n}\right)\left(\sum_{n=0}^{\infty}b_{n}x^{n}\right)=\sum_{n=0}^{\infty}c_{n}x^{n},
+\]
+  其中 $c_{n}=\sum_{k=0}^{n}a_{k}b_{n-k}$.
+  \item 证明: 级数
+  \[
+    C(x)=\sum_{n=0}^{\infty}(-1)^{n}\frac{x^{2n}}{(2n)!},\quad S(x)=\sum_{n=0}^{\infty}(-1)^{n}\frac{x^{2n+1}}{(2n+1)!}
+\]
+  对所有实数 $x$ 绝对收敛, 而且
+  \[
+    S(2x)=2S(x)C(x).
+\]
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 12.4}
+\begin{enumerate}
+  \item 证明: 下面两个级数
+  \[
+    \sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n^{\alpha}},\quad\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n^{\beta}},\quad\alpha>0,\ \beta>0
+\]
+  的 Cauchy 乘积当 $\alpha+\beta>1$ 时收敛; 当 $\alpha+\beta\leqslant1$ 时发散.
+  \item 证明: 下面两个发散级数
+  \[
+    1-\sum_{n=1}^{\infty}\left(\frac{3}{2}\right)^{n},\quad1+\sum_{n=1}^{\infty}\left(\frac{3}{2}\right)^{n-1}\left(2^{n}+\frac{1}{2^{n+1}}\right)
+\]
+  的 Cauchy 乘积是一个绝对收敛级数.
+\end{enumerate}
+\end{exblock}

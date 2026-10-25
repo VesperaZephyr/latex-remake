@@ -1,0 +1,1323 @@
+\section{Riemann 积分的概念、Riemann 可积的充要条件}\label{sec:6.1}
+
+考虑由直线 $x=a$, $x=b$, $y=0$, $y=f(x)$ 所围曲边梯形 $ABCD$ 的面积. 先将梯形用直线 $x=x_{i}$, $i=0,1,\cdots,n$, 其中 $a=x_{0}<x_{1}<\cdots<x_{n}=b$, 分成 $n$ 个小曲边梯形, 第 $i$ 个小梯形的面积用 $\Delta s_{i}$ 表示, $\Delta s_{i}\approx f(\xi_{i})\Delta x_{i}$, 其中 $\Delta x_{i}=x_{i}-x_{i-1}$, $\xi_{i}$ 取自区间 $[x_{i-1},x_{i}]$. 于是用 $\sum\limits_{i=1}^{n}f(\xi_{i})\Delta x_{i}$ (图~\ref{fig:6.1.1} 中 $n$ 个小矩形面积之和) 表示曲边梯形面积的近似值. 当分点越来越多时, 视曲边梯形 $ABCD$ 的面积的精确值为
+\[
+S_{ABCD}=\lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\xlongequal{\text{def}}\int_{a}^{b}f(x)\,\mathrm{d}x,
+\]
+其中 $f(x)\geqslant 0$, $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $\xi_{i}\in[x_{i-1},x_{i}]$, $\|T\|=\max\{\Delta x_{i}\}$, $\Delta x_{i}=x_{i}-x_{i-1}$, $1\leqslant i\leqslant n$.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.12cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (8.6,0) node[below right] {$x$};
+  \draw[->] (0,-0.3) -- (0,2.95) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines] (1.2,0) rectangle (2.1,1.30);
+  \draw (1.2,0) rectangle (2.1,1.30);
+  \fill[pattern=north east lines] (2.1,0) rectangle (2.85,0.95);
+  \draw (2.1,0) rectangle (2.85,0.95);
+  \fill[pattern=north east lines] (4.0,0) rectangle (4.7,1.05);
+  \draw (4.0,0) rectangle (4.7,1.05);
+  \fill[pattern=north east lines] (4.7,0) rectangle (5.4,1.05);
+  \draw (4.7,0) rectangle (5.4,1.05);
+  \fill[pattern=north east lines] (6.5,0) rectangle (7.35,2.45);
+  \draw (6.5,0) rectangle (7.35,2.45);
+  \draw[very thick] plot[smooth] coordinates {(1.2,1.30) (1.7,1.08) (2.2,0.88) (2.85,0.74) (3.5,0.62) (4.0,0.64) (4.7,0.86) (5.4,1.15) (6.0,1.52) (6.5,1.90) (7.0,2.22) (7.35,2.45)};
+  \node[left] at (1.15,1.30) {$D$};
+  \node[right] at (7.4,2.45) {$C$};
+  \node[above left] at (1.2,0) {$A$};
+  \node[above right] at (7.35,0) {$B$};
+  \node[above] at (4.7,1.05) {$f(\xi_{i})$};
+  \foreach \xx/\lbl in {1.2/a,2.1/x_{1},2.85/x_{2},4.0/x_{i-1},4.7/\xi_{i},5.4/x_{i},6.5/x_{n-1},7.35/b}
+    \node[below] at (\xx,-0.06) {$\lbl$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.1}
+\end{figure}
+
+对于一般的函数 $f(x)$, $\int_{a}^{b}|f(x)|\,\mathrm{d}x$ 为所围图形 (见图~\ref{fig:6.1.2}) 的总面积, 而 $\int_{a}^{b}f(x)\,\mathrm{d}x$ 为所围图形 (见图~\ref{fig:6.1.3}) 面积的代数和 ($x$ 轴上方的面积为正, 下方的面积为负).
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[c]{0.47\textwidth}
+\centering
+\begin{tikzpicture}[x=0.80cm,y=0.80cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.4,0) node[below right] {$x$};
+  \draw[->] (0,-1.35) -- (0,2.0) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines] (1.0,1.45) -- (2.6,0) -- (1.0,0) -- cycle;
+  \draw[thick] (1.0,1.45) -- (2.6,0);
+  \fill[pattern=north east lines] (2.6,0) .. controls (3.05,0.95) and (4.15,0.95) .. (4.6,0) -- cycle;
+  \draw[thick] (2.6,0) .. controls (3.05,0.95) and (4.15,0.95) .. (4.6,0);
+  \fill[pattern=north east lines] (4.6,0) -- (5.9,2.25) -- (5.9,0) -- cycle;
+  \draw[thick] (4.6,0) -- (5.9,2.25);
+  \draw[thick,dotted] (2.6,0) .. controls (3.05,-0.95) and (4.15,-0.95) .. (4.6,0);
+  \node[below] at (1.0,-0.06) {$a$};
+  \node[below] at (5.9,-0.06) {$b$};
+  \node[below] at (3.6,-1.18) {$y=f(x)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.2}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.47\textwidth}
+\centering
+\begin{tikzpicture}[x=0.80cm,y=0.80cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.4,0) node[below right] {$x$};
+  \draw[->] (0,-1.35) -- (0,2.0) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[very thick] plot[smooth] coordinates {(1.0,1.45) (1.8,0.78) (2.6,0.0) (3.1,-0.70) (3.6,-0.88) (4.1,-0.70) (4.6,0.0) (5.25,1.15) (5.9,2.25)};
+  \node[below] at (1.0,-0.06) {$a$};
+  \node[below] at (5.9,-0.06) {$b$};
+  \node at (1.85,0.36) {$+$};
+  \node at (3.6,-0.48) {$-$};
+  \node at (5.15,0.55) {$+$};
+  \node[below] at (3.6,-1.05) {$y=f(x)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.3}
+\end{minipage}
+\end{figure}
+
+再考虑质点作直线运动, 时刻 $t$ 时位移为 $x(t)$, 瞬时速度为
+\[
+v(t)=x'(t)=\lim_{\Delta t\to 0}\frac{x(t+\Delta t)-x(t)}{\Delta t}.
+\]
+相反, 如果知道瞬时速度, 要求从时刻 $\alpha$ 到 $\beta$ 这段时间内的位移, 可以将 $[\alpha,\beta]$ 分成 $n$ 小段, $\alpha=t_{0}<t_{1}<\cdots<t_{n}=\beta$, 从时刻 $t_{i-1}$ 到 $t_{i}$ 有位移 $\Delta x_{i}$, 它用时刻 $\xi_{i}\in[t_{i-1},t_{i}]$ 的速度与时间间隔 $\Delta t_{i}=t_{i}-t_{i-1}$ 的乘积来近似表达, 即 $\Delta x_{i}\approx v(\xi_{i})\Delta t_{i}$, 故 $x(\beta)-x(\alpha)=\sum\limits_{i=1}^{n}\Delta x_{i}\approx\sum\limits_{i=1}^{n}v(\xi_{i})\Delta t_{i}$. 当分点越来越密时, 视它的极限值是所要求的位移.
+\[
+x(\beta)-x(\alpha)=\lim_{\|T\|\to 0}\sum_{i=1}^{n}v(\xi_{i})\Delta t_{i}\xlongequal{\text{def}}\int_{\alpha}^{\beta}v(t)\,\mathrm{d}t=\int_{\alpha}^{\beta}x'(t)\,\mathrm{d}t.
+\]
+此外, 设一根直细棒, 其质量为 $m=m(x)$, 线密度为
+\[
+\rho(x)=m'(x)=\lim_{\Delta x\to 0}\frac{m(x+\Delta x)-m(x)}{\Delta x}.
+\]
+同样, 如果知道细棒的线密度为 $\rho(x)$, 那么从 $a$ 到 $b$ 的质量为
+\[
+m(b)-m(a)=\lim_{\|T\|\to 0}\sum_{i=1}^{n}\rho(\xi_{i})\Delta x_{i}=\int_{a}^{b}\rho(x)\,\mathrm{d}x=\int_{a}^{b}m'(x)\,\mathrm{d}x.
+\]
+上面一个几何问题与两个物理问题启发我们要引进 Riemann 积分的概念.
+
+\begin{definition}\label{def:6.1.1}
+设闭区间 $[a,b]$ 内有 $n+1$ 个点, 依次为 $a=x_{0}<x_{1}<\cdots<x_{n}=b$, 它们将 $[a,b]$ 分成 $n$ 个小区间 $\Delta_{i}=[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$. 这些分点或闭子区间, 构成了 $[a,b]$ 的一个分割, 记为
+\[
+T: a=x_{0}<x_{1}<\cdots<x_{n}=b
+\]
+或 $T=\{\Delta_{1},\Delta_{2},\cdots,\Delta_{n}\}$. 小区间 $\Delta_{i}=[x_{i-1},x_{i}]$ 的长度为 $\Delta x_{i}=x_{i}-x_{i-1}$, 并称
+\[
+\|T\|=\max_{1\leqslant i\leqslant n}\{\Delta x_{i}\}
+\]
+为分割 $T$ 的模.
+
+设 $f:[a,b]\to\mathbb{R}$ 为一元函数. 对于 $[a,b]$ 的上述分割 $T$, 任取点 $\xi_{i}\in\Delta_{i}=[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$, 称
+\[
+\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}
+\]
+为 $f$ 在 $[a,b]$ 上的一个 Riemann 和或积分和.
+
+如果存在 $J\in\mathbb{R}$, s. t. 对 $\forall\varepsilon>0$, $\exists\delta>0$, 对任何分割 $T$, $\|T\|<\delta$, $\forall\xi_{i}\in\Delta_{i}=[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$, 有
+\[
+\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J\right|<\varepsilon,
+\]
+则称 $J$ 为 $\sum\limits_{i=1}^{n}f(\xi_{i})\Delta x_{i}$ 当 $\|T\|\to 0$ 时的极限, 称它为 $f$ 在 $[a,b]$ 上的 Riemann 积分或定积分, 并称 $f$ 在区间 $[a,b]$ 上是 Riemann 可积或是可积的. 记上述 Riemann 积分或定积分为
+\[
+J=\int_{a}^{b}f(x)\,\mathrm{d}x=\lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i},
+\]
+其中 $f(x)$ 称为被积函数, $x$ 为积分变量, $[a,b]$ 称为积分区间, $a$, $b$ 分别称为积分下限与积分上限.
+\end{definition}
+
+显然, $\int_{a}^{b}f(x)\,\mathrm{d}x$ 完全由 $f$ 与区间 $[a,b]$ 所确定, 它与积分变量 $x$ 无关. 因此,
+\[
+\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}f(u)\,\mathrm{d}u=\int_{a}^{b}f(t)\,\mathrm{d}t.
+\]
+
+\begin{theorem}[惟一性]\label{thm:6.1.1}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, 则积分值 $J=\int_{a}^{b}f(x)\,\mathrm{d}x$ 是惟一的.
+\end{theorem}
+
+\begin{proof}
+假设 $J_{1},J_{2}\in\mathbb{R}$ 都为 $\sum\limits_{i=1}^{n}f(\xi_{i})\Delta x_{i}$ 当 $\|T\|\to 0$ 时的极限, 则对 $\forall\varepsilon>0$, $\exists\delta>0$, 对 $[a,b]$ 的任何分割 $T$, $\|T\|<\delta$, $\forall\xi_{i}\in\Delta_{i}=[x_{i-1},x_{i}]$, $i=1,\cdots,n$, 有
+\[
+\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J_{j}\right|<\frac{\varepsilon}{2},\quad j=1,2.
+\]
+于是,
+\begin{align*}
+0&\leqslant|J_{1}-J_{2}|=\left|J_{1}-\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}+\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J_{2}\right|\\
+&\leqslant\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J_{1}\right|+\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J_{2}\right|\\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+令 $\varepsilon\to 0^{+}$ 得到
+\begin{gather*}
+0\leqslant|J_{1}-J_{2}|\leqslant 0,\\
+|J_{1}-J_{2}|=0,\quad J_{1}=J_{2}.
+\end{gather*}
+\end{proof}
+
+\begin{theorem}[可积的必要条件]\label{thm:6.1.2}
+设 $f$ 在 $[a,b]$ 上 Riemann 可积, 则 $f$ 在 $[a,b]$ 上有界 (因而无界函数不是 Riemann 可积的), 但反之不真.
+\end{theorem}
+
+\begin{proof}
+因为 $f$ 在 $[a,b]$ 上 Riemann 可积, 故有 $J\in\mathbb{R}$, 取 $\varepsilon=1$, $\exists\delta>0$, 对 $[a,b]$ 的任意分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $\|T\|<\delta$, $\forall\xi_{i}\in\Delta_{i}=[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$, 有
+\[
+\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J\right|<1. \tag*{(*)}
+\]
+(反证) 假设 $f$ 在 $[a,b]$ 上无界, 则至少有一个区间 $[x_{i_{0}-1},x_{i_{0}}]$, $f$ 在其上无界, 于是 $\exists\xi_{i_{0}}\in[x_{i_{0}-1},x_{i_{0}}]$, s. t.
+\[
+\left|f(\xi_{i_{0}})\Delta x_{i_{0}}\right|>1+\left|\sum_{i\neq i_{0}}f(\xi_{i})\Delta x_{i}\right|+|J|. \tag*{(**)}
+\]
+但由 $(*)$ 式知,
+\begin{align*}
+\left|f(\xi_{i_{0}})\Delta x_{i_{0}}\right|&=\left|\left(\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J\right)-\sum_{i\neq i_{0}}f(\xi_{i})\Delta x_{i}+J\right|\\
+&\leqslant\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-J\right|+\left|\sum_{i\neq i_{0}}f(\xi_{i})\Delta x_{i}\right|+|J|\\
+&<1+\left|\sum_{i\neq i_{0}}f(\xi_{i})\Delta x_{i}\right|+|J|,
+\end{align*}
+这与 $(**)$ 式相矛盾.
+\end{proof}
+
+反例: Dirichlet 函数 $D(x)$ 在 $[0,1]$ 上有界但非 Riemann 可积.
+
+显然, $|D(x)|\leqslant 1$, 故 $D(x)$ 有界. 现证 $D(x)$ 在 $[0,1]$ 上非 Riemann 可积.
+
+(反证) 假设 $D(x)$ 在 $[0,1]$ 上 Riemann 可积, 则 $\exists J\in\mathbb{R}$, 对 $\varepsilon_{0}=\frac{1}{2}$, $\exists\delta>0$, 当 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $\|T\|<\delta$ 时, 有
+\[
+\left|\sum_{i=1}^{n}D(\xi_{i})\Delta x_{i}-J\right|<\varepsilon_{0}=\frac{1}{2},\quad\forall\xi_{i}\in\Delta_{i}=[x_{i-1},x_{i}],\ i=1,2,\cdots,n.
+\]
+特别取 $\eta_{i}\in[x_{i-1},x_{i}]\cap\mathbb{Q}$, $\zeta_{i}\in[x_{i-1},x_{i}]\cap(\mathbb{R}\setminus\mathbb{Q})$, 有
+\begin{align*}
+1&=|0-1|=\left|\sum_{i=1}^{n}D(\eta_{i})\Delta x_{i}-\sum_{i=1}^{n}D(\zeta_{i})\Delta x_{i}\right|\\
+&=\left|\left(\sum_{i=1}^{n}D(\eta_{i})\Delta x_{i}-J\right)-\left(\sum_{i=1}^{n}D(\zeta_{i})\Delta x_{i}-J\right)\right|\\
+&\leqslant\left|\sum_{i=1}^{n}D(\eta_{i})\Delta x_{i}-J\right|+\left|\sum_{i=1}^{n}D(\zeta_{i})\Delta x_{i}-J\right|\\
+&<\varepsilon_{0}+\varepsilon_{0}=\frac{1}{2}+\frac{1}{2}=1,
+\end{align*}
+矛盾.
+
+定理~\ref{thm:6.1.2} 只是 Riemann 可积的必要条件, 它只能否定无界函数是 Riemann 可积的, 但对有界函数是否为 Riemann 可积函数就束手无策了. 要判断一个函数是否 Riemann 可积, 原则上可以根据定义直接考察 Riemann 和是否无限接近某个常数 $J$, 但由于那个常数不易预知及 Riemann 和的复杂性, 这种判断是非常困难的. 下面给出一些 Riemann 可积的充要条件, 它只与被积函数 $f$ 本身有关, 而不涉及 Riemann 积分的值.
+
+以下总假定 $f(x)$ 在 $[a,b]$ 上有界, 记 $M=\sup\limits_{x\in[a,b]}f(x)$, $m=\inf\limits_{x\in[a,b]}f(x)$. $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$ 为 $[a,b]$ 的任一分割, $\Delta_{i}=[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$.
+\[
+M_{i}^{f}=\sup_{x\in\Delta_{i}}f(x),\quad m_{i}^{f}=\inf_{x\in\Delta_{i}}f(x).
+\]
+在不致混淆时, 记 $M_{i}^{f}$ 为 $M_{i}$, $m_{i}^{f}$ 为 $m_{i}$.
+
+做和 $S(T,f)=\sum\limits_{i=1}^{n}M_{i}\Delta x_{i}$ 及 $s(T,f)=\sum\limits_{i=1}^{n}m_{i}\Delta x_{i}$, 分别称它们为 $f$ 关于 $T$ 的 Darboux 上和与 Darboux 下和, 统称为 Darboux 和. 对 $\forall\xi_{i}\in\Delta_{i}$, $i=1,2,\cdots,n$, 显然, 有
+\[
+m(b-a)\leqslant\sum_{i=1}^{n}m_{i}\Delta x_{i}\leqslant\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\leqslant\sum_{i=1}^{n}M_{i}\Delta x_{i}\leqslant M(b-a),
+\]
+即
+\[
+m(b-a)\leqslant\underbrace{s(T,f)}_{\text{Darboux 下和}}\leqslant\underbrace{S(T,f,\xi)}_{\text{Riemann 和}}\leqslant\underbrace{S(T,f)}_{\text{Darboux 上和}}\leqslant M(b-a),
+\]
+其中 $\xi=(\xi_{1},\xi_{2},\cdots,\xi_{n})$.
+
+设 $\omega_{i}^{f}=M_{i}^{f}-m_{i}^{f}$, 称它为 $f$ 在 $\Delta_{i}$ 上的振幅, 简记为 $\omega_{i}=M_{i}-m_{i}$. 而
+\begin{align*}
+S(T)-s(T)&=\sum_{i=1}^{n}(M_{i}-m_{i})\Delta x_{i}\\
+&=\sum_{i=1}^{n}\omega_{i}\Delta x_{i}\ \left(\text{或记为 }\sum_{T}\omega_{i}\Delta x_{i}\right)
+\end{align*}
+称为 $f$ 在 $[a,b]$ 上关于分割 $T$ 的振幅和.
+
+\begin{lemma}\label{lem:6.1.1}
+对 $[a,b]$ 的同一分割 $T$, 相对于任何 $\xi=(\xi_{1},\cdots,\xi_{n})$, $\xi_{i}\in\Delta_{i}$, 有
+\[
+S(T,f)=\sup_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i},\quad s(T,f)=\inf_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}.
+\]
+\end{lemma}
+
+\begin{proof}
+一方面, 有
+\[
+s(T,f)\leqslant\inf_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\leqslant\sup_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\leqslant S(T,f).
+\]
+另一方面, $\forall\varepsilon>0$, 由上确界定义, 可选 $\xi_{i}\in\Delta_{i}$, s. t.
+\[
+f(\xi_{i})>M_{i}-\frac{\varepsilon}{b-a}.
+\]
+于是, 有
+\begin{align*}
+\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}&>\sum_{i=1}^{n}\left(M_{i}-\frac{\varepsilon}{b-a}\right)\Delta x_{i}\\
+&=\sum_{i=1}^{n}M_{i}\Delta x_{i}-\frac{\varepsilon}{b-a}\sum_{i=1}^{n}\Delta x_{i}\\
+&=S(T,f)-\varepsilon,
+\end{align*}
+\[
+\sup_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\geqslant S(T,f)-\varepsilon.
+\]
+令 $\varepsilon\to 0^{+}$ 得到
+\[
+\sup_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\geqslant S(T,f).
+\]
+所以,
+\[
+S(T,f)=\sup_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}.
+\]
+同理, 或用 $-f$ 代替 $f$ 得到
+\[
+s(T,f)=\inf_{\xi}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}.
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:6.1.2}
+设 $T'$ 为分割 $T$ 添加 $p$ 个新分点所得的分割, 则有
+\[
+S(T)\geqslant S(T')\geqslant S(T)-(M-m)p\|T\|,
+\]
+\[
+s(T)\leqslant s(T')\leqslant s(T)+(M-m)p\|T\|,
+\]
+其中 $s(T)=s(T,f)$, $S(T)=S(T,f)$. 这表明增加新分点后, 上和不变, 下和不减.
+\end{lemma}
+
+\begin{proof}
+当 $p=1$ 时, 在 $T$ 上添加一个新分点, 它必落在 $T$ 的某个小区间 $\Delta_{k}$ 内, 而且将 $\Delta_{k}$ 分为两个小区间, 记为 $\Delta_{k}'$ 与 $\Delta_{k}''$. 但 $T$ 的其他小区间 $\Delta_{i}$ ($i\neq k$) 仍旧是新分割 $T_{1}$ 所属的小区间. 因此, 比较 $S(T)$ 与 $S(T_{1})$ 的各个被加项, 它们之间的差别仅仅是 $S(T)$ 中的 $M_{k}\Delta x_{k}$ 一项换成 $S(T_{1})$ 中的 $M_{k}'\Delta x_{k}'+M_{k}''\Delta x_{k}''$ 两项 (这里 $M_{k}'$ 与 $M_{k}''$ 分别是 $f$ 在 $\Delta_{k}'$ 与 $\Delta_{k}''$ 上的上确界). 显然, $m\leqslant M_{k}'$ (或 $M_{k}''$) $\leqslant M_{k}\leqslant M$, 所以,
+\begin{align*}
+0&\leqslant S(T)-S(T_{1})=(M_{k}-M_{k}')\Delta x_{k}'+(M_{k}-M_{k}'')\Delta x_{k}''\\
+&\leqslant(M-m)\Delta x_{k}'+(M-m)\Delta x_{k}''=(M-m)\Delta x_{k}\\
+&\leqslant(M-m)\|T\|.
+\end{align*}
+即
+\[
+S(T)\geqslant S(T_{1})\geqslant S(T)-(M-m)\|T\|.
+\]
+一般地, 对 $T_{i}$ 增加一个新分点得到 $T_{i+1}$, 就有
+\[
+0\leqslant S(T_{i})-S(T_{i+1})\leqslant(M-m)\|T_{i}\|,\quad i=0,1,\cdots,p-1,
+\]
+其中 $T_{0}=T$, $T_{p}=T'$. 将这些不等式对 $i$ 依次相加得到
+\begin{gather*}
+0\leqslant S(T)-S(T')\leqslant(M-m)\sum_{i=0}^{p-1}\|T_{i}\|\\
+\leqslant(M-m)p\|T\|,
+\end{gather*}
+即
+\[
+S(T)\geqslant S(T')\geqslant S(T)-(M-m)p\|T\|.
+\]
+同理有
+\[
+s(T)\leqslant s(T')\leqslant s(T)+(M-m)p\|T\|.
+\]
+\end{proof}
+
+\begin{lemma}\label{lem:6.1.3}
+设 $T'$ 与 $T''$ 为 $[a,b]$ 的任意两个分割, $T'+T''$ 表示将 $T'$ 与 $T''$ 的所有分点合并得到的分割 (重复的分点只取一次), 则
+\begin{gather*}
+S(T'+T'')\leqslant S(T'),\quad s(T'+T'')\geqslant s(T');\\
+S(T'+T'')\leqslant S(T''),\quad s(T'+T'')\geqslant s(T'').
+\end{gather*}
+\end{lemma}
+
+\begin{proof}
+因为 $T'+T''$ 既可看作 $T'$ 添加新分点后得到的分割, 也可看作 $T''$ 添加新分点后得到的分割, 所以根据引理~\ref{lem:6.1.2} 立即推得上述不等式成立.
+\end{proof}
+
+\begin{lemma}\label{lem:6.1.4}
+对任意两个分割 $T'$ 与 $T''$, 有
+\[
+s(T')\leqslant S(T'').
+\]
+\end{lemma}
+
+\begin{proof}
+由引理~\ref{lem:6.1.1} 与引理~\ref{lem:6.1.3} 便有
+\[
+s(T')\leqslant s(T'+T'')\leqslant S(T'+T'')\leqslant S(T'').
+\]
+\end{proof}
+
+由此立即有下面引理.
+
+\begin{lemma}\label{lem:6.1.5}
+\[
+m(b-a)\leqslant\sup_{T'}s(T')\leqslant\inf_{T''}S(T'')\leqslant M(b-a).
+\]
+\end{lemma}
+
+\begin{proof}
+由
+\[
+m(b-a)\leqslant s(T')\leqslant S(T'')\leqslant M(b-a)
+\]
+知
+\[
+m(b-a)\leqslant\sup_{T'}s(T')\leqslant\inf_{T''}S(T'')\leqslant M(b-a),
+\]
+故 $m(b-a)\leqslant s\leqslant S\leqslant M(b-a)$, 其中 $S=\inf\limits_{T}S(T)$ 与 $s=\sup\limits_{T}s(T)$ 分别称为 $f(x)$ 在 $[a,b]$ 上的上积分与下积分.
+\end{proof}
+
+\begin{theorem}[Darboux 定理]\label{thm:6.1.3}
+\[
+\lim_{\|T\|\to 0}S(T)=S,\qquad \lim_{\|T\|\to 0}s(T)=s.
+\]
+\end{theorem}
+
+\begin{proof}
+$\forall\varepsilon>0$, 由 $S$ 的定义知, 必有某个分割 $T'$, s. t.
+\[
+S(T')<S+\frac{\varepsilon}{2}.
+\]
+设 $T'$ 由 $p$ 个分点构成, 对于任意另一个分割 $T$, $T+T'$ 至多比 $T$ 多 $p$ 个分点, 由引理~\ref{lem:6.1.2} 与引理~\ref{lem:6.1.3} 得到
+\[
+S(T)-(M-m)p\|T\|\leqslant S(T+T')\leqslant S(T').
+\]
+当 $\|T\|<\delta=\frac{\varepsilon}{2(M-m+1)p}$ 时, 有
+\begin{align*}
+S&\leqslant S(T)\leqslant S(T')+(M-m)p\|T\|\\
+&<S(T')+(M-m)p\cdot\frac{\varepsilon}{2(M-m+1)p}\\
+&<S(T')+\frac{\varepsilon}{2}<\left(S+\frac{\varepsilon}{2}\right)+\frac{\varepsilon}{2}=S+\varepsilon.
+\end{align*}
+这就证明了
+\[
+\lim_{\|T\|\to 0}S(T)=S.
+\]
+同理, 或用 $-f$ 代替 $f$ 得到
+\[
+\lim_{\|T\|\to 0}s(T)=s.
+\]
+\end{proof}
+
+\begin{definition}\label{def:6.1.2}
+设 $A\subseteq\mathbb{R}$, 如果对 $\forall\varepsilon>0$, 存在至多可数个 (有限个或可数个) 开区间 $\{I_{i}\mid i=1,2,\cdots\}$, s. t.
+\[
+A\subset\bigcup_{i}I_{i},\quad\text{且}\ \sum_{i}|I_{i}|<\varepsilon\quad(|I_{i}|\ \text{为区间}\ I_{i}\ \text{的长度}),
+\]
+则称 $A$ 为 $\mathbb{R}$ 中的 Lebesgue 零测集, 简称为零测集, 也称 $A$ 的 (Lebesgue) 测度为零.
+\end{definition}
+
+\begin{lemma}\label{lem:6.1.6}
+(1) 有限集为零测集;
+
+(2) 至多可数集为零测集;
+
+(3) 零测集 $A$ 的任何子集 $B$ 为零测集;
+
+(4) 至多可数个零测集 $A_{i}$ ($i=1,2,\cdots$) 的并集仍为零测集.
+\end{lemma}
+
+\begin{proof}
+(1) 设有限集 $A=\{a_{1},a_{2},\cdots,a_{k}\}$. 对 $\forall\varepsilon>0$, 令 $I_{i}=\left(a_{i}-\frac{\varepsilon}{4k},a_{i}+\frac{\varepsilon}{4k}\right)$, $i=1,2,\cdots,k$. 则
+\[
+A=\bigcup_{i=1}^{k}\{a_{i}\}\subset\bigcup_{i=1}^{k}\left(a_{i}-\frac{\varepsilon}{4k},a_{i}+\frac{\varepsilon}{4k}\right),
+\]
+且
+\[
+\sum_{i=1}^{k}|I_{i}|=\sum_{i=1}^{k}\left[\left(a_{i}+\frac{\varepsilon}{4k}\right)-\left(a_{i}-\frac{\varepsilon}{4k}\right)\right]=\sum_{i=1}^{k}\frac{\varepsilon}{2k}=\frac{\varepsilon}{2}<\varepsilon,
+\]
+因此, $A$ 为零测集.
+
+(2) 设可数集 $A=\{a_{1},a_{2},\cdots,a_{k},\cdots\}$. 对 $\forall\varepsilon>0$, 令 $I_{i}=\left(a_{i}-\frac{\varepsilon}{2^{i+2}},a_{i}+\frac{\varepsilon}{2^{i+2}}\right)$, $i=1,2,\cdots,k,\cdots$, 则
+\[
+A=\bigcup_{i=1}^{\infty}\{a_{i}\}\subset\bigcup_{i=1}^{\infty}\left(a_{i}-\frac{\varepsilon}{2^{i+2}},a_{i}+\frac{\varepsilon}{2^{i+2}}\right),
+\]
+且
+\begin{align*}
+\sum_{i=1}^{\infty}|I_{i}|&=\sum_{i=1}^{\infty}\left[\left(a_{i}+\frac{\varepsilon}{2^{i+2}}\right)-\left(a_{i}-\frac{\varepsilon}{2^{i+2}}\right)\right]=\sum_{i=1}^{\infty}\frac{\varepsilon}{2^{i+1}}\\
+&=\frac{\varepsilon}{2}<\varepsilon.
+\end{align*}
+因此, $A$ 为零测集.
+
+(3) 因为 $A$ 为零测集, 故对任何 $\varepsilon>0$, 存在开区间 $I_{i}$ ($i=1,2,\cdots$), 使得
+\[
+A\subset\bigcup_{i}I_{i},\quad\sum_{i}|I_{i}|<\varepsilon.
+\]
+因此,
+\[
+B\subset A\subset\bigcup_{i}I_{i},\quad\sum_{i}|I_{i}|<\varepsilon.
+\]
+由此知, $B$ 为零测集.
+
+(4) 因为每个 $A_{i}$ 为零测集, 则存在开区间 $I_{j}^{i}$ ($j=1,2,\cdots$), 使得
+\[
+A_{i}\subset\bigcup_{j}I_{j}^{i},\quad\text{且}\ \sum_{j}|I_{j}^{i}|<\frac{\varepsilon}{2^{i}},\quad i=1,2,\cdots.
+\]
+于是, $\{I_{j}^{i}\mid i=1,2,\cdots;j=1,2,\cdots\}$ 为可数个开区间\linebreak[4](依 $i+j$ 从小到大排列为 $I_{1}^{1},I_{2}^{1},\allowbreak I_{1}^{2},I_{3}^{1},\allowbreak I_{1}^{3},I_{2}^{2},\cdots$), 使得
+\[
+\bigcup_{i}A_{i}\subset\bigcup_{i}\left(\bigcup_{j}I_{j}^{i}\right)=\bigcup_{i,j}I_{j}^{i},
+\]
+且
+\[
+\sum_{i,j}|I_{j}^{i}|=\sum_{i}\left(\sum_{j}|I_{j}^{i}|\right)<\sum_{i}\frac{\varepsilon}{2^{i}}\leqslant\varepsilon,
+\]
+所以, $\bigcup_{i}A_{i}$ 为零测集.
+\end{proof}
+
+\begin{theorem}[Riemann 可积的充要条件]\label{thm:6.1.4}
+设函数 $f$ 在 $[a,b]$ 上有界, 即 $|f(x)|\leqslant M$, $\forall x\in[a,b]$, 则下面结论等价.
+
+(1) $f$ 在 $[a,b]$ 上 Riemann 可积.
+
+(2) $f$ 在 $[a,b]$ 上的上积分与下积分相等, 即 $S=s$.
+
+(3) 对任何 $\varepsilon>0$, 存在 $[a,b]$ 的某个分割 $T$, 使得
+\[
+S(T)-s(T)=\sum_{i=1}^{n}\omega_{i}\Delta x_{i}<\varepsilon.
+\]
+
+(4) 存在 $[a,b]$ 的分割串 $T_{m}$, $m=1,2,\cdots$, 使得
+\[
+\lim_{m\to+\infty}\left[S(T_{m})-s(T_{m})\right]=0.
+\]
+
+(5) $\lim\limits_{\|T\|\to 0}\left[S(T)-s(T)\right]=0$.
+
+(6) 对任何 $\varepsilon>0$, 存在 $[a,b]$ 的某个分割 $T$, 使对任何 $\boldsymbol{\xi}=(\xi_{1},\xi_{2},\cdots,\xi_{n})$, $\xi_{i}\in[x_{i-1},x_{i}]=\Delta_{i}$, $i=1,2,\cdots,n$, 有
+\[
+\left|S(T,f,\boldsymbol{\xi})-J\right|<\varepsilon.
+\]
+
+(7) 对任何 $\varepsilon>0$, $\eta>0$, 存在 $[a,b]$ 的某个分割 $T$, 使得
+\[
+\sum_{\omega_{i}\geqslant\varepsilon}\Delta x_{i}<\eta.
+\]
+
+(8) (Lebesgue) $f$ 在 $[a,b]$ 上几乎处处 (a. e. 即 almost everywhere) 连续, 即 $f$ 的不连续点集 $D_{\text{不}}$ 为零测集, 记作
+\[
+\operatorname{meas}D_{\text{不}}=0.
+\]
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (2) 由 $f$ 在 $[a,b]$ 上 Riemann 可积, 其积分值为 $J$, 故 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $\|T\|<\delta$ 时, 有
+\[
+J-\frac{\varepsilon}{4}<\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}<J+\frac{\varepsilon}{4},
+\]
+于是,
+\begin{align*}
+J-\frac{\varepsilon}{4}&\leqslant s(T)=\sum_{i=1}^{n}\inf_{x\in[x_{i-1},x_{i}]}f(x)\Delta x_{i}\\
+&\leqslant\sum_{i=1}^{n}\sup_{x\in[x_{i-1},x_{i}]}f(x)\Delta x_{i}=S(T)\leqslant J+\frac{\varepsilon}{4},
+\end{align*}
+\[
+J-\frac{\varepsilon}{4}\leqslant s=\sup_{T}s(T)\leqslant\inf_{T}S(T)=S\leqslant J+\frac{\varepsilon}{4}.
+\]
+令 $\varepsilon\to 0^{+}$ 得到
+\[
+J\leqslant s\leqslant S\leqslant J,
+\]
+\[
+S=s=J.
+\]
+
+(2) $\Rightarrow$ (1) 设 $J'=S=s$. 由 Darboux 定理得
+\[
+\lim_{\|T\|\to 0}S(T)=\lim_{\|T\|\to 0}s(T)=J'.
+\]
+则 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $\|T\|<\delta$ 时, 满足
+\[
+J'-\varepsilon<s(T)\leqslant\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}\leqslant S(T)<J'+\varepsilon.
+\]
+从而
+\[
+\lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}=J',
+\]
+即 $f$ 在 $[a,b]$ 上 Riemann 可积, 且 $\int_{a}^{b}f(x)\,\mathrm{d}x=J'$.
+
+(2) $\Rightarrow$ (3) 设 $J=S=s$. $\forall\varepsilon>0$, 由 Darboux 定理知, $\exists\delta>0$, 当 $\|T\|<\delta$ 时,
+\[
+J-\frac{\varepsilon}{4}\leqslant s(T)\leqslant S(T)\leqslant J+\frac{\varepsilon}{4},
+\]
+则
+\[
+\sum_{i=1}^{n}\omega_{i}\Delta x_{i}=S(T)-s(T)\leqslant\left(J+\frac{\varepsilon}{4}\right)-\left(J-\frac{\varepsilon}{4}\right)=\frac{\varepsilon}{2}<\varepsilon.
+\]
+
+(3) $\Rightarrow$ (2) $\forall\varepsilon>0$, 由 (3), 存在 $[a,b]$ 的某个分割 $T$, 使得
+\[
+S(T)-s(T)<\varepsilon.
+\]
+由
+\[
+s(T)\leqslant s\leqslant S\leqslant S(T)
+\]
+得到
+\[
+0\leqslant S-s\leqslant S(T)-s(T)<\varepsilon.
+\]
+令 $\varepsilon\to 0^{+}$ 有
+\[
+0\leqslant S-s\leqslant 0,
+\]
+即
+\[
+S=s.
+\]
+
+(3) $\Rightarrow$ (4) 对任何 $m\in\mathbb{N}$, 由 (3), 必存在 $[a,b]$ 的某个分割 $T_{m}$, 使得
+\[
+0\leqslant S(T_{m})-s(T_{m})<\frac{1}{m}.
+\]
+由数列极限的定义或夹逼定理知,
+\[
+\lim_{m\to+\infty}\left[S(T_{m})-s(T_{m})\right]=0.
+\]
+
+(4) $\Rightarrow$ (3) 设 $[a,b]$ 的分割 $T_{m}$, $m=1,2,\cdots$, 使得
+\[
+\lim_{m\to+\infty}\left[S(T_{m})-s(T_{m})\right]=0,
+\]
+则 $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, s. t. 当 $m>N$ 时, 有
+\[
+S(T_{m})-s(T_{m})<\varepsilon.
+\]
+令 $T=T_{N+1}$, 则 $T$ 即为所求.
+
+(1) $\Rightarrow$ (5) 由 (1), $f$ 在 $[a,b]$ 上 Riemann 可积, 故 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $\|T\|<\delta$ 时有
+\[
+J-\frac{\varepsilon}{4}<\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}=S(T,f,\xi)<J+\frac{\varepsilon}{4}.
+\]
+由此得到
+\[
+J-\frac{\varepsilon}{4}\leqslant s(T,f)\leqslant S(T,f)\leqslant J+\frac{\varepsilon}{4},
+\]
+\[
+S(T,f)-s(T,f)\leqslant\left(J+\frac{\varepsilon}{4}\right)-\left(J-\frac{\varepsilon}{4}\right)=\frac{\varepsilon}{2}<\varepsilon,
+\]
+从而
+\[
+\lim_{\|T\|\to 0}\left[S(T,f)-s(T,f)\right]=0.
+\]
+
+(5) $\Rightarrow$ (3) 由 (5),
+\[
+\lim_{\|T\|\to 0}\left[S(T,f)-s(T,f)\right]=0,
+\]
+故 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $\|T\|<\delta$ 时, $S(T)-s(T)<\varepsilon$.
+
+(1) $\Rightarrow$ (6) 显然.
+
+(6) $\Rightarrow$ (3) 由 (6), 对任何 $\varepsilon>0$, 存在 $[a,b]$ 的某个分割 $T$, 对任何 $\xi_{i}\in[x_{i-1},x_{i}]=\Delta_{i}$, $i=1,2,\cdots,n$, 有
+\[
+|S(T,f,\xi)-J|<\frac{\varepsilon}{4},
+\]
+故
+\begin{align*}
+|S(T,f)-J|&<\frac{\varepsilon}{4},\qquad |s(T,f)-J|<\frac{\varepsilon}{4},\\
+|S(T,f)-s(T,f)|&\leqslant|S(T,f)-J|+|s(T,f)-J|\\
+&\leqslant\frac{\varepsilon}{4}+\frac{\varepsilon}{4}=\frac{\varepsilon}{2}<\varepsilon.
+\end{align*}
+
+(3) $\Rightarrow$ (7) $\forall\varepsilon>0$, $\forall\eta>0$, 由 (3), 存在 $[a,b]$ 的某个分割 $T$, 使得
+\[
+\sum_{i=1}^{n}\omega_{i}\Delta x_{i}<\sigma=\varepsilon\eta.
+\]
+于是, 便有
+\[
+\varepsilon\sum_{\omega_{i}\geqslant\varepsilon}\Delta x_{i}\leqslant\sum_{\omega_{i}\geqslant\varepsilon}\omega_{i}\Delta x_{i}\leqslant\sum_{i}\omega_{i}\Delta x_{i}<\varepsilon\eta.
+\]
+两边约去 $\varepsilon$ 得到
+\[
+\sum_{\omega_{i}\geqslant\varepsilon}\Delta x_{i}<\eta.
+\]
+
+(7) $\Rightarrow$ (3) $\forall\varepsilon>0$, 取 $\varepsilon'=\frac{\varepsilon}{2(b-a)}>0$, $\eta'=\frac{\varepsilon}{2(M-m+1)}>0$. 由 (7), 存在 $[a,b]$ 的某个分割 $T$, 使得
+\[
+\sum_{\omega_{i}\geqslant\varepsilon'}\Delta x_{i}<\eta'.
+\]
+于是,
+\begin{align*}
+S(T)-s(T)&=\sum_{i}\omega_{i}\Delta x_{i}=\sum_{\omega_{i}\geqslant\varepsilon'}\omega_{i}\Delta x_{i}+\sum_{\omega_{i}<\varepsilon'}\omega_{i}\Delta x_{i}\\
+&\leqslant(M-m)\sum_{\omega_{i}\geqslant\varepsilon'}\Delta x_{i}+\varepsilon'\sum_{\omega_{i}<\varepsilon'}\Delta x_{i}\\
+&\leqslant(M-m)\eta'+\varepsilon'(b-a)\\
+&\leqslant(M-m)\frac{\varepsilon}{2(M-m+1)}+\frac{\varepsilon}{2(b-a)}(b-a)\\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+
+(3) $\Rightarrow$ (8) 由 (3), 对任何 $\varepsilon>0$, 存在 $[a,b]$ 的某个分割 $T_{\varepsilon}:a=x_{0}<x_{1}<\cdots<x_{n}=b$, 使得
+\[
+S(T_{\varepsilon},f)-s(T_{\varepsilon},f)<\frac{\delta}{2}\varepsilon,
+\]
+其中 $\delta>0$ 为任何正数. 令
+\[
+D_{\delta}=\left\{x\in[a,b]\ \middle|\ \text{振幅}\ \omega_{f}(x)=\lim_{r\to 0^{+}}\left[\sup f(x-r,x+r)-\inf f(x-r,x+r)\right]\geqslant\delta\right\},
+\]
+则
+\[
+\sum_{D_{\delta}\cap(x_{i-1},x_{i})\neq\varnothing}\Delta x_{i}<\frac{\varepsilon}{2}.
+\]
+若不然,
+\begin{align*}
+\frac{\delta}{2}\varepsilon&>S(T_{\varepsilon},f)-s(T_{\varepsilon},f)\\
+&\geqslant\sum_{D_{\delta}\cap(x_{i-1},x_{i})\neq\varnothing}\left[\sup f(x_{i-1},x_{i})-\inf f(x_{i-1},x_{i})\right]\Delta x_{i}\\
+&\geqslant\sum_{D_{\delta}\cap(x_{i-1},x_{i})\neq\varnothing}\delta\Delta x_{i}\geqslant\delta\cdot\frac{\varepsilon}{2}=\frac{\delta}{2}\varepsilon,\ \text{矛盾}.
+\end{align*}
+显然,
+\[
+D_{\delta}\subset\bigcup_{D_{\delta}\cap(x_{i-1},x_{i})\neq\varnothing}(x_{i-1},x_{i})\cup\bigcup_{i=0}^{n}\left(x_{i}-\frac{\varepsilon}{4(n+1)},x_{i}+\frac{\varepsilon}{4(n+1)}\right),
+\]
+且
+\[
+\sum_{D_{\delta}\cap(x_{i-1},x_{i})\neq\varnothing}\Delta x_{i}+\frac{\varepsilon}{4(n+1)}\cdot 2(n+1)<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,
+\]
+所以, $D_{\delta}$ 为零测集. 由此推得 $D_{\text{不}}=\bigcup_{n}D_{\frac{1}{n}}$ 也为零测集, 即 $f$ 在 $[a,b]$ 上几乎处处连续.
+
+(8) $\Rightarrow$ (3) 由 (8), $D_{\text{不}}$ 为零测集, 故对任何 $\varepsilon>0$, 存在开区间集 $\left\{(\alpha_{i},\beta_{i})\mid i=1,2,\cdots\right\}$, 使得
+\[
+D_{\text{不}}\subset\bigcup_{i}(\alpha_{i},\beta_{i}),\quad\text{且}\ \sum_{i}(\beta_{i}-\alpha_{i})<\frac{\varepsilon}{4M+1}.
+\]
+由此, $\forall x\in[a,b]-\bigcup_{i}(\alpha_{i},\beta_{i})$, $f$ 在 $x$ 连续. 于是, 存在含 $x$ 的开区间 $I_{x}$, 当 $u\in I_{x}\cap[a,b]$ 时,
+\[
+|f(u)-f(x)|<\frac{\varepsilon}{2(b-a)}.
+\]
+显然, $\mathcal{I}=\left\{(\alpha_{i},\beta_{i}),I_{x}\mid i=1,2,\cdots;x\in[a,b]-\bigcup_{i}(\alpha_{i},\beta_{i})\right\}$\linebreak[4]为紧致集 $[a,b]$ 的一个开覆盖, 根据 Heine-Borel 有限覆盖定理, 存在 $\mathcal{I}$ 的有限子集 $\mathcal{I}'=\left\{(\alpha_{i_{k}},\beta_{i_{k}}),\allowbreak I_{x_{l}}\mid k=1,2,\cdots,m;l=1,2,\cdots,n\right\}$ 覆盖了 $[a,b]$. 再根据 Lebesgue 数定理, 存在 Lebesgue 数 $\lambda=\lambda(\mathcal{I}')>0$. 当 $[a,b]$ 的分割 $T:y_{0}<y_{1}<\cdots<y_{l}=b$ 满足 $\|T\|<\lambda$ 时, 必有
+\[
+[y_{i-1},y_{i}]\subset(\alpha_{i_{k}},\beta_{i_{k}})\ \text{或}\ I_{x_{l}}.
+\]
+于是,
+\begin{align*}
+0&\leqslant S(T,f)-s(T,f)\\
+&=\sum_{i=1}^{l}\left[\sup f([y_{i-1},y_{i}])-\inf f([y_{i-1},y_{i}])\right]\Delta y_{i}\\
+&\leqslant\sum_{1}\left[\sup f([y_{i-1},y_{i}])-\inf f([y_{i-1},y_{i}])\right]\Delta y_{i}\\
+&\quad+\sum_{2}\left[\sup f([y_{i-1},y_{i}])-\inf f([y_{i-1},y_{i}])\right]\Delta y_{i}\\
+&\leqslant 2M\sum_{1}\Delta y_{i}+\frac{\varepsilon}{2(b-a)}\sum_{2}\Delta y_{i}\\
+&\leqslant 2M\sum_{i}(\beta_{i}-\alpha_{i})+\frac{\varepsilon}{2(b-a)}(b-a)\\
+&<2M\cdot\frac{\varepsilon}{4M+1}+\frac{\varepsilon}{2}<\varepsilon.
+\end{align*}
+\end{proof}
+
+\begin{remark}\label{remark:6.1.1}
+定理~\ref{thm:6.1.4} 中的 (1)$\Leftrightarrow$(8) 可参阅参考文献 [2] 286 页定理 3.5.5.
+\end{remark}
+
+\begin{example}\label{ex:6.1.1}
+Dirichlet 函数
+\[
+D(x)=\begin{cases}1,&x\in\mathbb{Q},\\0,&x\in\mathbb{R}-\mathbb{Q}\end{cases}
+\]
+在 $[0,1]$ 上非 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+参阅定理~\ref{thm:6.1.2}.
+\end{solution}
+
+\begin{solution}[证法 2]
+因为
+\[
+S(T,f)=\sum_{i}\sup D([x_{i-1},x_{i}])\Delta x_{i}=\sum_{i}1\cdot\Delta x_{i}=1,
+\]
+\[
+s(T,f)=\sum_{i}\inf D([x_{i-1},x_{i}])\Delta x_{i}=\sum_{i}0\cdot\Delta x_{i}=0,
+\]
+\[
+S=1\neq 0=s,
+\]
+所以, 根据定理~\ref{thm:6.1.4}(2) 知, $D(x)$ 在 $[0,1]$ 上不是 Riemann 可积的.
+\end{solution}
+
+\begin{solution}[证法 3]
+由 $S(T,f)-s(T,f)=1-0=1\not<\frac{1}{2}=\varepsilon_{0}$ 及定理~\ref{thm:6.1.4}(3) 知, $D(x)$ 在 $[0,1]$ 上不是 Riemann 可积的.
+\end{solution}
+
+\begin{solution}[证法 4]
+因为 $D_{\text{不}}=[0,1]$ 不为零测集, 根据定理~\ref{thm:6.1.4}(8) 知, $D(x)$ 在 $[0,1]$ 上不是 Riemann 可积的.
+\end{solution}
+
+\begin{example}\label{ex:6.1.2}
+Riemann 函数
+\[
+R(x)=\begin{cases}\dfrac{1}{q},&x=\dfrac{p}{q},\ p\ \text{与}\ q\ \text{互质 (互素)},\\[2mm]1,&x=0,1,\\[1mm]0,&x\ \text{为}\ (0,1)\ \text{中的无理数}\end{cases}
+\]
+在 $[0,1]$ 上 Riemann 可积, 且
+\[
+\int_{0}^{1}R(x)\,\mathrm{d}x=0.
+\]
+\end{example}
+
+\begin{solution}[证法 1]
+由例 2.4.6 知, $R(x)$ 的不连续点全体为 $D_{\text{不}}=\mathbb{Q}\cap[0,1]$, 它为可数集, 因而为零测集. 根据定理~\ref{thm:6.1.4}(8) 知, $R(x)$ 在 $[0,1]$ 上 Riemann 可积, 且
+\begin{align*}
+\int_{0}^{1}R(x)\,\mathrm{d}x&=s=\sup_{T}s(T,f)=\sup_{T}\sum_{i=1}^{n}\inf_{\xi}R(\xi_{i})\Delta x_{i}\\
+&=\sup_{T}\sum_{i=1}^{n}0\cdot\Delta x_{i}=0.
+\end{align*}
+\end{solution}
+
+\begin{solution}[证法 2]
+对任何 $\varepsilon>0$, 在 $[0,1]$ 内使 $\frac{1}{q}\geqslant\frac{\varepsilon}{2}$ 的有理点 $\frac{p}{q}$ 只有有限个, 设它们为 $r_{1},r_{2},\cdots,r_{k}$. 现对 $[0,1]$ 作分割 $T=\{\Delta_{1},\Delta_{2},\cdots,\Delta_{n}\}$, 使得 $\|T\|<\frac{\varepsilon}{4k+1}$, 并将 $T$ 中所有小区间分为 $\{\Delta_{i}'\mid i=1,2,\cdots,m\}$ 与 $\{\Delta_{i}''\mid i=1,2,\cdots,n-m\}$ 两类, 其中 $\{\Delta_{i}'\}$ 为含 $\{r_{i}\mid i=1,2,\cdots,k\}$ 中点的所有小区间, 这类小区间的个数 $m\leqslant 2k$ (当所有 $r_{i}$ 恰好都是 $T$ 的分点时才有 $m=2k$); 而 $\{\Delta_{i}''\}$ 为 $T$ 中所有其余不含 $\{r_{i}\}$ 中点的小区间. 于是,
+\begin{align*}
+0&\leqslant\sum_{i=1}^{n}R(\xi_{i})\Delta x_{i}\leqslant\sum_{i=1}^{n}M_{i}\Delta x_{i}\leqslant\sum_{i=1}^{m}1\cdot\Delta x_{i}'+\sum_{i=1}^{n-m}\frac{\varepsilon}{2}\Delta x_{i}''\\
+&\leqslant 2k\|T\|+\frac{\varepsilon}{2}\cdot 1<2k\frac{\varepsilon}{4k+1}+\frac{\varepsilon}{2}<\varepsilon,
+\end{align*}
+所以, $R(x)$ 在 $[0,1]$ 上 Riemann 可积, 且
+\[
+\int_{0}^{1}R(x)\,\mathrm{d}x=0.
+\]
+\end{solution}
+
+\begin{solution}[证法 3]
+由证法 2, 有
+\begin{align*}
+\sum_{i=1}^{n}\omega_{i}\Delta x_{i}&=\sum_{i=1}^{m}\omega_{i}'\Delta x_{i}'+\sum_{i=1}^{n-m}\omega_{i}''\Delta x_{i}''\\
+&\leqslant\sum_{i=1}^{m}1\cdot\Delta x_{i}'+\sum_{i=1}^{n-m}\frac{\varepsilon}{2}\Delta x_{i}''\\
+&\leqslant 2k\cdot\|T\|+\frac{\varepsilon}{2}\cdot 1\\
+&\leqslant 2k\cdot\frac{\varepsilon}{4k+1}+\frac{\varepsilon}{2}<\varepsilon,
+\end{align*}
+根据定理~\ref{thm:6.1.4}(3) 知, $R(x)$ 在 $[0,1]$ 上 Riemann 可积. 再由证法 1 有, $\int_{0}^{1}R(x)\,\mathrm{d}x=0$.
+\end{solution}
+
+\begin{solution}[证法 4]
+$\forall\varepsilon>0$, $\forall\eta>0$, 由于在 $[0,1]$ 中满足 $\frac{1}{q}\geqslant\varepsilon$ (即 $q\leqslant\frac{1}{\varepsilon}$) 的有理点 $\frac{p}{q}$ 只有有限个, 设为 $k$ 个, 因此, 含这类点的小区间至多 $2k$ 个, 在其中 $\omega_{i}\geqslant\varepsilon$. 当 $\|T\|<\frac{\eta}{2k+1}$ 时, 就能保证这些小区间的总长度为
+\[
+\sum_{\omega_{i}\geqslant\varepsilon}\Delta x_{i}\leqslant 2k\cdot\|T\|\leqslant 2k\cdot\frac{\eta}{2k+1}<\eta.
+\]
+根据定理~\ref{thm:6.1.4}(7), $R(x)$ 在 $[0,1]$ 上 Riemann 可积. 再由证法 1 有, $\int_{0}^{1}R(x)\,\mathrm{d}x=0$.
+\end{solution}
+
+我们用 4 种方法证明 Riemann 函数 $R(x)$ 在 $[0,1]$ 上 Riemann 可积, 这可使读者思路开阔, 此外, 还可看出证法 2 的方法最好.
+
+\begin{example}\label{ex:6.1.3}
+设 $f$ 为 $[a,b]$ 上的连续函数, 则 $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+显然 $D_{\text{不}}=\varnothing$ 为零测集, 根据定理~\ref{thm:6.1.4}(8), $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{solution}[证法 2]
+由于 $f$ 在闭区间 $[a,b]$ 上连续, 则 $f$ 在 $[a,b]$ 上一致连续. 即对 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $x',x''\in[a,b]$ 且 $|x'-x''|<\delta$ 时, 有
+\[
+|f(x')-f(x'')|<\frac{\varepsilon}{2(b-a)}.
+\]
+所以, 当 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$ 满足 $\|T\|<\delta$ 时,
+\begin{align*}
+\omega_{i}&=M_{i}-m_{i}=\sup f([x_{i-1},x_{i}])-\inf f([x_{i-1},x_{i}])\\
+&=\sup_{x',x''\in\Delta_{i}}|f(x')-f(x'')|\leqslant\frac{\varepsilon}{2(b-a)}.
+\end{align*}
+从而导致 (见图~\ref{fig:6.1.4})
+\[
+\sum_{i=1}^{n}\omega_{i}\Delta x_{i}\leqslant\frac{\varepsilon}{2(b-a)}\sum_{i=1}^{n}\Delta x_{i}=\frac{\varepsilon}{2(b-a)}(b-a)=\frac{\varepsilon}{2}<\varepsilon.
+\]
+根据定理~\ref{thm:6.1.4}(3), $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.12cm,y=1.0cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.9,0) node[below right] {$x$};
+  \draw[->] (0,-0.3) -- (0,2.8) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw (1.5,0) rectangle (2.3,1.95);
+  \draw (2.3,0) rectangle (2.9,1.10);
+  \draw (2.9,0) rectangle (3.45,0.97);
+  \draw (3.45,0) rectangle (4.0,1.05);
+  \draw (4.0,0) rectangle (4.7,1.62);
+  \draw (4.7,0) rectangle (5.4,2.08);
+  \draw (5.4,0) rectangle (6.1,2.38);
+  \fill[pattern=north east lines] (1.5,1.95) -- (2.3,1.95) -- (2.3,1.10) -- (1.5,1.90) -- cycle;
+  \fill[pattern=north east lines] (2.3,1.10) -- (2.9,1.10) -- (2.9,0.95) -- (2.3,1.10) -- cycle;
+  \fill[pattern=north east lines] (2.9,0.97) -- (3.45,0.97) -- (3.45,0.92) -- (2.9,0.95) -- cycle;
+  \fill[pattern=north east lines] (3.45,1.05) -- (4.0,1.05) -- (4.0,0.98) -- (3.45,0.92) -- cycle;
+  \fill[pattern=north east lines] (4.0,1.62) -- (4.7,1.62) -- (4.7,1.30) -- (4.0,0.98) -- cycle;
+  \fill[pattern=north east lines] (4.7,2.08) -- (5.4,2.08) -- (5.4,1.85) -- (4.7,1.30) -- cycle;
+  \fill[pattern=north east lines] (5.4,2.38) -- (6.1,2.38) -- (6.1,2.35) -- (5.4,1.85) -- cycle;
+  \draw[very thick] plot[smooth] coordinates {(1.5,1.90) (2.3,1.10) (2.9,0.95) (3.45,0.92) (4.0,0.98) (4.7,1.30) (5.4,1.85) (6.1,2.35)};
+  \node[right] at (6.1,2.35) {$y=f(x)$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.4}
+\end{figure}
+
+\begin{example}\label{ex:6.1.4}
+设有界函数 $f$ 在 $[a,b]$ 上只有至多可数个不连续点, 则 $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{example}
+
+\begin{solution}
+因为 $D_{\text{不}}$ 为至多可数集, 它为零测集. 根据定理~\ref{thm:6.1.4}(8) 知, $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{example}\label{ex:6.1.5}
+设 $f$ 为 $[a,b]$ 上只有有限个不连续点的有界函数, 则 $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+因 $D_{\text{不}}$ 为有限集, 故它为零测集. 根据定理~\ref{thm:6.1.4}(8), $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{solution}[证法 2]
+设 $|f(x)|<M$, $\forall x\in[a,b]$, $f$ 在 $[a,b]$ 上的不连续点全体含在下面的分点内: $a=c_{0}<c_{1}<\cdots<c_{n}=b$. 对 $\forall\varepsilon>0$, 取 $[a,b]$ 的一个分割 (图~\ref{fig:6.1.5})
+\[
+T_{0}: a=c_{0}<a_{1}<b_{1}<c_{1}<a_{2}<b_{2}<c_{2}<\cdots<c_{n-1}<a_{n}<b_{n}<c_{n}=b,\ \text{s. t.}
+\]
+\[
+a_{j}-c_{j-1}<\frac{\varepsilon}{6nM},\quad c_{j}-b_{j}<\frac{\varepsilon}{6nM},\quad j=1,2,\cdots,n.
+\]
+又 $f$ 在 $[a_{j},b_{j}]$ 内连续, $j=1,2,\cdots,n$, 故由例~\ref{ex:6.1.3} 及定理~\ref{thm:6.1.4}(3) 知, 存在 $[a_{j},b_{j}]$ 的分割
+\[
+T_{j}: a_{j}=x_{j_{0}}<x_{j_{1}}<\cdots<x_{j_{l}}=b_{j},\ \text{s. t.}\ \sum_{i=1}^{l}\omega_{j_{i}}\Delta x_{j_{i}}<\frac{\varepsilon}{3n}.
+\]
+于是, 对 $[a,b]$ 的分割 $T=T_{0}+T_{1}+\cdots+T_{n}$, 有
+\begin{align*}
+S(T,f)-s(T,f)&=\sum_{j=1}^{n}\left[\sup f([c_{j-1},a_{j}])-\inf f([c_{j-1},a_{j}])\right](a_{j}-c_{j-1})\\
+&\quad+\sum_{j=1}^{n}\left[\sup f([b_{j},c_{j}])-\inf f([b_{j},c_{j}])\right](c_{j}-b_{j})\\
+&\quad+\sum_{j=1}^{n}\left[S(T_{j},f)-s(T_{j},f)\right]\\
+&<2M\cdot\frac{\varepsilon}{6nM}\cdot n+2M\cdot\frac{\varepsilon}{6nM}\cdot n+\frac{\varepsilon}{3n}\cdot n=\varepsilon.
+\end{align*}
+再由定理~\ref{thm:6.1.4}(3) 知, $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.02cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (10.8,0) node[below right] {$x$};
+  \foreach \x in {0.6,2.4,3.0,4.0,5.4,6.0,7.0,8.8,9.4,10.2}
+    \draw (\x,0) -- (\x,0.14);
+  \node[above] at (0.6,0.14) {$a=c_{0}$};
+  \node[above] at (4.0,0.14) {$c_{1}$};
+  \node[above] at (7.0,0.14) {$c_{2}$};
+  \node[above] at (8.8,0.14) {$c_{n-1}$};
+  \node[above] at (10.3,0.14) {$c_{n}=b$};
+  \node[below] at (2.4,-0.06) {$a_{1}$};
+  \node[below] at (3.0,-0.06) {$b_{1}$};
+  \node[below] at (5.4,-0.06) {$a_{2}$};
+  \node[below] at (6.0,-0.06) {$b_{2}$};
+  \node[below] at (9.4,-0.06) {$a_{n}$};
+  \node[below] at (9.8,-0.06) {$b_{n}$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.5}
+\end{figure}
+
+\begin{example}\label{ex:6.1.6}
+设 $\{c_{i}\mid i=1,2,\cdots\}$ 为 $f$ 在 $[a,b]$ 上的全体不连续点, 且 $f$ 在 $[a,b]$ 上有界. 如果 $\lim\limits_{n\to\infty}c_{n}=c_{0}\in[a,b]$, 则 $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+参阅例~\ref{ex:6.1.4} 的证明.
+\end{solution}
+
+\begin{solution}[证法 2]
+因 $\lim\limits_{n\to+\infty}c_{n}=c_{0}$, 故 $\forall\varepsilon>0$, $\exists N\in\mathbb{N}$, 当 $n>N$ 时, $c_{n}\in\left(c_{0}-\frac{\varepsilon}{4M+1},c_{0}+\frac{\varepsilon}{4M+1}\right)$, 其中 $|f(x)|\leqslant M$, $\forall x\in[a,b]$. 由于在 $[a,b]-\left(c_{0}-\frac{\varepsilon}{8M+1},c_{0}+\frac{\varepsilon}{8M+1}\right)$ 上, $f$ 只有有限个不连续点, 根据例~\ref{ex:6.1.5} 证法 2 知, $f$ 在 $[a,b]-\left(c_{0}-\frac{\varepsilon}{8M+1},c_{0}+\frac{\varepsilon}{8M+1}\right)$ 上 Riemann 可积. 根据定理~\ref{thm:6.1.4}(3), 必有 $[a,b]-\left(c_{0}-\frac{\varepsilon}{8M+1},c_{0}+\frac{\varepsilon}{8M+1}\right)$ 的分割 $T_{0}$, 使得 $\sum\limits_{T_{0}}\omega_{i}\Delta x_{i}<\frac{\varepsilon}{2}$. 由 $T_{0}$ 的分点构成 $[a,b]$ 的分割 $T$, 则有
+\begin{align*}
+\sum_{T}\omega_{i}\Delta x_{i}&=\sum_{T_{0}}\omega_{i}\Delta x_{i}+\left[\sup f\left(\left[c_{0}-\frac{\varepsilon}{8M+1},c_{0}+\frac{\varepsilon}{8M+1}\right]\right)\right.\\
+&\quad\left.-\inf f\left(\left[c_{0}-\frac{\varepsilon}{8M+1},c_{0}+\frac{\varepsilon}{8M+1}\right]\right)\right]\cdot\frac{2\varepsilon}{8M+1}\\
+&<\frac{\varepsilon}{2}+2M\cdot\frac{2\varepsilon}{8M+1}<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{align*}
+再根据定理~\ref{thm:6.1.4}(3) 可得, $f$ 在 $[a,b]$ 上 Riemann 可积 (见图~\ref{fig:6.1.6}).
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.12cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (10.4,0) node[below right] {$x$};
+  \draw (0.8,0) -- (0.8,0.14);
+  \node[below] at (0.8,-0.06) {$a$};
+  \draw[thick] (3.0,-0.30) -- (3.0,0.30);
+  \draw[thick] (4.9,-0.30) -- (4.9,0.30);
+  \draw[thick] (3.0,0) -- (4.9,0);
+  \node[below] at (3.95,-0.34) {$c_{0}$};
+  \node[above] at (3.0,0.32) {$c_{0}-\frac{\varepsilon}{8M+1}$};
+  \node[above] at (5.0,0.32) {$c_{0}+\frac{\varepsilon}{8M+1}$};
+  \fill (6.7,0) circle (1.3pt);
+  \draw (6.7,0) -- (6.7,0.14);
+  \node[below] at (6.7,-0.06) {$c_{n_{1}}$};
+  \fill (7.7,0) circle (1.3pt);
+  \draw (7.7,0) -- (7.7,0.14);
+  \node[below] at (7.7,-0.06) {$c_{n_{k}}$};
+  \draw (9.0,0) -- (9.0,0.14);
+  \node[below] at (9.0,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.6}
+\end{figure}
+
+从表面上看, 例~\ref{ex:6.1.5} 与例~\ref{ex:6.1.6} 中证法 1 比较简单, 而证法 2 比较复杂, 但实际上, 如果证法 1 加进定理~\ref{thm:6.1.4}(8) 的证明就不比证法 2 简单了. 此外, 证法 2 是为了培养读者有更强的分析能力.
+
+\begin{example}\label{ex:6.1.7}
+设 $f$ 为 $[a,b]$ 上的单调函数, 则 $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+因 $f$ 为 $[a,b]$ 上的单调函数, 故由定理 2.4.7 知, $D_{\text{不}}$ 为至多可数集, 从而 $D_{\text{不}}$ 为零测集. 由定理~\ref{thm:6.1.4}(8) 可知, $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{solution}[证法 2]
+不妨设 $f$ 为增函数. $\forall\varepsilon>0$, 取 $\delta=\frac{\varepsilon}{f(b)-f(a)+1}$, 对 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $\|T\|<\delta$, 有
+\begin{align*}
+\sum_{T}\omega_{i}\Delta x_{i}&\leqslant\sum_{i=1}^{n}\left[f(x_{i})-f(x_{i-1})\right]\|T\|\\
+&=\left[f(b)-f(a)\right]\cdot\frac{\varepsilon}{f(b)-f(a)+1}<\varepsilon,
+\end{align*}
+根据定理~\ref{thm:6.1.4}(3) 推得 $f$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{example}\label{ex:6.1.8}
+设 $[\alpha,\beta]\subset[a,b]$, 如果 $f$ 在 $[a,b]$ 上 Riemann 可积, 则 $f$ 在子区间 $[\alpha,\beta]$ 上也 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+根据定理~\ref{thm:6.1.4}(8) 知, $f$ 在 $[a,b]$ 上 Riemann 可积等价于 $f$ 在 $[a,b]$ 上有界且几乎处处连续. 因此, $f$ 在 $[\alpha,\beta]\subseteq[a,b]$ 上有界且几乎处处连续, 再根据定理~\ref{thm:6.1.4}(8), $f$ 在 $[\alpha,\beta]$ 上也 Riemann 可积.
+\end{solution}
+
+\begin{solution}[证法 2]
+因 $f$ 在 $[a,b]$ 上 Riemann 可积, 故对 $\forall\varepsilon>0$, $\exists\delta>0$, 当 $\|T\|<\delta$ 时, 有 $\sum\limits_{T}\omega_{i}\Delta x_{i}<\varepsilon$. 因此, 对 $[\alpha,\beta]$ 上任一分割 $T_{0}'$, 只要 $\|T_{0}'\|<\delta$, 必可构造 $[a,b]$ 上的分割 $T_{0}$, 它由 $T_{0}'$ 增加属于 $[a,b]-[\alpha,\beta]$ 的分点得到, 且 $\|T_{0}\|<\delta$ (图~\ref{fig:6.1.7}). 于是,
+\[
+\sum_{T_{0}'}\omega_{i}\Delta x_{i}\leqslant\sum_{T_{0}}\omega_{i}\Delta x_{i}<\varepsilon.
+\]
+由此及定理~\ref{thm:6.1.4}(3), 推得 $f$ 在 $[\alpha,\beta]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.02cm,y=1.0cm,>=Stealth]
+  \draw[->] (0,0) -- (10.4,0) node[below right] {$x$};
+  \foreach \x in {1.2,1.5,1.8,2.1,2.4,2.7,3.0,3.3} \fill (\x,0) circle (1.2pt);
+  \draw[thick] (3.9,-0.26) -- (3.9,0.26);
+  \draw[thick] (6.1,-0.26) -- (6.1,0.26);
+  \foreach \x in {6.7,7.0,7.3,7.6,7.9,8.2,8.5} \fill (\x,0) circle (1.2pt);
+  \node[below] at (1.2,-0.06) {$a$};
+  \node[below] at (3.9,-0.30) {$\alpha$};
+  \node[below] at (6.1,-0.30) {$\beta$};
+  \node[below] at (8.5,-0.06) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.7}
+\end{figure}
+
+\begin{example}\label{ex:6.1.9}
+设 $f$, $g$ 在 $[a,b]$ 上 Riemann 可积, 则 $|f|$, $fg$ 在 $[a,b]$ 上也 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+因 $f$, $g$ 在 $[a,b]$ 上 Riemann 可积, 故由定理~\ref{thm:6.1.4}(8) 知, $D_{\text{不}}^{f}$ 与 $D_{\text{不}}^{g}$ 均为零测集. 再由引理~\ref{lem:6.1.6}(4) 知, $D_{\text{不}}^{f}\cup D_{\text{不}}^{g}$ 为零测集. 显然,
+\[
+D_{\text{不}}^{|f|}\subset D_{\text{不}}^{f},\quad D_{\text{不}}^{fg}\subset D_{\text{不}}^{f}\bigcup D_{\text{不}}^{g}.
+\]
+根据引理~\ref{lem:6.1.6}(3) 推得 $D_{\text{不}}^{|f|}$ 与 $D_{\text{不}}^{fg}$ 都为零测集. 再由定理~\ref{thm:6.1.4}(8), $|f|$ 与 $fg$ 在 $[a,b]$ 上都是 Riemann 可积的.
+\end{solution}
+
+\begin{solution}[证法 2]
+由于 $f$, $g$ 都在 $[a,b]$ 上 Riemann 可积, 从而都有界. 设
+\[
+A=\sup_{x\in[a,b]}|f(x)|,\quad B=\sup_{x\in[a,b]}|g(x)|.
+\]
+$\forall\varepsilon>0$, 由于 $f$, $g$ 在 $[a,b]$ 上均 Riemann 可积, 故必分别存在 $[a,b]$ 的分割 $T_{1}$, $T_{2}$, 使得
+\[
+\sum_{T_{1}}\omega_{i}^{f}\Delta x_{i}<\frac{\varepsilon}{2B+1},\quad\sum_{T_{2}}\omega_{i}^{g}\Delta x_{i}<\frac{\varepsilon}{2A+1}.
+\]
+令 $T=T_{1}+T_{2}=\{\Delta_{i}\}$, 它是 $[a,b]$ 的一个新分割. 于是, 对每个 $\Delta_{i}\in T$, 有
+\begin{align*}
+\omega_{i}^{fg}&=\sup_{x',x''\in\Delta_{i}}|f(x')g(x')-f(x'')g(x'')|\\
+&\leqslant\sup_{x',x''\in\Delta_{i}}\left[|g(x')|\cdot|f(x')-f(x'')|+|f(x'')|\cdot|g(x')-g(x'')|\right]\\
+&\leqslant B\omega_{i}^{f}+A\omega_{i}^{g}.
+\end{align*}
+\[
+\sum_{T}\omega_{i}^{fg}\Delta x_{i}\leqslant\sum_{T}\left(B\omega_{i}^{f}+A\omega_{i}^{g}\right)\Delta x_{i}=B\sum_{T}\omega_{i}^{f}\Delta x_{i}+A\sum_{T}\omega_{i}^{g}\Delta x_{i}
+\]
+\[
+\leqslant B\sum_{T_{1}}\omega_{i}^{f}\Delta x_{i}+A\sum_{T_{2}}\omega_{i}^{g}\Delta x_{i}\leqslant B\cdot\frac{\varepsilon}{2B+1}+A\cdot\frac{\varepsilon}{2A+1}<\varepsilon.
+\]
+此外, 由于
+\[
+\omega_{i}^{|f|}=\sup_{x',x''\in\Delta_{i}}\left||f(x')|-|f(x'')|\right|\leqslant\sup_{x',x''\in\Delta_{i}}|f(x')-f(x'')|=\omega_{i}^{f},
+\]
+故
+\[
+\sum_{T_{1}}\omega_{i}^{|f|}\Delta x_{i}\leqslant\sum_{T_{1}}\omega_{i}^{f}\Delta x_{i}<\frac{\varepsilon}{2B+1}<\varepsilon.
+\]
+根据定理~\ref{thm:6.1.4}(3) 知, $|f|$ 与 $fg$ 在 $[a,b]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{example}\label{ex:6.1.10}
+设 $f$ 在 $[a,b]$ 上连续, $\varphi$ 在 $[\alpha,\beta]$ 上 Riemann 可积, $a\leqslant\varphi(t)\leqslant b$, $t\in[\alpha,\beta]$. 则 $f\circ\varphi$ 在 $[\alpha,\beta]$ 上仍 Riemann 可积.
+
+如果 $f$, $\varphi$ 都为 Riemann 可积函数, 则 $f\circ\varphi$ 不一定 Riemann 可积.
+
+如果 $f$ Riemann 可积, $\varphi$ 连续, 则 $f\circ\varphi$ 也不一定 Riemann 可积.
+\end{example}
+
+\begin{solution}[证法 1]
+因为 $\varphi$ 在 $[\alpha,\beta]$ 上 Riemann 可积, 故 $D_{\text{不}}^{\varphi}$ 为零测集. 又因为 $f$ 在 $[a,b]$ 上连续, 且
+\[
+D_{\text{不}}^{f\circ\varphi}\subset D_{\text{不}}^{\varphi},
+\]
+根据引理~\ref{lem:6.1.6}(3) 知, $D_{\text{不}}^{f\circ\varphi}$ 也为零测集. 再由定理~\ref{thm:6.1.4}(8) 推得 $f\circ\varphi$ 在 $[\alpha,\beta]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{solution}[证法 2]
+因为 $f$ 在 $[a,b]$ 上连续, 所以它在 $[a,b]$ 上一致连续. 于是, $\forall\varepsilon>0$, $\exists\delta>0$, 当 $x',x''\in[a,b]$, $|x'-x''|<\delta$ 时, 有 $|f(x')-f(x'')|<\frac{\varepsilon}{2(\beta-\alpha)}$. 对 $[\alpha,\beta]$ 上 Riemann 可积的函数 $\varphi$ 应用定理~\ref{thm:6.1.4}(7), 存在 $[\alpha,\beta]$ 的某个分割 $T:\alpha=t_{0}<t_{1}<\cdots<t_{m}=\beta$, 有
+\[
+\sum_{\omega_{i}^{\varphi}\geqslant\delta}\Delta t_{i}<\frac{\varepsilon}{4M+1},
+\]
+其中 $M=\max\limits_{x\in[a,b]}|f(x)|$. 于是
+\begin{align*}
+\sum_{i=1}^{m}\omega_{i}^{f\circ\varphi}\Delta t_{i}&=\sum_{\omega_{i}^{\varphi}\geqslant\delta}\omega_{i}^{f\circ\varphi}\Delta t_{i}+\sum_{\omega_{i}^{\varphi}<\delta}\omega_{i}^{f\circ\varphi}\Delta t_{i}\\
+&\leqslant 2M\sum_{\omega_{i}^{\varphi}\geqslant\delta}\Delta t_{i}+\frac{\varepsilon}{2(\beta-\alpha)}\sum_{\omega_{i}^{\varphi}<\delta}\Delta t_{i}\\
+&\leqslant 2M\cdot\frac{\varepsilon}{4M+1}+\frac{\varepsilon}{2(\beta-\alpha)}(\beta-\alpha)<\varepsilon.
+\end{align*}
+根据定理~\ref{thm:6.1.4}(3), $f\circ\varphi$ 在 $[\alpha,\beta]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{solution}[证法 3]
+$\forall\varepsilon>0$, $\forall\eta>0$, 由于 $f$ 在 $[a,b]$ 上一致连续, 因此对上述的 $\eta$, $\exists\delta>0$, 当 $x',x''\in[a,b]$ 且 $|x'-x''|<\delta$ 时, $|f(x')-f(x'')|<\eta$.
+
+再由 $\varphi$ 在 $[\alpha,\beta]$ 上 Riemann 可积, 根据定理~\ref{thm:6.1.4}(7), 存在某个分割 $T$, 使得
+\[
+\sum_{\omega_{i}^{\varphi}\geqslant\delta}\Delta t_{i}<\varepsilon.
+\]
+而在其余 $\omega_{i}^{\varphi}<\delta$ 的小区间上必有 $\omega_{i}^{f\circ\varphi}<\eta$. 因此,
+\[
+\sum_{\omega_{i}^{f\circ\varphi}\geqslant\eta}\Delta t_{i}\leqslant\sum_{\omega_{i}^{\varphi}\geqslant\delta}\Delta t_{i}<\varepsilon.
+\]
+再根据定理~\ref{thm:6.1.4}(7) 得到 $f\circ\varphi$ 在 $[\alpha,\beta]$ 上 Riemann 可积.
+\end{solution}
+
+\begin{solution}[反例 1]
+设 $f(x)=\operatorname{sgn}x=\begin{cases}1,&x>0,\\0,&x=0,\\-1,&x<0,\end{cases}\quad \varphi(t)=R(t)$ (Riemann 函数), 则 $f$, $\varphi$ 都在 $[0,1]$ 上 Riemann 可积, 但
+\[
+f\circ\varphi(t)=\operatorname{sgn}(R(t))=\begin{cases}1,&t\ \text{为有理数},\\0,&t\ \text{为无理数}\end{cases}=D(t)\quad(\text{Dirichlet 函数})
+\]
+在 $[0,1]$ 上不是 Riemann 可积的.
+\end{solution}
+
+\begin{solution}[反例 2]
+设 $f(x)=\begin{cases}0,&x=0,\\1,&0<x\leqslant 1,\end{cases}$ 它是一个有界函数, 且只有一个不连续点 $0$, 根据例~\ref{ex:6.1.5} 知, $f$ 为 $[0,1]$ 上的 Riemann 可积函数.
+
+为构造 $\varphi$, 先定义类 Cantor 集 $C$, 在 $[0,1]$ 的中点 $\frac{1}{2}$ 处挖去一个以 $\frac{1}{2}$ 为中心, 长度为 $\frac{1}{4}$ 的小区间; 然后, 在余下的两个区间的中点各挖去一个以该中点为中心, 长度为 $\frac{1}{2\times 8}$ 的小区间; 再在余下的 $8$ 个区间的中点各挖去一个以该中点为中心, 长度为 $\frac{1}{2^{2}\times 16}$ 的小区间; 依此类推. 易见, 挖去小区间的总长度为
+\[
+\frac{1}{4}+2\times\frac{1}{2\times 8}+2^{2}\times\frac{1}{2^{2}\times 16}+\cdots=\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots=\frac{\frac{1}{4}}{1-\frac{1}{2}}=\frac{1}{2}.
+\]
+记 $[0,1]$ 在挖去上述可数个小区间后余下的集合为 $C$, 称为类 Cantor 集. 应用反证法可知, $C$ 不为零测集 (在实变函数论中知道, $C$ 的 Lebesgue 测度为 $1-\frac{1}{2}=\frac{1}{2}\neq 0$). 设 $[0,1]-\bigcup\limits_{n=1}^{\infty}(a_{n},b_{n})=C$, 其中 $(a_{n},b_{n})$ 彼此不相交, 它们为 $[0,1]\setminus C$ 的构成区间. 令
+\[
+\varphi(t)=\begin{cases}0,&t\in C,\\\frac{1}{2}(b_{n}-a_{n})-\left|t-\frac{1}{2}(a_{n}+b_{n})\right|,&t\in(a_{n},b_{n}),\ n\in\mathbb{N},\end{cases}
+\]
+易见, $\varphi$ 为 $[0,1]$ 上的连续函数, 且
+\[
+f\circ\varphi(t)=\begin{cases}0,&t\in C,\\1,&t\in[0,1]\setminus C.\end{cases}
+\]
+它的不连续点恰为类 Cantor 集 $C$, 即 $D_{\text{不}}^{f\circ\varphi}$, 它不为零测集. 根据定理~\ref{thm:6.1.4}(8) 推得 $f\circ\varphi$ 在 $[0,1]$ 上不是 Riemann 可积的.
+\end{solution}
+
+\begin{example}\label{ex:6.1.11}
+证明: $\int_{a}^{b}c\,\mathrm{d}x=c(b-a)$, 其中 $c$ 为常数.
+\end{example}
+
+\begin{solution}
+对 $[a,b]$ 的任何分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $\forall\xi_{i}\in[x_{i-1},x_{i}]$, $\forall\varepsilon>0$, 有
+\[
+\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}=\sum_{i=1}^{n}c\Delta x_{i}=c(b-a),
+\]
+\[
+\left|\sum_{i=1}^{n}f(\xi_{i})\Delta x_{i}-c(b-a)\right|=|c(b-a)-c(b-a)|=0<\varepsilon.
+\]
+根据定义~\ref{def:6.1.1}, 可知 $\int_{a}^{b}c\,\mathrm{d}x=c(b-a)$.
+\end{solution}
+
+\begin{example}\label{ex:6.1.12}
+证明: $\int_{a}^{b}x\,\mathrm{d}x=\frac{b^{2}-a^{2}}{2}=\frac{b+a}{2}(b-a)$.
+\end{example}
+
+这恰为梯形 $AabB$ 的面积 (图~\ref{fig:6.1.8}).
+
+\begin{solution}[证法 1]
+易见,
+\begin{align*}
+\sum_{i=1}^{n}\eta_{i}\Delta x_{i}&=\sum_{i=1}^{n}\frac{x_{i-1}+x_{i}}{2}(x_{i}-x_{i-1})\\
+&=\frac{1}{2}\sum_{i=1}^{n}(x_{i}^{2}-x_{i-1}^{2})\\
+&=\frac{1}{2}(b^{2}-a^{2}).
+\end{align*}
+$\forall\varepsilon>0$, 取 $\delta=\frac{\varepsilon}{b-a}$, 当 $[a,b]$ 的分割 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $\|T\|<\delta$, $\forall\xi_{i}\in[x_{i-1},x_{i}]$, $i=1,2,\cdots,n$, 有
+\begin{align*}
+\left|\sum_{i=1}^{n}\xi_{i}\Delta x_{i}-\frac{1}{2}(b^{2}-a^{2})\right|&=\left|\sum_{i=1}^{n}(\xi_{i}-\eta_{i})\Delta x_{i}\right|\\
+&\leqslant\sum_{i=1}^{n}|\xi_{i}-\eta_{i}|\Delta x_{i}\leqslant\|T\|\sum_{i=1}^{n}\Delta x_{i}\\
+&<\frac{\varepsilon}{b-a}(b-a)=\varepsilon,
+\end{align*}
+根据定义~\ref{def:6.1.1}, 可知 $\int_{a}^{b}x\,\mathrm{d}x=\frac{b^{2}-a^{2}}{2}$.
+\end{solution}
+
+\begin{solution}[证法 2]
+因为 $f(x)=x$ 连续, 所以它在 $[a,b]$ 上 Riemann 可积, 且
+\begin{align*}
+\int_{a}^{b}x\,\mathrm{d}x&=\lim_{n\to+\infty}\sum_{i=1}^{n}\left[a+\frac{i}{n}(b-a)\right]\frac{b-a}{n}\\
+&=\lim_{n\to+\infty}\left[a(b-a)+\frac{(b-a)^{2}}{n^{2}}\frac{n(n+1)}{2}\right]\\
+&=a(b-a)+\frac{(b-a)^{2}}{2}=\frac{b^{2}-a^{2}}{2}.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.05cm,y=0.80cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.6,0) node[below right] {$x$};
+  \draw[->] (0,-0.3) -- (0,5.9) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \draw[thick] (0,0) -- (5.8,5.8);
+  \node[right] at (4.3,5.0) {$y=x$};
+  \draw[thick] (1.5,0) -- (1.5,1.5);
+  \draw[thick] (2.9,0) -- (2.9,2.9);
+  \draw[thick] (4.6,0) -- (4.6,4.6);
+  \draw[thick] (5.8,0) -- (5.8,5.8);
+  \node[right] at (5.82,5.8) {$B$};
+  \node[left] at (1.48,1.5) {$A$};
+  \draw[dashed] (0,3.6) -- (3.6,3.6);
+  \node[left] at (0,3.6) {$\eta_{i}=\dfrac{x_{i-1}+x_{i}}{2}$};
+  \fill (3.6,0) circle (1.3pt);
+  \fill (4.1,0) circle (1.3pt);
+  \node[below] at (1.5,-0.10) {$a$};
+  \node[below] at (2.9,-0.10) {$x_{i-1}$};
+  \node[below] at (3.6,-0.12) {$\eta_{i}$};
+  \node[below] at (4.1,-0.36) {$\xi_{i}$};
+  \node[below] at (4.6,-0.12) {$x_{i}$};
+  \node[below] at (5.8,-0.10) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.8}
+\end{figure}
+
+\begin{example}\label{ex:6.1.13}
+求在区间 $[a,b]$ 上, 以抛物线 $y=x^{2}$ 为曲边, $y=0$, $x=a$ 与 $x=b$ 为直边的曲边梯形的面积 $S$.
+\end{example}
+
+\begin{solution}
+因为 $y=x^{2}$ 在 $[a,b]$ 上连续, 所以在 $[a,b]$ 上 Riemann 可积. 于是, 将 $[a,b]$ $n$ 等分, 所得分割为 $T_{n}:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $x_{i}=a+\frac{i}{n}(b-a)$, $\|T_{n}\|=\frac{b-a}{n}$, $\xi_{i}=x_{i}$, $i=0,1,\cdots,n-1$. 根据定理~\ref{thm:6.1.4}(5) (图~\ref{fig:6.1.9}), 有
+\begin{align*}
+S&=\int_{a}^{b}x^{2}\,\mathrm{d}x\\
+&=\lim_{n\to+\infty}\sum_{i=0}^{n-1}\left[a+\frac{i}{n}(b-a)\right]^{2}\frac{b-a}{n}\\
+&=\lim_{n\to+\infty}\left[a^{2}(b-a)+2a(b-a)^{2}\frac{n(n-1)}{2n^{2}}+(b-a)^{3}\frac{(n-1)n(2n-1)}{6n^{3}}\right]\\
+&=a^{2}(b-a)+a(b-a)^{2}+\frac{1}{3}(b-a)^{3}=\frac{b^{3}-a^{3}}{3}.
+\end{align*}
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.0cm,y=0.80cm,>=Stealth]
+  \draw[->] (-0.3,0) -- (6.7,0) node[below right] {$x$};
+  \draw[->] (0,-0.3) -- (0,5.0) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  \fill[pattern=north east lines] (1.4,0) rectangle (2.1,0.485);
+  \draw (1.4,0) rectangle (2.1,0.485);
+  \fill[pattern=north east lines] (2.1,0) rectangle (2.8,0.862);
+  \draw (2.1,0) rectangle (2.8,0.862);
+  \fill[pattern=north east lines] (2.8,0) rectangle (3.5,1.348);
+  \draw (2.8,0) rectangle (3.5,1.348);
+  \fill[pattern=north east lines] (3.5,0) rectangle (4.2,1.940);
+  \draw (3.5,0) rectangle (4.2,1.940);
+  \fill[pattern=north east lines] (4.2,0) rectangle (4.9,2.641);
+  \draw (4.2,0) rectangle (4.9,2.641);
+  \fill[pattern=north east lines] (4.9,0) rectangle (5.6,3.450);
+  \draw (4.9,0) rectangle (5.6,3.450);
+  \fill[pattern=north east lines] (5.6,0) rectangle (6.3,4.366);
+  \draw (5.6,0) rectangle (6.3,4.366);
+  \draw[very thick,domain=0:6.3,smooth,samples=60] plot (\x,{0.11*\x*\x});
+  \node[right] at (3.9,2.90) {$y=x^{2}$};
+  \node[below] at (1.4,-0.10) {$a$};
+  \node[below] at (3.4,-0.10) {$x_{i-1}$};
+  \node[below] at (4.1,-0.10) {$x_{i}$};
+  \node[below] at (6.3,-0.10) {$b$};
+\end{tikzpicture}
+\caption{}\label{fig:6.1.9}
+\end{figure}
+
+\begin{example}\label{ex:6.1.14}
+求 $\int_{a}^{b}\sin x\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}
+因为 $\sin x$ 连续, 所以 $\sin x$ 在 $[a,b]$ 上 Riemann 可积. 于是, 将 $[a,b]$ $n$ 等分, 所得分割为 $T_{n}:a=x_{0}<x_{1}<\cdots<x_{n}=b$, $x_{i}=a+\frac{i}{n}(b-a)$, $\|T_{n}\|=\frac{b-a}{n}$, $\xi_{i}=x_{i}$, $i=1,2,\cdots,n$. 根据定理~\ref{thm:6.1.4}(5) 就有
+\begin{align*}
+\int_{a}^{b}\sin x\,\mathrm{d}x&=\lim_{n\to+\infty}\sum_{i=1}^{n}\sin\left(a+i\frac{b-a}{n}\right)\cdot\frac{b-a}{n}\\
+&=\lim_{n\to+\infty}\frac{b-a}{2n\sin\frac{b-a}{2n}}\sum_{i=1}^{n}2\sin\left(a+i\frac{b-a}{n}\right)\sin\frac{b-a}{2n}\\
+&=\lim_{n\to+\infty}\frac{\frac{b-a}{2n}}{\sin\frac{b-a}{2n}}\sum_{i=1}^{n}\left[\cos\left(a+(2i-1)\frac{b-a}{2n}\right)\right.\\
+&\quad\left.-\cos\left(a+(2i+1)\frac{b-a}{2n}\right)\right]\\
+&=\lim_{n\to+\infty}\frac{\frac{b-a}{2n}}{\sin\frac{b-a}{2n}}\left[\cos\left(a+\frac{b-a}{2n}\right)-\cos\left(a+\frac{2n+1}{2n}(b-a)\right)\right]\\
+&=1\cdot\left[\cos a-\cos(a+(b-a))\right]=\cos a-\cos b.
+\end{align*}
+\end{solution}
+
+\begin{remark}\label{remark:6.1.2}
+对于 $[a,b]$ 上 Riemann 可积的函数 $f$, 可选取特殊的分割和点, 例如: $n$ 等分; $\xi_{i}$ 可取 $x_{i-1}$, 或 $x_{i}$, 或 $\frac{x_{i-1}+x_{i}}{2}$, 或 $\sqrt{x_{i-1}x_{i}}$.
+\end{remark}
+
+从上述例~\ref{ex:6.1.12}, 例~\ref{ex:6.1.13} 与例~\ref{ex:6.1.14} 可看出, 用定义求 Riemann 积分的值很辛苦, 甚至有时无法求出. 6.3 节将给出求 Riemann 积分值非常简单且十分有效的 Newton-Leibniz 公式 $\int_{a}^{b}f(x)\,\mathrm{d}x=F(b)-F(a)$, 其中 $F'(x)=f(x)$.
+
+\begin{exblock}{练习题 6.1}
+  \item 通过对积分区间作等分分割, 并取适当的点集 $\{\xi_{i}\}$, 将 Riemann 积分视作 $\sum\limits_{i=1}^{n}f(\xi_{i})\Delta x_{i}$ 的极限. 由此计算下列 Riemann 积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{0}^{1}x^{3}\,\mathrm{d}x$; (提示: $\sum\limits_{i=1}^{n}i^{3}=\left[\frac{n(n+1)}{2}\right]^{2}$);
+    \item $\int_{a}^{b}\frac{\mathrm{d}x}{x^{2}}$, $0<a<b$; (提示: $\xi_{i}=\sqrt{x_{i-1}x_{i}}$);
+    \item $\int_{a}^{b}\mathrm{e}^{x}\,\mathrm{d}x$, $a<b$; (提示: $\mathrm{e}^{x_{i}}-\mathrm{e}^{x_{i-1}}=\mathrm{e}^{\eta_{i}}(x_{i}-x_{i-1})$).
+  \end{enumerate}
+
+  \item 利用 Riemann 积分的几何意义, 求下列积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int_{a}^{b}\left|x-\frac{a+b}{2}\right|\mathrm{d}x$.
+    \item $\int_{a}^{b}\sqrt{(x-a)(b-x)}\,\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 设 $p:[a,b]\to\mathbb{R}$. 如果有分割
+  \[
+  a=x_{0}<x_{1}<\cdots<x_{n}=b
+\]
+  使得在每一个子区间 $(x_{i-1},x_{i})$, $i=1,2,\cdots,n$ 上, $p$ 为常值函数, 则称 $p$ 为 $[a,b]$ 上的阶梯函数. 又设 $f$ 在 $[a,b]$ 上 Riemann 可积, 证明: 对任何 $\varepsilon>0$, 必存在 $[a,b]$ 上的阶梯函数 $p$ 与 $q$, 使得在 $[a,b]$ 上有 $p\leqslant f\leqslant q$, 并且
+  \[
+  \int_{a}^{b}[q(x)-p(x)]\,\mathrm{d}x<\varepsilon.
+\]
+
+  \item 设 $f$ 在 $[a,b]$ 上 Riemann 可积. 证明: 对任何 $\varepsilon>0$, 必存在 $[a,b]$ 上的连续函数 $p$ 与 $q$, 使得在 $[a,b]$ 上有 $p\leqslant f\leqslant q$, 并且
+  \[
+  \int_{a}^{b}[q(x)-p(x)]\,\mathrm{d}x<\varepsilon.
+\]
+
+  \item 设函数 $f$ 在 $[a,b]$ 上 Riemann 可积, 且对 $[a,b]$ 内的任何子区间 $\Delta$ 上有 $\sup\limits_{\Delta}f\geqslant\sigma$, 这里 $\sigma$ 为一常数. 证明:
+  \[
+  \int_{a}^{b}f(x)\,\mathrm{d}x\geqslant\sigma(b-a).
+\]
+
+  \item 设 $f$ 与 $g$ 在 $[a,b]$ 上都 Riemann 可积. 证明: $\max\{f(x),g(x)\}$ 与 $\min\{f(x),g(x)\}$ 在 $[a,b]$ 上也都 Riemann 可积.
+
+  \item 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 且在 $[a,b]$ 上满足 $|f(x)|\geqslant m>0$. 证明: $\frac{1}{f}$ 在 $[a,b]$ 上也 Riemann 可积.
+
+  \item 设
+  \[
+  f(x)=\begin{cases}x,&x\ \text{为有理数},\\0,&x\ \text{为无理数}.\end{cases}
+\]
+  试求: $f$ 在 $[0,1]$ 上的上积分与下积分. 并由此及其他方法判断 $f$ 在 $[0,1]$ 上是否 Riemann 可积.
+
+  \item 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 且 $f(x)\geqslant 0$, $x\in[a,b]$. 试问: $\sqrt{f}$ 在 $[a,b]$ 上是否 Riemann 可积? 并说明理由.
+
+  \item (1) 证明引理~\ref{lem:6.1.2} 中第二式: $s(T)\leqslant s(T')\leqslant s(T)+(M-m)p\|T\|$;
+
+  (2) 证明引理~\ref{lem:6.1.3} 中第二式: $\lim\limits_{\|T\|\to 0}s(T)=s$.
+\end{exblock}
+
+\begin{exblock}{思考题 6.1}
+  \item 设 $m\in\mathbb{N}$, 用积分的定义证明: $\int_{a}^{b}x^{m}\,\mathrm{d}x=\frac{1}{m+1}(b^{m+1}-a^{m+1})$. (提示: (1) 令 $\eta_{i}=\left(\frac{x_{i-1}^{m}+x_{i-1}^{m-1}x_{i}+\cdots+x_{i}^{m}}{m+1}\right)^{\frac{1}{m}}$, $\sum\limits_{i=1}^{n}\eta_{i}^{m}(x_{i}-x_{i-1})=\frac{1}{m+1}\sum\limits_{i=1}^{n}(x_{i}^{m+1}-x_{i-1}^{m+1})$; (2) 选择 $[a,b]$ 诸分点为 $a,aq,aq^{2},\cdots,aq^{n}=b$, $q=\left(\frac{b}{a}\right)^{\frac{1}{n}}$.)
+
+  \item 应用上题提示 (2) 的方法证明: $\int_{a}^{b}\frac{\mathrm{d}x}{x}=\ln\frac{b}{a}$, $0<a<b$.
+
+  \item 设正数列 $\{a_{n}\}$ 满足 $\lim\limits_{n\to+\infty}\int_{0}^{a_{n}}x^{n}\,\mathrm{d}x=2$. 证明 $\lim\limits_{n\to+\infty}a_{n}=1$.
+
+  \item (1) 设 $f$ 在 $[a,b]$ 上 Riemann 可积. 证明: 开区间 $(a,b)$ 内至少有 $f$ 的一个连续点.
+
+  (2) 设 $f\geqslant 0$ 且在 $[a,b]$ 上 Riemann 可积. 证明:
+  \[
+  \int_{a}^{b}f(x)\,\mathrm{d}x=0\Longleftrightarrow f\ \text{在连续点处都必取零值}\Longleftrightarrow f\ \text{在}\ [a,b]\ \text{上几乎处处为零}.
+\]
+
+  (3) 设 $f\geqslant 0$, 且有界, 如果 $f$ 在 $[a,b]$ 上几乎处处为零, 则是否有 $\int_{a}^{b}f(x)\,\mathrm{d}x=0$?
+
+  \item 设 $f$, $g$ 均为 $[a,b]$ 上的 Riemann 可积函数, $f\geqslant g$, $x\in[a,b]$. 证明: $\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}g(x)\,\mathrm{d}x\Longleftrightarrow f$ 与 $g$ 在 $[a,b]$ 上几乎处处相等, 即 $f\xlongequal{\text{a. e.}}g$, $x\in[a,b]$.
+
+  \item 设 $f$, $g$ 均为 $[a,b]$ 上的 Riemann 可积函数. 证明:
+  \[
+  \int_{a}^{b}[f(x)-g(x)]^{2}\,\mathrm{d}x=0\Longleftrightarrow f\xrightarrow{\text{a. e.}}g,\ x\in[a,b].
+\]
+
+  \item 设 $f$, $g$ 均为 $[a,b]$ 上的有界函数, 且仅在 $[a,b]$ 中有限个点处 $f(x)\neq g(x)$. 证明: 当 $f$ 在 $[a,b]$ 上 Riemann 可积时, $g$ 在 $[a,b]$ 上也 Riemann 可积, 且 $\int_{a}^{b}f(x)\,\mathrm{d}x=\int_{a}^{b}g(x)\,\mathrm{d}x$.
+
+  \item 设 $f$ 与 $g$ 在 $[a,b]$ 上均 Riemann 可积. 证明:
+  \[
+  \lim_{\|T\|\to 0}\sum_{i=1}^{n}f(\xi_{i})g(\eta_{i})\Delta x_{i}=\int_{a}^{b}f(x)g(x)\,\mathrm{d}x,
+\]
+  其中 $T:a=x_{0}<x_{1}<\cdots<x_{n}=b$ 为 $[a,b]$ 的分割, $\xi_{i},\eta_{i}\in[x_{i-1},x_{i}]$.
+
+  \item 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 直接用闭区间套原理按下面顺序逐一证明: $f$ 在 $[a,b]$ 内必定有无限多个处处稠密的连续点.
+
+  (1) 若 $T$ 为 $[a,b]$ 的一个分割, 使得 $S(T)-s(T)<b-a$, 则在 $T$ 中存在某个小区间
+  \[
+  \Delta_{i}=[x_{i-1},x_{i}],\ \text{使}\ \omega_{i}^{f}<1.
+\]
+
+  (2) 存在闭区间 $[a_{1},b_{1}]\subset(a,b)$, 使得
+  \[
+  \omega^{f}([a_{1},b_{1}])=\sup_{x\in[a_{1},b_{1}]}f(x)-\inf_{x\in[a_{1},b_{1}]}f(x)<1,\quad b_{1}-a_{1}<\frac{b-a}{2}.
+\]
+
+  (3) 存在闭区间 $[a_{2},b_{2}]\subset(a_{1},b_{1})$, 使得
+  \[
+  \omega^{f}([a_{2},b_{2}])=\sup_{x\in[a_{2},b_{2}]}f(x)-\inf_{x\in[a_{2},b_{2}]}f(x)<\frac{1}{2},\quad b_{2}-a_{2}<\frac{b-a}{2^{2}}.
+\]
+
+  (4) 继续以上方法, 求出一闭区间序列 $[a_{n},b_{n}]\subset(a_{n-1},b_{n-1})$, 使得
+  \[
+  \omega^{f}([a_{n},b_{n}])=\sup_{x\in[a_{n},b_{n}]}f(x)-\inf_{x\in[a_{n},b_{n}]}f(x)<\frac{1}{n},\quad b_{n}-a_{n}<\frac{b-a}{2^{n}}.
+\]
+  根据闭区间套原理, $\exists!x_{0}\in\bigcap\limits_{n=1}^{\infty}[a_{n},b_{n}]$, 则 $x_{0}$ 为 $f$ 的连续点.
+
+  (5) 上面求得的 $f$ 的连续点在 $[a,b]$ 内处处稠密.
+
+  \item 设 $f$ 在 $[a,b]$ 上 Riemann 可积, 且处处有 $f(x)>0$. 证明: $\int_{a}^{b}f(x)\,\mathrm{d}x>0$.
+\end{exblock}

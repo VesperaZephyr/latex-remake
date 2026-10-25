@@ -1,0 +1,258 @@
+% ============ 第七章 §1 从例子谈起: p 进赋值 (原书 pp.235-242) ============
+\section{从例子谈起: p 进赋值}\label{sec:ch7-s1}
+
+在有理数域 $\Q$, 实数域 $\R$ 和复数域 $\C$ 中, 我们用绝对值来衡量两个数距离的远近和数的大小. 绝对值的最基本性质有如下 $3$ 条:
+
+(1) $|a|\geqslant 0$, 并且 $|a|=0$ 当且仅当 $a=0$;
+
+(2) $|ab|=|a|\cdot|b|$;
+
+(3) $|a+b|\leqslant|a|+|b|$（三角形不等式, 即三角形两边之和大于第三边）.
+
+我们要问: 衡量数的大小和两个数距离的远近是否只有通常绝对值这惟一的标准？也就是说, 满足以上 $3$ 条性质的实值函数是否只有通常绝对值 $|\cdot|$？$20$ 世纪初, 德国数学家 Hensel 发现在有理数域 $\Q$ 中有无穷多种定义``绝对值''的方法, 即衡量有理数的大小有无穷多本质上不同的标准. 这些不同的``绝对值''成为 $20$ 世纪研究数论和代数几何的重要工具, 近半个世纪以来, 也逐步成为其他数学领域甚至物理学的重要解析工具. 现在我们介绍 Hensel 给出的这些``绝对值''.
+
+设 $p$ 为素数, 对每个非零整数 $a$, 都可惟一表示成
+\[
+  a=p^l\cdot a',\qquad(a',p)=1\ (l\geqslant 0).
+\]
+我们记为 $p^l\parallel a$（这意味着 $p^l\mid a$ 并且 $p^{l+1}\nmid a$, 即 $l$ 是使 $p^l\mid a$ 的最大指数）. 我们记
+\[
+  v_p(a)=l\qquad(l\in\Z,\ l\geqslant 0),
+\]
+并且规定 $v_p(0)=\infty$（这意味着: 对任意正整数 $l$, 均有 $p^l\mid 0$）, 则我们有函数
+\[
+  v_p\colon\Z\to\N\cup\{\infty\},
+\]
+其中 $\N$ 表示非负整数集合. 容易证明函数 $v_p$ 满足如下 $3$ 条性质: 对 $a,b\in\Z$,
+\[
+  (1')\ v_p(a)=\infty\ \text{当且仅当 } a=0,
+\]
+\[
+  (2')\ v_p(ab)=v_p(a)+v_p(b),
+\]
+\[
+  (3')\ v_p(a+b)\geqslant\min(v_p(a),v_p(b)),
+\]
+这里我们规定: 对每个 $a\in\Z$, $\infty>a$, $(\infty)+a=(\infty)+(\infty)=\infty$. 现在对每个有理数 $\alpha=\frac{a}{b}$（$a,b\in\Z$, $b\neq 0$）, 定义
+\[
+  v_p(\alpha)=v_p(a)-v_p(b).
+\]
+由性质 $(2')$ 可知这个定义与 $\alpha$ 表成整数相除 $\frac{a}{b}$ 的方法无关（若 $\frac{a}{b}=\frac{c}{d}$, 则 $ad=cb$, $v_p(a)+v_p(d)=v_p(c)+v_p(b)$. 因此 $v_p(a)-v_p(b)=v_p(c)-v_p(d)$）. 于是我们定义了函数
+\[
+  v_p\colon\Q\to\Z\cup\{\infty\},
+\]
+并且这个函数仍满足上述 $3$ 个性质 $(1')$, $(2')$ 和 $(3')$. 比如说对性质 $(3')$, 任意两个有理数总可表成公分母形式: $\alpha=\frac{a}{c}$, $\beta=\frac{b}{c}$, 其中 $a,b,c\in\Z$, $c\neq 0$. 于是
+\begin{align*}
+  v_p(\alpha+\beta)&=v_p\left(\frac{a+b}{c}\right)=v_p(a+b)-v_p(c)\\
+  &\geqslant\min\{v_p(a),v_p(b)\}-v_p(c)\\
+  &\geqslant\min\{v_p(a)-v_p(c),v_p(b)-v_p(c)\}\\
+  &=\min\{v_p(\alpha),v_p(\beta)\}.
+\end{align*}
+
+现在取任意实数 $\gamma_p$ 满足 $0<\gamma_p<1$, 定义
+\[
+  |\alpha|_p=\gamma_p^{v_p(\alpha)}\qquad(\alpha\in\Q)
+\]
+（规定 $\gamma_p^{\infty}=0$）, 则 $|\cdot|_p$ 为函数
+\[
+  |\cdot|_p\colon\Q\to\R_{\geqslant 0}\qquad(\R_{\geqslant 0}\ \text{表示非负实数集合}),
+\]
+并且性质 $(1'),(2'),(3')$ 变成了: 对 $\alpha,\beta\in\Q$
+\[
+  (1)\ |\alpha|_p\geqslant 0, \quad \text{并且 } |\alpha|_p=0\ \text{当且仅当 } \alpha=0;
+\]
+\[
+  (2)\ |\alpha\beta|_p=|\alpha|_p\cdot|\beta|_p;
+\]
+\[
+  (3)\ |\alpha+\beta|_p\leqslant\max(|\alpha|_p,|\beta|_p)\qquad(\text{超距不等式}).
+\]
+由于 $\max(|\alpha|_p,|\beta|_p)\leqslant|\alpha|_p+|\beta|_p$, 可知超距不等式可推出三角形不等式. 这就表明 $|\cdot|_p$ 可以作为有理数域 $\Q$ 中衡量数大小和距离的标准, 即满足本节开始的 $3$ 条性质. 我们称 $|\cdot|_p$ 为有理数域 $\Q$ 的 $p$ 进赋值, 而 $v_p$ 叫做 $p$ 进指数赋值.
+
+\begin{example}
+取 $p=3$, $\gamma_3=\frac{1}{3}$, 则
+\[
+  |3|_3=\frac{1}{3},\qquad |2|_3=\gamma_3^0=1,\qquad \left|\frac{2}{3}\right|_3=\gamma_3^{-1}=3,
+\]
+\[
+  |3-0|_3=\frac{1}{3},\qquad |3-2|_3=|1|_3=1.
+\]
+这表明对于 $3$ 进赋值, $\frac{2}{3}$ 大于 $2$, 而 $2$ 又大于 $3$. $3$ 与 $0$ 的 $3$ 进距离比 $3$ 与 $2$ 的 $3$ 进距离要小. 也就是说: 一个有理数被 $3^l$ 除尽的 $l$ 愈大, 则 $3$ 进赋值愈小, 而 $3$ 进指数赋值愈大.
+\end{example}
+
+这种赋值所以叫作 $p$ 进（$p$-adic）的赋值, 是与数的 $p$ 进展开有关. 每个正整数 $a$ 都可以 $p$ 进位方式展开成
+\[
+  a=c_0+c_1p+c_2p^2+\cdots+c_rp^r=(c_0c_1\cdots c_r)_p,
+\]
+其中 $c_0,c_1,\cdots,c_r$ 均为整数, 并且 $0\leqslant c_i\leqslant p-1\ (i=0,1,\cdots,r)$. 如果 $c_0=c_1=\cdots=c_{l-1}=0$, 而 $c_l\geqslant 1$, 则易知 $p^l\parallel a$, 于是 $v_p(a)=l$, $|a|_p=\gamma^l\ (0<\gamma<1)$.
+
+\begin{example}
+若 $p=3$, 则 $16=1+2\cdot 3+3^2=(121)_3$, $90=3^2+3^4=(00101)_3$. 于是 $v_3(16)=0<v_3(90)=2$. 从而 $|16|_3>|90|_3$.
+\end{example}
+
+两个正整数相加可用它们的 $p$ 进展开来做, 逐位相加, 并且超过 $p$ 时向右进位. 例如 $23=(212)_3$ 和 $10=(101)_3$ 相加的算式为
+\[
+  \begin{array}{cccc}
+    & 2 & 1 & 2\\
+    + & 1 & 0 & 1\\
+    \hline
+    0 & 2 & 0 & 1
+  \end{array}
+\]
+即 $23+10=(0201)_3=2\cdot 3+3^3=33$. 而乘法也类似进行:
+\[
+  \begin{array}{r}
+    1\ 0\ 1\\
+    \times\ 2\ 1\ 2\\
+    \hline
+    2\ 0\ 2\\
+    1\ 0\ 1\\
+    2\ 0\ 2\\
+    \hline
+    2\ 1\ 1\ 2\ 2
+  \end{array}
+\]
+于是 $23\times 10=(21122)_3=2+3+9+2\cdot 3^3+2\cdot 3^4=230$.
+
+为了把负整数作 $p$ 进展开, 要引进``无限''的 $p$ 进展开式. 首先,
+\begin{align*}
+  -1&=(p-1)+(-p)=(p-1)+p(-1)\\
+  &=(p-1)+p(p-1-p)\\
+  &=(p-1)+(p-1)p+p^2(-1)\\
+  &=(p-1)+(p-1)p+p^2(p-1-p)\\
+  &=\cdots=(p-1)+(p-1)p+(p-1)p^2\\
+  &\qquad+(p-1)p^3+\cdots+(p-1)p^n+\cdots\\
+  &=(p-1,p-1,p-1,\cdots)_p,
+\end{align*}
+\begin{equation}\tag{1}
+  -1=(\overline{(p-1)})_p,
+\end{equation}
+即 $p$ 进展开所有位是 $p-1$ 无限循环下去, 简记成 $(\overline{(p-1)})_p$. 这也可以用减法 $-1=0-1$ 来作（逐位相减, 不够减时从右边借一位）:
+\[
+  \begin{array}{r}
+    0=(0,0,0,\cdots,0,\cdots)_p\\
+    -\quad 1=(1,0,0,\cdots,0,\cdots)_p\\
+    \hline
+    -1=(p-1,p-1,p-1,\cdots,p-1,\cdots)_p
+  \end{array}
+\]
+一般地, 若 $a$ 为正整数, $a=c_lp^l+c_{l+1}p^{l+1}+\cdots+c_rp^r$ 为 $a$ 的 $p$ 进展开, $c_l\geqslant 1$, 则
+\[
+  \begin{array}{r}
+    0=(\underbrace{0\cdots 0}_{l\ \text{个}},0,0,\cdots,0,0,0,\cdots)_p\\
+    -\quad a=(\underbrace{0\cdots 0}_{l\ \text{个}},c_l,c_{l+1},\cdots,c_r,0,0,\cdots)_p\\
+    \hline
+    -a=(\underbrace{0\cdots 0}_{l\ \text{个}},p-c_l,p-1-c_{l+1},\cdots,p-1-c_r,\overline{p-1})_p
+  \end{array}
+\]
+因此 $-a=(\underbrace{0\cdots 0}_{l\text{个}},p-c_l,p-1-c_{l+1},\cdots,p-1-c_r,\overline{p-1})_p$. 事实上, 我们可从此式的右边展开算出
+\begin{align*}
+  &\underbrace{(0\cdots 0,p-c_l,p-1-c_{l+1},\cdots,p-1-c_r,\overline{p-1})_p}_{l\ \text{个}}\\
+  &=p^l(p-c_l)+p^{l+1}(p-1-c_{l+1})+\cdots+p^r(p-1-c_r)\\
+  &\qquad+p^{r+1}(p-1)+p^{r+2}(p-1)+\cdots\\
+  &=p^l+(p-1)(p^l+p^{l+1}+\cdots)-(c_lp^l+c_{l+1}p^{l+1}+\cdots+c_rp^r)\\
+  &=p^l+p^l(p-1)(1+p+p^2+\cdots)-a\\
+  &=p^l+p^l(-1)-a=-a.
+\end{align*}
+
+现在可以对任意非零有理数 $\alpha$ 作 $p$ 进展开. 首先由 (1) 式知 $-\frac{1}{p-1}$ 的 $p$ 进展开为
+\[
+  -\frac{1}{p-1}=(111\cdots)_p=(\dot{1})_p.
+\]
+更一般地, 对每个正整数 $n$,
+\begin{align*}
+  -\frac{1}{p^n-1}&=\frac{1}{1-p^n}=1+p^n+p^{2n}+p^{3n}+\cdots\\
+  &=(\dot{1}\underbrace{0\cdots\dot{0}}_{n-1\ \text{个}})_p,
+\end{align*}
+其中 $(\dot{1}0\cdots\dot{0})_p$ 表示 $10\cdots 0$ 这 $n$ 位无限循环下去. 于是对每个正整数 $a$, $0\leqslant a\leqslant p^n-1$, $a=c_0+c_1p+\cdots+c_{n-1}p^{n-1}$ 是 $a$ 的 $p$ 进展开, 则
+\begin{align*}
+  -\frac{a}{p^n-1}&=a\cdot\left(-\frac{1}{p^n-1}\right)\\
+  &=(c_0+c_1p+\cdots+c_{n-1}p^{n-1})(1+p^n+p^{2n}+\cdots)\\
+  &=(\dot{c_0}c_1\cdots\dot{c_{n-1}})_p.
+\end{align*}
+一般地, 每个非零有理数可写成 $\alpha=\frac{a}{b}$, 其中 $a,b\in\Z$, $b\geqslant 1$. 如果 $v_p(a)=l$, $v_p(b)=s$, 则 $a=p^la'$, $b=p^sb'$, 其中 $(a',p)=(b',p)=1$. 而 $\alpha=p^{l-s}\cdot\frac{a'}{b'}$. 我们化为对 $\frac{a'}{b'}$ 作 $p$ 进展开. 记
+\[
+  \frac{a'}{b'}=\left[\frac{a'}{b'}\right]+\left\{\frac{a'}{b'}\right\},
+\]
+其中对实数 $\delta$, $[\delta]$ 表示 $\delta$ 的整数部分, 即不超过 $\delta$ 的最大整数, 而 $\left\{\frac{a'}{b'}\right\}$ 为 $\delta$ 的分数部分, $0\leqslant\left\{\frac{a'}{b'}\right\}<1$. 例如 $[3]=3$, $\{3\}=0$, $[-2.5]=-3$, $\{-2.5\}=0.5$. 我们已知整数 $\left[\frac{a'}{b'}\right]$ 如何作 $p$ 进展开, 只需再考虑 $\left\{\frac{a'}{b'}\right\}$, 它可表成 $\frac{c}{b'}$, 其中 $b',c\in\Z$, $b'\geqslant 1$, $0\leqslant c<b'$. 由于 $(b',p)=1$, 可知存在正整数 $s$, 使得 $p^s\equiv 1\ (\mathrm{mod}\ b')$. 记 $p^s-1=b'm$（$m$ 为正整数）. 于是
+\[
+  \frac{c}{b'}=\frac{cm}{p^s-1}=-\frac{cm}{1-p^s}.
+\]
+由 $0\leqslant c<b'$ 可知 $0\leqslant cm< b'm=p^s-1$. 所以 $cm$ 的 $p$ 进展开为 $cm=c_0+c_1p+\cdots+c_{s-1}p^{s-1}$. 因此
+\begin{align*}
+  \frac{cm}{1-p^s}&=(c_0+c_1p+\cdots+c_{s-1}p^{s-1})(1+p^s+p^{2s}+\cdots)\\
+  &=(\dot{c_0}c_1\cdots\dot{c_{s-1}})_p.
+\end{align*}
+由此可算出 $\left\{\frac{a'}{b'}\right\}=\frac{c}{b'}=-\frac{cm}{1-p^s}$ 的 $p$ 进展开, 加上整数 $\left[\frac{a'}{b'}\right]$, 就得到 $\alpha=\frac{a}{b}=p^{l-s}\cdot\frac{a'}{b'}$ 的 $p$ 进展开. 这是从某位开始无限循环的,
+\[
+  \alpha=c_tp^t+c_{t+1}p^{t+1}+\cdots+c_np^n+\cdots\qquad(0\leqslant c_i\leqslant p-1),
+\]
+起始位 $c_t(\geqslant 1)$ 的下标 $t$ 为整数, 可能是负整数. 事实上 $t=v_p(\alpha)$.
+
+\begin{example}
+将 $-\frac{7}{15}$ 作 $3$ 进展开.
+
+\emph{解} $-\frac{7}{15}=\frac{1}{3}\left(-\frac{7}{5}\right)$, $-\frac{7}{5}=-2+\frac{3}{5}$, 由于 $3^4\equiv 1\pmod{5}$, $3^4-1=5\cdot 16$, 于是
+\[
+  \frac{3}{5}=-\frac{3\cdot 16}{1-3^4}=-(0121)_3\cdot(1+3^4+3^8+\cdots)
+  =-(\dot{0}12\dot{1})_3=(02\dot{0}12\dot{1})_3.
+\]
+而 $-2=-(2\dot{0})_3=(1\dot{2})_3$, 从而
+\[
+  -\frac{7}{5}=(-2)+\frac{3}{5}=(1\dot{2})_3+(02\dot{0}12\dot{1})_3=(1\dot{1}01\dot{2})_3.
+\]
+最后
+\begin{align*}
+  -\frac{7}{15}&=\frac{1}{3}(1\dot{1}01\dot{2})_3=(1.\dot{1}01\dot{2})_3\\
+  &=3^{-1}+3^0+3^2+2\cdot 3^3+3^4+3^6+2\cdot 3^7+\cdots.
+\end{align*}
+我们可以验算:
+\begin{align*}
+  (1.\dot{1}01\dot{2})_3&=\frac{1}{3}\cdot(1\dot{1}01\dot{2})_3=\frac{1}{3}\left[1+3\cdot(\dot{1}01\dot{2})_3\right]\\
+  &=\frac{1}{3}+\frac{(1012)_3}{1-3^4}=\frac{1}{3}-\frac{64}{80}=\frac{1}{3}-\frac{4}{5}=-\frac{7}{15}.
+\end{align*}
+\end{example}
+
+对于每个固定的素数 $p$, 用 $p$ 进指数赋值常常比 $p$ 进赋值更为方便, 因为 $v_p$ 的定义不使用 $\gamma_p\ (0<\gamma_p<1)$, 而 $p$ 进赋值 $|\alpha|_p=\gamma_p^{v_p(\alpha)}$ 依赖于 $\gamma_p$ 的选取. 但是对 $\gamma_p$ 的不同选取, 即设 $0<\gamma,\gamma'<1$, 则 $\gamma'=\gamma^{\lambda}$, 其中 $\lambda$ 为正实数. 于是对两个 $p$ 进赋值
+\[
+  |\alpha|_p=\gamma^{v_p(\alpha)}\quad\text{和}\quad |\alpha|'_p=(\gamma')^{v_p(\alpha)}=\gamma^{\lambda v_p(\alpha)},
+\]
+则 $|\alpha|'_p=|\alpha|_p^{\lambda}$. 尽管 $|\alpha|'_p$ 和 $|\alpha|_p$ 的值不同, 但是当 $|\alpha|_p$ 很小时 $|\alpha|'_p$ 也很小. 对于 $\alpha,\beta\in\Q$, 则 $|\alpha|_p<|\beta|_p$ 当且仅当 $|\alpha|'_p<|\beta|'_p$（因为 $\lambda>0$）. 从比较大小和远近的观点, $|\cdot|_p$ 和 $|\cdot|'_p$ 给出同样的标准, 即它们给出有理数域本质上同一个赋值, 或者更确切地说, 给出 $\Q$ 上的同一个拓扑结构. 但是对不同的素数 $p$ 和 $q$, $|\cdot|_p$ 和 $|\cdot|_q$ 为本质上不同的赋值, 因为被 $p$ 整除和被 $q$ 整除是相互独立的性质. 例如 $|3|_3<|5|_3$, 但是 $|3|_5>|5|_5$.
+
+我们把 $\Q$ 上通常的绝对值 $|\cdot|$ 记成 $|\cdot|_{\infty}$. 它是与每个 $|\cdot|_p$（$p$ 为素数）均本质不同的. 所以在 $\Q$ 上有无穷多个本质不同的赋值 $|\cdot|_p\ (p=2,3,5,\cdots,\infty)$. 下面引理表明所有这些赋值有联系.
+
+\begin{lemma}\label{lem:ch7-1}
+（乘积公式）对每个素数 $p$, 取 $\gamma_p=\frac{1}{p}$, 则对每个非零有理数 $\alpha$,
+\[
+  \prod_p|\alpha|_p=1,
+\]
+其中 $p$ 过所有素数和 $\infty$.
+\end{lemma}
+
+\begin{proof}
+每个非零有理数可表示成
+\[
+  \alpha=\pm p_1^{a_1}\cdots p_s^{a_s},
+\]
+其中 $p_1,\cdots,p_s$ 是不同的素数, 而 $a_1,\cdots,a_s$ 为整数. 于是 $v_{p_i}(\alpha)=a_i\ (1\leqslant i\leqslant s)$, 而对其余素数 $p\ (p\neq p_i\ (1\leqslant i\leqslant s))$, $v_p(\alpha)=0$, $|\alpha|_p=1$. 这表明引理中的乘积只有有限项:
+\begin{align*}
+  \prod_p|\alpha|_p&=|\alpha|_{\infty}\cdot\prod_{i=1}^{s}|\alpha|_{p_i}=|\alpha|_{\infty}\cdot\prod_{i=1}^{s}p_i^{-a_i}\\
+  &=|\alpha|\cdot\left|\frac{1}{\alpha}\right|=1.
+\end{align*}
+\end{proof}
+
+\begin{Exercises}
+\item 对于 $p=2,3,5,7$, 将 $\frac{7}{6}$ 作 $p$ 进展开.
+
+\item 求 $(13.\dot{1}\dot{2})_5$ 和 $(1\dot{0}02\dot{1})_3$ 所表示的有理数.
+
+\item 设 $p$ 为素数. 有理数 $\alpha$ 叫作 $p$ 进整数, 是指 $v_p(\alpha)\geqslant 0$. 求证:
+
+(1) 所有 $\Q$ 中的 $p$ 进整数形成 $\Q$ 的一个子环, 表示成 $\Z_{(p)}$, 叫作 $\Q$ 中的 $p$ 进整数环, 且 $\Z_{(p)}$ 真包含 $\Z$;
+
+(2) $\Z=\bigcap_p\Z_{(p)}$, 其中 $p$ 过所有素数;
+
+(3) 环 $\Z_{(p)}$ 中元素 $\alpha$ 在 $\Z_{(p)}$ 中可逆的充分必要条件是 $v_p(\alpha)=0$. 环 $\Z_{(p)}$ 中全体不可逆元素形成一个理想 $M$, 并且 $M$ 是惟一的极大理想. 商环 $\Z_{(p)}/M$ 为 $p$ 元有限域 $\F_p$;
+
+(4) 求证 $M$ 是 $\Z_{(p)}$ 的主理想, 并且 $\Z_{(p)}$ 的每个理想都有形式 $M^n\ (n=0,1,2,\cdots)$. 进而, 商环 $\Z_{(p)}/M^n$ 同构于 $\Z/p^n\Z$.
+\end{Exercises}

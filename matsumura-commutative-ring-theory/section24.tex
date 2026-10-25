@@ -1,0 +1,280 @@
+% ============ §24 Generic freeness and open loci results (原书 pp.185-189) ============
+\section{Generic freeness and open loci results}\label{sec:24}\index{generic freeness, section 24}\index{open loci, section 24}\index{Nagata criterion, section 24}\index{normal flatness, section 24}\index{flatness locus, section 24}
+
+Let $A$ be a Noetherian integral domain, and $M$ a finite $A$-module. Then there
+exists $0 \ne a \in A$ such that $M_a$ is a free $A_a$-module. This follows from
+Theorem~\ref{thm:4.10}, or can be proved as follows: choose a filtration
+\[
+  M = M_0 \supset M_1 \supset \cdots \supset M_r = 0
+\]
+such that $M_{i-1}/M_i \cong A/p_i$, with $p_i \in \Spec A$; then if we take $a \ne 0$
+contained in every non-zero $p_i$ we see that every $(M_{i-1}/M_i)_a$ is either zero
+or isomorphic to $A_a$, so that $M_a$ is a free $A_a$-module.
+
+For applications, we require a more general version of this, which does not
+assume $M$ to be finite. We give below a theorem due to Hochster and Roberts
+[1]. First we give the following lemma.
+
+\begin{lemma*}
+Let $B$ be a Noetherian ring, and $C$ a $B$-algebra generated over $B$ by a single
+element $x$; let $E$ be a finite $C$-module, and $F \subset E$ a finite $B$-module
+such that $CF = E$. Then $D = E/F$ has a filtration
+\[
+  0 = G_0 \subset G_1 \subset \cdots \subset G_i \subset G_{i+1} \subset \cdots \subset D
+      \quad \text{with } D = \bigcup_{i=0}^{\infty} G_i
+\]
+such that the successive quotients $G_{i+1}/G_i$ are isomorphic to a finite number
+of finite $B$-modules.
+\end{lemma*}
+
+\begin{proof}
+Set
+\[
+  G_i' = F + xF + \cdots + x^iF \subset E, \quad G_i = G_i'/F,
+\]
+and
+\[
+  F_i = \{f \in F \mid x^{i+1}f \in G_i'\} \subset F.
+\]
+Then $0 \subset G_1 \subset \cdots \subset G_i \subset G_{i+1} \subset \cdots$ is a filtration of
+$D$, and $G_{i+1}/G_i \cong F/F_i$; on the other hand, $F_1 \subset F_2 \subset \cdots
+\subset F_i \subset \cdots$ is an increasing chain of $B$-submodules of $F$, so must
+terminate.
+\end{proof}
+
+\begin{theorem}\label{thm:24.1}
+Let $A$ be a Noetherian integral domain, $R$ a finitely generated $A$-algebra, and
+$S$ a finitely generated $R$-algebra; we let $E$ be a finite $S$-module,
+$M \subset E$ an $R$-submodule which is finite over $R$, and $N \subset R$ an
+$A$-submodule which is finite over $A$, and set $D = E/(M + N)$. Then there
+exists $0 \ne a \in A$ such that $D_a$ is a free $A_a$-module.
+\end{theorem}
+
+\begin{proof}
+Write $A'$ for the image of $A$ in $R$, and suppose that
+$R = A'[u_1, \ldots, u_h]$; similarly, write $R'$ for the image of $R$ in $S$, and
+suppose that $S = R'[v_1, \ldots, v_k]$. We work by induction on $h + k$; if
+$h = k = 0$ then $D$ is a finite $A$-module, and we have already dealt with this
+case.
+
+Write $R_j = A'[u_1, \ldots, u_j]$ for $0 \le j \le h$, and
+$S_j = R'[v_1, \ldots, v_j]$ for $0 \le j \le k$.
+
+Suppose first that $k > 0$; set $M + N = M' \subset E$. We have a filtration
+\[
+  S_0M' \subset S_1M' \subset \cdots \subset S_kM' = SM' \subset E,
+\]
+the successive quotients of which are $S_0M'$, $S_1M'/S_0M'$, $\ldots$,
+$S_{k-1}M'/S_{k-2}M'$, $S_kM'/S_{k-1}M'$, $E/SM'$. We can apply the induction
+hypothesis to each of these except the last two. By virtue of the lemma,
+$S_kM'/S_{k-1}M'$ has a filtration with (up to isomorphism) just a finite number
+of finite $S_{k-1}$-modules appearing as quotients, and so we can apply the
+induction hypothesis again. For the final term, write $E' = E/SM'$, and let
+$e_1, \ldots, e_n$ be a set of generators of $E'$ over $S$; write
+$E_{k-1} = S_{k-1}e_1 + \cdots + S_{k-1}e_n$. Then $SE_{k-1} = E'$, so that the lemma
+again gives a filtration of $E'$ with essentially finitely many finite
+$S_{k-1}$-modules appearing as quotients, and we can apply the induction
+hypothesis to this term also.
+
+If $k = 0$ then $E$ is a finite $R$-module, and replacing $E$ by $E/M$ we can
+assume that $M = 0$. The preceding proof then applies almost verbatim to this
+case, with $R_j$ instead of $S_j$.
+\end{proof}
+
+\begin{theorem}[topological Nagata criterion]\label{thm:24.2}
+Let $A$ be a Noetherian ring, and $U \subset \Spec A$ a subset. Then the following
+two conditions are necessary and sufficient for $U \subset \Spec A$ to be open.
+\begin{enumerate}[(1)]
+  \item for $P, Q \in \Spec A$, $P \in U$ and $P \subset Q \Rightarrow Q \in U$;
+  \item if $P \in U$ then $U$ contains a non-empty open subset of $V(P)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Necessity is obvious, and we prove sufficiency. Let $V_1, \ldots, V_t$ be the
+irreducible components of the closure of $U^c = \Spec A - U$, and let $p_i$ be
+their generic points. If $p_i \in U$ then by (2) there is a proper closed subset
+$W$ of $V_i$ such that $U^c \cap V_i \subset W$, and so
+$U^c \subset W \cup (\bigcup_{j \neq i} V_j)$, which contradicts the definition of
+$V_i$. Thus $p_i \notin U$, so that by (1), $V_i \subset U^c$ for all $i$ and therefore
+$U^c$ is closed.
+\end{proof}
+
+\begin{theorem}\label{thm:24.3}
+Let $A$ be a Noetherian ring, $B$ a finitely generated $A$-algebra, and $M$ a
+finite $B$-module. Set $U = \{P \in \Spec B \mid M_P \text{ is flat over } A\}$;
+then $U$ is open in $\Spec B$.
+\end{theorem}
+
+\begin{proof}
+We verify the conditions (1) and (2) of Theorem~\hyperref[thm:24.2]{2}.
+
+(1) If $P \subset Q$ are prime ideals of $B$ then for an $A$-module $N$ we have
+$N \otimes_A M_Q = (N \otimes_A M_P) \otimes_{B_P} B_Q$, so that if $M_P$ is flat over $A$
+then so is $M_Q$.
+
+(2) Let $P \in U$ and $p = P \cap A$; set $\bar{A} = A/p$. Now if $Q \in V(P)$, we have
+$pB_Q \subset \rad(B_Q)$, and hence by Theorem~\hyperref[thm:22.3]{22.3}, $M_Q$ is flat over $A$ if and
+only if $M_Q \otimes_A \bar{A}$ is flat over $\bar{A}$ and $\Tor^A_1(M_Q, \bar{A}) = 0$.
+Now $\Tor^A_1(M_P, \bar{A}) = 0$, and the left-hand side is equal to
+$\Tor^A_1(M, \bar{A}) \otimes_B B_P$. By computing the Tor by means of a finite free
+resolution of $\bar{A}$ over $A$, we see that $\Tor^A_1(M, \bar{A})$ is a finite $B$-module,
+so that there is a neighbourhood $W$ of $P$ in $\Spec B$ such that
+$\Tor^A_1(M_Q, \bar{A}) = 0$ for $Q \in W$. Moreover, by
+Theorem~\hyperref[thm:24.1]{1}, there exists $a \in A - p$ such that $M_P/pM_P$ is a free
+$\bar{A}_a$-module, so that if $Q \notin V(aB)$, then $M_Q \otimes_A \bar{A}$ is flat over
+$\bar{A}$. Thus the open set $\{W \cap V(P)\} - V(aB)$ of $V(P)$ is contained in
+$U$.
+\end{proof}
+
+\begin{remark}
+If $A$ is Noetherian and $B$ is a finitely generated $A$-algebra which is flat over
+$A$ then it is also known that the map $\Spec B \to \Spec A$ is open; see [M],
+p.~48 or [G2], (2.4.6).
+\end{remark}
+
+Let $A$ be a ring, and $\mathcal{P}$ a property of local rings; we define a subset
+$\mathcal{P}(A) \subset \Spec A$ by $\mathcal{P}(A) = \{p \in \Spec A \mid \mathcal{P} \text{ holds for } A_p\}$.
+For example, if $\mathcal{P}$ = regular, complete intersection, Gorenstein or CM we
+write $\Reg(A)$, $\mathrm{c.i.}(A)$, $\Gor(A)$ or $\CM(A)$ for these loci. The question as to
+whether $\mathcal{P}(A)$ is open is an interesting and important question. For $\Reg(A)$
+this is a classical question, but for the other properties the systematic study
+was initiated by Grothendieck.
+
+The following proposition is called the (ring-theoretic) \emph{Nagata criterion}
+for the property $\mathcal{P}$, and we abbreviate this to (NC).
+
+\textbf{(NC)}: Let $A$ be a Noetherian ring. If $\mathcal{P}(A/p)$ contains a non-empty open
+subset of $\Spec(A/p)$ for every $p \in \Spec A$, then $\mathcal{P}(A)$ is open in
+$\Spec A$.
+
+The truth or otherwise of this proposition depends on $\mathcal{P}$; in the
+remainder of this section we discuss some $\mathcal{P}$ for which (NC) holds. In
+Theorem~\hyperref[thm:24.4]{24.4} and Ex.~\ref{ex:24.3-ex} we illustrate how (NC) can be applied to
+prove openness results.
+
+\begin{theorem}[Nagata]\label{thm:24.4}
+(NC) holds for $\mathcal{P}$ = regular.
+\end{theorem}
+
+\begin{proof}
+Let $U = \Reg(A)$. A localisation of a regular local ring is again regular, so
+that $U$ satisfies condition (1) of Theorem~\hyperref[thm:24.2]{2}. We now check condition (2). If
+$P \in U$ then $A_P$ is regular, so that we can take $x_1, \ldots, x_n \in P$ to form a
+regular system of parameters of $A_P$ (where $n = \htop P$). Then there exists a
+neighbourhood $W$ of $P$ in $\Spec A$ such that
+\[
+  PA_Q = (x_1, \ldots, x_n)A_Q
+\]
+for all $Q \in W$. (In fact, if $a \in A$ is an element not contained in $P$, but
+contained in every other prime divisor of $(x_1, \ldots, x_n)$ then
+$PA_Q = (x_1, \ldots, x_n)A_Q$.) Moreover, by the hypothesis in (NC) there exists a
+neighbourhood $W'$ of $P$ in $V(P)$ such that $A_Q/PA_Q$ is regular for $Q \in W'$.
+Then $A_Q$ is regular for $Q \in W' \cap W$, so that $W' \cap W \subset U$.
+\end{proof}
+
+\begin{theorem}\label{thm:24.5}
+(NC) also holds for $\mathcal{P}$ = CM.
+\end{theorem}
+
+\begin{proof}
+As with the previous proof, we reduce to checking condition (2) of
+Theorem~\hyperref[thm:24.2]{2}. Let $P \in \CM(A)$. If we take $u \in A - P$ and replace $A$ by $A_u$,
+then we are considering a neighbourhood of $P$ in $\Spec A$, so that we will refer
+to this procedure as `passing to a smaller neighbourhood of $P$'. Since $A_P$ is
+CM, if $\htop P = n$ we can choose an $A_P$-sequence $y_1, \ldots, y_n \in P$. One sees
+easily that after passing to a smaller neighbourhood of $P$, we can assume that
+\begin{enumerate}[(a)]
+  \item $y_1, \ldots, y_n$ is an $A$-sequence; and
+  \item $I = (y_1, \ldots, y_n)A$ is a $P$-primary ideal.
+\end{enumerate}
+Then for $Q \in V(P)$, it is equivalent to say that $A_Q$ is CM or that $A_Q/IA_Q$
+is CM. Thus replacing $A$ by $A/I$ we can assume that $0$ is a $P$-primary ideal.
+Then $P^r = 0$ for some $r > 0$. Now consider the filtration
+$0 \subset P^{r-1} \subset \cdots \subset P \subset A$ of $A$. Each $P^i/P^{i+1}$ is a finite
+$A/P$-module, but $A/P$ is an integral domain, so that passing to a smaller
+neighbourhood of $P$ we can assume that $P^i/P^{i+1}$ is a free $A/P$-module for
+$0 \le i < r$. It is then easy to see that if $x_1, \ldots, x_s \in A$ is an
+$A/P$-sequence, it is also an $A$-sequence. However, according to the hypothesis
+in (NC), passing to a smaller neighbourhood of $P$, we can assume that $A/P$ is a
+CM ring. Then for $Q \in V(P)$ the ring $A_Q/PA_Q$ is CM, so that from what we have
+said above,
+\[
+  \depth A_Q \ge \depth A_Q/PA_Q = \dim A_Q/PA_Q = \dim A_Q,
+\]
+and $A_Q$ is CM.
+\end{proof}
+
+Let $A$ be a Noetherian ring and $I$ an ideal of $A$; we set $B = A/I$ and write
+$Y$ for the closed subset $V(I) \subset \Spec A$. Let $M$ be a finite $A$-module. We
+say that $M$ is \emph{normally flat along $Y$}\index{normally flat} if the $B$-module
+$\gr_I(M) = \bigoplus_{n \ge 0} I^nM/I^{n+1}M$ is flat over $B$. If $B$ is a local
+ring, this is the same as saying that each $I^nM/I^{n+1}M$ is a free $B$-module.
+Normal flatness is an important notion introduced by Hironaka, and it plays a
+leading role in the problem of resolution of singularities; we have used it in
+the above proof in the statement that if $P$ is nilpotent and $A$ is normally
+flat along $V(P)$ then an $A/P$-sequence is an $A$-sequence. However, in this
+book we do not have space to discuss the theory of normal flatness any further,
+and we refer to Hironaka [1] and [G2], (6.10).
+
+\begin{theorem}\label{thm:24.6}
+(NC) holds for $\mathcal{P}$ = Gorenstein.
+\end{theorem}
+
+\begin{proof}
+Once more we reduce to verifying condition (2) of Theorem~\hyperref[thm:24.2]{2}. Suppose that
+$P \in \Gor(A)$; if $\htop P = n$ then since $A_P$ is CM, we can take
+$x_1, \ldots, x_n \in P$ forming an $A_P$-sequence. Passing to a smaller
+neighbourhood of $P$, we can assume that $x_1, \ldots, x_n$ is an $A$-sequence.
+Moreover, replacing $A$ by $A/(x_1, \ldots, x_n)$ we can assume that $\htop P = 0$. In
+addition, we assume that $P$ is the unique minimal prime ideal of $A$. Since $A_P$
+is a zero-dimensional Gorenstein ring, we have
+\[
+  \Ext^i_A(A/P, A) \otimes_A A_P = \Ext^i_{A_P}(\kappa(P), A_P) = 0
+\]
+and
+\[
+  \Hom_A(A/P, A) \otimes_A A_P = \Hom_{A_P}(\kappa(P), A_P) = \kappa(P).
+\]
+Thus passing to a smaller neighbourhood, we can assume that
+$\Ext^i_A(A/P, A) = 0$ and $\Hom_A(A/P, A) \cong A/P$. In addition, as in the proof of
+the previous theorem, we can assume that $P^i/P^{i+1}$ is a free $A/P$-module for
+$0 \le i < r$, where $P^r = 0$. Then using
+\[
+  0 \to P^i/P^{i+1} \to P/P^{i+1} \to P/P^i \to 0,
+\]
+we get by induction that $\Ext^i_A(P, A) = 0$; from this it follows that
+$\Ext^i_A(A/P, A) = 0$, and in turn by induction that $\Ext^i_A(P, A) = 0$, so that
+$\Ext^i_A(A/P, A) = 0$. Proceeding in the same way we see that
+$\Ext^i_A(A/P, A) = 0$ for every $i > 0$. If we take an injective resolution
+$0 \to A \to I^{\bullet}$ of $A$ as an $A$-module, and consider the complex obtained by
+applying $\Hom_A(A/P, -)$ to it, from what we have just said we obtain an exact
+sequence $0 \to A/P \to \Hom_A(A/P, I^{\bullet})$, and this is an injective resolution of
+$A/P$ as an $A/P$-module. The same thing holds on replacing $A$ by $A_Q$ for
+$Q \in V(P)$, and then setting $k = \kappa(Q)$, we get
+$\Ext^i_{A_Q/PA_Q}(k, A_Q/PA_Q) = \Ext^i_{A_Q}(k, A_Q)$. Thus it is equivalent to say that
+$A_Q$ is Gorenstein or that $A_Q/PA_Q$ is Gorenstein. Therefore from the hypothesis
+in (NC) we have that $\Gor(A) \cap V(P)$ contains a neighbourhood of $P$ in $V(P)$.
+\end{proof}
+
+The above proof is due to Greco and Marinari [1]. Their paper also proves that
+(NC) also holds for $\mathcal{P}$ = complete intersection.
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:24}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:24.1-ex}
+Let $A$ be a Noetherian ring, and $I$ an ideal of $A$; assume that $I^r = 0$, and
+that $I^i/I^{i+1}$ is a free $A/I$-module for $1 \le i \le r$. Then for
+$x_1, \ldots, x_r \in A$, it is equivalent for $(x_1, \ldots, x_r)$ to be an
+$A$-sequence or an $A/I$-sequence.
+\end{exercise}
+
+\begin{exercise}\label{ex:24.2-ex}
+If $A$ is a quotient of a CM ring $R$ then $\CM(A)$ is open in $\Spec A$.
+\end{exercise}
+
+\begin{exercise}\label{ex:24.3-ex}
+If $A$ is a quotient of a Gorenstein ring then $\Gor(A)$ is open in $\Spec A$.
+\end{exercise}

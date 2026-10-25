@@ -1,0 +1,440 @@
+% ==================================================================
+%  徐森林、金亚东、薛春华《数学分析》（第三册）
+%  \S12.1  数项级数
+%  源：原书印刷页 1-9（PDF 物理页 7-15）
+%  底本：PaddleOCR-VL-1.6，见 chapters/_ch12_12_1_raw.md
+%  约定：全西文标点；行间公式用一对方括号；多行公式用 align/aligned；
+%        跨册引用一律 \extref；数学模式内的中文必须包 \text{}
+%  已订正的 OCR 错误见 tools/_make_ch12_1.py 头部说明
+% ==================================================================
+\section{数项级数}\label{sec:12.1}
+
+\begin{definition}[无穷级数与部分和]\label{def:12.1.1}
+设 $a_{1}, \cdots, a_{n}, \cdots$ 为一实数列, 称形式和 $\sum_{n=1}^{\infty}a_{n}$ 为无穷级数, 称 $a_{n}$ 为该无穷级数的第 $n$ 项(也称为通项), 称
+\[
+  S_{n}=\sum_{k=1}^{n}a_{k}
+\]
+为它的第 $n$ 个部分和. 如果
+\[
+  \lim_{n\to+\infty}S_{n}=\lim_{n\to+\infty}\sum_{k=1}^{n}a_{k}=S\in\mathbb{R},
+\]
+则称级数 $\sum_{n=1}^{\infty}a_{n}$ 是收敛的, 其和为 $S$, 记作
+\[
+  \sum_{n=1}^{\infty}a_{n}=S=\lim_{n\to+\infty}S_{n}=\lim_{n\to+\infty}\sum_{k=1}^{n}a_{k}.
+\]
+否则称 $\sum_{n=1}^{\infty}a_{n}$ 是发散的.
+
+如果 $\lim_{n\to+\infty}S_{n}=+\infty$(或 $-\infty,\infty$), 则称级数 $\sum_{n=1}^{\infty}a_{n}$ 为和为 $+\infty$(或 $-\infty,\infty$), 但此时级数 $\sum_{n=1}^{\infty}a_{n}$ 是发散的. 有时也说级数 $\sum_{n=1}^{\infty}a_{n}$ 发散于 $+\infty$(或 $-\infty,\infty$, 记作 $\sum_{n=1}^{\infty}a_{n}=+\infty$(或 $-\infty,\infty$.)
+\end{definition}
+
+上述表明, 由数列 $\{a_{n}\}$ 得出一个新数列 $S_{n}=\sum_{k=1}^{n}a_{k}$; 反之, 任何一个数列 $\{S_{n}\}$, 令 $a_{1}=S_{1},\ a_{2}=S_{2}-S_{1},\cdots,\ a_{n}=S_{n}-S_{n-1}\ (n\geqslant2)$, 就有
+\[
+  \sum_{k=1}^{n}a_{k}=S_{1}+(S_{2}-S_{1})+\cdots+(S_{n}-S_{n-1})=S_{n},
+\]
+它是级数 $\sum_{n=1}^{\infty}a_{n}$ 的第 $n$ 个部分和. 于是,
+\begin{center}
+级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛(发散)
+$\Leftrightarrow$ 数列 $S_{n}=\sum_{k=1}^{n}a_{k}$ 收敛(发散).
+\end{center}
+
+由此可想象到, 级数 $\sum_{n=1}^{\infty}a_{n}$ 与数列 $\{S_{n}\}$ 之间具有对偶性, 也就是级数 $\sum_{n=1}^{\infty}a_{n}$ 具有的性质(问题)可以翻译成(化为)数列 $\{S_{n}\}$ 的性质(问题); 反之, 数列 $\{S_{n}\}$ 具有的性质(问题)可以翻译成(化为)级数 $\sum_{n=1}^{\infty}a_{n}$ 的性质(问题). 但是, 应该注意的是, 它们各有自己固有的特性和方便的论述, 因此, 即使对数列已积累了大量的结果, 我们还有必要研究级数的各种收敛判别法, 函数项级数一致收敛判别法以及级数的重要性质.
+
+\begin{theorem}[级数收敛的 Cauchy 判别法——级数收敛的 Cauchy 准则]\label{thm:12.1.1}
+下列结论是等价的:
+\begin{enumerate}
+  \item 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛;
+  \item $\forall\varepsilon>0,\ \exists N\in\mathbb{N}$, 当 $n,m\in\mathbb{N},\ m>n$ 时, 有
+  \[
+    \left|\sum_{k=n+1}^{m}a_{k}\right|<\varepsilon;
+\]
+  \item $\forall\varepsilon>0,\ \exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+  \[
+    \left|\sum_{k=n+1}^{n+p}a_{k}\right|<\varepsilon,\quad \forall p\in\mathbb{N}.
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 即 $S_{n}=\sum_{k=1}^{n}a_{k}$ 收敛, 根据数列收敛的 Cauchy 判别法 $\forall\varepsilon>0,\ \exists N\in\mathbb{N}$, 当 $n,m\in\mathbb{N},\ m\geqslant n$ 时, 有
+\[
+  |S_{n}-S_{m}|<\varepsilon
+\]
+$\Leftrightarrow(2)$\ $\forall\varepsilon>0,\ \exists N\in\mathbb{N}$, 当 $n,m\in\mathbb{N},\ m>n$ 时, 有
+\[
+  \Big|\sum_{k=n+1}^{m}a_{k}\Big|\;=|S_{n}-S_{m}|<\varepsilon
+\]
+$\Leftrightarrow(3)$\ $\forall\varepsilon>0,\ \exists N\in\mathbb{N}$, 当 $n>N$ 时, 有
+\[
+  \left|\sum_{k=n+1}^{n+p}a_{k}\right|<\varepsilon,\quad \forall p\in\mathbb{N}.
+\]
+\end{proof}
+
+现在, 我们来重述\extref{定理 1.4.1}.
+
+\begin{theorem}[级数收敛的必要条件]\label{thm:12.1.2}
+设级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 则 $\lim_{n\to+\infty}a_{n}=0$. 但反之不真.
+\end{theorem}
+
+\begin{proof}
+解法 1 显然,
+\[
+  \lim_{n\to+\infty}a_{n}=\lim_{n\to+\infty}(S_{n}-S_{n-1})=\lim_{n\to+\infty}S_{n}-\lim_{n\to+\infty}S_{n-1}=S-S=0.
+\]
+
+解法 2 $\forall\varepsilon>0$, 因为级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 所以根据定理~\ref{thm:12.1.1} 知, $\exists N\in\mathbb{N}$, 当 $n-1>N$ 时, 取 $p=1$, 有
+\[
+  |a_{n}-0|=\left|\sum_{k=(n-1)+1}^{(n-1)+1}a_{k}\right|<\varepsilon,
+\]
+这就证明了 $\lim_{n\to+\infty}a_{n}=0$.
+
+但是, 反之不真. 例如: $a_{n}=\frac{1}{n}$, $\lim_{n\to+\infty}a_{n}=\lim_{n\to+\infty}\frac{1}{n}=0$. 而由\extref{例 1.4.2}, $\sum_{n=1}^{\infty}\frac{1}{n}$ 发散.
+\end{proof}
+
+\begin{corollary}\label{cor:12.1.1}
+如果 $\lim_{n\to+\infty}a_{n}\neq0$, 则 $\sum_{n=1}^{\infty}a_{n}$ 发散.
+\end{corollary}
+
+\begin{proof}
+[反证] 假设 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 由定理~\ref{thm:12.1.2}, $\lim_{n\to+\infty}a_{n}=0$, 这与已知 $\lim_{n\to+\infty}a_{n}\neq0$ 相矛盾.
+\end{proof}
+
+\begin{theorem}[级数收敛的简单性质]\label{thm:12.1.3}
+设级数 $\sum_{n=1}^{\infty}a_{n}$, $\sum_{n=1}^{\infty}b_{n}$ 都收敛, $c$ 为常数, 则级数 $\sum_{n=1}^{\infty}ca_{n}$ 与 $\sum_{n=1}^{\infty}(a_{n}\pm b_{n})$ 也收敛, 且
+\[
+  \sum_{n=1}^{\infty}ca_{n}=c\sum_{n=1}^{\infty}a_{n},\quad\sum_{n=1}^{\infty}(a_{n}\pm b_{n})=\sum_{n=1}^{\infty}a_{n}\pm\sum_{n=1}^{\infty}b_{n}.
+\]
+\end{theorem}
+
+\begin{proof}
+$\sum_{n=1}^{\infty}ca_{n}=\lim_{n\to+\infty}\sum_{k=1}^{n}ca_{k}=\lim_{n\to+\infty}c\sum_{k=1}^{n}a_{k}=c\lim_{n\to+\infty}\sum_{k=1}^{n}a_{k}=c\sum_{n=1}^{\infty}a_{n}$,
+\begin{align*}
+\sum_{n=1}^{\infty}(a_{n}\pm b_{n})
+  &=\lim_{n\to+\infty}\sum_{k=1}^{n}(a_{k}\pm b_{k})
+   =\lim_{n\to+\infty}\left(\sum_{k=1}^{n}a_{k}\pm\sum_{k=1}^{n}b_{k}\right) \\
+  &=\lim_{n\to+\infty}\sum_{k=1}^{n}a_{k}\pm\lim_{n\to+\infty}\sum_{k=1}^{n}b_{k}
+   =\sum_{n=1}^{\infty}a_{n}\pm\sum_{n=1}^{\infty}b_{n}.
+\end{align*}
+\end{proof}
+
+\begin{theorem}\label{thm:12.1.4}
+级数 $\sum_{n=1}^{\infty}a_{n}$ 去掉或加上有限项, 不影响级数的敛散性.
+\end{theorem}
+
+\begin{proof}
+设去掉级数 $\sum_{n=1}^{\infty}a_{n}$ 前面 $m$ 项所得级数为 $\sum_{n=m+1}^{\infty}a_{n}$. 记
+\[
+  S_{n}=\sum_{k=1}^{n}a_{k},\quad S_{n}^{\prime}=\sum_{k=m+1}^{m+n}a_{k}=S_{m+n}-S_{m}.
+\]
+于是
+\[
+  \sum_{n=1}^{\infty}a_{n}\text{ 敛散}\ \Leftrightarrow S_{n}\text{ 敛散}\ \Leftrightarrow S_{m+n}\text{ 敛散}\ (m\text{ 固定})\ \Leftrightarrow S_{n}^{\prime}=S_{m+n}-S_{m}\text{ 敛散}\ \Leftrightarrow \sum_{n=m+1}^{\infty}a_{n}\text{ 敛散}.
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:12.1.5}
+设级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛. 如果将级数的项任意归组, 但不改变先后次序, 所得新级数为
+\[
+  (a_{1}+\cdots+a_{n_{1}})+(a_{n_{1}+1}+\cdots+a_{n_{2}})+\cdots+(a_{n_{k-1}+1}+\cdots+a_{n_{k}})+\cdots,
+\]
+则新级数也收敛, 且与原级数有相同的和.
+
+注意, 逆命题不成立.
+\end{theorem}
+
+\begin{proof}
+设原级数的部分和为 $S_{n}$, 则新级数的部分和为 $S_{k}^{\prime}=S_{n_{k}}$, 它为原级数部分和一个子列. 由已知, $S_{n}$ 收敛, 故 $S_{n_{k}}$ 也收敛, 且
+\begin{align*}
+  (a_{1}+\cdots+a_{n_{1}})+(a_{n_{1}+1}+\cdots+a_{n_{2}})+\cdots+(a_{n_{k-1}+1}+\cdots+a_{n_{k}})+\cdots
+  &\quad =\lim_{k\to+\infty}S_{n_{k}} \\
+  &\quad =\lim_{n\to+\infty}S_{n}=\sum_{n=1}^{\infty}a_{n}.
+\end{align*}
+
+反例: 考察级数 $\sum_{n=1}^{\infty}(-1)^{n-1}=1-1+1-1+1-1+\cdots$, 由于
+\[
+  \lim_{k\to+\infty}S_{2k-1}=\lim_{k\to+\infty}1=1,\quad\lim_{k\to+\infty}S_{2k}=\lim_{k\to+\infty}0=0,
+\]
+$\lim_{n\to+\infty}S_{n}$ 不存在, 所以级数 $\sum_{n=1}^{\infty}(-1)^{n-1}$ 发散. 但新级数 $n\to+\infty$ 收敛.
+\end{proof}
+
+如果加一个条件, 定理~\ref{thm:12.1.5} 的逆命题就成立了.
+
+\begin{theorem}\label{thm:12.1.6}
+设级数
+\[
+  (a_{1}+\cdots+a_{n_{1}})+(a_{n_{1}+1}+\cdots+a_{n_{2}})+\cdots+(a_{n_{k-1}+1}+\cdots+a_{n_{k}})+\cdots
+\]
+在同一括号内有相同的符号, 且此级数收敛, 则原级数 $\sum_{n=1}^{\infty}a_{n}$ 也收敛, 且两级数之和相等.
+\end{theorem}
+
+\begin{proof}
+设 $S_{k}^{\prime}=(a_{1}+\cdots+a_{n_{1}})+(a_{n_{1}+1}+\cdots+a_{n_{k}})+\cdots+(a_{n_{k-1}+1}+\cdots+a_{n_{k}})=S_{n_{k}}$, 由新级数收敛, 故 $\lim_{k\to+\infty}S_{k}^{\prime}=S$. 因为每个括号内是同号的, 所以当 $n$ 从 $n_{k-1}$ 变到 $n_{k}$ 时, 原级数的部分和将单调地在 $S_{k-1}^{\prime}=S_{n_{k-1}}$ 与 $S_{k}^{\prime}=S_{n_{k}}$ 之间变动, 即
+\begin{align*}
+  S_{k-1}^{\prime}=S_{n_{k-1}}&\leqslant S_{n_{k-1}+1}\leqslant\cdots\leqslant S_{n_{k-1}+1}\leqslant S_{n_{k}}=S_{k}^{\prime}
+  &&\text{(当 }a_{n_{k-1}+1}\geqslant0,\cdots,a_{n_{k}}\geqslant0\text{)}, \\
+  S_{k-1}^{\prime}=S_{n_{k-1}}&\geqslant S_{n_{k-1}+1}\geqslant\cdots\geqslant S_{n_{k-1}+1}\geqslant S_{n_{k}}=S_{k}^{\prime}
+  &&\text{(当 }a_{n_{k-1}+1}\leqslant0,\cdots,a_{n_{k}}\leqslant0\text{)}.
+\end{align*}
+令 $n\to+\infty$, 则 $k\to+\infty$, 且 $\lim S_{k}^{\prime}=\lim S_{k-1}^{\prime}=S$. 根据极限的定义立知,
+\[
+  \lim_{n\to+\infty}S_{n}=S.
+\]
+\end{proof}
+
+\begin{example}[等比级数的收敛性]\label{ex:12.1.1}
+讨论等比级数的收敛性.
+\end{example}
+
+\begin{proof}
+令 $S_{n}=\sum_{k=0}^{n}q^{k}=\frac{1-q^{n+1}}{1-q}$(当 $q\neq1$). 分情况讨论:
+\begin{align*}
+  q=1:\quad &S_{n}=\sum_{k=0}^{n}1=n+1\to+\infty;\\
+  q>1:\quad &\lim_{n\to+\infty}S_{n}=+\infty;\\
+  -1<q<1:\quad &\lim_{n\to+\infty}S_{n}=\frac{1}{1-q};\\
+  q<-1:\quad &\lim_{n\to+\infty}S_{n}\ \text{不存在};\\
+  q=-1:\quad &\lim_{n\to+\infty}\sum_{k=0}^{n}(-1)^{k}=\lim_{n\to+\infty}\frac{1+(-1)^{n}}{2}\ \text{不存在}.
+\end{align*}
+故等比级数 $\sum_{n=0}^{\infty}q^{n}$ 当且仅当 $|q|<1$ 时收敛, 其和为 $\frac{1}{1-q}$.
+\end{proof}
+
+\noindent\textbf{裂项相消法}\quad 将 $a_{n}$ 表示为 $V_{n+1}-V_{n}$(或 $V_{n}-V_{n-1}$)的形式, 如果 $\lim_{n\to+\infty}V_{n+1}$ 存在, 则
+\[
+  S_{n}=\sum_{k=1}^{n}a_{k}=\sum_{k=1}^{n}(V_{k+1}-V_{k})=V_{n+1}-V_{1}\to\lim_{n\to+\infty}V_{n+1}-V_{1}\quad(n\to+\infty)
+\]
+或
+\[
+  S_{n}=\sum_{k=1}^{n}a_{k}=\sum_{k=1}^{n}(V_{k}-V_{k-1})=V_{n}-V_{0}\to\lim_{n\to+\infty}V_{n}-V_{0}\quad(n\to+\infty).
+\]
+
+特别地, 若 $a_{n}=\frac{1}{\alpha_{n}\alpha_{n+1}\cdots\alpha_{n+m}}$, 其中 $\alpha_{k}$ 形成公差为 $d$ 的等差数列, 取
+\[
+  V_{n}=-\frac{1}{md}\frac{1}{\alpha_{n}\alpha_{n+1}\cdots\alpha_{n+m-1}},\quad m\in\mathbb{N},
+\]
+则有
+\begin{align*}
+  V_{n+1}-V_{n}
+  &=-\frac{1}{md}\left(\frac{1}{\alpha_{n+1}\alpha_{n+2}\cdots\alpha_{n+m}}-\frac{1}{\alpha_{n}\alpha_{n+1}\cdots\alpha_{n+m-1}}\right) \\
+  &\reason{通分}=-\frac{1}{md}\frac{\alpha_{n}-\alpha_{n+m}}{\alpha_{n}\alpha_{n+1}\cdots\alpha_{n+m}}
+   =-\frac{1}{md}\frac{-md}{md\,\alpha_{n}\alpha_{n+1}\cdots\alpha_{n+m}} \\
+  &=\frac{1}{\alpha_{n}\alpha_{n+1}\cdots\alpha_{n+m}}=a_{n}.
+\end{align*}
+
+\begin{example}\label{ex:12.1.2}
+求下列级数的和:
+\begin{enumerate}
+  \item $\displaystyle\lim_{n=1}\frac{1}{n(n+1)}$;
+  \item $\displaystyle\lim_{n=1}\frac{1}{4n^{2}-1}$;
+  \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}$;
+  \item $\displaystyle\sum_{n=1}^{\infty}\arctan\frac{1}{n^{2}+n+1}$.
+\end{enumerate}
+\end{example}
+
+\begin{proof}
+(1)
+\begin{align*}
+  \sum_{n=1}^{\infty}\frac{1}{n(n+1)}
+  &=\lim_{n\to+\infty}\sum_{k=1}^{n}\left(\frac{1}{k}-\frac{1}{k+1}\right)
+   \reason{裂项相消}\lim_{n\to+\infty}\left(1-\frac{1}{n+1}\right) \\
+  &=1-0=1.
+\end{align*}
+
+(2)
+\begin{align*}
+  \sum_{n=1}^{\infty}\frac{1}{4n^{2}-1}
+  &=\lim_{n\to+\infty}\sum_{k=1}^{n}\frac{1}{2}\left(\frac{1}{2k-1}-\frac{1}{2k+1}\right)
+   \xlongequal{\text{裂项相消}}\lim_{n\to+\infty}\frac{1}{2}\left(1-\frac{1}{2n+1}\right) \\
+  &=\frac{1}{2}(1-0)=\frac{1}{2}.
+\end{align*}
+
+(3)
+\begin{align*}
+  \sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+2)}
+  &=\lim_{n\to+\infty}\sum_{k=1}^{n}\frac{1}{k(k+1)(k+2)}
+   =\lim_{n\to+\infty}\sum_{k=1}^{n}\frac{1}{2}\left[\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}\right] \\
+  &\reason{裂项相消}\lim_{n\to+\infty}\frac{1}{2}\left[\frac{1}{1\times2}-\frac{1}{(n+1)(n+2)}\right] \\
+  &=\frac{1}{2}\left(\frac{1}{2}-0\right)=\frac{1}{4}.
+\end{align*}
+
+(4)
+\begin{align*}
+  \sum_{n=1}^{\infty}\arctan\frac{1}{n^{2}+n+1}
+  &=\sum_{n=1}^{\infty}\arctan\frac{(n+1)-n}{n^{2}+n+1}
+   =\sum_{n=1}^{\infty}\bigl[\arctan(n+1)-\arctan n\bigr] \\
+  &=\lim_{n\to+\infty}\sum_{k=1}^{n}\bigl[\arctan(k+1)-\arctan k\bigr]
+   =\lim_{n\to+\infty}\bigl[\arctan(n+1)-\arctan 1\bigr] \\
+  &=\frac{\pi}{2}-\frac{\pi}{4}=\frac{\pi}{4}.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:12.1.3}
+求级数 $\sum_{n=0}^{\infty}\frac{(-1)^{n}+2}{3^{n}}$ 的和.
+\end{example}
+
+\begin{proof}
+\begin{align*}
+  \sum_{n=0}^{\infty}\frac{(-1)^{n}+2}{3^{n}}
+  &=\reason{定理~\ref{thm:12.1.3}}\sum_{n=0}^{\infty}\left(-\frac{1}{3}\right)^{n}+2\sum_{n=0}^{\infty}\left(\frac{1}{3}\right)^{n} \\
+  &=\frac{1}{1-\left(-\frac{1}{3}\right)}+2\frac{1}{1-\frac{1}{3}}
+   =\frac{3}{4}+3=\frac{15}{4}.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:12.1.4}
+求级数 $\sum_{n=1}^{\infty}\frac{n}{3^{n}}$ 的和.
+\end{example}
+
+\begin{proof}
+解法 1 设 $S=\sum_{n=1}^{\infty}\frac{n}{3^{n}}$, 则
+\[
+  \frac{1}{3}S=\sum_{n=1}^{\infty}\frac{n}{3^{n+1}}=\sum_{n=2}^{\infty}\frac{n-1}{3^{n}}.
+\]
+两式相减得
+\begin{align*}
+  \frac{2}{3}S=S-\frac{1}{3}S
+  &=\sum_{n=1}^{\infty}\frac{n}{3^{n}}-\sum_{n=2}^{\infty}\frac{n-1}{3^{n}}
+   =\frac{1}{3}+\sum_{n=2}^{\infty}\frac{1}{3^{n}} \\
+  &=\frac{\frac{1}{3}}{1-\frac{1}{3}}=\frac{1}{2},
+\end{align*}
+\[
+  S=\frac{3}{2}\times\frac{1}{2}=\frac{3}{4}.
+\]
+
+解法 2 由
+\begin{align*}
+  \sum_{k=1}^{n}kx^{k-1}
+  &=\left(\sum_{k=1}^{n}x^{k}\right)^{\prime}
+   =\left(\frac{1-x^{n+1}}{1-x}\right)^{\prime} \\
+  &=\frac{-(n+1)x^{n}(1-x)-(1-x^{n+1})(-1)}{(1-x)^{2}}
+   =\frac{nx^{n+1}-(n+1)x^{n}+1}{(1-x)^{2}},
+\end{align*}
+所以
+\begin{align*}
+  \sum_{n=1}^{\infty}\frac{n}{3^{n}}
+  &=\frac{1}{3}\sum_{n=1}^{\infty}n\left(\frac{1}{3}\right)^{n-1}
+   =\frac{1}{3}\lim_{n\to+\infty}\sum_{k=1}^{n}k\left(\frac{1}{3}\right)^{k-1} \\
+  &=\frac{1}{3}\lim_{n\to+\infty}\frac{n\left(\frac{1}{3}\right)^{n+1}-(n+1)\left(\frac{1}{3}\right)^{n}+1}{\left(1-\frac{1}{3}\right)^{2}}
+   =\frac{1}{3}\frac{0+0+1}{\left(\frac{2}{3}\right)^{2}}
+   =\frac{3}{4}.
+\end{align*}
+\end{proof}
+
+\begin{example}\label{ex:12.1.5}
+证明: 级数 $\sum_{n=1}^{\infty}n\sin\frac{1}{n}$ 与 $\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{n}$ 均发散.
+\end{example}
+
+\begin{proof}
+因为
+\[
+  \lim_{n\to+\infty}n\sin\frac{1}{n}=\lim_{n\to+\infty}\frac{\sin\frac{1}{n}}{\frac{1}{n}}=1\neq0,
+\]
+\[
+  \lim_{n\to+\infty}\left(1+\frac{1}{n}\right)^{n}=\mathrm{e}\neq0,
+\]
+所以, 根据定理~\ref{thm:12.1.2}, 级数 $\sum_{n=1}^{\infty}n\sin\frac{1}{n}$ 与 $\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{n}$ 均发散.
+\end{proof}
+
+\begin{example}\label{ex:12.1.6}
+设 $a_{n}>0$, $\{a_{n}-a_{n+1}\}$ 为一个严格减的数列. 如果 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 证明:
+\[
+  \lim_{n\to+\infty}\left(\frac{1}{a_{n+1}}-\frac{1}{a_{n}}\right)=+\infty.
+\]
+\end{example}
+
+\begin{proof}
+因为 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 由定理~\ref{thm:12.1.2} 知, $\lim_{n\to+\infty}a_{n}=0$, 从而 $\lim_{n\to+\infty}(a_{n}-a_{n+1})=0$. 但因 $\{a_{n}-a_{n+1}\}$ 严格减, 故必有 $a_{n}-a_{n+1}>0$, 即 $\{a_{n}\}$ 为严格减的数列. 此外, 由于 $\{a_{n}-a_{n+1}\}$ 严格减, 故有
+\begin{align*}
+  a_{n}^{2}&=\sum_{k=n}^{\infty}\left(a_{k}^{2}-a_{k+1}^{2}\right)
+   =\sum_{k=n}^{\infty}\left(a_{k}-a_{k+1}\right)\left(a_{k}+a_{k+1}\right) \\
+  &<\left(a_{n}-a_{n+1}\right)\sum_{k=n}^{\infty}\left(a_{k}+a_{k+1}\right),
+\end{align*}
+于是
+\[
+  \frac{1}{a_{n+1}}-\frac{1}{a_{n}}=\frac{a_{n}-a_{n+1}}{a_{n}a_{n+1}}>\frac{a_{n}-a_{n+1}}{a_{n}^{2}}>\frac{1}{\sum_{k=n}^{\infty}(a_{k}+a_{k+1})}\to+\infty\quad(n\to+\infty).
+\]
+这是因为 $\sum_{k=1}^{\infty}(a_{k}+a_{k+1})$ 收敛, 所以 $\lim_{n\to+\infty}\sum_{k=n}^{\infty}(a_{k}+a_{k+1})=0$. 由此推得
+\[
+  \lim_{n\to+\infty}\left(\frac{1}{a_{n+1}}-\frac{1}{a_{n}}\right)=+\infty.
+\]
+\end{proof}
+
+\begin{exblock}{练习题 12.1}
+\begin{enumerate}
+  \item 研究下列级数的敛散性:
+  \[
+    \sum_{n=1}^{\infty}\sqrt{n};\quad\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}};\quad\sum_{n=1}^{\infty}\frac{1}{10^{n}};\quad\sum_{n=1}^{\infty}\frac{1}{4n+5};\quad\sum_{n=1}^{\infty}\frac{1}{\ln n}.
+\]
+  \item 证明下列级数发散:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{n}{n+1}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{n^{2}+1}{3n^{2}-2}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt[n]{n}}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(1-\frac{1}{n}\right)^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(1+\frac{1}{n}\right)^{n}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}n\sin\frac{1}{n}$.
+  \end{enumerate}
+  \item 求下列级数的和:
+  \begin{enumerate}
+    \item $1-\frac{1}{2}+\frac{1}{4}-\frac{1}{8}+\cdots+(-1)^{n-1}\frac{1}{2^{n-1}}+\cdots$;
+    \item $\frac{1}{1\times3}+\frac{1}{3\times5}+\frac{1}{5\times7}+\cdots+\frac{1}{(2n-1)(2n+1)}+\cdots$;
+    \item $\frac{1}{1\times4}+\frac{1}{4\times7}+\frac{1}{7\times10}+\cdots+\frac{1}{(3n-2)(3n+1)}+\cdots$;
+    \item $\frac{1}{1\times4}+\frac{1}{2\times5}+\frac{1}{3\times6}+\cdots+\frac{1}{n(n+3)}+\cdots$;
+    \item $\frac{1}{2}+\frac{3}{2^{2}}+\frac{5}{2^{3}}+\cdots+\frac{2n-1}{2^{n}}+\cdots$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\arctan\frac{2n+1}{n^{2}(n+1)^{2}+1}$.
+  \end{enumerate}
+  \item 证明下列等式:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{2n+1}{n^{2}(n+1)^{2}}=1$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\left(\sqrt{n+2}-2\sqrt{n+1}+\sqrt{n}\right)=1-\sqrt{2}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\ln\frac{n(2n+1)}{(n+1)(2n-1)}=\ln2$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+m)}=\frac{1}{m}\left(1+\frac{1}{2}+\cdots+\frac{1}{m}\right)$, 其中 $m$ 为自然数.
+  \end{enumerate}
+  \item 作一无穷级数 $\sum_{n=1}^{\infty}a_{n}$, 使其部分和 $S_{n}=\frac{1}{n},\ n=1,2,\cdots$.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 证明: $\sum_{n=1}^{\infty}(a_{n}+a_{n+1})$ 也收敛. 举例说明, 逆命题不成立. 但若 $a_{n}\geqslant0$, 则逆命题也成立, 试证之.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 收敛, 证明: $\sum_{n=1}^{\infty}(a_{n}+b_{n})$ 与 $\sum_{n=1}^{\infty}b_{n}$ 同敛散.
+  \item 设 $\sum_{n=1}^{\infty}a_{n}$ 与 $\sum_{n=1}^{\infty}b_{n}$ 都是发散级数, 举例说明下列级数
+  \[
+    \sum_{n=1}^{\infty}(a_{n}+b_{n}),\quad\sum_{n=1}^{\infty}(a_{n}-b_{n}),\quad\sum_{n=1}^{\infty}a_{n}b_{n},\quad\sum_{n=1}^{\infty}\frac{a_{n}}{b_{n}},
+\]
+  可能收敛, 也可能发散.
+  \item 计算 $\sum_{n=1}^{\infty}n\mathrm{e}^{-nx}$(提示: 考虑 $(1-\mathrm{e}^{-x})S_{n}$).
+  \item 求下列级数的和:
+  \begin{enumerate}
+    \item $\displaystyle\sum_{n=0}^{\infty}\frac{x^{2^{n}}}{1-x^{2^{n+1}}},\ |x|<1$;
+    \item $\displaystyle\sum_{k=1}^{\infty}\arctan\frac{1}{2k^{2}}$;
+    \item $\displaystyle\sum_{k=1}^{\infty}\arctan\frac{2}{4k^{2}-4k+1}$;
+    \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)(n+1)}$.
+  \end{enumerate}
+\end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 12.1}
+\begin{enumerate}
+  \item 设 $r$ 为正整数, $pn+q\neq0,\ n=1,2,\cdots$, 证明:
+  \[
+    \sum_{n=1}^{\infty}\frac{1}{(pn+q)(pn+q+pr)}=\frac{1}{pr}\left(\frac{1}{q+p}+\frac{1}{q+2p}+\cdots+\frac{1}{q+rp}\right).
+\]
+  \item 设 $m$ 为给定的正整数, 证明:
+  \[
+    \sum_{n=1}^{\infty}\frac{1}{m^{2}-n^{2}}=-\frac{1}{4m^{2}}.
+\]
+  \item 应用不等式
+  \[
+    \ln\left(1+\frac{1}{k}\right)<\frac{1}{k}<\ln\left(1+\frac{1}{k-1}\right),\quad k=2,3,\cdots,
+\]
+  证明:
+  \[
+    10<1+\frac{1}{2}+\frac{1}{3}+\cdots+\frac{1}{10^{6}}<20.
+\]
+  \item 设数列 $\{na_{n}\}$ 与级数 $\sum_{n=1}^{\infty}n(a_{n}-a_{n+1})$ 都收敛. 证明: 级数 $\sum_{n=1}^{\infty}a_{n}$ 也收敛.
+  \item (1) 设 $\sum_{n=1}^{\infty}a_{n}$ 为一个收敛级数, 其和为 $S$. 用 $\{S_{n}\}$ 记它的部分和数列. 令
+  \[
+    \sigma_{n}=\frac{S_{1}+S_{2}+\cdots+S_{n}}{n}.
+\]
+  证明: $\lim_{n\to+\infty}\sigma_{n}=S$.
+  \item (2) 构造一个发散级数 $\sum_{n=1}^{\infty}a_{n}$, 使得由 (1) 所定义的 $\{\sigma_{n}\}$ 却是收敛的.
+  \item (3) 设 $\{\sigma_{n}\}$ 是由 (1) 定义的数列. 如果 $\lim_{n\to+\infty}\sigma_{n}=S$, 证明: $a_{n}=o(n),\ n\to+\infty$.
+  \item 证明: 级数 $\sum_{n=1}^{\infty}a_{n}$ 收敛 $\Leftrightarrow$ 对于任意的正整数序列 $p_{1},p_{2},\cdots,p_{k},\cdots$ 及自然数的任意子序列 $\{n_{k}\}$, 皆有
+  \[
+    \lim_{k\to+\infty}\left(a_{n_{k}+1}+a_{n_{k}+2}+\cdots+a_{n_{k}+p_{k}}\right)=0.
+\]
+\end{enumerate}
+\end{exblock}

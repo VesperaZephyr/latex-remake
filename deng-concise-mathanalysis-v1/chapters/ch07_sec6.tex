@@ -1,0 +1,245 @@
+\section{定积分的近似计算}\label{sec:7-6}
+
+关于定积分的计算，我们介绍了两种常用的方法．一种是求出被积函数的原函数，再利用牛顿---莱布尼茨公式算出定积分的值；另一种是利用定积分的基本性质或定积分的换元积分法、分部积分法，将定积分化为便于计算的形式，然后利用牛顿---莱布尼茨公式算出结果．但是，在实际问题中出现的定积分，往往不能用以上方法来计算，例如以下几种情况：
+\begin{enumerate}[(1)]
+\item 被积函数是用图形或表格给出的，没有公式；
+\item 被积函数虽然由公式给出，但是求原函数非常复杂和困难；
+\item 原函数不是初等函数．
+\end{enumerate}
+这时，我们就需要采用近似计算的方法来求定积分的值．
+
+下面，我们介绍建立在定积分几何意义基础上的近似计算法，给出两种近似计算公式．
+
+\subsection{梯形公式}\label{subsec:7-6-1}
+
+设函数 $y = f(x) \geqslant 0$，$x \in [a,b]$，于是定积分 $\int_a^b f(x)\,dx$ 表示曲边梯形的面积（图~\ref{fig:7-21}）．近似求出这块面积，也就近似算出了定积分．
+
+将 $[a,b]$ 分为 $n$ 等分，设分点为
+\[
+a = x_0 < x_1 < x_2 < \cdots < x_{n-1} < x_n = b.
+\]
+每个小区间的长度都是 $\Delta x = \frac{b - a}{n}$．令 $y_i = f(x_i)$ ($i = 0, 1, 2, \cdots, n$)．用小直边梯形面积去近似代替小曲边梯形面积，得到
+\[
+\int_{x_{i-1}}^{x_i} f(x)\,dx \approx \frac{y_{i-1} + y_i}{2}\cdot\frac{b - a}{n}.
+\]
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig7-21.png}
+\figcap{图 7-21}\label{fig:7-21}
+\end{figure}
+
+于是
+\begin{align*}
+\int_a^b f(x)\,dx &\approx \sum_{i=1}^n \frac{y_{i-1} + y_i}{2}\cdot\frac{b - a}{n} \\
+&= \frac{b - a}{n}\left(\frac{y_0 + y_n}{2} + y_1 + y_2 + \cdots + y_{n-1}\right).
+\end{align*}
+上述公式称为梯形公式．
+
+\begin{theorem}\label{thm:7-15}
+若 $f''(x)$ 在 $[a,b]$ 上连续，且
+\[
+|f''(x)| \leqslant M, \quad x \in [a,b],
+\]
+则梯形公式的误差可如下估计：
+\[
+|R_n| \leqslant \frac{(b - a)^3}{12n^2}M,
+\]
+其中
+\[
+R_n = \int_a^b f(x)\,dx - \frac{b - a}{n}\left(\frac{y_0 + y_n}{2} + y_1 + y_2 + \cdots + y_{n-1}\right).
+\]
+\end{theorem}
+
+证明从略．
+
+\begin{example}
+有一条河，宽 $200\text{ m}$．从一岸到正对岸，每隔 $20\text{ m}$ 测量一次水深，测得数据如下：
+\begin{center}
+\begin{tabular}{c|ccccccccccc}
+\hline
+$x$ (宽)/m & 0 & 20 & 40 & 60 & 80 & 100 & 120 & 140 & 160 & 180 & 200 \\
+$y$ (深)/m & 2 & 5 & 9 & 11 & 13 & 17 & 21 & 15 & 11 & 6 & 2 \\
+\hline
+\end{tabular}
+\end{center}
+求此河的横断面面积 $A$ 的近似值．
+\end{example}
+
+\begin{proof}[解]
+设此河横断面的底边方程为 $y = f(x)$，则所求面积为
+\[
+A = \int_0^{200} f(x)\,dx.
+\]
+利用梯形公式，由于 $n = 10$，$\frac{b - a}{n} = 20$，因此
+\begin{align*}
+A &\approx 20\left(\frac{2 + 2}{2} + 5 + 9 + 11 + 13 + 17 + 21 + 15 + 11 + 6\right) \\
+&= 20 \times (2 + 108) = 2\,200\text{ m}^2.
+\end{align*}
+\end{proof}
+
+\subsection{抛物线公式}\label{subsec:7-6-2}
+
+梯形公式的基本思想是在小范围内“以直代曲”，抛物线公式却是“以曲代曲”，即在小范围内用抛物线去近似代替曲线．
+
+如图~\ref{fig:7-22} 所示，将区间 $[a,b]$ 分为 $2n$ 等分，设分点为
+\[
+a = x_0 < x_1 < x_2 < \cdots < x_{2n-1} < x_{2n} = b,
+\]
+相应的函数值为
+\[
+y_0, y_1, y_2, \cdots, y_{2n-1}, y_{2n}.
+\]
+设曲线上相应分点为
+\[
+M_0, M_1, M_2, \cdots, M_{2n-1}, M_{2n}.
+\]
+我们知道，通过三个点可唯一确定一条抛物线（其对称轴平行于 $y$ 轴）．设通过点 $M_0(x_0, y_0), M_1(x_1, y_1), M_2(x_2, y_2)$ 的抛物线方程为
+\[
+y = Ax^2 + Bx + C,
+\]
+系数 $A, B, C$ 由方程组
+\[
+\begin{cases}
+y_0 = Ax_0^2 + Bx_0 + C, \\
+y_1 = Ax_1^2 + Bx_1 + C, \\
+y_2 = Ax_2^2 + Bx_2 + C
+\end{cases}
+\]
+确定．现在，我们用定积分来计算这条抛物线下的面积．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig7-22.png}
+\figcap{图 7-22}\label{fig:7-22}
+\end{figure}
+
+\begin{align*}
+\int_{x_0}^{x_2}(Ax^2 + Bx + C)\,dx &= \frac{A}{3}(x_2^3 - x_0^3) + \frac{B}{2}(x_2^2 - x_0^2) + C(x_2 - x_0) \\
+&= \frac{x_2 - x_0}{6}\left[y_2 + A(x_2 + x_0)^2 + 2B(x_2 + x_0) + 4C + y_0\right],
+\end{align*}
+将 $x_1 = \frac{x_0 + x_2}{2}$ 或 $x_2 + x_0 = 2x_1$ 代入，并消去 $A, B, C$，得到
+\begin{align*}
+\int_{x_0}^{x_2}(Ax^2 + Bx + C)\,dx &= \frac{x_2 - x_0}{6}\left[y_2 + 4Ax_1^2 + 4Bx_1 + 4C + y_0\right] \\
+&= \frac{x_2 - x_0}{6}(y_2 + 4y_1 + y_0).
+\end{align*}
+类似地，通过三点 $M_2(x_2, y_2)$，$M_3(x_3, y_3)$，$M_4(x_4, y_4)$ 的抛物线下的面积为
+\[
+\int_{x_2}^{x_4}(Ax^2 + Bx + C)\,dx = \frac{x_4 - x_2}{6}(y_4 + 4y_3 + y_2).
+\]
+继续做下去，最后，通过三点 $M_{2n-2}$，$M_{2n-1}$，$M_{2n}$ 的抛物线下的面积为
+\[
+\frac{x_{2n} - x_{2n-2}}{6}(y_{2n} + 4y_{2n-1} + y_{2n-2}).
+\]
+这样的抛物线一共有 $n$ 条，把它们下面的面积全部加起来，就得到原曲边梯形面积 $\left(\int_a^b f(x)\,dx\right)$ 的一个近似值．注意到
+\[
+x_2 - x_0 = x_4 - x_2 = \cdots = x_{2n} - x_{2n-2} = 2\cdot\frac{b - a}{2n} = \frac{b - a}{n},
+\]
+于是
+\begin{align*}
+\int_a^b f(x)\,dx &\approx \frac{b - a}{6n}\Big[(y_0 + 4y_1 + y_2) + (y_2 + 4y_3 + y_4) + \cdots + (y_{2n-2} + 4y_{2n-1} + y_{2n})\Big] \\
+&= \frac{b - a}{6n}\Big[(y_0 + y_{2n}) + 2(y_2 + y_4 + \cdots + y_{2n-2}) + 4(y_1 + y_3 + \cdots + y_{2n-1})\Big].
+\end{align*}
+上述公式称为抛物线公式或辛普森（Simpson）公式．
+
+记抛物线公式的误差为
+\[
+R_{2n} = \int_a^b f(x)\,dx - \frac{b - a}{6n}\Big[(y_0 + y_{2n}) + 2(y_2 + y_4 + \cdots + y_{2n-2}) + 4(y_1 + y_3 + \cdots + y_{2n-1})\Big],
+\]
+我们有
+
+\begin{theorem}\label{thm:7-16}
+若 $f^{(4)}(x)$ 在 $[a,b]$ 上连续，且
+\[
+|f^{(4)}(x)| \leqslant M, \quad x \in [a,b],
+\]
+则
+\[
+|R_{2n}| \leqslant \frac{(b - a)^5}{180\cdot(2n)^4}M.
+\]
+\end{theorem}
+
+证明从略．
+
+\begin{example}
+用抛物线公式近似计算定积分 $\displaystyle \int_0^1 \mathrm{e}^{-x^2}\,dx$，要求精确到 $0.0001$．
+\end{example}
+
+\begin{proof}[解]
+根据对精确度的要求知，要使
+\[
+|R_{2n}| \leqslant 0.0001,
+\]
+只要
+\[
+\frac{(b - a)^5}{180\cdot(2n)^4}M = \frac{1}{180\cdot(2n)^4}M \leqslant 0.000\,1,
+\]
+其中
+\[
+|f^{(4)}(x)| \leqslant M, \quad x \in [0,1].
+\]
+下面估计 $M$．由 $f(x) = \mathrm{e}^{-x^2}$ 知
+\[
+|f^{(4)}(x)| = \left|\left(\mathrm{e}^{-x^2}\right)^{(4)}\right| = |16x^4 - 48x^2 + 12|\cdot\left|\mathrm{e}^{-x^2}\right|.
+\]
+当 $x \in [0,1]$ 时，$\left|\mathrm{e}^{-x^2}\right| \leqslant 1$，于是
+\[
+|f^{(4)}(x)| \leqslant |16x^4 - 48x^2 + 12| = 4|4x^4 - 12x^2 + 3|.
+\]
+令 $y = 4x^4 - 12x^2 + 3$，则
+\[
+y' = 16x^3 - 24x = 8x(2x^2 - 3) \leqslant 0 \quad (0 \leqslant x \leqslant 1),
+\]
+因此 $y = 4x^4 - 12x^2 + 3$ 在区间 $[0,1]$ 上单调下降，从而当 $x \in [0,1]$ 时，
+\[
+|y(x)| \leqslant \max\left\{|y(0)|, |y(1)|\right\} = \max\{3, 5\} = 5,
+\]
+所以
+\[
+|f^{(4)}(x)| \leqslant 4|y(x)| \leqslant 20 \quad (0 \leqslant x \leqslant 1).
+\]
+取 $M = 20$，则
+\[
+|R_{2n}| \leqslant \frac{1}{180\cdot(2n)^4}\cdot 20 \leqslant 0.0001,
+\]
+即
+\[
+\frac{1}{9\cdot(2n)^4} \leqslant 0.000\,1, \quad 2n \geqslant \sqrt[4]{\frac{10\,000}{9}} = \frac{10}{\sqrt{3}} \approx 5.77,
+\]
+因此取 $2n = 10$ 即可，这里 $2n$ 是分割的份数．
+
+把分点及相应的函数值计算出来并排列成表：
+\begin{center}
+\begin{tabular}{c|cccccc}
+\hline
+$i$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+$x_i$ & 0.0 & 0.1 & 0.2 & 0.3 & 0.4 & 0.5 \\
+$y_i$ & 1.000\,00 & 0.990\,05 & 0.960\,79 & 0.913\,93 & 0.852\,14 & 0.778\,80 \\
+\hline
+$i$ & 6 & 7 & 8 & 9 & 10 & \\
+$x_i$ & 0.6 & 0.7 & 0.8 & 0.9 & 1.0 & \\
+$y_i$ & 0.697\,68 & 0.612\,63 & 0.527\,29 & 0.444\,86 & 0.367\,88 & \\
+\hline
+\end{tabular}
+\end{center}
+于是由抛物线公式，得到
+\begin{align*}
+\int_0^1 \mathrm{e}^{-x^2}\,dx &\approx \frac{b - a}{3(2n)}\Big[(y_0 + y_{10}) + 2(y_2 + y_4 + y_6 + y_8) + 4(y_1 + y_3 + y_5 + y_7 + y_9)\Big] \\
+&= \frac{1}{30}\Big[1.367\,88 + 2 \times 3.037\,90 + 4 \times 3.740\,27\Big] \\
+&= 0.746\,83.
+\end{align*}
+积分 $\int_0^x \mathrm{e}^{-t^2}\,dt$ 的值已经编制成表．查表得到
+\[
+\int_0^1 \mathrm{e}^{-x^2}\,dx = 0.746\,823.
+\]
+\end{proof}
+
+\begin{xiti}
+\item 已知 $\int_0^1 \frac{dx}{1 + x^2} = \frac{\pi}{4}$，试把积分区间 $[0,1]$ 分成 $10$ 等分，分别用梯形公式和抛物线公式计算 $\pi$ 的近似值，精确到小数点后三位．
+
+\item 把积分区间 $10$ 等分，用抛物线公式计算下列积分的近似值，精确到小数点后三位：
+\begin{ziti}
+\item $\displaystyle \int_0^1 \sqrt{1 - x^3}\,dx$；
+\item $\displaystyle \int_1^2 \frac{dx}{x}$．
+\end{ziti}
+\end{xiti}

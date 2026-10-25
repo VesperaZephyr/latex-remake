@@ -1,0 +1,621 @@
+% ==================================================================
+%  §7.1  (R^n, \rho_0^n) 的拓扑
+%  源：徐森林、薛春华《数学分析》第二册，印刷页 1-15 (PDF p. 7-21)
+%  底本：PaddleOCR-VL-1.6 JSON/MD 识别结果，人工逐字核校与公式精修
+%  规范：全西文标点，忠实原文定理、定义、引理、例题、练习题编号与推导
+% ==================================================================
+
+\section{\texorpdfstring{$(R^n, \rho_0^n)$}{(R^n, ρ_0^n)} 的拓扑}
+
+为了培养读者抽象思维能力, 我们采用从抽象到具体的方法, 在非空集合上引进拓扑的概念, 然后给出度量空间 $(X, \rho)$ 诱导的拓扑空间 $(X, \mathcal{T}_{\rho})$, 作为特殊度量空间的 Euclid 空间 $(R^n, \rho_0^n)$, 它相应的拓扑空间为 $(R^n, \mathcal{T}_{\rho_0^n})$, 而 $\mathcal{T}_{\rho_0^n}$ 就是 $R^n$ 中的通常拓扑.
+
+\begin{definition}\label{def:7.1.1}
+如果非空集合 $X$ 的子集族
+\[
+  \mathcal{T}=\{U \mid U\text{ 具有性质 } *\}
+\]
+满足:
+\begin{enumerate}
+  \item $X, \varnothing \in \mathcal{T}$;
+  \item 若 $U_1, U_2 \in \mathcal{T}$, 则 $U_1 \cap U_2 \in \mathcal{T}$;
+  \item $\bigcup_{U \in \mathcal{T}_0 \subset \mathcal{T}} U \in \mathcal{T}$ (或表达为: 若 $U_\alpha \in \mathcal{T}, \alpha \in \Gamma$ (指标集), 必有 $\bigcup_{\alpha \in \Gamma} U_\alpha \in \mathcal{T}$).
+\end{enumerate}
+则称 $\mathcal{T}$ 为 $X$ 上的一个\textbf{拓扑}, $(X, \mathcal{T})$ 称为 $X$ 上的一个\textbf{拓扑空间}.
+
+$U \in \mathcal{T}$ 称为 $(X, \mathcal{T})$ 中的\textbf{开集}. 如果 $F$ 的余 (补) 集 $F^c = X \setminus F \in \mathcal{T}$, 则称 $F$ 为 $(X, \mathcal{T})$ 中的\textbf{闭集}. 由数学归纳法与 (2) 知, 有限个开集的交为开集; 由 (3) 知, 任意多个开集的并为开集.
+\end{definition}
+
+\begin{definition}\label{def:7.1.2}
+设 $(X, \mathcal{T})$ 为拓扑空间, $A \subset X$, $x \in X$ (不必属于 $A$). 如果对 $x$ 的任何开邻域 (含 $x$ 的开集) $U$, 必有
+\[
+  U \cap (A \setminus \{x\}) = (U \setminus \{x\}) \cap A \neq \varnothing,
+\]
+则称 $x$ 为 $A$ 的\textbf{聚点}. 记 $A$ 的聚点的全体为 $A'$ 或 $A^d$, 称为 $A$ 的\textbf{导集}. 而 $\overline{A} = A \cup A'$ 称为 $A$ 的\textbf{闭包}, 有时记 $\overline{A}$ 为 $A^-$. 如果 $\overline{A} = X$, 则称 $A$ 为 $(X, \mathcal{T})$ 的\textbf{稠密集}.
+
+如果 $a \in A$, 且 $a \notin A'$, 则称 $a$ 为 $A$ 的\textbf{孤立点}. 显然,
+\[
+  a\text{ 为 } A\text{ 的孤立点} \iff a \in A\text{ 且 }\exists U_0 \in \mathcal{T},\text{ s.t. } U_0 \cap A = \{a\}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:7.1.1}
+$x \in \overline{A} \iff$ 对 $x$ 的任何开邻域 $U$, 有 $U \cap A \neq \varnothing$.
+
+等价地, 有
+\[
+  x \notin \overline{A} \iff \text{存在 } x \text{ 的开邻域 } U_0,\text{ 使得 } U_0 \cap A = \varnothing.
+\]
+\end{theorem}
+
+\begin{proof}
+$x \in \overline{A} = A \cup A' \iff x \in A$ 或 $x \notin A, x \in A' \iff$ 对 $x$ 的任何开邻域 $U$, 有 $U \cap A \neq \varnothing$. \qedhere
+\end{proof}
+
+\begin{lemma}[De Morgan 公式]\label{lem:7.1.1}
+\[
+  X \setminus \bigcup_{\alpha \in \Gamma} A_\alpha = \bigcap_{\alpha \in \Gamma} (X \setminus A_\alpha), \qquad
+  X \setminus \bigcap_{\alpha \in \Gamma} A_\alpha = \bigcup_{\alpha \in \Gamma} (X \setminus A_\alpha).
+\]
+如果 $A_\alpha \subset X\ (\forall \alpha \in \Gamma)$, 则称 $X$ 为全空间. 上述两式变为
+\[
+  \left(\bigcup_{\alpha \in \Gamma} A_\alpha\right)^c = \bigcap_{\alpha \in \Gamma} A_\alpha^c, \qquad
+  \left(\bigcap_{\alpha \in \Gamma} A_\alpha\right)^c = \bigcup_{\alpha \in \Gamma} A_\alpha^c.
+\]
+\end{lemma}
+
+\begin{proof}
+由
+\begin{align*}
+  x \in X \setminus \bigcup_{\alpha \in \Gamma} A_\alpha
+  &\iff x \in X,\ x \notin \bigcup_{\alpha \in \Gamma} A_\alpha \\
+  &\iff x \in X,\ \forall \alpha \in \Gamma,\ x \notin A_\alpha \\
+  &\iff \forall \alpha \in \Gamma,\ x \in (X \setminus A_\alpha) \\
+  &\iff x \in \bigcap_{\alpha \in \Gamma} (X \setminus A_\alpha)
+\end{align*}
+知第一式成立. 类似可证第二式. \qedhere
+\end{proof}
+
+\begin{theorem}[闭集性质]\label{thm:7.1.2}
+设 $\mathcal{F}$ 为拓扑空间 $(X, \mathcal{T})$ 中所有闭集的族, 则:
+\begin{enumerate}
+  \item $X, \varnothing \in \mathcal{F}$;
+  \item 若 $F_1, F_2 \in \mathcal{F}$, 则 $F_1 \cup F_2 \in \mathcal{F}$;
+  \item $\bigcap_{F \in \mathcal{F}_0 \subset \mathcal{F}} F \in \mathcal{F}$ (或表达为: 若 $F_\alpha \in \mathcal{F}, \alpha \in \Gamma$, 必有 $\bigcap_{\alpha \in \Gamma} F_\alpha \in \mathcal{F}$).
+\end{enumerate}
+由数学归纳法与 (2) 知, 有限个闭集的并为闭集; 由 (3) 知, 任意个闭集的交为闭集.
+\end{theorem}
+
+\begin{proof}
+(1) 因为 $X^c = \varnothing \in \mathcal{T}$, $\varnothing^c = X \in \mathcal{T}$, 所以 $X, \varnothing \in \mathcal{F}$.
+
+(2) 因为 $F_1, F_2 \in \mathcal{F}$, 所以 $F_1^c, F_2^c \in \mathcal{T}$,
+\[
+  (F_1 \cup F_2)^c \reason{De Morgan 公式} F_1^c \cap F_2^c \in \mathcal{T},
+\]
+从而 $F_1 \cup F_2 \in \mathcal{F}$.
+
+(3) 因为 $F_\alpha \in \mathcal{F}$, 所以 $F_\alpha^c \in \mathcal{T}, \alpha \in \Gamma$. 于是,
+\[
+  \left(\bigcap_{\alpha \in \Gamma} F_\alpha\right)^c \reason{De Morgan 公式} \bigcup_{\alpha \in \Gamma} F_\alpha^c \in \mathcal{T},
+\]
+从而 $\bigcap_{\alpha \in \Gamma} F_\alpha \in \mathcal{F}$. \qedhere
+\end{proof}
+
+\begin{theorem}[导集性质]\label{thm:7.1.3}
+设 $(X, \mathcal{T})$ 为拓扑空间, $A, B \subset X$, 则:
+\begin{enumerate}
+  \item $\varnothing' = \varnothing$;
+  \item 若 $A \subset B$, 则 $A' \subset B'$;
+  \item $(A \cup B)' = A' \cup B'$;
+  \item $\forall a \in A'$, $(A \setminus \{a\})' = A'$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 显然 $\varnothing' = \varnothing$.
+
+(2) 设 $x \in A'$, 则对 $x$ 的任何开邻域 $U$, 有
+\[
+  \varnothing \neq U \cap (A \setminus \{x\}) \subset U \cap (B \setminus \{x\}),
+\]
+即 $x \in B'$, 故 $A' \subset B'$.
+
+(3) 由 $A \subset A \cup B, B \subset A \cup B$ 以及 (2) 得到 $A' \subset (A \cup B)', B' \subset (A \cup B)'$, 从而 $A' \cup B' \subset (A \cup B)'$.
+
+反之, 设 $x \notin A' \cup B'$, 则 $x \notin A'$ 且 $x \notin B'$. 于是, 存在 $x$ 的开邻域 $U_1, U_2 \in \mathcal{T}$, s.t.
+\[
+  U_1 \cap (A \setminus \{x\}) = \varnothing, \qquad U_2 \cap (B \setminus \{x\}) = \varnothing.
+\]
+令 $U = U_1 \cap U_2 \in \mathcal{T}$, 显然 $U$ 为 $x$ 的开邻域, 且
+\[
+  U \cap ((A \cup B) \setminus \{x\}) = (U \cap (A \setminus \{x\})) \cup (U \cap (B \setminus \{x\})) = \varnothing,
+\]
+所以 $x \notin (A \cup B)'$. 这就证明了 $(A \cup B)' \subset A' \cup B'$. 综上所述, $(A \cup B)' = A' \cup B'$.
+
+(4) 类似可证 $\forall a \in A', (A \setminus \{a\})' = A'$. \qedhere
+\end{proof}
+
+\begin{theorem}[闭包性质]\label{thm:7.1.4}
+设 $(X, \mathcal{T})$ 为拓扑空间, $A, B \subset X$, 则:
+\begin{enumerate}
+  \item $\overline{\varnothing} = \varnothing$;
+  \item 若 $A \subset B$, 则 $\overline{A} \subset \overline{B}$;
+  \item $\overline{A \cup B} = \overline{A} \cup \overline{B}$;
+  \item $\overline{\overline{A}} = \overline{A}$;
+  \item $A$ 为闭集 $\iff A = \overline{A} \iff A' \subset A$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\overline{\varnothing} = \varnothing \cup \varnothing' = \varnothing \cup \varnothing = \varnothing$.
+
+(2) 由 $A \subset B$ 与 \cref{thm:7.1.3}(2) 得到 $A' \subset B'$, 从而
+\[
+  \overline{A} = A \cup A' \subset B \cup B' = \overline{B}.
+\]
+
+(3) $\overline{A \cup B} = (A \cup B) \cup (A \cup B)' \reason{\cref{thm:7.1.3}(3)} (A \cup B) \cup (A' \cup B') = (A \cup A') \cup (B \cup B') = \overline{A} \cup \overline{B}$.
+
+(4) 显然, $\overline{A} \subset \overline{A} \cup (\overline{A})' = \overline{\overline{A}}$. 进而, 有
+\begin{align*}
+  x \in \overline{\overline{A}}
+  &\xleftrightarrow{\text{\cref{thm:7.1.1}}} \text{对 } x \text{ 的任何开邻域 } U, U \cap \overline{A} \neq \varnothing \\
+  &\xleftrightarrow{\quad} \text{对 } x \text{ 的任何开邻域 } U, U \cap A \neq \varnothing \\
+  &\xleftrightarrow{\text{\cref{thm:7.1.1}}} x \in \overline{A}.
+\end{align*}
+所以, $\overline{\overline{A}} = \overline{A}$.
+
+(5) 由定义, $A = \overline{A} = A \cup A' \iff A' \subset A$. 现证 $A$ 为闭集 $\iff A = \overline{A}$.
+
+($\Rightarrow$) 设 $A$ 为闭集, 则 $A^c = X \setminus A \in \mathcal{T}$ 为开集. $\forall x \notin A$, 则 $x \in A^c$, 取 $U_0 = A^c \in \mathcal{T}$, 有 $U_0 \cap A = \varnothing$. 由 \cref{thm:7.1.1} 知 $x \notin \overline{A}$. 这表明 $\overline{A} \subset A$, 从而 $\overline{A} = A$.
+
+($\Leftarrow$) 设 $A = \overline{A}$. $\forall x \in A^c = X \setminus A = X \setminus \overline{A}$, 由 \cref{thm:7.1.1} 知存在 $x$ 的开邻域 $U_x$, 使得 $U_x \cap A = \varnothing$, 即 $U_x \subset A^c$. 于是 $A^c = \bigcup_{x \in A^c} U_x \in \mathcal{T}$, 即 $A^c$ 为开集, 从而 $A$ 为闭集. \qedhere
+\end{proof}
+
+\begin{definition}\label{def:7.1.3}
+设 $\{x_n\}$ 为 $(X, \mathcal{T})$ 中的点列. 如果 $\exists x \in X$, 对 $x$ 的任何开邻域 $U$, $\exists N \in \mathbb{Z}_+$, 当 $n > N$ 时, 有 $x_n \in U$, 则称 $\{x_n\}$ \textbf{收敛于} $x$, 记作 $\lim_{n \to \infty} x_n = x$ 或 $x_n \to x\ (n \to \infty)$, 而 $x$ 称为点列 $\{x_n\}$ 的\textbf{极限}.
+\end{definition}
+
+\begin{theorem}\label{thm:7.1.5}
+设 $(X, \mathcal{T})$ 为拓扑空间, 点列 $\{x_n\} \subset X$, 则
+\[
+  \lim_{n \to \infty} x_n = x \implies x \in \overline{\{x_n\}}.
+\]
+\end{theorem}
+
+\begin{proof}
+根据定义, 对 $x$ 的任何开邻域 $U$, $\exists N \in \mathbb{Z}_+$, 当 $n > N$ 时, $x_n \in U$. 于是 $U \cap \{x_n\} \neq \varnothing$. 根据 \cref{thm:7.1.1}, $x \in \overline{\{x_n\}}$. \qedhere
+\end{proof}
+
+\begin{definition}\label{def:7.1.4}
+设 $X$ 为非空集合, 映射 $\rho: X \times X \to \mathbb{R}$ 满足:
+\begin{enumerate}
+  \item $\rho(x, y) \geqslant 0$, 且 $\rho(x, y) = 0 \iff x = y$ (正定性);
+  \item $\rho(x, y) = \rho(y, x)$ (对称性);
+  \item $\rho(x, z) \leqslant \rho(x, y) + \rho(y, z)$ (三角不等式).
+\end{enumerate}
+则称 $\rho$ 为 $X$ 上的一个\textbf{度量} (或\textbf{距离}), $(X, \rho)$ 称为 $X$ 上的一个\textbf{度量 (距离) 空间}, $\rho(x, y)$ 称为点 $x$ 与 $y$ 的距离.
+
+现在验证: 度量空间 $(X, \rho)$ 上的子集族
+\[
+  \mathcal{T}_\rho = \{U \mid \forall x \in U, \exists \delta > 0,\text{ s.t. 开球 } B(x; \delta) \subset U\}
+\]
+为 $X$ 上的一个拓扑, 称为由 $\rho$ \textbf{诱导的拓扑}, 其中 $B(x; \delta) = \{y \mid y \in X, \rho(y, x) < \delta\}$ 是以 $x$ 为中心, $\delta$ 为半径的\textbf{开球}.
+\end{definition}
+
+\begin{proof}[验证 $\mathcal{T}_\rho$ 为拓扑]
+(1) 由于 $\forall x \in X$, 显然有 $B(x; 1) \subset X$, 故 $X \in \mathcal{T}_\rho$. 因为 $\varnothing$ 不含任何元素, 满足开集性质, 故 $\varnothing \in \mathcal{T}_\rho$.
+
+(2) 设 $U_1, U_2 \in \mathcal{T}_\rho$. 若 $U_1 \cap U_2 = \varnothing$, 显然属于 $\mathcal{T}_\rho$. 若 $U_1 \cap U_2 \neq \varnothing$, 则 $\forall x \in U_1 \cap U_2$, 有 $x \in U_i$, 存在 $\delta_i > 0$ 使得 $B(x; \delta_i) \subset U_i\ (i = 1, 2)$. 取 $\delta = \min\{\delta_1, \delta_2\} > 0$, 则 $B(x; \delta) \subset U_1 \cap U_2$, 故 $U_1 \cap U_2 \in \mathcal{T}_\rho$.
+
+(3) 设 $U_\alpha \in \mathcal{T}_\rho\ (\alpha \in \Gamma)$. 若 $x \in \bigcup_{\alpha \in \Gamma} U_\alpha$, 则存在 $\alpha_0 \in \Gamma$ 使得 $x \in U_{\alpha_0}$. 存在 $\delta_0 > 0$ 使得 $B(x; \delta_0) \subset U_{\alpha_0} \subset \bigcup_{\alpha \in \Gamma} U_\alpha$, 故 $\bigcup_{\alpha \in \Gamma} U_\alpha \in \mathcal{T}_\rho$. \qedhere
+\end{proof}
+
+\begin{theorem}\label{thm:7.1.6}
+设 $(X, \rho)$ 为度量空间, $A \subset X, x \in X$, 则下列命题等价:
+\begin{enumerate}
+  \item $x \in A'$;
+  \item $x$ 的任何开邻域 $U$ 中含 $A$ 的无限多个点;
+  \item $\exists \{x_k\} \subset A$, 使得 $x_k$ 互异, $x_k \neq x$, 且 $\lim_{k \to \infty} x_k = x$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Rightarrow$ (3): 设 $x \in A'$, 对 $x$ 的任何开邻域 $U$, $\exists n_1 \in \mathbb{Z}_+$, s.t. $B(x; 1/n_1) \subset U$, 则有 $x_1 \in B(x; 1/n_1) \cap (A \setminus \{x\})$. 取 $n_2 > n_1$, s.t. $1/n_2 < \rho(x_1, x)$, 则对 $x$ 的开邻域 $B(x; 1/n_2)$, 有 $x_2 \in B(x; 1/n_2) \cap (A \setminus \{x\})$, 显然 $x_2 \neq x_1$. 依此类推, 得到 $\{x_k\}$, s.t. $x_k \in B(x; 1/n_k) \cap (A \setminus \{x\})$, 且 $x_k$ 互异且 $x_k \neq x$. 由 $0 \leqslant \rho(x_k, x) < 1/n_k \to 0\ (k \to \infty)$ 得到 $\lim_{k \to \infty} x_k = x$.
+
+(2) $\Leftrightarrow$ (3): 对 $x$ 的任何开邻域 $U$, 因为 $\lim_{k \to \infty} x_k = x$, 故存在 $K \in \mathbb{Z}_+$, 当 $k > K$ 时, 有 $x_k \in U$. 由于 $x_k$ 互异, 知 $U$ 中含 $A$ 的无限个点.
+
+(2) $\Rightarrow$ (1): 显然. \qedhere
+\end{proof}
+
+\begin{example}\label{ex:7.1.1}
+设 $X$ 为非空集合, $\mathcal{T}_{\text{平庸}} = \{\varnothing, X\}$. 显然 $\mathcal{T}_{\text{平庸}}$ 为 $X$ 上的一个拓扑, 其开集最少, 称 $(X, \mathcal{T}_{\text{平庸}})$ 为 $X$ 上的\textbf{平庸拓扑空间}.
+
+当 $X = \{a, b\}\ (a \neq b)$ 时, $\mathcal{T}_{\text{平庸}} = \{\varnothing, \{a, b\}\}$. 取 $A = \{a\}$, 则 $A' = \{b\}$. 显然, $b$ 的任何开邻域 $U$ 必为 $X = \{a, b\}$, 它只含 $A = \{a\}$ 的一个点 $a$, 而不是无限个点. 这表明 \cref{thm:7.1.6} 中的性质 (2), (3) 是度量空间中特有的性质.
+\end{example}
+
+\begin{definition}\label{def:7.1.5}
+设 $(X, \mathcal{T})$ 为拓扑空间, $x \in X$. $x$ 的一个开邻域族 $\mathcal{T}_x^*$, 若对 $x$ 的任何开邻域 $U$, 均有 $U_0 \in \mathcal{T}_x^*$, s.t. $x \in U_0 \subset U$, 则称 $\mathcal{T}_x^*$ 为 $x$ 的一个\textbf{局部基}. 若 $\mathcal{T}_x^*$ 为至多可数集, 则称 $\mathcal{T}_x^*$ 为 $x$ 的一个\textbf{可数局部基}.
+
+如果 $\forall x \in X$ 均有可数局部基, 则称 $(X, \mathcal{T})$ 为 $A_1$ \textbf{空间}或具有\textbf{第一可数性公理}的拓扑空间.
+
+如果有 $\mathcal{T}^* \subset \mathcal{T}$, 对 $\mathcal{T}$ 中任一元素 $U$, 有 $U = \bigcup_{V \in \mathcal{T}_0^* \subset \mathcal{T}^*} V$ (即 $\forall x \in U, \exists V \in \mathcal{T}^*$, s.t. $x \in V \subset U$), 则称 $\mathcal{T}^*$ 为 $(X, \mathcal{T})$ 的一个\textbf{拓扑基}. 进而, 当 $\mathcal{T}^*$ 为至多可数集时, 称 $\mathcal{T}^*$ 为可数拓扑基, 并称 $(X, \mathcal{T})$ 为 $A_2$ \textbf{空间}或具有\textbf{第二可数性公理}的拓扑空间.
+\end{definition}
+
+\begin{example}\label{ex:7.1.2}
+设 $(X, \rho)$ 为度量空间, 则 $\forall x \in X$,
+\[
+  \mathcal{T}_x^* = \left\{B\left(x; \frac{1}{n}\right) \;\middle|\; n \in \mathbb{Z}_+\right\}
+\]
+为 $x$ 处的一个可数局部基. 事实上, $\forall U \in \mathcal{T}_\rho$ (含 $x$ 的开集), $\exists \delta > 0$, s.t. $B(x; \delta) \subset U$, 取 $N \in \mathbb{Z}_+$ 满足 $1/N < \delta$, 则 $x \in B(x; 1/N) \subset B(x; \delta) \subset U$. 故任何度量空间都是 $A_1$ 空间.
+\end{example}
+
+\begin{theorem}\label{thm:7.1.7}
+设 $(X, \mathcal{T})$ 为 $A_1$ 空间, $A \subset X, x \in X$, 则:
+\begin{enumerate}
+  \item $x \in A' \iff \exists \{x_n\} \subset A \setminus \{x\}$, 使得 $\lim_{n \to \infty} x_n = x$;
+  \item $x \in \overline{A} \iff \exists \{x_n\} \subset A$, 使得 $\lim_{n \to \infty} x_n = x$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) ($\Leftarrow$) 设 $\{x_n\} \subset A \setminus \{x\}$ 且 $\lim_{n \to \infty} x_n = x$, 则对 $x$ 的任何开邻域 $U$, 存在 $N$, 当 $n > N$ 时 $x_n \in U \cap (A \setminus \{x\}) \neq \varnothing$, 故 $x \in A'$.
+
+($\Rightarrow$) 设 $x \in A'$. 设 $\{U_n \mid n \in \mathbb{Z}_+\}$ 为 $x$ 处的可数局部基, 令 $V_n = \bigcap_{i=1}^n U_i$, 则 $V_1 \supset V_2 \supset \cdots$, 称为规范可数局部基. 因 $x \in A'$, 故对每个 $n$, $V_n \cap (A \setminus \{x\}) \neq \varnothing$. 取 $x_n \in V_n \cap (A \setminus \{x\})$, 易见 $\lim_{n \to \infty} x_n = x$.
+
+(2) 类似可由 (1) 推得. \qedhere
+\end{proof}
+
+\begin{theorem}\label{thm:7.1.8}
+设 $(X, \mathcal{T})$ 为 $A_1$ 空间, 则
+\[
+  A \text{ 为闭集} \iff \forall \{x_n\} \subset A,\ \lim_{n \to \infty} x_n = x \implies x \in A.
+\]
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) 由 \cref{thm:7.1.5}, $\lim_{n \to \infty} x_n = x \implies x \in \overline{A}$. 若 $A$ 为闭集, 则 $\overline{A} = A$, 故 $x \in A$.
+
+($\Leftarrow$) (反证) 假设 $A$ 不为闭集, 则 $\exists x \in A', x \notin A$. 由 \cref{thm:7.1.7}, 存在 $\{x_n\} \subset A$ 使得 $\lim_{n \to \infty} x_n = x$. 但 $x \notin A$, 矛盾. \qedhere
+\end{proof}
+
+\begin{definition}\label{def:7.1.6}
+设 $(X, \mathcal{T})$ 为拓扑空间. 如果 $\forall p, q \in X, p \neq q$, 均存在 $p$ 的开邻域 $U$ 与 $q$ 的开邻域 $V$, 使得 $U \cap V = \varnothing$, 则称 $(X, \mathcal{T})$ 为 $T_2$ \textbf{空间}或 \textbf{Hausdorff 空间}.
+\end{definition}
+
+\begin{theorem}\label{thm:7.1.9}
+设 $(X, \mathcal{T})$ 为 $T_2$ 空间, 点列 $\{x_n\} \subset X$ 收敛, 则极限是惟一的.
+\end{theorem}
+
+\begin{proof}
+(反证) 假设极限不唯一, 存在 $x \neq y$, 使得 $\lim_{n \to \infty} x_n = x$ 且 $\lim_{n \to \infty} x_n = y$. 因为 $(X, \mathcal{T})$ 为 $T_2$ 空间, 存在开邻域 $U \ni x, V \ni y$ 满足 $U \cap V = \varnothing$. 但由极限定义, 当 $n$ 充分大时 $x_n \in U$ 且 $x_n \in V$, 即 $x_n \in U \cap V = \varnothing$, 矛盾. \qedhere
+\end{proof}
+
+\begin{example}\label{ex:7.1.3}
+平庸拓扑空间 $(X, \mathcal{T}_{\text{平庸}})$ 当点数大于 1 时显然不是 $T_2$ 空间.
+\end{example}
+
+\begin{lemma}\label{lem:7.1.2}
+任何度量空间 $(X, \rho)$ 均为 $T_2$ 空间.
+\end{lemma}
+
+\begin{proof}
+$\forall p \neq q$, 取 $\delta = \frac{1}{2}\rho(p, q) > 0$. 令 $U = B(p; \delta), V = B(q; \delta)$, 则 $U, V$ 分别为 $p, q$ 的开邻域, 且由三角不等式易见 $U \cap V = \varnothing$. \qedhere
+\end{proof}
+
+\begin{example}\label{ex:7.1.4}
+设 $X$ 为非空集合, 定义离散度量
+\[
+  \rho(x, y) = \begin{cases}
+    1, & x \neq y, \\
+    0, & x = y.
+  \end{cases}
+\]
+则诱导拓扑为离散拓扑 $\mathcal{T}_{\text{离散}} = \mathcal{P}(X)$ (每一个子集都是开集, 也都是闭集).
+\end{example}
+
+\begin{example}\label{ex:7.1.5}
+设 $(X, \rho)$ 为度量空间, $Y \subset X$ 为非空集合. 限制 $\rho_Y = \rho|_{Y \times Y}$ 使 $(Y, \rho_Y)$ 成为子度量空间, 其开球满足 $B_Y(x; \delta) = B(x; \delta) \cap Y$.
+\end{example}
+
+\begin{example}\label{ex:7.1.6}
+设 $(X, \mathcal{T})$ 为拓扑空间, $Y \subset X$ 为非空子集. 记 $\mathcal{T}_Y = \{U \cap Y \mid U \in \mathcal{T}\}$, 则 $\mathcal{T}_Y$ 为 $Y$ 上的拓扑, 称为\textbf{子空间拓扑}或\textbf{诱导拓扑}.
+\end{example}
+
+\begin{corollary}\label{cor:7.1.1}
+设 $(X, \rho)$ 为度量空间, 则:
+\begin{enumerate}
+  \item $A$ 为闭集 $\iff \forall \{x_n\} \subset A, \lim_{n \to \infty} x_n = x \implies x \in A$;
+  \item 如果点列 $\{x_n\} \subset X$ 收敛, 则极限是惟一的.
+\end{enumerate}
+\end{corollary}
+
+\begin{lemma}[Cauchy-Schwarz 不等式]\label{lem:7.1.3}
+对任意 $x = (x_1, \dots, x_n), y = (y_1, \dots, y_n) \in \mathbb{R}^n$, 有
+\[
+  |\langle x, y \rangle| \leqslant \|x\| \|y\|, \quad\text{即}\quad
+  \left(\sum_{i=1}^n x_i y_i\right)^2 \leqslant \left(\sum_{i=1}^n x_i^2\right) \left(\sum_{i=1}^n y_i^2\right).
+\]
+\end{lemma}
+
+\begin{lemma}[Minkowski 不等式]\label{lem:7.1.4}
+对任意 $x, y \in \mathbb{R}^n$, 有
+\[
+  \|x + y\| \leqslant \|x\| + \|y\|, \quad\text{即}\quad
+  \sqrt{\sum_{i=1}^n (x_i + y_i)^2} \leqslant \sqrt{\sum_{i=1}^n x_i^2} + \sqrt{\sum_{i=1}^n y_i^2}.
+\]
+\end{lemma}
+
+\begin{example}\label{ex:7.1.7}
+$\forall n \in \mathbb{Z}_+$, $\mathbb{R}^n = \{x = (x_1, \dots, x_n) \mid x_i \in \mathbb{R}, i = 1, \dots, n\}$. 定义内积 $\langle x, y \rangle = \sum_{i=1}^n x_i y_i$, 范数 $\|x\| = \sqrt{\langle x, x \rangle}$, 以及 Euclid 距离
+\[
+  \rho_0^n(x, y) = \|x - y\| = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}.
+\]
+由 Minkowski 不等式知 $\rho_0^n$ 满足三角不等式, 故 $(\mathbb{R}^n, \rho_0^n)$ 是度量空间, 称为 $n$ 维 \textbf{Euclid 空间}.
+\end{example}
+
+\begin{example}\label{ex:7.1.8}
+在 $(\mathbb{R}^n, \rho_0^n)$ 中, 开球 $B(x; \delta)$ 满足
+\[
+  B(x; \delta) = \left\{y \in \mathbb{R}^n \;\middle|\; \sum_{i=1}^n (y_i - x_i)^2 < \delta^2\right\}.
+\]
+当 $n = 1$ 时为开区间 $(x - \delta, x + \delta)$; 当 $n = 2$ 时为开圆盘; 当 $n = 3$ 时为三维开球体.
+\end{example}
+
+\begin{example}[开集的构成区间]\label{ex:7.1.9}
+在 Euclid 直线 $(\mathbb{R}^1, \rho_0^1)$ 中, 任意非空开集 $U$ 可惟一表示为至多可数个两两不相交的开区间之并:
+\[
+  U = \bigcup_{i \in \Gamma} (\alpha_i, \beta_i),
+\]
+这些开区间 $(\alpha_i, \beta_i)$ 称为 $U$ 的\textbf{构成区间}.
+\end{example}
+
+\begin{definition}\label{def:7.1.7}
+设 $(X, \mathcal{T})$ 为拓扑空间, $A \subset X$.
+\begin{itemize}
+  \item 如果存在 $x$ 的开邻域 $U$, 使得 $x \in U \subset A$, 则称 $x$ 为 $A$ 的\textbf{内点}. $A$ 的内点的全体记为 $\mathring{A}$, $A^\circ$ 或 $\operatorname{Int} A$, 称为 $A$ 的\textbf{内部}或\textbf{内点集}.
+  \item 如果存在 $x$ 的开邻域 $U$, 使得 $x \in U \subset A^c$, 则称 $x$ 为 $A$ 的\textbf{外点} (即 $A^c$ 的内点), 记为 $(A^c)^\circ$, 称为 $A$ 的\textbf{外点集}.
+  \item 如果 $x$ 的任何开邻域 $U$ 既含 $A$ 的点又含 $A^c$ 的点, 则称 $x$ 为 $A$ 的\textbf{边界点}. 边界点的全体记为 $\partial A$ 或 $A^b$, 称为 $A$ 的\textbf{边界}.
+\end{itemize}
+\end{definition}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=latex, scale=1.05]
+    % Smooth boundary curve of A
+    \def\blob{(0, 0.2) to[out=80, in=180] (2.0, 1.9)
+               to[out=0, in=135] (4.0, 1.1)
+               to[out=-45, in=30] (4.1, -0.6)
+               to[out=-150, in=-15] (2.5, -0.6)
+               to[out=165, in=-100] (0, 0.2)}
+
+    % Draw boundary of A
+    \draw[very thick] \blob;
+
+    % Interior point
+    \coordinate (P_in) at (1.2, 0.9);
+    \fill[pattern=north east lines, pattern color=black!70] (P_in) circle (0.55);
+    \draw[dashed, thin] (P_in) circle (0.55);
+    \fill (P_in) circle (2pt);
+    \node[below=2pt] at (P_in) {\small 内点};
+
+    % Exterior point
+    \coordinate (P_out) at (4.9, 1.4);
+    \fill[pattern=north east lines, pattern color=black!70] (P_out) circle (0.52);
+    \draw[dashed, thin] (P_out) circle (0.52);
+    \fill (P_out) circle (2pt);
+    \node[right=2pt] at (5.4, 1.5) {\small 外点};
+    \node[right=2pt] at (4.6, 0.9) {\small $(A^c)^\circ$ 外点集};
+
+    % Boundary point
+    \coordinate (P_bd) at (2.6, -0.58);
+    \begin{scope}
+      \clip \blob;
+      \fill[pattern=north east lines, pattern color=black!70] (P_bd) circle (0.55);
+    \end{scope}
+    \draw[dashed, thin] (P_bd) circle (0.55);
+    \fill (P_bd) circle (2pt);
+    \node[below=4pt] at (2.6, -1.1) {\small 边界点};
+
+    % Labels for A
+    \node at (2.7, 0.9) {\small $\mathring{A}$};
+    \node at (2.7, 0.4) {\small 内点集};
+    \node[right] at (3.9, -0.0) {\small $\partial A$};
+    \node[right] at (3.9, -0.4) {\small 边界};
+  \end{tikzpicture}
+  \caption{}\label{fig:7.1.1}
+\end{figure}
+
+显然, $\mathring{A}, (A^c)^\circ, \partial A$ 彼此不相交, 且
+\[
+  X = \mathring{A} \cup (A^c)^\circ \cup \partial A.
+\]
+此外, 还有
+\[
+  \partial A = \partial A^c, \qquad \overline{A} \cap \overline{A^c} = \partial A,
+\]
+\[
+  \overline{A} = \mathring{A} \cup \partial A, \qquad \overline{A^c} = (A^c)^\circ \cup \partial A^c.
+\]
+
+\begin{example}\label{ex:7.1.10}
+\begin{enumerate}
+  \item 在 $(\mathbb{R}^n, \mathcal{T}_{\rho_0^n})$ 中, $\mathring{\mathbb{Q}}^n = \varnothing$, $((\mathbb{Q}^n)^c)^\circ = \varnothing$, $\partial \mathbb{Q}^n = \mathbb{R}^n$.
+  \item 设 $A = (0, 1) \cup \{2\}$, 则在 $(\mathbb{R}^1, \mathcal{T}_{\rho_0^1})$ 中, $\mathring{A} = (0, 1)$, $(A^c)^\circ = (-\infty, 0) \cup (1, 2) \cup (2, +\infty)$, $\partial A = \{0, 1, 2\}$.
+  \item 设 $A = \{(x, y) \mid x^2 + y^2 < 1\}$, 则在 $(\mathbb{R}^2, \mathcal{T}_{\rho_0^2})$ 中, $\mathring{A} = \{(x, y) \mid x^2 + y^2 < 1\}$, $(A^c)^\circ = \{(x, y) \mid x^2 + y^2 > 1\}$, $\partial A = S^1 = \{(x, y) \mid x^2 + y^2 = 1\}$.
+\end{enumerate}
+\end{example}
+
+\begin{theorem}\label{thm:7.1.10}
+设 $(X, \mathcal{T})$ 为拓扑空间, $A \subset X$, 则:
+\begin{enumerate}
+  \item $A$ 的内点集 $\mathring{A}$ 为含在 $A$ 中的最大开集, 即
+  \[
+    \mathring{A} = \bigcup_{U \in \mathcal{T}, U \subset A} U;
+  \]
+  \item $A \in \mathcal{T} \iff A = \mathring{A}$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\forall x \in \mathring{A}$, 根据内点定义, 存在开邻域 $U_x$ 满足 $x \in U_x \subset A$. 显然 $U_x \subset \mathring{A}$, 故 $\mathring{A} = \bigcup_{x \in \mathring{A}} U_x \in \mathcal{T}$, 即 $\mathring{A}$ 为含在 $A$ 中的开集. 反之, 若开集 $U \subset A$, 则对任一点 $x \in U$, 取 $U_x = U$, 便有 $x \in \mathring{A}$, 故 $U \subset \mathring{A}$. 这证明了 $\mathring{A}$ 是含在 $A$ 中的最大开集.
+
+(2) ($\Leftarrow$) 由 (1) 知 $\mathring{A}$ 为开集, 故 $A = \mathring{A}$ 为开集. ($\Rightarrow$) 若 $A$ 为开集, 则 $A$ 本身是含在 $A$ 中的开集, 故 $A \subset \mathring{A}$, 从而 $A = \mathring{A}$. \qedhere
+\end{proof}
+
+\begin{theorem}\label{thm:7.1.11}
+设 $(X, \mathcal{T})$ 为拓扑空间, $A \subset X$, 则闭包 $\overline{A}$ 是包含 $A$ 的最小闭集, 即
+\[
+  \overline{A} = \bigcap_{F \in \mathcal{F}, F \supset A} F.
+\]
+\end{theorem}
+
+\begin{proof}
+由 \cref{thm:7.1.4}(5), $\overline{\overline{A}} = \overline{A}$, 故 $\overline{A}$ 为闭集且包含 $A$. 若闭集 $F \supset A$, 则由 \cref{thm:7.1.4}(2), $\overline{A} \subset \overline{F} = F$. 故 $\overline{A}$ 为包含 $A$ 的最小闭集. \qedhere
+\end{proof}
+
+% ==================================================================
+%  练习题 7.1 与 思考题 7.1
+% ==================================================================
+
+\begin{exblock}{练习题 7.1}
+  \item 设 $x = (x_1, x_2, \cdots, x_n) \in \mathbb{R}^n$, $y = (y_1, y_2, \cdots, y_n) \in \mathbb{R}^n$, $\lambda \in \mathbb{R}$, 定义
+  \[
+    x + y = (x_1 + y_1, x_2 + y_2, \cdots, x_n + y_n)
+  \]
+  为向量 $x$ 与 $y$ 之和. 再定义
+  \[
+    \lambda x = (\lambda x_1, \lambda x_2, \cdots, \lambda x_n)
+  \]
+  为向量 $x$ 的 $\lambda$ 倍. 显然, $x + y \in \mathbb{R}^n$, $\lambda x \in \mathbb{R}^n$. 试验证:
+  \begin{enumerate}
+    \item $(\mathbb{R}^n, +, \text{数乘})$ 为一个 $n$ 维向量空间.
+    \item 内积 $\langle x, y \rangle = \sum\limits_{i=1}^{n} x_i y_i$ 具有性质:
+    \begin{enumerate}
+      \item $\langle x, x \rangle \geqslant 0$, 且 $\langle x, x \rangle = 0 \iff x = \boldsymbol{0}$ (正定性).
+      \item $\langle x, y \rangle = \langle y, x \rangle$ (对称性).
+      \item $\langle x, y + z \rangle = \langle x, y \rangle + \langle x, z \rangle$; $\langle \lambda x, y \rangle = \lambda \langle x, y \rangle$, $\lambda \in \mathbb{R}$ (线性性).
+    \end{enumerate}
+    其中 $x, y, z \in \mathbb{R}^n$, $\lambda \in \mathbb{R}$. 由 (2), (3) 立即推得
+    \[
+      \langle \lambda x + \mu y, z \rangle = \lambda \langle x, z \rangle + \mu \langle y, z \rangle.
+    \]
+    \item 由 (2) 中性质证明模或范数 $\|x\| = \sqrt{\langle x, x \rangle}$ 具有性质:
+    \begin{enumerate}
+      \item $\|x\| \geqslant 0$, $\|x\| = 0 \iff x = \boldsymbol{0}$;
+      \item $\|\lambda x\| = |\lambda| \|x\|$;
+      \item $\|x + y\| \leqslant \|x\| + \|y\|$ (三角形不等式).
+    \end{enumerate}
+  \end{enumerate}
+  \item 设 $x, y \in \mathbb{R}^n$ 都不为 $\boldsymbol{0} = (0, \cdots, 0)$, 则由 Cauchy-Schwarz 不等式得到
+  \[
+    \frac{|\langle x, y \rangle|}{\|x\| \|y\|} \leqslant 1.
+  \]
+  这表明 $\exists_{1}\theta \in [0, \pi]$, s. t.
+  \[
+    \cos\theta = \frac{\langle x, y \rangle}{\|x\| \|y\|}.
+  \]
+  $\theta$ 定义为两个非零向量 $x$ 与 $y$ 间的夹角. 显然,
+  \[
+    \langle x, y \rangle = 0 \iff \theta = \frac{\pi}{2},
+  \]
+  此时称 $x$ 与 $y$ 是正交的或垂直的. 零向量 $\boldsymbol{0} = (0, \cdots, 0) \in \mathbb{R}^n$ 可认为与任何向量都正交.
+
+  模或范数为 1 的向量称为单位向量. 下面 $n$ 个向量
+  \[
+    \begin{aligned}
+      \boldsymbol{e}_{1} &= (1, 0, 0, \cdots, 0),\\
+      \boldsymbol{e}_{2} &= (0, 1, 0, \cdots, 0),\\
+      &\ \ \vdots\\
+      \boldsymbol{e}_{n} &= (0, 0, 0, \cdots, 1)
+    \end{aligned}
+  \]
+  都是单位向量, 并且彼此都是正交的, 即
+  \[
+    \langle \boldsymbol{e}_i, \boldsymbol{e}_j \rangle = \delta_{ij} = \begin{cases} 0, & i \neq j,\\ 1, & i = j. \end{cases}
+  \]
+  此外, 它们是线性无关的, 即
+  \[
+    \sum_{i=1}^{n} \lambda_i \boldsymbol{e}_i = \boldsymbol{0} \iff \lambda_1 = \lambda_2 = \cdots = \lambda_n = 0.
+  \]
+  以及 $\forall x \in \mathbb{R}^n$, 有
+  \[
+    x = \sum_{i=1}^{n} x_i \boldsymbol{e}_i,
+  \]
+  即 $x$ 可由 $\{\boldsymbol{e}_1, \boldsymbol{e}_2, \cdots, \boldsymbol{e}_n\}$ (有限) 线性表示. 我们也称 $\{\boldsymbol{e}_1, \boldsymbol{e}_2, \cdots, \boldsymbol{e}_n\}$ 为向量空间 $\mathbb{R}^n$ 的一个基.
+  \item 证明下列几何法则:
+  \begin{enumerate}
+    \item 余弦定理: $\|x - y\|^2 = \|x\|^2 + \|y\|^2 - 2\|x\| \|y\| \cos\theta$;
+    \item 勾股定理: 若 $x \perp y$, 则 $\|x + y\|^2 = \|x\|^2 + \|y\|^2$;
+    \item 平行四边形法则: $\|x + y\|^2 + \|x - y\|^2 = 2(\|x\|^2 + \|y\|^2)$.
+  \end{enumerate}
+  \item 从数列的 Bolzano-Weierstrass 定理证明 $(\mathbb{R}^n, \mathcal{T}_{\rho_0})$ 中的 Bolzano-Weierstrass 定理: $\mathbb{R}^n$ 中任一有界点列必有收敛的子点列.
+  \item 证明 $(\mathbb{R}^n, \mathcal{T}_{\rho_0})$ 中的收敛点列必有界.
+  \item 设 $\{x^m\}$ 为 $(\mathbb{R}^n, \mathcal{T}_{\rho_0})$ 中一点列, 且级数 $\sum_{m=1}^\infty \|x^{m+1} - x^m\|$ 收敛. 证明: $\{x^m\}$ 为一收敛点列.
+  \item 求下列集合的 $A', \overline{A}, \mathring{A}, \partial A$:
+  \begin{enumerate}
+    \item 在 $(\mathbb{R}^1, \mathcal{T}_{\rho_0^1})$ 中, $A = \{1/n \mid n \in \mathbb{Z}_+\}$;
+    \item 在 $(\mathbb{R}^2, \mathcal{T}_{\rho_0^2})$ 中, $A = \{(x, y) \mid 0 < y < x + 1\}$;
+    \item $A$ 为 $(\mathbb{R}^n, \mathcal{T}_{\rho_0^n})$ 中的有限点集;
+    \item $A = \mathbb{Q} \times \mathbb{Q}$ 为 $(\mathbb{R}^2, \mathcal{T}_{\rho_0^2})$ 中的有理点集.
+  \end{enumerate}
+  \item 在拓扑空间 $(X, \mathcal{T})$ 中, 设 $A, B \subset X$. 证明:
+  \begin{enumerate}
+    \item $(A \cap B)^\circ = A^\circ \cap B^\circ$;
+    \item $A \subset B \implies A^\circ \subset B^\circ$;
+    \item $A^\circ \cup B^\circ \subset (A \cup B)^\circ$, 并举例说明真包含可以出现;
+    \item $A^\circ = (\overline{A}^\circ)^\circ$;
+    \item $\overline{A} \setminus \overline{B} \subset \overline{A \setminus B}$.
+  \end{enumerate}
+  \item 设 $\Gamma$ 为一指标集, 证明:
+  \begin{enumerate}
+    \item $\overline{\bigcap_{\alpha \in \Gamma} A_\alpha} \subset \bigcap_{\alpha \in \Gamma} \overline{A_\alpha}$;
+    \item $\bigcup_{\alpha \in \Gamma} \overline{A_\alpha} \subset \overline{\bigcup_{\alpha \in \Gamma} A_\alpha}$;
+    \item $\bigcup_{\alpha \in \Gamma} A_\alpha^\circ \subset \left(\bigcup_{\alpha \in \Gamma} A_\alpha\right)^\circ$.
+  \end{enumerate}
+  举例说明真包含关系是可以出现的.
+  \item 在 $(\mathbb{R}^n, \mathcal{T}_{\rho_0}^n)$ 中作闭集列 $\{F_i\}$ 与开集列 $\{G_i\}$, 使得:
+  \begin{enumerate}
+    \item $\bigcup_{i=1}^\infty F_i = B(0; 1)$;
+    \item $\bigcap_{i=1}^\infty G_i = \overline{B(0; 1)}$.
+  \end{enumerate}
+  \item 判断下列集合是否为平面 $(\mathbb{R}^2, \mathcal{T}_{\rho_0}^2)$ 中的开集, 闭集, 并阐明理由:
+  \begin{enumerate}
+    \item $A = (0, +\infty) \times (0, +\infty)$;
+    \item $A = \mathbb{Q}^2$;
+    \item $A = \{(x, 0) \mid x \in \mathbb{R}\}$;
+    \item $A = \{(1/n, 0) \mid n \in \mathbb{Z}_+\}$;
+    \item $A = \{(0, 0), (1/n, 0) \mid n \in \mathbb{Z}_+\}$;
+    \item $A$ 为有限点集.
+  \end{enumerate}
+  \item 设 $(X, \mathcal{T})$ 为拓扑空间, $A \subset X$. 证明:
+  \begin{enumerate}
+    \item $\partial A$ 为 $(X, \mathcal{T})$ 中的闭集;
+    \item $A$ 为闭集 $\iff \partial A \subset A$;
+    \item $\partial \overline{A} \subset \partial A$, 举例说明 $\partial A \subset \partial \overline{A}$ 未必成立.
+  \end{enumerate}
+  \item 设 $(X, \mathcal{T})$ 为拓扑空间, $A, B \subset X$. 证明:
+  \begin{enumerate}
+    \item $x \in X$ 为 $A$ 的聚点 $\iff x$ 为 $A \setminus \{x\}$ 的聚点;
+    \item 如果 $A' \subset B \subset A$, 则 $B$ 为闭集.
+  \end{enumerate}
+  \item $(\mathbb{R}^2, \mathcal{T}_{\rho_0}^2)$ 为二维 Euclid 空间, $P_i: \mathbb{R}^2 \to \mathbb{R}^1, P_i(x_1, x_2) = x_i$ 为投影算子 ($i = 1, 2$).
+  \begin{enumerate}
+    \item 设 $A \subset \mathbb{R}^2$ 为开集, 证明: $P_i(A)$ 为 $(\mathbb{R}^1, \mathcal{T}_{\rho_0}^1)$ 中的开集;
+    \item 举例说明 $A$ 为 $(\mathbb{R}^2, \mathcal{T}_{\rho_0}^2)$ 中的闭集, 但 $P_i(A)$ 不为 $(\mathbb{R}^1, \mathcal{T}_{\rho_0}^1)$ 中的闭集.
+  \end{enumerate}
+  \item 设 $\mathbb{R}^m, \mathbb{R}^n, \mathbb{R}^{m+n}$ 均为通常的 Euclid 空间, $A \subset \mathbb{R}^m, B \subset \mathbb{R}^n$. 证明:
+  \begin{enumerate}
+    \item 若 $A, B$ 都为开集, 则 $A \times B$ 为 $\mathbb{R}^{m+n}$ 的开集;
+    \item 若 $A, B$ 都为闭集, 则 $A \times B$ 为 $\mathbb{R}^{m+n}$ 的闭集.
+  \end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 7.1}
+  \item \begin{enumerate}
+    \item 设 $(X, \rho)$ 为度量空间, $A \subset X$, 证明: $(A')' \subset A'$, 即导集 $A'$ 必为闭集;
+    \item 举出一个度量空间 $(X, \rho), A \subset X$, 使得 $(A')' \not\supset A'$;
+    \item 设 $X = \{a, b\}, A = \{a\}$, 验证在 $(X, \mathcal{T}_{\text{平庸}})$ 中 $(A')' \not\subset A', (A')' \not\supset A'$.
+  \end{enumerate}
+  \item 设 $E$ 为 $(\mathbb{R}^1, \mathcal{T}_{\rho_0}^1)$ 中的子集, $E'$ 为至多可数集. 证明: $E$ 为至多可数集.
+\end{exblock}

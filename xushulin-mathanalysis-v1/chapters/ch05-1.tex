@@ -1,0 +1,721 @@
+\section{原函数、不定积分}\label{sec:5.1}
+
+\begin{definition}\label{def:5.1.1}
+设 $f$ 为区间 $I$ 上的可导函数, 则 $\mathrm{d}f(x)=f'(x)\mathrm{d}x$ 称为 $f(x)$ 的微分.
+\end{definition}
+
+显然, 有下面定理.
+
+\begin{theorem}\label{thm:5.1.1}
+(1) 设 $f$, $g$ 在区间 $I$ 上可导, 则
+\begin{gather*}
+\mathrm{d}(f(x)\pm g(x))=\mathrm{d}f(x)\pm\mathrm{d}g(x);\\
+\mathrm{d}(f(x)g(x))=f(x)\mathrm{d}g(x)+g(x)\mathrm{d}f(x),\quad
+\mathrm{d}(cf(x))=c\,\mathrm{d}f(x)\quad (c\in\mathbb{R});\\
+\mathrm{d}\left(\frac{f(x)}{g(x)}\right)=\frac{g(x)\mathrm{d}f(x)-f(x)\mathrm{d}g(x)}{g^{2}(x)}
+\quad (g(x)\neq 0,\ \forall x\in I).
+\end{gather*}
+(2) 设 $f$ 在区间 $I$ 上可导, $g$ 在区间 $J$ 上可导, 且 $I\supseteq g(J)$. $y=f(u)$, $u=g(x)$, $y=(f\circ g)(x)$. 则
+\[
+\mathrm{d}\left[(f\circ g)(x)\right]=(f\circ g)'(x)\mathrm{d}x=f'(u)\mathrm{d}u
+\]
+或
+\[
+\mathrm{d}y=y_{x}'\mathrm{d}x=y_{u}'\mathrm{d}u \quad(\text{称它为 1 阶微分的不变性}),
+\]
+其中 $x$ 为自变量, $u$ 为中间变量. 此式表明, 无论 $u$ 为自变量还是中间变量, 其 1 阶微分形式是不变的.
+\end{theorem}
+
+\begin{proof}
+(1) 以 $\frac{f(x)}{g(x)}$ 的微分为例.
+\begin{align*}
+\mathrm{d}\left(\frac{f(x)}{g(x)}\right)
+&=\left(\frac{f(x)}{g(x)}\right)'\mathrm{d}x
+=\frac{g(x)f'(x)-f(x)g'(x)}{g^{2}(x)}\mathrm{d}x\\
+&=\frac{g(x)\mathrm{d}f(x)-f(x)\mathrm{d}g(x)}{g^{2}(x)}.
+\end{align*}
+其他各式可类似证明.
+
+(2)
+\[
+\mathrm{d}\left[(f\circ g)(x)\right]=(f\circ g)'(x)\mathrm{d}x=f'\left(g(x)\right)g'(x)\mathrm{d}x=f'(u)\mathrm{d}u.
+\]
+\end{proof}
+
+\begin{example}\label{ex:5.1.1}
+设 $y=\mathrm{e}^{x^{2}+x}$, 求 $\mathrm{d}y$.
+\end{example}
+
+\begin{solution}[解法 1]
+$\mathrm{d}y=(\mathrm{e}^{x^{2}+x})'\mathrm{d}x=\mathrm{e}^{x^{2}+x}(2x+1)\mathrm{d}x$.
+\end{solution}
+
+\begin{solution}[解法 2]
+令 $u=x^{2}+x$, 则 $y=\mathrm{e}^{u}$,
+\[
+\mathrm{d}y=(\mathrm{e}^{u})'\mathrm{d}u=\mathrm{e}^{u}\mathrm{d}u
+=\mathrm{e}^{x^{2}+x}\mathrm{d}(x^{2}+x)=\mathrm{e}^{x^{2}+x}(2x+1)\mathrm{d}x.
+\]
+\end{solution}
+
+\begin{example}\label{ex:5.1.2}
+设 $x^{3}+y^{3}=4$, 求 $\mathrm{d}y$.
+\end{example}
+
+\begin{solution}
+对方程 $x^{3}+y^{3}=4$ 两边求微分 ($x$ 与 $y$ 地位平等) 得
+\begin{gather*}
+3x^{2}\mathrm{d}x+3y^{2}\mathrm{d}y=0,\\
+y^{2}\mathrm{d}y=-x^{2}\mathrm{d}x,\\
+y_{x}'=\frac{\mathrm{d}y}{\mathrm{d}x}=-\frac{x^{2}}{y^{2}},\quad
+x_{y}'=\frac{\mathrm{d}x}{\mathrm{d}y}=-\frac{y^{2}}{x^{2}}.
+\end{gather*}
+或者解出 $y=\sqrt[3]{4-x^{3}}$, 求微分得
+\begin{align*}
+\mathrm{d}y&=\frac{1}{3}(4-x^{2})^{-\frac{2}{3}}(0-3x^{2})\mathrm{d}x=-\frac{x^{2}}{(4-x^{2})^{\frac{2}{3}}}\mathrm{d}x\\
+&=-\frac{x^{2}}{y^{2}}\mathrm{d}x.
+\end{align*}
+\end{solution}
+
+\begin{example}\label{ex:5.1.3}
+求 $\arctan\frac{y}{x}=\ln\sqrt{x^{2}+y^{2}}$ 关于 $\mathrm{d}x$ 与 $\mathrm{d}y$ 的微分方程, 并求 $y'$.
+\end{example}
+
+\begin{solution}
+对原式两边微分得
+\begin{gather*}
+\frac{\mathrm{d}\left(\frac{y}{x}\right)}{1+\left(\frac{y}{x}\right)^{2}}
+=\frac{1}{2}\frac{\mathrm{d}(x^{2}+y^{2})}{x^{2}+y^{2}},\\
+\frac{x^{2}\frac{x\,\mathrm{d}y-y\,\mathrm{d}x}{x^{2}}}{x^{2}+y^{2}}
+=\frac{1}{2}\cdot\frac{2(x\,\mathrm{d}x+y\,\mathrm{d}y)}{x^{2}+y^{2}},\\
+x\,\mathrm{d}y-y\,\mathrm{d}x=x\,\mathrm{d}x+y\,\mathrm{d}y,\\
+(x-y)\mathrm{d}y=(x+y)\mathrm{d}x.
+\end{gather*}
+于是
+\[
+y'=\frac{\mathrm{d}y}{\mathrm{d}x}=\frac{x+y}{x-y}.
+\]
+\end{solution}
+
+\begin{definition}\label{def:5.1.2}
+在区间 $I$ 上, 如果 $f$ 为 $F$ 的导函数, 即 $F'(x)=f(x)$ 或 $\mathrm{d}F=F'(x)\mathrm{d}x=f(x)\mathrm{d}x$, 则称 $F$ 为 $f$ 在区间 $I$ 上的一个原函数.
+\end{definition}
+
+\begin{theorem}\label{thm:5.1.2}
+设 $f(x)$ 在区间 $I$ 上有原函数 $F(x)$, 即在 $I$ 上 $F'(x)=f(x)$, 则函数族 $\{F(x)+C\mid C\in\mathbb{R}\}$ 为 $f(x)$ 的全部原函数.
+\end{theorem}
+
+\begin{proof}
+在区间 $I$ 上, 由推论~\ref{cor:3.3.2} 知,
+\begin{align*}
+G(x)\ \text{为}\ f(x)\ \text{的原函数}
+&\Longleftrightarrow G'(x)=f(x)\\
+&\Longleftrightarrow G'(x)=F'(x)\\
+&\Longleftrightarrow G(x)=F(x)+C,\ \text{其中}\ C\ \text{为常数}.
+\end{align*}
+\end{proof}
+
+\begin{definition}\label{def:5.1.3}
+设函数 $f(x)$ 在区间上有一个原函数 $F(x)$, 则函数族 $\{F(x)+C\}$ 就称为 $f(x)$ 在 $I$ 上的不定积分, 记作
+\[
+\int f(x)\mathrm{d}x=F(x)+C,
+\]
+其中 $C$ 称为不定常数, $\int$ 称为积分号, $f(x)$ 称为被积函数, $x$ 称为积分变量, $f(x)\mathrm{d}x$ 称为被积表达式或被积形式.
+\end{definition}
+
+由不定积分的定义立即有下面结论:
+
+(1)
+\[
+\left(\int f(x)\mathrm{d}x\right)'=\left(F(x)+C\right)'=f(x),
+\]
+或
+\[
+\mathrm{d}\left(\int f(x)\mathrm{d}x\right)=\mathrm{d}(F(x)+C)=F'(x)\mathrm{d}x=f(x)\mathrm{d}x;
+\]
+
+(2)
+\[
+\int F'(x)\mathrm{d}x=F(x)+C,
+\]
+或
+\[
+\int\mathrm{d}F(x)=F(x)+C.
+\]
+
+\begin{theorem}\label{thm:5.1.3}
+设函数 $f(x)$ 与 $g(x)$ 在区间 $I$ 上都存在原函数, 对 $\forall k_{1},k_{2}\in\mathbb{R}$, 且 $k_{1}^{2}+k_{2}^{2}\neq 0$, 则 $k_{1}f(x)+k_{2}g(x)$ 在 $I$ 上也存在原函数, 且
+\[
+\int\left[k_{1}f(x)+k_{2}g(x)\right]\mathrm{d}x
+=k_{1}\int f(x)\mathrm{d}x+k_{2}\int g(x)\mathrm{d}x.
+\]
+\end{theorem}
+
+\begin{proof}
+设 $F(x)$ 与 $G(x)$ 分别为 $f(x)$ 与 $g(x)$ 的一个原函数, 即 $F'(x)=f(x)$, $G'(x)=g(x)$. 于是
+\[
+\left[k_{1}F(x)+k_{2}G(x)\right]'=k_{1}F'(x)+k_{2}G'(x)=k_{1}f(x)+k_{2}g(x),
+\]
+即 $k_{1}F(x)+k_{2}G(x)$ 为 $k_{1}f(x)+k_{2}g(x)$ 的一个原函数. 由此得到
+\begin{align*}
+\int\left[k_{1}f(x)+k_{2}g(x)\right]\mathrm{d}x
+&=k_{1}F(x)+k_{2}G(x)+C\\
+&=k_{1}\left[F(x)+C_{1}\right]+k_{2}\left[G(x)+C_{2}\right]\\
+&=k_{1}\int f(x)\mathrm{d}x+k_{2}\int g(x)\mathrm{d}x,
+\end{align*}
+其中 $C=k_{1}C_{1}+k_{2}C_{2}$.
+\end{proof}
+
+现在我们来考虑不定积分的几何意义. 如果 $F(x)$ 为 $f(x)$ 在区间 $I$ 上的一个原函数, 那么称 $y=F(x)$ 的图形为 $f(x)$ 的一条积分曲线. 于是, $f(x)$ 的不定积分 $\int f(x)\mathrm{d}x=F(x)+C$ 在几何上表示由 $f(x)$ 的某条积分曲线 $y=F(x)$ 沿纵轴方向任意平移所得的切积分曲线组成的曲线族. 显然, 在每一条积分曲线上横坐标相同的点处做切线, 则这些切线互相平行, 其斜率均为 $[F(x)+C]'=F'(x)=f(x)$ (图~\ref{fig:5.1.1}).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.5cm,y=1.05cm,>=Stealth]
+  % 坐标轴
+  \draw[->] (-0.3,0) -- (6.2,0) node[below] {$x$};
+  \draw[->] (0,-1.9) -- (0,2.1) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  % 三条平移曲线（同一形状，沿 y 轴平移）
+  \draw[thick,domain=0.2:5.6,samples=100,smooth]
+    plot (\x, {1.05 + 0.42*sin(deg(\x*0.95)) - 0.16*cos(deg(\x*0.7))});
+  \draw[thick,domain=0.2:5.6,samples=100,smooth]
+    plot (\x, {0.32 + 0.42*sin(deg(\x*0.95)) - 0.16*cos(deg(\x*0.7))});
+  \draw[thick,domain=0.2:5.6,samples=100,smooth]
+    plot (\x, {-0.75 + 0.42*sin(deg(\x*0.95)) - 0.16*cos(deg(\x*0.7))});
+
+  % x0 竖线
+  \draw[dashed] (3.0,0) -- (3.0,-1.15);
+  \node[below] at (3.0,0) {$x_{0}$};
+
+  % 曲线标注
+  \node[right] at (5.6, 1.62) {$y=F(x)+C$};
+  \node[right] at (5.6, 0.86) {$y=F(x)$};
+  \node[right] at (4.7, -0.22) {$y=[F(x)-F(x_{0})]+y_{0}$};
+\end{tikzpicture}
+\caption{}\label{fig:5.1.1}
+\end{figure}
+
+在求原函数的具体问题中, 往往先求出全体原函数 $F(x)+C$, 然后从中确定一个满足 $F(x_{0})+C=y_{0}$ (称为初始条件, 由具体问题所确定) 的原函数, 它对应着积分曲线族中通过点 $(x_{0},y_{0})=(x_{0},F(x_{0})+C)$ 的那一条积分曲线:
+\begin{gather*}
+F(x_{0})+C=y_{0},\quad C=y_{0}-F(x_{0}),\\
+F(x)+C=F(x)+y_{0}-F(x_{0})=\left[F(x)-F(x_{0})\right]+y_{0}.
+\end{gather*}
+
+下一章将给出的微积分基本定理~\ref{thm:6.3.2} 指出连续函数 $f(x)$ 必有一个原函数 $\int_{x_{0}}^{x}f(t)\mathrm{d}t$, 因此
+\[
+\int_{x_{0}}^{x}f(t)\mathrm{d}t+y_{0}
+\]
+为满足初始条件的原函数, 即它所代表的曲线经过点 $(x_{0},y_{0})$.
+
+再考虑不定积分的物理意义. 设质点作直线运动, 离原点的位移为 $x=x(t)$, 瞬时速度为 $v(t)=x'(t)$, 加速度为 $a(t)=v'(t)=x''(t)$. 反过来, 已知加速度如何求速度, 再求位移, 这就要用到求原函数与不定积分. 具体表达为
+\[
+v(t)=\int a(t)\mathrm{d}t,\qquad
+x(t)=\int v(t)\mathrm{d}t=\int\left[\int a(t)\mathrm{d}t\right]\mathrm{d}t.
+\]
+例如: 质点作匀加速直线运动, 它的加速度为 $a(t)=v'(t)=x''(t)=a$ (常数), 初始位移为 $x_{0}=x(t_{0})$, 初始速度 $v_{0}=v(t_{0})=x'(t_{0})$. 于是,
+\begin{align*}
+v(t)&=\int a\mathrm{d}t=at+C_{1}=at+(v_{0}-at_{0})=a(t-t_{0})+v_{0},\\
+x(t)&=\int v(t)\mathrm{d}t=\int\left[a(t-t_{0})+v_{0}\right]\mathrm{d}t\\
+&=\frac{a}{2}(t-t_{0})^{2}+v_{0}t+C_{2}\\
+&=\frac{a}{2}(t-t_{0})^{2}+v_{0}t+(x_{0}-v_{0}t_{0}).
+\end{align*}
+
+此外, 我们在下章注~\ref{rem:6.3.1} 中还可应用定积分的方法来表达上述 $v(t)$ 与 $x(t)$. 由求导公式, 立即得到如下基本积分公式表 (其中 $C,C_{1},C_{2}$ 为常数):
+
+(1) $\int 0\,\mathrm{d}x=C$.
+
+(2)
+\[
+\int x^{\alpha}\mathrm{d}x=\frac{x^{\alpha+1}}{\alpha+1}+C\quad (\alpha\neq -1,\ x>0),
+\]
+特别地
+\[
+\int x^{n}\mathrm{d}x=\frac{x^{n+1}}{n+1}+C,\quad x\in(-\infty,+\infty).
+\]
+
+(3) $\int\frac{\mathrm{d}x}{x}=\ln|x|+C$ ($x>0$ 或 $x<0$),
+\[
+\int\frac{\mathrm{d}x}{x}=
+\begin{cases}
+\ln x+C_{1}, & x>0,\\
+\ln(-x)+C_{2}, & x<0.
+\end{cases}
+\]
+
+(4)
+\[
+\int a^{x}\mathrm{d}x=\frac{a^{x}}{\ln a}+C\quad (a>0,\ a\neq 1),\qquad
+\int\mathrm{e}^{x}\mathrm{d}x=\mathrm{e}^{x}+C.
+\]
+
+(5)
+\[
+\int\sin x\,\mathrm{d}x=-\cos x+C,\qquad
+\int\cos x\,\mathrm{d}x=\sin x+C.
+\]
+
+(6)
+\begin{align*}
+\int\sec^{2}x\,\mathrm{d}x&=\int\frac{\mathrm{d}x}{\cos^{2}x}=\tan x+C,\\
+\int\csc^{2}x\,\mathrm{d}x&=\int\frac{\mathrm{d}x}{\sin^{2}x}=-\cot x+C,\\
+\int\sec x\tan x\,\mathrm{d}x&=\sec x+C,\qquad
+\int\csc x\cot x\,\mathrm{d}x=-\csc x+C.
+\end{align*}
+
+(7)
+\[
+\int\frac{\mathrm{d}x}{1+x^{2}}=\arctan x+C_{1}=-\arctan x+C_{2}.
+\]
+
+(8)
+\[
+\int\frac{\mathrm{d}x}{\sqrt{1-x^{2}}}=\arcsin x+C_{1}=-\arccos x+C_{2}.
+\]
+
+(9)
+\[
+\int\sinh x\,\mathrm{d}x=\cosh x+C,\qquad
+\int\cosh x\,\mathrm{d}x=\sinh x+C.
+\]
+其中 $\sinh x=\frac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{2}$, $\cosh x=\frac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{2}$.
+
+另外由
+\[
+\left(\ln(x+\sqrt{a^{2}+x^{2}})\right)'=\frac{1+\frac{2x}{2\sqrt{a^{2}+x^{2}}}}{x+\sqrt{a^{2}+x^{2}}}=\frac{1}{\sqrt{a^{2}+x^{2}}}
+\]
+可得
+
+(10) $\int\frac{\mathrm{d}x}{\sqrt{a^{2}+x^{2}}}=\ln(x+\sqrt{a^{2}+x^{2}})+C$.
+
+从定理~\ref{thm:5.1.3} 及上面不定积分的一些简单性质可得到许多简单函数的原函数.
+
+\begin{example}\label{ex:5.1.4}
+(1)
+\[
+\int(a_{0}x^{n}+a_{1}x^{n-1}+\cdots+a_{n-1}x+a_{n})\mathrm{d}x
+=\frac{a_{0}x^{n+1}}{n+1}+\frac{a_{1}x^{n}}{n}+\cdots+\frac{a_{n-1}x^{2}}{2}+a_{n}x+C.
+\]
+(2)
+\[
+\int\frac{x^{2}}{1+x^{2}}\mathrm{d}x=\int\left(1-\frac{1}{1+x^{2}}\right)\mathrm{d}x=x-\arctan x+C.
+\]
+(3)
+\[
+\int\left(3x^{2}+\frac{4}{x}\right)\mathrm{d}x=x^{3}+4\ln|x|+C\quad (x>0\ \text{或}\ x<0).
+\]
+(4)
+\begin{align*}
+\int\frac{x^{2}+1}{\sqrt{x}}\mathrm{d}x&=\int\left(x^{\frac{3}{2}}+x^{-\frac{1}{2}}\right)\mathrm{d}x
+=\frac{x^{\frac{5}{2}}}{\frac{5}{2}}+\frac{x^{\frac{1}{2}}}{\frac{1}{2}}+C\\
+&=\frac{2x^{\frac{5}{2}}}{5}+2x^{\frac{1}{2}}+C.
+\end{align*}
+(5)
+\begin{align*}
+\int\frac{x^{4}+1}{x^{2}+1}\mathrm{d}x&=\int\left(x^{2}-1+\frac{2}{x^{2}+1}\right)\mathrm{d}x\\
+&=\frac{x^{3}}{3}-x+2\arctan x+C.
+\end{align*}
+(6)
+\[
+\int\frac{3^{x+3}}{2^{x}}\mathrm{d}x=27\int\left(\frac{3}{2}\right)^{x}\mathrm{d}x
+=27\frac{\left(\frac{3}{2}\right)^{x}}{\ln\frac{3}{2}}+C.
+\]
+(7)
+\begin{align*}
+\int(10^{x}-10^{-x})^{2}\mathrm{d}x&=\int(10^{2x}+10^{-2x}-2)\mathrm{d}x\\
+&=\frac{(10^{2})^{x}}{\ln 10^{2}}+\frac{(10^{-2})^{x}}{\ln 10^{-2}}-2x+C\\
+&=\frac{1}{2\ln 10}(10^{2x}-10^{-2x})-2x+C.
+\end{align*}
+(8)
+\[
+\int\tan^{2}x\,\mathrm{d}x=\int(\sec^{2}x-1)\mathrm{d}x=\tan x-x+C.
+\]
+(9)
+\begin{align*}
+\int\frac{\cos 2x}{\cos x+\sin x}\mathrm{d}x&=\int\frac{\cos^{2}x-\sin^{2}x}{\cos x+\sin x}\mathrm{d}x\\
+&=\int(\cos x-\sin x)\mathrm{d}x=\sin x+\cos x+C.
+\end{align*}
+(10)
+\begin{align*}
+\int\frac{\mathrm{d}x}{\cos^{2}x\sin^{2}x}&=\int\frac{\cos^{2}x+\sin^{2}x}{\cos^{2}x\sin^{2}x}\mathrm{d}x\\
+&=\int(\csc^{2}x+\sec^{2}x)\mathrm{d}x=-\cot x+\tan x+C.
+\end{align*}
+(11)
+\begin{align*}
+\int\cos 3x\sin x\,\mathrm{d}x&=\frac{1}{2}\int(\sin 4x-\sin 2x)\mathrm{d}x\\
+&=\frac{1}{2}\left(-\frac{\cos 4x}{4}+\frac{1}{2}\cos 2x\right)+C\\
+&=-\frac{1}{8}\cos 4x+\frac{1}{4}\cos 2x+C.
+\end{align*}
+\end{example}
+
+\begin{example}\label{ex:5.1.5}
+已知曲线 $y=F(x)$ 的切线斜率为 $2x$, 求此曲线族. 如果曲线又经过点 $(0,1)$, 此曲线如何?
+\end{example}
+
+\begin{solution}
+因为 $F'(x)=2x$, 所以
+\[
+F(x)=\int 2x\,\mathrm{d}x=x^{2}+C.
+\]
+又因为曲线经过点 $(0,1)$, 故
+\[
+1=F(0)=0^{2}+C=C,
+\]
+从而
+\[
+F(x)=x^{2}+1.
+\]
+见图~\ref{fig:5.1.2}. 或者应用下章定积分得到
+\[
+F(x)=\int_{0}^{x}2x\,\mathrm{d}x+F(0)=x^{2}+1.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.5cm,y=0.55cm,>=Stealth]
+  \draw[->] (-2.3,0) -- (2.3,0) node[below] {$x$};
+  \draw[->] (0,-0.8) -- (0,5.2) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[thick,domain=-2.15:2.15,samples=80,smooth] plot (\x, {(\x)*(\x)+0.6});
+  \draw[thick,domain=-2.0:2.0,samples=80,smooth] plot (\x, {(\x)*(\x)+1.8});
+  \draw[thick] (0,0.6) -- (0,1.8);
+  \fill (0,1.8) circle (1.6pt);
+
+  \node[right] at (1.55, 4.1) {$y=F(x)=x^{2}+1$};
+  \node[right] at (1.55, 2.35) {$y=x^{2}+C$};
+\end{tikzpicture}
+\caption{}\label{fig:5.1.2}
+\end{figure}
+
+\begin{example}\label{ex:5.1.6}
+求不定积分 $\int|x-1|\,\mathrm{d}x$.
+\end{example}
+
+\begin{solution}
+设
+\[
+f(x)=|x-1|=
+\begin{cases}
+x-1, & x\geqslant 1,\\
+1-x, & x<1.
+\end{cases}
+\]
+显然它为连续函数. 根据第 6 章微积分基本定理~\ref{thm:6.3.2} 可知, $f(x)=|x-1|$ 有原函数 $F(x)$, 即 $F'(x)=f(x)$, 由此可看出 $F(x)$ 连续. 因为
+\[
+\int|x-1|\,\mathrm{d}x=
+\begin{cases}
+\displaystyle\int(x-1)\mathrm{d}x=\frac{x^{2}}{2}-x+C_{1}, & x>0,\\[2mm]
+\displaystyle\int(1-x)\mathrm{d}x=x-\frac{x^{2}}{2}+C_{2}, & x<0.
+\end{cases}
+\]
+令 $C_{1}=0$, 则得 $f(x)=|x-1|$ 的一个原函数为
+\[
+F(x)=
+\begin{cases}
+\frac{x^{2}}{2}-x, & x>1,\\[2mm]
+x-\frac{x^{2}}{2}+C_{2}, & x<0.
+\end{cases}
+\]
+由于 $F(x)$ 连续, 当然在 $x=1$ 处连续, 即
+\[
+-\frac{1}{2}=\lim_{x\to1^{+}}\left(\frac{x^{2}}{2}-x\right)
+=\lim_{x\to1^{-}}\left(x-\frac{x^{2}}{2}+C_{2}\right)=\frac{1}{2}+C_{2},
+\]
+解得 $C_{2}=-1$, 代入上式, 有
+\[
+F(x)=
+\begin{cases}
+\frac{x^{2}}{2}-x, & x\geqslant 1,\\[2mm]
+x-\frac{x^{2}}{2}-1, & x<1.
+\end{cases}
+\]
+见图~\ref{fig:5.1.3}. 从而
+\[
+\int|x-1|\,\mathrm{d}x=F(x)+C.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.6cm,y=1.5cm,>=Stealth]
+  \draw[->] (-1.6,0) -- (3.2,0) node[below] {$x$};
+  \draw[->] (0,-1.6) -- (0,2.1) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  \draw[dashed] (1,0) -- (1,-0.5);
+  \node at (1,0.12) {\scriptsize $1$};
+  \node[below] at (2,0) {\scriptsize $2$};
+  \draw[dashed] (0,-0.5) -- (1.15,-0.5);
+  \node[left] at (0,-0.5) {\scriptsize $-\frac{1}{2}$};
+
+  % y = x^2/2 - x (x>=1)
+  \draw[very thick,domain=1:2.6,samples=50,smooth] plot (\x, {(\x)*(\x)/2-(\x)});
+  % y = x - x^2/2 - 1 (x<1)
+  \draw[very thick,domain=-1.4:1,samples=50,smooth] plot (\x, {(\x)-(\x)*(\x)/2-1});
+
+  \node[right] at (2.2,1.35) {$y=\frac{x^{2}}{2}-x$};
+  \node[below] at (2.2,0.62) {$y=F(x)$};
+  \node[left] at (-1.0,-1.1) {$y=x-\frac{x^{2}}{2}-1$};
+\end{tikzpicture}
+\caption{}\label{fig:5.1.3}
+\end{figure}
+
+\begin{example}\label{ex:5.1.7}
+求不定积分
+\[
+\int|\sin x|\,\mathrm{d}x.
+\]
+\end{example}
+
+\begin{solution}
+因为 $|\sin x|$ 在 $\mathbb{R}$ 上连续, 所以根据第 6 章微积分基本定理~\ref{thm:6.3.2} 知, $|\sin x|$ 有原函数 $F(x)$, 即 $F'(x)=|\sin x|$. 显然 $F'(x)\geqslant 0$ 且
+\[
+\{x\mid F'(x)=|\sin x|=0\}=\{k\pi\mid k\in\mathbb{Z}\}
+\]
+不构成区间, 故 $F(x)$ 为严格增的连续函数. 令
+\[
+F(x)=
+\begin{cases}
+-\cos x+c_{k}, & 2k\pi\leqslant x<(2k+1)\pi,\\
+\cos x+d_{k}, & (2k+1)\pi\leqslant x<(2k+2)\pi.
+\end{cases}
+\]
+取 $c_{0}=0$, 由 $F(x)$ 连续推得
+\[
+1+c_{k}=-\cos(2k+1)\pi+c_{k}=\cos(2k+1)\pi+d_{k}=-1+d_{k},
+\]
+所以
+\[
+d_{k}=c_{k}+2.
+\]
+再由
+\[
+1+d_{k}=\cos(2k+2)\pi+d_{k}=-\cos(2k+2)\pi+c_{k+1}=-1+c_{k+1},
+\]
+得到
+\[
+c_{k+1}=d_{k}+2.
+\]
+综合上述有 $c_{k}=4k$, $d_{k}=4k+2$. 从而
+\[
+F(x)=
+\begin{cases}
+-\cos x+4k, & 2k\pi\leqslant x<(2k+1)\pi,\\
+\cos x+4k+2, & (2k+1)\pi\leqslant x<(2k+2)\pi,\ k\in\mathbb{Z}.
+\end{cases}
+\]
+如图~\ref{fig:5.1.4} 所示. 而所要求的不定积分为
+\[
+\int|\sin x|\,\mathrm{d}x=F(x)+C.
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1.2cm,y=0.72cm,>=Stealth]
+  \draw[->] (-4.1,0) -- (4.1,0) node[below] {$x$};
+  \draw[->] (0,-3.3) -- (0,1.9) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+
+  % y = sin x（原书用细虚线）
+  \draw[dashed,domain=-3.5:3.5,samples=140,smooth] plot (\x, {sin(deg(\x))});
+  \node[right] at (3.55,-1.45) {$y=\sin x$};
+
+  % F(x)：严格增的分段函数，在 kπ 处相切连接
+  \draw[very thick,domain=0:3.14159,samples=60,smooth] plot (\x, {-cos(deg(\x))});
+  \draw[very thick,domain=-3.14159:0,samples=60,smooth] plot (\x, {cos(deg(\x))-2});
+  \node[above] at (1.9,1.15) {$y=F(x)$};
+
+  \draw (-1.5708,0.07) -- (-1.5708,-0.07);
+  \node[below] at (-1.5708,-0.05) {\scriptsize $-\frac{\pi}{2}$};
+  \draw (1.5708,0.07) -- (1.5708,-0.07);
+  \node[below] at (1.5708,-0.05) {\scriptsize $\frac{\pi}{2}$};
+\end{tikzpicture}
+\caption{}\label{fig:5.1.4}
+\end{figure}
+
+\begin{example}\label{ex:5.1.8}
+设
+\[
+F(x)=
+\begin{cases}
+x^{2}\sin\frac{1}{x}, & x\neq 0,\\
+0, & x=0,
+\end{cases}
+\]
+求 $F'(x)$.
+\end{example}
+
+\begin{solution}
+\[
+f(x)=F'(x)=
+\begin{cases}
+2x\sin\frac{1}{x}-\cos\frac{1}{x}, & x\neq 0,\\
+0, & x=0.
+\end{cases}
+\]
+显然, 它只有一个不连续点 $0$, 但 $f(x)$ 有原函数 $F(x)$.
+\end{solution}
+
+\begin{example}\label{ex:5.1.9}
+设
+\[
+F(x)=
+\begin{cases}
+x^{\frac{3}{2}}\sin\frac{1}{x}, & x\neq 0,\\
+0, & x=0,
+\end{cases}
+\]
+求 $F'(x)$.
+\end{example}
+
+\begin{solution}
+\[
+f(x)=F'(x)=
+\begin{cases}
+\frac{3}{2}x^{\frac{1}{2}}\sin\frac{1}{x}-\frac{1}{x^{\frac{1}{2}}}\cos\frac{1}{x}, & x\neq 0,\\
+0, & x=0.
+\end{cases}
+\]
+\end{solution}
+
+\begin{remark}\label{rmk:5.1.1}
+显然, $f(x)$ 在 $x=0$ 附近无界, 根据定理~\ref{thm:6.1.2}, 它在含 $0$ 的任何闭区间上都非 Riemann 可积. 因此, 不能应用推论~\ref{cor:6.3.1} 由变上限积分得到 $f(x)$ 的原函数. 但 $f(x)$ 确有原函数 $F(x)$.
+\end{remark}
+
+\begin{example}\label{ex:5.1.10}
+任何函数 $f$, 是否一定有原函数?
+\end{example}
+
+\begin{solution}
+不一定. 反例 1: Dirichlet 函数
+\[
+D(x)=
+\begin{cases}
+1, & x\in\mathbb{Q},\\
+0, & x\in\mathbb{R}\setminus\mathbb{Q}
+\end{cases}
+\]
+无原函数.
+
+证明参看例~\ref{ex:3.3.11}.
+
+反例 2: 含第 1 类间断点的函数一定无原函数. 如
+\[
+\operatorname{sgn}x=
+\begin{cases}
+1, & x>0,\\
+0, & x=0,\\
+-1, & x<0
+\end{cases}
+\]
+以 $0$ 为第 1 类间断点.
+
+可用反证法证明. 假设 $f(x)$ 有原函数 $F(x)$, 即 $F'(x)=f(x)$. 由例~\ref{ex:3.3.12} 知, $f(x)=F'(x)$ 无第 1 类间断点, 这与 $f(x)$ 含第 1 类间断点相矛盾.
+\end{solution}
+
+如果一个关于 $x$ 与 $y$ 的微分等式通过分离变量后可化为
+\[
+f(y)\mathrm{d}y=g(x)\mathrm{d}x,
+\]
+则两边积分得到
+\[
+\int f(y)\mathrm{d}y=\int g(x)\mathrm{d}x.
+\]
+称上述方法为分离变量法.
+
+\begin{example}\label{ex:5.1.11}
+从物理实验知, 放射性元素的衰变速度与当时的质量成正比, 求衰变规律及半生期 $T$ (质量衰变到一半时的时间称为该放射性元素的半生期).
+\end{example}
+
+\begin{solution}
+设放射性元素在时刻 $t$ 的质量为 $m=m(t)$, 则
+\[
+\frac{\mathrm{d}m}{\mathrm{d}t}=m'(t)=-km,
+\]
+其中负号表示质量减少. 经分离变量后得到
+\begin{gather*}
+\frac{\mathrm{d}m}{m}=-k\,\mathrm{d}t,\\
+\int\frac{\mathrm{d}m}{m}=-k\int\mathrm{d}t,\\
+\ln|m|=-kt+C_{1},\\
+|m|=\mathrm{e}^{-kt+C_{1}}=\mathrm{e}^{C_{1}}\mathrm{e}^{-kt}=C_{2}\mathrm{e}^{-kt},\\
+m=m(t)=C\mathrm{e}^{-kt}.
+\end{gather*}
+当 $t=0$ 时, 质量为 $m(0)$, 则 $m(0)=C\mathrm{e}^{-k\cdot 0}=C$,
+\[
+m=m(t)=m(0)\mathrm{e}^{-kt}.
+\]
+考虑该放射性元素的半生期 $T$, 它满足
+\begin{gather*}
+m(0)\mathrm{e}^{-kT}=\frac{1}{2}m(0),\\
+\mathrm{e}^{-kT}=\frac{1}{2},\\
+-kT=\ln\frac{1}{2}=-\ln 2,
+\end{gather*}
+\[
+T=\frac{\ln 2}{k}.
+\]
+例如, 镭的半生期 $T=1600$ 年, 就是说 $1\,\mathrm{g}$ 镭经过 $1600$ 年后剩下 $0.5\,\mathrm{g}$.
+
+此外, 我们在第 6 章注~\ref{rem:6.3.1} 中还可应用定积分的方法来表达上述 $m(t)$.
+\end{solution}
+
+\begin{example}\label{ex:5.1.12}
+设 $f'(\arctan x)=x^{2}$, 求 $f(x)$.
+\end{example}
+
+\begin{solution}
+设 $\arctan x=t$, 则 $x=\tan t$, $f'(t)=\tan^{2}t$,
+\begin{align*}
+f(t)&=\int\tan^{2}t\,\mathrm{d}t=\int(\sec^{2}t-1)\mathrm{d}t=\tan t-t+C,\\
+f(x)&=\tan x-x+C.
+\end{align*}
+\end{solution}
+
+\begin{exblock}{练习题 5.1}
+  \item 求不定积分:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\int(2+x^{5})^{2}\mathrm{d}x$;
+    \item $\int\left(\frac{1-x}{x}\right)^{2}\mathrm{d}x$;
+    \item $\int\left(1-\frac{1}{x^{2}}\right)\sqrt{x}\,\mathrm{d}x$;
+    \item $\int\frac{x^{5}}{1+x}\mathrm{d}x$;
+    \item $\int\frac{x^{4}}{1+x^{2}}\mathrm{d}x$;
+    \item $\int\left(1-x+x^{3}-\frac{1}{\sqrt[3]{x^{2}}}\right)\mathrm{d}x$;
+    \item $\int\left(x-\frac{1}{\sqrt{x}}\right)^{2}\mathrm{d}x$;
+    \item $\int\frac{x^{2}}{3(1+x^{2})}\mathrm{d}x$;
+    \item $\int\sqrt{x\sqrt{x\sqrt{x}}}\,\mathrm{d}x$;
+    \item $\int\left(\sqrt{\frac{1+x}{1-x}}+\sqrt{\frac{1-x}{1+x}}\right)\mathrm{d}x$;
+    \item $\int(2^{x}+3^{x})^{2}\mathrm{d}x$;
+    \item $\int 10^{t}\cdot 3^{2t}\,\mathrm{d}t$;
+    \item $\int(\mathrm{e}^{x}-\mathrm{e}^{-x})^{3}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{e}^{3x}+1}{\mathrm{e}^{x}+1}\mathrm{d}x$;
+    \item $\int\frac{\mathrm{d}x}{(x+a)(x+b)}$;
+    \item $\int\frac{3}{\sqrt{4-4x^{2}}}\mathrm{d}x$;
+    \item $\int\cosh x\,\mathrm{d}x$;
+    \item $\int\sinh x\,\mathrm{d}x$;
+    \item $\int\cos^{2}x\,\mathrm{d}x$;
+    \item $\int\sin^{2}x\,\mathrm{d}x$;
+    \item $\int\sqrt{1-\sin 2x}\,\mathrm{d}x$;
+    \item $\int\frac{\cos 2x}{\cos x-\sin x}\mathrm{d}x$;
+    \item $\int\frac{\cos 2x}{\cos^{2}x\sin^{2}x}\mathrm{d}x$;
+    \item $\int(\cos x+\sin x)^{2}\mathrm{d}x$;
+    \item $\int\tan^{2}x\,\mathrm{d}x$;
+    \item $\int\cos x\cos 2x\,\mathrm{d}x$;
+    \item $\int\frac{2^{x+1}-5^{x-1}}{10^{x}}\mathrm{d}x$;
+    \item $\int|x|\,\mathrm{d}x$;
+    \item $\int\mathrm{e}^{-|x|}\,\mathrm{d}x$;
+    \item $\int\frac{x^{2}}{(1-x)^{100}}\mathrm{d}x$;
+    \item $\int\frac{\sqrt{x}-2\sqrt[3]{x}-1}{\sqrt[4]{x}}\mathrm{d}x$.
+  \end{enumerate}
+
+  \item 求一曲线 $y=f(x)$, 使得在曲线上每一点 $(x,y)$ 处的切线斜率为 $3x^{2}$, 且通过点 $(2,9)$.
+
+  \item 验证: $y=\frac{x^{2}}{2}\operatorname{sgn}x$ 为 $|x|$ 在 $(-\infty,+\infty)$ 上的一个原函数.
+
+  \item 周期函数的原函数是否还是周期函数? 考察 $f(x)=|\sin x|$. 设 $f(x)$ 是一个周期为 $T$ 的函数, $F(x)$ 为它的一个原函数. 证明: $F(x)$ 有周期 $T\Longleftrightarrow F(T)=F(0)$. (提示: 考虑函数 $F(x+T)-F(x)$.)
+
+  \item 设 $f(x)$ 为奇函数, $F(x)$ 为它的一个原函数. 证明: $F(x)$ 为偶函数. (提示: 考虑函数 $F(-x)-F(x)$.)
+
+  \item 设 $f(x)$ 为偶函数, $F(x)$ 为它的一个原函数. 证明: $F(x)$ 为奇函数 $\Longleftrightarrow F(0)=0$. (提示: 考虑函数 $F(-x)+F(x)$.)
+\end{exblock}

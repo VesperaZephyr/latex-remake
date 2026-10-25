@@ -1,0 +1,1496 @@
+% ==================================================================
+%  §11.4  Stokes 公式  \int_{\overrightarrow{\partial M}}\omega=\int_{\overrightarrow{M}}\mathrm{d}\omega
+%  源：徐森林、薛春华《数学分析》第二册, 印刷页 355-378
+%  底本：PaddleOCR-VL 为主, MinerU 交叉核对
+%  约定：全西文标点; \[\] 表行间公式; align*/aligned 表多行;
+%        定理/证明以 \qedhere 收 □, 不需 □ 的用 \noqedhere 抑制
+%        章节标题（\chapter/\section）按原书原文保留顿号「、」,
+%        正文一律不得出现中文标点（规范 §1.3）
+%  图：图11.4.1-11.4.16 皆用 TikZ 绘
+%  订正 OCR 之处：
+%      · 定向曲线 \vec{C}/\bar{C}/\overline{C}/\vec{c} 实为 \overrightarrow{C};
+%        定向区域 \vec{M}/\tilde{M}/\bar{M} 实为 \overrightarrow{M};
+%        闭曲面 \oint_{\frac{\pi}{2}} 等伪分式积分限实为 \overrightarrow{\Sigma}/\overrightarrow{M}
+%      · 加粗伪影 \mathbf{Q}/\boldsymbol{Q}/\boldsymbol{R} 实为 Q/R
+%      · \dot{x}/\dot{\mathrm{d}} 实为 x/\mathrm{d}; \bullet 实为 \cdot
+%      · 引理11.4.3 证明中 \underbrace{...}_{\neq} 与截断行已据结论补全
+%      · 例11.4.4(3) 极限式与例11.4.7 解法3 的 \frac{1}{2} 据结论还原
+% ==================================================================
+\section{Stokes 公式}
+
+众所周知, 一元 Riemann 积分有著名的 Newton-Leibniz 公式
+\[
+\int_{\overrightarrow{[a,b]}}\mathrm{d}f=\int_{a}^{b}f'(x)\mathrm{d}x=f(x)\Big|_{a}^{b}=f(b)-f(a)=\int_{\partial[a,b]}f,
+\]
+它建立了区间 $[a,b]$ 域内积分与边界 $\partial[a,b]=\{a,b\}$ 上函数值之间的联系, 成为一元积分学的一块基石. 在多变量 Riemann 积分情形, 是否也存在类似域内积分与边界积分之间的联系呢? 回答是肯定的. 平面区域内的二重积分与其边界曲线之间的联系——Green 公式; 空间曲面的曲面积分与其边界曲线积分之间的联系——Stokes 公式; 空间区域内的三重积分与其边界曲面积分之间的联系——Gauss 公式. 这些公式统一为一个 Stokes 公式
+\[
+\int_{\overrightarrow{\partial M}}\omega=\int_{\overrightarrow{M}}\mathrm{d}\omega.
+\]
+它在理论与应用中均有重大的价值.
+
+\begin{theorem}\label{thm:11.4.1}
+设 $\overrightarrow{C}$ 为 $\mathbb{R}^{n}$ 中定向曲线, 起点为 $A$, 终点为 $B$ (\cref{fig:11.4.1}), $\omega$ 为 $0$ 次 (函数) $C^{1}$ 微分形式, 则
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}}\mathrm{d}\omega&=\int_{\overrightarrow{\partial C}}\omega=\int_{\{\overrightarrow{B^{+}},\overrightarrow{A^{-}}\}}\omega\\
+&=\int_{\overrightarrow{B^{+}}}\omega+\int_{\overrightarrow{A^{-}}}\omega=\omega(B)-\omega(A),
+\end{aligned}
+\]
+特别地, 当 $\overrightarrow{C}=[\overrightarrow{a},\overrightarrow{b}],\ \overrightarrow{\partial C}=\{\overrightarrow{b}^{+},\overrightarrow{a}^{-}\},\ \omega=f$, 上式为
+\[
+\int_{a}^{b}\mathrm{d}f=\int_{\overrightarrow{[a,b]}}\mathrm{d}f=\int_{\partial\overrightarrow{[a,b]}}f=f(b)-f(a),
+\]
+即它是通常的 Newton-Leibniz 公式.
+\end{theorem}
+\begin{proof}
+设 $\boldsymbol{x}(t)=(x(t),y(t),z(t)),\ a\leqslant t\leqslant b$ 为 $\overrightarrow{C}$ 的参数表示, $\omega=f$, 则
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}}\mathrm{d}\omega&=\int_{\overrightarrow{C}}\mathrm{d}f=\int_{\overrightarrow{C}}\frac{\partial f}{\partial x}\mathrm{d}x+\frac{\partial f}{\partial y}\mathrm{d}y+\frac{\partial f}{\partial z}\mathrm{d}z\\
+&\reason{def}\int_{a}^{b}\left(\frac{\partial f}{\partial x}\frac{\mathrm{d}x}{\mathrm{d}t}+\frac{\partial f}{\partial y}\frac{\mathrm{d}y}{\mathrm{d}t}+\frac{\partial f}{\partial z}\frac{\mathrm{d}z}{\mathrm{d}t}\right)\mathrm{d}t\\
+&=\int_{a}^{b}\frac{\mathrm{d}f(\boldsymbol{x}(t))}{\mathrm{d}t}\mathrm{d}t\reason{通常的 Newton-Leibniz 公式}f(\boldsymbol{x}(b))-f(\boldsymbol{x}(a))\\
+&=\omega(B)-\omega(A)=\int_{\overrightarrow{\partial C}}\omega.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-1.5,0) -- (2.0,0) node[below right] {$x$};
+      \draw[->] (0,-1.3) -- (0,1.6) node[above left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      % 起点 A, 终点 B
+      \coordinate (A) at (-1.1,-0.8);
+      \coordinate (B) at (1.4,1.1);
+      % 定向平滑波浪曲线 C
+      \draw[thick, postaction={decorate}, decoration={markings,
+        mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        (A) .. controls (-0.2,-1.2) and (0.3,1.3) .. (B);
+      \fill (A) circle (1.5pt) node[below left] {$A$};
+      \fill (B) circle (1.5pt) node[above right] {$B$};
+      \node[ThemeColor, above left] at (0.25,0.4) {$\vec{C}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.1}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-1.8,0) -- (1.9,0) node[below right] {$x$};
+      \draw[->] (0,-1.4) -- (0,1.6) node[above left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      % 定向有界闭域 M，左手法则
+      \draw[thick, fill=ThemeColor!8, postaction={decorate}, decoration={markings,
+        mark=at position 0.18 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.48 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.78 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[smooth cycle, tension=0.85] coordinates {(-1.1,0.2) (-0.2,1.2) (1.2,0.5) (0.9,-0.9) (-0.4,-1.0)};
+      \node at (0.05,-0.05) {$M$};
+      \node[ThemeColor, above right] at (1.1,0.5) {$\overrightarrow{\partial M}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.2}
+  \end{minipage}
+\end{figure}
+
+设 $M\subset\mathbb{R}^{2}$, $\overrightarrow{M}$ 为有界定向闭域, $\overrightarrow{\partial M}$ 为 $\partial M$ 上 (由 $\overrightarrow{M}$ 决定) 的诱导定向 (按``左手法则'': 沿 $\partial M$ 走, $M$ 总在左侧 (\cref{fig:11.4.2})) 所决定的定向曲线.
+
+我们考虑两种特殊的定向闭域:
+
+(1) 第一种定向闭域 (\cref{fig:11.4.3}) $\overrightarrow{M}$
+
+它由 $4$ 条定向曲线 $\overrightarrow{C_{1}},\overrightarrow{C_{2}},\overrightarrow{C_{3}},\overrightarrow{C_{4}}$ 所围成, 其中 $\overrightarrow{C}_{1}$: $y=\varphi_{1}(x)$, $a\leqslant x\leqslant b$;
+
+$\overrightarrow{C}_{2}$: $x=b$, $\varphi_{1}(b)\leqslant y\leqslant\varphi_{2}(b)$ (可退缩为一点);
+
+$\overrightarrow{C}_{3}$: $y=\varphi_{2}(x)$, $a\leqslant x\leqslant b$;
+
+$\overrightarrow{C}_{4}$: $x=a$, $\varphi_{1}(a)\leqslant y\leqslant\varphi_{2}(a)$ (可退缩为一点).
+
+(2) 第二种定向闭域 (\cref{fig:11.4.4}) $\overrightarrow{M}$
+
+它由 $4$ 条定向曲线 $\overrightarrow{C}_{1},\overrightarrow{C}_{2},\overrightarrow{C}_{3},\overrightarrow{C}_{4}$ 所围成, 其中 $\overrightarrow{C}_{1}$: $y=c$, $\psi_{1}(c)\leqslant x\leqslant\psi_{2}(c)$ (可退缩为一点); $\overrightarrow{C}_{2}$: $x=\psi_{2}(y)$, $c\leqslant y\leqslant d$; $\overrightarrow{C}_{3}$: $y=d$, $\psi_{1}(d)\leqslant x\leqslant\psi_{2}(d)$ (可退缩为一点); $\overrightarrow{C}_{4}$: $x=\psi_{1}(y)$, $c\leqslant y\leqslant d$.
+
+上述 $\varphi_{i}(x),\psi_{i}(y)\ (i=1,2)$ 都为连续函数.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.05, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-0.4,0) -- (3.6,0) node[below right] {$x$};
+      \draw[->] (0,-0.3) -- (0,3.3) node[above left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      % x 坐标 a 与 b
+      \coordinate (xa) at (0.6,0);
+      \coordinate (xb) at (2.8,0);
+      \node[below] at (xa) {$a$};
+      \node[below] at (xb) {$b$};
+      % 顶点
+      \coordinate (P1) at (0.6,0.7);
+      \coordinate (P2) at (2.8,1.1);
+      \coordinate (P3) at (2.8,2.7);
+      \coordinate (P4) at (0.6,2.3);
+      % 填充闭域 M
+      \fill[ThemeColor!8] (P1) -- plot[domain=0.6:2.8, samples=30] (\x, {0.6 + 0.3*sin((\x-0.6)*60) + 0.15*(\x-0.6)})
+        -- (P3) -- plot[domain=2.8:0.6, samples=30] (\x, {2.4 + 0.2*cos((\x-0.6)*80) + 0.1*(\x-0.6)}) -- cycle;
+      % 4 条定向曲线
+      % C1: 下边界 y = \varphi_1(x) 向右
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[domain=0.6:2.8, samples=30] (\x, {0.6 + 0.3*sin((\x-0.6)*60) + 0.15*(\x-0.6)});
+      \node[below, ThemeColor] at (1.7,0.7) {$\vec{C}_1: y=\varphi_1(x)$};
+      % C2: 右边界 x = b 向上
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        (P2) -- (P3) node[midway, right, ThemeColor] {$\vec{C}_2$};
+      % C3: 上边界 y = \varphi_2(x) 向左
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[domain=2.8:0.6, samples=30] (\x, {2.4 + 0.2*cos((\x-0.6)*80) + 0.1*(\x-0.6)});
+      \node[above, ThemeColor] at (1.7,2.5) {$\vec{C}_3: y=\varphi_2(x)$};
+      % C4: 左边界 x = a 向下
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        (P4) -- (P1) node[midway, left, ThemeColor] {$\vec{C}_4$};
+      % 虚线投影到 x 轴
+      \draw[dashed] (0.6,0) -- (P1);
+      \draw[dashed] (2.8,0) -- (P2);
+      \node at (1.7,1.6) {$M$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.3}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.05, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-0.3,0) -- (3.6,0) node[below right] {$x$};
+      \draw[->] (0,-0.4) -- (0,3.3) node[above left] {$y$};
+      \node[below left] at (0,0) {$O$};
+      % y 坐标 c 与 d
+      \coordinate (yc) at (0,0.6);
+      \coordinate (yd) at (0,2.7);
+      \node[left] at (yc) {$c$};
+      \node[left] at (yd) {$d$};
+      % 顶点
+      \coordinate (Q1) at (0.7,0.6);
+      \coordinate (Q2) at (2.7,0.6);
+      \coordinate (Q3) at (2.4,2.7);
+      \coordinate (Q4) at (0.8,2.7);
+      % 填充闭域 M
+      \fill[ThemeColor!8] (Q1) -- (Q2)
+        -- plot[domain=0.6:2.7, samples=30] ({2.6 + 0.2*sin((\x-0.6)*80) - 0.1*(\x-0.6)}, \x)
+        -- (Q4)
+        -- plot[domain=2.7:0.6, samples=30] ({0.7 - 0.2*cos((\x-0.6)*70) + 0.15*(\x-0.6)}, \x) -- cycle;
+      % 4 条定向曲线
+      % C1: 下边界 y = c 向右
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        (Q1) -- (Q2) node[midway, below, ThemeColor] {$\vec{C}_1$};
+      % C2: 右边界 x = \psi_2(y) 向上
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[domain=0.6:2.7, samples=30] ({2.6 + 0.2*sin((\x-0.6)*80) - 0.1*(\x-0.6)}, \x);
+      \node[right, ThemeColor] at (2.7,1.6) {$\vec{C}_2: x=\psi_2(y)$};
+      % C3: 上边界 y = d 向左
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        (Q3) -- (Q4) node[midway, above, ThemeColor] {$\vec{C}_3$};
+      % C4: 左边界 x = \psi_1(y) 向下
+      \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[domain=2.7:0.6, samples=30] ({0.7 - 0.2*cos((\x-0.6)*70) + 0.15*(\x-0.6)}, \x);
+      \node[left, ThemeColor] at (0.6,1.6) {$\vec{C}_4: x=\psi_1(y)$};
+      % 虚线投影到 y 轴
+      \draw[dashed] (0,0.6) -- (Q1);
+      \draw[dashed] (0,2.7) -- (Q4);
+      \node at (1.7,1.6) {$M$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.4}
+  \end{minipage}
+\end{figure}
+
+\begin{lemma}\label{lem:11.4.1}
+(1) 设 $\overrightarrow{M}$ 为 $\mathbb{R}^{2}$ 中第一种定向闭域, $P(x,y)$ 为 $M$ 上的二元 $C^{1}$ 函数, 则
+\[
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x=-\iint\limits_{\overrightarrow{M}}\frac{\partial P}{\partial y}\mathrm{d}x\wedge\mathrm{d}y.
+\]
+(2) 设 $\overrightarrow{M}$ 为 $\mathbb{R}^{2}$ 中第二种定向闭域, $Q(x,y)$ 为 $M$ 上的二元 $C^{1}$ 函数, 则
+\[
+\oint_{\overrightarrow{\partial M}}Q\mathrm{d}x=\iint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial x}\mathrm{d}x\wedge\mathrm{d}y.
+\]
+$\oint_{\overrightarrow{\partial M}}$ 表示 $\overrightarrow{\partial M}$ 为定向封闭曲线积分.
+\end{lemma}
+\begin{proof}[证明 (1)]
+不妨设 $\overrightarrow{M}$ 为 xOy 平面上的正向 (右手系, 或逆时针方向), 则有 (\cref{fig:11.4.3})
+\[
+\begin{aligned}
+-\iint\limits_{\overrightarrow{M}}\frac{\partial P}{\partial y}\mathrm{d}x\wedge\mathrm{d}y&\reason{x,y 为参数}-\iint\limits_{M}\frac{\partial P}{\partial y}\mathrm{d}x\mathrm{d}y=-\int_{a}^{b}\mathrm{d}x\int_{\varphi_{1}(x)}^{\varphi_{2}(x)}\frac{\partial P}{\partial y}\mathrm{d}y\\
+&=\int_{a}^{b}\left[P(x,\varphi_{1}(x))-P(x,\varphi_{2}(x))\right]\mathrm{d}x=\int_{\overrightarrow{C}_{1}}P\mathrm{d}x-\int_{\overrightarrow{C}_{3}}P\mathrm{d}x\\
+&=\left(\int_{\overrightarrow{C}_{1}}+\int_{\overrightarrow{C}_{2}}+\int_{\overrightarrow{C}_{3}^{-}}+\int_{\overrightarrow{C}_{4}^{-}}\right)P\mathrm{d}x=\oint_{\overrightarrow{\partial M}}P\mathrm{d}x,
+\end{aligned}\qedhere
+\]
+其中 $\int_{\overrightarrow{C}_{2}}P\mathrm{d}x\reason{$x=b$}0,\ \int_{\overrightarrow{C}_{4}^{-}}P\mathrm{d}x\reason{$x=a$}0$.
+\end{proof}
+\begin{proof}[证明 (2)]
+仿照 (1) 证明 (留作习题).
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.05, >=stealth, line cap=round, line join=round]
+    % 左图：第一种定向闭域（竖直剖分）
+    \begin{scope}[xshift=0cm]
+      \draw[thick, fill=ThemeColor!6, postaction={decorate}, decoration={markings,
+        mark=at position 0.15 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.65 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[smooth cycle, tension=0.9]
+        coordinates{(0.3,0.6)(1.1,0.2)(2.3,0.4)(3.1,1.4)(2.9,2.6)(1.9,3.1)(0.8,2.7)(0.2,1.7)};
+      % 竖直分割线
+      \draw[dashed, thick, ThemeColor] (1.15,0.25) -- (1.15,2.95);
+      \draw[dashed, thick, ThemeColor] (2.05,0.35) -- (2.05,3.05);
+      \node at (0.7,1.6) {$M_{1}$};
+      \node at (1.6,1.7) {$M_{2}$};
+      \node at (2.55,1.7) {$M_{3}$};
+      \node[below] at (1.6,-0.2) {第一种定向闭域};
+    \end{scope}
+    % 右图：第二种定向闭域（水平剖分）
+    \begin{scope}[xshift=4.6cm]
+      \draw[thick, fill=ThemeColor!6, postaction={decorate}, decoration={markings,
+        mark=at position 0.15 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.65 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[smooth cycle, tension=0.9]
+        coordinates{(0.3,0.6)(1.1,0.2)(2.3,0.4)(3.1,1.4)(2.9,2.6)(1.9,3.1)(0.8,2.7)(0.2,1.7)};
+      % 水平分割线
+      \draw[dashed, thick, ThemeColor] (0.28,1.2) -- (3.0,1.2);
+      \draw[dashed, thick, ThemeColor] (0.35,2.1) -- (2.95,2.1);
+      \node at (1.6,0.7) {$M_{1}$};
+      \node at (1.6,1.65) {$M_{2}$};
+      \node at (1.6,2.55) {$M_{3}$};
+      \node[below] at (1.6,-0.2) {第二种定向闭域};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{}\label{fig:11.4.5}
+\end{figure}
+
+\begin{theorem}[Green 定理]\label{thm:11.4.2}
+设 $\overrightarrow{M}$ 为 $\mathbb{R}^{2}$ 中的定向有界闭域, $\omega=P\mathrm{d}x+Q\mathrm{d}y$ 为一次 $C^{1}$ 微分形式. 如果 $\overrightarrow{M}$ 既能分成有限个不相重叠 (无公共内点) 的第一种定向闭域, 又能分成有限个不相重叠 (无公共内点) 的第二种定向闭域 (\cref{fig:11.4.5}), 则
+\[
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x+Q\mathrm{d}y=\iint_{\overrightarrow{M}}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\mathrm{d}x\wedge\mathrm{d}y,
+\]
+即
+\[
+\int_{\overrightarrow{\partial M}}\omega=\iint_{\overrightarrow{M}}\mathrm{d}\omega,
+\]
+其中 $\overrightarrow{\partial M}$ 为 $\overrightarrow{M}$ 的诱导定向.
+\end{theorem}
+\begin{proof}
+不妨设 $\overrightarrow{M}$ 为 xOy 平面的正向 (右手系, 或逆时针方向). 如图 \cref{fig:11.4.5}, $\overrightarrow{M}$ 分成有限个不相重叠的第一种定向闭域 $\overrightarrow{M}_{1},\overrightarrow{M}_{2},\cdots,\overrightarrow{M}_{k}$ (均与 $\overrightarrow{M}$ 同向), 则
+\[
+\begin{aligned}
+\iint\limits_{\overrightarrow{M}}\frac{\partial P}{\partial y}\mathrm{d}x\wedge\mathrm{d}y&=\sum_{i=1}^{k}\iint\limits_{\overrightarrow{M_{i}}}\frac{\partial P}{\partial y}\mathrm{d}x\mathrm{d}y\reason{引理 11.4.1(1)}-\sum_{i=1}^{k}\int_{\overrightarrow{\partial M_{i}}}P\mathrm{d}x\\
+&\reason{相邻闭域边界定向相反}-\oint_{\overrightarrow{\partial M}}P\mathrm{d}x.
+\end{aligned}
+\]
+同理 (应用引理 11.4.1(2)) 有
+\[
+\iint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial x}\mathrm{d}x\wedge\mathrm{d}y=\oint_{\overrightarrow{\partial M}}Q\mathrm{d}y.
+\]
+于是,
+\[
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x+Q\mathrm{d}y=\iint_{\overrightarrow{M}}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\mathrm{d}x\wedge\mathrm{d}y.
+\qedhere
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:11.4.1}
+$\overrightarrow{M}$ 为定理 \cref{thm:11.4.2} 中的平面正向有界闭域, 则 $M$ 的面积为
+\[
+\sigma(M)=\oint_{\overrightarrow{\partial M}}x\mathrm{d}y=-\oint_{\overrightarrow{\partial M}}y\mathrm{d}x=\frac{1}{2}\oint_{\overrightarrow{\partial M}}(x\mathrm{d}y-y\mathrm{d}x),
+\]
+其中 $\overrightarrow{\partial M}$ 为 $\overrightarrow{M}$ 的诱导定向, 即逆时针方向.
+\end{corollary}
+\begin{proof}
+由定理 \cref{thm:11.4.2},
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}x\mathrm{d}y&\reason{Green 公式}\iint\limits_{\overrightarrow{M}}\frac{\partial x}{\partial x}\mathrm{d}x\wedge\mathrm{d}y=\iint_{\overrightarrow{M}}\mathrm{d}x\wedge\mathrm{d}y\reason{x,y 为参数}\iint\limits_{M}\mathrm{d}x\mathrm{d}y=\sigma(M),\\
+-\oint_{\overrightarrow{\partial M}}y\mathrm{d}x&\reason{Green 公式}-\left(-\iint\limits_{\overrightarrow{M}}\frac{\partial y}{\partial y}\mathrm{d}x\wedge\mathrm{d}y\right)=\iint_{\overrightarrow{M}}\mathrm{d}x\wedge\mathrm{d}y\reason{x,y 为参数}\iint\limits_{M}\mathrm{d}x\mathrm{d}y=\sigma(M).
+\end{aligned}
+\]
+两式相加除以 $2$ 得
+\[
+\sigma(M)=\frac{1}{2}\left(\oint_{\overrightarrow{\partial M}}x\mathrm{d}y-\oint_{\overrightarrow{\partial M}}y\mathrm{d}x\right)=\frac{1}{2}\oint_{\overrightarrow{\partial M}}(x\mathrm{d}y-y\mathrm{d}x).
+\qedhere
+\]
+\end{proof}
+
+设 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中的定向有界闭域, $\overrightarrow{\partial M}$ 为 $\partial M$ 上 (由 $\overrightarrow{M}$ 决定) 的诱导定向 (如果 $\overrightarrow{M}$ 为``右 (左) 手系'', 则 $\overrightarrow{\partial M}$ 取外 (内) 法向) 所决定的定向曲面.
+
+我们考虑三种特殊的定向闭域:
+
+(1) 第一种定向闭域 (\cref{fig:11.4.6}) $\overrightarrow{M}$.
+
+$\overrightarrow{M}$ 取正向 (右手系), $\overrightarrow{\partial M}$ 取外法向. 它由 $\overrightarrow{\Sigma_{1}}$, $\overrightarrow{\Sigma_{2}}$, $\overrightarrow{\Sigma_{3}}$ 三部分组成, 其中
+\[
+\overrightarrow{\Sigma}_{1}:(x,y,z)=(x,y,\varphi_{1}(x,y)),\ (x,y)\in\Delta_{1};
+\]
+\[
+\overrightarrow{\Sigma}_{2}:(x,y,z)=(x,y,\varphi_{2}(x,y)),\ (x,y)\in\Delta_{1};
+\]
+$\overrightarrow{\Sigma}_{3}$: 以 $\partial\Delta_{1}$ 为准线, 母线平行 Oz 轴的柱面. 当然也可蜕化为一条封闭曲线 (\cref{fig:11.4.7}).
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 三维坐标系
+      \draw[->] (-1.2,-0.7) -- (2.1,-1.2) node[below left] {$x$};
+      \draw[->] (0,0) -- (2.6,0.3) node[right] {$y$};
+      \draw[->] (0,-0.3) -- (0,2.8) node[above] {$z$};
+      \node[below left] at (0,0) {$O$};
+      
+      % xy 平面上的底面投影区域 Delta_1
+      \draw[thick, dashed] (0.8,-0.9) ellipse (1.0 and 0.4);
+      \node at (0.8,-0.9) {$\Delta_1$};
+      
+      % 下曲面 Sigma_1
+      \draw[thick, fill=ThemeColor!6] (0.8,0.2) ellipse (1.0 and 0.38);
+      \node[above] at (0.2,0.15) {$\vec{\Sigma}_1$};
+      \draw[->, thick, ThemeColor] (0.8,0.2) -- (0.8,-0.25) node[below] {$\boldsymbol{n}_1$};
+      
+      % 上曲面 Sigma_2
+      \draw[thick, fill=ThemeColor!10] (0.8,1.8) ellipse (1.0 and 0.38);
+      \node[above] at (0.2,1.8) {$\vec{\Sigma}_2$};
+      \draw[->, thick, ThemeColor] (0.8,1.8) -- (0.8,2.35) node[above] {$\boldsymbol{n}_2$};
+      
+      % 侧柱面 Sigma_3
+      \draw[thick] (-0.2,0.2) -- (-0.2,1.8);
+      \draw[thick] (1.8,0.2) -- (1.8,1.8);
+      \draw[->, thick, ThemeColor] (1.8,1.0) -- (2.2,1.0) node[right] {$\boldsymbol{n}_3$};
+      \node[right] at (1.8,1.4) {$\vec{\Sigma}_3$};
+      
+      % 虚线投影母线
+      \draw[dashed] (-0.2,-0.9) -- (-0.2,0.2);
+      \draw[dashed] (1.8,-0.9) -- (1.8,0.2);
+      \node at (0.8,1.0) {$M$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.6}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 三维坐标系
+      \draw[->] (-1.2,-0.7) -- (2.1,-1.2) node[below left] {$x$};
+      \draw[->] (0,0) -- (2.6,0.3) node[right] {$y$};
+      \draw[->] (0,-0.3) -- (0,2.8) node[above] {$z$};
+      \node[below left] at (0,0) {$O$};
+      
+      % 蜕化情况：上下曲面在边界直接相交封闭
+      \draw[thick, fill=ThemeColor!8] (0.8,1.0) ellipse (1.1 and 0.4);
+      % 上表面轮廓弧
+      \draw[thick] (-0.3,1.0) .. controls (0.2,2.3) and (1.4,2.3) .. (1.9,1.0);
+      % 下表面轮廓弧
+      \draw[thick] (-0.3,1.0) .. controls (0.2,-0.1) and (1.4,-0.1) .. (1.9,1.0);
+      
+      % 法向量
+      \draw[->, thick, ThemeColor] (0.8,1.95) -- (0.8,2.45) node[above] {$\boldsymbol{n}_2$};
+      \draw[->, thick, ThemeColor] (0.8,0.25) -- (0.8,-0.25) node[below] {$\boldsymbol{n}_1$};
+      \node at (0.3,1.8) {$\vec{\Sigma}_2$};
+      \node at (0.3,0.3) {$\vec{\Sigma}_1$};
+      \node at (0.8,1.0) {$M$};
+      
+      % 底面投影虚线
+      \draw[thick, dashed] (0.8,-0.9) ellipse (1.1 and 0.4);
+      \draw[dashed] (-0.3,-0.9) -- (-0.3,1.0);
+      \draw[dashed] (1.9,-0.9) -- (1.9,1.0);
+      \node at (0.8,-0.9) {$\Delta_1$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.7}
+  \end{minipage}
+\end{figure}
+
+(2) 第二种定向闭域 $\overrightarrow{M}$.
+
+$\overrightarrow{M}$ 取正向 (右手系), $\overrightarrow{\partial M}$ 取外法向. 它由 $\overrightarrow{\Sigma_{1}}^{-}$, $\overrightarrow{\Sigma_{2}}$, $\overrightarrow{\Sigma_{3}}$ 三部分组成, 其中 $\overrightarrow{\Sigma}_{1}:(x,y,z)=(\psi_{1}(y,z),y,z),\ (y,z)\in\Delta_{2}$;
+
+$\overrightarrow{\Sigma}_{2}:(x,y,z)=(\psi_{2}(y,z),y,z),\ (y,z)\in\Delta_{2}$;
+
+$\Sigma_{3}$: 以 $\partial\Delta_{2}$ 为准线, 母线平行 Ox 轴的柱面. 当然也可蜕化为一条封闭曲线.
+
+(3) 第三种定向闭域 $\overrightarrow{M}$.
+
+$\overrightarrow{M}$ 取正向 (右手系), $\overrightarrow{\partial M}$ 取外法向. 它由 $\overrightarrow{\Sigma_{1}}$, $\overrightarrow{\Sigma_{2}}$, $\overrightarrow{\Sigma_{3}}$ 三部分组成, 其中
+\[
+\overrightarrow{\Sigma}_{1}:(x,y,z)=(x,\theta_{1}(x,z),z),\ (z,x)\in\Delta_{3};
+\]
+\[
+\overrightarrow{\Sigma}_{2}:(x,y,z)=(x,\theta_{2}(x,z),z),\ (z,x)\in\Delta_{3};
+\]
+$\overrightarrow{\Sigma}_{3}$: 以 $\partial\Delta_{3}$ 为准线, 母线平行 Oy 轴的柱面. 当然也可蜕化为一条封闭曲线. 上述 $\varphi_{i}(x,y),\psi_{i}(y,z),\theta_{i}(x,z)\ (i=1,2)$ 都为连续函数.
+
+\begin{lemma}\label{lem:11.4.2}
+(1) 如果 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中第一种定向闭域, $R(x,y,z)$ 为 $M$ 上的三元 $C^{1}$ 函数, 则
+\[
+\iint_{\overrightarrow{\partial M}}R\mathrm{d}x\wedge\mathrm{d}y=\iiint_{\overrightarrow{M}}\frac{\partial R}{\partial z}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z;
+\]
+(2) 如果 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中第二种定向闭域, $P(x,y,z)$ 为 $M$ 上的三元 $C^{1}$ 函数, 则
+\[
+\iint_{\overrightarrow{\partial M}}P\mathrm{d}y\wedge\mathrm{d}z=\iiint_{\overrightarrow{M}}\frac{\partial P}{\partial x}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z;
+\]
+(3) 如果 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中第三种定向闭域, $Q(x,y,z)$ 为 $M$ 上的三元 $C^{1}$ 函数, 则
+\[
+\iint_{\overrightarrow{\partial M}}Q\mathrm{d}z\wedge\mathrm{d}x=\iiint_{\overrightarrow{M}}\frac{\partial Q}{\partial y}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z,
+\]
+其中 $\oint\limits_{\overrightarrow{\partial M}}$ 表示定向封闭曲面.
+\end{lemma}
+\begin{proof}[证明 (1)]
+不妨设 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中的正向 (右手系) 闭域, 则有 (\cref{fig:11.4.6})
+\[
+\begin{aligned}
+\iiint\limits_{\overrightarrow{M}}\frac{\partial R}{\partial z}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z&=\iiint\limits_{M}\frac{\partial R}{\partial z}\mathrm{d}x\mathrm{d}y\mathrm{d}z\reason{化为累次积分}\iint\limits_{\Delta_{1}}\mathrm{d}x\mathrm{d}y\int_{\varphi_{1}(x,y)}^{\varphi_{2}(x,y)}\frac{\partial R}{\partial z}\mathrm{d}z\\
+&=\iint\limits_{\Delta_{1}}R(x,y,\varphi_{2}(x,y))\mathrm{d}x\mathrm{d}y-\iint\limits_{\Delta_{1}}R(x,y,\varphi_{1}(x,y))\mathrm{d}x\mathrm{d}y\\
+&\reason{x,y 为参数}\iint\limits_{\overrightarrow{\Sigma}_{2}}R\mathrm{d}x\wedge\mathrm{d}y-\iint\limits_{\overrightarrow{\Sigma}_{1}^{-}}R\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint\limits_{\overrightarrow{\Sigma}_{2}}R\mathrm{d}x\wedge\mathrm{d}y+\iint\limits_{\overrightarrow{\Sigma}_{1}}R\mathrm{d}x\wedge\mathrm{d}y+\iint\limits_{\overrightarrow{\Sigma}_{3}}R\mathrm{d}x\wedge\mathrm{d}y=\oint_{\overrightarrow{\partial M}}R\mathrm{d}x\wedge\mathrm{d}y,
+\end{aligned}\qedhere
+\]
+其中柱面 $\Sigma_{3}$ 的参数表示为 $\boldsymbol{x}(t,z)=(x(t),y(t),z)$, 因此法向量场为
+\[
+\boldsymbol{n}(t,z)=\bigl(x'(t),y'(t),0\bigr)\times(0,0,1)=\bigl(y',-x',0\bigr),
+\]
+单位法向量场 $\boldsymbol{n}_{0}(t,z)=(\cos\alpha,\cos\beta,0)$. 于是,
+\[
+\iint_{\overrightarrow{\Sigma}_{3}}R\mathrm{d}x\wedge\mathrm{d}y=\iint_{\overrightarrow{\Sigma}_{3}}(0\cdot\cos\alpha+0\cdot\cos\beta+R\cdot0)\mathrm{d}\sigma=0.
+\]
+或者由
+\[
+\frac{\partial(x,y)}{\partial(t,z)}=\begin{vmatrix}x'(t)&0\\ y'(t)&0\end{vmatrix}=0
+\]
+推得
+\[
+\iint_{\overrightarrow{\Sigma}_{3}}R\mathrm{d}x\wedge\mathrm{d}y=\iint_{\overrightarrow{\Sigma}_{3}}R\frac{\partial(x,y)}{\partial(t,z)}\mathrm{d}t\mathrm{d}z=\iint_{\overrightarrow{\Sigma}_{3}}0\,\mathrm{d}t\mathrm{d}z=0.
+\]
+\end{proof}
+\begin{proof}[证明 (2), (3)]
+类似于 (1) 的证明.
+\end{proof}
+
+\begin{theorem}[Gauss 定理]\label{thm:11.4.3}
+设 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中的定向有界闭域, $\omega=P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y$ 为二次 $C^{1}$ 微分形式. 如果 $\overrightarrow{M}$ 既能分成有限个不相重叠 (无公共内点) 的第一种定向闭域, 又能分成有限个不相重叠 (无公共内点) 的第二种定向闭域, 还能分成有限个不相重叠 (无公共内点) 的第三种定向闭域, 则
+\[
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y=\iiint_{\overrightarrow{M}}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z,
+\]
+即
+\[
+\int_{\overrightarrow{\partial M}}\omega=\int_{\overrightarrow{M}}\mathrm{d}\omega.
+\]
+\end{theorem}
+\begin{proof}
+将 $\overrightarrow{M}$ 分成有限个不相重叠的第一种定向闭域 $\overrightarrow{M}_{1},\overrightarrow{M}_{2},\cdots,\overrightarrow{M}_{k}$, 在公共边界上定向相反. $\overrightarrow{\partial M}$ 取由 $\overrightarrow{M}$ 决定的诱导定向. 则有
+\[
+\begin{aligned}
+\iiint\limits_{\overrightarrow{M}}\frac{\partial R}{\partial z}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z&=\sum_{i=1}^{k}\iiint\limits_{\overrightarrow{M}_{i}}\frac{\partial R}{\partial z}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\reason{引理 11.4.2(1)}\sum_{i=1}^{k}\iint\limits_{\overrightarrow{\partial M}_{i}}R\mathrm{d}x\wedge\mathrm{d}y\\
+&\reason{公共边界上积分正负相消}\oint\limits_{\overrightarrow{\partial M}}R\mathrm{d}x\wedge\mathrm{d}y.
+\end{aligned}
+\]
+同理有
+\[
+\iiint\limits_{\overrightarrow{M}}\frac{\partial P}{\partial x}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\reason{引理 11.4.2(2)}\oint\limits_{\overrightarrow{\partial M}}P\mathrm{d}y\wedge\mathrm{d}z,
+\]
+\[
+\iiint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial y}\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\reason{引理 11.4.2(3)}\oint\limits_{\overrightarrow{\partial M}}Q\mathrm{d}z\wedge\mathrm{d}x.
+\]
+三式相加得
+\[
+\iint_{\overrightarrow{\partial M}}P\mathrm{d}y\wedge\mathrm{d}z+Q\mathrm{d}z\wedge\mathrm{d}x+R\mathrm{d}x\wedge\mathrm{d}y=\iiint_{\overrightarrow{M}}\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z.
+\qedhere
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:11.4.2}
+设 $\overrightarrow{M}$ 为定理 \cref{thm:11.4.3} 中的正向有界闭域, 则 $M$ 的体积为
+\[
+v(M)=\frac{1}{3}\iint_{\overrightarrow{\partial M}}(x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y),
+\]
+$\overrightarrow{\partial M}$ 取由 $\overrightarrow{M}$ 决定的 $\partial M$ 的诱导定向, 它是二维定向闭曲面.
+\end{corollary}
+\begin{proof}
+\[
+\begin{aligned}
+&\frac{1}{3}\iiint\limits_{\overrightarrow{\partial M}}(x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y)\\
+&\reason{Gauss 公式}\frac{1}{3}\iiint\limits_{\overrightarrow{M}}(1+1+1)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z=\iiint\limits_{M}\mathrm{d}x\mathrm{d}y\mathrm{d}z=v(M).
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+在平面 Green 公式的基础上, 我们来证明空间 Stokes 公式, 而 Green 公式就是它的特例.
+
+\begin{lemma}\label{lem:11.4.3}
+设 $\overrightarrow{M}$ 为 $\mathbb{R}^{3}$ 中二维 $C^{2}$ 定向曲面, $\boldsymbol{x}:\overrightarrow{\Delta}\to\overrightarrow{M}\subset\mathbb{R}^{3}$, $(u,v)\mapsto\boldsymbol{x}(u,v)=(x(u,v),y(u,v),z(u,v))$ 为 $M$ 的定向参数表示, 它是 $C^{2}$ 类的, 即有二阶连续编导数. 如果 $\overrightarrow{\Delta}$ 为 uOv 平面中的正向闭域, $\overrightarrow{\partial\Delta}$ 由有限条定向 $C^{1}$ 曲线组成, 它的定向为 $\overrightarrow{\Delta}$ 的诱导定向. $\overrightarrow{\partial M}=\boldsymbol{x}(\overrightarrow{\partial\Delta})$. $\overrightarrow{\Delta}$ 满足 Green 公式的条件. 当 $P,Q,R$ 在包含 $M$ 的某三维区域内为 $C^{1}$ 函数时, 有
+\[
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x=\iint_{\overrightarrow{M}}\frac{\partial P}{\partial z}\mathrm{d}z\wedge\mathrm{d}x-\iint_{\overrightarrow{M}}\frac{\partial P}{\partial y}\mathrm{d}x\wedge\mathrm{d}y,
+\]
+\[
+\oint_{\overrightarrow{\partial M}}Q\mathrm{d}y=\iint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial x}\mathrm{d}x\wedge\mathrm{d}y-\iint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial z}\mathrm{d}y\wedge\mathrm{d}z,
+\]
+\[
+\oint_{\overrightarrow{\partial M}}R\mathrm{d}z=\iint\limits_{\overrightarrow{M}}\frac{\partial R}{\partial y}\mathrm{d}y\wedge\mathrm{d}z-\iint\limits_{\overrightarrow{M}}\frac{\partial R}{\partial x}\mathrm{d}z\wedge\mathrm{d}x.
+\]
+\end{lemma}
+\begin{proof}
+设 $\overrightarrow{\partial\Delta}$ 的 $C^{1}$ 定向参数表示为 $(u,v)=\boldsymbol{\varphi}(t)=(u(t),v(t)),\ \alpha\leqslant t\leqslant\beta$, 则 $\overrightarrow{\partial M}$ 的定向参数表示为
+\[
+\boldsymbol{x}=(x,y,z)=\boldsymbol{x}\circ\boldsymbol{\varphi}(t)=\bigl(x(u(t),v(t)),y(u(t),v(t)),z(u(t),v(t))\bigr),\quad\alpha\leqslant t\leqslant\beta.
+\]
+于是,
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x&\reason{def}\int_{\alpha}^{\beta}P\circ\boldsymbol{x}\circ\boldsymbol{\varphi}(t)\frac{\mathrm{d}\boldsymbol{x}}{\mathrm{d}t}\mathrm{d}t\\
+&=\int_{\alpha}^{\beta}P\circ\boldsymbol{x}\circ\boldsymbol{\varphi}(t)\left(\frac{\partial x}{\partial u}\frac{\mathrm{d}u}{\mathrm{d}t}+\frac{\partial x}{\partial v}\frac{\mathrm{d}v}{\mathrm{d}t}\right)\mathrm{d}t\\
+&\reason{def}\oint_{\overrightarrow{\partial\Delta}}P\circ\boldsymbol{x}\frac{\partial x}{\partial u}\mathrm{d}u+P\circ\boldsymbol{x}\frac{\partial x}{\partial v}\mathrm{d}v\\
+&\reason{Green 公式}\iint_{\overrightarrow{\Delta}}\left[\frac{\partial}{\partial u}\left(P\circ\boldsymbol{x}\frac{\partial x}{\partial v}\right)-\frac{\partial}{\partial v}\left(P\circ\boldsymbol{x}\frac{\partial x}{\partial u}\right)\right]\mathrm{d}u\wedge\mathrm{d}v\\
+&=\iint_{\overrightarrow{\Delta}}\Biggl[\left(\frac{\partial P}{\partial x}\circ\boldsymbol{x}\frac{\partial x}{\partial u}\frac{\partial x}{\partial v}+\frac{\partial P}{\partial y}\circ\boldsymbol{x}\frac{\partial y}{\partial u}\frac{\partial x}{\partial v}+\frac{\partial P}{\partial z}\circ\boldsymbol{x}\frac{\partial z}{\partial u}\frac{\partial x}{\partial v}\right)\\
+&\qquad-\left(\frac{\partial P}{\partial x}\circ\boldsymbol{x}\frac{\partial x}{\partial v}\frac{\partial x}{\partial u}+\frac{\partial P}{\partial y}\circ\boldsymbol{x}\frac{\partial y}{\partial v}\frac{\partial x}{\partial u}+\frac{\partial P}{\partial z}\circ\boldsymbol{x}\frac{\partial z}{\partial v}\frac{\partial x}{\partial u}\right)\\
+&\qquad+P\circ\boldsymbol{x}\left(\frac{\partial^{2}x}{\partial v\partial u}-\frac{\partial^{2}x}{\partial u\partial v}\right)\Biggr]\mathrm{d}u\wedge\mathrm{d}v\\
+&=\iint_{\overrightarrow{\Delta}}\left[\frac{\partial P}{\partial z}\circ\boldsymbol{x}\frac{\partial(z,x)}{\partial(u,v)}-\frac{\partial P}{\partial y}\circ\boldsymbol{x}\frac{\partial(x,y)}{\partial(u,v)}\right]\mathrm{d}u\wedge\mathrm{d}v\\
+&=\iint_{\overrightarrow{M}}\frac{\partial P}{\partial z}\mathrm{d}z\wedge\mathrm{d}x-\iint_{\overrightarrow{M}}\frac{\partial P}{\partial y}\mathrm{d}x\wedge\mathrm{d}y.
+\end{aligned}\qedhere
+\]
+其他两式可类似证明.
+\end{proof}
+
+\begin{theorem}[Stokes 定理]\label{thm:11.4.4}
+在引理 \cref{lem:11.4.3} 的假设下, 如果 $\omega=P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z$ 为 $M$ 上的一次 $C^{1}$ 微分形式, 则
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z&=\iint\limits_{\overrightarrow{M}}\begin{vmatrix}
+\mathrm{d}y\wedge\mathrm{d}z&\mathrm{d}z\wedge\mathrm{d}x&\mathrm{d}x\wedge\mathrm{d}y\\[2pt]
+\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\[4pt]
+P&Q&R
+\end{vmatrix}\\
+&=\iint\limits_{\overrightarrow{M}}\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)\mathrm{d}y\wedge\mathrm{d}z+\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)\mathrm{d}z\wedge\mathrm{d}x+\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint\limits_{\overrightarrow{M}}\begin{vmatrix}
+\cos\alpha&\cos\beta&\cos\gamma\\[2pt]
+\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\[4pt]
+P&Q&R
+\end{vmatrix}\mathrm{d}\sigma,
+\end{aligned}
+\]
+其中 $\boldsymbol{n}_{0}=(\cos\alpha,\cos\beta,\cos\gamma)$ 为与 $\overrightarrow{M}$ 一致的单位法向量场. 上式就是
+\[
+\int_{\overrightarrow{\partial M}}\omega=\iint_{\overrightarrow{M}}\mathrm{d}\omega.
+\]
+\end{theorem}
+\begin{proof}
+将引理 \cref{lem:11.4.3} 中三式相加得到
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\partial M}}P\mathrm{d}x+Q\mathrm{d}y+R\mathrm{d}z&=\left(\iint\limits_{\overrightarrow{M}}\frac{\partial P}{\partial z}\mathrm{d}z\wedge\mathrm{d}x-\iint\limits_{\overrightarrow{M}}\frac{\partial P}{\partial y}\mathrm{d}x\wedge\mathrm{d}y\right)\\
+&\quad+\left(\iint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial x}\mathrm{d}x\wedge\mathrm{d}y-\iint\limits_{\overrightarrow{M}}\frac{\partial Q}{\partial z}\mathrm{d}y\wedge\mathrm{d}z\right)\\
+&\quad+\left(\iint\limits_{\overrightarrow{M}}\frac{\partial R}{\partial y}\mathrm{d}y\wedge\mathrm{d}z-\iint\limits_{\overrightarrow{M}}\frac{\partial R}{\partial x}\mathrm{d}z\wedge\mathrm{d}x\right)\\
+&=\iint\limits_{\overrightarrow{M}}\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right)\mathrm{d}y\wedge\mathrm{d}z+\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right)\mathrm{d}z\wedge\mathrm{d}x\\
+&\quad+\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\mathrm{d}x\wedge\mathrm{d}y.
+\end{aligned}\qedhere
+\]
+\end{proof}
+
+\begin{example}\label{ex:11.4.1}
+计算第一型曲线积分
+\[
+I=\int_{(0,0,0)}^{(1,1,1)}(x^{2}-2yz)\mathrm{d}x+(y^{2}-2xz)\mathrm{d}y+(z^{2}-2xy)\mathrm{d}z.
+\]
+\end{example}
+\begin{solution}
+显然,
+\[
+\begin{aligned}
+\omega&=(x^{2}-2yz)\mathrm{d}x+(y^{2}-2xz)\mathrm{d}y+(z^{2}-2xy)\mathrm{d}z\\
+&=\mathrm{d}\left[\frac{1}{3}(x^{3}+y^{3}+z^{3})-2xyz\right],
+\end{aligned}
+\]
+\[
+\theta=\frac{1}{3}(x^{3}+y^{3}+z^{3})-2xyz,
+\]
+所以 $\omega$ 为恰当微分形式, 题中的第一型曲线积分只与起点 $(0,0,0)$, 终点 $(1,1,1)$ 有关, 而与 $\mathbb{R}^{3}$ 中的路径无关. 因此,
+\[
+I=\theta\Big|_{(0,0,0)}^{(1,1,1)}=\left[\frac{1}{3}(x^{3}+y^{3}+z^{3})-2xyz\right]\Big|_{(0,0,0)}^{(1,1,1)}=-1.
+\qedhere
+\]
+或取 $x$ 为参数, 从 $(0,0,0)$ 到 $(1,1,1)$ 直线段为路径, $x=y=z$, 则有
+\[
+I=\int_{0}^{1}\bigl[(x^{2}-2x^{2})+(x^{2}-2x^{2})+(x^{2}-2x^{2})\bigr]\mathrm{d}x=-3\int_{0}^{1}x^{2}\mathrm{d}x=-3\cdot\left|\frac{x^{3}}{3}\right|_{0}^{1}=-1.
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.4.2}
+计算第二型曲线积分
+\[
+\oint_{\overrightarrow{C}}(x+y)\mathrm{d}x-(x-y)\mathrm{d}y,
+\]
+其中 $C$ 为逆时针方向的圆 $x^{2}+y^{2}=R^{2}$, 它所围的定向区域 $\overrightarrow{M}$ 就是右手系的圆片 $M=\{(x,y)\mid x^{2}+y^{2}\leqslant R^{2}\}$.
+\end{example}
+\begin{solution}
+\[
+\oint_{\overrightarrow{C}}(x+y)\mathrm{d}x-(x-y)\mathrm{d}y=\iint_{\overrightarrow{M}}\left[\frac{\partial(y-x)}{\partial x}-\frac{\partial(x+y)}{\partial y}\right]\mathrm{d}x\wedge\mathrm{d}y
+\]
+\[
+=-2\iint\limits_{\overrightarrow{M}}\mathrm{d}x\wedge\mathrm{d}y=-2\iint\limits_{M}\mathrm{d}x\mathrm{d}y=-2\pi R^{2}.
+\]
+解法 2
+\[
+\begin{aligned}
+\oint_{C}(x+y)\mathrm{d}x-(x-y)\mathrm{d}y\\
+&\reason{$\left\{\begin{aligned}x&=R\cos\varphi\\ y&=R\sin\varphi\end{aligned}\right.$}\int_{0}^{2\pi}\bigl[(R\cos\varphi+R\sin\varphi)(-R\sin\varphi)\\
+&\quad-(R\cos\varphi-R\sin\varphi)R\cos\varphi\bigr]\mathrm{d}\varphi\\
+&=-R^{2}\int_{0}^{2\pi}\mathrm{d}\varphi=-2\pi R^{2}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.4.3}
+计算第二型曲线积分
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}y-y\mathrm{d}x,
+\]
+其中 $\overrightarrow{C}$ 为 xOy 平面上中心在原点半径为 $R$ 沿逆时针方向绕行的圆.
+\end{example}
+\begin{solution}
+解法 1\ \ 设 $\overrightarrow{M}$ 为由 $C$ 所围的 xOy 平面上的正向圆, 则
+\[
+\begin{aligned}
+\oint_{\overrightarrow{C}}x\mathrm{d}y-y\mathrm{d}x&\reason{Green 公式}\iint\limits_{\overrightarrow{M}}\left[\frac{\partial x}{\partial x}-\frac{\partial(-y)}{\partial y}\right]\mathrm{d}x\wedge\mathrm{d}y\\
+&=2\iint\limits_{\overrightarrow{M}}\mathrm{d}x\wedge\mathrm{d}y=2\iint\limits_{M}\mathrm{d}x\mathrm{d}y=2\pi R^{2}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}y-y\mathrm{d}x\reason{$\left\{\begin{aligned}x&=R\cos\varphi\\ y&=R\sin\varphi\end{aligned}\right.$}\int_{0}^{2\pi}\bigl[R\cos\varphi\cdot R\cos\varphi-R\sin\varphi(-R\sin\varphi)\bigr]\mathrm{d}\varphi=R^{2}\int_{0}^{2\pi}\mathrm{d}\varphi=2\pi R^{2}.
+\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 3]
+设 $\boldsymbol{F}=(-y,x)$, 沿圆的单位切向量场
+\[
+\boldsymbol{\tau}=\frac{1}{R}(-\boldsymbol{y},\boldsymbol{x}),\quad\boldsymbol{x}=(x,y),\quad\mathrm{d}\boldsymbol{x}=(\mathrm{d}x,\mathrm{d}y),
+\]
+则
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}y-y\mathrm{d}x=\int_{\overrightarrow{C}}\boldsymbol{F}\cdot\mathrm{d}\boldsymbol{x}=\int_{C}\boldsymbol{F}\cdot\boldsymbol{\tau}\mathrm{d}s=\frac{1}{R}\int_{C}(x^{2}+y^{2})\mathrm{d}s=R\int_{C}\mathrm{d}s=2\pi R^{2}.
+\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.4.4}
+计算第二型曲线积分
+\[
+\oint_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}},
+\]
+其中 $\overrightarrow{C}$ 为逆时针方向的闭曲线.
+\end{example}
+\begin{solution}
+显然原点为 $P(x,y)=\dfrac{-y}{x^{2}+y^{2}}$ 与 $Q(x,y)=\dfrac{x}{x^{2}+y^{2}}$ 的奇点.
+\begin{enumerate}[leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+\item 如果原点不在 $\overrightarrow{C}$ 所包围的区域 $\overrightarrow{M}$ 内 (\cref{fig:11.4.8}), 则
+\[
+\begin{aligned}
+\oint_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}&\reason{Green 公式}\iint_{\overrightarrow{M}}\left[\frac{\partial}{\partial x}\left(\frac{x}{x^{2}+y^{2}}\right)-\frac{\partial}{\partial y}\left(\frac{-y}{x^{2}+y^{2}}\right)\right]\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{\overrightarrow{M}}\left[\frac{(x^{2}+y^{2})-2x\cdot x}{(x^{2}+y^{2})^{2}}+\frac{(x^{2}+y^{2})-2y\cdot y}{(x^{2}+y^{2})^{2}}\right]\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{\overrightarrow{M}}0\,\mathrm{d}x\wedge\mathrm{d}y=0,
+\end{aligned}
+\]
+其中 $\omega=\dfrac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}$, $\mathrm{d}\omega=\left[\dfrac{\partial}{\partial x}\left(\dfrac{x}{x^{2}+y^{2}}\right)-\dfrac{\partial}{\partial y}\left(\dfrac{-y}{x^{2}+y^{2}}\right)\right]\mathrm{d}x\wedge\mathrm{d}y=0$ (此时, 称 $\omega$ 为闭形式).
+\item 如果原点在 $\overrightarrow{C}$ 所包围的区域 $\overrightarrow{M}$ 内, 则可取 $\varepsilon>0$, 使圆 $C_{\varepsilon}:x^{2}+y^{2}=\varepsilon^{2}$ 完全含在 $M$ 内, 并令 $\overrightarrow{C}_{\varepsilon}$ 为逆时针方向的圆. 记 $\overrightarrow{M}_{\varepsilon}$ 为由 $\overrightarrow{C}$ 与 $\overrightarrow{C}_{\varepsilon}$ 围成的区域, $\overrightarrow{M}_{\varepsilon}$ 与 $\overrightarrow{M}$ 定向一致. 于是,
+\[
+\begin{aligned}
+\left(\int_{\overrightarrow{C}}-\int_{\overrightarrow{C}_{\varepsilon}}\right)\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}&=\oint_{\overrightarrow{C}+\overrightarrow{C}_{\varepsilon}^{-}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}=\iint_{\overrightarrow{M}_{\varepsilon}}\mathrm{d}\left(\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}\right)\\
+&=\iint_{\overrightarrow{M}_{\varepsilon}}0\,\mathrm{d}x\wedge\mathrm{d}y=0,
+\end{aligned}
+\]
+\[
+\oint_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}=\int_{\overrightarrow{C}_{\varepsilon}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}\reason{例 11.3.4}2\pi\quad(\text{\cref{fig:11.4.9}}).
+\]
+\item 如果 $\overrightarrow{C}$ 为正则 $C^{1}$ 曲线, 且原点位于 $\overrightarrow{C}$ 上 (\cref{fig:11.4.10}). $\forall\varepsilon>0$, 作圆 $x^{2}+y^{2}=\varepsilon^{2}$, 交 $\overrightarrow{C}$ 于点 $A_{\varepsilon}$ 与 $B_{\varepsilon}$. 设 $l$ 为原点的曲线 $C$ 的切线, 它与 Ox 轴夹角为 $\alpha_{0}$. 圆 $x^{2}+y^{2}=\varepsilon^{2}$ 截 $\overrightarrow{C}$ 得到的定向曲线段为 $\overrightarrow{C}_{\varepsilon}$. $\overrightarrow{C}$ 截圆得到的正向曲线段为 $\overrightarrow{\Gamma}_{\varepsilon}$. 于是,
+\[
+0\reason{Green 公式}\oint_{\overrightarrow{C_{\varepsilon}}+\overrightarrow{\Gamma}_{\varepsilon}^{-}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}=\left(\int_{\overrightarrow{C}_{\varepsilon}}-\int_{\overrightarrow{\Gamma}_{\varepsilon}}\right)\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}},
+\]
+\[
+\int_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}=\lim_{\varepsilon\to0^{+}}\int_{\overrightarrow{C}_{\varepsilon}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}
+\]
+\[
+\begin{aligned}
+&=\lim_{\varepsilon\to0^{+}}\int_{\overrightarrow{\Gamma}_{\varepsilon}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{x^{2}+y^{2}}\reason{$\left\{\begin{smallmatrix}x=\varepsilon\cos\varphi\\ y=\varepsilon\sin\varphi\end{smallmatrix}\right.$}\lim_{\varepsilon\to0^{+}}\int_{\alpha_{\varepsilon}}^{\beta_{\varepsilon}}\mathrm{d}\theta\\
+&=\lim_{\varepsilon\to0^{+}}(\beta_{\varepsilon}-\alpha_{\varepsilon})=(\pi+\alpha_{0})-\alpha_{0}=\pi.
+\end{aligned}\qedhere
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 坐标系
+      \draw[->] (-1.4,0) -- (2.3,0) node[below right] {$x$};
+      \draw[->] (0,-1.3) -- (0,1.8) node[above left] {$y$};
+      \fill (0,0) circle (1.5pt) node[below left] {$O$};
+      % 原点不在 C 所围区域 M 内
+      \draw[thick, fill=ThemeColor!8, postaction={decorate}, decoration={markings,
+        mark=at position 0.25 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.75 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[smooth cycle, tension=0.85] coordinates {(0.5,0.2) (1.2,1.3) (2.0,0.8) (1.8,-0.6) (0.9,-0.8)};
+      \node at (1.3,0.3) {$M$};
+      \node[ThemeColor, above right] at (1.9,0.8) {$\vec{C}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.8}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+      % 坐标系
+      \draw[->] (-1.8,0) -- (2.0,0) node[below right] {$x$};
+      \draw[->] (0,-1.5) -- (0,1.8) node[above left] {$y$};
+      \fill (0,0) circle (1.5pt) node[below left] {$O$};
+      % 原点在 C 内，挖去小圆 C_epsilon
+      % 外圈 C (逆时针)
+      \draw[thick, fill=ThemeColor!8, even odd rule, postaction={decorate}, decoration={markings,
+        mark=at position 0.25 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.75 with {\arrow[thick, ThemeColor]{>}}}]
+        plot[smooth cycle, tension=0.85] coordinates {(-1.1,-0.2) (-0.4,1.3) (1.2,1.0) (1.5,-0.6) (0.2,-1.1)}
+        (0,0) circle (0.45);
+      % 内圈 C_epsilon (顺时针/负向)
+      \draw[thick, ThemeColor, postaction={decorate}, decoration={markings,
+        mark=at position 0.25 with {\arrow[thick]{<}},
+        mark=at position 0.75 with {\arrow[thick]{<}}}]
+        (0,0) circle (0.45);
+      \node at (0.8,0.2) {$M$};
+      \node[ThemeColor, above right] at (1.2,1.0) {$\vec{C}$};
+      \node[ThemeColor, below right] at (0.35,-0.35) {$\vec{C}_\varepsilon^-$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.9}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 坐标轴
+      \draw[->] (-1.8,0) -- (1.9,0) node[below right] {$x$};
+      \draw[->] (0,-1.5) -- (0,1.6) node[above left] {$y$};
+      \fill (0,0) circle (1.5pt) node[below left] {$O$};
+      
+      % 原点在曲线 C 上：平滑曲线穿过原点，并在原点处挖去半圆弧
+      \draw[thick, postaction={decorate}, decoration={markings,
+        mark=at position 0.2 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.85 with {\arrow[thick, ThemeColor]{>}}}]
+        (-1.4,-0.8) .. controls (-0.8,0.8) and (-0.4,0.3) .. (-0.35,0.25);
+      \draw[thick] (0.35,-0.25) .. controls (0.8,-0.7) and (1.2,0.6) .. (1.5,1.1);
+      
+      % 半圆弧挖孔 Gamma_epsilon (虚线)
+      \draw[thick, dashed, ThemeColor, postaction={decorate}, decoration={markings,
+        mark=at position 0.55 with {\arrow[thick]{>}}}]
+        (-0.35,0.25) arc (140:-40:0.45);
+      \node[above, ThemeColor] at (0,0.55) {$\vec{\Gamma}_\varepsilon$};
+      \node[right, ThemeColor] at (1.3,0.9) {$\vec{C}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.10}
+  \end{minipage}\hfill
+  \begin{minipage}[b]{0.48\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+      % 三维坐标系
+      \draw[->] (0,0) -- (-1.1,-0.85) node[below left] {$x$};
+      \draw[->] (0,0) -- (1.8,0) node[right] {$y$};
+      \draw[->] (0,0) -- (0,1.9) node[above] {$z$};
+      \node[below right] at (0,0) {$O$};
+      
+      % 球面轮廓
+      \draw[dashed, gray!60] (0,0) circle (1.3);
+      % x+y+z=0 平面在球面的交线 C（大圆倾斜椭圆）
+      \draw[thick, fill=ThemeColor!8, rotate=-35, postaction={decorate}, decoration={markings,
+        mark=at position 0.25 with {\arrow[thick, ThemeColor]{>}},
+        mark=at position 0.75 with {\arrow[thick, ThemeColor]{>}}}]
+        (0,0) ellipse (1.3 and 0.48);
+      % 法向量 n = (1,1,1)/sqrt(3)
+      \draw[->, very thick, ThemeColor] (0,0) -- (0.75,0.95) node[above right] {$\boldsymbol{n}$};
+      \node[ThemeColor, below left] at (-0.65,-0.2) {$\vec{C}$};
+      \node at (0.2,-0.2) {$\vec{M}$};
+    \end{tikzpicture}
+    \caption{}\label{fig:11.4.11}
+  \end{minipage}
+\end{figure}
+
+\begin{example}\label{ex:11.4.5}
+设 $\overrightarrow{C}$ 是由球面 $x^{2}+y^{2}+z^{2}=a^{2}$ 与平面 $x+y+z=0$ 交成的圆周, 从第一卦限内看, 它的方向是按逆时针方向进行的 (\cref{fig:11.4.11}). 计算第二型曲线积分:
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z,
+\]
+\[
+\oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z.
+\]
+\end{example}
+\begin{solution}[解法 1]
+(1)
+\[
+\begin{aligned}
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z&\reason{Stokes 公式}\iint_{\overrightarrow{M}}\mathrm{d}(x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z)\\
+&=\iint_{\overrightarrow{M}}0\,\mathrm{d}y\wedge\mathrm{d}z+0\,\mathrm{d}z\wedge\mathrm{d}x+0\,\mathrm{d}x\wedge\mathrm{d}y=0,
+\end{aligned}\qedhere
+\]
+其中 $\overrightarrow{M}$ 为平面 $x+y+z=0$ 上的以原点为中心 $a$ 为半径的定向圆片, 并以 $\overrightarrow{C}$ 为诱导定向的边界.
+
+应用第二型曲面积分化为第一型曲面积分, 有
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z\reason{Stokes 公式}\iint_{M}\begin{vmatrix}
+\dfrac{1}{\sqrt{3}}&\dfrac{1}{\sqrt{3}}&\dfrac{1}{\sqrt{3}}\\[4pt]
+\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\[4pt]
+x&y&z
+\end{vmatrix}\mathrm{d}\sigma=\iint_{M}0\,\mathrm{d}\sigma=0.
+\]
+(2)
+\[
+\begin{aligned}
+\oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z&\reason{Stokes 公式}\iint_{M}\begin{vmatrix}
+\dfrac{1}{\sqrt{3}}&\dfrac{1}{\sqrt{3}}&\dfrac{1}{\sqrt{3}}\\[4pt]
+\dfrac{\partial}{\partial x}&\dfrac{\partial}{\partial y}&\dfrac{\partial}{\partial z}\\[4pt]
+z&x&y
+\end{vmatrix}\mathrm{d}\sigma=\frac{1}{\sqrt{3}}\iint_{M}(1+1+1)\mathrm{d}\sigma\\
+&=\sqrt{3}\iint_{M}\mathrm{d}\sigma=\sqrt{3}\pi a^{2}.
+\end{aligned}\qedhere
+\]
+或者
+\[
+\begin{aligned}
+\oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z&\reason{Stokes 公式}\iint_{\overrightarrow{M}}\mathrm{d}(z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z)\\
+&=\iint_{\overrightarrow{M}}\mathrm{d}y\wedge\mathrm{d}z+\mathrm{d}z\wedge\mathrm{d}x+\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{\overrightarrow{M}}\left(1\cdot\frac{1}{\sqrt{3}}+1\cdot\frac{1}{\sqrt{3}}+1\cdot\frac{1}{\sqrt{3}}\right)\mathrm{d}\sigma=\sqrt{3}\iint_{M}\mathrm{d}\sigma=\sqrt{3}\pi a^{2}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+由例 11.1.3 解法 1 知, 定向曲线 $\overrightarrow{C}$ 的参数表示为 (\cref{fig:11.1.1})
+\[
+\boldsymbol{x}(\theta)=a\left(\frac{1}{\sqrt{6}}\cos\theta+\frac{1}{\sqrt{2}}\sin\theta,-\frac{2}{\sqrt{6}}\cos\theta,\frac{1}{\sqrt{6}}\cos\theta-\frac{1}{\sqrt{2}}\sin\theta\right),\quad0\leqslant\theta\leqslant2\pi.
+\]
+因为 $e_{1},e_{2},e_{3}$ 的坐标组成的行列式
+\begin{align*}
+\begin{vmatrix}
+\dfrac{1}{\sqrt{6}}&-\dfrac{2}{\sqrt{6}}&\dfrac{1}{\sqrt{6}}\\[4pt]
+\dfrac{1}{\sqrt{2}}&0&-\dfrac{1}{\sqrt{2}}\\[4pt]
+\dfrac{1}{\sqrt{3}}&\dfrac{1}{\sqrt{3}}&\dfrac{1}{\sqrt{3}}
+\end{vmatrix}&=\frac{1}{6}\begin{vmatrix}1&-2&1\\ 1&0&-1\\ 1&1&1\end{vmatrix}
+=\frac{1}{6}\begin{vmatrix}1&-2&2\\ 1&0&0\\ 1&1&2\end{vmatrix}=1,
+\end{align*}
+所以 $e_{1},e_{2},e_{3}$ 为右手系的规范正交系, 当 $\theta$ 从 $0$ 变到 $2\pi$ 时曲线 $C$ 的方向就是 $\overrightarrow{C}$ 的定向.
+\begin{enumerate}[leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+\item 由于
+\begin{align*}
+\oint_{\overrightarrow{C}}y\mathrm{d}y&=\int_{0}^{2\pi}\left(-a\frac{2}{\sqrt{6}}\cos\theta\right)\left(a\frac{2}{\sqrt{6}}\sin\theta\right)\mathrm{d}\theta=-\frac{2}{3}a^{2}\int_{0}^{2\pi}\sin\theta\cos\theta\,\mathrm{d}\theta\\
+&=-\frac{2}{3}a^{2}\left.\frac{\sin^{2}\theta}{2}\right|_{0}^{2\pi}=0,
+\end{align*}
+再由对称性, 得
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x=\oint_{\overrightarrow{C}}z\mathrm{d}z=0.
+\]
+从而
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z=0.
+\qedhere
+\]
+\item
+\begin{align*}
+\oint_{\overrightarrow{C}}y\mathrm{d}z&=\int_{0}^{2\pi}\left(-a\frac{2}{\sqrt{6}}\cos\theta\right)\cdot a\left(-\frac{1}{\sqrt{6}}\sin\theta-\frac{1}{\sqrt{2}}\cos\theta\right)\mathrm{d}\theta\\
+&=\frac{2}{\sqrt{6}}a^{2}\cdot\frac{1}{\sqrt{2}}\int_{0}^{2\pi}\cos^{2}\theta\,\mathrm{d}\theta=\frac{a^{2}}{\sqrt{3}}\int_{0}^{2\pi}\frac{1+\cos2\theta}{2}\,\mathrm{d}\theta\\
+&=\frac{a^{2}}{\sqrt{3}}(\pi+0)=\frac{\sqrt{3}}{3}\pi a^{2},
+\end{align*}
+再由对称性可知
+\[
+\oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z=\sqrt{3}\pi a^{2}.
+\qedhere
+\]
+\end{enumerate}
+\end{solution}
+\begin{solution}[解法 3]
+事实上, 不通过具体计算也能得到所要的结果. 为此, 设 $\boldsymbol{x}=(x,y,z)$ 在 $\overrightarrow{C}$ 上 $\boldsymbol{x}\cdot\boldsymbol{x}=a^{2}$, 两边微分得到 $\boldsymbol{x}\cdot\mathrm{d}\boldsymbol{x}=0$. 于是,
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z=\oint_{\overrightarrow{C}}\boldsymbol{x}\cdot\mathrm{d}\boldsymbol{x}=\int_{0}^{2\pi}0\,\mathrm{d}\theta=0.
+\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.4.6}
+设 $C$ 为 $\Sigma=\{(x,y,z)\mid x,y,z\geqslant0,\ x+y+z=1\}$ 的边界 (\cref{fig:11.4.12}). $\Sigma$ 的定向与向量 $(1,1,1)$ 一致, $\overrightarrow{C}$ 为 $\Sigma$ 的诱导定向的曲线. 计算第二型曲线积分:
+\[
+(1)\ \oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z;\qquad (2)\ \oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z.
+\]
+\end{example}
+\begin{solution}[解法 1]
+(1)
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z\reason{Stokes 公式}\iint_{\overrightarrow{\Sigma}}\mathrm{d}(x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z)=\iint_{\overrightarrow{\Sigma}}0\,\mathrm{d}y\wedge\mathrm{d}z+0\,\mathrm{d}z\wedge\mathrm{d}x+0\,\mathrm{d}x\wedge\mathrm{d}y=0.
+\qedhere
+\]
+(2)
+\[
+\begin{aligned}
+\oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z&=\iint_{\overrightarrow{\Sigma}}\mathrm{d}(z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z)=\iint_{\overrightarrow{\Sigma}}\mathrm{d}z\wedge\mathrm{d}x+\mathrm{d}y\wedge\mathrm{d}z+\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{\overrightarrow{\Sigma}}\left(1\cdot\frac{1}{\sqrt{3}}+1\cdot\frac{1}{\sqrt{3}}+1\cdot\frac{1}{\sqrt{3}}\right)\mathrm{d}\sigma=\frac{3}{\sqrt{3}}\iint_{\overrightarrow{\Sigma}}\mathrm{d}\sigma\\
+&=\sqrt{3}\sigma(\Sigma)=\sqrt{3}\cdot\frac{1}{2}(\sqrt{2})^{2}\sin\frac{\pi}{3}=\sqrt{3}\cdot\frac{\sqrt{3}}{2}=\frac{3}{2}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+设 $C=C_{1}+C_{2}+C_{3}$, 即 $C$ 由三条定向直线组成, $C_{1}$ 在 yOz 平面内, 以 $y$ 为参数, $\overrightarrow{C}_{1}$ 的参数表示为
+\[
+\boldsymbol{x}(y)=(0,y,1-y);
+\]
+$\overrightarrow{C}_{2}$ 在 zOx 平面内, 以 $z$ 为参数, $\overrightarrow{C}_{2}$ 的参数表示为
+\[
+\boldsymbol{x}(z)=(1-z,0,z);
+\]
+$C_{3}$ 在 xOy 平面内, 以 $x$ 为参数, $C_{3}$ 的参数表示为
+\[
+\boldsymbol{x}(x)=(x,1-x,0).
+\]
+由此得到:
+\begin{enumerate}[leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+\item
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}_{3}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z&\reason{$\boldsymbol{x}'(x)=(x,1-x,0)'=(1,-1,0)$}\int_{1}^{0}(x,y,z)\cdot(1,-1,0)\mathrm{d}x\\
+&=\int_{1}^{0}(x-y)\mathrm{d}x=\int_{1}^{0}[x-(1-x)]\mathrm{d}x\\
+&=\int_{1}^{0}(2x-1)\mathrm{d}x=\left.(x^{2}-x)\right|_{1}^{0}=0.
+\end{aligned}\qedhere
+\]
+同理或由对称性, 有
+\[
+\int_{\overrightarrow{C}_{1}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z=\int_{\overrightarrow{C}_{2}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z=0.
+\]
+因此,
+\[
+\oint_{\overrightarrow{C}}x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z=\left(\int_{\overrightarrow{C}_{1}}+\int_{\overrightarrow{C}_{2}}+\int_{\overrightarrow{C}_{3}}\right)x\mathrm{d}x+y\mathrm{d}y+z\mathrm{d}z=0+0+0=0.
+\]
+\item
+\[
+\begin{aligned}
+\int_{\overrightarrow{C}_{3}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z&=\int_{1}^{0}(z,x,y)\cdot(1,-1,0)\mathrm{d}x=\int_{1}^{0}(z-x)\mathrm{d}x\\
+&=\int_{1}^{0}(0-x)\mathrm{d}x=\int_{0}^{1}x\mathrm{d}x=\frac{x^{2}}{2}\bigg|_{0}^{1}=\frac{1}{2}.
+\end{aligned}\qedhere
+\]
+由对称性得到
+\[
+\oint_{\overrightarrow{C}}z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z=\left(\int_{\overrightarrow{C}_{1}}+\int_{\overrightarrow{C}_{2}}+\int_{\overrightarrow{C}_{3}}\right)z\mathrm{d}x+x\mathrm{d}y+y\mathrm{d}z=\frac{1}{2}+\frac{1}{2}+\frac{1}{2}=\frac{3}{2}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, >=stealth, line cap=round, line join=round]
+    % 三维坐标系
+    \draw[->] (0,0) -- (-1.5,-1.15) node[below left] {$x$};
+    \draw[->] (0,0) -- (2.5,0) node[right] {$y$};
+    \draw[->] (0,0) -- (0,2.3) node[above] {$z$};
+    \node[below right] at (0,0) {$O$};
+    
+    % 三个顶点 (1,0,0), (0,1,0), (0,0,1)
+    \coordinate (A) at (-1.05,-0.8);
+    \coordinate (B) at (1.8,0);
+    \coordinate (C) at (0,1.75);
+    
+    % 截面三角形 \Sigma 填充
+    \fill[ThemeColor!10] (A) -- (B) -- (C) -- cycle;
+    
+    % 边界闭路 C 带有逆时针定向箭头 (右手系匹配法向量 (1,1,1))
+    % A -> B -> C -> A
+    \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+      (A) -- (B) node[midway, below] {};
+    \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+      (B) -- (C) node[midway, above right] {};
+    \draw[thick, postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow[thick, ThemeColor]{>}}}]
+      (C) -- (A) node[midway, above left] {};
+      
+    % 坐标轴与各点标注
+    \fill (A) circle (1.5pt) node[below left] {$A(1,0,0)$};
+    \fill (B) circle (1.5pt) node[below right] {$B(0,1,0)$};
+    \fill (C) circle (1.5pt) node[above left] {$C(0,0,1)$};
+    
+    % 法向量 n
+    \coordinate (G) at (0.25,0.32);
+    \draw[->, very thick, ThemeColor] (G) -- (0.95,1.05) node[above right] {$\boldsymbol{n}=\frac{1}{\sqrt{3}}(1,1,1)$};
+    \node at (0.2,0.15) {$\Sigma$};
+    \node[ThemeColor, right] at (1.0,0.8) {$\vec{C}$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.4.12}
+\end{figure}
+
+\begin{example}\label{ex:11.4.7}
+计算第二型曲面积分
+\[
+\iint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\Sigma=\{(x,y,z)\mid x,y,z\geqslant0,\ x+y+z=1\}$, $\overrightarrow{\Sigma}$ 的方向与向量 $(1,1,1)$ 一致 (\cref{fig:11.4.13}).
+\end{example}
+\begin{solution}
+解法 1, 2\ \ 参阅例 11.3.11 的解法 1, 2.
+\end{solution}
+\begin{solution}[解法 3]
+$\overrightarrow{\Sigma}$ 不是封闭曲面, 如何应用 Gauss 公式? 考虑 $\mathbb{R}^{3}$ 中四面体 $OABC$, 记作 $M$, 相应的定向为右手系, 其定向区域为 $\overrightarrow{M}$, $\overrightarrow{\partial M}$ 为 $\overrightarrow{M}$ 所确定的诱导定向曲面, 这诱导定向为 $\partial M$ 的外法向. $\overrightarrow{\partial M}$ 与 $\overrightarrow{\Sigma}$ 方向一致. 三个坐标面上的定向三角形分别为 $\overrightarrow{\Sigma}_{1},\overrightarrow{\Sigma}_{2},\overrightarrow{\Sigma}_{3}$.
+\[
+\iint_{\overrightarrow{\Sigma}_{3}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y\reason{$z=0,\mathrm{d}z=0$}0,
+\]
+由对称性, 有
+\[
+\iint_{\overrightarrow{\Sigma}_{1}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y=\iint_{\overrightarrow{\Sigma}_{2}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y=0.
+\]
+于是,
+\[
+\begin{aligned}
+3v(M)&=\iiint\limits_{\overrightarrow{M}}(1+1+1)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\\
+&\reason{Gauss 公式}\iint\limits_{\overrightarrow{\partial M}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y\\
+&=\left(\iint\limits_{\overrightarrow{\Sigma}_{1}}+\iint\limits_{\overrightarrow{\Sigma}_{2}}+\iint\limits_{\overrightarrow{\Sigma}_{3}}+\iint\limits_{\overrightarrow{\Sigma}}\right)x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y\\
+&=0+0+0+\iint\limits_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint\limits_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y.
+\end{aligned}
+\]
+而 $v(M)=\dfrac{1}{6}$, 故
+\[
+\iint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y=3v(M)=\frac{1}{2}.
+\qedhere
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, >=stealth, line cap=round, line join=round]
+    % 三维坐标系
+    \draw[->] (0,0) -- (-1.5,-1.15) node[below left] {$x$};
+    \draw[->] (0,0) -- (2.5,0) node[right] {$y$};
+    \draw[->] (0,0) -- (0,2.3) node[above] {$z$};
+    \node[below right] at (0,0) {$O$};
+    
+    % 顶点
+    \coordinate (A) at (-1.05,-0.8);
+    \coordinate (B) at (1.8,0);
+    \coordinate (C) at (0,1.75);
+    
+    % 封闭立体区域 M
+    \fill[ThemeColor!8] (A) -- (B) -- (C) -- cycle;
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+    \draw[thick, dashed] (0,0) -- (A);
+    \draw[thick, dashed] (0,0) -- (B);
+    \draw[thick, dashed] (0,0) -- (C);
+    
+    \fill (A) circle (1.5pt) node[below left] {$A$};
+    \fill (B) circle (1.5pt) node[below right] {$B$};
+    \fill (C) circle (1.5pt) node[above left] {$C$};
+    
+    % 外法向量
+    \coordinate (G) at (0.25,0.32);
+    \draw[->, very thick, ThemeColor] (G) -- (0.95,1.05) node[above right] {$\boldsymbol{n}$};
+    \node at (0.2,0.1) {$M$};
+    \node[right] at (0.5,0.85) {$\vec{\Sigma}$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.4.13}
+\end{figure}
+
+\begin{example}\label{ex:11.4.8}
+计算第二型曲面积分
+\[
+\oint_{\overrightarrow{S^{2}(R)}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\overrightarrow{S^{2}(R)}$ 为方向朝外的以原点为中心半径为 $R$ 的球面. 相应的半径为 $R$ 的方向为右手系的球体为 $\overrightarrow{V}$.
+\end{example}
+\begin{solution}[解法 1]
+\[
+\begin{aligned}
+\iint_{\overrightarrow{S^{2}(R)}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y&\reason{Stokes 公式}\iiint\limits_{\overrightarrow{V}}(1+1+1)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\\
+&=3\iiint\limits_{\overrightarrow{V}}\mathrm{d}x\mathrm{d}y\mathrm{d}z=3v(V)=3\cdot\frac{4}{3}\pi R^{3}=4\pi R^{3}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+\[
+\begin{aligned}
+&\iint_{\overrightarrow{S^{2}(R)}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y\\
+&\reason{球面坐标}\iint_{\substack{0\leqslant\theta\leqslant\pi\\ 0\leqslant\varphi\leqslant2\pi}}\begin{vmatrix}
+x&y&z\\[2pt]
+\dfrac{\partial x}{\partial\theta}&\dfrac{\partial y}{\partial\theta}&\dfrac{\partial z}{\partial\theta}\\[4pt]
+\dfrac{\partial x}{\partial\varphi}&\dfrac{\partial y}{\partial\varphi}&\dfrac{\partial z}{\partial\varphi}
+\end{vmatrix}\mathrm{d}\theta\mathrm{d}\varphi\\
+&=\iint_{\substack{0\leqslant\theta\leqslant\pi\\ 0\leqslant\varphi\leqslant2\pi}}\begin{vmatrix}
+R\sin\theta\cos\varphi&R\sin\theta\sin\varphi&R\cos\theta\\
+R\cos\theta\cos\varphi&R\cos\theta\sin\varphi&R\sin\theta\\
+-R\sin\theta\sin\varphi&R\sin\theta\cos\varphi&0
+\end{vmatrix}\mathrm{d}\theta\mathrm{d}\varphi\\
+&=R^{3}\iint_{\substack{0\leqslant\theta\leqslant\pi\\ 0\leqslant\varphi\leqslant2\pi}}\bigl[\cos\theta(\sin\theta\cos\theta)-(-\sin\theta)\sin^{2}\theta\bigr]\mathrm{d}\theta\mathrm{d}\varphi=R^{3}\iint_{\substack{0\leqslant\theta\leqslant\pi\\ 0\leqslant\varphi\leqslant2\pi}}\sin\theta\,\mathrm{d}\theta\mathrm{d}\varphi\\
+&=R^{3}\int_{0}^{2\pi}\mathrm{d}\varphi\int_{0}^{\pi}\sin\theta\,\mathrm{d}\theta=2\pi R^{3}(-\cos\theta)\Big|_{0}^{\pi}=4\pi R^{3}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 3]
+\[
+\begin{aligned}
+\iint_{\overrightarrow{S^{2}(R)}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{\overrightarrow{S^{2}(R)}}(x,y,z)\cdot\left(\frac{x}{R},\frac{y}{R},\frac{z}{R}\right)\mathrm{d}\sigma\\
+&=\iint_{\overrightarrow{S^{2}(R)}}\frac{1}{R}(x^{2}+y^{2}+z^{2})\mathrm{d}\sigma\\
+&=R\iint_{\overrightarrow{S^{2}(R)}}\mathrm{d}\sigma=R\sigma(S^{2}(R))=R\cdot4\pi R^{2}=4\pi R^{3}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:11.4.9}
+计算第二型曲面积分
+\[
+\begin{aligned}
+&\iint_{\overrightarrow{\Sigma}}yz\,\mathrm{d}y\wedge\mathrm{d}z+zx\,\mathrm{d}z\wedge\mathrm{d}x\\
+&\quad+xy\,\mathrm{d}x\wedge\mathrm{d}y,
+\end{aligned}
+\]
+其中 $\overrightarrow{\Sigma}$ 是方向朝外的一段圆柱面: $x^{2}+y^{2}=R^{2},\ 0\leqslant z\leqslant h$ (\cref{fig:11.4.14}).
+\end{example}
+\begin{solution}[解法 1]
+设定向圆柱面 $\overrightarrow{\Sigma}$ 的参数表示为
+\[
+\boldsymbol{x}(\varphi,z)=(R\cos\varphi,R\sin\varphi,z),
+\]
+\[
+\begin{aligned}
+\boldsymbol{x}_{\varphi}'\times\boldsymbol{x}_{z}'&=\begin{vmatrix}
+\boldsymbol{e}_{1}&\boldsymbol{e}_{2}&\boldsymbol{e}_{3}\\
+-R\sin\varphi&R\cos\varphi&0\\
+0&0&1
+\end{vmatrix}=(R\cos\varphi,R\sin\varphi,0),
+\end{aligned}
+\]
+单位法向量场 $\boldsymbol{n}_{0}=(\cos\varphi,\sin\varphi,0)$. 于是,
+\[
+\begin{aligned}
+&\iint\limits_{\overrightarrow{\Sigma}}yz\,\mathrm{d}y\wedge\mathrm{d}z+zx\,\mathrm{d}z\wedge\mathrm{d}x+xy\,\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint\limits_{\overrightarrow{\Sigma}}(yz\cos\varphi+zx\sin\varphi+xy\cdot0)\mathrm{d}\sigma\\
+&\reason{柱面坐标}\iint_{\substack{0\leqslant\varphi\leqslant2\pi\\ 0\leqslant z\leqslant h}}(R\sin\varphi\cos\varphi+R\cos\varphi\sin\varphi)zR\,\mathrm{d}\varphi\mathrm{d}z\\
+&=2R^{2}\int_{0}^{2\pi}\sin\varphi\cos\varphi\,\mathrm{d}\varphi\int_{0}^{h}z\,\mathrm{d}z=2R^{2}\cdot\left.\frac{\sin^{2}\varphi}{2}\right|_{0}^{2\pi}\cdot\left.\frac{z^{2}}{2}\right|_{0}^{h}=0.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+\[
+\begin{aligned}
+&\iint\limits_{\overrightarrow{\Sigma}}yz\,\mathrm{d}y\wedge\mathrm{d}z+zx\,\mathrm{d}z\wedge\mathrm{d}x+xy\,\mathrm{d}x\wedge\mathrm{d}y\\
+&\reason{$\varphi,z$ 为参数}\iint_{\substack{0\leqslant\varphi\leqslant2\pi\\ 0\leqslant z\leqslant h}}\begin{vmatrix}
+yz&zx&xy\\[2pt]
+\dfrac{\partial x}{\partial\varphi}&\dfrac{\partial y}{\partial\varphi}&\dfrac{\partial z}{\partial\varphi}\\[4pt]
+\dfrac{\partial x}{\partial z}&\dfrac{\partial y}{\partial z}&\dfrac{\partial z}{\partial z}
+\end{vmatrix}\mathrm{d}\varphi\mathrm{d}z\\
+&=\iint_{\substack{0\leqslant\varphi\leqslant2\pi\\ 0\leqslant z\leqslant h}}\begin{vmatrix}
+R\sin\varphi\cdot z&R\cos\varphi\cdot z&R^{2}\sin\varphi\cos\varphi\\
+-R\sin\varphi&R\cos\varphi&0\\
+0&0&1
+\end{vmatrix}\mathrm{d}\varphi\mathrm{d}z\\
+&=2R^{2}\int_{0}^{2\pi}\sin\varphi\cos\varphi\,\mathrm{d}\varphi\int_{0}^{h}z\,\mathrm{d}z=0.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 3]
+因为 $\overrightarrow{\Sigma}$ 不是封闭曲面, 所以不能直接应用 Stokes 公式. 我们可以与例 \cref{ex:11.4.7} 解法 3 一样用``加盖''的办法, 再应用 Stokes 公式. 如图 \cref{fig:11.4.14}, $\overrightarrow{\Sigma}+\overrightarrow{\Sigma}_{\text{下}}+\overrightarrow{\Sigma}_{\text{上}}$ 组成一个定向封闭曲面, 方向为外法向. 它所围的三维定向区域为 $\overrightarrow{V}$, 方向为右手系. 因为当 $z=0,h$ 时, $\mathrm{d}z=0$. 于是,
+\[
+\begin{aligned}
+&\left(\iint\limits_{\overrightarrow{\Sigma}_{\text{上}}}+\iint\limits_{\overrightarrow{\Sigma}_{\text{下}}}\right)yz\,\mathrm{d}y\wedge\mathrm{d}z+zx\,\mathrm{d}z\wedge\mathrm{d}x+xy\,\mathrm{d}x\wedge\mathrm{d}y\\
+&=\left(\iint\limits_{\overrightarrow{\Sigma}_{\text{上}}}+\iint\limits_{\overrightarrow{\Sigma}_{\text{下}}}\right)xy\,\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{x^{2}+y^{2}\leqslant R^{2}}xy\,\mathrm{d}x\mathrm{d}y-\iint_{x^{2}+y^{2}\leqslant R^{2}}xy\,\mathrm{d}x\mathrm{d}y=0.
+\end{aligned}
+\]
+由此得到
+\[
+\begin{aligned}
+&\iint\limits_{\overrightarrow{\Sigma}}yz\,\mathrm{d}y\wedge\mathrm{d}z+zx\,\mathrm{d}z\wedge\mathrm{d}x+xy\,\mathrm{d}x\wedge\mathrm{d}y\\
+&=\left(\iint\limits_{\overrightarrow{\Sigma}_{\text{上}}}+\iint\limits_{\overrightarrow{\Sigma}_{\text{下}}}+\iint\limits_{\overrightarrow{\Sigma}}\right)\\
+&\quad yz\,\mathrm{d}y\wedge\mathrm{d}z+zx\,\mathrm{d}z\wedge\mathrm{d}x+xy\,\mathrm{d}x\wedge\mathrm{d}y\\
+&\reason{Stokes 公式}\iiint\limits_{\overrightarrow{V}}\left[\frac{\partial(yz)}{\partial x}+\frac{\partial(zx)}{\partial y}+\frac{\partial(xy)}{\partial z}\right]\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\\
+&=\iiint\limits_{\overrightarrow{V}}0\,\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z=0.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-1.8,0) -- (2.0,0) node[below right] {$x$};
+    \draw[->] (0,-1.3) -- (0,2.9) node[above] {$z$};
+    \node[below left] at (0,0) {$O$};
+    
+    % 底面圆 Sigma_下
+    \draw[thick, fill=ThemeColor!6] (0,0) ellipse (1.3 and 0.45);
+    \draw[->, thick, ThemeColor] (0,0) -- (0,-0.65) node[below] {$\vec{\Sigma}_{\text{下}}$};
+    
+    % 侧面圆柱边界
+    \draw[thick] (-1.3,0) -- (-1.3,1.9);
+    \draw[thick] (1.3,0) -- (1.3,1.9);
+    
+    % 顶面圆 Sigma_上
+    \draw[thick, fill=ThemeColor!10] (0,1.9) ellipse (1.3 and 0.45);
+    \draw[->, thick, ThemeColor] (0,1.9) -- (0,2.55) node[above] {$\vec{\Sigma}_{\text{上}}$};
+    
+    % 侧面法向外
+    \draw[->, thick, ThemeColor] (1.3,0.95) -- (1.8,0.95) node[right] {$\vec{\Sigma}$};
+    \node at (0,0.95) {$V$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.4.14}
+\end{figure}
+
+\begin{example}\label{ex:11.4.10}
+设 $\overrightarrow{\Sigma}$ 为立方体 $V=[0,1]^{3}$ 的表面, 并取外法向. 计算第二型曲面积分
+\[
+\oint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y.
+\]
+\end{example}
+\begin{solution}[解法 1]
+设 $V$ 的定向取作右手系, 根据 Stokes 公式, 有
+\[
+\begin{aligned}
+\oint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y&=\iiint\limits_{V}(1+1+1)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z\\
+&=3\iiint\limits_{V}\mathrm{d}x\mathrm{d}y\mathrm{d}z=3v(V)=3\cdot1^{3}=3.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+将 $\overrightarrow{\Sigma}$ 分成 $\overrightarrow{\Sigma}_{\text{上}},\overrightarrow{\Sigma}_{\text{下}},\overrightarrow{\Sigma}_{\text{左}},\overrightarrow{\Sigma}_{\text{右}},\overrightarrow{\Sigma}_{\text{前}},\overrightarrow{\Sigma}_{\text{后}}$ 6 块小定向曲面 (\cref{fig:11.4.15}). 由于
+\[
+\begin{aligned}
+\overrightarrow{\Sigma}_{\text{左}}&:\ y=0,\ \mathrm{d}y=0,\\
+\overrightarrow{\Sigma}_{\text{右}}&:\ y=1,\ \mathrm{d}y=0,\\
+\overrightarrow{\Sigma}_{\text{前}}&:\ x=0,\ \mathrm{d}x=0,
+\end{aligned}
+\]
+\[
+\overrightarrow{\Sigma}_{\text{后}}:\ x=0,\ \mathrm{d}x=0,
+\]
+故
+\[
+\begin{aligned}
+\iint_{\overrightarrow{\Sigma}}z\mathrm{d}x\wedge\mathrm{d}y&=\iint_{\overrightarrow{\Sigma}_{\text{上}}}z\mathrm{d}x\wedge\mathrm{d}y+\iint_{\overrightarrow{\Sigma}_{\text{下}}}z\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint_{[0,1]^{2}}1\,\mathrm{d}x\mathrm{d}y-\iint_{[0,1]^{2}}0\,\mathrm{d}x\mathrm{d}y=1-0=1.
+\end{aligned}
+\]
+由对称性, 有
+\[
+\oint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z=\oint_{\overrightarrow{\Sigma}}y\mathrm{d}z\wedge\mathrm{d}x=1.
+\]
+于是
+\[
+\oint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y=1+1+1=3.
+\qedhere
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.2, >=stealth, line cap=round, line join=round]
+    % 坐标系
+    \draw[->] (0,0) -- (-1.2,-0.9) node[below left] {$x$};
+    \draw[->] (0,0) -- (2.4,0) node[right] {$y$};
+    \draw[->] (0,0) -- (0,2.2) node[above] {$z$};
+    \node[below right] at (0,0) {$O$};
+    
+    % 立方体顶点
+    \coordinate (O) at (0,0);
+    \coordinate (X) at (-0.8,-0.6);
+    \coordinate (Y) at (1.6,0);
+    \coordinate (Z) at (0,1.6);
+    \coordinate (XY) at (0.8,-0.6);
+    \coordinate (XZ) at (-0.8,1.0);
+    \coordinate (YZ) at (1.6,1.6);
+    \coordinate (XYZ) at (0.8,1.0);
+    
+    % 填充与面
+    \fill[ThemeColor!6] (O) -- (Y) -- (YZ) -- (Z) -- cycle;
+    \fill[ThemeColor!10] (Z) -- (XZ) -- (XYZ) -- (YZ) -- cycle;
+    \fill[ThemeColor!14] (Y) -- (XY) -- (XYZ) -- (YZ) -- cycle;
+    
+    % 虚线内棱
+    \draw[thick, dashed] (O) -- (X);
+    \draw[thick, dashed] (O) -- (Y);
+    \draw[thick, dashed] (O) -- (Z);
+    
+    % 实线外棱
+    \draw[thick] (X) -- (XY) -- (Y);
+    \draw[thick] (X) -- (XZ);
+    \draw[thick] (XY) -- (XYZ);
+    \draw[thick] (Y) -- (YZ);
+    \draw[thick] (Z) -- (XZ) -- (XYZ) -- (YZ) -- (Z);
+    
+    % 外法向量
+    \draw[->, thick, ThemeColor] (0.8,1.3) -- (0.8,1.8) node[above] {$\vec{\Sigma}_{\text{上}}$};
+    \draw[->, thick, ThemeColor] (1.2,0.5) -- (1.7,0.5) node[right] {$\vec{\Sigma}_{\text{右}}$};
+    \node at (0.4,0.4) {$V$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.4.15}
+\end{figure}
+
+\begin{example}\label{ex:11.4.11}
+计算第二型曲面积分
+\[
+\iint_{\overrightarrow{\Sigma}}(y^{2}+z^{2})\mathrm{d}y\wedge\mathrm{d}z+(z^{2}+x^{2})\mathrm{d}z\wedge\mathrm{d}x+(x^{2}+y^{2})\mathrm{d}x\wedge\mathrm{d}y,
+\]
+其中 $\overrightarrow{\Sigma}$ 为上半球面 $x^{2}+y^{2}+z^{2}=R^{2}$, 法向量朝外.
+\end{example}
+\begin{solution}[解法 1]
+设 $\overrightarrow{\Sigma}_{0}=\{(x,y,0)\mid x^{2}+y^{2}\leqslant R^{2}\}$, 方向朝下. 则 $\overrightarrow{\Sigma}+\overrightarrow{\Sigma}_{0}$ 为封闭定向曲面 (加底封闭或加盖封闭). 它所围的定向区域为 $\overrightarrow{M}$, 取右手系 (\cref{fig:11.4.16}). 于是,
+\[
+\begin{aligned}
+&\iint_{\overrightarrow{\Sigma}+\overrightarrow{\Sigma}_{0}}(y^{2}+z^{2})\mathrm{d}y\wedge\mathrm{d}z+(z^{2}+x^{2})\mathrm{d}z\wedge\mathrm{d}x+(x^{2}+y^{2})\mathrm{d}x\wedge\mathrm{d}y\\
+&\reason{Gauss 公式}\iiint_{\overrightarrow{M}}(0+0+0)\mathrm{d}x\wedge\mathrm{d}y\wedge\mathrm{d}z=0.
+\end{aligned}
+\]
+由此得到
+\[
+\begin{aligned}
+&\iint_{\overrightarrow{\Sigma}}(y^{2}+z^{2})\mathrm{d}y\wedge\mathrm{d}z+(z^{2}+x^{2})\mathrm{d}z\wedge\mathrm{d}x+(x^{2}+y^{2})\mathrm{d}x\wedge\mathrm{d}y\\
+&=-\iint_{\overrightarrow{\Sigma}_{0}}(y^{2}+z^{2})\mathrm{d}y\wedge\mathrm{d}z+(z^{2}+x^{2})\mathrm{d}z\wedge\mathrm{d}x+(x^{2}+y^{2})\mathrm{d}x\wedge\mathrm{d}y\\
+&\reason{$z=0,\mathrm{d}z=0$}\iint_{\overrightarrow{\Sigma}_{0}^{-}}(x^{2}+y^{2})\mathrm{d}x\wedge\mathrm{d}y\reason{极坐标}\int_{0}^{2\pi}\mathrm{d}\varphi\int_{0}^{R}r^{3}\,\mathrm{d}r=2\pi\frac{r^{4}}{4}\Big|_{0}^{R}=\frac{\pi}{2}R^{4}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+\begin{solution}[解法 2]
+\[
+\begin{aligned}
+&\iint\limits_{\overrightarrow{\Sigma}}(y^{2}+z^{2})\mathrm{d}y\wedge\mathrm{d}z+(z^{2}+x^{2})\mathrm{d}z\wedge\mathrm{d}x+(x^{2}+y^{2})\mathrm{d}x\wedge\mathrm{d}y\\
+&=\iint\limits_{\overrightarrow{\Sigma}}\left[(y^{2}+z^{2})\frac{x}{R}+(z^{2}+x^{2})\frac{y}{R}+(x^{2}+y^{2})\frac{z}{R}\right]\mathrm{d}\sigma\\
+&\reason{正负相消}\frac{1}{R}\iint\limits_{\overrightarrow{\Sigma}}(x^{2}+y^{2})z\,\mathrm{d}\sigma\reason{球面坐标}\frac{1}{R}\iint_{\substack{0\leqslant\theta\leqslant\frac{\pi}{2}\\ 0\leqslant\varphi\leqslant2\pi}}R^{2}\sin^{2}\theta\cdot R\cos\theta\cdot R^{2}\sin\theta\,\mathrm{d}\theta\mathrm{d}\varphi\\
+&=R^{4}\int_{0}^{2\pi}\mathrm{d}\varphi\int_{0}^{\frac{\pi}{2}}\sin^{3}\theta\,\mathrm{d}\sin\theta=2\pi R^{4}\cdot\left.\frac{\sin^{4}\theta}{4}\right|_{0}^{\frac{\pi}{2}}=\frac{\pi}{2}R^{4}.
+\end{aligned}\qedhere
+\]
+\end{solution}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.15, >=stealth, line cap=round, line join=round]
+    % 坐标轴
+    \draw[->] (-1.3,-0.9) -- (1.6,1.1) node[below left] {};
+    \draw[->] (-1.8,0) -- (1.9,0) node[below right] {$y$};
+    \draw[->] (0,-0.8) -- (0,2.0) node[above] {$z$};
+    \node[below right] at (0,0) {$O$};
+    
+    % 底盘 Sigma_0 (椭圆)
+    \draw[thick, fill=ThemeColor!6] (0,0) ellipse (1.4 and 0.45);
+    \draw[->, thick, ThemeColor] (0,0) -- (0,-0.65) node[below] {$\vec{\Sigma}_0$};
+    
+    % 上半球面轮廓
+    \draw[thick, fill=ThemeColor!8] (1.4,0) arc (0:180:1.4);
+    
+    % 外法向量
+    \draw[->, thick, ThemeColor] (0.85,1.1) -- (1.3,1.6) node[above right] {$\vec{\Sigma}$};
+    \node at (0,0.6) {$V$};
+  \end{tikzpicture}
+  \caption{}\label{fig:11.4.16}
+\end{figure}
+
+Green 公式, Stokes 公式与 Gauss 公式可推广到 $\mathbb{R}^{n}$ 中 $k$ 维定向曲面 $\overrightarrow{M}$ 与 $k-1$ 维诱导定向的边界曲面 $\overrightarrow{\partial M}$ 的情形. 更进一步, 如果所考虑的 $M$ 与 $\partial M$ 不一定有整体坐标 (即整体的参数表示, 如单位球面就没有整体坐标, 参阅文献 [5], p.\,2). 因此, 只能降低要求, $M$ 与 $\partial M$ 分别为 $k$ 维与 $k-1$ 维微分流形, 它们被一些局部坐标系的局部坐标邻域所覆盖. 惊人的是 Stokes 公式 $\int_{\partial M}\omega=\int_{\overrightarrow{M}}\mathrm{d}\omega$ 依然成立.
+
+细心的读者会想到, 在 $S^{n}(a)$ 采用的球面坐标并不是整体坐标, 例 11.2.3 中指出, 当 $\theta=0,\pi$ 时, $\boldsymbol{x}_{\theta}'\times\boldsymbol{x}_{\varphi}'=0$, 选择 $(\theta,\varphi)$ 作为参数造成了``北极''与``南极''为奇异点! 此外, 当 $\varphi=0$ 与 $2\pi$ 时, 球面上相应的点是一样的, 即有重点. 因此, 必须引进局部坐标系, 流形以及单位分解等重要概念才能精确给出第一型与第二型曲线, 曲面积分 (后者就是定向流形上的外微分形式的积分) 的定义. 给出的大量的计算题, 虽然没有用单位分解来处理, 好在各例题中的奇异点与重点充其量只是一个零面积集或零体积集, 它不会影响积分的值. 读者可以放心使用.
+
+细心的读者还会想到, Green 公式的定理 \cref{thm:11.4.2} 中对区域 $M$ 所加的条件: $M$ 既能分成有限个不相重叠的第一种定向闭域, 又能分成有限个不相重叠的第二种定向闭域, 对一般的平面定向闭域是否一定能做到, 理论上的论证是十分困难的. 这是我们证明 Green 公式时不严密的地方. 关于 Gauss 公式与 Stokes 公式也有类似的问题. 这里我们用几何直观粗糙地进行了论证. 在流形上引进单位分解避免了这种困难, 一切问题就迎刃而解了.
+
+\begin{exblock}{练习题 11.4}
+\item 应用 Green 公式计算第二型曲线积分:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\oint_{\overrightarrow{C}}xy^{2}\mathrm{d}y-x^{2}y\mathrm{d}x$, $\overrightarrow{C}$ 为逆时针方向的圆周 $x^{2}+y^{2}=a^{2}\ (a>0)$;
+  \item $\displaystyle\oint_{\overrightarrow{C}}(x+y)\mathrm{d}x-(x-y)\mathrm{d}y$, $\overrightarrow{C}$ 为逆时针方向的椭圆 $\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1\ (a>0,b>0)$;
+  \item $\displaystyle\oint_{\overrightarrow{C}}\mathrm{e}^{x}\sin y\,\mathrm{d}x+\mathrm{e}^{x}\cos y\,\mathrm{d}y$, $\overrightarrow{C}$ 为沿 $x$ 增加方向的上半圆周 $x^{2}+y^{2}=ax$.
+  \end{enumerate}
+\item 用 Green 公式计算下列曲线围成的面积:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item 星形线 $(x,y)=(a\cos^{3}t,a\sin^{3}t),\ 0\leqslant t\leqslant2\pi$;
+  \item 双纽线 $(x^{2}+y^{2})^{2}=a^{2}(x^{2}-y^{2})$ (提示: 令 $y=x\tan\theta$);
+  \item 笛卡儿叶形线 $x^{3}+y^{3}=3axy\ (a>0)$ (提示: 令 $y=xt$);
+  \item $\left(\frac{x}{a}\right)^{2n+1}+\left(\frac{y}{b}\right)^{2n+1}=c\left(\frac{x}{a}\right)^{n}\left(\frac{y}{b}\right)^{n}$, 常数 $a,b,c>0,\ n\in\mathbb{Z}_{+}$.
+  \end{enumerate}
+\item 设封闭曲线 $C$ 有 $C^{1}$ 参数表示 $(x,y)=(x(t),y(t))$, $t\in[\alpha,\beta]$, 参数 $t$ 增加指明了 $\overrightarrow{C}$ 的方向. 证明: $\overrightarrow{C}$ 围成的面积为
+  \[
+  \frac{1}{2}\int_{\alpha}^{\beta}\begin{vmatrix}x(t)&y(t)\\ x'(t)&y'(t)\end{vmatrix}\mathrm{d}t.
+  \]
+\item 单变量函数 $f$ 在 $\mathbb{R}$ 上连续可导, $\overrightarrow{C}$ 是任意一条分段 $C^{1}$ 的封闭定向曲线. 证明:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\oint_{\overrightarrow{C}}f(xy)(y\mathrm{d}x+x\mathrm{d}y)=0$;
+  \item $\displaystyle\oint_{\overrightarrow{C}}f(x^{2}+y^{2})(x\mathrm{d}x+y\mathrm{d}y)=0$;
+  \item $\displaystyle\oint_{\overrightarrow{C}}f(x^{n}+y^{n})(x^{n-1}\mathrm{d}x+y^{n-1}\mathrm{d}y)=0$, 这里常数 $n\geqslant1$.
+  \end{enumerate}
+  当 $f$ 为连续函数时, 结论如何?
+\item 计算第二型曲线积分
+  \[
+  \int_{\widehat{AMO}}\left(\mathrm{e}^{x}\sin y-my\right)\mathrm{d}x+\left(\mathrm{e}^{x}\cos y-m\right)\mathrm{d}y,
+  \]
+  其中 $m$ 为常数, $\widehat{AMO}$ 是以 $\left(\frac{a}{2},0\right)$ 为中心, $\frac{a}{2}$ 为半径的上半圆周, 定向为逆时针方向.
+\item 应用 Gauss 公式计算下列第二型曲面积分:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\iint_{\overrightarrow{\Sigma}}x^{2}\mathrm{d}y\wedge\mathrm{d}z+y^{2}\mathrm{d}z\wedge\mathrm{d}x+z^{2}\mathrm{d}x\wedge\mathrm{d}y$, $\overrightarrow{\Sigma}$ 为球面 $x^{2}+y^{2}+z^{2}=R^{2}\ (R>0)$, 方向朝外;
+  \item $\displaystyle\iint_{\overrightarrow{\Sigma}}xy\,\mathrm{d}y\wedge\mathrm{d}z+yz\,\mathrm{d}z\wedge\mathrm{d}x+zx\,\mathrm{d}x\wedge\mathrm{d}y$, $\overrightarrow{\Sigma}$ 是由 $4$ 张平面 $x=0,y=0,z=0$ 和 $x+y+z=1$ 围成的封闭曲面, 方向朝外;
+  \item $\displaystyle\iint_{\overrightarrow{\Sigma}}(x-y)\mathrm{d}y\wedge\mathrm{d}z+(y-z)\mathrm{d}z\wedge\mathrm{d}x+(z-x)\mathrm{d}x\wedge\mathrm{d}y$, $\overrightarrow{\Sigma}$ 是曲面 $z=x^{2}+y^{2}\ (z\leqslant1)$, 方向朝下;
+  \item $\displaystyle\iint_{\overrightarrow{\Sigma}}x^{2}\mathrm{d}y\wedge\mathrm{d}z+y^{2}\mathrm{d}z\wedge\mathrm{d}x+z^{2}\mathrm{d}x\wedge\mathrm{d}y$, $\overrightarrow{\Sigma}$ 是曲面 $z^{2}=x^{2}+y^{2}\ (0\leqslant z\leqslant1)$, 方向朝下.
+  \end{enumerate}
+\item 应用 Stokes 公式计算下列第二型曲线积分:
+  \begin{enumerate}[label=(\arabic*),leftmargin=2.6em,itemsep=0.15\baselineskip,topsep=0.2\baselineskip]
+  \item $\displaystyle\int_{\overrightarrow{C}}y\,\mathrm{d}x+z\,\mathrm{d}y+x\,\mathrm{d}z$, $\overrightarrow{C}$ 为圆周 $x^{2}+y^{2}+z^{2}=a^{2},\ x+y+z=0$, 从第一卦限看去, $\overrightarrow{C}$ 是逆时针方向绕行的;
+  \item $\displaystyle\int_{\overrightarrow{C}}(y+z)\mathrm{d}x+(z+x)\mathrm{d}y+(x+y)\mathrm{d}z$, $\overrightarrow{C}$ 为椭圆 $x^{2}+y^{2}=2y,\ y=z$, 从点 $(0,1,0)$ 向 $\overrightarrow{C}$ 看去, $\overrightarrow{C}$ 是逆时针方向绕行的;
+  \item $\displaystyle\int_{\overrightarrow{C}}(y^{2}+z^{2})\mathrm{d}x+(z^{2}+x^{2})\mathrm{d}y+(x^{2}+y^{2})\mathrm{d}z$, $\overrightarrow{C}$ 为曲线 $x^{2}+y^{2}+z^{2}=2ax,\ x^{2}+y^{2}=2bx,\ z\geqslant0,\ 0<b<a$, 从点 $(b,0,0)$ 看去, $\overrightarrow{C}$ 是逆时针方向绕行的.
+  \end{enumerate}
+\end{exblock}
+
+\begin{exblock}{思考题 11.4}
+\item 设 $\overrightarrow{C}$ 为 $\mathbb{R}^{2}$ 中 $C^{1}$ 封闭曲线, 依逆时针方向定向, 用 $\boldsymbol{n}_{0}$ 表示 $\overrightarrow{C}$ 上的单位外法向量场, 而 $\boldsymbol{e}$ 为一个固定的单位向量. 证明:
+  \[
+  \int_{C}\cos\langle\boldsymbol{e},\boldsymbol{n}_{0}\rangle\,\mathrm{d}s=0,
+  \]
+  其中 $\langle\boldsymbol{e},\boldsymbol{n}_{0}\rangle$ 表示 $\boldsymbol{e}$ 与 $\boldsymbol{n}_{0}$ 之间夹成的角.
+\item 设 $C$ 为 $\mathbb{R}^{2}$ 上的一条 $C^{1}$ 的封闭曲线, $\boldsymbol{n}_{0}$ 表示单位外法向量场, 用 $\langle\boldsymbol{n}_{0},\boldsymbol{i}\rangle$ 表示 $\boldsymbol{n}_{0}$ 与 $x$ 轴正向的夹角, $\langle\boldsymbol{n}_{0},\boldsymbol{j}\rangle$ 表示 $\boldsymbol{n}_{0}$ 与 $y$ 轴正向的夹角, 计算曲线积分
+  \[
+  \oint_{C}(x\cos\langle\boldsymbol{n}_{0},\boldsymbol{i}\rangle+y\cos\langle\boldsymbol{n}_{0},\boldsymbol{j}\rangle)\,\mathrm{d}s.
+  \]
+\item 设 $M$ 为 $\mathbb{R}^{3}$ 中的一个闭区域, $\boldsymbol{n}_{0}$ 为 $\partial M$ 的单位外法向量场, $\boldsymbol{e}$ 是一个固定的单位向量. 证明:
+  \[
+  \iint_{\partial M}\cos\langle\boldsymbol{e},\boldsymbol{n}_{0}\rangle\,\mathrm{d}\sigma=0.
+  \]
+\item 设 $M$ 为 $\mathbb{R}^{3}$ 中的一个闭区域, 向量 $\boldsymbol{n}_{0}$ 是 $\partial M$ 的单位外法向量场, 点 $(a,b,c)\notin\partial M$. 令 $\boldsymbol{p}=(x-a,y-b,z-c)$ 且 $p=\lVert\boldsymbol{p}\rVert$. 证明:
+  \[
+  \iiint_{M}\frac{\mathrm{d}x\mathrm{d}y\mathrm{d}z}{p}=\frac{1}{2}\iint_{\partial M}\cos\langle\boldsymbol{p},\boldsymbol{n}_{0}\rangle\,\mathrm{d}\sigma.
+  \]
+\item 计算第二型曲线积分
+  \[
+  \oint_{\overrightarrow{C}}\frac{\mathrm{e}^{x}}{x^{2}+y^{2}}\bigl[(x\sin y-y\cos y)\mathrm{d}x+(x\cos y+y\sin y)\mathrm{d}y\bigr],
+  \]
+  其中 $\overrightarrow{C}$ 是包含原点在其内部的分段 $C^{1}$ 闭曲线.
+\item 应用 Stokes 公式计算练习题 11.3 中题 4 的第二型曲线积分.
+\item 计算第二型曲线积分
+  \[
+  \oint_{\overrightarrow{C}}(y-z)\mathrm{d}x+(z-x)\mathrm{d}y+(x-y)\mathrm{d}z,
+  \]
+  其中 $\overrightarrow{C}$ 为椭圆
+  \[
+  \begin{cases}
+  x^{2}+y^{2}=1,\\
+  x+z=1,
+  \end{cases}
+  \]
+  从 $x$ 轴正向看去, $C$ 是顺时针方向.
+\item 计算第二型曲线积分
+  \[
+  \oint_{\overrightarrow{C}}\frac{-y\mathrm{d}x+x\mathrm{d}y}{4x^{2}+y^{2}},
+  \]
+  其中 $\overrightarrow{C}$ 为逆时针方向的圆周 $(x-1)^{2}+y^{2}=R^{2},\ R\neq1$.
+\item 求第二型曲线积分
+  \[
+  \oint_{\overrightarrow{C}}(y-z)\mathrm{d}x+(z-x)\mathrm{d}y+(x-y)\mathrm{d}z,
+  \]
+  其中 $\overrightarrow{C}$ 为球面 $x^{2}+y^{2}+z^{2}=R^{2}$ 与平面 $y=x\tan\varphi\ \left(0<\varphi<\frac{\pi}{2}\right)$ 的交线, 方向: 从 $x$ 轴正向看去, $\overrightarrow{C}$ 为逆时针方向.
+\item 用各种方法计算第二型曲面积分
+  \[
+  \iint_{\overrightarrow{\Sigma}}x^{2}\mathrm{d}y\wedge\mathrm{d}z+y^{2}\mathrm{d}z\wedge\mathrm{d}x+z^{2}\mathrm{d}x\wedge\mathrm{d}y,
+  \]
+  其中 $\overrightarrow{\Sigma}$ 为球面 $(x-a)^{2}+(y-b)^{2}+(z-c)^{2}=R^{2}\ (R>0)$, 方向朝外.
+\item 用各种方法计算第二型曲面积分
+  \[
+  \iint_{\overrightarrow{\Sigma}}x\mathrm{d}y\wedge\mathrm{d}z+y\mathrm{d}z\wedge\mathrm{d}x+z\mathrm{d}x\wedge\mathrm{d}y,
+  \]
+  其中 $\overrightarrow{\Sigma}$ 是由圆柱面 $x^{2}+y^{2}=1$, 三个坐标平面及上半球面 $x^{2}+y^{2}+z^{2}=2z\ (z\geqslant1)$ 所围成的区域的外侧.
+\end{exblock}

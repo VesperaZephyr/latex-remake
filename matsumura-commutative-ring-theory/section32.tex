@@ -1,0 +1,304 @@
+% ============ §32 The formal fibre (原书 pp.255-260) ============
+\section{The formal fibre}\label{sec:32}\index{formal fibre, section 32}\index{regular homomorphism, section 32}\index{G-ring, section 32}\index{excellent ring, section 32}\index{quasi-excellent ring, section 32}
+
+Let $(A, m)$ be a Noetherian local ring and $A^*$ its completion. The fibre ring of
+the natural homomorphism $A \to A^*$ over any $p \in \Spec A$ is called a \emph{formal
+fibre} of $A$ (although strictly speaking we should distinguish between the fibre
+and the fibre ring, we will not do so in what follows). If $I$ is an ideal of $A$
+then $(A/I)^* = A^*/IA^*$, so that a formal fibre of $A/I$ is also a formal fibre of
+$A$.
+
+Let $A$ be a Noetherian ring and $k \subset A$ a subfield. We say that $A$ is
+\emph{geometrically regular} over $k$ if $A \otimes_k k'$ is a regular ring for every finite
+extension $k'$ of $k$ (see \S\ref{sec:28}). This is equivalent to saying that $A_p$ is
+geometrically regular over $k$ for every maximal ideal $p$ of $A$.
+
+We say that a homomorphism $\varphi\colon A \to B$ of Noetherian rings is \emph{regular} if
+$\varphi$ is flat, and for every $p \in \Spec A$, the fibre $B \otimes_A \kappa(p)$ of $\varphi$ over $p$
+is geometrically regular over the field $\kappa(p)$.
+
+A Noetherian ring $A$ is said to be a \emph{G-ring} (here G stands for Grothendieck)
+if $A_p \to (A_p)^*$ is regular for every prime ideal $p$ of $A$; this means that all the
+formal fibres of all the local rings of $A$ are geometrically regular.
+
+\begin{theorem}\label{thm:32.1}
+Let $A \xrightarrow{\varphi} B \xrightarrow{\psi} C$ be homomorphisms of Noetherian rings;
+then
+\begin{enumerate}[(i)]
+  \item if $\varphi$ and $\psi$ are regular then so is $\psi\varphi$;
+  \item if $\psi\varphi$ is regular and $\psi$ is faithfully flat then $\varphi$ is also regular.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) Clearly $\psi\varphi$ is flat. For $p \in \Spec A$, write $K = \kappa(p)$, and let $L$ be a
+finite extension field of $K$. Set $B_L = B \otimes_A L$, and $C_L = C \otimes_A L$; then the
+homomorphism $\psi_L\colon B_L \to C_L$ induced by $\psi$ is also regular. Indeed, if $P$ is a
+prime ideal of $B_L$ then $C_L \otimes_{B_L} \kappa(P) = C \otimes_B (B \otimes_A L) = C \otimes_A
+\kappa(P) = C_{\kappa(P)}$, and hence if $F$ is a finite extension of $\kappa(P)$ then
+$C_L \otimes_{B_L} F = C \otimes_A F$; setting $P \cap B = Q$, since $B_L$ is a finite $B$-module we
+have $[\kappa(P) : \kappa(Q)] < \infty$, and hence $[F : \kappa(Q)] < \infty$, so that
+$C \otimes_A F$ is a regular ring. Now $\varphi$ is regular, so that $B_L$ is a regular ring,
+and hence by Theorem~\hyperref[thm:23.7]{23.7}, (ii), $C_L$ is a regular ring.
+
+(ii) The flatness of $\varphi$ is obvious. If we let $p$, $K$ and $L$ be as above, then
+$C_L$ is a regular ring and is flat over $B_L$, so that by Theorem~\hyperref[thm:23.7]{23.7}, (i), $B_L$
+is also regular.
+\end{proof}
+
+\begin{theorem}\label{thm:32.2}
+Let $\varphi\colon A \to B$ be a homomorphism of Noetherian rings, and assume that
+$\varphi$ is faithfully flat and regular.
+\begin{enumerate}[(i)]
+  \item $A$ is regular (or normal, reduced, CM, or Gorenstein) if and only if $B$ has
+        the same property.
+  \item If $B$ is a G-ring then so is $A$ (the converse is not true).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) follows from Theorem~\hyperref[thm:23.7]{23.7}, the corollaries to
+Theorems~\hyperref[thm:23.9]{23.9} and \hyperref[thm:23.3]{23.3}, and Theorem~\hyperref[thm:23.4]{23.4}.
+
+(ii) Let $p \in \Spec A$, choose $P \in \Spec B$ lying over $p$, and consider the
+commutative diagram
+\[
+\begin{tikzcd}
+(A_p)^* \arrow[r, "f^*"] & (B_P)^* \\
+A_p \arrow[u, "\alpha"] \arrow[r, "f"] & B_P \arrow[u, "\beta"]
+\end{tikzcd}
+\]
+Here $f$ is the map induced by $\varphi$, and $f^*$ is the map induced by $f$; and the
+vertical arrows are the natural maps. Now $f$ and $\beta$ are both regular, and $f^*$ is
+faithfully flat, so that according to the previous theorem, $\alpha$ is also regular.
+
+To construct an example where $A$ is a G-ring and $B$ is not, we let $A = k$ be a
+perfect field, and $B$ a regular local ring containing $k$. Then $k \to B$ is certainly
+faithfully flat and regular, and $k$ is a field, and so trivially a G-ring. However,
+there are known examples in which $B$ is not a G-ring. (See the appendix to [N1];
+a counter-example is provided by the ring $R$ in (E3.1) if $\chark k = p$, and by $R$ in
+Example 7 if $\chark k = 0$. In (E3.1) the field $k$ is not perfect, but $R$ is
+geometrically regular over $k$.)
+\end{proof}
+
+\begin{theorem}\label{thm:32.3}
+A complete Noetherian local ring is a G-ring.
+\end{theorem}
+
+\begin{proof}
+Let $A$ be a complete Noetherian local ring and $p \in \Spec A$; set $B = A_p$, and
+let $B^*$ be the completion of $B$. We prove that $B \to B^*$ is a regular
+homomorphism; that is, for any prime ideal $p'$ of $B$, we need to show that
+$B^* \otimes_B \kappa(p')$ is geometrically regular over $\kappa(p')$. However, $A/p' \cap A$ is also a
+complete local ring, so that we can replace $A$ by $A/p' \cap A$ and reduce to the
+case $p' = (0)$. Thus assume that $A$ is an integral domain, and let $L$ be the
+common field of fractions of $A$ and $B$; we must show that $B^* \otimes_B L$ is
+geometrically regular over $L$.
+
+The problem can be further reduced to the case when $A$ is a regular local ring.
+In fact, by Theorem~\hyperref[thm:29.5]{29.5}, $A$ contains a complete regular local ring $R$ and
+is a finite module over $R$. Set $p \cap R = \mathfrak{q}$, $R_\mathfrak{q} = S$ and
+$B' = A_p = A \otimes_R S$; then $B'$ is a semilocal ring, and $B$ is a localisation of $B'$
+at a maximal ideal, so that $B^*$ is one direct factor of $B'^* = B' \otimes_S S^*$. Write $K$
+for the common field of fractions of $R$ and $S$.
+\[
+\begin{tikzcd}
+B'^* = B' \otimes_S S^* \arrow[r] & B^* \\
+B' = A \otimes_R S \arrow[u] \arrow[r] & B = A_p \arrow[u] \arrow[r] & L \\
+R \arrow[u] \arrow[r] & S = R_\mathfrak{q} \arrow[u] \arrow[r] & K \arrow[u]
+\end{tikzcd}
+\]
+Now $B^* \otimes_B L$ can be written as $B^* \otimes_S L$, and it is hence a direct factor
+of $B'^* \otimes_S L = S^* \otimes_S L = (S^* \otimes_S K) \otimes_K L$, so that we need only show
+that $S^* \otimes_S K$ is geometrically regular over $K$.
+
+Now $R$, $S$ and $S^*$ are regular local rings, and $S^* \otimes_S K$ is a localisation of
+$S^*$, so is a regular ring. Hence if $\chark K = 0$, there is nothing to prove. We
+assume that $\chark K = p$ in what follows. Then $R$ has a coefficient field $k$, and
+can be written $R = k[[X_1, \ldots, X_n]]$. Choose a directed family $\{k_\alpha\}$ of cofinite
+subfields $k_\alpha \subset k$ such that $\bigcap_\alpha k_\alpha = k^p$, and set
+$R_\alpha = k_\alpha[[X_1^p, \ldots, X_n^p]]$; write $K_\alpha$ for the field of fractions of
+$R_\alpha$. Then one sees easily (compare the proof of Theorem~\hyperref[thm:30.9]{30.9}) that
+$\bigcap_\alpha K_\alpha = K^p$.
+
+We set $\mathfrak{q}_\alpha = \mathfrak{q} \cap R_\alpha$; then since $R_\alpha \supset R^p$, we see that
+$\mathfrak{q}$ is the unique prime ideal of $R$ lying over $\mathfrak{q}_\alpha$. Hence if we let
+$S_\alpha = (R_\alpha)_{\mathfrak{q}_\alpha}$ then $S = R_\mathfrak{q} = R \otimes_{R_\alpha} S_\alpha$, and $S$ is a
+finite module over $S_\alpha$. Hence $S^* = S \otimes_{S_\alpha} S_\alpha^*$; let us prove that $S^*$
+is 0-smooth over $S$ relative to $S_\alpha$ (see \S\ref{sec:28}). Suppose we are given a
+commutative diagram of the form
+\[
+\begin{tikzcd}
+S^* \arrow[r, "\bar{u}"] & C/N \\
+S_\alpha \arrow[u] \arrow[r] & S \arrow[u] \arrow[r] & C \arrow[ul]
+\end{tikzcd}
+\]
+where $C$ is a ring and $N$ is an ideal of $C$ with $N^2 = 0$. If there is a lifting
+$u'\colon S^* \to C$ of $\bar{u}$ as a homomorphism of $S_\alpha$-algebras, set
+$w = u'\big|_{S^*}$, and let $\bar{v} = u \otimes w\colon S^* = S \otimes_{S_\alpha} S_\alpha^* \to C$; then
+one sees easily that $\bar{v}$ is a lifting of $\bar{u}$ over $S$. Hence $S^*$ is 0-smooth over
+$S$ relative to $S_\alpha$. Now for $Q \in \Spec(S^*)$, let $Q \cap S = (0)$; then $(S^*)_Q$ is
+a local ring of $S^* \otimes_S K$, and conversely, every local ring of $S^* \otimes_S K$ is of
+this form. From the diagram
+\[
+\begin{tikzcd}
+S \arrow[r] & K \arrow[r] & (S^*)_Q/N(S^*)_Q \\
+S_\alpha \arrow[u] \arrow[r] & K_\alpha \arrow[u] \arrow[ru, ""'] & (S^*)_Q \arrow[u]
+\end{tikzcd}
+\]
+one sees that $(S^*)_Q$ is 0-smooth over $K$ relative to $K_\alpha$. Set $E = (S^*)_Q$ and
+$m = \rad(E)$; then $E$ is $m$-smooth over $K$ relative to $K_\alpha$, so that according
+to Theorem~\hyperref[thm:28.4]{28.4},
+\[
+  \Omega_{K/K_\alpha} \otimes_K (E/m) \to \Omega_{E/K} \otimes_E (E/m)
+\]
+is injective for every $\alpha$. Moreover, since $\bigcap_\alpha K_\alpha = K^p$, by
+\S\ref{sec:30}, Lemma~\hyperref[lem:30.4]{4},
+\[
+  \Omega_K \to \varprojlim \Omega_{K/K_\alpha}
+\]
+is injective, and hence
+\[
+  \Omega_K \otimes (E/m) \to \varprojlim (\Omega_{K/K_\alpha} \otimes (E/m))
+\]
+is also injective. Therefore, from the commutative diagram
+\[
+\begin{tikzcd}
+\Omega_K \otimes (E/m) \arrow[r] & \Omega_E \otimes (E/m) \\
+\varprojlim (\Omega_{K/K_\alpha} \otimes (E/m)) \arrow[u] \arrow[r] &
+\varprojlim (\Omega_{E/K_\alpha} \otimes (E/m)) \arrow[u]
+\end{tikzcd}
+\]
+we finally see that $\Omega_K \otimes (E/m) \to \Omega_E \otimes (E/m)$ is injective. Hence it
+follows from the corollary to Theorem~\hyperref[thm:28.6]{28.6} that $E$ is $m$-smooth over $K$, and
+thus is geometrically regular. Since $E$ is an arbitrary local ring of $S^* \otimes_S K$,
+we see that $S^* \otimes_S K$ is geometrically regular over $K$.
+\end{proof}
+
+\begin{theorem}\label{thm:32.4}
+Let $A$ be a Noetherian ring; if $A_m \to (A_m)^*$ is regular for every maximal ideal
+$m$ of $A$, then $A$ is a G-ring.
+\end{theorem}
+
+\begin{proof}
+Since $(A_m)^*$ is a G-ring, by Theorem~\hyperref[thm:32.2]{2}, $A_m$ is also a G-ring. For any
+$p \in \Spec A$, if we let $m$ be a maximal ideal of $A$ containing $p$ then $A_p$ is a
+localisation of the G-ring $A_m$, and hence $A_p \to (A_p)^*$ is regular.
+\end{proof}
+
+Theorem~\hyperref[thm:32.4]{4} makes it much easier to distinguish G-rings. For example, the
+next theorem is based on Theorem~\hyperref[thm:32.4]{4}.
+
+\begin{theorem}\label{thm:32.5}
+Let $A$ be a Noetherian semilocal ring; then a sufficient condition for $A$ to be
+a G-ring is that if $C$ is a finite $A$-algebra which is an integral domain, $m$ is
+a maximal ideal of $C$ and we write $B = C_m$, then $(B^*)_Q$ is a regular local
+ring for every $Q \in \Spec(B^*)$ such that $Q \cap B = (0)$.
+\end{theorem}
+
+\begin{remark}
+It is easy to see that the condition is also necessary.
+\end{remark}
+
+\begin{proof}
+By the previous theorem, we need only show that under the given condition,
+$A \to A^*$ is regular. Let $p \in \Spec A$, and let $L$ be a finite extension of
+$\kappa(p)$; we prove that $A^* \otimes_A L$ is regular. Suppose that
+$L = \kappa(p)(\xi_1, \ldots, \xi_m)$; then multiplying each $\xi_i$ by an element of $A/p$ we
+can assume that $\xi_i$ is integral over $A/p$, so that if we set
+$C = (A/p)[\xi_1, \ldots, \xi_m]$, then $C$ is a finite $A$-module, and the field of
+fractions of $C$ is $L$. Now $C^* = A^* \otimes_A C$, and if we write
+$m_1, \ldots, m_s$ for the maximal ideals of $C$ and set $B_i = C_{m_i}$, then
+$C^* = B_1^* \times \cdots \times B_s^*$. We can identify any local ring of
+$A^* \otimes_A L = C^* \otimes_C L$ with the localisation $(B_i^*)_Q$ of one of the factors
+$B_i^*$ at some prime ideal $Q$ of $B_i^*$ with $Q \cap B_i = (0)$, and by assumption
+this is regular. Hence $A^* \otimes_A L$ is a regular ring.
+\end{proof}
+
+\begin{theorem}[\textbf{H.~Mizutani}]\label{thm:32.6}
+Let $R$ be a regular ring. If the weak Jacobian condition (WJ) of \S\ref{sec:30} holds for
+$R[X_1, \ldots, X_n]$ for every $n \ge 0$, then $R$ is a G-ring.
+\end{theorem}
+
+\begin{proof}
+Since (WJ) is inherited by any localisation we can assume that $R$ is local. We
+prove that the condition of Theorem~\hyperref[thm:32.5]{5} holds. Set
+$R_n = R[X_1, \ldots, X_n]$. Any integral domain $C$ which is finite as an $R$-module
+can be expressed as $C = R_n/Q$ with $Q \in \Spec(R_n)$ for some $n$. Let $m$ be a
+maximal ideal of $C$, $M$ the maximal ideal of $R_n$ corresponding to $m$, and
+$S = (R_n)_M$; then it is enough to show that $(S^*)_P/Q(S^*)_P$ is regular for every
+$P \in \Spec(S^*)$ with $P \cap S = QS$. If $\htop Q = r$ then $\htop Q(S^*)_P = r$, and by
+assumption there exist $D_1, \ldots, D_r \in \Der(R_n)$ and
+$f_1, \ldots, f_r \in Q$ such that $\det(D_if_j) \notin Q$. Now $D_i$ has a natural extension
+to $S$, and then to $S^*$, and since $P \cap R_n = Q$, we have
+$\det(D_if_j) \notin P$, so that by Theorem~\hyperref[thm:30.4]{30.4}, $(S^*)_P/Q(S^*)_P$ is
+regular.
+\end{proof}
+
+\begin{corollary*}
+A ring which is finitely generated over a field, or a localisation of such a
+ring, is a G-ring.
+\end{corollary*}
+
+\begin{proof}
+It follows from the definition that a quotient or localisation of a G-ring is
+again a G-ring, so that we need only show that for a field $k$, the ring
+$k[X_1, \ldots, X_n]$ is a G-ring; but by Theorems~\hyperref[thm:30.3]{30.3} and \hyperref[thm:30.5]{30.5}, (WJ)
+holds in $k[X_1, \ldots, X_{n+m}]$, so that $k[X_1, \ldots, X_n]$ is a G-ring by the
+theorem.
+\end{proof}
+
+\begin{remark}
+The local rings which appear in algebraic geometry are essentially of finite
+type over a field, and therefore G-rings. Hence for these rings, properties such
+as reduced and normal pass to the completion.
+\end{remark}
+
+\begin{remark}
+If $R$ is a regular ring containing a field of characteristic $0$, and (WJ) holds
+in $R$, then by Ex.~\hyperref[ex:30.4-ex]{30.4}, it also holds in $R[X_1, \ldots, X_n]$. Hence $R$ and
+$R[X_1, \ldots, X_n]$ are G-rings. In particular by Theorem~\hyperref[thm:30.8]{30.8}, rings of
+convergent power series over $\mathbb{R}$ and $\mathbb{C}$ are G-rings.
+\end{remark}
+
+A theorem proved by Grothendieck asserts that if $A$ is a G-ring, then so is
+$A[X]$; the proof is very hard, and we omit it, referring only to [M], Theorem 77.
+The analogous statement for $A[[X]]$ remained unsolved for a long time, but was
+recently proved for a semilocal ring $A$ by C.~Rotthaus [3]. In the non-semilocal
+case she proved in [4] that, if $A$ is a finite-dimensional excellent ring
+containing the rational numbers, then $A[[X]]$ is excellent. On the other hand,
+Nishimura [3] showed that there exists a G-ring $A$ such that $A[[X]]$ is not a
+G-ring.
+
+Nagata [8] studied the condition that $\Reg(A)$ is open in $\Spec A$; putting
+together Nagata's work with his own theory of G-rings, Grothendieck gave the
+definition of excellent ring in [G2].
+
+\begin{definition*}
+A Noetherian ring $A$ is \emph{excellent} if it satisfies the following three conditions:
+\begin{enumerate}[(1)]
+  \item $A$ is universally catenary;
+  \item $A$ is a G-ring;
+  \item $\Reg(B) \subset \Spec B$ is open for every finitely generated $A$-algebra $B$.
+\end{enumerate}
+A Noetherian ring satisfying (2) and (3) is said to be \emph{quasi-excellent}.
+\end{definition*}
+
+One can prove that the classes of rings satisfying each of (1), (2) and (3) are
+closed under localisation, finitely generated extensions and passing to
+quotients. It can also be proved that (2) implies (3) for semilocal Noetherian
+rings. A complete Noetherian local ring is excellent, as are practically all
+Noetherian rings in applications. For more information on excellent rings, see
+[M], Ch.~13, or [G2].
+
+R.~Y.~Sharp [S] defined the notion of an \emph{acceptable ring}, replacing condition
+(2) by the condition that all formal fibres of all localisations of $A$ are
+Gorenstein, and replacing $\Reg(B)$ by $\Gor(B)$ in (3), and showed that the
+resulting theory is analogous to the theory of excellent rings (see also
+Greco-Marinari [1], Sharp [6]).
+
+Using his cohomology theory, M.~Andr\'e [1] proved the following theorem. Let
+$A$, $B$ be Noetherian local rings, and $\varphi\colon A \to B$ a local homomorphism;
+suppose that $A$ is quasi-excellent and $B$ is $m_B$-smooth over $A$, where
+$m_B = \rad(B)$; then $\varphi$ is regular. This is an extremely strong theorem; the
+result of Rotthaus mentioned above also makes use of this.

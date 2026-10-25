@@ -1,0 +1,507 @@
+\section{定积分的基本性质}\label{sec:7-2}
+
+定积分定义为函数的黎曼和的极限，虽然这极限同函数的极限稍有不同，但其 $\varepsilon$-$\delta$ 语言的叙述并没有本质的差别，因此定积分的一些基本性质，可以用极限的相应性质推导出来．
+
+\begin{theorem}[可积函数必有界]\label{thm:7-1}
+若 $f(x)$ 在 $[a,b]$ 可积，则 $f(x)$ 在 $[a,b]$ 有界．
+\end{theorem}
+
+\begin{proof}
+用反证法．如果不然，设 $f(x)$ 在 $[a,b]$ 无界，则对 $[a,b]$ 的任意分法，在 $n$ 个小区间 $[x_{i-1}, x_i]$ 中至少有一个，$f(x)$ 在其上是无界的，设为 $[x_{i_0-1}, x_{i_0}]$．考虑 $f(x)$ 的黎曼和
+\[
+\sum_{i=1}^n f(\xi_i)\Delta x_i = f(\xi_{i_0})\Delta x_{i_0} + \sum_{i \neq i_0} f(\xi_i)\Delta x_i.
+\]
+对任意 $N > 0$，当 $i \neq i_0$ 时，取定 $\xi_i \in [x_{i-1}, x_i]$，由 $f(x)$ 在 $[x_{i_0-1}, x_{i_0}]$ 无界，故可取 $\xi_{i_0}$，使得
+\[
+|f(\xi_{i_0})| > \frac{\left|\sum_{i \neq i_0} f(\xi_i)\Delta x_i\right| + N}{\Delta x_{i_0}}.
+\]
+这样
+\[
+\left|\sum_{i=1}^n f(\xi_i)\Delta x_i\right| \geqslant |f(\xi_{i_0})|\Delta x_{i_0} - \left|\sum_{i \neq i_0} f(\xi_i)\Delta x_i\right| > N,
+\]
+这与 $\sum_{i=1}^n f(\xi_i)\Delta x_i$ 有极限矛盾，故 $f(x)$ 在 $[a,b]$ 有界．
+\end{proof}
+
+\begin{theorem}[定积分的线性性质]\label{thm:7-2}
+若函数 $f(x)$，$g(x)$ 在区间 $[a,b]$ 可积，则 $k_1 f(x) + k_2 g(x)$ 在 $[a,b]$ 也可积，且
+\[
+\int_a^b \left[k_1 f(x) + k_2 g(x)\right]\,dx = k_1 \int_a^b f(x)\,dx + k_2 \int_a^b g(x)\,dx,
+\]
+其中 $k_1$，$k_2$ 是任意两个常数．
+\end{theorem}
+
+\begin{proof}
+由于 $f(x)$，$g(x)$ 在 $[a,b]$ 可积，则对 $[a,b]$ 的任意分法
+\[
+a = x_0 < x_1 < \cdots < x_n = b,
+\]
+与任意 $\xi_i \in [x_{i-1}, x_i]$，有
+\[
+\lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i = \int_a^b f(x)\,dx,
+\]
+\[
+\lim_{\lambda \to 0}\sum_{i=1}^n g(\xi_i)\Delta x_i = \int_a^b g(x)\,dx,
+\]
+因此，根据极限的四则运算，有
+\begin{align*}
+\lim_{\lambda \to 0}\sum_{i=1}^n \left[k_1 f(\xi_i) + k_2 g(\xi_i)\right]\Delta x_i &= \lim_{\lambda \to 0}\left[k_1 \sum_{i=1}^n f(\xi_i)\Delta x_i + k_2 \sum_{i=1}^n g(\xi_i)\Delta x_i\right] \\
+&= k_1 \lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i + k_2 \lim_{\lambda \to 0}\sum_{i=1}^n g(\xi_i)\Delta x_i \\
+&= k_1 \int_a^b f(x)\,dx + k_2 \int_a^b g(x)\,dx,
+\end{align*}
+这就证明了 $k_1 f(x) + k_2 g(x)$ 在 $[a,b]$ 可积，且
+\[
+\int_a^b \left[k_1 f(x) + k_2 g(x)\right]\,dx = k_1 \int_a^b f(x)\,dx + k_2 \int_a^b g(x)\,dx.
+\]
+\end{proof}
+
+\begin{theorem}[定积分的可加性]\label{thm:7-3}
+若 $f(x)$ 在 $[a,c]$，$[c,b]$ 可积，其中 $a < c < b$，则 $f(x)$ 在 $[a,b]$ 可积，且
+\[
+\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx.
+\]
+\end{theorem}
+
+\begin{proof}
+由定理~\ref{thm:7-1} 知 $f(x)$ 在 $[a,c]$，$[c,b]$ 有界，因此 $f(x)$ 在 $[a,b]$ 有界．设
+\[
+|f(x)| \leqslant M, \quad \forall x \in [a,b].
+\]
+对 $[a,b]$ 的任意分法
+\[
+\Delta: a = x_0 < x_1 < \cdots < x_n = b,
+\]
+如果 $c$ 是其中的分点，则
+\[
+\sum_a^b f(\xi_i)\Delta x_i = \sum_a^c f(\xi_i)\Delta x_i + \sum_c^b f(\xi_i)\Delta x_i.
+\]
+令 $\lambda \to 0$ 取极限，便证得
+\[
+\lim_{\lambda \to 0}\sum_a^b f(\xi_i)\Delta x_i = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx.
+\]
+如果 $c$ 不是分点，则把 $c$ 加到 $\Delta$ 中得到一新的分法 $\Delta'$，这时 $f(x)$ 对 $\Delta$ 与 $\Delta'$ 的黎曼和，只在包含 $c$ 的区间上有变化，故
+\[
+\left|\sum_\Delta f(\xi_i)\Delta x_i - \sum_{\Delta'} f(\xi_i)\Delta x_i\right| \leqslant 3M\lambda \to 0.
+\]
+综合这两步可知，分法不管是否包含 $c$，都有
+\[
+\lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)\Delta x_i = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx,
+\]
+这就证明了 $f(x)$ 在 $[a,b]$ 可积，且
+\[
+\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx.
+\]
+\end{proof}
+
+上述公式，当 $c$ 在 $[a,b]$ 之外时，也是成立的．事实上，不妨设 $a < b < c$，且 $f(x)$ 在 $[a,b]$，$[b,c]$ 可积，由定理~\ref{thm:7-3}，有
+\[
+\int_a^c f(x)\,dx = \int_a^b f(x)\,dx + \int_b^c f(x)\,dx,
+\]
+移项，便得
+\begin{align*}
+\int_a^b f(x)\,dx &= \int_a^c f(x)\,dx - \int_b^c f(x)\,dx \\
+&= \int_a^c f(x)\,dx + \int_c^b f(x)\,dx.
+\end{align*}
+
+\begin{theorem}[积分单调性]\label{thm:7-4}
+若 $f(x)$，$g(x)$ 在 $[a,b]$ 可积，且
+\[
+f(x) \leqslant g(x), \qquad x \in [a,b],
+\]
+则
+\[
+\int_a^b f(x)\,dx \leqslant \int_a^b g(x)\,dx.
+\]
+\end{theorem}
+
+\begin{proof}
+对 $[a,b]$ 的任意分法和任意的 $\xi_i \in [x_{i-1}, x_i]$，有
+\[
+f(\xi_i) \leqslant g(\xi_i), \qquad i = 1, 2, \cdots, n,
+\]
+因此
+\[
+\sum_{i=1}^n f(\xi_i)\Delta x_i \leqslant \sum_{i=1}^n g(\xi_i)\Delta x_i,
+\]
+令 $\lambda \to 0$ 取极限，由极限的不等式性质，得
+\[
+\int_a^b f(x)\,dx \leqslant \int_a^b g(x)\,dx.
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:7-1}
+设 $f(x)$ 在 $[a,b]$ 可积，$f(x) \geqslant 0$（$a \leqslant x \leqslant b$），则
+\[
+\int_a^b f(x)\,dx \geqslant 0.
+\]
+\end{corollary}
+
+证明留给读者．同理可证，若 $m \leqslant f(x) \leqslant M$（$a \leqslant x \leqslant b$），则
+\[
+m(b - a) \leqslant \int_a^b f(x)\,dx \leqslant M(b - a).
+\]
+因为容易从定义验证，常数 $k$ 的积分等于 $k(b-a)$：
+\[
+\int_a^b k\,dx = k(b - a).
+\]
+
+\begin{theorem}\label{thm:7-5}
+若 $f(x)$ 在 $[a,b]$ 可积，则
+\[
+\left|\int_a^b f(x)\,dx\right| \leqslant \int_a^b |f(x)|\,dx.
+\]
+\end{theorem}
+
+\begin{proof}
+由 $f(x)$ 在 $[a,b]$ 可积，可以推出 $|f(x)|$ 也在 $[a,b]$ 可积．这个证明我们留到第九章给出．由
+\[
+-|f(x)| \leqslant f(x) \leqslant |f(x)|, \quad a \leqslant x \leqslant b
+\]
+用定理~\ref{thm:7-4}，得
+\begin{align*}
+\int_a^b f(x)\,dx &\leqslant \int_a^b |f(x)|\,dx, \\
+-\int_a^b f(x)\,dx &\leqslant \int_a^b |f(x)|\,dx,
+\end{align*}
+因此
+\[
+\left|\int_a^b f(x)\,dx\right| \leqslant \int_a^b |f(x)|\,dx.
+\]
+\end{proof}
+
+由此不难看出，不论 $a$ 与 $b$ 的大小，恒有
+\[
+\left|\int_a^b f(x)\,dx\right| \leqslant \left|\int_a^b |f(x)|\,dx\right|.
+\]
+
+为了证明闭区间上的连续函数都是可积的，我们需要函数的一致连续性概念．
+
+设 $f(x)$ 在某一区间 $I$（或开，或闭）连续，按照定义，也就是 $f(x)$ 在这区间的每一点都连续，即对区间 $I$ 中的每一点 $x_0$，对任给 $\varepsilon > 0$，存在 $\delta > 0$，使得区间中任意满足 $|x - x_0| < \delta$ 的 $x$，有 $|f(x) - f(x_0)| < \varepsilon$．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig7-7.png}
+\figcap{图 7-7}\label{fig:7-7}
+\end{figure}
+
+一般来说，对同一个 $\varepsilon$，当 $x_0$ 不同时，$\delta$ 一般是不同的．例如从图~\ref{fig:7-7} 看 $y = \frac{1}{x}$ 的曲线，对接近于原点的 $x_0'$，$\delta$ 就应取得小一些，而当 $x_0$ 离原点较远时，$\delta$ 却可以取大一些，对后者所取的 $\delta$ 值，对前者就不一定适用．如果区间只有有限个点，则对应于有限个正的 $\delta$，取最小的一个便可适合所有的点．但一般来说，区间有无穷个点 $x_0$，对应于无穷个正的 $\delta$，这时这些 $\delta$ 就可能没有一个最小的，也就是说找不到一个适合于所有点的公共的 $\delta$．从图~\ref{fig:7-7} 可大致看出，$y = \frac{1}{x}$ 在 $0 < x < 1$ 就没有公共的 $\delta$．但有时我们却需要这种对所有点都适用的 $\delta > 0$ 存在，这就是下面的一致连续性概念．
+
+\begin{definition}\label{def:7-2}
+设函数 $f(x)$ 在区间 $I$（或开、或闭、或半开半闭）有定义，若对任给 $\varepsilon > 0$，存在只与 $\varepsilon$ 有关而与区间 $I$ 的点 $x$ 无关的 $\delta > 0$，使得对任意的 $x_1, x_2 \in I$，只要 $|x_1 - x_2| < \delta$，就有
+\[
+|f(x_1) - f(x_2)| < \varepsilon,
+\]
+则称 $f(x)$ 在区间 $I$ 上一致连续．
+\end{definition}
+
+将函数在区间连续和一致连续的定义加以比较，可见它们是完全不同的．前者是给定了 $\varepsilon > 0$ 和 $x_0 \in I$，找出 $\delta > 0$，$\delta$ 一般是随 $\varepsilon$ 和 $x_0$ 而改变，记为 $\delta = \delta(x_0, \varepsilon)$．而后者的 $\delta$ 只决定于 $\varepsilon > 0$，而与区间 $I$ 中的点 $x_0$ 无关，也就是说 $\delta = \delta(\varepsilon)$，它对任意的 $x_0$ 都可用．仍拿 $y = \frac{1}{x}$ 的情形看，对区间 $(0,1)$ 的点 $x_0$，我们不妨求出满足 $|x - x_0| < \delta$ 时 $|f(x) - f(x_0)| < \varepsilon$ 的 $\delta$ 的最大值，来看 $\delta$ 如何依赖于 $x_0$．事实上，要
+\[
+\left|\frac{1}{x} - \frac{1}{x_0}\right| < \varepsilon,
+\]
+即
+\[
+\frac{1}{x_0} - \varepsilon < \frac{1}{x} < \frac{1}{x_0} + \varepsilon.
+\]
+不妨设 $\frac{1}{x_0} - \varepsilon > 0$，因此上式成立当且仅当
+\[
+\frac{x_0}{1 - x_0 \varepsilon} > x > \frac{x_0}{1 + x_0 \varepsilon},
+\]
+或
+\[
+\frac{x_0^2 \varepsilon}{1 - x_0 \varepsilon} > x - x_0 > -\frac{x_0^2 \varepsilon}{1 + x_0 \varepsilon}.
+\]
+故只要取
+\[
+\delta = \min\left(\frac{x_0^2 \varepsilon}{1 + x_0 \varepsilon}, \frac{x_0^2 \varepsilon}{1 - x_0 \varepsilon}\right) = \frac{x_0^2 \varepsilon}{1 + x_0 \varepsilon} = \delta(\varepsilon, x_0),
+\]
+则它是使 $\left|\frac{1}{x} - \frac{1}{x_0}\right| < \varepsilon$ 成立的最大的 $\delta$．显然，当 $x_0 \to 0$ 时，$\delta \to 0$，可见 $\delta$ 的确是依赖于 $x_0$ 的，我们得不到对 $(0,1)$ 中每点都适用的正数 $\delta$，也就是说 $\frac{1}{x}$ 在 $(0,1)$ 不一致连续．
+
+现设 $c > 0$ 是一个小于 $1$ 的正数，在区间 $(c,1)$，只要 $x_0 \in (c,1)$ 就有
+\[
+\delta(\varepsilon, x_0) = \frac{x_0^2 \varepsilon}{1 + x_0 \varepsilon} > \frac{c^2 \varepsilon}{1 + \varepsilon},
+\]
+故只要取 $\delta = \delta(\varepsilon) = \frac{c^2 \varepsilon}{1 + \varepsilon}$，则对 $(c,1)$ 中任意两点 $x_1, x_2$，只要 $|x_1 - x_2| < \delta(\varepsilon)$，就有
+\[
+|f(x_1) - f(x_2)| < \varepsilon.
+\]
+也就是说 $f(x) = \frac{1}{x}$ 在 $(c,1)$ 是一致连续的．
+
+应当注意，函数 $f(x)$ 在某区间的连续性，只与区间中每一点及其附近的 $f(x)$ 的情形有关．事实上，按照定义，只要它在区间中的每一点都连续就行了．也就是说只要考虑在区间的每一点是否有适合连续定义的 $\delta$，这是函数的局部性质．而一致连续性，却要考虑 $f(x)$ 在整个区间的情形，在整个区间内来找适合一致连续定义的 $\delta$，这种性质称为整体性质．
+
+\begin{example}
+证明 $f(x) = \sin\frac{1}{x}$ 在 $(c,1)$ 一致连续，其中 $c > 0$，而在 $(0,1)$ 连续但不一致连续．
+\end{example}
+
+\begin{proof}
+当 $c < x_1, x_2 < 1$ 时，
+\begin{align*}
+|f(x_1) - f(x_2)| &= \left|\sin\frac{1}{x_1} - \sin\frac{1}{x_2}\right| \\
+&\leqslant 2\left|\sin\frac{x_1 - x_2}{2x_1 x_2}\right|\left|\cos\frac{x_1 + x_2}{2x_1 x_2}\right| \\
+&\leqslant \frac{|x_1 - x_2|}{x_1 x_2} \leqslant \frac{|x_1 - x_2|}{c^2}.
+\end{align*}
+故对任给 $\varepsilon > 0$，只要取 $\delta = c^2 \varepsilon$，便知当 $x_1, x_2 \in (c,1)$ 且 $|x_1 - x_2| < \delta$ 时，有 $|f(x_1) - f(x_2)| < \varepsilon$，即 $f(x) = \sin\frac{1}{x}$ 在 $(c,1)$ 一致连续．
+
+而 $\sin\frac{1}{x}$ 在 $(0,1)$ 连续是已知的．要证 $f(x)$ 在 $(0,1)$ 不一致连续，当且仅当存在 $\varepsilon_0 > 0$，对任意 $\delta > 0$，存在 $x_1, x_2 \in (0,1)$ 满足 $|x_1 - x_2| < \delta$，但 $|f(x_1) - f(x_2)| \geqslant \varepsilon_0$．取
+\[
+x_n' = \frac{1}{2n\pi + \frac{\pi}{2}}, \qquad x_n'' = \frac{1}{2n\pi},
+\]
+则
+\[
+|f(x_n') - f(x_n'')| = |1 - 0| = 1,
+\]
+而
+\[
+|x_n' - x_n''| = \frac{\pi}{2(2n\pi + \frac{\pi}{2})2n\pi} \to 0 \quad (n \to \infty).
+\]
+故对 $\varepsilon_0 = \frac{1}{2}$，及任意 $\delta > 0$，都存在 $x_n', x_n'' \in (0,1)$，使得 $|x_n' - x_n''| < \delta$（只要取 $n$ 充分大），但
+\[
+|f(x_n') - f(x_n'')| \geqslant \varepsilon_0.
+\]
+这就证明了 $f(x) = \sin\frac{1}{x}$ 在 $(0,1)$ 不一致连续．
+\end{proof}
+
+从定义与例题可以看出，在某区间上一致连续的函数在这区间也必为连续，但反过来，在一个开区间内连续的函数可能在这开区间是不一致连续的．对闭区间，却不会出现这种情形，这就是我们下面要叙述的定理．
+
+\begin{theorem}[康托（Cantor，1845---1918）定理]\label{thm:7-6}
+闭区间 $[a,b]$ 上的连续函数 $f(x)$ 一定在 $[a,b]$ 上一致连续．
+\end{theorem}
+
+\begin{proof}
+用反证法并用区间套定理来证明．若不然，$f(x)$ 在 $[a,b]$ 上不一致连续，则存在 $\varepsilon_0 > 0$，对任意 $\delta > 0$，存在 $x', x'' \in [a,b]$，满足 $|x' - x''| < \delta$，但 $|f(x') - f(x'')| \geqslant \varepsilon_0$．记 $[a_1, b_1] = [a,b]$，三等分 $[a_1, b_1]$，分点为 $c_1$，$c_2$ 且 $c_1 < c_2$．则两区间 $[a_1, c_2]$，$[c_1, b_1]$ 中至少有一区间具有性质~(P)：对上述 $\varepsilon_0 > 0$ 以及任意 $\delta > 0$，在该区间中存在 $x', x''$，满足 $|x' - x''| < \delta$，但
+\[
+|f(x') - f(x'')| \geqslant \varepsilon_0.
+\]
+因为若不然，设 $[a_1, c_2]$，$[c_1, b_1]$ 两区间都不具有上述性质~(P)，即对上述 $\varepsilon_0$，存在 $\delta_1 > 0$（$\delta_1 < \frac{1}{3}(b - a)$），对任意 $x', x'' \in [a_1, c_2]$，只要 $|x' - x''| < \delta_1$，就有
+\[
+|f(x') - f(x'')| < \varepsilon_0.
+\]
+同时存在 $\delta_2 > 0$（$\delta_2 < \frac{1}{3}(b - a)$），对任意 $x', x'' \in [c_1, b_1]$，只要 $|x' - x''| < \delta_2$，就有
+\[
+|f(x') - f(x'')| < \varepsilon_0.
+\]
+令 $\delta = \min(\delta_1, \delta_2)$，则任意 $x', x'' \in [a,b]$，只要 $|x' - x''| < \delta$，就有 $x', x''$ 同时在 $[a_1, c_2]$ 或同时在 $[c_1, b_1]$ 中，从而有 $|f(x') - f(x'')| < \varepsilon_0$．这与最初的假设矛盾．
+
+将 $[a_1, c_2]$，$[c_1, b_1]$ 两区间中具有上述性质~(P) 的区间记为 $[a_2, b_2]$，三等分 $[a_2, b_2]$，$\cdots$，如此继续下去，得一区间套 $\{[a_n, b_n]\}$，对任意 $n$，$[a_n, b_n]$ 都具有上述性质~(P)．由区间套定理，存在唯一的实数 $r \in \bigcap_{n=1}^\infty [a_n, b_n]$．
+
+由 $f(x)$ 在点 $r$ 连续，则存在 $\eta > 0$，当 $|x - r| < \eta$ 时，有
+\[
+|f(x) - f(r)| < \frac{\varepsilon_0}{2}.
+\]
+由 $\lim_{n \to \infty} a_n = \lim_{n \to \infty} b_n = r$，存在 $N$，当 $n > N$ 时，有 $[a_n, b_n] \subset (r - \eta, r + \eta)$，于是对任意 $x', x'' \in [a_n, b_n]$，有
+\[
+|f(x') - f(x'')| \leqslant |f(x') - f(r)| + |f(r) - f(x'')| < \frac{\varepsilon_0}{2} + \frac{\varepsilon_0}{2} = \varepsilon_0,
+\]
+这与 $[a_n, b_n]$ 具有上述性质~(P) 矛盾．故 $f(x)$ 在 $[a,b]$ 上一致连续．
+\end{proof}
+
+\begin{theorem}\label{thm:7-7}
+若 $f(x)$ 在 $[a,b]$ 连续，则 $f(x)$ 在 $[a,b]$ 可积．
+\end{theorem}
+
+\begin{proof}
+不妨假定 $a < b$，且 $f(x) \geqslant 0$ ($x \in [a, b]$)．因为否则，由 $f(x)$ 有下界 $m$，知 $f(x) - m \geqslant 0$ ($x \in [a, b]$)．如果能证 $f(x) - m$ 在 $[a, b]$ 可积，则由定理~\ref{thm:7-2} 便知 $f(x) = f(x) - m + m$ 也可积．
+
+由 $f(x) \geqslant 0$ 且 $f(x)$ 在 $[a,b]$ 连续，则由 $y = f(x)$，$y = 0$，$x = a$，$x = b$ 围成的曲边梯形有面积 $I$．我们现在来证明 $f(x)$ 的黎曼和有极限存在，且极限值等于 $I$．事实上，根据定理~\ref{thm:7-6}，任给 $\varepsilon > 0$，存在 $\delta > 0$，对任意 $x_1, x_2 \in [a,b]$，只要 $|x_1 - x_2| < \delta$，就有
+\[
+|f(x_1) - f(x_2)| < \frac{\varepsilon}{b - a}.
+\]
+对 $[a,b]$ 的任意满足 $\lambda < \delta$ 的分法，由于 $f(x)$ 在 $[x_{i-1}, x_i]$ 达到最大值 $M_i$ 与最小值 $m_i$，即存在 $x_i', x_i'' \in [x_{i-1}, x_i]$，使
+\[
+f(x_i') \leqslant f(x) \leqslant f(x_i''), \quad \forall x \in [x_{i-1}, x_i].
+\]
+显然 $|f(x_i'') - f(x_i')| < \frac{\varepsilon}{b - a}$，且对任意 $\xi_i \in [x_{i-1}, x_i]$，有
+\[
+f(x_i')\Delta x_i \leqslant f(\xi_i)\Delta x_i \leqslant f(x_i'')\Delta x_i,
+\]
+因此
+\[
+\sum_{i=1}^n f(x_i')\Delta x_i \leqslant \sum_{i=1}^n f(\xi_i)\Delta x_i \leqslant \sum_{i=1}^n f(x_i'')\Delta x_i.
+\]
+对应 $[a,b]$ 的这个分法，曲边梯形相应地分成 $n$ 个小曲边梯形，其中第 $i$ 个的面积记为 $I_i$，则
+\[
+f(x_i')\Delta x_i \leqslant I_i \leqslant f(x_i'')\Delta x_i,
+\]
+因此
+\[
+\sum_{i=1}^n f(x_i')\Delta x_i \leqslant I = \sum_{i=1}^n I_i \leqslant \sum_{i=1}^n f(x_i'')\Delta x_i.
+\]
+综合这两个不等式，便得到
+\begin{align*}
+\left|\sum_{i=1}^n f(\xi_i)\Delta x_i - I\right| &\leqslant \left|\sum_{i=1}^n f(x_i'')\Delta x_i - \sum_{i=1}^n f(x_i')\Delta x_i\right| \\
+&\leqslant \sum_{i=1}^n |f(x_i'') - f(x_i')|\Delta x_i < \frac{\varepsilon}{b - a}\sum_{i=1}^n \Delta x_i = \varepsilon.
+\end{align*}
+\end{proof}
+
+现在我们知道，在闭区间连续的函数一定是可积的．除此以外，还有哪些函数是可积的？这个问题我们将在第九章回答；下面给出一个有界函数但不可积的例子，它是在 $[a,b]$ 处处不连续的．
+
+\begin{example}
+狄利克雷函数
+\[
+D(x) = \begin{cases}
+1, & x \text{ 为有理数}, \\
+0, & x \text{ 为无理数}
+\end{cases}
+\]
+在 $[0,1]$ 是不可积的．
+\end{example}
+
+\begin{proof}
+事实上，如果 $D(x)$ 在 $[0,1]$ 是可积的，设积分值为 $I$．对 $[0,1]$ 的任意分法，取 $\xi_i \in [x_{i-1}, x_i]$ 为有理数，则黎曼和
+\[
+\sum_{i=1}^n D(\xi_i)\Delta x_i = 1,
+\]
+令 $\lambda \to 0$ 取极限，知 $I = 1$．但取 $\xi_i \in [x_{i-1}, x_i]$ 为无理数，则黎曼和
+\[
+\sum_{i=1}^n D(\xi_i)\Delta x_i = 0,
+\]
+令 $\lambda \to 0$ 取极限，得 $I = 0$．这是不可能的，故 $D(x)$ 在 $[0,1]$ 不可积．
+\end{proof}
+
+\begin{theorem}[积分第一中值定理]\label{thm:7-8}
+若 $f(x)$，$g(x)$ 在 $[a,b]$ 上连续，且 $g(x)$ 在 $[a,b]$ 不变号，则在 $[a,b]$ 中存在一点 $\xi$，使得
+\[
+\int_a^b f(x)g(x)\,dx = f(\xi)\int_a^b g(x)\,dx.
+\]
+\end{theorem}
+
+\begin{proof}
+不妨设 $g(x) \geqslant 0$．记 $f(x)$ 在 $[a,b]$ 的最大值与最小值分别为 $M$ 与 $m$，则对任意 $x \in [a,b]$，有
+\[
+m g(x) \leqslant f(x)g(x) \leqslant M g(x),
+\]
+因此
+\[
+m\int_a^b g(x)\,dx \leqslant \int_a^b f(x)g(x)\,dx \leqslant M\int_a^b g(x)\,dx.
+\]
+若 $\int_a^b g(x)\,dx = 0$，则 $\int_a^b f(x)g(x)\,dx = 0$，$\xi$ 取 $[a,b]$ 的任何一点皆满足要求．
+
+若 $\int_a^b g(x)\,dx > 0$，则有
+\[
+m \leqslant \frac{\displaystyle \int_a^b f(x)g(x)\,dx}{\displaystyle \int_a^b g(x)\,dx} \leqslant M,
+\]
+由连续函数介值定理，知存在 $\xi \in [a,b]$，使得
+\[
+f(\xi) = \frac{\displaystyle \int_a^b f(x)g(x)\,dx}{\displaystyle \int_a^b g(x)\,dx},
+\]
+从而
+\[
+\int_a^b f(x)g(x)\,dx = f(\xi)\int_a^b g(x)\,dx.
+\]
+\end{proof}
+
+特别地，当 $g(x) = 1$ 时，定理变成：若 $f(x)$ 在 $[a,b]$ 连续，则在 $[a,b]$ 中存在一点 $\xi$，使得
+\[
+\int_a^b f(x)\,dx = f(\xi)(b - a).
+\]
+这个定理的几何意义是：存在一个矩形，其高为 $f(\xi)$，底为 $[a,b]$，它的面积等于 $y = f(x)$ 下的曲边梯形的面积（见图~\ref{fig:7-8}）．
+
+\begin{theorem}\label{thm:7-9}
+设 $f(x)$ 在 $[a,b]$ 可积，令 $F(x) = \int_a^x f(t)\,dt$，则 $F(x)$ 是 $[a,b]$ 上的连续函数．
+\end{theorem}
+
+这里的 $F(x)$，称为 $f(x)$ 的变上限的定积分，它的几何意义是曲边梯形 $AaxB$ 的面积，其中横坐标 $x$ 看作是在 $[a,b]$ 中变化的自变量（见图~\ref{fig:7-9}）．这个函数在 $[a,b]$ 连续，在直观上看是显然的．
+
+\begin{figure}[htbp]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.9\textwidth]{fig7-8.png}
+\figcap{图 7-8}\label{fig:7-8}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.85\textwidth]{fig7-9.png}
+\figcap{图 7-9}\label{fig:7-9}
+\end{minipage}
+\end{figure}
+
+\begin{proof}
+由 $f(x)$ 在 $[a,b]$ 可积，知 $f(x)$ 在 $[a,b]$ 有界，设
+\[
+|f(x)| \leqslant M, \quad \forall x \in [a,b].
+\]
+对任意 $x \in [a,b]$，$x + \Delta x \in [a,b]$，有
+\begin{align*}
+|F(x + \Delta x) - F(x)| &= \left|\int_a^{x+\Delta x}f(t)\,dt - \int_a^x f(t)\,dt\right| \\
+&= \left|\int_x^{x+\Delta x}f(t)\,dt\right| \leqslant \left|\int_x^{x+\Delta x}|f(t)|\,dt\right| \leqslant M|\Delta x|,
+\end{align*}
+因而当 $\Delta x \to 0$ 时，$F(x + \Delta x) - F(x) \to 0$，这就证明了 $F(x)$ 在 $[a,b]$ 连续．
+\end{proof}
+
+\begin{xiti}
+\item 设 $f(x)$ 在 $[a,b]$ 连续，$f(x) \geqslant 0$，$f(x)$ 不恒为零，证明
+\[
+\int_a^b f(x)\,dx > 0.
+\]
+
+\item 设 $f(x)$ 在 $[a,b]$ 连续，$\int_a^b f^2(x)\,dx = 0$，证明 $f(x)$ 在 $[a,b]$ 上恒为零．
+
+\item 举例说明 $f^2(x)$ 在 $[a,b]$ 可积，但 $f(x)$ 在 $[a,b]$ 不可积．
+
+\item 比较下列各对定积分的大小：
+\begin{ziti}
+\item $\displaystyle \int_0^1 x \, dx, \quad \int_0^1 x^2 \, dx$；
+\item $\displaystyle \int_0^{\frac{\pi}{2}} x \, dx, \quad \int_0^{\frac{\pi}{2}}\sin x \, dx$；
+\item $\displaystyle \int_{-2}^{-1}\left(\frac{1}{3}\right)^x \, dx, \quad \int_0^1 3^x \, dx$．
+\end{ziti}
+
+\item 证明下列不等式（设所给的积分均存在）：
+\begin{ziti}
+\item $\displaystyle 1 \leqslant \int_0^1 \mathrm{e}^{x^2} \, dx \leqslant \mathrm{e}$；
+\item $\displaystyle 1 \leqslant \int_0^{\frac{\pi}{2}} \frac{\sin x}{x} \, dx \leqslant \frac{\pi}{2}$；
+\item $\displaystyle \frac{\pi}{2} \leqslant \int_0^{\frac{\pi}{2}} \frac{dx}{\sqrt{1 - \frac{1}{2}\sin^2 x}} \leqslant \frac{\pi}{\sqrt{2}}$；
+\item $\displaystyle 3\sqrt{\mathrm{e}} \leqslant \int_{\mathrm{e}}^{4\mathrm{e}} \frac{\ln x \, dx}{\sqrt{x}} \leqslant 6$．
+\end{ziti}
+
+\item 证明：
+\begin{ziti}
+\item $\displaystyle \lim_{n \to \infty} \int_0^1 \frac{x^n}{1 + x} \, dx = 0$；
+\item $\displaystyle \lim_{n \to \infty} \int_0^{\frac{\pi}{2}} \sin^n x \, dx = 0$．
+\end{ziti}
+
+\item 设 $f(x)$，$g(x)$ 在 $[a,b]$ 连续，证明
+\[
+\lim_{\lambda \to 0}\sum_{i=1}^n f(\xi_i)g(\theta_i)\Delta x_i = \int_a^b f(x)g(x)\,dx,
+\]
+其中 $a = x_0 < x_1 < \cdots < x_n = b$，$\Delta x_i = x_i - x_{i-1}$，$\xi_i, \theta_i \in [x_{i-1}, x_i]$ ($i = 1, 2, \cdots, n$)，$\lambda = \max_{1 \leqslant i \leqslant n}\{\Delta x_i\}$．
+
+\item 设 $0 < \delta < 1$，求证
+\[
+\lim_{n \to \infty}\frac{\displaystyle \int_\delta^1 (1 - t^2)^n \, dt}{\displaystyle \int_0^1 (1 - t^2)^n \, dt} = 0.
+\]
+
+\item 
+\begin{ziti}
+\item 设 $f(x)$ 在 $[a,b]$ 上连续，且对 $[a,b]$ 上任一连续函数 $g(x)$ 均有 $\int_a^b f(x)g(x)\,dx = 0$，证明 $f(x) \equiv 0$ ($x \in [a,b]$)．
+\item 设 $f(x)$ 在 $[a,b]$ 上连续，且对所有那些在 $[a,b]$ 上满足附加条件 $g(a) = g(b) = 0$ 的连续函数 $g(x)$，有 $\int_a^b f(x)g(x)\,dx = 0$．证明：在 $[a,b]$ 上同样有 $f(x) \equiv 0$．
+\end{ziti}
+
+\item 设 $f(x)$，$g(x)$ 在 $[a,b]$ 连续，求证：
+\[
+\left|\int_a^b f(x)g(x)\,dx\right| \leqslant \sqrt{\int_a^b f^2(x)\,dx} \cdot \sqrt{\int_a^b g^2(x)\,dx},
+\]
+而且等号成立当且仅当 $g(x) = \lambda f(x)$（或 $f(x) = \lambda g(x)$），其中 $\lambda$ 为常数．
+
+\item 设 $f(x)$，$g(x)$ 在 $[a,b]$ 连续，求证：
+\[
+\sqrt{\int_a^b \left[f(x) + g(x)\right]^2 \, dx} \leqslant \sqrt{\int_a^b f^2(x)\,dx} + \sqrt{\int_a^b g^2(x)\,dx},
+\]
+而且等号成立当且仅当 $g(x) = \lambda f(x)$（$\lambda \geqslant 0$ 为常数）．
+
+\item 设 $f(x)$ 在 $[0,1]$ 连续，$f(x) \geqslant \alpha > 0$，求证：
+\[
+\int_0^1 \frac{1}{f(x)}\,dx \geqslant \frac{1}{\int_0^1 f(x)\,dx}.
+\]
+
+\item 设 $y = \varphi(x)$ ($x \geqslant 0$) 是严格单调增加的连续函数，$\varphi(0) = 0$，$x = \psi(y)$ 是它的反函数，证明
+\[
+\int_0^a \varphi(x)\,dx + \int_0^b \psi(y)\,dy \geqslant ab \quad (a \geqslant 0, b \geqslant 0).
+\]
+
+\item 用一致连续定义验证：
+\begin{ziti}
+\item $f(x) = \sqrt[3]{x}$ 在 $[0,1]$ 上是一致连续的；
+\item $f(x) = \sin x$ 在 $(-\infty, +\infty)$ 上是一致连续的；
+\item $f(x) = x^2$ 在 $[a,b]$ 上一致连续，但在 $(-\infty, +\infty)$ 上不一致连续；
+\item $f(x) = \sin x^2$ 在 $(-\infty, +\infty)$ 上不一致连续．
+\end{ziti}
+\end{xiti}

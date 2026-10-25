@@ -1,0 +1,454 @@
+% ============ 第二章 §1 分解的存在惟一性 (原书 pp.32-50) ============
+\section{分解的存在惟一性}\label{sec:ch2-s1}
+
+\subsection{Dedekind 整环}\label{sec:ch2-s1-1}
+
+\begin{definition}\label{def:ch2-1}
+整环 $R$ 叫作\emph{诺特(Noether)整环},如果 $R$ 的每个理想均是有限生成的.
+\end{definition}
+
+\begin{remark}
+(1) 这里的"有限生成"是指理想而言,不是像前一章指加法群而言.具体说来,由环 $R$ 中元素 $\alpha_1,\alpha_2,\cdots,\alpha_n$ 生成的加法群为 $\Z\alpha_1+\Z\alpha_2+\cdots+\Z\alpha_n$,而生成的理想为 $R\alpha_1+R\alpha_2+\cdots+R\alpha_n$.
+
+(2) 整环(domain)是无零因子的环(见附录 A),而整数环的"整"(integral)如第一章所定义,不要因中文名称相近而混淆.
+\end{remark}
+
+例如,主理想整环的每个理想均是由一元生成的(主理想),从而是诺特整环.而无限个未定元的整环 $R=\Z[x_1,x_2,\cdots,x_n,\cdots]$ 不是诺特整环,因为理想 $Rx_1+Rx_2+\cdots+Rx_n+\cdots$ 不是有限生成的.
+
+\begin{lemma}\label{lem:ch2-1}
+设 $R$ 为整环,则以下三个条件彼此等价:
+\begin{enumerate}[(a)]
+  \item $R$ 是诺特整环;
+  \item (理想升链条件)如果 $I_i$($i=1,2,\dots$)均是 $R$ 中理想,并且 $I_1\subseteq I_2\subseteq\cdots\subseteq I_n\subseteq\cdots$,则存在 $n_0\in\Z$,使得 $I_{n_0}=I_{n_0+1}=\cdots$;
+  \item 设 $S$ 是 $R$ 中一些理想组成的非空集合,则 $S$ 中存在极大元 $I$(即不存在 $I'\in S$,使得 $I'\supseteq I$).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(a) $\Rightarrow$ (b):令 $I=\bigcup_{i=1}^{\infty}I_i$,易知这也是 $R$ 的理想,由 (a) 知它应当是有限生成的.设 $I$ 是由元素 $x_1,\cdots,x_n$ 生成的,由于 $x_j\in I$,从而 $x_j$ 属于某个 $I_{i_j}$($1\leqslant j\leqslant n$),令 $n_0=\max(i_1,\cdots,i_n)$,则 $x_j\in I_{i_j}\subseteq I_{n_0}$($1\leqslant j\leqslant n$).于是 $I\subseteq I_{n_0}\subseteq I_{n_0+1}\subseteq\cdots\subseteq I$,从而 $I_{n_0}=I_{n_0+1}=\cdots$.
+
+(b) $\Rightarrow$ (c):用反证法即可.
+
+(c) $\Rightarrow$ (a):也用反证法.假如 $R$ 中理想 $I$ 不是有限生成的.取 $x_1\in I$,则 $I_1=Rx_1$ 为 $R$ 的理想,由于 $I$ 不是有限生成的,从而 $I_1\subsetneq I$.于是有 $x_2\in I-I_1$.又有理想 $I_2=Rx_1+Rx_2\subsetneq I$.如此下去便得到一个理想集合 $S=\{I_1,I_2,\cdots\}$,$I_n\subsetneq I_{n+1}$,从而 $S$ 中没有极大元,与 (c) 相矛盾.
+\end{proof}
+
+\begin{definition}\label{def:ch2-2}
+整环 $R$ 叫作是\emph{整闭的},是指若 $a$ 属于 $R$ 的商域 $F$,并且它是 $R[x]$ 中某个首 $1$ 多项式的根,则必然 $a\in R$.
+\end{definition}
+
+\begin{definition}\label{def:ch2-3}
+整环 $R$ 叫作是 \emph{Dedekind 整环},如果它满足如下三个条件:
+\begin{enumerate}[(1)]
+  \item $R$ 是诺特整环;
+  \item $R$ 中每个非零素理想均是极大理想;
+  \item $R$ 是整闭的.
+\end{enumerate}
+\end{definition}
+
+我们先给出 Dedekind 整环的例子.
+
+\begin{lemma}\label{lem:ch2-2}
+主理想整环必是 Dedekind 整环.
+\end{lemma}
+
+\begin{proof}
+主理想整环 $R$ 的每个理想都由一个元素生成,所以 $R$ 是诺特整环.再证 $R$ 中每个非零素理想 $I=(a)=aR$($a\neq 0$)必为极大理想.由 $I$ 是素理想可知 $a$ 是 $R$ 中不可约元素.设 $I'=(a')$ 是包含 $I$ 的另一个理想,则 $a\in I'$,于是存在 $b\in R$,使得 $a=a'b$.由于 $a$ 不可约,所以 $a'$ 和 $b$ 必有一个为 $R$ 中单位.若 $a'$ 为单位,则 $I'=R$.而若 $b$ 为单位,则 $I'=(a')=(a'b)=(a)=I$.这就表明 $I'$ 或者为 $R$ 或者为 $I$,即 $I$ 是极大理想.最后证明 $R$ 是整闭的.设 $F$ 是 $R$ 的商域,而 $F$ 中元素 $a$ 是多项式
+\[
+  x^n+c_1x^{n-1}+\cdots+c_{n-1}x+c_n
+\]
+的根,其中 $c_1,\cdots,c_n\in R$,则
+\[
+  a^n+c_1a^{n-1}+\cdots+c_{n-1}a+c_n=0.
+\]
+在商域 $F$ 中元素 $a$ 可表示成 $a=\dfrac{b}{d}$,其中 $b,d\in R$,$d\neq 0$,$(b,d)=1$.代入上式则有
+\[
+  b^n=-d(c_1b^{n-1}+c_2b^{n-2}d+\cdots+c_nd^{n-1}).
+\]
+于是 $d\mid b^n$.由于 $(b,d)=1$ 可知 $d$ 必为 $R$ 中单位(注意:主理想整环必为惟一因子分解整环).于是 $a=bd^{-1}\in R$.这就证明了 $R$ 是整闭的.因此 $R$ 满足定义 \ref{def:ch2-3} 中的所有条件,从而为 Dedekind 整环.
+\end{proof}
+
+现在我们叙述 Dedekind 整环的一些性质,其中最重要的是素理想分解定理.以下所谓理想均指非零理想.
+
+\begin{lemma}\label{lem:ch2-3}
+在诺特整环 $R$ 中,对于每个理想 $I$,均存在 $R$ 的有限个素理想 $\mathfrak{p}_1,\cdots,\mathfrak{p}_n$,使得 $I\supseteq\mathfrak{p}_1\cdots\mathfrak{p}_n$.
+\end{lemma}
+
+\begin{proof}
+我们以 $S$ 表示不具有引理所述性质的那些理想 $I$ 所构成的集合.如果 $S\neq\emptyset$(空集),则由于 $R$ 是诺特整环,$S$ 中有极大元 $M$(引理 \ref{lem:ch2-1}).$M$ 显然不是素理想(因为 $M$ 不具有引理所述性质).因此存在 $r,s\in R-M$,使得 $rs\in M$.于是理想 $M+Rr$ 和 $M+Rs$ 均真包含 $M$,从而均不属于 $S$.于是存在素理想 $\mathfrak{p}_1,\cdots,\mathfrak{p}_n,\mathfrak{q}_1,\cdots,\mathfrak{q}_m$,使得
+\[
+  M+Rr\supseteq\mathfrak{p}_1\cdots\mathfrak{p}_n,\qquad
+  M+Rs\supseteq\mathfrak{q}_1\cdots\mathfrak{q}_m.
+\]
+从而
+\[
+  M\supseteq(M+Rr)(M+Rs)\supseteq\mathfrak{p}_1\cdots\mathfrak{p}_n\mathfrak{q}_1\cdots\mathfrak{q}_m.
+\]
+这就与 $M\in S$ 相矛盾.从而 $S=\emptyset$,即 $R$ 中每个理想均具有引理中所述性质.
+\end{proof}
+
+\begin{lemma}\label{lem:ch2-4}
+设 $A$ 是 Dedekind 整环 $R$ 的理想,$A\neq R$,$K$ 为 $R$ 的商域,则存在元素 $\gamma\in K-R$,使得 $\gamma A\subseteq R$.
+\end{lemma}
+
+\begin{proof}
+对于 $0\neq a\in A$,令 $r$ 是最小正整数使得 $(a)\supseteq\mathfrak{p}_1\cdots\mathfrak{p}_r$,其中 $\mathfrak{p}_i$ 均为 $R$ 中的素理想($r$ 的存在性由引理 \ref{lem:ch2-3} 给出).由于 $A$ 必然包含在某个极大理想 $\mathfrak{m}$ 中,从而 $\mathfrak{m}\supseteq A\supseteq\mathfrak{p}_1\cdots\mathfrak{p}_r$.由于极大理想 $\mathfrak{m}$ 也是素理想,因此 $\mathfrak{m}$ 必包含 $\mathfrak{p}_1,\cdots,\mathfrak{p}_r$ 中的某一个(为什么?),不妨设 $\mathfrak{m}\supseteq\mathfrak{p}_1$,但是在 Dedekind 整环中,素理想也是极大理想,于是 $\mathfrak{m}=\mathfrak{p}_1$.另一方面,由 $r$ 的极小性可知存在 $b\in\mathfrak{p}_2\cdots\mathfrak{p}_r$,$b\notin(a)$.令 $\gamma=b/a$,则 $\gamma\in K-R$,并且
+\[
+  bA\subseteq b\mathfrak{m}=b\mathfrak{p}_1\subseteq\mathfrak{p}_1\mathfrak{p}_2\cdots\mathfrak{p}_r\subseteq aR,
+\]
+从而 $\gamma A\subseteq R$.
+\end{proof}
+
+\begin{lemma}\label{lem:ch2-5}
+设 $I$ 是 Dedekind 整环 $R$ 中的理想,则存在 $R$ 中另一个理想 $J$,使得 $IJ$ 为主理想.
+\end{lemma}
+
+\begin{proof}
+取 $0\neq\alpha\in I$.令 $J=\{\beta\in R\mid \beta I\subseteq(\alpha)\}$.$J$ 显然是 $R$ 的理想,并且 $IJ\subseteq(\alpha)$.从而 $A=\frac{1}{\alpha}IJ\subseteq R$ 并且 $A$ 是 $R$ 中理想.如果 $A\neq R$ 我们来推出矛盾:由引理 \ref{lem:ch2-4} 知存在 $\gamma\in K-R$,使得 $\gamma A\subseteq R$.由于 $\alpha\in I$,从而 $A=\frac{1}{\alpha}IJ\supseteq J$,于是 $\gamma J\subseteq\gamma A\subseteq R$.对于每个 $\beta\in J$,则 $\gamma\beta\in R$,并且
+\[
+  \gamma\beta I\subseteq\gamma JI=\gamma\alpha A\subseteq\alpha R=(\alpha).
+\]
+从而由 $J$ 的定义可知 $\gamma\beta\in J$,于是 $\gamma J\subseteq J$.由于 $R$ 为诺特整环,从而理想 $J$ 是由有限个元素 $\alpha_1,\cdots,\alpha_m$ 生成的.由 $\gamma J\subseteq J$ 给出方程组
+\[
+  \gamma\begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_m\end{pmatrix}
+  =M\begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_m\end{pmatrix},
+\]
+其中 $M$ 是 $R$ 上的 $m$ 阶方阵.由于 $\alpha_1,\cdots,\alpha_m$ 不全为零(因为 $J\neq(0)$),从而由线性代数可知 $|\gamma I_m-M|=0$,即 $\gamma$ 是 $R[x]$ 中首 $1$ 多项式 $|xI_m-M|$ 的根.利用 $R$ 的整闭特性,可知 $\gamma\in R$.这就与原来的 $\gamma\in K-R$ 相矛盾.因此必然 $A=R$,即 $IJ=(\alpha)$.
+\end{proof}
+
+\begin{lemma}[\emph{消去律}]\label{lem:ch2-6}
+设 $A$,$B$,$C$ 均为某个 Dedekind 整环中的理想,则 $AB=AC\Rightarrow B=C$.
+\end{lemma}
+
+\begin{proof}
+由引理 \ref{lem:ch2-5} 可知存在理想 $J$,使得 $AJ=(\alpha)$,$\alpha\neq 0$,于是 $\alpha B=ABJ=ACJ=\alpha C$.由于 $R$ 为整环,即得 $B=C$.
+\end{proof}
+
+\begin{lemma}\label{lem:ch2-7}
+设 $A$ 和 $B$ 为 Dedekind 整环 $R$ 中两个理想,则 $A\supseteq B$ $\Leftrightarrow$ 存在 $R$ 中理想 $C$,使得 $B=AC$.
+\end{lemma}
+
+\begin{proof}
+$\Leftarrow$:显然.$\Rightarrow$:取理想 $J$,使得 $AJ=(a)$.由 $A\supseteq B$ 可知 $C=\frac{1}{a}JB$ 是 $R$ 中理想,并且 $B=AC$.
+\end{proof}
+
+现在我们可以证明 Dedekind 整环的重要性质.
+
+\begin{theorem}\label{thm:2.1}
+Dedekind 整环 $R$ 中每个(非零)理想均可(不计次序)惟一地表成有限个素理想的乘积(规定 $R$ 是 $0$ 个素理想之积).
+\end{theorem}
+
+\begin{proof}
+(存在性)令 $S$ 为 $R$ 中不能表成有限个素理想之积的那些理想组成的集合.由定理中的规定知 $R\notin S$.如果 $S\neq\emptyset$,则 $S$ 中有极大元 $M\neq R$,从而 $M$ 包含在某个极大理想(从而也是素理想)$P$ 之中.由引理 \ref{lem:ch2-7} 知存在理想 $I$,使得 $M=PI$.由引理 \ref{lem:ch2-5} 可知 $I\subsetneq M$.从而由 $M$ 在集合 $S$ 中的极大性可知 $I\notin S$.于是 $I=P_1\cdots P_r$,从而 $M=PP_1\cdots P_r$,其中 $P$,$P_i$ 均为 $R$ 的素理想.这就与 $M\in S$ 相矛盾.因此必然 $S=\emptyset$,即 $R$ 中每个非零理想均可表成有限个素理想的乘积.
+
+\begin{sloppypar}
+(惟一性)假设 $P_1\cdots P_r=Q_1\cdots Q_s$,其中 $P_i$,$Q_j$ 均为 $R$ 的素理想,则 $P_1\supseteq Q_1\cdots Q_s$.从而 $P_1$ 包含 $Q_1,\cdots,Q_s$ 中的某一个.不妨设 $P_1\supseteq Q_1$,由于素理想 $P_1$ 和 $Q_1$ 均为极大理想,从而 $P_1=Q_1$.然后由引理 \ref{lem:ch2-6} 中的消去律给出 $P_2\cdots P_r=Q_2\cdots Q_s$.继续下去即知 $r=s$,并且(必要时改动一下诸 $Q_i$ 的下标)$P_i=Q_i$($1\leqslant i\leqslant r$).
+\end{sloppypar}
+\end{proof}
+
+\begin{remark}
+\begin{sloppypar}
+可以证明定理 \ref{thm:2.1} 的逆也是成立的.换句话说,我们也可把素理想分解式的存在惟一性作为 Dedekind 整环的定义.
+\end{sloppypar}
+\end{remark}
+
+\begin{sloppypar}
+基于定理 \ref{thm:2.1},我们可以把惟一因子分解整环中关于元素的许多性质推广到 Dedekind 整环 $R$ 的理想上.例如,我们可以定义 $R$ 中理想 $A$ \emph{整除}理想 $B$(表示成 $A\mid B$),即指存在 $R$ 的理想 $C$,\allowbreak 使得 $B=AC$,这时 $A$ 叫作 $B$ 的(理想)因子,而 $B$ 可以叫作是 $A$ 的倍理想.由引理 \ref{lem:ch2-7} 可知 $A\mid B$ 和 $A\supseteq B$ 是一回事(注意:若 $A$ 为 $B$ 的理想因子,则作为集合 $A$ 比 $B$ 要大!).类似地可定义几个理想的最大公因子和最小公倍理想.如果将理想 $A$ 和 $B$ 分解成素理想的乘积:
+\end{sloppypar}
+\[
+  A=P_1^{e_1}\cdots P_r^{e_r},\qquad
+  B=P_1^{f_1}\cdots P_r^{f_r},\qquad e_i,f_i\geqslant 0
+\]
+(这里我们允许 $e_i$ 或 $f_i$ 为 $0$,并且 $P_i^0=R$,是为了将 $A$ 和 $B$ 的分解式右边形式上有相同的一些素理想),其中 $P_1,\cdots,P_r$ 是彼此不同的素理想.容易看出:$A\mid B\Leftrightarrow e_i\leqslant f_i$($1\leqslant i\leqslant r$)(习题 2).此外,若令 $t_i=\min(e_i,f_i)$,$m_i=\max(e_i,f_i)$,则 $P_1^{t_1}\cdots P_r^{t_r}$ 和 $P_1^{m_1}\cdots P_r^{m_r}$ 显然是 $A$ 和 $B$ 的最大公因子和最小公倍理想.但是我们无须赋以新的符号,因为它们分别是 $A+B$ 和 $A\cap B$(习题 2).
+
+具有素理想惟一分解性质的整环何时才能具有元素的惟一分解性质,即一个 Dedekind 整环何时是惟一因子分解整环?下面引理给出答案.
+
+\begin{lemma}\label{lem:ch2-8}
+设 $R$ 为 Dedekind 整环,则 $R$ 是惟一因子分解整环的充要条件为 $R$ 是主理想整环.
+\end{lemma}
+
+\begin{proof}
+$\Leftarrow$:显然.因为每个主理想整环均是惟一因子分解整环.
+
+$\Rightarrow$:设 $R$ 不是主理想整环,则 $R$ 中存在非主理想.将这个非主理想分解成有限个素理想的乘积,可知其中至少有一个素理想因子不是主理想(反证法).因此,$R$ 中必存在不是主理想的素理想 $P$.考虑集合 $S=\{R$ 的理想 $I\mid IP$ 为主理想$\}$,由引理 \ref{lem:ch2-5} 知道 $S$ 是非空的,从而有极大元 $M$.令 $PM=(\alpha)$,$\alpha\in R$,则 $\alpha$ 必是环 $R$ 中的不可约元素.这是因为:如果 $\alpha=\beta\gamma$,$\beta,\gamma\in R$,则 $P\mid(\alpha)=(\beta)(\gamma)$,从而 $P\mid(\beta)$ 或者 $P\mid(\gamma)$.于是 $(\beta)$ 或者 $(\gamma)$ 必有形式 $JP$,其中 $J$ 为 $R$ 中理想,于是 $J\in S$.又由于 $JP\mid PM$,从而 $J\mid M$,即 $J\supseteq M$.但是 $M$ 为 $S$ 中的极大元,因此 $J=M$.从而 $(\beta)=(\alpha)$ 或者 $(\gamma)=(\alpha)$,即 $\beta$ 和 $\gamma$ 当中必有一个与 $\alpha$ 相结合,因此 $\alpha$ 是不可约元素.另一方面,显然 $P\supseteq(\alpha)$.又由于 $R\neq P$,从而又有 $M\supseteq(\alpha)$.于是有 $\delta\in P-(\alpha)$,$\varepsilon\in M-(\alpha)$.由于 $(\alpha)=MP\supseteq(\delta)(\varepsilon)=(\delta\varepsilon)$,从而 $\alpha\mid\delta\varepsilon$.但是 $\alpha\nmid\delta$,$\alpha\nmid\varepsilon$.这对于惟一因子分解整环 $R$ 中的不可约元素 $\alpha$ 是不可能的.这一矛盾表明 $R$ 必为主理想整环.
+\end{proof}
+
+\begin{remark}
+主理想整环必是惟一因子分解整环.而主理想整环也必是 Dedekind 整环(引理 \ref{lem:ch2-2}).在惟一因子分解整环和 Dedekind 整环之间没有相互包含关系,例如 $\Z[x]$ 是惟一因子分解整环,但不是 Dedekind 整环,因为 $(x)$ 是素理想但不是极大理想.另一方面,$\Z[\sqrt{-5}]$ 不是惟一因子分解整环,但它是 Dedekind 整环(见定理 \ref{thm:2.2} 推论后面的例子).定理 \ref{thm:2.2} 表明若已知 $R$ 是 Dedekind 整环,则 $R$ 为主理想整环当且仅当它是惟一因子分解整环.
+\end{remark}
+
+\subsection{\texorpdfstring{整数环 $O_K$ 是 Dedekind 整环}{整数环 OK 是 Dedekind 整环}}\label{sec:ch2-s1-2}
+
+\begin{theorem}\label{thm:2.2}
+数域 $K$ 的整数环 $O_K$ 是 Dedekind 整环.
+\end{theorem}
+
+\begin{proof}
+$O_K$ 显然是整环.我们来依次验证 Dedekind 整环定义中的 $3$ 个条件对于 $O_K$ 是成立的.
+
+(1) 我们在第一章中证明了,$O_K$ 的加法群是有限生成自由 Abel 群.而每个理想 $I$ 的加法群均是 $O_K$ 的加法子群.由 Abel 群结构定理(附录 A, (1))可知 $I$ 的加法群也是有限生成的.即 $I=\Z\alpha_1+\cdots+\Z\alpha_n$,于是更有 $I=\alpha_1O_K+\alpha_2O_K+\cdots+\alpha_nO_K$.从而 $I$ 作为 $O_K$ 的理想也是有限生成的,即 $O_K$ 是诺特整环.
+
+(2) 设 $P$ 是 $O_K$ 中的非零素理想.取 $0\neq\alpha\in P$,令 $m=N_{K/\Q}(\alpha)\in\Z-\{0\}$.由于 $m/\alpha$ 是 $\alpha$ 的一些共轭元素之积,从而 $m/\alpha$ 是整数,但是 $m/\alpha\in K$,所以 $m/\alpha\in O_K$.于是 $m=\alpha\cdot m/\alpha\in P$.即 $(m)\subseteq P$.设 $\{\omega_1,\cdots,\omega_n\}$ 为 $O_K$ 的一组整基,即 $O_K=\Z\omega_1\oplus\cdots\oplus\Z\omega_n$,$n=[K:\Q]$,则
+\begin{align*}
+  O_K/mO_K&=(\Z\omega_1\oplus\cdots\oplus\Z\omega_n)/(\Z m\omega_1\oplus\cdots\oplus\Z m\omega_n)\\
+  &\cong\Z/m\Z\oplus\cdots\oplus\Z/m\Z\ (\text{$n$ 个}).
+\end{align*}
+由环的同构定理知道 $O_K/P\cong(O_K/mO_K)/(P/mO_K)$,从而 $|O_K/P|\leqslant|O_K/mO_K|=m^n$.即 $O_K/P$ 是有限环.由于 $P$ 是素理想,从而 $O_K/P$ 为有限整环,熟知它必是域.这就反过来推出 $P$ 为极大理想.于是环 $O_K$ 中每个非零素理想均是极大理想.
+
+(3) 设 $\alpha\in K$,$f(x)=x^m+c_1x^{m-1}+\cdots+c_m\in O_K[x]$,$f(\alpha)=0$.由于 $c_1,\cdots,c_m\in O_K$,可知 $O_K$ 的子环 $R=\Z[c_1,\cdots,c_m]$ 的加法群是有限生成的,即 $R=\Z\gamma_1+\cdots+\Z\gamma_s$.由 $f(\alpha)=0$ 可知每个 $\alpha^r$($r\geqslant 1$)均可表示成 $1,\alpha,\cdots,\alpha^{m-1}$ 的 $R$-线性组合.于是
+\begin{align*}
+  \Z[c_1,\cdots,c_m,\alpha]&=R[\alpha]=R\cdot 1+R\alpha+\cdots+R\alpha^{m-1}\\
+  &=\Z\gamma_1+\cdots+\Z\gamma_s+\Z\alpha\gamma_1+\cdots+\Z\alpha\gamma_s+\cdots\\
+  &\qquad+\Z\alpha^{m-1}\gamma_1+\cdots+\Z\alpha^{m-1}\gamma_s.
+\end{align*}
+即环 $\Z[c_1,\cdots,c_m,\alpha]$ 的加法群也是有限生成的.根据第一章定理 \ref{thm:1.8} 的 (3),可知 $\alpha$ 是整数,从而 $\alpha\in O_K$.这就证明了 $O_K$ 有整闭性质.
+\end{proof}
+
+\begin{corollarynonum}
+整数环 $O_K$ 的每个非零理想均可(不计次序)惟一地表示成有限个素理想的乘积.
+\end{corollarynonum}
+
+\begin{example}\label{ex:ch2-s1-2-1}
+考虑虚二次域 $K=\Q(\sqrt{-5})$.我们从第一章已经知道 $O_K=\Z[\sqrt{-5}]$.在 $O_K$ 中主理想 $(2)$ 和 $(3)$ 都不是素理想,这是因为
+\begin{align*}
+  (2,1+\sqrt{-5})^2&=(2\cdot 2,\ 2\cdot(1+\sqrt{-5}),\ (1+\sqrt{-5})^2)\\
+  &=(4,\ 2(1+\sqrt{-5}),\ -4+2\sqrt{-5})=(2);\\
+  (3,1+\sqrt{-5})(3,1-\sqrt{-5})&=(9,\ 3+3\sqrt{-5},\ 3-3\sqrt{-5},\ 6)=(3).
+\end{align*}
+理想 $(2,1+\sqrt{-5})$ 是素理想,这是由于商环 $\Z[\sqrt{-5}]/(2,1+\sqrt{-5})$ 是由两个元素构成的整环(验证!).同样可证 $(3,1+\sqrt{-5})$ 和 $(3,1-\sqrt{-5})$ 也都是 $\Z[\sqrt{-5}]$ 中的素理想.于是 $(2)$ 是素理想 $(2,1+\sqrt{-5})$ 的平方,而理想 $(3)$ 是两个(不同)素理想 $(3,1+\sqrt{-5})$ 和 $(3,1-\sqrt{-5})$ 的乘积.
+\end{example}
+
+读者多半在抽象代数课程中学过,$\Z[\sqrt{-5}]$ 不是惟一因子分解整环,因为元素 $6$ 有两种分解式:
+\[
+  6=2\cdot 3=(1+\sqrt{-5})(1-\sqrt{-5}),
+\]
+而 $2$,$3$,$1\pm\sqrt{-5}$ 均是不可约元素,并且 $2$ 与 $1\pm\sqrt{-5}$ 不相伴.将上述等式改成理想的等式,就有
+\[
+  (6)=(2)\cdot(3)=(1+\sqrt{-5})(1-\sqrt{-5}).
+\]
+验证:
+\[
+  (1+\sqrt{-5})=(2,1+\sqrt{-5})(3,1+\sqrt{-5}),\quad
+  (1-\sqrt{-5})=(2,1-\sqrt{-5})(3,1-\sqrt{-5}),
+\]
+\[
+  (2,1+\sqrt{-5})=(2,1-\sqrt{-5}).
+\]
+从而由元素 $6$ 的两个不同的分解式给出理想 $(6)$ 的同一个素理想分解式
+\[
+  (6)=(2,1+\sqrt{-5})^2(3,1+\sqrt{-5})(3,1-\sqrt{-5}).
+\]
+
+在上面例子中我们还看到另一种现象,即一个素数 $p$(它生成二的素理想 $(p)$)在整数环 $O_K$ 中生成的理想 $pO_K=(p)$ 可能不再是 $O_K$ 中的素理想.但是在 Dedekind 整环 $O_K$ 中,理想 $pO_K$ 应当是 $O_K$ 中一些素理想的乘积.这就产生了一个很自然的问题:$pO_K$ 如何分解成一些素理想的乘积?更一般地,设 $L/K$ 是数域的扩张,显然 $O_L\supseteq O_K$.所以 $O_K$ 的素理想 $\mathfrak{p}$ 是 $O_L$ 的一个子集合.人们要问:$\mathfrak{p}$ 在 $O_L$ 中生成的理想 $\mathfrak{p}O_L$ 如何分解成 $O_L$ 中一些素理想的乘积?这是代数数论的基本问题之一.本章从第 $4$ 节起将用相当的篇幅讲述这个问题.
+
+\subsection{理想的范}\label{sec:ch2-s1-3}
+
+首先我们决定 $O_K$ 中非零理想的加法群结构.
+
+\begin{lemma}\label{lem:ch2-9}
+设 $A$ 为 $O_K$ 中非零理想,则 $A$ 的加法群是秩 $n=[K:\Q]$ 的自由 Abel 群.
+\end{lemma}
+
+\begin{proof}
+我们已知 $O_K$ 是秩 $n$ 的自由 Abel 群(定理 \ref{thm:1.11}),而 $A$ 是 $O_K$ 的加法子群.由 Abel 群基本定理(附录 A, (1)),可知 $A$ 是秩 $\leqslant n$ 的自由 Abel 群.我们只需再证 $A$ 的秩为 $n$,即要找出 $A$ 中 $\Z$-线性无关的 $n$ 个元素.为此设 $\omega_1,\cdots,\omega_n$ 是 $O_K$ 的一组整基.任取 $0\neq\alpha\in A$,令 $t=N_{K/\Q}(\alpha)$,则 $0\neq t\in\Z$.于是 $t/\alpha\in K$,但 $t/\alpha$ 是 $\alpha$ 的一些共轭元素之积,从而 $t/\alpha$ 是整数.于是 $t/\alpha\in O_K$.于是 $t=\alpha\cdot\frac{t}{\alpha}\in A$,所以 $t\omega_1,\cdots,t\omega_n$ 均属于 $A$.但是 $A$ 中这 $n$ 个元素显然是 $\Z$-线性无关的.这就证明了 $A$ 是秩 $n$ 的自由 Abel 群.
+\end{proof}
+
+现在我们引进一个数量,它粗略地衡量 $O_K$ 中理想的"大小".
+
+我们有一个最大的理想即 $O_K$ 自身作为标准,每个非零理想 $A$ 都是 $O_K$ 的子集合.设 $\{\omega_1,\cdots,\omega_n\}$ 是 $O_K$ 的一组 $\Z$-基(即整基),由引理 \ref{lem:ch2-9} 知 $A$ 也有一组 $\Z$-基 $\{\alpha_1,\cdots,\alpha_n\}$.于是每个 $\alpha_i$ 均是 $\omega_1,\cdots,\omega_n$ 的 $\Z$-线性组合,即存在元素属于 $\Z$ 的 $n$ 阶方阵 $T=(t_{ij})$,使得
+\[
+  \begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix}
+  =T\begin{pmatrix}\omega_1\\ \vdots\\ \omega_n\end{pmatrix}.
+\]
+\begin{sloppypar}
+由于 $\{\alpha_1,\cdots,\alpha_n\}$ 和 $\{\omega_1,\cdots,\omega_n\}$ 都是 $K$ 的 $\Q$-基,可知行列式 $\det T$ 是非零有理整数.如果 $\{\omega_1',\cdots,\omega_n'\}$ 和 $\{\alpha_1',\cdots,\alpha_n'\}$ 分别是 $O_K$ 和 $A$ 的另一组 $\Z$-基,则
+\end{sloppypar}
+\[
+  \begin{pmatrix}\alpha_1'\\ \vdots\\ \alpha_n'\end{pmatrix}
+  =M\begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix},\qquad
+  \begin{pmatrix}\omega_1\\ \vdots\\ \omega_n\end{pmatrix}
+  =N\begin{pmatrix}\omega_1'\\ \vdots\\ \omega_n'\end{pmatrix},
+\]
+其中 $M$ 和 $N$ 均为 $n$ 阶 $\Z$-方阵,并且 $\det M=\pm 1$,$\det N=\pm 1$,而
+\[
+  \begin{pmatrix}\alpha_1'\\ \vdots\\ \alpha_n'\end{pmatrix}
+  =MTN\begin{pmatrix}\omega_1'\\ \vdots\\ \omega_n'\end{pmatrix},
+\]
+由于 $|\det(MTN)|=|\det T|$(其中 $|\,|$ 表示绝对值),这就表明正整数 $|\det T|$ 与 $O_K$ 和 $A$ 的 $\Z$-基选取是无关的,即它是理想 $A$ 本身的不变量,我们称它是理想 $A$ 的\emph{范},表示成 $N_K(A)=N_{K/\Q}(A)$.
+
+现在要说明理想的范如何反映出理想的"大小".从定理 \ref{thm:2.2} 的证明中可看出当 $A$ 是非零素理想时,商环 $O_K/A$ 是有限环.下面定理表明对任意非零理想 $A$,$O_K/A$ 均是有限环,并且元素个数恰好为 $N_K(A)$.所以 $N_K(A)$ 愈大,则 $O_K/A$ 中元素愈多,即 $A$ 在 $O_K$ 中分布愈稀疏.
+
+\begin{theorem}\label{thm:2.3}
+设 $A$ 为数域 $K$ 中的非零整理想,则 $N_K(A)=|O_K/A|$.
+\end{theorem}
+
+\begin{proof}
+按照 Abel 群基本定理(附录 A, (1)),我们可以取 $O_K$ 的一组整基 $\{\omega_1,\cdots,\omega_n\}$,使得
+\[
+  O_K=\Z\omega_1\oplus\cdots\oplus\Z\omega_n,\qquad
+  A=\Z\alpha_1\omega_1\oplus\cdots\oplus\Z\alpha_n\omega_n,\quad \alpha_i\in\Z,
+\]
+这时,
+\[
+  \begin{pmatrix}\alpha_1\omega_1\\ \vdots\\ \alpha_n\omega_n\end{pmatrix}
+  =\begin{pmatrix}
+    \alpha_1 & & &\\
+    & \alpha_2 & &\\
+    & & \ddots &\\
+    & & & \alpha_n
+  \end{pmatrix}
+  \begin{pmatrix}\omega_1\\ \vdots\\ \omega_n\end{pmatrix}.
+\]
+从而由理想范的定义可知 $N_K(A)=|\alpha_1\alpha_2\cdots\alpha_n|$.另一方面,
+\begin{align*}
+  O_K/A&=(\Z\omega_1\oplus\cdots\oplus\Z\omega_n)/(\Z\alpha_1\omega_1\oplus\cdots\oplus\Z\alpha_n\omega_n)\\
+  &\cong\Z\omega_1/\Z\alpha_1\omega_1\oplus\cdots\oplus\Z\omega_n/\Z\alpha_n\omega_n\\
+  &\cong\Z/\alpha_1\Z\oplus\cdots\oplus\Z/\alpha_n\Z.
+\end{align*}
+于是
+\[
+  |O_K/A|=\prod_{i=1}^{n}|\Z/\alpha_i\Z|=|\alpha_1\cdots\alpha_n|=N_K(A).
+\]
+\end{proof}
+
+理想的范有以下的基本性质.
+
+\begin{theorem}\label{thm:2.4}
+设 $A$ 和 $B$ 是 $O_K$ 中的理想,$A=\mathfrak{p}_1^{e_1}\cdots\mathfrak{p}_r^{e_r}$,其中 $\mathfrak{p}_1,\cdots,\mathfrak{p}_r$ 是 $O_K$ 中不同的素理想,$e_i\geqslant 1$,则
+\begin{enumerate}[(1)]
+  \item $N_K(A)=N_K(\mathfrak{p}_1)^{e_1}\cdots N_K(\mathfrak{p}_r)^{e_r}$;
+  \item $N_K(AB)=N_K(A)N_K(B)$;
+  \item 设 $\{\alpha_1,\cdots,\alpha_n\}$ 是 $A$ 的一组 $\Z$-基,则
+        \[
+          d_K(\alpha_1,\cdots,\alpha_n)=N_K(A)^2d(K);
+        \]
+  \item 若 $A=(\alpha)$($\alpha\in O_K$)为主理想,则 $N_K(A)=|N_{K/\Q}(\alpha)|$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) 由于理想 $\mathfrak{p}_1^{e_1},\cdots,\mathfrak{p}_r^{e_r}$ 是彼此互素的,根据中国剩余定理(习题 7)我们有
+\[
+  O_K/A\cong O_K/\mathfrak{p}_1^{e_1}\oplus\cdots\oplus O_K/\mathfrak{p}_r^{e_r},
+\]
+于是由定理 \ref{thm:2.3} 得
+\[
+  N_K(A)=|O_K/A|=\prod_{i=1}^{r}|O_K/\mathfrak{p}_i^{e_i}|=\prod_{i=1}^{r}N_K(\mathfrak{p}_i^{e_i}).
+\]
+我们只需再证 $N_K(\mathfrak{p}_i^{e_i})=N_K(\mathfrak{p}_i)^{e_i}$ 即可.为此,对 $O_K$ 中每个素理想 $\mathfrak{p}$ 和 $k\geqslant 1$,由于 $\mathfrak{p}^k\supseteq\mathfrak{p}^{k+1}$,因此可取 $\alpha\in\mathfrak{p}^k-\mathfrak{p}^{k+1}$.作映射
+\[
+  \varphi\colon O_K\to(\alpha O_K+\mathfrak{p}^{k+1})/\mathfrak{p}^{k+1},\qquad
+  \varphi(x)=\alpha x+\mathfrak{p}^{k+1}\quad (x\in O_K),
+\]
+这显然是环的满同态.由 $\alpha$ 的取法可知 $(\alpha)=\mathfrak{p}^kA'$,$(A',\mathfrak{p})=1$.从而 $\alpha O_K+\mathfrak{p}^{k+1}=(\mathfrak{p}^kA',\mathfrak{p}^{k+1})=\mathfrak{p}^k$,即 $\varphi$ 的象为 $\mathfrak{p}^k/\mathfrak{p}^{k+1}$.另一方面,对于每个 $x\in O_K$,则
+\begin{align*}
+  x\in\operatorname{Ker}\varphi
+  &\iff(\alpha x)\subseteq\mathfrak{p}^{k+1}\iff\mathfrak{p}^{k+1}\mid(\alpha x)=\mathfrak{p}^k\cdot A'\cdot(x)\\
+  &\iff\mathfrak{p}\mid(x)\iff x\in\mathfrak{p}.
+\end{align*}
+这就表明 $\operatorname{Ker}\varphi=\mathfrak{p}$.因此由环的同构定理我们有环的同构 $O_K/\mathfrak{p}\cong\mathfrak{p}^k/\mathfrak{p}^{k+1}$($k\geqslant 1$).于是
+\begin{align*}
+  N_K(\mathfrak{p}^r)&=|O_K/\mathfrak{p}^r|
+  =|O_K/\mathfrak{p}|\cdot|\mathfrak{p}/\mathfrak{p}^2|\cdots|\mathfrak{p}^{r-1}/\mathfrak{p}^r|\\
+  &=|O_K/\mathfrak{p}|^r=N_K(\mathfrak{p})^r,
+\end{align*}
+这就完全证明了 (1).
+
+(2) 由 (1) 和 $A$,$B$ 的素理想分解式立即推得.
+
+(3) 设 $\{\omega_1,\cdots,\omega_n\}$ 是 $O_K$ 的一组整基,$\{\alpha_1,\cdots,\alpha_n\}$ 是 $A$ 的一组 $\Z$-基,则
+\[
+  \begin{pmatrix}\alpha_1\\ \vdots\\ \alpha_n\end{pmatrix}
+  =M\begin{pmatrix}\omega_1\\ \vdots\\ \omega_n\end{pmatrix}.
+\]
+由定义 $N_K(A)=|\det M|$.设 $\sigma_1,\cdots,\sigma_n$ 是数域 $K$ 到 $\C$ 中的 $n$ 个嵌入,$n=[K:\Q]$.由于 $M$ 是 $\Z$-阵,从而将上式作用 $\sigma_i$ 给出
+\[
+  \begin{pmatrix}\sigma_i(\alpha_1)\\ \vdots\\ \sigma_i(\alpha_n)\end{pmatrix}
+  =M\begin{pmatrix}\sigma_i(\omega_1)\\ \vdots\\ \sigma_i(\omega_n)\end{pmatrix},
+\]
+从而有矩阵等式:$(\sigma_i(\alpha_j))=M(\sigma_i(\omega_j))$,于是
+\begin{align*}
+  d_K(\alpha_1,\cdots,\alpha_n)
+  &=\det(\sigma_i(\alpha_j))^2=(\det M)^2(\det(\sigma_i(\omega_j))^2)\\
+  &=N_K(A)^2d_K(\omega_1,\cdots,\omega_n)=N_K(A)^2d(K).
+\end{align*}
+
+\begin{sloppypar}
+(4) 若 $A=(\alpha)$,$\alpha\in O_K-\{0\}$,则 $\{\alpha\omega_1,\cdots,\alpha\omega_n\}$ 是 $A$ 的一组 $\Z$-基,\allowbreak 从而由 (3) 即知 $d_K(\alpha\omega_1,\cdots,\alpha\omega_n)=N_K(A)^2d(K)$.但是
+\end{sloppypar}
+\begin{align*}
+  d_K(\alpha\omega_1,\cdots,\alpha\omega_n)
+  &=\det(\sigma_i(\alpha\omega_j))^2=\det((\sigma_i(\alpha)\sigma_i(\omega_j)))^2\\
+  &=\Big(\prod_{i=1}^{n}\sigma_i(\alpha)\Big)^2\cdot\det(\sigma_i(\omega_j))^2\\
+  &=(N_{K/\Q}(\alpha))^2\cdot d(K).
+\end{align*}
+于是 $N_K(A)=|N_{K/\Q}(\alpha)|$.
+\end{proof}
+
+我们再来考虑 $K=\Q(\sqrt{-5})$ 的整数环 $O_K=\Z[\sqrt{-5}]$.考虑 $6$ 在 $O_K$ 中的两个分解式
+\begin{equation}  6=2\cdot 3=(1+\sqrt{-5})(1-\sqrt{-5}),\tag{*}\end{equation}
+我们先证 $2$,$3$,$1\pm\sqrt{-5}$ 都是 $O_K$ 中不可约元素.首先注意:对于 $\alpha\in O_K$,则 $\alpha$ 为 $O_K$ 中单位当且仅当 $N_K(\alpha)=\pm 1$(习题 9).如果 $2$ 可约,则 $2=\alpha\beta$,其中 $\alpha,\beta$ 为 $O_K$ 中非单位.于是 $4=N_K(2)=N_K(\alpha)N_K(\beta)$.于是 $\alpha$ 和 $\beta$ 的范必为 $\pm 2$.$O_K$ 中元素表为 $a+b\sqrt{-5}$,其中 $a,b\in\Z$,而 $N_K(a+b\sqrt{-5})=a^2+5b^2$.易知 $x^2+5y^2=\pm 2$ 没有有理整数解.所以 $O_K$ 中没有范为 $\pm 2$ 的元素.这就表明 $2$ 在 $O_K$ 中是不可约的.用此法也可证 $3$ 和 $1\pm\sqrt{-5}$ 也都是 $O_K$ 中不可约元素.所以 (*) 式给出 $6$ 分解成不可约元素乘积的两种方式.进而,$2$ 与 $1\pm\sqrt{-5}$ 不相伴,因为 $\frac{1\pm\sqrt{-5}}{2}$ 不属于 $O_K$.所以 (*) 给出的两个分解式本质上是不同的.这表明 $O_K=\Z[\sqrt{-5}]$ 不是惟一因子分解整环.
+
+但是 $O_K$ 是 Dedekind 整环,所以 $O_K$ 中理想 $(6)=6O_K$ 应当惟一地表成素理想乘积.考虑由 $2$ 和 $1+\sqrt{-5}$ 生成的理想
+\[
+  P_1=(2,1+\sqrt{-5})=2O_K+(1+\sqrt{-5})O_K.
+\]
+可以验证 $2$ 和 $1+\sqrt{-5}$ 也是加法群 $P_1$ 的一组 $\Z$-基,即 $P_1=2\Z\oplus(1+\sqrt{-5})\Z$(这只需证明:对 $O_K$ 中每个元素 $\alpha$,$2\alpha$ 和 $(1+\sqrt{-5})\alpha$ 均可表成 $2$ 和 $1+\sqrt{-5}$ 的 $\Z$-线性组合).由于 $\{1,\sqrt{-5}\}$ 是 $O_K$ 的一组整基,而
+\[
+  \binom{2}{1+\sqrt{-5}}
+  =\begin{pmatrix}2&0\\ 1&1\end{pmatrix}\binom{1}{\sqrt{-5}},\qquad
+  \det\begin{pmatrix}2&0\\ 1&1\end{pmatrix}=2,
+\]
+可知 $N_K(P_1)=2$.由习题 2 可知 $P_1$ 是 $O_K$ 的素理想.类似地可知 $P_2=(3,1+\sqrt{-5})$ 和 $P_3=(3,1-\sqrt{-5})$ 也是素理想,并且 $N_K(P_2)=N_K(P_3)=3$.请读者验证:
+\[
+  (2)=P_1^2,\quad (3)=P_2P_3,\quad (1+\sqrt{-5})=P_1P_2,\quad (1-\sqrt{-5})=P_1P_3.
+\]
+于是,(*) 中对于元素 $6$ 给出的两种不同的分解式,改成理想之后,得到理想 $(6)$ 的同一个素理想分解式:$(6)=P_1^2P_2P_3$.
+
+% ============ 习题 ============
+\begin{Exercises}
+  \item 设 $A$ 和 $B$ 是 Dedekind 整环 $R$ 中两个非零理想,
+        \[
+          A=\mathfrak{p}_1^{e_1}\cdots\mathfrak{p}_r^{e_r},\qquad
+          B=\mathfrak{p}_1^{f_1}\cdots\mathfrak{p}_r^{f_r},
+        \]
+        其中 $\mathfrak{p}_1,\cdots,\mathfrak{p}_r$ 是 $R$ 中不同的素理想,而 $e_i,f_i\geqslant 0$.求证:
+        (a) $A\mid B\Leftrightarrow e_i\leqslant f_i$($1\leqslant i\leqslant r$);
+        (b) $A\cap B=\mathfrak{p}_1^{t_1}\cdots\mathfrak{p}_r^{t_r}$,其中 $t_i=\max(e_i,f_i)$($1\leqslant i\leqslant r$),
+        \[
+          A+B=\mathfrak{p}_1^{m_1}\cdots\mathfrak{p}_r^{m_r},\ \text{其中 } m_i=\min(e_i,f_i)\quad (1\leqslant i\leqslant r).
+        \]
+        注记:$A\cap B$ 和 $A+B$ 也分别表示成 $[A,B]$ 和 $(A,B)$(最小公倍和最大公因子).
+  \item 设 $K$ 为数域,$A$ 和 $B$ 是 $O_K$ 的非零理想.求证:
+        (a) $N_K(A)=1\Leftrightarrow A=O_K$;
+        (b) 若 $A\mid B$,则 $N_K(A)\mid N_K(B)$.试问反过来是否成立?
+        (c) 若 $N_K(A)$ 为素数,则 $A$ 为素理想.试问反过来是否成立?
+        (d) 若 $N_K(A)=g$,则 $g\in A$;
+        (e) 对每个正整数 $g$,$O_K$ 中满足 $N_K(A)=g$ 的理想 $A$ 只有有限多个.
+  \item 设 $K$ 为数域,$A=\mathfrak{p}_1^{e_1}\cdots\mathfrak{p}_r^{e_r}$ 是 $O_K$ 中非零理想 $A$ 的素理想分解式.以 $(O_K/A)^{\times}$ 表示有限环 $O_K/A$ 的单位群(即乘法可逆元素全体).令 $\varphi(A)=|(O_K/A)^{\times}|$.求证:
+        (a) $\varphi(\mathfrak{p}_i^{e_i})=N_K(\mathfrak{p}_i)^{e_i-1}(N_K(\mathfrak{p}_i)-1)$;
+        (b) $\varphi(A)=N_K(A)\prod_{\mathfrak{p}\mid A}(1-N_K(\mathfrak{p})^{-1})$.
+  \item 设 $A$ 为 Dedekind 整环 $R$ 中的非零理想,$\alpha,\beta\in R$.则同余方程 $\alpha x\equiv\beta\ (\mathrm{mod}\ A)$(也就是 $\alpha x-\beta\in A$)有解 $x\in R$ 的充分必要条件为 $(\alpha R,A)\mid(\beta)$.并且在此条件成立的时候,上述同余方程模 $(\alpha R,A)$ 有惟一解(即若 $x\in R$ 为一解,则全部解为 $x+(\alpha R,A)=\{x+a\mid a\in(\alpha R,A)\}$).
+  \item 设 $K=\Q(\sqrt{-1})$,则 $O_K=\Z[\sqrt{-1}]$ 为惟一因子分解整环.
+        (a) 求出 $O_K$ 中范为 $1,2,3,4,5$ 的全部理想;
+        (b) 求出 $O_K$ 中主理想 $(2)$,$(3)$,$(4)$,$(5)$ 的素理想分解式.
+  \item 对于 $K=\Q(\sqrt{10})$,试问 $O_K$ 中理想 $(2,\sqrt{10})$ 是否为主理想?
+  \item 设 $A_1,A_2,\cdots,A_n$ 是 Dedekind 整环 $R$ 中两两互素的非零理想(即 $(A_i,A_j)=1$,也就是 $A_i+A_j=O_K$($1\leqslant i\neq j\leqslant n$)).求证:
+        (a) (中国剩余定理)对 $R$ 中任意 $n$ 个元素 $a_1,\cdots,a_n$,同余方程组
+        \[
+          \begin{cases}
+            x\equiv a_1 & (\mathrm{mod}\ A_1),\\
+            x\equiv a_2 & (\mathrm{mod}\ A_2),\\
+            \dots\dots\\
+            x\equiv a_n & (\mathrm{mod}\ A_n)
+          \end{cases}
+        \]
+        在 $R$ 中必有解 $x$,并且全部解构成模 $A_1A_2\cdots A_n$ 的一个同余类;
+        (b) 有环同构 $\dfrac{R}{A_1A_2\cdots A_n}\cong\dfrac{R}{A_1}\oplus\dfrac{R}{A_2}\oplus\cdots\oplus\dfrac{R}{A_n}$.
+  \item 设 $K$ 为数域,$A$ 和 $B$ 为 $O_K$ 的非零理想,$P$ 为 $O_K$ 的素理想.我们用 $V_P(A)$ 表示 $A$ 的素理想分解式中 $P$ 的指数(若 $P$ 在 $A$ 的分解式中不出现,则令 $V_P(A)=0$).求证:
+        (a) $V_P(AB)=V_P(A)+V_P(B)$,$V_P(A+B)=\min(V_P(A),V_P(B))$,$V_P(A\cap B)=\max(V_P(A),V_P(B))$;
+        (b) 对每个元素 $0\neq\alpha\in O_K$,令 $V_P(\alpha)=V_P(\alpha O_K)$.并且规定 $V_P(0)=\infty$,同时规定:对每个 $n\in\Z$,$n<\infty$,$n+\infty=\infty+n=\infty+\infty=n\infty=\infty$.求证当 $\alpha,\beta\in O_K$ 时,
+        (b.1) $V_P(\alpha\beta)=V_P(\alpha)+V_P(\beta)$,$V_P(\alpha+\beta)\geqslant\min(V_P(\alpha),V_P(\beta))$;
+        (b.2) 若 $V_P(\alpha)\neq V_P(\beta)$,则 $V_P(\alpha+\beta)=\min(V_P(\alpha),V_P(\beta))$;
+        (b.3) 设 $\alpha_1,\cdots,\alpha_n\in O_K$,$n\geqslant 2$,$\alpha_1+\alpha_2+\cdots+\alpha_n=0$.记 $m=\min\{V_P(\alpha_i)\mid 1\leqslant i\leqslant n\}$.求证至少有两个不同的下标 $i$ 和 $j$,使得 $V_P(\alpha_i)=V_P(\alpha_j)=m$.
+  \item 设 $K$ 为数域,$\alpha\in O_K$.求证:$\alpha$ 为环 $O_K$ 中单位的充分必要条件为 $N_K(\alpha)=\pm 1$.
+\end{Exercises}

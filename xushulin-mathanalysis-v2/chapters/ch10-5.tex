@@ -1,0 +1,2061 @@
+\section{三重积分、$n$ 重积分及其计算}\label{sec:10.5}
+
+我们已经详细讨论了二重积分的基本内容，$n$ 元函数的 $n$ 重积分在概念上和理论上都与二重积分的概念和理论是一样的。
+
+设 $I = [a_1, b_1] \times \cdots \times [a_n, b_n] \subset \mathbb{R}^n$ 为 $n$ 维闭区间（或闭长方体），
+$v(I) = (b_1 - a_1) \cdots (b_n - a_n) = \prod_{i=1}^{n}(b_i - a_i)$ 为 $I$ 的 $n$ 维体积
+（英文 volume 是体积，因此用 $v(I)$ 表示 $I$ 的体积）。当 $n = 1$ 时为长度，当 $n = 2$ 时为面积。又设
+\[
+\begin{aligned}
+a_1 &= x_1^0 < x_1^1 < \cdots < x_1^{m_1} = b_1,\\
+&\ \vdots\\
+a_n &= x_n^0 < x_n^1 < \cdots < x_n^{m_n} = b_n,
+\end{aligned}
+\]
+于是，超平面 $x_j = x_j^i\ (0 \leqslant i \leqslant m_j;\ j = 1, 2, \cdots, n)$ 将 $I$ 分成
+$k = m_1 m_2 \cdots m_n$ 个小闭区间 $I_1, I_2, \cdots, I_k$。称
+\[
+T = \{I_1, I_2, \cdots, I_k\}
+\]
+为闭区间 $I$ 的一个分割。记
+\[
+\|T\| = \max\{\operatorname{diam} I_1, \operatorname{diam} I_2, \cdots, \operatorname{diam} I_k\},
+\]
+这里 $I_i$ 的直径 $\operatorname{diam} I_i$ 为 $n$ 维闭区间 $I_i$ 对角线的长度。我们称 $\|T\|$ 为分割 $T$ 的模或宽度。
+
+再设 $f\colon I \to \mathbb{R}$ 为 $n$ 元函数，$\boldsymbol{\xi}^i \in I_i\ (i = 1, 2, \cdots, k)$。
+对 $n$ 元函数 $f$ 作 Riemann 和（也称为积分和）
+\[
+\sum_{i=1}^{k} f(\boldsymbol{\xi}^i) v(I_i),
+\]
+其中 $v(I_i)$ 为 $n$ 维闭区间的体积，即 $I_i$ 的各棱长之积。我们也称
+$\boldsymbol{\xi} = (\boldsymbol{\xi}^1, \boldsymbol{\xi}^2, \cdots, \boldsymbol{\xi}^k) \in I_1 \times I_2 \times \cdots \times I_k$
+为上述 Riemann 和的值点向量，称 $\boldsymbol{\xi}^1, \boldsymbol{\xi}^2, \cdots, \boldsymbol{\xi}^k$ 为值点。
+
+如果 $\exists J \in \mathbb{R}$，s.t. $\forall \varepsilon > 0$，$\exists \delta > 0$，当 $\|T\| < \delta$ 时，
+$\forall \boldsymbol{\xi} \in I_1 \times I_2 \times \cdots \times I_k$，都有
+\[
+\left| \sum_{i=1}^{k} f(\boldsymbol{\xi}^i) v(I_i) - J \right| < \varepsilon,
+\]
+则称 $n$ 元函数 $f$ 在闭区间 $I$ 上（Riemann）可积，而
+\[
+\begin{aligned}
+J ={}& \lim_{\|T\| \to 0} \sum_{i=1}^{k} f(\boldsymbol{\xi}^i) v(I_i)\\
+\xlongequal{def}& \int \limits_{I} \cdots \int \limits_{I}
+  f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n
+  \quad \text{或} \quad \int \limits_{I} f \mathrm{d}v \quad \text{或} \quad \int \limits_{I} f
+\end{aligned}
+\]
+称为 $f$ 在 $I$ 上的（Riemann）积分或 $n$ 重积分或积分。这里 $f$ 称为被积函数，$I$ 称为积分区间，
+$\underbrace{\idotsint}_{n \text{ 个}}$ 称为（$n$ 重）积分号，
+$\mathrm{d}v = \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n$ 称为体积元。
+当 $n = 3$ 时，积分号为 $\iiint \limits_{D} \mathrm{d}v = \mathrm{d}x \mathrm{d}y \mathrm{d}z$；
+当 $n = 2$ 时，积分号为 $\iint \limits_{D} \mathrm{d}x \mathrm{d}y$。
+
+既然 $n$ 元函数 $f$ 在闭区间 $I$ 上可积和积分的定义与二重积分完全类似，所以它也有与定理 \ref{thm:10.1.1} 相同的简单积分公式。
+如果 $f$ 在 $I$ 上可积，则 $f$ 在 $I$ 上有界，反之却不真。
+
+如果将 $\mathbb{R}^2$ 改为 $\mathbb{R}^n$，二维闭（开）区间改为 $n$ 维闭（开）区间，闭（开）圆改为 $n$ 维闭（开）球，
+类似零面积集可定义 $n$ 维零体积集（当 $n = 1$ 时，为零长度集；当 $n = 2$ 时，为零面积集）。
+类似二维零测集可定义 $n$ 维零测集。与定理 \ref{thm:10.1.4} 一样，零体积集必为零测集，但反之不真；
+与定理 \ref{thm:10.1.5} 相同，零体积集与零测集有 7 个简单性质。
+
+对 $n$ 元函数 $f$ 引进 Darboux 上和与 Darboux 下和可得到 Darboux 定理：\linebreak
+$\lim_{\|T\| \to 0} S(T, f) = S$，$\lim_{\|T\| \to 0} s(T, f) = s$。
+进而有 $n$ 元函数 Riemann 可积的 8 个等价条件，特别是 Lebesgue 可积定理：
+闭区间 $I$ 上的有界函数 $f$ 在 $I$ 上可积 $\Leftrightarrow$ $f$ 在 $I$ 上的不连续点集为零测集，
+即 $f$ 在 $I$ 上几乎处处（a.~e.）连续。
+
+设 $\Omega \subset \mathbb{R}^n$ 为有界集，$f\colon \Omega \to \mathbb{R}$ 为 $n$ 元函数，记
+\[
+f_{\Omega}(\boldsymbol{x}) = f_{\Omega}(x_1, x_2, \cdots, x_n) =
+\begin{cases}
+  f(x_1, x_2, \cdots, x_n), & \boldsymbol{x} = (x_1, x_2, \cdots, x_n) \in \Omega,\\
+  0, & \boldsymbol{x} = (x_1, x_2, \cdots, x_n) \notin \Omega,
+\end{cases}
+\]
+并称为 $f$ 的零延拓。任取闭区间 $I \supset \Omega$，如果 $f_{\Omega}$ 在 $I$ 上可积，
+则称 $f$ 在 $\Omega$ 上可积，且称 $\int_{I} f_{\Omega}$ 为 $f$ 在 $\Omega$ 上的积分，它与 $I$ 的选取无关！记作
+\[
+\begin{aligned}
+\int_{\Omega} f ={}& \int_{\Omega} f \mathrm{d}V
+  = \idotsint f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n\\
+ ={}& \int_{I} f_{\Omega}
+  = \idotsint f_{\Omega}(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n,
+\end{aligned}
+\]
+这就是 $f$ 在 $\Omega$ 上的 $n$ 重积分。
+
+如果函数 $1$ 在 $\Omega$ 上可积，则称 $\Omega$ 为有体积集，并定义 $\Omega$ 的（$n$ 维）体积为
+\[
+v(\Omega) = \int_{\Omega} 1 = \idotsint \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n.
+\]
+类似二维情形可证：$\Omega$ 为零体积集 $\Leftrightarrow v(\Omega) = 0$。
+
+有界集 $\Omega \subset \mathbb{R}^n$，$\Omega$ 为有体积集 $\Leftrightarrow$ $\partial\Omega$ 为零体积集，
+即 $v(\partial\Omega) = 0$。
+
+如果 $\Omega$ 有体积，$f$ 在 $\Omega$ 上可积 $\Leftrightarrow$
+$D_{\text{不}}^{f} = \{\boldsymbol{x} \in \Omega \mid f \text{ 在 } \boldsymbol{x} \text{ 不连续}\}$
+为零测集，即 $f$ 在 $\Omega$ 上几乎处处连续。
+
+还有其他有关的概念、定理和证明也是类似的，不再一一赘述。
+
+关于 $n$ 维闭区间上的 $n$ 重积分的计算，同样可以化为累次积分进行，所不同的是，
+二重积分化为累次积分的顺序只有两种，而在三重积分，这种顺序可以有 6 种。
+而 $n$ 重积分，这种顺序就更多了。但其定理的叙述与论证与定理 \ref{thm:10.3.1}、定理 \ref{thm:10.3.2} 是完全相同的。
+
+现在，再来讲有界集合上三重积分如何化为累次积分的问题。
+\begin{theorem}[三重积分化为累次积分]\label{thm:10.5.1}
+有界集 $\Omega \subset \mathbb{R}^3$ 为有体积集，$f\colon \Omega \to \mathbb{R}$ 有界且连续。
+
+(1) 设 $\Omega$ 为 $xOy$ 平面上的垂直投影为
+\[
+D = \{(x, y) \mid \exists z \in \mathbb{R},\ \text{s.\ t.}\ (x, y, z) \in \Omega\}
+\]
+（图 \ref{fig:10.5.1}），它为有面积集，且当 $(x, y) \in D$ 时，
+过点 $(x, y, 0)$ 并垂直于 $xOy$ 平面的直线与 $\Omega$ 交成一个区间
+$\Omega_{xy} = \{z \mid (x, y, z) \in \Omega\} = [\varphi_1(x, y), \varphi_2(x, y)]$（可退化为一点），则
+\begin{align*}
+\int_{\Omega} f
+&= \iint \limits_{D} \mathrm{d}x \mathrm{d}y \int \limits_{\Omega_{xy}} f(x, y, z) \mathrm{d}z \notag\\
+&= \iint \limits_{D} \mathrm{d}x \mathrm{d}y
+   \int \limits_{\varphi_1(x, y)}^{\varphi_2(x, y)} f(x, y, z) \mathrm{d}z. \notag
+\end{align*}
+
+(2) 设 $\Omega$ 在 $z$ 轴上的垂直投影
+$J = \{z \mid \exists (x, y) \in \mathbb{R}^2,\ \text{s.\ t.}\ (x, y, z) \in \Omega\}$
+为一个区间（图 \ref{fig:10.5.2}），且当 $z \in J$ 时，通过点 $(0, 0, z)$ 且垂直于 $z$ 轴的平面与 $\Omega$ 交成的图形在 $xOy$
+平面上的垂直投影 $\Omega_z = \{(x, y) \mid (x, y, z) \in \Omega\}$ 为一有面积集，则
+\[
+\int_{\Omega} f = \int \limits_{J} \mathrm{d}z \iint \limits_{\Omega_z} f(x, y, z) \mathrm{d}x \mathrm{d}y.
+\]
+\end{theorem}
+\begin{proof}
+由定理条件，$f$ 在 $\Omega$ 上可积。作三维闭区间 $I = I_1 \times I_2 \times I_3 \supseteq \Omega$，
+其中 $I_1, I_2, I_3$ 为一维闭区间。令
+\[
+f_{\Omega}(\boldsymbol{x}) =
+\begin{cases}
+  f(\boldsymbol{x}), & \boldsymbol{x} \in \Omega,\\
+  0, & \boldsymbol{x} \notin \Omega.
+\end{cases}
+\]
+
+(1) 当 $(x, y) \in D$ 时，函数 $f_{\Omega}(x, y, \cdot) = f(x, y, \cdot)$ 在 $\Omega_{xy}$ 上连续、有界，故可积；
+当 $(x, y) \notin D$ 时，$f_{\Omega}(x, y, \cdot) = 0$。所以
+\[
+\int \limits_{I_3} f_{\Omega}(x, y, z) \mathrm{d}z =
+\begin{cases}
+  \displaystyle\int \limits_{\Omega_{xy}} f(x, y, z) \mathrm{d}z, & (x, y) \in D,\\[6pt]
+  0, & (x, y) \in I_1 \times I_2 \setminus D.
+\end{cases}
+\]
+于是，
+\begin{align*}
+\int_{\Omega} f
+&= \int \limits_{I} f_{\Omega}
+ = \iint \limits_{I_1 \times I_2} \mathrm{d}x \mathrm{d}y \int \limits_{I_3} f_{\Omega}(x, y, z) \mathrm{d}z \notag\\
+&= \iint \limits_{D} \mathrm{d}x \mathrm{d}y \int \limits_{\Omega_{xy}} f_{\Omega}(x, y, z) \mathrm{d}z
+ = \iint \limits_{D} \mathrm{d}x \mathrm{d}y \int \limits_{\varphi_1(x, y)}^{\varphi_2(x, y)} f(x, y, z) \mathrm{d}z. \notag
+\end{align*}
+
+(2) 当 $z \in J$ 时，因 $\Omega_z \subset I_1 \times I_2$ 为一有面积集，故 $v(\partial\Omega_z) = 0$。
+又因 $f(\cdot, \cdot, z)$ 在 $\Omega_z$ 上连续有界，因此 $f(\cdot, \cdot, z)$ 在 $\Omega_z$ 上可积。
+当 $z \notin J$ 时，$f_{\Omega}(\cdot, \cdot, z) = 0$，因此，有
+\[
+\iint \limits_{I_1 \times I_2} f_{\Omega}(x, y, z) \mathrm{d}x \mathrm{d}y =
+\begin{cases}
+  \displaystyle\iint \limits_{\Omega_z} f(x, y, z) \mathrm{d}x \mathrm{d}y, & z \in J,\\[6pt]
+  0, & z \in I_3 \setminus J.
+\end{cases}
+\]
+于是，
+\begin{align*}
+\int_{\Omega} f
+&= \int \limits_{I} f_{\Omega}
+ = \int \limits_{I_3} \mathrm{d}z \iint \limits_{I_1 \times I_2} f_{\Omega}(x, y, z) \mathrm{d}x \mathrm{d}y \notag\\
+&= \int \limits_{J} \mathrm{d}z \iint \limits_{\Omega_z} f(x, y, z) \mathrm{d}x \mathrm{d}y. \notag
+\end{align*}
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.80, >=Latex]
+    % ---- 图 10.5.1：垂直于 xOy 平面的截线区间 Omega_xy ----
+    \begin{scope}[shift={(-4.1,0)}]
+      \draw[->] (0,0) -- (0,2.35) node[left] {$z$};
+      \draw[->] (0,0) -- (2.70,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.05,-1.15) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (1.00,0) -- (1.00,2.20);
+      \draw[thick] (2.10,0) -- (2.10,2.20);
+      \draw[dashed] (1.00,0) -- (1.00,0.65);
+      \draw[dashed] (2.10,0) -- (2.10,0.65);
+      \draw[thick] plot [smooth] coordinates {(1.00,0.65) (1.55,0.84) (2.10,0.65)};
+      \draw[thick] plot [smooth] coordinates {(1.00,2.00) (1.55,2.20) (2.10,2.00)};
+      \draw[dashed] plot [smooth] coordinates {(1.00,1.25) (1.55,1.46) (2.10,1.25)};
+      \draw[decorate, decoration={brace, amplitude=4pt}] (0.86,0.65) -- (0.86,2.00);
+      \node[left] at (0.70,1.32) {$\Omega_{xy}$};
+      \node[above right] at (1.28,2.02) {$z=\varphi_2(x,y)$};
+      \node[below right] at (1.06,0.52) {$z=\varphi_1(x,y)$};
+      \node at (1.55,1.30) {$\Omega$};
+      \draw[dashed, gray!70] (1.00,-0.68) -- (2.10,-0.68);
+      \draw[dashed, gray!70] (1.00,0) -- (1.00,-0.68);
+      \draw[dashed, gray!70] (2.10,0) -- (2.10,-0.68);
+      \draw[gray!70] plot [smooth] coordinates {(1.00,-0.68) (1.55,-0.90) (2.10,-0.68)};
+      \node[below] at (1.55,-1.04) {$D(x,y)$};
+    \end{scope}
+    % ---- 图 10.5.2：垂直于 z 轴的截面投影 Omega_z ----
+    \begin{scope}[shift={(4.3,0)}]
+      \draw[->] (0,0) -- (0,2.35) node[left] {$z$};
+      \draw[->] (0,0) -- (2.70,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.10,-1.20) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) ellipse (1.30 and 0.62);
+      \draw[thick] (0,0) ellipse (0.64 and 0.31);
+      \draw[dashed] (0,0) ellipse (0.90 and 0.44);
+      \begin{scope}
+        \clip (0,0) ellipse (0.90 and 0.44);
+        \fill[pattern=north east lines, pattern color=gray!55] (-1.6,-0.6) rectangle (1.6,0.6);
+      \end{scope}
+      \draw[thick] (0,0) ellipse (0.90 and 0.44);
+      \node at (0.48,0.11) {$\Omega_z$};
+      \draw[decorate, decoration={brace, amplitude=4pt}] (-0.24,0.0) -- (-0.24,1.45);
+      \node[left] at (-0.32,0.72) {$J$};
+      \draw[dashed] (-0.24,1.45) -- (0.62,1.45);
+      \node[above right] at (0.56,1.40) {$z=z_0$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{定理 10.5.1 中的两个垂直投影条件}\label{fig:10.5.1}
+  \refstepcounter{figure}\label{fig:10.5.2}
+\end{figure}
+作为定理 \ref{thm:10.5.1} 的直接推论，我们有下面的定理.
+
+\begin{theorem}\label{thm:10.5.2}
+在定理 \ref{thm:10.5.1} 中：
+
+(1) 如果 $D = \{(x, y) \mid \psi_1(x) \leqslant y \leqslant \psi_2(x),\ a \leqslant x \leqslant b\}$，
+$\psi_1(x)$ 与 $\psi_2(x)$ 都为连续函数，则
+\[
+\int_{\Omega} f = \int \limits_a^b \mathrm{d}x \int \limits_{\psi_1(x)}^{\psi_2(x)} \mathrm{d}y
+  \int \limits_{\varphi_1(x, y)}^{\varphi_2(x, y)} f(x, y, z) \mathrm{d}z.
+\]
+
+(2) 如果 $J = [c, d]$，
+$\Omega_z = \{(x, y) \mid \varphi_1(y, z) \leqslant x \leqslant \varphi_2(y, z),\
+\psi_1(z) \leqslant y \leqslant \psi_2(z)\}$，
+其中 $\varphi_1(y, z), \varphi_2(y, z), \psi_1(z), \psi_2(z)$ 都为连续函数，则
+\[
+\int_{\Omega} f = \int \limits_c^d \mathrm{d}z \int \limits_{\psi_1(z)}^{\psi_2(z)} \mathrm{d}y
+  \int \limits_{\varphi_1(y, z)}^{\varphi_2(y, z)} f(x, y, z) \mathrm{d}x.
+\]
+\end{theorem}
+
+更一般地，有下面的定理.
+
+\begin{theorem}[$n$ 重积分化为累次积分]\label{thm:10.5.3}
+设有界集 $\Omega \subset \mathbb{R}^n$ 为有体积集，$f\colon \Omega \to \mathbb{R}$ 为连续有界函数.
+
+(1) 如果
+\[
+\begin{aligned}
+\Omega = \bigl\{ \boldsymbol{x} = (x_1, x_2, \cdots, x_n) \in \mathbb{R}^n \mid&
+  \text{当 } (x_1, x_2, \cdots, x_{n-1}) \in D \subset \mathbb{R}^{n-1} \text{ 时},\\
+  &\varphi_1(x_1, x_2, \cdots, x_{n-1}) \leqslant x_n
+    \leqslant \varphi_2(x_1, x_2, \cdots, x_{n-1}) \bigr\},
+\end{aligned}
+\]
+其中 $D$ 为 $n-1$ 维有体积集，$\varphi_1$ 与 $\varphi_2$ 都连续，则
+\[
+\int_{\Omega} f = \int \limits_D \cdots \int \limits_D \mathrm{d}x_1 \cdots \mathrm{d}x_{n-1}
+  \int \limits_{\varphi_1(x_1, \cdots, x_{n-1})}^{\varphi_2(x_1, \cdots, x_{n-1})}
+  f(x_1, \cdots, x_{n-1}, x_n) \mathrm{d}x_n.
+\]
+
+(2) 如果
+\[
+\Omega = \bigl\{ \boldsymbol{x} = (x_1, x_2, \cdots, x_n) \in \mathbb{R}^n \mid
+  \text{当 } x_n \in [a, b] \text{ 时,} (x_1, x_2, \cdots, x_{n-1}) \in \Omega_{x_n} \subset \mathbb{R}^{n-1} \bigr\},
+\]
+其中 $\Omega_{x_n}$ 为 $n-1$ 维有体积集，则
+\[
+\int_{\Omega} f = \int \limits_a^b \mathrm{d}x_n \int \limits_{\Omega_{x_n}} \cdots \int \limits_{I}
+  f(x_1, x_2, \cdots, x_{n-1}, x_n) \mathrm{d}x_1 \cdots \mathrm{d}x_{n-1}.
+\]
+
+(3) 如果
+\[
+\begin{aligned}
+\Omega = \bigl\{ \boldsymbol{x} = (x_1, x_2, \cdots, x_n) \in \mathbb{R}^n \mid&
+  \text{当 } (x_{k+1}, \cdots, x_n) \in D \subset \mathbb{R}^{n-k} \text{ 时},\\
+  &(x_1, x_2, \cdots, x_k) \in \Omega_{x_{k+1} \cdots x_n} \subset \mathbb{R}^k \bigr\},
+\end{aligned}
+\]
+其中 $D$ 与 $\Omega_{x_{k+1} \cdots x_n}$ 分别为 $n-k$ 维与 $k$ 维有体积集，则
+\[
+\int_{\Omega} f
+= \overbrace{\idotsint}^{n-k} \limits_{D} \mathrm{d}x_{k+1} \cdots \mathrm{d}x_n
+  \overbrace{\idotsint}^{k} \limits_{\Omega_{x_{k+1} \cdots x_n}}
+  f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \cdots \mathrm{d}x_k.
+\]
+\end{theorem}
+
+由于二重积分换元公式的证明实际上与维数无关，就可无需多费笔墨地照搬到 $n$ 重积分中来.
+
+\begin{theorem}[$n$ 重积分的换元（变量代换）]\label{thm:10.5.4}
+设 $\Omega \subset \mathbb{R}^n$ 为开集，映射 $\boldsymbol{F} = (F_1, F_2, \cdots, F_n)$：
+\[
+\boldsymbol{u} = (u_1, u_2, \cdots, u_n) \longmapsto
+  \boldsymbol{x} = (x_1, x_2, \cdots, x_n) = \boldsymbol{F}(\boldsymbol{u})
+  = \bigl(F_1(\boldsymbol{u}), F_2(\boldsymbol{u}), \cdots, F_n(\boldsymbol{u})\bigr),
+\]
+满足：
+\begin{enumerate}
+  \item[$(1^\circ)$] $\boldsymbol{F} \in C^1(\Omega, \mathbb{R}^n)$；
+  \item[$(2^\circ)$] $\dfrac{\partial(x_1, x_2, \cdots, x_n)}{\partial(u_1, u_2, \cdots, u_n)}
+    = \det \boldsymbol{J}\boldsymbol{F}(\boldsymbol{u}) \neq 0,\ \forall\, \boldsymbol{u} \in \Omega$；
+  \item[$(3^\circ)$] $\boldsymbol{F}$ 为单射.
+\end{enumerate}
+如果集合 $\Delta$ 为有体积集，$\Delta \subseteq \Omega$，$f$ 为 $\boldsymbol{F}(\Omega)$ 上的连续函数，
+则 $\boldsymbol{F}(\Delta)$ 也为有体积集，且
+\[
+\int_{\boldsymbol{F}(\Delta)} f = \int_{\Delta} (f \circ \boldsymbol{F}) \left| \det \boldsymbol{J}\boldsymbol{F} \right|,
+\]
+即
+\begin{align*}
+&\idotsint_{\boldsymbol{F}(\Delta)}
+  f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n \notag\\
+={}&\idotsint_{\Delta}
+  f\bigl(x_1(\boldsymbol{u}), \cdots, x_n(\boldsymbol{u})\bigr)
+  \left| \frac{\partial(x_1, x_2, \cdots, x_n)}{\partial(u_1, u_2, \cdots, u_n)} \right|
+  \mathrm{d}u_1 \mathrm{d}u_2 \cdots \mathrm{d}u_n.
+\end{align*}
+当 $n = 3$ 时，上述积分换元公式就是通常的
+\[
+\iiint \limits_{\boldsymbol{F}(\Delta)} f(x, y, z) \mathrm{d}x \mathrm{d}y \mathrm{d}z
+= \iint \limits_{\Delta} f(x(u, v, w), y(u, v, w), z(u, v, w))
+  \left| \frac{\partial(x, y, z)}{\partial(u, v, w)} \right| \mathrm{d}u \mathrm{d}v \mathrm{d}w.
+\]
+\end{theorem}
+而用得较多的有球坐标换元（变换）及柱坐标换元（变换）.
+
+\subsection*{1.\ 球坐标换元（变换）}
+
+\[
+(r, \theta, \varphi) \mapsto (x, y, z) = (r \sin\theta \cos\varphi,\ r \sin\theta \sin\varphi,\ r \cos\theta),
+\]
+\begin{itemize}
+  \item $r = r_0$（常数）$\xrightarrow{\boldsymbol{F}} S^2 = S^2(0, r_0) \subset \mathbb{R}^3$，
+        以原点 $O$ 为中心、$r_0$ 为半径的球面；
+  \item $\theta = \theta_0$（常数）$\xrightarrow{\boldsymbol{F}} \mathbb{R}^3$ 中
+        以原点 $O$ 为顶点、$Oz$ 轴为轴、张角为 $\theta_0$ 的圆锥面；
+  \item $\varphi = \varphi_0$（常数）$\xrightarrow{\boldsymbol{F}} \mathbb{R}^3$ 中
+        过 $Oz$ 轴旋转角为 $\varphi_0$ 的半平面（见图 \ref{fig:10.5.3}，图 \ref{fig:10.5.4}）.
+\end{itemize}
+显然，$\boldsymbol{F}(r, \theta, 0) = \boldsymbol{F}(r, \theta, 2\pi)$，故 $\boldsymbol{F}$ 不是一一映射，且 Jacobi 行列式为
+\[
+\begin{aligned}
+\det \boldsymbol{J}\boldsymbol{F}(r, \theta, \varphi)
+&= \frac{\partial(x, y, z)}{\partial(r, \theta, \varphi)}\\
+&= \begin{vmatrix}
+  \sin\theta \cos\varphi & r\cos\theta \cos\varphi & -r\sin\theta \sin\varphi\\
+  \sin\theta \sin\varphi & r\cos\theta \sin\varphi & r\sin\theta \cos\varphi\\
+  \cos\theta & -r\sin\theta & 0
+ \end{vmatrix}
+ = r^2 \sin\theta.
+\end{aligned}
+\]
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.62, >=Latex]
+    % ---- 图 10.5.3 ----
+    \begin{scope}[shift={(-4.2,0)}]
+      \draw[->] (0,0) -- (0,2.90) node[left] {$z$};
+      \draw[->] (0,0) -- (2.80,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) -- (1.60,1.60);
+      \fill (1.60,1.60) circle (1.4pt);
+      \node[above right] at (1.56,1.66) {$(x,y,z)$};
+      \node[right] at (1.56,1.28) {$(r,\theta,\varphi)$};
+      \draw[dashed] (1.60,1.60) -- (1.60,0);
+      \draw[dashed, gray!65] (1.60,0) -- (0,0);
+      \node[below right] at (1.60,0) {$(x,y,0)$};
+      \draw[dashed, gray!70] (0.95,0) -- (0.95,0.95);
+      \draw[thick] (0,0) -- (0.95,0);
+      \node at (0.50,0.26) {$\theta$};
+      \draw[decorate, decoration={arc, amplitude=18pt}, ->, >=Latex] (0.66,0) -- (0.66,0);
+      \node at (1.06,-0.28) {$\varphi$};
+      \draw[dashed, gray!60] (0,0) -- (1.60,0);
+      \node at (0.76,0.12) {$r$};
+    \end{scope}
+    % ---- 图 10.5.4 ----
+    \begin{scope}[shift={(4.0,0)}]
+      \draw[->] (0,0) -- (0,3.00) node[left] {$z$};
+      \draw[->] (0,0) -- (2.55,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.20*cos(\x)}, {0.55*sin(\x)});
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.20*cos(\x)}, {2.20 + 0.60*sin(\x)});
+      \draw[dashed] plot [smooth, samples=50, domain=0:180] ({1.20*cos(\x)}, {1.15 + 1.05*sin(\x)});
+      \draw[dashed] (-1.20,1.15) -- (1.20,1.15);
+      \node[above right] at (0.90,2.42) {$r=\text{常数}$};
+      \draw[thick] (0,0) -- (-1.05,2.20);
+      \draw[thick] (0,0) -- (1.05,2.20);
+      \draw[dashed] (0,0) -- (1.22,0.32);
+      \node[left] at (-0.88,1.38) {$\theta=\text{常数}$};
+      \begin{scope}
+        \clip (-1.45,-0.52) -- (1.45,0.52) -- (1.45,2.95) -- (-1.45,0.88) -- cycle;
+        \fill[pattern=north east lines, pattern color=gray!45] (-1.6,-0.6) rectangle (1.6,3.0);
+      \end{scope}
+      \draw[thick] (-1.22,0.30) -- (1.22,2.48);
+      \draw[dashed] (1.22,0.30) -- (1.22,0);
+      \node[right] at (0.70,1.72) {$\varphi=\text{常数}$};
+      \draw[decorate, decoration={arc, amplitude=20pt}, ->, >=Latex] (0.58,0) -- (0.58,0);
+      \node at (0.42,0.58) {$\theta$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{球坐标 $(r, \theta, \varphi)$ 与直角坐标 $(x, y, z)$ 的对应}\label{fig:10.5.3}
+  \refstepcounter{figure}\label{fig:10.5.4}
+\end{figure}
+
+当 $r = 0$ 或 $\theta = k\pi,\ k \in \mathbb{Z}_+$ 时，该 Jacobi 行列式为零，不能直接应用定理 \ref{thm:10.5.4}，
+但也可与二重积分极坐标换元一样，考虑开区间
+\[
+\Omega = (0, +\infty) \times (0, \pi) \times (0, 2\pi),
+\]
+则 $\boldsymbol{F}(\Omega)$ 为 $\mathbb{R}^3$ 中除去过 $Oz$ 轴的半张坐标平面 $xOz\ (x \geqslant 0)$。
+类似极坐标换元公式，有球坐标变换公式.
+
+\begin{theorem}[三重积分球坐标换元公式]\label{thm:10.5.5}
+设 $\Omega = (0, +\infty) \times (0, \pi) \times (0, 2\pi)$，$\Delta \subset \overline{\Omega}$ 为有体积集，
+则 $\boldsymbol{F}(\Delta)$ 也为有体积集。如果 $f$ 在 $\mathbb{R}^3$ 上连续，则
+\[
+\iint \limits_{\boldsymbol{F}(\Delta)} f(x, y, z) \mathrm{d}x \mathrm{d}y \mathrm{d}z
+= \iint \limits_{\Delta} f(r \sin\theta \cos\varphi,\ r \sin\theta \sin\varphi,\ r \cos\theta)
+  r^2 \sin\theta \mathrm{d}r \mathrm{d}\theta \mathrm{d}\varphi.
+\]
+\end{theorem}
+
+进而，我们来介绍 $n$ 维球坐标换元（变换）：
+\[
+\begin{cases}
+x_1 = r\cos\theta_1,\\
+x_2 = r\sin\theta_1 \cos\theta_2,\\
+x_3 = \sin\theta_1 \sin\theta_2 \cos\theta_3,\\
+\ \vdots\\
+x_{n-1} = r\sin\theta_1 \sin\theta_2 \sin\theta_3 \cdots \sin\theta_{n-2} \cos\theta_{n-1},\\
+x_n = r\sin\theta_1 \sin\theta_2 \sin\theta_3 \cdots \sin\theta_{n-2} \sin\theta_{n-1}
+\end{cases}
+\]
+称为 $n$ 维球坐标变换，它将 $n$ 维闭区间
+\[
+\bigl\{ (r, \theta_1, \cdots, \theta_{n-1}) \mid 0 \leqslant r \leqslant a,\
+  0 \leqslant \theta_1, \cdots, \theta_{n-2} \leqslant \pi,\
+  0 \leqslant \theta_{n-1} \leqslant 2\pi \bigr\}
+\]
+映为 $n$ 维闭球
+$\overline{B(0; a)} = \{(x_1, x_2, \cdots, x_n) \mid x_1^2 + x_2^2 + \cdots + x_n^2 \leqslant a^2\}$。
+
+显然，$\boldsymbol{F}(r, \theta_1, \cdots, \theta_{n-2}, 0) = \boldsymbol{F}(r, \theta_1, \cdots, \theta_{n-2}, 2\pi)$，
+故 $\boldsymbol{F}$ 不是一一映射。在用 $n$ 维球坐标变换时，我们要知道这个变换的 Jacobi 行列式
+\[
+\frac{\partial(x_1, x_2, \cdots, x_n)}{\partial(r, \theta_1, \cdots, \theta_{n-1})}.
+\]
+直接通过 $n$ 维球坐标变换来计算这个 $n$ 阶行列式是非常困难的. 下面我们用隐函数定理来计算这个行列式. 为此令
+\[
+\begin{cases}
+G_1 = r^2 - (x_1^2 + x_2^2 + \cdots + x_n^2) = 0,\\
+G_2 = r^2 \sin^2\theta_1 - (x_2^2 + \cdots + x_n^2) = 0,\\
+G_3 = r^2 \sin^2\theta_1 \sin^2\theta_2 - (x_3^2 + \cdots + x_n^2) = 0,\\
+\ \vdots\\
+G_n = r^2 \sin^2\theta_1 \cdots \sin^2\theta_{n-1} - x_n^2 = 0.
+\end{cases}
+\]
+容易看出，$n$ 维球坐标变换满足上述方程组。由于
+\[
+\boldsymbol{J}_{\boldsymbol{u}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x}) =
+{\scriptstyle\setlength{\arraycolsep}{4pt}
+\begin{pmatrix}
+2r & & & & \\
+2r\sin^2\theta_1 & 2r^2 \sin\theta_1 \cos\theta_1 & & & \\
+* & * & 2r^2 \sin^2\theta_1 \sin\theta_2 \cos\theta_2 & & \\
+\vdots & \vdots & \vdots & \ddots & \\
+* & * & * & \cdots & 2r^2 \sin^2\theta_1 \cdots \sin^2\theta_{n-2} \\
+& & & & \sin\theta_{n-1} \cos\theta_{n-1}
+\end{pmatrix}}
+\]
+所以
+\[
+\det \boldsymbol{J}_{\boldsymbol{u}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x})
+= 2^n r^{2n-1} \sin^{2n-3}\theta_1 \cos\theta_1 \sin^{2n-5}\theta_2 \cos\theta_2
+  \cdots \sin\theta_{n-1} \cos\theta_{n-1},
+\]
+其中 $\boldsymbol{u} = (r, \theta_1, \cdots, \theta_{n-1})$。
+
+又因为
+\[
+\boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x}) =
+\begin{pmatrix}
+-2x_1 & * & * & \cdots & *\\
+  & -2x_2 & * & \cdots & *\\
+  &  & -2x_3 & \cdots & *\\
+  &  &  & \ddots & \vdots\\
+  &  &  &  & -2x_n
+\end{pmatrix},
+\]
+所以
+\begin{align*}
+\det \boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x})
+&= (-1)^n 2^n x_1 x_2 \cdots x_n \notag\\
+&= (-1)^n 2^n r^{n} \sin^{n-1}\theta_1 \cos\theta_1 \sin^{n-2}\theta_2 \cos\theta_2
+   \cdots \sin\theta_{n-1} \cos\theta_{n-1}. \notag
+\end{align*}
+根据隐射定理 \ref{thm:8.4.2}(4) 得到 $n$ 维球坐标变换的 Jacobi 行列式为
+\begin{align*}
+\frac{\partial(x_1, x_2, \cdots, x_n)}{\partial(r, \theta_1, \cdots, \theta_{n-1})}
+&= \det\left[ -\boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x})^{-1}
+              \boldsymbol{J}_{\boldsymbol{u}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x}) \right] \notag\\
+&= (-1)^n \frac{\det \boldsymbol{J}_{\boldsymbol{u}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x})}
+           {\det \boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{G}(\boldsymbol{u}, \boldsymbol{x})}
+ = r^{n-1} \sin^{n-2}\theta_1 \sin^{n-3}\theta_2 \cdots \sin\theta_{n-2}. \notag
+\end{align*}
+
+由以上讨论得到下面的定理.
+
+\begin{theorem}[$n$ 重积分球坐标换元公式]\label{thm:10.5.6}
+设 $\Omega = (0, +\infty) \times (0, \pi) \times \cdots \times (0, \pi) \times (0, 2\pi) \subset \mathbb{R}^n$，
+$\Delta \subset \overline{\Omega}$ 为有体积集，则 $\boldsymbol{F}(\Delta)$ 也为有体积集。
+如果 $f$ 在 $\mathbb{R}^n$ 上连续，则
+\begin{align*}
+&\idotsint _{\boldsymbol{F}(\Delta)}
+  f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n \notag\\
+={}&\idotsint _{\Delta} f\bigl(
+  r\cos\theta_1,\ r\sin\theta_1 \cos\theta_2,\ r\sin\theta_1 \sin\theta_2 \cos\theta_3, \ldots, \notag\\
+&\hspace{60pt}
+  r\sin\theta_1 \sin\theta_2 \sin\theta_3 \cdots \sin\theta_{n-2} \cos\theta_{n-1}, \notag\\
+&\hspace{60pt}
+  r\sin\theta_1 \sin\theta_2 \sin\theta_3 \cdots \sin\theta_{n-2} \sin\theta_{n-1}\bigr) \notag\\
+&\hspace{30pt}\cdot\ r^{n-1} \sin^{n-2}\theta_1 \sin^{n-3}\theta_2 \cdots \sin\theta_{n-2}
+  \mathrm{d}r \mathrm{d}\theta_1 \cdots \mathrm{d}\theta_{n-1}. \notag
+\end{align*}
+\end{theorem}
+
+\subsection*{2.\ 柱坐标换元（变换）}
+
+$\boldsymbol{F}\colon \mathbb{R}^3 \to \mathbb{R}^3$，
+\[
+(r, \varphi, z) \mapsto (x, y, z) = (r\cos\varphi,\ r\sin\varphi,\ z),
+\]
+\begin{itemize}
+  \item $r = r_0$（常数）$\xrightarrow{\boldsymbol{F}} \mathbb{R}^3$ 中
+        以 $Oz$ 为轴、半径为 $r_0$ 的圆柱面；
+  \item $\varphi = \varphi_0$（常数）$\xrightarrow{\boldsymbol{F}} \mathbb{R}^3$ 中
+        过 $Oz$ 轴旋转角为 $\varphi_0$ 的半平面；
+  \item $z = z_0$（常数）$\longrightarrow \mathbb{R}^3$ 中过点 $(0, 0, z_0)$ 的平面，
+        它平行 $xOy$ 平面（图 \ref{fig:10.5.5}，图 \ref{fig:10.5.6}）.
+\end{itemize}
+显然，$\boldsymbol{F}(r, 0, z) = \boldsymbol{F}(r, 2\pi, z)$，故 $\boldsymbol{F}$ 不是一一映射，且 Jacobi 行列式为
+\[
+\det \boldsymbol{J}\boldsymbol{F}(r, \varphi, z)
+= \frac{\partial(x, y, z)}{\partial(r, \varphi, z)}
+= \begin{vmatrix}
+  \cos\varphi & -r\sin\varphi & 0\\
+  \sin\varphi & r\cos\varphi & 0\\
+  0 & 0 & 1
+ \end{vmatrix}
+= r.
+\]
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.62, >=Latex]
+    % ---- 图 10.5.5 ----
+    \begin{scope}[shift={(-4.1,0)}]
+      \draw[->] (0,0) -- (0,2.90) node[left] {$z$};
+      \draw[->] (0,0) -- (2.80,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (1.60,0) -- (1.60,1.60);
+      \fill (1.60,1.60) circle (1.4pt);
+      \node[above right] at (1.56,1.66) {$(x,y,z)$};
+      \node[right] at (1.56,1.28) {$(r,\varphi,z)$};
+      \draw[dashed] (1.60,1.60) -- (1.60,0);
+      \draw[dashed, gray!65] (1.60,0) -- (0,0);
+      \node[below right] at (1.60,0) {$(x,y,0)$};
+      \draw[thick] (0,0) -- (1.60,0);
+      \node at (0.82,0.13) {$r$};
+      \draw[decorate, decoration={arc, amplitude=24pt}, ->, >=Latex] (0.80,0) -- (0.80,0);
+      \node at (1.12,-0.32) {$\varphi$};
+    \end{scope}
+    % ---- 图 10.5.6 ----
+    \begin{scope}[shift={(4.2,0)}]
+      \draw[->] (0,0) -- (0,3.00) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.25,-1.35) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) -- (0,2.30);
+      \draw[thick] (1.30,0) -- (1.30,2.30);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({0.65*cos(\x)}, {2.30 + 0.42*sin(\x)});
+      \draw[dashed] plot [smooth, samples=50, domain=0:180] ({0.65*cos(\x)}, {0.42*sin(\x)});
+      \node[left] at (-0.08,1.10) {$r=\text{常数}$};
+      \begin{scope}
+        \clip (0,0) -- (1.30,0) -- (1.30,2.30) -- (0,2.30) -- cycle;
+        \fill[pattern=north east lines, pattern color=gray!50] (-0.2,-0.2) rectangle (1.6,2.6);
+      \end{scope}
+      \draw[thick] (0,0) -- (1.30,0);
+      \draw[thick] (0,2.30) -- (1.30,2.30);
+      \node[right] at (1.36,1.10) {$\varphi=\text{常数}$};
+      \draw[thick, fill=gray!35] (0,1.70) -- (1.30,1.70) -- (1.30,2.30) -- (0,2.30) -- cycle;
+      \draw[thick] (0,1.70) -- (1.30,1.70);
+      \node[above] at (0.65,2.36) {$z=\text{常数}$};
+      \draw[decorate, decoration={arc, amplitude=20pt}, ->, >=Latex] (0.66,0) -- (0.66,0);
+      \node at (0.46,0.32) {$\varphi$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{柱坐标 $(r, \varphi, z)$ 与直角坐标 $(x, y, z)$ 的对应}\label{fig:10.5.5}
+  \refstepcounter{figure}\label{fig:10.5.6}
+\end{figure}
+
+当 $r = 0$ 时，该 Jacobi 行列式为零，不能直接应用定理 \ref{thm:10.5.4}，但也可与二重积分极坐标换元一样，考虑开区间
+\[
+\Omega = (0, +\infty) \times (0, 2\pi) \times \mathbb{R},
+\]
+则 $\boldsymbol{F}(\Omega)$ 为 $\mathbb{R}^3$ 中除去半平面 $xOy\ (x \geqslant 0)$. 于是，有下面的结论.
+
+\begin{theorem}[三重积分柱坐标换元公式]\label{thm:10.5.7}
+设 $\Omega = (0, +\infty) \times (0, 2\pi) \times \mathbb{R}$，$\Delta \subset \overline{\Omega}$ 为有体积集，
+则 $\boldsymbol{F}(\Delta)$ 也为有体积集。如果 $f$ 在 $\mathbb{R}^3$ 中连续，则
+\[
+\iint \limits_{\boldsymbol{F}(\Delta)} f(x, y, z) \mathrm{d}x \mathrm{d}y \mathrm{d}z
+= \iint \limits_{\Delta} f(r\cos\varphi,\ r\sin\varphi,\ z)\, r \mathrm{d}r \mathrm{d}\varphi \mathrm{d}z.
+\]
+\end{theorem}
+\begin{example}\label{ex:10.5.1}
+计算三重积分
+\[
+\iint \limits_{\Omega} \frac{\mathrm{d}x \mathrm{d}y \mathrm{d}z}{(1 + x + y + z)^3},
+\]
+其中 $\Omega = \{(x, y, z) \mid x + y + z \leqslant 1,\ x, y, z \geqslant 0\}$.
+\end{example}
+
+\noindent\textbf{解法 1}
+\begin{align*}
+&\iint \limits_{\Omega} \frac{\mathrm{d}x \mathrm{d}y \mathrm{d}z}{(1 + x + y + z)^3} \notag\\
+&\reason{定理 \ref{thm:10.5.1}(1)}
+  \iint \limits_{\substack{x + y \leqslant 1 \\ x \geqslant 0,\ y \geqslant 0}}
+  \mathrm{d}x \mathrm{d}y \int \limits_0^{1 - x - y} \frac{\mathrm{d}z}{(1 + x + y + z)^3} \notag\\
+&= \iint \limits_{\substack{x + y \leqslant 1 \\ x \geqslant 0,\ y \geqslant 0}}
+  \left. \frac{-1}{2(1 + x + y + z)^2} \right|_{z=0}^{z=1-x-y} \mathrm{d}x \mathrm{d}y \notag\\
+&= \frac{1}{2} \iint \limits_{\substack{x^2 + y^2 \leqslant 1 \\ x \geqslant 0,\ y \geqslant 0}}
+  \left[ \frac{1}{(1 + x + y)^2} - \frac{1}{4} \right] \mathrm{d}x \mathrm{d}y \notag\\
+&= \frac{1}{2} \int \limits_0^1 \mathrm{d}x \int \limits_0^{1-x}
+  \left[ \frac{1}{(1 + x + y)^2} - \frac{1}{4} \right] \mathrm{d}y \notag\\
+&= \frac{1}{2} \int \limits_0^1
+  \left. \left( -\frac{1}{1 + x + y} - \frac{y}{4} \right) \right|_{y=0}^{y=1-x} \mathrm{d}x \notag\\
+&= \frac{1}{2} \int \limits_0^1 \left( \frac{1}{1 + x} - \frac{1}{2} - \frac{1 - x}{4} \right) \mathrm{d}x \notag\\
+&= \frac{1}{2} \left. \left[ \ln(1 + x) - \frac{x}{2} + \frac{(1 - x)^2}{8} \right] \right|_0^1 \notag\\
+&= \frac{1}{2} \left( \ln 2 - \frac{1}{2} - \frac{1}{8} \right)
+ = \frac{1}{2} \left( \ln 2 - \frac{5}{8} \right).
+\end{align*}
+
+\noindent\textbf{解法 2}
+\begin{align*}
+&\iint \limits_{\Omega} \frac{\mathrm{d}x \mathrm{d}y \mathrm{d}z}{(1 + x + y + z)^3} \notag\\
+&\reason{定理 \ref{thm:10.5.1}(2)}
+  \int \limits_0^1 \mathrm{d}z \iint \limits_{\substack{x + y \leqslant 1 - z \\ x \geqslant 0,\ y \geqslant 0}}
+  \frac{\mathrm{d}x \mathrm{d}y}{(1 + x + y + z)^3} \notag\\
+&= \int \limits_0^1 \mathrm{d}z \int \limits_0^{1-z} \mathrm{d}x
+  \int \limits_0^{1 - x - z} \frac{\mathrm{d}y}{(1 + x + y + z)^3} \notag\\
+&= \frac{1}{2} \int \limits_0^1 \mathrm{d}z \int \limits_0^{1-z}
+  \left. \frac{-1}{(1 + x + y + z)^2} \right|_{y=0}^{y=1-x-z} \mathrm{d}x \notag\\
+&= \frac{1}{2} \int \limits_0^1 \mathrm{d}z \int \limits_0^{1-z}
+  \left[ \frac{1}{(1 + x + z)^2} - \frac{1}{4} \right] \mathrm{d}x \notag\\
+&= \frac{1}{2} \int \limits_0^1 \left( \frac{1}{1 + z} - \frac{1}{2} - \frac{1 - z}{4} \right) \mathrm{d}z
+ = \frac{1}{2} \left( \ln 2 - \frac{5}{8} \right).
+\end{align*}
+\noindent\textbf{解法 3}\quad 将三重积分化为单积分（一元函数的积分）. 实际做法如下.
+平面族 $x + y + z = t,\ 0 \leqslant t \leqslant 1$ 与 $\Omega$ 交成一个等边三角形
+（图 \ref{fig:10.5.9}），它的边长为 $\sqrt{2}t$，所以面积是
+$\frac{1}{2}(\sqrt{2}t)^2 \sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}t^2$.
+设坐标原点（即四面体的顶点）到该三角形的距离（即到三角形中心的距离）
+$d = \frac{t}{\sqrt{3}}$
+（由由 $\frac{1}{3} d \cdot \frac{\sqrt{3}}{2} t^2 = \frac{1}{3} \cdot t \cdot \frac{1}{2} t^2$ 得到 $d = \frac{t}{\sqrt{3}}$）. 于是，
+\begin{align*}
+\iint \limits_{\Omega} \frac{\mathrm{d}x \mathrm{d}y \mathrm{d}z}{(1 + x + y + z)^3}
+&= \int \limits_0^1 \frac{1}{(1 + t)^3} \cdot \frac{\sqrt{3}}{2} t^2 \mathrm{d}\frac{t}{\sqrt{3}} \notag\\
+&= \frac{1}{2} \int \limits_0^1 \frac{t^2}{(1 + t)^3} \mathrm{d}t
+ = \frac{1}{2} \int \limits_0^1
+   \left[ \frac{1}{1 + t} - \frac{2}{(1 + t)^2} + \frac{1}{(1 + t)^3} \right] \mathrm{d}t \notag\\
+&= \frac{1}{2} \left. \left[ \ln(1 + t) + \frac{2}{1 + t} - \frac{1}{2(1 + t)^2} \right] \right|_0^1 \notag\\
+&= \frac{1}{2} \left[ \left( \ln 2 + 1 - \frac{1}{8} \right) - \left( 0 + 2 - \frac{1}{2} \right) \right]
+ = \frac{1}{2} \left( \ln 2 - \frac{5}{8} \right).
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.50, >=Latex]
+    % ---- 图 10.5.7：Omega_xy 为底面三角形 y = 1 - x ----
+    \begin{scope}[shift={(-7.4,0)}]
+      \draw[->] (0,0) -- (0,2.60) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.10,-1.20) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \fill[pattern=north east lines, pattern color=gray!60] (0,0) -- (2.40,0) -- (0,2.40) -- cycle;
+      \draw[thick] (0,0) -- (2.40,0) -- (0,2.40) -- cycle;
+      \draw[thick] (0,0) -- (0,2.40);
+      \draw[dashed] (0,0) -- (1.10,0) node[below] {$1$};
+      \draw[dashed] (0,0) -- (0,1.10) node[left] {$1$};
+      \node[below] at (1.60,0.02) {$y = 1 - x$};
+      \node[above right] at (0.24,1.05) {$z = 1 - x - y$};
+      \node[above right] at (1.15,0.40) {$\Omega_{xy}$};
+    \end{scope}
+    % ---- 图 10.5.8：水平截面 Omega_z ----
+    \begin{scope}[shift={(-2.5,0)}]
+      \draw[->] (0,0) -- (0,2.60) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.10,-1.20) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) -- (2.40,0) -- (0,2.40) -- cycle;
+      \draw[dashed] (0,0) -- (0,2.40);
+      \draw[dashed] (0,0) -- (2.40,0);
+      \draw[dashed] (0,0) -- (1.10,0) node[below] {$1$};
+      \draw[dashed] (0,0) -- (0,1.10) node[left] {$1$};
+      \begin{scope}
+        \clip (0,0) -- (2.40,0) -- (0,2.40) -- cycle;
+        \fill[pattern=north east lines, pattern color=gray!60] (-0.1,1.10) -- (1.10,1.10) -- (0,2.20) -- cycle;
+      \end{scope}
+      \draw[thick] (0,1.10) -- (1.10,1.10) -- (0,2.20);
+      \node[right] at (0.20,1.66) {$\Omega_z$};
+      \draw[decorate, decoration={brace, amplitude=4pt}] (-0.26,0) -- (-0.26,1.10);
+      \node[left] at (-0.10,0.55) {$t$};
+    \end{scope}
+    % ---- 图 10.5.9：等边三角形截面 ----
+    \begin{scope}[shift={(2.6,0)}]
+      \draw[->] (0,0) -- (0,2.60) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.10,-1.20) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) -- (2.40,0) -- (0,2.40) -- cycle;
+      \draw[dashed] (0,0) -- (0,2.40);
+      \draw[dashed] (0,0) -- (2.40,0);
+      \draw[dashed] (0,0) -- (1.10,0) node[below] {$1$};
+      \draw[dashed] (0,0) -- (0,1.10) node[left] {$1$};
+      \draw[thick, fill=gray!35] (0,0) -- (1.20,0.92) -- (0,1.84) -- cycle;
+      \draw[thick] (0,0) -- (1.20,0.92) -- (0,1.84) -- cycle;
+      \draw[dashed] (0,0) -- (1.20,0.92);
+      \node[right] at (0.30,0.56) {$d$};
+      \node[right] at (0.06,1.30) {$t$};
+      \node[below right] at (0.52,0.10) {$\sqrt{2}t$};
+      \fill (0,0) circle (1.3pt);
+    \end{scope}
+  \end{tikzpicture}
+  \caption{例 10.5.1 解法 3 中的平面族 $x + y + z = t$ 与区域 $\Omega$ 的交}\label{fig:10.5.7}
+  \refstepcounter{figure}\label{fig:10.5.8}
+  \refstepcounter{figure}\label{fig:10.5.9}
+\end{figure}
+\begin{example}\label{ex:10.5.2}
+计算三重积分
+\[
+\iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+其中 $\Omega$ 由圆锥面 $R^2 z^2 = h^2 (x^2 + y^2)$ 和平面 $z = h\ (>0)$ 围成.
+\end{example}
+
+\noindent\textbf{解法 1}\quad 由图 \ref{fig:10.5.10}，$D = \{(x, y) \mid x^2 + y^2 \leqslant R^2\}$.
+再根据定理 \ref{thm:10.5.1}(1)，有
+\begin{align*}
+\iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+&= \iint \limits_{x^2 + y^2 \leqslant R^2} \mathrm{d}x \mathrm{d}y
+   \int \limits_{\frac{h}{R}(x^2 + y^2)^{1/2}}^{h} z \, \mathrm{d}z \notag\\
+&= \frac{1}{2} \iint \limits_{x^2 + y^2 \leqslant R^2}
+   \left[ h^2 - \frac{h^2}{R^2}(x^2 + y^2) \right] \mathrm{d}x \mathrm{d}y \notag\\
+&= \frac{1}{2} \left[ h^2 \pi R^2 - \frac{h^2}{R^2}
+   \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^R r^3 \mathrm{d}r \right] \notag\\
+&= \frac{1}{2} \left( \pi h^2 R^2 - \frac{h^2}{R^2} \cdot 2\pi \cdot \frac{R^4}{4} \right)
+ = \frac{\pi}{4} h^2 R^2.
+\end{align*}
+
+\noindent\textbf{解法 2}\quad $J = [0, h]$，
+$\Omega_z = \bigl\{ (x, y) \mid x^2 + y^2 \leqslant \frac{R^2}{h^2} z^2 \bigr\}$，
+根据定理 \ref{thm:10.5.1}(2) 与图 \ref{fig:10.5.11}，有
+\begin{align*}
+\iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+&= \int \limits_0^h z \, \mathrm{d}z \iint \limits_{x^2 + y^2 \leqslant \frac{R^2}{h^2} z^2}
+  \mathrm{d}x \mathrm{d}y \notag\\
+&= \int \limits_0^h z \pi \left( \frac{R}{h} z \right)^2 \mathrm{d}z
+ = \left. \pi \frac{R^2}{h^2} \frac{z^4}{4} \right|_0^h
+ = \frac{\pi}{4} h^2 R^2.
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.56, >=Latex]
+    % ---- 图 10.5.10 ----
+    \begin{scope}[shift={(-4.5,0)}]
+      \draw[->] (0,0) -- (0,2.60) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) ellipse (1.50 and 0.72);
+      \draw[dashed] (0,0) ellipse (0.75 and 0.36);
+      \draw[thick] (0,0) -- (-1.50,2.10);
+      \draw[thick] (0,0) -- (1.50,2.10);
+      \draw[dashed] (0,0) -- (1.66,0.44);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.50*cos(\x)}, {2.10 + 0.72*sin(\x)});
+      \draw[dashed] (0,0) -- (0,2.10);
+      \draw[dashed] (0,0) -- (1.50,2.10);
+      \draw[dashed] (1.10,0) -- (1.10,2.10);
+      \fill (1.10,0) circle (1.4pt);
+      \node[below right] at (1.10,0) {$(x,y,0)$};
+      \draw[dashed, gray!60] (1.10,0) -- (1.66,0);
+      \node[right] at (1.60,0.12) {$R$};
+      \node[left] at (-0.28,2.10) {$h$};
+      \node[above] at (0.64,2.48) {$R$};
+      \draw[decorate, decoration={brace, amplitude=4pt}] (1.72,0) -- (1.72,2.10);
+      \node[right] at (1.82,1.28) {$\Omega_{xy}$};
+    \end{scope}
+    % ---- 图 10.5.11 ----
+    \begin{scope}[shift={(4.4,0)}]
+      \draw[->] (0,0) -- (0,2.60) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) ellipse (1.50 and 0.72);
+      \draw[dashed] (0,0) ellipse (0.75 and 0.36);
+      \draw[thick] (0,0) -- (-1.50,2.10);
+      \draw[thick] (0,0) -- (1.50,2.10);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.50*cos(\x)}, {2.10 + 0.72*sin(\x)});
+      \draw[dashed] (0,0) -- (0,2.10);
+      \draw[dashed] (0,0) -- (1.50,2.10);
+      \begin{scope}[yscale=0.48]
+        \clip (0,0) ellipse (1.50 and 1.50);
+        \fill[pattern=north east lines, pattern color=gray!60] (-1.6,0) rectangle (1.6,3.2);
+      \end{scope}
+      \draw[thick] (0,0) ellipse (1.50 and 0.72);
+      \node at (0.55,0.12) {$\Omega_z$};
+      \draw[decorate, decoration={brace, amplitude=4pt}] (-0.30,0) -- (-0.30,2.10);
+      \node[left] at (-0.38,1.05) {$J$};
+      \node[left] at (-0.28,2.10) {$h$};
+      \node[right] at (1.58,1.24) {$x^2 + y^2 \leqslant \frac{R^2}{h^2} z^2$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{例 10.5.2 中的圆锥 $\Omega$ 及其水平截面 $\Omega_z$}\label{fig:10.5.10}
+  \refstepcounter{figure}\label{fig:10.5.11}
+\end{figure}
+\begin{example}\label{ex:10.5.3}
+计算两球体 $x^2 + y^2 + z^2 \leqslant R^2$ 与 $x^2 + y^2 + (z - R)^2 \leqslant R^2$ 的交 $\Omega$ 的体积 $v(\Omega)$.
+由
+\[
+\begin{cases}
+x^2 + y^2 + z^2 = R^2,\\
+x^2 + y^2 + (z - R)^2 = R^2
+\end{cases}
+\]
+得到
+\begin{align*}
+z^2 - (z - R)^2 &= 0, & 2zR - R^2 &= 0, & z &= \frac{R}{2}, \notag\\
+x^2 + y^2 + \left( \frac{R}{2} \right)^2 &= R^2, \notag\\
+x^2 + y^2 &= \left( \frac{\sqrt{3}}{2} R \right)^2 = \frac{3}{4} R^2. \notag
+\end{align*}\end{example}
+
+\noindent\textbf{解法 1}\quad 由定理 \ref{thm:10.5.1}(1) 与图 \ref{fig:10.5.12}，有
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{x^2 + y^2 \leqslant \frac{3}{4} R^2} \mathrm{d}x \mathrm{d}y
+   \int \limits_{R - \sqrt{R^2 - (x^2 + y^2)}}^{\sqrt{R^2 - (x^2 + y^2)}} \mathrm{d}z \notag\\
+&= \iint \limits_{x^2 + y^2 \leqslant \frac{3}{4} R^2}
+   \Bigl[ \sqrt{R^2 - (x^2 + y^2)} - \bigl( R - \sqrt{R^2 - (x^2 + y^2)} \bigr) \Bigr]
+   \mathrm{d}x \mathrm{d}y \notag\\
+&= \iint \limits_{x^2 + y^2 \leqslant \frac{3}{4} R^2}
+   \bigl[ 2\sqrt{R^2 - (x^2 + y^2)} - R \bigr] \mathrm{d}x \mathrm{d}y \notag\\
+&\reason{极坐标变换}
+  2 \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^{\frac{\sqrt{3}}{2} R}
+  \sqrt{R^2 - r^2} \, r \, \mathrm{d}r
+  - R \cdot \pi \frac{3}{4} R^2 \notag\\
+&= 4\pi \cdot \frac{-1}{3} \left. (R^2 - r^2)^{\frac{3}{2}} \right|_0^{\frac{\sqrt{3}}{2} R}
+  - \frac{3}{4} \pi R^3 \notag\\
+&= \frac{4\pi}{3} \left[ R^3 - \left( R^2 - \frac{3}{4} R^2 \right)^{\frac{3}{2}} \right]
+  - \frac{3}{4} \pi R^3 \notag\\
+&= \frac{4\pi}{3} \left( 1 - \frac{1}{8} \right) R^3 - \frac{3}{4} \pi R^3
+ = \frac{5}{12} \pi R^3.
+\end{align*}
+
+\noindent\textbf{解法 2}\quad $J = [0, R]$，
+\[
+\Omega_z =
+\begin{cases}
+\bigl\{ (x, y) \mid x^2 + y^2 \leqslant R^2 - (z - R)^2 \bigr\}, & 0 \leqslant z \leqslant \frac{R}{2},\\[4pt]
+\bigl\{ (x, y) \mid x^2 + y^2 \leqslant R^2 - z^2 \bigr\}, & \frac{R}{2} \leqslant z \leqslant R.
+\end{cases}
+\]
+由定理 \ref{thm:10.5.1}(2) 与图 \ref{fig:10.5.13}，有
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{\Omega} \mathrm{d}x \mathrm{d}y \mathrm{d}z
+ = \int \limits_0^{\frac{R}{2}} \mathrm{d}z \iint \limits_{\Omega_z} \mathrm{d}x \mathrm{d}y
+   + \int \limits_{\frac{R}{2}}^{R} \mathrm{d}z \iint \limits_{\Omega_z} \mathrm{d}x \mathrm{d}y \notag\\
+&= \int \limits_0^{\frac{R}{2}} \pi \bigl[ R^2 - (z - R)^2 \bigr] \mathrm{d}z
+   + \int \limits_{\frac{R}{2}}^{R} \pi (R^2 - z^2) \mathrm{d}z \notag\\
+&= \pi R^2 \cdot \frac{R}{2}
+   - \left. \pi \frac{(z - R)^3}{3} \right|_0^{\frac{R}{2}}
+   + \pi R^2 \cdot \frac{R}{2}
+   - \left. \pi \frac{z^3}{3} \right|_{\frac{R}{2}}^{R} \notag\\
+&= \frac{1}{2} \pi R^3 + \frac{1}{24} \pi R^3 - \frac{1}{3} \pi R^3
+   + \frac{1}{2} \pi R^3 - \frac{1}{3} \pi R^3 + \frac{1}{24} \pi R^3
+ = \frac{5}{12} \pi R^3.
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.58, >=Latex]
+    % ---- 图 10.5.12 ----
+    \begin{scope}[shift={(-4.6,0)}]
+      \draw[->] (0,0) -- (0,2.70) node[left] {$z$};
+      \draw[->] (0,0) -- (2.70,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[dashed] (0,0) circle (1.45);
+      \draw[dashed] (0,1.15) ellipse (1.45 and 0.70);
+      \draw[dashed] (0,2.30) ellipse (0.72 and 0.35);
+      \draw[dashed] (-1.45,1.15) -- (1.45,1.15);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.45*cos(\x)}, {1.15 + 1.15*sin(\x)});
+      \draw[thick] plot [smooth, samples=50, domain=180:360] ({1.45*cos(\x)}, {1.15 + 1.15*sin(\x)});
+      \draw[dashed, gray!70] (0,0) -- (0,2.30);
+      \node[above] at (0,2.34) {$R$};
+      \node[left] at (-0.20,1.30) {$\frac{R}{2}$};
+      \fill (0.62,0) circle (1.4pt);
+      \draw[dashed, gray!70] (0.62,0) -- (0.62,1.15);
+      \node[below right] at (0.62,0) {$(x,y,0)$};
+      \node[above right] at (0.95,2.02) {$z = \sqrt{R^2 - (x^2 + y^2)}$};
+      \node[below right] at (0.95,0.46) {$z = R - \sqrt{R^2 - (x^2 + y^2)}$};
+      \begin{scope}[yscale=0.483]
+        \clip (0,0) circle (1.45);
+        \fill[pattern=north east lines, pattern color=gray!60] (-1.6,-1.6) rectangle (1.6,1.6);
+      \end{scope}
+      \draw[thick] (0,0) ellipse (1.45 and 0.70);
+      \node at (0.92,0.10) {$x^2 + y^2 \leqslant \frac{3}{4}R^2$};
+    \end{scope}
+    % ---- 图 10.5.13 ----
+    \begin{scope}[shift={(4.4,0)}]
+      \draw[->] (0,0) -- (0,2.70) node[left] {$z$};
+      \draw[->] (0,0) -- (2.70,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[dashed] (0,0) circle (1.45);
+      \draw[dashed] (0,1.15) ellipse (1.45 and 0.70);
+      \draw[dashed] (0,2.30) ellipse (0.72 and 0.35);
+      \draw[dashed] (-1.45,1.15) -- (1.45,1.15);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.45*cos(\x)}, {1.15 + 1.15*sin(\x)});
+      \draw[thick] plot [smooth, samples=50, domain=180:360] ({1.45*cos(\x)}, {1.15 + 1.15*sin(\x)});
+      \draw[dashed, gray!70] (0,0) -- (0,1.15);
+      \node[above] at (0,2.34) {$R$};
+      \begin{scope}[yscale=0.483]
+        \clip (0,0) ellipse (1.45 and 1.45);
+        \fill[pattern=north east lines, pattern color=gray!60] (-1.6,0) rectangle (1.6,3.4);
+      \end{scope}
+      \draw[thick] (0,0) ellipse (1.45 and 0.70);
+      \node at (0.50,0.10) {$\Omega_z$};
+      \draw[dashed, thick] (-1.45,1.15) -- (1.45,1.15);
+      \node[left] at (-0.16,1.30) {$\frac{R}{2}$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{例 10.5.3 中两球体的交 $\Omega$ 及其水平截面 $\Omega_z$}\label{fig:10.5.12}
+  \refstepcounter{figure}\label{fig:10.5.13}
+\end{figure}
+\begin{example}[旋转体体积]\label{ex:10.5.4}
+设 $yOz$ 平面中有曲线 $C\colon (y, z) = (\varphi(t), \psi(t))$，$t_0 \leqslant t \leqslant t_1$，
+任何 $t$，至多只有一个 $y$ 与之对应。$\Omega$ 是由曲线 $C$ 绕 $z$ 轴旋转所得的曲面与平面
+$z = \psi(t_0)$，平面 $z = \psi(t_1)$ 所围的立体（图 \ref{fig:10.5.14}）。求 $\Omega$ 的体积 $v(\Omega)$.
+\end{example}
+
+\begin{proof}
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{\Omega} \mathrm{d}x \mathrm{d}y \mathrm{d}z
+ = \int \limits_{\psi(t_0)}^{\psi(t_1)} \mathrm{d}z \iint \limits_{\Omega_z} \mathrm{d}x \mathrm{d}y \notag\\
+&= \int \limits_{\psi(t_0)}^{\psi(t_1)} \pi y^2 \, \mathrm{d}z
+ \reasonb{$\varphi(t)$} {\substack{y = \varphi(t)\\ z = \psi(t)}}
+   \pi \int \limits_{t_0}^{t_1} \varphi^2(t) \psi'(t) \mathrm{d}t.
+\end{align*}
+\end{proof}
+
+特别地，球体 $\Omega = \{(x, y, z) \mid x^2 + y^2 + z^2 \leqslant R^2\}$ 是由圆
+$(y, z) = (R\cos\theta, R\sin\theta)$，$-\frac{\pi}{2} \leqslant \theta \leqslant \frac{\pi}{2}$
+绕 $z$ 轴旋转所围成，它的体积为
+\[
+v(\Omega) = \pi \int \limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} R^2 \cos^2\theta \cdot R\cos\theta \, \mathrm{d}\theta
+= 2\pi R^3 \int \limits_0^{\frac{\pi}{2}} \cos^3\theta \, \mathrm{d}\theta
+= 2\pi R^3 \cdot \frac{2}{3} = \frac{4\pi}{3} R^3.
+\]
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.70, >=Latex]
+    \draw[->] (0,0) -- (0,2.35) node[left] {$z$};
+    \draw[->] (0,0) -- (2.65,0) node[right] {$y$};
+    \draw[->] (0,0) -- (-1.20,-1.25) node[below left] {$x$};
+    \node[below left] at (0,0) {$O$};
+    % 旋转体：上下两个旋转曲面
+    \draw[thick] plot [smooth, samples=50, domain=0:180]
+      ({1.42*cos(\x)}, {1.75 + 0.52*sin(\x)});
+    \draw[thick] plot [smooth, samples=50, domain=0:180]
+      ({1.72*cos(\x)}, {2.27 + 0.42*sin(\x)});
+    \draw[thick] (0,1.75) -- (-1.42,1.75);
+    \draw[thick] (0,1.75) -- (1.42,1.75);
+    \draw[thick] plot [smooth, samples=40, domain=200:340]
+      ({0.86*cos(\x)}, {0.62 + 0.86*sin(\x)});
+    \draw[thick] plot [smooth, samples=40, domain=0:180]
+      ({1.55*cos(\x)}, {0.10 + 0.60*sin(\x)});
+    \draw[thick] (0,0.10) -- (-1.55,0.10);
+    \draw[thick] (0,0.10) -- (1.55,0.10);
+    % 母线 C
+    \draw[thick] (-0.55,0.28) to[out=200, in=-60] (0,0.92) to[out=120, in=-25] (0.52,1.62);
+    \draw[dashed] (0,0.92) -- (0,0);
+    \draw[dashed] (0,1.62) -- (0,0);
+    \node[right] at (0.10,1.26) {$C$};
+    \draw[dashed] (1.42,1.75) -- (1.42,0.10);
+    \node[above right] at (1.40,1.78) {$z = \psi(t_1)$};
+    \node[below right] at (1.54,0.12) {$z = \psi(t_0)$};
+    \node at (0.80,0.98) {$\Omega$};
+  \end{tikzpicture}
+  \caption{曲线 $C$ 绕 $z$ 轴旋转所成的旋转体 $\Omega$}\label{fig:10.5.14}
+\end{figure}
+\begin{example}\label{ex:10.5.5}
+计算三重积分
+\[
+\iint \limits_{\Omega} \frac{\mathrm{d}x \mathrm{d}y \mathrm{d}z}{x^2 + y^2},
+\]
+其中 $\Omega$ 为由平面 $x = 1$，$x = 2$，$z = 0$，$y = x$ 与 $z = y$ 所围的区域（图 \ref{fig:10.5.15}）.
+\end{example}
+
+\begin{proof}
+由定理 \ref{thm:10.5.2}(1) 与图 \ref{fig:10.5.15}，有
+\begin{align*}
+\iint \limits_{\Omega} \frac{\mathrm{d}x \mathrm{d}y \mathrm{d}z}{x^2 + y^2}
+&= \int \limits_1^2 \mathrm{d}x \int \limits_0^x \mathrm{d}y \int \limits_0^y
+   \frac{\mathrm{d}z}{x^2 + y^2}
+ = \int \limits_1^2 \mathrm{d}x \int \limits_0^x \frac{y}{x^2 + y^2} \mathrm{d}y \notag\\
+&= \int \limits_1^2 \left. \frac{1}{2} \ln(x^2 + y^2) \right|_0^x \mathrm{d}x
+ = \int \limits_1^2 \frac{1}{2} \bigl[ \ln(2x^2) - \ln x^2 \bigr] \mathrm{d}x \notag\\
+&= \frac{1}{2} \int \limits_1^2 \ln 2 \mathrm{d}x = \frac{1}{2} \ln 2.
+\end{align*}
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.85, >=Latex]
+    \draw[->] (0,0) -- (0,2.45) node[left] {$z$};
+    \draw[->] (0,0) -- (2.75,0) node[right] {$y$};
+    \draw[->] (0,0) -- (-1.15,-1.20) node[below left] {$x$};
+    \node[below left] at (0,0) {$O$};
+    % 平面区域：1 <= x <= 2, 0 <= y <= x, 0 <= z <= y
+    \fill[pattern=north east lines, pattern color=gray!55]
+      (1.30,-0.62) -- (2.60,-0.62) -- (2.60,0) -- (1.30,0) -- cycle;
+    \draw[thick] (1.30,-0.62) -- (2.60,-0.62) -- (2.60,0) -- (1.30,0) -- cycle;
+    \draw[thick] (1.30,0) -- (1.30,2.20);
+    \draw[thick] (2.60,0) -- (2.60,2.20);
+    \draw[thick] (0,0) -- (2.60,2.20);
+    \draw[dashed] (0,0) -- (1.30,0);
+    \draw[thick] plot [smooth, samples=40, domain=0:90]
+      ({0.62 + 0.40*cos(\x)}, {0.30 + 0.32*sin(\x)});
+    \draw[thick] plot [smooth, samples=40, domain=90:180]
+      ({1.58 + 0.42*cos(\x)}, {1.34 + 0.34*sin(\x)});
+    \node[above right] at (1.95,2.10) {$z = y$};
+    \node[right] at (1.28,1.20) {$y = x$};
+    \node[left] at (1.26,0.90) {$1$};
+    \node[below] at (2.58,-0.30) {$2$};
+    \node at (1.85,0.90) {$\Omega$};
+    \fill (1.30,0) circle (1.2pt);
+  \end{tikzpicture}
+  \caption{例 10.5.5 中的区域 $\Omega$}\label{fig:10.5.15}
+\end{figure}
+\begin{example}\label{ex:10.5.6}
+计算椭球 $\Omega = \bigl\{ (x, y, z) \mid \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leqslant 1 \bigr\}$
+的体积 $v(\Omega)$.
+\end{example}
+
+\noindent\textbf{解法 1}\quad 应用广义球坐标变换
+$(x, y, z) = (a \sin\theta \cos\varphi,\ b \sin\theta \sin\varphi,\ c \cos\theta)$，有
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{\Omega} \mathrm{d}x \mathrm{d}y \mathrm{d}z
+ = \iint \limits_{\boldsymbol{F}(\Delta)} \mathrm{d}x \mathrm{d}y \mathrm{d}z \notag\\
+&= \iint \limits_{\Delta} a b c \, r^2 \sin\theta \, \mathrm{d}r \mathrm{d}\theta \mathrm{d}\varphi \notag\\
+&= a b c \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^\pi \sin\theta \, \mathrm{d}\theta
+  \int \limits_0^1 r^2 \mathrm{d}r \notag\\
+&= 2\pi a b c \cdot \left. (-\cos\theta) \right|_0^\pi \cdot \left. \frac{r^3}{3} \right|_0^1
+ = \frac{4}{3} \pi a b c.
+\end{align*}
+当 $a = b = c$ 时，椭球就成为球，它的体积为 $\frac{4}{3} \pi a^3$.
+
+\noindent\textbf{解法 2}
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{\Omega} \mathrm{d}x \mathrm{d}y \mathrm{d}z
+ \reason{对称性}
+   2 \int \limits_0^c \mathrm{d}z \iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} \leqslant 1 - \frac{z^2}{c^2}}
+   \mathrm{d}x \mathrm{d}y \notag\\
+&\reason{例 \ref{ex:10.4.8}}
+   2 \int \limits_0^c \pi \sqrt{1 - \frac{z^2}{c^2}} \cdot a \cdot \sqrt{1 - \frac{z^2}{c^2}} \, b \, \mathrm{d}z \notag\\
+&= 2 \int \limits_0^c \pi a b \left( 1 - \frac{z^2}{c^2} \right) \mathrm{d}z
+ = 2 \pi a b \left. \left( c - \frac{z^3}{3c^2} \right) \right|_0^c
+ = \frac{4}{3} \pi a b c.
+\end{align*}
+
+\noindent\textbf{解法 3}
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{\Omega} \mathrm{d}x \mathrm{d}y \mathrm{d}z \notag\\
+&\reason{对称性}
+  2 \iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} \leqslant 1} \mathrm{d}x \mathrm{d}y
+  \int \limits_0^c c \sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2}} \, \mathrm{d}z \notag\\
+&= 2 \iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} \leqslant 1}
+  c \sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2}} \, \mathrm{d}x \mathrm{d}y \notag\\
+&\reason{$x = a r \cos\varphi,\ y = b r \sin\varphi$}
+  2 \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^1 c \sqrt{1 - r^2} \, a b r \, \mathrm{d}r \notag\\
+&= 4 \pi a b c \left. \frac{-1}{3} (1 - r^2)^{\frac{3}{2}} \right|_0^1 = \frac{4\pi}{3} a b c
+  \qquad (\text{图} \ref{fig:10.5.16} \text{、图} \ref{fig:10.5.17}).
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.58, >=Latex]
+    % ---- 图 10.5.16 ----
+    \begin{scope}[shift={(-4.5,0)}]
+      \draw[->] (0,0) -- (0,2.50) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) ellipse (1.35 and 0.66);
+      \draw[dashed] (0,0) ellipse (0.68 and 0.33);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.35*cos(\x)}, {1.50 + 0.66*sin(\x)});
+      \draw[dashed] (-1.35,1.50) -- (1.35,1.50);
+      \draw[dashed] (0,0) -- (0,2.16);
+      \node[above] at (0,2.20) {$c$};
+      \node[left] at (-0.18,1.55) {$z$};
+      \node[below] at (1.38,0.10) {$b$};
+      \node at (-0.88,0.08) {$a$};
+      \begin{scope}[yscale=0.489]
+        \clip (0,1.50) ellipse (1.35 and 1.35);
+        \fill[pattern=north east lines, pattern color=gray!60] (-1.5,1.50) rectangle (1.5,3.0);
+      \end{scope}
+      \draw[thick] (-1.35,1.50) -- (1.35,1.50);
+      \node at (0.58,1.56) {$z$};
+      \node[right] at (0.75,2.06) {$\frac{x^2}{a^2} + \frac{y^2}{b^2} \leqslant 1 - \frac{z^2}{c^2}$};
+    \end{scope}
+    % ---- 图 10.5.17 ----
+    \begin{scope}[shift={(4.4,0)}]
+      \draw[->] (0,0) -- (0,2.50) node[left] {$z$};
+      \draw[->] (0,0) -- (2.60,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-1.20,-1.30) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (0,0) ellipse (1.35 and 0.66);
+      \draw[dashed] (0,0) ellipse (0.68 and 0.33);
+      \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.35*cos(\x)}, {1.50 + 0.66*sin(\x)});
+      \draw[dashed] (-1.35,1.50) -- (1.35,1.50);
+      \draw[dashed] (0,0) -- (0,2.16);
+      \node[above] at (0,2.20) {$c$};
+      \begin{scope}[yscale=0.489]
+        \clip (0,0) ellipse (1.35 and 1.35);
+        \fill[pattern=north east lines, pattern color=gray!60] (-1.5,0) rectangle (1.5,3.0);
+      \end{scope}
+      \draw[thick] (0,0) ellipse (1.35 and 0.66);
+      \node at (0.50,0.12) {$z$};
+      \node[below] at (1.38,0.10) {$b$};
+      \node at (-0.88,0.08) {$a$};
+      \fill (0.88,0) circle (1.4pt);
+      \node[below right] at (0.88,0) {$(x,y,0)$};
+      \draw[dashed, gray!70] (0.88,0) -- (0.88,1.50);
+      \node[right] at (0.92,1.78) {$z = c\sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2}}$};
+      \node[right] at (1.00,0.78) {$\frac{x^2}{a^2} + \frac{y^2}{b^2} \leqslant 1$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{例 10.5.6 解法 2 与解法 3 中椭球的两种剖分方式}\label{fig:10.5.16}
+  \refstepcounter{figure}\label{fig:10.5.17}
+\end{figure}
+\begin{example}\label{ex:10.5.7}
+计算三重积分
+\[
+\iint \limits_{\Omega} (x^2 + y^2 + z^2) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+其中 $\Omega$ 为球面 $x^2 + y^2 + z^2 = a^2$ 与锥面 $z = \sqrt{x^2 + y^2}$ 所围成的立体（图 \ref{fig:10.5.18}）.
+\end{example}
+
+\begin{proof}
+\begin{align*}
+&\iint \limits_{\Omega} (x^2 + y^2 + z^2) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z \notag\\
+&\reason{球坐标换元}
+  \iint \limits_{\Delta} r^2 \cdot r^2 \sin\theta \, \mathrm{d}r \mathrm{d}\theta \mathrm{d}\varphi \notag\\
+&= \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^{\frac{\pi}{4}} \sin\theta \, \mathrm{d}\theta
+  \int \limits_0^a r^4 \mathrm{d}r \notag\\
+&= 2\pi \left. (-\cos\theta) \right|_0^{\frac{\pi}{4}} \cdot \left. \frac{r^5}{5} \right|_0^a
+ = 2\pi \left( 1 - \frac{\sqrt{2}}{2} \right) \cdot \frac{a^5}{5}
+ = \frac{\pi}{5} (2 - \sqrt{2}) a^5,
+\end{align*}
+其中 $\Delta = \bigl\{ (r, \theta, \varphi) \mid 0 \leqslant r \leqslant a,\
+0 \leqslant \theta \leqslant \frac{\pi}{4},\ 0 \leqslant \varphi \leqslant 2\pi \bigr\}$.
+\end{proof}
+
+注意，将三重积分 $\iint \limits_{\Delta} r^4 \sin\theta \, \mathrm{d}r \mathrm{d}\theta \mathrm{d}\varphi$
+化为累次积分时，先固定 $\varphi \in [0, 2\pi]$，再固定 $\theta \in \left[0, \frac{\pi}{4}\right]$，
+于是得到过原点 $O$ 的射线，上面的点从 $0$ 变到 $a$. 累次积分积分限的确定不必再画出图形 $\Delta$，
+只需在原图 \ref{fig:10.5.18} 上看出.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.80, >=Latex]
+    \draw[->] (0,0) -- (0,2.45) node[left] {$z$};
+    \draw[->] (0,0) -- (2.35,0) node[right] {$y$};
+    \draw[->] (0,0) -- (-1.15,-1.20) node[below left] {$x$};
+    \node[below left] at (0,0) {$O$};
+    \draw[thick] plot [smooth, samples=50, domain=0:180] ({1.28*cos(\x)}, {1.42 + 0.62*sin(\x)});
+    \draw[dashed] (0,0) ellipse (1.28 and 0.62);
+    \draw[thick] (0,0) -- (-1.02,1.42);
+    \draw[thick] (0,0) -- (1.02,1.42);
+    \draw[dashed] (0,0) -- (1.35,0.36);
+    \draw[dashed] (-1.02,1.42) arc (180:0:1.28 and 0.62);
+    \node[above right] at (0.60,1.98) {$z = \sqrt{x^2 + y^2}$};
+    % 参数扇形阴影
+    \begin{scope}
+      \clip (0,0) -- (1.28,0) -- (0,1.92) -- cycle;
+      \fill[pattern=north east lines, pattern color=gray!60] (-0.2,-0.2) rectangle (1.6,2.2);
+    \end{scope}
+    \draw[thick] (0,0) -- (1.28,0);
+    \draw[thick] (0,0) -- (0,1.92);
+    \draw[decorate, decoration={arc, amplitude=22pt}, ->, >=Latex] (0.72,0) -- (0.72,0);
+    \node at (1.02,-0.28) {$\varphi$};
+    \draw[decorate, decoration={arc, amplitude=20pt}, ->, >=Latex] (0.52,0) -- (0.52,0);
+    \node at (0.66,0.52) {$\theta$};
+    \node[above] at (0.05,1.95) {$r = a$};
+  \end{tikzpicture}
+  \caption{例 10.5.7 中球面与锥面所围成的立体 $\Omega$}\label{fig:10.5.18}
+\end{figure}
+\begin{example}\label{ex:10.5.8}
+计算三重积分
+\[
+\iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+其中 $\Omega$ 为两个球面 $x^2 + y^2 + z^2 = 2az$ 与 $x^2 + y^2 + z^2 = az$ 之间的点集（图 \ref{fig:10.5.19}）.
+\end{example}
+
+\noindent\textbf{解法 1}\quad 经过配方，将这两个球面的方程改写为
+\[
+x^2 + y^2 + (z - a)^2 = a^2,
+\qquad
+x^2 + y^2 + \left( z - \frac{a}{2} \right)^2 = \left( \frac{a}{2} \right)^2,
+\]
+由此容易得出它们的中心和半径分别为 $(0, 0, a)$，$a$ 与 $\left(0, 0, \frac{a}{2}\right)$，$\frac{a}{2}$.
+用球坐标换元，易见 $\theta$ 和 $\varphi$ 的变化范围分别是 $\left[0, \frac{\pi}{2}\right]$ 和 $[0, 2\pi]$.
+过原点，在上半空间中作一条射线，这条射线只要 $\theta \neq \frac{\pi}{2}$，恰与这两球面各交于一点，
+它们到原点的距离分别为 $a\cos\theta$ 和 $2a\cos\theta$
+（事实上，$r^2 = a\cos\theta$，$r = a\cos\theta$；$r^2 = 2a\cos\theta$，$r = 2a\cos\theta$）.
+因此，先固定 $\varphi \in [0, 2\pi]$，再固定 $\theta \in \left[0, \frac{\pi}{2}\right]$，
+$r$ 的变化范围为 $[a\cos\theta, 2a\cos\theta]$. 这样，从原图 \ref{fig:10.5.19} 就定出了参数
+$(r, \theta, \varphi)$ 的变化域 $\Delta$. 于是，
+\begin{align*}
+\iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+&= \iint \limits_{\Delta} r\cos\theta \cdot r^2 \sin\theta \, \mathrm{d}r \mathrm{d}\theta \mathrm{d}\varphi \notag\\
+&= \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^{\frac{\pi}{2}} \sin\theta \cos\theta \, \mathrm{d}\theta
+  \int \limits_{a\cos\theta}^{2a\cos\theta} r^3 \, \mathrm{d}r \notag\\
+&= 2\pi \int \limits_0^{\frac{\pi}{2}} \sin\theta \cos\theta \cdot
+  \left. \frac{r^4}{4} \right|_{a\cos\theta}^{2a\cos\theta} \mathrm{d}\theta \notag\\
+&= \frac{15}{2} \pi a^4 \int \limits_0^{\frac{\pi}{2}} \sin\theta \cos^5\theta \, \mathrm{d}\theta
+ = \frac{15}{2} \pi a^4 \cdot \left. \frac{-\cos^6\theta}{6} \right|_0^{\frac{\pi}{2}}
+ = \frac{5\pi}{4} a^4.
+\end{align*}
+
+\noindent\textbf{解法 2}\quad 设 $\Omega_1$ 与 $\Omega_2$ 分别表示小球体与大球体，则
+$\Omega = \Omega_2 \setminus \Omega_1$. 于是，
+\begin{align*}
+\iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+&= \iint \limits_{\Omega_2} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+   - \iint \limits_{\Omega_1} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z \notag\\
+&= \iint \limits_{\Omega_2} (z - a) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+   + \iint \limits_{\Omega_2} a \, \mathrm{d}x \mathrm{d}y \mathrm{d}z \notag\\
+&\quad - \iint \limits_{\Omega_1} \left( z - \frac{a}{2} \right) \mathrm{d}x \mathrm{d}y \mathrm{d}z
+   - \iint \limits_{\Omega_1} \frac{a}{2} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z \notag\\
+&\reason{对称性} 0 + a v(\Omega_2) - 0 - \frac{a}{2} v(\Omega_1) \notag\\
+&= a \cdot \frac{4}{3} \pi a^3 - \frac{a}{2} \cdot \frac{4}{3} \pi \left( \frac{a}{2} \right)^3
+ = \frac{4}{3} \pi a^4 \left( 1 - \frac{1}{16} \right)
+ = \frac{5}{4} \pi a^4.
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.80, >=Latex]
+    \draw[->] (0,0) -- (0,2.35) node[left] {$z$};
+    \draw[->] (0,0) -- (2.35,0) node[right] {$y$};
+    \draw[->] (0,0) -- (-1.15,-1.20) node[below left] {$x$};
+    \node[below left] at (0,0) {$O$};
+    % 大球：中心 (0,0,a)，半径 a
+    \draw[thick] (0,0) circle (1.35);
+    \draw[dashed] (0,1.35) ellipse (1.35 and 0.62);
+    \draw[dashed] (-1.35,1.35) -- (1.35,1.35);
+    % 小球：中心 (0,0,a/2)，半径 a/2
+    \draw[thick, dashed] (0,0.675) circle (0.675);
+    \draw[dashed] (0,0.675) ellipse (0.675 and 0.31);
+    \draw[dashed] (-0.675,0.675) -- (0.675,0.675);
+    \draw[decorate, decoration={brace, amplitude=4pt}] (1.42,0) -- (1.42,1.35);
+    \node[right] at (1.50,0.68) {$a$};
+    \draw[decorate, decoration={brace, amplitude=3pt}] (-0.76,0) -- (-0.76,0.675);
+    \node[left] at (-0.84,0.34) {$\frac{a}{2}$};
+    \node[above] at (0,1.42) {$x^2 + y^2 + z^2 = 2az$};
+    \node[right] at (0.95,0.42) {$x^2 + y^2 + z^2 = az$};
+    \node at (0.72,1.12) {$a$};
+  \end{tikzpicture}
+  \caption{例 10.5.8 中两球面之间的点集 $\Omega$}\label{fig:10.5.19}
+\end{figure}
+\begin{example}\label{ex:10.5.9}
+求三重积分
+\[
+\iint \limits_{\Omega} \mathrm{e}^{x^2 + y^2} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+其中 $\Omega = \{(x, y, z) \mid x^2 + y^2 \leqslant R^2,\ 0 \leqslant z \leqslant h\}$ 为圆柱体.
+\end{example}
+
+\begin{proof}
+由于 $\Omega$ 为圆柱体与被积函数中含 $x^2 + y^2$，所以应采用柱坐标变换
+$(x, y, z) = (r\cos\varphi, r\sin\varphi, z)$. 于是，
+\begin{align*}
+\iint \limits_{\Omega} \mathrm{e}^{x^2 + y^2} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+&= \iint \limits_{\Delta} \mathrm{e}^{r^2} \, r \, \mathrm{d}r \mathrm{d}\varphi \mathrm{d}z
+ = \int \limits_0^h \mathrm{d}z \int \limits_0^{2\pi} \mathrm{d}\varphi \int \limits_0^R r \mathrm{e}^{r^2} \mathrm{d}r \notag\\
+&= 2\pi h \cdot \left. \frac{1}{2} \mathrm{e}^{r^2} \right|_0^R = \pi h \left( \mathrm{e}^{R^2} - 1 \right).
+\end{align*}
+\end{proof}
+\begin{example}\label{ex:10.5.10}
+设 $\Omega$ 为由 6 个平面
+\[
+a_i x + b_i y + c_i z = \pm h_i, \quad i = 1, 2, 3
+\]
+所围成，其中行列式
+\[
+\begin{vmatrix}
+a_1 & b_1 & c_1\\
+a_2 & b_2 & c_2\\
+a_3 & b_3 & c_3
+\end{vmatrix} \neq 0.
+\]
+求所围平行六面体 $\Omega$ 的体积.
+\end{example}
+
+\begin{proof}
+作换元
+\[
+\begin{cases}
+u = a_1 x + b_1 y + c_1 z,\\
+v = a_2 x + b_2 y + c_2 z,\\
+w = a_3 x + b_3 y + c_3 z,
+\end{cases}
+\]
+则它将 $\mathbb{R}^3$ 无穷次连续地一一映为 $\mathbb{R}^3$，令其逆变换为 $\boldsymbol{F}$，
+且 $\boldsymbol{F}(\Delta) = \Omega$（图 \ref{fig:10.5.20}）。容易看出
+\[
+\frac{\partial(u, v, w)}{\partial(x, y, z)} =
+\begin{vmatrix}
+a_1 & b_1 & c_1\\
+a_2 & b_2 & c_2\\
+a_3 & b_3 & c_3
+\end{vmatrix} \neq 0.
+\]
+于是，
+\begin{align*}
+v(\Omega)
+&= \iint \limits_{\Omega} \mathrm{d}x \mathrm{d}y \mathrm{d}z
+ = \iint \limits_{\boldsymbol{F}(\Delta)} \mathrm{d}x \mathrm{d}y \mathrm{d}z
+ = \iint \limits_{\Delta} \left| \frac{\partial(x, y, z)}{\partial(u, v, w)} \right|
+   \mathrm{d}u \mathrm{d}v \mathrm{d}w \notag\\
+&= \iint \limits_{\Delta} \frac{1}{
+   \left| \begin{vmatrix} a_1 & b_1 & c_1\\ a_2 & b_2 & c_2\\ a_3 & b_3 & c_3 \end{vmatrix} \right|}
+   \mathrm{d}u \mathrm{d}v \mathrm{d}w \notag\\
+&= \frac{1}{
+   \left| \begin{vmatrix} a_1 & b_1 & c_1\\ a_2 & b_2 & c_2\\ a_3 & b_3 & c_3 \end{vmatrix} \right|}
+   \iint \limits_{[-h_1, h_1] \times [-h_2, h_2] \times [-h_3, h_3]} \mathrm{d}u \mathrm{d}v \mathrm{d}w \notag\\
+&= \frac{8 h_1 h_2 h_3}{
+   \left| \begin{vmatrix} a_1 & b_1 & c_1\\ a_2 & b_2 & c_2\\ a_3 & b_3 & c_3 \end{vmatrix} \right|}.
+\end{align*}
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.78, >=Latex]
+    % 左：uvw 空间的长方体
+    \begin{scope}[shift={(-4.2,0)}]
+      \draw[->] (0,0) -- (0,1.85) node[above] {$w$};
+      \draw[->] (0,0) -- (2.55,0) node[right] {$v$};
+      \draw[->] (0,0) -- (-0.80,-0.85) node[below left] {$u$};
+      \node[below left] at (0,0) {$O$};
+      \draw[thick] (-0.72,0.60) -- (1.80,0.60) -- (1.80,-0.30) -- (-0.72,-0.30) -- cycle;
+      \draw[thick] (-0.72,0.60) -- (-0.72,1.38) -- (1.80,1.38) -- (1.80,0.60);
+      \draw[dashed] (-0.72,1.38) -- (1.80,1.38);
+      \draw[dashed] (-0.72,-0.30) -- (0.98,-0.30);
+      \draw[dashed] (1.80,0.60) -- (2.50,0.60);
+      \draw[dashed] (1.80,-0.30) -- (2.50,-0.30);
+      \draw[dashed] (1.80,0.60) -- (1.80,0);
+      \draw[dashed] (1.80,1.38) -- (2.50,1.38);
+      \fill (0.85,0.60) circle (1.5pt);
+      \fill (1.80,0.60) circle (1.5pt);
+      \fill (1.80,1.38) circle (1.5pt);
+      \fill (1.80,-0.30) circle (1.5pt);
+      \node[above right] at (0.82,0.62) {$h_3$};
+      \node[above] at (1.80,1.42) {$h_3$};
+      \node[above right] at (0.82,0.66) {$h_1$};
+      \node[below] at (0.84,-0.30) {$h_1$};
+      \node[right] at (1.84,0.62) {$h_2$};
+      \node[right] at (1.84,0.30) {$h_2$};
+      \node[right] at (1.84,1.40) {$-h_3$};
+    \end{scope}
+    % 箭头 F
+    \draw[->, thick] (-1.35,0.35) -- (-0.30,0.35) node[midway, above] {$\boldsymbol{F}$};
+    % 右：xyz 空间中的平行六面体
+    \begin{scope}[shift={(3.4,0)}]
+      \draw[->] (0,0) -- (0,1.95) node[above] {$z$};
+      \draw[->] (0,0) -- (2.55,0) node[right] {$y$};
+      \draw[->] (0,0) -- (-0.85,-0.90) node[below left] {$x$};
+      \node[below left] at (0,0) {$O$};
+      \coordinate (A) at (0.35,1.15);
+      \coordinate (B) at (2.30,1.55);
+      \coordinate (C) at (2.55,0.28);
+      \coordinate (D) at (0.60,-0.12);
+      \coordinate (A2) at (0.62,2.00);
+      \coordinate (B2) at (2.57,2.40);
+      \coordinate (C2) at (2.82,1.13);
+      \coordinate (D2) at (0.87,0.73);
+      \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+      \draw[thick] (A) -- (A2);
+      \draw[thick] (B) -- (B2);
+      \draw[thick] (C) -- (C2);
+      \draw[thick] (D) -- (D2);
+      \draw[dashed] (A2) -- (B2);
+      \draw[dashed] (A2) -- (D2);
+      \draw[dashed] (D2) -- (C2);
+      \draw[dashed] (B2) -- (C2);
+      \draw[dashed] (B) -- (B2);
+      \draw[dashed] (A) -- (A2);
+      \draw[dashed] (0,0) -- (0.62,0.55);
+      \draw[dashed] (0,0) -- (0.87,0.73);
+      \node[above left] at (1.30,1.75) {$a_1 x + b_1 y + c_1 z = h_1$};
+      \node[below right] at (1.20,0.28) {$a_1 x + b_1 y + c_1 z = -h_1$};
+      \node[above] at (1.90,2.42) {$a_3 x + b_3 y + c_3 z = h_3$};
+      \node[right] at (2.58,0.70) {$a_2 x + b_2 y + c_2 z = h_2$};
+      \node[below] at (0.90,-0.18) {$a_2 x + b_2 y + c_2 z = -h_2$};
+      \node[left] at (0.40,1.10) {$a_3 x + b_3 y + c_3 z = -h_3$};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{例 10.5.10 中的换元 $\boldsymbol{F}$ 把长方体 $\Delta$ 映为平行六面体 $\Omega$}\label{fig:10.5.20}
+\end{figure}
+最后，我们来讨论一些常见的重要的 $n$ 重积分.
+
+\begin{example}[$n$ 维单形的体积]\label{ex:10.5.11}
+在 $n$ 维 Euclid 空间 $\mathbb{R}^n$ 中，点集
+\[
+S_n(a) = \bigl\{ (x_1, x_2, \cdots, x_n) \mid x_1, x_2, \cdots, x_n \geqslant 0
+  \text{ 且 } x_1 + x_2 + \cdots + x_n \leqslant a \bigr\} \quad (a > 0),
+\]
+称为一个 $n$ 维单形.
+
+当 $n = 1$ 时，$S_1(a) = [0, a]$，即它为数轴 $\mathbb{R}^1$ 上的闭区间（图 \ref{fig:10.5.21}(a)）；
+
+当 $n = 2$ 时，$S_2(a)$ 就是平面 $\mathbb{R}^2$ 上的以 $(0, 0)$，$(a, 0)$，$(0, a)$ 为顶点的三角形
+（图 \ref{fig:10.5.21}(b)）；
+
+当 $n = 3$ 时，$S_3(a)$ 就是 $\mathbb{R}^3$ 中以 $(0, 0, 0)$，$(a, 0, 0)$，$(0, a, 0)$，$(0, 0, a)$
+为顶点的第一卦限内的一个四面体（图 \ref{fig:10.5.21}(c)）。
+\end{example}
+
+\begin{proof}
+考虑 $n$ 维单形 $S_n(a)$ 的 $n$ 维体积
+\begin{align*}
+v(S_n(a))
+&= \int_{S_n(a)} 1 = \int \limits_{S_n(a)} \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n \notag\\
+&\reason{$x_i = a t_i,\ i = 1, 2, \cdots, n$}
+  \int \limits_{S_n(1)} \left| \frac{\partial(x_1, x_2, \cdots, x_n)}{\partial(t_1, t_2, \cdots, t_n)} \right|
+  \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n \notag\\
+&= \int \limits_{S_n(1)} a^n \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n
+ = a^n \int \limits_{S_n(1)} 1 = a^n v(S_n(1)).
+\end{align*}
+另一方面，将 $n$ 重积分化累次积分得到
+\begin{align*}
+v(S_n(1))
+&= \int \limits_{S_n(1)} 1
+ = \int \limits_0^1 \mathrm{d}t_n \int \limits_{S_{n-1}(1 - t_n)} \cdots \int \limits_{S_{n-1}(1 - t_n)}
+   \mathrm{d}t_1 \cdots \mathrm{d}t_{n-1} \notag\\
+&= \int \limits_0^1 v(S_{n-1}(1 - t_n)) \mathrm{d}t_n
+ = \int \limits_0^1 (1 - t_n)^{n-1} v(S_{n-1}(1)) \mathrm{d}t_n \notag\\
+&= \left. \frac{-(1 - t_n)^n}{n} \right|_0^1 v(S_{n-1}(1))
+ \reason{递推公式} \frac{1}{n} v(S_{n-1}(1)) \notag\\
+&= \cdots = \frac{1}{n(n-1) \cdots 2} v(S_1(1))
+ = \frac{1}{n!} \int \limits_0^1 1 = \frac{1}{n!}.
+\end{align*}
+一般地，对 $a > 0$，有
+\[
+v(S_n(a)) = a^n v(S_n(1)) = \frac{a^n}{n!}, \quad n \in \mathbb{Z}_+.
+\]
+\end{proof}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=0.92, >=Latex]
+    % ---- (a) n = 1 ----
+    \begin{scope}[shift={(-3.4,0)}]
+      \draw[thick] (-0.30,0) -- (1.40,0);
+      \draw[thick] (0,0) -- (0,0.10);
+      \draw[thick] (0.9,0) -- (0.9,0.10);
+      \node[below] at (0,0) {$0$};
+      \node[below] at (0.9,0) {$a$};
+      \node at (0.55,-0.62) {(a)};
+    \end{scope}
+    % ---- (b) n = 2 ----
+    \begin{scope}[shift={(-0.9,0)}]
+      \draw[thick] (0,0) -- (1.30,0) -- (0,1.30) -- cycle;
+      \node[above] at (0,1.34) {$(0,a)$};
+      \node[below left] at (0,0) {$(0,0)$};
+      \node[below right] at (1.30,0) {$(a,0)$};
+      \node at (0.72,-0.62) {(b)};
+    \end{scope}
+    % ---- (c) n = 3 ----
+    \begin{scope}[shift={(2.6,0)}]
+      \coordinate (O) at (0,0);
+      \coordinate (A) at (1.42,0);
+      \coordinate (B) at (0,1.25);
+      \coordinate (C) at (0.38,0.92);
+      \draw[thick] (O) -- (A) -- (C) -- cycle;
+      \draw[thick] (C) -- (B) -- (A);
+      \draw[dashed] (O) -- (C);
+      \draw[dashed] (O) -- (B);
+      \draw[dashed] (O) -- (A);
+      \node[above] at (0.34,1.36) {$(0,0,a)$};
+      \node[right] at (1.43,0.02) {$(a,0,0)$};
+      \node[left] at (-0.04,1.20) {$(0,a,0)$};
+      \node at (0.42,0.84) {$(0,0,0)$};
+      \node at (0.66,-0.62) {(c)};
+    \end{scope}
+  \end{tikzpicture}
+  \caption{$n$ 维单形 $S_n(a)$ 在 $n = 1, 2, 3$ 时的形状}\label{fig:10.5.21}
+\end{figure}
+\begin{example}[$n$ 维球的体积]\label{ex:10.5.12}
+在 $n$ 维 Euclid 空间 $\mathbb{R}^n$ 中，点集
+\[
+\overline{B_n(0; a)} = \{(x_1, x_2, \cdots, x_n) \mid x_1^2 + x_2^2 + \cdots + x_n^2 \leqslant a^2\}
+  \quad (a > 0),
+\]
+称之为以原点为中心，$a$ 为半径的 $n$ 维闭球体.
+
+当 $n = 1$ 时，$\overline{B_n}(0; a)$ 为数轴 $\mathbb{R}^1$ 上的闭区间 $[-a, a]$；
+
+当 $n = 2$ 时，$\overline{B_n}(0; a)$ 为平面 $\mathbb{R}^2$ 上以原点为中心，$a$ 为半径的闭圆盘；
+
+当 $n = 3$ 时，$\overline{B_n}(0; a)$ 为空间 $\mathbb{R}^3$ 中以原点为中心，$a$ 为半径的闭球体.
+
+考虑 $n$ 维闭球体 $\overline{B_n(0; a)}$ 的 $n$ 维体积 $v(\overline{B_n(0; a)})$. 通过换元可得
+\begin{align*}
+v\bigl(\overline{B_n(0; a)}\bigr)
+&= \int \limits_{\overline{B_n(0; a)}} 1
+ = \idotsint _{\overline{B_n(0; a)}} \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n \notag\\
+&\reason{$x_i = a t_i,\ i = 1, 2, \cdots, n$}
+  \idotsint _{\overline{B_n(0; 1)}}
+  \left| \frac{\partial(x_1, x_2, \cdots, x_n)}{\partial(t_1, t_2, \cdots, t_n)} \right|
+  \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n \notag\\
+&= \idotsint _{\overline{B_n(0; 1)}} a^n \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n
+ = a^n v\bigl(\overline{B_n(0; 1)}\bigr).
+\end{align*}
+
+\noindent\textbf{解法 1}\quad 为了得到计算 $v(\overline{B_n(0; 1)})$ 的递推公式，
+我们将这个 $n$ 重积分化为一个 $n - 2$ 重积分与一个二重积分来计算.
+\begin{align*}
+v\bigl(\overline{B_n(0; 1)}\bigr)
+&= \idotsint _{\overline{B_n(0; 1)}} \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n \notag\\
+&= \iint \limits_{t_{n-1}^2 + t_n^2 \leqslant 1} \mathrm{d}t_{n-1} \mathrm{d}t_n
+   \idotsint _{B_{n-2}\left(0, \sqrt{1 - t_{n-1}^2 - t_n^2}\right)}
+   \mathrm{d}t_1 \cdots \mathrm{d}t_{n-2} \notag\\
+&= \iint \limits_{t_{n-1}^2 + t_n^2 \leqslant 1}
+   v\!\left( \overline{B_{n-2}\!\left(0; \sqrt{1 - t_{n-1}^2 - t_n^2}\right)} \right)
+   \mathrm{d}t_{n-1} \mathrm{d}t_n \notag\\
+&= v\bigl(\overline{B_{n-2}(0; 1)}\bigr)
+   \iint \limits_{t_{n-1}^2 + t_n^2 \leqslant 1}
+   \left( 1 - t_{n-1}^2 - t_n^2 \right)^{\frac{n-2}{2}}
+   \mathrm{d}t_{n-1} \mathrm{d}t_n \notag\\
+&\reason{$t_{n-1} = r\cos\varphi,\ t_n = r\sin\varphi$}
+  v\bigl(\overline{B_{n-2}(0; 1)}\bigr) \int \limits_0^{2\pi} \mathrm{d}\varphi
+  \int \limits_0^1 (1 - r^2)^{\frac{n-2}{2}} r \, \mathrm{d}r \notag\\
+&= v\bigl(\overline{B_{n-2}(0; 1)}\bigr) \cdot 2\pi \cdot
+   \left. \frac{-(1 - r^2)^{\frac{n}{2}}}{n} \right|_0^1
+ = \frac{2\pi}{n} v\bigl(\overline{B_{n-2}(0; 1)}\bigr) \notag\\
+&= \begin{cases}
+  \dfrac{2 \cdot (2\pi)^{k-1}}{(2k)!!} v\bigl(\overline{B_2}(0; 1)\bigr), & n = 2k,\\[8pt]
+  \dfrac{(2\pi)^{k-1}}{(2k-1)!!} v\bigl(\overline{B_1}(0; 1)\bigr), & n = 2k - 1
+  \end{cases} \notag\\
+&= \begin{cases}
+  \dfrac{2 \cdot (2\pi)^{k-1}}{(2k)!!} \cdot \pi, & n = 2k,\\[8pt]
+  \dfrac{(2\pi)^{k-1}}{(2k-1)!!} \cdot 2, & n = 2k - 1
+  \end{cases} \notag\\
+&= \begin{cases}
+  \dfrac{\pi^k}{k!}, & n = 2k,\\[8pt]
+  \dfrac{2^k \pi^{k-1}}{(2k-1)!!}, & n = 2k - 1.
+  \end{cases}
+\end{align*}
+由此推得
+\[
+v\bigl(\overline{B_n(0; a)}\bigr) =
+\begin{cases}
+  \dfrac{\pi^k}{k!} a^{2k}, & n = 2k,\\[8pt]
+  \dfrac{2^k \pi^{k-1}}{(2k-1)!!} a^{2k-1}, & n = 2k - 1.
+\end{cases}
+\]
+
+\noindent\textbf{解法 2}
+\begin{align*}
+v\bigl(\overline{B_n(0; 1)}\bigr)
+&= \idotsint _{\overline{B_n(0; 1)}} \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n
+ = \int \limits_{-1}^1 \mathrm{d}t_n
+   \idotsint _{B_{n-1}\left(0; \sqrt{1 - t_n^2}\right)}
+   \mathrm{d}t_1 \cdots \mathrm{d}t_{n-1} \notag\\
+&= \int \limits_{-1}^1 v\!\left( \overline{B_{n-1}\!\left(0; \sqrt{1 - t_n^2}\right)} \right) \mathrm{d}t_n \notag\\
+&= \int \limits_{-1}^1 \left( \sqrt{1 - t_n^2} \right)^{n-1}
+   v\bigl(\overline{B_{n-1}(0; 1)}\bigr) \mathrm{d}t_n \notag\\
+&\reason{$t_n = \sin\theta$}
+  2 v\bigl(\overline{B_{n-1}(0; 1)}\bigr) \int \limits_0^{\frac{\pi}{2}} \cos^{n-1}\theta \cos\theta \, \mathrm{d}\theta \notag\\
+&= 2 v\bigl(\overline{B_{n-1}(0; 1)}\bigr) \int \limits_0^{\frac{\pi}{2}} \cos^{n}\theta \, \mathrm{d}\theta \notag\\
+&= \cdots = 2^{n-1} v\bigl(\overline{B_1(0; 1)}\bigr)
+  \int \limits_0^{\frac{\pi}{2}} \cos^{n}\theta \, \mathrm{d}\theta
+  \int \limits_0^{\frac{\pi}{2}} \cos^{n-1}\theta \, \mathrm{d}\theta
+  \cdots \int \limits_0^{\frac{\pi}{2}} \cos^{2}\theta \, \mathrm{d}\theta \notag\\
+&= 2^{n} \int \limits_0^{\frac{\pi}{2}} \cos^{n}\theta \, \mathrm{d}\theta
+  \int \limits_0^{\frac{\pi}{2}} \cos^{n-1}\theta \, \mathrm{d}\theta
+  \cdots \int \limits_0^{\frac{\pi}{2}} \cos\theta \, \mathrm{d}\theta \notag\\
+&\reason{\text{Wallis 公式}}
+\begin{cases}
+  \dfrac{2^{2k}}{(2k)!!} \left( \dfrac{\pi}{2} \right)^k, & n = 2k,\\[8pt]
+  \dfrac{2^{2k-1}}{(2k-1)!!} \left( \dfrac{\pi}{2} \right)^{k-1}, & n = 2k - 1
+\end{cases} \notag\\
+&= \begin{cases}
+  \dfrac{\pi^k}{k!}, & n = 2k,\\[8pt]
+  \dfrac{2^k \pi^{k-1}}{(2k-1)!!}, & n = 2k - 1.
+  \end{cases}
+\end{align*}
+由此推得
+\[
+v\bigl(\overline{B_n(0; a)}\bigr) =
+\begin{cases}
+  \dfrac{\pi^k}{k!} a^{2k}, & n = 2k,\\[8pt]
+  \dfrac{2^k \pi^{k-1}}{(2k-1)!!} a^{2k-1}, & n = 2k - 1.
+\end{cases}
+\]
+
+\noindent\textbf{解法 3}\quad 应用 $n$ 维球坐标变换 $\boldsymbol{F}$：
+$\Delta = [0, a] \times [0, \pi] \times \cdots \times [0, \pi] \times [0, 2\pi]
+\to \boldsymbol{F}(\Delta) = B_n(0; a)$，即
+\[
+\begin{cases}
+x_1 = r\cos\theta_1,\\
+x_2 = r\sin\theta_1 \cos\theta_2,\\
+\ \vdots\\
+x_{n-1} = r\sin\theta_1 \sin\theta_2 \cdots \sin\theta_{n-2} \cos\theta_{n-1},\\
+x_n = r\sin\theta_1 \sin\theta_2 \cdots \sin\theta_{n-2} \sin\theta_{n-1}.
+\end{cases}
+\]
+它的 Jacobi 行列式为
+\[
+\det \boldsymbol{J}\boldsymbol{F}
+= \frac{\partial(x_1, x_2, \cdots, x_n)}{\partial(r, \theta_1, \cdots, \theta_{n-1})}
+= r^{n-1} \sin^{n-2}\theta_1 \sin^{n-3}\theta_2 \cdots \sin\theta_{n-2}.
+\]
+于是，应用 $\Gamma(s + 1) = s\Gamma(s)$，$\Gamma(n + 1) = n!$，$\Gamma\left( \frac{1}{2} \right) = \sqrt{\pi}$，我们有
+\[
+v\bigl(\overline{B_n(0; a)}\bigr) = \frac{(\sqrt{\pi} a)^n}{\Gamma\left( \frac{n + 2}{2} \right)}.
+\]
+\end{example}
+\begin{example}\label{ex:10.5.13}
+设 $f$ 为 $[0, a]$ 上的单变量连续函数，化 $n$ 重积分
+\[
+\idotsint _{\overline{B_n(0; a)}}
+  f\!\left( \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} \right)
+  \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n
+\]
+为单变量积分.
+\end{example}
+
+\begin{proof}
+用球坐标变换立即可得
+\begin{align*}
+&\idotsint _{\overline{B_n(0; a)}}
+  f\!\left( \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} \right)
+  \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n \notag\\
+={}& \int \limits_0^a r^{n-1} f(r) \mathrm{d}r
+  \int \limits_0^\pi \sin^{n-2}\theta_1 \mathrm{d}\theta_1
+  \int \limits_0^\pi \sin^{n-3}\theta_2 \mathrm{d}\theta_2
+  \cdots \int \limits_0^\pi \sin\theta_{n-2} \mathrm{d}\theta_{n-2}
+  \int \limits_0^{2\pi} \mathrm{d}\theta_{n-1} \notag\\
+={}& n \, v\bigl(\overline{B_n(0; 1)}\bigr) \cdot \int \limits_0^a r^{n-1} f(r) \mathrm{d}r \notag\\
+&\reason{例 \ref{ex:10.5.12}}
+\begin{cases}
+  2k \cdot \dfrac{\pi^k}{k!} \int \limits_0^a r^{2k-1} f(r) \mathrm{d}r, & n = 2k,\\[10pt]
+  (2k - 1) \cdot \dfrac{2^k \pi^{k-1}}{(2k-1)!!} \int \limits_0^a r^{2k-2} f(r) \mathrm{d}r, & n = 2k - 1
+\end{cases} \notag\\
+={}& \begin{cases}
+  \dfrac{2\pi^k}{(k-1)!!} \int \limits_0^a r^{2k-1} f(r) \mathrm{d}r, & n = 2k,\\[10pt]
+  \dfrac{2^k \pi^{k-1}}{(2k-3)!!} \int \limits_0^a r^{2k-2} f(r) \mathrm{d}r, & n = 2k - 1.
+  \end{cases}
+\end{align*}
+\end{proof}
+\begin{example}\label{ex:10.5.14}
+$n - 1$ 维单位球面 $S^{n-1}(1)$ 的面积（$n - 1$ 维体积）.
+\end{example}
+
+\begin{proof}
+设 $x_n = \varphi(x_1, x_2, \cdots, x_{n-1})$，$(x_1, x_2, \cdots, x_{n-1}) \in \Delta \subset \mathbb{R}^{n-1}$
+为 $n$ 维 Euclid 空间 $\mathbb{R}^n$ 中的 $n - 1$ 维曲面，$\varphi \in C^1(\Delta, \mathbb{R})$，
+则其 $n - 1$ 维面积（即 $n - 1$ 维体积）为（参阅 \extref{复习题 11 中题 3}）
+\[
+\idotsint _{\Delta} \sqrt{1 + \left( \frac{\partial x_n}{\partial x_1} \right)^2
+  + \left( \frac{\partial x_n}{\partial x_2} \right)^2 + \cdots
+  + \left( \frac{\partial x_n}{\partial x_{n-1}} \right)^2}
+  \mathrm{d}x_1 \cdots \mathrm{d}x_{n-1}.
+\]
+因为 $n - 1$ 维单位球面的上半部可由方程
+\[
+x_n = \sqrt{1 - (x_1^2 + x_2^2 + \cdots + x_{n-1}^2)}, \quad x_1^2 + x_2^2 + \cdots + x_{n-1}^2 \leqslant 1
+\]
+确定，又由于
+\[
+\sqrt{1 + \left( \frac{\partial x_n}{\partial x_1} \right)^2 + \cdots
+  + \left( \frac{\partial x_n}{\partial x_{n-1}} \right)^2}
+= \sqrt{1 + \sum_{i=1}^{n-1} \left( \frac{x_i}{x_n} \right)^2}
+= \sqrt{1 + \frac{1 - x_n^2}{x_n^2}} = \frac{1}{x_n},
+\]
+$S^{n-1}(1)$ 的面积为
+\begin{align*}
+\sigma\bigl(S^{n-1}(1)\bigr)
+&= 2 \idotsint _{x_1^2 + \cdots + x_{n-1}^2 \leqslant 1}
+  \frac{\mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_{n-1}}{x_n} \notag\\
+&= 2 \idotsint _{x_1^2 + \cdots + x_{n-2}^2 \leqslant 1}
+  \mathrm{d}x_1 \cdots \mathrm{d}x_{n-2}
+  \int \limits_{-\sqrt{1 - (x_1^2 + \cdots + x_{n-2}^2)}}^{\sqrt{1 - (x_1^2 + \cdots + x_{n-2}^2)}}
+  \frac{\mathrm{d}x_{n-1}}{\sqrt{1 - (x_1^2 + x_2^2 + \cdots + x_{n-1}^2)}} \notag\\
+&= 2\pi \idotsint _{x_1^2 + \cdots + x_{n-2}^2 \leqslant 1}
+  \mathrm{d}x_1 \cdots \mathrm{d}x_{n-2}
+ = 2\pi \sigma\bigl(B_{n-2}(0; 1)\bigr) \notag\\
+&\reason{例 \ref{ex:10.5.12}}
+\begin{cases}
+  \dfrac{2\pi \cdot \pi^{k-1}}{(k-1)!}, & n = 2k,\\[8pt]
+  \dfrac{2\pi \cdot 2^{k-1} \pi^{k-2}}{(2k-3)!!}, & n = 2k - 1
+\end{cases} \notag\\
+&= \begin{cases}
+  \dfrac{2\pi^k}{(k-1)!}, & n = 2k,\\[8pt]
+  \dfrac{2(2\pi)^{k-1}}{(2k-3)!!}, & n = 2k - 1.
+  \end{cases}
+\end{align*}
+易见，$\sigma(S^1(1)) = \sigma(S^{2-1}(1)) = 2\pi$，$\sigma(S^2(1)) = \sigma(S^{3-1}(1)) = 4\pi$.
+\end{proof}
+
+\begin{exblock}{练习题 10.5}
+1. 计算下列三重积分：
+\begin{enumerate}
+  \item $\displaystyle \iint \limits_{\Omega} x y z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$，$\Omega$ 为单位球体 $x^2 + y^2 + z^2 \leqslant 1$ 在第一卦限中的部分；
+  \item $\displaystyle \iint \limits_{\Omega} (x + y + z) \mathrm{d}x \mathrm{d}y \mathrm{d}z$，$\Omega$ 为平面 $x + y + z = 1$ 和三个坐标平面所围成的立体；
+  \item $\displaystyle \iint \limits_{\Omega} z \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$，$\Omega$ 由 $z = xy$ 和 $z = 0$ 以及以下 4 张平面 $x = -1$，$x = 1$，$y = 2$，$y = 3$ 围成；
+  \item $\displaystyle \iint \limits_{\Omega} x y^2 z^3 \mathrm{d}x \mathrm{d}y \mathrm{d}z$，$\Omega$ 由 $z = xy$ 和 $z = 0$ 以及两张平面 $x = 1$ 和 $x = y$ 围成；
+  \item $\displaystyle \iint \limits_{\Omega} y \cos(x + y) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$，其中 $\Omega$ 是由 $y = \sqrt{x}$，$y = 0$，$z = 0$ 及 $x + z = \frac{\pi}{2}$ 所围成的区域；
+  \item $\displaystyle \iint \limits_{\Omega} z^2 \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$，其中 $\Omega$ 为球体 $x^2 + y^2 + z^2 \leqslant r^2$ 与 $x^2 + y^2 + z^2 \leqslant 2rz$ 的交集.
+\end{enumerate}
+
+2. 计算下列曲面围成的立体的体积：
+\begin{enumerate}
+  \item $a z = x^2 + y^2$，$z = \sqrt{x^2 + y^2}\ (a > 0)$；
+  \item $x^2 + y^2 = a^2$，$|x| + |y| = a$.
+\end{enumerate}
+
+3. 计算由下列曲面围成立体的体积（参数 $a, b, c$ 均为正数）：
+\begin{enumerate}
+  \item $x^2 + y^2 + z^2 = a^2$，$x^2 + y^2 + z^2 = b^2\ (0 \leqslant a \leqslant b$ 且 $z > 0)$；
+  \item $(x^2 + y^2 + z^2)^2 = a^3 z$；
+  \item $\left( \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} \right)^2 = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}$；
+  \item $z = x^2 + y^2$，$z = 2(x^2 + y^2)$，$y = x$，$y = x^2$；
+  \item $\left( \dfrac{x}{a} + \dfrac{y}{b} \right)^2 + \left( \dfrac{z}{c} \right)^2 = 1 \quad (x \geqslant 0,\ y \geqslant 0,\ z \geqslant 0)$；
+  \item $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$，$\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = \dfrac{z^2}{c^2}\ (z > 0)$；
+  \item $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = -1$，$\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$；
+  \item $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = \dfrac{z}{c}$，$\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = \dfrac{x}{a} + \dfrac{y}{b}$，$z = 0$；
+  \item $\left( \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \right) + \dfrac{z}{c} = 1$，$z = 0$；
+  \item $\left( \dfrac{x}{a} + \dfrac{y}{b} \right)^2 + \dfrac{z^2}{c^2} = 1$，$x = 0$，$y = 0$，$z = 0$；
+  \item $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$，$\left( \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \right)^2 = \dfrac{x^2}{a^2} - \dfrac{y^2}{b^2}$；
+  \item $z^2 = xy$，$x + y = a$，$x + y = b\ (0 < a < b)$；
+  \item $z = x^2 + y^2$，$xy = a^2$，$xy = 2a^2$，$y = \dfrac{x}{2}$，$y = 2x$，$z = 0$；
+  \item $z = xy$，$x^2 = y$，$x^2 = 2y$，$y^2 = x$，$y^2 = 2x$，$z = 0$；
+  \item $z = x^{\frac{3}{2}} + y^{\frac{3}{2}}$，$z = 0$，$x + y = 1$，$x = 0$，$y = 0$；
+  \item $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z}{c} = 1$，$\left( \dfrac{x}{a} \right)^{\frac{2}{3}} + \left( \dfrac{y}{b} \right)^{\frac{2}{3}} = 1$，$z = 0$；
+  \item $z = a \arctan \dfrac{y}{x}$，$z = 0$，$\sqrt{x^2 + y^2} = a \arctan \dfrac{y}{x}$，$y \geqslant 0$.
+\end{enumerate}
+
+4. 计算下列三重积分：
+\begin{enumerate}
+  \item $\displaystyle \iint \limits_{x^2 + y^2 + z^2 \leqslant z} \sqrt{x^2 + y^2 + z^2} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$；
+  \item $\displaystyle \iint \limits_{a^2 \leqslant x^2 + y^2 + z^2 \leqslant b^2} (x^2 + y^2) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$；
+  \item $\displaystyle \iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leqslant 1} \sqrt{1 - \left( \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \right)} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$；
+  \item $\displaystyle \iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leqslant 1} \mathrm{e}^{\sqrt{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2}}} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$；
+  \item $\displaystyle \iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leqslant 1} \left( \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \right) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$.
+\end{enumerate}
+
+5. 设函数 $f$ 连续. 证明：
+\[
+\int \limits_a^b \mathrm{d}x \int \limits_a^x \mathrm{d}y \int \limits_a^y f(x, y, z) \mathrm{d}z
+= \int \limits_a^b \mathrm{d}z \int \limits_a^b \mathrm{d}y \int \limits_a^b f(x, y, z) \mathrm{d}x.
+\]
+
+6. 设函数 $f$ 连续. 证明：
+\[
+\int \limits_0^a \mathrm{d}x \int \limits_0^x \mathrm{d}y \int \limits_0^y
+  f(x) f(y) f(z) \mathrm{d}z = \frac{1}{3!} \left( \int \limits_0^a f(t) \mathrm{d}t \right)^3.
+\]
+
+7. 设函数 $f$ 连续. 证明：
+\[
+\int \limits_0^a \mathrm{d}x \int \limits_0^x \mathrm{d}y \int \limits_0^y f(z) \mathrm{d}z
+= \frac{1}{2} \int \limits_0^a (a - t)^2 f(t) \mathrm{d}t.
+\]
+
+8. 设 $f$ 为连续函数. 求极限：
+\[
+\lim_{r \to 0^+} \frac{3}{4 \pi r^3} \iint \limits_{x^2 + y^2 + z^2 \leqslant r^2}
+  f(x, y, z) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z.
+\]
+
+9. 应用球坐标变换计算下列积分：
+\begin{enumerate}
+  \item $\displaystyle \iint \limits_{x^2 + y^2 + z^2 \leqslant z} \sqrt{x^2 + y^2 + z^2} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z$；
+  \item $\displaystyle \int \limits_0^1 \mathrm{d}x \int \limits_0^{\sqrt{1 - x^2}} \mathrm{d}y
+    \int \limits_{\sqrt{x^2 + y^2}}^{\sqrt{2 - x^2 - y^2}} z^2 \mathrm{d}z$.
+\end{enumerate}
+
+10. 应用广义球坐标变换计算三重积分
+\[
+\iint \limits_{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \leqslant 1}
+  \sqrt{1 - \frac{x^2}{a^2} - \frac{y^2}{b^2} - \frac{z^2}{c^2}} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z.
+\]
+
+11. 应用柱坐标变换计算三重积分
+\[
+\iint \limits_{\Omega} (x^2 + y^2) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+其中 $\Omega$ 是由曲面 $x^2 + y^2 = 2z$，$z = 2$ 所围成的区域.
+
+12. 求由曲面
+\[
+(a_1 x + b_1 y + c_1 z)^2 + (a_2 x + b_2 y + c_2 z)^2 + (a_3 x + b_3 y + c_3 z)^2 = R^2
+\]
+所界立体的体积，其中
+\[
+\begin{vmatrix}
+a_1 & b_1 & c_1\\
+a_2 & b_2 & c_2\\
+a_3 & b_3 & c_3
+\end{vmatrix} \neq 0.
+\]
+
+13. 设 $f$ 为单变量连续可导函数. 令
+\[
+F(t) = \iint \limits_{x^2 + y^2 + z^2 \leqslant t^2} f(x^2 + y^2 + z^2) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+求 $F'(t)$.
+\end{exblock}
+
+\begin{exblock}{思考题 10.5}
+1. 设 $\alpha, \beta, \gamma$ 是不全为 0 的实数，$f$ 为一元连续函数. 证明：
+\[
+\iint \limits_{x^2 + y^2 + z^2 \leqslant 1} f(\alpha x + \beta y + \gamma z) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+= \pi \int \limits_{-1}^1 (1 - w^2) f\bigl(w \sqrt{\alpha^2 + \beta^2 + \gamma^2}\bigr) \mathrm{d}w.
+\]
+
+2. 设 $f$ 为一元连续可导的函数. 证明：
+\[
+\lim_{t \to 0^+} \frac{1}{\pi t^4} \iint \limits_{x^2 + y^2 + z^2 \leqslant t^2}
+  f\bigl( \sqrt{x^2 + y^2 + z^2} \bigr) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+= \begin{cases}
+  f'(0), & \text{当 } f(0) = 0,\\
+  +\infty, & \text{当 } f(0) \neq 0.
+  \end{cases}
+\]
+
+3. 设 $F(x, y, z)$ 三阶连续可导，求三重积分
+\[
+\iint \limits_{[a, A] \times [b, B] \times [c, C]} F'''_{xyz}(x, y, z) \, \mathrm{d}x \mathrm{d}y \mathrm{d}z.
+\]
+
+4. 作变换 $(x, y, z) = (a r \sin^2\theta \cos^2\varphi,\ b r \sin^2\theta \sin^2\varphi,\ c r \cos^2\theta)$，证明：
+\begin{enumerate}
+  \item 由曲面 $\left( \dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} \right)^2 = \dfrac{x}{h} + \dfrac{y}{k}
+  \quad (x > 0,\ y > 0,\ z > 0)$ 所围立体 $\Omega$ 的体积
+  \[
+  v(\Omega) = \frac{abc}{60} \left( \frac{a}{h} + \frac{b}{k} \right)
+  \left( \frac{a}{h^2} + \frac{b}{k^2} \right), \quad \text{其中 } a, b, c, h, k > 0;
+  \]
+  \item 由曲面 $\left( \dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} \right)^4 = \dfrac{xyz}{abc}
+  \quad (x > 0,\ y > 0,\ z > 0)$ 所围立体 $\Omega$ 的体积
+  \[
+  v(\Omega) = \frac{abc}{554400}, \quad \text{其中 } a, b, c > 0.
+  \]
+\end{enumerate}
+
+5. 设 $\Omega$ 为由曲面 $\left( \dfrac{x}{a} + \dfrac{y}{b} \right)^2 + \left( \dfrac{z}{c} \right)^2 = 1
+\quad (x > 0,\ y > 0,\ z > 0)$ 所围立体.
+\begin{enumerate}
+  \item 作变换 $(x, y, z) = (a r \sin\theta \cos^2\varphi,\ b r \sin\theta \sin^2\varphi,\ c r \cos\theta)$；
+  \item 作变换 $\begin{cases} u = \dfrac{x}{a} + \dfrac{y}{b},\\ v = \dfrac{y}{b}, \end{cases}$
+        即 $\begin{cases} x = a u (1 - v),\\ y = b u v. \end{cases}$
+\end{enumerate}
+证明：$\Omega$ 的体积 $v(\Omega) = \frac{abc}{3}$，其中 $a, b, c > 0$.
+
+6. 作变换 $\begin{cases} u = \dfrac{z}{x^2 + y^2},\\ v = xy,\\ w = \dfrac{y}{x}, \end{cases}$
+证明：由曲面 $z = x^2 + y^2$，$z = 2(x^2 + y^2)$，$xy = a$，$xy = 2a^2$，$x = 2y$，$2x = y\ (x > 0,\ y > 0)$
+所围立体 $\Omega$ 的体积 $v(\Omega) = \frac{9a^4}{4}$，其中 $a > 0$.
+
+7. 应用球坐标变换，证明：由曲面
+$(x^2 + y^2 + z^2)^3 = \dfrac{a^6 z^2}{x^2 + y^2}$，$a > 0$ 所围立体 $\Omega$ 的体积
+$v(\Omega) = \frac{4\pi a^3}{3}$.
+
+8. 应用广义球坐标变换，证明：由曲面
+\[
+\left( \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \right)^2
+= \frac{z}{h} \exp \left( - \frac{\frac{z^2}{c^2}}{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2}} \right)
+\]
+所围立体 $\Omega$ 的体积
+$v(\Omega) = \dfrac{\pi a b c^2}{3h} (1 - \mathrm{e}^{-1})$，其中 $a, b, c, h > 0$.
+
+9. 作变换 $(x, y, z) = (a r \sin^{\frac{1}{n}}\theta \cos\varphi,\ b r \sin^{\frac{1}{n}}\theta \sin\varphi,\
+c r \cos^{\frac{1}{n}}\varphi)$，证明：由曲面
+\[
+\left( \frac{x^2}{a^2} + \frac{y^2}{b^2} \right)^n + \frac{z^{2n}}{c^{2n}}
+= \frac{z}{h} \left( \frac{x^2}{a^2} + \frac{y^2}{b^2} \right)^{n-2} \quad (n > 1,\ a, b, c > 0)
+\]
+所围立体 $\Omega$ 的体积
+$v(\Omega) = \dfrac{\pi^2 a b c^2}{3 h n \sin \frac{\pi}{n}}$.
+
+10. 用球坐标变换证明：
+\[
+\idotsint _{x_1^2 + x_2^2 + \cdots + x_n^2 \leqslant R^2}
+  f\bigl( \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} \bigr)
+  \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n
+= \frac{2\pi^{\frac{n}{2}}}{\Gamma\left( \frac{n}{2} \right)} \int \limits_0^R r^{n-1} f(r) \mathrm{d}r.
+\]
+
+11. 计算下列 $n$ 重积分：
+\begin{enumerate}
+  \item $\displaystyle \idotsint _{[0, 1]^n}
+    (x_1^2 + x_2^2 + \cdots + x_n^2) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n$；
+  \item $\displaystyle \idotsint _{[0, 1]^n}
+    (x_1 + x_2 + \cdots + x_n)^2 \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n$.
+\end{enumerate}
+
+12. 计算累次积分
+\[
+\int \limits_0^1 \mathrm{d}x_1 \int \limits_0^{x_1} \mathrm{d}x_2 \cdots \int \limits_0^{x_{n-1}}
+  x_1 x_2 \cdots x_n \mathrm{d}x_n.
+\]
+
+13. 设 $f$ 为单变量连续函数. 证明：
+\[
+\int \limits_0^a \mathrm{d}x_1 \int \limits_0^{x_1} \mathrm{d}x_2 \cdots \int \limits_0^{x_{n-1}}
+  f(x_1) f(x_2) \cdots f(x_n) \mathrm{d}x_n
+= \frac{1}{n!} \left( \int \limits_0^a f(t) \mathrm{d}t \right)^n.
+\]
+当 $f(x) = x$，$a = 1$ 时就是题 12.
+
+14. 计算 $\mathbb{R}^n$ 中下列集合的 $n$ 维体积（其中 $a_1, a_2, \cdots, a_n > 0$）：
+\begin{enumerate}
+  \item $n$ 维角锥
+  \[
+  \Omega_n = \left\{ (x_1, x_2, \cdots, x_n) \,\middle|\,
+    \frac{x_1}{a_1} + \frac{x_2}{a_2} + \cdots + \frac{x_n}{a_n} \leqslant 1,\
+    x_1, x_2, \cdots, x_n \geqslant 0 \right\};
+  \]
+  \item $\Omega_n(a) = \left\{ (x_1, x_2, \cdots, x_n) \mid |x_1| + |x_2| + \cdots + |x_n| \leqslant a \right\}$，$a > 0$；
+  \item $\Omega_n = \left\{ (x_1, x_2, \cdots, x_n) \,\middle|\,
+    \frac{|x_i|}{a_i} + \frac{|x_n|}{a_n} \leqslant 1,\ i = 1, 2, \cdots, n - 1 \right\}$.
+\end{enumerate}
+
+15. 设 $f$ 为 $n$ 元连续函数. 证明：
+\[
+\int \limits_a^b \mathrm{d}x_1 \int \limits_a^{x_1} \mathrm{d}x_2 \cdots \int \limits_a^{x_{n-1}}
+  f(x_1, x_2, \cdots, x_n) \mathrm{d}x_n
+= \int \limits_a^b \mathrm{d}x_n \int \limits_{x_{n-1}}^b \mathrm{d}x_{n-1} \cdots \int \limits_{x_2}^b
+  f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1.
+\]
+
+16. 设 $f$ 为单变量连续函数. 证明：
+\[
+\int \limits_a^b \mathrm{d}x_1 \int \limits_a^{x_1} \mathrm{d}x_2 \cdots \int \limits_a^{x_{n-1}}
+  f(x_n) \mathrm{d}x_n = \frac{1}{(n-1)!} \int \limits_0^b f(t) (b - t)^{n-1} \mathrm{d}t.
+\]
+
+17. 设 $K$ 为二元连续函数，对 $n \in \mathbb{Z}_+$，令
+\[
+K_n(x, y) = \idotsint _{[a, b]^n}
+  K(x, t_1) K(t_1, t_2) \cdots K(t_n, y) \mathrm{d}t_1 \mathrm{d}t_2 \cdots \mathrm{d}t_n.
+\]
+证明：$\forall m, n \in \mathbb{Z}_+$，有
+\[
+K_{m+n+1}(x, y) = \int \limits_a^b K_m(x, t) K_n(t, y) \mathrm{d}t.
+\]
+
+18. 设 $f(x_1, x_2, \cdots, x_n)$ 为区域 $V$ 内的连续函数，且对任何子区域 $\Omega \subset V$，恒有
+\[
+\idotsint _{\Omega} f(x_1, x_2, \cdots, x_n) \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n = 0,
+\]
+证明：$f(x_1, x_2, \cdots, x_n) \equiv 0$，$\forall (x_1, x_2, \cdots, x_n) \in V$.
+
+19. 证明：由 $n - 1$ 维超平面
+\[
+a_{i1} x_1 + a_{i2} x_2 + \cdots + a_{in} x_n = \pm h_i \quad (i = 1, 2, \cdots, n)
+\]
+所围的 $n$ 维平行 $2n$ 维体 $\Omega$ 的体积
+\[
+v(\Omega) = \frac{2^{n} h_1 h_2 \cdots h_n}{|\det(a_{ij})|}.
+\]
+
+20. 证明：
+\[
+\idotsint x_n^2 \, \mathrm{d}x_1 \mathrm{d}x_2 \cdots \mathrm{d}x_n
+= \frac{h^3}{12} \frac{(\sqrt{\pi} a)^{n-1}}{2 \Gamma\left( \frac{n+1}{2} \right)}.
+\]
+
+21. 证明：$\left( \iint \limits_{x^2 + y^2 < 1} \mathrm{e}^{x^2 + y^2} \mathrm{d}x \mathrm{d}y \right)^{\frac{1}{2}}
+\leqslant \sqrt{\pi} \int \limits_0^1 \mathrm{e}^{\frac{\pi t^2}{4}} \mathrm{d}t$.
+
+22. 应用 $\mathrm{e}^{-(x^2 + y^2)}$ 的二重积分证明不等式：
+\[
+\frac{\sqrt{\pi}}{2} \sqrt{1 - \mathrm{e}^{-a^2}}
+< \int \limits_0^a \mathrm{e}^{-x^2} \mathrm{d}x
+< \frac{\sqrt{\pi}}{2} \sqrt{1 - \mathrm{e}^{-\frac{4}{\pi} a^2}}.
+\]
+
+23. 考察三重积分
+\[
+I = \iint \limits_{x^2 + y^2 + z^2 \leqslant 1} x^{m} y^{n} z^{p} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z,
+\]
+其中 $m, n, p$ 为非负整数.
+\begin{enumerate}
+  \item 当 $m, n, p$ 中至少有一个为奇数时，证明：$I = 0$；
+  \item 当 $m, n, p$ 都为偶数时，应用极坐标变换证明：
+  \[
+  I = \frac{4\pi (m-1)!! (n-1)!! (p-1)!!}{(m + n + p + 3)!!}.
+  \]
+\end{enumerate}
+
+24. 设 $\Omega$ 是由 $x + y + z = 1$，$x = 0$，$y = 0$，$z = 0$ 所围的区域. 作变换
+\[
+x + y + z = \xi, \quad y + z = \zeta \eta, \quad z = \xi \eta \zeta.
+\]
+证明：Dirichlet 积分
+\[
+\iint \limits_{\Omega} x^{p} y^{q} z^{r} (1 - x - y - z)^{s} \, \mathrm{d}x \mathrm{d}y \mathrm{d}z
+= \frac{\Gamma(p+1) \Gamma(q+1) \Gamma(r+1) \Gamma(s+1)}{\Gamma(p + q + r + s + 4)}.
+\]
+
+25. 设 $f$ 为单变量连续函数. 证明：
+\[
+\int \limits_0^{x} x_1 \mathrm{d}x_1 \int \limits_0^{x_1} x_2 \mathrm{d}x_2 \cdots \int \limits_0^{x_n} f(x_{n+1}) \mathrm{d}x_{n+1}
+= \frac{1}{2^{n} n!} \int \limits_0^{x} (x^2 - u^2)^{n} f(u) \mathrm{d}u.
+\]
+\end{exblock}

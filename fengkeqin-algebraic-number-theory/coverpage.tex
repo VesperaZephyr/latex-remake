@@ -1,0 +1,111 @@
+% Copyright 2022  李文威 (Wen-Wei Li).
+% Permission is granted to copy, distribute and/or modify this
+% document under the terms of the Creative Commons
+% Attribution 4.0 International (CC BY 4.0)
+% http://creativecommons.org/licenses/by/4.0/
+
+% 《代数学方法》卷一自订封面页, 由主档引入.
+
+\setCJKfamilyfont{coverfont}{SimHei}	% 设置书名字体
+\setCJKfamilyfont{cover-author-font}{SimHei}	% 设置作者字体
+\colorlet{octa}{cyan!50!gray}	% Color for the octahedron
+\definecolor{ANTnavy}{HTML}{16223B}
+\definecolor{ANTgold}{HTML}{B08D57}
+\definecolor{ANTgoldlight}{HTML}{D9C29B}
+\definecolor{ANTgrey}{HTML}{8C93A6}
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+ 
+  % ---------- outer frame ----------
+  \draw[ANTnavy, line width=1.1pt]
+       ($(current page.north west)+(1.4cm,-1.4cm)$) rectangle
+       ($(current page.south east)+(-1.4cm,1.4cm)$);
+  \draw[ANTgold, line width=0.4pt]
+       ($(current page.north west)+(1.6cm,-1.6cm)$) rectangle
+       ($(current page.south east)+(-1.6cm,1.6cm)$);
+ 
+  % ---------- corner ornaments ----------
+  \begin{scope}[shift={($(current page.north west)+(1.4cm,-1.4cm)$)}]
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (0.55,0);
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (0,-0.55);
+    \filldraw[ANTgold] (0,0) circle (1.6pt);
+  \end{scope}
+  \begin{scope}[shift={($(current page.north east)+(-1.4cm,-1.4cm)$)}]
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (-0.55,0);
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (0,-0.55);
+    \filldraw[ANTgold] (0,0) circle (1.6pt);
+  \end{scope}
+  \begin{scope}[shift={($(current page.south west)+(1.4cm,1.4cm)$)}]
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (0.55,0);
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (0,0.55);
+    \filldraw[ANTgold] (0,0) circle (1.6pt);
+  \end{scope}
+  \begin{scope}[shift={($(current page.south east)+(-1.4cm,1.4cm)$)}]
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (-0.55,0);
+    \draw[ANTgold, line width=0.9pt] (0,0) -- (0,0.55);
+    \filldraw[ANTgold] (0,0) circle (1.6pt);
+  \end{scope}
+ 
+  % ---------- top ornament : Z[i] lattice with an ideal ----------
+  \begin{scope}[shift={($(current page.north)+(0,-5.8cm)$)}]
+    \begin{scope}
+      \clip (-3.15,-1.85) rectangle (3.15,1.85);
+ 
+      % full lattice Z[i]
+      \foreach \a in {-4,...,4}{
+        \foreach \b in {-3,...,3}{
+          \fill[ANTgrey] (\a,\b) circle (0.028cm);
+        }
+      }
+ 
+      % shaded fundamental domain of the ideal (2+i)
+      \fill[ANTgoldlight, opacity=0.55]
+           (0,0) -- (2,1) -- (1,3) -- (-1,2) -- cycle;
+ 
+      % sublattice = ideal (2+i) in Z[i], basis (2,1),(-1,2)
+      \foreach \a in {-3,...,3}{
+        \foreach \b in {-3,...,3}{
+          \pgfmathsetmacro\x{2*\a-\b}
+          \pgfmathsetmacro\y{\a+2*\b}
+          \fill[ANTnavy] (\x,\y) circle (0.05cm);
+        }
+      }
+      \draw[ANTnavy, line width=0.6pt] (0,0) -- (2,1);
+      \draw[ANTnavy, line width=0.6pt] (0,0) -- (-1,2);
+    \end{scope}
+    \node[ANTnavy, font=\scriptsize\itshape] at (0,-2.15) {$\mathcal{O}_K=\mathbb{Z}[\mathrm{i}], \qquad \mathfrak{a}=(2+\mathrm{i})$};
+  \end{scope}
+ 
+  % ---------- title block ----------
+  \node[ANTgold, font=\scriptsize\sffamily] at ($(current page.center)+(0,1.9cm)$) {L\,E\,C\,T\,U\,R\,E \quad N\,O\,T\,E\,S};
+ 
+  \draw[ANTgold, line width=0.5pt] ($(current page.center)+(-2.6cm,1.55cm)$) -- ($(current page.center)+(2.6cm,1.55cm)$);
+ 
+  \node[ANTnavy, align=center] at ($(current page.center)+(0,0.55cm)$)
+       {\Huge\bfseries 代数数论\\ \large Algebraic Number Theory Notes};
+ 
+  \draw[ANTgold, line width=0.5pt] ($(current page.center)+(-2.6cm,-0.65cm)$) -- ($(current page.center)+(2.6cm,-0.65cm)$);
+ 
+  \node[ANTnavy, font=\normalsize\itshape] at ($(current page.center)+(0,-1.15cm)$)
+       {Rings of Integers, Ideals, and Prime Factorization};
+ 
+  % ---------- bottom : author / affiliation / date ----------
+  \node[ANTnavy, font=\large] at ($(current page.south)+(0,4.6cm)$) {Fingolfin};
+  \node[ANTgrey, font=\large] at ($(current page.south)+(0,3.8cm)$) {\today};
+ 
+  \node[ANTgold, font=\small] at ($(current page.south)+(0,3.1cm)$)
+       {$\mathbb{Z} \ \subseteq\ \mathbb{Q} \ \subseteq\ K \ \subseteq\ \mathcal{O}_K$};
+ 
+\end{tikzpicture}
+\vfill
+
+%\begin{tabular*}{\textwidth}{ccc}
+%	\includegraphics{ccby.png}
+%	& \begin{minipage}[b]{0.6\textwidth}
+%		\small\sffamily
+%		本作品采用知识共享 署名 4.0 国际 许可协议进行许可. 访问 \url{http://creativecommons.org/licenses/by/4.0/} 查看该许可协议.
+%	\end{minipage}
+%\end{tabular*}
+
+\cleardoublepage
+\end{titlepage}

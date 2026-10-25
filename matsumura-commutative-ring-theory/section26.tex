@@ -1,0 +1,539 @@
+% ============ §26 Separability (原书 pp.198-207) ============
+\section{Separability}\label{sec:26}\index{separable algebra, section 26}\index{separably generated extension, section 26}\index{linearly disjoint, section 26}\index{p-basis, section 26}\index{differential basis, section 26}\index{imperfection module, section 26}\index{Cartier equality, section 26}\index{0-étale, section 26}
+
+Let $k$ be a field and $A$ a $k$-algebra. We say that $A$ is \emph{separable} over $k$ if for
+every extension field $k'$ of $k$, the ring $A' = A \otimes_k k'$ is reduced, that is does
+not contain nilpotents. From the definition, one sees at once the following:
+\begin{enumerate}[(1)]
+  \item a subalgebra of a separable $k$-algebra is separable;
+  \item $A$ is separable over $k$ if and only if every finitely generated $k$-
+        subalgebra of $A$ is separable over $k$;
+  \item for $A$ to be separable over $k$ it is sufficient that $A \otimes_k k'$ is reduced
+        for every finitely generated extension field $k'$ of $k$;
+  \item if $A$ is separable over $k$ and $k'$ is an extension field of $k$ then
+        $A \otimes_k k'$ is separable over $k'$.
+\end{enumerate}
+
+\begin{remark}
+When $A$ is a finite $k$-algebra, the separability condition can be checked using
+the discriminant. The \emph{trace} of an element $a$ of $A$, denoted by $\tr_{A/k}(a)$, is
+defined to be the trace of the $k$-linear mapping $A \to A$ induced by
+multiplication by $a$. Let $\omega_1, \ldots, \omega_n$ be a linear basis of $A$ over $k$. Then
+$d = \det(\tr_{A/k}(\omega_i\omega_j))$ is called a \emph{discriminant} of $A$ over $k$. If we use
+another basis $\omega'_1, \ldots, \omega'_n$, and if $\omega_i = \sum_j c_{ij}\omega_j$, then the
+discriminant with respect to this basis is $\det(c_{ij})^2 \cdot d$. Thus $d = 0$ or
+$d \ne 0$ is a property of $A$ independent of the choice of basis. Now we claim that
+$A$ is separable if and only if $d \ne 0$.
+
+If $k'$ is an extension field of $k$ and $A' = A \otimes_k k'$, then $\omega_1, \ldots, \omega_n$
+is also a linear basis of $A'$ over $k'$, and so $d$ is also a discriminant of $A'$
+over $k'$. If $A'$ is not reduced, let $N = \nil(A')$. Take a basis $\omega'_1, \ldots, \omega'_n$
+of $A'$ such that $\omega'_1, \ldots, \omega'_r$ span $N$. Then $\omega'_i\omega'_j$ is nilpotent for
+$i \le r$, hence its trace is zero. It follows that $\det(\tr(\omega'_i\omega'_j)) = 0$, and so
+$d = 0$. Conversely, if $A$ is separable over $k$, take an algebraic closure $K$ of $k$.
+Then $A \otimes_k K$ is reduced. Therefore we need only prove that if $k$ is
+algebraically closed and $A$ is reduced then $d \ne 0$. Now $A$ is an Artinian reduced
+ring, hence is a finite product of fields, each of which (as a finite extension of
+$k$) is isomorphic to $k$. Thus $A = ke_1 + \cdots + ke_n$ with $e_ie_j = 0$ for $i \neq j$ and
+$e_i^2 = e_i$. Hence $\tr(e_i) = 1$ and $d \ne 0$.
+\end{remark}
+
+In what follows we consider mainly the case when $A$ is a field. If $K$ is an
+algebraic extension field of $k$, and is separable in the usual sense (that is
+every element of $K$ is a root of a polynomial with coefficients in $k$ having no
+multiple roots), then $K$ is separable over $k$ in our sense. To see this, by (2)
+above we can assume that $K$ is finitely generated over $k$, and then according to
+the well-known primitive element theorem of field theory, $K \cong k[X]/(f(X))$,
+where $f \in k[X]$ is irreducible and with no multiple roots. Then if $k'$ is an
+extension field of $k$ we have
+\[
+  K \otimes_k k' = k'[X]/(f(X)),
+\]
+and when we factorise $f$ into primes in $k'[X]$ we get $f = f_1 \cdots f_s$ with
+$(f_i, f_j) = 1$ for $i \neq j$, so that by Theorem~\ref{thm:1.4},
+\[
+  k'[X]/(f) = k'[X]/(f_1) \times \cdots \times k'[X]/(f_s);
+\]
+since this is a direct product of fields, it is reduced.
+
+We say that an extension field $K$ of $k$ is \emph{separably generated} over $k$ if $K$ has
+a separating transcendence basis over $k$, that is a transcendence basis $T$ such
+that $K$ is a separable algebraic extension of $k(T)$.
+
+\begin{theorem}\label{thm:26.1}
+A separably generated extension field is separable.
+\end{theorem}
+
+\begin{proof}
+Let $k$ be a field and $K$ a separably generated extension of $k$, with $T$ a
+separating transcendence basis of $K$. If $k'$ is any extension field of $k$ then
+$k(T) \otimes_k k'$ is a ring of fractions of $k[T] \otimes_k k' = k'[T]$, so that it is an
+integral domain with field of fractions $k'(T)$. Thus
+$K \otimes_k k' = K \otimes_{k(T)} (k(T) \otimes_k k')$ is a subring of $K \otimes_k k'(T)$. Now
+$K$ is a separable algebraic extension of $k(T)$, so that as we have seen above
+$K \otimes_{k(T)} k'(T)$ is a direct product of fields, hence reduced; therefore so is
+$K \otimes_k k'$.
+\end{proof}
+
+\begin{theorem}\label{thm:26.2}
+Let $k$ be a field of characteristic $p$, and $K$ a finitely generated extension
+field of $k$; then the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $K$ is separable over $k$;
+  \item $K \otimes_k k^{1/p}$ is reduced;
+  \item $K$ is separably generated over $k$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) $\Leftarrow$ (3) has just been proved, and (3) $\Rightarrow$ (2) is clear from the
+proof of Theorem~\hyperref[thm:26.1]{1}, since $k^{1/p}$ is an extension field of $k$.
+
+(1) $\Rightarrow$ (3) Let $K = k(x_1, \ldots, x_n)$; we can assume that $x_1, \ldots, x_r$ is a
+transcendence basis for $K$ over $k$. Assume furthermore that $x_{r+1}, \ldots, x_q$ are
+separable algebraic over $k(x_1, \ldots, x_r)$, and that $x_{q+1}$ is not; set $y = x_{q+1}$
+and let $f(Y^p)$ be the minimal polynomial of $y$ over $k(x_1, \ldots, x_r)$. The
+coefficients of $f(Y^p)$ are rational functions of $x_1, \ldots, x_r$, so that clearing
+denominators we get an irreducible polynomial
+$F(X_1, \ldots, X_r, Y^p) \in k[X_1, \ldots, X_r, Y]$, with $F(x, y^p) = 0$. Now if
+$\partial F/\partial X_i = 0$ for $1 \le i \le r$ then $F(X, Y)$ is the $p$-th power of a polynomial
+$G(X, Y)$ with coefficients in $k^{1/p}$, but then we would have
+\[
+  k[x_1, \ldots, x_r, y] \otimes_k k^{1/p} = (k[X, Y]/(F(X, Y))) \otimes_k k^{1/p}
+      = k^{1/p}[X, Y]/(G(X, Y)^p);
+\]
+this is a subring of $K \otimes_k k^{1/p}$ containing nilpotent elements, and this
+contradicts (2). Hence we can assume that $\partial F/\partial X_1 \ne 0$. Then $x_1$ is
+separable algebraic over $k(x_2, \ldots, x_r, y)$, and hence so are $x_{r+1}, \ldots, x_q$.
+Therefore exchanging $x_1$ and $y = x_{q+1}$, we find that $x_{r+1}, \ldots, x_{q+1}$ are
+separably algebraic over $k(x_1, \ldots, x_r)$, so that by induction on $q$, we have
+(3).
+\end{proof}
+
+\begin{remark}
+As we have seen in the proof, if $K = k(x_1, \ldots, x_n)$ is separable over $k$ then we
+can choose a separating transcendence basis from among $x_1, \ldots, x_n$.
+\end{remark}
+
+\begin{theorem}\label{thm:26.3}
+If $k$ is a perfect field then every extension field $K$ of $k$ is separable over
+$k$, and a $k$-algebra $A$ is separable if and only if it is reduced.
+\end{theorem}
+
+\begin{proof}
+Recall that a field $k$ is perfect if every algebraic extension of $k$ is separable.
+If $k$ has characteristic $0$ then every extension field $K$ is separably generated,
+and therefore separable. In characteristic $p$, perfect implies $k = k^{1/p}$, so that
+by the previous theorem, all subfields of $K$ finitely generated over $k$ are
+separable, so that $K$ itself is separable over $k$. (Caution: $K$ may fail to be
+separably generated over $k$; for a counter-example, let $x$ be an indeterminate
+over $k$, and $K = k(x, x^{p^{-1}}, x^{p^{-2}}, \ldots)$.) Now we show that if $A$ is a
+reduced $k$-algebra then $A$ is separable. We can assume that $A$ is finitely
+generated over $k$. Then $A$ is a Noetherian ring, and the total ring of fractions
+$K$ of $A$ is of the form $K = K_1 \times \cdots \times K_r$ by Ex.~\ref{ex:6.5-ex}. Each $K_i$ is
+separable over $k$, so that $K$ is also separable, and hence so is its subring $A$.
+\end{proof}
+
+In general two subfields $K$, $K'$ of a given field $L$ are said to be \emph{linearly
+disjoint}\index{linearly disjoint} over a common subfield $k$ if the following three equivalent
+conditions are satisfied:
+\begin{enumerate}[(a)]
+  \item if $\alpha_1, \ldots, \alpha_n \in K$ are linearly independent over $k$ they are also
+        linearly independent over $K'$;
+  \item the same with $K$ and $K'$ interchanged;
+  \item if we write $K[K']$ for the subring of $L$ generated by $K$ and $K'$, the
+        natural map $K \otimes_k K' \to K[K']$ is an isomorphism.
+\end{enumerate}
+
+\textit{Proof of equivalence.} (a) $\Rightarrow$ (c) Let $\xi = \sum x_i \otimes y_i$ be an element of
+the kernel of $K \otimes_k K' \to K[K']$. Suppose that $x_1, \ldots, x_r$ are linearly
+independent over $k$, and that the remainder $x_{r+1}, \ldots, x_n$ are linear
+combinations of them, and rewrite $\xi = \sum x_i \otimes y_i'$. The image in $K[K']$ of
+$\xi$ is $\sum x_iy_i'$, but if this is $0$ then by (a) we have $y_i' = 0$ for all $i$, so that
+$\xi = 0$. This proves (c).
+
+(c) $\Rightarrow$ (a) is also easy; finally, since (c) is symmetric in $K$ and $K'$ we of
+course also get (a) $\Leftrightarrow$ (b).
+
+Let $k$ be a field of characteristic $p$, and $K$ an extension field of $k$. Inside
+the algebraic closure of $K$, consider the subfields $k^{p^{-n}} =
+\{\alpha \in \bar{K} \mid \alpha^{p^n} \in k\}$; these are purely inseparable extension fields of
+$k$, and $\bigcup_n k^{p^{-n}}$ is the smallest perfect field containing $k$.
+
+\begin{theorem}[S.~MacLane]\label{thm:26.4}
+Let $k$ and $K$ be as above. We have
+\begin{enumerate}[(i)]
+  \item if $K$ is separable over $k$ then $K$ and $k^{p^{-n}}$ are linearly disjoint over $k$;
+  \item if $K$ and $k^{p^{-n}}$ are linearly disjoint over $k$ for some $n > 0$ then $K$ is
+        separable over $k$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) It is enough to show that $K$ and $k^{p^{-n}}$ are linearly disjoint for every $n$.
+Suppose that $\alpha_1, \ldots, \alpha_m \in k^{p^{-n}}$ are linearly independent over $k$. If
+$\sum \xi_i\alpha_i = 0$ with $\xi_i \in K$, then we have to show that $\xi_i = 0$ for all $i$. Since
+$k$ and $K$ are as in the statement, we can assume that $\xi_1, \ldots, \xi_m$ are
+linearly independent over $k$. If we set $k_1 = k(\alpha_1, \ldots, \alpha_m)$, so that $k_1$ is a
+finite extension of $k$; for some sufficiently large $n$ we have $k^{p^{-n}} \supset k_1$, and
+if we set $A = K \otimes_k k_1$, then $A$ is a reduced ring. However, $A$ is finite as a
+$K$-module, so is a zero-dimensional ring, but the $p^n$-th power of any element of
+$A$ is in $K$, so that we see that $A$ has only one prime ideal. Hence $A$ is a field,
+and is isomorphic to $K[k_1]$. From this we get $\sum \xi_i \otimes \alpha_i = 0$, that is
+$\xi_i = 0$ for all $i$.
+
+(ii) If $K$ and $k^{p^{-n}}$ are linearly disjoint, then $k^{p^{-n}} \subset k^{p^{-m}}$, and hence
+$K$ and $k^{p^{-1}}$ are also linearly disjoint over $k$, so that $K \otimes_k k^{p^{-1}}$ is a
+field. If $K'$ is a subfield of $K$ which is finitely generated over $k$ then by
+Theorem~\hyperref[thm:26.2]{2}, $K'$ is separable over $k$. Hence $K$ is also separable over $k$.
+\end{proof}
+
+Let $K$ be an extension field of a field $k$; then $\Omega_{K/k}$ is a vector space over
+$K$, and is generated by $\{dx \mid x \in K\}$, so that there exists a subset $B \subset K$
+such that $\{dx \mid x \in B\}$ forms a basis of the vector space $\Omega_{K/k}$. A subset
+$B \subset K$ with this property is called a \emph{differential basis} of $K$ over $k$. The
+following condition (*) is necessary and sufficient for a subset
+$\{x_\lambda\}_{\lambda \in \Lambda} \subset K$ to form a differential basis for $K$ over $k$.
+
+\textbf{(*)} if $y_\lambda \in K$ are specified for every $\lambda \in \Lambda$ in an arbitrary way, then
+there exists a unique $D \in \Der_k(K)$ such that $D(x_\lambda) = y_\lambda$ for all $\lambda$.
+
+For $x_1, \ldots, x_n \in K$, let us study the condition for $dx_1, \ldots, dx_n \in \Omega_{K/k}$ to
+be linearly independent over $K$. If $k$ has characteristic $0$ then this is equivalent
+to $x_1, \ldots, x_n$ being algebraically independent over $k$. Indeed, if there exists
+$f(X) \in k[X_1, \ldots, X_n]$ such that $f(x_1, \ldots, x_n) = 0$, then choose such a
+relation of smallest degree; suppose for instance that $X_1$ actually appears in $f$,
+so that $f_1 = \partial f/\partial X_1$ is non-zero, but of smaller degree than $f$, and hence
+$f_1(x) \ne 0$. Then $f(x) = 0$ gives
+\[
+  0 = df = \sum_i f_i(x)dx_i,
+\]
+so that $dx_1, \ldots, dx_n$ are linearly dependent. Conversely, if $x_1, \ldots, x_n$ are
+algebraically independent over $k$ then there exists a transcendence basis $B$ of
+$K/k$ containing these, so that there exists $k$-derivations $D_i$ of the purely
+transcendental extension $k(B)$ satisfying
+\[
+  D_i(x_i) = 1 \quad \text{and} \quad D_i(x) = 0 \text{ for } x \in B, x \neq x_i,
+\]
+(namely, $\partial/\partial x_i$). Moreover, $K$ is a separable algebraic extension of $k(B)$, and
+so by Theorem~\hyperref[thm:25.3]{25.3} is 0-\'etale, so that the derivations $D_i$ extend to
+derivations from $K$ to $K$. Then since $D_i(x_j) = \delta_{ij}$, the differentials
+$dx_1, \ldots, dx_n \in \Omega_{K/k}$ are clearly linearly independent. Thus in this case a
+differential basis is the same thing as a transcendence basis.
+
+Now consider a field $k$ of characteristic $p$. We say that elements
+$x_1, \ldots, x_n \in K$ of an extension field $K$ are \emph{$p$-independent} over $k$ if
+$[K^p(k, x_1, \ldots, x_n) : K^p(k)] = p^n$, and a subset $B \subset K$ is $p$-independent if any
+finite subset of $B$ is $p$-independent. This condition means precisely that the
+set
+\[
+  \Gamma_B = \left\{ x_1^{\alpha_1} \cdots x_n^{\alpha_n} \;\middle|\;
+      \begin{array}{l}
+        x_1, \ldots, x_n \text{ are distinct} \\
+        \text{elements of } B \text{ and } 0 \le \alpha_i < p
+      \end{array} \right\}
+\]
+is linearly independent over $K^p(k)$; the elements of $\Gamma_B$ are called the
+\emph{$p$-monomials} of $B$. If $B$ is not $p$-independent, we say it is $p$-dependent.
+The condition of $p$-independence is not just a property of $B$ and $k$, but also
+depends on $K$. If $B \subset K$ is $p$-independent over $k$ and $K = K^p(k, B)$, we say
+that $B$ is a \emph{$p$-basis} of $K/k$. If $C \subset K$ is $p$-independent over $k$ then one
+can easily show by Zorn's lemma that there exists a $p$-basis of $K/k$ containing
+$C$.
+
+One sees easily that $B$ is a $p$-basis of $K/k$ is equivalent to $\Gamma_B$ being a
+basis of $K$ over $K^p(k)$ in the sense of linear algebra. If this holds then any map
+$D\colon B \to K$ has a unique extension to an element $D \in \Der_k(K)$. Indeed, for a
+$p$-monomial of $B$ we set
+\[
+  D(x_1^{\alpha_1} \cdots x_n^{\alpha_n}) = \sum_{r=1}^n \alpha_r x_1^{\alpha_1} \cdots
+      x_r^{\alpha_r - 1} \cdots x_n^{\alpha_n}D(x_r),
+\]
+and extend $D$ to $K$ as a $K^p(k)$-linear map; then $D$ is a $k$-derivation. Thus a
+$p$-basis $B$ is a differential basis of $K/k$. Conversely, if $B'$ is a differential
+basis of $K/k$ then $B'$ is $p$-independent over $k$; for if $x_1, \ldots, x_n \in B'$ are
+$p$-dependent, we can assume that $x_1 \in K^p(k, x_2, \ldots, x_n)$, so that we can
+write $x_1 = f(x_2, \ldots, x_n)$, where $f$ is a polynomial with coefficients in $K^p(k)$.
+Then in $\Omega_{K/k}$ we get $dx_1 = \sum_{i \ge 2}(\partial f/\partial x_i)dx_i$, which
+contradicts the linear independence of $dx_1, \ldots, dx_n$. Now if we take a $p$-basis
+$B$ of $K/k$ containing $B'$, then since both $B$ and $B'$ are differential bases, we
+have $B = B'$. We summarise the above as follows:
+
+\begin{theorem}\label{thm:26.5}
+The notion of differential basis coincides with transcendence basis in
+characteristic $0$, and with $p$-basis in characteristic $p$.
+\end{theorem}
+
+Now we look at the relation between separability and differential bases. Letting
+$\pi \subset k$ denote the prime subfield of $k$, we write $\Omega_k$ for $\Omega_{k/\pi}$.
+
+\begin{theorem}\label{thm:26.6}
+For a field extension $K/k$, the following conditions are equivalent:
+\begin{enumerate}[(1)]
+  \item $K/k$ is separable;
+  \item for any subfield $k' \subset k$ the standard map $\Omega_{k/k'} \otimes_k K \to \Omega_{K/k'}$
+        is injective;
+  \item[$2'$] for any subfield $k' \subset k$ and any differential basis $B$ of $k/k'$, there
+        exists a differential basis of $K/k'$ containing $B$;
+  \item $\Omega_k \otimes_k K \to \Omega_K$ is injective;
+  \item any derivation of $k$ to an arbitrary $K$-module $M$ extends to a
+        derivation from $K$ to $M$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(2) and (2$'$) are clearly equivalent, and (2) $\Rightarrow$ (3) $\Rightarrow$ (4) are trivial. In
+characteristic $0$, both (1) and (2$'$) hold, so that we need only consider the case
+$p > 0$.
+
+(1) $\Rightarrow$ (2$'$) Since $K$ and $k^{1/p}$ are linearly disjoint over $k$, we can apply the
+isomorphism $x \mapsto x^p$ to all three of these to get $K^p$ and $k$ linearly disjoint
+over $k^p$. Hence $K^p(k^p, k') = K^p(k')$ and $k$ are linearly disjoint over
+$k^p(k')$ (see Ex.~\ref{ex:26.1-ex} below). If we choose a $p$-basis $B$ of $k$ over $k'$ then
+the set $\Gamma_B$ of $p$-monomials of $B$ is linearly independent over $k^p(k')$, hence
+also linearly independent over $K^p(k')$, and $B$ as a subset of $K$ is also
+$p$-independent over $k'$. Therefore $B$ can be extended to a $p$-basis of $K/k'$.
+
+(2$'$) $\Rightarrow$ (1) If we take a $p$-basis $B$ of $k$ over $\pi$ then the set $\Gamma_B$ of
+$p$-monomials is a basis of $k$ over $k^p$. $\{dx \mid x \in B\}$ is a basis of $\Omega_k$ over
+$k$, and by assumption is linearly independent in $\Omega_K$ over $K$, so that
+$\Gamma_B$ is also linearly independent over $K^p$. Therefore
+\[
+  k \otimes_{k^p} K^p \cong k(K^p),
+\]
+and $k$ and $K^p$ are linearly disjoint over $k^p$, so that by
+Theorem~\hyperref[thm:26.4]{4}, $K/k$ is separable.
+\end{proof}
+
+Let $k$ be a field of characteristic $p$, and $\pi \subset k$ the prime subfield; a $p$-basis
+of $k$ over $\pi$ is called an \emph{absolute $p$-basis} of $k$. If $k_1 \subset k$ is any perfect field
+contained in $k$ then $k^p(k_1) = k^p = k^p(\pi)$, so that an absolute $p$-basis of $k$ is
+the same as a $p$-basis over any perfect subfield of $k$.
+
+\begin{theorem}\label{thm:26.7}
+Let $k$ be a field of characteristic $p$, and $K$ an extension field of $k$. If an
+absolute $p$-basis of $k$ is also an absolute $p$-basis of $K$, then $K$ is 0-\'etale over
+$k$, and conversely.
+\end{theorem}
+
+\begin{proof}
+Consider a commutative diagram of ring homomorphisms
+\[
+\begin{tikzcd}
+K \arrow[r, "\bar{u}"] & \bar{C} = C/N \\
+k \arrow[u, "\subset"] \arrow[ru, "j"'] & C \arrow[u]
+\end{tikzcd}
+\]
+where $C = C/N$ is as in the definition with $N$ an ideal of $C$ satisfying $N^2 = 0$,
+and $g$ the natural map. For $\alpha \in K$, if we choose $a \in C$ such that
+$\bar{u}(\alpha) = g(a)$, then $a^p$ is independent of the choice of $a$. For if
+$g(a) = g(a')$ then we can write $a' = a + x$ with $x \in N$, and since $C$ is a $k$-algebra
+via $j$ it is a ring of characteristic $p$, so that
+\[
+  a'^p = a^p + x^p = a^p.
+\]
+Now we define a map $v_0\colon K^p \to C$ by $v_0(\alpha^p) = a^p$ for $\alpha \in K$, where $a$ is
+such that $\bar{u}(\alpha) = g(a)$; one checks easily that $v_0$ is a homomorphism, and
+coincides with $j$ on $k^p$. So far we have not used the assumption on $K/k$. Now
+since by assumption $K$ is separable over $k$, and $K = K^p[k]$, we can think of $K$ as
+\[
+  K = K^p \otimes_{k^p} k,
+\]
+and thus we can define $v\colon K \to C$ by letting $v$ be equal to $v_0$ on $K^p$, and
+equal to $j$ on $k$; this is a lifting of $\bar{u}$ to $C$. Uniqueness of the lifting is
+clear from the fact that $K^p(k) = K$, so that $\Omega_{K/k} = 0$.
+
+Conversely, if we assume that $K/k$ is 0-\'etale, then first of all, from
+0-unramified we have $\Omega_{K/k} = 0$, so that by 0-smoothness and
+Theorem~\hyperref[thm:25.1]{25.1} we have $\Omega_K = \Omega_k \otimes_k K$. Thus an absolute $p$-basis of $k$ is
+also an absolute $p$-basis of $K$.
+\end{proof}
+
+\begin{theorem}\label{thm:26.8}
+Let $K/k$ be a separable extension of fields of characteristic $p$, and let $B$ be a
+$p$-basis of $K/k$. Then $B$ is algebraically independent over $k$, and $K$ is 0-\'etale
+over $k(B)$.
+\end{theorem}
+
+\begin{proof}
+Suppose by contradiction that $b_1, \ldots, b_n \in B$ are algebraically dependent
+over $k$. Suppose that $0 \ne f \in k[X_1, \ldots, X_n]$ is a polynomial of minimal degree
+among all those with $f(b) = 0$, and set $\deg f = d$. Then write
+\[
+  f(X_1, \ldots, X_n) = \sum_{0 \le i_\nu < p} g_{i_1, \ldots, i_n}(X_1^p, \ldots, X_n^p)
+      X_1^{i_1} \cdots X_n^{i_n}.
+\]
+Then since $b_1, \ldots, b_n$ are $p$-independent over $k$ and $f(b) = 0$, we have
+$g_{i_1, \ldots, i_n}(b^p) = 0$ for all values of $i_1, \ldots, i_n$. However, since
+\[
+  d \ge \deg g_{i_1, \ldots, i_n}(X^p) + i_1 + \cdots + i_n,
+\]
+by choice of $f$ we must have $f(X) = g_{0, \ldots, 0}(X^p)$. Hence we can write $f$ in the
+form $f(X) = h(X)^p$, with $h \in k^{1/p}[X_1, \ldots, X_n]$. However, since $K$ and $k^{1/p}$
+are linearly disjoint over $k$, the monomials of degree $< d$ in $b_1, \ldots, b_n$, being
+linearly independent over $k$, must also be linearly independent over $k^{1/p}$.
+Thus $h(b) \ne 0$, but this contradicts $h(b)^p = f(b) = 0$. For the second half, see
+the proof of the following theorem.
+\end{proof}
+
+\begin{remark}
+Although $k(B)$ is purely transcendental over $k$, it does not follow that $K$ is
+algebraic over $k(B)$; for a counter-example, let $K = k(x, x^{p^{-1}}, x^{p^{-2}}, \ldots)$,
+with $x$ an indeterminate over $k$. In this case $B = \emptyset$.
+\end{remark}
+
+\begin{theorem}\label{thm:26.9}
+If $K$ is a separable field extension of a field $k$, then $K$ is 0-smooth over $k$,
+and conversely.
+\end{theorem}
+
+\begin{proof}
+Let $B$ be a differential basis of $K/k$. If $K/k$ is separable then by
+Theorems~\hyperref[thm:26.5]{5} and \hyperref[thm:26.8]{8}, $k(B)$ is purely transcendental over $k$. Then, as
+one sees at once from the definition, $k(B)$ is 0-smooth over $k$. Moreover,
+$K/k(B)$ is 0-\'etale. In characteristic $0$ this follows from
+Theorem~\hyperref[thm:25.3]{25.3}; in characteristic $p$, by
+Theorem~\hyperref[thm:26.6]{6} we have an exact sequence
+$0 \to \Omega_k \otimes K \to \Omega_K \to \Omega_{K/k} \to 0$, so that putting together an absolute
+$p$-basis of $k$ with $B$ we have an absolute $p$-basis of $K$, and this is clearly
+also an absolute $p$-basis of $k(B)$. Hence $K/k(B)$ is 0-\'etale by
+Theorem~\hyperref[thm:26.7]{7}. Therefore $K/k$ is 0-smooth.
+
+Conversely, if $K/k$ is 0-smooth then by Theorem~\hyperref[thm:25.1]{25.1}, $\Omega_k \otimes K \to \Omega_K$
+is injective, so that by Theorem~\hyperref[thm:26.6]{6}, $K/k$ is separable.
+\end{proof}
+
+\medskip
+\noindent\textbf{Imperfection modules and the Cartier equality}
+
+Quite generally, if $k \to A \to B$ are ring homomorphisms, we write $I_{B/A/k}$ for
+the kernel of $\Omega_{A/k} \otimes_A B \to \Omega_{B/k}$, and call it the \emph{imperfection module} of
+the $A$-algebra $B$ over $k$. If $k = \mathbb{Z}$ or $k = \mathbb{Z}/p$ (the prime field of characteristic
+$p$) we omit $k$, and write $I_{B/A}$.
+
+\begin{lemma}\label{lem:26.1}
+Let $k \to K \to L \to L'$ be field homomorphisms. Then there exists a natural
+exact sequence
+\[
+  0 \to I_{L/K/k} \otimes_K L' \to I_{L'/K/k} \to I_{L'/L/k}
+      \to \Omega_{L/K} \otimes_L L' \to \Omega_{L'/K} \to \Omega_{L'/L} \to 0.
+\]
+\end{lemma}
+
+\begin{proof}
+We have a commutative diagram with exact rows
+\[
+\begin{tikzcd}
+0 \arrow[r] & I_{L/K/k} \otimes_K L' \arrow[r] \arrow[d] &
+\Omega_{K/k} \otimes_K L' \arrow[r] \arrow[d, "="] &
+\Omega_{L/k} \otimes_L L' \arrow[r] \arrow[d, "\cong"] &
+\Omega_{L/K} \otimes_L L' \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & I_{L'/K/k} \arrow[r] &
+\Omega_{K/k} \otimes_K L' \arrow[r] &
+\Omega_{L'/k} \arrow[r] &
+\Omega_{L'/K} \arrow[r] & 0
+\end{tikzcd}
+\]
+We abbreviate this as
+\[
+\begin{tikzcd}
+0 \arrow[r] & X \arrow[r] \arrow[d, "i"] & A \arrow[r] \arrow[d, "="] & B \arrow[r] \arrow[d, "f_1"] & P \arrow[r] \arrow[d, "f_2"] & 0 \\
+0 \arrow[r] & Y \arrow[r] & A \arrow[r] & C \arrow[r] & Q \arrow[r] & 0
+\end{tikzcd}
+\]
+and from it construct
+\[
+\begin{tikzcd}
+0 \arrow[r] & A/X \arrow[r] \arrow[d] & B \arrow[r] \arrow[d, "f_1"] & P \arrow[r] \arrow[d, "f_2"] & 0 \\
+0 \arrow[r] & A/Y \arrow[r] & C \arrow[r] & Q \arrow[r] & 0
+\end{tikzcd}
+\]
+applying the snake lemma gives the exact sequence
+\[
+  0 \to Y/X \to \Ker f_1 \to \Ker f_2 \to 0,
+\]
+from which we easily get
+\[
+  0 \to X \to Y \to \Ker f_1 \to P \to Q \to \Coker f_2 \to 0.
+\]
+This is just what we wanted to prove.
+\end{proof}
+
+\begin{theorem}[the Cartier equality]\label{thm:26.10}
+Let $k$ be a perfect field, $K$ an extension of $k$ and $L$ a finitely generated
+extension field of $K$; then
+\[
+  (*) \quad \dim_L \Omega_{L/K} = \trdeg_k L + \rank_L I_{L/K/k},
+\]
+(where $\rank_L$ denotes the dimension of a vector space over $L$).
+\end{theorem}
+
+\begin{proof}
+Suppose that $k \subset K \subset L \subset L'$, with $L$ finitely generated over $K$ and $L'$
+finitely generated over $L$. If the theorem holds for $k \subset L \subset L'$ and for
+$k \subset K \subset L$ then both $I_{L'/L/k}$ and $I_{L/K/k} \otimes_K L$ are finite-dimensional over
+$L$, so that by the lemma, $I_{L'/K/k}$ is also finite-dimensional, and
+\begin{align*}
+  \dim_{L'} \Omega_{L'/K} - \dim_{L'} \Omega_{L'/k}
+      &= (\dim_{L'} \Omega_{L'/L} - \dim_{L'} \Omega_{L/k}) +
+          (\dim_{L'} \Omega_{L/K} - \dim_L \Omega_{L/k}) \\
+      &= \trdeg_k L' + \trdeg_K L = \trdeg_k L';
+\end{align*}
+thus the theorem also holds for $k \subset K \subset L'$. Now every finitely generated
+field extension can be obtained by a succession of the following three kinds of
+simple extensions:
+\begin{enumerate}[(1)]
+  \item $L = K(\alpha)$ where $\alpha$ is transcendental over $K$;
+  \item $L = K(\alpha)$ where $\alpha$ is separable algebraic over $K$;
+  \item $L = K(\alpha)$ where $\chark K = p$, and $\alpha^p = a \in K$, but $\alpha \notin K$.
+\end{enumerate}
+Hence we need only prove (*) in each of these special cases. (1) and (2) are
+easy. For (3), if we write $L = K[X]/(X^p - a)$ we see that
+\[
+  \Omega_{L/k} = (\Omega_{K[X]/k} \otimes_{K[X]} L)/L\,da
+      = (\Omega_{K/k} \otimes_K L \oplus L\,da)/L\,da,
+\]
+and $d\alpha \ne 0$. Furthermore, since $k$ is a perfect field, we have
+$a \notin K^p = kK^p$, so that in $\Omega_{K/k}(= \Omega_K)$ we have $da \ne 0$,
+$\rank \Omega_{L/K} = 1$ and $\rank I_{L/K/k} = 1$, so that (*) also holds in this case.
+\end{proof}
+
+\begin{remark}[\textbf{Harper's theorem}]
+An ideal $I$ of a ring $R$ is called a \emph{differential ideal} if it maps into itself under
+every derivation of $R$ to $R$. A ring $R$ is said to be \emph{differentiably simple} if it has
+no non-trivial differential ideals. The following beautiful theorem is due to
+L.~Harper, Jr.
+
+\begin{theorem*}
+A Noetherian ring $R$ of characteristic $p$ is differentiably simple if and only if
+it has the form $R = k[T_1, \ldots, T_n]/(T_1^p, \ldots, T_n^p)$, where $k$ is a field of
+characteristic $p$.
+\end{theorem*}
+
+The `if' part is easy. The proof of the `only if' part is not so easy and we refer
+the reader to Harper [1] and Yuan [1]. Recently this theorem was used by
+Kimura-Niitsuma [1] to prove the following theorem which had been known as
+Kunz' Conjecture:
+
+\begin{theorem*}
+Let $R$ be a regular local ring of characteristic $p$, and let $S$ be a local subring
+of $R$ containing $R^p$. Assume that $R$ is a finite $S$-module. Then $R$ has a
+$p$-basis over $S$ if and only if $S$ is regular.
+\end{theorem*}
+\end{remark}
+
+% ============ 习题 ============
+\section*{Exercises to \S\ref{sec:26}}
+\emph{Prove the following propositions.}
+
+\begin{exercise}\label{ex:26.1-ex}
+Let $L$ be a field and $k$, $k'$, $K$, $K'$ subfields of $L$; assume that $k \subset k' \subset K$
+and $k \subset K'$, and that $K$ and $K'$ are linearly disjoint over $k$. Then we have
+(i) $K \cap K' = k$, and (ii) $K$ and $k'(K')$ are linearly disjoint over $k'$.
+\end{exercise}
+
+\begin{exercise}\label{ex:26.2-ex}
+Let $L$ be a separable extension of a field $K$; then $L((T_1, \ldots, T_n))$ is separable
+over $K((T_1, \ldots, T_n))$. Here $L((T_1, \ldots, T_n))$ denotes the field of fractions of
+$L[[T_1, \ldots, T_n]]$.
+\end{exercise}

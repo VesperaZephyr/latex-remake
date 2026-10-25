@@ -1,0 +1,604 @@
+\section{条件极值}
+
+在例 \ref{ex:9.2.4} 中, 为求无盖长方体容器的表面积 $S = xy + 2xz + 2yz$ 在体积固定为 $xyz = 4$ 下的最小值, 我们用的方法是从约束方程 $xyz = 4$ 中解得 $z = \dfrac{4}{xy}$, 代入 $S$ 的表达式使 $S = S(x, y) = xy + \dfrac{8}{y} + \dfrac{8}{x}$. 于是, 化为求无条件的极值、最值问题.
+
+这个例子虽然十分简单, 但从约束条件中解出一批变量, 然后代入目标函数 $S$ 中, 转化成为无条件极值有着普遍的指导意义. 当约束方程复杂时, 真正「解出」往往是做不到的, 这时实际上要利用隐射定理. 因此, 求条件极值的方法是隐射定理的重要应用.
+
+\begin{definition}\label{def:9.3.1}
+设 $D \subset \mathbb{R}^{n+m}$ 为开集, $f\colon D \to \mathbb{R}^{1}$ 为 $n+m$ 元函数, 又 $\boldsymbol{\Phi}\colon D \to \mathbb{R}^{m}$ 为映射, $M = \{\boldsymbol{z} \in D \mid \boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0}\}$. 如果 $\boldsymbol{z}^{0} \in M$ 有一个 $\mathbb{R}^{n+m}$ 中的开邻域 $U$, 使得
+\[
+  f(\boldsymbol{z}^{0}) = \min f(M \cap U) \quad (\; = \max f(M \cap U) \;),
+\]
+则称 $f(\boldsymbol{z}^{0})$ 为目标函数 $f$ 在约束条件 $\boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0}$ 下的\textbf{条件极小(大)值}; $\boldsymbol{z}^{0}$ 称为 $f$ 的\textbf{条件极小(大)值点}. 条件极小值与条件极大值统称为\textbf{条件极值}.
+\end{definition}
+
+如果记 $\boldsymbol{z} = (\boldsymbol{x}, \boldsymbol{y}) \in \mathbb{R}^{n} \times \mathbb{R}^{m}$, 则 $\boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0}$ 变成 $\boldsymbol{\Phi}(\boldsymbol{x}, \boldsymbol{y}) = \boldsymbol{0}$. 若 $\boldsymbol{\Phi}$ 为 $C^{1}$ 映射, 且 $\det \boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi} \neq 0$, $\boldsymbol{z}^{0} = (\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) \in M$, 即 $\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) = \boldsymbol{0}$, 则由隐射定理, $\boldsymbol{y} = \boldsymbol{\varphi}(\boldsymbol{x})$, $\boldsymbol{y}^{0} = \boldsymbol{\varphi}(\boldsymbol{x}^{0})$. $\boldsymbol{x}^{0}$ 就是使 $n$ 元函数 $f(\boldsymbol{x}, \boldsymbol{\varphi}(\boldsymbol{x}))$ 达到(无条件)极小(大)值的点. 因此, 求条件极值的问题就化成了无条件极值问题, 将 $n + m$ 个变量由 $\boldsymbol{\Phi}(\boldsymbol{x}, \boldsymbol{y}) = \boldsymbol{0}$ 化为 $n$ 个独立变量.
+
+\begin{theorem}[Lagrange 不定乘数法]\label{thm:9.3.1}
+设 $D \subset \mathbb{R}^{n+m}$ 为开集, $f\colon D \to \mathbb{R}^{1}$ 为函数, $\boldsymbol{\Phi}\colon D \to \mathbb{R}^{m}$ 为映射, $M = \{\boldsymbol{z} \in D \mid \boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0}\}$, $\boldsymbol{z}^{0} \in M$. 如果
+\begin{enumerate}
+  \item[(1$^{\circ}$)] $f \in C^{1}(D, \mathbb{R}^{1})$, $\boldsymbol{\Phi} \in C^{1}(D, \mathbb{R}^{m})$;
+  \item[(2$^{\circ}$)] $\operatorname{rank}\boldsymbol{J}\boldsymbol{\Phi}(\boldsymbol{z}^{0}) = m$;
+  \item[(3$^{\circ}$)] $\boldsymbol{z}^{0}$ 为 $f$ 在约束条件 $\boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0}$ 下取到条件极值的点.
+\end{enumerate}
+则 $\exists\, \boldsymbol{\lambda}^{0} \in \mathbb{R}^{m}$, s.\,t. $\boldsymbol{\lambda}^{0}$ 与 $\boldsymbol{z}^{0}$ 满足方程
+\[
+  \boldsymbol{J}f(\boldsymbol{z}) + \boldsymbol{\lambda} \boldsymbol{J}\boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0},
+\]
+即满足 $n+m$ 个方程
+\[
+  \frac{\partial f}{\partial z_{i}}(\boldsymbol{z}) + \sum_{j=1}^{m} \lambda_{j} \frac{\partial \Phi_{j}}{\partial z_{i}}(\boldsymbol{z}) = 0, \quad i = 1, 2, \cdots, n+m.
+\]
+\end{theorem}
+
+\begin{proof}
+由 (2$^{\circ}$), 不妨设
+\[
+  \left.\frac{\partial(\Phi_{1}, \Phi_{2}, \cdots, \Phi_{m})}{\partial(y_{1}, y_{2}, \cdots, y_{m})}\right|_{\boldsymbol{z}^{0}} \neq 0,
+\]
+于是, 由隐射定理, 存在 $\boldsymbol{z}^{0} = (\boldsymbol{x}^{0}, \boldsymbol{y}^{0})$ 的开邻域 $U = I \times J$, 使方程 $\boldsymbol{\Phi}(\boldsymbol{z}) = \boldsymbol{0}$ 在 $U$ 中有惟一解 $\boldsymbol{y} = \boldsymbol{\varphi}(\boldsymbol{x})$, $\boldsymbol{x} \in I$, 且 $\boldsymbol{\varphi} \in C^{1}(I, \mathbb{R}^{m})$. 则当 $\boldsymbol{x} \in I$ 时,
+\[
+  \boldsymbol{\Phi}\bigl(\boldsymbol{x}, \boldsymbol{\varphi}(\boldsymbol{x})\bigr) \equiv \boldsymbol{0}.
+\]
+利用复合映射求导的链规则得到
+\begin{equation}\label{eq:9.3.1}
+  \begin{aligned}
+    \boldsymbol{0} &= \begin{pmatrix} \boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) & \boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) \end{pmatrix}
+    \begin{pmatrix} \boldsymbol{I} \\ \boldsymbol{J}\boldsymbol{\varphi}(\boldsymbol{x}^{0}) \end{pmatrix} \\
+    &= \boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) \boldsymbol{J}\boldsymbol{\varphi}(\boldsymbol{x}^{0}).
+  \end{aligned}
+\end{equation}
+另一方面, 由 $f(\boldsymbol{z}) = f(\boldsymbol{x}, \boldsymbol{y}) = f\bigl(\boldsymbol{x}, \boldsymbol{\varphi}(\boldsymbol{x})\bigr)$ 在 $\boldsymbol{x}^{0}$ 达到极值及 Fermat 定理得
+\begin{equation}\label{eq:9.3.2}
+  \boldsymbol{0} = \boldsymbol{J}_{\boldsymbol{x}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{J}_{\boldsymbol{y}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) \boldsymbol{J}\boldsymbol{\varphi}(\boldsymbol{x}^{0}).
+\end{equation}
+再由条件 $\left.\dfrac{\partial(\Phi_{1}, \Phi_{2}, \cdots, \Phi_{m})}{\partial(y_{1}, y_{2}, \cdots, y_{m})}\right|_{\boldsymbol{z}^{0}} \neq 0$ 知 $\boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0})$ 可逆, 故 $\exists\, \boldsymbol{\lambda}^{0} \in \mathbb{R}^{m}$, s.\,t.
+\begin{equation}\label{eq:9.3.3}
+  \boldsymbol{J}_{\boldsymbol{y}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{\lambda}^{0} \boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) = \boldsymbol{0}.
+\end{equation}
+由式 \eqref{eq:9.3.1}, \eqref{eq:9.3.2}, \eqref{eq:9.3.3} 三式得
+\begin{align*}
+  \boldsymbol{0} &= \bigl[\boldsymbol{J}_{\boldsymbol{y}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{\lambda}^{0}\boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0})\bigr]
+  + \bigl[\boldsymbol{J}_{\boldsymbol{x}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{J}_{\boldsymbol{y}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0})\boldsymbol{J}\boldsymbol{\varphi}(\boldsymbol{x}^{0})\bigr] \\
+  &\quad + \boldsymbol{\lambda}^{0} \bigl[\boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0})\boldsymbol{J}\boldsymbol{\varphi}(\boldsymbol{x}^{0})\bigr] \\
+  &= \boldsymbol{J}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{\lambda}^{0} \boldsymbol{J}_{\boldsymbol{x}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \bigl[\boldsymbol{J}_{\boldsymbol{y}}f(\boldsymbol{x}^{0}, \boldsymbol{y}^{0}) + \boldsymbol{\lambda}^{0}\boldsymbol{J}_{\boldsymbol{y}}\boldsymbol{\Phi}(\boldsymbol{x}^{0}, \boldsymbol{y}^{0})\bigr] \boldsymbol{J}\boldsymbol{\varphi}(\boldsymbol{x}^{0}) \\
+  &= \boldsymbol{J}f(\boldsymbol{z}^{0}) + \boldsymbol{\lambda}^{0} \boldsymbol{J}\boldsymbol{\Phi}(\boldsymbol{z}^{0}). \qedhere
+\end{align*}
+\end{proof}
+
+\begin{remark}\label{rem:9.3.1}
+为记忆与计算的方便, 令
+\[
+  F(\boldsymbol{z}, \boldsymbol{\lambda}) = f(\boldsymbol{z}) + \sum_{j=1}^{m} \lambda_{j} \Phi_{j}(\boldsymbol{z}),
+\]
+则定理 \ref{thm:9.3.1} 中 $\boldsymbol{\lambda}^{0}$ 与 $\boldsymbol{z}^{0}$ 满足
+\[
+  \left\{\begin{aligned}
+    &\frac{\partial F}{\partial z_{i}}(\boldsymbol{z}, \boldsymbol{\lambda}) = \frac{\partial f}{\partial z_{i}}(\boldsymbol{z}) + \sum_{j=1}^{m} \lambda_{j} \frac{\partial \Phi_{j}}{\partial z_{i}} = 0, \quad i = 1, 2, \cdots, n+m, \\
+    &\frac{\partial F}{\partial \lambda_{k}}(\boldsymbol{z}, \boldsymbol{\lambda}) = \Phi_{k}(\boldsymbol{z}) = 0, \quad k = 1, 2, \cdots, m.
+  \end{aligned}\right.
+\]
+上述第二组方程实际上就是约束方程. 其中 $\boldsymbol{\lambda} = (\lambda_{1}, \cdots, \lambda_{m})$ 称为\textbf{不定乘数}. 我们的目的是求出极值点 $\boldsymbol{z}^{0}$, 而不是 $\boldsymbol{\lambda}^{0}$, 因此, 往往不必求 $\boldsymbol{\lambda}^{0}$, 只需消去 $\boldsymbol{\lambda}$ 得到 $\boldsymbol{z}^{0}$.
+\end{remark}
+
+\begin{example}\label{ex:9.3.1}
+求 $f(x, y, z) = xy + 2xz + 2yz$ 在约束方程 $\varphi(x, y, z) = xyz - 4 = 0$ 下的最小值.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1}\quad 参阅例 \ref{ex:9.2.4} 解法 1.
+
+\textbf{解法 2}\quad 参阅例 \ref{ex:9.2.4} 解法 2.
+
+\textbf{解法 3}\quad 令
+\[
+  F(x, y, z, \lambda) = f(x, y, z) + \lambda \varphi(x, y, z) = (xy + 2xz + 2yz) + \lambda(xyz - 4).
+\]
+应用不定乘数法, 有
+\begin{align}
+  \frac{\partial F}{\partial x} &= \frac{\partial f}{\partial x} + \lambda \frac{\partial \varphi}{\partial x} = y + 2z + \lambda yz = 0, \label{eq:9.3.1.1} \\
+  \frac{\partial F}{\partial y} &= \frac{\partial f}{\partial y} + \lambda \frac{\partial \varphi}{\partial y} = x + 2z + \lambda xz = 0, \label{eq:9.3.1.2} \\
+  \frac{\partial F}{\partial z} &= \frac{\partial f}{\partial z} + \lambda \frac{\partial \varphi}{\partial z} = 2x + 2y + \lambda xy = 0, \label{eq:9.3.1.3} \\
+  \frac{\partial F}{\partial \lambda} &= \varphi = xyz - 4 = 0. \label{eq:9.3.1.4}
+\end{align}
+由式 \eqref{eq:9.3.1.1} 与 \eqref{eq:9.3.1.2} 得到
+\[
+  xy + 2xz = -\lambda xyz = xy + 2yz \implies x = y.
+\]
+由式 \eqref{eq:9.3.1.2} 与 \eqref{eq:9.3.1.3} 得到
+\[
+  xy + 2yz = -\lambda xyz = 2xz + 2yz \implies y = 2z.
+\]
+将 $x = y = 2z$ 代入式 \eqref{eq:9.3.1.4} 得到
+\[
+  (2z)^{2}z - 4 = 0 \implies z = 1, \quad x = y = 2z = 2.
+\]
+所以 $(x, y, z) = (2, 2, 1)$.
+
+因为定理 \ref{thm:9.3.1} 只是给出了 $f$ 在 $\boldsymbol{z}^{0}$ 达到条件极值的必要条件, 它相当于无条件极值的 Fermat 定理, 所以, $(2, 2, 1)$ 是否为 $f$ 的条件极值点还必须论述清楚. 类似例 \ref{ex:9.2.4}, 考察
+\[
+  f(x, y, z) = xy + 2xz + 2yz = \frac{4}{z} + \frac{8}{y} + \frac{8}{x}.
+\]
+因为 $\lim\limits_{x \to 0} \dfrac{8}{x} = \lim\limits_{y \to 0} \dfrac{8}{y} = \lim\limits_{z \to 0} \dfrac{4}{z} = +\infty$, 所以 $\exists\, \delta > 0$, 当 $x \in (0, \delta]$ 或 $y \in (0, \delta]$ 或 $z \in (0, \delta]$ 时, 有 $f(x, y, z) > f(2, 2, 1)$. 固定 $\delta$, 当 $x \geqslant \delta, y \geqslant \delta, z \geqslant \delta$ 时, $\lim\limits_{x \to +\infty}(xy + 2xz + 2yz) = \lim\limits_{y \to +\infty}(xy + 2xz + 2yz) = \lim\limits_{z \to +\infty}(xy + 2xz + 2yz) = +\infty$, 因此, $\exists\, \Delta > \delta > 0$, s.\,t. 当 $x \geqslant \Delta$ 或 $y \geqslant \Delta$ 或 $z \geqslant \Delta$ 时, 都有 $f(x, y, z) > f(2, 2, 1)$. 再由 $f(x, y, z)$ 在紧致集 $[\delta, \Delta]^{3} \cap M$ 上连续 ($M = \{(x, y, z) \mid \varphi(x, y, z) = xyz - 4 = 0\}$) 知, $f$ 在 $[\delta, \Delta]^{3} \cap M$ 上必有最小值点, 该点一定是 $f$ 的条件极值点 $(2, 2, 1)$. 此时, $f$ 的条件最小值也是条件极小值为 $f(2, 2, 1) = 12$.
+\end{solution}
+
+\begin{example}\label{ex:9.3.2}
+求 $f(x, y) = xy$ 在圆周 $S^{1} = \{(x, y) \mid (x - 1)^{2} + y^{2} = 1\}$ 上的最值与条件极值点.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1}\quad 令 $F(x, y, \lambda) = xy + \lambda\bigl[(x - 1)^{2} + y^{2} - 1\bigr]$, 应用不定乘数法, 有
+\begin{align}
+  \frac{\partial F}{\partial x} &= y + 2\lambda(x - 1) = 0, \label{eq:9.3.2.1} \\
+  \frac{\partial F}{\partial y} &= x + 2\lambda y = 0, \label{eq:9.3.2.2} \\
+  \frac{\partial F}{\partial \lambda} &= (x - 1)^{2} + y^{2} - 1 = 0. \label{eq:9.3.2.3}
+\end{align}
+由式 \eqref{eq:9.3.2.1} 与 \eqref{eq:9.3.2.2} 得到 $y^{2} = -2\lambda y(x - 1) = x(x - 1)$. 再由式 \eqref{eq:9.3.2.3}, 有
+\[
+  (x - 1)^{2} + x(x - 1) - 1 = 0 \implies x(2x - 3) = 2x^{2} - 3x = 0,
+\]
+\[
+  x_{1} = 0, \quad x_{2} = \frac{3}{2}.
+\]
+于是, 解得 $(x_{1}, y_{1}) = (0, 0)$, $(x_{2}, y_{2}) = \left(\dfrac{3}{2}, \dfrac{\sqrt{3}}{2}\right)$, $(x_{3}, y_{3}) = \left(\dfrac{3}{2}, -\dfrac{\sqrt{3}}{2}\right)$.
+
+显然, 连续函数 $f$ 在紧致集 $S^{1}$ 上必达到最大值与最小值, 由于 $S^{1}$ 作为 $\mathbb{R}^{2}$ 的子拓扑空间, 它的边界为空集, 故最大(小)值点都为条件极大(小)值点. 因此, $f$ 的最大值与最小值分别为
+\begin{align*}
+  f_{\max} &= \max\left\{f(0, 0), f\left(\frac{3}{2}, \frac{\sqrt{3}}{2}\right), f\left(\frac{3}{2}, -\frac{\sqrt{3}}{2}\right)\right\} \\
+  &= \max\left\{0, \frac{3\sqrt{3}}{4}, -\frac{3\sqrt{3}}{4}\right\} = \frac{3\sqrt{3}}{4} = f\left(\frac{3}{2}, \frac{\sqrt{3}}{2}\right), \\
+  f_{\min} &= \min\left\{f(0, 0), f\left(\frac{3}{2}, \frac{\sqrt{3}}{2}\right), f\left(\frac{3}{2}, -\frac{\sqrt{3}}{2}\right)\right\} \\
+  &= \min\left\{0, \frac{3\sqrt{3}}{4}, -\frac{3\sqrt{3}}{4}\right\} = -\frac{3\sqrt{3}}{4} = f\left(\frac{3}{2}, -\frac{\sqrt{3}}{2}\right).
+\end{align*}
+因为 $f(0, 0) = 0$, 而在第一象限内 $f > 0$, 在第四象限内 $f < 0$, 所以 $(0, 0)$ 不是 $f$ 的条件极值点.
+
+\textbf{解法 2}\quad 应用算术--几何平均不等式, 有
+\begin{align*}
+  f^{2} &= x^{2}y^{2} = x^{2}(2x - x^{2}) = \frac{1}{3}x^{2}(6 - 3x) \\
+  &\leqslant \frac{1}{3}\left[\frac{x + x + x + (6 - 3x)}{4}\right]^{4} = \frac{1}{3}\left(\frac{3}{2}\right)^{4} = \frac{3^{2}}{4^{2}},
+\end{align*}
+故 $|f| \leqslant \dfrac{3\sqrt{3}}{4}$, 式中等号当且仅当 $x = 6 - 3x$ 时成立, 即 $x = \dfrac{3}{2}$. 此时, $y = \pm\dfrac{\sqrt{3}}{2}$. 于是
+\[
+  f\left(\frac{3}{2}, \frac{\sqrt{3}}{2}\right) = \frac{3\sqrt{3}}{4} = f_{\text{最大}}, \quad f\left(\frac{3}{2}, -\frac{\sqrt{3}}{2}\right) = -\frac{3\sqrt{3}}{4} = f_{\text{最小}}.
+\]
+\end{solution}
+
+\begin{example}\label{ex:9.3.3}
+求椭圆 $M$:
+\[
+  \left\{\begin{aligned}
+    &\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1, \\
+    &Ax + By + Cz = 0
+  \end{aligned}\right.
+\]
+的半轴之长, 其中 $a > 0, b > 0, c > 0$, 且 $A, B, C$ 不全为零.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1}\quad 椭球面 $\dfrac{x^{2}}{a^{2}} + \dfrac{y^{2}}{b^{2}} + \dfrac{z^{2}}{c^{2}} = 1$ 的中心在原点, 而平面 $Ax + By + Cz = 0$ 过原点, 法向为 $(A, B, C)$. 显然, 椭球面与平面的交线为一个以原点为中心的椭圆(\cref{fig:9.3.1}). 设
+\[
+  r^{2} = f(x, y, z) = x^{2} + y^{2} + z^{2}
+\]
+为 $\mathbb{R}^{3}$ 中点 $(x, y, z)$ 到原点的距离的平方. 在两个约束方程
+\[
+  \left\{\begin{aligned}
+    \varphi_{1}(x, y, z) &= \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} - 1 = 0, \\
+    \varphi_{2}(x, y, z) &= Ax + By + Cz = 0
+  \end{aligned}\right.
+\]
+的限制之下, 应求函数 $r^{2} = f(x, y, z)$ (即 $r$) 的最小值与最大值. 令
+\begin{align*}
+  F(x, y, z, \lambda_{1}, \lambda_{2}) &= f(x, y, z) + \lambda_{1} \varphi_{1}(x, y, z) + \lambda_{2} \varphi_{2}(x, y, z) \\
+  &= (x^{2} + y^{2} + z^{2}) + \lambda_{1}\left(\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} - 1\right) + \lambda_{2}(Ax + By + Cz).
+\end{align*}
+应用不定乘数法, 有
+\begin{align}
+  \frac{\partial F}{\partial x} &= 2x + 2\lambda_{1}\frac{x}{a^{2}} + A\lambda_{2} = 0, \label{eq:9.3.3.1} \\
+  \frac{\partial F}{\partial y} &= 2y + 2\lambda_{1}\frac{y}{b^{2}} + B\lambda_{2} = 0, \label{eq:9.3.3.2} \\
+  \frac{\partial F}{\partial z} &= 2z + 2\lambda_{1}\frac{z}{c^{2}} + C\lambda_{2} = 0, \label{eq:9.3.3.3} \\
+  \frac{\partial F}{\partial \lambda_{1}} &= \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} - 1 = 0, \label{eq:9.3.3.4} \\
+  \frac{\partial F}{\partial \lambda_{2}} &= Ax + By + Cz = 0. \label{eq:9.3.3.5}
+\end{align}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[>=Stealth, line cap=round, line join=round, scale=1.3]
+    % 原点
+    \coordinate (O) at (0, 0);
+
+    % 椭球面外轮廓 (水平半径 3.2, 垂直半径 1.7)
+    \draw[thick] (0, 0) ellipse (3.2 and 1.7);
+
+    % 赤道椭圆 (xy 平面)
+    \draw[dashed, thin] (3.2, 0) arc (0:180:3.2 and 0.8);
+    \draw[thick] (-3.2, 0) arc (180:360:3.2 and 0.8);
+
+    % 坐标轴 (虚线过内部，实线出外部)
+    % z 轴
+    \draw[dashed, thin] (0, -1.7) -- (0, 1.7);
+    \draw[thick, ->] (0, 1.7) -- (0, 2.3) node[right] {$z$};
+    \draw[thick] (0, -1.7) -- (0, -2.1);
+
+    % y 轴
+    \draw[dashed, thin] (O) -- (3.2, 0);
+    \draw[thick, ->] (3.2, 0) -- (3.9, 0) node[below] {$y$};
+
+    % x 轴 (斜向左下)
+    \draw[dashed, thin] (O) -- (-1.8, -1.1);
+    \draw[thick, ->] (-1.8, -1.1) -- (-2.4, -1.47) node[left] {$x$};
+
+    % 截面椭圆（倾斜截面 Ax + By + Cz = 0）
+    % 椭圆中心在 O(0,0)，长轴倾角约 22 度，长半轴 a=2.4，短半轴 b=1.1
+    \begin{scope}
+      \clip[rotate=22] (0,0) ellipse (2.4 and 1.1);
+      % 填满密集的垂直细线 (竖直线，平行于 z 轴)
+      \foreach \x in {-2.4,-2.25,...,2.4} {
+        \draw[thin, black!85] (\x, -1.8) -- (\x, 1.8);
+      }
+    \end{scope}
+    \draw[thick, rotate=22] (0,0) ellipse (2.4 and 1.1);
+
+    % 基向量与向径
+    % e1 沿截面椭圆长半轴方向 (22 度，长约 2.3)
+    \coordinate (E1) at ({2.3*cos(22)}, {2.3*sin(22)});
+    % e2 沿截面椭圆短半轴方向 (112 度，长约 1.25)
+    \coordinate (E2) at ({1.25*cos(112)}, {1.25*sin(112)});
+    % e3 平面法向量 (垂直于截面，指向右上约 65 度，长约 1.85)
+    \coordinate (E3) at (1.1, 1.85);
+
+    % 动点向径 r(theta) (在截面椭圆周上，参数取 t=52 度)
+    \pgfmathsetmacro{\px}{2.4*cos(52)}
+    \pgfmathsetmacro{\py}{1.1*sin(52)}
+    \pgfmathsetmacro{\rx}{\px*cos(22) - \py*sin(22)}
+    \pgfmathsetmacro{\ry}{\px*sin(22) + \py*cos(22)}
+    \coordinate (R) at (\rx, \ry);
+
+    % 绘制向量
+    \draw[very thick, ->] (O) -- (E1) node[above right=-1pt] {$e_1$};
+    \draw[very thick, ->] (O) -- (E2) node[above left=-1pt] {$e_2$};
+    \draw[very thick, ->] (O) -- (E3) node[above right=-2pt] {$e_3$};
+    \draw[very thick, ->] (O) -- (R) node[above left=-2pt] {$r(\theta)$};
+
+    % 角度 theta 从 e1 到 r(theta)
+    \draw[->, thin] ({0.85*cos(22)}, {0.85*sin(22)}) arc (22:48:0.85);
+    \node at (0.9, 0.52) [above right, font=\footnotesize] {$\theta$};
+
+    % 原点标号
+    \node at (O) [below left=2pt] {$O$};
+
+    % 注记文字与引线
+    \node at (3.1, 1.15) [right] {$\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$};
+    \draw[thin, ->] (3.1, 1.05) -- (2.3, 0.85);
+
+    \node at (1.3, -1.45) [right] {$Ax + By + Cz = 0$};
+    \draw[thin, ->] (1.3, -1.35) -- (0.5, -0.95);
+
+  \end{tikzpicture}
+  \caption{}
+  \label{fig:9.3.1}
+\end{figure}
+
+$x \times \eqref{eq:9.3.3.1} + y \times \eqref{eq:9.3.3.2} + z \times \eqref{eq:9.3.3.3}$, 得到
+\begin{align*}
+  0 &= 2(x^{2} + y^{2} + z^{2}) + 2\lambda_{1}\left(\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}}\right) + \lambda_{2}(Ax + By + Cz) \\
+  &= 2r^{2} + 2\lambda_{1} \cdot 1 + \lambda_{2} \cdot 0 = 2r^{2} + 2\lambda_{1},
+\end{align*}
+故
+\[
+  \lambda_{1} = -r^{2}.
+\]
+将此代入式 \eqref{eq:9.3.3.1}, \eqref{eq:9.3.3.2}, \eqref{eq:9.3.3.3} 就有
+\[
+  \left\{\begin{aligned}
+    x &= -\frac{\lambda_{2}Aa^{2}}{2(a^{2} + \lambda_{1})} = -\frac{\lambda_{2}Aa^{2}}{2(a^{2} - r^{2})} = \frac{\lambda_{2}Aa^{2}}{2(r^{2} - a^{2})}, \\
+    y &= \frac{\lambda_{2}Bb^{2}}{2(r^{2} - b^{2})}, \\
+    z &= \frac{\lambda_{2}Cc^{2}}{2(r^{2} - c^{2})}.
+  \end{aligned}\right.
+\]
+如果 $\lambda_{2} = 0$, 则 $x = y = z = 0$, 代入式 \eqref{eq:9.3.3.4} 得到 $0 = \dfrac{0^{2}}{a^{2}} + \dfrac{0^{2}}{b^{2}} + \dfrac{0^{2}}{c^{2}} = 1$, 矛盾. 由此知 $\lambda_{2} \neq 0$. 从
+\[
+  0 = Ax + By + Cz = \frac{\lambda_{2}}{2}\left(\frac{A^{2}a^{2}}{r^{2} - a^{2}} + \frac{B^{2}b^{2}}{r^{2} - b^{2}} + \frac{C^{2}c^{2}}{r^{2} - c^{2}}\right)
+\]
+可得
+\[
+  \frac{A^{2}a^{2}}{r^{2} - a^{2}} + \frac{B^{2}b^{2}}{r^{2} - b^{2}} + \frac{C^{2}c^{2}}{r^{2} - c^{2}} = 0.
+\]
+因为连续函数 $f(x, y, z) = r^{2}$ 在紧致集 $M$ 上必达到最大值与最小值, 它们也必定分别为条件极大值与条件极小值, 因此 $r$ 必满足上面最后一个方程. 从该方程解出 $r^{2}$, 可以求得 $r$ 的最大值与最小值.
+
+\textbf{解法 2}\quad 平面 $Ax + By + Cz = 0$ 的法向量为 $(A, B, C)$, 不失一般性, 设 $A \neq 0$. 显然, $(C, 0, -A)$ 与 $(A, B, C)$ 正交. 考察向量
+\[
+  \begin{vmatrix}
+    \boldsymbol{i} & \boldsymbol{j} & \boldsymbol{k} \\
+    A & B & C \\
+    C & 0 & -A
+  \end{vmatrix}
+  = (-AB, A^{2} + C^{2}, -BC),
+\]
+它与 $(C, 0, -A)$, $(A, B, C)$ 均正交. 因此
+\begin{align*}
+  \boldsymbol{e}_{1} &= \frac{1}{\sqrt{A^{2} + C^{2}}}(C, 0, -A), \\
+  \boldsymbol{e}_{2} &= \frac{1}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}(-AB, A^{2} + C^{2}, -BC), \\
+  \boldsymbol{e}_{3} &= \frac{1}{\sqrt{A^{2} + B^{2} + C^{2}}}(A, B, C)
+\end{align*}
+为 $\mathbb{R}^{3}$ 中的规范正交基. 椭圆上动点为
+\begin{align*}
+  (x(\theta), y(\theta), z(\theta)) &= \boldsymbol{r}(\theta) = r(\theta)\cos\theta \boldsymbol{e}_{1} + r(\theta)\sin\theta \boldsymbol{e}_{2} \\
+  &= r(\theta)\biggl[\frac{\cos\theta}{\sqrt{A^{2} + C^{2}}}(C, 0, -A) \\
+  &\quad + \frac{\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}(-AB, A^{2} + C^{2}, -BC)\biggr],
+\end{align*}
+所以
+\begin{align*}
+  1 &= \frac{x^{2}(\theta)}{a^{2}} + \frac{y^{2}(\theta)}{b^{2}} + \frac{z^{2}(\theta)}{c^{2}} \\
+  &= r^{2}(\theta)\Biggl\{\frac{1}{a^{2}}\left[\frac{C\cos\theta}{\sqrt{A^{2} + C^{2}}} - \frac{AB\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}\right]^{2} \\
+  &\quad + \frac{1}{b^{2}}\left[\frac{(A^{2} + C^{2})\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}\right]^{2} \\
+  &\quad + \frac{1}{c^{2}}\left[-\frac{A\cos\theta}{\sqrt{A^{2} + C^{2}}} - \frac{BC\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}\right]^{2}\Biggr\}.
+\end{align*}
+由上式得到
+\begin{align*}
+  g(\theta) &= \frac{1}{r^{2}(\theta)} \\
+  &= \frac{1}{a^{2}}\left[\frac{C\cos\theta}{\sqrt{A^{2} + C^{2}}} - \frac{AB\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}\right]^{2} \\
+  &\quad + \frac{1}{b^{2}}\left[\frac{(A^{2} + C^{2})\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}\right]^{2} \\
+  &\quad + \frac{1}{c^{2}}\left[\frac{A\cos\theta}{\sqrt{A^{2} + C^{2}}} + \frac{BC\sin\theta}{\sqrt{(-AB)^{2} + (A^{2} + C^{2})^{2} + (-BC)^{2}}}\right]^{2}.
+\end{align*}
+显然, $g(\theta) = \dfrac{1}{r^{2}(\theta)}$ 达到最大(小)值点恰为 $r(\theta)$ 达到最小(大)值点. 当然, 它是 $g(\theta)$ 的驻点, 即
+\[
+  0 = \frac{\mathrm{d}g}{\mathrm{d}\theta} = \widetilde{A}\sin^{2}\theta + \widetilde{B}\sin\theta\cos\theta - \widetilde{A}\cos^{2}\theta,
+\]
+\[
+  \widetilde{A}\tan^{2}\theta + \widetilde{B}\tan\theta - \widetilde{A} = 0.
+\]
+解二次方程 $\widetilde{A}t^{2} + \widetilde{B}t - \widetilde{A} = 0$ 得两根 $t_{1} = \tan\theta_{1}, t_{2} = \tan\theta_{2}$, 而 $r(\theta_{1})$ 与 $r(\theta_{2})$ 就是椭圆的两半轴的长. 此外, 由于 $t_{1}t_{2} = \tan\theta_{1}\tan\theta_{2} = \dfrac{-\widetilde{A}}{\widetilde{A}} = -1$, 故知 $r(\theta_{1})$ 与 $r(\theta_{2})$ 正交.
+\end{solution}
+
+
+\begin{example}\label{ex:9.3.4}
+求函数 $f(x, y, z) = \ln x + \ln y + 3\ln z$ ($x > 0, y > 0, z > 0$) 在球面 $x^{2} + y^{2} + z^{2} = 5r^{2}$ 上的最大值, 并证明: 对 $\forall\, a, b, c > 0$, 有
+\[
+  abc^{3} \leqslant 27\left(\frac{a + b + c}{5}\right)^{5}.
+\]
+\end{example}
+
+\begin{solution}
+应用 Lagrange 不定乘数法, 设
+\[
+  F(x, y, z, \lambda) = (\ln x + \ln y + 3\ln z) + \lambda(x^{2} + y^{2} + z^{2} - 5r^{2}),
+\]
+则由方程组
+\begin{equation}\label{eq:9.3.4.1}
+  \left\{\begin{aligned}
+    F'_{x} &= \frac{1}{x} + 2\lambda x = 0, \\
+    F'_{y} &= \frac{1}{y} + 2\lambda y = 0, \\
+    F'_{z} &= \frac{3}{z} + 2\lambda z = 0, \\
+    F'_{\lambda} &= x^{2} + y^{2} + z^{2} - 5r^{2} = 0
+  \end{aligned}\right.
+\end{equation}
+得出
+\[
+  \left\{\begin{aligned}
+    &1 + 2\lambda x^{2} = 0, \\
+    &1 + 2\lambda y^{2} = 0, \\
+    &3 + 2\lambda z^{2} = 0, \\
+    &x^{2} + y^{2} + z^{2} - 5r^{2} = 0.
+  \end{aligned}\right.
+\]
+前三式相加得到 $5 + 2\lambda(x^{2} + y^{2} + z^{2}) = 0$, 再由第 4 式, 有
+\[
+  5 + 2\lambda(5r^{2}) = 0 \implies \lambda = -\frac{1}{2r^{2}}.
+\]
+于是, $(x, y, z) = (r, r, \sqrt{3}r)$, $f(x, y, z)$ 在约束条件 $x^{2} + y^{2} + z^{2} = 5r^{2}$ 下可能的极值点就是 $(r, r, \sqrt{3}r)$. 因为
+\[
+  \lim_{x \to 0^{+}} \ln x = \lim_{y \to 0^{+}} \ln y = \lim_{z \to 0^{+}} \ln z = -\infty,
+\]
+故 $\exists\, \varepsilon \in (0, r)$, s.\,t. 当 $(x, y, z) \in (0, \varepsilon)^{3}$ 时,
+\[
+  f(x, y, z) < f(r, r, \sqrt{3}r).
+\]
+又因连续函数 $f$ 在紧致集(有界闭集)
+\[
+  \{(x, y, z) \in \mathbb{R}^{3} \mid x^{2} + y^{2} + z^{2} = 5r^{2}, x \geqslant \varepsilon, y \geqslant \varepsilon, z \geqslant \varepsilon\}
+\]
+上达到最大值, 显然, 它就是 $f$ 在 $\{(x, y, z) \in \mathbb{R}^{3} \mid x^{2} + y^{2} + z^{2} = 5r^{2}, x > 0, y > 0, z > 0\}$ 上的最大值. 此最大值点一定是条件极值点, 一定满足方程组 \eqref{eq:9.3.4.1}. 因此, 最大值点必为惟一的驻点 $(r, r, \sqrt{3}r)$. 此时,
+\[
+  f(r, r, \sqrt{3}r) = \ln r + \ln r + 3\ln(\sqrt{3}r) = \ln(3\sqrt{3}r^{5}).
+\]
+对 $\forall\, a, b, c > 0$, 取 $r = \left(\dfrac{a + b + c}{5}\right)^{\frac{1}{2}}$, 就有
+\[
+  (\sqrt{a})^{2} + (\sqrt{b})^{2} + (\sqrt{c})^{2} = a + b + c = 5r^{2},
+\]
+\begin{align*}
+  f(\sqrt{a}, \sqrt{b}, \sqrt{c}) &= \ln\sqrt{a} + \ln\sqrt{b} + 3\ln\sqrt{c} = \frac{1}{2}\ln(abc^{3}) \leqslant \ln(3\sqrt{3}r^{5}) \\
+  &= \ln\left[3\sqrt{3}\left(\frac{a + b + c}{5}\right)^{\frac{5}{2}}\right],
+\end{align*}
+故
+\[
+  abc^{3} \leqslant \left[3\sqrt{3}\left(\frac{a + b + c}{5}\right)^{\frac{5}{2}}\right]^{2} = 27\left(\frac{a + b + c}{5}\right)^{5}.
+\]
+对初等数学熟练的读者, 立即会想到
+\[
+  abc^{3} = 27ab\left(\frac{c}{3}\right)^{3} \leqslant 27\left(\frac{a + b + 3 \cdot \frac{c}{3}}{5}\right)^{5} = 27\left(\frac{a + b + c}{5}\right)^{5}. \qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:9.3.5}
+将正数 $a$ 分解为 $n$ 个非负数之和, 使这 $n$ 个非负数之积达最大.
+\end{example}
+
+\begin{solution}
+上述问题就是求函数 $f(x_{1}, x_{2}, \cdots, x_{n}) = x_{1}x_{2}\cdots x_{n}$ 在条件 $x_{1} + x_{2} + \cdots + x_{n} = a$ ($x_{i} \geqslant 0, i = 1, 2, \cdots, n$) 下的条件极值.
+
+应用 Lagrange 不定乘数法, 设
+\[
+  F(x_{1}, x_{2}, \cdots, x_{n}, \lambda) = x_{1}x_{2}\cdots x_{n} + \lambda(x_{1} + x_{2} + \cdots + x_{n} - a),
+\]
+则由方程组
+\[
+  \left\{\begin{aligned}
+    F'_{x_{1}} &= x_{2}\cdots x_{n} + \lambda = 0, \\
+    F'_{x_{2}} &= x_{1}x_{3}\cdots x_{n} + \lambda = 0, \\
+    &\;\;\vdots \\
+    F'_{x_{n}} &= x_{1}\cdots x_{n-1} + \lambda = 0, \\
+    F'_{\lambda} &= x_{1} + \cdots + x_{n} - a = 0
+  \end{aligned}\right.
+\]
+的前 $n$ 个方程得到 $x_{2}\cdots x_{n} = x_{1}x_{3}\cdots x_{n} = \cdots = x_{1}\cdots x_{n-1} = -\lambda$, 从而
+\[
+  x_{1} = x_{2} = \cdots = x_{n}.
+\]
+代入最后一个方程解得 $nx_{1} = a$, $x_{1} = x_{2} = \cdots = x_{n} = \dfrac{a}{n}$.
+
+因为连续函数 $f$ 在紧致集 $\{(x_{1}, x_{2}, \cdots, x_{n}) \in \mathbb{R}^{n} \mid x_{1} + x_{2} + \cdots + x_{n} = a, x_{i} \geqslant 0, i = 1, 2, \cdots, n\}$ 上一定达到最大值与最小值, 且其最小值为 0 (在 $x_{i} = 0$ 处达到). 于是, $f$ 的最大值点必为 $f$ 的惟一的条件极值点 $\left(\dfrac{a}{n}, \dfrac{a}{n}, \cdots, \dfrac{a}{n}\right)$, 从而
+\begin{align*}
+  x_{1}x_{2}\cdots x_{n} &= f(x_{1}, x_{2}, \cdots, x_{n}) \leqslant f\left(\frac{a}{n}, \frac{a}{n}, \cdots, \frac{a}{n}\right) \\
+  &= \left(\frac{a}{n}\right)^{n} = \left(\frac{x_{1} + x_{2} + \cdots + x_{n}}{n}\right)^{n},
+\end{align*}
+即
+\[
+  \sqrt[n]{x_{1}x_{2}\cdots x_{n}} \leqslant \frac{x_{1} + x_{2} + \cdots + x_{n}}{n}. \qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:9.3.6}
+求二次型
+\[
+  f(x_{1}, x_{2}, \cdots, x_{n}) = \sum_{i,j=1}^{n} a_{ij}x_{i}x_{j} \quad (a_{ij} = a_{ji})
+\]
+在条件 $\Phi(x_{1}, x_{2}, \cdots, x_{n}) = \sum\limits_{i=1}^{n} x_{i}^{2} - 1 = 0$ 下的最大值与最小值.
+\end{example}
+
+\begin{solution}
+显然, 连续函数 $f$ 在紧致集
+\begin{align*}
+  S^{n-1} &= \left\{(x_{1}, x_{2}, \cdots, x_{n}) \in \mathbb{R}^{n} \;\middle|\; \Phi(x_{1}, x_{2}, \cdots, x_{n}) = \sum_{i=1}^{n} x_{i}^{2} - 1 = 0\right\} \\
+  &= \left\{(x_{1}, x_{2}, \cdots, x_{n}) \in \mathbb{R}^{n} \;\middle|\; \sum_{i=1}^{n} x_{i}^{2} = 1\right\}
+\end{align*}
+上达到最大值与最小值, 其最大值点与最小值点必为 $f$ 的条件极大值点与条件极小值点. 应用 Lagrange 不定乘数法, 令
+\[
+  F(x_{1}, x_{2}, \cdots, x_{n}) = \sum_{i,j=1}^{n} a_{ij}x_{i}x_{j} + \lambda\left(\sum_{i=1}^{n} x_{i}^{2} - 1\right),
+\]
+则由方程组
+\begin{equation}\label{eq:9.3.6.1}
+  \left\{\begin{aligned}
+    \frac{1}{2}F'_{x_{1}} &= (a_{11} - \lambda)x_{1} + a_{12}x_{2} + \cdots + a_{1n}x_{n} = 0, \\
+    \frac{1}{2}F'_{x_{2}} &= a_{21}x_{1} + (a_{22} - \lambda)x_{2} + \cdots + a_{2n}x_{n} = 0, \\
+    &\;\;\vdots \\
+    \frac{1}{2}F'_{x_{n}} &= a_{n1}x_{1} + a_{n2}x_{2} + \cdots + (a_{nn} - \lambda)x_{n} = 0, \\
+    F'_{\lambda} &= x_{1}^{2} + \cdots + x_{n}^{2} - 1 = 0
+  \end{aligned}\right.
+\end{equation}
+可以看出, 它的解 $(x_{1}, x_{2}, \cdots, x_{n}) \in S^{n-1}$, 故为齐次线性方程组的非零解, 根 $\lambda$ 为特征方程
+\[
+  \begin{vmatrix}
+    a_{11} - \lambda & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} - \lambda & \cdots & a_{2n} \\
+    \vdots & \vdots & & \vdots \\
+    a_{n1} & a_{n2} & \cdots & a_{nn}
+  \end{vmatrix} = 0
+\]
+的根(也称 $\lambda$ 为矩阵 $(a_{ij})$ 的特征值). 反之, 对 $(a_{ij})$ 的任一特征值 $\lambda$, 方程组 \eqref{eq:9.3.6.1} 必有相应的一组非零解 $(x_{1}, x_{2}, \cdots, x_{n})$, 并可取 $(x_{1}, x_{2}, \cdots, x_{n}) \in S^{n-1}$. 此时, 上述方程组的等式分别乘 $x_{1}, x_{2}, \cdots, x_{n}$ 相加得
+\[
+  \sum_{i,j=1}^{n} a_{ij}x_{i}x_{j} - \lambda = \sum_{i,j=1}^{n} a_{ij}x_{i}x_{j} - \lambda\left(\sum_{i=1}^{n} x_{i}^{2}\right) = 0,
+\]
+所以
+\[
+  f(x_{1}, x_{2}, \cdots, x_{n}) = \sum_{i,j=1}^{n} a_{ij}x_{i}x_{j} = \lambda.
+\]
+于是, 一个有趣的结果, 即 $f$ 在 $S^{n-1}$ 上的最大值与最小值分别是矩阵 $(a_{ij})$ 的最大特征值与最小特征值.
+\end{solution}
+
+\begin{exblock}{练习题 9.3}
+  \item 求在指定条件下 $u$ 的极值:
+  \begin{enumerate}
+    \item $u = xy$, $x + y = 1$;
+    \item $u = \cos^{2}x + \cos^{2}y$, $x - y = \dfrac{\pi}{4}$;
+    \item $u = x - 2y + 2z$, $x^{2} + y^{2} + z^{2} = 1$;
+    \item $u = 3x^{2} + 3y^{2} + z^{2}$, $x + y + z = 1$.
+  \end{enumerate}
+
+  \item 设 $a > 0$, 求曲线
+  \[
+    \left\{\begin{aligned}
+      x^{2} + y^{2} &= 2az, \\
+      x^{2} + y^{2} + xy &= a^{2}
+    \end{aligned}\right.
+  \]
+  上的点到 $xOy$ 平面的最小距离与最大距离.
+
+  \item 在椭球面
+  \[
+    \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1
+  \]
+  内嵌入有最大体积的长方体, 问这长方体的尺寸如何?
+
+  \item 应用 Lagrange 不定乘数法, 求下列函数的条件极值:
+  \begin{enumerate}
+    \item $f(x, y) = x^{2} + y^{2}$, 约束条件为 $x + y - 1 = 0$;
+    \item $f(x, y, z, t) = x + y + z + t$, 约束条件为 $xyzt = c^{4}$ (其中 $x, y, z, t > 0, c > 0$);
+    \item $f(x, y, z) = xyz$, 约束条件为 $x^{2} + y^{2} + z^{2} = 1, x + y + z = 0$.
+  \end{enumerate}
+
+  \item 
+  \begin{enumerate}
+    \item 求表面积一定而体积最大的长方体;
+    \item 求体积一定而表面积最小的长方体;
+  \end{enumerate}
+
+  \item 求 $f(x, y, z) = xyz$ 在条件 $\dfrac{1}{x} + \dfrac{1}{y} + \dfrac{1}{z} = \dfrac{1}{r}$ ($x > 0, y > 0, z > 0, r > 0$) 下的极小值; 并证明不等式:
+  \[
+    3\left(\frac{1}{a} + \frac{1}{b} + \frac{1}{c}\right)^{-1} \leqslant \sqrt[3]{abc},
+  \]
+  其中 $a, b, c$ 为任意正实数.
+
+  \item 求原点到曲面 $(x - y)^{2} - z^{2} = 1$ 上的点的最短距离.
+
+  \item 求点 $(x_{0}, y_{0}, z_{0})$ 到平面 $Ax + By + Cz + D = 0$ 的最短距离.
+
+  \item 求 $\mathbb{R}^{3}$ 中两直线
+  \[
+    \frac{x - x_{1}}{m_{1}} = \frac{y - y_{1}}{n_{1}} = \frac{z - z_{1}}{p_{1}}
+  \]
+  与
+  \[
+    \frac{x - x_{2}}{m_{2}} = \frac{y - y_{2}}{n_{2}} = \frac{z - z_{2}}{p_{2}}
+  \]
+  之间的最短距离.
+
+  \item 求 $\mathbb{R}^{2}$ 中有心二次曲线
+  \[
+    Ax^{2} + Bxy + Cy^{2} = 1
+  \]
+  的半轴.
+
+  \item 求 $\mathbb{R}^{3}$ 中有心二次曲面
+  \[
+    Ax^{2} + By^{2} + Cz^{2} + 2Dxy + 2Eyz + 2Fxz = 1
+  \]
+  的半轴.
+
+  \item 求 $\mathbb{R}^{3}$ 中用平面
+  \[
+    Ax + By + Cz = 0
+  \]
+  与圆柱面
+  \[
+    \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} = 1
+  \]
+  相交所成椭圆的面积.
+
+  \item 求 $\mathbb{R}^{3}$ 中用平面 $x\cos\alpha + y\cos\beta + z\cos\gamma = 0$ (其中 $\cos^{2}\alpha + \cos^{2}\beta + \cos^{2}\gamma = 1$) 与椭球面
+  \[
+    \frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} + \frac{z^{2}}{c^{2}} = 1
+  \]
+  相截所成截面的面积.
+
+  \item 求函数 $f(x, y, z) = x^{4} + y^{4} + z^{4}$ 在约束条件 $xyz = 1$ 下的极值. 该极值是极大还是极小? 为什么?
+
+  \item 求 $f(x, y) = ax^{2} + 2bxy + cy^{2}$ 在 $x^{2} + y^{2} \leqslant 1$ 上的最大值与最小值, 其中 $a, b, c > 0$ 且 $b^{2} - ac > 0$.
+
+  \item 求 $x > 0, y > 0, z > 0$ 时函数
+  \[
+    f(x, y, z) = \ln x + 2\ln y + 3\ln z
+  \]
+  在球面 $x^{2} + y^{2} + z^{2} = 6r^{2}$ 上的最大值. 证明: 当 $a, b, c$ 为正实数时,
+  \[
+    ab^{2}c^{3} < 108\left(\frac{a + b + c}{6}\right)^{6}.
+  \]
+\end{exblock}

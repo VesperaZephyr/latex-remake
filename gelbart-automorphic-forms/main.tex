@@ -1,0 +1,211 @@
+\documentclass[11pt,a4paper,openright,twoside]{book}
+
+% ============ 宏包 ============
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+% 页面设置
+\usepackage{geometry}
+\geometry{
+    top=2cm,
+    bottom=2cm,
+    left=1.5cm,
+    right=1.5cm,
+    marginparwidth=2.5cm,
+    marginparsep=0.5cm,
+    headheight=15pt,
+}
+
+% 行间距
+\linespread{1.35}
+% 允许段落为容纳长文献标签/公式而适度伸缩，避免 overfull hbox
+\setlength{\emergencystretch}{3em}
+
+% ============ 定理环境 ============
+% 原书结构: 10 个主节 §1-§10 (本重排版用 \chapter 表示), 每节下设 A,B,C,... 小节,
+% 小节下偶有 1,2,3,... 子小节 (如 §4.B, §9.A/C).
+% 编号约定: 原书对 Theorem/Lemma/Proposition/Corollary/Definition/Remark/Assumption/Example
+% 共用一个计数器, 编号形如 "1.14" (§1 的第 14 个编号项), 故计数器挂在 chapter 上.
+\renewcommand{\thesection}{\Alph{section}}   % 小节编号用字母 A,B,C,...
+\renewcommand{\thesubsection}{\arabic{subsection}} % 子小节编号用数字, 每个字母小节下从 1 重新开始
+% 标题数字后加句点: "A. Elementary Notions", "1. Admissibility"
+\makeatletter
+\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\quad}
+\makeatother
+% 章的显示名用 § (原书主节即 "§1." 形式)
+\renewcommand{\chaptername}{\S}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remark*}{Remark}
+\newtheorem*{corollary*}{Corollary}
+
+% 证明环境
+\renewcommand{\proofname}{Proof}
+\renewcommand{\qedsymbol}{$\square$}
+
+% ============ 超链接 ============
+\definecolor{linkblue}{RGB}{0,0,180}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    hyperindex=true,
+    pdfauthor={Stephen S. Gelbart},
+    pdftitle={Automorphic Forms on Adele Groups},
+    pdfsubject={Automorphic Forms; Group Representations}
+}
+
+% ============ 页眉页脚 ============
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\leftmark}
+\fancyhead[LO]{\emph{Automorphic Forms on Adele Groups --- S.\ S.\ Gelbart}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ============ 自定义命令 ============
+% 正体微分符号 d (全书统一)
+\newcommand{\dd}{\mathrm{d}}
+% 数域 / 数环
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\PP}{\mathbb{P}}
+% 粗体算子与空间记号 (对应原书粗体)
+\newcommand{\bR}{\mathbf{R}}
+\newcommand{\bK}{\mathbf{K}}
+\newcommand{\bL}{\mathbf{L}}
+\newcommand{\bG}{\mathbf{G}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bH}{\mathbf{H}}
+\newcommand{\bD}{\mathbf{D}}
+\newcommand{\bE}{\mathbf{E}}
+% 常用算子
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\chark}{\operatorname{char}}
+\newcommand{\degree}{\operatorname{deg}}
+
+% ============ 文档开始 ============
+\begin{document}
+\frontmatter
+
+% 封面
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        {\large\scshape Annals of Mathematics Studies, No.~83\par}
+        \vspace{2.5cm}
+        {\Huge\bfseries AUTOMORPHIC FORMS\par}
+        {\Huge\bfseries ON ADELE GROUPS\par}
+        \vspace{2.5cm}
+        {\Large\bfseries BY\par}
+        \vspace{0.8cm}
+        {\Large\bfseries STEPHEN S.\ GELBART\par}
+        \vfill
+        {\large PRINCETON UNIVERSITY PRESS AND\par}
+        {\large UNIVERSITY OF TOKYO PRESS\par}
+        \vspace{0.5cm}
+        {\large PRINCETON, NEW JERSEY\par}
+        {\large 1975\par}
+    \end{center}
+\end{titlepage}
+
+% 版权页 / 版本说明
+\thispagestyle{empty}
+\begin{center}
+    \small
+    \noindent\textbf{About this edition}\\[0.5em]
+    This is a non-official \LaTeX{} re-typeset edition of \emph{Automorphic Forms on Adele Groups}\\
+    by Stephen S.\ Gelbart (Annals of Mathematics Studies, No.~83).\\
+    The content faithfully follows the original Princeton University Press edition of 1975;\\
+    no mathematical content has been altered.\\[0.5em]
+    In this re-typeset edition the differential symbol $d$ is printed upright throughout,\\
+    and the notation is modernized slightly (\emph{e.g.}, $\Z,\Q,\R,\C$ in blackboard bold).\\[0.8em]
+    This edition is intended for study and reference only.\\
+    All rights to the original work belong to Stephen S.\ Gelbart and the original publisher.
+    \vfill
+    \noindent Copyright \textcopyright{} 1975 by Princeton University Press.\\
+    \textsc{Annals of Mathematics Studies}, No.~83\\
+    Library of Congress Cataloging in Publication Data will be found on the last printed page\\
+    of this book. Published in Japan exclusively by University of Tokyo Press.
+\end{center}
+
+% 原书前言
+\newpage
+\pagestyle{plain}
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\input{preface}
+
+% 目录
+\tableofcontents
+
+% ============ 主内容 ============
+% 原书结构: §1-§10 十个主节, 每个主节为一章, 章下 A,B,C,... 小节.
+\mainmatter
+\pagestyle{fancy}
+
+\input{chapter01}
+\input{chapter02}
+\input{chapter03}
+\input{chapter04}
+\input{chapter05}
+\input{chapter06}
+\input{chapter07}
+\input{chapter08}
+\input{chapter09}
+\input{chapter10}
+
+% ============ 参考文献 ============
+\backmatter
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}
+\input{bibliography}
+
+% ============ 索引 ============
+\chapter*{Index}
+\addcontentsline{toc}{chapter}{Index}
+\markboth{INDEX}{INDEX}
+\input{index}
+
+\end{document}

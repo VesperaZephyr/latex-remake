@@ -1,0 +1,593 @@
+%% ======================================================================
+%%  Chapter III -- Noetherian rings and Dedekind rings
+%% ======================================================================
+\clearpage
+\folio{46}%
+\chapterhead{3}{III}{Noetherian rings and Dedekind rings}%
+            {NOETHERIAN RINGS AND DEDEKIND RINGS}
+
+We refer the reader who wonders why we discuss Dedekind rings to \hyperref[sec:3.4]{§4}, the
+example and the discussion following Theorem \ref{thm:III.4.1}. Noetherian
+rings are more general than Dedekind rings. We define Noetherian rings and
+develop a few of their properties in order to place these properties in
+their natural context, as well as because Noetherian rings are of
+fundamental importance in other areas of algebra and in algebraic geometry.
+Finally, the generalization of certain results regarding Noetherian rings to
+the case of Noetherian modules is another example of ``linearization'', a
+technique whose power the reader has already observed.
+
+%% ----------------------------------------------------------------------
+\sechead{1}{Noetherian rings and modules}{NOETHERIAN RINGS AND MODULES}
+
+In \hyperref[sec:1.4]{Chapter I, §4}, we proved the following:
+
+\begin{theorem}
+\label{thm:III.1.1}
+Let $A$ be a ring and $M$ an $A$-module. The following statements are
+equivalent.
+\begin{alist}
+\item Every non-empty collection of submodules of $M$ contains a maximal
+element.
+\item Every increasing sequence of submodules of $M$ is stationary.
+\item Every submodule of $M$ is of finite type.
+\end{alist}
+\end{theorem}
+
+\begin{definition}
+\label{def:III.1.1}
+An $A$-module $M$ is called \emph{Noetherian} if it satisfies the equivalent
+conditions of Theorem \ref{thm:III.1.1}. A ring $A$ is called
+\emph{Noetherian} if, considered as an $A$-module, it is a Noetherian module.
+\end{definition}
+
+We have seen (\hyperref[sec:1.4]{Chapter I, §4}, corollary of Theorem \ref{thm:I.4.1}) that a
+principal ideal ring is Noetherian.
+
+\begin{proposition}
+\label{prop:III.1.1}
+Let $A$ be a ring, $E$ an $A$-module, and $E'$ a submodule of $E$. In order
+that $E$ be Noetherian it is necessary and sufficient that $E'$ and $E/E'$
+be Noetherian.
+\end{proposition}
+
+\begin{proof}
+First, we prove necessity. Suppose $E$ is Noetherian. The lattice of
+submodules of $E'$ (respectively, $E/E'$) is isomorphic to the lattice of
+submodules of $E$ contained in $E'$ (respectively, containing $E'$). Thus
+$E'$ and $E/E'$ are Noetherian by (a) or (b).
+
+Conversely, suppose $E'$ and $E/E'$ are Noetherian. Let
+$(F_{n})_{n\geq0}$ be an increasing sequence of submodules of $E$. As $E'$
+is Noetherian, there is an integer $n_{0}$ such that
+$F_{n}\cap E'=F_{n+1}\cap E'$ for all $n\geq n_{0}$. As $E/E'$ is
+Noetherian, there is an integer $n_{1}$ such that
+$(F_{n}+E')/E'=(F_{n+1}+E')/E'$ for all $n\geq n_{1}$. Therefore,
+$F_{n}+E'=F_{n+1}+E'$ for $n\geq n_{1}$. Take $n\geq\sup(n_{0},n_{1})$. We
+shall show that $F_{n}=F_{n+1}$. It suffices to show that
+$F_{n+1}\subset F_{n}$. To see this take $x\in F_{n+1}$. Since
+$F_{n+1}+E'=F_{n}+E'$, there exist $y\in F_{n}$ and $z',z''\in E'$ such
+that $x+z'=y+z''$. Thus,
+$x-y=z''-z'\in F_{n+1}\cap E'$. Note that
+$F_{n+1}\cap E'=F_{n}\cap E'$. Thus, since $x-y$ and $y$ belong to $F_{n}$,
+$x\in F_{n}$ too. We conclude that $F_{n+1}=F_{n}$ for all
+$n\geq\sup(n_{0},n_{1})$, thus $E$ is Noetherian by (b).
+\end{proof}
+
+\begin{corollary}
+\label{cor:III.1.1}
+Let $A$ be a ring and let $E_{1},\ldots,E_{n}$ be Noetherian $A$-modules.
+Then the $A$-module product $\prod_{i=1}^{n}E_{i}$ is Noetherian.
+\end{corollary}
+
+\begin{proof}
+For $n=2$, $E_{1}$ may be identified with the submodule $E_{1}\times(0)$ of
+$E_{1}\times E_{2}$, and the corresponding quotient module is isomorphic to
+$E_{2}$. Our assertion follows from Proposition \ref{prop:III.1.1}. The
+general case is proved by induction on $n$.
+\end{proof}
+
+\begin{corollary}
+\label{cor:III.1.2}
+Let $A$ be a Noetherian ring and let $E$ be an $A$-module of finite type.
+Then $E$ is a Noetherian module (and, therefore, all its submodules are of
+finite type).
+\end{corollary}
+
+\begin{proof}
+By \hyperref[sec:1.4]{Chapter I, §4}, $E$ is isomorphic to a quotient module $A^{n}/R$ ($n$
+being the cardinality of a finite set of generators of $E$). Corollary
+\ref{cor:III.1.1} implies that $A^{n}$ is Noetherian and this fact, combined
+with Proposition \ref{prop:III.1.1}, implies that $A^{n}/R$ is Noetherian
+too.
+\end{proof}
+
+%% ----------------------------------------------------------------------
+\sechead{2}{An application concerning integral elements}%
+        {AN APPLICATION CONCERNING INTEGRAL ELEMENTS}
+
+\begin{proposition}
+\label{prop:III.2.1}
+Let $A$ be a Noetherian integrally closed ring. Let $K$ be its field of
+fractions, $L$ a finite extension of $K$, and $A'$ the integral closure of
+$A$ in $L$. Suppose that $K$ is of characteristic $0$. Then $A'$ is an
+$A$-module of finite type and a Noetherian ring.
+\end{proposition}
+
+\begin{proof}
+We know that $A'$ is a submodule of a free $A$-module of rank $n$
+(\hyperref[sec:2.7]{Chapter II, §7}, Theorem \ref{thm:II.7.1}). Thus $A'$ is an $A$-module of
+finite type (\hyperref[sec:3.1]{§1}, Corollary \ref{cor:III.1.2} of Proposition
+\ref{prop:III.1.1}), and, therefore, a Noetherian module (ibid.). On the
+other hand, the ideals of $A'$ are special cases of $A$-submodules of $A'$.
+They satisfy the maximal condition (\hyperref[sec:3.1]{§1}, Theorem \ref{thm:III.1.1}, (a)), so
+$A'$ is a Noetherian ring.
+\end{proof}
+
+\begin{statement}{Example}
+The ring of integers of a number field is Noetherian (take
+$A=\mathbf{Z}$, $K=\mathbf{Q}$).
+\end{statement}
+
+%% ----------------------------------------------------------------------
+\sechead{3}{Some preliminaries concerning ideals}%
+        {SOME PRELIMINARIES CONCERNING IDEALS}
+
+An ideal $\mathfrak{p}$ of a ring $A$ is called \emph{prime} if the quotient
+ring $A/\mathfrak{p}$ is an integral domain. Equivalently, the relations
+$x\in A-\mathfrak{p}$, $y\in A-\mathfrak{p}$ entail
+$xy\in A-\mathfrak{p}$, i.e.\ $A-\mathfrak{p}$ is stable under
+multiplication.
+
+In order that an ideal $\mathfrak{m}$ of $A$ be \emph{maximal} (i.e.\ maximal
+among the ideals of $A$ distinct from $A$), it is necessary and sufficient
+that $A/\mathfrak{m}$ contain no ideals besides itself and $(0)$, i.e.\ that
+$A/\mathfrak{m}$ be a field. Thus, every maximal ideal is prime. The converse
+is false, as the ideal $(0)$ of $\mathbf{Z}$ is prime but not maximal.
+
+\begin{lemma}\label{lem:III.3.1}
+Let $A$ be a ring, $\mathfrak{p}$ a prime ideal of $A$, and let $A'$ be a
+subring of $A$. Then $\mathfrak{p}\cap A'$ is a prime ideal of $A'$.
+\end{lemma}
+
+\begin{proof}
+$\mathfrak{p}\cap A'$ is the kernel of the composition of the homomorphisms
+$A'\to A\to A/\mathfrak{p}$, so there is an injective homomorphism
+$A'/\mathfrak{p}\cap A'\to A/\mathfrak{p}$. Clearly, a subring of an integral
+domain is an integral domain.
+\end{proof}
+
+Given two ideals $\mathfrak{a}$ and $\mathfrak{b}$ of a ring $A$, we define
+the product of $\mathfrak{a}$ and $\mathfrak{b}$ not as the set of products
+$ab$ where $a\in\mathfrak{a}$ and $b\in\mathfrak{b}$, but as the set of all
+finite sums $\sum a_{i}b_{i}$ of such products. One sees immediately that
+$\mathfrak{a}\mathfrak{b}$ is an ideal of $A$. We have:
+\[
+\mathfrak{a}\mathfrak{b}\subset\mathfrak{a}\cap\mathfrak{b}.
+\]
+The two expressions are not always equal. In a principal ideal ring the
+left-hand side corresponds to the product of ideal generators and the
+right-hand side to the least common multiple of generators.
+
+Ideal multiplication is associative and commutative. $A$ acts as an identity
+element in the monoid.
+
+Given an $A$-module $E$, a submodule $F$, and an ideal $\mathfrak{a}$ of
+$A$, we define in the same way the product $\mathfrak{a}F$. It is a
+submodule of $E$.
+
+\begin{lemma}\label{lem:III.3.2}
+If a prime ideal $\mathfrak{p}$ of a ring $A$ contains a product
+$\mathfrak{a}_{1}\mathfrak{a}_{2}\ldots\mathfrak{a}_{n}$ of ideals, then
+$\mathfrak{p}$ contains at least one of the ideals $\mathfrak{a}_{i}$.
+\end{lemma}
+
+\begin{proof}
+If $\mathfrak{a}_{i}\not\subset\mathfrak{p}$ for any $i$, then there exists
+$a_{i}\in\mathfrak{a}_{i}-\mathfrak{p}$ for all $i$. Therefore,
+$a_{1}\ldots a_{n}\notin\mathfrak{p}$, since $\mathfrak{p}$ is prime. But
+$a_{1}\ldots a_{n}\in\mathfrak{a}_{1}\ldots\mathfrak{a}_{n}$, which
+contradicts the hypothesis of the lemma.
+\end{proof}
+
+\begin{lemma}\label{lem:III.3.3}
+In a Noetherian ring every ideal contains a product of prime ideals. In a
+Noetherian integral domain $A$, every non-zero ideal contains a product of
+non-zero prime ideals.
+\end{lemma}
+
+\begin{proof}
+We are going to make use of a type of argument which occurs rather
+frequently in the theory of Noetherian rings. Let us prove the second
+assertion (the proof of the first is analogous; it suffices to delete the
+word ``non-zero'' three times). We look for a contradiction. Assume that the
+collection $\Phi$ of non-zero ideals of $A$ which contain no product of
+non-zero prime ideals is not empty. Since $A$ is Noetherian, $\Phi$ contains
+a maximal element $\mathfrak{b}$ (\hyperref[sec:3.1]{§1}, Theorem \ref{thm:III.1.1}, (a)). The
+ideal $\mathfrak{b}$ cannot be prime; otherwise $\mathfrak{b}$ would not
+belong to $\Phi$. Thus, there exist $x,y\in A-\mathfrak{b}$ such that
+$xy\in\mathfrak{b}$. The ideals $\mathfrak{b}+Ax$ and $\mathfrak{b}+Ay$
+contain $\mathfrak{b}$ as a proper subset. Therefore, since $\mathfrak{b}$ is
+maximal, they do not belong to $\Phi$. It follows that they both contain
+products of non-zero prime ideals:
+\[
+\mathfrak{b}+Ax\supset\mathfrak{p}_{1}\ldots\mathfrak{p}_{n}
+\quad\text{and}\quad
+\mathfrak{b}+Ay\supset\mathfrak{q}_{1}\ldots\mathfrak{q}_{r}.
+\]
+Since $xy\in\mathfrak{b}$,
+\[
+(\mathfrak{b}+Ax)(\mathfrak{b}+Ay)\subset\mathfrak{b},
+\]
+whence
+$\mathfrak{p}_{1}\ldots\mathfrak{p}_{n}\mathfrak{q}_{1}\ldots
+\mathfrak{q}_{r}\subset\mathfrak{b}$.
+\end{proof}
+
+Now let $A$ be an integral domain and let $K$ be its field of fractions. We
+call any $A$-submodule $I$ of $K$ for which there exists $d\in A-(0)$ such
+that $d\cdot I\subset A$ a \emph{fractional ideal} of $A$ (or of $K$ with
+respect to $A$). This means that the elements of $I$ have a ``common
+denominator'' $d\in A$. The ordinary ideals of $A$ are fractional ideals
+(with $d=1$). We sometimes call them \emph{integral ideals} to distinguish
+them from fractional ideals. Any $A$-submodule $I$ of finite type contained
+in $K$ is a fractional ideal. This follows from the fact that, if
+$(x_{1},\ldots,x_{n})$ is a finite set of generators for $I$, the $x_{i}$'s
+have a common denominator $d$ (e.g.\ the product of the denominators $d_{i}$,
+where $x_{i}=a_{i}d_{i}^{-1}$, with $a_{i},d_{i}\in A$), and $d$ is a common
+denominator for $I$. Conversely, if $A$ is Noetherian, every fractional
+ideal $I$ is an $A$-module of finite type, i.e.\ $I\subset d^{-1}A$ and
+$d^{-1}A$, being an $A$-module isomorphic to $A$, is a Noetherian module.
+
+We define the product $II'$ of two fractional ideals $I$ and $I'$ as the
+set of finite sums $\sum x_{i}y_{i}$ where $x_{i}\in I$ and $y_{i}\in I'$.
+If $I$ and $I'$ are fractional ideals, with common denominators $d$ and
+$d'$, then the sets $I\cap I'$, $I+I'$, and $II'$ are all fractional ideals.
+They are clearly $A$-submodules of $K$ and they have as common denominators
+$d$ (or $d'$), $dd'$, and $dd'$, respectively. The non-zero fractional
+ideals of $A$ constitute a commutative monoid under multiplication.
+
+%% ----------------------------------------------------------------------
+\sechead{4}{Dedekind rings}{DEDEKIND RINGS}
+
+\begin{definition}
+\label{def:III.4.1}
+An integral domain $A$ is called a \emph{Dedekind ring} if it is Noetherian
+and integrally closed, and if every non-zero prime ideal of $A$ is maximal.
+\end{definition}
+
+The ring $\mathbf{Z}$, and more generally any principal ideal ring, is a
+Dedekind ring. The following theorem implies that the ring of integers in a
+number field is a Dedekind ring.
+
+\begin{theorem}
+\label{thm:III.4.1}
+Let $A$ be a Dedekind ring, $K$ its field of fractions, $L$ an extension of
+finite degree of $K$, and $A'$ the integral closure of $A$ in $L$. Assume $K$
+is of characteristic $0$. Then $A'$ is a Dedekind ring and an $A$-module of
+finite type.
+\end{theorem}
+
+\begin{proof}
+The ring $A'$ is integrally closed by construction. It is Noetherian and an
+$A$-module of finite type by the proposition of \hyperref[sec:3.2]{§2}. It remains to show that
+every prime ideal $\mathfrak{p}'\neq(0)$ of $A'$ is maximal. For this purpose
+choose an element $x\in\mathfrak{p}'-(0)$ and consider an equation of
+integral dependence of $x$ over $A$, the degree of which is a minimum:
+\begin{equation}
+x^{n}+a_{n-1}x^{n-1}+\cdots+a_{1}x+a_{0}=0\quad(a_{i}\in A).
+\label{eq:III.4.1}
+\end{equation}
+Then $a_{0}\neq0$, since otherwise one could factor out an $x$ and obtain an
+equation of lower degree. By \eqref{eq:III.4.1}, we have
+$a_{0}\in A'x\cap A\subset\mathfrak{p}'\cap A$. Therefore,
+$\mathfrak{p}'\cap A\neq(0)$. Since $\mathfrak{p}'\cap A$ is a prime ideal
+of $A$ (\hyperref[sec:3.3]{§3}, \hyperref[lem:III.3.1]{Lemma 1}), we see that $\mathfrak{p}'\cap A$ is a maximal ideal of
+$A$ and $A/\mathfrak{p}'\cap A$ is a field. But $A/\mathfrak{p}'\cap A$ may be
+identified with a subring of $A'/\mathfrak{p}'$, and $A'/\mathfrak{p}'$ is
+integral over $A/\mathfrak{p}'\cap A$ (since $A'$ is integral over $A$). Thus
+$A'/\mathfrak{p}'$ is a field (\hyperref[sec:2.1]{Chapter II, §1}, Proposition \ref{prop:II.1.3}),
+so $\mathfrak{p}'$ is maximal.
+\end{proof}
+
+Interest in Dedekind rings arises from the fact that the ring of integers in
+a number field is a Dedekind ring, but not always a principal ideal ring.
+
+\begin{statement}{Example}
+Consider the ring of integers $A=\mathbf{Z}[\sqrt{-5}]$ in
+$\mathbf{Q}[\sqrt{-5}]$ (\hyperref[sec:2.5]{Chapter II, §5}, Theorem \ref{thm:II.5.1}). Observe
+that
+\begin{equation}
+(1+\sqrt{-5})(1-\sqrt{-5})=2\cdot3.
+\label{eq:III.4.2}
+\end{equation}
+The norms of the four factors are, respectively, $6,6,4$, and $9$. Note that
+$1+\sqrt{-5}$ can have no non-trivial divisor in $A$, since the norm of such
+a divisor would have to be a non-trivial divisor of $6$. This is impossible,
+because the equations $a^{2}+5b^{2}=2$ and $a^{2}+5b^{2}=3$ have no
+solutions in $\mathbf{Z}$. If $A$ were principal, the prime element
+$1+\sqrt{-5}$, which divides the product $2\cdot3$ by \eqref{eq:III.4.2},
+would have to divide either $2$ or $3$. But then, taking norms, we see that
+$6$ would divide $4$ or $9$, which is not the case.
+\end{statement}
+
+Historically, the arithmetician Kummer (1810--1893) observed that the rings
+of integers in certain number fields were not principal ideal rings (in
+fact, certain cyclotomic fields; Kummer observed this in connection with his
+work on Fermat's equation, cf.\ I, \hyperref[sec:3.2]{§2}). In order, at least in part, to get
+around this inconvenience, he and Dedekind (1831--1916) introduced the
+notion of ideal. Dedekind then studied the rings which now carry his name.
+The most important property of principal ideal rings is unique factorization
+into products of primes. There is an elegant generalization of this property
+to the case of Dedekind rings. In a Dedekind ring ideals factor uniquely
+into products of prime ideals. There are many interesting consequences of
+this unique factorization, which we intend now to describe precisely and
+prove.
+
+\begin{theorem}
+\label{thm:III.4.2}
+Let $A$ be a Dedekind ring which is not a field. Every maximal ideal of $A$
+is invertible in the monoid of fractional ideals of $A$.
+\end{theorem}
+
+\begin{proof}
+Let $\mathfrak{m}$ be a maximal ideal of $A$. Then
+$\mathfrak{m}\neq(0)$, since $A$ is not a field. Put
+\begin{equation}
+\mathfrak{m}'=\{x\in K\mid x\mathfrak{m}\subset A\}.
+\label{eq:III.4.3}
+\end{equation}
+Clearly, $\mathfrak{m}'$ is an $A$-submodule of $K$; any nonzero element of
+$\mathfrak{m}$ serves as a common denominator for the elements of
+$\mathfrak{m}'$. Thus $\mathfrak{m}'$ is a fractional ideal of $A$. It
+suffices to show that $\mathfrak{m}\mathfrak{m}'=A$. We see that
+\eqref{eq:III.4.3} implies that $\mathfrak{m}\mathfrak{m}'\subset A$; on the
+other hand, $A\subset\mathfrak{m}'$ (since $\mathfrak{m}$ is an ideal), so
+$\mathfrak{m}=A\mathfrak{m}\subset\mathfrak{m}'\mathfrak{m}$. As
+$\mathfrak{m}$ is maximal and
+$\mathfrak{m}\subset\mathfrak{m}'\mathfrak{m}\subset A$, either
+$\mathfrak{m}'\mathfrak{m}=A$ or $\mathfrak{m}'\mathfrak{m}=\mathfrak{m}$. It
+remains to show that $\mathfrak{m}'\mathfrak{m}=\mathfrak{m}$ is impossible.
+
+Now, if $\mathfrak{m}'\mathfrak{m}=\mathfrak{m}$ and if
+$x\in\mathfrak{m}'$, then $x\mathfrak{m}\subset\mathfrak{m}$,
+$x^{2}\mathfrak{m}\subset x\mathfrak{m}\subset\mathfrak{m}$, and
+$x^{n}\mathfrak{m}\subset\mathfrak{m}$ for any $n\in\mathbf{N}$ by induction.
+Thus any non-zero element $d\in\mathfrak{m}$ is a common denominator for all
+the powers $x^{n}$ of $x$, $n\in\mathbf{N}$. It follows that $A[x]$ is a
+fractional ideal of $A$. Since $A$ is Noetherian, $A[x]$ is an $A$-module of
+finite type (\hyperref[sec:3.3]{§3}, near the end), so $x$ is integral over $A$ (\hyperref[sec:2.1]{Chapter II, §1},
+Theorem \ref{thm:II.1.1}). But $A$ is integrally closed; therefore,
+$x\in A$; and consequently $\mathfrak{m}'\mathfrak{m}=\mathfrak{m}$ implies
+$\mathfrak{m}'=A$. It remains to show that $\mathfrak{m}'=A$ is impossible.
+
+For this purpose take a non-zero element $a\in\mathfrak{m}$. The ideal $Aa$
+contains a product $\mathfrak{p}_{1}\mathfrak{p}_{2}\ldots\mathfrak{p}_{n}$
+of non-zero prime ideals (\hyperref[sec:3.3]{§3}, \hyperref[lem:III.3.3]{Lemma 3}). We may take $n$ as small as
+possible. We have
+$\mathfrak{m}\supset Aa\supset\mathfrak{p}_{1}\ldots\mathfrak{p}_{n}$, which
+means that $\mathfrak{m}\supset\mathfrak{p}_{i}$ for some $i$ (\hyperref[sec:3.3]{§3}, \hyperref[lem:III.3.2]{Lemma 2}),
+say $i=1$. As $\mathfrak{p}_{i}$ is maximal by hypothesis,
+$\mathfrak{m}=\mathfrak{p}_{1}$. Put
+$\mathfrak{b}=\mathfrak{p}_{2}\ldots\mathfrak{p}_{n}$. Then
+$Aa\supset\mathfrak{m}\mathfrak{b}$ and $Aa\not\supset\mathfrak{b}$, since
+$n$ was as small as possible. There thus exists $b\in\mathfrak{b}$ such that
+$b\notin Aa$. Since $\mathfrak{m}\mathfrak{b}\subset Aa$, we have
+$\mathfrak{m}ba^{-1}\subset A$. According to the definition
+\eqref{eq:III.4.3} of $\mathfrak{m}'$, this means that
+$ba^{-1}\in\mathfrak{m}'$. But, since $b\notin Aa$, $ba^{-1}\notin A$. Thus
+$\mathfrak{m}'\neq A$.
+\end{proof}
+
+\begin{theorem}
+\label{thm:III.4.3}
+Let $A$ be a Dedekind ring and let $P$ be the set of non-zero prime ideals
+of $A$. Then
+\begin{alist}
+\item Every non-zero fractional ideal $\mathfrak{b}$ of $A$ may be uniquely
+expressed in the form
+\begin{equation}
+\mathfrak{b}=\prod_{\mathfrak{p}\in P}
+\mathfrak{p}^{n_{\mathfrak{p}}(\mathfrak{b})},
+\label{eq:III.4.4}
+\end{equation}
+where, for any $\mathfrak{p}\in P$,
+$n_{\mathfrak{p}}(\mathfrak{b})\in\mathbf{Z}$ and, for almost all
+$\mathfrak{p}\in P$, $n_{\mathfrak{p}}(\mathfrak{b})=0$.
+\item The monoid of non-zero fractional ideals of $A$ is a group.
+\end{alist}
+\end{theorem}
+
+\begin{proof}
+First we prove the existence of (a), i.e.\ that any fractional ideal
+$\mathfrak{b}$ is a product of powers ($\geq0$ or $\leq0$) of prime ideals.
+There exists $d\in A-(0)$ such that $d\mathfrak{b}\subset A$, i.e.\ such that
+$d\mathfrak{b}$ is an integral ideal of $A$,
+$\mathfrak{b}=(d\mathfrak{b})(Ad)^{-1}$. We may, without loss of
+generality, prove (a) for integral ideals. Proceeding as in \hyperref[lem:III.3.3]{Lemma 3} of \hyperref[sec:3.3]{§3}, we
+consider the collection $\Phi$ of non-zero ideals in $A$ which are not
+products of prime ideals. Suppose that $\Phi$ is not empty. Let
+$\mathfrak{a}$ be a maximal element of $\Phi$ ($A$ is Noetherian). Then
+$\mathfrak{a}\neq A$, since $A$ is the product of the empty collection of
+prime ideals. So $\mathfrak{a}$ is contained in a maximal ideal
+$\mathfrak{p}$, which is thus a maximal element in the collection of
+non-trivial ideals of $A$ which contain $\mathfrak{a}$. Let
+$\mathfrak{p}'$ be the inverse fractional ideal of $\mathfrak{p}$. Since
+$\mathfrak{a}\subset\mathfrak{p}$,
+$\mathfrak{a}\mathfrak{p}'\subset\mathfrak{p}\mathfrak{p}'=A$. As
+$\mathfrak{p}'\supset A$, $\mathfrak{a}\mathfrak{p}'\supset\mathfrak{a}$; in
+fact $\mathfrak{a}\mathfrak{p}'\neq\mathfrak{a}$ (if
+$\mathfrak{a}\mathfrak{p}'=\mathfrak{a}$ and if
+$x\in\mathfrak{p}'$, then $x\mathfrak{a}\subset\mathfrak{a}$,
+$x^{n}\mathfrak{a}\subset\mathfrak{a}$ for all $n$, $x$ integral over $A$,
+and $x\in A$ (as in Theorem \ref{thm:III.4.2}). But this is impossible,
+since $\mathfrak{p}'\neq A$ (otherwise $\mathfrak{p}'=A$ and
+$\mathfrak{p}\mathfrak{p}'=\mathfrak{p}$)). According to the maximality of
+$\mathfrak{a}$ in $\Phi$, we have $\mathfrak{a}\mathfrak{p}'\notin\Phi$, so
+$\mathfrak{a}\mathfrak{p}'=\mathfrak{p}_{1}\ldots\mathfrak{p}_{n}$, a
+product of prime ideals. Multiplying by $\mathfrak{p}$, we see that
+$\mathfrak{a}=\mathfrak{p}\mathfrak{p}_{1}\ldots\mathfrak{p}_{n}$. Thus every
+integral ideal of $A$ is a product of prime ideals.
+
+Let us consider next the uniqueness of (a). Suppose that
+\begin{equation}
+\prod_{\mathfrak{p}\in P}\mathfrak{p}^{n(\mathfrak{p})}
+=\prod_{\mathfrak{p}\in P}\mathfrak{p}^{m(\mathfrak{p})},
+\quad\text{i.e.}\quad
+\prod_{\mathfrak{p}\in P}\mathfrak{p}^{n(\mathfrak{p})-m(\mathfrak{p})}=A.
+\label{eq:III.4.5}
+\end{equation}
+If $n(\mathfrak{p})-m(\mathfrak{p})\neq0$ for some prime ideals
+$\mathfrak{p}\in P$, we may separate the positive and negative exponents and
+write:
+\[
+\mathfrak{p}_{1}^{\alpha_{1}}\ldots\mathfrak{p}_{r}^{\alpha_{r}}
+=\mathfrak{q}_{1}^{\beta_{1}}\ldots\mathfrak{q}_{s}^{\beta_{s}},
+\]
+where $\mathfrak{p}_{i},\mathfrak{q}_{j}\in P$, $\alpha_{i}>0$,
+$\beta_{j}>0$, $\mathfrak{p}_{i}\neq\mathfrak{q}_{j}$ for all $i$ and $j$.
+Thus $\mathfrak{p}_{1}$ contains
+$\mathfrak{q}_{1}^{\beta_{1}}\ldots\mathfrak{q}_{s}^{\beta_{s}}$;
+$\mathfrak{p}_{1}\supset\mathfrak{q}_{j}$ for some $j$ (\hyperref[sec:3.3]{§3}, \hyperref[lem:III.3.2]{Lemma 2}), say
+$\mathfrak{p}_{1}\supset\mathfrak{q}_{1}$. But $\mathfrak{p}_{1}$ and
+$\mathfrak{q}_{1}$ are both maximal, which implies
+$\mathfrak{p}_{1}=\mathfrak{q}_{1}$, which is a contradiction.
+
+Finally \eqref{eq:III.4.5} implies that
+$\prod_{\mathfrak{p}\in P}\mathfrak{p}^{-n_{\mathfrak{p}}(\mathfrak{b})}$ is
+the inverse of $\mathfrak{b}$ and this proves (b).
+\end{proof}
+
+\begin{statement}{Remark}
+We have just seen that the monoid $I(A)$ of non-zero fractional ideals of a
+Dedekind ring is a group. The principal fractional ideals (i.e.\ those of the
+form $Ax$, $x\in K^{*}$) form a subgroup $F(A)$ of $I(A)$ (since
+$(Ax)(Ay)^{-1}=Axy^{-1}$). The quotient group $C(A)=I(A)/F(A)$ is called the
+\emph{ideal class group} of $A$. In order that $A$ be a principal ideal ring,
+it is necessary and sufficient that $C(A)$ consist of a single element.
+\end{statement}
+
+Let us complete this section with some formulas, in which
+$n_{\mathfrak{p}}(\mathfrak{b})$ denotes the exponent of $\mathfrak{p}$ in the
+factorization of $\mathfrak{b}$ into a product of prime ideals (cf.\
+\eqref{eq:III.4.4}).
+\begin{equation}
+n_{\mathfrak{p}}(\mathfrak{a}\mathfrak{b})
+=n_{\mathfrak{p}}(\mathfrak{a})+n_{\mathfrak{p}}(\mathfrak{b})
+\quad(\text{proof obvious}).
+\label{eq:III.4.6}
+\end{equation}
+\begin{equation}
+\mathfrak{b}\subset A\Leftrightarrow
+n_{\mathfrak{p}}(\mathfrak{b})\geq0\quad\text{for all }
+\mathfrak{p}\in P.
+\label{eq:III.4.7}
+\end{equation}
+($\Rightarrow$ seen in the course of the proof of Theorem \ref{thm:III.4.3};
+$\Leftarrow$ obvious).
+\begin{equation}
+\mathfrak{a}\subset\mathfrak{b}\Leftrightarrow
+n_{\mathfrak{p}}(\mathfrak{a})\geq n_{\mathfrak{p}}(\mathfrak{b})
+\quad\text{for all }\mathfrak{p}\in P.
+\label{eq:III.4.8}
+\end{equation}
+($\mathfrak{a}\subset\mathfrak{b}$ means the same as
+$\mathfrak{a}\mathfrak{b}^{-1}\subset A$. Now apply \eqref{eq:III.4.6} and
+\eqref{eq:III.4.7}).
+\begin{equation}
+n_{\mathfrak{p}}(\mathfrak{a}+\mathfrak{b})
+=\inf(n_{\mathfrak{p}}(\mathfrak{a}),n_{\mathfrak{p}}(\mathfrak{b})).
+\label{eq:III.4.9}
+\end{equation}
+($\mathfrak{a}+\mathfrak{b}$ is the least upper bound of $\mathfrak{a}$ and
+$\mathfrak{b}$ for ideal inclusion; to complete the proof use
+\eqref{eq:III.4.8}).
+\begin{equation}
+n_{\mathfrak{p}}(\mathfrak{a}\cap\mathfrak{b})
+=\sup(n_{\mathfrak{p}}(\mathfrak{a}),n_{\mathfrak{p}}(\mathfrak{b})).
+\label{eq:III.4.10}
+\end{equation}
+(analogous argument involving greatest lower bounds; again use
+\eqref{eq:III.4.8}).
+
+%% ----------------------------------------------------------------------
+\sechead{5}{The norm of an ideal}{THE NORM OF AN IDEAL}
+
+In this section, $K$ denotes a number field, $n$ its degree, and $A$ the ring
+of integers of $K$. We write $N(x)$ in place of $N_{K/\mathbf{Q}}(x)$.
+
+\begin{proposition}
+\label{prop:III.5.1}
+If $x$ is a non-zero element of $A$, then
+$|N(x)|=\operatorname{card}(A/Ax)$.
+\end{proposition}
+
+Note that, since $x\in A$, we have $N(x)\in\mathbf{Z}$ (\hyperref[sec:2.6]{Chapter II, §6},
+corollary of Proposition \ref{prop:II.6.2}), so the preceding formula makes
+sense.
+
+\begin{proof}
+We know that $A$ is a free $\mathbf{Z}$-module of rank $n$ (\hyperref[sec:2.8]{Chapter II, §8}),
+and $Ax$ is a $\mathbf{Z}$-submodule of $A$. It is also of rank $n$, since
+multiplication by $x$ maps $A$ to $Ax$ isomorphically. According to \hyperref[sec:1.5]{Chapter
+I, §5}, Theorem \ref{thm:I.5.1}, there exists a base $(e_{1},\ldots,e_{n})$ of
+the $\mathbf{Z}$-module $A$ together with elements $c_{i}$ of $\mathbf{N}$
+such that $(c_{1}e_{1},\ldots,c_{n}e_{n})$ is a base of $Ax$.
+
+Furthermore, the abelian group $A/Ax$ is isomorphic to the finite abelian
+group $\prod_{i=1}^{n}\mathbf{Z}/c_{i}\mathbf{Z}$, whose order is
+$c_{1}c_{2}\ldots c_{n}$. Write $u$ for the $\mathbf{Z}$-linear mapping of
+$A$ on $Ax$ defined by $u(e_{i})=c_{i}e_{i}$ for $i=1,\ldots,n$. We have
+$\det(u)=c_{1}\ldots c_{n}$. On the other hand $(xe_{1},\ldots,xe_{n})$ is
+also a base for $Ax$. There is thus an automorphism $v$ of the
+$\mathbf{Z}$-module $Ax$ such that $v(c_{i}e_{i})=xe_{i}$. Then $\det(v)$ is
+invertible in $\mathbf{Z}$, so $\det(v)=\pm1$. But $v\cdot u$ is
+multiplication by $x$, and its determinant is, by definition, $N(x)$
+(\hyperref[sec:2.6]{Chapter II, §6}, \hyperref[def:II.6.1]{Definition 1}). Since $\det(v\cdot u)=\det(v)\cdot\det(u)$, we may conclude that
+$N(x)=\pm c_{1}\ldots c_{n}=\pm\operatorname{card}(A/Ax)$.
+\end{proof}
+
+\begin{definition}\label{def:III.5.1}
+Given a non-zero integral ideal $\mathfrak{a}$ of $A$, we call the number
+$\operatorname{card}(A/\mathfrak{a})$ the \emph{norm} of $\mathfrak{a}$ and
+denote it by $N(\mathfrak{a})$.
+\end{definition}
+
+Let us observe that $N(\mathfrak{a})$ is finite. In fact, if $a$ is a
+non-zero element of $\mathfrak{a}$, then $Aa\subset\mathfrak{a}$, and
+$A/\mathfrak{a}$ may be identified with a quotient of $A/Aa$. Thus
+$\operatorname{card}(A/\mathfrak{a})\leq\operatorname{card}(A/Aa)$, which is
+finite by Proposition \ref{prop:III.5.1}. On the other hand we saw that, for
+a principal ideal $Ab$, $N(Ab)=|N(b)|$.
+
+\begin{proposition}
+\label{prop:III.5.2}
+If $\mathfrak{a}$ and $\mathfrak{b}$ are both non-zero integral ideals of
+$A$, then $N(\mathfrak{a}\mathfrak{b})
+=N(\mathfrak{a})N(\mathfrak{b})$.
+\end{proposition}
+
+\begin{proof}
+The ideal $\mathfrak{b}$ factors into a product of maximal ideals (\hyperref[sec:3.4]{§4},
+Theorem \ref{thm:III.4.3}), and it suffices to show that
+$N(\mathfrak{a}\mathfrak{m})=N(\mathfrak{a})N(\mathfrak{m})$ for
+$\mathfrak{m}$ maximal. Since
+$\mathfrak{a}\mathfrak{m}\subset\mathfrak{a}$, we have
+$\operatorname{card}(A/\mathfrak{a}\mathfrak{m})
+=\operatorname{card}(A/\mathfrak{a})
+\operatorname{card}(\mathfrak{a}/\mathfrak{a}\mathfrak{m})$. It thus suffices
+to show that
+$\operatorname{card}(\mathfrak{a}/\mathfrak{a}\mathfrak{m})
+=\operatorname{card}(A/\mathfrak{m})$. Now
+$\mathfrak{a}/\mathfrak{a}\mathfrak{m}$ is an $A$-module annihilated by
+$\mathfrak{m}$, which means it may be considered as a vector space over
+$A/\mathfrak{m}$. Its subspaces are its $A$-submodules; and they are of the
+form $\mathfrak{q}/\mathfrak{a}\mathfrak{m}$, where $\mathfrak{q}$ is an
+ideal such that
+$\mathfrak{a}\mathfrak{m}\subset\mathfrak{q}\subset\mathfrak{a}$. But
+formula \eqref{eq:III.4.8} of \hyperref[sec:3.4]{§4} implies that there are no ideals between
+$\mathfrak{a}\mathfrak{m}$ and $\mathfrak{a}$. Therefore, the vector space
+$\mathfrak{a}/\mathfrak{a}\mathfrak{m}$ is of dimension one over
+$A/\mathfrak{m}$. This means that
+$\operatorname{card}(\mathfrak{a}/\mathfrak{a}\mathfrak{m})
+=\operatorname{card}(A/\mathfrak{m})$.
+\end{proof}

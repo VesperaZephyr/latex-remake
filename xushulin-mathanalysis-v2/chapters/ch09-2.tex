@@ -1,0 +1,616 @@
+\section{$n$ 元函数的极值与最值}\label{sec:9.2}
+
+在第一册中, 我们学习过一元函数的极值与最值, 在这一节中将把这些概念与方法推广到 $n$ 元函数中去.
+
+\begin{definition}\label{def:9.2.1}
+设 $D \subset \mathbb{R}^{n}$ 为开集, $f\colon D \to \mathbb{R}^{1}$ 为 $n$ 元函数, $\boldsymbol{x}^{0} \in D$. 若存在 $\boldsymbol{x}^{0}$ 的开邻域 $U \subset D$, 使得对于 $\forall \boldsymbol{x} \in U \setminus \{\boldsymbol{x}^{0}\}$, 都有
+\[
+  f(\boldsymbol{x}) \leqslant f(\boldsymbol{x}^{0}) \quad (\text{或 } f(\boldsymbol{x}) \geqslant f(\boldsymbol{x}^{0})),
+\]
+则称 $f$ 在 $\boldsymbol{x}^{0}$ 取\textbf{极大值}(或\textbf{极小值}), 相应的点 $\boldsymbol{x}^{0}$ 称为 $f$ 的\textbf{极大值点}(或\textbf{极小值点}). 极大值与极小值统称为\textbf{极值}, 极大值点与极小值点统称为\textbf{极值点}.
+
+如果对于 $\forall \boldsymbol{x} \in U \setminus \{\boldsymbol{x}^{0}\}$, 都有严格不等式
+\[
+  f(\boldsymbol{x}) < f(\boldsymbol{x}^{0}) \quad (\text{或 } f(\boldsymbol{x}) > f(\boldsymbol{x}^{0})),
+\]
+则称 $f$ 在 $\boldsymbol{x}^{0}$ 取\textbf{严格极大值}(或\textbf{严格极小值}), 点 $\boldsymbol{x}^{0}$ 称为 $f$ 的\textbf{严格极大值点}(或\textbf{严格极小值点}).
+\end{definition}
+
+从一元函数的知识知道, 若 $f(x)$ 在 $x_{0}$ 处取得极值, 且 $f'(x_{0})$ 存在, 则必有 $f'(x_{0}) = 0$. 这个结论对多元函数也是成立的.
+
+\begin{theorem}[极值的必要条件]\label{thm:9.2.1}
+设 $D \subset \mathbb{R}^{n}$ 为开集, $f\colon D \to \mathbb{R}^{1}$ 为 $n$ 元函数, $\boldsymbol{x}^{0} \in D$ 为 $f$ 的极值点. 若偏导数 $\dfrac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0})$ ($i = 1, 2, \cdots, n$) 存在, 则必有
+\[
+  \frac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0}) = 0 \quad (i = 1, 2, \cdots, n).
+\]
+即 $\operatorname{grad}f(\boldsymbol{x}^{0}) = \boldsymbol{0}$.
+\end{theorem}
+
+\begin{proof}
+不妨设 $\boldsymbol{x}^{0}$ 为 $f$ 的极大值点. 于是存在 $\boldsymbol{x}^{0}$ 的球形开邻域 $B(\boldsymbol{x}^{0}, \delta) \subset D$, 使得对于 $\forall \boldsymbol{x} \in B(\boldsymbol{x}^{0}, \delta)$, 都有
+\[
+  f(\boldsymbol{x}) \leqslant f(\boldsymbol{x}^{0}).
+\]
+固定其余变量 $x_{j} = x_{j}^{0}$ ($j \neq i$), 令 $x_{i} \in (x_{i}^{0} - \delta, x_{i}^{0} + \delta)$, 考查一元函数
+\[
+  g_{i}(x_{i}) = f(x_{1}^{0}, \cdots, x_{i-1}^{0}, x_{i}, x_{i+1}^{0}, \cdots, x_{n}^{0}).
+\]
+显然, $g_{i}(x_{i})$ 在区间 $(x_{i}^{0} - \delta, x_{i}^{0} + \delta)$ 内于点 $x_{i}^{0}$ 处取得极大值. 又因为偏导数 $\dfrac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0})$ 存在, 所以一元函数导数 $g_{i}'(x_{i}^{0})$ 存在, 且 $g_{i}'(x_{i}^{0}) = \dfrac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0})$. 根据一元函数极值的必要条件(Fermat 定理), 必有
+\[
+  g_{i}'(x_{i}^{0}) = \frac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0}) = 0 \quad (i = 1, 2, \cdots, n).
+\]
+这就证明了 $\operatorname{grad}f(\boldsymbol{x}^{0}) = \boldsymbol{0}$.
+\end{proof}
+
+满足 $\operatorname{grad}f(\boldsymbol{x}^{0}) = \boldsymbol{0}$ 的点 $\boldsymbol{x}^{0}$ 称为函数 $f$ 的\textbf{驻点}(或\textbf{稳定点}). 定理 \ref{thm:9.2.1} 表明: 可微函数的极值点必为驻点. 但反过来, 驻点不一定是极值点, 例如函数 $f(x, y) = xy$, 在原点 $(0, 0)$ 处显然有 $f_{x}'(0, 0) = 0$, $f_{y}'(0, 0) = 0$, 所以 $(0, 0)$ 为驻点. 但是在原点的任何开邻域内, 都有点使得 $f(x, y) > 0$ (第一、三象限), 也有点使得 $f(x, y) < 0$ (第二、四象限), 而 $f(0, 0) = 0$, 故 $(0, 0)$ 不是极值点(此点称为鞍点).
+
+因此, 驻点只是极值的必要条件, 还必须寻求极值的充分条件.
+
+回忆一元函数 $f(x)$ 极值的充分条件: 若 $f'(x_{0}) = 0$, 且 $f''(x_{0})$ 存在, 则当 $f''(x_{0}) > 0$ 时, $x_{0}$ 为严格极小值点; 当 $f''(x_{0}) < 0$ 时, $x_{0}$ 为严格极大值点. 对于多元函数, 二阶导数由 Hesse 矩阵代替.
+
+设 $f\colon D \to \mathbb{R}^{1}$ 具有二阶连续偏导数, 即 $f \in C^{2}(D, \mathbb{R}^{1})$, 则 $f$ 在点 $\boldsymbol{x}^{0}$ 处的 Hesse 矩阵为
+\[
+  \boldsymbol{H}f(\boldsymbol{x}^{0}) = \left(\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0})\right)_{n \times n}.
+\]
+由 Schwarz 定理知, $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为实对称矩阵. 二次型
+\[
+  Q(\boldsymbol{h}) = \boldsymbol{h} \boldsymbol{H}f(\boldsymbol{x}^{0}) \boldsymbol{h}^{\mathrm{T}} = \sum_{i,j=1}^{n} \frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0}) h_{i} h_{j}
+\]
+称为 $f$ 在 $\boldsymbol{x}^{0}$ 处的 Hesse 二次型.
+
+\begin{theorem}[极值的充分条件]\label{thm:9.2.2}
+设 $D \subset \mathbb{R}^{n}$ 为开集, $f \in C^{2}(D, \mathbb{R}^{1})$, $\boldsymbol{x}^{0} \in D$ 为 $f$ 的驻点, 即 $\operatorname{grad}f(\boldsymbol{x}^{0}) = \boldsymbol{0}$.
+\begin{enumerate}
+  \item 若 Hesse 矩阵 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为\textbf{正定矩阵}, 则 $\boldsymbol{x}^{0}$ 为 $f$ 的严格极小值点;
+  \item 若 Hesse 矩阵 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为\textbf{负定矩阵}, 则 $\boldsymbol{x}^{0}$ 为 $f$ 的严格极大值点;
+  \item 若 Hesse 矩阵 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为\textbf{不定矩阵}, 则 $\boldsymbol{x}^{0}$ 不是 $f$ 的极值点(称为鞍点);
+  \item 若 Hesse 矩阵 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为\textbf{半正定或半负定矩阵}, 则不能断定 $\boldsymbol{x}^{0}$ 是否为极值点, 需另作分析.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+因为 $\boldsymbol{x}^{0} \in D$, $D$ 为开集, 故存在 $\delta_{0} > 0$, 使得球形开邻域 $B(\boldsymbol{x}^{0}, \delta_{0}) \subset D$. 对于任意满足 $0 < \|\boldsymbol{h}\| < \delta_{0}$ 的向量 $\boldsymbol{h} = (h_{1}, h_{2}, \cdots, h_{n})$, 线段 $\{\boldsymbol{x}^{0} + t\boldsymbol{h} \mid 0 \leqslant t \leqslant 1\} \subset B(\boldsymbol{x}^{0}, \delta_{0})$.
+
+根据多元函数的 Taylor 公式(带 Lagrange 余项, 见\cref{thm:8.3.1}), 存在 $\theta \in (0, 1)$, 使得
+\[
+  f(\boldsymbol{x}^{0} + \boldsymbol{h}) = f(\boldsymbol{x}^{0}) + \sum_{i=1}^{n}\frac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0}) h_{i} + \frac{1}{2}\sum_{i,j=1}^{n}\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0} + \theta\boldsymbol{h}) h_{i} h_{j}.
+\]
+因为 $\boldsymbol{x}^{0}$ 是驻点, 所以 $\sum_{i=1}^{n}\dfrac{\partial f}{\partial x_{i}}(\boldsymbol{x}^{0}) h_{i} = 0$. 于是
+\[
+  f(\boldsymbol{x}^{0} + \boldsymbol{h}) - f(\boldsymbol{x}^{0}) = \frac{1}{2}\sum_{i,j=1}^{n}\frac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0} + \theta\boldsymbol{h}) h_{i} h_{j}.
+\]
+记 $a_{ij} = \dfrac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0})$, $\alpha_{ij}(\boldsymbol{h}) = \dfrac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0} + \theta\boldsymbol{h}) - \dfrac{\partial^{2}f}{\partial x_{i}\partial x_{j}}(\boldsymbol{x}^{0})$. 由于 $f \in C^{2}(D, \mathbb{R}^{1})$, 当 $\|\boldsymbol{h}\| \to 0$ 时, $\alpha_{ij}(\boldsymbol{h}) \to 0$ ($i, j = 1, 2, \cdots, n$).
+
+令 $\boldsymbol{u} = \dfrac{\boldsymbol{h}}{\|\boldsymbol{h}\|}$, 则 $\boldsymbol{u}$ 是单位向量, 即 $\|\boldsymbol{u}\| = 1$, 且 $h_{i} = \|\boldsymbol{h}\| u_{i}$. 代入上式得
+\[
+  f(\boldsymbol{x}^{0} + \boldsymbol{h}) - f(\boldsymbol{x}^{0}) = \frac{1}{2} \|\boldsymbol{h}\|^{2} \left[ \sum_{i,j=1}^{n} a_{ij} u_{i} u_{j} + \sum_{i,j=1}^{n} \alpha_{ij}(\boldsymbol{h}) u_{i} u_{j} \right].
+\]
+注意到单位球面 $S^{n-1} = \{\boldsymbol{u} \in \mathbb{R}^{n} \mid \|\boldsymbol{u}\| = 1\}$ 是 $\mathbb{R}^{n}$ 中的紧致集. 二次函数 $Q(\boldsymbol{u}) = \sum_{i,j=1}^{n} a_{ij} u_{i} u_{j}$ 在 $S^{n-1}$ 上连续.
+
+(1) 若 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 正定, 则对于任意 $\boldsymbol{u} \in S^{n-1}$, 都有 $Q(\boldsymbol{u}) > 0$. 由连续函数在紧致集上能达到最小值, 设
+\[
+  m = \min_{\boldsymbol{u} \in S^{n-1}} Q(\boldsymbol{u}) > 0.
+\]
+另一方面, 设 $\alpha(\boldsymbol{h}) = \max_{1 \leqslant i,j \leqslant n} |\alpha_{ij}(\boldsymbol{h})|$. 因为 $|u_{i}| \leqslant 1$, 所以
+\[
+  \left| \sum_{i,j=1}^{n} \alpha_{ij}(\boldsymbol{h}) u_{i} u_{j} \right| \leqslant \sum_{i,j=1}^{n} |\alpha_{ij}(\boldsymbol{h})| \leqslant n^{2} \alpha(\boldsymbol{h}).
+\]
+由于当 $\|\boldsymbol{h}\| \to 0$ 时 $\alpha(\boldsymbol{h}) \to 0$, 故存在 $\delta \in (0, \delta_{0})$, 当 $0 < \|\boldsymbol{h}\| < \delta$ 时, $n^{2} \alpha(\boldsymbol{h}) < \dfrac{m}{2}$. 从而
+\[
+  \sum_{i,j=1}^{n} a_{ij} u_{i} u_{j} + \sum_{i,j=1}^{n} \alpha_{ij}(\boldsymbol{h}) u_{i} u_{j} \geqslant m - \frac{m}{2} = \frac{m}{2} > 0.
+\]
+因此, 当 $0 < \|\boldsymbol{h}\| < \delta$ 时,
+\[
+  f(\boldsymbol{x}^{0} + \boldsymbol{h}) - f(\boldsymbol{x}^{0}) \geqslant \frac{1}{4} m \|\boldsymbol{h}\|^{2} > 0.
+\]
+即 $f(\boldsymbol{x}^{0} + \boldsymbol{h}) > f(\boldsymbol{x}^{0})$, 这证明了 $\boldsymbol{x}^{0}$ 为 $f$ 的严格极小值点.
+
+(2) 若 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 负定, 则考虑 $-f$, 其 Hesse 矩阵 $\boldsymbol{H}(-f)(\boldsymbol{x}^{0}) = -\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为正定矩阵. 由 (1) 知 $\boldsymbol{x}^{0}$ 为 $-f$ 的严格极小值点, 从而 $\boldsymbol{x}^{0}$ 为 $f$ 的严格极大值点.
+
+(3) 若 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 不定, 则存在单位向量 $\boldsymbol{u}_{1}, \boldsymbol{u}_{2} \in S^{n-1}$, 使得
+\[
+  Q(\boldsymbol{u}_{1}) > 0, \quad Q(\boldsymbol{u}_{2}) < 0.
+\]
+取 $\boldsymbol{h} = t \boldsymbol{u}_{1}$ ($t > 0$), 则
+\[
+  f(\boldsymbol{x}^{0} + t\boldsymbol{u}_{1}) - f(\boldsymbol{x}^{0}) = \frac{1}{2} t^{2} \left[ Q(\boldsymbol{u}_{1}) + \sum_{i,j=1}^{n} \alpha_{ij}(t\boldsymbol{u}_{1}) u_{1i} u_{1j} \right].
+\]
+当 $t$ 充分小时, 方括号内的式子大于 $\dfrac{1}{2} Q(\boldsymbol{u}_{1}) > 0$, 故 $f(\boldsymbol{x}^{0} + t\boldsymbol{u}_{1}) > f(\boldsymbol{x}^{0})$.
+
+同理, 取 $\boldsymbol{h} = t \boldsymbol{u}_{2}$ ($t > 0$), 当 $t$ 充分小时, $f(\boldsymbol{x}^{0} + t\boldsymbol{u}_{2}) < f(\boldsymbol{x}^{0})$.
+
+这说明在 $\boldsymbol{x}^{0}$ 的任意邻域内, 都有点的值大于 $f(\boldsymbol{x}^{0})$, 也有点的值小于 $f(\boldsymbol{x}^{0})$, 故 $\boldsymbol{x}^{0}$ 不是 $f$ 的极值点.
+
+(4) 若 $\boldsymbol{H}f(\boldsymbol{x}^{0})$ 为半正定或半负定矩阵, 此时在零特征值对应的方向上, 二阶导数为零, 其差值的正负由更高阶的导数决定, 因而不能判定.
+\end{proof}
+
+由线性代数中实二次型正定与负定的充要条件(极小主子式判定法则 / 主子式判别法), 定理 \ref{thm:9.2.2} 可改述为行列式形式:
+
+\begin{corollary}\label{cor:9.2.1}
+设 $D \subset \mathbb{R}^{n}$ 为开集, $f \in C^{2}(D, \mathbb{R}^{1})$, $\boldsymbol{x}^{0} \in D$ 为驻点. 令
+\[
+  \Delta_{k} = \det\begin{pmatrix}
+    \dfrac{\partial^{2}f}{\partial x_{1}^{2}} & \dfrac{\partial^{2}f}{\partial x_{1}\partial x_{2}} & \cdots & \dfrac{\partial^{2}f}{\partial x_{1}\partial x_{k}} \\
+    \dfrac{\partial^{2}f}{\partial x_{2}\partial x_{1}} & \dfrac{\partial^{2}f}{\partial x_{2}^{2}} & \cdots & \dfrac{\partial^{2}f}{\partial x_{2}\partial x_{k}} \\
+    \vdots & \vdots & & \vdots \\
+    \dfrac{\partial^{2}f}{\partial x_{k}\partial x_{1}} & \dfrac{\partial^{2}f}{\partial x_{k}\partial x_{2}} & \cdots & \dfrac{\partial^{2}f}{\partial x_{k}^{2}}
+  \end{pmatrix}_{(\boldsymbol{x}^{0})} \quad (k = 1, 2, \cdots, n).
+\]
+\begin{enumerate}
+  \item 若对于所有的 $k = 1, 2, \cdots, n$, 都有 $\Delta_{k} > 0$, 则 $\boldsymbol{x}^{0}$ 为严格极小值点;
+  \item 若对于所有的 $k = 1, 2, \cdots, n$, 都有 $(-1)^{k} \Delta_{k} > 0$ (即 $\Delta_{1} < 0, \Delta_{2} > 0, \Delta_{3} < 0, \cdots$), 则 $\boldsymbol{x}^{0}$ 为严格极大值点;
+  \item 若奇数阶主子式与偶数阶主子式正负符号的变化既不满足 (1) 也不满足 (2), 且各阶顺序主子式均不为零, 则 $\boldsymbol{x}^{0}$ 不是极值点.
+\end{enumerate}
+\end{corollary}
+
+特别地, 对于二元函数 $z = f(x, y)$, 设有驻点 $(x_{0}, y_{0})$, 记
+\[
+  a = f_{xx}''(x_{0}, y_{0}), \quad b = f_{xy}''(x_{0}, y_{0}), \quad c = f_{yy}''(x_{0}, y_{0}),
+\]
+则 Hesse 矩阵为
+\[
+  \boldsymbol{H}f(x_{0}, y_{0}) = \begin{pmatrix} a & b \\ b & c \end{pmatrix},
+\]
+顺序主子式为 $\Delta_{1} = a$, $\Delta_{2} = ac - b^{2}$. 于是推论 \ref{cor:9.2.1} 退化为:
+
+\begin{corollary}\label{cor:9.2.2}
+设 $D \subset \mathbb{R}^{2}$ 为开区域, $f \in C^{2}(D, \mathbb{R}^{1})$, $(x_{0}, y_{0}) \in D$ 为驻点, 记 $a = f_{xx}''(x_{0}, y_{0})$, $b = f_{xy}''(x_{0}, y_{0})$, $c = f_{yy}''(x_{0}, y_{0})$, $\Delta = ac - b^{2}$. 则:
+\begin{enumerate}
+  \item 若 $ac - b^{2} > 0$, 则 $(x_{0}, y_{0})$ 为极值点. 且:
+  \begin{itemize}
+    \item 当 $a > 0$ (或 $c > 0$) 时, 为严格极小值点;
+    \item 当 $a < 0$ (或 $c < 0$) 时, 为严格极大值点.
+  \end{itemize}
+  \item 若 $ac - b^{2} < 0$, 则 $(x_{0}, y_{0})$ 不是极值点(鞍点).
+  \item 若 $ac - b^{2} = 0$, 则不能确定 $(x_{0}, y_{0})$ 是否为极值点, 需作进一步分析.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+二次型为 $Q(h, k) = ah^{2} + 2bhk + ck^{2}$.
+
+(1) 若 $ac - b^{2} > 0$, 则必有 $ac > b^{2} \geqslant 0$, 故 $a$ 与 $c$ 同号且不为零.
+\begin{itemize}
+  \item 当 $a > 0$ 时, $Q(h, k) = a \left(h + \dfrac{b}{a}k\right)^{2} + \dfrac{ac - b^{2}}{a} k^{2}$. 显然对于不全为零的 $(h, k)$, $Q(h, k) > 0$, 故二次型正定, $(x_{0}, y_{0})$ 为严格极小值点;
+  \item 当 $a < 0$ 时, 同理可知 $Q(h, k) < 0$, 二次型负定, $(x_{0}, y_{0})$ 为严格极大值点.
+\end{itemize}
+
+(2) 若 $ac - b^{2} < 0$.
+\begin{itemize}
+  \item 若 $a \neq 0$, 则 $Q(h, k) = a \left(h + \dfrac{b}{a}k\right)^{2} + \dfrac{ac - b^{2}}{a} k^{2}$. 取 $k = 0, h \neq 0$, 则 $Q(h, 0) = ah^{2}$ 与 $a$ 同号; 取 $h = -\dfrac{b}{a}k, k \neq 0$, 则 $Q\left(-\dfrac{b}{a}k, k\right) = \dfrac{ac - b^{2}}{a} k^{2}$ 与 $\dfrac{ac - b^{2}}{a}$ 同号(即与 $a$ 异号). 故二次型不定, $(x_{0}, y_{0})$ 不是极值点.
+  \item 若 $a = 0$, 则由 $ac - b^{2} < 0$ 知 $b \neq 0$. 此时 $Q(h, k) = k(2bh + ck)$. 取 $k > 0$, 当 $h$ 充分大时与 $b$ 同号; 取 $k > 0$, 当 $h$ 绝对值充分大且负时与 $b$ 异号. 故二次型同样不定, $(x_{0}, y_{0})$ 不是极值点.
+\end{itemize}
+
+(3) 若 $ac - b^{2} = 0$. 此时可能取极值也可能不取极值, 例如:
+\begin{enumerate}
+  \item[(i)] $f(x, y) = x^{4} + y^{4}$, 在原点 $(0, 0)$ 处 $a = b = c = 0$, $ac - b^{2} = 0$. 但对任何 $(x, y) \neq (0, 0)$ 均有 $f(x, y) > 0 = f(0, 0)$, 故 $(0, 0)$ 是严格极小值点;
+  \item[(ii)] $f(x, y) = -(x^{4} + y^{4})$, 原点是严格极大值点;
+  \item[(iii)] $f(x, y) = x^{3} + y^{3}$, 在原点 $a = b = c = 0$, 但 $f(x, 0) = x^{3}$ 可正可负, 原点不是极值点;
+  \item[(iv)] $f(x, y) = x^{2} + y^{4}$, 在原点 $a = 2, b = 0, c = 0$, $ac - b^{2} = 0$, 原点是极小值点;
+  \item[(v)] $f(x, y) = x^{2} + y^{3}$, 在原点 $a = 2, b = 0, c = 0$, $ac - b^{2} = 0$, 原点不是极值点. \qedhere
+\end{enumerate}
+\end{proof}
+
+\extref{定理 3.5.7} 指出: 若区间 $I$ 上的连续函数 $f$ 有惟一的极值点 $x_{0}$, 如果 $x_{0}$ 为 $f$ 的极大(小)值点, 则 $x_{0}$ 为 $f$ 在 $I$ 上的惟一的最大(小)值点. 惊奇与遗憾的是, 这个定理不能推广到 $\mathbb{R}^{n}$ 中.
+
+\begin{example}\label{ex:9.2.1}
+构造一个二元函数 $f(x, y)$ 在整个平面 $\mathbb{R}^{2}$ 上有惟一的驻点, 且为极大值点, 但非最大值点.
+\end{example}
+
+\begin{solution}
+令
+\[
+  f(x, y) = 2(\arctan x)^{3} - 2(\arctan x)^{2} + \frac{1}{8}\arctan x\arctan y - \frac{1}{64}(\arctan y)^{2}.
+\]
+则解方程组
+\[
+  \left\{\begin{aligned}
+    \frac{\partial f}{\partial x} &= \frac{1}{1 + x^{2}}\left[6(\arctan x)^{2} - 4\arctan x + \frac{1}{8}\arctan y\right] = 0, \\
+    \frac{\partial f}{\partial y} &= \frac{1}{1 + y^{2}}\left[\frac{1}{8}\arctan x - \frac{1}{32}\arctan y\right] = 0,
+  \end{aligned}\right.
+\]
+得 $\arctan y = 0$ $\left(\text{或 } \dfrac{7}{3} > \dfrac{\pi}{2} \text{ (不合)}\right)$, $\arctan x = 0$ $\left(\text{或 } \dfrac{7}{12} \text{ 但相应的 } \arctan y = \dfrac{7}{3} \text{ (不合)}\right)$. 故 $f(x, y)$ 有惟一的驻点 $(0, 0)$. 由于
+\[
+  \frac{\partial^{2}f}{\partial x^{2}}(0, 0) = -4 < 0, \quad \frac{\partial^{2}f}{\partial x\partial y}(0, 0) = \frac{\partial^{2}f}{\partial y\partial x}(0, 0) = \frac{1}{8}, \quad \frac{\partial^{2}f}{\partial y^{2}}(0, 0) = -\frac{1}{32},
+\]
+\[
+  \begin{vmatrix}
+    \dfrac{\partial^{2}f}{\partial x^{2}}(0, 0) & \dfrac{\partial^{2}f}{\partial x\partial y}(0, 0) \\
+    \dfrac{\partial^{2}f}{\partial x\partial y}(0, 0) & \dfrac{\partial^{2}f}{\partial y^{2}}(0, 0)
+  \end{vmatrix} = \begin{vmatrix} -4 & \dfrac{1}{8} \\ \dfrac{1}{8} & -\dfrac{1}{32} \end{vmatrix} = \frac{1}{8} - \frac{1}{64} = \frac{7}{64} > 0,
+\]
+根据定理 \ref{thm:9.2.2}(2), $(0, 0)$ 为 $f(x, y)$ 的惟一的严格极大值点. 但是, 由
+\[
+  f(\tan 1, \tan 1) = 2 - 2 + \frac{1}{8} - \frac{1}{64} = \frac{7}{64} > 0 = f(0, 0)
+\]
+知 $f(0, 0)$ 非最大值.
+\end{solution}
+
+\begin{example}\label{ex:9.2.2}
+设 $f(x, y) = x^{3} - y^{3} + 3x^{2} + 3y^{2} - 9x$, 求 $f$ 的极值.
+\end{example}
+
+\begin{solution}
+令
+\[
+  \left\{\begin{aligned}
+    \frac{\partial f}{\partial x} &= 3x^{2} + 6x - 9 = 3(x + 3)(x - 1) = 0, \\
+    \frac{\partial f}{\partial y} &= -3y^{2} + 6y = -3y(y - 2) = 0,
+  \end{aligned}\right.
+\]
+解得驻点 $(-3, 0)$, $(-3, 2)$, $(1, 0)$, $(1, 2)$.
+
+计算二阶偏导数:
+\[
+  \frac{\partial^{2}f}{\partial x^{2}} = 6x + 6, \quad \frac{\partial^{2}f}{\partial x\partial y} = \frac{\partial^{2}f}{\partial y\partial x} = 0, \quad \frac{\partial^{2}f}{\partial y^{2}} = -6y + 6.
+\]
+列表判别如下:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& $(-3, 0)$ & $(-3, 2)$ & $(1, 0)$ & $(1, 2)$ \\ \hline
+$a = \dfrac{\partial^{2}f}{\partial x^{2}}$ & $-12$ & $-12$ & $12$ & $12$ \\ \hline
+$b = \dfrac{\partial^{2}f}{\partial x\partial y} = \dfrac{\partial^{2}f}{\partial y\partial x}$ & $0$ & $0$ & $0$ & $0$ \\ \hline
+$c = \dfrac{\partial^{2}f}{\partial y^{2}}$ & $6$ & $-6$ & $6$ & $-6$ \\ \hline
+$ac - b^{2}$ & $-72 < 0$ & $72 > 0$ & $72 > 0$ & $-72 < 0$ \\ \hline
+& 非极值点 & 极大值点 & 极小值点 & 非极值点 \\ \hline
+\end{tabular}
+\end{center}
+由上表知, $(1, 0)$ 与 $(-3, 2)$ 分别为 $f$ 的极小值点与极大值点, 且
+\[
+  f_{\text{极小}} = f(1, 0) = -5,
+\]
+\[
+  f_{\text{极大}} = f(-3, 2) = 31. \qedhere
+\]
+\end{solution}
+
+\begin{example}\label{ex:9.2.3}
+求 $f(x, y) = \sin x\sin y\sin(x + y)$ 在闭三角形 $D = \{(x, y) \in \mathbb{R}^{2} \mid x \geqslant 0, y \geqslant 0, x + y \leqslant \pi\}$ (\cref{fig:9.2.1}) 中的最大值与最小值.
+\end{example}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=Stealth]
+    % 坐标轴
+    \draw[->, thick] (-0.3, 0) -- (3.8, 0) node[below] {$x$};
+    \draw[->, thick] (0, -0.3) -- (0, 3.8) node[left] {$y$};
+    \node[below left] at (0, 0) {$O$};
+
+    % 三角形内部阴影 (自左下向右上的斜线)
+    \begin{scope}
+      \clip (0, 0) -- (2.8, 0) -- (0, 2.8) -- cycle;
+      \foreach \t in {-0.5, -0.2, ..., 3.5} {
+        \draw[thin] (\t, -0.5) -- (\t + 3.5, 3.0);
+      }
+    \end{scope}
+
+    % 三角形斜边
+    \draw[very thick] (0, 2.8) -- (2.8, 0);
+
+    % 坐标刻度
+    \node[below] at (2.8, 0) {$\pi$};
+    \node[left] at (0, 2.8) {$\pi$};
+  \end{tikzpicture}
+  \caption{}
+  \label{fig:9.2.1}
+\end{figure}
+
+\begin{solution}
+由
+\[
+  \left\{\begin{aligned}
+    f_{x}'(x, y) &= \cos x\sin y\sin(x + y) + \sin x\sin y\cos(x + y) \\
+    &= \sin y\sin(2x + y) = 0, \\
+    f_{y}'(x, y) &= \sin x\sin(x + 2y) = 0.
+  \end{aligned}\right.
+\]
+由于 $0 < x < \pi$, $0 < y < \pi$, 所以上述方程组等价于
+\[
+  \left\{\begin{aligned}
+    \sin(2x + y) &= 0, \\
+    \sin(x + 2y) &= 0.
+  \end{aligned}\right.
+\]
+因为 $0 < 2x + y < 2\pi$, $0 < x + 2y < 2\pi$, 所以
+\[
+  \left\{\begin{aligned}
+    2x + y &= \pi, \\
+    x + 2y &= \pi,
+  \end{aligned}\right. \quad \left\{\begin{aligned}
+    x &= \frac{\pi}{3}, \\
+    y &= \frac{\pi}{3}.
+  \end{aligned}\right.
+\]
+这就解出了惟一的驻点 $\left(\dfrac{\pi}{3}, \dfrac{\pi}{3}\right)$.
+
+因为 $D$ 为紧致集, 故连续函数 $f$ 在 $D$ 上达到最大值与最小值. 而最大值点、最小值点或在 $D$ 的边界 $\partial D$ 上, 或该点为 $f$ 的驻点. 从
+\[
+  f\left(\frac{\pi}{3}, \frac{\pi}{3}\right) = \sin\frac{\pi}{3}\sin\frac{\pi}{3}\sin\frac{2\pi}{3} = \left(\frac{\sqrt{3}}{2}\right)^{3} = \frac{3\sqrt{3}}{8}
+\]
+与在边界 $\partial D$ 上:
+\begin{enumerate}
+  \item $x = 0$, $0 \leqslant y \leqslant \pi$, $f(x, y) = 0$;
+  \item $y = 0$, $0 \leqslant x \leqslant \pi$, $f(x, y) = 0$;
+  \item $x + y = \pi$, $f(x, y) = 0$.
+\end{enumerate}
+比较 (1), (2), (3) 知, $f$ 在 $D$ 上于点 $\left(\dfrac{\pi}{3}, \dfrac{\pi}{3}\right)$ 达到最大值 $f\left(\dfrac{\pi}{3}, \dfrac{\pi}{3}\right) = \dfrac{3\sqrt{3}}{8}$; 而在边界 $\partial D$ 上达到最小值 $0$.
+\end{solution}
+
+\begin{example}\label{ex:9.2.4}
+一个容量为 $4$ 的无盖长方体容器, 各边长如何, 使表面积最小.
+\end{example}
+
+\begin{solution}
+\textbf{解法 1}\quad 设长方体底面长、宽分别为 $x, y$, 则从 $xyz = 4$ 解出, 高 $z = \dfrac{4}{xy}$, 其表面积为
+\[
+  S = xy + 2x \cdot \frac{4}{xy} + 2y \cdot \frac{4}{xy} = xy + \frac{8}{y} + \frac{8}{x}, \quad x > 0, y > 0.
+\]
+解方程组
+\[
+  \left\{\begin{aligned}
+    \frac{\partial S}{\partial x} &= y - \frac{8}{x^{2}} = 0, \\
+    \frac{\partial S}{\partial y} &= x - \frac{8}{y^{2}} = 0,
+  \end{aligned}\right.
+\]
+得到 $y = \dfrac{8}{x^{2}} = \dfrac{8}{\left(\dfrac{8}{y^{2}}\right)^{2}} = \dfrac{y^{4}}{8}$,
+\[
+  y^{4} - 8y = y(y - 2)(y^{2} + 2y + 4) = 0, \quad y = 2, \quad x = \frac{8}{y^{2}} = \frac{8}{4} = 2.
+\]
+因此, 有惟一的驻点 $(2, 2)$, 且
+\[
+  a = \frac{\partial^{2}S}{\partial x^{2}}(2, 2) = \left.\frac{16}{x^{3}}\right|_{(2, 2)} = 2,
+\]
+\[
+  b = \frac{\partial^{2}S}{\partial x\partial y}(2, 2) = \frac{\partial^{2}S}{\partial y\partial x}(2, 2) = 1,
+\]
+\[
+  c = \frac{\partial^{2}S}{\partial y^{2}}(2, 2) = \left.\frac{16}{y^{3}}\right|_{(2, 2)} = 2.
+\]
+再从 $a = 2 > 0$, $ac - b^{2} = 2^{2} - 1^{2} = 3 > 0$ 知, $(2, 2)$ 为 $S$ 的极小值点. 根据例 \ref{ex:9.2.1} 千万不能由上述判断 $(2, 2)$ 为 $f$ 的最小值点!
+
+因 $\lim\limits_{x \to 0}\dfrac{8}{x} = +\infty = \lim\limits_{y \to 0}\dfrac{8}{y}$, 故 $\exists \delta \in (0, 2)$, 当 $x \in (0, \delta]$, $y \in (0, \delta]$ 时,
+\[
+  \frac{8}{x} > S(2, 2), \quad \frac{8}{y} > S(2, 2),
+\]
+\[
+  S = xy + \frac{8}{y} + \frac{8}{x} > S(2, 2).
+\]
+又因 $\lim\limits_{x \to +\infty} xy = +\infty = \lim\limits_{y \to +\infty} xy$ (当 $x \geqslant \delta$, $y \geqslant \delta$ 时), 故 $\exists \Delta > \delta > 0$, 当 $x \geqslant \Delta$ 或 $y \geqslant \Delta$ 时,
+\[
+  S = xy + \frac{8}{y} + \frac{8}{x} \geqslant xy \geqslant \delta\Delta > S(2, 2).
+\]
+此外, $f$ 在紧致集 $[\delta, \Delta] \times [\delta, \Delta]$ 上必有最小值点, 该点必为 $[\delta, \Delta] \times [\delta, \Delta]$ 的内点(\cref{fig:9.2.2}), 它为 $S$ 的驻点, 就是 $(2, 2)$ 点, 所以当底面边长分别为 $2$ 与 $2$, 高为 $\dfrac{4}{2 \times 2} = 1$ 时, 表面积
+\[
+  S(2, 2) = 2 \times 2 + \frac{8}{2} + \frac{8}{2} = 12
+\]
+为 $S$ 的最小值.
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=Stealth]
+    % 参数定义
+    \def\d{0.7}   % \delta
+    \def\D{3.0}   % \Delta
+    \def\W{3.7}   % 外框尺寸
+    \def\P{1.8}   % 驻点 (2,2) 坐标代表值
+
+    % 阴影 1: 灰底纹 (0 <= x <= \delta 或 0 <= y <= \delta)
+    \fill[black!18] (0, 0) rectangle (\d, \W);
+    \fill[black!18] (0, 0) rectangle (\W, \d);
+
+    % 阴影 2: 斜线纹 (x >= \Delta 或 y >= \Delta)
+    \begin{scope}
+      \clip (0, \D) rectangle (\W, \W);
+      \foreach \t in {-2.0, -1.7, ..., 6.0} {
+        \draw[thin] (\t, \D - 1) -- (\t + 3, \W + 1);
+      }
+    \end{scope}
+    \begin{scope}
+      \clip (\D, 0) rectangle (\W, \D);
+      \foreach \t in {1.0, 1.3, ..., 7.0} {
+        \draw[thin] (\t, -1) -- (\t + 3, \D + 1);
+      }
+    \end{scope}
+
+    % 外框与分割实线
+    \draw[thick] (0, 0) rectangle (\W, \W);
+    \draw[thick] (\d, 0) -- (\d, \W);
+    \draw[thick] (\D, 0) -- (\D, \W);
+    \draw[thick] (0, \d) -- (\W, \d);
+    \draw[thick] (0, \D) -- (\W, \D);
+
+    % 坐标轴与箭头
+    \draw[->, thick] (0, 0) -- (4.3, 0) node[below] {$x$};
+    \draw[->, thick] (0, 0) -- (0, 4.3) node[left] {$y$};
+    \node[below left] at (0, 0) {$O$};
+
+    % 刻度标注
+    \node[below] at (\d, 0) {$\delta$};
+    \node[below] at (\D, 0) {$\Delta$};
+    \node[left] at (0, \d) {$\delta$};
+    \node[left] at (0, \D) {$\Delta$};
+
+    % 驻点 (2,2) 及其虚线引线
+    \draw[dashed, thin] (\P, 0) -- (\P, \P) -- (0, \P);
+    \fill (\P, \P) circle (1.5pt);
+    \node[right] at (\P, \P) {$(2,2)$};
+  \end{tikzpicture}
+  \caption{}
+  \label{fig:9.2.2}
+\end{figure}
+
+\textbf{解法 2}\quad 应用几何平均数不大于算术平均数可立即推得. 事实上
+\begin{align*}
+  S(x, y) &= xy + 2xz + 2yz \geqslant 3\sqrt[3]{xy \cdot 2xz \cdot 2yz} \\
+  &= 3\sqrt[3]{4x^{2}y^{2}z^{2}} = 3\sqrt[3]{4 \times 4^{2}} = 12.
+\end{align*}
+而等号当且仅当 $xy = 2xz = 2yz$, 即 $x = y = 2z$ 时成立. 将它代入 $xyz = 4$, 得到 $z = 1$, $x = y = 2$, 即 $(x, y, z) = (2, 2, 1)$ 时, $S(2, 2) = 12$ 为 $S$ 的最小值.
+\end{solution}
+
+\begin{example}[最小二乘法, 经验配线法]\label{ex:9.2.5}
+设平面 $\mathbb{R}^{2}$ 上有 $n$ 个数据点 $(x_{i}, y_{i})$, $i = 1, 2, \cdots, n$, $n \geqslant 2$. 不妨设 $x_{i} \leqslant x_{i+1}$, 且 $x_{1}, x_{2}, \cdots, x_{n}$ 中至少有两个数不相等. 选一条直线 $y = ax + b$, 使
+\[
+  \varphi(a, b) = \sum_{i=1}^{n}(ax_{i} + b - y_{i})^{2}
+\]
+取最小值.
+\end{example}
+
+\begin{solution}
+当我们将这 $n$ 个数据点 $(x_{i}, y_{i})$ 画在平面直角坐标系中, 如果发现它们近似地分布在一条直线上, 就可求出一条逼近这些数据的最合适的直线(一次函数, \cref{fig:9.2.3}). 这种方法称为最小二乘法, 也称为经验配线法. 作函数
+\[
+  \varphi(a, b) = \sum_{i=1}^{n}(ax_{i} + b - y_{i})^{2},
+\]
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}[scale=1.1, >=Stealth]
+    % 坐标轴
+    \draw[->, thick] (-0.3, 0) -- (4.6, 0) node[below] {$x$};
+    \draw[->, thick] (0, -0.6) -- (0, 3.4) node[left] {$y$};
+    \node[below left] at (0, 0) {$O$};
+
+    % 拟合直线: 穿过 (1.0, 0) 和 (4.3, 2.2)，斜率约 0.67，截距约 -0.67
+    \draw[very thick] (-0.2, -0.8) -- (4.5, 2.33) node[above left=2pt] {$y = ax + b$};
+
+    % 散点坐标
+    % 点 1: (1.7, 0.7) - 在直线下方偏右
+    \def\xone{1.7}
+    \def\yone{0.7}
+    \draw[dashed, thin] (\xone, 0) node[below] {$x_{1}$} -- (\xone, \yone);
+    \draw[dashed, thin] (0, \yone) node[left] {$y_{1}$} -- (\xone, \yone);
+    \fill (\xone, \yone) circle (2pt);
+
+    % 其他散点围绕直线分布
+    \fill (2.1, 1.0) circle (2pt);
+    \fill (2.5, 0.6) circle (2pt);
+    \fill (2.8, 1.45) circle (2pt);
+    \fill (3.2, 1.8) circle (2pt);
+    \fill (3.7, 1.6) circle (2pt);
+    \fill (4.0, 1.7) circle (2pt) node[below right=2pt] {$(x_{n}, y_{n})$};
+  \end{tikzpicture}
+  \caption{}
+  \label{fig:9.2.3}
+\end{figure}
+
+并将直线 $y = ax + b$ 的未知系数 $a, b$ 视作独立变量, 它的定义域是 $\mathbb{R}^{2}$. 为求 $a, b$ 使 $\varphi(a, b)$ 达最小值, 我们先求 $\varphi$ 的驻点, 有
+\[
+  \frac{\partial\varphi}{\partial a}(a, b) = 2\sum_{i=1}^{n}(ax_{i} + b - y_{i})x_{i} = 0,
+\]
+\[
+  \frac{\partial\varphi}{\partial b}(a, b) = 2\sum_{i=1}^{n}(ax_{i} + b - y_{i}) = 0.
+\]
+由此得到关于 $a, b$ 的线性方程组
+\[
+  \left\{\begin{aligned}
+    a\sum_{i=1}^{n}x_{i}^{2} + b\sum_{i=1}^{n}x_{i} &= \sum_{i=1}^{n}x_{i}y_{i}, \\
+    a\sum_{i=1}^{n}x_{i} + nb &= \sum_{i=1}^{n}y_{i}.
+  \end{aligned}\right.
+\]
+根据 Cauchy-Schwarz 不等式
+\[
+  \left(\sum_{i=1}^{n}x_{i}\right)^{2} = \left(\sum_{i=1}^{n}1 \cdot x_{i}\right)^{2} < \sum_{i=1}^{n}1^{2}\sum_{j=1}^{n}x_{i}^{2} = n\sum_{i=1}^{n}x_{i}^{2}
+\]
+(其中 $n \geqslant 2$, 严格不等号是由于 $x_{1}, x_{2}, \cdots, x_{n}$ 中至少有两个不相等)可知, 上面线性方程组的系数行列式不等于零, 所以有惟一解, 即有惟一的驻点 $(a_{0}, b_{0})$. 进而考虑函数 $\varphi$ 的 Hesse 矩阵
+\[
+  \begin{pmatrix}
+    \dfrac{\partial^{2}\varphi}{\partial a^{2}} & \dfrac{\partial^{2}\varphi}{\partial a\partial b} \\
+    \dfrac{\partial^{2}\varphi}{\partial b\partial a} & \dfrac{\partial^{2}\varphi}{\partial b^{2}}
+  \end{pmatrix}_{(a_{0}, b_{0})} = \begin{pmatrix}
+    2\sum\limits_{i=1}^{n}x_{i}^{2} & 2\sum\limits_{i=1}^{n}x_{i} \\
+    2\sum\limits_{i=1}^{n}x_{i} & 2n
+  \end{pmatrix},
+\]
+由于 $\dfrac{\partial^{2}\varphi}{\partial a^{2}}(a_{0}, b_{0}) = 2\sum\limits_{i=1}^{n}x_{i}^{2} > 0$ (因为 $n \geqslant 2$, $x_{1}, x_{2}, \cdots, x_{n}$ 中至少有两个不相等), 且
+\[
+  \det\boldsymbol{H}\varphi(a_{0}, b_{0}) = 4\left[n\sum_{i=1}^{n}x_{i}^{2} - \left(\sum_{i=1}^{n}x_{i}\right)^{2}\right] > 0,
+\]
+所以 $\boldsymbol{H}\varphi(a_{0}, b_{0})$ 为正定矩阵, 根据推论 \ref{cor:9.2.2}, $(a_{0}, b_{0})$ 为 $\varphi$ 的严格极小值点.
+
+特别要注意的是 $(a_{0}, b_{0})$ 为 $\varphi$ 的惟一驻点, 是 $\varphi$ 的惟一极小值点, 也不能误认为一定是 $\varphi$ 的最小值点(参阅例 \ref{ex:9.2.1}).
+
+下面证 $(a_{0}, b_{0})$ 为 $\varphi$ 的最小值点. 为此作变换
+\[
+  \left\{\begin{aligned}
+    u &= ax_{i} + b - y_{i}, \\
+    v &= ax_{j} + b - y_{j},
+  \end{aligned}\right.
+\]
+解得
+\[
+  \left\{\begin{aligned}
+    a &= a(u, v), \\
+    b &= b(u, v),
+  \end{aligned}\right. \quad \left\{\begin{aligned}
+    u_{0} &= a_{0}x_{i} + b_{0} - y_{i}, \\
+    v_{0} &= a_{0}x_{j} + b_{0} - y_{j},
+  \end{aligned}\right. \quad \left\{\begin{aligned}
+    a_{0} &= a(u_{0}, v_{0}), \\
+    b_{0} &= b(u_{0}, v_{0}).
+  \end{aligned}\right.
+\]
+这里取 $x_{i}, x_{j}$, 使 $\begin{vmatrix} x_{i} & 1 \\ x_{j} & 1 \end{vmatrix} = x_{i} - x_{j} \neq 0$. 于是, 作为 $u, v$ 的函数
+\[
+  \varphi(a, b) = \varphi(a(u, v), b(u, v)) = u^{2} + v^{2} + \sum_{k \neq i,j}^{n}(ax_{k} + b - y_{k})^{2} \geqslant u^{2} + v^{2}.
+\]
+令正数 $M > \varphi(a_{0}, b_{0}) = \varphi(a(u_{0}, v_{0}), b(u_{0}, v_{0}))$, 集合
+\[
+  G = \{(u, v) \mid u^{2} + v^{2} \leqslant M\}.
+\]
+则当 $(u, v) \in \overline{G}^{c} = \{(u, v) \mid u^{2} + v^{2} \geqslant M\}$ 时, 有
+\[
+  \varphi(a, b) = \varphi(a(u, v), b(u, v)) \geqslant u^{2} + v^{2} \geqslant M > \varphi(a_{0}, b_{0}).
+\]
+由于 $\varphi$ 连续, 故 $\varphi$ 在紧致集 $G$ 上达最小值, 它也是 $\varphi$ 在整个 $\mathbb{R}^{2}$ 上的最小值, 其最小值点必为惟一的驻点 $(a_{0}, b_{0})$.
+
+所求直线方程为
+\[
+  y = a_{0}x + b_{0} = \frac{\begin{vmatrix} \sum\limits_{i=1}^{n}x_{i}y_{i} & \sum\limits_{i=1}^{n}x_{i} \\ \sum\limits_{i=1}^{n}y_{i} & n \end{vmatrix}}{\begin{vmatrix} \sum\limits_{i=1}^{n}x_{i}^{2} & \sum\limits_{i=1}^{n}x_{i} \\ \sum\limits_{i=1}^{n}x_{i} & n \end{vmatrix}} x + \frac{\begin{vmatrix} \sum\limits_{i=1}^{n}x_{i}^{2} & \sum\limits_{i=1}^{n}x_{i}y_{i} \\ \sum\limits_{i=1}^{n}x_{i} & \sum\limits_{i=1}^{n}y_{i} \end{vmatrix}}{\begin{vmatrix} \sum\limits_{i=1}^{n}x_{i}^{2} & \sum\limits_{i=1}^{n}x_{i} \\ \sum\limits_{i=1}^{n}x_{i} & n \end{vmatrix}},
+\]
+即
+\[
+  \begin{vmatrix}
+    x & y & 1 \\
+    \sum\limits_{i=1}^{n}x_{i}^{2} & \sum\limits_{i=1}^{n}x_{i}y_{i} & \sum\limits_{i=1}^{n}x_{i} \\
+    \sum\limits_{i=1}^{n}x_{i} & \sum\limits_{i=1}^{n}y_{i} & n
+  \end{vmatrix} = 0,
+\]
+它是由数据点 $(x_{i}, y_{i})$, $i = 1, 2, \cdots, n$ 完全确定的.
+\end{solution}
+
+\begin{exblock}{练习题 9.2}
+  \item 求下列函数的极值:
+
+  \begin{tabular}{@{}p{0.48\linewidth}p{0.48\linewidth}@{}}
+    (1) $f(x, y) = 4(x - y) - x^{2} - y^{2}$; & (2) $f(x, y) = x^{2} - 3x^{2}y + y^{3}$; \\[4pt]
+    (3) $f(x, y) = x^{2} + (y - 1)^{2}$; & (4) $z = 3axy - x^{3} - y^{3}$ ($a > 0$); \\[4pt]
+    (5) $z = x^{2} + 5y^{2} - 6x + 10y + 6$; & (6) $z = \mathrm{e}^{2x}(x + y^{2} + 2y)$.
+  \end{tabular}
+
+  \item 求函数 $f(x, y) = xy \sqrt{1 - \dfrac{x^{2}}{a^{2}} - \dfrac{y^{2}}{b^{2}}}$ ($a > 0, b > 0$) 的极值.
+
+  \item 求函数 $f(x, y) = \sin x + \cos y + \cos(x - y)$ 在正方形 $\left[0, \dfrac{\pi}{2}\right]^{2}$ 上的极值.
+
+  \item 设 $f(x, y) = 3x^{4} - 4x^{2}y + y^{2}$. 证明: 限制在每条过原点的直线上, 原点是 $f$ 的极小值点, 但是函数 $f$ 在原点处不取极小值. 在 $xOy$ 平面上, 画出点集
+  \[
+    P = \{(x, y) \mid f(x, y) > 0\}, \quad Q = \{(x, y) \mid f(x, y) < 0\}.
+  \]
+
+  \item 求下列函数在指定范围内的最大值与最小值:
+  \begin{enumerate}
+    \item $z = x^{2} - y^{2}$, $\{(x, y) \mid x^{2} + y^{2} \leqslant 4\}$;
+    \item $z = x^{2} - xy + y^{2}$, $\{(x, y) \mid |x| + |y| \leqslant 1\}$;
+    \item $z = \sin x + \sin y - \sin(x + y)$, $\{(x, y) \mid x \geqslant 0, y \geqslant 0, x + y \leqslant 2\pi\}$;
+    \item $u = \sin x + \sin y + \sin z - \sin(x + y + z)$, $\{(x, y, z) \mid 0 \leqslant x \leqslant \pi, 0 \leqslant y \leqslant \pi, 0 \leqslant z \leqslant \pi\}$.
+  \end{enumerate}
+
+  \item 设 $(x_{1}, y_{1}), (x_{2}, y_{2}), \cdots, (x_{n}, y_{n})$ 为平面上取定的 $n$ 个点. 试求一点, 使它与这 $n$ 个点距离的平方和最小.
+
+  \item 在 $xOy$ 平面上求一点, 使它到三直线 $x = 0, y = 0$ 及 $x + 2y - 16 = 0$ 的距离平方和最小.
+
+  \item 在已知周长为 $2l$ 的一切三角形中, 求出面积为最大的三角形.
+
+  \item 证明: 圆的所有外切三角形中, 以正三角形的面积为最小.
+
+  \item 证明: 函数 $z = f(x, y) = (1 + \mathrm{e}^{y}) \cos x - y\mathrm{e}^{y}$ 有无穷多个极大值, 但无极小值.
+\end{exblock}

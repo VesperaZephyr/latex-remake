@@ -1,0 +1,1234 @@
+% !TeX program = xelatex
+% 第十二章 函数项级数
+\newcommand{\varlimlim}{\mathop{\mathrm{lim}}\limits}
+\chapter{函数项级数}
+
+本章回到研究级数的主要目的——用级数来表示函数．这样，级数的项都是函数
+\[
+\sum_{n=1}^{\infty}u_{n}(x)=u_{1}(x)+u_{2}(x)+\cdots+u_{n}(x)+\cdots.
+\]
+对每个固定的 $x$，这是一个数值级数．如果级数收敛，那就说明这个 $x$ 是在此级数所表示的函数（称为和函数）定义域中．因此，第十章关于级数收敛性判别的研究，实际上是提供了一套方法，以决定用级数表示的函数的定义域．关于数值级数代数运算的研究，当然也适用于函数项级数．本章的主要目的是研究用级数表示的函数的分析性质：连续性、可微性、可积性以及微商如何计算，积分如何计算等．这样做的结果是使微积分的应用扩展到初等函数以外的范围．为了研究``和函数''的分析性质，必需引入一种新的收敛概念——一致收敛．这是本章最重要的概念．有了它，就可以得到和函数分析性质的很漂亮的结论了．注意到级数的和是用部分和序列的极限来定义的，因此，我们在本章 \S\,1 先讲述函数序列的一致收敛性，然后在 \S\,2 再讲函数级数的一致收敛性与一致收敛的判别法，在 \S\,3 将讲述函数级数的和函数的分析性质．
+
+\section{函数序列的一致收敛概念}
+
+按照一定规律依次排列的一串（无穷个）函数
+\[
+f_{1}(x),f_{2}(x),\cdots,f_{n}(x),\cdots
+\]
+称为一个\emph{函数序列}，记作 $\{f_{n}(x)\}$．这里假定所有的 $f_{n}(x)\,(n=1,2,\cdots)$ 都有共同的定义域 $D$．
+
+当 $x$ 取定 $D$ 中某个值 $x_{0}$ 时，就得到一个数列 $\{f_{n}(x_{0})\}$．若数列 $\{f_{n}(x_{0})\}$ 收敛，即极限
+\[
+\lim_{n\to\infty}f_{n}(x_{0})
+\]
+存在（是一个数），则称函数序列 $\{f_{n}(x)\}$ 在 $x_{0}$ 收敛，这时称点 $x_{0}$ 为函数序列 $\{f_{n}(x)\}$ 的收敛点．若数列 $\{f_{n}(x_{0})\}$ 发散，即当 $n\to\infty$ 时 $f_{n}(x_{0})$ 没有极限存在，则称函数序列 $\{f_{n}(x)\}$ 在 $x_{0}$ 发散，这时称点 $x_{0}$ 为函数序列的发散点．
+
+函数序列 $\{f_{n}(x)\}$ 的全体收敛点所组成的集合 $X$，称为 $\{f_{n}(x)\}$ 的\emph{收敛域}，显然它是 $D$ 的一个子集．
+
+对于收敛域 $X$ 的每一个值，对应地，函数序列 $\{f_{n}(x)\}$ 都有一个极限值，因此在 $X$ 上确定了一个函数，称为 $\{f_{n}(x)\}$ 的\emph{极限函数}，记为 $f(x)$．于是有
+\[
+\lim_{n\to\infty}f_{n}(x)=f(x),\ x\in X.
+\]
+
+\begin{example}\label{ex:12-1-1}
+设
+\[
+f_{n}(x)=\frac{nx}{1+n+x^{2}},\ n=1,2,\cdots,
+\]
+求函数序列 $\{f_{n}(x)\}$ 的收敛域与极限函数．
+\end{example}
+
+\begin{proof}[解]
+对任意 $x$，有
+\[
+\lim_{n\to\infty}f_{n}(x)=\lim_{n\to\infty}\frac{nx}{1+n+x^{2}}
+=\lim_{n\to\infty}\frac{x}{\dfrac{1}{n}+1+\dfrac{x^{2}}{n}}=x.
+\]
+因此收敛域是全体实数，极限函数为 $f(x)=x$．
+\end{proof}
+
+\begin{example}\label{ex:12-1-2}
+设 $f_{n}(x)=x^{n}\,(n=1,2,\cdots)$，求函数序列 $\{f_{n}(x)\}$ 的收敛域与极限函数．
+\end{example}
+
+\begin{proof}[解]
+由于
+\[
+\lim_{n\to\infty}x^{n}=\begin{cases}
+0, & \text{当 }|x|<1,\\
+1, & \text{当 }x=1,\\
+\infty, & \text{当 }|x|>1,
+\end{cases}
+\]
+而当 $x=-1$ 时，$f_{n}(-1)=(-1)^{n}$，当 $n\to\infty$ 时极限不存在．因此 $\{x^{n}\}$ 的收敛域为 $(-1,1]$，而极限函数是
+\[
+f(x)=\begin{cases}
+0, & -1<x<1,\\
+1, & x=1.
+\end{cases}
+\]
+
+把 $x^{n}$ 在 $[0,1]$ 区间的图形画出来，它是一无穷的曲线族．对每个固定的 $x_{0}\in(0,1)$，我们看到对应的 $f_{n}(x_{0})=x_{0}^{n}$，当 $n\to\infty$ 时，其纵坐标趋向于 $f(x_{0})=0$，而在 $0,1$，恒有 $f_{n}(0)=0$，$f_{n}(1)=1$．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8,baseline=(current bounding box.center)]
+  % axes
+  \draw[{-Latex}] (0,0) -- (3.9,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-0.7) -- (0,3.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % epsilon band (hatched)
+  \def\ev{0.3}
+  \draw[pattern=north east lines] (0,-\ev) rectangle (3,\ev);
+  \draw[thick] (0,\ev) -- (3,\ev);
+  % curves x, x^2, x^4 on [0,1]
+  \draw[very thick,domain=0:3,smooth,variable=\x] plot(\x,{\x});
+  \draw[very thick,domain=0:3,smooth,variable=\x] plot(\x,{0.333*\x*\x});
+  \draw[very thick,domain=0:3,smooth,variable=\x] plot(\x,{0.037*\x*\x*\x*\x});
+  % solid vertical at x0, dash-dot at 1
+  \def\xv{2.1}
+  \draw (\xv,-\ev) -- (\xv,3.05);
+  \draw[dash dot] (3,0) -- (3,3);
+  % dots at intersections
+  \fill (\xv,{\xv}) circle (1.6pt);
+  \fill (\xv,{0.333*\xv*\xv}) circle (1.6pt);
+  \fill (\xv,{0.037*\xv*\xv*\xv*\xv}) circle (1.6pt);
+  % labels
+  \node[left] at (0,\ev) {$\varepsilon$};
+  \node[left] at (0,-\ev) {$-\varepsilon$};
+  \node[below] at (3,0) {$1$};
+  \node[below] at (\xv,-\ev) {$x_{0}$};
+  \node at (1.35,1.75) {$x^{1}$};
+  \node at (1.65,1.25) {$x^{2}$};
+  \node at (2.25,0.6) {$x^{4}$};
+\end{tikzpicture}\caption{\relax}\label{fig:12-1}
+\end{figure}
+
+\begin{example}\label{ex:12-1-3}
+设
+\[
+f_{n}(x)=\frac{x^{n}}{1+x^{2n}},
+\]
+试在 $[0,+\infty)$ 讨论 $\{f_{n}(x)\}$ 的收敛域与极限函数．
+\end{example}
+
+\begin{proof}[解]
+当 $0\leqslant x<1$ 时，
+\[
+\left|f_{n}(x)\right|\leqslant\left|x\right|^{n}\to 0\quad(n\to\infty),
+\]
+因此 $\lim\limits_{n\to\infty}f_{n}(x)=0\ (0\leqslant x<1)$．当 $1<x<+\infty$ 时，
+\[
+\left|f_{n}(x)\right|\leqslant\frac{\left|x\right|^{n}}{x^{2n}}\leqslant\frac{1}{\left|x\right|^{n}}\to 0\quad(n\to\infty).
+\]
+因此极限函数也是 $0$．另外 $f_{n}(1)=\dfrac{1}{2}$．故在 $[0,+\infty)$ 中 $\{f_{n}(x)\}$ 的收敛域就是 $[0,+\infty)$，极限函数
+\[
+f(x)=\begin{cases}
+0, & 0\leqslant x<+\infty,\,x\neq 1,\\[3pt]
+\dfrac{1}{2}, & x=1.
+\end{cases}
+\]
+
+图~\ref{fig:12-2} 是函数列 $\{f_{n}(x)\}$ 与极限函数的草图．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.75,baseline=(current bounding box.center)]
+  \def\ff(#1)(#2){(#1)^(#2)/(1+(#1)^(2*(#2)))}
+  % axes
+  \draw[{-Latex}] (-0.3,0) -- (7.6,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-1.1) -- (0,2.6) node[left] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % curves n=1, n, n+1 (peak at x=2.2, value 0.5)
+  \draw[very thick,domain=0:7.4,smooth,samples=80,variable=\x]
+    plot(\x,{2.2*\ff(\x/2.2)(1)});
+  \draw[very thick,domain=0:4.8,smooth,samples=80,variable=\x]
+    plot(\x,{2.2*\ff(\x/2.2)(3)});
+  \draw[very thick,domain=0:4.2,smooth,samples=80,variable=\x]
+    plot(\x,{2.2*\ff(\x/2.2)(4)});
+  % dashed verticals at xbar0, 1, x0
+  \draw[dashed] (1.54,0) -- (1.54,1.25);
+  \draw[dashed] (2.2,0) -- (2.2,1.25);
+  \draw[dashed] (2.86,0) -- (2.86,1.05);
+  % labels
+  \node[below] at (1.54,0) {$\bar{x}_{0}$};
+  \node[below] at (2.2,0) {$1$};
+  \node[below] at (2.86,0) {$x_{0}$};
+  \node at (4.15,1.35) {$n=1$};
+  \node at (3.15,0.75) {$n$};
+  \node at (3.75,0.1) {$n+1$};
+\end{tikzpicture}\caption{\relax}\label{fig:12-2}
+\end{figure}
+
+例~\ref{ex:12-1-2} 和例~\ref{ex:12-1-3} 说明，函数列中的每一个函数 $f_{n}(x)$ 都是连续的，但极限函数却可以不连续．为什么呢？原因是我们这里说的函数序列 $\{f_{n}(x)\}$ 的收敛性是逐点考虑的，在不同点函数值构成的数列收敛的快慢不一致．在快慢发生急剧变化的地方，极限函数可能变成了间断．为说明这一点，需要仔细分析收敛的概念．
+
+设 $x_{0}$ 是 $\{f_{n}(x)\}$ 收敛域中的一点，即 $\{f_{n}(x_{0})\}$ 当 $n\to\infty$ 时收敛到 $f(x_{0})$．用 $\varepsilon-N$ 的语言可叙述为：任给 $\varepsilon>0$，存在正整数 $N=N(\varepsilon,x_{0})$，使得当 $n>N(\varepsilon,x_{0})$ 时，有
+\[
+\left|f_{n}(x_{0})-f(x_{0})\right|<\varepsilon.
+\]
+这里记 $N=N(\varepsilon,x_{0})$，是特别标明，$N$ 除依赖于 $\varepsilon$ 以外，还依赖于 $x_{0}$．也就是说，当 $\varepsilon$ 给定后，$N$ 还可能随 $x_{0}$ 在收敛域改变而改变．一般说来，对收敛域中的某些点，对应的 $N$ 可能会小些（这时可以视为函数序列 $\{f_{n}(x)\}$ 在这些点收敛得快些），而对收敛域中的另外一些点，对应的 $N$ 可能会大些（这时函数序列 $\{f_{n}(x)\}$ 在这些点收敛得慢些）．像例~\ref{ex:12-1-2}、例~\ref{ex:12-1-3}，大家从图形上可以看到，点 $x_{0}$ 离 $x=1$ 愈远，$f_{n}(x_{0})$ 收敛的速度就愈快；点 $x_{0}$ 愈接近 $x=1$（但 $x_{0}\neq 1$），$\{f_{n}(x_{0})\}$ 收敛的速度就愈慢．一般说来，收敛域中的点通常有无穷多个，因此，对应的正整数 $N$ 一般说来也有无穷多个．那么，是否有一个公共的 $N$，适用于收敛区域 $X$ 内所有的点呢？我们引入下面的定义．
+
+\begin{definition}\label{def:12-1}
+设函数序列 $\{f_{n}(x)\}$ 中的每个 $f_{n}(x)$ 都在 $X$ 上有定义．另外有 $f(x)$ 在 $X$ 上有定义．若对任给 $\varepsilon>0$，存在只依赖于 $\varepsilon$ 的正整数 $N=N(\varepsilon)$，使得当 $n>N$ 时，有
+\[
+\left|f_{n}(x)-f(x)\right|<\varepsilon
+\]
+对 $x\in X$ 一致地成立，则称函数序列 $\{f_{n}(x)\}$ 在 $X$ \emph{一致收敛}到 $f(x)$．
+\end{definition}
+
+显然，$\{f_{n}(x)\}$ 在 $X$ 一致收敛到 $f(x)$，蕴含了 $\{f_{n}(x)\}$ 在 $X$ 的每一点收敛到 $f(x)$．
+
+一致收敛也称均匀收敛，它表示函数序列 $\{f_{n}(x)\}$ 对 $X$ 上的一切点来说，收敛到 $f(x)$ 的速度是一致的，或者说是均匀的．
+
+$\{f_{n}(x)\}$ 在 $X$（例如 $X=[a,b]$）一致收敛到 $f(x)$ 的几何解释是：在直角坐标系 $Oxy$ 中，在 $y=f(x)\,(a\leqslant x\leqslant b)$ 的图形的上下方，分别画出 $y=f(x)+\varepsilon$ 和 $y=f(x)-\varepsilon$ 两条曲线．函数序列 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$ 是指，存在与 $x$ 无关的 $N=N(\varepsilon)$，使得所有曲线
+\[
+y=f_{n}(x),\,n=N+1,N+2,\cdots
+\]
+的图形在 $a\leqslant x\leqslant b$ 都落在 $y=f(x)-\varepsilon$ 与 $y=f(x)+\varepsilon$ 之间．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8,baseline=(current bounding box.center)]
+  % axes
+  \draw[{-Latex}] (0,0) -- (6.6,0) node[below left] {$x$};
+  \draw (0,0) -- (0,3.4);
+  \node[below left] at (0,0) {$O$};
+  \def\fa{0.9}
+  \def\fb{5.1}
+  % envelope y=f(x)+eps (dashed) and y=f(x)-eps (dashed)
+  \draw[dashed,very thick,domain=\fa:\fb,smooth,variable=\x]
+    plot(\x,{1.9+0.32*sin(100*(\x)+20)});
+  \draw[dashed,very thick,domain=\fa:\fb,smooth,variable=\x]
+    plot(\x,{1.3-0.32*sin(100*(\x)+20)});
+  % y=f(x)
+  \draw[thick,domain=\fa:\fb,smooth,variable=\x]
+    plot(\x,{1.6+0.15*sin(100*(\x)+20)});
+  % y=f_n(x)
+  \draw[thick,domain=\fa:\fb,smooth,variable=\x]
+    plot(\x,{1.6+0.42*sin(160*(\x))});
+  % dash-dot verticals at a, b
+  \draw[dash dot] (\fa,0) -- (\fa,2.35);
+  \draw[dash dot] (\fb,0) -- (\fb,2.35);
+  % epsilon double arrows on the left
+  \draw[{Latex}-{Latex}] (\fa-0.28,1.6) -- (\fa-0.28,1.98);
+  \draw[{Latex}-{Latex}] (\fa-0.28,1.26) -- (\fa-0.28,1.6);
+  % labels
+  \node[right] at (5.15,2.28) {$y=f(x)+\varepsilon$};
+  \node[right] at (5.15,1.62) {$y=f(x)$};
+  \node[right] at (5.15,1.22) {$y=f_{n}(x)$};
+  \node[right] at (5.15,0.82) {$y=f(x)-\varepsilon$};
+  \node[above] at (\fa-0.28,1.79) {\tiny $\varepsilon$};
+  \node[below] at (\fa-0.28,1.42) {\tiny $\varepsilon$};
+  \node[below] at (\fa,0) {$a$};
+  \node[below] at (\fb,0) {$b$};
+\end{tikzpicture}\caption{\relax}\label{fig:12-3}
+\end{figure}
+
+一致收敛定义有一个等价的叙述，有时用起来会简单一些，记
+\[
+\rho_{n}=\sup_{a\leqslant x\leqslant b}\left|f_{n}(x)-f(x)\right|.
+\]
+则 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$，当且仅当数列 $\rho_{n}\to 0\,(n\to+\infty)$．请读者把证明写出来．
+
+\begin{example}\label{ex:12-1-4}
+在 $0\leqslant x\leqslant 1$ 考虑例~\ref{ex:12-1-1} 的函数序列
+\[
+f_{n}(x)=\frac{nx}{1+n+x^{2}}.
+\]
+\end{example}
+
+我们已知 $\{f_{n}(x)\}$ 在 $[0,1]$ 逐点收敛到 $x$，可以证明它在 $[0,1]$ 是一致收敛到 $x$ 的．事实上，任给 $\varepsilon>0$，由于
+\[
+\left|\frac{nx}{1+n+x^{2}}-x\right|=\left|\frac{x+x^{3}}{1+n+x^{2}}\right|\leqslant\frac{2}{n}\quad\left(0\leqslant x\leqslant 1\right)
+\]
+知只要 $\dfrac{2}{n}<\varepsilon$，即取 $N=\left[\dfrac{2}{\varepsilon}\right]+1$，则当 $n>N$ 时，有 $\dfrac{2}{n}<\varepsilon$，从而有
+\[
+\left|\frac{xn}{1+n+x^{2}}-x\right|<\varepsilon
+\]
+在 $[0,1]$ 一致成立．这就证明了 $\{f_{n}(x)\}$ 在 $[0,1]$ 一致收敛到 $x$．
+
+\begin{example}\label{ex:12-1-5}
+证明
+\[
+f_{n}(x)=\frac{x}{1+n^{2}x^{2}},\quad n=1,2,\cdots
+\]
+在 $(-\infty,+\infty)$ 一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+容易看出，对任意 $x$，$f_{n}(x)\to 0\ (n\to\infty)$，故极限函数恒等于 $0$．由于
+\[
+\left|f_{n}(x)-f(x)\right|=\frac{\left|x\right|}{1+n^{2}x^{2}}
+=\frac{1}{2n}\cdot\frac{2n\left|x\right|}{1+n^{2}x^{2}}\leqslant\frac{1}{2n},
+\]
+只要取 $N=\left[\dfrac{1}{2\varepsilon}\right]+1$，则当 $n>N$ 时，有
+\[
+\left|f_{n}(x)-f(x)\right|\leqslant\frac{1}{2n}<\varepsilon\quad(-\infty<x<+\infty).
+\]
+图~\ref{fig:12-4} 解释了这种一致收敛性．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.75,baseline=(current bounding box.center)]
+  \def\ev{0.9}
+  \def\hh{0.75}
+  % axes
+  \draw[{-Latex}] (-4.2,0) -- (4.2,0) node[below left] {$x$};
+  \draw[{-Latex}] (0,-1.5) -- (0,1.7) node[right] {$y$};
+  \node[below left] at (0,0) {$O$};
+  % dashed lines y = f(x) +- eps
+  \draw[dashed] (-4,\ev) -- (3.6,\ev);
+  \draw[dashed] (-4,-\ev) -- (3.6,-\ev);
+  % curves x/(1+n^2 x^2)
+  \draw[very thick,domain=-4:3.5,smooth,samples=60,variable=\x]
+    plot(\x,{\hh*\x/(1+0.64*\x*\x)});
+  \draw[very thick,domain=-3.6:3.5,smooth,samples=60,variable=\x]
+    plot(\x,{0.8*\hh*\x/(1+1.5*\x*\x)});
+  \draw[very thick,domain=-3.3:3.5,smooth,samples=60,variable=\x]
+    plot(\x,{0.62*\hh*\x/(1+2.8*\x*\x)});
+  % epsilon double arrows
+  \draw[{Latex}-{Latex}] (-2.2,0) -- (-2.2,\ev);
+  \draw[{Latex}-{Latex}] (1.1,0) -- (1.1,-\ev);
+  % labels
+  \node[above] at (-1.1,\ev) {$y=f(x)+\varepsilon$};
+  \node[below] at (1.6,-\ev) {$y=f(x)-\varepsilon$};
+  \node[right] at (-2.2,0.45) {$\varepsilon$};
+  \node[right] at (1.1,-0.45) {$\varepsilon$};
+\end{tikzpicture}\caption{\relax}\label{fig:12-4}
+\end{figure}
+
+\begin{example}\label{ex:12-1-6}
+证明 $f_{n}(x)=x^{n}\,(n=1,2,\cdots)$ 在 $\left[0,\dfrac{1}{2}\right]$ 一致收敛，但在 $[0,1)$ 不一致收敛．
+\end{example}
+
+\begin{proof}[解]
+显然，$f_{n}(x)\to f(x)=0$，当 $0\leqslant x<1$．
+
+任给 $\varepsilon>0$，以及 $x_{0}\in(0,1)$，要
+\[
+\left|f_{n}(x_{0})-f(x_{0})\right|=x_{0}^{n}<\varepsilon,
+\]
+只要
+\[
+n>\frac{\ln\varepsilon}{\ln x_{0}}.
+\]
+取 $N=\left[\dfrac{\ln\varepsilon}{\ln x_{0}}\right]$（它显然依赖于 $\varepsilon$ 与 $x_{0}$），只要 $n>N$ 就有
+\[
+\left|f_{n}(x_{0})-f(x_{0})\right|=x_{0}^{n}<\varepsilon.
+\]
+如果 $0\leqslant x\leqslant\dfrac{1}{2}$，则只要取 $N_{1}=\left[\dfrac{\ln\varepsilon}{\ln\dfrac{1}{2}}\right]$，只要 $n>N_{1}$（它与 $x\in\left(0,\dfrac{1}{2}\right)$ 无关），就有
+\[
+\left|f_{n}(x)-f(x)\right|=x^{n}\leqslant\left(\frac{1}{2}\right)^{n}<\varepsilon\quad\left(0\leqslant x\leqslant\frac{1}{2}\right).
+\]
+这就证明了 $f_{n}(x)=x^{n}$ 在 $\left[0,\dfrac{1}{2}\right]$ 一致收敛于 $f(x)=0$．
+
+从前面 $N=\left[\dfrac{\ln\varepsilon}{\ln x_{0}}\right]$ 看出，当 $x_{0}$ 愈接近于 $1$ 时，$N$ 愈大，且当 $x_{0}$ 无限接近于 $1$ 时，$N$ 也无限增大．因此找不到一个公共的适合 $(0,1)$ 中一切 $x$ 的 $N$．
+
+这样看来 $f_{n}(x)=x^{n}$ 在 $(0,1)$ 不一致收敛到 $f(x)=0$ 可能是正确的．但这不是严格的证明，严格的证明要用到一致收敛的否定说法．
+
+$\{f_{n}(x)\}$ 在 $[a,b]$ 不一致收敛到 $f(x)$，是说存在 $\varepsilon_{0}>0$，对任意的正整数 $N$，存在 $n>N$ 与 $x_{n}\in[a,b]$，使得
+\[
+\left|f_{n}(x_{n})-f(x_{n})\right|\geqslant\varepsilon_{0}.
+\]
+现在我们用此说法来证明 $f_{n}(x)=x^{n}$ 在 $[0,1)$ 不一致收敛到 $f(x)=0$．事实上，取 $\varepsilon_{0}=\dfrac{1}{2}$，则对任意的 $N$，取 $n=N+1$，$x_{n}=\sqrt[n]{\dfrac{3}{4}}\in[0,1)$，则
+\[
+\left|f_{n}(x_{n})-f(x_{n})\right|=\left(\sqrt[n]{\frac{3}{4}}\right)^{n}=\frac{3}{4}\geqslant\varepsilon_{0},
+\]
+这就证明了 $f_{n}(x)=x^{n}$ 在 $[0,1)$ 不一致收敛到 $f(x)=0$．
+\end{proof}
+
+\begin{example}\label{ex:12-1-7}
+证明
+\[
+f_{n}(x)=\frac{nx}{1+n^{2}x^{2}},\quad n=1,2,\cdots
+\]
+在 $(-\infty,+\infty)$ 每一点收敛到 $f(x)=0$，但在 $(-\infty,+\infty)$ 不一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+当 $x\neq 0$ 时，
+\[
+\left|f_{n}(x)\right|\leqslant\frac{\left|nx\right|}{n^{2}x^{2}}=\frac{1}{n\left|x\right|}\to 0\quad(n\to\infty)
+\]
+而 $f_{n}(0)=0$，这就证明了对任意 $x$，有 $f_{n}(x)\to f(x)=0\,(n\to\infty)$．
+
+注意到 $\left|f_{n}(x)\right|$ 在 $x_{n}=\dfrac{1}{n}$ 达到最大值 $\dfrac{1}{2}$．取 $\varepsilon_{0}=\dfrac{1}{4}$，则对任意 $N$，取 $n=N+1$，$x_{n}=\dfrac{1}{n}$，便有
+\[
+\left|f_{n}(x_{n})-f(x_{n})\right|=\frac{n\cdot\dfrac{1}{n}}{1+n^{2}\left(\dfrac{1}{n}\right)^{2}}=\frac{1}{2}\geqslant\varepsilon_{0}.
+\]
+故 $\{f_{n}(x)\}$ 在 $(-\infty,+\infty)$ 不一致收敛到 $f(x)$．
+
+图~\ref{fig:12-5} 解释了这种现象．$y=f_{n}(x)$ 在 $x_{n}=\dfrac{1}{n}$ 达到最大值 $\dfrac{1}{2}$．当 $n$ 变大时，这个极值点在向 $0$ 点靠近，所以对每个固定的 $x_{0}>0$，只要 $n$ 充分大，$f_{n}(x_{0})$ 便可任意小．但由于 $f_{n}(x_{n})=\dfrac{1}{2}$，故不可能当 $n$ 充分大，有 $\left|f_{n}(x)-f(x)\right|<\dfrac{1}{4}$ 对一切 $x$ 一致成立，因此不可能一致收敛．
+\end{proof}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8,baseline=(current bounding box.center)]
+  \def\hh{2.6}
+  % axes
+  \draw[{-Latex}] (0,0) -- (5.2,0) node[below left] {$x$};
+  \draw (0,-0.15) -- (0,3.3);
+  \node[below left] at (0,0) {$O$};
+  % dashed line y=1/2 and dash-dot at x=1
+  \draw[dashed] (0,2.6) -- (4.5,2.6);
+  \draw[dash dot] (4.5,0) -- (4.5,2.6);
+  % curves nx/(1+n^2 x^2), t = n*x, x = t/n scaled: peak 1/2 at x=1/n
+  \draw[very thick,domain=0:4.5,smooth,samples=60,variable=\t]
+    plot({\t/1.1},{\hh*\t/(1+\t*\t)});
+  \draw[very thick,domain=0:4.5,smooth,samples=60,variable=\t]
+    plot({\t/2.2},{\hh*\t/(1+\t*\t)});
+  \draw[very thick,domain=0:4.5,smooth,samples=60,variable=\t]
+    plot({\t/3.3},{\hh*\t/(1+\t*\t)});
+  \draw[very thick,domain=0:4.5,smooth,samples=60,variable=\t]
+    plot({\t/4.4},{\hh*\t/(1+\t*\t)});
+  % labels
+  \node[right] at (4.55,2.6) {$y=\dfrac{1}{2}$};
+  \node[below] at (4.5,0) {$1$};
+  \node at (3.0,1.7) {$n=1$};
+  \node at (2.6,1.15) {$n=2$};
+  \node at (2.2,0.75) {$n=3$};
+  \node at (1.8,0.4) {$n=4$};
+\end{tikzpicture}\caption{\relax}\label{fig:12-5}
+\end{figure}
+
+下面我们证明，对一致收敛函数序列的极限函数来说，有很好的分析性质．
+
+\begin{theorem}\label{thm:12-1}
+若函数序列 $\{f_{n}(x)\}$ 的每一项 $f_{n}(x)$ 在 $[a,b]$ 上连续，且 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$，则 $f(x)$ 在 $[a,b]$ 连续．
+\end{theorem}
+
+\begin{proof}
+对任意 $x_{0}\in[a,b]$，要证 $f(x)$ 在 $x_{0}$ 连续．任给 $\varepsilon>0$，由一致收敛性知存在 $N$，当 $n>N$ 时，有
+\[
+\left|f_{n}(x)-f(x)\right|<\frac{\varepsilon}{3}
+\]
+对所有 $x\in[a,b]$ 同时成立．取定 $n>N$，由 $f_{n}(x)$ 在 $[a,b]$ 连续，知存在 $\delta>0$，只要 $x\in[a,b]$ 且 $\left|x-x_{0}\right|<\delta$，就有
+\[
+\left|f_{n}(x)-f_{n}(x_{0})\right|<\frac{\varepsilon}{3}.
+\]
+因此，只要 $x\in[a,b]$ 且 $\left|x-x_{0}\right|<\delta$，就有
+\[
+\begin{aligned}
+&\left|f(x)-f(x_{0})\right|\\
+={}&\left|f(x)-f_{n}(x)+f_{n}(x)-f_{n}(x_{0})+f_{n}(x_{0})-f(x_{0})\right|\\
+\leqslant{}&\left|f(x)-f_{n}(x)\right|+\left|f_{n}(x)-f_{n}(x_{0})\right|+\left|f_{n}(x_{0})-f(x_{0})\right|\\
+<{}&\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}=\varepsilon,
+\end{aligned}
+\]
+这就证明了 $f(x)$ 在 $x_{0}$ 连续，从而证明了定理~\ref{thm:12-1}．
+\end{proof}
+
+由前面的例~\ref{ex:12-1-2}，例~\ref{ex:12-1-3} 看出，去掉 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛的条件，不能保证极限函数是连续的．
+
+定理~\ref{thm:12-1} 说明，在定理条件成立时，有
+\[
+\lim_{x\to x_{0}}f(x)=f(x_{0})=\lim_{n\to\infty}f_{n}(x_{0}),
+\]
+即
+\[
+\lim_{x\to x_{0}}\lim_{n\to\infty}f_{n}(x)=f(x_{0})=\lim_{n\to\infty}\lim_{x\to x_{0}}f_{n}(x),
+\]
+即对 $f_{n}(x)$ 来说，两个极限 $\varlimlim_{n\to\infty}$ 与 $\varlimlim_{x\to x_{0}}$ 是可以交换次序的．
+
+\begin{theorem}\label{thm:12-2}
+若函数序列 $\{f_{n}(x)\}$ 的每一项在 $[a,b]$ 连续，且 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$，则
+\[
+\int_{a}^{b}f(x)\dd x=\lim_{n\to+\infty}\int_{a}^{b}f_{n}(x)\dd x.
+\]
+\end{theorem}
+
+\begin{proof}
+根据定理~\ref{thm:12-1}，$f(x)$ 在 $[a,b]$ 连续从而可积，故 $\displaystyle\int_{a}^{b}f(x)\dd x$ 是一个数．已知对任给 $\varepsilon>0$，存在 $N$，当 $n>N$ 时，有
+\[
+\left|f_{n}(x)-f(x)\right|<\varepsilon/\left(b-a\right),\ a\leqslant x\leqslant b,
+\]
+从而
+\[
+\begin{aligned}
+&\left|\int_{a}^{b}f_{n}(x)\dd x-\int_{a}^{b}f(x)\dd x\right|\\
+\leqslant{}&\int_{a}^{b}\left|f_{n}(x)-f(x)\right|\dd x
+<\frac{\varepsilon}{b-a}\int_{a}^{b}\dd x=\varepsilon,
+\end{aligned}
+\]
+这就证明了 $\displaystyle\lim_{n\to\infty}\int_{a}^{b}f_{n}(x)\dd x=\int_{a}^{b}f(x)\dd x$．
+\end{proof}
+
+定理~\ref{thm:12-2} 表明，在定理条件成立时，有
+\[
+\int_{a}^{b}f(x)\dd x\ =\ \int_{a}^{b}\lim_{n\to\infty}f_{n}(x)\dd x\ =\ \lim_{n\to\infty}\int_{a}^{b}f_{n}(x)\dd x,
+\]
+即
+\[
+\lim_{n\to\infty}\int_{a}^{b}f_{n}(x)\dd x\ =\ \int_{a}^{b}\lim_{n\to\infty}f_{n}(x)\dd x,
+\]
+即极限可以取到积分号里面．故人们称此定理为积分号下取极限的定理，条件是函数序列是一致收敛的．上述等式也可以解释为对 $f_{n}(x)$ 取积分和取极限两种运算可以交换次序．
+
+其实，定理证明中，如果取定 $x\in[a,b]$ 代替积分的上限 $b$，几乎一字不改便可证明
+\[
+\lim_{n\to\infty}\int_{a}^{x}f_{n}(t)\dd t\ =\ \int_{a}^{x}f(t)\dd t.
+\]
+也就是说函数序列 $\left\{\displaystyle\int_{a}^{x}f_{n}(t)\dd t\right\}$ 在 $[a,b]$ 每一点 $x$ 都收敛到 $\displaystyle\int_{a}^{x}f(t)\,\dd t$，并且收敛还是一致的．因为按定理~\ref{thm:12-2} 的证明，只要 $n>N$，有
+\[
+\left|\int_{a}^{x}f_{n}(t)\dd t-\int_{a}^{x}f(t)\dd t\right|\ \leqslant\int_{a}^{x}\left|f_{n}(t)-f(t)\right|\dd t\ <\frac{\varepsilon}{b-a}\int_{a}^{x}\dd t\,<\varepsilon
+\]
+对 $a\leqslant x\leqslant b$ 一致成立．
+
+下面的例子表明，定理~\ref{thm:12-2} 中 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$ 的条件，不能减弱为 $\{f_{n}(x)\}$ 在 $[a,b]$ 逐点收敛到 $f(x)$．
+
+\begin{example}\label{ex:12-1-8}
+设（见图~\ref{fig:12-6}）
+\[
+f_{n}(x)=\begin{cases}
+n^{2}x, & \text{当 }0\leqslant x\leqslant\dfrac{1}{n},\\[5pt]
+-n^{2}\left(x-\dfrac{2}{n}\right), & \text{当 }\dfrac{1}{n}\leqslant x\leqslant\dfrac{2}{n},\\[5pt]
+0, & \text{当 }\dfrac{2}{n}\leqslant x\leqslant 1,
+\end{cases}
+\]
+则 $f_{n}(x)$ 在 $[0,1]$ 连续 $(n=1,2,\cdots)$，并且对每个 $x\in[0,1]$，有 $f_{n}(x)\to 0\,(n\to\infty)$．事实上，若 $0<x\leqslant 1$，则存在 $N$，当 $n>N$ 时，$\dfrac{2}{n}<x$，从而 $f_{n}(x)$\linebreak${}=0\,(n=N+1,N+2,\cdots)$，故 $f_{n}(x)\to 0\,(n\to\infty)$．而当 $x=0$ 时，$f_{n}(0)=0$，更有 $f_{n}(0)\to 0$．这就是说 $f_{n}(x)\to f(x)=0$（当 $n\to\infty$）对 $x\in[0,1]$ 逐点成立．
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.8,baseline=(current bounding box.center)]
+  \def\av{1.1}
+  \def\pv{1.55*\av}
+  % axes
+  \draw[{-Latex}] (0,0) -- (4.3,0) node[below left] {$x$};
+  \draw (0,-0.1) -- (0,3.3);
+  \node[below left] at (0,0) {$O$};
+  % triangle spike
+  \draw[very thick] (0,0) -- (\av,3.1) -- (\pv,0);
+  \draw[very thick] (\pv,0) -- (4,0);
+  % dash-dot vertical at 1/n; dashed to y-axis with open circle
+  \draw[dash dot] (\av,0) -- (\av,3.1);
+  \draw[dashed] (\av,3.1) -- (0,3.1);
+  \draw[fill=white] (0,3.1) circle (1.6pt);
+  % tick at 1
+  \draw (4,0) -- (4,0.08);
+  % labels
+  \node[left] at (0,3.1) {$n$};
+  \node[below] at (\av,0) {$\dfrac{1}{n}$};
+  \node[below] at (\pv,0) {$\dfrac{2}{n}$};
+  \node[below] at (4,0) {$1$};
+\end{tikzpicture}\caption{\relax}\label{fig:12-6}
+\end{figure}
+
+显然，$\{f_{n}(x)\}$ 并不在 $[0,1]$ 一致收敛到 $f(x)=0$．事实上，取 $\varepsilon_{0}=\dfrac{1}{2}$，则对任意 $N$，取 $n=N+1$，$x_{n}=\dfrac{1}{n}\in[0,1]$，便有
+\[
+\left|f_{n}(x_{n})-f(x_{n})\right|=n\geqslant\varepsilon_{0}.
+\]
+而
+\[
+\int_{0}^{1}f_{n}(x)\dd x=\frac{1}{2}\cdot\frac{2}{n}\cdot n=1,
+\]
+\[
+\int_{0}^{1}f(x)\dd x=0,
+\]
+即
+\[
+\lim_{n\to+\infty}\int_{0}^{1}f_{n}(x)\dd x\ \neq\int_{0}^{1}f(x)\dd x.
+\]
+\end{example}
+
+\begin{theorem}\label{thm:12-3}
+若函数序列 $\{f_{n}(x)\}$ 在 $[a,b]$ 逐点收敛到 $f(x)$，而每一项 $f_{n}(x)$ 在 $[a,b]$ 都有连续的微商 $f_{n}^{\prime}(x)$，且 $\{f_{n}^{\prime}(x)\}$ 在 $[a,b]$ 一致收敛到 $\sigma(x)$，则 $f(x)$ 在 $[a,b]$ 有微商，且
+\[
+f^{\prime}(x)=\sigma(x).
+\]
+\end{theorem}
+
+在证明定理之前，先解释一下定理的含义．定理的结论说：
+\[
+f^{\prime}(x)=\big(\lim_{n\to+\infty}f_{n}(x)\big)^{\prime}=\sigma(x)=\lim_{n\to+\infty}f_{n}^{\prime}(x),
+\]
+就是说，对 $f_{n}(x)$ 来说，取微商运算与取极限运算可以交换次序，即
+\[
+\big(\lim_{n\to+\infty}f_{n}(x)\big)^{\prime}=\ \lim_{n\to+\infty}f_{n}^{\prime}(x).
+\]
+
+\begin{proof}[定理~\ref{thm:12-3} 的证明]
+根据定理~\ref{thm:12-2}，知对任意 $x\in[a,b]$，有
+\[
+\lim_{n\to\infty}\int_{a}^{x}f_{n}^{\prime}(t)\dd t\ =\int_{a}^{x}\sigma(t)\dd t.
+\]
+用牛顿--莱布尼茨公式，得到
+\[
+\lim_{n\to\infty}\int_{a}^{x}f_{n}^{\prime}(t)\dd t=\lim_{n\to\infty}\left[f_{n}(x)-f_{n}(a)\right]=f(x)-f(a),
+\]
+即
+\[
+f(x)-f(a)=\int_{a}^{x}\sigma(t)\dd t,\quad\forall x\in[a,b].
+\]
+取微商，便得
+\[
+f^{\prime}(x)=\sigma(x).
+\]
+定理~\ref{thm:12-3} 证完．
+\end{proof}
+
+定理~\ref{thm:12-1} 到定理~\ref{thm:12-3} 表明，运用一致收敛的概念，在相应条件下，可以得到函数序列 $\{f_{n}(x)\}$ 的极限函数的连续性结论，可以求极限函数的积分与微商等等．下面我们将把这些讨论移植到函数级数．在这样做以前，先讨论函数项级数的一致收敛性及其判别法．
+
+\begin{xiti}
+\item 讨论下列函数序列在所示区域的一致收敛性：
+\begin{ziti}
+\item $f_{n}(x)=\sqrt{x^{2}+\dfrac{1}{n^{2}}}$，\ $x\in(-\infty,+\infty)$；
+\item $f_{n}(x)=\sin\dfrac{x}{n}$，\par
+  i)\ $x\in(-l,l)$，\quad ii)\ $x\in(-\infty,+\infty)$；
+\item $f_{n}(x)=\dfrac{nx}{1+nx}$，\ $x\in(0,1)$；
+\item $f_{n}(x)=\dfrac{1}{1+nx}$，\par
+  i)\ $x\in[a,+\infty)$，$a>0$，\ ii)\ $x\in(0,+\infty)$；
+\item $f_{n}(x)=\dfrac{n^{2}x^{2}}{1+n^{3}x^{3}}$，\par
+  i)\ $x\in[a,+\infty)$，$a>0$，\ ii)\ $x\in(0,+\infty)$；
+\item $f_{n}(x)=\dfrac{nx}{1+n+x}$，\ $x\in[0,1]$；
+\item $f_{n}(x)=\dfrac{x^{n}}{1+x^{n}}$，\par
+  i)\ $x\in[0,b]$，$b<1$，\quad ii)\ $x\in[0,1]$，\quad iii)\ $x\in[a,+\infty)$，$a>1$；
+\item $f_{n}(x)=x^{n}-x^{2n}$，\ $x\in[0,1]$；
+\item $f_{n}(x)=x^{n}-x^{n+1}$，\ $x\in[0,1]$；
+\item $f_{n}(x)=\dfrac{x}{n}\ln\dfrac{x}{n}$，\ $x\in(0,1)$；
+\item $f_{n}(x)=\dfrac{1}{n}\ln\left(1+\mathrm{e}^{-nx}\right)$，\ $x\in(-\infty,+\infty)$；
+\item $f_{n}(x)=\mathrm{e}^{-(x-n)^{2}}$，\par
+  i)\ $x\in[-l,l]$，\quad ii)\ $x\in(-\infty,+\infty)$．
+\end{ziti}
+\item 设 $f_{n}(x)\,(n=1,2,\cdots)$ 在 $[a,b]$ 上有界，并且 $\{f_{n}(x)\}$ 在 $[a,b]$ 上一致收敛，求证：$f_{n}(x)$ 在 $[a,b]$ 上一致有界．
+\item 设 $f(x)$ 定义于 $(a,b)$，令
+\[
+f_{n}(x)=\frac{\left[nf(x)\right]}{n}\quad(n=1,2,\cdots).
+\]
+求证：$\{f_{n}(x)\}$ 在 $(a,b)$ 一致收敛到 $f(x)$．
+\item 设 $f(x)$ 在 $(a,b)$ 内有连续的导数 $f^{\prime}(x)$，且
+\[
+f_{n}(x)=n\left[f\left(x+\frac{1}{n}\right)-f(x)\right],
+\]
+求证：在闭区间 $[\alpha,\beta]$（$a<\alpha<\beta<b$）上，$\{f_{n}(x)\}$ 一致收敛到 $f^{\prime}(x)$．
+\item 设 $f_{1}(x)$ 在 $[a,b]$ 上黎曼可积，定义函数序列
+\[
+f_{n+1}(x)=\int_{a}^{x}f_{n}(t)\dd t\quad(n=1,2,\cdots).
+\]
+求证：$\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到零．
+\item 问参数 $\alpha$ 取什么值时，
+\[
+f_{n}(x)=n^{\alpha}x\mathrm{e}^{-nx},\quad n=1,2,3,\cdots
+\]
+在闭区间 $[0,1]$ 收敛？在闭区间 $[0,1]$ 一致收敛？使 $\displaystyle\lim_{n\to\infty}\int_{0}^{1}f_{n}(x)\dd x$ 可在积分号下取极限？
+\item 证明序列 $f_{n}(x)=nx\mathrm{e}^{-nx^{2}}\,(n=1,2,\cdots)$ 在闭区间 $[0,1]$ 上收敛，但
+\[
+\int_{0}^{1}\lim_{n\to\infty}f_{n}(x)\dd x\neq\lim_{n\to\infty}\int_{0}^{1}f_{n}(x)\dd x.
+\]
+\item 设 $f_{n}(x)\,(n=1,2,\cdots)$ 在 $(-\infty,+\infty)$ 一致连续，且 $\{f_{n}(x)\}$ 在 $(-\infty,+\infty)$ 一致收敛到 $f(x)$．求证：$f(x)$ 在 $(-\infty,+\infty)$ 上一致连续．
+\item 设 $\{f_{n}(x)\}$ 是 $[a,b]$ 上的连续函数列，且 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$；又 $x_{n}\in[a,b]$（$n=1,2,\cdots$），满足 $\lim\limits_{n\to\infty}x_{n}=x_{0}$，求证 $\lim\limits_{n\to\infty}f_{n}(x_{n})=f(x_{0})$．
+\item 设 $\{f_{n}(x)\}$ 在 $(a,b)$ 内一致收敛到 $f(x)$，$x_{0}\in(a,b)$ 且
+\[
+\lim_{x\to x_{0}}f_{n}(x)=a_{n}\quad(n=1,2,\cdots).
+\]
+证明：$\lim\limits_{n\to\infty}a_{n}$ 和 $\lim\limits_{x\to x_{0}}f(x)$ 存在且相等，即
+\[
+\lim_{n\to\infty}\lim_{x\to x_{0}}f_{n}(x)=\lim_{x\to x_{0}}\lim_{n\to\infty}f_{n}(x).
+\]
+\item 设 $f_{n}(x)\,(n=1,2,\cdots)$ 在 $[a,b]$ 黎曼可积，且 $\{f_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $f(x)$，证明：$f(x)$ 在 $[a,b]$ 黎曼可积．
+\end{xiti}
+
+\section{函数项级数的一致收敛性及其判别法}
+
+从现在开始我们研究函数项级数．就像研究数项级数要借助数列极限理论一样，我们研究函数项级数也要借助 \S\,1 所讲的函数序列的理论．
+
+设函数序列 $\{u_{n}(x)\}$ 的公共定义域为 $D$．称
+\[
+\sum_{n=1}^{\infty}u_{n}(x)=u_{1}(x)+u_{2}(x)+\cdots+u_{n}(x)+\cdots\quad(x\in D)
+\]
+为\emph{函数项级数}，其中 $u_{n}(x)$ 称为级数的项，
+\[
+S_{n}(x)=\sum_{k=1}^{n}u_{k}(x)=u_{1}(x)+u_{2}(x)+\cdots+u_{n}(x)
+\]
+称为级数的前 $n$ 项部分和．这样 $\{S_{n}(x)\}$ 是一个函数序列．
+
+若对于点 $x_{0}\in D$，数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x_{0})$ 收敛（或发散），则称函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在点 $x_{0}$ 处收敛（或发散），点 $x_{0}$ 称为级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 的收敛点（或发散点）．全体收敛点组成的集合 $X$ 称为级数的收敛域．对于收敛域中每一个点 $x$，都有收敛数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 的和 $S(x)$ 与之对应，这样，函数项级数在其收敛域便定义了一个和函数 $S(x)$，或者说，这个函数项级数就表示了函数 $S(x)$，$X$ 便是 $S(x)$ 的定义域．
+
+数项级数的和是由其部分和序列的极限来定义的，因此函数项级数的和函数 $S(x)$ 也就是其部分和序列（函数序列 $S_{n}(x)=\displaystyle\sum_{k=1}^{n}u_{k}(x)$）的逐点极限：
+\[
+\begin{aligned}
+S(x)&=\lim_{n\to\infty}S_{n}(x)=\lim_{n\to\infty}\sum_{k=1}^{n}u_{k}(x)\\
+&=\sum_{k=1}^{\infty}u_{k}(x),\,\forall x\in X.
+\end{aligned}
+\]
+所以对函数项级数来说，第一件事便是要求出它的收敛域，而这只要运用第十章学过的数项级数的知识便可以了．
+
+\begin{example}\label{ex:12-2-1}
+求等比级数
+\[
+\sum_{n=1}^{\infty}x^{n-1}=1+x+x^{2}+\cdots+x^{n-1}+\cdots
+\]
+的收敛域与和函数．
+\end{example}
+
+\begin{proof}[解]
+级数的前 $n$ 项部分和为
+\[
+\begin{aligned}
+S_{n}(x)&=1+x+\cdots+x^{n-1}\\
+&=\frac{1-x^{n}}{1-x}\to\frac{1}{1-x}\quad(n\to\infty),\,\text{当 }|x|<1.
+\end{aligned}
+\]
+而当 $|x|\geqslant 1$ 时级数 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}$ 发散，故级数的收敛域为 $(-1,1)$，和函数为 $\dfrac{1}{1-x}$．
+\end{proof}
+
+值得指出的是，函数 $\dfrac{1}{1-x}$ 的定义域是 $x\neq 1$．我们并没有把整个函数用级数表示出来，而只是在区间 $(-1,1)$ 把它表示成了一个级数 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}$．
+
+\begin{example}\label{ex:12-2-2}
+求函数项级数
+\[
+\begin{aligned}
+&1+\sum_{k=1}^{\infty}\left(x^{k}-x^{k-1}\right)\\
+={}&1+(x-1)+\left(x^{2}-x\right)+\left(x^{3}-x^{2}\right)+\cdots+\left(x^{n}-x^{n-1}\right)+\cdots
+\end{aligned}
+\]
+的收敛域与和函数．
+\end{example}
+
+\begin{proof}[解]
+级数的部分和为
+\[
+\begin{aligned}
+S_{n}(x)&=1+(x-1)+\cdots+\left(x^{n}-x^{n-1}\right)\\
+&=x^{n}\to\begin{cases}
+0, & -1<x<1,\\
+1, & x=1.
+\end{cases}
+\end{aligned}
+\]
+在其他点 $S_{n}(x)$ 没有极限存在，故级数的收敛域为 $(-1,1]$，其和函数
+\[
+S(x)=\begin{cases}
+0, & -1<x<1,\\
+1, & x=1.
+\end{cases}
+\]
+这个函数不是初等函数（为什么，请读者回答）．但我们给出了它的一个分析表达式
+\[
+S(x)=1+\sum_{k=1}^{\infty}\left(x^{k}-x^{k-1}\right).
+\]
+\end{proof}
+
+从这两个例子，读者不要误会，以为所有函数项级数的和函数都可以用初等函数或分段初等函数写出来．
+
+\begin{example}\label{ex:12-2-3}
+求函数项级数
+\[
+\begin{aligned}
+y=\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{x}{2}\right)^{2k}&=1-\left(\frac{x}{2}\right)^{2}+\frac{1}{(2!)^{2}}\left(\frac{x}{2}\right)^{4}\\
+&-\frac{1}{(3!)^{2}}\left(\frac{x}{2}\right)^{6}+\cdots+\frac{(-1)^{n}}{(n!)^{2}}\left(\frac{x}{2}\right)^{2n}+\cdots
+\end{aligned}
+\]
+的收敛域．
+\end{example}
+
+\begin{proof}[解]
+用达朗贝尔判别法
+\[
+\begin{aligned}
+\frac{\left|u_{n+1}(x)\right|}{\left|u_{n}(x)\right|}
+&=\frac{1}{\left[(n+1)!\right]^{2}}\left(\frac{|x|}{2}\right)^{2(n+1)}\frac{(n!)^{2}}{1}\left(\frac{2}{|x|}\right)^{2n}\\
+&=\frac{1}{(n+1)^{2}}\left(\frac{x}{2}\right)^{2}\to 0\quad(n\to\infty),
+\end{aligned}
+\]
+知级数收敛区域为 $(-\infty,+\infty)$．
+\end{proof}
+
+这个级数的和函数不是初等函数．我们说过，它是 $0$ 阶的贝塞尔函数，是微分方程
+\[
+xy^{\prime\prime}+y^{\prime}+xy=0
+\]
+的一个解．到现在为止，我们不知道它的别的表达式，它的表达式只有 $\displaystyle\sum_{k=0}^{\infty}\frac{(-1)^{k}}{(k!)^{2}}\left(\frac{x}{2}\right)^{2k}$．也就是说，级数本身就是这个函数的定义．前面只是通过形式运算证明了它满足上述微分方程，但这种形式运算的合理性我们至此尚未解释清楚，但很快我们便会解释清楚的．
+
+有了函数序列一致收敛的概念，便自然可以给出函数项级数一致收敛的定义了．
+
+\begin{definition}\label{def:12-2}
+设给定函数项级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$，如果它的部分和序列 $S_{n}(x)$ $\linebreak${}${}=\displaystyle\sum_{k=1}^{n}u_{k}(x)$ 在 $X$ 一致收敛到函数 $S(x)$，那么称级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ \emph{一致收敛}到和函数 $S(x)$．
+\end{definition}
+
+用 $\varepsilon-N$ 语言来叙述，函数项级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛到 $S(x)$，是指对任给的 $\varepsilon>0$，存在与 $x$ 无关的 $N=N(\varepsilon)$，只要 $n>N$，就有
+\[
+\left|S_{n}(x)-S(x)\right|=\Big|\sum_{k=1}^{n}u_{k}(x)-S(x)\Big|<\varepsilon
+\]
+对一切 $x\in X$ 一致成立．
+
+显然，函数项级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛到 $S(x)$，其前提必有 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 逐点收敛到 $S(x)$．
+
+\begin{example}\label{ex:12-2-4}
+证明函数项级数 $\displaystyle\sum_{k=1}^{\infty}x^{k-1}$ 在 $\left[-\dfrac{1}{2},\dfrac{1}{2}\right]$ 一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+已知 $\displaystyle\sum_{k=1}^{\infty}x^{k-1}=\frac{1}{1-x}$，当 $-\dfrac{1}{2}\leqslant x\leqslant\dfrac{1}{2}$，这时
+\[
+S_{n}(x)=\sum_{k=1}^{n}x^{k-1}=\frac{1-x^{n}}{1-x}.
+\]
+因此
+\[
+\left|S_{n}(x)-S(x)\right|=\frac{|x|^{n}}{|1-x|}\leqslant\frac{|x|^{n}}{1-|x|}\leqslant\left(\frac{1}{2}\right)^{n-1},\quad|x|\leqslant\frac{1}{2}.
+\]
+取 $N=\left[\dfrac{\ln\varepsilon}{\ln\dfrac{1}{2}}\right]+1$，则只要 $n>N$，就有
+\[
+\left|S_{n}(x)-S(x)\right|\leqslant\left(\frac{1}{2}\right)^{n-1}<\varepsilon,\quad\text{当 }|x|\leqslant\frac{1}{2}.
+\]
+这就证明了 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}$ 在 $\left[\dfrac{1}{2},\dfrac{1}{2}\right]$ 一致收敛．
+\end{proof}
+
+下面是函数项级数一致收敛的柯西原理．
+
+\begin{theorem}[柯西原理]\label{thm:12-4}
+函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $X$ 一致收敛的充分必要条件是，对任给的 $\varepsilon>0$，存在与 $x$ 无关的 $N$，只要 $n>N$，对任意正整数 $p$ 及任意 $x\in X$，都有
+\[
+\Big|\sum_{k=n+1}^{n+p}u_{k}(x)\Big|=\left|u_{n+1}(x)+u_{n+2}(x)+\cdots+u_{n+p}(x)\right|<\varepsilon.
+\]
+\end{theorem}
+
+\begin{proof}
+必要性．已知 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛到 $S(x)$．因此，对任给的 $\varepsilon>0$，存在与 $x$ 无关的 $N$，只要 $n>N$，就有
+\[
+\left|S_{n}(x)-S(x)\right|<\frac{\varepsilon}{2},\quad x\in X.
+\]
+因此，只要 $n>N$，对任意正整数 $p$，有
+\[
+\begin{aligned}
+&\Big|\sum_{k=n+1}^{n+p}u_{k}(x)\Big|=\left|u_{n+1}(x)+\cdots+u_{n+p}(x)\right|\\
+={}&\left|S_{n+p}(x)-S_{n}(x)\right|=\left|S_{n+p}(x)-S(x)+S(x)-S_{n}(x)\right|\\
+\leqslant{}&\left|S_{n+p}(x)-S(x)\right|+\left|S(x)-S_{n}(x)\right|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\end{aligned}
+\]
+这就是必要性所要证明的．
+
+充分性．根据条件，对任意固定的 $x$，$\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 是数项级数，它满足数项级数的柯西原理的条件，因此收敛．这就证明了函数项级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 逐点收敛．记其和函数为 $S(x)$．根据条件知，对 $\dfrac{\varepsilon}{2}>0$，存在 $N$，只要 $n>N$，对任意正整数 $p$，均有
+\[
+\left|S_{n+p}(x)-S_{n}(x)\right|<\frac{\varepsilon}{2}
+\]
+对一切 $x\in X$ 成立．在上式中，对任意 $x\in X$，令 $p\to\infty$ 取极限，便知只要 $n>N$，有
+\[
+\left|S(x)-S_{n}(x)\right|\leqslant\frac{\varepsilon}{2}<\varepsilon
+\]
+对一切 $x\in X$ 成立．这就证明了函数项级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛．定理~\ref{thm:12-4} 证完．
+\end{proof}
+
+在定理~\ref{thm:12-4} 的必要性证明中，取 $p=1$，便得 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛的必要条件是对给定的 $\varepsilon>0$，存在与 $x$ 无关的 $N$，只要 $n>N$，有
+\[
+\left|u_{n+1}(x)\right|<\varepsilon,\quad\forall x\in X,
+\]
+也就是说，$\{u_{n}(x)\}$ 在 $X$ 一致收敛到 $0$．
+
+\begin{theorem}\label{thm:12-5}
+函数项级数在 $X$ 一致收敛的必要条件是一般项构成的函数序列 $\{u_{n}(x)\}$ 在 $X$ 一致收敛于 $0$．
+\end{theorem}
+
+\begin{example}\label{ex:12-2-5}
+证明函数项级数 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}$ 在 $(-1,1)$ 不一致收敛．
+\end{example}
+
+\begin{proof}[解]
+在 \S\,1 的例~6 中，证明过 $u_{n}(x)=x^{n-1}$ 在 $[0,1)$ 不一致收敛，自然 $u_{n}(x)=x^{n-1}$ 在 $(-1,1)$ 不一致收敛到 $0$，故由定理~\ref{thm:12-5} 可知 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}$ 在 $(-1,1)$ 不一致收敛．
+\end{proof}
+
+用定理~\ref{thm:12-4} 很容易得到下面的函数项级数一致收敛的判别法．这判别法很简单，但却很有用．
+
+\begin{theorem}[魏尔斯特拉斯判别法，或称 $M$ 判别法，或称控制收敛判别法]\label{thm:12-6}
+若对函数项级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$，存在 $M_{k}\,(k=1,2,\cdots)$，使得
+\[
+\left|u_{k}(x)\right|\leqslant M_{k},\quad\forall x\in X,
+\]
+而正项数值级数 $\displaystyle\sum_{k=1}^{\infty}M_{k}$ 收敛，则 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛．
+\end{theorem}
+
+\begin{proof}
+由 $\displaystyle\sum_{k=1}^{\infty}M_{k}$ 收敛，知对任给的 $\varepsilon>0$，存在 $N$，当 $n>N$，对任意正整数 $p$，有
+\[
+M_{n+1}+M_{n+2}+\cdots+M_{n+p}<\varepsilon,
+\]
+从而只要 $n>N$，对任意正整数 $p$，有
+\[
+\begin{aligned}
+&\left|u_{n+1}(x)+u_{n+2}(x)+\cdots+u_{n+p}(x)\right|\\
+\leqslant{}&\left|u_{n+1}(x)\right|+\left|u_{n+2}(x)\right|+\cdots+\left|u_{n+p}(x)\right|\\
+\leqslant{}&M_{n+1}+M_{n+2}+\cdots+M_{n+p}<\varepsilon,\,\forall x\in X.
+\end{aligned}
+\]
+由定理~\ref{thm:12-4} 知级数 $\displaystyle\sum_{k=1}^{\infty}u_{k}(x)$ 在 $X$ 一致收敛．
+\end{proof}
+
+通常，称不等式 $\left|u_{k}(x)\right|\leqslant M_{k}\ (x\in X)$ 为用 $M_{k}$ 控制 $u_{k}(x)$．这就是控制收敛判别法名称的由来．其中 $M$ 是英语``控制''这个词 majorant 的头一个字母，故这个判别法也称为 $M$ 判别法．
+
+\begin{example}\label{ex:12-2-6}
+证明 $\displaystyle\sum_{k=1}^{\infty}x^{k-1}$ 在 $\left[-\dfrac{1}{2},\dfrac{1}{2}\right]$ 一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+因为
+\[
+\left|x^{k-1}\right|\leqslant\left(\frac{1}{2}\right)^{k-1},\quad\forall x\in\left[-\frac{1}{2},\frac{1}{2}\right],
+\]
+而 $\displaystyle\sum_{k=1}^{\infty}\left(\frac{1}{2}\right)^{k-1}$ 收敛，由 $M$ 判别法知 $\displaystyle\sum_{k=1}^{\infty}x^{k-1}$ 在 $\left[-\dfrac{1}{2},\dfrac{1}{2}\right]$ 一致收敛．
+\end{proof}
+
+同样的方法可以证明，对任意 $0<r<1$，$\displaystyle\sum_{k=1}^{\infty}x^{k-1}$ 在 $[-r,r]$ 一致收敛．
+
+总结前面的讨论知级数 $\displaystyle\sum_{n=1}^{\infty}x^{n-1}$ 在 $[-r,r]$ 一致收敛，其中 $0<r<1$，但在 $(-1,1)$ 不一致收敛．
+
+\begin{example}\label{ex:12-2-7}
+证明 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^{2}}$ 在区间 $(-\infty,+\infty)$ 一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+由于
+\[
+\left|\frac{\sin nx}{n^{2}}\right|\leqslant\frac{1}{n^{2}},\quad-\infty<x<+\infty,
+\]
+而 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ 收敛，由 $M$ 判别法知 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^{2}}$ 在 $(-\infty,+\infty)$ 一致收敛．
+\end{proof}
+
+\begin{example}\label{ex:12-2-8}
+证明级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x}{x^{2}+n^{3}}$ 在 $(-\infty,+\infty)$ 内一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+根据 $a^{2}+b^{2}\geqslant 2\left|a\right|\left|b\right|$，知
+\[
+\left|\frac{x}{x^{2}+n^{3}}\right|\leqslant\frac{1}{2n^{\frac{3}{2}}}\cdot\frac{2\left|x\right|n^{\frac{3}{2}}}{x^{2}+n^{3}}\leqslant\frac{1}{2n^{\frac{3}{2}}},\quad\forall x\in(-\infty,+\infty),
+\]
+而 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{2n^{\frac{3}{2}}}$ 收敛，由 $M$ 判别法知 $\displaystyle\sum_{n=1}^{\infty}\frac{x}{x^{2}+n^{3}}$ 在 $(-\infty,+\infty)$ 一致收敛．
+\end{proof}
+
+$M$ 判别法简单有用，但它只能判别绝对且一致收敛的级数，因此不够精细．为了判断包括条件收敛级数在内的函数项级数的一致收敛性，需要稍为精细一些的判别法，下面我们把判断数项级数收敛的狄利克雷判别法与阿贝尔判别法移植到函数项级数的一致收敛性上来．
+
+\begin{definition}\label{def:12-3}
+称函数序列 $\{f_{n}(x)\}$ 在 $X$ \emph{一致有界}，如果存在数 $M>0$，使得
+\[
+\left|f_{n}(x)\right|\leqslant M
+\]
+对一切 $x\in X$ 和 $n=1,2,\cdots$ 同时成立．
+\end{definition}
+
+\begin{theorem}[狄利克雷判别法]\label{thm:12-7}
+设函数项级数 $\displaystyle\sum_{n=1}^{\infty}b_{n}(x)$ 的部分和序列 $\big\{\displaystyle\sum_{k=1}^{n}b_{k}(x)\big\}$ 在 $X$ 上一致有界，对每个固定的 $x\in X$，数列 $\{a_{n}(x)\}$ 是单调的，且当 $n\to\infty$ 时函数序列 $\{a_{n}(x)\}$ 在 $X$ 一致趋向于 $0$，则函数项级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}(x)b_{n}(x)$ 在 $X$ 一致收敛．
+\end{theorem}
+
+\begin{proof}
+用类似于数项级数狄利克雷判别法证明的方法，只是在适当的地方要加上``一致''的定语．事实上，已知
+\[
+\Big|\sum_{k=1}^{n}b_{k}(x)\Big|\leqslant M\quad\,\forall x\in X,n=1,2,\cdots,
+\]
+则
+\[
+\begin{aligned}
+\Big|\sum_{k=n+1}^{n+p}b_{k}(x)\Big|&=\ \Big|\sum_{k=1}^{n+p}b_{k}(x)-\sum_{k=1}^{n}b_{k}(x)\Big|\\
+\leqslant&\ \Big|\sum_{k=1}^{n+p}b_{k}(x)\Big|+\ \Big|\sum_{k=1}^{n}b_{k}(x)\Big|\leqslant 2M,\\
+&\forall x\in X,n,p=1,2,\cdots.
+\end{aligned}
+\]
+而由 $\{a_{n}(x)\}$ 在 $X$ 一致收敛于 $0$，知对任给 $\varepsilon>0$，存在与 $x$ 无关的 $N$，只要 $n>N$，有
+\[
+\left|a_{n}(x)\right|<\varepsilon\quad\,\forall x\in X.
+\]
+因此，只要 $n>N$，对任意正整数 $p$，用阿贝尔引理，有
+\[
+\begin{aligned}
+\Big|\sum_{k=n+1}^{n+p}a_{k}(x)b_{k}(x)\Big|&\leqslant 2M\big(\left|a_{n+1}(x)\right|+2\left|a_{n+p}(x)\right|\big)\\
+&<6M\varepsilon,\,\forall x\in X.
+\end{aligned}
+\]
+由一致收敛的柯西原理（定理~\ref{thm:12-4}），知级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}(x)b_{n}(x)$ 在 $X$ 一致收敛．
+\end{proof}
+
+\begin{example}\label{ex:12-2-9}
+证明级数 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{n}}{n}$ 在 $[0,1]$ 一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+取 $b_{n}(x)=(-1)^{n}$，$a_{n}(x)=\dfrac{x^{n}}{n}$，则显然
+\[
+\Big|\sum_{k=1}^{n}b_{k}(x)\Big|=\ \Big|\sum_{k=1}^{n}(-1)^{k-1}\Big|\leqslant 2\quad(\forall n),
+\]
+而 $a_{n}(x)=\dfrac{x^{n}}{n}$ 对每个 $x\in[0,1]$ 关于 $n$ 单调下降，且
+\[
+\left|\frac{x^{n}}{n}\right|\leqslant\frac{1}{n}\to 0,\quad\forall x\in[0,1].
+\]
+因此 $\{a_{n}(x)\}$ 在 $[0,1]$ 一致趋向于 $0$．根据狄利克雷判别法知 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^{n}}{n}$ 在 $[0,1]$ 一致收敛．
+\end{proof}
+
+\begin{example}\label{ex:12-2-10}
+证明级数 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}$ 在 $[\delta,2\pi-\delta]$ 一致收敛，其中 $\delta$ 是小于 $\pi$ 的任意正数：$0<\delta<\pi$．
+\end{example}
+
+\begin{proof}[证明]
+取 $a_{n}(x)=\dfrac{1}{n}$，它显然单调下降趋向于 $0$（从而在 $[\delta,2\pi-\delta]$ 一致趋向于 $0$）．取 $b_{n}(x)=\sin nx$，则当 $x\in[\delta,2\pi-\delta]$ 时，根据第十章 \S\,4 例~4 中的公式，有
+\[
+\Big|\sum_{k=1}^{n}\sin kx\Big|\leqslant\frac{1}{\left|\sin\dfrac{x}{2}\right|}\leqslant\frac{1}{\sin\dfrac{\delta}{2}},\quad n=1,2,\cdots.
+\]
+也就是说，序列 $\big\{\displaystyle\sum_{k=1}^{n}\sin kx\big\}$ 在 $[\delta,2\pi-\delta]$ 一致有界．根据狄利克雷判别法，知 $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n}$ 在 $[\delta,2\pi-\delta]$ 一致收敛．
+\end{proof}
+
+\begin{theorem}[阿贝尔判别法]\label{thm:12-8}
+设函数项级数 $\displaystyle\sum_{n=1}^{\infty}b_{n}(x)$ 在 $X$ 一致收敛，函数序列 $\{a_{n}(x)\}$ 在 $X$ 一致有界，且对每个 $x\in X$ 是单调数列，则级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}(x)b_{n}(x)$ 在 $X$ 一致收敛．
+\end{theorem}
+
+\begin{proof}
+由条件知存在 $M>0$，使得
+\[
+\left|a_{n}(x)\right|\leqslant M,\quad\forall x\in X,\quad n=1,2,\cdots.
+\]
+由柯西原理知，对任给 $\varepsilon>0$，存在 $N$，当 $n>N$，对任意正整数 $p$，有
+\[
+\Big|\sum_{k=n+1}^{n+p}b_{k}(x)\Big|<\varepsilon,\quad\forall x\in X.
+\]
+因此，对任意 $n>N$，对任意正整数 $p$，用阿贝尔引理，有
+\[
+\begin{aligned}
+\Big|\sum_{k=n+1}^{n+p}a_{k}(x)b_{k}(x)\Big|&<\varepsilon\big(\left|a_{n+1}(x)\right|+2\left|a_{n+p}(x)\right|\big)\\
+&<3M\varepsilon,\,\forall x\in X,
+\end{aligned}
+\]
+再由柯西原理知 $\displaystyle\sum_{n=1}^{\infty}a_{n}(x)b_{n}(x)$ 在 $X$ 一致收敛．
+\end{proof}
+
+\begin{example}\label{ex:12-2-11}
+已知数项级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，证明 $\displaystyle\sum_{n=1}^{\infty}a_{n}x^{n}$ 在 $[0,1]$ 一致收敛．
+\end{example}
+
+\begin{proof}[证明]
+已知 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，而对任意 $x\in[0,1]$，$x^{n}$ 对 $n$ 单调下降，且一致有界．
+\[
+\left|x^{n}\right|\leqslant 1,\quad\forall x\in[0,1],\,n=1,2,\cdots.
+\]
+由阿贝尔判别法知 $\displaystyle\sum_{n=1}^{\infty}a_{n}x^{n}$ 在 $[0,1]$ 一致收敛．
+\end{proof}
+
+\begin{xiti}
+\item 求出下列函数项级数的收敛区域（绝对的和条件的）：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{1+x^{2n}}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n}{n+1}\left(\frac{x}{2x+1}\right)^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{2n-1}\left(\frac{1-x}{1+x}\right)^{n}$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}\cdot\frac{1}{1+a^{2n}x^{2}}$．
+\end{ziti}
+\item 按定义讨论下列函数项级数的一致收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=0}^{\infty}(1-x)x^{n},\quad x\in[0,1]$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n-1}x^{2}}{\left(1+x^{2}\right)^{n}},\quad x\in(-\infty,+\infty)$．
+\end{ziti}
+\item 讨论下列函数项级数的一致收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{\sqrt[3]{n^{4}+x^{4}}},\quad x\in(-\infty,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x}{1+n^{4}x^{2}},\quad x\in(-\infty,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}(1-\mathrm{e}^{-nx})}{n^{2}+x^{2}},\quad x\in[0,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{x+2^{n}},\quad x\in(-2,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{nx}{1+n^{5}x^{2}},\quad x\in(-\infty,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n^{2}}{\sqrt{n!}}\left(x^{n}+x^{-n}\right),\quad\dfrac{1}{2}\leqslant\left|x\right|\leqslant 2$；
+\item $\displaystyle\sum_{n=1}^{\infty}x^{2}\mathrm{e}^{-nx},\quad x\in[0,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}\ln^{n}x}{n!},\quad x\in[0,1]$；
+\item $\displaystyle\sum_{n=2}^{\infty}\left[\sqrt{x^{2}+\frac{1}{n^{2}}}-\sqrt{x^{2}+\frac{1}{(n-1)^{2}}}\right],\quad x\in(-\infty,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{n}{x^{n}},\quad\left|x\right|\geqslant r>1$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\ln(1+nx)}{nx^{n}},\quad x\in[a,+\infty),\,a>1$．
+\end{ziti}
+\item 讨论下列函数项级数的一致收敛性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\cos\dfrac{2n\pi}{3}}{\sqrt{n^{2}+x^{2}}},\quad x\in(-\infty,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin x\sin nx}{\sqrt{n+x}},\quad x\in[0,2\pi]$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{x+n},\quad x\in(-1,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n+\sin x},\quad x\in(-\infty,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}2^{n}\sin\frac{1}{3^{n}x},\quad x\in(0,+\infty)$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{\frac{n(n-1)}{2}}}{\sqrt[3]{n^{2}+\mathrm{e}^{x}}},\quad\left|x\right|\leqslant a$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{\sqrt{n}},\quad x\in[-1,0]$；
+\item $\displaystyle\sum_{n=1}^{\infty}(-1)^{n}\frac{x^{2n+1}}{2n+1},\quad x\in[-1,1]$．
+\end{ziti}
+\item 证明级数 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{n+x^{2}}$ 关于 $x$ 在 $(-\infty,+\infty)$ 上为一致收敛，但对任何 $x$ 并非绝对收敛；而级数 $\displaystyle\sum_{n=1}^{\infty}\frac{x^{2}}{\left(1+x^{2}\right)^{n}}$ 虽在 $x\in(-\infty,+\infty)$ 上绝对收敛，但并不一致收敛．
+\item 设每一项 $\varphi_{n}(x)$ 都是 $[a,b]$ 上的单调函数，如果 $\displaystyle\sum_{n=1}^{\infty}\varphi_{n}(x)$ 在 $[a,b]$ 的端点为绝对收敛，那么这级数在 $[a,b]$ 上一致收敛．
+\item 若 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 的一般项 $\left|u_{n}(x)\right|\leqslant c_{n}(x)$，$x\in X$，并且 $\displaystyle\sum_{n=1}^{\infty}c_{n}(x)$ 在 $X$ 上一致收敛，证明 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $X$ 上也一致收敛且绝对收敛．
+\end{xiti}
+
+\section{和函数的分析性质}
+
+本节要把 \S\,1 中讨论的极限函数的分析性质移植过来，研究函数项级数和函数的分析性质．
+
+\begin{theorem}[和函数的连续性]\label{thm:12-9}
+若 $u_{n}(x)\,(n=1,2,\cdots)$ 在 $[a,b]$ 连续，函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 一致收敛到 $S(x)$，则和函数 $S(x)$ 在 $[a,b]$ 连续．
+\end{theorem}
+
+\begin{proof}
+根据 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 一致收敛到 $S(x)$ 的定义，部分和 $S_{n}(x)=\displaystyle\sum_{k=1}^{n}u_{k}(x)$ 在 $[a,b]$ 一致收敛到 $S(x)$．而 $S_{n}(x)=\displaystyle\sum_{k=1}^{n}u_{k}(x)$ 是 $u_{k}(x)$ 的有限和，因此是在 $[a,b]$ 连续的．由定理~\ref{thm:12-1} 知 $S(x)$ 在 $[a,b]$ 连续．
+\end{proof}
+
+\S\,1 的讨论说明，为保证和函数 $S(x)$ 的连续性，函数项级数一致收敛的条件是不能少的．当然，一般说来它也不是必要的，但在一定的条件下却是必要的．
+
+\begin{theorem}[迪尼 Dini]\label{thm:12-10}
+若在闭区间 $[a,b]$ 上，$u_{n}(x)\geqslant 0\ (n=1,2,\cdots)$ 且在 $[a,b]$ 连续，函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 逐点收敛到 $S(x)$，$S(x)$ 在 $[a,b]$ 连续，则级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 一致收敛．
+\end{theorem}
+
+\begin{proof}
+由于 $u_{n}(x)\geqslant 0$，知级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 的部分和序列 $S_{n}(x)=\displaystyle\sum_{k=1}^{n}u_{k}(x)$ 是单调上升的：
+\[
+S_{n}(x)\leqslant S_{n+1}(x),\quad\forall\,x\in[a,b],n=1,2,\cdots.
+\]
+现在要证 $\{S_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $S(x)$．用反证法．如果不然，设 $\{S_{n}(x)\}$ 在 $[a,b]$ 不一致收敛到 $S(x)$，则存在 $\varepsilon_{0}>0$，使对任意 $N$，存在 $n>N$ 与 $x_{n}\in[a,b]$，使得
+\[
+\left|S_{n}(x_{n})-S(x_{n})\right|\geqslant\varepsilon_{0}.
+\]
+取 $N=1$，则存在 $n_{1}>1$，$x_{1}\in[a,b]$，使 $\left|S_{n_{1}}(x_{1})-S(x_{1})\right|\geqslant\varepsilon_{0}$；取 $N=n_{1}$，则存在 $n_{2}>n_{1}$，$x_{2}\in[a,b]$，使 $\left|S_{n_{2}}(x_{2})-S(x_{2})\right|\geqslant\varepsilon_{0}$；取 $N=n_{2}$，则存在 $n_{3}>n_{2}$，$x_{3}\in[a,b]$，使 $\left|S_{n_{3}}(x_{3})-S(x_{3})\right|\geqslant\varepsilon_{0}$．如此继续下去，便得正整数子列 $n_{1}<n_{2}<\cdots<n_{k}<\cdots$ 和数列 $x_{k}\in[a,b]\,(k=1,2,\cdots)$，使得
+\[
+\left|S_{n_{k}}(x_{k})-S(x_{k})\right|=S(x_{k})-S_{n_{k}}(x_{k})\geqslant\varepsilon_{0}
+\]
+即
+\[
+S(x_{k})\geqslant S_{n_{k}}(x_{k})+\varepsilon_{0}.
+\]
+由波尔察诺--魏尔斯特拉斯定理，知 $\{x_{k}\}$ 有子数列收敛到 $x_{0}\in[a,b]$．为使符号简单起见，不妨设 $\{x_{k}\}$ 本身收敛到 $x_{0}$，即 $x_{k}\to x_{0}\in[a,b]$．注意对任意 $m$，只要 $n_{k}\geqslant m$，有
+\[
+S(x_{k})\geqslant S_{n_{k}}(x_{k})+\varepsilon_{0}\geqslant S_{m}(x_{k})+\varepsilon_{0}.
+\]
+上式只要 $k$ 充分大，使 $n_{k}\geqslant m$ 便成立．令 $k\to+\infty$ 取极限，由 $S(x)$ 与 $S_{m}(x)$ 连续，便得
+\[
+S(x_{0})\geqslant S_{m}(x_{0})+\varepsilon_{0},
+\]
+即
+\[
+\left|S(x_{0})-S_{m}(x_{0})\right|=S(x_{0})-S_{m}(x_{0})\geqslant\varepsilon_{0},
+\]
+这与 $S_{n}(x_{0})\to S(x_{0})$ 矛盾．因此 $\{S_{n}(x)\}$ 在 $[a,b]$ 一致收敛到 $S(x)$，定理~\ref{thm:12-10} 证完．
+\end{proof}
+
+\begin{theorem}[逐项积分]\label{thm:12-11}
+若 $u_{n}(x)\,(n=1,2,\cdots)$ 在 $[a,b]$ 连续，函数项级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 一致收敛到 $S(x)$，则
+\[
+\int_{a}^{b}S(x)\dd x\ =\ \sum_{n=1}^{\infty}\int_{a}^{b}u_{n}(x)\dd x.
+\]
+\end{theorem}
+
+\begin{proof}
+对 $S_{n}(x)=\displaystyle\sum_{k=1}^{n}u_{k}(x)$ 用定理~\ref{thm:12-2}，有
+\[
+\begin{aligned}
+\int_{a}^{b}S(x)\dd x\ =\ \lim_{n\to\infty}\int_{a}^{b}S_{n}(x)\dd x\ =\ \lim_{n\to\infty}\int_{a}^{b}\sum_{k=1}^{n}u_{k}(x)\dd x\\
+=\ \lim_{n\to+\infty}\sum_{k=1}^{n}\int_{a}^{b}u_{k}(x)\dd x.
+\end{aligned}
+\]
+由 $S(x)$ 在 $[a,b]$ 连续，因而可积，故左边是一个数．这说明级数 $\displaystyle\sum_{k=1}^{\infty}\int_{a}^{b}u_{k}(x)\dd x$ 收敛，且
+\[
+\int_{a}^{b}S(x)\dd x\ =\ \sum_{n=1}^{\infty}\int_{a}^{b}u_{n}(x)\dd x.
+\]
+定理~\ref{thm:12-11} 证完．
+\end{proof}
+
+把 $S(x)=\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 代进上式，得
+\[
+\int_{a}^{b}\sum_{n=1}^{\infty}u_{n}(x)\dd x=\sum_{n=1}^{\infty}\int_{a}^{b}u_{n}(x)\dd x.
+\]
+这表明，在一致收敛的前提下，和的积分等于积分的和，即使这个和是无穷项的和也是成立的．过去我们在引进定积分概念时，对有限和证明过这个结果，现在我们证明了，对无穷和也是成立的，但要求级数一致收敛．本章 \S\,1 的例~8 表明，一致收敛的条件是不能少的．
+
+\begin{theorem}[逐项求导]\label{thm:12-12}
+若 $u_{n}(x)\,(n=1,2,\cdots)$ 在 $[a,b]$ 有连续的微商 $u_{n}^{\prime}(x)$，$\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 逐点收敛到 $S(x)$，$\displaystyle\sum_{n=1}^{\infty}u_{n}^{\prime}(x)$ 在 $[a,b]$ 一致收敛到 $\sigma(x)$，则 $S(x)$ 在 $[a,b]$ 可导，且
+\[
+S^{\prime}(x)=\sigma(x).
+\]
+\end{theorem}
+
+这是定理~\ref{thm:12-3} 的直接推论．在这里我们把证明省略了，请读者把它写出来．
+
+把 $S(x)$，$\sigma(x)$ 用级数表示，得
+\[
+\Big(\sum_{n=1}^{\infty}u_{n}(x)\Big)^{\prime}=\sum_{n=1}^{\infty}u_{n}^{\prime}(x).
+\]
+故定理~\ref{thm:12-12} 的含义是：和的导数等于导数的和，即使这个和是无穷项的和也是成立的，但前提是逐项求导以后的级数 $\displaystyle\sum_{n=1}^{\infty}u_{n}^{\prime}(x)$ 在 $[a,b]$ 一致收敛．
+
+事实上，$\displaystyle\sum_{n=1}^{\infty}u_{n}^{\prime}(x)$ 在 $[a,b]$ 一致收敛的条件是不能少的．我们举一个序列的例子说明这一点．
+
+\begin{example}\label{ex:12-3-1}
+$f_{n}(x)=\dfrac{1}{n}\arctan x^{n}$．由于
+\[
+\left|f_{n}(x)\right|\leqslant\frac{1}{n}\cdot\frac{\pi}{2}\to 0,
+\]
+知 $f_{n}(x)\to f(x)=0$ 在 $0\leqslant x\leqslant 2$ 成立．但
+\[
+f_{n}^{\prime}(x)=\frac{x^{n-1}}{1+x^{2n}}\to\sigma(x)=\begin{cases}
+0, & x\neq 1,\\[3pt]
+\dfrac{1}{2} & x=1,
+\end{cases}
+\]
+显然
+\[
+f^{\prime}(x)\neq\sigma(x),
+\]
+这是由于 $\{f_{n}^{\prime}(x)\}$ 在 $[0,2]$ 不一致收敛的缘故．
+\end{example}
+
+\begin{example}\label{ex:12-3-2}
+证明黎曼 $\zeta$ 函数
+\[
+\zeta(x)=\sum_{n=1}^{\infty}\frac{1}{n^{x}}
+\]
+在 $(1,+\infty)$ 连续且任意次可导．
+\end{example}
+
+\begin{proof}[证明]
+（1）首先，$\zeta(x)$ 在 $(1,+\infty)$ 有定义，这是因为对任意 $x>1$，级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{x}}$ 收敛．
+
+（2）我们无法证明级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{x}}$ 在 $(1,+\infty)$ 一致收敛（事实上，它在 $(1,+\infty)$ 是不一致收敛的，请读者尝试证明这一点），但却可以证明 $\zeta(x)$ 在 $(1,+\infty)$ 连续．事实上对任意 $x_{0}\in(1,+\infty)$，取 $\delta=\dfrac{1+x_{0}}{2}$，有 $\delta>1$．这时级数 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{\delta}}$ 收敛．由于
+\[
+\frac{1}{n^{x}}\leqslant\frac{1}{n^{\delta}},\quad\delta\leqslant x<+\infty,
+\]
+根据 $M$ 判别法知 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{x}}$ 在 $[\delta,+\infty)$ 一致收敛．因而和函数 $\zeta(x)$ 在 $[\delta,+\infty)$ 连续．特别地 $\zeta(x)$ 在 $x_{0}$ 连续（因为 $\delta<x_{0}<+\infty$）．由 $x_{0}>1$ 的任意性，知 $\zeta(x)$ 在 $(1,+\infty)$ 连续．
+
+（3）对任意 $x_{0}>1$，同（2）一样，取 $\delta=\dfrac{1+x_{0}}{2}$．这时逐项微商后的级数是 $\displaystyle\sum_{n=1}^{\infty}\left(-\frac{\ln n}{n^{x}}\right)$，其中每项 $\dfrac{\ln n}{n^{x}}$ 连续．由于
+\[
+\left|\frac{\ln n}{n^{x}}\right|\leqslant\frac{\ln n}{n^{\delta}},\quad\delta\leqslant x<+\infty,
+\]
+而 $\displaystyle\sum_{n=1}^{\infty}\frac{\ln n}{n^{\delta}}$ 收敛，根据 $M$ 判别法知 $\displaystyle\sum_{n=1}^{\infty}\frac{\ln n}{n^{x}}$ 在 $[\delta,+\infty)$ 一致收敛，由定理~\ref{thm:12-12} 知 $\zeta(x)$ 可导，且
+\[
+\zeta^{\prime}(x)=\sum_{n=1}^{\infty}\frac{-\ln n}{n^{x}},\quad\delta\leqslant x<+\infty.
+\]
+特别地，上式在 $x_{0}>\delta$ 成立：
+\[
+\zeta^{\prime}(x_{0})=\sum_{n=1}^{\infty}\frac{-\ln n}{n^{x_{0}}}.
+\]
+由 $x_{0}>1$ 的任意性，就证明了
+\[
+\zeta^{\prime}(x)=\sum_{n=1}^{\infty}\frac{-\ln n}{n^{x}},\qquad 1<x<+\infty.
+\]
+同理可证 $\zeta(x)$ 任意次可导．
+\end{proof}
+
+\begin{xiti}
+\item 研究下列级数所表示的函数在指定区间上的连续性：
+\begin{ziti}
+\item $\displaystyle\sum_{n=0}^{\infty}x^{n},\quad-1<x<1$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n},\quad-1\leqslant x<1$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{n}}{n^{2}},\quad\left|x\right|\leqslant 1$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{(x+n)(x+n+1)},\quad 0<x<+\infty$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{1+n^{2}x^{2}},\quad-\infty<x<0$ 或 $0<x<+\infty$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n\sqrt{n}},\quad\left|x\right|<\infty$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{nx}{1+n^{4}x^{2}},\quad-\infty<x<0$ 或 $0<x<+\infty$；
+\item $\displaystyle\sum_{n=1}^{\infty}\frac{x^{2}}{\left(1+x^{2}\right)^{n}},\quad\left|x\right|<\infty$．
+\end{ziti}
+\item 求证 $f(x)=\displaystyle\sum_{n=1}^{\infty}\frac{\sin nx}{n^{3}}$ 在 $(-\infty,+\infty)$ 内连续，并有连续导函数．
+\item 设 $f(x)=\displaystyle\sum_{n=1}^{\infty}\frac{\mathrm{e}^{-nx}}{1+n^{2}}$，求证：\par
+（1）$f(x)$ 在 $x\geqslant 0$ 上连续；\par
+（2）$f(x)$ 在 $x>0$ 内无穷次可微．
+\item 证明 $\displaystyle\sum_{n=1}^{\infty}n\mathrm{e}^{-nx}$ 在 $(0,+\infty)$ 内连续，无穷次可导，且可逐项求导．
+\item 设 $\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $(a,b)$ 内一致收敛，$u_{n}(x)\,(n=1,2,\cdots)$ 在 $[a,b]$ 上连续，求证：\par
+（1）$\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 上一致收敛；\par
+（2）$S(x)=\displaystyle\sum_{n=1}^{\infty}u_{n}(x)$ 在 $[a,b]$ 上连续．
+\item 设级数 $\displaystyle\sum_{n=1}^{\infty}a_{n}$ 收敛，证明
+\[
+\lim_{x\to 0^{+}}\sum_{n=1}^{\infty}\frac{a_{n}}{n^{x}}=\sum_{n=1}^{\infty}a_{n}.
+\]
+\item 证明
+\[
+\frac{1-r^{2}}{1-2r\cos x+r^{2}}=1+2\sum_{n=1}^{\infty}r^{n}\cos nx
+\]
+当 $\left|r\right|<1$ 时成立，从而证明
+\[
+\int_{-\pi}^{\pi}\frac{1-r^{2}}{1-2r\cos x+r^{2}}\dd x=2\pi\quad(\left|r\right|<1).
+\]
+\item 用有限覆盖定理证明迪尼定理．
+\item 设 $\{x_{n}\}$ 是 $(0,1)$ 内的一个数列，即 $0<x_{n}<1$，且 $x_{i}\neq x_{j}\,(i\neq j)$．试讨论函数
+\[
+f(x)=\sum_{n=1}^{\infty}\frac{\operatorname{sgn}(x-x_{n})}{2^{n}}
+\]
+在 $(0,1)$ 中的连续性．
+\end{xiti}

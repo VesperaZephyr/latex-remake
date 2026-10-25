@@ -1,0 +1,3225 @@
+\chapter{Fourier transforms on \texorpdfstring{$L_1(-\infty,\infty)$}{L1(-infinity, infinity)}}
+\label{ch:I}
+
+\section{Basic properties and examples}
+\label{sec:I-1}
+
+We assume as known Lebesgue's theory of integration.
+
+If $p$ is any real number, with $p\ge 1$, we denote by $L_p(-\infty,\infty)$ the vector space of all complex-valued functions $f(x)$ of the real variable $x$, $-\infty<x<\infty$, such that $f$ is Lebesgue measurable, and
+\begin{equation}\label{eq:I-1.0}
+\|f\|_p=\biggl(\int_{-\infty}^{\infty}|f(x)|^p\,dx\biggr)^{1/p}<\infty.
+\end{equation}
+We call the number $\|f\|_p$ the $L_p$-norm of $f$.
+
+If $f,g\in L_p(-\infty,\infty)$, we say that $f$ is equivalent to $g$, and write $f\equiv g$, if and only if $f=g$ except for a set of Lebesgue measure zero. The relation `$\equiv$' is reflexive, symmetric, and transitive, and partitions $L_p(-\infty,\infty)$ into equivalence classes, and $L_p(-\infty,\infty)$ is a Banach space if it is looked upon as the set of all such equivalence classes, the norm of an equivalence class being defined as the $L_p$-norm of any of its members.
+
+We shall use the same symbol $L_p(-\infty,\infty)$ to denote the Banach space of equivalence classes, as well as the vector space of all functions belonging to them, and make the distinction clear when necessary.
+
+If $f(x)\in L_1(-\infty<x<\infty)$, and $\alpha$ any real number, we define, for $-\infty<\alpha<\infty$,
+\begin{equation}\label{eq:I-1.1}
+\widehat f(\alpha)=\int_{-\infty}^{\infty}f(x)e^{i\alpha x}\,dx,
+\end{equation}
+and say that $\hat f$ is the \emph{Fourier transform} of $f\in L_1(-\infty,\infty)$. We shall also use the notation
+\begin{equation}\label{eq:I-1.2}
+\mathcal F[f]=\frac{1}{\sqrt{2\pi}}\hat f,\qquad\text{or}\qquad
+\mathcal F[f](\alpha)=\frac{1}{\sqrt{2\pi}}\hat f(\alpha).
+\end{equation}
+(Cf.\ \eqref{eq:I-8.15} of Ch.~I, and~\S\ref{sec:II-2} of Ch.~II.)
+
+In the special case when $f$ is even, $f(-x)=f(x)$ for all real $x$, \eqref{eq:I-1.1} takes the form
+\begin{equation}\label{eq:I-1.3}
+\hat f(\alpha)=2\int_0^\infty f(x)\cos\alpha x\,dx.
+\end{equation}
+If $f$ is odd, $f(-x)=-f(x)$ for all real $x$, \eqref{eq:I-1.1} takes the form
+\begin{equation}\label{eq:I-1.4}
+-i\hat f(\alpha)=2\int_0^\infty f(x)\sin\alpha x\,dx.
+\end{equation}
+If $f$ is defined in $(0,\infty)$ only, and $f\in L_1(0,\infty)$, then the integrals on the right-hand side of \eqref{eq:I-1.3} and \eqref{eq:I-1.4} define respectively the \emph{cosine transform}, and the \emph{sine transform}, of $f$.
+
+We list below some basic properties of Fourier transforms of functions in $L_1(-\infty,\infty)$.
+
+\noindent\textbf{(1.5)} If $f(x)\in L_1(-\infty<x<\infty)$, then $\hat f$ is bounded on $(-\infty,\infty)$, since for all real $\alpha$,
+\begin{equation}\label{eq:I-1.5}
+|\widehat f(\alpha)|\le\int_{-\infty}^{\infty}|f(x)|\,dx=\|f\|_1<\infty,
+\end{equation}
+where $\|f\|_1$ denotes the $L_1$-norm of $f$, so that
+\begin{equation}\label{eq:I-1.5b}
+\sup_{-\infty<\alpha<\infty}|\widehat f(\alpha)|\le\|f\|_1<\infty.
+\end{equation}
+
+\noindent\textbf{(1.6)} If $f(x)\in L_1(-\infty<x<\infty)$, then $\hat f(\alpha)$ is continuous for $-\infty<\alpha<\infty$. For if $h$ is a real number, $h\neq 0$, then
+\begin{align}\tag{1.6}\label{eq:I-1.6}
+|\widehat f(\alpha+h)-\widehat f(\alpha)|
+&=\Bigl|\int_{-\infty}^{\infty}f(x)e^{i\alpha x}(e^{ihx}-1)\,dx\Bigr|\\
+&\le\int_{-\infty}^{\infty}|f(x)|\,|e^{ihx}-1|\,dx.
+\end{align}
+where $|f(x)|\,|e^{ihx}-1|\le 2|f(x)|\in L_1(-\infty,\infty)$, and $|f(x)|\,|e^{ihx}-1|\to 0$ as $h\to 0$ for almost all $x\in(-\infty,\infty)$. By Lebesgue's dominated convergence theorem the last integral tends to $0$ as $h\to 0$, and hence $\hat f$ is continuous at the point $\alpha$.
+
+\noindent\textbf{(1.7)} The operator $f\mapsto\hat f$ is linear in the sense that
+\begin{equation}\label{eq:I-1.7}
+[c_1f_1+c_2f_2]^{\wedge}=c_1\hat f_1+c_2\hat f_2,
+\end{equation}
+where $c_1,c_2$ are complex constants, and $f_1,f_2\in L_1(-\infty,\infty)$.
+
+\noindent\textbf{(1.8)} Let $h$ be a fixed real number, and $f(x)\in L_1(-\infty<x<\infty)$. Then the Fourier transform of $f(x+h)$, the translation of $f(x)$ by $h$, equals $\hat f(\alpha)e^{-i\alpha h}$, since
+\begin{equation}\tag{1.8}\label{eq:I-1.8}
+\int_{-\infty}^{\infty}f(x+h)e^{i\alpha x}\,dx
+=\int_{-\infty}^{\infty}f(x)e^{i\alpha(x-h)}\,dx
+=\widehat f(\alpha)e^{-i\alpha h}.
+\end{equation}
+
+\noindent\textbf{(1.9)} Let $t$ be a fixed real number, and $f(x)\in L_1(-\infty<x<\infty)$. Then the Fourier transform of $f(x)e^{itx}$ equals $\hat f(\alpha+t)$, since
+\begin{equation*}\tag{1.9}\label{eq:I-1.9}
+\int_{-\infty}^{\infty}f(x)e^{itx}e^{i\alpha x}\,dx
+=\int_{-\infty}^{\infty}f(x)e^{i(\alpha+t)x}\,dx
+=\hat f(\alpha+t),
+\end{equation*}
+the last being a translation of $\hat f(\alpha)$ by $t$. It follows that the translation of a Fourier transform is again a Fourier transform.
+
+\noindent\textbf{(1.10)} Let $\lambda$ be a fixed real number, $\lambda\neq 0$, and $f\in L_1(-\infty,\infty)$. Then the Fourier transform of $f(\lambda x)$ equals
+\begin{equation}\label{eq:I-1.10}
+\frac{1}{|\lambda|}\,\widehat f\!\left(\frac{\alpha}{\lambda}\right),
+\end{equation}
+since
+\begin{equation*}
+\int_{-\infty}^{\infty}f(\lambda x)e^{i\alpha x}\,dx
+=\frac{1}{|\lambda|}\int_{-\infty}^{\infty}f(y)e^{i(\alpha y)/\lambda}\,dy.
+\end{equation*}
+It follows that $\hat f$ is an odd or even function, according as $f$ is odd or even.
+
+\noindent\textbf{(1.11)} If $\overline f$ denotes the complex conjugate of $f$, and $f\in L_1(-\infty,\infty)$, then the Fourier transform of $\overline f(x)$ equals $\overline{\hat f(-\alpha)}$, since the complex conjugate of $\int_{-\infty}^{\infty}\overline f(x)e^{i\alpha x}\,dx$ equals $\widehat f(-\alpha)$.
+
+\noindent\textbf{(1.12)} If $f\in L_1(-\infty,\infty)$, and $f_n\in L_1(-\infty,\infty)$ for $n=1,2,\dots$, and $\|f_n-f\|_1\to 0$ as $n\to\infty$, then we have
+\begin{equation}\label{eq:I-1.12}
+\lim_{n\to\infty}\hat f_n(\alpha)=\hat f(\alpha),
+\end{equation}
+uniformly for $-\infty<\alpha<\infty$, since by \eqref{eq:I-1.5} and \eqref{eq:I-1.7},
+\begin{equation*}
+\sup_{-\infty<\alpha<\infty}|\hat f_n(\alpha)-\hat f(\alpha)|
+\le\|f_n-f\|_1.
+\end{equation*}
+
+\noindent\textbf{(1.13)} If $f_1,f_2\in L_1(-\infty,\infty)$, then we have the composition rule
+\begin{equation}\label{eq:I-1.13}
+\int_{-\infty}^{\infty}\hat f_1(y)f_2(y)\,dy
+=\int_{-\infty}^{\infty}f_1(y)\hat f_2(y)\,dy,
+\end{equation}
+since
+\begin{align*}
+&\int_{-\infty}^{\infty}\hat f_1(y)f_2(y)\,dy
+=\int_{-\infty}^{\infty}f_2(y)\Bigl(\int_{-\infty}^{\infty}f_1(x)e^{iyx}\,dx\Bigr)dy\\
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_2(y)f_1(x)e^{iyx}\,dx\,dy,
+\end{align*}
+by Fubini's theorem, and
+\begin{equation*}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}|f_2(y)|\,|f_1(x)|\,dx\,dy
+=\int_{-\infty}^{\infty}|f_1(x)|\,dx\int_{-\infty}^{\infty}|f_2(y)|\,dy<\infty.
+\end{equation*}
+The integral $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_2(y)f_1(x)e^{iyx}\,dx\,dy$ is symmetric in $f_1$ and $f_2$, so that we can interchange $f_2$ and $f_1$, and assertion \eqref{eq:I-1.13} follows.
+
+A fundamental property of Fourier transforms of functions in $L_1(-\infty,\infty)$ is contained in the following
+
+\begin{theorem}[Riemann--Lebesgue]\label{thm:I-1}
+If $f(x)\in L_1(-\infty<x<\infty)$, and $\hat f$ denotes the Fourier transform of $f$, then
+\begin{equation*}
+\widehat f(\alpha)\to 0\qquad\text{as }|\alpha|\to\infty.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Consider the special function $\chi$ defined by
+\begin{equation*}
+\chi(x)=
+\begin{cases}
+1,&-\infty<a\le x\le b<\infty,\\
+0,&\text{otherwise},
+\end{cases}
+\end{equation*}
+referred to as the characteristic function, or indicator function, of the finite interval $[a,b]$. Its Fourier transform is
+\begin{equation*}
+\hat\chi(\alpha)=\int_a^b e^{i\alpha x}\,dx
+=\frac{1}{i\alpha}\bigl(e^{i\alpha b}-e^{i\alpha a}\bigr),
+\end{equation*}
+for $\alpha$ real, $\alpha\neq 0$, so that
+\begin{equation*}
+|\hat\chi(\alpha)|\le\frac{2}{|\alpha|}\to 0\qquad\text{as }|\alpha|\to\infty.
+\end{equation*}
+By linearity, this property holds also for any step-function (such a function being a finite linear combination, with complex coefficients, of characteristic functions of finite intervals). And step-functions form a dense subset of $L_1(-\infty,\infty)$. That is to say, given $\varepsilon>0$ and $f\in L_1(-\infty,\infty)$, there exists a step-function $f_\varepsilon$ such that $\|f-f_\varepsilon\|_1<\varepsilon$. Since
+\begin{equation*}
+\widehat f(\alpha)=\widehat f_\varepsilon(\alpha)+\bigl(\widehat f(\alpha)-\widehat f_\varepsilon(\alpha)\bigr),
+\end{equation*}
+we have
+\begin{equation*}
+|\widehat f(\alpha)|
+\le|\widehat f_\varepsilon(\alpha)|+|\widehat f(\alpha)-\widehat f_\varepsilon(\alpha)|
+<|\widehat f_\varepsilon(\alpha)|+\varepsilon,
+\end{equation*}
+because of property \eqref{eq:I-1.5} and the choice of $f_\varepsilon$. Hence
+\begin{equation*}
+\lim_{|\alpha|\to\infty}\sup|\widehat f(\alpha)|
+\le\lim_{|\alpha|\to\infty}\sup|\widehat f_\varepsilon(\alpha)|+\varepsilon=\varepsilon,
+\end{equation*}
+since we have just seen that the theorem holds for the step-function $f_\varepsilon$.
+\end{proof}
+
+\noindent\textbf{Corollary.}
+If $f\in L_1(-\infty,\infty)$, then we have
+\begin{equation*}
+\int_{-\infty}^{\infty}f(t)\cos(\alpha t)\,dt\to 0,
+\qquad\text{as }|\alpha|\to\infty,
+\end{equation*}
+and
+\begin{equation*}
+\int_{-\infty}^{\infty}f(t)\sin(\alpha t)\,dt\to 0,
+\qquad\text{as }|\alpha|\to\infty.
+\end{equation*}
+
+\subsection*{Remarks}
+1. The Riemann--Lebesgue theorem is related to a property of the $L_p$-modulus of continuity $\tau_f$ of the function $f\in L_p(-\infty,\infty)$, $1\le p<\infty$, which is defined by
+\begin{equation}\label{eq:I-1.14}
+\tau_f(y)=\Bigl(\int_{-\infty}^{\infty}|f(x)-f(x+y)|^p\,dx\Bigr)^{1/p},
+\qquad-\infty<y<\infty.
+\end{equation}
+Clearly we have
+\begin{equation}\label{eq:I-1.15}
+\tau_f(y)=\tau_f(-y),\qquad\tau_f(0)=0,\qquad
+0\le\tau_f(y)\le 2\|f\|_p,
+\end{equation}
+and
+\begin{equation}\label{eq:I-1.16}
+\tau_f(y_1+y_2)\le\tau_f(y_1)+\tau_f(y_2),
+\end{equation}
+since
+\begin{multline*}
+\Bigl(\int_{-\infty}^{\infty}|f(x)-f(x+y_1+y_2)|^p\,dx\Bigr)^{1/p}\\
+\le\Bigl(\int_{-\infty}^{\infty}|f(x)-f(x+y_1)|^p\,dx\Bigr)^{1/p}
++\Bigl(\int_{-\infty}^{\infty}|f(x+y_1)-f(x+y_1+y_2)|^p\,dx\Bigr)^{1/p}\\
+\le\tau_f(y_1)+\tau_f(y_2).
+\end{multline*}
+
+\begin{nstmt}{1.17}\label{eq:I-1.17}
+If $f\in L_p(-\infty,\infty)$, $1\le p<\infty$, then $\tau_f(h)$ is continuous in $h$; in particular, $\tau_f(h)\to 0$ as $h\to 0$.
+\end{nstmt}
+
+To prove this we note that given $\varepsilon>0$, there exists a continuous function $\varphi(x)$ which vanishes outside a finite interval, such that
+\begin{equation*}
+\Bigl(\int_{-\infty}^{\infty}|f(x)-\varphi(x)|^p\,dx\Bigr)^{1/p}<\varepsilon.
+\end{equation*}
+If we set
+\begin{equation*}
+\Phi(h)=\Bigl(\int_{-\infty}^{\infty}|\varphi(x+h)-\varphi(x)|^p\,dx\Bigr)^{1/p},
+\end{equation*}
+then $\Phi(h)$ is continuous in $h$, and
+\begin{multline*}
+\tau_f(h)\le\Bigl(\int_{-\infty}^{\infty}|f(x+h)-\varphi(x+h)|^p\,dx\Bigr)^{1/p}\\
++\Bigl(\int_{-\infty}^{\infty}|\varphi(x+h)-\varphi(x)|^p\,dx\Bigr)^{1/p}
++\Bigl(\int_{-\infty}^{\infty}|\varphi(x)-f(x)|^p\,dx\Bigr)^{1/p},
+\end{multline*}
+so that
+\begin{equation*}
+\tau_f(h)-\Phi(h)<2\varepsilon,
+\end{equation*}
+and similarly also
+\begin{equation*}
+\Phi(h)-\tau_f(h)<2\varepsilon,
+\end{equation*}
+so that $\Phi\to\tau_f$ uniformly in $h$ as $\varepsilon\downarrow 0$. Hence $\tau_f(h)$ is continuous in $h$, and tends to zero with $h$.
+
+Reverting to the proof of Theorem~\ref{thm:I-1}, if $f\in L_1(-\infty,\infty)$, then
+\begin{align*}
+\widehat f(\alpha)&=\int_{-\infty}^{\infty}f(x)e^{i\alpha x}\,dx,\\
+\widehat f(\alpha)&=\int_{-\infty}^{\infty}f(x)e^{i(x+\pi/\alpha)\alpha}\,dx
+=\int_{-\infty}^{\infty}f(y-\tfrac{\pi}{\alpha})e^{i\alpha y}\,dy,
+\end{align*}
+so that
+\begin{equation*}
+|2\widehat f(\alpha)|\le\int_{-\infty}^{\infty}\bigl|f(y)-f(y-\tfrac{\pi}{\alpha})\bigr|\,dy,
+\end{equation*}
+and, because of \eqref{eq:I-1.17}, $\hat f(\alpha)\to 0$ as $|\alpha|\to\infty$.
+
+2. If $f\in L_1(-\infty,\infty)$, the Fourier transform $\hat f(\alpha)$ is a continuous function of $\alpha$, $-\infty<\alpha<\infty$, which vanishes at infinity; that is to say,
+\begin{equation*}
+\lim_{\alpha\to\infty}\widehat f(\alpha)=0.
+\end{equation*}
+Not every continuous function that vanishes at infinity is necessarily the Fourier transform of a function in $L_1(-\infty,\infty)$.
+
+To construct an example, let $f\in L_1(-\infty,\infty)$, and let $f$ be odd, that is to say $f(-x)=-f(x)$, $-\infty<x<\infty$. Then obviously we have
+\begin{equation*}
+\hat f(\alpha)=2i\int_0^\infty f(x)\sin\alpha x\,dx.
+\end{equation*}
+Let $e$ denote the exponential base, and $R>e$. Then we have
+\begin{align*}
+&\int_e^R\frac{\hat f(\alpha)}{\alpha}\,d\alpha
+=2i\int_e^R\frac{d\alpha}{\alpha}\int_0^\infty f(x)\sin\alpha x\,dx\\
+&=2i\int_0^\infty f(x)\Bigl(\int_e^R\frac{\sin\alpha x}{\alpha}\,d\alpha\Bigr)dx\\
+&=2i\int_0^\infty f(x)\Bigl(\int_{ex}^{Rx}\frac{\sin u}{u}\,du\Bigr)dx,
+\end{align*}
+the change in the order of integration being permitted by Fubini's theorem, because of the assumption $f\in L_1(-\infty,\infty)$. Now
+\begin{equation*}
+\Bigl|\int_a^b\frac{\sin u}{u}\,du\Bigr|<M_0<\infty
+\end{equation*}
+for all real $a,b$, where $M_0$ is independent of $a$ and $b$, and hence
+\begin{equation}\label{eq:I-1.18}
+\Bigl|\int_e^R\frac{\widehat f(\alpha)}{\alpha}\,d\alpha\Bigr|<M<\infty.
+\end{equation}
+If we define the function $g$ by
+\begin{equation*}
+g(\alpha)=
+\begin{cases}
+\alpha/e,&0\le\alpha\le e,\\
+1/\log\alpha,&\alpha>e;
+\end{cases}
+\qquad g(\alpha)=-g(-\alpha),\quad\alpha\ge 0;
+\end{equation*}
+then $g$ is an odd, continuous function, which vanishes at infinity, for which
+\begin{equation*}
+\int_e^R\frac{g(\alpha)}{\alpha}\,d\alpha
+=\int_e^R\frac{d\alpha}{\alpha\log\alpha}
+=\log\log R\to\infty,\qquad\text{as }R\to\infty.
+\end{equation*}
+Clearly $g$ cannot be the Fourier transform of a function in $L_1(-\infty,\infty)$, since it cannot take the place of $\hat f$ in \eqref{eq:I-1.18}.
+
+\subsection*{Examples}
+1. If
+\begin{equation*}
+f(x)=
+\begin{cases}
+1,&|x|\le 1,\\
+0,&|x|>1,
+\end{cases}
+\end{equation*}
+then
+\begin{equation*}
+\hat f(\alpha)=\int_{-1}^1 e^{i\alpha x}\,dx
+=2\int_0^1\cos\alpha x\,dx
+=\Bigl[\frac{2\sin\alpha x}{\alpha}\Bigr]_{x=0}^{x=1}
+=2\,\frac{\sin\alpha}{\alpha}.
+\end{equation*}
+Note that here $\hat f(\alpha)\notin L_1(-\infty,\infty)$.
+
+Similarly if
+\begin{equation*}
+f(x)=
+\begin{cases}
+1,&|x-a|\le R,\quad -\infty<a<\infty,\ R>0,\\
+0,&|x-a|>R,
+\end{cases}
+\end{equation*}
+then $\hat f(\alpha)=2e^{i\alpha a}\dfrac{\sin\alpha R}{\alpha}$.
+
+2. If
+\begin{equation*}
+f(x)=
+\begin{cases}
+1-|x|,&|x|\le 1,\\
+0,&|x|>1,
+\end{cases}
+\end{equation*}
+then
+\begin{equation*}
+\hat f(\alpha)=\Bigl(\frac{\sin(\alpha/2)}{\alpha/2}\Bigr)^2,
+\end{equation*}
+since
+\begin{align*}
+\hat f(\alpha)&=2\int_0^1(1-x)\cos\alpha x\,dx
+=2\int_0^1(1-x)\frac{d}{dx}\Bigl(\frac{\sin\alpha x}{\alpha}\Bigr)dx\\
+&=2\int_0^1\frac{\sin\alpha x}{\alpha}\,dx
+=\int_0^1\frac{d}{dx}\Bigl(\frac{\sin^2(\alpha x/2)}{(\alpha/2)^2}\Bigr)dx
+=\frac{\sin^2(\alpha/2)}{(\alpha/2)^2}.
+\end{align*}
+Note that here $\hat f(\alpha)\in L_1(-\infty,\infty)$.
+
+Similarly if $a>0$, and $f(x)=1-\dfrac{|x|}{a}$ for $|x|\le a$, and $f(x)=0$ for $|x|>a$, then $\hat f(\alpha)=\dfrac{\sin^2(\alpha a/2)}{a(\alpha/2)^2}$.
+
+3. If $f(x)=e^{-e^x}e^x$, then $\hat f(\alpha)=\Gamma(1+i\alpha)\neq 0$, where $\Gamma$ stands for Euler's gamma-function, since
+\begin{equation*}
+\hat f(\alpha)=\int_{-\infty}^{\infty}e^{-e^x}e^xe^{i\alpha x}\,dx
+=\int_0^\infty e^{-y}y^{i\alpha}\,dy
+=\Gamma(1+i\alpha).
+\end{equation*}
+Similarly if $f(x)=e^{-e^{-x}}e^{-x}$, then $\hat f(\alpha)=\Gamma(1-i\alpha)$.
+
+4. If $f(x)=e^{-|x|}$, then $\hat f(\alpha)=\dfrac{2}{1+\alpha^2}$. For
+\begin{equation*}
+\int_0^\infty e^{-x+i\alpha x}\,dx=\frac{1}{1-i\alpha};
+\qquad
+\int_{-\infty}^0 e^{-|x|+i\alpha x}\,dx=\frac{1}{1+i\alpha};
+\end{equation*}
+and the result follows from adding these two integrals. Here again we have $\hat f(\alpha)\in L_1(-\infty,\infty)$.
+
+If $a>0$, and $f(x)=e^{-a|x|}$, then $\hat f(\alpha)=\dfrac{2a}{a^2+\alpha^2}$.
+
+5. Let $\zeta$ be a complex number, $\zeta=\xi+i\eta$, with $\eta\neq 0$. If $\eta>0$, let
+\begin{equation*}
+f(x)=
+\begin{cases}
+0,&x>0,\\
+e^{-ix\zeta},&x<0;
+\end{cases}
+\end{equation*}
+and if $\eta<0$, let
+\begin{equation*}
+f(x)=
+\begin{cases}
+0,&x<0,\\
+-e^{-ix\zeta},&x>0.
+\end{cases}
+\end{equation*}
+Then
+\begin{equation*}
+\hat f(\alpha)=\frac{1}{i(\alpha-\zeta)},
+\end{equation*}
+for, if $\eta>0$,
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}f(x)e^{i\alpha x}\,dx\\
+&= \int_{-\infty}^0 e^{-ix\zeta+i\alpha x}\,dx = \int_0^\infty e^{-x(\eta-i\xi+i\alpha)}\,dx = \frac{1}{i(\alpha-\zeta)},
+\end{aligned}
+\end{equation*}
+and, if $\eta<0$,
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}f(x)e^{i\alpha x}\,dx\\
+&= -  \int_0^\infty e^{-ix\zeta+i\alpha x}\,dx = -  \int_0^\infty e^{-x(-\eta+i\xi-i\alpha)}\,dx = \frac{1}{i(\alpha-\zeta)}.
+\end{aligned}
+\end{equation*}
+
+6. If $f(x)=e^{-x^2}$, then $\hat f(\alpha)=\sqrt\pi\,e^{-\alpha^2/4}$.
+
+To prove this, we note, first of all, that
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}e^{-x^2}\,dx  \int_{-\infty}^{\infty}e^{-y^2}\,dy\\
+&= \int_0^{2\pi}d\theta  \int_0^\infty e^{-r^2}r\,dr = 2\pi  \int_0^\infty\tfrac12 e^{-r^2}\,d(r^2) = \pi,
+\end{aligned}
+\end{equation*}
+so that
+\begin{equation*}
+\int_{-\infty}^{\infty}e^{-x^2}\,dx=\sqrt\pi.
+\end{equation*}
+Next we note that the derivative of $\hat f(\alpha)$ is given by
+\begin{align*}
+(\hat f(\alpha))'&\equiv\frac{d}{d\alpha}(\hat f(\alpha))
+=i\int_{-\infty}^{\infty}x e^{-x^2}e^{i\alpha x}\,dx
+=-\frac{i}{2}\int_{-\infty}^{\infty}\frac{d}{dx}(e^{-x^2})e^{i\alpha x}\,dx\\
+&=\frac{i}{2}\int_{-\infty}^{\infty}e^{-x^2}i\alpha e^{i\alpha x}\,dx
+=\Bigl(-\frac{\alpha}{2}\Bigr)\int_{-\infty}^{\infty}e^{-x^2}e^{i\alpha x}\,dx,
+\end{align*}
+so that
+\begin{equation*}
+(\hat f(\alpha))'=\Bigl(-\frac{\alpha}{2}\Bigr)\hat f(\alpha),
+\qquad\text{or}\qquad
+\frac{(\hat f(\alpha))'}{\hat f(\alpha)}=-\alpha/2,
+\end{equation*}
+and hence
+\begin{equation*}
+\log\hat f(\alpha)=-(\alpha^2/4)+c_1,
+\qquad\text{or}\qquad
+\hat f(\alpha)=c\,e^{-\alpha^2/4},
+\end{equation*}
+where $c_1,c$ are constants. On setting $\alpha=0$, we see that $\hat f(0)=c=\sqrt\pi$, because of the evaluation of $\int e^{-x^2}\,dx$ first made.
+
+It follows that if $f(x)=e^{-x^2/2}$, then $\hat f(\alpha)=\sqrt{2\pi}\,e^{-\alpha^2/2}$.
+
+7. Let $\varphi_n(x)=(-1)^n e^{x^2/2}\bigl(\frac{d}{dx}\bigr)^n e^{-x^2}$, where $n$ is a positive integer. Then
+\begin{equation*}
+\hat\varphi_n(\alpha)=(-i)^n\sqrt{2\pi}\,e^{\alpha^2/2}\Bigl(\frac{d}{d\alpha}\Bigr)^n e^{-\alpha^2}
+=i^n\sqrt{2\pi}\,\varphi_n(\alpha),
+\end{equation*}
+for
+\begin{align*}
+&\int_{-\infty}^{\infty}\varphi_n(x)e^{i\alpha x}\,dx
+=(-1)^n\int_{-\infty}^{\infty}e^{x^2/2}\Bigl(\frac{d}{dx}\Bigr)^n e^{-x^2}e^{ix\alpha}\,dx\\
+&=\int_{-\infty}^{\infty}e^{-x^2}\Bigl(\frac{d}{dx}\Bigr)^n\bigl(e^{x^2/2+ix\alpha}\bigr)dx
+\quad\text{(by partial integration)}\\
+&=e^{\alpha^2/2}\int_{-\infty}^{\infty}e^{-x^2}\Bigl(\frac{d}{dx}\Bigr)^n\bigl(e^{(x+i\alpha)^2/2}\bigr)dx\\
+&=(-i)^n e^{\alpha^2/2}\int_{-\infty}^{\infty}e^{-x^2}\Bigl(\frac{d}{d\alpha}\Bigr)^n\bigl(e^{(x+i\alpha)^2/2}\bigr)dx\\
+&=(-i)^n e^{\alpha^2/2}\Bigl(\frac{d}{d\alpha}\Bigr)^n
+\Bigl(\int_{-\infty}^{\infty}e^{-x^2/2+ix\alpha-\alpha^2/2}\,dx\Bigr)\\
+&=(-i)^n e^{\alpha^2/2}\Bigl(\frac{d}{d\alpha}\Bigr)^n\bigl(\sqrt{2\pi}\,e^{-\alpha^2}\bigr)
+=i^n\sqrt{2\pi}\,\varphi_n(\alpha).
+\end{align*}
+The functions $\varphi_n(x)$ are known as the \emph{Hermite functions}.
+
+8. If
+\begin{equation*}
+f(x)=
+\begin{cases}
+0,&|x|\ge 1,\\
+(1-x^2)^{\nu-1/2},&0<|x|<1,\ \nu>-1/2,
+\end{cases}
+\end{equation*}
+then $f\in L_1(-\infty,\infty)$, and
+\begin{align*}
+\hat f(\alpha)&=2\int_0^1(1-x^2)^{\nu-1/2}\cos(\alpha x)\,dx\\
+&=2\sum_{n=0}^\infty\frac{(-1)^n\alpha^{2n}}{(2n)!}\int_0^1(1-x^2)^{\nu-1/2}x^{2n}\,dx\\
+&=\sum_{n=0}^\infty\frac{(-1)^n\alpha^{2n}}{(2n)!}\frac{\Gamma(\nu+1/2)\Gamma(n+1/2)}{\Gamma(\nu+n+1)}\\
+&=\sqrt\pi\,\Gamma(\nu+1/2)\sum_{n=0}^\infty\frac{(-1)^n\alpha^{2n}}{2^{2n}n!\,\Gamma(\nu+n+1)},
+\end{align*}
+since
+\begin{equation*}
+\Gamma(n+1/2)=\frac{(2n)!\sqrt\pi}{2^{2n}n!}.
+\end{equation*}
+The Bessel function $J_\nu$ of order $\nu$ is defined by
+\begin{equation*}
+J_\nu(x)=\sum_{n=0}^\infty\frac{(-1)^n(x/2)^{\nu+2n}}{n!\,\Gamma(\nu+n+1)},
+\qquad\nu>-1.
+\end{equation*}
+Hence
+\begin{equation*}
+\hat f(\alpha)=\frac{J_\nu(\alpha)}{\alpha^\nu}\,2^\nu\Gamma(\nu+1/2)\sqrt\pi.
+\end{equation*}
+Incidentally we obtain integral representations for $J_\nu(x)$, namely
+\begin{equation*}
+J_\nu(\alpha)=\frac{(\alpha/2)^\nu}{\Gamma(\nu+1/2)\sqrt\pi}
+\int_{-1}^1(1-t^2)^{\nu-1/2}e^{it\alpha}\,dt,
+\qquad\nu>-1/2,
+\end{equation*}
+and, on setting $t=\cos\theta$,
+\begin{equation*}
+J_\nu(\alpha)=\frac{(\alpha/2)^\nu}{\Gamma(\nu+1/2)\sqrt\pi}
+\int_0^\pi\sin^{2\nu}\theta\,e^{i\alpha\cos\theta}\,d\theta,
+\qquad\nu>-1/2.
+\end{equation*}
+
+9. If $f(x)=\dfrac{1}{\cosh\pi x}$, then $f(x)\in L_1(-\infty<x<\infty)$, and $\widehat f(\alpha)=\dfrac{1}{\cosh(\alpha/2)}$.
+
+If we apply Cauchy's theorem to the integral $\int_C \dfrac{e^{ix\alpha}}{\cosh\pi x}\,dx$ taken along the contour $C$, which is a rectangle with corners at $-R$, $+R$, $R+i$, and $-R+i$ (where $R>0$), and note that the residue at the pole $x=i/2$ equals $e^{-\alpha/2}/(\pi i)$, and then let $R\to\infty$, we get
+\begin{equation*}
+\frac{1}{2\pi i}\Bigl[\int_{-\infty}^{\infty}\frac{e^{ix\alpha}\,dx}{\cosh\pi x}
+-\int_{-\infty}^{\infty}\frac{e^{i(x+i)\alpha}\,dx}{\cosh\pi(x+i)}\Bigr]
+=\frac{e^{-\alpha/2}}{\pi i},
+\end{equation*}
+so that
+\begin{equation*}
+\hat f(\alpha)[1+e^{-\alpha}]=2e^{-\alpha/2},
+\qquad\text{or}\qquad
+\hat f(\alpha)=[\cosh(\alpha/2)]^{-1}.
+\end{equation*}
+
+10. \emph{An integral of Ramanujan.}
+
+If $f(x)=\dfrac{e^{-i\pi x^2}}{\cosh\pi x}$, then $f(x)\in L_1(-\infty<x<\infty)$, and
+\begin{equation}\label{eq:I-1.Ramanujan}
+\varphi(\alpha)\equiv\int_{-\infty}^{\infty}\frac{e^{-i\pi x^2}e^{-ix\alpha}}{\cosh\pi x}\,dx
+=\frac{e^{i\pi/4}-i\,e^{i\alpha^2/(4\pi)}}{\cosh(\alpha/2)}.
+\end{equation}
+
+\noindent\textbf{Proof.}
+It is immediate that
+\begin{equation}\label{eq:I-1.R1}
+\varphi(\alpha+i\pi)+\varphi(\alpha-i\pi)
+=2\int_{-\infty}^{\infty}e^{-i\pi x^2-ix\alpha}\,dx.
+\end{equation}
+Since $e^{-i\pi x^2}\notin L_1(-\infty<x<\infty)$, the integral on the right-hand side is defined as a Cauchy principal value (cf.\ \S\ref{sec:I-4}). To evaluate it one can use Cauchy's theorem, or use Example~6, which gives
+\begin{equation}\label{eq:I-1.R2}
+\int_{-\infty}^{\infty}e^{-\lambda t^2+it\alpha}\,dt
+=\frac{\sqrt\pi}{\sqrt\lambda}\,e^{-\alpha^2/(4\lambda)},
+\qquad\lambda>0.
+\end{equation}
+By analytic continuation, this holds good also for complex $\lambda$, with $\operatorname{Re}\lambda\ge 0$, provided that $\lambda\neq 0$. Thus, for $\lambda=\pm\pi i$, we get:
+\begin{equation}\label{eq:I-1.R3}
+\begin{aligned}
+&\int_{-\infty}^{\infty}e^{-i\pi t^2-it\alpha}\,dt\\
+&= e^{i\alpha^2/(4\pi)} - \frac{\pi i}{4};  \qquad  \int_{-\infty}^{\infty}e^{i\pi t^2-it\alpha}\,dt = e^{-i\alpha^2/(4\pi)} + \frac{\pi i}{4}.
+\end{aligned}
+\end{equation}
+On using the first formula in \eqref{eq:I-1.R2}, we obtain
+\begin{equation}\label{eq:I-1.R4}
+\varphi(\alpha+i\pi)+\varphi(\alpha-i\pi)
+=2e^{i\alpha^2/(4\pi)-\pi i/4}.
+\end{equation}
+We shall see, on the other hand, that
+\begin{equation}\label{eq:I-1.R5}
+e^{\alpha/2}\varphi(\alpha+i\pi)+e^{-\alpha/2}\varphi(\alpha-i\pi)=2e^{-\pi i/4}.
+\end{equation}
+To prove this, we note that \eqref{eq:I-1.R2} implies that
+\begin{equation}\label{eq:I-1.R6}
+\int_{-\infty}^{\infty}e^{-\lambda(t+x)^2+it\alpha}\,dt
+=\frac{\sqrt\pi}{\sqrt\lambda}\,e^{-\alpha^2/(4\lambda)}e^{-ix\alpha},
+\qquad\operatorname{Re}\lambda>0.
+\end{equation}
+Let $\varepsilon>0$, and $\lambda=1/[4(\varepsilon+i\pi)]$. Using the composition rule \eqref{eq:I-1.13} together with the Fourier transforms given in Example~9, and \eqref{eq:I-1.R6}, we get
+\begin{equation*}
+2\pi^{1/2}(\varepsilon+\pi i)^{1/2}
+\int_{-\infty}^{\infty}\frac{e^{-(\varepsilon+i\pi)x^2-ix\alpha}}{\cosh\pi x}\,dx
+=\int_{-\infty}^{\infty}\frac{e^{-\lambda(x+\alpha)^2}}{\cosh(x/2)}\,dx,
+\end{equation*}
+where $\lambda=1/[4(\varepsilon+\pi i)]$, $\operatorname{Re}\lambda>0$. Lebesgue's theorem on dominated convergence permits us to let $\varepsilon\downarrow 0$ in this relation, and we obtain
+\begin{equation*}
+\varphi(\alpha)=e^{-\pi i/4}\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{e^{i(x+\alpha)^2/(4\pi)}}{\cosh(x/2)}\,dx.
+\end{equation*}
+This leads, as before, to the relation
+\begin{multline*}
+e^{-i(\alpha+i\pi)^2/(4\pi)}\varphi(\alpha+i\pi)
++e^{-i(\alpha-i\pi)^2/(4\pi)}\varphi(\alpha-i\pi)\\
+=2e^{-\pi i/4}\int_{-\infty}^{\infty}e^{i\pi y^2-i\alpha y}\,dy
+=2e^{-i\alpha^2/(4\pi)},
+\end{multline*}
+if we use the second formula in \eqref{eq:I-1.R3}, and this leads to \eqref{eq:I-1.R5}.
+
+On multiplying \eqref{eq:I-1.R4} by $e^{-\alpha/2}$, and substituting from \eqref{eq:I-1.R5}, we obtain
+\begin{equation*}
+\varphi(\alpha+i\pi)(e^{\alpha/2}-e^{-\alpha/2})
+=2e^{-\pi i/4}\Bigl(1-e^{i\alpha^2/(4\pi)}-\frac{\alpha}{2}\Bigr),
+\end{equation*}
+and on replacing $\alpha$ by $\alpha-i\pi$, we get
+\begin{equation*}
+\varphi(\alpha)=2e^{-\pi i/4}
+\frac{\bigl[1-e^{i(\alpha-i\pi)^2/(4\pi)}-\frac{\alpha-i\pi}{2}\bigr]}
+{e^{(\alpha-i\pi)/2}-e^{-(\alpha-i\pi)/2}}
+=\frac{e^{\pi i/4}-i\,e^{i\alpha^2/(4\pi)}}{\cosh(\alpha/2)},
+\end{equation*}
+as claimed.
+
+On equating the real and imaginary parts of both sides, and on setting $\alpha=2\pi t$, we get Ramanujan's formulae:
+\begin{equation*}
+\int_0^\infty\frac{\cos 2\pi t x}{\cosh\pi x}\cos\pi x^2\,dx
+=\frac{1+\sqrt2\sin\pi t^2}{2\sqrt2\cosh\pi t},
+\end{equation*}
+\begin{equation*}
+\int_0^\infty\frac{\cos 2\pi t x}{\cosh\pi x}\sin\pi x^2\,dx
+=\frac{-1+\sqrt2\cos\pi t^2}{2\sqrt2\cosh\pi t}.
+\end{equation*}
+
+\section{The \texorpdfstring{$L_1$}{L1}-algebra}
+\label{sec:I-2}
+
+The Banach space $L_1(-\infty,\infty)$ can be made into a Banach algebra by the introduction of an operation of `multiplication', which is defined by the convolution of any two functions. To make this possible we need the following
+
+\begin{lemma}\label{lem:I-2.1}
+If $f,g\in L_1(-\infty,\infty)$, then the integral
+\begin{equation}\label{eq:I-2.1}
+\int_{-\infty}^{\infty}f(x-y)g(y)\,dy
+\end{equation}
+exists for almost all $x\in(-\infty,\infty)$, and is an integrable function of $x$, $-\infty<x<\infty$.
+\end{lemma}
+
+\begin{proof}
+The function $f(x-y)g(y)$ is a measurable function in $(x,y)$, and the double integral
+\begin{equation*}
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}|f(x-y)g(y)|\,dx\,dy<\infty.
+\end{equation*}
+By Fubini's theorem, this integral equals the repeated integral
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}|g(y)|  \Bigl(\int_{-\infty}^{\infty}|f(x-y)|\,dx\Bigr)dy\\
+&= \int_{-\infty}^{\infty}|g(y)|  \Bigl(\int_{-\infty}^{\infty}|f(x)|\,dx\Bigr)dy < \infty,
+\end{aligned}
+\end{equation*}
+and hence we have also
+\begin{equation*}
+\int_{-\infty}^{\infty}\Bigl(\int_{-\infty}^{\infty}|f(x-y)g(y)|\,dy\Bigr)dx<\infty,
+\end{equation*}
+so that $|f(x-y)g(y)|$ is integrable as a function of $y$ for almost all $x\in(-\infty,\infty)$, and $\int_{-\infty}^{\infty}|f(x-y)g(y)|\,dy$ is integrable as a function of $x$, and therefore also $\int_{-\infty}^{\infty}f(x-y)g(y)\,dy$.
+\end{proof}
+
+\noindent\textbf{Definition.}
+Let $f,g\in L_1(-\infty,\infty)$, and let
+\begin{equation*}
+h(x)=\int_{-\infty}^{\infty}f(x-y)g(y)\,dy,
+\end{equation*}
+when the integral exists. Then the function $h$ is defined to be the \emph{convolution} of $f$ and $g$, and is denoted by $h=f*g$.
+
+By Lemma~\ref{lem:I-2.1} we note that $h\in L_1(-\infty,\infty)$. We also note that the convolution is associative:
+\begin{equation*}
+(f*g)*h=f*(g*h),
+\end{equation*}
+where $f,g,h\in L_1(-\infty,\infty)$. It is also commutative, that is to say $f*g=g*f$ for $f,g\in L_1(-\infty,\infty)$ as can be seen by a change of variable in the defining integral.
+
+\begin{theorem}\label{thm:I-2}
+If $f,g\in L_1(-\infty,\infty)$, and $h=f*g$, then $h\in L_1(-\infty,\infty)$, and
+\begin{equation}\label{eq:I-2.2}
+\hat h=\hat f\cdot\hat g,
+\end{equation}
+where the dot denotes pointwise multiplication, and
+\begin{equation}\label{eq:I-2.3}
+\|h\|_1=\|f*g\|_1\le\|f\|_1\,\|g\|_1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Lemma~\ref{lem:I-2.1} shows that $h\in L_1(-\infty,\infty)$. On using the definition of $h$ and of $\hat h$, together with Fubini's theorem, we see that
+\begin{align*}
+\hat h(\alpha)&=\int_{-\infty}^{\infty}h(x)e^{i\alpha x}\,dx
+=\int_{-\infty}^{\infty}e^{i\alpha x}\,dx\int_{-\infty}^{\infty}f(x-y)g(y)\,dy\\
+&=\int_{-\infty}^{\infty}g(y)\,dy\int_{-\infty}^{\infty}f(x-y)e^{i\alpha x}\,dx
+=\int_{-\infty}^{\infty}g(y)\,dy\int_{-\infty}^{\infty}f(u)e^{i(u+y)\alpha}\,du\\
+&=\int_{-\infty}^{\infty}e^{i\alpha y}g(y)\,dy\int_{-\infty}^{\infty}f(u)e^{iu\alpha}\,du
+=\widehat g(\alpha)\cdot\widehat f(\alpha).
+\end{align*}
+On the other hand, we have
+\begin{equation*}
+\begin{aligned}
+\|h\|_1 &= \int_{-\infty}^{\infty}|h(x)|\,dx
+\le\int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}|f(x-y)g(y)|\,dy\\
+&= \int_{-\infty}^{\infty}|g(y)|\,dy\int_{-\infty}^{\infty}|f(x-y)|\,dx\\
+&= \|g\|_1\,\|f\|_1.
+\end{aligned}
+\end{equation*}
+\end{proof}
+
+\subsection*{Remarks}
+The properties of convolution just established show that the space $L_1(-\infty,\infty)$ is a commutative Banach algebra under ordinary addition, with convolution as multiplication, and $\|\cdot\|_1$ as norm. This Banach algebra is also known as the \emph{$L_1$-algebra} on the real line.
+
+\section{Properties of differentiability}
+\label{sec:I-3}
+
+We have seen that if a function $f$ belongs to the Lebesgue class $L_1(-\infty,\infty)$, then its Fourier transform $\hat f$ is a bounded, continuous function on $(-\infty,\infty)$. By imposing a simple additional condition on $f$, one can secure the differentiability of $\hat f$. If, on the other hand, the function $f\in L_1(-\infty,\infty)$ itself is assumed to be differentiable, and the derivative also belongs to $L_1(-\infty,\infty)$, then the Fourier transform of the derivative $f'$ is related, in a simple way, to the transform of $f$ itself.
+
+\begin{theorem}\label{thm:I-3}
+\textup{A.} If $f(x)\in L_1(-\infty<x<\infty)$, and $ix\,f(x)\in L_1(-\infty<x<\infty)$, then $\hat f(\alpha)$ exists, and
+\begin{equation}\label{eq:I-3.A}
+(\hat f)'(\alpha)=\int_{-\infty}^{\infty}[ix\,f(x)]e^{i\alpha x}\,dx.
+\end{equation}
+\textup{B.} If $f(x)\in L_1(-\infty<x<\infty)$, $f$ is continuously differentiable, and $f'(x)\in L_1(-\infty<x<\infty)$, then
+\begin{equation}\label{eq:I-3.B}
+\int_{-\infty}^{\infty}f'(x)e^{i\alpha x}\,dx=-i\alpha\,\hat f(\alpha),
+\end{equation}
+so that
+\begin{equation}\label{eq:I-3.B2}
+\hat f(\alpha)=o\Bigl(\frac{1}{|\alpha|}\Bigr),
+\qquad\text{as }|\alpha|\to\infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textup{A.} Let
+\begin{equation*}
+f_h(x)=f(x)\Bigl(\frac{e^{ihx}-1}{h}\Bigr)
+\end{equation*}
+for $h$ real, $h\neq 0$. Then
+\begin{equation}\label{eq:I-3.1}
+\widehat f_h(\alpha)=\frac{\hat f(\alpha+h)-\hat f(\alpha)}{h}.
+\end{equation}
+Now $f_h(x)\to ix\,f(x)$ pointwise, for almost every $x$, as $h\to 0$; and
+\begin{equation*}
+|f_h(x)|\le|f(x)|\,\Bigl|\frac{e^{ihx}-1}{h}\Bigr|
+\le|x|\,|f(x)|\in L_1(-\infty<x<\infty),
+\end{equation*}
+by hypothesis (on using the first mean-value theorem). Hence
+\begin{equation*}
+|f_h(x)-ix\,f(x)|\le 2|x|\,|f(x)|\in L_1(-\infty,\infty).
+\end{equation*}
+By Lebesgue's theorem on dominated convergence, we conclude that
+\begin{equation*}
+f_h(x)\to ix\,f(x)\quad\text{in the }L_1\text{-norm},
+\end{equation*}
+as $h\to 0$. By property \eqref{eq:I-1.12} it follows that
+\begin{equation}\label{eq:I-3.2}
+\hat f_h(\alpha)\to\int_{-\infty}^{\infty}[ix\,f(x)]e^{i\alpha x}\,dx,
+\end{equation}
+uniformly, as $h\to 0$. The last integral is a bounded, continuous function of $\alpha$ for $-\infty<\alpha<\infty$. From \eqref{eq:I-3.1}, however, we see that
+\begin{equation*}
+\lim_{h\to 0}\hat f_h(\alpha)=(\hat f)'(\alpha),
+\end{equation*}
+hence
+\begin{equation*}
+(\hat f)'(\alpha)=\int_{-\infty}^{\infty}\{ix\,f(x)\}e^{i\alpha x}\,dx.
+\end{equation*}
+
+\textup{B.} Let $\alpha$ be real, $\alpha\neq 0$. For $R>0$ we have
+\begin{equation}\label{eq:I-3.3}
+\int_{-R}^{R}f(x)e^{i\alpha x}\,dx
+=\Bigl[\frac{e^{i\alpha x}}{i\alpha}\,f(x)\Bigr]_{x=-R}^{x=R}
+-\int_{-R}^{R}\frac{e^{i\alpha x}}{i\alpha}\,f'(x)\,dx.
+\end{equation}
+Now $f(x)$ tends to a finite limit as $x\to\pm\infty$. For
+\begin{equation*}
+f(x)-f(0)=\int_0^x f'(t)\,dt,
+\qquad\text{and}\qquad f'\in L_1(-\infty,\infty),
+\end{equation*}
+so that
+\begin{equation*}
+f(\pm\infty)=f(0)+\int_0^{\pm\infty}f'(t)\,dt.
+\end{equation*}
+But $f(\pm\infty)=0$. Hence, on letting $R\to\infty$ in \eqref{eq:I-3.3}, we have
+\begin{equation*}
+\int_{-\infty}^{\infty}e^{i\alpha x}f(x)\,dx
+=-\int_{-\infty}^{\infty}\frac{e^{i\alpha x}}{i\alpha}\,f'(x)\,dx,
+\qquad\alpha\neq 0,
+\end{equation*}
+which implies that
+\begin{equation}\label{eq:I-3.4}
+(-i\alpha)\widehat f(\alpha)=(f')^{\wedge}(\alpha),\qquad\alpha\neq 0.
+\end{equation}
+This holds also for $\alpha=0$ by continuity (since the left-hand side is zero, while the right-hand side is
+\begin{equation*}
+\int_{-\infty}^{\infty}f'(x)\,dx=f(\infty)-f(-\infty)=0).
+\end{equation*}
+Since
+\begin{equation*}
+|\alpha\widehat f(\alpha)|\le\int_{-\infty}^{\infty}|f'(x)|\,dx=\|f'\|_1<\infty,
+\end{equation*}
+and $\hat f(\alpha)=o(1)$ as $|\alpha|\to\infty$ by Theorem~\ref{thm:I-1}, we conclude that $\hat f(\alpha)=O(1/|\alpha|)$. Actually $\hat f(\alpha)=o(1/|\alpha|)$ as $|\alpha|\to\infty$, because of \eqref{eq:I-3.4} and Theorem~\ref{thm:I-1}, since $f'\in L_1(-\infty,\infty)$ by assumption.
+\end{proof}
+
+\subsection*{Remarks}
+Theorem~3\,A can be given a more general form. If $m$ is a positive integer, $x^m f(x)\in L_1(-\infty<x<\infty)$, then $\hat f(\alpha)$ is continuously differentiable $m$ times for $-\infty<\alpha<\infty$, and we have
+\begin{equation}\label{eq:I-3.mA}
+\hat f^{(m)}(\alpha)=\int_{-\infty}^{\infty}\{(ix)^m f(x)\}e^{i\alpha x}\,dx,
+\end{equation}
+so that
+\begin{equation*}
+|\hat f^{(m)}(\alpha)|\le\int_{-\infty}^{\infty}|(ix)^m f(x)|\,dx.
+\end{equation*}
+One has only to use Theorem~3\,A and induction on $m$.
+
+Theorem~3\,B can also be similarly generalized. If $f$ is continuously differentiable $m$ times, and $f^{(r)}(x)\in L_1(-\infty<x<\infty)$ for $0\le r\le m$, then
+\begin{equation}\label{eq:I-3.mB}
+(f^{(m)})^{\wedge}(\alpha)=(-i\alpha)^m\hat f(\alpha),
+\end{equation}
+so that
+\begin{equation*}
+|\alpha^m\widehat f(\alpha)|\le\int_{-\infty}^{\infty}|f^{(m)}(x)|\,dx.
+\end{equation*}
+Thus one can roughly say that the faster $f$ decreases, the more often is $\hat f$ differentiable (with bounded derivatives), and the more integrable derivatives $f$ has, the faster $\hat f$ decreases.
+
+\subsection*{The spaces $\mathcal S$ and $\mathcal D$ of L.~Schwartz}
+A complex-valued function $f(x)$ of the real variable $x$ is said to belong to Schwartz's space $\mathcal S$, if $f$ is differentiable infinitely often, and for any integers $p,q$,
+\begin{equation*}
+x^p f^{(q)}(x)\to 0,\qquad\text{as }|x|\to\infty,
+\end{equation*}
+$f^{(q)}$ denoting the $q$-th derivative of $f$.
+
+We note the following properties of $\mathcal S$.
+
+\noindent\stmtref{3.5}{eq:I-3.5} If $f\in\mathcal S$, then $x^\ell f^{(m)}(x)$ is bounded, and belongs to $L_1(-\infty,\infty)$, for any integers $\ell,m\ge 0$. For
+\begin{equation*}
+|x^{\ell+2}f^{(m)}(x)|<M_0<\infty
+\end{equation*}
+implies that
+\begin{equation*}
+|x^\ell f^{(m)}(x)|<\frac{M}{1+x^2}\in L_1(-\infty,\infty).
+\end{equation*}
+In fact, $f$ belongs to $L_p(-\infty,\infty)$ for every $p$ such that $1\le p<\infty$.
+
+\noindent\textbf{(3.6)} If $f\in\mathcal S$, then $(x^\ell f(x))^{(m)}$ is bounded, for any integers $\ell,m\ge 0$, and belongs to $L_1(-\infty,\infty)$.
+
+This follows from \eqref{eq:I-3.5}, if we just use the rule for the differentiation of a product.
+
+\begin{equation*}\tag{3.7}\label{eq:I-3.7}\text{If $f\in\mathcal S$, then $\hat f\in\mathcal S$.}\end{equation*}
+
+\noindent\textbf{(3.8)} We note that $e^{-x^2}\in\mathcal S$, $\frac{1}{1+x^2}\notin\mathcal S$, $e^{-|x|}\notin\mathcal S$, the last not being differentiable at the origin.
+
+\noindent\textbf{(3.9)} A concept of convergence, and therefore of continuity, can be introduced into the vector space $\mathcal S$ as follows. Given an infinite sequence $(f_j)$ of functions, all belonging to $\mathcal S$, we say that $(f_j)$ converges in $\mathcal S$ to zero as $j\to\infty$, if for any integers $\ell,m\ge 0$, $\{x^\ell f_j^{(m)}(x)\}$ converges uniformly to zero on the line $-\infty<x<\infty$.
+
+\noindent\textbf{(3.10)} If $\{f_j(x)\}$ converges in $\mathcal S$ to zero as $j\to\infty$, then the sequence of Fourier transforms $(\hat f_j(\alpha))$ converges in $\mathcal S$ to zero.
+
+A continuous linear functional on $\mathcal S$ is known, after Schwartz, as a \emph{tempered distribution}. A study of the theory of Fourier transforms of tempered distributions is outside the scope of the present text.
+
+\subsection*{The space $\mathcal D$}
+The space $\mathcal S$ contains the vector subspace $\mathcal D$ of infinitely differentiable functions on $(-\infty,\infty)$ with bounded supports. The support of a function $f$ defined on $(-\infty,\infty)$ is the closure of the set of points $x$ at which $f(x)\neq 0$.
+
+The function $f$ defined by
+\begin{equation*}
+f(x)=
+\begin{cases}
+0,&|x|\ge 1,\\
+e^{-1/(1-x^2)},&|x|<1,
+\end{cases}
+\end{equation*}
+belongs to $\mathcal D$. Its derivatives, of all orders, vanish at $x=\pm 1$.
+
+We can introduce into $\mathcal D$ a concept of convergence.
+
+\noindent\textbf{(3.11)} We say that an infinite sequence $(f_j)$ of functions in $\mathcal D$ converges in $\mathcal D$ to a function $f$ of $\mathcal D$ as $j\to\infty$, if the supports of $(f_j)$ are all contained in the same bounded set (independently of $j$), and the sequence of derivatives $(f_j^{(m)})$, of any given order $m$, converges uniformly, as $j\to\infty$, to the derivative $f^{(m)}$ of $f$.
+
+If $(f_j)$ converges to zero in $\mathcal D$, then clearly $(f_j)$ converges to zero in $\mathcal S$ as well.
+
+A continuous linear functional on the space $\mathcal D$ is known, after Schwartz, as a \emph{distribution}. One can study the Fourier transforms of particular classes of distributions, such as those with bounded supports, or those with point supports, though such a study is outside the scope of the present text.
+
+We have already noted, and used, the fact that step-functions are dense in $L_p(-\infty,\infty)$ for $1\le p<\infty$ (cf.\ \S\ref{sec:I-1}). Given the function $\chi_{a,b}$ defined by
+\begin{equation*}
+\chi_{a,b}(x)=
+\begin{cases}
+1,&-\infty<a\le x\le b<\infty,\\
+0,&\text{for }x<a,\ x>b,
+\end{cases}
+\end{equation*}
+we can approximate to it by a function $\omega_{a,b}\in\mathcal D$, such that for any given $\delta>0$,
+\begin{equation*}
+\|\chi_{a,b}-\omega_{a,b}\|_p<\delta.
+\end{equation*}
+Let
+\begin{equation}\label{eq:I-3.12}
+\omega(x)=
+\begin{cases}
+1,&a<x<b,\\
+0,&x<a-\varepsilon,\\
+0,&x>b+\varepsilon,
+\end{cases}
+\qquad\varepsilon>0,
+\end{equation}
+while
+\begin{equation*}
+\omega(x)=\frac{1}{c_1}\int_{a-\varepsilon}^{x}e^{\frac{1}{(y-a)(y-a+\varepsilon)}}\,dy,
+\qquad a-\varepsilon\le x\le a,
+\end{equation*}
+and
+\begin{equation*}
+\omega(x)=\frac{1}{c_2}\int_x^{b+\varepsilon}e^{\frac{1}{(y-b)(y-b-\varepsilon)}}\,dy,
+\qquad b\le x\le b+\varepsilon,
+\end{equation*}
+where
+\begin{equation*}
+c_1=\int_{a-\varepsilon}^{a}e^{\frac{1}{(y-a)(y-a+\varepsilon)}}\,dy,
+\qquad
+c_2=\int_b^{b+\varepsilon}e^{\frac{1}{(y-b)(y-b-\varepsilon)}}\,dy.
+\end{equation*}
+Then $\omega(x)=1$ for $x=a$ and $x=b$, while $\omega(x)=0$ for $x=a-\varepsilon$ and $x=b+\varepsilon$; and the derivatives of $\omega$, of all orders, vanish at $x=a-\varepsilon$, $a$, $b$, $b+\varepsilon$.
+
+We can also define a function $\tilde\omega\in\mathcal D$ such that
+\begin{equation}\tag{3.13}\label{eq:I-3.13}
+\tilde\omega(x)=
+\begin{cases}1,&a+\varepsilon\le x\le b-\varepsilon,\\0,&x\le a,\ x\ge b,\end{cases}
+\end{equation}
+and we have $\tilde\omega(x)<\chi_{a,b}(x)<\omega(x)$, and
+$\int_{-\infty}^{\infty}\bigl(\omega(x)-\tilde\omega(x)\bigr)\,dx<4\varepsilon$.
+
+It follows that $\mathcal D$ is a dense subspace of $L_p(-\infty,\infty)$, $1\le p<\infty$, and since $\mathcal S\supset\mathcal D$, $\mathcal S$ is also a dense subspace of $L_p(-\infty,\infty)$.
+
+\section{Localization, Mellin transforms}
+\label{sec:I-4}
+
+If $f(x)\in L_1(-\infty<x<\infty)$, it does not follow that the Fourier transform $\hat f(\alpha)$ belongs to $L_1(-\infty<\alpha<\infty)$, as in Example~1 of \S\ref{sec:I-1}. We can, however, find a simple condition, such that at a given point $x$, we can `invert' the Fourier transform; that is to say, obtain the relation
+\begin{equation*}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)e^{-i\alpha x}\,d\alpha,
+\end{equation*}
+the integral being defined as a Cauchy principal value
+\begin{equation*}
+\lim_{R\to\infty}\int_{-R}^{R}\hat f(\alpha)e^{-i\alpha x}\,d\alpha,\qquad R>0.
+\end{equation*}
+
+Let $f\in L_1(-\infty,\infty)$, and
+\begin{equation}\label{eq:I-4.1}
+S_R(x)=\frac{1}{2\pi}\int_{-R}^{R}e^{-ix\alpha}\hat f(\alpha)\,d\alpha,
+\qquad 0<R<\infty.
+\end{equation}
+Then we have
+\begin{equation*}
+S_R(x)=\frac{1}{2\pi}\int_{-R}^{R}e^{-ix\alpha}\Bigl(\int_{-\infty}^{\infty}f(t)e^{i\alpha t}\,dt\Bigr)d\alpha,
+\end{equation*}
+and since the repeated integral is absolutely convergent, the order of integration can be interchanged, so that
+\begin{align*}
+S_R(x)&=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(t)\Bigl(\int_{-R}^{R}e^{-i\alpha(x-t)}\,d\alpha\Bigr)dt\\
+&=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(t)\frac{i}{x-t}\bigl\{e^{-iR(x-t)}-e^{iR(x-t)}\bigr\}dt\\
+&=\frac{1}{\pi}\int_{-\infty}^{\infty}f(x-t)\frac{\sin Rt}{t}\,dt.
+\end{align*}
+Hence we have
+\begin{equation}\label{eq:I-4.2}
+S_R(x)=\frac{1}{\pi}\int_0^\infty\bigl\{f(x+t)+f(x-t)\bigr\}\frac{\sin Rt}{t}\,dt,
+\end{equation}
+or
+\begin{equation*}
+S_R(x)-f(x)=\frac{2}{\pi}\int_0^\infty
+\Bigl\{\frac{f(x+t)+f(x-t)}{2}-f(x)\Bigr\}\frac{\sin Rt}{t}\,dt,
+\end{equation*}
+since, for $R>0$,
+\begin{equation}\label{eq:I-4.3}
+\int_0^\infty\frac{\sin Rt}{t}\,dt=\frac{\pi}{2},
+\end{equation}
+the integral being convergent though not absolutely. Thus we obtain the following
+
+\begin{lemma}\label{lem:I-4.1}
+If $f\in L_1(-\infty,\infty)$, and $S_R(x)$ is defined as in \eqref{eq:I-4.1}, and
+\begin{equation}\label{eq:I-4.5}
+g_x(t)=\frac12\bigl[f(x+t)+f(x-t)-2f(x)\bigr],
+\end{equation}
+then
+\begin{equation*}
+S_R(x)-f(x)=\frac{2}{\pi}\int_0^\infty g_x(t)\frac{\sin Rt}{t}\,dt.
+\end{equation*}
+\end{lemma}
+
+This lemma will enable us to prove that the convergence of $S_R(x)$, as $R\to\infty$, to $f(x)$ at a given point $x$, depends only on the behaviour of the function in a neighbourhood of that point. This is usually referred to as Riemann's localization theorem, and is contained in the following two theorems.
+
+\begin{theorem}\label{thm:I-4}
+If $f\in L_1(-\infty,\infty)$, $x\in(-\infty,\infty)$, $g_x(t)$ is defined as in \eqref{eq:I-4.5}, and there exists $\delta>0$, such that
+\begin{equation}\label{eq:I-4.6}
+\int_0^\delta\frac{|g_x(t)|}{t}\,dt<\infty,
+\end{equation}
+then we have
+\begin{equation*}
+\lim_{R\to\infty}S_R(x)=f(x),
+\end{equation*}
+where $S_R(x)$ is defined as in \eqref{eq:I-4.1}.
+\end{theorem}
+
+\begin{proof}
+For any fixed $\delta>0$, we have
+\begin{equation*}
+S_R(x)-f(x)=\frac{2}{\pi}\Bigl[\int_0^\delta+\int_\delta^\infty\Bigr]\frac{g_x(t)}{t}\sin Rt\,dt
+=I_1+I_2,\quad\text{say}.
+\end{equation*}
+Since $g_x(t)/t$ is absolutely integrable in $(0,\delta)$ by hypothesis, we have
+\begin{equation*}
+I_1=\varepsilon(\delta)\to 0,\qquad\text{as }\delta\downarrow 0;
+\end{equation*}
+while Theorem~\ref{thm:I-1} implies that for fixed $\delta>0$,
+\begin{equation*}
+\int_\delta^\infty\frac{f(x+t)}{t}\sin Rt\,dt\to 0,
+\qquad\text{and}\qquad
+\int_\delta^\infty\frac{f(x-t)}{t}\sin Rt\,dt\to 0,
+\end{equation*}
+as $R\to\infty$. The integral
+\begin{equation*}
+\int_\delta^\infty f(x)\frac{\sin Rt}{t}\,dt
+=f(x)\int_{\delta R}^\infty\frac{\sin T}{T}\,dT\to 0,
+\qquad\text{as }R\to\infty
+\end{equation*}
+(cf.\ \eqref{eq:I-4.3}). Hence $I_2\to 0$ as $R\to\infty$, which proves the theorem.
+\end{proof}
+
+\noindent\textbf{Remark.}
+Condition \eqref{eq:I-4.6} is satisfied at any point $x$ at which the function $f$ has a finite derivative, or satisfies just a Lipschitz condition of order $\alpha$, namely $|f(x+h)-f(x)|=O(|h|^\alpha)$, $0<\alpha<1$.
+
+The next theorem gives a sufficient condition for the convergence of the integral $S_R(x)$ as $R\to\infty$, not only at the point $x$, but in an interval containing the point.
+
+\begin{theorem}\label{thm:I-5}
+If $f\in L_1(-\infty,\infty)$, and $f$ is of bounded variation in a neighbourhood of the point $x$, then we have
+\begin{equation*}
+\lim_{R\to\infty}S_R(x)=\frac12\bigl[f(x+0)+f(x-0)\bigr],
+\end{equation*}
+where $S_R(x)$ is defined as in \eqref{eq:I-4.1}.
+\end{theorem}
+
+\begin{proof}
+If for a given $\delta$, $\delta>0$, the function $g$ is of bounded variation in the interval $[0,\delta]$, then we shall prove that
+\begin{equation}\label{eq:I-4.7}
+\lim_{R\to\infty}\frac{2}{\pi}\int_0^\delta g(t)\frac{\sin Rt}{t}\,dt=g(0+).
+\end{equation}
+Since $g$ can be expressed as the difference of two bounded, monotone increasing functions, it suffices to prove \eqref{eq:I-4.7} on the assumption that $g$ is a bounded, monotone increasing function. We may further assume that $g(0+)=0$, for if $g(0+)\neq 0$, we set $G(t)=g(t)-g(0+)$, so that $G(0+)=0$, and if \eqref{eq:I-4.7} holds with $G$ in place of $g$, then
+\begin{equation*}
+\begin{aligned}
+&\frac{2}{\pi}  \int_0^\delta g(t)\frac{\sin Rt}{t}\,dt\\
+&= \frac{2}{\pi}  \int_0^\delta G(t)\frac{\sin Rt}{t}\,dt + \frac{2}{\pi}  \int_0^\delta g(0+)\frac{\sin Rt}{t}\,dt \to 0 + g(0+),
+\end{aligned}
+\end{equation*}
+because of \eqref{eq:I-4.3}, which proves \eqref{eq:I-4.7}.
+
+We assume therefore that $g(0+)=0$, and that $g$ is a bounded, monotone increasing function. Given $\varepsilon>0$, we can find $\eta$, $0<\eta<\delta$, such that $|g(t)|\le\varepsilon$ for $0<t\le\eta$. We now apply the second mean-value theorem, which states that if $f$ is integrable on $(a,b)$ and $\varphi$ bounded and monotone in $(a,b)$, then
+\begin{equation*}
+\int_a^b f(x)\varphi(x)\,dx
+=\varphi(a+0)\int_a^\xi f(x)\,dx+\varphi(b-0)\int_\xi^b f(x)\,dx,
+\end{equation*}
+for some $\xi\in[a,b]$. On setting $\varphi=g$, $f(t)=\frac{\sin Rt}{t}$, we see that there exists $\xi\in[0,\eta]$ such that
+\begin{equation*}
+\int_0^\eta g(t)\frac{\sin Rt}{t}\,dt
+=g(\eta-0)\int_\xi^\eta\frac{\sin Rt}{t}\,dt
+=g(\eta-0)\int_{\xi R}^{\eta R}\frac{\sin u}{u}\,du.
+\end{equation*}
+Hence
+\begin{equation*}
+\Bigl|\int_0^\eta g(t)\frac{\sin Rt}{t}\,dt\Bigr|
+\le|g(\eta-0)|\,M\le\varepsilon M<\infty,
+\end{equation*}
+where $\varepsilon$ is arbitrary and $M$ is independent of $\xi,\eta,R$ (cf.\ \eqref{eq:I-1.18}). And we have
+\begin{equation*}
+\Bigl|\int_0^\delta g(t)\frac{\sin Rt}{t}\,dt\Bigr|
+\le\varepsilon M+\Bigl|\int_\eta^\delta g(t)\frac{\sin Rt}{t}\,dt\Bigr|.
+\end{equation*}
+Since $g$ is bounded and measurable on $[0,\delta]$, the function $g(t)/t$ is integrable on $[\eta,\delta]$, so that Theorem~\ref{thm:I-1} gives
+\begin{equation*}
+\lim_{R\to\infty}\int_\eta^\delta\frac{g(t)}{t}\sin Rt\,dt=0,
+\end{equation*}
+and hence
+\begin{equation*}
+\limsup_{R\to\infty}\Bigl|\int_0^\delta g(t)\frac{\sin Rt}{t}\,dt\Bigr|\le\varepsilon M,
+\end{equation*}
+or
+\begin{equation*}
+\lim_{R\to\infty}\int_0^\delta g(t)\frac{\sin Rt}{t}\,dt=0=g(0+).
+\end{equation*}
+
+We shall now use \eqref{eq:I-4.7} to prove the theorem. Given $x$, we choose $\delta>0$ so small that $f$ is of bounded variation in $[x-\delta,x+\delta]$. By \eqref{eq:I-4.2} we have
+\begin{equation*}
+\begin{aligned}
+&S_R(x) = \frac{1}{\pi}  \Bigl[\int_0^\delta+\int_\delta^\infty\Bigr]  \Bigl\{\frac{f(x+t)+f(x-t)}{2}\Bigr\}\frac{\sin Rt}{t}\,dt\\
+&= I_1 + I_2,\quad\text{say}.
+\end{aligned}
+\end{equation*}
+Since $\{f(x+t)+f(x-t)\}/t$ is integrable on $\delta\le t<\infty$, Theorem~\ref{thm:I-1} implies that $I_2\to 0$ as $R\to\infty$. By \eqref{eq:I-4.7}, however, we have
+\begin{equation*}
+I_1\to\frac12[f(x+0)+f(x-0)],\qquad\text{as }R\to\infty,
+\end{equation*}
+and Theorem~\ref{thm:I-5} follows.
+\end{proof}
+
+\noindent\textbf{Remarks.}
+The criteria for the convergence of $S_R(x)$ to $f(x)$, as $R\to\infty$, given by Theorems \ref{thm:I-4} and \ref{thm:I-5} are not comparable. The function $f$ defined by $f(x)=x\sin(1/x)$ for $0<x<\frac1\pi$; $f(x)=0$ for $x\le 0$; $f(x)=0$ for $x>\frac1\pi$; satisfies condition \eqref{eq:I-4.6} of Theorem~\ref{thm:I-4} at $x=0$, but it is not of bounded variation in any neighbourhood of the origin.
+
+The function $f$ defined by $f(x)=1/\log(1/x)$ for $0<x<\frac1e$, $f(x)=1/(\exp)^2$ for $x\ge\frac1e$, $f(x)=f(-x)$, is of bounded variation in a neighbourhood of the origin (since it is bounded and monotone), but does not satisfy condition \eqref{eq:I-4.6} of Theorem~\ref{thm:I-4} at $x=0$. Both functions belong, of course, to $L_1(-\infty,\infty)$.
+
+\subsection*{Mellin transforms}
+Theorem~\ref{thm:I-5} leads us, by a change of variable, to Mellin transforms and Mellin inversion.
+
+\noindent\textbf{Theorem 5'.}
+Let $y^{\sigma-1}f(y)\in L_1(0<y<\infty)$, for $\sigma$ real, and let $f(y)$ be of bounded variation in a neighbourhood of the point $y=x$. If
+\begin{equation}\label{eq:I-4.8}
+F(s)=\int_0^\infty f(y)y^{s-1}\,dy,
+\qquad s=\sigma+it,\quad i=\sqrt{-1},
+\end{equation}
+then
+\begin{equation}\label{eq:I-4.9}
+\frac{1}{2\pi i}\lim_{T\to\infty}\int_{\sigma-iT}^{\sigma+iT}F(s)x^{-s}\,ds
+=\frac12\bigl[f(x+0)+f(x-0)\bigr].
+\end{equation}
+
+\begin{proof}
+The hypothesis on $f$ ensures the existence of the integral in \eqref{eq:I-4.8}. As hitherto $f$ is a complex-valued function of the real variable $x$; on the other hand, $s$ is complex with real part $\sigma$ and imaginary part $t$. If we make the substitution $x=e^Y$ in \eqref{eq:I-4.8}, we get
+\begin{equation*}
+F(\sigma+it)=\int_{-\infty}^{\infty}f(e^Y)e^{\sigma Y}e^{itY}\,dY,
+\end{equation*}
+so that $F(\sigma+it)$, considered as a function of $t$, $-\infty<t<\infty$, may be looked upon as the Fourier transform of $f(e^Y)e^{\sigma Y}\in L_1(-\infty<Y<\infty)$. By Theorem~\ref{thm:I-5} we get
+\begin{equation*}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}F(\sigma+it)e^{-itY}\,dt
+=\frac12[g(Y+0)+g(Y-0)],
+\end{equation*}
+where $g(Y)=f(e^Y)e^{\sigma Y}$, provided that $g$ is of bounded variation in a neighbourhood of the point $Y$, or
+\begin{equation*}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}F(\sigma+it)e^{-(\sigma+it)Y}\,dt
+=e^{-\sigma Y}\frac12[g(Y+0)+g(Y-0)].
+\end{equation*}
+On setting $x=e^Y$, we get
+\begin{equation*}
+\lim_{R\to\infty}\frac{1}{2\pi i}\int_{\sigma-iR}^{\sigma+iR}F(s)x^{-s}\,ds
+=\frac12[f(x+0)+f(x-0)],
+\end{equation*}
+which is \eqref{eq:I-4.9}.
+\end{proof}
+
+\noindent\textbf{Theorem 5''.}
+Let $F(\sigma+iu)\in L_1(-\infty<u<\infty)$, and let $F$ be of bounded variation, as a function of $u$, in a neighbourhood of the point $u=t$. If
+\begin{equation*}
+f(x)=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}F(s)x^{-s}\,ds,
+\qquad s=\sigma+it,
+\end{equation*}
+then
+\begin{equation*}
+\lim_{R\to\infty}\int_{1/R}^{R}f(x)x^{\sigma+it-1}\,dx
+=\frac12\bigl[F\{\sigma+i(t+0)\}+F\{\sigma+i(t-0)\}\bigr].
+\end{equation*}
+
+The function $F$ in \eqref{eq:I-4.8} is usually referred to as the \emph{Mellin transform} of $f$; and \eqref{eq:I-4.9} is referred to as the \emph{Mellin inversion formula}. We note that the Mellin transform is just another version of the Fourier transform obtained by a change of variable.
+
+\subsection*{Examples}
+1. The integral representation for the gamma-function given by
+\begin{equation*}
+\Gamma(s)=\int_0^\infty e^{-x}x^{s-1}\,dx,\qquad \sigma=\operatorname{Re}s>0,
+\end{equation*}
+shows that in Theorem~5', if $f(x)=e^{-x}$, then $F(s)=\Gamma(s)$ for $\sigma>0$. Thus $\Gamma(s)$, for $\sigma>0$, is the Mellin transform of $e^{-x}$, $0<x<\infty$. And we have
+\begin{equation*}
+e^{-x}=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}\Gamma(s)x^{-s}\,ds,
+\qquad\sigma>0,\ x>0.
+\end{equation*}
+
+2. The series $\sum_{n=1}^\infty n^{-s}$, $s=\sigma+it$, converges for $\sigma>1$, and the sum-function $\zeta(s)$ is known as the Riemann zeta-function. If in Theorem~5', $f(x)=1/(e^x-1)$, then $F(s)=\Gamma(s)\zeta(s)$ for $\sigma>1$.
+
+To see this we note that for any integer $n\ge 1$,
+\begin{equation*}
+\Gamma(s)n^{-s}=\int_0^\infty e^{-nx}x^{s-1}\,dx,\qquad\sigma>0,
+\end{equation*}
+and since
+\begin{equation*}
+\sum_{n=1}^\infty\int_0^\infty|x^{s-1}e^{-nx}|\,dx
+=\sum_{n=1}^\infty\int_0^\infty e^{-nx}x^{\sigma-1}\,dx
+=\sum_{n=1}^\infty\Gamma(\sigma)n^{-\sigma}<\infty,
+\end{equation*}
+for $\sigma>1$, we have
+\begin{equation*}
+\begin{aligned}
+&\Gamma(s)\zeta(s) = \sum_{n=1}^\infty  \int_0^\infty x^{s-1}e^{-nx}\,dx\\
+&= \int_0^\infty x^{s-1}\sum_{n=1}^\infty e^{-nx}\,dx = \int_0^\infty\frac{x^{s-1}}{e^x-1}\,dx,
+\end{aligned}
+\end{equation*}
+for $\sigma>1$. Thus $\Gamma(s)\zeta(s)$, for $\sigma>1$, is the Mellin transform of $1/(e^x-1)$, $0<x<\infty$, and we deduce that
+\begin{equation*}
+\frac{1}{e^x-1}=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}\Gamma(s)\zeta(s)x^{-s}\,ds,
+\qquad\sigma>1,\ x>0.
+\end{equation*}
+
+3. Let $L(s)$ denote one of Dirichlet's $L$-functions, defined by the series
+\begin{equation*}
+L(s)=1-\frac{1}{3^s}+\frac{1}{5^s}-\cdots,\qquad\sigma>0;
+\end{equation*}
+then $\Gamma(s)L(s)$, for $\sigma>0$, is the Mellin transform of $1/(e^x+e^{-x})$, $0<x<\infty$, and we deduce that
+\begin{equation*}
+\frac{1}{e^x+e^{-x}}=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}\Gamma(s)L(s)x^{-s}\,ds,
+\qquad\sigma>0,\ x>0.
+\end{equation*}
+
+\section{Fourier series and Poisson's summation formula}
+\label{sec:I-5}
+
+If $f(x)\in L_1(0\le x\le 2\pi)$, and $f(x+2\pi)=f(x)$ for $-\infty<x<\infty$, the Fourier series of $f$ is defined to be
+\begin{equation}\label{eq:I-5.1}
+\sum_{\nu=-\infty}^{\infty}c_\nu e^{i\nu x},\qquad 0\le x\le 2\pi,
+\end{equation}
+where the Fourier coefficient $c_\nu$ is given by
+\begin{equation}\label{eq:I-5.2}
+c_\nu=\frac{1}{2\pi}\int_0^{2\pi}f(x)e^{-i\nu x}\,dx.
+\end{equation}
+If $g_x(t)=\frac12[f(x+t)+f(x-t)-2f(x)]$, and there exists $\delta>0$ such that $\int_0^\delta|g_x(t)|t^{-1}dt<\infty$, then the Fourier series of $f$ at the point $x$ converges to sum $f(x)$. This is the well-known criterion of convergence due to Dini, of which Theorem~\ref{thm:I-4} is the analogue for Fourier transforms.
+
+If, on the other hand, $f$ is of bounded variation in $(0,2\pi)$, then at every point $x_0$ the Fourier series converges to $\frac12[f(x_0+0)+f(x_0-0)]$. In particular, the series converges to $f(x)$ at every point of continuity of $f$. If further $f$ is continuous at every point of a closed interval, then the series converges uniformly in that interval. This is the well-known criterion of convergence due to Dirichlet and Jordan, of which Theorem~\ref{thm:I-5} is the analogue for Fourier transforms.
+
+The following lemma establishes a simple connexion between Fourier transforms of functions in $L_1(-\infty,\infty)$ and the Fourier series of related periodic functions, of period $2\pi$, belonging to $L_1(0,2\pi)$.
+
+\begin{lemma}\label{lem:I-5.3}
+If $f(x)\in L_1(-\infty<x<\infty)$, then the series $\sum_{k=-\infty}^\infty f(x+2k\pi)$ converges absolutely for almost all $x$ in $(0,2\pi)$ and its sum $F(x)$ belongs to $L_1(0,2\pi)$, with $F(x+2\pi)=F(x)$ for all real $x$. If $C_\nu$ denotes the Fourier coefficient of $F$, then
+\begin{equation}\label{eq:I-5.4}
+C_\nu\equiv\frac{1}{2\pi}\int_0^{2\pi}F(x)e^{-i\nu x}\,dx
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-i\nu x}\,dx
+\equiv\frac{1}{2\pi}\hat f(-\nu).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+We have
+\begin{equation*}
+\begin{aligned}
+&\sum_{k=-\infty}^{\infty}  \int_0^{2\pi}|f(x+2k\pi)|\,dx\\
+&= \lim_{N\to\infty}\sum_{k=-N}^{N}  \int_{2k\pi}^{(2k+2)\pi}|f(y)|\,dy = \int_{-\infty}^{\infty}|f(y)|\,dy < \infty.
+\end{aligned}
+\end{equation*}
+It follows by Lebesgue's theorem on monotone convergence that
+\begin{equation*}
+\int_0^{2\pi}\sum_{k=-\infty}^{\infty}|f(x+2k\pi)|\,dx
+=\sum_{k=-\infty}^{\infty}\int_0^{2\pi}|f(x+2k\pi)|\,dx,
+\end{equation*}
+hence $\sum f(x+2k\pi)$ converges absolutely for almost all $x$ in $(0,2\pi)$, and if $F_N(x)=\sum_{k=-N}^{N}f(x+2k\pi)$, then $\lim_{N\to\infty}F_N(x)=F(x)$, where $F\in L_1(0,2\pi)$ and $F(x+2\pi)=F(x)$. The $\nu$-th Fourier coefficient of $F$ is given by
+\begin{align*}
+&\frac{1}{2\pi}\int_0^{2\pi}F(x)e^{-i\nu x}\,dx
+=\frac{1}{2\pi}\int_0^{2\pi}\lim_{N\to\infty}F_N(x)e^{-i\nu x}\,dx\\
+&=\lim_{N\to\infty}\frac{1}{2\pi}\int_{-2N\pi}^{(2N+2)\pi}f(x)e^{-i\nu x}\,dx\\
+&=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x)e^{-i\nu x}\,dx,
+\end{align*}
+since $|F_N(x)|<\sum_{k=-\infty}^{\infty}|f(x+2k\pi)|\in L_1(0,2\pi)$.
+\end{proof}
+
+\begin{theorem}[Poisson's summation formula]\label{thm:I-6}
+Let $f\in L_1(-\infty,\infty)$, and be of bounded variation on $(-\infty,\infty)$, and let $f(x)=\frac12[f(x+0)+f(x-0)]$ for all $x$ in $(-\infty,\infty)$. Then we have
+\begin{equation}\label{eq:I-5.5}
+\sum_{k=-\infty}^{\infty}f(2k\pi)
+=\sum_{\nu=-\infty}^{\infty}\frac{1}{2\pi}\hat f(-\nu).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $v_k$ denote the total variation of $f$ in the interval $I_k=(2k\pi,(2k+2)\pi)$, $k=0,\pm1,\pm2,\dots$. The series $\sum f(x+2k\pi)$ converges absolutely at some point $x_0$ in $I_0$, and
+\begin{equation*}
+|f(x+2k\pi)|\le|f(x_0+2k\pi)|+|f(x+2k\pi)-f(x_0+2k\pi)|,
+\end{equation*}
+where $|f(x+2k\pi)-f(x_0+2k\pi)|\le v_k$ for $x\in I_0$. Since $\sum_{k=-\infty}^\infty v_k<\infty$ by hypothesis, the series $\sum_{k=-\infty}^\infty f(x+2k\pi)$ converges absolutely, and uniformly, in $I_0$ to sum $F(x)$, say, which is of bounded variation, and such that $F(x)=\frac12[F(x+0)+F(x-0)]$, $F(x+2\pi)=F(x)$. By the Dirichlet--Jordan test mentioned above, the Fourier series of $F$, $\sum_{\nu=-\infty}^\infty C_\nu e^{i\nu x}$, converges to $F(x)$, so that
+\begin{equation*}
+\sum_{k=-\infty}^{\infty}f(x+2k\pi)=F(x)=\sum_{\nu=-\infty}^{\infty}C_\nu e^{i\nu x},
+\end{equation*}
+and at the point $x=0$, we have, by Lemma~\ref{lem:I-5.3},
+\begin{equation*}
+\sum_{k=-\infty}^{\infty}f(2k\pi)
+=\sum_{\nu=-\infty}^{\infty}C_\nu
+=\sum_{\nu=-\infty}^{\infty}\frac{1}{2\pi}\hat f(-\nu).
+\end{equation*}
+\end{proof}
+
+\noindent\textbf{Remarks.}
+Formula \eqref{eq:I-5.5} is referred to as Poisson's summation formula. The conditions for its validity can, of course, be relaxed. A more symmetric form can be obtained by modifying the definition of Fourier transform. If we write $f(x)=g(ax/2\pi)$, where $a>0$, and $ab=2\pi$, and define
+\begin{equation}\label{eq:I-5.6}
+\check F[f](\alpha)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-i\alpha x}\,dx
+\Bigl(=\frac{1}{\sqrt{2\pi}}\hat f(-\alpha)\Bigr),
+\end{equation}
+then \eqref{eq:I-5.5} takes the form
+\begin{equation}\label{eq:I-5.7}
+\sqrt{a}\sum_{k=-\infty}^{\infty}g(ak)
+=\sqrt{b}\sum_{\nu=-\infty}^{\infty}\check F[g](b\nu),
+\qquad ab=2\pi,\ a>0,
+\end{equation}
+where $g\in L_1(-\infty,\infty)$.
+
+\subsection*{Examples}
+1. If we take $g(x)=e^{-x^2}$, $a=(\pi t)^{1/2}$, $t>0$, $b=2\sqrt{\pi}/\sqrt{t}$, as we may, and use Example~6 of \S\ref{sec:I-1}, we obtain from \eqref{eq:I-5.7} the theta-relation
+\begin{equation}\label{eq:I-5.8}
+\sum_{k=-\infty}^{\infty}e^{-\pi k^2 t}
+=\frac{1}{\sqrt{t}}\sum_{k=-\infty}^{\infty}e^{-\pi k^2/t},
+\qquad t>0.
+\end{equation}
+
+2. If we take $g(x)=e^{-|x|}$, and use Example~4 of \S\ref{sec:I-1}, we obtain from \eqref{eq:I-5.7} the formula
+\begin{equation}\label{eq:I-5.9}
+\sqrt{a}\sum_{k=-\infty}^{\infty}e^{-|k|a}
+=\sqrt{\frac{2b}{\pi}}\sum_{n=-\infty}^{\infty}\frac{1}{1+n^2b^2},
+\qquad ab=2\pi,\ a>0.
+\end{equation}
+
+\section{The uniqueness theorem}
+\label{sec:I-6}
+
+If the Fourier transform $\hat f$ of a function $f\in L_1(-\infty,\infty)$ vanishes everywhere, then the function itself must vanish almost everywhere. This can be proved in many different ways, as we shall see later. We can prove it, at this stage, by using the infinitely differentiable function $\omega$ which vanishes outside a finite interval, introduced in \eqref{eq:I-3.12}, and applying Theorem~\ref{thm:I-4}.
+
+\begin{theorem}\label{thm:I-7}
+If $f(x)\in L_1(-\infty<x<\infty)$, and $\hat f$ denotes the Fourier transform of $f$, and $\hat f(\alpha)=0$ for every $\alpha$ such that $-\infty<\alpha<\infty$, then $f(x)=0$ for almost all $x$, $-\infty<x<\infty$.
+\end{theorem}
+
+\begin{proof}
+Given real numbers $c>0$ and $\varepsilon>0$, let
+\begin{equation*}
+\omega_{c,\varepsilon}(x)=
+\begin{cases}
+0,&x<-c-\varepsilon\ \text{and}\ x>c+\varepsilon,\\
+1,& -c<x<c,
+\end{cases}
+\end{equation*}
+and let $\omega_{c,\varepsilon}(x)$ be infinitely differentiable for $-\infty<x<\infty$. Its derivatives, of all orders greater than zero, vanish at $x=-c-\varepsilon$, $-c$, $+c$, $c+\varepsilon$. Such a function exists; we have only to take $a=-c$, $b=+c$ in \eqref{eq:I-3.12}. Obviously we have
+\begin{equation*}
+\hat\omega_{c,\varepsilon}(\alpha)=\int_{-\infty}^{\infty}\omega_{c,\varepsilon}(x)e^{i\alpha x}\,dx,
+\end{equation*}
+and on integrating this by parts sufficiently often, we see that $\hat\omega_{c,\varepsilon}(\alpha)=O(|\alpha|^{-k})$ as $|\alpha|\to\infty$, for any integer $k\ge 1$, and hence, in particular, $\hat\omega_{c,\varepsilon}(\alpha)\in L_1(-\infty<\alpha<\infty)$. Because $\omega_{c,\varepsilon}(x)$ has a finite derivative at every point $x$, assumption \eqref{eq:I-4.6} of Theorem~\ref{thm:I-4} is satisfied everywhere, and we can conclude that
+\begin{equation*}
+\omega_{c,\varepsilon}(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat\omega_{c,\varepsilon}(\alpha)e^{-ix\alpha}\,d\alpha,
+\qquad-\infty<x<\infty,
+\end{equation*}
+where the integral converges absolutely, since $\hat\omega_{c,\varepsilon}\in L_1(-\infty,\infty)$. By the composition rule \eqref{eq:I-1.13}, and \eqref{eq:I-1.9}, we obtain
+\begin{equation*}
+\int_{-\infty}^{\infty}f(y)\omega_{c,\varepsilon}(x-y)\,dy
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)\hat\omega_{c,\varepsilon}(\alpha)e^{-i\alpha x}\,d\alpha.
+\end{equation*}
+Since $\hat f(\alpha)=0$ for every $\alpha$, we obtain
+\begin{equation}\label{eq:I-6.1}
+\int_{-\infty}^{\infty}f(y)\omega_{c,\varepsilon}(x-y)\,dy=0,
+\end{equation}
+which holds for every $c>0$. From the definition of $\omega_{c,\varepsilon}$, we have
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}f(y)\omega_{c,\varepsilon}(x-y)\,dy\\
+&= \Bigl(\int_{x-c-\varepsilon}^{x-c}+\int_{x-c}^{x+c}+\int_{x+c}^{x+c+\varepsilon}\Bigr)f(y)\omega_{c,\varepsilon}(x-y)\,dy,
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\Bigl|\int_{x-c-\varepsilon}^{x-c}f(y)\omega_{c,\varepsilon}(x-y)\,dy\Bigr|
+\le\int_{x-c-\varepsilon}^{x-c}|f(y)|\,dy\to 0,
+\qquad\text{as }\varepsilon\downarrow 0,
+\end{equation*}
+and similarly also
+\begin{equation*}
+\Bigl|\int_{x+c}^{x+c+\varepsilon}f(y)\omega_{c,\varepsilon}(x-y)\,dy\Bigr|\to 0,
+\qquad\text{as }\varepsilon\downarrow 0,
+\end{equation*}
+while
+\begin{equation*}
+\int_{x-c}^{x+c}f(y)\omega_{c,\varepsilon}(x-y)\,dy
+=\int_{x-c}^{x+c}f(y)\,dy.
+\end{equation*}
+By \eqref{eq:I-6.1} it follows that for arbitrary $x$,
+\begin{equation*}
+\int_{x-c}^{x+c}f(y)\,dy=0,
+\end{equation*}
+for every $c>0$; that is to say, $\int_\alpha^\beta f(y)\,dy=0$ for arbitrary $\alpha$ and $\beta$, which implies that $f(x)=0$ for almost all $x$, $-\infty<x<\infty$.
+\end{proof}
+
+\noindent\textbf{Remark.}
+The above proof makes use of the infinitely differentiable function $\omega$ together with the validity of `Fourier inversion', namely
+\begin{equation*}
+\omega(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat\omega(\alpha)e^{-i\alpha x}\,d\alpha.
+\end{equation*}
+We shall presently see that if both $f$ and $\hat f$ belong to $L_1(-\infty,\infty)$ such an inversion holds almost everywhere, from which Theorem~\ref{thm:I-7} would follow at once.
+
+\noindent\textbf{(6.2) Corollary.}
+If $f_1,f_2\in L_1(-\infty,\infty)$, and $\hat f_1=\hat f_2$ everywhere, then $f_1=f_2$ almost everywhere.
+
+\section{Pointwise summability}
+\label{sec:I-7}
+
+Examples given in \S\ref{sec:I-1} show that if $f\in L_1(-\infty,\infty)$, it does not necessarily follow that the Fourier transform $\hat f$ of $f$ also belongs to $L_1(-\infty,\infty)$, so that the integral---referred to sometimes as a Fourier integral---
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+may not exist as a Lebesgue integral, or even as a Cauchy principal value. We can, however, introduce into the integrand a function $K(\alpha)$, called a kernel, or a convergence factor, or a summability factor, and formulate general conditions on $K$, and on its Fourier transform, to secure the relation
+\begin{equation*}
+\lim_{R\to\infty}\int_{-R}^{R}\hat f(\alpha)K\!\left(\frac{\alpha}{R}\right)e^{-i\alpha x}\,d\alpha=f(x),
+\end{equation*}
+for almost every $x$.
+
+\begin{theorem}\label{thm:I-8}
+If $K\in L_1(-\infty,\infty)$, $K$ is even, $\hat K\equiv H$, and $R>0$, then we have, for every $f\in L_1(-\infty,\infty)$, the formula
+\begin{equation}\label{eq:I-7.1}
+\int_{-\infty}^{\infty}\hat f(\alpha)K_R(\alpha)e^{-i\alpha x}\,d\alpha
+=\int_{-\infty}^{\infty}f(t)H_R(x-t)\,dt
+\equiv(f*H_R)(x),
+\end{equation}
+where $K_R(\alpha)=K(\alpha/R)$, and $H_R(x)=RH(Rx)$.
+
+If we assume further that $\frac{1}{2\pi}\int_{-\infty}^{\infty}H(t)\,dt=1$, then we have the formula
+\begin{equation}\label{eq:I-7.2}
+\frac{1}{2\pi}(f*H_R)(x)-f(x)
+=\frac{1}{\pi}\int_0^\infty g_x(t)RH(Rt)\,dt,
+\end{equation}
+where
+\begin{equation}\label{eq:I-7.3}
+g_x(t)=\frac12[f(x+t)+f(x-t)-2f(x)],\qquad 0\le t<\infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If $f\in L_1(-\infty,\infty)$, the composition rule \eqref{eq:I-1.13} gives
+\begin{equation}\label{eq:I-7.4}
+\begin{aligned}
+&\int_{-\infty}^{\infty}\hat f(\alpha)K_R(\alpha)e^{-ix\alpha}\,d\alpha\\
+&= \int_{-\infty}^{\infty}f(x+t)H_R(t)\,dt = \int_{-\infty}^{\infty}f(y)H_R(y-x)\,dy.
+\end{aligned}
+\end{equation}
+If we assume, in addition, that $K$ is even, then $H$ is even (cf.\ \eqref{eq:I-1.10}) and the last integral equals the convolution $(f*H_R)(x)$, giving \eqref{eq:I-7.1}.
+
+If we assume further that $\frac{1}{2\pi}\int_{-\infty}^{\infty}H(t)\,dt=1$, then
+\begin{equation*}
+\begin{aligned}
+&\frac{1}{2\pi}(f*H_R)(x)-f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}[f(x+t)-f(x)]RH(Rt)\,dt\\
+&= \frac{1}{\pi}\int_0^\infty g_x(t)RH(Rt)\,dt,
+\end{aligned}
+\end{equation*}
+giving \eqref{eq:I-7.2}.
+\end{proof}
+
+Formulas \eqref{eq:I-7.1} and \eqref{eq:I-7.2} can be used to formulate conditions under which
+\begin{equation*}
+\frac{1}{2\pi}(f*H_R)(x)\to f(x),
+\end{equation*}
+as $R\to\infty$.
+
+\begin{theorem}\label{thm:I-9}
+Let $f\in L_1(-\infty,\infty)$, and for each $x\in(-\infty,\infty)$ let
+\begin{equation*}
+g_x(t)=\frac12[f(x+t)+f(x-t)-2f(x)],\qquad 0\le t<\infty.
+\end{equation*}
+Let $K\in L_1(-\infty,\infty)$, $K$ even, $\hat K\equiv H\in L_1(-\infty,\infty)$, and $\frac{1}{2\pi}\int_{-\infty}^{\infty}H(t)\,dt=1$. Let $H(t)$ be monotone decreasing for $0<t<\infty$. Then
+\begin{equation}\label{eq:I-7.5}
+\frac{1}{2\pi}(f*H_R)(x)\to f(x),\qquad\text{as }R\to\infty,
+\end{equation}
+at every point $x$ at which
+\begin{equation}\label{eq:I-7.6}
+\lim_{h\to 0}\frac{1}{h}\int_0^h g_x(t)\,dt=0.
+\end{equation}
+In particular, \eqref{eq:I-7.5} holds at every point $x$ at which $f$ is continuous; and uniformly over every closed interval of points of continuity of $f$. In general, \eqref{eq:I-7.5} holds for almost all $x$.
+\end{theorem}
+
+\begin{proof}
+We note that the conditions imposed on $H$ imply that $H(t)\ge 0$ for $0<t<\infty$, and that
+\begin{equation}\label{eq:I-7.7}
+tH(t)\to 0,\qquad\text{as }t\to+\infty\ \text{or}\ t\downarrow 0,
+\end{equation}
+since
+\begin{equation*}
+\frac12\,tH(t)\le\int_{t/2}^{t}H(x)\,dx\to 0,
+\qquad\text{as }t\to+\infty\ \text{or}\ t\downarrow 0,
+\end{equation*}
+so that there exists a constant $C$ such that $tH(t)\le C$ for $0\le t<\infty$.
+
+If we define
+\begin{equation}\label{eq:I-7.8}
+G(t)=\int_0^t g_x(y)\,dy,\qquad t\ge 0,
+\end{equation}
+then $G$ is absolutely continuous. Because of assumption \eqref{eq:I-7.6}, given $\varepsilon>0$, we can choose $\eta>0$ such that $|G(t)|<\varepsilon t$ for $0\le t\le\eta$. Having chosen such an $\eta$, we keep it fixed.
+
+By Theorem~\ref{thm:I-8} we have
+\begin{equation}\label{eq:I-7.9}
+\begin{aligned}
+&\frac{1}{2\pi}(f*H_R)(x)-f(x) = \frac{1}{\pi}\int_0^\infty g_x(t)RH(Rt)\,dt\\
+&= \frac{1}{\pi}\Bigl(\int_0^\eta+\int_\eta^\infty\Bigr)g_x(t)RH(Rt)\,dt\\
+&= I_1+I_2,
+\end{aligned}
+\end{equation}
+say. Then, for $R>0$, we have, by \eqref{eq:I-7.8},
+\begin{equation*}
+\begin{aligned}
+&I_1 = \frac{1}{\pi}  \int_0^\eta RH(Rt)\,dG(t)\\
+&= \frac{1}{\pi}RH(R\eta)G(\eta) + \frac{1}{\pi}  \int_0^\eta G(t)\,R\,d\{-H(Rt)\},
+\end{aligned}
+\end{equation*}
+by partial integration of the Stieltjes integral, where the integrator $G$ is continuous and of bounded variation in $[0,\eta]$, and the integrand $H$ is of bounded variation. By the choice of $\eta$, we have
+\begin{equation}\label{eq:I-7.10}
+|I_1|\le\frac{\varepsilon}{\pi}\Bigl[\eta RH(R\eta)+R\int_0^\eta t\,d\{-H(Rt)\}\Bigr]
+=\frac{\varepsilon}{\pi}\Bigl[\int_0^{\eta R}H(t)\,dt\Bigr]<\varepsilon,
+\end{equation}
+because of the particular normalization of $H$ that has been assumed. As for $I_2$ in \eqref{eq:I-7.9} we have
+\begin{equation}\label{eq:I-7.11}
+\begin{aligned}
+|I_2| &= \Bigl|\frac{1}{2\pi}\int_\eta^\infty[f(x+t)+f(x-t)-2f(x)]RH(Rt)\,dt\Bigr|\\
+&\le \frac{1}{2\pi}\Bigl[\frac{\eta RH(R\eta)}{\eta}2\|f\|_1+2|f(x)|\int_{\eta R}^\infty H(t)\,dt\Bigr]\to 0,
+\end{aligned}
+\end{equation}
+as $R\to\infty$, for a fixed $\eta>0$. From \eqref{eq:I-7.9}, \eqref{eq:I-7.10}, and \eqref{eq:I-7.11}, we obtain \eqref{eq:I-7.5}. In any closed interval of points of continuity, $f$ is uniformly continuous, so that the choice of $\eta=\eta(\varepsilon)$ in \eqref{eq:I-7.9} can be made independently of $x$, and \eqref{eq:I-7.5} then holds uniformly in that interval.
+
+Finally we note that condition \eqref{eq:I-7.6} is equivalent to the condition
+\begin{equation*}
+\lim_{h\to 0}\frac{1}{2h}\int_{-h}^{h}f(x+t)\,dt=f(x),
+\end{equation*}
+which is satisfied for almost all $x$, since $f\in L_1(-\infty,\infty)$, because of Lebesgue's theorem that the indefinite integral of $f$ is absolutely continuous and has a finite derivative, which equals $f$ almost everywhere.
+\end{proof}
+
+\noindent\textbf{Remarks.}
+1. We can take for $K(\alpha)$ the Gauss kernel $e^{-\alpha^2}$, or the Abel kernel $e^{-|\alpha|}$, and conclude that if $f\in L_1(-\infty,\infty)$, then at every point of continuity $x$ of $f$, and for almost all $x$, we have
+\begin{equation}\label{eq:I-7.12}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)e^{-\alpha^2/R^2}e^{-i\alpha x}\,d\alpha\to f(x),
+\end{equation}
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)e^{-|\alpha|/R}e^{-i\alpha x}\,d\alpha\to f(x),
+\end{equation*}
+as $R\to\infty$. An equivalent statement is the following
+
+\begin{nstmt}{7.13}\label{eq:I-7.13}
+If $f\in L_1(-\infty,\infty)$, then the Fourier integral
+$\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)e^{-i\alpha x}\,d\alpha$
+is Gauss summable, and Abel summable, at every point of continuity $x$ of $f$, and for almost all $x$, to sum $f(x)$.
+\end{nstmt}
+
+2. If $K(\alpha)=e^{-\alpha^2}$, then $\hat K(x)\equiv H(x)=\sqrt\pi\,e^{-x^2/4}$, and since $H_R(x)=RH(Rx)$, $R>0$, we have
+\begin{equation*}
+\frac{1}{2\pi}(f*H_R)(x)
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(\xi)\,R\sqrt\pi\,e^{-R^2(x-\xi)^2/4}\,d\xi.
+\end{equation*}
+and write $x-\xi=y$, the last integral becomes
+\begin{equation}\label{eq:I-7.14}\tag{7.14}
+W(x,t)=\frac{1}{2\sqrt{\pi t}}\,e^{-x^{2}/(4t)},\qquad t>0,
+\end{equation}
+the Gauss (or Weierstrass) kernel, and
+\begin{equation}\label{eq:I-7.15}\tag{7.15}
+\int_{-\infty}^{\infty}f(\xi)\,W(x-\xi,t)\,d\xi=U(f;x,t),
+\end{equation}
+say. This is referred to as the \emph{Gauss--Weierstrass integral} of $f$, and because of \eqref{eq:I-7.1} and \eqref{eq:I-7.12} we have the following
+
+\begin{nstmt}{7.16}\label{eq:I-7.16}
+If $f\in L_1(-\infty,\infty)$, then the Gauss--Weierstrass integral $U(f;x,t)$ of $f$, given by \eqref{eq:I-7.15}, converges to $f(x)$ as $t\to 0^+$, for almost all $x$.
+\end{nstmt}
+
+\medskip\noindent\textbf{3.} If $K(\alpha)=e^{-|\alpha|}$, then $\hat K(x)\equiv H(x)=\dfrac{2}{1+x^{2}}$, and on setting $t=1/R>0$, and
+\begin{equation}\label{eq:I-7.17}\tag{7.17}
+P(x,t)=\frac{1}{\pi}\,\frac{t}{t^{2}+x^{2}},
+\end{equation}
+we obtain the following
+
+\begin{nstmt}{7.18}\label{eq:I-7.18}
+The Cauchy--Poisson integral of $f$, namely
+\[
+V(f;x,t)=\int_{-\infty}^{\infty}f(\xi)\,P(x-\xi,t)\,d\xi,\qquad t>0,
+\]
+converges to $f(x)$ as $t\to 0^+$, for almost all $x$.
+\end{nstmt}
+
+\begin{theorem}\label{thm:I-10}
+Let $f\in L_1(-\infty,\infty)$, and for each $x\in(-\infty,\infty)$ let
+\begin{equation*}
+g_x(t)=\frac12\bigl[f(x+t)+f(x-t)-2f(x)\bigr],\qquad 0\le t<\infty.
+\end{equation*}
+Let $K\in L_1(-\infty,\infty)$, $K$ even, $\hat K\equiv H$, and $\dfrac{1}{2\pi}\int_{-\infty}^{\infty}H(t)\,dt=1$. Suppose that there exists a function $H_0$ such that
+\begin{equation*}
+|H(t)|\le H_0(t)\in L_1(0\le t<\infty),
+\end{equation*}
+and $H_0$ is monotone decreasing in $[0,\infty)$. Then
+\begin{equation}\tag{7.19}\label{eq:I-7.19}
+\frac{1}{2\pi}(f*H_R)(x)\to f(x),\qquad\text{as }R\to\infty,\quad(H_R(x)=RH(Rx)),
+\end{equation}
+at every point $x$ at which
+\begin{equation}\label{eq:I-7.20}\tag{7.20}
+\lim_{h\to 0}\frac{1}{h}\int_0^h|g_x(t)|\,dt=0;
+\end{equation}
+in particular, at every point $x$ at which $f$ is continuous; and uniformly over any closed interval of points of continuity of $f$; \eqref{eq:I-7.19} holds for almost all $x$, in general.
+\end{theorem}
+
+\begin{proof}
+As in the proof of Theorem~\ref{thm:I-9}, given $\varepsilon>0$, we choose $\eta$ such that $|\widetilde G(t)|<\varepsilon t$ for $0\le t\le\eta$, where
+\begin{equation*}
+\widetilde G(t)=\int_0^t|g_x(u)|\,du,
+\end{equation*}
+and write
+\begin{equation*}
+\begin{aligned}
+&\frac{1}{2\pi}(f*H_R)(x) - f(x)\\
+&= \frac{1}{\pi}  \Bigl(\int_0^\eta+\int_\eta^\infty\Bigr)g_x(t)RH(Rt)\,dt = I_1 + I_2,\quad\text{say}.
+\end{aligned}
+\end{equation*}
+We then have
+\begin{equation*}
+|I_1|\le\int_0^\eta|g_x(t)|\,RH_0(Rt)\,dt\to 0,\qquad\text{as }R\to\infty,
+\end{equation*}
+as in the proof of Theorem~\ref{thm:I-9}, while
+\begin{equation*}
+\begin{aligned}
+|I_2| &\le \Bigl|\int_\eta^\infty\frac{1}{2\pi}[f(x+t)+f(x-t)-2f(x)]RH(Rt)\,dt\Bigr|\\
+&\le \frac{1}{2\pi}\frac{\eta RH_0(R\eta)}{\eta}\,2\|f\|_1
++\frac{|f(x)|}{\pi}\int_{\eta R}^\infty H_0(t)\,dt\to 0,
+\end{aligned}
+\end{equation*}
+as $R\to\infty$, for a fixed $\eta>0$, as before. By a theorem of Lebesgue, condition \eqref{eq:I-7.20} holds almost everywhere for any function $f\in L_1(-\infty,\infty)$.
+\end{proof}
+
+\noindent\textbf{Remarks.}
+We may take for $K(\alpha)$ in Theorem~\ref{thm:I-10} the Ces\`aro kernel given by $K(\alpha)=1-|\alpha|$ for $|\alpha|\le 1$, and $K(\alpha)=0$ for $|\alpha|>1$. Its Fourier transform $\hat K(t)\equiv H(t)=\bigl(\frac{\sin(t/2)}{t/2}\bigr)^2$ is the Fej\'er kernel (cf.\ Example~2, \S\ref{sec:I-1}), which is not monotone decreasing in $[0,\infty)$. But we may take $H_0(t)=\frac{c}{1+t^2}$, with a suitable constant $c>0$, so that $|H(t)|\le\frac{c}{1+t^2}=H_0(t)$, with $H_0(t)\in L_1(0\le t<\infty)$, and monotone decreasing in $[0,\infty)$. Thus we obtain the following analogue of Fej\'er's classical theorem on (trigonometric) Fourier series.
+
+\noindent\textbf{(7.21) Corollary.}
+If $f\in L_1(-\infty,\infty)$, then
+\begin{equation}\label{eq:I-7.21}\tag{7.21}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-R}^{R}\hat f(\alpha)\Bigl(1-\frac{|\alpha|}{R}\Bigr)e^{-i\alpha x}\,d\alpha=f(x)
+\end{equation}
+at every point of continuity of $f$, and uniformly over any closed interval of points of continuity of $f$, and for almost all $x$, in general. The Fourier integral
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\hat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+is, in other words, $(C,1)$ summable (Ces\`aro summable of order $1$) to sum $f(x)$ at every point of continuity of $f$, and uniformly in every closed interval of points of continuity, and for almost all $x$ in general.
+
+\section{The inversion formula}
+\label{sec:I-8}
+
+The theorems on pointwise summability can be used to ``invert'' the Fourier transform almost everywhere.
+
+\begin{theorem}\label{thm:I-11}
+If $f\in L_1(-\infty,\infty)$, and $\widehat f\in L_1(-\infty,\infty)$, then we have
+\begin{equation*}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+for almost all $x\in(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+By Theorem~\ref{thm:I-9}, Corollary \eqref{eq:I-7.13}, we have, for almost all $x$,
+\begin{equation*}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-|\alpha|/R}e^{-i\alpha x}\,d\alpha=f(x).
+\end{equation*}
+If $\widehat f\in L_1(-\infty,\infty)$, then the left-hand side equals
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+by Lebesgue's theorem on dominated convergence.
+\end{proof}
+
+\noindent\textbf{Remarks.}
+If $f\in L_1(-\infty,\infty)$, the integral
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+defines a continuous function of $x$, so that the function $f\in L_1(-\infty,\infty)$ that we started with in Theorem~\ref{thm:I-11} is continuous almost everywhere. Hence we obtain
+
+\begin{theorem}\label{thm:I-11p}
+If $f\in L_1(-\infty,\infty)$, and $\widehat f\in L_1(-\infty,\infty)$, and $f$ is continuous in $(-\infty,\infty)$, then
+\begin{equation*}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+for every $x\in(-\infty,\infty)$.
+\end{theorem}
+
+\subsection*{Examples}
+\begin{enumerate}[label=\arabic*.,ref=\arabic*]
+\item We have already (\S\ref{sec:I-1}, Ex.~2) seen that if
+\begin{equation*}
+K(x)=
+\begin{cases}
+1-|x|,&|x|\le 1,\\
+0,&|x|>1,
+\end{cases}
+\end{equation*}
+then $\hat K(\alpha)=\bigl(\frac{\sin(\alpha/2)}{\alpha/2}\bigr)^2$. Here both $K$ and $\hat K$ belong to $L_1(-\infty,\infty)$. Hence we have, by Theorems \ref{thm:I-11} and \ref{thm:I-11p},
+\begin{equation}\label{eq:I-8.1}\tag{8.1}
+\begin{aligned}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\Bigl(\frac{\sin(\alpha/2)}{\alpha/2}\Bigr)^{2}e^{-i\alpha x}\,d\alpha
+&=\frac{1}{2\pi}\int_{-\infty}^{\infty}\Bigl(\frac{\sin(\alpha/2)}{\alpha/2}\Bigr)^{2}e^{i\alpha x}\,d\alpha\\
+&=
+\begin{cases}
+1-|x|,&|x|\le 1,\\
+0,&|x|>1.
+\end{cases}
+\end{aligned}
+\end{equation}
+For $x=0$, we get the formula
+\begin{equation}\label{eq:I-8.2}\tag{8.2}
+\int_{-\infty}^{\infty}\frac{\sin^{2}\alpha}{\alpha^{2}}\,d\alpha=\pi.
+\end{equation}
+
+\item If $K(x)=e^{-a|x|}$, with $a>0$, then $\hat K(\alpha)=\dfrac{2a}{a^{2}+\alpha^{2}}$ (Example~4, \S\ref{sec:I-1}). By Theorems \ref{thm:I-11} and \ref{thm:I-11p} we have
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{2a}{a^{2}+\alpha^{2}}e^{-i\alpha x}\,d\alpha
+=\frac{2a}{\pi}\int_{0}^{\infty}\frac{\cos(\alpha x)}{a^{2}+\alpha^{2}}\,d\alpha
+=e^{-a|x|},
+\end{equation*}
+hence
+\begin{equation}\label{eq:I-8.3}\tag{8.3}
+\int_{0}^{\infty}\frac{\cos(\alpha x)}{a^{2}+\alpha^{2}}\,d\alpha=\frac{\pi}{2a}\,e^{-a|x|},\qquad a>0.
+\end{equation}
+
+\item If $a>0$, $b\ge 0$, we have the formula
+\begin{equation}\label{eq:I-8.4}\tag{8.4}
+\int_{0}^{\infty}e^{-a^{2}x-b^{2}/x}\,x^{-1/2}\,dx=\frac{\sqrt{\pi}}{a}\,e^{-2ab}.
+\end{equation}
+For
+\begin{equation*}
+\Gamma(\mu+1)=\int_{0}^{\infty}e^{-x}x^{\mu}\,dx,\qquad\mu>-1,
+\end{equation*}
+so that
+\begin{equation*}
+\frac{\Gamma(\mu+1)}{(x^{2}+a^{2})^{\mu+1}}
+=\int_{0}^{\infty}e^{-(x^{2}+a^{2})y}y^{\mu}\,dy,\qquad(x\text{ real},\ a>0,\ \mu>-1),
+\end{equation*}
+hence
+\begin{equation*}
+\begin{aligned}
+& \int_{0}^{\infty}\frac{\cos(\beta x)}{(x^{2}+a^{2})^{\mu+1}}\,dx\\
+&= \frac{1}{\Gamma(\mu+1)}  \int_{0}^{\infty}e^{-a^{2}y}y^{\mu}\,dy  \int_{0}^{\infty}e^{-x^{2}y}\cos(\beta x)\,dx\\
+&= \frac{\sqrt{\pi}}{2\Gamma(\mu+1)}\int_{0}^{\infty}y^{\mu-1/2}e^{-a^{2}y-\beta^{2}/(4y)}\,dy,
+\end{aligned}
+\end{equation*}
+if we use the expression for the Fourier transform of $e^{-x^{2}}$ (Example~6, \S\ref{sec:I-1}). On taking $\mu=0$, $\beta=2b\ge 0$, and using \eqref{eq:I-8.3}, we obtain \eqref{eq:I-8.4}.
+\end{enumerate}
+
+The next theorem gives sufficient conditions for the Fourier transform of $f\in L_1(-\infty,\infty)$ to belong also to $L_1(-\infty,\infty)$.
+
+\begin{theorem}\label{thm:I-12}
+If $f(x)\in L_1(-\infty<x<\infty)$, and there exists $h>0$, such that $|f(x)|\le M<\infty$ for $-h\le x\le h$, and $\widehat f(\alpha)\ge 0$ for every $\alpha\in(-\infty,\infty)$, then we have
+\begin{equation*}
+\int_{-\infty}^{\infty}\bigl|\widehat f(\alpha)\bigr|\,d\alpha
+=\int_{-\infty}^{\infty}\widehat f(\alpha)\,d\alpha<\infty,
+\end{equation*}
+so that (by Theorem \ref{thm:I-11})
+\begin{equation*}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+for almost every $x\in(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+Let $K(\alpha)=e^{-|\alpha|}$, so that $\hat K(x)\equiv H(x)=\dfrac{2}{1+x^{2}}$, and $\frac{1}{2\pi}\int_{-\infty}^{\infty}H(t)\,dt=1$. As in Theorem~\ref{thm:I-8}, \eqref{eq:I-7.4}, we have by the composition rule, for any $R>0$,
+\begin{equation}\label{eq:I-8.5}\tag{8.5}
+\begin{aligned}
+&\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-|\alpha|/R}e^{-i\alpha x}\,d\alpha\\
+&= \int_{-\infty}^{\infty}f(x+t)RH(Rt)\,dt = \int_{-\infty}^{\infty}f  \Bigl(x+\frac{t}{R}\Bigr)H(t)\,dt.
+\end{aligned}
+\end{equation}
+For $x=0$, we get
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-|\alpha|/R}\,d\alpha = \int_{-\infty}^{\infty}f\Bigl(\frac{t}{R}\Bigr)H(t)\,dt\\
+&= \Bigl[\int_{-hR}^{hR}+\int_{hR}^{\infty}+\int_{-\infty}^{-hR}\Bigr]f\Bigl(\frac{t}{R}\Bigr)H(t)\,dt\\
+&= I_1+I_2+I_3,\quad\text{say}.
+\end{aligned}
+\end{equation*}
+We have
+\begin{equation*}
+|I_2|\le M\int_{-\infty}^{\infty}H(t)\,dt=M\cdot 2\pi,\qquad\text{since }H(t)\ge 0.
+\end{equation*}
+Since $tH(t)$ is bounded,
+\begin{equation*}
+|I_3|\le N_1\int_{hR}^{\infty}\Bigl|f\Bigl(\frac{t}{R}\Bigr)\Bigr|t^{-1}\,dt
+\le\frac{N_1}{hR}\int_{hR}^{\infty}\Bigl|f\Bigl(\frac{t}{R}\Bigr)\Bigr|\,dt
+\le\frac{N_1}{h}\,\|f\|_1,
+\end{equation*}
+where $N_1$ is a constant, and similarly $|I_1|\le\frac{2}{h}\|f\|_1$, where $N_2$ is a constant (since $H$ is even). Hence
+\begin{equation*}
+\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-|\alpha|/R}\,d\alpha<N<\infty,
+\end{equation*}
+where $N$ is independent of $R$. Since $\widehat f(\alpha)\ge 0$, we have, by Lebesgue's theorem on monotone convergence,
+\begin{equation*}
+\lim_{R\to\infty}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-|\alpha|/R}\,d\alpha
+=\int_{-\infty}^{\infty}\widehat f(\alpha)\,d\alpha\le N<\infty.
+\end{equation*}
+\end{proof}
+
+\noindent\textbf{(8.6) Corollary.}
+If $h>0$, $f(x)\in L_1(-h\le x\le h)$, and $|f(x)|\le M<\infty$, for $|x|\le h$, and
+\begin{equation*}
+\varphi(\alpha)\equiv\int_{-h}^{h}f(x)e^{i\alpha x}\,dx\ge 0,
+\end{equation*}
+then $\varphi(\alpha)\in L_1(-\infty<\alpha<\infty)$.
+
+We have only to define $f(x)=0$ for $|x|>h$, and use Theorem \ref{thm:I-12}.
+
+\noindent\textbf{Remark.}
+Instead of the kernel $e^{-|\alpha|}$, we could have used $e^{-\alpha^{2}}$ or the Ces\`aro kernel: $K(\alpha)=1-|\alpha|$, for $|\alpha|\le 1$, and $K(\alpha)=0$ for $|\alpha|>1$. Theorem \ref{thm:I-12} implies also the following
+
+\begin{nstmt}{8.7}\label{eq:I-8.7}
+If $f\in L_1(-\infty,\infty)$, $f(x)\ge 0$ for almost all $x$, and $f$ is continuous at the origin, then $\widehat f\in L_1(-\infty,\infty)$, and
+\end{nstmt}
+\begin{equation}\label{eq:I-8.8}\tag{8.8}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation}
+for almost every $x\in(-\infty,\infty)$. In particular,
+\begin{equation}\label{eq:I-8.9}\tag{8.9}
+f(0)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)\,d\alpha.
+\end{equation}
+
+\subsection*{Fourier transforms in $L_1(-\infty,\infty)\cap L_2(-\infty,\infty)$}
+We shall denote by $L_1\cap L_2$ the class of functions $f$, such that $f\in L_1(-\infty,\infty)$ and $f\in L_2(-\infty,\infty)$.
+
+\noindent\textbf{(8.10) Lemma.}
+Let $f,g\in L_1\cap L_2$. Then the function $h$ defined by
+\begin{equation}\label{eq:I-8.11}\tag{8.11}
+h(x)=\int_{-\infty}^{\infty}f(x+y)\,\overline{g(y)}\,dy
+=\int_{-\infty}^{\infty}f(x-y)\,\overline{g(-y)}\,dy
+\end{equation}
+is bounded, and continuous, and belongs to $L_1(-\infty,\infty)$.
+
+\begin{proof}
+If we define $G(y)=\overline{g(-y)}$, then $G\in L_1(-\infty,\infty)$, and $h$ is the convolution $f*G$, hence $h\in L_1(-\infty,\infty)$, by Theorem \ref{thm:I-2}. Since $|h(x)|\le\|f\|_2\,\|g\|_2$, where $f,g\in L_2(-\infty,\infty)$, $h$ is bounded. Since
+\begin{equation*}
+\begin{aligned}
+&|h(x+t) - h(x)| \le \Bigl(\int_{-\infty}^{\infty}|f(x+t+y)-f(x+y)|^{2}\,dy\Bigr)^{1/2}\\
+&\quad \Bigl(\int_{-\infty}^{\infty}|g(y)|^{2}\,dy\Bigr)^{1/2}\\
+&= \tau_f(t)\,\|g\|_2\to 0
+\end{aligned}
+\end{equation*}
+as $t\to 0$ (cf.\ \eqref{eq:I-1.17}, \S\ref{sec:I-1}), we see that $h$ is continuous.
+\end{proof}
+
+\begin{theorem}\label{thm:I-13}
+If $f\in L_1\cap L_2$, then $\|f\|_2^{2}=\dfrac{1}{2\pi}\|\widehat f\|_2^{2}$, so that the Fourier transform of $f$ belongs to $L_2(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+Let $F(x)=\overline{f(-x)}$, so that $F\in L_1\cap L_2$. Let $h=f*F\in L_1(-\infty,\infty)$. Since the Fourier transform of $\overline f(x)$ is $\overline{\widehat f(-\alpha)}$, we see that $\hat h(\alpha)=|\widehat f(\alpha)|^{2}\ge 0$. Since $h$ is bounded, and continuous, it follows from Theorem \ref{thm:I-12} that $\hat h\in L_1(-\infty,\infty)$, and that
+\begin{equation*}
+h(x)=\int_{-\infty}^{\infty}f(x+y)\,\overline{f(y)}\,dy
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}|\widehat f(\alpha)|^{2}e^{-i\alpha x}\,d\alpha
+\end{equation*}
+for every $x\in(-\infty,\infty)$. On setting $x=0$, we get the theorem.
+\end{proof}
+
+\begin{theorem}\label{thm:I-14}
+If $f,g\in L_1\cap L_2$, then
+\begin{equation*}
+\int_{-\infty}^{\infty}f(x)\,\overline{g(x)}\,dx
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)\,\overline{\widehat g(\alpha)}\,d\alpha.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+By Theorem \ref{thm:I-13} we have $\|\widehat f\|_2<\infty$, $\|\widehat g\|_2<\infty$, so that $\|\widehat f\,\widehat g\|_1<\infty$ by Schwarz's inequality. If $h(x)$ is defined as in \eqref{eq:I-8.11}, $h=f*G$, where $G(y)=\overline{g(-y)}$, then $h\in L_1(-\infty,\infty)$, and $\hat h(\alpha)=\widehat f(\alpha)\,\overline{\widehat g(\alpha)}$, and since $h$ is continuous, its Fourier transform can be inverted everywhere (Theorem \ref{thm:I-11p}), so that
+\begin{equation*}
+h(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)\,\overline{\widehat g(\alpha)}\,e^{-i\alpha x}\,d\alpha,
+\end{equation*}
+and on setting $x=0$ we get the required result.
+\end{proof}
+
+\subsection*{Examples}
+\begin{enumerate}[label=\arabic*.,ref=\arabic*]
+\item If $f(x)=1$ for $|x|\le 1$; and $f(x)=0$ for $|x|>1$, then
+$\widehat f(\alpha)=2\dfrac{\sin\alpha}{\alpha}$ (cf.\ Example~1, \S\ref{sec:I-1}). Theorem \ref{thm:I-13} gives the formula
+\begin{equation*}
+\int_{-\infty}^{\infty}\frac{\sin^{2}\alpha}{\alpha^{2}}\,d\alpha=\pi.
+\end{equation*}
+
+\item If $a>0$, and $f(x)=1-\dfrac{|x|}{a}$, for $|x|\le a$; and $f(x)=0$, for $|x|>a$, then $\widehat f(\alpha)=\dfrac{\sin^{2}(a\alpha/2)}{a(\alpha/2)^{2}}$ (cf.\ Example~2, \S\ref{sec:I-1}), and Theorem \ref{thm:I-13} gives the formula
+\begin{equation*}
+\int_{-\infty}^{\infty}\Bigl(\frac{\sin(b\alpha)}{\alpha}\Bigr)^{4}d\alpha=\frac{2\pi}{3}\,b^{3},\qquad\text{for any }b\ge 0.
+\end{equation*}
+
+\item If $a>0$, and $f(x)=e^{-a|x|}$, then $\widehat f(\alpha)=\dfrac{2a}{a^{2}+\alpha^{2}}$ (cf.\ Example~4, \S\ref{sec:I-1}). For $b>0$, let $g(x)=e^{-b|x|}$. Then Theorem \ref{thm:I-14} gives the formula
+\begin{equation*}
+\int_{0}^{\infty}\frac{d\alpha}{(a^{2}+\alpha^{2})(b^{2}+\alpha^{2})}=\frac{\pi}{2ab(a+b)}.
+\end{equation*}
+
+\item If $f(x)=1$ for $|x|<a$; and $f(x)=0$ for $|x|>a$, where $a>0$, and $g(x)=1$ for $|x|<b$; and $g(x)=0$ for $|x|>b$, where $b>0$, then Theorem \ref{thm:I-14} gives the formula
+\begin{equation*}
+\int_{0}^{\infty}\frac{\sin(ax)\cdot\sin(bx)}{x^{2}}\,dx=\frac{\pi}{2}\min(a,b).
+\end{equation*}
+\end{enumerate}
+
+\subsection*{Fourier transforms in $\mathcal S$}
+We have considered in \S\ref{sec:I-3} Schwartz's space of infinitely differentiable functions $f$ which are ``rapidly decreasing''. We have noted in \eqref{eq:I-3.7} that if $f\in\mathcal S$, then $\widehat f\in\mathcal S$, $\mathcal S$ being a dense subspace of $L_p(-\infty,\infty)$ for every $p$, $1\le p<\infty$. It is a trivial consequence of Theorem \ref{thm:I-11p} that if $f\in\mathcal S$, then
+\begin{equation}\label{eq:I-8.12}\tag{8.12}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation}
+for every $x\in(-\infty,\infty)$, so that the Fourier transform maps $\mathcal S$ onto itself. Further we have for any two functions $f,g\in\mathcal S$,
+\begin{equation}\label{eq:I-8.13}\tag{8.13}
+\int_{-\infty}^{\infty}f(x)\,\overline{g(x)}\,dx
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)\,\overline{\widehat g(\alpha)}\,d\alpha.
+\end{equation}
+For $\overline g\in\mathcal S$, and since $g(x)=\dfrac{1}{2\pi}\int_{-\infty}^{\infty}\widehat g(\alpha)e^{-i\alpha x}\,d\alpha$, we obtain
+\begin{equation*}
+\overline{g}(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\overline{\widehat g(\alpha)}e^{i\alpha x}\,d\alpha
+=\frac{1}{2\pi}\,\widehat{\overline g}(x)
+\end{equation*}
+by the composition rule \eqref{eq:I-1.13}; however, we have
+\begin{equation*}
+\int_{-\infty}^{\infty}f(x)\,\widehat{\overline g}(x)\,dx
+=\int_{-\infty}^{\infty}\widehat f(\alpha)\,\widehat{\overline g}(\alpha)\,d\alpha,
+\end{equation*}
+or
+\begin{equation*}
+\int_{-\infty}^{\infty}f(x)\,\overline{g(x)}\,dx
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)\,\overline{\widehat g(\alpha)}\,d\alpha,
+\end{equation*}
+which is \eqref{eq:I-8.13}. Finally, if $f,g\in\mathcal S$, then $\widehat f,\widehat g\in\mathcal S$, hence also $\widehat f\cdot\widehat g\in\mathcal S$. But $(f\cdot g)^{\wedge}=\widehat f\cdot\widehat g$, by Theorem \ref{thm:I-2}. Hence
+\begin{equation}\label{eq:I-8.14}\tag{8.14}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)\widehat g(\alpha)e^{-i\alpha x}\,d\alpha\in\mathcal S,
+\end{equation}
+which means that $f*g\in\mathcal S$. In the notation of \eqref{eq:I-1.2} we can write \eqref{eq:I-8.13} as
+\begin{equation}\label{eq:I-8.15}\tag{8.15}
+\int_{-\infty}^{\infty}f(x)\,\overline{g(x)}\,dx
+=\int_{-\infty}^{\infty}\mathcal F[f](\alpha)\,\overline{\mathcal F[g](\alpha)}\,d\alpha.
+\end{equation}
+The fact that $\mathcal S$ is a dense subset of $L_2(-\infty,\infty)$ leads (in Ch.~II) to Plancherel's theorem.
+
+\section{Summability in the \texorpdfstring{$L_1$}{L1}-norm}
+\label{sec:I-9}
+
+We have seen in \S\ref{sec:I-7} that if $f\in L_1(-\infty,\infty)$, for special choices of the kernel $K$, we have
+\begin{equation*}
+\lim_{R\to\infty}\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)K\Bigl(\frac{\alpha}{R}\Bigr)e^{-i\alpha x}\,d\alpha=f(x),
+\end{equation*}
+pointwise almost everywhere. It is somewhat simpler to consider this limit in the $L_1$-norm. Before doing so, we shall prove a general result on approximating any $f\in L_1(-\infty,\infty)$ in the $L_1$-norm.
+
+\begin{theorem}\label{thm:I-15}
+Let $H\in L_1(-\infty,\infty)$, with $\frac{1}{2\pi}\int_{-\infty}^{\infty}H(\alpha)\,d\alpha=1$, and for $R>0$ let $H_R(\alpha)=RH(R\alpha)$. If $f\in L_1(-\infty,\infty)$, then we have
+\begin{equation}\label{eq:I-9.1}\tag{9.1}
+\Bigl\|\frac{1}{2\pi}(f*H_R)-f\Bigr\|_1\to 0,\qquad\text{as }R\to\infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By definition we have
+\begin{equation*}
+\frac{1}{2\pi}(f*H_R)(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x-y)RH(Ry)\,dy,
+\end{equation*}
+and, by assumption,
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}H_R(y)\,dy
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}RH(Ry)\,dy
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}H(\alpha)\,d\alpha=1.
+\end{equation*}
+Hence
+\begin{equation*}
+\frac{1}{2\pi}(f*H_R)(x)-f(x)
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}[f(x-y)-f(x)]RH(Ry)\,dy,
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+&\Bigl\|\frac{1}{2\pi}(f*H_R)-f\Bigr\|_1 \le \frac{1}{2\pi}\int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}|f(x-y)-f(x)|\,R|H(Ry)|\,dy\\
+&= \frac{1}{2\pi}\int_{-\infty}^{\infty}\tau_f(y)\,R|H(Ry)|\,dy
+\end{aligned}
+\end{equation*}
+(cf.\ \eqref{eq:I-1.14}), where $\tau_f(y)$ is the $L_1$-modulus of continuity of $f$ (see \eqref{eq:I-1.14}), which is bounded, even, non-negative, and tends to zero as $y\to 0$. Given $\varepsilon>0$, we can choose $\eta>0$, such that $0\le\tau_f(y)<\dfrac{\varepsilon\cdot 2\pi}{\|H\|_1}$ for $|y|\le\eta$. We then write
+\begin{equation*}
+\begin{aligned}
+&\Bigl\|\frac{1}{2\pi}(f*H_R) - f\Bigr\|_1\\
+&\le \frac{1}{2\pi}  \Bigl(\int_{|y|\le\eta}+\int_{|y|>\eta}\Bigr)\tau_f(y)\,R|H(Ry)|\,dy = I_1 + I_2,\quad\text{say},
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+|I_2|\le c\int_{|t|>\eta R}|H(t)|\,dt\to 0,\qquad\text{as }R\to\infty,
+\end{equation*}
+($c$ being a suitable constant), while
+\begin{equation*}
+|I_1|\le\frac{1}{2\pi}\sup_{|y|\le\eta}\tau_f(y)\,\|H\|_1<\varepsilon,
+\end{equation*}
+by the choice of $\eta$, and the theorem follows.
+\end{proof}
+
+\noindent\textbf{Remarks.}
+If $H(x)=\bigl(\frac{\sin(x/2)}{x/2}\bigr)^2$, then $H\in L_1(-\infty,\infty)$, and $\frac{1}{2\pi}\int_{-\infty}^{\infty}H(\alpha)\,d\alpha=1$ (see \eqref{eq:I-8.1}), and
+\begin{equation*}
+\frac{1}{2\pi}\widehat H(\alpha)
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}H(x)e^{i\alpha x}\,dx
+=
+\begin{cases}
+1-|\alpha|,&|\alpha|\le 1,\\
+0,&|\alpha|>1,
+\end{cases}
+=K(\alpha),\quad\text{say}.
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+&\frac{1}{2\pi}\int_{-\infty}^{\infty}H_R(y)e^{i\alpha y}\,dy = \frac{1}{2\pi}\int_{-\infty}^{\infty}RH(Ry)e^{i\alpha y}\,dy\\
+&= \frac{1}{2\pi}\int_{-\infty}^{\infty}H(x)e^{i\alpha x/R}\,dx\\
+&= K\Bigl(\frac{\alpha}{R}\Bigr)\equiv K_R(\alpha),\quad\text{say},
+\end{aligned}
+\end{equation*}
+where $K_R$ vanishes outside the interval $[-R,R]$. The Fourier transform of $\frac{1}{2\pi}(f*H_R)$, in Theorem \ref{thm:I-15}, is $\widehat f\cdot K_R$, which vanishes therefore outside $[-R,R]$, and from Theorem \ref{thm:I-15} we can deduce the following
+
+\noindent\textbf{(9.2) Corollary.}
+Every function $f\in L_1(-\infty,\infty)$ can be approximated in the $L_1$-norm by a function in $L_1(-\infty,\infty)$ whose Fourier transform vanishes outside a bounded interval.
+
+Theorem \ref{thm:I-15}, and Corollary \eqref{eq:I-8.2}, show that $H_n(x)=\dfrac{1}{2\pi}\dfrac{(\sin(nx/2))^2}{n(x/2)^2}$ is such an approximate unit.
+
+\begin{theorem}\label{thm:I-16}
+Let $K\in L_1(-\infty,\infty)$, $K$ even, $\hat K\equiv H\in L_1(-\infty,\infty)$, $\dfrac{1}{2\pi}\int_{-\infty}^{\infty}H(\alpha)\,d\alpha=1$. Let $R>0$, and $H_R(\alpha)=RH(R\alpha)$. If $f\in L_1(-\infty,\infty)$, then
+\begin{equation}\label{eq:I-9.3}\tag{9.3}
+\Bigl\|\frac{1}{2\pi}(f*H_R)-f\Bigr\|_1\to 0,\qquad\text{as }R\to\infty,
+\end{equation}
+where (as in \eqref{eq:I-7.1})
+\begin{equation}\label{eq:I-9.4}\tag{9.4}
+\frac{1}{2\pi}(f*H_R)(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)K\Bigl(\frac{\alpha}{R}\Bigr)e^{-i\alpha x}\,d\alpha.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Since $f,H\in L_1(-\infty,\infty)$, we note that $f*H_R\in L_1(-\infty,\infty)$, and the integral equalling the convolution in \eqref{eq:I-9.4} exists for every $x$, since $K\in L_1(-\infty,\infty)$ and $\widehat f$ is bounded. To prove the theorem we have only to use Theorem \ref{thm:I-15}.
+\end{proof}
+
+\noindent\textbf{Remarks.}
+By taking $K(\alpha)=e^{-\alpha^{2}}$, and making use of \eqref{eq:I-7.14} and \eqref{eq:I-7.15}, we deduce the following
+
+\noindent\textbf{(9.5) Corollary.}
+If $f\in L_1(-\infty,\infty)$, then the Gauss--Weierstrass integral
+\begin{equation}\tag{9.5}\label{eq:I-9.5}
+\begin{aligned}
+&U(f;x,t) = \int_{-\infty}^{\infty}f(\xi)\,W(x-\xi,t)\,d\xi,\\
+&\qquad W(x,t) = \frac{1}{2\sqrt{\pi t}}\,e^{-x^{2}/(4t)},\quad t > 0,
+\end{aligned}
+\end{equation}
+of $f$ converges in the $L_1$-norm to $f(x)$, as $t\to 0^+$.
+
+By taking $K(\alpha)=e^{-|\alpha|}$, and making use of \eqref{eq:I-7.17}, \eqref{eq:I-7.19}, we deduce the following
+
+\noindent\textbf{(9.6) Corollary.}
+If $f\in L_1(-\infty,\infty)$, then the Cauchy--Poisson integral
+\begin{equation}\tag{9.6}\label{eq:I-9.6}
+V(f;x,t)=\int_{-\infty}^{\infty}f(\xi)\,P(x-\xi,t)\,d\xi,\qquad
+P(x,t)=\frac{1}{\pi}\,\frac{t}{t^{2}+x^{2}},\quad t>0,
+\end{equation}
+of $f$ converges in the $L_1$-norm to $f(x)$, as $t\to 0^+$.
+
+The principal deduction from Theorem \ref{thm:I-16}, which results from taking for $K(\alpha)$ the Abel, Gauss, and Ces\`aro kernels separately, as in \eqref{eq:I-7.12} and \eqref{eq:I-7.21}, is
+
+\noindent\textbf{(9.7) Corollary.}
+The ``Fourier integral''
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha,\qquad f\in L_1(-\infty,\infty),
+\end{equation*}
+is Abel, Gauss, and Ces\`aro $(C,1)$ summable in the $L_1$-norm to $f(x)$.
+
+This is just another way of expressing \eqref{eq:I-9.3} and \eqref{eq:I-9.4}. For instance, in the case of the Gauss kernel, we have
+\begin{equation*}
+\begin{aligned}
+&\frac{1}{2\pi}  \int_{-\infty}^{\infty}\widehat f(\alpha)e^{-\alpha^{2}/R^{2}}e^{-i\alpha x}\,d\alpha\\
+&\to f(x),  \qquad\text{as }R \to \infty,\quad\text{in the }L_1\text{-norm}.
+\end{aligned}
+\end{equation*}
+By Weyl's formulation of the Riesz--Fischer theorem, there exists a sequence $(R_k)\to\infty$ as $k\to\infty$, such that
+\begin{equation*}
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-\alpha^{2}/R_k^{2}}e^{-i\alpha x}\,d\alpha\to f(x),\qquad\text{as }k\to\infty,
+\end{equation*}
+for almost every $x\in(-\infty,\infty)$. If we assume, in addition, that $\widehat f\in L_1(-\infty,\infty)$, then, by Lebesgue's theorem on dominated convergence, we obtain Theorem \ref{thm:I-11} on Fourier inversion.
+
+As another application of Theorem \ref{thm:I-16} we shall prove
+
+\begin{theorem}\label{thm:I-17}
+Let $f,g\in L_1(-\infty,\infty)$. If $\widehat g(\alpha)=-i\alpha\widehat f(\alpha)$, then we have
+\begin{equation*}
+f(x)=-\int_{x}^{\infty}g(y)\,dy.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+\emph{Case (i).} Let us assume, in addition, that $\widehat g,\widehat f\in L_1(-\infty,\infty)$. Then, by Theorem \ref{thm:I-11}, we have
+\begin{equation*}
+f(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat f(\alpha)e^{-i\alpha x}\,d\alpha
+\end{equation*}
+and
+\begin{equation*}
+g(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat g(\alpha)e^{-i\alpha x}\,d\alpha
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}(-i\alpha)\widehat f(\alpha)e^{-i\alpha x}\,d\alpha,
+\end{equation*}
+for almost all $x$, so that
+\begin{equation*}
+\int_{a}^{b}g(x)\,dx
+=\frac{1}{2\pi}\int_{-\infty}^{\infty}\bigl(e^{-ib\alpha}-e^{-ia\alpha}\bigr)\widehat f(\alpha)\,d\alpha
+=f(b)-f(a),
+\end{equation*}
+hence $g(x)=f'(x)$ for all $x$. (Note that if $G(x)=\int_0^x g(y)\,dy$, where $g\in L_1(-\infty,\infty)$, then $G'(x)=g(x)$ for all $x$. And if $G(b)-G(a)=f(b)-f(a)$, for all $a,b$, such that $-\infty<a<b<\infty$, then $G$ differs from $f$ by a constant, so that $f'=G'=g$ almost everywhere.)
+
+\emph{Case (ii).} Let $K(\alpha)=e^{-\alpha^{2}}$, $-\infty<\alpha<\infty$, and let $\hat K(\alpha)\equiv H(\alpha)=\sqrt{\pi}\,e^{-\alpha^{2}/4}$. For $R>0$, define
+\begin{equation*}
+F_R(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{-i\alpha x}\widehat f(\alpha)K\Bigl(\frac{\alpha}{R}\Bigr)\,d\alpha,
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+&G_R(x) = \frac{1}{2\pi}  \int_{-\infty}^{\infty}e^{-i\alpha x}\widehat g(\alpha)K  \Bigl(\frac{\alpha}{R}\Bigr)\,d\alpha\\
+&= \frac{1}{2\pi}  \int_{-\infty}^{\infty}e^{-i\alpha x}(-i\alpha\widehat f(\alpha))K  \Bigl(\frac{\alpha}{R}\Bigr)\,d\alpha.
+\end{aligned}
+\end{equation*}
+We note that $\widehat f$ is bounded, and that $F_R$ is the Fourier transform of a function in $L_1(-\infty,\infty)$, and therefore $F_R(x)\to 0$ as $|x|\to\infty$. By the composition rule \eqref{eq:I-1.13}, we have
+\begin{equation*}
+F_R(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}f(x+t)RH(Rt)\,dt,
+\end{equation*}
+so that
+\begin{equation}\label{eq:I-9.9}\tag{9.9}
+\int_{-\infty}^{\infty}|F_R(x)|\,dx
+\le\frac{1}{2\pi}\|f\|_1\int_{-\infty}^{\infty}RH(Rt)\,dt
+=\|f\|_1<\infty
+\end{equation}
+because of the choice of $K$. Hence $F_R\in L_1(-\infty,\infty)$, and similarly also $G_R\in L_1(-\infty,\infty)$, for each $R>0$. Since
+\begin{equation*}
+F_R(b)-F_R(a)=\int_{a}^{b}G_R(x)\,dx,\qquad b>a,
+\end{equation*}
+we have, on letting $b\to\infty$,
+\begin{equation*}
+F_R(x)=-\int_{x}^{\infty}G_R(y)\,dy.
+\end{equation*}
+Since $g\in L_1(-\infty,\infty)$, we have, by Theorem \ref{thm:I-16},
+\begin{equation*}
+\lim_{R\to\infty}\int_{-\infty}^{\infty}|G_R(y)-g(y)|\,dy=0,
+\end{equation*}
+which implies that
+\begin{equation*}
+\lim_{R\to\infty}\int_{-\infty}^{\infty}G_R(y)\,dy=\int_{-\infty}^{\infty}g(y)\,dy.
+\end{equation*}
+Hence, for every fixed $x$, we have
+\begin{equation*}
+\lim_{R\to\infty}F_R(x)=\lim_{R\to\infty}\Bigl(-\int_{x}^{\infty}G_R(y)\,dy\Bigr)=-\int_{x}^{\infty}g(y)\,dy.
+\end{equation*}
+On the other hand, by Theorem \ref{thm:I-9}, $F_R(x)\to f(x)$, for all $x$, as $R\to\infty$. Hence
+\begin{equation*}
+f(x)=-\int_{x}^{\infty}g(y)\,dy,
+\end{equation*}
+for almost all $x\in(-\infty,\infty)$.
+\end{proof}
+
+\section{The central limit theorem}
+\label{sec:I-10}
+
+As an illustration of the method of Fourier transforms, we shall state and prove a theorem which corresponds to what is known as the central limit theorem in the theory of probability.
+
+\begin{theorem}\label{thm:I-18}
+Let $f\in L_1(-\infty,\infty)$, $f(x)\ge 0$, $\int_{-\infty}^{\infty}f(x)\,dx=1$, $\int_{-\infty}^{\infty}xf(x)\,dx=0$, and $\int_{-\infty}^{\infty}x^{2}f(x)\,dx=1$, and let $f^n=f*\cdots*f$, the convolution of $f$ with itself $n$ times. Then we have
+\begin{equation}\label{eq:I-10.0}\tag{10.0}
+\lim_{n\to\infty}\int_{a\sqrt n}^{b\sqrt n}f^n(x)\,dx
+=\int_{a}^{b}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,dx,\qquad -\infty<a<b<\infty.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let
+\begin{equation*}
+\chi_{a,b}(x)=
+\begin{cases}
+1,&a\le x\le b,\\
+0,&\text{otherwise},
+\end{cases}
+\end{equation*}
+so that
+\begin{equation*}
+\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,\chi_{a,b}(x)\,dx
+=\int_{a}^{b}\sqrt n\,f^n(x\sqrt n)\,dx
+=\int_{a\sqrt n}^{b\sqrt n}f^n(y)\,dy
+\end{equation*}
+and
+\begin{equation*}
+\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,\chi_{a,b}(x)\,dx
+=\int_{a}^{b}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,dx.
+\end{equation*}
+It is sufficient therefore to prove that
+\begin{equation}\label{eq:I-10.1}\tag{10.1}
+\lim_{n\to\infty}\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,\chi_{a,b}(x)\,dx
+=\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,\chi_{a,b}(x)\,dx.
+\end{equation}
+In order to prove this, it is sufficient, in turn, to prove that
+\begin{equation}\label{eq:I-10.2}\tag{10.2}
+\lim_{n\to\infty}\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,k(x)\,dx
+=\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,k(x)\,dx,
+\end{equation}
+where $k\in\mathcal S$, where $\mathcal S$ denotes Schwartz's space of infinitely differentiable functions on $(-\infty,\infty)$ which are rapidly decreasing, defined in \S\ref{sec:I-3}.
+
+For, given $\chi_{a,b}$ we can find two functions $k_1,k_2\in\mathcal D\subset\mathcal S$, where $\mathcal D$ denotes the subspace of infinitely differentiable functions on $(-\infty,\infty)$ with bounded supports, such that for any $\varepsilon>0$, we have
+\begin{equation}\label{eq:I-10.3}\tag{10.3}
+k_1(x)<\chi_{a,b}(x)<k_2(x),\qquad\text{and}\qquad
+\int_{-\infty}^{\infty}[k_2(x)-k_1(x)]\,dx<4\varepsilon.
+\end{equation}
+We have only to define (as in \eqref{eq:I-3.12}, \eqref{eq:I-3.13})
+\begin{equation}\tag{10.4}\label{eq:I-10.4}
+k_1(x)=
+\begin{cases}
+1,&a+\varepsilon\le x\le b-\varepsilon,\\
+0,&x\le a,\ x\ge b,
+\end{cases}
+\qquad
+k_2(x)=
+\begin{cases}
+1,&a\le x\le b,\\
+0,&x\le a-\varepsilon,\ x>b+\varepsilon,
+\end{cases}
+\end{equation}
+both $k_1$ and $k_2$ being infinitely differentiable everywhere. If \eqref{eq:I-10.2} is proved, then it holds with $k=k_1$ and $k=k_2$. Since
+\begin{multline*}
+\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,\chi_{a,b}(x)\,dx
+-\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,\chi_{a,b}(x)\,dx\\
+<\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,k_2(x)\,dx
+-\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,k_2(x)\,dx\\
++\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,k_2(x)\,dx
+-\int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\,\chi_{a,b}(x)\,dx\\
+<\varepsilon+4\varepsilon,\qquad\text{for }n\ge n_0,
+\end{multline*}
+by \eqref{eq:I-10.3}, we obtain
+\begin{equation*}
+\begin{aligned}
+&\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\chi_{a,b}(x)\,dx - \int_{-\infty}^{\infty}\frac{e^{-x^{2}/2}}{\sqrt{2\pi}}\chi_{a,b}(x)\,dx\\
+&< 5\varepsilon,  \qquad\text{for }n \ge n_0;
+\end{aligned}
+\end{equation*}
+and by using $k_1$ in place of $k_2$, we see that the left-hand side is greater than $-5\varepsilon$ for $n\ge n'$, thus proving \eqref{eq:I-10.1}.
+
+It remains to prove \eqref{eq:I-10.2}. If $k\in\mathcal S$, we have $\widehat k\in\mathcal S$, and by Theorem \ref{thm:I-11p}, inversion holds everywhere. Hence
+\begin{equation*}
+\begin{aligned}
+& \int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,k(x)\,dx\\
+&= \int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)  \Bigl\{\frac{1}{2\pi}  \int_{-\infty}^{\infty}\widehat k(\alpha)e^{-i\alpha x}\,d\alpha\Bigr\}dx\\
+&= \frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat k(\alpha)\Bigl(\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)e^{-i\alpha x}\,dx\Bigr)d\alpha,
+\end{aligned}
+\end{equation*}
+and, on changing variables $y=x\sqrt n$,
+\begin{equation*}
+\begin{aligned}
+& = \frac{1}{2\pi}  \int_{-\infty}^{\infty}\widehat k(\alpha)  \Bigl(\int_{-\infty}^{\infty}f^n(y)e^{-i\alpha y/\sqrt n}\,dy\Bigr)d\alpha\\
+&= \frac{1}{2\pi}  \int_{-\infty}^{\infty}\widehat k(\alpha)  \Bigl\{\widehat f  \Bigl(-\frac{\alpha}{\sqrt n}\Bigr)\Bigr\}^n\,d\alpha
+\end{aligned}
+\end{equation*}
+(Theorem \ref{thm:I-2}), where $\widehat f(-\alpha/\sqrt n)$ denotes the Fourier transform of $f$ at the point $-\alpha/\sqrt n$. Now
+\begin{equation}\label{eq:I-10.5}\tag{10.5}
+\Bigl|\widehat f\Bigl(-\frac{\alpha}{\sqrt n}\Bigr)\Bigr|^n
+\le\bigl(\|f\|_1\bigr)^n=1,\qquad-\infty<\alpha<\infty,\qquad \widehat f(0)=1,
+\end{equation}
+and for every fixed $\alpha$, $\alpha\neq 0$, $-\infty<\alpha<\infty$, we have
+\begin{equation}\label{eq:I-10.6}\tag{10.6}
+\begin{aligned}
+&\widehat f  \Bigl(-\frac{\alpha}{\sqrt n}\Bigr) = \int_{-\infty}^{\infty}f(x)e^{-i\alpha x/\sqrt n}\,dx\\
+&= \int_{-\infty}^{\infty}f(x)  \Bigl\{1 - \frac{i\alpha x}{\sqrt n} - \frac{\alpha^{2}x^{2}}{2n}  \bigl(1+r(n,x)\bigr)\Bigr\}dx,
+\end{aligned}
+\end{equation}
+where $r(n,x)$ is bounded uniformly in $x$ and $n$, and $r(n,x)\to 0$, as $n\to\infty$, for every fixed $x$, $-\infty<x<\infty$. It follows that
+\begin{equation*}
+\lim_{n\to\infty}\int_{-\infty}^{\infty}x^{2}r(n,x)f(x)\,dx
+=\int_{-\infty}^{\infty}x^{2}f(x)\Bigl\{\lim_{n\to\infty}r(n,x)\Bigr\}dx
+=o(1),
+\end{equation*}
+as $n\to\infty$, since $\int x^{2}f(x)\,dx=1$, and $f(x)\ge 0$. By hypothesis, we also have
+\begin{equation*}
+\int_{-\infty}^{\infty}f(x)\,dx=1,\qquad \int_{-\infty}^{\infty}xf(x)\,dx=0,
+\end{equation*}
+so that \eqref{eq:I-10.6} yields the relation
+\begin{equation}\label{eq:I-10.7}\tag{10.7}
+\widehat f\Bigl(-\frac{\alpha}{\sqrt n}\Bigr)
+=1-\frac{\alpha^{2}}{2n}\bigl(1+o(1)\bigr),\qquad\text{as }n\to\infty,
+\end{equation}
+which holds also for $\alpha=0$, since $\widehat f(0)=1$. Hence
+\begin{equation}\label{eq:I-10.8}\tag{10.8}
+\Bigl\{\widehat f\Bigl(-\frac{\alpha}{\sqrt n}\Bigr)\Bigr\}^n
+=\Bigl\{1-\frac{(\alpha/\sqrt2)^{2}}{n}\bigl(1+o(1)\bigr)\Bigr\}^n
+\to e^{-\alpha^{2}/2},\qquad\text{as }n\to\infty,
+\end{equation}
+since $\lim_{n\to\infty}(1-x/n)^n=e^{-x}$. If we take \eqref{eq:I-10.4} (with \eqref{eq:I-10.5}), then by Lebesgue's theorem on dominated convergence we obtain
+\begin{equation*}
+\begin{aligned}
+&\lim_{n\to\infty}\int_{-\infty}^{\infty}\sqrt n\,f^n(x\sqrt n)\,k(x)\,dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat k(\alpha)\lim_{n\to\infty}\Bigl\{\widehat f\Bigl(-\frac{\alpha}{\sqrt n}\Bigr)\Bigr\}^n\,d\alpha\\
+&= \frac{1}{2\pi}\int_{-\infty}^{\infty}\widehat k(\alpha)e^{-\alpha^{2}/2}\,d\alpha,
+\end{aligned}
+\end{equation*}
+if we use the composition rule \eqref{eq:I-1.13} and the Fourier transform of $e^{-\alpha^{2}/2}$ (see \S\ref{sec:I-1}, Example~6). Thus \eqref{eq:I-10.2} is proved, which, as we have already shown, implies \eqref{eq:I-10.1} and the theorem.
+\end{proof}
+
+\section{Analytic functions of Fourier transforms}
+\label{sec:I-11}
+
+If $\widehat f(x)=1$ for all $x$, $-\infty<x<\infty$, then obviously (by Theorem \ref{thm:I-1}) $\widehat f$ cannot be the Fourier transform of a function in $L_1(-\infty,\infty)$. If, instead of the interval $(-\infty,\infty)$, we had only a bounded interval, say $[a,b]$, then there exists a function $f\in L_1(-\infty,\infty)$, such that its Fourier transform $\widehat f(\alpha)=1$ for $\alpha\in[a,b]$, and $\widehat f$ vanishes outside a larger interval.
+
+We have constructed in \eqref{eq:I-3.12} an infinitely differentiable function $\omega$, which equals $1$ in $[a,b]$, and vanishes outside $(a-\varepsilon,b+\varepsilon)$, where $\varepsilon>0$. Such a function belongs to Schwartz's space $\mathcal S$, which has the property that if $f\in\mathcal S$, then $\widehat f\in\mathcal S$ (see \eqref{eq:I-3.7}). Further, as a trivial consequence of the inversion formula (Theorem \ref{thm:I-11p}), and the fact that $\mathcal S\subset L_1(-\infty,\infty)$, we note that if we define $\overset{\vee}{\omega}$ by the relation
+\begin{equation*}
+\overset{\vee}{\omega}(x)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\omega(t)e^{-itx}\,dt,\qquad-\infty<x<\infty,
+\end{equation*}
+then $\overset{\vee}{\omega}\in\mathcal S\subset L_1(-\infty,\infty)$, and
+\begin{equation*}
+\omega(\alpha)=\int_{-\infty}^{\infty}\overset{\vee}{\omega}(x)e^{i\alpha x}\,dx.
+\end{equation*}
+Hence we can assert the following (by taking $\overset{\vee}{\omega}=\delta$):
+
+\noindent\textbf{(11.1)} Given two real numbers $a,b$ with $b>a$, and a number $\varepsilon>0$, there exists a function $\delta\in L_1(-\infty,\infty)$, such that its Fourier transform $\widehat\delta$ has the property
+\begin{equation}\label{eq:I-11.1}\tag{11.1}
+\widehat\delta(\alpha)=
+\begin{cases}
+1,&a\le\alpha\le b,\\
+0,&a-\varepsilon\le\alpha,\ \alpha\ge b+\varepsilon,\ \varepsilon>0,
+\end{cases}
+\end{equation}
+and $\widehat\delta$ is infinitely differentiable in $(-\infty<\alpha<\infty)$.
+
+\noindent\textbf{(11.2)} There exists a function $f\in L_1(-\infty,\infty)$, such that its Fourier transform $\widehat f$ has the property
+\begin{equation}\label{eq:I-11.2}\tag{11.2}
+\widehat f(\alpha)>0,\qquad\text{for }\alpha>0,
+\end{equation}
+and
+\begin{equation*}
+\widehat f(\alpha)=0,\qquad\text{for }\alpha\le 0.
+\end{equation*}
+For if
+\begin{equation*}
+F(x)=
+\begin{cases}
+xe^{-x},&x>0,\\
+0,&x\le 0,
+\end{cases}
+\end{equation*}
+then $F\in L_1(-\infty,\infty)$, and
+\begin{equation*}
+\widehat F(-x)=\int_{0}^{\infty}t\,e^{-t(1+ix)}\,dt=\frac{1}{(1+ix)^{2}}=2\pi f(x),
+\end{equation*}
+say, so that $\widehat F(x)=2\pi f(-x)$. Since $\widehat F,\widehat f\in L_1(-\infty,\infty)$, and $F$ is continuous, we have (by Theorem \ref{thm:I-11p}),
+\begin{equation*}
+\begin{aligned}
+&F(t) = \frac{1}{2\pi}  \int_{-\infty}^{\infty}\widehat F(x)e^{-itx}\,dx\\
+&= \int_{-\infty}^{\infty}f(-x)e^{-itx}\,dx = \int_{-\infty}^{\infty}f(x)e^{ix}\,dx = \widehat f(t),
+\end{aligned}
+\end{equation*}
+and the function
+\begin{equation*}
+f(x)=\frac{1}{2\pi}\,\frac{1}{(1+ix)^{2}}
+\end{equation*}
+satisfies \eqref{eq:I-11.2}.
+
+\noindent\textbf{(11.3)} Given an interval $(-\infty,a]$, or $[a,\infty)$, where $a$ is a real number, there exists a function $f\in L_1(-\infty,\infty)$, such that its Fourier transform vanishes on the given interval, and does not vanish outside that interval.
+
+For if we consider $h(\alpha)$ defined by $\widehat h(\alpha)=\widehat g(\alpha-a)$, where $\widehat g$ is defined by \eqref{eq:I-11.2}, then $\widehat h$ is the Fourier transform of a function $h\in L_1$, and $\widehat h$ vanishes on the interval $(-\infty,a]$ but not outside. Similarly the Fourier transform of $h(-t)$ is $\widehat h(-\alpha)=\widehat g(a-\alpha)=0$, for $\alpha\ge a$, and $\widehat h(-\alpha)\neq 0$, for $\alpha<a$.
+
+\begin{theorem}\label{thm:I-19}
+Let $f\in L_1(-\infty,\infty)$, $f(0)=0$, and $\varepsilon>0$. Then there exists a function $h\in L_1(-\infty,\infty)$, such that (i) $\|h\|_1<\varepsilon$, (ii) $\widehat h=\widehat f$ in a neighbourhood of the origin, and (iii) $\widehat f(\alpha)=0$ implies that $\widehat h(\alpha)=0$.
+\end{theorem}
+
+\begin{proof}
+By \eqref{eq:I-11.1} there exists a function $\lambda\in L_1(-\infty,\infty)$, such that $\widehat\lambda(x)=1$, for $|x|\le 1$. If we set, for any fixed $R>0$, $\lambda_R(x)=R\lambda(Rx)$, then
+\begin{equation*}
+\widehat\lambda_R(\alpha)=\widehat\lambda\Bigl(\frac{\alpha}{R}\Bigr)=1,\qquad\text{for }|\alpha|\le R,
+\end{equation*}
+since
+\begin{equation*}
+R\int_{-\infty}^{\infty}\lambda(Rx)e^{i\alpha x}\,dx=\int_{-\infty}^{\infty}\lambda(y)e^{i\alpha y/R}\,dy.
+\end{equation*}
+Since $\widehat f(0)=0$ by hypothesis, we have $\int_{-\infty}^{\infty}f(x)\,dx=0$, and
+\begin{equation*}
+\begin{aligned}
+(\lambda_R*f)(x) &= \int_{-\infty}^{\infty}\lambda_R(x-y)f(y)\,dy-\lambda_R(x)\int_{-\infty}^{\infty}f(y)\,dy\\
+&= \int_{-\infty}^{\infty}f(y)\bigl\{\lambda_R(x-y)-\lambda_R(x)\bigr\}dy.
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation*}
+\begin{aligned}
+\|\lambda_R*f\|_1
+&\le\int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}|f(y)|\,|\lambda_R(x-y)-\lambda_R(x)|\,dy\\
+&= \int_{-\infty}^{\infty}|f(y)|\,dy\int_{-\infty}^{\infty}R|\lambda(Rx-Ry)-\lambda(Rx)|\,dx\\
+&= \int_{-\infty}^{\infty}|f(y)|\,dy\int_{-\infty}^{\infty}|\lambda(x-Ry)-\lambda(x)|\,dx.
+\end{aligned}
+\end{equation*}
+Now
+\begin{equation*}
+\int_{-\infty}^{\infty}|\lambda(x-Ry)-\lambda(x)|\,dx\le 2\|\lambda\|_1,
+\end{equation*}
+for every fixed $y$, and the $(L_1$-modulus of continuity of $\lambda$) integral tends to zero as $R\to 0$ for any fixed $y$ (see \eqref{eq:I-1.17}). Now choose $M$ so large that
+\begin{equation*}
+\int_{-\infty}^{-M}|f(y)|\,2\|\lambda\|_1\,dy<\varepsilon_1,\qquad
+\int_{M}^{\infty}|f(y)|\,2\|\lambda\|_1\,dy<\varepsilon_2,
+\end{equation*}
+for any two strictly positive numbers $\varepsilon_1,\varepsilon_2$, given in advance. If $|y|\le M$, then $|Ry|\le MR$, and $Ry\to 0$ as $R\to 0$. Given $\varepsilon_3>0$ and $M>0$, we can therefore choose $R$ sufficiently small to ensure that
+\begin{equation*}
+\int_{-M}^{M}|f(y)|\,dy\int_{-\infty}^{\infty}|\lambda(x-Ry)-\lambda(x)|\,dx<\varepsilon_3.
+\end{equation*}
+Thus we have $\|\lambda_R*f\|_1<\varepsilon$, for any arbitrary $\varepsilon>0$ given in advance, by proper choice of $R>0$. With such an $R$ we define $h=\lambda_R*f$, so that $\widehat h=\widehat\lambda_R\cdot\widehat f$. By the definition of $\lambda$, we have $\widehat\lambda_R(\alpha)=1$ for $|\alpha|\le R$, hence $\widehat h(x)=\widehat f(x)$ for $|x|\le R$. Obviously $\widehat h(\alpha)=0$ if $\widehat f(\alpha)=0$.
+\end{proof}
+
+\begin{theorem}\label{thm:I-20}
+If $R>0$, and $\varphi(z)$ is holomorphic for $|z|<R$, with $\varphi(0)=0$, and $h\in L_1(-\infty,\infty)$, with $\|h\|_1<R$, then there exists a function $g\in L_1(-\infty,\infty)$, such that $\varphi(\widehat h)=\widehat g$.
+\end{theorem}
+
+\begin{proof}
+Let $f\in L_1(-\infty,\infty)$. Then the Fourier transform of the convolution of $f$ with itself $n$ times is the $n$-th power of $\widehat f$ (Theorem \ref{thm:I-2}), and since the functional $f\mapsto\widehat f$ is linear, it follows that the function
+\begin{equation*}
+P(z)=\sum_{k=1}^{n}a_kz^k,\qquad(z,a_k\text{ complex}),
+\end{equation*}
+carries Fourier transforms into Fourier transforms. By hypothesis we have $\varphi(z)=\sum_{n=1}^{\infty}a_nz^n$, $|z|<R$, the series converging absolutely ($a_0=0$ since $\varphi(0)=0$). Since $\|h\|_1<R$ by assumption, we have $|\widehat h(x)|\le\|h\|_1<R$, for all $x$, so that
+\begin{equation*}
+\varphi(\widehat h(x))=\sum_{n=1}^{\infty}a_n(\widehat h(x))^n,\qquad-\infty<x<\infty.
+\end{equation*}
+Set $h_1=h$, $h_k=h_{k-1}*h$, for $k\ge 2$. Then obviously $\|h_k\|\le\|h\|_1^k$, for $k\ge 2$, while $\widehat h_k(x)=(\widehat h(x))^k$, by \eqref{eq:I-2.2} and \eqref{eq:I-2.3}. If we choose integers $m,n$, such that $n>m>1$, then
+\begin{equation*}
+\Bigl\|\sum_{k=m}^{n}a_kh_k\Bigr\|_1
+\le\sum_{k=m}^{n}|a_k|\,\|h_k\|_1
+\le\sum_{k=m}^{n}|a_k|\,\|h\|_1^k.
+\end{equation*}
+Since $\|h\|_1<R$, the series $\sum_{k=1}^{\infty}|a_k|\,\|h\|_1^k$ converges, so that $\sum_{k=m}^{n}|a_k|\,\|h\|_1^k\to 0$, as $m,n\to\infty$. Hence
+\begin{equation*}
+\Bigl\|\sum_{k=m}^{n}a_kh_k\Bigr\|_1\to 0,\qquad\text{as }m,n\to\infty.
+\end{equation*}
+Since the function space $L_1(-\infty,\infty)$ is complete (if $\|f_m-f_n\|_1\to 0$ as $m,n\to\infty$, then there exists $f\in L_1(-\infty,\infty)$, such that $\|f-f_n\|_1\to 0$ as $n\to\infty$), there exists a function $g\in L_1(-\infty,\infty)$, such that
+\begin{equation*}
+\Bigl\|\sum_{k=1}^{n}a_kh_k-g\Bigr\|_1\to 0,\qquad\text{as }n\to\infty.
+\end{equation*}
+Hence
+\begin{equation*}
+\sum_{k=1}^{n}a_kh_k(x)\to g(x),\qquad\text{as }n\to\infty,
+\end{equation*}
+uniformly in $-\infty<x<\infty$ (see \eqref{eq:I-1.12}). Thus we have
+\begin{equation*}
+\begin{aligned}
+&\widehat g(x) = \sum_{k=1}^{\infty}a_k\widehat h_k(x) = \sum_{k=1}^{\infty}a_k(\widehat h(x))^k\\
+&= \varphi(\widehat h(x)),  \qquad\text{for } - \infty < x < \infty.
+\end{aligned}
+\end{equation*}
+\end{proof}
+
+\noindent\textbf{(11.4) Corollary.}
+If $\varphi$ is an entire function, with $\varphi(0)=0$, then $\varphi$ carries Fourier transforms (of functions in $L_1(-\infty,\infty)$) into Fourier transforms (of functions in $L_1(-\infty,\infty)$).
+
+\noindent\textbf{Remarks.}
+\begin{enumerate}[label=\arabic*.,ref=\arabic*]
+\item The condition $\varphi(0)=0$ in Theorem \ref{thm:I-20} is necessary. For if $Q(z)=a_0+P(z)=a_0+\sum_{k=1}^{n}a_kz^k$, with $a_0\neq 0$, then by Theorem \ref{thm:I-20}, and the Riemann--Lebesgue theorem (Th.~\ref{thm:I-1}), we have
+\begin{equation*}
+\lim_{|x|\to\infty}P(\widehat f)(x)=0,
+\end{equation*}
+while $Q(\widehat f)=a_0+P(\widehat f)$, and
+\begin{equation*}
+\lim_{|x|\to\infty}Q(\widehat f)(x)=a_0+\lim_{|x|\to\infty}P(\widehat f)(x)=a_0\neq 0,
+\end{equation*}
+so that $Q(\widehat f)$ cannot be the Fourier transform of a function in $L_1(-\infty,\infty)$.
+
+\item Given a finite interval $[a,b]$, there exists a function $\delta\in L_1(-\infty,\infty)$, such that $\widehat\delta(\alpha)=1$ for $a\le\alpha\le b$ (see \eqref{eq:I-11.1}). Thus, if $f\in L_1(-\infty,\infty)$, then
+\begin{equation*}
+Q(\widehat f)(x)=a_0\widehat\delta(x)+P(\widehat f)(x),\qquad\text{for }a\le x\le b.
+\end{equation*}
+Hence $Q(\widehat f)$ coincides on a bounded, closed interval $[a,b]$ with the Fourier transform $a_0\widehat\delta+P(\widehat f)$ of a function in $L_1(-\infty,\infty)$. More generally we have
+\end{enumerate}
+
+\begin{theorem}\label{thm:I-21}
+Let $D$ be a domain (that is, an open, connected set) in the complex plane, and $\varphi$ a function holomorphic in $D$. Let $f\in L_1(-\infty,\infty)$, and $\widehat f(x)\in D$ for $-\infty<a\le x\le b<\infty$. Then there exists a function $g\in L_1(-\infty,\infty)$, such that $\varphi(\widehat f(x))=\widehat g(x)$, for $a\le x\le b$.
+\end{theorem}
+
+For the proof we shall use two lemmas.
+
+\begin{nstmt}{11.5}\label{eq:I-11.5}
+If $f\in L_1(-\infty,\infty)$, $\widehat f(0)=0$, and $\varphi$ is holomorphic at the origin, and $\varphi(0)=0$, then there exists a function $g\in L_1(-\infty,\infty)$, such that $\varphi(\widehat f)=\widehat g$ in a neighbourhood of the origin.
+\end{nstmt}
+
+\begin{proof}
+There exists a number $\varepsilon>0$, such that $\varphi$ is holomorphic in $|z|<\varepsilon$. Hence, by Theorem \ref{thm:I-19}, there exists a function $h\in L_1(-\infty,\infty)$, such that $\|h\|_1<\varepsilon$, and
+\begin{equation*}
+\widehat f(x)=\widehat h(x),\qquad x\in N_0,
+\end{equation*}
+where $N_0$ is a neighbourhood of the origin. By Theorem \ref{thm:I-20} there exists a function $g\in L_1(-\infty,\infty)$, such that $\varphi(\widehat h)=\widehat g$ in $(-\infty,\infty)$; in particular, $\varphi(\widehat f(x))=\widehat g(x)$, for $x\in N_0$.
+\end{proof}
+
+\begin{nstmt}{11.6}\label{eq:I-11.6}
+If $f\in L_1(-\infty,\infty)$, $\widehat f(\alpha)=\beta$, and $\varphi$ is holomorphic at $\beta$, then there exists a function $g\in L_1(-\infty,\infty)$, such that
+\[
+\varphi(\widehat f(x))=\widehat g(x),\qquad x\in N_\alpha,
+\]
+where $N_\alpha$ is a neighbourhood of $\alpha$.
+\end{nstmt}
+
+\begin{proof}
+If the lemma holds for $\alpha=0$, then it holds for arbitrary real $\alpha$. For suppose that $\alpha\neq 0$, and set $\widehat f_1(t)=e^{i\alpha t}f(t)$, $-\infty<t<\infty$. Then $\widehat f_1(x)=\widehat f(x+\alpha)$, therefore $\widehat f_1(0)=\widehat f(\alpha)=\beta$. If we assume the lemma true for $\alpha=0$, then there exists a function $g_1\in L_1(-\infty,\infty)$, such that $\psi(\widehat f_1(x))=\widehat g_1(x)$, for all $x$ in a neighbourhood of the origin. Therefore $\psi(\widehat f_1(x-\alpha))=\widehat g_1(x-\alpha)$, for all $x$ in a neighbourhood of $\alpha$, say $N_\alpha$. If we define $g$ by the condition $\widehat g(\alpha)=\widehat g_1(x-\alpha)$, then we have
+\begin{equation*}
+\varphi(\widehat f(x))=\widehat g(x),\qquad x\in N_\alpha,
+\end{equation*}
+since $\widehat f_1(x-\alpha)=\widehat f(x)$.
+
+If the lemma holds for $\beta=0$, then it holds also for $\beta\neq 0$. For suppose that $\beta\neq 0$, and set $\widehat f_1(x)=\widehat f(x)-\beta\widehat\delta(x)$, where $\widehat\delta(x)=1$ for $|\beta|\le 1$ (as in \eqref{eq:I-11.1}), and let $\psi(z)=\varphi(z+\beta)$. Then $\widehat f_1(0)=\widehat f(0)-\beta\widehat\delta(0)=\beta-\beta=0$, and $\psi(z)$ is holomorphic at $z=0$. By the assumption that the lemma holds for $\beta=0$, there exists a function $g\in L_1(-\infty,\infty)$, such that
+\begin{equation*}
+\psi(\widehat f_1(x))=\widehat g(x),\qquad x\in N_0,
+\end{equation*}
+where $N_0$ is a neighbourhood of the origin. We may assume that $N_0\subset[-1,1]$. Then we have, for $x\in N_0$,
+\begin{equation*}
+\varphi(\widehat f(x))=\psi(\widehat f(x)-\beta)=\psi(\widehat f(x)-\beta\widehat\delta(x))=\psi(\widehat f_1(x))=\widehat g(x),
+\end{equation*}
+which proves the lemma in the case $\beta\neq 0$.
+
+If the lemma holds in the case $\varphi(0)=0$, then it holds also in the case $\varphi(0)\neq 0$. For suppose that $\varphi(0)\neq 0$, and set $\psi(z)=\varphi(z)-\varphi(0)$, so that $\psi(0)=0$. On the assumption that the lemma holds in the case $\varphi(0)=0$, we can conclude that there exists a function $g_1\in L_1(-\infty,\infty)$, such that $\psi(\widehat f(x))=\widehat g_1(x)$, $x\in N_0$, where $N_0$ is a neighbourhood of the origin. If we define $g$ by the condition $\widehat g=\widehat g_1+\varphi(0)\widehat\delta$ ($g$ exists since $\widehat g_1+\varphi(0)\widehat\delta$ is the Fourier transform of a function in $L_1(-\infty,\infty)$), then we have, for $x\in N_0$,
+\begin{equation*}
+\begin{aligned}
+&\varphi(\widehat f(x)) = \psi(\widehat f(x)) + \varphi(0) = \psi(\widehat f(x)) + \varphi(0)\widehat\delta(x)\\
+&= \widehat g_1(x) + \varphi(0)\widehat\delta(x) = \widehat g(x).
+\end{aligned}
+\end{equation*}
+The proof of Lemma \eqref{eq:I-11.6} is thus reduced to that of Lemma \eqref{eq:I-11.5}, which is already proved.
+\end{proof}
+
+\noindent\textbf{Proof of Theorem \ref{thm:I-21}.}
+By Lemma \eqref{eq:I-11.6}, every point $x\in[a,b]$ is covered by an open interval on which $\psi(\widehat f)$ coincides with the Fourier transform of a function in $L_1(-\infty,\infty)$. By the theorem of Heine--Borel, a finite number of such intervals cover $[a,b]$. We may suppose that none of those intervals is wholly contained in another. Let $(\alpha_1,\beta_1)$ and $(\alpha_2,\beta_2)$ be two of those intervals. We may suppose that
+\begin{equation*}
+\alpha_1<\alpha_2<\beta_1<\beta_2.
+\end{equation*}
+We choose $g_1,g_2\in L_1(-\infty,\infty)$, such that
+\begin{equation*}
+\varphi(\widehat f(x))=\widehat g_1(x),\quad\alpha_1<x<\beta_1,
+\end{equation*}
+and
+\begin{equation*}
+\varphi(\widehat f(x))=\widehat g_2(x),\quad\alpha_2<x<\beta_2.
+\end{equation*}
+It follows that $\widehat g_1(x)=\widehat g_2(x)$ for $\alpha_2<x<\beta_1$; in fact, for $\alpha_2\le x\le\beta_1$, since the Fourier transform of a function in $L_1(-\infty,\infty)$ is continuous. As in \eqref{eq:I-3.12}, and \eqref{eq:I-11.1}, there exist infinitely differentiable functions $\omega_1,\omega_2$, such that
+\begin{equation*}
+\widehat\omega_1(x)=
+\begin{cases}
+0,&x\ge\beta_1,\\
+1,&a_1\le x\le\alpha_2,\\
+\frac{1}{c}\int_{x}^{\beta_1}e^{\frac{1}{(y-\beta_1)(y-\alpha_2)}}\,dy,&c=\int_{\alpha_2}^{\beta_1}e^{\frac{1}{(y-\beta_1)(y-\alpha_2)}}\,dy,\quad\alpha_2\le x\le\beta_1,
+\end{cases}
+\end{equation*}
+and
+\begin{equation*}
+\widehat\omega_2(x)=
+\begin{cases}
+0,&x\le\alpha_2,\\
+1,&\beta_1\le x\le\beta_2,\\
+\frac{1}{c}\int_{\alpha_2}^{x}e^{\frac{1}{(y-\alpha_2)(y-\beta_1)}}\,dy,&\alpha_2\le x\le\beta_1.
+\end{cases}
+\end{equation*}
+For $\alpha_2\le x\le\beta_1$, we have therefore $\widehat\omega_1(x)+\widehat\omega_2(x)=1$. If we define $\widehat\psi=\widehat\omega_1\widehat g_1+\widehat\omega_2\widehat g_2$, then we have, for $x\in(\alpha_1,\alpha_2)$,
+\begin{equation*}
+\widehat\psi(x)=\widehat g_1(x)=\varphi(\widehat f(x)),
+\end{equation*}
+and if $x\in(\beta_1,\beta_2)$, then
+\begin{equation*}
+\widehat\psi(x)=\widehat g_2(x)=\varphi(\widehat f(x)).
+\end{equation*}
+If $x\in[\alpha_2,\beta_1]$, then $\widehat g_1(x)=\widehat g_2(x)$, so that
+\begin{equation*}
+\widehat\psi(x)=[\widehat\omega_1(x)+\widehat\omega_2(x)]\widehat g_1(x)=\widehat g_1(x)=\varphi(\widehat f(x)).
+\end{equation*}
+Hence
+\begin{equation*}
+\widehat\psi(x)=\varphi(\widehat f(x)),\qquad\alpha_1<x<\beta_2.
+\end{equation*}
+This argument can be repeated for a finite number of such intervals, which together cover $[a,b]$, and the theorem follows.
+
+By choosing $\varphi(z)=\dfrac{1}{z}$, we get the following
+
+\begin{nstmt}{11.7}\label{eq:I-11.7}
+Let $f\in L_1(-\infty,\infty)$, and let $\widehat f(\alpha)\neq 0$, for $\alpha\in[a,b]$. Then there exists a function $g\in L_1(-\infty,\infty)$, such that
+\[
+\frac{1}{\widehat f(\alpha)}=\widehat g(\alpha),\qquad\text{for }\alpha\in[a,b].
+\]
+\end{nstmt}
+
+\section{The closure of translations}
+\label{sec:I-12}
+
+Let $f\in L_1(-\infty,\infty)$, and let $S_f$ denote the set of finite linear combinations of translations of $f$, that is to say
+\begin{equation*}
+S_f=\Bigl\{\sum_{k=1}^{m}a_kf(\cdot+c_k)\Bigr\},
+\end{equation*}
+where $c_k$ is real, $a_k$ complex, and $m$ an integer, $m\ge 1$. Clearly we have $S_f\subset L_1(-\infty,\infty)$. Let $\overline S_f$ denote the closure, in the $L_1$-norm, of the set $S_f$. Then $g\in\overline S_f$ if and only if there exists a sequence $(g_n)$, $g_n\in S_f$, such that $\|g-g_n\|_1\to 0$ as $n\to\infty$. Obviously $S_f\subset\overline S_f$, and since $L_1$ is complete, we have $\overline S_f\subset L_1$. Clearly $\overline S_f=\overline S_f$, since $\overline S_f$ is closed.
+
+The set $\overline S_f$ is linear, in the sense that if $h_1,h_2\in\overline S_f$, then $a_1h_1+a_2h_2\in\overline S_f$, for any two complex numbers $a_1,a_2$. The set $\overline S_f$ is translation invariant, in the sense that if $h(\cdot)\in\overline S_f$, then $h(\cdot+c)\in\overline S_f$, for any real $c$. Finally, if $h\in\overline S_f$, and we consider the closure (of the set of finite linear combinations) of translations of $h$, namely $\overline S_h$, then $\overline S_h\subset\overline S_f$, so that we do not obtain any functions not already contained in $\overline S_f$. For let $F\in\overline S_h$. Then there exists a finite linear combination of translations of $h$, say $\sum_{k=1}^{n}a_kh(x+c_k)$, such that for any given $\varepsilon>0$,
+\begin{equation*}
+\Bigl\|F-\sum_{k=1}^{n}a_kh(\cdot+c_k)\Bigr\|_1<\varepsilon.
+\end{equation*}
+If $h\in\overline S_f$, then $a_kh(\cdot+c_k)\in\overline S_f$, hence $\sum_{k=1}^{n}a_kh(\cdot+c_k)\in\overline S_f$, so that $\sum_{k=1}^{n}a_kh(\cdot+c_k)$ can be approximated in the $L_1$-norm by translations of $f$, and hence also $F$, so that $F\in\overline S_f$.
+
+\begin{theorem}[Theorem 22 (Wiener)]\label{thm:I-22}
+If $f\in L_1(-\infty,\infty)$, and $\overline S_f=L_1(-\infty,\infty)$, then
+\begin{equation*}
+\widehat f(x)\neq 0,\qquad-\infty<x<\infty.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Suppose the theorem false. Then there exists a real number $a$, say, such that $\widehat f(a)=0$. By \eqref{eq:I-11.1} there exists a function $\delta\in L_1(-\infty,\infty)$, such that $\widehat\delta(a)=1$. We will show that if $\delta\in\overline S_f=L_1$, then $\widehat\delta(a)=0$, which is a contradiction. For if $f\in L_1(-\infty,\infty)$, and $\widehat f(a)=0$, then $\widehat g(a)=0$ for every $g\in\overline S_f$. To prove this, take any $h\in S_f$. Then $h(x)=\sum a_kf(x+c_k)$, and $\widehat h(x)=\sum a_k\widehat f(x)e^{-ic_kx}$. If $\widehat f(a)=0$, then $\widehat h(a)=0$. If now $g\in\overline S_f$, then there exists a sequence $(g_n)$, $g_n\in S_f$, such that $\|g-g_n\|_1\to 0$, as $n\to\infty$. Taking $h=g_n$, we see that $\widehat g_n(a)=0$ for every $n$. Therefore $\widehat g(a)=\lim_{n\to\infty}\widehat g_n(a)=0$. (Note that if $\|g_n-g\|_1\to 0$, then, by \eqref{eq:I-1.12}, $\widehat g_n(\alpha)\to\widehat g(\alpha)$, uniformly in $\alpha$.) If $\overline S_f=L_1$, then $\delta\in\overline S_f$, and by what we have just proved, $\widehat\delta(a)=0$, whereas $\widehat\delta(a)=1$, which is a contradiction.
+\end{proof}
+
+\begin{theorem}[Theorem 23 (Wiener)]\label{thm:I-23}
+If $f\in L_1(-\infty,\infty)$, and if $\widehat f(\alpha)\neq 0$, $-\infty<\alpha<\infty$, then $\overline S_f=L_1(-\infty,\infty)$.
+\end{theorem}
+
+In the arrangement of the proof, we follow Bochner, and prove three lemmas first.
+
+\begin{equation*}\tag{12.1}\label{eq:I-12.1}
+\]
+If $f\in L_1(-\infty,\infty)$, $g\in\overline S_f$, $h\in L_1(-\infty,\infty)$, then $g*h\in\overline S_f$.
+\[
+\end{equation*}
+
+\begin{proof}
+We may assume that neither $g$ nor $h$ is almost everywhere zero. (Note that $g\in L_1(-\infty,\infty)$, since $\overline S_f\subset L_1$.) Let $H=g*h$, so that
+\begin{equation*}
+H(x)=\int_{-\infty}^{\infty}g(x-t)h(t)\,dt,
+\end{equation*}
+where the integral exists for almost all $x$, and belongs to $L_1(-\infty,\infty)$ (see Lemma \ref{lem:I-2.1}). Given $\varepsilon>0$, choose $N$ so large that
+\begin{equation}\tag{12.2}\label{eq:I-12.2}
+\int_{|x|\ge N}|h(x)|\,dx<\frac{\varepsilon}{2\|g\|_1}.
+\end{equation}
+Let
+\begin{equation*}
+H_N(x)=\int_{-N}^{N}g(x-t)h(t)\,dt,
+\end{equation*}
+so that
+\begin{equation*}
+H(x)-H_N(x)=\int_{|t|\ge N}g(x-t)h(t)\,dt,
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+& \|H - H_N\|_1 \le \int_{-\infty}^{\infty}dx  \int_{|t|\ge N}|g(x-t)|\,|h(t)|\,dt\\
+&= \int_{|t|\ge N}|h(t)|\,dt  \int_{-\infty}^{\infty}|g(x-t)|\,dx\\
+&= \int_{|t|\ge N}|h(t)|\,dt\,\|g\|_1<\frac{\varepsilon}{2}
+\end{aligned}
+\end{equation*}
+by \eqref{eq:I-12.2}. Given $\varepsilon>0$, there exists $\delta>0$, such that
+\begin{equation}\label{eq:I-12.4}\tag{12.4}
+\int_{-\infty}^{\infty}|g(x-y)-g(x)|\,dx\le\frac{\varepsilon}{2\|h\|_1},\qquad\text{for }|y|\le\delta
+\end{equation}
+(see \eqref{eq:I-1.17}). Choose a finite sequence $t_1,\ldots,t_n$ such that
+\begin{equation*}
+-N=t_0<t_1<\cdots<t_n=N,
+\end{equation*}
+and such that $t_k-t_{k-1}\le\delta$, for $1\le k\le n$, where $n$ remains at our disposal. Then
+\begin{equation*}
+H_N(x)=\sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}g(x-t)h(t)\,dt.
+\end{equation*}
+If we now define
+\begin{equation*}
+h_N(x)=\sum_{k=1}^{n}g(x-t_k)\int_{t_{k-1}}^{t_k}h(t)\,dt,
+\end{equation*}
+then clearly $h_N\in S_f$, and we have
+\begin{equation*}
+H_N(x)-h_N(x)=\sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}[g(x-t)-g(x-t_k)]h(t)\,dt,
+\end{equation*}
+hence
+\begin{equation*}
+\begin{aligned}
+\|H_N-h_N\|_1 &\le \sum_{k=1}^{n}\int_{-\infty}^{\infty}dx\int_{t_{k-1}}^{t_k}|g(x-t)-g(x-t_k)|\,|h(t)|\,dt\\
+&= \sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}|h(t)|\,dt\int_{-\infty}^{\infty}|g(x-t)-g(x-t_k)|\,dx.
+\end{aligned}
+\end{equation*}
+If $t_{k-1}\le t\le t_k$, then $|t-t_k|\le\delta$. And for $|t-t_k|\le\delta$, we have, by \eqref{eq:I-12.4},
+\begin{equation*}
+\int_{-\infty}^{\infty}|g(x-t)-g(x-t_k)|\,dx\le\frac{\varepsilon}{2\|h\|_1},
+\end{equation*}
+so that
+\begin{equation*}
+\|H_N-h_N\|_1\le\frac{\varepsilon}{2\|h\|_1}\sum_{k=1}^{n}\int_{t_{k-1}}^{t_k}|h(t)|\,dt=\frac{\varepsilon}{2\|h\|_1}\int_{-N}^{N}|h(t)|\,dt\le\frac{\varepsilon}{2}
+\end{equation*}
+(since $h\not\equiv 0$), and
+\begin{equation*}
+\|H-h_N\|_1\le\|H-H_N\|_1+\|H_N-h_N\|_1<\varepsilon,
+\end{equation*}
+by \eqref{eq:I-12.2} and the preceding estimate. Since $h_N\in S_f$, it follows that $H\in\overline S_f$. By hypothesis $g\in\overline S_f$, hence $\overline S_g\subset\overline S_f$ (as noted before the enunciation of the theorem), therefore $H\in\overline S_f$.
+\end{proof}
+
+\noindent\textbf{(12.6) Lemma.}
+Let $f\in L_1(-\infty,\infty)$, and let
+\begin{equation}\tag{12.6}\label{eq:I-12.6}
+H_R(t)=R\Bigl(\frac{\sin(Rt/2)}{Rt/2}\Bigr)^2,\qquad R>0,\ -\infty<t<\infty.
+\end{equation}
+If $h_R\in\overline S_f$ for $R=1,2,\ldots$, then $\overline S_f=L_1(-\infty,\infty)$.
+
+\begin{proof}
+Take any function $h\in L_1(-\infty,\infty)$. If $H_R\in\overline S_f$ for $R=1,2,\ldots$, then by the preceding Lemma \eqref{eq:I-12.1} (i.e.\ \eqref{eq:I-12.1}), we have $H_R*h\in\overline S_f$ for $R=1,2,\ldots$. By Theorem \ref{thm:I-16}, \eqref{eq:I-9.3}, we know that
+\begin{equation*}
+\Bigl\|\frac{1}{2\pi}(H_R*h)-h\Bigr\|_1\to 0,\qquad\text{as }R\to\infty.
+\end{equation*}
+Hence $h\in\overline S_f=\overline S_f$, for every $h\in L_1(-\infty,\infty)$, which implies that $L_1(-\infty,\infty)\subset\overline S_f$. But $\overline S_f\subset L_1(-\infty,\infty)$, and the lemma follows.
+\end{proof}
+
+\begin{nstmt}{12.7}\label{eq:I-12.7}
+If $f\in L_1(-\infty,\infty)$, and $\widehat f(x)\neq 0$, $-\infty<x<\infty$, then
+$H_R\in\overline S_f,\qquad\text{for }R=1,2,\ldots$.
+\end{nstmt}
+
+\begin{proof}
+Let $R>0$, and $\widehat f(x)\neq 0$ for $-R\le x\le R$. By Corollary \eqref{eq:I-11.7} of Theorem \ref{thm:I-21}, there exists a function $g\in L_1(-\infty,\infty)$, such that $\dfrac{1}{\widehat f(x)}=\widehat g(x)$, for $-R\le x\le R$. If $\widehat H_R(x)=2\pi K_R(x)$ (see \eqref{eq:I-8.1} as well as the Remarks following Theorem \ref{thm:I-15}, \S\ref{sec:I-9}), then $K_R(x)=0$ for $|x|\ge R$, and
+\begin{equation*}
+\frac{2\pi K_R(x)}{\widehat f(x)}=2\pi K_R(x)\widehat g(x),
+\end{equation*}
+hence
+\begin{equation*}
+2\pi K_R(x)=2\pi\widehat f(x)K_R(x)\widehat g(x).
+\end{equation*}
+But $2\pi\widehat f\,K_R\,g$ is the Fourier transform of $f*H_R*g$ (Theorem \ref{thm:I-2}, \S\ref{sec:I-2}). Hence by the uniqueness theorem (Theorem \ref{thm:I-7}, \S\ref{sec:I-6}), we have
+\begin{equation*}
+H_R=f*H_R*g=f*(H_R*g),
+\end{equation*}
+where $H_R*g\in L_1(-\infty,\infty)$, and $f\in\overline S_f$. By Lemma \eqref{eq:I-12.1} it follows that $H_R\in\overline S_f$.
+\end{proof}
+
+\noindent\textbf{Proof of Theorem \ref{thm:I-23}.}
+If $\widehat f(x)\neq 0$, $-\infty<x<\infty$, then by the immediately preceding Lemma \eqref{eq:I-12.7}, $H_R\in\overline S_f$, for $R=1,2,\ldots,n,\ldots$, hence, by Lemma \eqref{eq:I-12.6}, $\overline S_f=L_1(-\infty,\infty)$.
+
+\section{A general tauberian theorem}
+\label{sec:I-13}
+
+A tauberian theorem is the corrected converse of an abelian theorem. The word ``abelian'', in this context, originates from Abel's theorem on power series, which states that if $(a_n)$ is an infinite sequence of real numbers, and $\sum_{n=0}^{\infty}a_n$ converges, and has the sum $s$, then the power series $\sum_{n=0}^{\infty}a_nx^n$ converges uniformly for $0\le x\le 1$, and
+\begin{equation*}
+\lim_{x\uparrow 1}\sum_{n=0}^{\infty}a_nx^n=s.
+\end{equation*}
+The direct converse of this theorem is false. If we take $a_n=(-1)^n$, $n=1,2,\ldots$, then $\sum_{n=0}^{\infty}a_nx^n=\frac{1}{1+x}$, $0\le x<1$ and $\lim_{x\to 1}\sum_{n=0}^{\infty}(-1)^nx^n=\frac12$, but $\sum_{n=0}^{\infty}a_n$ is not convergent. Tauber proved (1897) that the converse is correct under the additional condition, known ever since as a ``tauberian condition'', that $na_n\to 0$, $n\to\infty$. Tauber's theorem was later sharpened by J.E.\ Littlewood, who showed (1910) that the condition $na_n=O(1)$, as $n\to\infty$, was sufficient to prove the converse of Abel's theorem, and thereby provided the impetus for the remarkable work of Hardy and Littlewood on a variety of special problems. Adopting a totally different point of view, Wiener showed (1930--32) that ``most'' tauberian theorems, like the converse of Abel's theorem, follow as special cases of a ``general tauberian theorem'', which properly belongs to the theory of Fourier transforms on $L_1(-\infty,\infty)$, and of which the following is the simplest version.
+
+\begin{theorem}[Theorem 24 (Wiener)]\label{thm:I-24}
+Let $h(x)$ be a bounded (measurable) function defined for $-\infty<x<\infty$, and let $K_1(x)\in L_1(-\infty<x<\infty)$, with $\widehat K_1(\alpha)\neq 0$ for $-\infty<\alpha<\infty$. If
+\begin{equation}\label{eq:I-13.1}\tag{13.1}
+\begin{aligned}
+&\lim_{x\to\infty}  \int_{-\infty}^{\infty}K_1(x-\xi)h(\xi)\,d\xi\\
+&= A  \int_{-\infty}^{\infty}K_1(\xi)\,d\xi,  \qquad\text{for some complex }A,
+\end{aligned}
+\end{equation}
+then we have, for \underline{every} $K\in L_1(-\infty,\infty)$,
+\begin{equation}\label{eq:I-13.2}\tag{13.2}
+\lim_{x\to\infty}\int_{-\infty}^{\infty}K(x-\xi)h(\xi)\,d\xi=A\int_{-\infty}^{\infty}K(\xi)\,d\xi.
+\end{equation}
+\end{theorem}
+
+The following is a kind of converse, which is easier to prove.
+
+\begin{theorem}[Theorem 25 (Wiener)]\label{thm:I-25}
+Let $K_1\in L_1(-\infty,\infty)$, and let its Fourier transform $\widehat K_1$ have a real zero. Then there exist a bounded (measurable) function $h$ on $(-\infty,\infty)$, and a function $K\in L_1(-\infty,\infty)$, such that \eqref{eq:I-13.1} is true, but \eqref{eq:I-13.2} is false.
+\end{theorem}
+
+\begin{proof}
+If $\widehat K_1(c)=0$ for a certain real $c$, choose $K\in L_1(-\infty,\infty)$, such that $\widehat K(c)\neq 0$, for example $K(x)=e^{-x^{2}/2}$ (Example~6, \S\ref{sec:I-1}), and let $h(\xi)=e^{-ic\xi}$. Then we have
+\begin{equation*}
+\int_{-\infty}^{\infty}K_1(x-\xi)e^{-ic\xi}\,d\xi
+=\int_{-\infty}^{\infty}K_1(t)e^{ic(t-x)}\,dt
+=e^{-icx}\widehat K_1(c)=0,
+\end{equation*}
+for every real $x$. But
+\begin{equation*}
+\int_{-\infty}^{\infty}K(x-\xi)e^{-ic\xi}\,d\xi
+=e^{-icx}\widehat K(c)\neq\text{a limit},\qquad\text{as }x\to\infty.
+\end{equation*}
+\end{proof}
+
+\noindent\textbf{Proof of Theorem \ref{thm:I-24}.}
+If $K(x)$ is of the form $K(x)=\sum_{k=1}^{n}A_kK_1(x+\lambda_k)$, where $A_k$ is complex, and $\lambda_k$ real, then the theorem is trivially true. By Theorem \ref{thm:I-23} on the $L_1$-closure of translations, given any $K\in L_1(-\infty,\infty)$, there exists a function $K_3$ of the form
+\begin{equation*}
+K_3(x)=\sum_{k=1}^{n}A_kK_1(x+\lambda_k),
+\end{equation*}
+such that
+\begin{equation}\label{eq:I-13.3}\tag{13.3}
+\int_{-\infty}^{\infty}|K(x)-K_3(x)|\,dx<\varepsilon,
+\end{equation}
+where $\varepsilon$ is any strictly positive number given in advance. If $|h(x)|<B<\infty$, then we have
+\begin{equation}\label{eq:I-13.4}\tag{13.4}
+\Bigl|\int_{-\infty}^{\infty}K(x-\xi)h(\xi)\,d\xi-\int_{-\infty}^{\infty}K_3(x-\xi)h(\xi)\,d\xi\Bigr|<B\varepsilon.
+\end{equation}
+Since \eqref{eq:I-13.2} holds with $K=K_3$, we have
+\begin{equation}\label{eq:I-13.5}\tag{13.5}
+\Bigl|\int_{-\infty}^{\infty}K_3(x-\xi)h(\xi)\,d\xi-A\int_{-\infty}^{\infty}K_3(\xi)\,d\xi\Bigr|<\varepsilon,\qquad x\ge x_0>0,
+\end{equation}
+while \eqref{eq:I-13.3} gives
+\begin{equation}\label{eq:I-13.6}\tag{13.6}
+\Bigl|A\int_{-\infty}^{\infty}K_3(\xi)\,d\xi-A\int_{-\infty}^{\infty}K(\xi)\,d\xi\Bigr|<|A|\varepsilon.
+\end{equation}
+Combining \eqref{eq:I-13.4}, \eqref{eq:I-13.5}, and \eqref{eq:I-13.6}, we obtain
+\begin{equation*}
+\limsup_{x\to\infty}\Bigl|\int_{-\infty}^{\infty}K(x-\xi)h(\xi)\,d\xi-A\int_{-\infty}^{\infty}K(\xi)\,d\xi\Bigr|
+\le B\varepsilon+\varepsilon+|A|\varepsilon,
+\end{equation*}
+and hence the theorem.
+
+\begin{theorem}[Theorem 26 (J.E.\ Littlewood)]\label{thm:I-26}
+Let $f(x)=\sum_{n=0}^{\infty}a_nx^n$, for $|x|<1$, where $a_n$ is complex, and let
+\begin{equation*}
+\lim_{x\uparrow 1}f(x)=s,\qquad(s\text{ finite or }\infty).
+\end{equation*}
+If $a_n=O(1/n)$, then $\sum_{n=0}^{\infty}a_n=s$.
+\end{theorem}
+
+\begin{proof}
+Let
+\begin{equation*}
+S(x)=\sum_{n=0}^{[x]}a_n,\qquad x>0,
+\end{equation*}
+where $[x]$ denotes the greatest integer not exceeding $x$. Then we have
+\begin{equation*}
+\begin{aligned}
+&S(x) - f(e^{-1/x}) = \sum_{n=0}^{[x]}a_n - \sum_{m=0}^{\infty}a_m e^{-m/x}\\
+&= \sum_{n=1}^{[x]}a_n(1-e^{-n/x}) + \sum_{m=[x]+1}^{\infty}a_m e^{-m/x},
+\end{aligned}
+\end{equation*}
+and since $n|a_n|<M<\infty$, for all $n\ge 1$, and $[x]\le x$, $[x]+1>x$, we have
+\begin{equation}\label{eq:I-13.7}\tag{13.7}
+|S(x)-f(e^{-1/x})|\le\sum_{n=1}^{[x]}\frac{M}{n}\cdot\frac{n}{x}+O(1)=O(1).
+\end{equation}
+By hypothesis, $f(e^{-1/x})$ is bounded as $x\to\infty$, hence \eqref{eq:I-13.7} implies that
+\begin{equation}\label{eq:I-13.8}\tag{13.8}
+S(x)=O(1),\qquad\text{as }x\to\infty.
+\end{equation}
+Consider the function $f(x)=\sum_{n=0}^{\infty}a_nx^n$, with $x=e^{-e^{-\xi}}$:
+\begin{equation*}
+\begin{aligned}
+&f(e^{-e^{-\xi}}) = \sum_{n=0}^{\infty}a_ne^{-ne^{-\xi}}\\
+&= \int_{0}^{\infty}e^{-te^{-\xi}}\,dS(t) = \int_{-\infty}^{\infty}e^{-\xi}e^{-te^{-\xi}}S(e^\eta)\,d\eta \quad(t=e^\eta).
+\end{aligned}
+\end{equation*}
+We note that $\xi\to\infty$ as $x\uparrow 1$, and if we choose $K_1(\xi)=e^{-\xi}e^{-e^{-\xi}}$, then $K_1\in L_1(-\infty,\infty)$, and
+\begin{equation*}
+\widehat K_1(\alpha)=\int_{-\infty}^{\infty}K_1(\xi)e^{i\alpha\xi}\,d\xi=\Gamma(1-i\alpha)\neq 0,\qquad\text{(Example 3, \S\ref{sec:I-1})}
+\end{equation*}
+so that $\int_{-\infty}^{\infty}K_1(\xi)\,d\xi=\Gamma(1)=1$. Our hypotheses imply that
+\begin{equation}\label{eq:I-13.9}\tag{13.9}
+\lim_{\xi\to\infty}\int_{-\infty}^{\infty}K_1(\xi-\eta)S(e^\eta)\,d\eta
+=s=s\int_{-\infty}^{\infty}K_1(\eta)\,d\eta.
+\end{equation}
+Because of \eqref{eq:I-13.8} this implies, by Theorem \ref{thm:I-25}, that
+\begin{equation}\label{eq:I-13.10}\tag{13.10}
+\lim_{\xi\to\infty}\int_{-\infty}^{\infty}K(\xi-\eta)S(e^\eta)\,d\eta
+=s\int_{-\infty}^{\infty}K(\eta)\,d\eta,
+\end{equation}
+for every $K\in L_1(-\infty,\infty)$. If we choose for $K$ the Littlewood function given by
+\begin{equation*}
+K(\xi)=
+\begin{cases}
+0,&\xi\le 0,\\
+e^{-\xi},&0<\xi\le L,\quad L>0,\\
+0,&\xi>L,
+\end{cases}
+\end{equation*}
+we see that
+\begin{equation*}
+\int_{-\infty}^{\infty}K(\xi-\eta)S(e^\eta)\,d\eta
+=\int_{\xi-L}^{\xi}e^{\eta-\xi}S(e^\eta)\,d\eta
+=\frac{1}{x}\int_{xe^{-L}}^{x}S(y)\,dy,
+\end{equation*}
+where $x=e^\xi$, so that $x\to\infty$ as $\xi\to\infty$, and
+\begin{equation*}
+\int_{0}^{L}K(\eta)\,d\eta=\int_{0}^{L}e^{-\eta}\,d\eta=(1-e^{-L}).
+\end{equation*}
+Hence \eqref{eq:I-13.10} becomes
+\begin{equation}\label{eq:I-13.11}\tag{13.11}
+\lim_{x\to\infty}\frac{1}{x}\int_{xe^{-L}}^{x}S(y)\,dy=s(1-e^{-L}).
+\end{equation}
+Now for $xe^{-L}\le y\le x$, we have
+\begin{equation*}
+|S(x)-S(y)|\le M\frac{x(1-e^{-L})+1}{xe^{-L}},
+\end{equation*}
+since
+\begin{equation*}
+|S(x)-S(y)|
+=\Bigl|\sum_{n=[y]+1}^{[x]}a_n\Bigr|
+\le\frac{M}{y}\bigl[(x-y)+1\bigr]
+\le M\frac{x(1-e^{-L})+1}{xe^{-L}}.
+\end{equation*}
+On writing the identity
+\begin{equation*}
+\begin{aligned}
+&S(x) - s = \frac{1}{x(1-e^{-L})}  \int_{xe^{-L}}^{x}\{S(x) - S(y)\}\,dy\\
+&+ \frac{1}{x(1-e^{-L})}  \int_{xe^{-L}}^{x}S(y)\,dy - s,
+\end{aligned}
+\end{equation*}
+and making use of \eqref{eq:I-13.11}, we obtain
+\begin{equation*}
+\begin{aligned}
+&\limsup_{x\to\infty}|S(x) - s|\\
+&\le \lim_{x\to\infty}M\frac{x(1-e^{-L})+1}{xe^{-L}\cdot x(1-e^{-L})}\,x(1-e^{-L}) = M\frac{1-e^{-L}}{e^{-L}},
+\end{aligned}
+\end{equation*}
+for every $L>0$. On letting $L\downarrow 0$, we obtain the result: $S(x)\to s$, as $x\to\infty$.
+\end{proof}
+
+\section{Two differential equations}
+\label{sec:I-14}
+
+To illustrate the application of Fourier transform methods in the study of differential equations, we shall consider two simple cases: the equation of heat conduction in an infinite rod, namely
+\begin{equation}\label{eq:I-14.1}\tag{14.1}
+\frac{\partial u(x,t)}{\partial t}=\frac{\partial^{2}u(x,t)}{\partial x^{2}},
+\end{equation}
+under suitable conditions, and Laplace's equation
+\begin{equation}\label{eq:I-14.2}\tag{14.2}
+\frac{\partial^{2}v(x,t)}{\partial x^{2}}+\frac{\partial^{2}v(x,t)}{\partial t^{2}}=0,
+\end{equation}
+which governs the distribution of temperature in an infinitely large plate, under suitable conditions. The first equation is connected with the Gauss--Weierstrass integral of $f\in L_1(-\infty,\infty)$, and the second with the Cauchy--Poisson integral of $f\in L_1(-\infty,\infty)$, studied in \S\ref{sec:I-9} (see Corollaries \eqref{eq:I-7.16}, \eqref{eq:I-7.18}, \eqref{eq:I-9.5} and \eqref{eq:I-9.6}). These are given respectively by
+\begin{equation}\label{eq:I-14.3}\tag{14.3}
+\begin{aligned}
+&U(f;x,t)\\
+&\equiv U(x,t) = \int_{-\infty}^{\infty}f(\xi)W(x-\xi,t)\,d\xi,  \qquad f\in L_1(-\infty,\infty),\ t > 0,\\
+W(x,t)&=\frac{1}{2\sqrt{\pi t}}\,e^{-x^{2}/(4t)},\qquad-\infty<x<\infty,
+\end{aligned}
+\end{equation}
+and
+\begin{equation}\label{eq:I-14.4}\tag{14.4}
+\begin{aligned}
+&V(f;x,t)\\
+&\equiv V(x,t) = \int_{-\infty}^{\infty}f(\xi)P(x-\xi,t)\,d\xi,  \qquad f\in L_1(-\infty,\infty),\ t > 0,\\
+P(x,t)&=\frac{1}{\pi}\,\frac{t}{t^{2}+x^{2}}.
+\end{aligned}
+\end{equation}
+We note that $W(x,t)$ satisfies \eqref{eq:I-14.1}, and is the so-called fundamental solution. Similarly $P(x,t)$ satisfies \eqref{eq:I-14.2}.
+
+We shall identify those properties of $U(x,t)$ which will show that it is the unique solution (almost everywhere) of equation \eqref{eq:I-14.1}. We assume throughout that $f\in L_1(-\infty,\infty)$.
+
+\noindent\textbf{$U_1$.} For each $t>0$, $U(x,t)\in L_1(-\infty,\infty)$ as a function of $x$, and
+\begin{equation*}
+\|U(\cdot,t)\|_1\le\|f\|_1.
+\end{equation*}
+
+\noindent\textbf{$U_2$.} We have
+\begin{equation*}
+\lim_{t\to 0^+}\|U(\cdot,t)-f(\cdot)\|_1=0,
+\end{equation*}
+as was proved in \eqref{eq:I-9.5}.
+
+\noindent\textbf{$U_3$.} For $t>0$, and $-\infty<x<\infty$, the partial derivatives $\dfrac{\partial U}{\partial x}$, $\dfrac{\partial^{2}U}{\partial x^{2}}$ exist and belong to $L_1(-\infty,\infty)$ as functions of $x$.
+
+This can be seen by differentiating under the integral sign and noting that the resulting integral is the convolution of two functions in $L_1(-\infty,\infty)$.
+
+\noindent\textbf{$U_4$.} For $t>0$, $\dfrac{\partial U}{\partial t}\in L_1(-\infty,\infty)$ as a function of $x$, and
+\begin{equation*}
+\lim_{h\to 0}\Bigl\|\frac{U(\cdot,t+h)-U(\cdot,t)}{h}-\frac{\partial U(\cdot,t)}{\partial t}\Bigr\|_1=0.
+\end{equation*}
+Since
+\begin{equation*}
+U(x,t)=\int_{-\infty}^{\infty}f(\xi)W(x-\xi,t)\,d\xi,\qquad f\in L_1(-\infty,\infty),
+\end{equation*}
+we have for $h\neq 0$
+\begin{equation}\label{eq:I-14.5}\tag{14.5}
+\begin{aligned}
+&\int_{-\infty}^{\infty}\Bigl|\frac{U(x,t+h)-U(x,t)}{h}-\frac{\partial U(x,t)}{\partial t}\Bigr|dx\\
+&\le\int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}|f(x-\xi)|\Bigl|\frac{W(\xi,t+h)-W(\xi,t)}{h}-\frac{\partial W(\xi,t)}{\partial t}\Bigr|d\xi\\
+&\le\|f\|_1\int_{-\infty}^{\infty}\Bigl|\frac{W(\xi,t+h)-W(\xi,t)}{h}-\frac{\partial W(\xi,t)}{\partial t}\Bigr|d\xi.
+\end{aligned}
+\end{equation}
+But
+\begin{equation*}
+\lim_{h\to 0}\frac{W(\xi,t+h)-W(\xi,t)}{h}=\frac{\partial W(\xi,t)}{\partial t}
+\end{equation*}
+for every $\xi$. This limit relation holds also in the $L_1$-norm, for
+\begin{equation*}
+\frac{\partial W(\xi,t)}{\partial t}
+=\frac{1}{2\sqrt{\pi}}\Bigl\{-\frac12t^{-3/2}e^{-\xi^{2}/(4t)}+\frac{\xi^{2}}{4}t^{-5/2}e^{-\xi^{2}/(4t)}\Bigr\},
+\end{equation*}
+$t>0$, so that
+\begin{equation*}
+\Bigl|\frac{\partial W(\xi,t)}{\partial t}\Bigr|\le\psi(\xi)\in L_1(-\infty<\xi<\infty),
+\end{equation*}
+for fixed $t>0$, in the interval $[t-h,t+h]$, with $h$ sufficiently small, and secondly
+\begin{equation*}
+\frac{W(\xi,t+h)-W(\xi,t)}{h}=\frac{1}{h}\int_{0}^{h}W_1(\xi,t+y)\,dy,
+\end{equation*}
+where $W_1(\xi,y)=\dfrac{\partial W(\xi,y)}{\partial y}$, hence
+\begin{equation*}
+\Bigl|\frac{W(\xi,t+h)-W(\xi,t)}{h}\Bigr|\le\psi(\xi)\in L_1(-\infty,\infty).
+\end{equation*}
+By Lebesgue's theorem on dominated convergence, we deduce that
+\begin{equation*}
+\lim_{h\to 0}\int_{-\infty}^{\infty}\Bigl|\frac{W(\xi,t+h)-W(\xi,t)}{h}-\frac{\partial W(\xi,t)}{\partial t}\Bigr|d\xi=0,
+\end{equation*}
+and \eqref{eq:I-14.5} now yields $U_4$.
+
+\noindent\textbf{$U_5$.} The equation
+\begin{equation*}
+\frac{\partial^{2}U(x,t)}{\partial x^{2}}=\frac{\partial U(x,t)}{\partial t}
+\end{equation*}
+holds for $t>0$, $-\infty<x<\infty$, as can be verified directly by calculation.
+
+\begin{theorem}\label{thm:I-27}
+Given $f\in L_1(-\infty,\infty)$, let $U(x,t)$ be any function with properties $U_1$ to $U_5$. Then
+\begin{equation*}
+U(x,t)=\int_{-\infty}^{\infty}f(\xi)W(x-\xi,t)\,d\xi,\qquad t>0,
+\end{equation*}
+where $W(\xi,t)=\dfrac{1}{2\sqrt{\pi t}}\,e^{-\xi^{2}/(4t)}$, for almost all $x\in(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+Let $\widehat U(\alpha,t)$ be the Fourier transform of $U(x,t)$ considered as a function of $x$. It exists because of property $U_1$. By property $U_2$, together with \eqref{eq:I-1.12}, we have
+\begin{equation}\label{eq:I-14.6}\tag{14.6}
+\widehat U(\alpha,t)\to\widehat f(\alpha),\qquad\text{as }t\to 0+,\text{ for all }\alpha,\ -\infty<\alpha<\infty.
+\end{equation}
+Because of property $U_3$, together with Theorem \ref{thm:I-3}, we have
+\begin{equation}\label{eq:I-14.7}\tag{14.7}
+\Bigl[\frac{\partial^{2}U}{\partial x^{2}}\Bigr]^{\wedge}(\alpha)=(-i\alpha)^{2}\widehat U(\alpha,t),\qquad t>0,\ -\infty<\alpha<\infty.
+\end{equation}
+On the other hand,
+\begin{equation*}
+\Bigl[\frac{U(\cdot,t+h)-U(\cdot,t)}{h}\Bigr]^{\wedge}(\alpha)
+=\frac{\widehat U(\alpha,t+h)-\widehat U(\alpha,t)}{h},
+\end{equation*}
+hence, by property $U_4$,
+\begin{equation}\label{eq:I-14.8}\tag{14.8}
+\frac{\partial}{\partial t}\widehat U(\alpha,t)
+=\Bigl[\frac{\partial U(\cdot,t)}{\partial t}\Bigr]^{\wedge}(\alpha).
+\end{equation}
+But
+\begin{equation*}
+\frac{\partial^{2}U(x,t)}{\partial x^{2}}=\frac{\partial U(x,t)}{\partial t}
+\end{equation*}
+because of property $U_5$, hence \eqref{eq:I-14.7} and \eqref{eq:I-14.8} yield
+\begin{equation*}
+(-i\alpha)^{2}\widehat U(\alpha,t)
+=\Bigl[\frac{\partial^{2}U(\cdot,t)}{\partial x^{2}}\Bigr]^{\wedge}(\alpha)
+=\Bigl[\frac{\partial U(\cdot,t)}{\partial t}\Bigr]^{\wedge}(\alpha)
+=\frac{\partial}{\partial t}\bigl[\widehat U(\alpha,t)\bigr].
+\end{equation*}
+Thus
+\begin{equation*}
+\frac{\partial}{\partial t}\bigl[\widehat U(\alpha,t)\bigr]=-\alpha^{2}\widehat U(\alpha,t),\qquad\text{for every real }\alpha,
+\end{equation*}
+hence
+\begin{equation*}
+\widehat U(\alpha,t)=A(\alpha)e^{-\alpha^{2}t},\qquad\text{for every real }\alpha.
+\end{equation*}
+Since $\widehat U(\alpha,t)\to\widehat f(\alpha)$, as $t\to 0+$, by \eqref{eq:I-14.6}, we obtain
+\begin{equation}\label{eq:I-14.9}\tag{14.9}
+\widehat U(\alpha,t)=\widehat f(\alpha)e^{-\alpha^{2}t},\qquad t>0,\ -\infty<\alpha<\infty.
+\end{equation}
+The Fourier transform of the convolution
+\begin{equation*}
+(f*W)(x)=\int_{-\infty}^{\infty}f(\xi)W(x-\xi,t)\,d\xi,\qquad t>0,
+\end{equation*}
+however, equals $\widehat f(\alpha)e^{-\alpha^{2}t}$ (Theorem \ref{thm:I-2}). Because of \eqref{eq:I-14.9}, and the uniqueness theorem (\S\ref{sec:I-6}, Th.~\ref{thm:I-7}), $U(x,t)=(f*W)(x)$, for $t>0$, and for almost all $x\in(-\infty,\infty)$.
+\end{proof}
+
+The Cauchy--Poisson integral $V(f;x,t)$ of $f\in L_1(-\infty,\infty)$, given by \eqref{eq:I-14.4} is associated in a similar fashion to the Laplace equation in \eqref{eq:I-14.2}. We list the characteristic properties of that integral:
+
+\noindent\textbf{$V_1$.} For each $t>0$, $V(x,t)\in L_1(-\infty,\infty)$ as a function of $x$, and
+\begin{equation*}
+\|V(\cdot,t)\|_1\le\|f\|_1.
+\end{equation*}
+
+\noindent\textbf{$V_2$.} We have
+\begin{equation*}
+\lim_{t\to 0+}\|V(\cdot,t)-f(\cdot)\|_1=0,
+\end{equation*}
+as was proved in \eqref{eq:I-9.6}.
+
+\noindent\textbf{$V_3$.} For $t>0$, and $-\infty<x<\infty$, the partial derivatives $\dfrac{\partial V}{\partial x}$, $\dfrac{\partial^{2}V}{\partial x^{2}}$ exist and belong to $L_1(-\infty,\infty)$ as functions of $x$.
+
+\noindent\textbf{$V_4$.} For $t>0$, the partial derivatives $\dfrac{\partial V(x,t)}{\partial t}$, $\dfrac{\partial^{2}V(x,t)}{\partial t^{2}}$ exist and belong to $L_1(-\infty,\infty)$ as functions of $x$, and
+\begin{equation*}
+\lim_{h\to 0}\Bigl\|\frac{V(\cdot,t+h)-V(\cdot,t)}{h}-\frac{\partial V(\cdot,t)}{\partial t}\Bigr\|_1=0,
+\end{equation*}
+and
+\begin{equation*}
+\lim_{h\to 0}\Bigl\|\frac{\frac{\partial V(\cdot,t+h)}{\partial t}-\frac{\partial V(\cdot,t)}{\partial t}}{h}-\frac{\partial^{2}V(\cdot,t)}{\partial t^{2}}\Bigr\|_1=0.
+\end{equation*}
+
+\noindent\textbf{$V_5$.} The equation
+\begin{equation*}
+\frac{\partial^{2}V(x,t)}{\partial x^{2}}+\frac{\partial^{2}V(x,t)}{\partial t^{2}}=0
+\end{equation*}
+holds for all $x\in(-\infty,\infty)$ and $t>0$.
+
+\begin{theorem}\label{thm:I-28}
+Given $f\in L_1(-\infty,\infty)$, let $V(x,t)$ be any function with properties $V_1$ to $V_5$. Then
+\begin{equation*}
+V(x,t)=\int_{-\infty}^{\infty}f(\xi)P(x-\xi,t)\,d\xi,\qquad t>0,
+\end{equation*}
+where $P(\xi,t)=\dfrac{1}{\pi}\dfrac{t}{t^{2}+\xi^{2}}$, for almost all $x\in(-\infty,\infty)$.
+\end{theorem}
+
+\begin{proof}
+Because of property $V_1$, the Fourier transform $\widehat V(\alpha,t)$ is defined for each $t>0$, and $-\infty<\alpha<\infty$. By property $V_3$, and Theorem \ref{thm:I-3} of \S\ref{sec:I-3}, we have
+\begin{equation}\label{eq:I-14.10}\tag{14.10}
+\Bigl[\frac{\partial^{2}V(\cdot,t)}{\partial x^{2}}\Bigr]^{\wedge}(\alpha)=(-i\alpha)^{2}\widehat V(\alpha,t);
+\end{equation}
+on the other hand,
+\begin{equation*}
+\Bigl[\frac{V(\cdot,t+h)-V(\cdot,t)}{h}\Bigr]^{\wedge}(\alpha)
+=\frac{\widehat V(\alpha,t+h)-\widehat V(\alpha,t)}{h},\qquad h\neq 0,
+\end{equation*}
+and property $V_4$ implies that
+\begin{equation*}
+\frac{\partial\widehat V(\alpha,t)}{\partial t}
+=\Bigl[\frac{\partial V(\cdot,t)}{\partial t}\Bigr]^{\wedge}(\alpha),
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+&\frac{\partial^{2}\widehat V(\alpha,t)}{\partial t^{2}} = \Bigl[\frac{\partial^{2}V(\cdot,t)}{\partial t^{2}}\Bigr]^{\wedge}(\alpha)\\
+&= \Bigl[-\frac{\partial^{2}V(\cdot,t)}{\partial x^{2}}\Bigr]^{\wedge}(\alpha)\qquad\text{(by }V_5)\\
+&= \alpha^{2}\widehat V(\alpha,t),\qquad\text{by \eqref{eq:I-14.10}}.
+\end{aligned}
+\end{equation*}
+Hence
+\begin{equation}\label{eq:I-14.11}\tag{14.11}
+\widehat V(\alpha,t)=A(\alpha)e^{-\alpha t}+B(\alpha)e^{\alpha t},\quad\text{say}.
+\end{equation}
+By property $V_2$, however, together with \eqref{eq:I-1.12}, we have
+\begin{equation*}
+\widehat V(\alpha,t)\to\widehat f(\alpha),\qquad\text{as }t\to 0+,\text{ for all }\alpha\in(-\infty,\infty),
+\end{equation*}
+hence
+\begin{equation*}
+A(\alpha)+B(\alpha)=\widehat f(\alpha).
+\end{equation*}
+By property $V_1$, we have, for each $t>0$,
+\begin{equation*}
+|\widehat V(\alpha,t)|\le\|f\|_1<\infty,
+\end{equation*}
+which, in turn, implies that
+\begin{equation*}
+|B(\alpha)e^{\alpha t}|\le\|f\|_1+|A(\alpha)e^{-\alpha t}|\le\|f\|_1+|A(\alpha)|,
+\end{equation*}
+because of \eqref{eq:I-14.11}. Hence
+\begin{equation*}
+|B(\alpha)|\le\frac{\|f\|_1+|A(\alpha)|}{|e^{\alpha t}|},
+\end{equation*}
+and on letting $t\to\infty$, we get $B(\alpha)=0$, for $\alpha>0$; similarly also $A(\alpha)=0$ for $\alpha<0$; so that $\widehat V(\alpha,t)=\widehat f(\alpha)e^{-|\alpha|t}$, for $\alpha\in(-\infty,\infty)$. But the Fourier transform of the convolution
+\begin{equation*}
+(f*P)(x)=\int_{-\infty}^{\infty}f(\xi)P(x-\xi,t)\,d\xi,\qquad t>0,
+\end{equation*}
+equals $\widehat f(\alpha)e^{-|\alpha|t}$ (by Theorem \ref{thm:I-2}, \S\ref{sec:I-1}). Because of the uniqueness theorem (Th.~\ref{thm:I-7}, \S\ref{sec:I-6}) it follows that $V(x,t)=(f*P)(x)$ for almost all $x\in(-\infty,\infty)$, and $t>0$.
+\end{proof}
+
+\section{Several variables}
+\label{sec:I-15}
+
+The definition of Fourier transform is easily extended to functions of several variables. If $E_k$ denotes the real Euclidean space of dimension $k$, and $x\in E_k$, we write $x=(x_1,\ldots,x_k)$, where $-\infty<x_r<\infty$, for $r=1,2,\ldots,k$; we write $|x|=(x_1^{2}+\ldots+x_k^{2})^{1/2}$, and if $\alpha\in E_k$, we write $\langle x,\alpha\rangle=x_1\alpha_1+\ldots+x_k\alpha_k$.
+
+For any $p$ such that $1\le p<\infty$, we denote by $L_p(E_k)$ the Banach space of complex-valued, Lebesgue measurable functions $f$ on $E_k$, relative to the norm
+\begin{equation*}
+\|f\|_p=\Bigl(\int_{E_k}|f(x)|^p\,dx\Bigr)^{1/p}<\infty,
+\end{equation*}
+modulo the subspace of functions which are zero almost everywhere. Here $dx\;(=dx_1\ldots dx_k)$ stands for the $k$-dimensional Lebesgue measure.
+
+If $f\in L_1(E_k)$, we define $\widehat f$, the Fourier transform of $f$, by the relation
+\begin{equation}\label{eq:I-15.1}\tag{15.1}
+\widehat f(\alpha)=\int_{E_k}f(x)e^{i\langle x,\alpha\rangle}\,dx,\qquad\text{with }F[f](\alpha)=(2\pi)^{-k/2}\widehat f(\alpha),
+\end{equation}
+for all $\alpha\in E_k$. We note that $\widehat f$ is bounded, and continuous, and
+\begin{equation}\label{eq:I-15.2}\tag{15.2}
+|\widehat f(\alpha)|\le\|f\|_1<\infty,
+\end{equation}
+as in \eqref{eq:I-1.5} and \eqref{eq:I-1.6}.
+
+If $\tau_h$ is the operator which takes $f(x)$ into $f(x+h)$, where $x,h\in E_k$, then
+\begin{equation}\label{eq:I-15.3}\tag{15.3}
+(\tau_hf)^{\wedge}(x)=e^{-i\langle h,x\rangle}\widehat f(x).
+\end{equation}
+The Fourier transform of $f(\lambda x_1,\lambda x_2,\ldots,\lambda x_k)$, where $\lambda$ is a real number, and $\lambda\neq 0$, is $\dfrac{1}{|\lambda|^k}$ times the Fourier transform $\widehat f\Bigl(\dfrac{x_1}{\lambda},\ldots,\dfrac{x_k}{\lambda}\Bigr)$, as in \eqref{eq:I-1.10}.
+
+The Riemann--Lebesgue theorem holds: if $f\in L_1(E_k)$, then $\widehat f(x)\to 0$, as $|x|\to\infty$. The proof is similar to that of Theorem \ref{thm:I-1}. We approximate to $f$ in the $L_1$-norm by box-functions in $E_k$. A box-function $g$ is such that $g(x)=1$ in the box $-\infty<a_r\le x_r\le b_r<\infty$, for $r=1,2,\ldots,k$, and $g(x)=0$ outside the box.
+
+As in \eqref{eq:I-1.13} the composition rule holds: if $f,g\in L_1(E_k)$, then
+\begin{equation}\label{eq:I-15.4}\tag{15.4}
+\int_{E_k}f(x)\widehat g(x)\,dx=\int_{E_k}\widehat f(y)g(y)\,dy.
+\end{equation}
+As in \S\ref{sec:I-2}, one defines the convolution of $f\in L_1(E_k)$ and $g\in L_1(E_k)$, written $h=f*g$, by the relation
+\begin{equation}\label{eq:I-15.5}\tag{15.5}
+h(x)=\int_{E_k}f(x-y)g(y)\,dy,
+\end{equation}
+and notes that $h\in L_1(E_k)$. The operation of convolution is commutative and associative, and
+\begin{equation}\label{eq:I-15.6}\tag{15.6}
+(f*g)^{\wedge}=\widehat f\cdot\widehat g
+\end{equation}
+as in Theorem \ref{thm:I-2}.
+
+As for pointwise summability, let $K\in L_1(E_k)$, and $\widehat K=H$. For $R>0$, let $K_R(x)=K(x/R)$, and $H_R(x)=R^kH(Rx)$, as in \eqref{eq:I-7.1}. Then for every $f\in L_1(E_k)$, we have, by the composition rule \eqref{eq:I-15.4},
+\begin{equation}\label{eq:I-15.7}\tag{15.7}
+\begin{aligned}
+&\int_{E_k}\widehat f(\alpha)e^{-i\langle\alpha,x\rangle}K  \Bigl(\frac{\alpha}{R}\Bigr)d\alpha\\
+&= \int_{E_k}f(x+u)H_R(u)\,du = \int_{E_k}f(y)H_R(y-x)\,dy.
+\end{aligned}
+\end{equation}
+If we take, in particular,
+\begin{equation}\label{eq:I-15.8}\tag{15.8}
+K(x)=e^{-|x|^{2}},\qquad |x|^{2}=x_1^{2}+\cdots+x_k^{2},
+\end{equation}
+then $K$ is a radial function; that is to say, $K(x)=K(y)$ if $|x|=|y|$. If $k=1$, a radial function is just an even function. By direct calculation (as a product of one-dimensional Fourier transforms, using Ex.~6, \S\ref{sec:I-1}), we see that
+\begin{equation}\label{eq:I-15.9}\tag{15.9}
+H_R(x)\equiv R^kH(Rx)=\widehat K_R(x)=\pi^{k/2}R^ke^{-|x|^{2}R^{2}/4}
+\end{equation}
+is also radial, so that $H_R(y-x)=H_R(x-y)$, and \eqref{eq:I-15.7} leads, for the particular choice of $K$ in \eqref{eq:I-15.8}, to the relation
+\begin{equation}\label{eq:I-15.10}\tag{15.10}
+(f*H_R)(x)=\int_{E_k}\widehat f(\alpha)e^{-i\langle\alpha,x\rangle}K\Bigl(\frac{\alpha}{R}\Bigr)d\alpha,\qquad R>0,\ K(\alpha)=e^{-|\alpha|^{2}},
+\end{equation}
+which is analogous to \eqref{eq:I-7.1}. We note further that
+\begin{equation}\label{eq:I-15.11}\tag{15.11}
+(2\pi)^{-k}\int_{E_k}H_R(x)\,dx=1,
+\end{equation}
+where $H_R$ is defined as in \eqref{eq:I-15.9}, if we use Example~6, \S\ref{sec:I-1}. Hence \eqref{eq:I-15.10} implies that
+\begin{equation}\label{eq:I-15.12}\tag{15.12}
+(2\pi)^{-k}(f*H_R)(x)-f(x)=(2\pi)^{-k}\int_{E_k}\{f(x+u)-f(x)\}H_R(u)\,du,
+\end{equation}
+where $H_R(u)$ is a radial function, which depends only on $|u|$. Integrating first over the ``surface'' $|u|=t>0$, and then relative to the ``radius'' $t$, for $0<t<\infty$, we obtain
+\begin{equation}\label{eq:I-15.13}\tag{15.13}
+\begin{aligned}
+&(2\pi)^{-k}(f*H_R)(x)-f(x)\\
+&\qquad=(2\pi)^{-k}\int_{0}^{\infty}t^{k-1}\Bigl(\int_{\sigma}\{f(x+tv)-f(x)\}\,d\sigma_v\Bigr)H_R(t)\,dt,
+\end{aligned}
+\end{equation}
+where $\sigma$ denotes the ``sphere'': $v_1^{2}+\ldots+v_k^{2}=1$, and $d\sigma_v$ its $(k-1)$-dimensional volume element.
+
+We now define for $x\in E_k$, $k\ge 2$, and $t>0$,
+\begin{equation}\label{eq:I-15.14}\tag{15.14}
+f_x(t)=\frac{1}{\omega_{k-1}}\int_{\sigma}f(x+tv)\,d\sigma_v,
+\end{equation}
+where $\sigma$ denotes the ``sphere'' $v_1^{2}+\ldots+v_k^{2}=1$, $\omega_{k-1}$ its $(k-1)$ dimensional volume, and $d\sigma_v$ its $(k-1)$-dimensional volume element.
+
+For $k=1$, we define $f_x(t)=\frac12[f(x+t)+f(x-t)]$. If
+\begin{equation}\label{eq:I-15.15}\tag{15.15}
+g_x(t)=t^{k-1}[f_x(t)-f(x)],\qquad 0\le t<\infty,
+\end{equation}
+then relation \eqref{eq:I-15.13} can be written as
+\begin{equation}\label{eq:I-15.16}\tag{15.16}
+(2\pi)^{-k}(f*H_R)(x)-f(x)=\omega_{k-1}(2\pi)^{-k}\int_{0}^{\infty}R^{k}H(Rt)g_x(t)\,dt,
+\end{equation}
+which is the analogue of \eqref{eq:I-7.2} in Theorem \ref{thm:I-8}. Following the same lines of proof as in Theorem \ref{thm:I-9}, we can deduce that
+\begin{equation}\label{eq:I-15.17}\tag{15.17}
+\lim_{R\to\infty}\frac{1}{(2\pi)^{k}}(f*H_R)(x)=f(x),
+\end{equation}
+at every point $x$ at which
+\begin{equation}\label{eq:I-15.18}\tag{15.18}
+\lim_{T\to 0}\frac{1}{T^{k}}\int_{0}^{T}g_x(t)\,dt=0.
+\end{equation}
+By \eqref{eq:I-15.10} it follows that if $f\in L_1(E_k)$, then
+\begin{equation}\label{eq:I-15.19}\tag{15.19}
+\lim_{R\to\infty}\int_{E_k}\widehat f(\alpha)e^{-i\langle\alpha,x\rangle}e^{-|\alpha|^{2}/R^{2}}\,d\alpha=f(x)
+\end{equation}
+for almost every $x\in E_k$, since, by a theorem of Lebesgue--Vitali, condition \eqref{eq:I-15.18} is satisfied for almost every $x$, if $f\in L_1(E_k)$. Thus the Fourier integral of any function in $L_1(E_k)$ is Gauss-summable almost everywhere (cf.\ \eqref{eq:I-7.13}).
+
+This can again be used, as in Theorem \ref{thm:I-11}, to prove that if $f\in L_1(E_k)$ and $\widehat f\in L_1(E_k)$, then the inversion formula holds almost everywhere, that is to say:
+\begin{equation}\label{eq:I-15.20}\tag{15.20}
+f(x)=\frac{1}{(2\pi)^{k}}\int_{E_k}\widehat f(\alpha)e^{-i\langle\alpha,x\rangle}\,d\alpha
+\end{equation}
+for almost every $x\in E_k$.
+
+Corresponding to Corollary \eqref{eq:I-8.7}, we obtain the result that if $f\in L_1(E_k)$ is non-negative, and continuous at the origin, then $\widehat f\in L_1(E_k)$.
+
+As for summability in the $L_1$-norm, one can prove, using \eqref{eq:I-15.12}, the analogue of Theorem \ref{thm:I-15}, in an analogous manner: we have
+\begin{equation}\label{eq:I-15.21}\tag{15.21}
+\bigl\|(2\pi)^{-k}(f*H_R)-f\bigr\|_1\to 0,\qquad\text{as }R\to\infty,
+\end{equation}
+for the particular kernel \eqref{eq:I-15.9}.
+
+Instead of choosing $K$ to be the Gauss kernel $e^{-|x|^{2}}$ as in \eqref{eq:I-15.8}, one can choose $K$ to be any radial function, such that $K\in L_1(E_k)$, $K(0)=1$, $K$ is continuous at the origin, and $(2\pi)^{-k}\int_{-\infty}^{\infty}\widehat K(\alpha)\,d\alpha=1$, and prove the analogues of \eqref{eq:I-15.7} and \eqref{eq:I-15.10}. We shall not elaborate here on general summability.
+
+On the other hand, it is worth noting that if $f\in L_1(E_k)$, and $f$ is radial, then $\widehat f$ is also radial, and assumes a special form depending on whether $k$ is even or odd. For we have
+\begin{equation}\label{eq:I-15.22}\tag{15.22}
+\widehat f(\alpha)=\int_{E_k}f(|x|)e^{i\langle\alpha,x\rangle}\,dx,\qquad\alpha\in E_k,
+\end{equation}
+and if $T\colon x\to y$ is any orthogonal transformation of $E_k$, represented by the matrix $(b_{ij})$ with determinant $+1$, such that $y_i=\sum_{j=1}^{k}b_{ij}x_j$, $i=1,\ldots,k$, we can choose the first row of the matrix $b_{1j}=\dfrac{\alpha_j}{|\alpha|}$ for $j=1,\ldots,k$. Then we have $\langle\alpha,x\rangle\equiv\sum_{i=1}^{k}\alpha_ix_i=|\alpha|\cdot y_1$, while $|\alpha|=|y|$, since $T$ is orthogonal. Hence
+\begin{equation*}
+\widehat f(\alpha)=\int_{E_k}f(|y|)e^{i|\alpha|y_1}\,dy,\qquad\alpha\in E_k,\ y=(y_1,\ldots,y_k),
+\end{equation*}
+which shows that $\widehat f(\alpha)$ depends on $|\alpha|$ alone, hence is radial.
+
+Let $\rho=(y_2^{2}+\ldots+y_k^{2})^{1/2}$, so that $\rho\ge 0$, and $|y|=(y_1^{2}+\rho^{2})^{1/2}$. We integrate first over the ``surface'' of the $(k-1)$ dimensional sphere $y_2^{2}+\ldots+y_k^{2}=\rho^{2}$, and then relative to the ``radius'' $\rho$ from $0$ to $\infty$. Thus
+\begin{equation*}
+\widehat f(\alpha)=\int_{-\infty}^{\infty}e^{i|\alpha|y_1}\,dy_1\int_{0}^{\infty}f\bigl\{(y_1^{2}+\rho^{2})^{1/2}\bigr\}\rho^{k-2}\omega_{k-2}\,d\rho,
+\end{equation*}
+where $\omega_{k-2}$ stands for the $(k-2)$-dimensional volume of the ``sphere'' $y_2^{2}+\ldots+y_k^{2}=1$. If we now use polar coordinates: $y_1=r\cos\theta$, $\rho=r\sin\theta$, and note that $0\le\theta\le\pi$, since $\rho\ge 0$, while $r\ge 0$, we obtain
+\begin{equation*}
+\widehat f(\alpha)=\omega_{k-2}\int_{0}^{\infty}\int_{0}^{\pi}f(r)r^{k-1}e^{i|\alpha|r\cos\theta}(\sin\theta)^{k-2}\,dr\,d\theta.
+\end{equation*}
+From Example~8, of \S\ref{sec:I-1}, we have
+\begin{equation}\label{eq:I-15.23}\tag{15.23}
+\int_{0}^{\pi}e^{i|\alpha|\cos\theta}(\sin\theta)^{2\nu}\,d\theta
+=2^{\nu}\Gamma\Bigl(\nu+\frac12\Bigr)\Gamma\Bigl(\frac12\Bigr)J_{\nu}(|\alpha|)|\alpha|^{-\nu},\qquad\nu>-\frac12,
+\end{equation}
+where $J_{\nu}$ is the Bessel function of order $\nu$, hence
+\begin{equation*}
+\widehat f(\alpha)=\frac{c\,\omega_{k-2}}{|\alpha|^{(k-2)/2}}\int_{0}^{\infty}f(r)r^{k/2}J_{\frac12(k-2)}(|\alpha|r)\,dr,
+\end{equation*}
+where $c=2^{(k-2)/2}\Gamma\bigl(\frac{k-1}{2}\bigr)\Gamma\bigl(\frac12\bigr)$, for $k\ge 2$, with $\omega_0\equiv 2$.
+
+Since the volume $V_k(s)$ of the (solid) sphere defined by $|y|^{2}\le s$ equals $\bigl\{\pi^{k/2}s^{k/2}/\Gamma(\frac12 k+1)\bigr\}$, which can be proved by induction on $k$, we have $\omega_{k-1}=\bigl\{2\pi^{k/2}/\Gamma(k/2)\bigr\}$, for $k\ge 2$. We thus have for any $f\in L_1(E_k)$, where $f$ is radial,
+\begin{equation}\label{eq:I-15.24}\tag{15.24}
+\widehat f(\alpha)=\frac{(2\pi)^{k/2}}{|\alpha|^{(k-2)/2}}\int_{0}^{\infty}f(r)r^{k/2}J_{\frac12(k-2)}(|\alpha|r)\,dr.
+\end{equation}
+If $k=3$, then $(k-2)/2=\frac12$, and $J_{1/2}(x)=\bigl(\frac{2}{\pi x}\bigr)^{1/2}\sin x$, because of \eqref{eq:I-15.23} with $\nu=\frac12$, hence
+\begin{equation*}
+\widehat f(\alpha)=\frac{4\pi}{|\alpha|}\int_{0}^{\infty}r f(r)\sin(|\alpha|r)\,dr.
+\end{equation*}
+If $k=2$, then obviously
+\begin{equation*}
+\widehat f(\alpha)=2\pi\int_{0}^{\infty}r f(r)J_0(|\alpha|r)\,dr.
+\end{equation*}
+Formula \eqref{eq:I-15.24} holds good also for $k=1$, since $J_{-1/2}(x)=\bigl(\frac{2}{\pi x}\bigr)^{1/2}\cos x$, as can be seen directly by taking $\nu=-\frac12$ in the defining series for $J_{\nu}$ given in Example~8, \S\ref{sec:I-1}.
+
+In general, a Bessel function appears in the integral for $\widehat f$ if $k$ is even, and a trigonometric function if $k$ is odd.

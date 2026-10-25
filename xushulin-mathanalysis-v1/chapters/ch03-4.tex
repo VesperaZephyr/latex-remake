@@ -1,0 +1,448 @@
+% ====================================================================
+%  徐森林、薛春华《数学分析》（第一册）
+%  \S3.4  L'Hospital 法则
+%  源：原书印刷页 198-206（PDF 物理页 204-212）
+%  底本：PaddleOCR-VL-1.6 + 高清影印比对校订
+%  规范：全西文半角标点；单一落盘出口 _texout.py
+% ====================================================================
+\section{L'Hospital 法则}\label{sec:3.4}
+
+本节介绍的 L'Hospital(洛必塔)法则是求 $\frac{0}{0}$, $\frac{\infty}{\infty}$, $0\cdot\infty$, $0^{0}$, $1^{\infty}$, $\infty^{0}$, $\infty-\infty$ 各种不定型极限的非常有效的方法.
+
+\begin{theorem}[$\frac{0}{0}$ 不定型极限, L'Hospital 法则]\label{thm:3.4.1}
+设 $f$, $g$ 在区间 $(x_0,b)$ 上可导, 且
+\[
+\lim_{x\to x_0^{+}}f(x)=0=\lim_{x\to x_0^{+}}g(x),\quad g'(x)\neq0,\quad \forall x\in(x_0,b).
+\]
+如果 $\lim\limits_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=A$(实数, $\pm\infty$, $\infty$), 那么
+\[
+\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=\lim_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=A.
+\]
+\end{theorem}
+
+\begin{proof}
+延拓 $f$, $g$ 到 $x_0$, s.t. $f(x_0)=g(x_0)=0$, 则 $f$, $g$ 在 $[x_0,b]$ 上连续, 且 $\forall x\in(x_0,b)$, $g'(x)\neq0$. 根据 Cauchy 中值定理知, $\exists\xi\in(x_0,x)$, s.t.
+\[
+\frac{f(x)}{g(x)}=\frac{f(x)-f(x_0)}{g(x)-g(x_0)}=\frac{f'(\xi)}{g'(\xi)}.
+\]
+令 $x\to x_0^{+}$, 此时, $\xi\to x_0^{+}$, 所以,
+\[
+\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=\lim_{x\to x_0^{+}}\frac{f'(\xi)}{g'(\xi)}=\lim_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}.
+\]
+\end{proof}
+
+\begin{remark}\label{rem:3.4.1}
+当 $x\to x_0^{-}$, $x\to x_0$ 时, 类似定理~\ref{thm:3.4.1}, 有相同的结论.
+\end{remark}
+
+\begin{theoremp}[$\frac{0}{0}$ 不定型极限, L'Hospital 法则]\label{thm:3.4.1p}
+设 $f$, $g$ 在 $(a,+\infty)$ 上可导, 且
+\[
+\lim_{x\to+\infty}f(x)=0=\lim_{x\to+\infty}g(x),\quad g'(x)\neq0,\quad \forall x\in(a,+\infty).
+\]
+如果 $\lim\limits_{x\to+\infty}\frac{f'(x)}{g'(x)}=A$(实数, $\pm\infty$, $\infty$), 那么
+\[
+\lim_{x\to+\infty}\frac{f(x)}{g(x)}=\lim_{x\to+\infty}\frac{f'(x)}{g'(x)}=A.
+\]
+\end{theoremp}
+
+\begin{proof}
+令 $x=\frac{1}{t}$, 当 $x\to+\infty$ 时, $t\to0^{+}$, 则
+\[
+\lim_{x\to+\infty}f(x)=0\Longleftrightarrow\lim_{t\to0^{+}}f\left(\frac{1}{t}\right)=0,
+\]
+\[
+\lim_{x\to+\infty}g(x)=0\Longleftrightarrow\lim_{t\to0^{+}}f\left(\frac{1}{t}\right)=0.
+\]
+于是,
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\frac{f(x)}{g(x)}&=\lim_{t\to0^{+}}\frac{f\left(\frac{1}{t}\right)}{g\left(\frac{1}{t}\right)}=\lim_{t\to0^{+}}\frac{f'\left(\frac{1}{t}\right)\cdot\frac{-1}{t^{2}}}{g'\left(\frac{1}{t}\right)\cdot\frac{-1}{t^{2}}}=\lim_{t\to0^{+}}\frac{f'\left(\frac{1}{t}\right)}{g'\left(\frac{1}{t}\right)}\\
+&=\lim_{x\to+\infty}\frac{f'(x)}{g'(x)}.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remarkp}\label{rem:3.4.1p}
+当 $x\to-\infty$, $x\to\infty$ 时, 类似定理~\ref{thm:3.4.1p} 有相同的结论.
+\end{remarkp}
+
+\begin{theorempp}[$\frac{0}{0}$ 不定型极限, 推广 L'Hospital 法则]\label{thm:3.4.1pp}
+设当 $x\to x_0^{+}$ 时, $\frac{f}{g}$, $\frac{f'}{g'}$, $\cdots$, $\frac{f^{(n-1)}}{g^{(n-1)}}$ 均为 $\frac{0}{0}$ 型, 且 $g^{(i)}(x)\neq0$, $i=1,\cdots,n$. 如果 $\lim\limits_{x\to x_0^{+}}\frac{f^{(n)}(x)}{g^{(n)}(x)}=A$(实数, $\pm\infty$, $\infty$), 则
+\[
+\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=\lim_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=\cdots=\lim_{x\to x_0^{+}}\frac{f^{(n)}(x)}{g^{(n)}(x)}=A.
+\]
+\end{theorempp}
+
+\begin{proof}
+由题设将定理~\ref{thm:3.4.1} 应用于 $f^{(n-1)}(x)$, $g^{(n-1)}(x)$ 推出
+\[
+\lim_{x\to x_0^{+}}\frac{f^{(n-1)}(x)}{g^{(n-1)}(x)}=\lim_{x\to x_0^{+}}\frac{f^{(n)}(x)}{g^{(n)}(x)}.
+\]
+依此类推得到
+\[
+\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=\lim_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=\cdots=\lim_{x\to x_0^{+}}\frac{f^{(n-1)}(x)}{g^{(n-1)}(x)}=\lim_{x\to x_0^{+}}\frac{f^{(n)}(x)}{g^{(n)}(x)}.
+\]
+\end{proof}
+
+\begin{remarkpp}\label{rem:3.4.1pp}
+当 $x\to x_0^{-}$, $x\to x_0$, $x\to\pm\infty$, $x\to\infty$ 时, 类似定理~\ref{thm:3.4.1pp} 有相同的结论.
+\end{remarkpp}
+
+\begin{theorem}[$\frac{\cdot}{\infty}$ 不定型极限, L'Hospital 法则]\label{thm:3.4.2}
+设 $f$, $g$ 都在 $(x_0,b)$ 上可导, 且
+\[
+\lim_{x\to x_0^{+}}g(x)=\infty,\quad g'(x)\neq0,\quad \forall x\in(x_0,b).
+\]
+如果 $\lim\limits_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=A$(实数, $\pm\infty$, $\infty$), 那么
+\[
+\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=\lim_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=A.
+\]
+\end{theorem}
+
+\begin{proof}[证法 1]
+只证 $\lim\limits_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}=A\in\mathbb{R}$ 的情形, 其他情形 $(A=\pm\infty,\infty)$ 类似证明.
+
+$\forall\varepsilon>0$, $\exists b_1\in(x_0,b)$, s.t. 当 $x\in(x_0,b_1)$ 时,
+\[
+A-\frac{\varepsilon}{2}<\frac{f'(x)}{g'(x)}<A+\frac{\varepsilon}{2}.
+\]
+因此, 根据 Cauchy 中值定理, $\exists\xi\in(x,b_1)$, s.t.
+\[
+\begin{aligned}
+A-\frac{\varepsilon}{2}<\left(\frac{f(x)}{g(x)}-\frac{f(b_1)}{g(x)}\right)\left(1-\frac{g(b_1)}{g(x)}\right)^{-1}&=\frac{f(x)-f(b_1)}{g(x)-g(b_1)}\\
+&=\frac{f'(\xi)}{g'(\xi)}<A+\frac{\varepsilon}{2},\\
+\left(1-\frac{g(b_1)}{g(x)}\right)\left(A-\frac{\varepsilon}{2}\right)+\frac{f(b_1)}{g(x)}&<\frac{f(x)}{g(x)}\\
+&<\left(1-\frac{g(b_1)}{g(x)}\right)\left(A+\frac{\varepsilon}{2}\right)+\frac{f(b_1)}{g(x)}.
+\end{aligned}
+\]
+又因为 $\lim\limits_{x\to x_0}g(x)=\infty$, 故
+\[
+\lim_{x\to x_0^{+}}\left[\left(1-\frac{g(b_1)}{g(x)}\right)\left(A-\frac{\varepsilon}{2}\right)+\frac{f(b_1)}{g(x)}\right]=A-\frac{\varepsilon}{2},
+\]
+\[
+\lim_{x\to x_0^{+}}\left[\left(1-\frac{g(b_1)}{g(x)}\right)\left(A+\frac{\varepsilon}{2}\right)+\frac{f(b_1)}{g(x)}\right]=A+\frac{\varepsilon}{2}.
+\]
+由此知, $\exists b_2\in(x_0,b_1)$, s.t. 当 $x\in(x_0,b_2)$ 时,
+\[
+A-\varepsilon<\frac{f(x)}{g(x)}<A+\varepsilon.
+\]
+这就证明了
+\[
+\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=A=\lim_{x\to x_0^{+}}\frac{f'(x)}{g'(x)}.
+\]
+\end{proof}
+
+\begin{proof}[证法 2]
+在不等式
+\[
+\begin{aligned}
+&\left(1-\frac{g(b_1)}{g(x)}\right)\left(A-\frac{\varepsilon}{2}\right)+\frac{f(b_1)}{g(x)}<\frac{f(x)}{g(x)}\\
+&<\left(1-\frac{g(b_1)}{g(x)}\right)\left(A+\frac{\varepsilon}{2}\right)+\frac{f(b_1)}{g(x)}
+\end{aligned}
+\]
+两边取上、下极限得到
+\[
+A-\frac{\varepsilon}{2}\leqslant\varliminf_{x\to x_0^{+}}\frac{f(x)}{g(x)}\leqslant\varlimsup_{x\to x_0^{+}}\frac{f(x)}{g(x)}\leqslant A+\frac{\varepsilon}{2},
+\]
+再令 $\varepsilon\to0^{+}$, 有
+\[
+A\leqslant\varliminf_{x\to x_0^{+}}\frac{f(x)}{g(x)}\leqslant\varlimsup_{x\to x_0^{+}}\frac{f(x)}{g(x)}\leqslant A,
+\]
+\[
+\lim_{x\to x_0}\frac{f(x)}{g(x)}=\lim_{x\to x_0^{+}}\frac{f(x)}{g(x)}=\varlimsup_{x\to x_0^{+}}\frac{f(x)}{g(x)}=A=\lim_{x\to x_0}\frac{f'(x)}{g'(x)}.
+\]
+\end{proof}
+
+注意: 定理~\ref{thm:3.4.2} 中, 当 $x\to x_0^{+}$ 时, $\frac{\cdot}{\infty}$ 的分子可以趋于 $\infty$, 也可以不趋于 $\infty$.
+
+关于 $\frac{\cdot}{\infty}$ 不定型极限, 类似定理~\ref{thm:3.4.1p}、定理~\ref{thm:3.4.1pp}、注~\ref{rem:3.4.1}、注~\ref{rem:3.4.1p}、注~\ref{rem:3.4.1pp} 可得到定理 3.4.2$'$、定理 3.4.2$''$、注 3.4.2$'$、注 3.4.2$''$, 不再一一赘述.
+
+\begin{example}\label{ex:3.4.1}
+在例~\ref{ex:2.2.13} 中, 应用 L'Hospital 法则得到
+\[
+\lim_{x\to+\infty}\frac{\ln x}{x^{k}}=\lim_{x\to+\infty}\frac{1}{x}\cdot\frac{1}{kx^{k-1}}=\frac{1}{k}\lim_{x\to+\infty}\frac{1}{x^{k}}=0,\quad k>0.
+\]
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\frac{x^{k}}{a^{x}}&=\lim_{x\to+\infty}\frac{kx^{k-1}}{a^{x}\ln a}=\lim_{x\to+\infty}\frac{k(k-1)x^{k-2}}{a^{x}(\ln a)^{2}}=\cdots\\
+&=k(k-1)\cdots(k-n+1)\lim_{x\to+\infty}\frac{x^{k-n}}{a^{x}(\ln a)^{n}}=0,
+\end{aligned}
+\]
+其中, $n-1<k\leqslant n$, $a>1$.
+
+进而, 当 $p(x)=a_0x^{n}+\cdots+a_{n-1}x+a_{n}$ 为多项式时,
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\frac{p(x)}{a^{x}}&=\lim_{x\to+\infty}\frac{p'(x)}{a^{x}\ln a}=\lim_{x\to+\infty}\frac{p''(x)}{a^{x}(\ln a)^{2}}=\cdots\\
+&=\lim_{x\to+\infty}\frac{a_0n!}{a^{x}(\ln a)^{n}}=0,\quad a>0.
+\end{aligned}
+\]
+此外, 还有
+\[
+\lim_{x\to+\infty}\frac{a^{x}}{x^{x}}=\lim_{x\to+\infty}\mathrm{e}^{x(\ln a-\ln x)}=0,\quad a>0.
+\]
+得到这一等式时, 根本不需要用 L'Hospital 法则. 实际上, 用 L'Hospital 法则不能求得极限.
+\end{example}
+
+\begin{example}\label{ex:3.4.2}
+\[
+\lim_{x\to0}\frac{x-\sin x}{\frac{x^{3}}{3!}}=\lim_{x\to0}\frac{1-\cos x}{\frac{x^{2}}{2!}}=\lim_{x\to0}\frac{\sin x}{x}=1.
+\]
+必须提醒读者注意: 加减不能用等价代换, 请检查下述计算哪一步是错误的.
+\[
+\lim_{x\to0}\frac{x-\sin x}{\frac{x^{3}}{3!}}=\lim_{x\to0}\frac{x-x}{\frac{x^{3}}{3!}}=\lim_{x\to0}0=0.
+\]
+\end{example}
+
+在计算极限时, 会遇到“$0\cdot\infty$”、“$\infty-\infty$”、“$0^{0}$”、“$\infty^{0}$”、“$1^{\infty}$”等不定型. 只要经过适当的变换, 最终都可以化为“$\frac{0}{0}$”或“$\frac{\infty}{\infty}$”型的情形, 再应用 L'Hospital 法则去解决.
+
+\begin{example}\label{ex:3.4.3}
+求极限 $\lim\limits_{x\to0^{+}}x^{\alpha}\ln x$, 其中 $\alpha>0$.
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+\lim_{x\to0^{+}}x^{\alpha}\ln x&\xlongequal{0\cdot\infty}\lim_{x\to0^{+}}\frac{\ln x}{\left(\frac{1}{x}\right)^{\alpha}}\xlongequal{\frac{\infty}{\infty}}\lim_{x\to0^{+}}\frac{\frac{1}{x}}{\alpha x^{-\alpha-1}}\\
+&=-\frac{1}{\alpha}\lim_{x\to0^{+}}x^{\alpha}=0.
+\end{aligned}
+\]
+\end{solution}
+
+\begin{example}\label{ex:3.4.4}
+求极限:
+(1) $\lim\limits_{x\to1}\left(\frac{1}{x-1}-\frac{1}{\ln x}\right)$; \quad (2) $\lim\limits_{x\to\pi/2}(\sec x-\tan x)$.
+\end{example}
+
+\begin{solution}
+这都是“$\infty-\infty$”型, 但可化为 $\frac{0}{0}$ 型.
+
+(1)
+\[
+\begin{aligned}
+\lim_{x\to1}\left(\frac{1}{x-1}-\frac{1}{\ln x}\right)&=\lim_{x\to1}\frac{\ln x-(x-1)}{(x-1)\ln x}=\lim_{x\to1}\frac{\frac{1}{x}-1}{\frac{x-1}{x}+\ln x}\\
+&=\lim_{x\to1}\frac{1-x}{x-1+x\ln x}=\lim_{x\to1}\frac{-1}{1+1+\ln x}=-\frac{1}{2}.
+\end{aligned}
+\]
+
+(2)
+\[
+\lim_{x\to\pi/2}(\sec x-\tan x)=\lim_{x\to\pi/2}\frac{1-\sin x}{\cos x}=\lim_{x\to\pi/2}\frac{-\cos x}{-\sin x}=0.
+\]
+\end{solution}
+
+\begin{example}\label{ex:3.4.5}
+求极限:
+(1) $\lim\limits_{x\to0^{+}}(\sin x)^{x}$; \quad (2) $\lim\limits_{x\to0^{+}}(\sin x)^{\frac{k}{1+\ln x}}$ ($k$ 为常数);
+(3) $\lim\limits_{x\to0}(\cos x)^{\frac{1}{x^{2}}}$; \quad (4) $\lim\limits_{x\to\frac{\pi}{2}^{-}}(\tan x)^{\frac{\pi}{2}-x}$.
+\end{example}
+
+\begin{solution}
+(1)
+\[
+\begin{aligned}
+\lim_{x\to0^{+}}(\sin x)^{x}&\xlongequal{0^{0}}\exp\left(\lim_{x\to0^{+}}x\ln\sin x\right)\xlongequal{0\cdot\infty}\exp\left(\lim_{x\to0^{+}}\frac{\ln\sin x}{x^{-1}}\right)\\
+&=\exp\left(\lim_{x\to0^{+}}\frac{1}{-x^{-2}}\cdot\frac{\cos x}{\sin x}\right)=\exp\left(\lim_{x\to0^{+}}\frac{-x}{\sin x}\cdot x\cos x\right)=\mathrm{e}^{0}=1.
+\end{aligned}
+\]
+
+(2)
+\[
+\begin{aligned}
+\lim_{x\to0^{+}}(\sin x)^{\frac{k}{1+\ln x}}&\xlongequal{0^{0}}\exp\left(\lim_{x\to0^{+}}\frac{k\ln\sin x}{1+\ln x}\right)=\exp^{k}\left(\lim_{x\to0^{+}}\frac{\frac{\cos x}{\sin x}}{x^{-1}}\right)\\
+&=\exp^{k}\left(\lim_{x\to0^{+}}\cos x\cdot\frac{x}{\sin x}\right)=\mathrm{e}^{k}.
+\end{aligned}
+\]
+
+(3)
+\[
+\lim_{x\to0}(\cos x)^{\frac{1}{x^{2}}}\xlongequal{1^{\infty}}\exp\left(\lim_{x\to0}\frac{\ln\cos x}{x^{2}}\right)=\exp\left(\lim_{x\to0}\frac{-\tan x}{2x}\right)=\mathrm{e}^{-\frac{1}{2}}.
+\]
+
+(4)
+\[
+\begin{aligned}
+\lim_{x\to\frac{\pi}{2}^{-}}(\tan x)^{\frac{\pi}{2}-x}&\xlongequal{t=\frac{\pi}{2}-x}\lim_{t\to0^{+}}\left(\frac{\cos t}{\sin t}\right)^{t}=\frac{\lim\limits_{t\to0^{+}}(\cos t)^{t}}{\lim\limits_{t\to0^{+}}(\sin t)^{t}}\\
+&=\frac{1}{1}=1.
+\end{aligned}
+\]
+\end{solution}
+
+应用 L'Hospital 法则, 可重新计算例~\ref{ex:2.2.12}(3) 及例~\ref{ex:2.2.13}(3) 中的极限.
+
+\begin{example}\label{ex:3.4.6}
+(1) 求 $\lim\limits_{x\to+\infty}\left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{n}$;
+(2) 求 $\lim\limits_{x\to0^{+}}\left(\frac{a_1^{x}+\cdots+a_m^{x}}{m}\right)^{\frac{1}{x}}$.
+\end{example}
+
+\begin{solution}
+(1)
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\left(1+\frac{1}{n}-\frac{1}{n^{2}}\right)^{n}&\xlongequal{1^{\infty}}\lim_{x\to0}(1+x-x^{2})^{\frac{1}{x}}\\
+&=\exp\left(\lim_{x\to0}\frac{\ln(1+x-x^{2})}{x}\right)=\exp\left(\lim_{x\to0}\frac{1-2x}{1+x-x^{2}}\right)=\mathrm{e}^{1}=\mathrm{e}.
+\end{aligned}
+\]
+
+(2)
+\[
+\begin{aligned}
+\lim_{x\to0^{+}}\left(\frac{a_1^{x}+\cdots+a_m^{x}}{m}\right)^{\frac{1}{x}}&\xlongequal{1^{\infty}}\exp\left(\lim_{x\to0^{+}}\frac{\ln(a_1^{x}+\cdots+a_m^{x})-\ln m}{x}\right)\\
+&=\exp\left(\lim_{x\to0^{+}}\frac{a_1^{x}\ln a_1+\cdots+a_m^{x}\ln a_m}{a_1^{x}+\cdots+a_m^{x}}\right)\\
+&=\exp\left(\frac{\ln a_1+\cdots+\ln a_m}{m}\right)=\mathrm{e}^{\ln\sqrt[m]{a_1\cdots a_m}}=\sqrt[m]{a_1\cdots a_m}.
+\end{aligned}
+\]
+\end{solution}
+
+注意: 不能在数列形式下直接用 L'Hospital 法则, 因为对离散变量 $n\in\mathbb{N}$ 是无法求导数的.
+
+\begin{example}\label{ex:3.4.7}
+设
+\[
+f(x)=\begin{cases}\frac{g(x)}{x}, & x\neq0,\\ 0, & x=0,\end{cases}
+\]
+且 $g(0)=g'(0)=0$, $g''(0)=3$. 试求 $f'(0)$.
+\end{example}
+
+\begin{solution}
+\[
+\begin{aligned}
+f'(0)&=\lim_{x\to0}\frac{f(x)-f(0)}{x-0}=\lim_{x\to0}\frac{\frac{g(x)}{x}-0}{x-0}=\lim_{x\to0}\frac{g(x)}{x^{2}}\\
+&\xlongequal{\frac{0}{0}}\lim_{x\to0}\frac{g'(x)}{2x}=\frac{1}{2}\lim_{x\to0}\frac{g'(x)-g'(0)}{x-0}=\frac{1}{2}g''(0)=\frac{3}{2}.
+\end{aligned}
+\]
+如果用两次 L'Hospital 法则, 得到
+\[
+f'(0)=\lim_{x\to0}\frac{g(x)}{x^{2}}=\lim_{x\to0}\frac{g'(x)}{2x}=\lim_{x\to0}\frac{g''(x)}{2}=\frac{1}{2}g''(0)=\frac{3}{2}.
+\]
+错在何处?
+\end{solution}
+
+\begin{example}\label{ex:3.4.8}
+设 $f$ 在点 $x$ 处 2 阶可导. 证明:
+\[
+f''(x)=\lim_{h\to0}\frac{f(x+h)-f(x-h)-2f(x)}{h^{2}}.
+\]
+\end{example}
+
+\begin{proof}
+因为 $f$ 在 $x$ 点 2 阶可导, 故 $\exists\delta>0$, s.t. $f$ 在 $(x-\delta,x+\delta)$ 中 1 阶可导. 于是,
+\[
+\begin{aligned}
+&\lim_{h\to0}\frac{f(x+h)+f(x-h)-2f(x)}{h^{2}}\xlongequal[\text{L'Hospital 法则}]{\frac{0}{0}}\lim_{h\to0}\frac{f'(x+h)-f'(x-h)}{2h}\\
+&=\frac{1}{2}\lim_{h\to0}\left[\frac{f'(x+h)-f'(x)}{h}+\frac{f'(x-h)-f'(x)}{-h}\right]=\frac{1}{2}(f''(x)+f''(x))=f''(x).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{example}\label{ex:3.4.9}
+下面两种计算哪个是正确的? 如果有错误, 请指出错在何处?
+\[
+\lim_{x\to+\infty}\frac{2x-\cos x}{2x+\cos x}=\lim_{x\to+\infty}\frac{2-\frac{\cos x}{x}}{2+\frac{\cos x}{x}}=\frac{2-0}{2+0}=1.
+\]
+\[
+\begin{aligned}
+\lim_{x\to+\infty}\frac{2x-\cos x}{2x+\cos x}&\xlongequal{\frac{\infty}{\infty}\text{ 型}}\lim_{x\to+\infty}\frac{2+\sin x}{2-\sin x}=\lim_{x\to+\infty}\frac{\cos x}{-\cos x}\\
+&=\lim_{x\to+\infty}(-1)=-1.
+\end{aligned}
+\]
+\end{example}
+
+\begin{example}\label{ex:3.4.10}
+设 $f$ 在 $(a,+\infty)$ 上可导, 并且 $\lim\limits_{x\to+\infty}[f(x)+f'(x)]=0$. 证明: $\lim\limits_{x\to+\infty}f(x)=0$.
+\end{example}
+
+\begin{proof}[证法 1]
+由 $\frac{\cdot}{\infty}$ 型 L'Hospital 法则得
+\[
+\begin{aligned}
+\lim_{x\to+\infty}f(x)&=\lim_{x\to+\infty}\frac{\mathrm{e}^{x}f(x)}{\mathrm{e}^{x}}\xlongequal{\frac{\cdot}{\infty}}\lim_{x\to+\infty}\frac{\mathrm{e}^{x}[f(x)+f'(x)]}{\mathrm{e}^{x}}\\
+&=\lim_{x\to+\infty}[f(x)+f'(x)]=0.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{proof}[证法 2]
+因为 $\lim\limits_{x\to+\infty}[f(x)+f'(x)]=0$, 所以, $\exists\Delta_1>a$, s.t. 当 $x>\Delta_1$ 时, 有
+\[
+|f(x)+f'(x)|<\frac{\varepsilon}{2}.
+\]
+固定 $\Delta_1$, 取 $\Delta>\max\left\{\Delta_1,\ln\frac{2|\mathrm{e}^{\Delta_1}f(\Delta_1)|}{\varepsilon}\right\}$, 当 $x>\Delta$ 时, 有
+\[
+\begin{aligned}
+|f(x)-0|&=\left|\frac{\mathrm{e}^{x}f(x)}{\mathrm{e}^{x}}\right|\\
+&=\left|\frac{\mathrm{e}^{x}f(x)-\mathrm{e}^{\Delta_1}f(\Delta_1)}{\mathrm{e}^{x}-\mathrm{e}^{\Delta_1}}\cdot\frac{\mathrm{e}^{x}-\mathrm{e}^{\Delta_1}}{\mathrm{e}^{x}}+\frac{\mathrm{e}^{\Delta_1}f(\Delta_1)}{\mathrm{e}^{x}}\right|
+\end{aligned}
+\]
+\[
+\begin{aligned}
+&\xlongequal[\exists\xi\in(\Delta_1,x)]{\text{Cauchy 中值定理}}\left|\frac{\mathrm{e}^{\xi}[f(\xi)+f'(\xi)]}{\mathrm{e}^{\xi}}(1-\mathrm{e}^{\Delta_1-x})+\frac{\mathrm{e}^{\Delta_1}f(\Delta_1)}{\mathrm{e}^{x}}\right|\\
+&\leqslant|f(\xi)+f'(\xi)|+\frac{|\mathrm{e}^{\Delta_1}f(\Delta_1)|}{\mathrm{e}^{x}}<\frac{\varepsilon}{2}+\frac{|\mathrm{e}^{\Delta_1}f(\Delta_1)|}{\mathrm{e}^{\Delta}}\\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon,
+\end{aligned}
+\]
+所以,
+\[
+\lim_{x\to+\infty}f(x)=0.
+\]
+\end{proof}
+
+\begin{exblock}{练习题 3.4}
+  \item 求下列不定型的极限:
+  \begin{enumerate}[label=(\arabic*)]
+    \item $\lim\limits_{x\to0}\frac{\mathrm{e}^{x}-1}{\sin x}$;
+    \item $\lim\limits_{x\to\frac{\pi}{6}}\frac{1-2\sin x}{\cos 3x}$;
+    \item $\lim\limits_{x\to0}\frac{\ln(1+x)-x}{\cos x-1}$;
+    \item $\lim\limits_{x\to0}\frac{\tan x-x}{x-\sin x}$;
+    \item $\lim\limits_{x\to\frac{\pi}{2}}\frac{\tan x-6}{\sec x+5}$;
+    \item $\lim\limits_{x\to0}\left(\frac{1}{x}-\frac{1}{\mathrm{e}^{x}-1}\right)$;
+    \item $\lim\limits_{x\to0}(\tan x)^{\sin x}$;
+    \item $\lim\limits_{x\to1}x^{\frac{1}{1-x}}$;
+    \item $\lim\limits_{x\to0}(1+x^{2})^{\frac{1}{x}}$;
+    \item $\lim\limits_{x\to0^{+}}\sin x\ln x$;
+    \item $\lim\limits_{x\to0}\left(\frac{1}{x^{2}}-\frac{1}{\sin^{2}x}\right)$;
+    \item $\lim\limits_{x\to0}\left(\frac{\tan x}{x}\right)^{\frac{1}{x^{2}}}$;
+    \item $\lim\limits_{x\to0}\frac{\mathrm{e}^{ax}-\mathrm{e}^{bx}}{\sin ax-\sin bx}$;
+    \item $\lim\limits_{x\to0}\frac{x\cot x-1}{x^{2}}$;
+    \item $\lim\limits_{x\to0}\frac{x(\mathrm{e}^{x}+1)-2(\mathrm{e}^{x}-1)}{x^{3}}$;
+    \item $\lim\limits_{x\to+\infty}\frac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{x^{3}}$;
+    \item $\lim\limits_{x\to0^{+}}x^{x}$;
+    \item $\lim\limits_{x\to1^{-}}\ln x\ln(1-x)$;
+    \item $\lim\limits_{x\to+\infty}\left(\cos\frac{a}{x}\right)^{x}$;
+    \item $\lim\limits_{x\to+\infty}\left(\frac{2}{\pi}\arctan x\right)^{x}$;
+    \item $\lim\limits_{x\to\infty}x\left(\left(1+\frac{1}{x}\right)^{x}-\mathrm{e}\right)$;
+    \item $\lim\limits_{x\to\infty}\left(\frac{2}{\pi}\arccos x\right)^{\frac{1}{x}}$;
+    \item $\lim\limits_{x\to\infty}(\pi-2\arctan x)\ln x$;
+    \item $\lim\limits_{x\to+\infty}\left(\frac{\pi}{2}-\arctan x\right)^{\frac{1}{\ln x}}$;
+    \item $\lim\limits_{x\to0}\left(\frac{\ln(1+x)^{1+x}}{x^{2}}-\frac{1}{x}\right)$.
+  \end{enumerate}
+
+  \item 设 $f$ 在 $0$ 的某开邻域内 2 阶连续可导且 $f(0)=0$, 定义
+  \[
+  g(x)=\begin{cases}\frac{f(x)}{x}, & x\neq0,\\ f'(0), & x=0.\end{cases}
+\]
+  证明: $g$ 在这开邻域内是连续可导的.
+
+  \item (1) 设函数 $f$ 在 $x_0$ 处具有连续的 2 阶导数. 两次应用 L'Hospital 法则证明:
+  \[
+  \lim_{h\to0}\frac{f(x_0+h)+f(x_0-h)-2f(x_0)}{h^{2}}=f''(x_0);
+\]
+  (2) 当函数 $f$ 在点 $x_0$ 处具有 2 阶导数时, 上述等式是否仍成立.
+
+  \item 设 $f(0)=0$, $f'$ 在原点的某开邻域内连续, 且 $f'(0)\neq0$. 证明: $\lim\limits_{x\to0^{+}}x^{f(x)}=1$.
+
+  \item 证明: $f(x)=x^{3}\mathrm{e}^{-x^{2}}$ 为有界函数.
+\end{exblock}
+
+\begin{exblock}{思考题 3.4}
+  \item 设 $x_1=\sin x_0>0$, $x_{n+1}=\sin x_n$, $x\in\mathbb{N}$. 证明:
+  \[
+  \lim_{n\to+\infty}\sqrt{\frac{n}{3}}x_n=1.
+\]
+
+  \item 应用 L'Hospital 法则或数学归纳法证明:
+  \[
+  \lim_{x\to0}\frac{1-\cos a_1x\cdots\cos a_nx}{x^{2}}=\frac{1}{2}\sum_{k=1}^{n}a_k^{2}.
+\]
+\end{exblock}

@@ -1,0 +1,359 @@
+\section{微分中值定理}\label{sec:5.1}
+
+用导数的概念，可以直接研究函数的局部性质．例如，我们可以用它来求函数的局部极值．
+
+\begin{definition}\label{def:5-1}
+称 $f(x)$ 在 $x_{0}$ 达到\emph{极大（小）值}，如果存在 $\delta > 0$，使得 $f(x_{0})$ 是 $f(x)$ 在 $(x_{0}-\delta,x_{0}+\delta)$ 的最大（小）值，即
+\[
+f(x_{0})\geqslant f(x),\quad\forall x\in(x_{0}-\delta,x_{0}+\delta)
+\]
+\[
+(\text{或 } f(x_{0})\leqslant f(x),\quad\forall x\in(x_{0}-\delta,x_{0}+\delta)).
+\]
+极大值、极小值统称为\emph{极值}．若 $f(x)$ 在 $x_{0}$ 达到极值，则称 $x_{0}$ 为 $f(x)$ 的\emph{极值点}．
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{fig5-1.png}
+\figcap{图 5-1}\label{fig:5-1}
+\end{figure}
+
+\begin{theorem}[费马定理]\label{thm:5-1}
+设 $f(x)$ 在 $x_{0}$ 附近有定义．若 $f(x)$ 在 $x_{0}$ 达到极值，且 $f(x)$ 在 $x_{0}$ 可导，则 $f'(x_{0})=0$．
+\end{theorem}
+
+\begin{proof}
+不妨设 $f(x)$ 在 $x_{0}$ 达到极大值，这时，存在 $\delta>0$，有
+\[
+f(x)-f(x_{0})\leqslant0,\quad x\in(x_{0}-\delta,x_{0}+\delta).
+\]
+因此当 $x < x_{0}$ 时，
+\[
+\frac{f(x)-f(x_{0})}{x-x_{0}}\geqslant0,\quad x\in(x_{0}-\delta,x_{0}).
+\]
+令 $x \to x_{0}^{-}$ 取极限，便得 $f_{-}'(x_{0}) = f'(x_{0}) \geqslant 0$；而当 $x > x_{0}$ 时，
+\[
+\frac{f(x)-f(x_{0})}{x-x_{0}}\leqslant0,\quad x\in(x_{0},x_{0}+\delta).
+\]
+令 $x \to x_{0}^{+}$ 取极限，便得 $f_{+}'(x_{0}) = f'(x_{0}) \leqslant 0$．从而 $f'(x_{0}) = 0$．定理 5.1 证完．
+\end{proof}
+
+由极限的保号性知，如果 $f'(x_{0})>0$，则存在 $\delta>0$，使得在 $(x_{0}-\delta,x_{0}+\delta)$，$x\neq x_{0}$，有
+\[
+\frac{f(x)-f(x_{0})}{x-x_{0}}>0.
+\]
+因此在 $(x_{0}-\delta,x_{0})$，$f(x)<f(x_{0})$；在 $(x_{0},x_{0}+\delta)$，$f(x)>f(x_{0})$．这和函数 $f(x)$ 在 $x_{0}$ 附近上升有些相似，由此推想，在一个区间 $(a,b)$，如果 $f'(x)>0$，能否断言 $f(x)$ 在 $(a,b)$ 严格上升？这在物理解释和几何直观两方面看都应是正确的．但上述推理还不能给出一个严格的证明，这里需要一个联系局部与整体的工具，这就是中值定理．为证明它，需要一些其他方面的结果．
+
+\begin{theorem}[闭区间上连续函数最值定理]\label{thm:5-2}
+设 $f(x)$ 在闭区间 $[a, b]$ 上连续，则 $f(x)$ 在 $[a, b]$ 上必能达到它的最大值与最小值，即存在 $x_{1}, x_{2} \in [a, b]$，使得
+\[
+f(x_{1}) = \sup_{x \in [a, b]} f(x),\qquad f(x_{2}) = \inf_{x \in [a, b]} f(x).
+\]
+\end{theorem}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-2.png}
+\figcap{图 5-2}\label{fig:5-2}
+\end{figure}
+
+在证明定理 5.2 之前，我们先解释一下此定理的几何意义．该定理说明，一条连续曲线（图~\ref{fig:5-2}）必有最高点与最低点．
+
+定理 5.2 中的闭区间条件是不可少的．例如函数 $f(x)=x$ 在开区间 $(0,1)$ 上连续，但在 $(0,1)$ 上不能达到它的上确界与下确界：
+\[
+\sup_{x\in(0,1)} x=1,\qquad \inf_{x\in(0,1)} x=0.
+\]
+连续性的条件也是不可少的．例如函数
+\[
+f(x)=\begin{cases}
+\dfrac{1}{x}, & x\in(0,1],\\
+0, & x=0
+\end{cases}
+\]
+在闭区间 $[0,1]$ 上除 $x=0$ 外连续，但它在 $[0,1]$ 上无界，更谈不上达到最大值了．
+
+\begin{proof}[定理 5.2 的证明]
+先证最大值的情形，用二分法与反证法证明．先二分 $[a, b]$，其中点为 $c$．在 $[a, c]$ 与 $[c, b]$ 两个子区间中，必至少有一个子区间 $I_{1}$，满足
+\[
+\sup_{x\in I_{1}} f(x) = \sup_{x\in [a,b]} f(x).
+\]
+记 $[a_1, b_1] = [a, b]$，记此区间为 $[a_2, b_2]$．再二分 $[a_2, b_2]$，得 $[a_3, b_3]$，使得
+\[
+\sup_{x\in [a_3,b_3]} f(x) = \sup_{x\in [a,b]} f(x).
+\]
+如此做下去，得一闭区间套 $\{[a_n, b_n]\}$，满足
+\[
+[a, b] = [a_1, b_1] \supset [a_2, b_2] \supset \cdots \supset [a_n, b_n] \supset \cdots,
+\]
+且
+\[
+b_n - a_n = \frac{b - a}{2^{n-1}} \to 0\quad (n \to \infty).
+\]
+由闭区间套定理，存在唯一的点 $x_0 \in \bigcap_{n=1}^\infty [a_n, b_n]$．
+
+我们断言：$f(x_0) = \sup_{x\in [a,b]} f(x) = M$．若不然，则 $f(x_0) < M$（因 $x_0 \in [a, b]$，必有 $f(x_0) \leqslant M$）．由 $f(x)$ 在 $x_0$ 连续，对于 $\varepsilon = \frac{M - f(x_0)}{2} > 0$，存在 $\delta > 0$，使得当 $x \in [a, b]$ 且 $|x - x_0| < \delta$ 时，有
+\[
+f(x) < f(x_0) + \varepsilon = \frac{M + f(x_0)}{2} < M.
+\]
+但当 $n$ 充分大时，$[a_n, b_n] \subset (x_0 - \delta, x_0 + \delta)$，于是在 $[a_n, b_n]$ 上 $f(x) \leqslant \frac{M + f(x_0)}{2} < M$，这与
+\[
+\sup_{x\in [a_n, b_n]} f(x) = M
+\]
+矛盾！所以必有 $f(x_0) = M$．
+
+最小值的情形，只需考虑 $-f(x)$ 即可．定理 5.2 证毕．
+\end{proof}
+
+\begin{theorem}[罗尔（Rolle）定理]\label{thm:5-3}
+设 $f(x)$ 在闭区间 $[a, b]$ 上连续，在开区间 $(a, b)$ 内可导，且 $f(a)=f(b)$，则在 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+f'(\xi) = 0.
+\]
+\end{theorem}
+
+该定理的几何解释见图~\ref{fig:5-3}．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-3.png}
+\figcap{图 5-3}\label{fig:5-3}
+\end{figure}
+
+\begin{proof}
+由 $f(x)$ 在 $[a,b]$ 上连续知，$f(x)$ 在 $[a,b]$ 上必能达到它的最大值 $M$ 与最小值 $m$．
+
+若 $M = m$，则 $f(x)$ 在 $[a, b]$ 上恒为常数，此时对于任意 $\xi \in (a, b)$，都有 $f'(\xi) = 0$．
+
+若 $M > m$，由于 $f(a) = f(b)$，最大值 $M$ 与最小值 $m$ 中至少有一个在开区间 $(a, b)$ 内部达到．不妨设最大值在 $\xi \in (a, b)$ 处达到，即 $f(\xi) = M$．由费马定理（定理~\ref{thm:5-1}），必有 $f'(\xi) = 0$．定理 5.3 证毕．
+\end{proof}
+
+注意，定理 5.3 中的三个条件缺一不可．如 $f(x)=|x|$，它在 $[-1,1]$ 连续，$f(-1)=f(1)$，但在 $(-1,1)$ 中没有 $\xi$ 使 $f'(\xi)=0$，这是因为 $f(x)$ 在 $x=0$ 点不可导．又如
+\[
+f(x)=
+\begin{cases}
+x, & 0\leqslant x<1,\\
+0, & x=1
+\end{cases}
+\]
+满足 $f(x)$ 在 $(0,1)$ 可导，$f(0)=f(1)$，但也没有 $\xi\in(0,1)$ 使 $f'(\xi)=0$，这是因为 $f(x)$ 在 $[0,1]$ 不连续．最后考虑函数 $f(x)=x$，它在 $[0,1]$ 不满足端点值相等，即 $f(0)\neq f(1)$，尽管它在 $[0,1]$ 连续且可导，但显然定理结论不成立．
+
+\begin{theorem}[微分中值定理 / 拉格朗日中值定理]\label{thm:5-4}
+设 $f(x)$ 在闭区间 $[a, b]$ 上连续，在开区间 $(a, b)$ 内可导，则在 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+f(b) - f(a) = f'(\xi)(b - a).
+\]
+\end{theorem}
+
+该定理从几何上看是很显然的（见图~\ref{fig:5-4}）．上述等式右边表示割线 $AB$ 的斜率，拉格朗日中值定理说明：在 $(a,b)$ 内至少存在一点 $\xi$，使得在曲线对应点 $C(\xi,f(\xi))$ 处的切线斜率等于弦的斜率，也就是说切线平行于弦．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-4.png}
+\figcap{图 5-4}\label{fig:5-4}
+\end{figure}
+
+当 $f(a)=f(b)$ 时，定理 5.4 成为定理 5.3．
+
+\begin{proof}[定理 5.4 的证明]
+作辅助函数
+\[
+F(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a).
+\]
+易见 $F(x)$ 在 $[a, b]$ 上连续，在 $(a, b)$ 内可导，且
+\[
+F(a) = 0,\qquad F(b) = 0.
+\]
+由罗尔定理（定理~\ref{thm:5-3}），至少存在一点 $\xi \in (a, b)$，使得 $F'(\xi) = 0$．而
+\[
+F'(x) = f'(x) - \frac{f(b) - f(a)}{b - a},
+\]
+故
+\[
+f'(\xi) - \frac{f(b) - f(a)}{b - a} = 0,
+\]
+即
+\[
+f(b) - f(a) = f'(\xi)(b - a).
+\]
+定理 5.4 证毕．
+\end{proof}
+
+定理中的公式常写成
+\[
+f(x_0 + \Delta x) - f(x_0) = f'(x_0 + \theta \Delta x)\Delta x\quad (0 < \theta < 1),
+\]
+或简记为 $\Delta y = f'(x_0 + \theta \Delta x)\Delta x$．它把函数的改变量 $\Delta y$ 用导数精确地表示出来了，因此拉格朗日中值定理又常称为\emph{有限增量定理}．
+
+注意，$\xi$ 在 $a$ 与 $b$ 之间，是 $a$ 与 $b$ 的某种平均值（有限增量公式中 $\theta$ 依赖于 $x_0$ 与 $\Delta x$）．但一般说来我们只知道它位于 $a$ 与 $b$ 之间，并不知道具体的数值．然而这在理论研究中已经足够深刻和有效了．
+
+\begin{corollary}\label{cor:5-1}
+设 $f(x)$ 在 $(a, b)$ 内可导．若在 $(a, b)$ 内恒有 $f'(x) \geqslant 0$（或 $f'(x) > 0$），则 $f(x)$ 在 $(a, b)$ 内单调增加（或严格单调增加）；若在 $(a, b)$ 内恒有 $f'(x) \leqslant 0$（或 $f'(x) < 0$），则 $f(x)$ 在 $(a, b)$ 内单调减少（或严格单调减少）．
+\end{corollary}
+
+\begin{proof}
+设 $f'(x) \geqslant 0$．任取 $x_1, x_2 \in (a, b)$，且 $x_1 < x_2$．在 $[x_1, x_2]$ 上应用拉格朗日中值定理，存在 $\xi \in (x_1, x_2)$，使得
+\[
+f(x_2) - f(x_1) = f'(\xi)(x_2 - x_1).
+\]
+因 $x_2 - x_1 > 0$ 且 $f'(\xi) \geqslant 0$，故 $f(x_2) - f(x_1) \geqslant 0$，即 $f(x_1) \leqslant f(x_2)$．若 $f'(x) > 0$，则 $f'(\xi) > 0$，从而 $f(x_1) < f(x_2)$，即严格单调增加．单调减少的情形同理可证．
+\end{proof}
+
+\begin{corollary}\label{cor:5-2}
+若 $f(x)$ 在 $(a, b)$ 内可导，且恒有 $f'(x) = 0$，则 $f(x)$ 在 $(a, b)$ 内恒为常数．
+\end{corollary}
+
+\begin{example}
+证明不等式
+\[
+\frac{x}{1+x} < \ln(1+x) < x,\qquad x > -1\ \text{且}\ x \neq 0.
+\]
+\end{example}
+
+\begin{proof}[证明]
+函数 $f(t) = \ln(1+t)$ 在 $[0, x]$ 或 $[x, 0]$ 上满足拉格朗日中值定理条件，故
+\[
+\frac{\ln(1+x) - \ln 1}{(1+x) - 1} = \frac{\ln(1+x)}{x} = \frac{1}{1+\xi},
+\quad \xi\ \text{在}\ 0\ \text{与}\ x\ \text{之间}.
+\]
+当 $x > 0$ 时，
+\[
+\frac{1}{1+x} < \frac{1}{1+\xi} < 1;
+\]
+当 $-1 < x < 0$ 时，
+\[
+1 < \frac{1}{1+\xi} < \frac{1}{1+x},
+\]
+故都有
+\[
+\frac{x}{1+x} < \ln(1+x) < x.
+\]
+\end{proof}
+
+\begin{example}
+函数
+\[
+f(x) =
+\begin{cases}
+x^2\sin\dfrac{1}{x}, & x \neq 0,\\[2mm]
+0, & x = 0
+\end{cases}
+\]
+在区间 $[0, x]$ 上满足拉格朗日中值定理的条件，故存在
+\[
+f(x) - f(0) = f'(\xi)(x - 0),
+\]
+即
+\[
+x^2\sin\frac{1}{x} = \left(2\xi\sin\frac{1}{\xi} - \cos\frac{1}{\xi}\right)x
+\]
+或
+\[
+\cos\frac{1}{\xi} = 2\xi\sin\frac{1}{\xi} - x\sin\frac{1}{x}.
+\]
+对上式令 $x \to 0^+$ 取极限，这时有 $\xi \to 0^+$，从而得
+\[
+\lim_{x\to 0^+}\cos\frac{1}{\xi} = 0.
+\]
+请读者思考，这与 $\lim\limits_{x\to 0^+}\cos\dfrac{1}{x}$ 不存在矛盾吗？
+\end{example}
+
+类似于罗尔定理的讨论，拉格朗日中值定理中，函数连续与可导的条件是不能少的．
+
+拉格朗日中值定理可以进一步推广为两个函数的情形，这就是柯西中值定理．
+
+\begin{theorem}[柯西中值定理]\label{thm:5-5}
+设函数 $f(x)$ 与 $g(x)$ 在闭区间 $[a, b]$ 上连续，在开区间 $(a, b)$ 内可导，且对于任意 $x \in (a, b)$ 均有 $g'(x) \neq 0$，则在 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(\xi)}{g'(\xi)}.
+\]
+\end{theorem}
+
+该定理的几何解释见图~\ref{fig:5-5}．考虑平面参数曲线
+\[
+\begin{cases}
+x = g(t),\\
+y = f(t),
+\end{cases}\qquad t\in[a,b].
+\]
+弦 $AB$ 的斜率为 $\frac{f(b)-f(a)}{g(b)-g(a)}$，而切线的斜率为 $\frac{f'(\xi)}{g'(\xi)}$，定理指出必存在某一切线平行于弦．
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{fig5-5.png}
+\figcap{图 5-5}\label{fig:5-5}
+\end{figure}
+
+\begin{proof}[定理 5.5 的证明]
+首先，由 $g'(x) \neq 0$ ($x \in (a, b)$)，根据罗尔定理可知必有 $g(b) \neq g(a)$，否则会存在 $\eta \in (a, b)$ 使 $g'(\eta) = 0$．
+
+构造辅助函数
+\[
+F(x) = f(x) - f(a) - \frac{f(b) - f(a)}{g(b) - g(a)}[g(x) - g(a)].
+\]
+易见 $F(x)$ 在 $[a, b]$ 上连续，在 $(a, b)$ 内可导，且 $F(a) = 0$，$F(b) = 0$．由罗尔定理，至少存在一点 $\xi \in (a, b)$，使得 $F'(\xi) = 0$．即
+\[
+f'(\xi) - \frac{f(b) - f(a)}{g(b) - g(a)} g'(\xi) = 0.
+\]
+由于 $g'(\xi) \neq 0$，两边同除以 $g'(\xi)$，即得
+\[
+\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(\xi)}{g'(\xi)}.
+\]
+定理 5.5 证毕．
+\end{proof}
+
+在定理 5.5 中取 $g(x)=x$，即回到拉格朗日中值定理（定理~\ref{thm:5-4}）．
+
+\begin{xiti}
+\item 证明：
+\begin{ziti}
+\item 方程 $x^3 - 3x + c = 0$ ($c$ 为常数) 在区间 $[0, 1]$ 内不可能有两个不同的实根；
+\item 方程 $x^n + px + q = 0$（$n$ 为正整数，$p, q$ 为实数），当 $n$ 为偶数时至多有两个实根；当 $n$ 为奇数时至多有三个实根．
+\end{ziti}
+\item 设 $f(x) = x^m(1-x)^n$，$m, n$ 为正整数，$x\in[0, 1]$．证明存在 $\xi\in(0, 1)$，使
+\[
+\frac{m}{n} = \frac{\xi}{1-\xi}.
+\]
+\item 应用拉格朗日中值定理证明下列不等式：
+\begin{ziti}
+\item $|\sin x - \sin y| \leqslant |x - y|$，$x, y \in (-\infty, +\infty)$；
+\item $|x| \leqslant |\tan x|$，$x\in\left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$，等号当且仅当 $x = 0$ 成立；
+\item $e^x > 1 + x$，$x \neq 0$；
+\item $\frac{y-x}{y} < \ln\frac{y}{x} < \frac{y-x}{x}$，$0 < x < y$；
+\item $\frac{x}{1+x^2} < \arctan x < x$，$x > 0$．
+\end{ziti}
+\item 设函数 $f(x)$ 在点 $a$ 的某邻域内具有二阶导数，证明：
+\[
+\lim_{h\to0} \frac{f(a+h) + f(a-h) - 2f(a)}{h^2} = f''(a).
+\]
+\item 设 $\lim_{x\to+\infty} f'(x) = a$，试证明对任意 $T > 0$，有
+\[
+\lim_{x\to+\infty} [f(x+T) - f(x)] = Ta.
+\]
+\item 设函数 $f(x)$ 在 $[a, b]$ 上可导，且 $a \geqslant 0$．证明在开区间 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+2\xi[f(b) - f(a)] = (b^2 - a^2)f'(\xi).
+\]
+\item 设 $f(x)$ 在 $(a, +\infty)$ 上可导，且 $\lim_{x\to a^+} f(x) = \lim_{x\to+\infty} f(x) = A$．证明在 $(a, +\infty)$ 内至少存在一点 $\xi$，使得 $f'(\xi) = 0$．
+\item 设 $f(x)$ 可导，证明 $f(x)$ 的任意两个零点之间一定有 $f(x) + f'(x)$ 的零点．
+\item 设函数 $f(x)$ 在点 $x_0$ 连续，在除点 $x_0$ 外的邻域内可导，且 $\lim_{x\to x_0} f'(x) = A$．证明 $f'(x_0)$ 存在，且 $f'(x_0) = A$．
+\item 设 $f(x)$ 在 $[a, b]$ 上可导，且 $f'(a) \neq f'(b)$．$k$ 为介于 $f'(a)$ 与 $f'(b)$ 之间的任一实数．证明在 $(a, b)$ 内至少存在一点 $\xi$，使得 $f'(\xi) = k$（导数的介值定理 / 达布（Darboux）定理）．
+\item 设函数 $f(x)$ 在 $(a, b)$ 内可导，且 $f'(x)$ 单调．证明 $f'(x)$ 在 $(a, b)$ 连续．
+\item 设函数 $f(x), g(x), h(x)$ 在 $[a, b]$ 上连续，在 $(a, b)$ 内可导，证明在 $(a, b)$ 内至少存在一点 $\xi$，使得
+\[
+\begin{vmatrix}
+f(a) & g(a) & h(a) \\
+f(b) & g(b) & h(b) \\
+f'(\xi) & g'(\xi) & h'(\xi)
+\end{vmatrix} = 0.
+\]
+由此推导拉格朗日中值定理和柯西中值定理．
+\item 设 $f(x)$ 在 $(-\infty, +\infty)$ 上连续，且 $\lim_{x\to\pm\infty} f(x) = +\infty$．证明 $f(x)$ 在 $(-\infty, +\infty)$ 上能取得最小值．
+\item 设 $f(x)$ 在 $[a, b)$ 上连续，且 $\lim_{x\to b^-} f(x) = B$．
+\begin{ziti}
+\item 若存在 $x_1 \in [a, b)$，使得 $f(x_1) > B$，则 $f(x)$ 在 $[a, b)$ 上达到最大值；
+\item 若只存在 $x_1 \in [a, b)$，使得 $f(x_1) = B$，能否断定 $f(x)$ 在 $[a, b)$ 上达到最大值？
+\end{ziti}
+\item 设 $f(x)$ 在 $[a, +\infty)$ 有界，$f'(x)$ 存在，且 $\lim\limits_{x\to+\infty} f'(x) = b$．求证 $b = 0$．
+\item 求证：$\arcsin x + \arccos x \equiv \dfrac{\pi}{2}$（$|x| \leqslant 1$）．
+\end{xiti}
