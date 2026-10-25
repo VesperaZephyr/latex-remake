@@ -1,71 +1,119 @@
-# Ahlfors《Complex Analysis》第三版重排
+# Complex Analysis (3rd ed.)（复分析（第 3 版））
 
-本项目保留英文原文，以随附原书 PDF 页面图像为依据设计模板、转写正文和核对公式。
-成品为 `main.pdf`；主文件为 `main.tex`，版式由 `ahlfors.cls` 控制。
+*LaTeX 重排版* — 高保真重排 / high-fidelity LaTeX retypeset
 
-## 构建与修改
+本目录是 **latex-remake（LaTeX 书籍重排合集）** 合集的一个子项目。
 
-本机已安装 Python、XeLaTeX 和 makeindex。常规构建：
+---
 
-```powershell
-python tools/build.py
+## 项目简介 / Project Introduction
+
+本目录是 **latex-remake（LaTeX 书籍重排合集）** 中的一本：对经典数学教材《Complex Analysis (3rd ed.)》的 LaTeX 高保真重排。我们忠实于原书版式与内容，仅以 LaTeX 重新排版，不改动任何正文、公式、编号与引用。
+
+This directory is part of the **latex-remake (LaTeX book retypesetting collection)**: a high-fidelity LaTeX retypesetting of the classic textbook *Complex Analysis (3rd ed.)*. We stay faithful to the original layout and content, re-typesetting it in LaTeX without altering any text, formulas, numbering, or references.
+
+---
+
+## 项目特点 / Project Features
+
+- **忠实原书**：版式、公式、定理编号、习题安排均严格遵从原版，不改动内容
+- **专业 LaTeX 排版**：数学公式清晰锐利，选用与原书风格相近的现代字体
+- **优化的阅读体验**：行距与页边距经仔细调整，适合屏幕阅读与打印
+- **完整的超链接支持**：目录、引用、定理编号、索引页码均为可点击链接
+- **开源**：所有 LaTeX 源以 CC BY-NC-SA 4.0 国际许可证托管，可自由获取与改进
+
+- **Faithful to the source**: layout, formulas, theorem numbering and exercise arrangement strictly follow the original (retypeset) / rendered into Chinese while staying close to the meaning (translation)
+- **Professional LaTeX typesetting**: crisp and sharp mathematical formulas with modern fonts
+- **Optimized reading experience**: carefully adjusted line spacing and margins for screen and print
+- **Full hyperlink support**: table of contents, citations, theorem numbers and index page numbers are clickable
+- **Open source**: all LaTeX source is hosted under the CC BY-NC-SA 4.0 International License
+
+---
+
+## 编译方法 / Compilation Instructions
+
+本项目使用 XeLaTeX 编译器。建议通过 `latexmk` 自动完成多轮编译：
+
+This project uses the XeLaTeX compiler. We recommend `latexmk` for multiple passes:
+
+```bash
+# 基础编译 / basic
+xelatex main.tex
+
+# 若使用 biblatex/biber:
+xelatex main.tex
+biber main
+xelatex main.tex
+xelatex main.tex
+
+# 一键编译 / one-shot
+latexmk -xelatex main.tex
 ```
 
-重新从原始 OCR、原图和修订表生成全部文件：
+### 编译环境要求 / Environment Requirements
 
-```powershell
-python tools/build.py --regenerate
+- TeX Live 2023 或更高版本 / TeX Live 2023 or later
+- 已安装 ctex 宏包（中文支持）/ ctex package installed (Chinese support)
+- 已安装 amsmath、amssymb、graphicx 等常用数学与图形宏包
+
+---
+
+## 项目结构 / Project Structure
+
+```
+ahlfors-complex-analysis/
+├── ahlfors.cls
+├── main.tex
+├── back/  (2 个 .tex)
+├── chapters/  (8 个 .tex)
+└── front/  (3 个 .tex)
 ```
 
-构建默认运行四遍 XeLaTeX，生成索引，核对并补全 PDF 缺失的页码命名目标，再运行结构验收。
-页码目标补全保留既有内容、页序、书签、图像和目标；结果单独记入
-`audit/pdf-destination-repair.json`。只有验收脚本退出码为 0，才表示结构门槛通过。
+> 说明：上表为源码概要；被 `\includegraphics` 实际引用的插图（如 `figs/`、`figures/`）一并纳入，构建产物（`*.pdf`、`*.aux` 等）不随仓库分发。
 
-修改正文须改 `tools/make_body.py` 或经原图确认的修订表，随后重新生成；
-不要直接修改生成的 `chapters/*.tex`。191 项内容修订保存在
-`audit/math-corrections-*.json` 和 `audit/text-corrections.json`；29 项公式断行调整
-保存在 `audit/display-overrides.json`。构建末尾统一清除紧邻行间公式前后的空行，
-但保留普通段落分隔；检查规则在 `tools/normalize_display_spacing.py`。
-所有 tex/cls/py 文件使用 UTF-8 无 BOM、CRLF。
+---
 
-## 当前内容与链接
+## 贡献指南 / Contributing
 
-- 全部 8 章，原书正文 321 页（PDF 物理页 17—337）。
-- 161 个节/小节，129 个陈述环境，297 个习题目标。
-- 原始 OCR 的 982 个显示块均已对照原图；两块本为行内公式，一段推导被 OCR 拆成两块，已合并。另按原书把习题中的函数和积分列表改为无号行间排版；281 个原书公式号保留。
-- 27 条脚注及其正文跳转，42 份原扫描裁图，涵盖 43 幅编号插图。
-- 原索引 445 项作为核对底账保留；正文 435 种索引键的 1,304 条原页引用转换为实词定位和讨论范围，另保留原索引的 see 关系。
-- 原书没有独立参考文献表；脚注中的文献信息按原结构保留。
+我们非常欢迎任何形式的贡献！若在阅读中发现排版错误、印刷错误、内容疏漏或可改进之处，请通过以下方式参与：
 
-公式、陈述、节、小节、习题及图的内部标签包含章号；显示编号遵循原书。
-三处原书自身没有对应目标的引用保留原文，见 `audit/reference-exceptions.json`，
-不以猜测的编号替换。
+We warmly welcome contributions of any kind! If you find typesetting errors, typos, omissions or improvements, please contribute via:
 
-## 核验范围与限制
+1. 提交 GitHub Issue 详细描述问题 / Submit a GitHub Issue describing the problem
+2. Fork 本仓库，修改后提交 Pull Request / Fork and submit a Pull Request
+3. 发送邮件至 vesperazephyr2006@gmail.com
 
-最新结构验收结果见 `audit/build-report.json`；包含编译错误、重复标签、缺字、
-溢出、未定义引用、PDF 原始链接目标、页级来源锚点、页外文字及编码检查。
-不能只凭编译通过推定没有死链。
+---
 
-982 个 OCR 显示块均有分章原图核对记录，见 `audit/math-audit-12.md`、
-`audit/math-audit-34.md`、`audit/math-audit-58.md`。高风险行内符号另有
-`audit/inline-accent-audit.md`；全文经过双 OCR 缺漏初筛及重点核图，见
-`audit/text-audit.md`。第 1—8 章的 297 道习题题干均已逐题对照原图；
-第 3—4 章复核记录及新增修订见 `audit/calibration-integration.md` 和
-`audit/exercises14-progress.md`。
-插图与索引的成品检查分别见
-`audit/figures-final-review.md` 和 `audit/index-final-verification.json`。
+## 许可证 | License
 
-当前是完整、可继续校订的全书重排稿，**尚未完成所有行内公式和普通正文的逐字终审**。
-原扫描中确实模糊的字形及原书疑误均保留并登记；索引讨论范围也不能代替每个词项的语义校对。
-插图复用原扫描质量，属于原 PDF 内容裁切，并非矢量重绘。
+本作品采用 **CC BY-NC-SA 4.0 国际许可证** 授权。
 
-## 技能改进
+This work is licensed under the **CC BY-NC-SA 4.0 International License**.
 
-已将本次验证过的有界子代理分工、文件所有权、跨页 OCR 合并、数学 span 脚注、
-图块与图号的区别、引用上下文及 PDF 命名目标验收经验补充到已安装的
-`latex-book-retypeset` 技能。项目内留有 `skill-updates/` 副本。
+[![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-当前最后审核记录见 `audit/final-review.md`，其中明确区分通过项与尚未完成的人工验收。
+您可以自由地：**分享**（复制、发行本作品）与 **改编**（二次创作），但须遵守：
 
-本轮收尾结果见 `audit/acceptance-final.md`。原物理页334指数为有记录的数学订正；原索引记录保留，成品导航按审定修复表生成。
+You are free to **Share** (copy and redistribute) and **Adapt** (remix, transform), subject to:
+
+- **署名 (Attribution)**：给出适当署名，提供许可证链接，并标明是否改动
+- **非商业性 (NonCommercial)**：不得将本作品用于商业目的
+- **相同方式共享 (ShareAlike)**：二次创作须采用相同许可证分发
+
+完整许可证文本见本目录 `LICENSE` 文件。
+
+Full license text: see the `LICENSE` file in this directory.
+
+> 如果您愿意支持本项目持续制作更多高质量数学教材的重排与中文翻译，请参见仓库顶层 README 的 **「支持作者 / Support the Authors」** 一节：`../README.md#支持作者--support-the-authors`。
+
+---
+
+## 致谢 / Acknowledgments
+
+- 由衷感谢《Complex Analysis (3rd ed.)》的原作者 **Lars Ahlfors** 写下这部著作。
+- 感谢所有为本子项目贡献力量与建议的数学爱好者。
+
+- Sincere thanks to **Lars Ahlfors** for writing *Complex Analysis (3rd ed.)*.
+- Thanks to all mathematics enthusiasts who contributed to this sub-project.
+

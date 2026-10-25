@@ -36,6 +36,30 @@ latex-remake/
 
 Enter the book's subdirectory and follow its `README` (usually XeLaTeX).
 
+## 支持作者 / Support the Authors
+
+本合集是一个完全免费的开源项目，所有重排工作均由志愿者利用业余时间完成。我们投入大量精力以确保排版质量与内容准确。
+
+This collection is a completely free open-source project. All retypesetting work is done by volunteers in their spare time. We invest significant effort to ensure typesetting quality and accuracy.
+
+如果这个合集对你的学习与科研有所帮助，欢迎进行小额捐赠，用于购买正版书籍、维护项目与制作更多高质量数学资料：
+
+If this collection helps your study or research, you may consider a small donation. Donations are used to purchase official books, maintain the project, and produce more high-quality mathematical material:
+
+- 购买更多数学经典教材的正版书籍
+- 维护项目（仓库托管、域名等）
+- 支持更多开源数学项目
+
+- Purchasing official copies of more classic mathematics textbooks
+- Maintaining the project (repository hosting, domains, etc.)
+- Supporting more open-source mathematics projects
+
+### 捐赠方式 / Donation Methods
+
+| 微信支付 / WeChat Pay | 支付宝 / Alipay |
+|----------------------|-----------------|
+| ![WeChat](https://github.com/user-attachments/assets/dee2c09a-b5e6-403d-8977-e7fcb99010f7) | ![Alipay](https://github.com/user-attachments/assets/67ed9d86-049f-497c-b44c-7acaefbf3efe) |
+
 ## 许可 / License
 
 各书源码沿用其原项目许可证（如 CC BY-NC-SA 4.0）。详见各子目录。
