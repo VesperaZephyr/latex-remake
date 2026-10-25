@@ -9,6 +9,8 @@ This repository collects high-fidelity LaTeX retypesettings of mathematics textb
 | 目录 / Directory | 书名 / Title | 原作者 / Authors |
 |---|---|---|
 | `atiyah-macdonald/` | Introduction to Commutative Algebra（交换代数导引） | Atiyah & Macdonald |
+| `yosida-functional-analysis/` | Functional Analysis（泛函分析） | K. Yosida |
+| `ahlfors-complex-analysis/` | Complex Analysis（复分析，3rd ed.） | L. Ahlfors |
 
 > 更多书籍将逐步加入。/ More books will be added over time.
 
