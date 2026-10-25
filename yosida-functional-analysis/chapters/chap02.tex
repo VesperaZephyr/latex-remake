@@ -1,0 +1,483 @@
+% ==== II ====
+\yoschapter{II}{Applications of the Baire-Hausdorff Theorem}
+\label{chap:II}
+
+The completeness of a $B$-space (or an $F$-space) enables us to apply the Baire-Hausdorff theorem in Chapter~\ref{chap:0}, and we obtain such basic principles in functional analysis as the uniform boundedness theorem, the resonance theorem, the open mapping theorem and the closed graph theorem. These theorems are essentially due to S. \textsc{Banach} \cite{banach9}. The termwise differentiability of generalized functions is a consequence of the uniform boundedness theorem. 
+
+
+\yossection{1}{The Uniform Boundedness Theorem and the Resonance Theorem}
+\label{sec:II.1}
+
+\begin{theorem}[the uniform boundedness theorem]\label{thm:II.1.Theorem.1} Let $X$ be a linear topological space which is not expressible as a countable union of closed non-dense subsets. Let a family $\{T_{a}; a \in A\}$ of continuous mappings be defined on $X$ into a quasi-normed linear space $Y$. We assume that, for any $a \in A$ and $x, y \in X$, 
+
+$\|T_a(x+y)\|\leqq\|T_a x\|+\|T_a y\|$ and $\|T_a(\alpha x)\|=\|\alpha T_a x\|$ for $\alpha\geqq0$. If the set $\{T_a x;a\in A\}$ is bounded at each $x\in X$, then $\slim\limits_{x\to 0}T_a x=0$ uniformly in $a\in A$. 
+\end{theorem}
+
+\begin{proof}
+ For a given $\varepsilon > 0$ and for each positive integer $n$, consider $X_{n} = \{x \in X; \sup\limits_{a \in A} \{\|n^{-1}T_{a}x\| + \|n^{-1}T_{a}(-x)\|\} \leqq \varepsilon\}$. Each set $X_{n}$ is closed by the continuity of $T_{a}$. By the assumption of the boundedness of $\{\|T_{a}x\|; a \in A\}$, we have $X = \bigcup\limits_{n=1}^{\infty} X_{n}$. Hence, by the hypothesis on $X$, some $X_{n_{0}}$ must contain a neighbourhood $U = x_{0} + V$ of some point $x_{0} \in X$, where $V$ is a neighbourhood of $0$ of $X$ such that $V = -V$. Thus $x \in V$ implies $\sup\limits_{a \in A} \|n_{0}^{-1}T_{a}(x_{0} + x)\| \leqq \varepsilon$. Therefore we have 
+\[
+\begin{aligned}
+\left\| T _{a} (n _{0} ^{-1} x) \right\|& = \left\| T _{a} (n _{0} ^{-1} (x _{0} + x - x _{0})) \right\| \leqq \left\| n _{0} ^{-1} T _{a} (x _{0} + x) \right\|
+\\
+\quad + \left\| n _{0} ^{-1} T _{a} (- x _{0}) \right\|& \leqq 2 \varepsilon \text{ for } x \in V, a \in A. \end{aligned}
+\]
+
+Thus the Theorem is proved, because the scalar multiplication $\alpha x$ in a linear topological space is continuous in both variables $\alpha$ and $x$. 
+\end{proof}
+
+\begin{corollary}[the resonance theorem]\label{cor:II.1.Corollary.1} Let $\{T_{a}; a \in A\}$ be a family of bounded linear operators defined on a $B$-space $X$ into a normed linear space $Y$. Then the boundedness of $\{\| T_{a}x\|; a \in A\}$ at each $x \in X$ implies the boundedness of $\{ \| T_{a}\|; a \in A\}$. 
+\end{corollary}
+
+\begin{proof}
+ By the uniform boundedness theorem, there exists, for any $\varepsilon > 0$, a $\delta > 0$ such that $\|x\| \leqq \delta$ implies $\sup\limits_{a \in A} \|T_a x\| \leqq \varepsilon$. Thus $\sup\limits_{a \in A} \|T_a\| \leqq \varepsilon / \delta$. 
+\end{proof}
+
+\begin{corollary}\label{cor:II.1.Corollary.2} Let $\{T_n\}$ be a sequence of bounded linear operators defined on a $B$-space $X$ into a normed linear space $Y$. Suppose that $\slim\limits_{n\to \infty}T_n x = Tx$ exists for each $x\in X$. Then $T$ is also a bounded linear operator on $X$ into $Y$ and we have 
+\begin{equation}\label{eq:II.1.1}
+\left\| T \right\| \leqq \varliminf\limits_{n \rightarrow \infty} \left\| T _{n} \right\|.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+ The boundedness of the sequence $\{|T_{n}x|\}$ for each $x\in X$ is implied by the continuity of the norm. Hence, by the preceding Corollary, $\sup\limits_{n\geqq1}\|T_{n}\|<\infty$, and so $\|T_{n}x\|\leqq\sup\limits_{n\geqq1}\|T_{n}\|\cdot\|x\|$ ( $n=1,2,\ldots$). 
+
+Therefore, again by the continuity of the norm, we obtain 
+\[
+\left\| T x \right\| = \lim\limits _{n \rightarrow \infty} \left\| T _{n} x \right\| \leqq \underline {{\lim\limits _{n \rightarrow \infty}}} \left\| T _{n} \right\| \cdot \left\| x \right\|,
+\]
+which is precisely the inequality \eqref{eq:II.1.1}. Finally it is clear that $T$ is linear. 
+\end{proof}
+
+\begin{definitionu} The operator $T$ obtained above is called the strong limit of the sequence $\{T_n\}$ and we shall write $T = \slim T_n$. 
+\end{definitionu}
+
+We next prove an existence theorem for the bounded inverse of a bounded linear operator. 
+
+\begin{theorem}[C. \textsc{Neumann}]\label{thm:II.1.Theorem.2} Let $T$ be a bounded linear operator on a $B$-space $X$ into $X$. Suppose that $\|I - T\| < 1$, where $I$ is the identity operator: $I \cdot x = x$. Then $T$ has a unique bounded linear inverse $T^{-1}$ which is given by C. \textsc{Neumann}'s series 
+\begin{equation}\label{eq:II.1.2}
+T ^{-1} x = \slim _{n \rightarrow \infty} (I + (I - T) + (I - T) ^{2} + \dots + (I - T) ^{n}) x, x \in X.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ For any $x \in X$, we have 
+\[ \begin{aligned}
+&\left\| \sum\limits_{n=0} ^{k} (I - T) ^{n} x \right\|  \leqq \sum\limits_{n=0} ^{k} \| (I - T) ^{n} x \| \leqq \sum\limits_{n=0} ^{k} \| (I - T) ^{n} \| | x \| \leqq \sum\limits_{n=0} ^{\infty} \| I - T \| ^{n} \| x \|.
+\end{aligned}
+\]
+
+The right hand side is convergent by $\|I - T\| < 1$. Hence, by the completeness of $X$, the bounded linear operator $\slim\limits_{k \to \infty} \sum\limits_{n=0}^{k} (I - T)^n$ is defined. 
+
+
+It is the inverse of $T$ as may be seen from 
+\[
+\begin{aligned}T \cdot \slim _{k \rightarrow \infty} \sum\limits_{n=0} ^{k} (I - T) ^{n} x&= \slim _{k \rightarrow \infty} (I - (I - T)) \left(\sum\limits_{n=0} ^{k} (I - T) ^{n} x\right)\\&= x - \slim _{k \rightarrow \infty} (I - T) ^{k+1} x = x,\end{aligned}
+\]
+and the similar equation $s = \lim\limits_{k \to \infty} \left( \sum\limits_{n=0}^{k} (I - T)^n \right) Tx = x$.
+\end{proof}
+
+\yossection{2}{The Vitali-Hahn-Saks Theorem}
+\label{sec:II.2}
+
+This theorem is concerned with a convergent sequence of measures, and makes use of the following 
+
+\begin{propositionu} Let $(S, \mathfrak{B}, m)$ be a measure space. Let $\mathfrak{B}_0$ be the set of all $B \in \mathfrak{B}$ such that $m(B) < \infty$. Then by the distance 
+\begin{align}
+d \left(B _{1}, B _{2}\right)& = m \left(B _{1} \ominus B _{2}\right) \notag \\
+B _{1} \ominus B _{2}& = B _{1} \cup B _{2} - B _{1} \cap B _{2}, \label{eq:II.2.1}
+\end{align}
+$\mathfrak{B}_0$ gives rise to a metric space $(\mathfrak{B}_0)$ by identifying two sets $B_1$ and $B_2$ of $\mathfrak{B}_0$ when $m(B_1 \ominus B_2) = 0$. Thus a point $\overline{B}$ of $(\mathfrak{B}_0)$ is the class of sets $B_1 \in \mathfrak{B}_0$ such that $m(B \ominus B_1) = 0$. Under the above metric \eqref{eq:II.2.1}, $(\mathfrak{B}_0)$ is a complete metric space. 
+\end{propositionu}
+
+\begin{proof}
+ If we denote by $C_B(s)$ the defining function of the set $B$: 
+\[
+C _{B} (s) = 1 \text{ or } 0 \text{ according as } s \in B \text{ or } s \in B,
+\]
+we have 
+\begin{equation}\label{eq:II.2.2}
+d \left(B _{1}, B _{2}\right) = \int_{S} \left| C _ {B _{1}} (s) - C _ {B _{2}} (s) \right| m (\dd s). \end{equation}
+
+Thus the metric space $(\mathfrak{B}_0)$ may be identified with a subset of the $B$-space $L^1(S, \mathfrak{B}, m)$. Let a sequence $\{C_{B_{n}}(s)\}$ with $B_n \in \mathfrak{B}_0$ satisfy the condition 
+\[
+\lim\limits _{n, k \rightarrow \infty} d (B _{n}, B _{k}) = \lim\limits _{n, k \rightarrow \infty} \int_{S} | C _ {B _{n}} (s) - C _ {B _{k}} (s) | m (\dd s) = 0.
+\]
+
+Then, as in the proof of the completeness of the space $L^1(S, \mathfrak{B}, m)$, we can choose a subsequence $\{C_{B_n'}(s)\}$ such that $\lim\limits_{n' \to \infty} C_{B_n'}(s) = C(s)$ exists $m$-a.e. and $\lim\limits_{n' \to \infty} \int_S |C(s) - C_{B_n'}(s)| m(\dd s) = 0$. Clearly $C(s)$ is the defining function of a set $B_\infty \in \mathfrak{B}_0$, and hence $\lim\limits_{n' \to \infty} d(B_\infty, B_n) = 0$. 
+
+This proves that $(\mathfrak{B}_{0})$ is a complete metric space. 
+\end{proof}
+
+\begin{theoremn}[\textsc{Vitali}-\textsc{Hahn}-\textsc{Saks}]\label{thm:II.2.VitaliHahnSaks} Let $(S, \mathfrak{B}, m)$ be a measure space with $m(S) < \infty$, and $\{\lambda_n(B)\}$ a sequence of complex measures such that the total variations $|\lambda_n|(S)$ are finite for $n = 1, 2, \ldots$. Suppose that each $\lambda_n(B)$ is $m$-absolutely continuous and that a finite $\lim\limits_{n \to \infty} \lambda_n(B) = \lambda(B)$ exists for every $B \in \mathfrak{B}$. Then the $m$-absolute continuity of $\lambda_n(B)$ is uniform in $n$, that is, $\lim\limits_{n} m(B) = 0$ implies $\lim\limits_{n} \lambda_n(B) = 0$ uniformly in $n$. And $\lambda(B)$ is $\sigma$-additive on $\mathfrak{B}$.
+
+\end{theoremn}
+\begin{proof}
+ Each $\lambda_{n}$ defines a one-valued function $\bar{\lambda}_{n}(\overline{B})$ on $(\mathfrak{B}_0)$ by $\bar{\lambda}_{n}(\overline{B}) = \lambda_{n}(B)$, since the value $\lambda_{n}(B)$ is, by the $m$-absolute continuity of $\lambda_{n}(B)$, independent of the choice of the set $B$ from the class $\overline{B}$. The continuity of $\bar{\lambda}_{n}(\overline{B})$ is implied by and implies the $m$-absolute continuity of $\lambda_{n}(B)$. 
+
+Hence, for any $\varepsilon > 0$, the set 
+\[
+F _{k} (\varepsilon) = \left\{\overline {{B}}; \sup\limits _{n \geqq 1} \left| \bar {\lambda} _{k} (\overline {{B}}) - \bar {\lambda} _{k+n} (\overline {{B}}) \right| \leqq \varepsilon \right\}
+\]
+is closed in $(\mathfrak{B}_0)$ and, by the hypothesis $\lim\limits_{n\to \infty}\lambda_n(B) = \lambda (B)$, we have $(\mathfrak{B}_0) = \bigcup\limits_{k=1}^{\infty}F_k(\varepsilon)$. The complete metric space $(\mathfrak{B}_0)$ being of the second category, at least one $F_{k_0}(\varepsilon)$ must contain a non-void open set of $(\mathfrak{B}_0)$. This means that there exist a $\overline{B}_0\in (\mathfrak{B}_0)$ and an $\eta >0$ such that 
+\[
+d (B, B _{0}) < \eta \quad \text{ implies } \quad \sup\limits _{n \geqq 1} | \bar {\lambda} _ {k _{0}} (\overline {{B}}) - \bar {\lambda} _ {k _{0} + n} (\overline {{B}}) | \leqq \varepsilon .
+\]
+
+On the other hand, any $B \in \mathfrak{B}_0$ with $m(B) \leqq \eta$ can be represented as $B = B_1 - B_2$ with $d(B_1, B_0) \leqq \eta$, $d(B_2, B_0) \leqq \eta$. We may, for example, take $B_1 = B \cup B_0$, $B_2 = B_0 - B \cap B_0$. Thus, if $m(B) \leqq \eta$ and $k \geqq k_0$, we have 
+\[
+\begin{aligned}
+&\left| \lambda_{k} (B) \right|  \leqq \left| \lambda_ {k _{0}} (B) \right| + \left| \lambda_ {k _{0}} (B) - \lambda_{k} (B) \right| \leqq \left| \lambda_ {k _{0}} (B) \right| + \left| \lambda_ {k _{0}} (B _{1}) - \lambda_{k} (B _{1}) \right| + \left| \lambda_ {k _{0}} (B _{2}) - \lambda_{k} (B _{2}) \right| \\
+&\leqq \left| \lambda_ {k _{0}} (B) \right| + 2 \varepsilon .
+\end{aligned}
+\]
+
+Therefore, by the $m$-absolute continuity of $\lambda_{k_0}$ and the arbitrariness of $\varepsilon > 0$, we see that $m(B) \to 0$ implies $\lambda_n(B) \to 0$ uniformly in $n$. Hence, in particular, $m(B) \to 0$ implies $\lambda(B) \to 0$. On the other hand, it is clear that $\lambda$ is finitely additive, i.e., $\lambda\left(\sum\limits_{j=1}^{n} B_j\right) = \sum\limits_{j=1}^{n} \lambda(B_j)$. Thus, by $\lim\limits_{m(B) \to 0} \lambda(B) = 0$ proved above, we easily see that $\lambda$ is $\sigma$-additive since $m(S) < \infty$. 
+\end{proof}
+
+\begin{corollary}\label{cor:II.2.Corollary.1} Let $\{\lambda_n(B)\}$ be a sequence of complex measures on $S$ such that the total variation $|\lambda_n|(S)$ is finite for every $n$. If a finite $\lim\limits_{n\to \infty}\lambda_n(B)$ exists for every $B\in \mathfrak{B}$, then the $\sigma$-additivity of $\{\lambda_n(B)\}$ is uniform in $n$, in the sense that, $\lim\limits_{k\to \infty}\lambda_n(B_k) = 0$ uniformly in $n$ for any decreasing sequence $\{B_k\}$ of sets $\in \mathfrak{B}$ such that $\bigcap\limits_{k=1}^{\infty}B_k = \emptyset$. 
+\end{corollary}
+
+\begin{proof}
+ Let us consider 
+\[
+m (B) = \sum\limits_{j=1} ^{\infty} 2 ^{-j} \mu_{j} (B) \quad \text{ where } \quad \mu_{j} (B) = | \lambda_{j} | (B) / | \lambda_{j} | (S). \]
+
+The $\sigma$-additivity of $m$ is a consequence of that of the $\lambda_j$'s, and we have $0 \leqq m(B) \leqq 1$. Each $\mu_j$ and hence each $\lambda_j$ is $m$-absolutely continuous. Thus, by the above Theorem, we have $\lim\limits_{k \to \infty} \lambda_n(B_k) = 0$ uniformly in $n$, because $\lim\limits_{k \to \infty} m(B_k) = 0$. 
+\end{proof}
+
+\begin{corollary}\label{cor:II.2.Corollary.2} $\lambda(B)$ in the Theorem is $\sigma$-additive and $m$-absolutely continuous even if $m(S)=\infty$. 
+\end{corollary}
+
+
+\yossection{3}{The Termwise Differentiability of a Sequence of Generalized Functions}
+\label{sec:II.3}
+
+The discussion of the convergence of a sequence of generalized functions is very simple. We can in fact prove 
+
+\begin{theoremu} Let $\{T_n\}$ be a sequence of generalized functions $\in \mathfrak{D}(\Omega)'$. Let a finite $\lim\limits_{n\to \infty}T_n(\varphi) = T(\varphi)$ exist for every $\varphi \in \mathfrak{D}(\Omega)$. Then $T$ is also a generalized function $\in \mathfrak{D}(\Omega)'$. We say then that $T$ is the limit in $\mathfrak{D}(\Omega)'$ of the sequence $\{T_n\}$ and write $T = \lim\limits_{n\to \infty}T_n(\mathfrak{D}(\Omega))'$. 
+\end{theoremu}
+
+\begin{proof}
+ The linearity of the functional $T$ is clear. Let $K$ be any compact subset of $\Omega$. Then each $T_n$ defines a linear functional on the $F$-space $\mathfrak{D}_K(\Omega)$. Moreover, these functionals are continuous. For, they are bounded on every bounded set of $\mathfrak{D}_K(\Omega)$ as may be proved by Proposition~\ref{prop:I.8.Proposition.1} in Chapter~\ref{chap:I}, \ref{sec:I.8}. Thus, by the uniform boundedness theorem, $T$ must be a linear functional on $\mathfrak{D}_K(\Omega)$ which is bounded on every bounded set of $\mathfrak{D}_K(\Omega)$. Hence $T$ is a continuous linear functional on every $\mathfrak{D}_K(\Omega)$. Since $\mathfrak{D}(\Omega)$ is the inductive limit of $\mathfrak{D}_K(\Omega)'s$, $T$ must be a continuous linear functional on $\mathfrak{D}(\Omega)$. 
+\end{proof}
+
+\begin{corollaryn}[termwise differentiability theorem] Let $T = \lim\limits_{n\to \infty}T_n(\mathfrak{D}(\Omega)')$. Then, for any differential operator $D^j$, we have $D^{j}T = \lim\limits_{n\to \infty}D^{j}T_{n}(\mathfrak{D}(\Omega))'$.
+
+\end{corollaryn}
+\begin{proof}
+ $\lim\limits_{n\to \infty}T_n = T(\mathfrak{D}(\Omega)')$ implies that $\lim\limits_{n\to \infty}T_n((-1)^{|j|}D^j\varphi) = T((-1)^{|j|}D^j\varphi)$ for every $\varphi \in \mathfrak{D}(\Omega)$. Thus we have 
+\[
+(D ^{j} T) (\varphi) = \lim\limits _{n \rightarrow \infty} (D ^{j} T _{n}) (\varphi) \quad \text{ for every } \quad \varphi \in \mathfrak {D} (\Omega). \]
+\end{proof}
+
+
+\yossection{4}{The Principle of the Condensation of Singularities}
+\label{sec:II.4}
+
+The Baire-Hausdorff theorem may be applied to prove the existence of a function with various singularities. For instance, we shall prove the existence of a continuous function without a finite derivative. 
+
+\begin{theoremn}[Weierstrass' Theorem] There exists a real-valued continuous function $x(t)$ defined on the interval [$0$, $1$] such that it admits a finite differential quotient $x'(t_0)$ at no point $t_0$ of the interval [$0$, $1$/$2$]. 
+\end{theoremn}
+
+\begin{proof}
+ A function $x(t)$ admits finite upper- and lower-derivatives on the right at $t = t_{0}$ iff there exists a positive integer $n$ such that 
+\[
+\sup\limits _ {2 ^{-1} > h > 0} h ^{-1} \left| x \left(t _{0} + h\right) - x \left(t _{0}\right) \right| \leqq n. \]
+
+Let us denote by $M_{n}$ the set of all functions $x(t) \in C[0,1]$ such that $x(t)$ satisfies the above inequality at a certain point $t_0$ of $[0,1/2]$; here the point $t_0$ may vary with the function $x(t)$. We have only to show that each $M_{n}$ is a non-dense subset of $C[0,1]$. For, then, the set $C[0,1] - \bigcup_{n=1}^{\infty} M_{n}$ is non-void since; by the Baire-Hausdorff theorem, the complete metric space $C[0,1]$ is not of the first category. 
+
+Now it is easy to see, by the compactness of the closed interval [$0$, $1$/$2$] and the norm of the space $C[0,1]$, that $M_{n}$ is closed in $C[0,1]$. Next, for any polynomial $z(t)$ and $\varepsilon > 0$, we can find a function $y(t) \in C[0,1] - M_{n}$ such that $\sup\limits_{0 \leqq t \leqq 1} |z(t) - y(t)| = \|z - y\| \leqq \varepsilon$. We may take, for example, a continuous function $y(t)$ represented graphically by a zig-zag line so that the above conditions are satisfied. Hence, by Weierstrass' polynomial approximation theorem, $M_{n}$ is non-dense in $C[0,1]$. 
+\end{proof}
+
+S. \textsc{Banach} \cite{banach9} and H. \textsc{Steinhaus} have proved a principle of condensation of singularities given below which is based upon the following 
+
+\begin{theoremn}[S. \textsc{Banach}] Given a sequence of bounded linear operators $\{T_{n}\}$ defined on a $B$-space $X$ into a normed linear space $Y_{n}$. Then the set
+\[
+B = \left\{x \in X; \varlimsup\limits_{n \rightarrow \infty} \| T _{n} x \| < \infty \right\}
+\]
+either coincides with $X$ or is a set of the first category of $X$. 
+
+\end{theoremn}
+\begin{proof}
+ We shall show that $B = X$ under the hypothesis that $B$ is of the second category. By the definition of $B$, we have $\limsup\limits_{k \to \infty} \left\|k^{-1} T_n x \right\| = 0$ whenever $x \in B$. Thus, for any $\varepsilon > 0$, 
+\[
+B \subseteq \bigcup\limits_{k=1} ^{\infty} B _{k} \quad \text{ where } \quad B _{k} = \left\{x \in X; \sup\limits _{n \geqq 1} \| k ^{-1} T _{n} x \| \leqq \varepsilon \right\}. \]
+
+Each $B_{k}$ is a closed set by the continuity of the $T_{n}$'s. Hence, if $B$ is of the second category, then a certain $B_{k_0}$ contains a sphere of positive radius. That is, there exist an $x_0 \in X$ and a $\delta > 0$ such that $\|x - x_0\| \leqq \delta$ implies $\sup\limits_{n \geqq 1} \|k_0^{-1}T_n x\| \leqq \varepsilon$. Hence, by putting $x - x_0 = y$, we obtain, for $\|y\| \leqq \delta$, $\|k_0^{-1}T_n y\| \leqq \|k_0^{-1}T_n x\| + \|k_0^{-1}T_n x_0\| \leqq 2\varepsilon$. We have thus 
+\[
+\sup\limits _ {n \geqq 1, \| z \| \leqq k _{0} ^{-1} \delta} \| T _{n} z \| \leqq 2 \varepsilon ,
+\]
+and so $B = X$. 
+\end{proof}
+
+\begin{corollaryn}[the principle of the condensation of singularities] Let $\{T_{p,q}\} (q = 1,2,\ldots)$ be a sequence of bounded linear operators defined on a $B$-space $X$ into a normed linear space $Y_{p}$ ( $p = 1,2,\ldots$). Let, for each $p$, there exist an $x_{p} \in X$ such that $\varlimsup\limits_{q \to \infty} \|T_{p,q} x_{p}\| = \infty$. Then the set
+\[
+B = \left\{x \in X; \varlimsup\limits_{q \rightarrow \infty} \| T _{p,q} x \| = \infty \quad \text{ for all } \quad p = 1, 2, \dots \right\}
+\]
+is of the second category. 
+
+\end{corollaryn}
+\begin{proof}
+ For each $p$, the set $B_{p} = \{x \in X; \varlimsup\limits_{q \to \infty} \|T_{p,q} x\| < \infty\}$ is, by the preceding Theorem and the hypothesis, of the first category. Thus $B = X - \bigcup\limits_{p=1}^{\infty} B_{p}$ must be of the second category. 
+\end{proof}
+
+The above Corollary gives a general method of finding functions with many singularities. 
+
+\begin{examplen} There exists a real-valued continuous function $x(t)$ of period $2\pi$ such that the partial sum of its Fourier expansion:
+\begin{equation}\label{eq:II.4.1}
+f _{q} (x; t) = \sum\limits_{k=0} ^{q} \left(a _{k} \cos k t + b _{k} \sin k t\right) = \frac {1}{\pi} \int_{- \pi} ^{\pi} x (s) K _{q} (s, t) \dd s,
+\end{equation}
+where $K_{q}(s,t) = \sin ((q + 2^{-1})(s - t)) / 2\sin 2^{-1}(s - t)$, 
+
+
+satisfies the condition that 
+\begin{equation}\label{eq:II.4.2}
+\varlimsup\limits_{q \to \infty} | f _{q} (x; t) | = \infty \text{ on a set } P \subseteq [ 0, 2 \pi ] \text{ which is of the }
+\end{equation}
+power of the continuum. 
+
+Moreover, the set $P$ may be taken so as to contain any countable sequence $\{t_j\} \subseteq [0, 2\pi]$. 
+
+\end{examplen}
+\begin{proof}
+ The totality of real-valued continuous functions $x(t)$ of period $2\pi$ constitutes a real $B$-space $C_{2\pi}$ by the norm $\|x\| = \sup\limits_{0 \leqq t \leqq 2\pi} |x(t)|$. As may be seen from \eqref{eq:II.4.1}, $f_q(x; t)$ is, for a given $t_0 \in [0, 2\pi]$, a bounded linear functional on $C_{2\pi}$. Moreover, the norm of this functional $f_q(x; t_0)$ is given by 
+\begin{equation}\label{eq:II.4.3}
+\begin{aligned}
+&\frac {1}{\pi} \int_{- \pi} ^{\pi} | K _{q} (s, t _{0}) | \dd s = \text{ the total variation of the function } \frac {1}{\pi} \int_{- \pi} ^{t} K _{q} (s, t _{0}) \dd s.
+\end{aligned}
+\end{equation}
+
+It is also easy to see that, for fixed $t_0$, \eqref{eq:II.4.3} tends, as $q \to \infty$, to $\infty$. 
+
+Therefore, if we take a countable dense sequence $\{t_j\} \subseteq [0, 2\pi]$, then, by the preceding Corollary, the set 
+\[
+B = \left\{x \in C _{2 \pi}; \varlimsup\limits_{q \rightarrow \infty} | f _{q} (x; t) | = \infty \quad \text{ for } \quad t = t _{1}, t _{2}, \dots \right\}
+\]
+is of the second category. Hence, by the completeness of the space $C_{2\pi}$, the set $B$ is non-void. We shall show that, for any $x \in B$, the set 
+\[
+P = \left\{t \in [ 0, 2 \pi ]; \varlimsup\limits_{q \rightarrow \infty} | f _{q} (x; t) | = \infty \right\}
+\]
+is of the power of the continuum. To this purpose, set 
+\[
+F _{m,q} = \{t \in [ 0, 2 \pi ]; | f _{q} (x; t) | \leqq m \}, F _{m} = \bigcap\limits_{q=1} ^{\infty} F _{m,q}.
+\]
+
+By the continuity of $x(t)$ and the trigonometric functions, we see that the set $F_{m,q}$ and hence the set $F_{m}$ are closed sets of $[0, 2\pi]$. If we can show that $\bigcup\limits_{m=1}^{\infty} F_{m}$ is a set of the first category of $[0, 2\pi]$, then the set $P = \left([0, 2\pi] - \bigcup\limits_{m=1}^{\infty} F_{m}\right) \ni \{t_j\}$ would be of the second category. Being a set of the second category of $[0, 2\pi]$, $P$ cannot be countable and so, by the continuum hypothesis, $P$ must have the power of the continuum. 
+
+
+Finally we will prove that each $F_{m}$ is a set of the first category of $[0, 2\pi]$. Suppose some $F_{m_0}$ be of the second category. Then the closed set $F_{m_0}$ of $[0, 2\pi]$ must contain a closed interval $[\alpha, \beta]$ of $[0, 2\pi]$. This implies that $\sup\limits_{q \geqq 1} |f_q(x; t)| \leqq m_0$ for all $t \in [\alpha, \beta]$, contradicting the fact that the set $P$ contains a dense subset $\{t_j\}$ of $[0, 2\pi]$.
+\end{proof}
+
+\begin{remarku} We can prove that the set $P$ has the power of the continuum without appealing to the continuum hypothesis. See, for example, F. \textsc{Hausdorff} \cite{halmos94}. 
+\end{remarku}
+
+
+\yossection{5}{The Open Mapping Theorem}
+\label{sec:II.5}
+
+\begin{theoremn}[the open mapping theorem of S. \textsc{Banach}] Let $T$ be a continuous linear operator on an $F$-space $X$ onto an $F$-space $Y$. Then $T$ maps every open set of $X$ onto an open set of $Y$.
+
+For the proof, we prepare 
+
+\end{theoremn}
+\begin{propositionu} Let $X$, $Y$ be linear topological spaces. Let $T$ be a continuous linear operator on $X$ into $Y$, and suppose that the range $R(T)$ of $T$ is a set of the second category in $Y$. Then, to each neighbourhood $U$ of $0$ of $X$, there corresponds some neighbourhood $V$ of $0$ of $Y$ such that $V \subseteq (TU)^{a}$. 
+\end{propositionu}
+
+\begin{proof}
+ Let $W$ be a neighbourhood of $0$ of $X$ such that $W = -W$, $W + W \subseteq U$. For every $x \in X$, $x / n \to 0$ as $n \to \infty$, and so $x \in nW$ for large $n$. Hence $X = \bigcup\limits_{n=1}^{\infty}(nW)$, and therefore $R(T) = \bigcup\limits_{n=1}^{\infty} T(nW)$. Since $R(T)$ is of the second category in $Y$, there is some positive integer $n_0$ such that $(T(n_0W))^a$ contains a non-void open set. Since $(T(nW))^a = n(T(W))^a$ and since $n(T(W))^a$ and $(T(W))^a$ are homeomorphic\footnote{A one-to-one mapping $M$ of a topological space $S_{1}$ onto a topological space $S_{2}$ is called a homeomorphic mapping if $M$ and $M^{-1}$ both map open sets onto open sets.} to each other, $(T(W))^a$ also contains a non-void open set. Let $y_0 = Tx_0$, $x_0 \in W$, be a point of this open set. Then, since the mapping $x \to -x_0 + x$ is a homeomorphic mapping, we see that there exists a neighbourhood $V$ of $0$ of $Y$ such that $V \subseteq -y_0 + (T(W))^a$. The elements of $-y_0 + T(W)$ are expressible as $-y_0 + Tw = T(w - x_0)$ with $w \in W$. But $w - x_0 \in W + W \subseteq U$, since $W$ is a neighbourhood of $0$ of $X$ such that $W = -W$ and $W + W \subseteq U$. 
+
+Therefore, $-y_0 + T(W) \subseteq T(U)$ and hence, by taking the closure, $-y_0 + (T(W))^a \subseteq (T(U))^a$ and so $V \subseteq -y_0 + (T(W))^a \subseteq (T(U))^a = (TU)^a$. 
+\end{proof}
+
+\begin{proof}[Proof of the Theorem.]
+Since $Y$ is a complete metric space, it is of the second category. Thus, by the preceding Proposition, the closure of the image by $T$ of a neighbourhood of $0$ of $X$ contains a neighbourhood of $0$ of $Y$.
+
+Let $X_{\varepsilon}, Y_{\varepsilon}$ denote the spheres in $X, Y$ respectively, with centres at the origins and radii $\varepsilon > 0$. Let us set $\varepsilon_i = \varepsilon / 2^i$ ( $i = 0, 1, 2, \ldots$). Then by what we have stated above, there exists a sequence of positive numbers $\{\eta_i\}$ such that 
+\begin{equation}\label{eq:II.5.1}
+\lim\limits _{i \rightarrow \infty} \eta_{i} = 0 \quad \text{ and } \quad Y _ {\eta_{i}} \subseteq (T X _ {\varepsilon_{i}}) ^{a} \quad (i = 0, 1, 2, \dots).
+\end{equation}
+
+Let $y \in Y_{\eta_0}$ be any point. We shall show that there is an $x \in X_{2\varepsilon_0}$ such that $Tx = y$. From \eqref{eq:II.5.1} with $i = 0$, we see that there is an $x_0 \in X_{\varepsilon_0}$ such that $\|y - Tx_0\| < \eta_1$. Since $(y - Tx_0) \in Y_{\eta_1}$, we see again from \eqref{eq:II.5.1} with $i = 1$ that there is an $x_1 \in X_{\varepsilon_1}$ with $\|y - Tx_0 - Tx_1\| < \eta_2$. Repeating the process, we find a sequence $\{x_i\}$ with $x_i \in X_{\varepsilon_i}$ such that 
+\[
+\left\| y - T \left(\sum\limits_{i=0} ^{n} x _{i}\right) \right\| < \eta_{n+1} \quad (n = 0, 1, 2, \dots).
+\]
+
+We have $\left\| \sum\limits_{k=m+1}^{n} x_k \right\| \leqq \sum\limits_{k=m+1}^{n} \left\| x_k \right\| \leqq \sum\limits_{k=m+1}^{n} \varepsilon_k \leqq \left( \sum\limits_{k=m+1}^{n} 2^{-k} \right) \varepsilon_0$, and so the sequence $\left\{ \sum\limits_{k=0}^{n} x_k \right\}$ is a Cauchy sequence. Hence, by the completeness of $X$, we see that $\slim\limits_{n \to \infty} \sum\limits_{k=0}^{n} x_k = x \in X$ exists. Moreover, we have 
+\[
+\left\| x \right\| = \lim\limits _{n \rightarrow \infty} \left\| \sum\limits_{k=0} ^{n} x _{k} \right\| \leqq \lim\limits _{n \rightarrow \infty} \sum\limits_{k=0} ^{n} \left\| x _{k} \right\| \leqq \left(\sum\limits_{k=0} ^{\infty} 2 ^{-k}\right) \varepsilon_{0} = 2 \varepsilon_{0}.
+\]
+
+We must have $y = Tx$ since $T$ is continuous. Thus we have proved that any sphere $X_{2\varepsilon_0}$ is mapped by $T$ onto a set which contains a sphere $Y_{\eta_0}$. After these preliminaries, let $G$ be a non-void open set in $X$ and $x \in G$. Let $U$ be a neighbourhood of $0$ of $X$ such that $x + U \subseteq G$. Let $V$ be a neighbourhood of $0$ of $Y$ such that $TU \supseteq V$. Then $TG \supseteq T(x + U) = Tx + TU \supseteq Tx + V$. Hence $TG$ contains a neighbourhood of each one of its point. This proves that $T$ maps open set of $X$ onto open sets of $Y$. 
+\end{proof}
+
+\begin{theoremn}[Corollary of the Theorem] If a continuous linear operator $T$ on an $F$-space onto an $F$-space gives a one-to-one map, then the inverse operator $T^{-1}$ is also a linear continuous operator. 
+\end{theoremn}
+
+
+\yossection{6}{The Closed Graph Theorem}
+\label{sec:II.6}
+
+\begin{definition}\label{def:II.6.Definition.1} Let $X$ and $Y$ be linear topological spaces on the same scalar field. Then the product space $X \times Y$ is a linear space by 
+\[
+\left\{x _{1}, y _{1} \right\} + \left\{x _{2}, y _{2} \right\} = \left\{x _{1} + x _{2}, y _{1} + y _{2} \right\}, \alpha \{x, y \} = \{\alpha x, \alpha y \}.
+\]
+\end{definition}
+
+It is also a linear topological space if we call open the sets of the form 
+\[
+G _{1} \times G _{2} = \left\{\{x, y \}; x \in G _{1}, y \in G _{2} \right\},
+\]
+where $G_{1}, G_{2}$ are open sets of $X$, $Y$ respectively. If, in particular, $X$ and $Y$ are quasi-normed linear spaces, then $X \times Y$ is also a quasi-normed linear space by the quasi-norm 
+\begin{equation}\label{eq:II.6.1}
+\left\| \{x, y \} \right\| = \left(\left\| x \right\| ^{2} + \left\| y \right\| ^{2}\right) ^{1/2}.
+\end{equation}
+
+\begin{proposition}\label{prop:II.6.Proposition.1} If $X$ and $Y$ are $B$-spaces ( $F$-spaces), then $X \times Y$ is also a $B$-space ( $F$-space). 
+\end{proposition}
+
+\begin{proof}
+ Clear since $\slim \{x_n, y_n\} = \{x, y\}$ is equivalent to $\slim\limits_{n \to \infty} x_n = x$, $\slim\limits_{n \to \infty} y_n = y$. 
+\end{proof}
+
+\begin{definition}\label{def:II.6.Definition.2} The graph $G(T)$ of a linear operator $T$ on $D(T) \subseteq X$ into $Y$ is the set $\{ \{x, Tx\}; x \in D(T) \}$ in the product space $X \times Y$. Let $X, Y$ be linear topological spaces. Then $T$ is called a closed linear operator when its graph $G(T)$ constitutes a closed linear subspace of $X \times Y$. If $X$ and $Y$ are quasi-normed linear spaces, then a linear operator $T$ on $D(T) \subseteq X$ into $Y$ is closed iff the following condition is satisfied: 
+\begin{equation}\label{eq:II.6.2}
+\begin{aligned}\left\{x _{n} \right\} \subseteq D (T),&\slim _{n \rightarrow \infty} x _{n} = x \quad \text{ and } \quad \slim _{n \rightarrow \infty} T x _{n} = y \quad \text{ imply that }\\&x \in D (T) \quad \text{ and } \quad T x = y.\end{aligned}
+\end{equation}
+\end{definition}
+
+Thus the notion of a closed linear operator is an extension of the notion of a bounded linear operator. A linear operator $T$ on $D(T) \subseteq X$ into $Y$ is said to be closable or pre-closed if the closure in $X \times Y$ of the graph $G(T)$ is the graph of a linear operator, say $S$, on $D(S) \subseteq X$ into $Y$. 
+
+\begin{proposition}\label{prop:II.6.Proposition.2} If $X, Y$ are quasi-normed linear spaces, then $T$ is closable iff the following condition is satisfied: 
+\begin{equation}\label{eq:II.6.3}
+\{x _{n} \} \subseteq D (T), \slim _{n \rightarrow \infty} x _{n} = 0 \text{ and } \slim _{n \rightarrow \infty} T x _{n} = y \text{ imply that } y = 0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+ The ``only if'' $\mu$ art is clear since the closure in $X \times Y$ of $G(T)$ is a graph $G(S)$ of a linear operator $S$ and so $y = S \cdot 0 = 0$. The ``if'' part is proved as follows. Let us define a linear operator $S$ by the following condition and call $S$ the smallest closed extension of $T$: 
+
+$x \in D(S)$ iff there exists a sequence $\{x_n\} \subseteq D(T)$ such that 
+\begin{equation}\slim _{n \to \infty} x _{n} = x \text{ and } \slim _{n \to \infty} T x _{n} = y \text{ exist; and we define } S x = y. \label{eq:II.6.4}\end{equation}
+
+That the value $y$ is defined uniquely by $x$ follows from condition \eqref{eq:II.6.3}. We have only to prove that $S$ is closed. Let $w_{n} \in D(S)$, $\slim\limits_{n \to \infty} w_{n} = w$ and $\slim\limits_{n \to \infty} Sw_{n} = u$. Then there exists a sequence $\{x_{n}\} \subseteq D(T)$ such that $\| w_{n} - x_{n} \| \leqq n^{-1}, \| Sw_{n} - Tx_{n} \| \leqq n^{-1} \quad (n = 1, 2, \ldots)$. Therefore $\slim\limits_{n \to \infty} x_{n} = \slim\limits_{n \to \infty} w_{n} = w$, $\slim\limits_{n \to \infty} Tx_{n} = \slim\limits_{n \to \infty} Sw_{n} = u$, and so $w \in D(S)$, $S \cdot w = u$. 
+\end{proof}
+
+An example of a discontinuous but closed operator. Let $X = Y = C[0, 1]$. Let $D$ be the set of all $x(t) \in X$ such that the derivative $x'(t) \in X$; and let $T$ be the linear operator on $D(T) = D$ defined by $Tx = x'$. This $T$ is not continuous, since, for $x_n(t) = t^n$, 
+\[
+\left\| x _{n} \right\| = 1, \left\| T x _{n} \right\| = \sup\limits _{0 \leqq t \leqq 1} \left| x _{n} ^{\prime} (t) \right| = \sup\limits _{0 \leqq t \leqq 1} \left| n t ^{n-1} \right| = n \quad (n = 1, 2, \dots).
+\]
+
+But $T$ is closed. In fact, let $\{x_n\} \subseteq D(T)$, $\slim\limits_{n \to \infty} x_n = x$ and $\slim\limits_{n \to \infty} Tx_n = y$. Then $x_n'(t)$ converges uniformly to $y(t)$, and $x_n(t)$ converges uniformly to $x(t)$. Hence $x(t)$ must be differentiable with continuous derivative $y(t)$. This proves that $x \in D(T)$ and $Tx = y$. 
+
+Examples of closable operators. Let $D_{x}$ be a linear differential operator 
+\begin{equation}\label{eq:II.6.5}
+D _{x} = \sum\limits_{| j | \leqq k} c _{j} (x) D ^{j}
+\end{equation}
+with coefficients $c_{j}(x) \in C^{k}(\Omega)$, where $\Omega$ is an open domain of $\mathbb{R}^{n}$. Consider the totality $D$ of functions $f(x) \in L^{2}(\Omega) \cap C^{k}(\Omega)$ such that $D_{x}f(x) \in L^{2}(\Omega)$. We define a linear operator $T$ on $D(T) = D \subseteq L^{2}(\Omega)$ into $L^{2}(\Omega)$ by $(Tf)(x) = D_{x}f(x)$. Then $T$ is closable. For, let $\{f_{h}\} \subseteq D$ be such that $s\text{- }\lim\limits_{h \to \infty} f_{h} = 0$, $s\text{- }\lim\limits_{h \to \infty} D_{x}f_{h} = g$. Then, for any $\varphi(x) \in C_{0}^{k}(\Omega)$, we have, by partial integration, 
+\begin{equation}\label{eq:II.6.6}
+\int_{\Omega} D _{x} f (x) \cdot \varphi (x) \dd x = \int_{\Omega} f (x) \cdot D _{x} ^{\prime} \varphi (x) \dd x,
+\end{equation}
+where $D_{x}^{\prime}$ is the differential operator formally adjoint to $D_{x}$: 
+\begin{equation}\label{eq:II.6.7}
+D _{x} ^{\prime} \varphi (x) = \sum\limits_{| j | \leqq k} (- 1) ^{|j|} D ^{j} \left(c _{j} (x) \varphi (x)\right).
+\end{equation}
+
+The formula \eqref{eq:II.6.6} is obtained, since the integrated term in the partial integration vanishes by $\varphi(x) \in C_0^k(\Omega)$. Hence, by the continuity of the scalar product in $L^2(\Omega)$, we obtain, by taking $f = f_h$ and letting $h \to \infty$ in \eqref{eq:II.6.6}, 
+\begin{equation}\label{eq:II.6.8}
+\int_{\Omega} g (x) \cdot \varphi (x) \dd x = \int_{\Omega} 0 \cdot D _{x} ^{\prime} \varphi (x) \dd x = 0.
+\end{equation}
+
+Since $\varphi(x) \in C_0^k(\Omega)$ was arbitrary, we must have $g(x) = 0$ a.e., that is, $g = 0$ in $L^2(\Omega)$. 
+
+\begin{proposition}\label{prop:II.6.Proposition.3} The inverse $T^{-1}$ of a closed linear operator on $D(T) \subseteq X$ into $Y$, if it exists, is a closed linear operator. 
+\end{proposition}
+
+\begin{proof}
+ The graph of $T^{-1}$ is the set $\left\{\{Tx, x\}; x \in D(T)\right\}$ in the product space $Y \times X$. Thus the Proposition is proved remembering the fact that the mapping $\{x, y\} \to \{y, x\}$ of $X \times Y$ onto $Y \times X$ is a homeomorphic one. 
+\end{proof}
+
+We next prove Banach's closed graph theorem: 
+
+\begin{theorem}\label{thm:II.6.Theorem.1} $A$ closed linear operator defined on an $F$-space $X$ into an $F$-space $Y$ is continuous. 
+\end{theorem}
+
+\begin{proof}
+ The graph $G(T)$ of $T$ is a closed linear subspace of the $F$-space $X \times Y$. Hence, by the completeness of $X \times Y$, $G(T)$ is an $F$-space. The linear mapping $U$ defined by $U\{x, Tx\} = x$ is a one-to-one, continuous linear transformation on the $F$-space $G(T)$ onto the $F$-space $X$. Hence, by virtue of the open mapping theorem, the inverse $U^{-1}$ of $U$ is continuous. The linear operator $V$ defined by $V\{x, Tx\} = Tx$ is clearly continuous on $G(T)$ onto $R(T) \subseteq Y$. Therefore, $T = VU^{-1}$ is continuous on $X$ into $Y$. 
+\end{proof}
+
+The following theorem of comparison of two linear operators is due to L. \textsc{Hörmander}: 
+
+\begin{theorem}\label{thm:II.6.Theorem.2} Let $X_{i} (i = 0,1,2; X_{0} = X)$ be $B$-spaces and $T_{i} (i = 1,2)$ be linear operators defined on $D(T_{i}) \subseteq X$ into $X_{i}$. Then, if $T_{1}$ is closed and $T_{2}$ closable in such a way that $D(T_{1}) \subseteq D(T_{2})$, there exists a constant $C$ such that 
+\begin{equation}\label{eq:II.6.9}
+\left\| T _{2} x \right\| \leqq C \left(\left\| T _{1} x \right\| ^{2} + \left\| x \right\| ^{2}\right) ^{1/2} \text{ for all } x \in D (T _{1}).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ The graph $G(T_{1})$ of $T_{1}$ is a closed subspace of $X \times X_{1}$. Hence the mapping 
+\begin{equation}\label{eq:II.6.10}
+G \left(T _{1}\right) \ni \{x, T _{1} x \} \rightarrow T _{2} x \in X _{2}
+\end{equation}
+is a linear operator on the $B$-space $G(T_1)$ into the $B$-space $X_2$. We shall prove that this mapping is closed. Suppose that $\{x_n, T_1 x_n\}$ $s$-converges in $G(T_1)$ and that $T_2 x_n$ $s$-converges in $X_2$. Since $T_1$ is closed, there is an element $x \in D(T_1)$ such that $x = \slim\limits_{n \to \infty} x_n$ and $T_1 x = \slim\limits_{n \to \infty} T_1 x_n$. By the hypothesis, we have $x \in D(T_2)$, and, since $T_2$ is closable, the existing $\slim\limits_{n \to \infty} T_2 x_n$ can only be $T_2 x$. Hence the mapping \eqref{eq:II.6.10} is closed, and so, by the closed graph theorem, it must be continuous. This proves \eqref{eq:II.6.9}. 
+\end{proof}
+
+
+\yossection{7}{An Application of the Closed Graph Theorem (Hörmander's Theorem)}
+\label{sec:II.7}
+
+Any distribution solution $u \in L^2$ of the Laplace equation 
+\[
+\Delta u = f \in L ^{2}
+\]
+is defined by a function which is equal to a $C^{\infty}$ function after correction on a set of measure zero in the domain where $f$ is $C^{\infty}$. This result is known as Weyl's Lemma and plays a fundamental role in the modern treatment of the theory of potentials. See H. \textsc{Weyl} \cite{weyl336}. There is an abundant literature on the extensions of Weyl's Lemma. Of these, the research due to L. \textsc{Hörmander} \cite{hormander113} seems to be the most far reaching. We shall begin with his definition of hypoellipticity. 
+
+\begin{definition}\label{def:II.7.Definition.1} Let $\Omega$ be an open domain of $\mathbb{R}^{n}$. A function $u(x)$, $x \in \Omega$, is said to belong to $L_{\mathrm{loc}}^2(\Omega)$ if $\int_{\Omega'} |u(x)|^2 \dd x < \infty$ for any open subdomain $\Omega'$ with compact closure in $\Omega$. A linear partial differential operator $P(D)$ with constant coefficients: 
+\begin{equation}\label{eq:II.7.1}
+\begin{yoslines}& P (D) = P \left(\frac {1}{i} \frac {\partial}{\partial x _{1}}, \frac {1}{i} \frac {\partial}{\partial x _{2}}, \dots , \frac {1}{i} \frac {\partial}{\partial x _{n}}\right), \text{ where }\\& P (\xi) = P (\xi_{1}, \xi_{2}, \dots , \xi_{n}) \text{ is a polynomial in } \xi_{1}, \xi_{2}, \dots , \xi_{n},\end{yoslines}
+\end{equation}
+is said to be hypoelliptic, if every distribution solution $u \in L_{\mathrm{loc}}^{2}(\Omega)$ of $P(D)u = f$ is $C^{\infty}$ after correction on a set of measure zero in the subdomain where $f$ is $C^{\infty}$. 
+\end{definition}
+
+\begin{theoremn}[\textsc{Hörmander}] If $P(D)$ is hypoelliptic, then there exists, for any large positive constant $C_{1}$, a positive constant $C_{2}$ such that, for any solution $\zeta = \xi + i\eta$ of the algebraic equation $P(\zeta) = 0$, we have
+\begin{equation}\label{eq:II.7.2}
+| \zeta | = \left(\sum\limits_{j=1} ^{n} | \zeta_{j} | ^{2}\right) ^{1/2} \leqq C _{1} \quad \text{ if } \quad | \eta | = \left(\sum\limits_{j=1} ^{n} | \eta_{j} | ^{2}\right) ^{1/2} \leqq C _{2}.
+\end{equation}
+
+\end{theoremn}
+\begin{proof}
+ Let $U$ be the totality of distribution solutions $u \in L^2(\Omega')$ of $P(D)u = 0$, that is, the totality of $u \in L^2(\Omega')$ such that 
+\begin{equation}\label{eq:II.7.3}
+\int_ {\Omega^{\prime}} u \cdot P ^{\prime} (D) \varphi \dd x = 0 \quad \text{ for all } \quad \varphi \in C _{0} ^{\infty} (\Omega^{\prime}),
+\end{equation}
+where the adjoint differential operator $P'(D)$ of $P(D)$ is defined by 
+\begin{equation}\label{eq:II.7.4}
+P ^{\prime} (\xi) = P (- \xi_{1}, - \xi_{2}, \dots , - \xi_{n}). \end{equation}
+
+We can prove that $U$ is a closed linear subspace of $L^{2}(\Omega')$. The linearity of $U$ is obvious from the linearity of the differential operator $P(D)$. Let a sequence $\{u_{h}\}$ of $U$ be such that $\slim\limits_{h\to\infty}u_{h}=u$ in $L^{2}(\Omega')$. Then, by the continuity of the scalar product in $L^{2}(\Omega')$, we have 
+\[
+0 = \lim\limits _{h \rightarrow \infty} \int_ {\Omega^{\prime}} u _{h} \cdot P ^{\prime} (D) \varphi \dd x = \int_ {\Omega^{\prime}} u \cdot P ^{\prime} (D) \varphi \dd x = 0, \text{ i.e., } u \in U.
+\]
+
+Thus $U$ is a closed linear subspace of $L^{2}(\Omega')$, and as such a $B$-space. Since $P(D)$ is hypoelliptic, we may suppose that every $u \in U$ is $C^{\infty}$ in $\Omega'$. Let $\Omega_{1}'$ be any open subdomain with compact closure in $\Omega'$. Then, for any $u \in U$, the function $\partial u / \partial x_{k}$ is $C^{\infty}$ in $\Omega'$ ( $k = 1, 2, \ldots, n$). By the argument used in the preceding section, the mapping 
+\[
+U \ni u \rightarrow \frac {\partial u}{\partial x _{k}} \in L ^{2} (\Omega_{1} ^{\prime}) \quad (k = 1, 2, \dots , n)
+\]
+is a closed linear operator. Hence, by the closed graph theorem, there exists a positive constant $C$ such that 
+\[
+\int_ {\Omega_{1} ^{*}} \sum\limits_{k=1} ^{n} \left| \frac {\partial u}{\partial x _{k}} \right| ^{2} \dd x \leqq C \int_ {\Omega^{*}} | u | ^{2} \dd x, \quad \text{ for all } u \in U.
+\]
+
+If we apply this inequality to the function $u(x) = e^{i\langle x,\zeta \rangle}$, where $\zeta = \xi + i\eta = (\xi_1 + i\eta_1, \xi_2 + i\eta_2, \ldots, \xi_n + i\eta_n)$ is a solution of $P(\zeta) = 0$ and $\langle x, \zeta \rangle = \sum\limits_{j=1}^{n} \langle x_j, \zeta_j \rangle$, we obtain 
+\[
+\sum\limits_{k=1} ^{n} \left| \zeta_{k} \right| ^{2} \cdot \int_ {\Omega_{1} ^{\prime}} e ^{-2 \langle x, \eta \rangle} \dd x \leqq C \int_ {\Omega^{\prime}} e ^{-2 \langle x, \eta \rangle} \dd x.
+\]
+
+Therefore, when $|\eta|$ is bounded, it follows that $|\zeta|$ must be bounded. 
+\end{proof}
+
+\begin{remarku} Later on, we shall prove that condition \eqref{eq:II.7.2} implies the hypoellipticity of $P(D)$. This result is also due to \textsc{Hörmander}. Thus, in particular, we see that Weyl's Lemma is a trivial consequence of \textsc{Hörmander}'s result. In fact, the root of the algebraic equation $-\sum\limits_{j=1}^{n}\zeta_j^2 = 0$ satisfies \eqref{eq:II.7.2}. 
+\end{remarku}
+
+\yossub{References for Chapter II}
+
+S. \textsc{Banach} \cite{banach9}, N. \textsc{Bourbaki} \cite{bourbaki27}, N. \textsc{Dunford}-J. \textsc{Schwartz} \cite{dunford44}, E. \textsc{Hille}-R. S. \textsc{Phillips} \cite{hille97} and L. \textsc{Hörmander} \cite{hormander118}. 

@@ -1,0 +1,160 @@
+% Kôsaku Yosida: Functional Analysis (6th ed., Springer, Grundlehren 123)
+% 按 1995 Springer 重印版 (第6版) 重排, 版式复刻原书
+\documentclass{yosida}
+
+% XeLaTeX text, keeping Latin Modern and the existing AMS math fonts.
+\usepackage{lmodern}
+\usepackage{fontspec}
+\setmainfont{Latin Modern Roman}[
+  Ligatures=TeX,
+  SmallCapsFont=lmromancaps10-regular.otf,
+  BoldFeatures={SmallCapsFont=lmromancaps10-regular.otf,
+    SmallCapsFeatures={FakeBold=1.5}}]
+\usepackage{textcomp}
+\usepackage{multicol}
+\usepackage{indentfirst}
+\usepackage{enumerate}
+\usepackage{etoolbox}
+\AtBeginEnvironment{enumerate}{\everymath{}}
+\everymath{\displaystyle}
+% ---------- 定理环境在 yosida.cls 中以 amsthm 自定义样式声明 ----------
+
+% ---------- 记号宏 ----------
+% 原书各种常见记号统一由下列宏给出, 正文一律使用宏而非临时写法。
+\DeclareMathOperator{\supp}{supp}          % 支集 support
+\DeclareMathOperator{\dist}{dist}          % 距离 distance
+\DeclareMathOperator{\Conv}{Conv}          % 凸包 convex hull
+\DeclareMathOperator{\tr}{tr}              % 迹 trace
+\DeclareMathOperator{\LIM}{LIM}            % 广义极限 (Banach limit)
+\DeclareMathOperator*{\vraimax}{vrai\,max} % 本质上确界 (essential supremum)
+\DeclareMathOperator{\sgn}{sgn}            % 符号函数
+\DeclareMathOperator{\diam}{diam}          % 直径
+% 微分符号: \mathop{} 让它在前面留出一个细空格, \! 取消紧跟其后的空隙,
+% d 用直立体(原书如此), 全书统一用 \dd。
+\providecommand{\dd}{\mathop{}\!\mathrm{d}}
+% 实部/虚部记号沿用 LaTeX 内建的 \Re (ℜ) 与 \Im (ℑ); 0 处 OCR 残写法
+% (Re( / Im( / "R e (" ) 已统一为这两个宏。
+
+% ---------- 超链接 (规范 §8) ----------
+\usepackage[dvipsnames]{xcolor}
+\usepackage[
+  colorlinks=true,
+  pageanchor=false,
+  linkcolor=blue,
+  citecolor=red,
+  urlcolor=MidnightBlue,
+  linktoc=all,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  bookmarksopenlevel=1]{hyperref}
+\usepackage{bookmark}
+\bookmarksetup{numbered,open,openlevel=1}
+% Explicit foreground destinations avoid a discarded zero-size DVI page-anchor
+% box on dense math pages. Index targets retain the exact page.N naming contract.
+\makeatletter
+\AddToHook{shipout/foreground}{%
+  \begingroup
+    \edef\yos@shipoutpage{\thepage}%
+    \ifx\yos@shipoutpage\@empty\else
+      \xdef\@currentHpage{page.\yos@shipoutpage}%
+      \special{pdf:dest (page.\yos@shipoutpage) [@thispage /XYZ 70 806 null]}%
+    \fi
+  \endgroup}
+\makeatother
+
+% Source Supplementary Notes footnotes use stars; numbered notes restart by chapter.
+\makeatletter
+\@addtoreset{footnote}{yoschap}
+\newcommand{\yosstarfootnote}[1]{%
+  \begingroup\renewcommand{\thefootnote}{*}\footnote[0]{#1}\endgroup}
+% The source already prints a star in the heading. Create its footnote body
+% and a unique hyperlink destination without a second mark in the paragraph.
+\newcommand{\yosstarfootnotetext}[1]{%
+  \begingroup\renewcommand{\thefootnote}{*}%
+  \stepcounter{Hfootnote}%
+  \global\let\Hy@saved@currentHref\@currentHref
+  \hyper@makecurrent{Hfootnote}%
+  \global\let\Hy@footnote@currentHref\@currentHref
+  \global\let\@currentHref\Hy@saved@currentHref
+  \footnotetext[0]{#1}\endgroup}
+% A printed paragraph condition has a target without consuming an equation number.
+\newcommand{\yosparagraphtag}[1]{%
+  \phantomsection\def\@currentlabel{#1}%
+  \unskip\nobreak\hfill\mbox{(#1)}\par}
+\newcommand{\yosnamedtag}[1]{\phantomsection\def\@currentlabel{#1}}
+\makeatother
+
+% ---------- 参考文献 (biblatex, 编号按原书次序) ----------
+\usepackage[backend=biber,style=numeric,sorting=none,
+  isbn=false,url=false,doi=false,eprint=false]{biblatex}
+\DeclareSortingTemplate{yosidasource}{\sort{\field{userc}}}
+\ExecuteBibliographyOptions{sorting=yosidasource}
+\addbibresource{references.bib}
+% 姓前名后 + 小型大写, 复刻原书著者样式
+\DeclareNameAlias{default}{family-given}
+\renewcommand*{\mkbibnamefamily}{\textsc}
+% 文献条目照录原书文字(置于 note 字段), 精简输出驱动
+\DeclareFieldFormat{note}{#1}
+% Source citations restart within each primary author. Biber keys remain unique.
+\DeclareFieldFormat{labelnumber}{\thefield{usera}}
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{\thefield{usera}}}
+\DeclareBibliographyDriver{misc}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author}%
+  \newunit\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+\begin{document}
+
+% 各章/节内编号(公式按节从1重排)后, 给 hyperref 提供唯一的锚点名,
+% 避免不同章节的同号公式/定理共用同一 PDF 目标 (链接跳错页)。
+% \tag 不步进 equation 计数器 (插入编号如 (9') 不应打乱后续编号), 因此带
+% \tag 的公式会与相邻公式的锚点重名; 这里把源码行号并入公式锚点使其唯一
+% (书中不存在同一行有两个公式环境的情形), 从而不必改动 hyperref 的默认
+% 页码锚点 (索引的 \hyperlink{page.N} 依赖它)。
+\AtBeginDocument{%
+  \def\theHequation{\arabic{yoschap}.\arabic{yossec}.\arabic{equation}.\the\inputlineno}%
+  \def\theHtheorem{\arabic{yoschap}.\arabic{yossec}.\arabic{theorem}}%
+  \def\theHproposition{\arabic{yoschap}.\arabic{yossec}.\arabic{proposition}}%
+  \def\theHlemma{\arabic{yoschap}.\arabic{yossec}.\arabic{lemma}}%
+  \def\theHcorollary{\arabic{yoschap}.\arabic{yossec}.\arabic{corollary}}%
+  \def\theHdefinition{\arabic{yoschap}.\arabic{yossec}.\arabic{definition}}%
+  \def\theHexample{\arabic{yoschap}.\arabic{yossec}.\arabic{example}}}
+
+\input{chapters/front.tex}
+
+% 目录 (默认 book 样式; 编号文本由 \yoschapter/\yossection 写入条目)
+\setcounter{page}{9}
+\begingroup
+\yostocentryfalse
+\yoschapterstar{Contents}\label{chap:toc}
+\endgroup
+\yostoc
+
+% 正文
+\clearpage
+\pagenumbering{arabic}
+
+\input{chapters/chap00.tex}   % 0. Preliminaries
+\input{chapters/chap01.tex}   % I
+\input{chapters/chap02.tex}   % II
+\input{chapters/chap03.tex}   % III
+\input{chapters/chap04.tex}   % IV
+\input{chapters/chap05.tex}   % V
+\input{chapters/chap06.tex}   % Appendix to Chapter V
+\input{chapters/chap07.tex}   % VI
+\input{chapters/chap08.tex}   % VII
+\input{chapters/chap09.tex}   % VIII
+\input{chapters/chap10.tex}   % IX
+\input{chapters/chap11.tex}   % X
+\input{chapters/chap12.tex}   % Appendix to Chapter X
+\input{chapters/chap13.tex}   % XI
+\input{chapters/chap14.tex}   % XII
+\input{chapters/chap15.tex}   % XIII
+\input{chapters/chap16.tex}   % XIV
+\input{chapters/biblio.tex}
+\input{chapters/index.tex}
+
+\end{document}

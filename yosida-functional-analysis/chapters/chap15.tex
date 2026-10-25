@@ -1,0 +1,1667 @@
+% ==== XIII ====
+\yoschapter{XIII}{Ergodic Theory and Diffusion Theory}
+\label{chap:XIII}
+
+These theories constitute fascinating fields of application of the analytical theory of semi-groups. Mathematically speaking, the ergodic theory is concerned with the ``time average'' $\lim\limits_{t\uparrow\infty}t^{-1}\int\limits_{0}^{t}T_{s}\dd s$ of a semi-group $T_{t}$, and the diffusion theory is concerned with the investigation of a stochastic process in terms of the infinitesimal generator of the semi-group intrinsically associated with the stochastic process. 
+
+
+\yossection{1}{The Markov Process with an Invariant Measure*}
+\label{sec:XIII.1}
+\yosstarfootnotetext{See also Supplementary Notes, p.~\pageref{notes:XIII}.}
+
+In $1862$, an English botanist R. \textsc{Brown} observed under a microscope that small particles, pollen of some flower, suspended in a liquid move chaotically, changing position and direction incessantly. To describe such a phenomenon, we shall consider the transition probability $P(t,x;s,E)$ that a particle starting from the position $x$ at time $t$ belongs to the set $E$ at a later time $s$. The introduction of the transition probability $P(t,x;s,E)$ is based upon the fundamental hypothesis that the chaotic motion of the particle after the time moment $t$ is entirely independent of its past history before the time moment $t$. That is, the future history of the particle after the time moment $t$ is entirely determined chaotically if we know the position $x$ of the particle at time $t$. The hypothesis that the particle has no memory of the past implies that the transition probability $P$ satisfies the equation 
+\begin{equation}\label{eq:XIII.1.1}
+P (t, x; s, E) = \int_{S} P (t, x; u, \dd y) P (u, y; s, E) \text{ for } t < u < s,
+\end{equation}
+where the integration is performed over the entire space $S$ of the chaotic movement of the particle. 
+
+The process of evolution in time governed by a transition probability satisfying \eqref{eq:XIII.1.1} is called a Markov process, and the equation \eqref{eq:XIII.1.1} is called the Chapman-Kolmogorov equation. The Markov process is a natural generalization of the deterministic process for which $P(t, x; s, E) = 1 \text{ or } = 0$ according as $y \in E$ or $y \bar{\in} E$; that is, the process in which the particle at the position $x$ at the time moment $t$ moves to a definite position $y = y(x, t, s)$ with probability $1$ at every fixed later time moment $s$. The Markov process $P$ is said to be temporally homogeneous if $P(t, x; s, E)$ is a function of $(s - t)$ independently of $t$. In such a case, we shall be concerned with the transition probability $P(t, x, E)$ that a particle at the position $x$ is transferred into the set $E$ after the lapse of $t$ units of time. The equation \eqref{eq:XIII.1.1} then becomes 
+\begin{equation}\label{eq:XIII.1.2}
+P (t + s, x, E) = \int_{S} P (t, x, \dd y) P (s, y, E) \text{ for } t, s > 0.
+\end{equation}
+
+In a suitable function space $X$, $P(t, x, E)$ gives rise to a linear transformation $T_t$: 
+\begin{equation}\label{eq:XIII.1.3}
+(T_t f)(x) = \int_{S} P(t, x, \dd y) f(y), f \in X,
+\end{equation}
+
+such that, by \eqref{eq:XIII.1.2}, the semi-group property holds: 
+\begin{equation}\label{eq:XIII.1.4}
+T _{t+s} = T _{t} T _{s} \quad (t, s > 0).
+\end{equation}
+
+A fundamental mathematical question in statistical mechanics is concerned with the existence of the time average 
+\begin{equation}\label{eq:XIII.1.5}
+\lim\limits _{t \uparrow \infty} t ^{-1} \int_{0} ^{t} T _{s} f \dd s.
+\end{equation}
+
+In fact, let $S$ be the phase space of a mechanical system governed by the classical Hamiltonian equations whose Hamiltonian does not contain the time variable explicitly. Then a point $x$ of $S$ is moved to the point $y_{t}(x)$ of $S$ after the lapse of $t$ units of time in such a way that, by a classical theorem due to \textsc{Liouville}, the mapping $x \to y_{t}(x)$ of $S$ onto $S$, for each fixed $t$, is an equi-measure transformation, that is, the mapping $x \to y_{t}(x)$ leaves the ``phase volume'' of $S$ invariant. In such a deterministic case, 
+we have 
+\begin{equation}\label{eq:XIII.1.6}
+\left(T _{t} f\right) (x) = f \left(y _{t} (x)\right),
+\end{equation}
+and hence the ergodic hypothesis of \textsc{Boltzmann} that 
+the time average of any physical quantity = the space 
+average of this physical quantity 
+is expressed, assuming $\int_{S} \dd x < \infty$, by 
+\begin{equation}\label{eq:XIII.1.7}
+\lim\limits _{t \uparrow \infty} t ^{-1} \int_{0} ^{t} f (y _{s} (x)) \dd s = \int_{S} f (x) \dd x \Big | \int_{S} \dd x \text{ for all } f \in X,
+\end{equation}
+$\dd x$ denoting the phase volume element of $S$. 
+
+
+A natural generalization of the equi-measure transformation $x \to y_t(x)$ to the case of a Markov process $P(t, x, E)$ is the condition of the existence of an invariant measure $m(\dd x)$: 
+\begin{equation}\label{eq:XIII.1.8}
+\int_{S} m (\dd x) P (t, x, E) = m (E) \text{ for all } t > 0 \text{ and all } E.
+\end{equation}
+
+We are thus lead to the 
+
+\begin{definitionu} Let $\mathfrak{B}$ be a $\sigma$-additive family of subsets $B$ of a set $S$ such that $S$ itself $\in \mathfrak{B}$. For every $t > 0, x \in S$ and $E \in \mathfrak{B}$, let there be associated a function $P(t, x, E)$ such that 
+\begin{equation}\label{eq:XIII.1.9}
+P(t,x,E)\geqq0,\qquad P(t,x,S)=1,
+\end{equation}
+\begin{equation}\label{eq:XIII.1.10}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+For fixed $t$ and $x$, $P(t,x,E)$ is $\sigma$-additive in $E\in\mathfrak{B}$,
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:XIII.1.11}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+For fixed $t$ and $E$, $P(t,x,E)$ is $\mathfrak{B}$-measurable in $x$,
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:XIII.1.12}
+P(t+s,x,E)=\int_S P(t,x,\dd y)P(s,y,E)\qquad\text{(the Chapman-Kolmogorov equation).}
+\end{equation}
+
+\end{definitionu}
+
+Such a system $P(t, x, E)$ is said to define a Markov process on the phase space $(S, \mathfrak{B})$. If we further assume that $(S, \mathfrak{B}, m)$ is a measure space in such a way that 
+\begin{equation}\label{eq:XIII.1.13}
+\int_{S} m (\dd x) P (t, x, E) = m (E) \text{ for all } E \in \mathfrak {B},
+\end{equation}
+then $P(t, x, E)$ is said to be a Markov process with an invariant measure $m(E)$. 
+
+\begin{theorem}\label{thm:XIII.1.Theorem.1} Let $P(t, x, E)$ be a Markov process with an invariant measure $m$ such that $m(S) < \infty$. Let the norm in $X_{p} = L^{p}(S, \mathfrak{B}, m)$ be denoted by $\|f\|_p$, $p \geqq 1$. Then, by \eqref{eq:XIII.1.3}, a bounded linear operator $T_{t} \in L(X_{p}, X_{p})$ is defined such that $T_{t+s} = T_{t}T_{s} (t, s > 0)$ and 
+
+\begin{equation}\label{eq:XIII.1.14}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits $T_{t}$ is positive, i.e., $(T_{t}f)(x)\geqq 0$ on $S$ $m$-a.e. if $f(x)\geqq 0$ on $S$ $m$-a.e.,}
+\end{equation}
+\end{theorem}
+
+\begin{align}
+T _{t} \cdot 1& = 1, \label{eq:XIII.1.15} \\
+\left\| T _{t} f \right\| _{p}& \leqq \left\| f \right\| _{p} \text{ for } f \in X _{p} = L ^{p} (S, \mathfrak {B}, m) \text{ with } p = 1, 2 \text{ and } \infty . \label{eq:XIII.1.16}
+\end{align}
+
+\begin{proof}
+ \eqref{eq:XIII.1.14} and \eqref{eq:XIII.1.15} are clear. Let $f \in L^{\infty}(S, \mathfrak{B}, m)$. Then, by \eqref{eq:XIII.1.9}, \eqref{eq:XIII.1.10} and \eqref{eq:XIII.1.11}, we see that $f_t(x) = (T_t f)(x) \in L^{\infty}(S, \mathfrak{B}, m)$ is defined and $\|f_t\|_{\infty} \leqq \|f\|_{\infty}$. Hence, by \eqref{eq:XIII.1.9} and \eqref{eq:XIII.1.13}, we obtain, for $t \in L^{\infty}(S, \mathfrak{B}, m)$ with $p = 1$ or $p = 2$, 
+\[
+\begin{aligned} & {\| f _{t} \| _{p} = \left\{\int_ {\mathcal {S}} m (\dd x) \left| \int_ {\mathcal {S}} P (t, x, \dd y) f (y) \right| ^{p} \right\} ^{1/p}} \\ & {\quad \leqq \left\{\int_ {\mathcal {S}} m (\dd x) \left[ \int_ {\mathcal {S}} P (t, x, \dd y) | f (y) | ^{p} \cdot \int_ {\mathcal {S}} P (t, x, \dd y) 1 ^{p} \right] \right\} ^{1/p}} \\ & {\quad = \left\{\int_ {\mathcal {S}} m (\dd y) | f (y) | ^{p} \right\} ^{1/p} = \| f \| _{p}.} \end{aligned}
+\]
+
+We put, for a non-negative $f \in L^p(S, \mathfrak{B}, m)$ with $p = 1$ or $p = 2$, 
+$_{n}f(s)=\min(f(s),n)$, where $n$ is a positive integer. 
+
+Then, by the above, we obtain $0 \leqq (_n f(s))_t \leqq (_{n+1} f(s))_t$ and $\|(n f)_t\|_p \leqq \|_n f\|_p \leqq \|f\|_p$. Thus, if we put $f_t(s) = \lim\limits_{n \to \infty} (_n f(s))_t$, then, by the Lebesgue-Fatou lemma, $\|f_t\|_p \leqq \|f\|_p$, that is, $f_t \in L^p(S, \mathfrak{B}, m)$. Again by the Lebesgue-Fatou lemma, we obtain 
+\[
+\begin{aligned}
+&f _{t} (x) = \lim\limits _{n \rightarrow \infty} \int_{S} P (t, x, \dd y) (n f (y)) \geqq \int_{S} P (t, x, \dd y) (\lim\limits _{n \rightarrow \infty} (n f (y))) = \int_{S} P (t, x, \dd y) f (y).
+\end{aligned}
+\]
+
+Thus $f(y)$ is integrable with respect to the measure $P(t, x_0, \dd y)$ for those $x_0$'s for which $f_t(x_0) \neq \infty$, that is, for $m$-a.e. $x_0$. Hence, by the Lebesgue-Fatou lemma, we finally obtain 
+\[
+\int_{S} P (t, x _{0}, \dd y) \left(\lim\limits _{n \rightarrow \infty} (_{n} f (y))\right) = \lim\limits _{n \rightarrow \infty} \int_{S} P (t, x _{0}, \dd y) (_{n} f (y)).
+\]
+
+Therefore, $f_{t}(x_0) = \int \limits_{S} P(t, x_0, \dd y) f(y)$ $m$-a.e. and $\|f_t\|_p \leqq \|f\|_p$. For a general $f \in L^p(S, \mathfrak{B}, m)$, we obtain the same result by applying the positive operator $T_t$ to $f^+$ and $f^-$, separately. 
+\end{proof}
+
+\begin{theorem}[K. \textsc{Yosida}]\label{thm:XIII.1.Theorem.2} Let $P(t, x, E)$ be a Markoff process with an invariant measure $m$ such that $m(S) < \infty$. Then, for any $f \in L^p(S, \mathfrak{B}, m)$ with $p = 1$ or $p = 2$, the mean ergodic theorem holds: 
+\begin{equation}\label{eq:XIII.1.17}
+\begin{aligned}
+&\slim _{n \to \infty} n ^{-1} \sum\limits_{k=1} ^{n} T _{k} f = f ^{*} \text{ exists in } L ^{p} (S, \mathfrak {B}, m) \text{ and } T _{1} f ^{*} = f \text{whenever } f \in L^{p}(S, \mathfrak{B}, m),
+\end{aligned}
+\end{equation}
+
+
+and we have 
+\begin{equation}\label{eq:XIII.1.18}
+\int_{S} f (s) m (\dd s) = \int_{S} f ^{*} (s) m (\dd s).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ In the Hilbert space $L^2(S, \mathfrak{B}, m)$, the mean ergodic theorem \eqref{eq:XIII.1.17} holds by \eqref{eq:XIII.1.16} and the general mean ergodic theorem in Chapter~\ref{chap:VIII}, \ref{sec:VIII.3}. Since $m(S) < \infty$, we see, by Schwarz' inequality, that any $f \in L^2(S, \mathfrak{B}, m)$ belongs to $L^1(S, \mathfrak{B}, m)$ and $\|f\|_1 \leqq \|f\|_2 \cdot m(S)^{1/2}$. Hence the mean ergodic theorem $\lim\limits_{n \to \infty} \int_S |f^*(s) - n^{-1} \sum\limits_{k=1}^{n} (T_k f)(s)|m(\dd s) = 0$, together with $T_1 f^* = f^*$, hold for any $f \in L^2(S, \mathfrak{B}, m)$. Again, by $m(S) < \infty$ and $0 = \lim\limits_{n \to \infty} \|f - _n f\|_1 = \lim\limits_{n \to \infty} \int_S |f(s) - _n f(s)|m(\dd s)$ with $_n f(s) = \min(f(s), n)$, we see that $L^2(S, \mathfrak{B}, m)$ is $L^1$-dense in $L^1(S, \mathfrak{B}, m)$. That is, for any $f \in L^1(S, \mathfrak{B}, m)$ and $\varepsilon > 0$, there exists an $f_\varepsilon \in L^2(S, \mathfrak{B}, m) \cap L^1(S, \mathfrak{B}, m)$ such that $\|f - f_\varepsilon\|_1 < \varepsilon$. Hence, by \eqref{eq:XIII.1.16}, we obtain 
+\[
+\left\| n ^{-1} \sum\limits_{k=1} ^{n} T _{k} f - n ^{-1} \sum\limits_{k=1} ^{n} T _{k} f _{\varepsilon} \right\| _{1} \leqq \| f - f _{\varepsilon} \| _{1} \leqq \varepsilon . \]
+
+The mean ergodic theorem ($17$) in $L^{1}(S, \mathfrak{B}, m)$ holds for $f_{\varepsilon}$ and so, by the above inequality, we see that ($17$) in $L^{1}(S, \mathfrak{B}, m)$ must hold also for $f$. 
+
+Since the strong convergence implies the weak convergence, \eqref{eq:XIII.1.18} is a consequence of \eqref{eq:XIII.1.17}. 
+\end{proof}
+
+\begin{remarkn}[Remark $1$] The above Theorem~\ref{thm:XIII.1.Theorem.2} is due to K. \textsc{Yosida} \cite{yosida360}. Cf. S. \textsc{Kakutani} \cite{kakutani130}, where, moreover, the $m$-a.e. convergence $\lim\limits_{n\to \infty}n^{-1}\sum\limits_{k=1}^{n}(T_kf)(x)$ is proved for every $f\in L^{\infty}(S,\mathfrak{B},m)$. We can prove, when the semi-group $T_{t}$ is strongly continuous in $t$, that we may replace \slim $n^{-1}\sum\limits_{k=1}^{n}T_{k}f$ in ($17$) by \slim $t^{-1}\int_{0}^{t}T_{s}fds$. We shall not go into the details, since they are given in the books on ergodic theory due to E. \textsc{Hopf} \cite{hirsch109} and K. \textsc{Jacobs} \cite{ito123}. We must mention a fine report by S. \textsc{Kakutani} \cite{kakutani132} on the development of ergodic theory between \textsc{Hopf}'s report in $1937$ and the $1950$ International Congress of Mathematicians held at Cambridge. 
+\end{remarkn}
+
+In order to deal with the ergodic hypothesis ($7$), we must prove the individual ergodic theorem to the effect that 
+\[
+\lim\limits _{n \rightarrow \infty} n ^{-1} \sum\limits_{k=1} ^{n} (T _{k} f) (x) = f ^{*} (x) m\text{-a.e.}
+\]
+
+In the next section, we shall be concerned with the $m$-a.e. convergence of the sequence $n^{-1} \sum\limits_{k=1}^{n} (T_k f)(x)$. Our aim is to derive the $m$-a.e. convergence from the mean convergence using Banach's convergence theorem in Chapter~\ref{chap:XII}, \ref{sec:XII.4}. 
+
+
+\yossection{2}{An Individual Ergodic Theorem and Its Applications}
+\label{sec:XIII.2}
+
+We first prove 
+
+\begin{theorem}[K. \textsc{Yosida}]\label{thm:XIII.2.Theorem.1} Let $X_{1}$ be a real, $\sigma$-complete $F$-lattice provided with a quasi-norm $\| x \|_{1}$ such that 
+\begin{equation}\label{eq:XIII.2.1}
+\Olim _{n \to \infty} x _{n} = x \text{ implies } \lim\limits _{n \to \infty} \| x _{n} \| _{1} = \| x \| _{1}.
+\end{equation}
+\end{theorem}
+
+Let a linear subspace $X$ of $X_{1}$ be a real $B$-space provided with a norm $\| x \|$ such that 
+\begin{equation}\label{eq:XIII.2.2}
+\slim _{n \to \infty} x _{n} = x \quad \text{ in } X \text{ implies } \quad \slim _{n \to \infty} x _{n} = x \text{ in } X _{1}.
+\end{equation}
+
+Let $\{T_n\}$ be a sequence of bounded linear operators defined on $X$ into $X$ such that 
+\begin{equation}\label{eq:XIII.2.3}
+\begin{minipage}[b]{0.92\linewidth}
+$\underset {n \rightarrow \infty} {\mathcal {O} - \varlimsup} | T _{n} x |$ exists for those $x$'s which form a set $S$ of the second category in $X$.
+\end{minipage}
+\end{equation}
+
+
+Suppose that, to a certain $z \in X$, there corresponds a $\bar{z} \in X$ such that 
+\begin{align}
+\lim\limits _{n \rightarrow \infty} \| T _{n} z - \bar {z} \|& = 0, \label{eq:XIII.2.4} \\
+T _{n} \bar {z}& = \bar {z} (n = 1, 2, \dots), \label{eq:XIII.2.5} \\
+\Olim _{n \to \infty} (T _{n} z - T _{n} T _{k} z)& = 0 \quad \text{ for } \quad k = 1, 2, \dots \label{eq:XIII.2.6}
+\end{align}
+
+Then 
+\begin{equation}\label{eq:XIII.2.7}
+\Olim _{n \to \infty} T _{n} z = \bar {z}.
+\end{equation}
+
+\begin{proof}
+ Put $z = \bar{z} + (z - \bar{z})$. We define an operator $\tilde{T}$ on $S$ into $X_{1}$ by 
+\begin{equation}\label{eq:XIII.2.8}
+\tilde {T} x = O \underset {n \rightarrow \infty} {\overline {{\lim}}} T _{n} x - O \underset {n \rightarrow \infty} {\underline {{\lim}}} T _{n} x. \end{equation}
+
+Then, by \eqref{eq:XIII.2.5}, 
+\begin{equation*}
+0 \leqq \tilde {T} z \leqq \tilde {T} (z - \bar {z}).
+\end{equation*}
+
+We have $\tilde{T}(z - T_k z) = 0$ ( $k = 1, 2, \ldots$) by \eqref{eq:XIII.2.6}, and $\lim\limits_{k \to \infty} \|(z - \bar{z}) - (z - T_k z)\| = 0$ by \eqref{eq:XIII.2.4}. Hence, by Banach's theorem in Chapter~\ref{chap:XII}, \ref{sec:XII.4}, we have $\tilde{T}(z - \bar{z}) = 0$. Hence $0 \leqq \tilde{T} z \leqq 0$, that is, $O$ - $\lim\limits_{n \to \infty} T_n z = w$ exists. 
+
+We have to show that $w = \bar{z}$. We have, by \eqref{eq:XIII.2.4} and \eqref{eq:XIII.2.2}, $\lim\limits_{n\to \infty}\|T_n z - \bar{z}\|_1 = 0$. Also we have, by \eqref{eq:XIII.2.1} and $O\text{- }\lim\limits_{n\to \infty}T_n z = w$, $\lim\limits_{n\to \infty}\|T_n z - w\|_1 = 0$. Hence $w = \bar{z}$. 
+\end{proof}
+
+Specializing $X_{1}$ as the real space $M(S, \mathfrak{B}, m)$ and $X$ as the real space $L^{1}(S, \mathfrak{B}, m)$, respectively, we can prove the following individual ergodic theorem. 
+
+\begin{theorem}[K. \textsc{Yosida}]\label{thm:XIII.2.Theorem.2} Let $T$ be a bounded linear operator defined on $L^{1}(S, \mathfrak{B}, m)$ into $L^{1}(S, \mathfrak{B}, m)$ where $m(S) < \infty$. Suppose that 
+\begin{align}
+\left\| T ^{n} \right\|& \leqq C < \infty (n = 1, 2, \dots), \label{eq:XIII.2.9} \\
+\varlimsup\limits_{n \rightarrow \infty} \left| n ^{-1} \sum\limits_{m=1} ^{n} (T ^{m} x) (s) \right|& < \infty \quad m\text{-a.e.} \label{eq:XIII.2.10}
+\end{align}
+\end{theorem}
+
+Suppose that, for a certain $z \in L^{1}(S, \mathfrak{B}, m)$, 
+\begin{equation}\label{eq:XIII.2.11}
+\lim\limits _{n \rightarrow \infty} n ^{-1} (T ^{n} z) (s) = 0 \quad m\text{-a.e.},
+\end{equation}
+\begin{equation}\label{eq:XIII.2.12}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits and the sequence $\left\{n^{-1}\sum\limits_{m=1}^{n}T^{m}z\right\}$ contains a subsequence which converges weakly to an element $\bar{z} \in L^{1}(S, \mathfrak{B}, m)$.}
+\end{equation}
+
+
+Then 
+\begin{equation}\label{eq:XIII.2.13}
+\slim _{n \to \infty} n ^{-1} \sum\limits_{m=1} ^{n} T ^{m} z = \bar {z}, T \bar {z} = \bar {z},
+\end{equation}
+and 
+\begin{equation}\label{eq:XIII.2.14}
+\lim\limits _{n \rightarrow \infty} n ^{-1} \sum\limits_{m=1} ^{n} (T ^{m} z) (s) = \bar {z} (s) m\text{-a.e.}
+\end{equation}
+
+\begin{proof}
+ Consider the space $M(S, \mathfrak{B}, m)$, and take the $F$-lattice $X_1 = M(S, \mathfrak{B}; m)$ with $\|x\|_1 = \int_S |x(s)| (1 + |x(s)|)^{-1} m(\dd s)$, the $B$-lattice $X = L^1(S, \mathfrak{B}, m)$ with $\|x\| = \int_S |x(s)| m(\dd s)$ and $T_n = n^{-1} \sum\limits_{m=1}^{n} T^m$. Then the conditions of Theorem~\ref{thm:XIII.2.Theorem.1} are satisfied. We shall, for instance, verify that \eqref{eq:XIII.2.6} is satisfied. We have 
+\[
+\begin{gathered}
+T _{n} z - T _{n} T ^{k} z = n ^{-1} (T + T ^{2} + \dots + T ^{n}) z - n ^{-1} (T ^{k+1} + T ^{k+2} + \dots + T ^{k+n}) z
+\end{gathered}
+\]
+and so, by \eqref{eq:XIII.2.11}, $\lim\limits_{n\to \infty}(T_nz - T_nt^k z)(s) = 0$ $m$-a.e. for $k = 1,2,\ldots$. Hence, by taking the arithmetic mean with respect to $k$, we obtain $\lim\limits_{n\to \infty}(T_nz - T_nt_kz)(s) = 0$ $m$-a.e. for $k = 1,2,\ldots$. Conditions \eqref{eq:XIII.2.4} and \eqref{eq:XIII.2.5}, that is condition \eqref{eq:XIII.2.13} is a consequence of the mean ergodic theorem in Chapter~\ref{chap:VIII}, \ref{sec:VIII.3}. 
+\end{proof}
+
+\begin{remarku} The above two theorems are adapted from K. \textsc{Yosida} \cite{yosida358} and \cite{yosida361}. In these papers there are given other ergodic theorems implied by Theorem~\ref{thm:XIII.2.Theorem.1}. 
+\end{remarku}
+
+As for condition \eqref{eq:XIII.2.11} above, we have the following result due to E. \textsc{Hopf} \cite{hirsch111}: 
+
+\begin{theorem}\label{thm:XIII.2.Theorem.3} Let $T$ be a positive linear operator on the real $L^1(S, \mathfrak{B}, m)$ into itself with the $L^1$-norm $\| T \| \leqq 1$. If $f \in L^1(S, \mathfrak{B}, m)$ and $p \in L^1(S, \mathfrak{B}, m)$ be such that $p(s) \geqq 0m$-a.e., then 
+
+$\lim\limits_{n \to \infty} (T^n f)(s) / \sum\limits_{j=0}^{n-1} (T^j p)(s) = 0$ $m$-a.e. on the set where $p(s) > 0$. 
+\end{theorem}
+
+If $m(S) < \infty$ and $T \cdot 1 = 1$, then, by taking $p(s) = 1$, we obtain \eqref{eq:XIII.2.11}. \begin{proof}
+It suffices to prove the Theorem for the case $f \geqq 0$. Choose $\varepsilon > 0$ arbitrarily and consider the functions 
+\[
+g _{n} = T ^{n} f - \varepsilon \cdot \sum\limits_{j=0} ^{n-1} T ^{j} p, g _{0} = f.
+\]
+
+Let $x_{n}(s)$ be the defining function of the set $\{s \in S; g_{n}(s) \geqq 0\}$. From $x_{n}g_{n} = g_{n}^{+} = \max(g, 0)$ and $g_{n+1} + \varepsilon p = Tg_{n}$, we obtain, by the positivity of the operator $T$ and $\|T\| \leqq 1$, 
+\begin{gather}\int_{S} g _{n+1} ^{+} \cdot m (\dd s) + \varepsilon \int_{S} x _{n+1} p \cdot m (\dd s) = \int_{S} x _{n+1} \left(g _{n+1} + \varepsilon p\right) m (\dd s) \notag \\= \int_{S} x _{n+1} T g _{n} \cdot m (\dd s) \leqq \int_{S} x _{n+1} T g _{n} ^{+} \cdot m (\dd s) \leqq \int_{S} T g _{n} ^{+} \cdot m (\dd s) \leqq \int_{S} g _{n} ^{+} \cdot m (\dd s). \notag
+\end{gather}
+
+Summing up these inequalities from $n = 0$ on, we obtain 
+\[
+\int_{S} g _{n} ^{+} \cdot m (\dd s) + \varepsilon \int_{S} p \cdot \sum\limits_{k=1} ^{n} x _{k} \cdot m (\dd s) \leqq \int_{S} g _{0} ^{+} \cdot m (\dd s),
+\]
+and hence 
+\[
+\int_{S} p \cdot \sum\limits_{k=1} ^{\infty} x _{k} \cdot m (\dd s) \leqq \varepsilon^{-1} \int_{S} g _{0} ^{+} \cdot m (\dd s).
+\]
+
+Hence $\sum\limits_{k=1}^{\infty} x_k(s)$ converges $m$-a.e. on the set where $p(s) > 0$. Thus, on the set where $p(s) > 0$, we must have $g_n(s) < 0$ $m$-a.e. for all large $n$. 
+
+Therefore, we have proved that $(T^n f)(s) < \varepsilon \sum\limits_{k=0}^{n-1} (T^k p)(s)$ $m$-a.e. for all large $n$ on the set where $p(s) > 0$. As $\varepsilon > 0$ was arbitrary, we have proved our Theorem. 
+\end{proof}
+
+As for condition \eqref{eq:XIII.2.10}, we have the following Theorem due to R. V. \textsc{Chacon}-D. S. \textsc{Ornstein} \cite{chacon32}: 
+
+\begin{theorem}[R. V. \textsc{Chacon}-D. S. \textsc{Ornstein}]\label{thm:XIII.2.Theorem.4} Let $T$ be a positive linear operator on the real $L^{1}(S, \mathfrak{B}, m)$ into itself with the $L^{1}$-norm
+
+$\| T \|_{1} \leqq 1$. If $f$ and $p$ are functions in $L^{1}(S, \mathfrak{B}, m)$ and $p(s) \geqq 0$, then 
+\[
+\varlimsup\limits_{n \rightarrow \infty} \left\{\sum\limits_{k=0} ^{n} (T ^{k} f) (s) / \sum\limits_{k=0} ^{n} (T ^{k} p) (s) \right\} \text{ is finite } m\text{-a.e.}
+\]
+on the set where $\sum\limits_{n=0}^{\infty}\left(T^{n}p\right)(s)>0$. 
+\end{theorem}
+
+If $m(S) < \infty$ and $T \cdot 1 = 1$, then, by taking $p(s) = 1$, we obtain \eqref{eq:XIII.2.10}. For the proof, we need a 
+
+\begin{lemman}[\textsc{Chacon}-\textsc{Ornstein}\cite{chacon32}] If $f = f^{+} + f^{-}$, and if $\varlimsup\limits_{n\to \infty}\sum\limits_{k=0}^{n}(T^{k}f)(s) > 0$ on a set $B$, then there exist sequences $\{d_k\}$ and $\{f_k\}$ of non-negative functions such that, for every $N$,
+\begin{align}
+&\int_{S} \sum\limits_{k=0} ^{N} d _{k} \cdot m (\dd s) + \int_{S} f _{N} \cdot m (\dd s) \leqq \int_{S} f ^{+} \cdot m (\dd s), \label{eq:XIII.2.15} \\
+\sum\limits_{k=0} ^{\infty} d _{k} (s)& = - f (s) \text{ on } B, \label{eq:XIII.2.16} \\
+T ^{N} f ^{+}& = \sum\limits_{k=0} ^{N} T ^{N-k} d _{k} + f _{N}. \label{eq:XIII.2.17}
+\end{align}
+
+\end{lemman}
+\begin{proof}
+ Define inductively 
+\begin{equation}d _{0} = 0, f _{0} = f ^{+}, f _{-1} = 0, f _{i+1} = \left(T f _{i} + f ^{-} + d _{0} + \dots + d _{i}\right) ^{+}, d _{i+1} \doteq T f _{i} - f _{i+1}.  \label{eq:XIII.2.18}\end{equation}
+
+Note that 
+\begin{equation}\label{eq:XIII.2.19}
++ f ^{-} + d _{0} + \dots + d _{i} \leqq 0,
+\end{equation}
+and that the equality holds on the set where $f_{i}(s) > 0$, for 
+\[
+\begin{aligned}
+&{f _{i} = (T f _{i-1} + f ^{-} + d _{0} + \cdots + d _{i-1}) ^{+}} {\quad = (T f _{i-1} - f _{i} + f ^{-} + d _{0} + \cdots + d _{i-1} + f _{i}) ^{+}} \\
+&{\quad = (d _{i} + f ^{-} + d _{0} + \cdots + d _{i-1} + f _{i}) ^{+}.}
+\end{aligned}
+\]
+
+It follows from \eqref{eq:XIII.2.18} that 
+\begin{equation}\label{eq:XIII.2.20}
+T ^{j} f ^{+} = \sum\limits_{k=0} ^{j} T ^{j-k} d _{k} + f _{j}.
+\end{equation}
+
+By the definition, $f_{i}$ is non-negative, and so is $d_{i}$ by the last two equations of \eqref{eq:XIII.2.18} and \eqref{eq:XIII.2.19}. From \eqref{eq:XIII.2.20}, we have 
+\begin{equation}\label{eq:XIII.2.21}
+\sum\limits_{j=0} ^{n} T ^{j} f ^{+} = \sum\limits_{j=0} ^{n} \sum\limits_{k=0} ^{j} T ^{j-k} d _{k} + \sum\limits_{j=0} ^{n} f _{j}.
+\end{equation}
+
+We then prove 
+\begin{equation}\label{eq:XIII.2.22}
+\sum\limits_{j=0} ^{n} T ^{j} f ^{+} \leqq \sum\limits_{j=0} ^{n} d _{j} - \sum\limits_{j=1} ^{n} T ^{j} f ^{-} + \sum\limits_{j=0} ^{n} f _{j}.
+\end{equation}
+
+To this purpose, we note that 
+\[
+\sum\limits_{j=0} ^{n} \sum\limits_{k=0} ^{j} T ^{j-k} d _{k} = \sum\limits_{j=0} ^{n} T ^{j} \left(\sum\limits_{k=0} ^{n-j} d _{k}\right)
+\]
+and that, by \eqref{eq:XIII.2.19} and the positivity of $T$, 
+\begin{equation}\label{eq:XIII.2.23}
+- T ^{j} f ^{-} \geqq T ^{j} \left(\sum\limits_{k=0} ^{n-j} d _{k}\right) \quad \text{ for } \quad 1 \leqq j \leqq n.
+\end{equation}
+
+Rewriting \eqref{eq:XIII.2.22}, we have 
+\begin{equation}\label{eq:XIII.2.24}
+\sum\limits_{j=0} ^{n} T ^{j} (f ^{+} + f ^{-}) \leqq \sum\limits_{j=0} ^{n} (d _{j} + f _{j}) + f ^{-}.
+\end{equation}
+
+We will now prove that 
+\begin{equation}\label{eq:XIII.2.25}
+\sum\limits_{j=0} ^{\infty} d _{j} (s) + f ^{-} (s) \geqq 0 m \text{-a.e. on } B.
+\end{equation}
+
+It is clear from the remark after \eqref{eq:XIII.2.19} that \eqref{eq:XIII.2.25} holds with equality $m$-a.e. on the set $C = \{s \in S; f_j(s) > 0 \text{ for some } j \geqq 0\}$. It remains to show that \eqref{eq:XIII.2.25} holds on the set $B$ - $C$. This is proved by noting that \eqref{eq:XIII.2.24} implies that on $B$, and on $B$ - $C$ in particular, we have the inequality 
+\[
+\sum\limits_{j=0} ^{\infty} \left(d _{j} + f _{j}\right) (s) + f ^{-} (s) \geqq 0.
+\]
+
+Now we note that \eqref{eq:XIII.2.17} is exactly \eqref{eq:XIII.2.20} and that \eqref{eq:XIII.2.16} is implied from \eqref{eq:XIII.2.19} and \eqref{eq:XIII.2.25}. To see that \eqref{eq:XIII.2.15} holds, note that we have, by the assumptions on $T$ and \eqref{eq:XIII.2.18}, 
+\[
+\int_{S} \left(\sum\limits_{k=0} ^{j} d _{k} + f _{j}\right) m (\dd s) \geqq \int_{S} \left(\sum\limits_{k=0} ^{j} d _{k} + T \cdot f _{j}\right) m (\dd s) = \int_{S} \left(\sum\limits_{k=0} ^{j+1} d _{k} + f _{j+1}\right) m (\dd s).
+\]
+
+Hence we obtain \eqref{eq:XIII.2.15} by induction on $j$, since $d_{0} + f_{0} = f^{+}$. 
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:XIII.2.Theorem.4}.]
+It is sufficient to prove the Theorem under the hypothesis that $f(s) \geqq 0$ on $S$, and only to prove the finiteness of the indicated supremum when $p(s) > 0$. The first remark is obvious, and the second is proved as follows. By the hypothesis that the indicated supremum is finite at point $s$ where $p(s) > 0$, we have
+\begin{equation}\label{eq:XIII.2.26}
+\varlimsup\limits_{n \rightarrow \infty} \left\{\sum\limits_{j=0} ^{n} (T ^{j+k} f) (s) / \sum\limits_{j=0} ^{n} (T ^{j+k} p) (s) \right\} \text{ is finite } m\text{-a.e.}
+\end{equation}
+on the set where $(T^k p)(s) > 0$, 
+
+
+and this implies that $\varlimsup\limits_{n\to \infty}\left\{\sum\limits_{j=0}^{n}(T^j f)(s)\Big/\sum\limits_{j=0}^{n}(T^j p)(s)\right\}$ is finite $m$-a.e. on the set where $(T^k p)(s) > 0$. 
+
+Now assume the contrary to the hypothesis. Then 
+\[
+\varlimsup\limits_{n \rightarrow \infty} \left\{\sum\limits_{j=0} ^{n} (T ^{j} f) (s) / \sum\limits_{j=0} ^{n} (T ^{j} p) (s) \right\}
+\]
+is infinite $m$-a.e. on a set $E$ of positive $m$-measure, and $p(s) > \beta > 0$ on $E$ for some positive constant $\beta$. We have therefore, that for any positive constant $\alpha$, 
+\[
+\sup\limits _{n} \left\{\sum\limits_{j=0} ^{n} \left(T ^{j} ((f - \alpha p) ^{+} + (f - \alpha p) ^{-})\right) (s) \right\} > 0
+\]
+$m$-a.e. on $E$. Applying the Lemma with $f$ replaced by $(f - \alpha p)$, we obtain from \eqref{eq:XIII.2.15} and \eqref{eq:XIII.2.16} that 
+\[
+\int_{S} (f - \alpha p) ^{+} m (\dd s) \geqq \int_{S} \sum\limits_{k=0} ^{\infty} d _{k} m (\dd s) \geqq - \int_{E} (f - \alpha p) ^{-} m (\dd s).
+\]
+
+However, the extreme right term tends to $\infty$ as $\alpha\uparrow\infty$, and the extreme left term is bounded as $\alpha\uparrow\infty$. This is a contradiction, and so we have proved the Theorem. 
+\end{proof}
+
+We have thus proved 
+
+
+\begin{theorem}\label{thm:XIII.2.Theorem.5} Let $T$ be a positive linear operator on $L^1(S, \mathfrak{B}, m)$ into itself with the $L^1$-norm $\| T \|_1 \leqq 1$. If $m(S) < \infty$ and $T \cdot 1 = 1$, then, for any $f \in L^1(S, \mathfrak{B}, m)$, the mean convergence of the sequence $\left\{ n^{-1} \sum\limits_{j=1}^{n} T^j f \right\}$ implies its $m$-a.e. convergence. 
+\end{theorem}
+
+As a corollary we obtain 
+
+\begin{theorem}\label{thm:XIII.2.Theorem.6} Let $P(t, x, E)$ be a Markov process with an invariant measure $m$ on a measure space $(S, \mathfrak{B}, m)$ such that $m(S) < \infty$. Then, for the linear operator $T_t$ defined by $(T_t f)(x) = \int_S P(t, x, \dd y)f(y)$, we have
+\begin{enumerate}[i)]
+\item the mean ergodic theorem: 
+\begin{equation}
+\label{eq:XIII.2.27}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+for any $f \in L ^{p} (S, \mathfrak {B}, m), \slim _{n \to \infty} n ^{-1} \sum\limits_{k=1} ^{n} T _{k} f = f ^{*}$ exists in $L^p(S, \mathfrak{B}, m)$ and $T_1 f^* = f^*   (p = 1, 2),$
+\end{minipage}
+\end{equation}
+
+
+\item the individual ergodic theorem: 
+
+\begin{equation}\label{eq:XIII.2.28}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits for any $f \in L^{p}(S, \mathfrak{B}, m)$ with $p = 1$ or $p = 2$, finite $\lim\limits_{n\to \infty}n^{-1}\sum\limits_{k=1}^{n}(T_kf)(s)$ exists $m$-a.e. and is $= f^{*}(s)$ $m$-a.e., and moreover, $\int_{S}f(s)m(ds) = \int_{S}f^{*}(s)m(ds)$.}
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+ By Theorem~\ref{thm:XIII.2.Theorem.2} in the preceding section, the mean ergodic theorem \eqref{eq:XIII.2.27} holds and so we may apply Theorem~\ref{thm:XIII.2.Theorem.5}. 
+\end{proof}
+
+\begin{remarku} If $T_{t}$ is given by an equi-measure transformation $x \to y_{t}(x)$ of $S$ onto $S$, the result \eqref{eq:XIII.2.27} is precisely the mean ergodic theorem of J. \textsc{von} \textsc{Neumann} \cite{neumann230} and the result \eqref{eq:XIII.2.28} is precisely the individual ergodic theorem of G. D. \textsc{Birkhoff} \cite{birkhoff18} and A. \textsc{Khintchine} \cite{khintchine149}. 
+\end{remarku}
+
+A Historical Sketch. The first operator-theoretical generalization of the individual ergodic theorem of the Birkhoff-Khintchine type was given by J. L. Doob \cite{doob40}. He proved that $n^{-1} \sum\limits_{k=1}^{n} (T_k f)(x)$ converges $m$-a.e. when $T_t$ is defined by a Markov process $P(t, x, E)$ with an invariant measure $m$ on a measure space $(S, \mathfrak{B}, m)$ such that $m(S) = 1$ and $f$ is the defining function of a set $\in \mathfrak{B}$. It was remarked by S. \textsc{Kakutani} \cite{kakutani130} that 
+
+Doob's method is applicable and gives the same result for $f$ merely a bounded $\mathfrak{B}$-measurable function. E. \textsc{Hopf} \cite{hirsch110} then proved the theorem assuming merely that $f$ is $m$-integrable. N. \textsc{Dunford}-J. \textsc{Schwartz} \cite{dunford47} extended Hopf's result by proving \eqref{eq:XIII.2.28} for a linear operator $T_{t}$ which increases neither the $L^{1}$ - nor $L^{\infty}$-norm, without assuming that $T_{t}$ is positive but assuming that $T_{k} = T_{1}^{k}$ and $T_{1} \cdot 1 = 1$. It is noted that Hopf's and the Dunford-Schwartz arguments use the idea of our Theorem~\ref{thm:XIII.2.Theorem.1}. R. V. Chacon-D. S. \textsc{Ornstein} \cite{chacon32} proved \eqref{eq:XIII.2.28} for a positive linear operator $T_{t}$ of $L^{1}$-norm $\leqq 1$, without assuming that $T_{t}$ does not increase the $L^{\infty}$-norm, and, moreover, without appealing to our Theorem~\ref{thm:XIII.2.Theorem.1}. Here, of course, it is assumed that $T_{k} = T_{1}^{k}$ and $T_{1} \cdot 1 = 1$. We will not go into details, since, for the exposition of this Chapter which deals with Markov processes, it suffices to base the ergodic theory upon Theorem~\ref{thm:XIII.2.Theorem.6} which is a consequence of our Theorem~\ref{thm:XIII.2.Theorem.1}. 
+
+
+\yossection{3}{The Ergodic Hypothesis and the \texorpdfstring{$H$}{H}-theorem}
+\label{sec:XIII.3}
+
+Let $P(t, x, E)$ be a Markov process with an invariant measure $m$ on a measure space $(S, \mathfrak{B}, m)$ such that $m(S) = 1$. We shall define the ergodicity of the process $P(t, x, E)$ by the condition: 
+\begin{equation}\label{eq:XIII.3.1}
+\begin{aligned}
+&\text{ the time average }  f ^{*} (x) = \lim\limits _{n \to \infty} n ^{-1} \sum\limits_{k=1} ^{n} (T _{k} f) (x) = \lim\limits _{n \to \infty} n ^{-1} \sum\limits_{k=1} ^{n} \int_{S} P (k, x, \dd y) f (y) \\
+&= \text{ the space average } \int_{S} f (x) m (\dd x) m\text{-a.e.}
+\end{aligned}
+\end{equation}
+for every $f \in L^{p}(S, \mathfrak{B}, m) (\phi = 1, 2)$. 
+
+Since $\int_{S} f^{*}(x) m(\dd x) = \int_{S} f(x) m(\dd x)$, \eqref{eq:XIII.3.1} may be rewritten as 
+\begin{equation}\tag{1'}\label{eq:XIII.3.1'}
+f ^{*} (x) = \text{ a constant } m \text{-a.e. for every } f \in L ^{p} (S, \mathfrak {B}, m) (p = 1, 2).
+\end{equation}
+
+We shall give three different interpretations of the ergodic hypothesis \eqref{eq:XIII.3.1} and $\eqref{eq:XIII.3.1}$. 
+
+\begin{enumerate}[1.]
+\item Let $\chi_B(x)$ be the defining function of the set $B \in \mathfrak{B}$. Then, for any two sets $B_1, B_2 \in \mathfrak{B}$, the time average of the probability that the points of $B_1$ will be transferred into the set $B_2$ after $k$ units of time is equal to the product $m(B_1)m(B_2)$. That is, we have 
+\begin{equation}\label{eq:XIII.3.2}
+\left(\chi_ {B _{1}} ^{*}, \chi_ {B _{1}}\right) = m \left(B _{1}\right) m \left(B _{2}\right).
+\end{equation}
+
+\begin{proof}
+ If $f, g \in L^2(S, \mathfrak{B}, m)$, then the strong convergence $n^{-1} \sum\limits_{k=1}^{n} T_k f \to f^*$ in $L^2(S, \mathfrak{B}, m)$ implies, by \eqref{eq:XIII.3.1}, 
+\[ \begin{aligned}\lim\limits _{n \rightarrow \infty} n ^{-1} \sum\limits_{k=1} ^{n} (T _{k} f, g)&= (f ^{*}, g) = f ^{*} (x) \int_{S} g (x) m (\dd x)\\&= \int_{S} f (x) m (\dd x) \cdot \int_{S} g (x) m (\dd x) \text{ for } m\text{-a.e.} x.\end{aligned}
+\]
+
+By taking $f(x) = \chi_{B_2}(x)$, $g(x) = \chi_{B_1}(x)$, we obtain \eqref{eq:XIII.3.2}. 
+\end{proof}
+
+\begin{remarku} Since linear combinations of the defining functions $\chi_{B}(x)$ are dense in the space $L^{p}(S, \mathfrak{B}, m)$ for $p = 1$ and $p = 2$, we easily see that \eqref{eq:XIII.3.2} is equivalent to the ergodic hypothesis \eqref{eq:XIII.3.1}. \eqref{eq:XIII.3.2} says that every part of $S$ will be transferred uniformly into every part of $S$ in the sense of the time average. 
+\end{remarku}
+
+\item The mean ergodic theorem in Chapter~\ref{chap:VIII}, \ref{sec:VIII.3} says that the mapping $f \to T^*f = f^*$ gives the eigenspace of $T_1$ belonging to the eigenvalue $1$ of $T_1$; this eigenspace is given by the range $R(T^*)$. Hence the ergodic hypothesis \eqref{eq:XIII.3.1'} means precisely the hypothesis that $R(T^*)$ is of one-dimension. Thus the ergodic hypothesis of $P(t,x,E)$ is interpreted in terms of the spectrum of the operator $T_1$. 
+
+\item The Markov process $P(t, x, E)$ is said to be metrically transitive or indecomposable if the following conditions are satisfied: 
+
+$S$ cannot be decomposed into the sum of disjoint sets 
+\begin{align}
+B _{1}, B _{2}& \in \mathfrak {B} \text{ such that } m (B _{1}) > 0, m (B _{2}) > 0 \notag \\
+\text{ and } P (1, x, E)& = 0 \text{ for every } x \in B _{i}, E \subseteq B _{j} \text{ with } i \neq j. \label{eq:XIII.3.3}
+\end{align}
+
+\begin{proof}
+ Suppose $P(t, x, E)$ is ergodic and that $S$ is decomposed as in \eqref{eq:XIII.3.3}. The defining function $\chi_{B_1}(x)$ satisfies $T_1\chi_{B_1} = \chi_{B_1}$ by the condition 
+\[ \begin{aligned}
+&\int_{S} P (1, x, \dd y) \chi_ {B _{1}} (y) = P (1, x, B _{1}) = 1 = \chi_ {B _{1}} (x),  \text{ for } x \in B _{1}, = 0 = \chi_ {B _{1}} (x),  \text{ for } x \bar {\in} B _{1}.
+\end{aligned}
+\]
+
+But, by $m(B_1)m(B_2) > 0$, the function $\chi_{B_1}(x) = \chi_{B_1}^*(x)$ cannot be equal to a constant $m$-a.e. 
+
+
+Next suppose that the process $P(t,x,E)$ is indecomposable. Let $T_{1}f=f$ and we shall show that $f^{*}(x)=f(x)$ equals a constant $m$-a.e. Since $T_{1}$ maps real-valued functions into real-valued functions, we may assume that the function $f(x)$ is real-valued. If $f(x)$ is not equal to a constant $m$-a.e., then there exists a constant $\alpha$ such that both the sets 
+\[
+B _{1} = \{s \in S; f (s) > \alpha \} \quad \text{ and } \quad B _{2} = \{s \in S; f (s) \leqq \alpha \}
+\]
+are of $m$-measure $> 0$. Since $T_{1}(f - \alpha) = f - \alpha$, the argument under The Angle Variable (p.~\pageref{sec:XIII.3}) implies that $T_{1}(f - \alpha)^{+} = (f - \alpha)^{+}$, $T_{1}(f - \alpha)^{-} = (f - \alpha)^{-}$. 
+
+Hence we would obtain $P(1, x, E) = 0$ if $x \in B_i$, $E \subseteq B_j$ ( $i \neq j$).
+\end{proof}
+
+\begin{remarku} The notion of the metric transitivity was introduced by G. D. \textsc{Birkhoff}-P. A. \textsc{Smith} \cite{birkhoff19} for the case of an equi-measure transformation $x \rightarrow y_{t}(x)$ of $S$ onto $S$. 
+\end{remarku}
+
+An Example of the Ergodic Equi-measure Transformation. Let $S$ be a torus. That is, $S$ is the set of all pairs $s = \{x, y\}$ of real numbers $x$, $y$ such that $s = \{x, y\}$ and $s' = \{x', y'\}$ are identified iff $x \equiv x' \pmod{1}$ and $y \equiv y' \pmod{1}$; $S$ is topologized by the real number topology of its coordinates $x$, $y$. We consider a mapping 
+\[
+s = \{x, y \} \rightarrow T _{t} s = s _{t} = \{x + t \alpha , y + t \beta \}
+\]
+of $S$ onto $S$ which leaves invariant the measure $\dd x \, \dd y$ on $S$. Here we assume that the real numbers $\alpha, \beta$ are integrally linearly independent mod $1$ in the following sense: if integers $n, k$ satisfy $n\alpha + k\beta \equiv 0 \pmod{1}$, then $n = k = 0$. Then the mapping $s \to T_t^s$ is ergodic. 
+
+\begin{proof}
+ Let $f(s) \in L^2(S)$ be invariant by $T_1$, that is, let $f(s) = f(s_1) \dd x \dd y$ -a.e. on $S$. We have to show that $f(s) = f^*(s) = a \text{ constant } \dd x \dd y$ -a.e. on $S$. Let us consider the Fourier coefficients of $f(s)$ and $f(s_1) = f(T_1 s)$, respectively. 
+\[
+\begin{aligned}
+&\int_{0} ^{1} \int_{0} ^{1} f (s) \exp (- 2 \pi i (k _{1} x + k _{2} y)) \dd x \dd y, \int_{0} ^{1} \int_{0} ^{1} f (T _{1} s) \exp (- 2 \pi i (k _{1} x + k _{2} y)) \dd x \dd y.
+\end{aligned}
+\]
+
+By $T_{1}s = \{x + \alpha, y + \beta\}$ and the invariance of the measure $\dd x \, \dd y$ by the mapping $s \to T_{1}s$, the latter integral is equal to 
+\[
+\int_{0} ^{1} \int_{0} ^{1} f (s) \exp \left(- 2 \pi i (k _{1} x + k _{2} y)\right) \exp \left(2 \pi i (k _{1} \alpha + k _{2} \beta)\right) \dd x \dd y.
+\]
+
+Hence, by the uniqueness of the corresponding Fourier coefficients of $f(s)$ and $f(T_{1}s)$, we must have 
+\[
+\begin{gathered}
+\exp (2 \pi i (k _{1} \alpha + k _{2} \beta)) = 1 \quad \text{ whenever } \int_{0} ^{1} \int_{0} ^{1} f (s) \exp (- 2 \pi i (k _{1} x + k _{2} y)) \dd x \dd y \neq 0.
+\end{gathered}
+\]
+
+Hence, by the hypothesis concerning $\alpha$, $\beta$, we must have 
+\[
+\int_{0} ^{1} \int_{0} ^{1} f (s) \exp (- 2 \pi i (k _{1} x + k _{2} y)) \dd x \dd y = 0 \text{ unless } k _{1} = k _{2} = 0.
+\]
+
+Therefore $f(s) = f^{*}(s)$ must reduce to a constant $\dd x \dd y$-a.e. 
+\end{proof}
+
+The Angle Variable. Let $T_{t}$ be defined by the Markov process $P(t, x, E)$ with an invariant measure $m$ on $(S, \mathfrak{B}, m)$ such that $m(S) = 1$. Let $f(s) \in L^{2}(S, \mathfrak{B}, m)$ be the eigenvector of $T_{1}$ pertaining to the eigenvalue $\lambda$ of absolute value $1$ of $T_{1}$: 
+\[
+T _{1} f = \lambda f, | \lambda | = 1.
+\]
+
+Then we have $T_{1}|f| = |f|$. For, we have, by the positivity of the operator $T_{1}, (T_{1}|f|)(x) \geqq |(T_{1}f)(x)| = |f(x)|$, that is, $\int_{\xi} P(1, x, \dd y) |f(y)| \geqq$ 
+$|f(x)|$. In this inequality, we must have the equality for $m$-a.e. $x$, as may be seen by integrating both sides with respect to $m(\dd x)$ and remembering the invariance of the measure $m$. Hence, if $P(t, x, E)$ is ergodic, then $|f(x)|$ must reduce to a constant $m$-a.e. Therefore, if we put 
+\[
+f (x) = | f (x) | \exp (i \Theta (x)), 0 \leqq \Theta (x) < 2 \pi ,
+\]
+we must have 
+\[
+T _{1} \exp (i \Theta (x)) = \lambda \exp (i \Theta (x)).
+\]
+
+In case $\lambda \neq 1$, such $\Theta(x)$ is called an angle variable of the ergodic Markov process $P(t, x, E)$. 
+
+The Mixing Hypothesis. Let $T_{t}$ be defined by a Markov process $P(t, x, E)$ with an invariant measure $m$ on $(S, \mathfrak{B}, m)$ such that $m(S) = 1$. A stronger condition than the ergodic hypothesis of $P(t, x, E)$ is given by 
+\begin{equation}\label{eq:XIII.3.4}
+\lim\limits _{k \rightarrow \infty} (T _{k} f, g) = (f ^{*}, g) = \int_{S} f (x) m (\dd x) \cdot \int_{S} g (x) m (\dd x)
+\end{equation}
+for every pair $\{f, g\}$ of vectors $\in L^2(S, \mathfrak{B}, m)$. 
+
+
+This condition is called the mixing hypothesis of the Markov process $P(t, x, E)$. As in the case of the ergodic hypothesis, it may be interpreted as follows: every part of $S$ will be transferred into every part of $S$ uniformly in the long run. As for the examples of the mixing equi-measure transformation $x \to y_t(x)$, we refer the reader to the above cited book by E. \textsc{Hopf}. 
+
+$H$-theorem. Let $P(t, x, E)$ be a Markov process with an invariant measure $m$ on $(S, \mathfrak{B}, m)$ such that $m(S) = 1$. Let us consider the function 
+\begin{equation}\label{eq:XIII.3.5}
+H (z) = - z \log z, z \geqq 0.
+\end{equation}
+
+We can prove 
+
+\begin{theoremn}[K. \textsc{Yosida} {\cite{yosida360}}] Let a non-negative function $f(x) \in L^{1}(S, \mathfrak{B}, m)$ belong to the Zygmund class, that is, let us assume that $\int_{S} f(x) \log^{+} f(x) m(\dd x) < \infty$, where $\log^{+}|z| = \log |z|$ or $= 0$ according as $|z| \geqq 1$ or $|z| < 1$. Then we have
+\begin{equation}\label{eq:XIII.3.6}
+\int_{S} H (f (x)) m (\dd x) \leqq \int_{S} H ((T _{t} f) (x)) m (\dd x).
+\end{equation}
+
+\end{theoremn}
+\begin{proof}
+ Since $H(z) = -z \log z$ satisfies $H''(z) = -1/z < 0$ for $z > 0$, $H(z)$ is a concave function. Hence we obtain 
+
+the weighted mean of $H(f(x)) \leqq H$ (the weighted mean of $f(x)$), and so 
+\[
+\int_{S} P (t, x, \dd y) H (f (y)) \leqq H \left(\int_{S} P (t, x, \dd y) f (y)\right). \]
+
+Integrating with respect to $m(\dd x)$ and remembering the invariance of the measure $m(E)$, we obtain \eqref{eq:XIII.3.6}. 
+\end{proof}
+
+\begin{remarku} By virtue of the semi-group property $T_{t+s} = T_t T_s$ and \eqref{eq:XIII.3.6}, we easily obtain 
+\begin{equation}\tag{6'}\label{eq:XIII.3.6'}
+\int_{S} H \left(\left(T _ {t _{1}} f\right) (x)\right) m (\dd x) \leqq \int_{S} H \left(\left(T _ {t _{1}} f\right) (x)\right) m (\dd x) \text{ whenever } t _{1} < t _{2}.
+\end{equation}
+\end{remarku}
+
+This may be considered as an analogue of the classical $H$-theorem in statistical mechanics. 
+
+
+\end{enumerate}
+
+\yossection{4}{The Ergodic Decomposition of a Markov Process with a Locally Compact Phase Space}
+\label{sec:XIII.4}
+
+Let $S$ be a separable metric space whose bounded closed sets are compact. Let $B$ be the set of all Baire subsets of $S$, and consider a Markov process $P(t, x, E)$ on $(S, \mathfrak{B})$. We assume that 
+\begin{equation}\label{eq:XIII.4.1}
+f (x) \in C _{0} ^{0} (S) \text{ implies } f _{t} (x) = \int_{S} P (t, x, \dd y) f (y) \in C _{0} ^{0} (S).
+\end{equation}
+
+The purpose of this section is to give the decomposition of $S$ into ergodic parts and dissipative part as an extension of the Krylov-Bogolioubov case of the deterministic, reversible transition process in a compact metric space $S$ (see N. \textsc{Krylov}-N. \textsc{Bogolioubov} \cite{krein169}). The possibility of such an extension, to the case where $S$ is a compact metric space and with condition \eqref{eq:XIII.4.1}, was observed by K. \textsc{Yosida} \cite{yosida360} and carried out by N. \textsc{Beboutov} \cite{beboutov12}, independently of \textsc{Yosida}. The extension to the case of a locally compact space $S$ was given in K. \textsc{Yosida} \cite{yosida362}. We shall follow the last cited paper. 
+
+\begin{lemma}\label{lem:XIII.4.Lemma.1} Let a linear functional $L(f)$ on the normed linear space $C_0^0(S)$, normed by the maximal norm $\|f\| = \sup\limits_{x \in S} |f(x)|$, be non-negative, viz., $L(f) \geqq 0$ when $f(x) \geqq 0$ on $S$. Then $L(f)$ is represented by a uniquely determined regular measure $\varphi(E)$, which is $\sigma$-additive and $\geqq 0$ for Baire subsets $E$ of $S$, as follows: 
+\begin{equation}\label{eq:XIII.4.2}
+L (f) = \int_{S} f (x) \varphi (\dd x) \text{ for all } f \in C _{0} ^{0} (S).
+\end{equation}
+\end{lemma}
+
+Here the regularity of the measure $\varphi$ means that 
+\begin{equation}\label{eq:XIII.4.3}
+\varphi (E) = \inf \varphi (G) \text{ when } G \text{ ranges over all open sets } \supseteq E.
+\end{equation}
+
+\begin{proof}
+ We refer the reader to P. R. \textsc{Halmos} \cite{halmos92}. 
+\end{proof}
+
+We shall call a non-negative, $\sigma$-additive regular measure $\varphi(E)$ defined on $\mathfrak{B}$ such that $\varphi(S) \leqq 1$ an invariant measure for the Markov process if 
+\begin{equation}\label{eq:XIII.4.4}
+\varphi (E) = \int_{S} \varphi (\dd x) P (t, x, E) \text{ for all } t > 0 \text{ and } E \in \mathfrak {B}.
+\end{equation}
+
+We have then 
+
+\begin{lemma}\label{lem:XIII.4.Lemma.2} For any $f \in C_0^0(S)$ and for any invariant measure $\varphi(E)$, 
+\begin{equation}\label{eq:XIII.4.5}
+\lim\limits _{n \rightarrow \infty} n ^{-1} \sum\limits_{k=1} ^{n} f _{k} (x) = f ^{*} (x) \left(f _{k} (x) = \int_{S} P (k, x, \dd y) f (y)\right) \text{ exists }
+\end{equation}
+$\varphi$-a.e.and 
+\begin{equation}\label{eq:XIII.4.6}
+\int_{S} f ^{*} (x) \varphi (\dd x) = \int_{S} f (x) \varphi (\dd x).
+\end{equation}
+\end{lemma}
+
+This is exactly a corollary of Theorem $6$ in the preceding section. 
+
+Now, let $_1f, _2f, _3f, \ldots$ be dense in the normed linear space $C_0^0(S)$. The existence of such a sequence is guaranteed by the hypothesis concerning the space $S$. Applying Lemma~\ref{lem:XIII.4.Lemma.2} to $_1f, _2f, _3f, \ldots$ and summing up the exceptional sets of $\varphi$-measure zero, we see that there exists a set $N$ of $\varphi$-measure zero with the property: 
+
+\begin{equation}
+\label{eq:XIII.4.7}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+for any $x \in N$ and for any $f \in C_0^0(S), \lim\limits_{n \to \infty} n^{-1} \sum\limits_{k=1}^{n} f_k(x) = f^*(x)$ exists.
+\end{minipage}
+\end{equation}
+
+A Baire set $S' \subseteq S$ is said to be of maximal probability if $\varphi(S - S') = 0$ for every invariant measure $\varphi$. Thus the set $S'$ of all $x$ for which $f^*(x) = \lim\limits_{n \to \infty} n^{-1} \sum\limits_{k=1}^{n} f_k(x)$ exists for every $f \in C_0^0(S)$ is of maximal probability. Hence if there exists an invariant measure with $\varphi(S) > 0$, then there exist a $g \in C_0^0(S)$ and a point $x_0$ such that 
+\begin{equation}\label{eq:XIII.4.8}
+g ^{**} (x _{0}) = \varlimsup\limits_{n \rightarrow \infty} n ^{-1} \sum\limits_{k=1} ^{n} g _{k} (x _{0}) > 0.
+\end{equation}
+
+For, if otherwise, we would have $f^{*}(x) = 0$ on $S$ for all $f \in C_0^0(S)$ and hence, by \eqref{eq:XIII.4.6}, $\int_{S} f(x) \varphi(\dd x) = 0$. 
+
+Let, conversely, \eqref{eq:XIII.4.8} be satisfied for a certain $g \in C_0^0(S)$ and for a certain $x_0$. Let a subsequence $\{n'\}$ of natural numbers be chosen in such a way that $\lim\limits_{n' \to \infty} (n')^{-1} \sum\limits_{k=1}^{n'} g_k(x_0) = g^{**}(x_0)$. By a diagonal method, we may choose a subsequence $\{n''\}$ of $\{n'\}$ such that $\lim\limits_{n'' \to \infty} (n'')^{-1} \sum\limits_{k=1}^{n''} (jf)_k(x_0)$ exists for $j = 1, 2, \ldots$. By the denseness of $\{jf\}$ in $C_0^0(S)$, we easily see that 
+\[
+\lim\limits _ {n ^{\prime \prime} \rightarrow \infty} (n ^{\prime \prime}) ^{-1} \sum\limits_{k=1} ^ {n ^{\prime \prime}} f _{k} (x _{0}) = f ^{***} (x _{0}) \text{ exists for every } f \in C _{0} ^{0} (S).
+\]
+
+If we put $f^{***}(x_0) = L_{x_0}(f)$, then 
+\begin{equation}\label{eq:XIII.4.9}
+L _ {x _{0}} (f) = L _ {x _{0}} \left(f _{1}\right).
+\end{equation}
+
+For, by condition \eqref{eq:XIII.4.1}, we have $f_{1} \in C_{0}^{0}(S)$ and so 
+\[
+L _ {x _{0}} (f) = \lim\limits _ {n ^{\prime \prime} \rightarrow \infty} (n ^{\prime \prime}) ^{-1} \sum\limits_{k=1} ^ {n ^{\prime \prime}} f _{k+1} (x _{0}) = f _{1} ^{***} (x _{0}) = L _ {x _{0}} (f _{1}).
+\]
+
+By Lemma~\ref{lem:XIII.4.Lemma.1}, there exists a regular measure $\varphi_{x_0}(E)$ such that 
+\begin{equation}\label{eq:XIII.4.10}
+L _ {x _{0}} (f) = f ^{***} \left(x _{0}\right) = \int_{S} f (x) \varphi_ {x _{0}} (\dd x).
+\end{equation}
+
+Surely we have 
+\begin{equation}\label{eq:XIII.4.11}
+0 \leqq \varphi_ {x _{0}} (E) \leqq 1,
+\end{equation}
+and, by \eqref{eq:XIII.4.9}, 
+\[
+\int_{S} f (x) \varphi_ {x _{0}} (\dd x) = \int_{S} \left(\int_{S} P (1, x, \dd y) f (y)\right) \varphi_ {x _{0}} (\dd x).
+\]
+
+By letting $f(x)$ tend to the defining function of the Baire set $E$, we see that $\varphi_{x_0}(E)$ is an invariant measure. We have $\varphi_{x_0}(S) > 0$, since, by \eqref{eq:XIII.4.8} and \eqref{eq:XIII.4.10}, we have $L_{x_0}(g) = g^{***}(x_0) = \int_S g(x) \varphi_{x_0}(\dd x) > 0$. We have thus proved 
+
+\begin{theorem}\label{thm:XIII.4.Theorem.1} $A$ necessary and sufficient condition for the non-existence of non-trivial invariant measures is 
+\begin{equation}\label{eq:XIII.4.12}
+\lim\limits _{n \rightarrow \infty} n ^{-1} \sum\limits_{k=1} ^{n} f _{k} (x) = f ^{*} (x) = 0 \text{ on } S \text{ for any } f \in C _{0} ^{0} (S).
+\end{equation}
+\end{theorem}
+
+\begin{definitionu} We will call the process $P(t, x, E)$ on $(S, \mathfrak{B})$ dissipative if condition \eqref{eq:XIII.4.12} is satisfied. 
+\end{definitionu}
+
+\begin{examplen} Let $S$ be the half line $(0, \infty)$ and $\mathfrak{B}$ the set of all Baire sets of $(0, \infty)$. Then the Markov process $P(t, x, E)$ defined by
+\[
+P (t, x, E) = 1 \text{ if } (x + t) \in E \text{ and } = 0 \text{ if } (x + t) \bar {\in} E
+\]
+is dissipative. 
+
+We shall assume that $P(t, x, E)$ is not dissipative. Let $D$ denote the set 
+\[
+\left\{x \in S; f ^{*} (x) = \lim\limits _{n \rightarrow \infty} n ^{-1} \sum\limits_{k=1} ^{n} f _{k} (x) = 0 \quad \text{ for all } \quad f \in C _{0} ^{0} (S) \right\}
+\]
+
+Since it is equal to 
+\[
+\{x \in S; (j f) ^{*} (x) = 0 \quad \text{ for } \quad j = 1, 2, \dots \},
+\]
+
+$D$ is a Baire set. We shall call $D$ the dissipative part of $S$. We can prove below that $\varphi(D)=0$ for any invariant measure $\varphi$, and so, since the process $P(t,x,E)$ is assumed to be not dissipative, $S_{0}=S-D$ is not void. We already know that there exists a Baire set $S_{1}\subseteq S_{0}$ with the property: 
+
+\begin{equation}\label{eq:XIII.4.13}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits to any $x \in S_1$, there corresponds a non-trivial invariant measure $\varphi_{x} (E)$ such that $f ^{*} (x) = \lim\limits_{n \to \infty} n ^{-1} \sum\limits_{k=1} ^{n} f _{k} (x) = \int_{S} f (z) \varphi_{x} (d z)$}
+\end{equation}
+and $\varphi(S_0 - S_1) = 0$ for any invariant measure $\varphi$. 
+
+
+For any invariant measure $\varphi$, we have \eqref{eq:XIII.4.6} and hence, by \eqref{eq:XIII.4.13}, 
+\[
+\int_{S} f (y) \varphi (\dd y) = \int_ {S _{1}} \left(\int_{S} f (z) \varphi_{y} (\dd z)\right) \varphi (\dd y).
+\]
+
+Thus we obtain 
+\begin{equation}\label{eq:XIII.4.14}
+\varphi (E) = \int_ {S _{1}} \varphi_{y} (E) \varphi (\dd y),
+\end{equation}
+and so we have proved 
+
+\end{examplen}
+\begin{theorem}\label{thm:XIII.4.Theorem.2} Any invariant measure $\varphi$ may be obtained as a convex combination of the invariant measure $\varphi_y(E)$ with $y$ as a parameter. 
+\end{theorem}
+
+We see, from \eqref{eq:XIII.4.11} and \eqref{eq:XIII.4.14}, that the set 
+\[
+S _{2} = \{x \in S; x \in S _{1}, \varphi_{x} (S _{1}) = 1 \}
+\]
+is of maximal probability. Hence $S_0$ is of maximal probability. 
+
+For any $f \in C_0^0(S)$ and for any invariant measure $\varphi$, we have 
+\begin{equation}\label{eq:XIII.4.15}
+\int_ {S _{3}} \varphi (\dd x) \left(\int_ {S _{3}} \left(f ^{*} (y) - f ^{*} (x)\right) ^{2} \varphi_{x} (\dd y)\right) = 0,
+\end{equation}
+since the left hand side is equal to 
+\[
+\begin{aligned}
+&\int_ {S _{2}} \varphi (\dd x) \left(\int_ {S _{2}} f ^{*} (y) ^{2} \varphi_{x} (\dd y)\right)  - 2 \int_ {S _{2}} f ^{*} (x) \varphi (\dd x) \left(\int_ {S _{2}} f ^{*} (y) \varphi_{x} (\dd y)\right) \\
+&+ \int_ {S _{2}} f ^{*} (x) ^{2} \varphi (\dd x) \cdot \int_ {S _{2}} \varphi_{x} (\dd y) = \int_ {S _{2}} f ^{*} (y) ^{2} \varphi (\dd y) - 2 \int_ {S _{2}} f ^{*} (x) ^{2} \varphi (\dd x) + \int_ {S _{2}} f ^{*} (x) ^{2} \varphi (\dd x),
+\end{aligned}
+\]
+by ($13$), \eqref{eq:XIII.4.14}, \eqref{eq:XIII.4.6} and the definition of $S_{2}$. By applying \eqref{eq:XIII.4.15} to $_{1}f, _{2}f, _{3}f, \ldots$, we see that the set 
+\[
+S _{3} = \left\{x \in S _{2}; \int_ {S _{1}} (f ^{*} (y) - f ^{*} (x)) ^{2} \varphi_{x} (\dd y) = 0 \text{ for all } f \in C _{0} ^{0} (S) \right\}
+\]
+is of maximal probability. 
+
+We shall give the ergodic decomposition of $S$. For any $x \in S_3$, put 
+\begin{equation}\label{eq:XIII.4.16}
+E _{x} = \{y \in S _{3}; f ^{*} (y) = f ^{*} (x) \quad \text{ for all } \quad f \in C _{0} ^{0} (S) \}.
+\end{equation}
+
+We can then show that each $E_x$ contains a set $\hat{E}_x$ with the property: 
+\begin{equation}\label{eq:XIII.4.17}
+\varphi_{x} (E _{x}) = \varphi_{x} (\hat {E} _{x}) \text{ and } P (1, y, \hat {E} _{x}) = 1 \text{ for any } y \in \hat {E} _{x}.
+\end{equation}
+
+\begin{proof}
+ By the definition of $S_{3}$, we see that $f^{*}(y) = f^{*}(x)$ if the measure $\varphi_{x}(E)$ has variation at the point $y$. Hence $\varphi_{x}(E_{x}) = \varphi_{x}(S_{3}) = 1$. Thus, by the invariance of the measure $\varphi_{x}$, we obtain 
+\[
+1 = \varphi_{x} (E _{x}) = \int_ {S _{3}} P (1, z, E _{x}) \varphi_{x} (\dd z) = \int_ {E _{x}} P (1, z, E _{x}) \varphi_{x} (\dd z). \]
+
+Since $0 \leqq P(1, z, E_x) \leqq 1$, there exists a Baire set $E^1 \subseteq E_x$ such that 
+$\varphi_{x}(E^{1}) = \varphi_{x}(E_{x})$ and $z\in E^{1}$ implies $P(1,z,E_x) = 1$ 
+
+Put 
+\[
+E ^{2} = \{z \in E ^{1}, P (1, z, E ^{1}) = 1 \}.
+\]
+
+Since 
+\[
+\int_ {E ^{1}} P (1, z, E ^{1}) \varphi_{x} (\dd z) = \varphi_{x} (E ^{1}) = \varphi_{x} (E _{x}) = \int_ {E ^{1}} P (1, z, E _{x}) \varphi_{x} (\dd z),
+\]
+we must have 
+\[
+\int_ {E ^{1}} \left(P (1, z, E _{x}) - P (1, z, E ^{1})\right) \varphi_{x} (\dd z) = 0.
+\]
+
+As $z \in E^2$ implies $P(1, z, E^1) = 1$ by the definition of $E^2$, we obtain $\varphi_x(E^1 - E^2) = 0$. 
+
+Next put 
+\[
+E ^{3} = \{z \in E ^{2}; P (1, z, E ^{2}) = 1 \}.
+\]
+
+Then, as above, $\varphi_{x}(E^{3}) = \varphi_{x}(E_{x})$. In this way, we obtain a sequence $\{E^n\}$ such that 
+\begin{align}
+E _{x}& \supseteq E ^{1} \supseteq E ^{2} \supseteq \dots , \varphi_{x} (E ^{n}) = \varphi_{x} (E _{x}) \text{ and } \notag \\
+P (1, z, E ^{n})& = 1 \text{ if } z \in E ^{n+k} (n \geqq 0, k \geqq 1, E ^{0} = E _{x}). \notag
+\end{align}
+
+We have thus obtained the set $\hat{E}_x = \bigcap\limits_{n=1}^{\infty} E^n$ with the demanded property. 
+\end{proof}
+Therefore, we have 
+
+\begin{theorem}\label{thm:XIII.4.Theorem.3} $P(t, y, E)$ defines a Markov process in each $\hat{E}_x$ which is ergodic, in the sense that 
+
+\begin{equation}\label{eq:XIII.4.18}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits $\hat{E}_x$ is not decomposable in two parts $A$ and $B$ such that $\varphi(A) \cdot \varphi(B) > 0$ for a certain invariant measure $\varphi$ and $P(1, a, B) = 0$ when $a \in A$ and $P(1, b, A) = 0$ when $b \in B$.}
+\end{equation} 
+\end{theorem}
+
+
+\begin{proof}
+ Let $\varphi$ be any invariant measure in $\hat{E}_x$ with $\varphi(\hat{E}_x) = 1$. Then, by \eqref{eq:XIII.4.14}, $\varphi(E) = \int_{\hat{E}_x} \varphi(\dd z) \varphi_z(E)$ whenever $E \subseteq \hat{E}_x$. Since $\varphi_z(E) = \varphi_x(E)$ for every $z \in \hat{E}_x$ by the definition of $\hat{E}_x$ we have 
+\[
+\varphi (E) = \varphi_{x} (E) \int_ {\hat {E} x} \varphi (\dd z) = \varphi_{x} (E). \]
+
+Thus there is essentially only one invariant measure $\varphi_{x}(E)$ in $\hat{E}_{x}$. This proves the ergodicity. For, let $\hat{E}_{x}$ be decomposed as in ($18$). Then, by the invariance of $\varphi$, 
+\[
+\varphi (C) = \int_ {\hat {E} _{z}} P (1, z, C) \varphi (\dd z) \quad \text{ whenever } \quad C \subseteq \hat {E} _{x}.
+\]
+
+Thus the measure $\psi$ defined by 
+\[
+\begin{aligned} \psi (C) & = \varphi (C) / \varphi (A) \quad \text{ if } \quad C \subseteq A \\ & = 0 \text{ if } C \subseteq B \end{aligned}
+\]
+is invariant in $\hat{E}_x$ and differs from the unique invariant measure $\varphi$. 
+\end{proof}
+
+
+\yossection{5}{The Brownian Motion on a Homogeneous Riemannian Space}
+\label{sec:XIII.5}
+
+There is an interesting interplay between Markov processes and differential equations. Already in the early thirties, A. \textsc{Kolmogorov} proved, under a certain regularity hypothesis concerning the transition probability $P(t, x, E)$, that 
+\[
+u (t, x) = \int_{S} P (t, x, \dd y) f (y)
+\]
+satisfies the equation of the diffusion type: 
+\begin{equation}\label{eq:XIII.5.1}
+\frac {\partial u}{\partial t} = b ^{ij} (x) \frac {\partial^{2} u}{\partial x _{i} \partial x _{j}} + a ^{i} (x) \frac {\partial u}{\partial x _{i}} = A u, t > 0,
+\end{equation}
+where the differential operator $A$ is elliptic in the local coordinates $(x_1, x_2, \ldots, x_n)$ of the point $x$ of the phase space $S$. Following Einstein's convention of the tensor notation, it is understood that, e.g., $a^i(x) \partial/\partial x_i$ means $\sum\limits_{i=1}^{n} a^i(x) \partial/\partial x_i$. For the derivation of equation \eqref{eq:XIII.5.1}, see A. \textsc{Kolmogorov} \cite{kolmogorov152}. The leit-motif in his research was the investigation of local characteristics of Markov processes. 
+
+Following work done by E. \textsc{Hille} at Scandinavian Congress in $1949$ (Cf. E. \textsc{Hille} \cite{hille105}) and K. \textsc{Yosida} \cite{yosida372} in $1948$, W. \textsc{Feller} \cite{erdelyi57} began in $1952$ a systematic research of this new field in probability theory using the analytical theory of semi-groups. His investigations were further developed by E. B. \textsc{Dynkin} \cite{dunford50}, \cite{dunford51}, K. \textsc{Ito}-H. McKean \cite{hunt120}, D. \textsc{Ray}, \cite{ray270} G. A. \textsc{Hunt} \cite{hunt119}, A. A. \textsc{Yushkevitch} \cite{yushkevitch384}, G. \textsc{Maruyama} \cite{maruyama189} and many younger scholars, especially in Japan, USSR and USA. These investigations are called the theory of diffusion. A comprehensive treatise on the diffusion theory by K. \textsc{Ito}-H. McKean \cite{hunt120} is in the course of printing\footnote{Berlin/G\"{o}ttingen/Heidelberg: Springer.} We shall sketch some of the salient analytical features of the theory. 
+
+Let $S$ be a locally compact space such that $B$ is the totality of the Baire sets in $S$. To define the spatial homogeneity of a Markov process $P(t, x, E)$ on the space $S$, we suppose that $S$ is an $n$-dimensional, orientable connected $C^{\infty}$ Riemannian space such that the full group $G$ of the isometries of $S$, which is a Lie group, is transitive on $S$. That is, for each pair $\{x, y\}$ of points $\in S$, there exists an isometry $M \in G$ such that $M \cdot x = y$. Then the process $P(t, x, E)$ is spatially homogeneous if 
+\begin{equation}\label{eq:XIII.5.2}
+P (t, x, E) = P (t, M \cdot x, M \cdot E) \text{ for each } x \in S, E \in \mathfrak {B} \text{ and } M \in \mathfrak {G}.
+\end{equation}
+
+A temporally and spatially homogeneous Markov process on $S$ is called a Brownian motion on $S$, if the following condition, known as the continuity condition of Lindeberg's type, is satisfied: 
+\begin{equation}\label{eq:XIII.5.3}
+\lim\limits _{t \downarrow 0} t ^{-1} \int_ {\dist (x, y) > \varepsilon} P (t, x, \dd y) = 0 \quad \text{ for every } \quad \varepsilon > 0 \text{ and } x \in S.
+\end{equation}
+
+\begin{propositionu} Let $C(S)$ be the $B$-space of all bounded uniformly continuous real-valued functions $f(x)$ on $S$ normed by $\|f\| = \sup |f(x)|$. 
+\end{propositionu}
+
+Define 
+\begin{equation}\label{eq:XIII.5.4}
+\begin{aligned} (T _{t} f) (x) & = \int_{S} P (t, x, \dd y) f (y), \quad \text{ if } \quad t > 0, \\ & = f (x), \text{ if } t = 0. \end{aligned}
+\end{equation}
+
+Then $\{T_t\}$ constitutes a contraction semi-group of class $(C_0)$ in $C(S)$. 
+
+\begin{proof}
+ By $P(t, x, E) \geqq 0$ and $P(t, x, S) = 1$, we obtain 
+\[
+\left| \left(T _{t} f\right) (x) \right| \leqq \sup\limits _{y} | f (y) |
+\]
+and the positivity of the operator $T_{t}$. The semi-group property $T_{t+s} = T_{t}T_{s}$ is a consequence from the Chapman-Kolmogorov equation. If we define a linear operator $M'$ by $(M'f)(x) = f(M\cdot x), M \in \mathfrak{G}$, we obtain 
+\[
+T _{t} M ^{\prime} = M ^{\prime} T _{t}, t \geqq 0. \]
+
+For, 
+\begin{equation}\label{eq:XIII.5.5}
+\begin{aligned}
+&(M ^{\prime} T _{t} f) (x)  = (T _{t} f) (M \cdot x) = \int_{S} P (t, M \cdot x, \dd y) f (y) = \int_{S} P (t, M \cdot x, d (M \cdot y)) f (M \cdot y) \\
+&= \int_{S} P (t, x, \dd y) f (M \cdot y) = (T _{t} M ^{\prime} f) (x).
+\end{aligned}
+\end{equation}
+
+If $M \in \mathfrak{G}$ be such that $M \cdot x = x'$, we have 
+\[
+\left(T _{t} f\right) (x) - \left(T _{t} f\right) \left(x ^{\prime}\right) = \left(T _{t} f\right) (x) - \left(M ^{\prime} T _{t} f\right) (x) = T _{t} \left(f - M ^{\prime} f\right) (x).
+\]
+
+Hence by the uniform continuity of $f(x)$, we see that $(T_{t}f)(x)$ is uniformly continuous and bounded. 
+
+
+To prove the strong continuity in $t$ of $T_{t}$, it suffices by the Theorem in Chapter~\ref{chap:IX}, \ref{sec:IX.1}, to verify weak right continuity of $T_{t}$ at $t = 0$. Therefore, it is surely enough to show that $\lim\limits_{t\downarrow0}(T_{t}f)(x)=f(x)$ uniformly in $x$. Now 
+\[
+\begin{aligned} & {\left| \left(T _{t} f\right) (x) - f (x) \right| = \left| \int_{S} P (t, x, \dd y) [ f (y) - f (x) ] \right|} \\ & {\leqq \left| \int_{d (x, y) \leqq \varepsilon} P (t, x, \dd y) [ f (y) - f (x) ] \right| + \left| \int_{d (x, y) > \varepsilon} P (t, x, \dd y) [ f (y) - f (x) ] \right|} \\ & {\leqq \left| \int_{d (x, y) \leqq \varepsilon} P (t, x, \dd y) [ f (y) - f (x) ] \right| + 2 \| f \| \int_{d (x, y) > \varepsilon} P (t, x, \dd y).} \end{aligned}
+\]
+
+The first term on the right tends to zero uniformly in $x$ as $\varepsilon \downarrow 0$ and, for fixed $\varepsilon > 0$, the second term on the right tends to zero uniformly in $x$ as $t \downarrow 0$. The latter fact is implied by \eqref{eq:XIII.5.3} and the spatial homogeneity. Thus $\lim\limits_{t \downarrow 0} (T_t f)(x) = f(x)$ uniformly in $x$.
+\end{proof}
+
+\begin{theoremu} Let $x_0$ be a fixed point of $S$. Let us assume that the group of isotropy $\mathfrak{G}_0 = \{M \in G; M \cdot x_0 = x_0\}$ is compact. Being a closed subgroup of a Lie group $\mathfrak{G}, \mathfrak{G}_0$ is a Lie group by a theorem due to E. \textsc{Cartan}. Let $A$ be the infinitesimal generator of the semi-group $T_t$. Then we have the following results. 
+
+
+\begin{enumerate}[{[}1{]}]
+\item If $f \in D(A) \cap C^2(S)$, then, for a coordinate system $(x_0^1, x_0^2, \ldots, x_0^n)$ at $x_0$, 
+\begin{equation}\label{eq:XIII.5.6}
+(A f) (x _{0}) = a ^{i} (x _{0}) \frac {\partial f}{\partial x _{0} ^{i}} + b ^{ij} (x _{0}) \frac {\partial^{2} f}{\partial x _{0} ^{i} \partial x _{0} ^{j}},
+\end{equation}
+where 
+\begin{align}
+a ^{i} \left(x _{0}\right)& = \lim\limits _{t \downarrow 0} t ^{-1} \int_ {d \left(x _{0}, x _{t}\right) \leqq \varepsilon} \left(x ^{i} - x _{0} ^{i}\right) P (t, x _{0}, \dd x), \label{eq:XIII.5.7} \\
+b ^{ij} (x _{0})& = \lim\limits _{t \downarrow 0} t ^{-1} \int_ {d (x _{0}, x) \leqq \varepsilon} \left(x ^{i} - x _{0} ^{i}\right) \left(x ^{j} - x _{0} ^{j}\right) P (t, x _{0}, \dd x), \label{eq:XIII.5.8}
+\end{align}
+the limits existing independently of sufficiently small $\varepsilon > 0$. 
+
+\item The set $D(A) \cap C^2(S)$ is ``big'' in the sense that, for any $C^\infty(S)$ function $h(x)$ with compact support there exists an $f(x) \in D(A) \cap C^2(S)$ such that $f(x_0), \partial f / \partial x_0^i, \partial^2 f / \partial x_0^i \partial x_0^j$ are arbitrarily near to $h(x_0), \partial h / \partial x_0^i, \partial^2 h / \partial x_0^i \partial x_0^j$, respectively. 
+
+\end{enumerate}
+\end{theoremu}
+
+\begin{proof}
+ The first step. Let $h(x)$ be a $C^\infty$ function with compact support. If $f \in D(A)$, then the ``convolution'' 
+\begin{equation}\label{eq:XIII.5.9}
+(f \otimes h) (x) = \int_ {\mathfrak {G}} f (M _{y} \cdot x) h (M _{y} \cdot x _{0}) \dd y
+\end{equation}
+$(M_{y}$ denotes a generic element of $G$ and $\dd y$ a fixed right invariant Haar measure on $G$ such that $\dd y = d(y \cdot M)$ for every $M \in \mathfrak{G}$) is $C^{\infty}$ and belongs to $D(A)$. The above integral exists since the isotropy group $\mathfrak{G}_{0}$ is compact and $h$ has a compact support. By the uniform continuity of $f$ and the compactness of the support of $h$ we can approximate the integral by Riemann sums $\sum\limits_{i=1}^{k} f(M_{y_{i}} \cdot x) C_{i}$ uniformly in $x$: 
+\[
+(f \otimes h) (x) = \slim _{k \rightarrow \infty} \sum\limits_{i=1} ^{k} f \left(M _ {y _{i}} \cdot x\right) C _{i}. \]
+
+Since $T_{t}M' = M'T_{t}$, $M'$ commutes with $A$, i.e., if $f \in D(A)$, then $M'f \in D(A)$ and $AM'f = M'Af$. Putting $g(x) = (Af)(x)$, we obtain $g \in C(S)$ and 
+\[
+\begin{aligned}
+&A \left(\sum\limits_{i=1} ^{k} f (M _ {y _{i}} \cdot x) C _{i}\right)  = \sum\limits_{i=1} ^{k} (A M _ {y _{i}} ^{\prime} \cdot f) (x) C _{i} = \sum\limits_{i=1} ^{k} (M _ {y _{i}} ^{\prime} A f) (x) C _{i} = \sum\limits_{i=1} ^{k} g (M _ {y _{i}} \cdot x) C _{i},
+\end{aligned}
+\]
+and the right hand side tends to $(g\otimes h)(x) = (Af\otimes h)(x)$. Since the infinitesimal generator $A$ is closed, it follows that $f\otimes h\in D(A)$ and $A(f\otimes h) = Af\otimes h$. Since $S$ is a homogeneous space of the Lie group $\mathfrak{G}$, i.e., $S = \mathfrak{G} / \mathfrak{G}_0$, we can find a coordinate neighbourhood $U$ of $x_0$ such that for each $x\in U$ there exists an element $M = M(x)\in \mathfrak{G}$ satisfying the conditions: 
+
+\begin{enumerate}[i)]
+\item $M(x)\cdot x = x_0,$
+\item $M(x) x_0$ depends analytically on the coordinates $(x^1, x^2, \ldots, x^n)$ of the point $x \in S$.
+\end{enumerate}
+
+
+This is so, since the set $\{M_y \in \mathfrak{G}; M_y \cdot x = x_0\}$ forms an analytic submanifold of $\mathfrak{G}$; it is one of the cosets of $\mathfrak{G}$ with respect to the Lie subgroup $\mathfrak{G}_0$. Hence, by the right invariance of $\dd y$, we have 
+\[
+\begin{gathered}
+(f \otimes h) (x) = \int_{G} f (M _{y} M (x) x) h (M _{y} M (x) x _{0}) \dd y = \int_{G} f (M _{y} \cdot x _{0}) h (M _{y} M (x) \cdot x _{0}) \dd y.
+\end{gathered}
+\]
+
+The right side is infinitely differentiable in the vicinity of $x_{0}$, and 
+\begin{equation}\label{eq:XIII.5.10}
+D _{x} ^{s} (f \otimes h) (x) = \int_{G} f \left(M _{y} \cdot x _{0}\right) D _{x} ^{s} h \left(M _{y} M (x) \cdot x _{0}\right) \dd y.
+\end{equation}
+
+The second step. Remembering that $D(A)$ is dense in $C(S)$ and choosing $f$ and $h$ appropriately, we obtain: 
+
+\begin{equation}\label{eq:XIII.5.11}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits there exist $C^\infty$ functions $F^1(x), F^2(x), \ldots, F^n(x) \in D(A)$ such that the Jacobian $\frac{\partial(F^1(x),\ldots,F^n(x))}{\partial(x^1,\ldots,x^n)} >0$ at $x_0$, and, moreover there exists a $C^\infty$ function $F_0(x) \in D(A)$ such that}
+\end{equation}
+\begin{equation}\label{eq:XIII.5.12}
+\left(x ^{i} - x _{0} ^{i}\right) \left(x ^{j} - x _{0} ^{j}\right) \frac {\partial^{2} F _{0}}{\partial x _{0} ^{i} \partial x _{0} ^{j}} \geqq \sum\limits_{i=1} ^{n} \left(x ^{i} - x _{0} ^{i}\right) ^{2}.
+\end{equation}
+
+We can use $F^1(x), F^2(x), \ldots, F^n(x)$ as coordinate functions in a neighbourhood $\{x; \text{ dis }(x_0, x) < \varepsilon\}$ of the point $x_0$. We denote these new local coordinates by $(x^1, x^2, \ldots, x^n)$. Since $F^j(x) \in D(A)$, we have 
+\[
+\begin{aligned}
+\underset {t \downarrow 0} {\lim} t ^{-1} \int_{S} P (t, x _{0}, \dd x) (F ^{j} (x) - F ^{j} (x _{0})) &= (A F ^{j}) (x _{0})
+\\
+&= \underset {t \downarrow 0} {\lim} t ^{-1} \int_ {\mathrm{dis} (x, x _{0}) \leqq \varepsilon} P (t, x _{0}, \dd x) (F ^{j} (x) - F ^{j} (x _{0}))
+\end{aligned}
+\]
+independently of sufficiently small $\varepsilon > 0$, by virtue of Lindeberg's condition \eqref{eq:XIII.5.3}. Hence there exists, for the coordinate function $x^1, x^2, \ldots, x^n$ ( $x^j = F^j$), a finite 
+\begin{equation}\label{eq:XIII.5.13}
+\lim\limits _{t \downarrow 0} t ^{-1} \int_ {\dist (x, x _{0}) \leqq \varepsilon} \left(x ^{j} - x _{0} ^{j}\right) P (t, x _{0}, \dd x) = a ^{j} \left(x _{0}\right)
+\end{equation}
+which is independent of sufficiently small $\varepsilon > 0$. Since $F_0 \in D(A)$, we have, again using Lindeberg's condition \eqref{eq:XIII.5.3}, 
+\[
+\begin{aligned}
+(A F _{0}) (x) &= \lim\limits _{t \downarrow 0} t ^{-1} \int_{S} P (t, x _{0}, \dd x) (F _{0} (x) - F _{0} (x _{0}))
+\\
+&= \lim\limits _{t \downarrow 0} t ^{-1} \int_ {\mathrm{dis} (x _{0}, x) \leqq \varepsilon} P (t, x _{0}, \dd x) (F _{0} (x) - F _{0} (x _{0}))
+\\
+&= \lim\limits _{t \downarrow 0} \left[ t ^{-1} \int_ {\mathrm{dis} (x _{0}, x) \leqq \varepsilon} (x ^{i} - x _{0} ^{i}) \frac {\partial F _{0}}{\partial x _{0} ^{i}} P (t, x _{0}, \dd x) \right.
+\\
+& \qquad + \left. t ^{-1} \int_ {\mathrm{dis} (x _{0}, x) \leqq \varepsilon} (x ^{i} - x _{0} ^{i}) (x ^{j} - x _{0} ^{j}) \left(\frac {\partial^{2} F _{0}}{\partial x ^{i} \partial x ^{j}}\right) _ {x = x _{0} + \theta (x - x _{0})} P (t, x _{0}, \dd x) \right],
+\end{aligned}
+\]
+where $0 < \theta < 1$. The first term on the right has a limit $a^i(x_0) \frac{\partial F_0}{\partial x_0^i}$. Hence, by the positivity of $P(t, x, E)$ and \eqref{eq:XIII.5.12}, we see that 
+\begin{equation}\label{eq:XIII.5.14}
+\varlimsup\limits_{t \downarrow 0} t ^{-1} \int_ {\dist (x _{0}, x) < \varepsilon} \sum\limits_{i=1} ^{n} (x ^{i} - x _{0} ^{i}) ^{2} P (t, x _{0}, \dd x) < \infty .
+\end{equation}
+
+The third step. Let $f \in D(A) \cap C^2$. Then, by expanding $f(x) - f(x_0)$, we obtain 
+\begin{equation}\label{eq:XIII.5.15}
+\begin{aligned}
+&\frac {(T _{t} f) (x _{0}) - f (x _{0})}{t} = t ^{-1} \int_{S} (f (x) - f (x _{0})) P (t, x _{0}, \dd x)
+\\
+&= t ^{-1} \int_ {\mathrm{dis} (x, x _{0}) > \varepsilon} (f (x) - f (x _{0})) P (t, x _{0}, \dd x) + t ^{-1} \int_ {\mathrm{dis} (x, x _{0}) \leqq \varepsilon} (x ^{i} - x _{0} ^{i}) \frac {\partial f}{\partial x _{0} ^{i}} P (t, x _{0}, \dd x)
+\\
+&\quad + t ^{-1} \int_ {\mathrm{dis} (x, x _{0}) \leqq \varepsilon} (x ^{i} - x _{0} ^{i}) (x ^{j} - x _{0} ^{j}) \frac {\partial^{2} f}{\partial x _{0} ^{i} \partial x _{0} ^{j}} P (t, x _{0}, \dd x)
+\\
+&\quad + t ^{-1} \int_ {\mathrm{dis} (x, x _{0}) \leqq \varepsilon} (x ^{i} - x _{0} ^{i}) (x ^{j} - x _{0} ^{j}) C _{ij} (\varepsilon) P (t, x _{0}, \dd x)
+\\
+&= C _{1} (t, \varepsilon) + C _{2} (t, \varepsilon) + C _{3} (t, \varepsilon) + C _{4} (t, \varepsilon). \text{ say },
+\end{aligned}
+\end{equation}
+where $C_{ij}(\varepsilon) \to 0$ as $\varepsilon \downarrow 0$. We know, by \eqref{eq:XIII.5.3}, that $\lim\limits_{t \downarrow 0} C_1(t, \varepsilon) = 0$ for fixed $\varepsilon > 0$, and that $\lim\limits_{t \downarrow 0} C_2(t, \varepsilon) = a^i(x_0) \frac{\partial f}{\partial x_0^i}$, independently of sufficiently small $\varepsilon > 0$. By \eqref{eq:XIII.5.14} and Schwarz' inequality, we see that $\lim\limits_{\varepsilon \downarrow 0} C_4(t, \varepsilon) = 0$, boundedly in $t > 0$. The left side also has a finite limit $(Af)(x_0)$ as $t \downarrow 0$. So the difference 
+\[
+\varlimsup\limits_{t \downarrow 0} C _{3} (t, \varepsilon) - \varliminf\limits_{t \downarrow 0} C _{3} (t, \varepsilon)
+\]
+can be made arbitrarily small by taking $\varepsilon > 0$ sufficiently small. But, by \eqref{eq:XIII.5.14}, Schwarz' inequality and \eqref{eq:XIII.5.3}, the difference is independent of sufficiently small $\varepsilon > 0$. Thus a finite limit $\lim\limits_{t \downarrow 0} C_3(t, \varepsilon)$ exists independently of sufficiently small $\varepsilon > 0$. Since we may choose $F \in D(A) \cap C^\infty(S)$ in such a way that $\partial^2 F / \partial x_0^i \partial x_0^j$ ( $i, j = 1, 2, \ldots, n$) is arbitrarily near $\alpha_{ij}$, where $\alpha_{ij}$ are arbitrarily given constants, it follows, by an argument similar to the above, that 
+a finite $\lim\limits_{t\downarrow 0}t^{-1}\int_{\mathrm{dis}(x,x_0)\leqq s}(x^i -x_0^i)(x^j -x_0^j)P(t,x_0,\dd x) = b^{ij}(x_0)$ exists and 
+\begin{equation}\label{eq:XIII.5.16}
+\lim\limits _{t \downarrow 0} C _{3} (t, \varepsilon) = b ^{ij} \left(x _{0}\right) \frac {\partial^{2} f}{\partial x _{0} ^{i} \partial x _{0} ^{j}}.
+\end{equation}
+
+This completes the proof of our Theorem.
+\end{proof}
+
+\begin{remarku} The above Theorem and proof are adapted from K. \textsc{Yosida} \cite{yosida363}. It is to be noted that $b^{ij}(x) = b^{ji}(x)$ and 
+$b^{ij}(x_0)\xi_i\xi_j\geqq 0$ for every real vector $(\xi_1,\xi_2,\ldots ,\xi_n)$ 
+\begin{equation}\label{eq:XIII.5.17}
+\text{ because } (x ^{i} - x _{0} ^{i}) (x ^{j} - x _{0} ^{j}) \xi_{i} \xi_{j} = \left(\sum\limits_{i=1} ^{n} (x ^{i} - x _{0} ^{i}) \xi_{i}\right) ^{2}.
+\end{equation}
+\end{remarku}
+
+The Brownian Motion on the Surface of the $3$-sphere. In the special case when $S$ is the surface of the $3$-sphere $S^{3}$ and $G$ is the group of rotations of $S^{3}$, the infinitesimal generator $A$ of the semi-group induced by a Brownian motion on $S$ is proved to be of the form 
+$A = C\Lambda$, where $C$ is a positive constant and $\pmb{\Lambda}$ is the Laplacian 
+$= \frac{1}{\sin\theta}\frac{\partial}{\partial\theta}\sin \theta \frac{\partial}{\partial\theta} +\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\varphi^2}$ on the surface of $S^3$ 
+
+
+Thus there exists essentially one Brownian motion on the surface of $S^{3}$. For the detail, see K. \textsc{Yosida} \cite{yosida370}. 
+
+
+\yossection{6}{The Generalized Laplacian of W. Feller}
+\label{sec:XIII.6}
+
+Let $S$ be an open interval $(r_1, r_2)$, finite or infinite, on the real line, and $\mathfrak{B}$ be the set of all Baire sets in $(r_1, r_2)$. Consider a Markov process $P(t, x, E)$ on $(S, \mathfrak{B})$ satisfying Lindeberg's condition 
+\begin{equation}\label{eq:XIII.6.1}
+\lim\limits_{t \downarrow 0} t^{-1} \int_{|x - y| > \varepsilon} P(t, x, \dd y) = 0 \text{ for every } x \in (r_1, r_2) \text{ and } \varepsilon > 0.
+\end{equation}
+
+
+Let $C[r_1, r_2]$ be the $B$-space of real-valued, bounded uniformly continuous functions $f(x)$ defined in $(r_1, r_2)$ and normed by $\|f\| = \sup |f(x)|$. Then 
+\begin{equation}\label{eq:XIII.6.2}
+(T _{t} f) (x) = \int_ {r _{1}} ^ {r _{2}} P (t, x, \dd y) f (y) (t > 0); = f (x) (t = 0)
+\end{equation}
+defines a positive contraction semi-group on $C[r_1, r_2]$. We prove by ($1$) the weak right continuity of $T_t$ at $t = 0$ so that $T_t$ is of class $(C_0)$ by the Theorem in Chapter~\ref{chap:IX}, \ref{sec:IX.1}. 
+
+Concerning the infinitesimal generator $A$ of the semi-group $T_{t}$, we have the following two theorems due to W. \textsc{Feller}. 
+
+\begin{theorem}\label{thm:XIII.6.Theorem.1} 
+\begin{equation}\label{eq:XIII.6.3}
+A \cdot 1 = 0;
+\end{equation}
+$A$ is of local character, in the sense that, if $f \in D(A)$ 
+vanishes in a neighbourhood of a point $x_0$ then 
+\begin{equation}\label{eq:XIII.6.4}
+(A f) (x _{0}) = 0;
+\end{equation}
+\end{theorem}
+
+If $f \in D(A)$ has a local maximum at $x_0$, then 
+\begin{equation}\label{eq:XIII.6.5}
+(A f) (x _{0}) \leqq 0.
+\end{equation}
+
+\begin{proof}
+ \eqref{eq:XIII.6.3} is clear from $T_{t} \cdot 1 = 1$. We have, by ($1$), 
+\[
+(A f) \left(x _{0}\right) = \lim\limits _{t \downarrow 0} t ^{-1} \int_ {\left| x _{0} - y \right| \leqq \varepsilon} P (t, x _{0}, \dd y) (f (y) - f \left(x _{0}\right))
+\]
+independently of sufficiently small $\varepsilon > 0$. Hence, by $P(t, x, E) \geqq 0$, we easily obtain \eqref{eq:XIII.6.4} and \eqref{eq:XIII.6.5}. 
+\end{proof}
+
+\begin{theorem}\label{thm:XIII.6.Theorem.2} Let a linear operator $A$, defined on a linear subspace $D(A)$ of $C[r_{1}, r_{2}]$ into $C[r_{1}, r_{2}]$, satisfy conditions \eqref{eq:XIII.6.3}, \eqref{eq:XIII.6.4} and \eqref{eq:XIII.6.5}. Let us assume that $A$ does not degenerate in the sense that the following two conditions are satisfied: 
+
+\begin{equation}
+\label{eq:XIII.6.6}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+there exists at least one $f_0 \in D(A)$ such that $(Af_0)(x)$
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:XIII.6.7}
+> 0 \text{ for all } x \in (r _{1}, r _{2}),
+\end{equation}
+there exists a solution $v$ of $A \cdot v = 0$ which is linearly 
+
+
+independent of the function $1$ in every subinterval 
+\[
+\left(x _{1}, x _{2}\right) \text{ of the interval } \left(r _{1}, r _{2}\right).
+\]
+\end{theorem}
+
+Then there exists a strictly increasing continuous solution $s = s(x)$ of $A \cdot s = 0$ in $(r_1, r_2)$ such that, if we define a strictly increasing function $m = m(x)$, not necessarily continuous nor bounded in $(r_1, r_2)$, by 
+\begin{equation}\label{eq:XIII.6.8}
+m (x) = \int^{x} \frac {1}{(A f _{0}) (t)} d \left(D _{s} ^{+} f _{0} (t)\right),
+\end{equation}
+we obtain the representation: 
+\begin{equation}\label{eq:XIII.6.9}
+(A f) (x) = D _{m} ^{+} D _{s} ^{+} f (x) \text{ in } (r _{1}, r _{2}) \text{ for any } f \in D (A).
+\end{equation}
+
+Here the right derivative $D_{p}^{+}$ with respect to a strictly increasing function $p = p(x)$ is defined by 
+\begin{equation}\label{eq:XIII.6.10}
+\begin{aligned} D _{p} ^{+} g (x) & = \lim\limits _{y \downarrow x} \frac {g (y + 0) - g (x - 0)}{p (y + 0) - p (x - 0)} \text{ at the point of continuity of } p, \\ & = \frac {g (x + 0) - g (x - 0)}{p (x + 0) - p (x - 0)} \text{ at the point of discontinuity of } p. \end{aligned}
+\end{equation}
+
+\begin{proof}
+ The first step. Let $u \in D(A)$ satisfy $A \cdot u = 0$ and $u(x_1) = u(x_2)$, where $r_1 < x_1 < x_2 < r_2$. Then $u(x)$ must reduce to a constant in $(x_1, x_2)$. If otherwise, $u(x)$ would, for example, assume a maximum at an interior point $x_0$ of $(x_1, x_2)$ in such a way that $u(x_0) - \varepsilon \geqq u(x_1) = u(x_2)$ with some $\varepsilon > 0$. Let $f_0$ be the function $\in D(A)$ given by condition \eqref{eq:XIII.6.6}. Then, for a sufficiently large $\delta > 0$, the function $F(x) = f_0(x) + \delta u(x)$ satisfies $F(x_0) > F(x_i)$ ( $i = 1, 2$). Hence the maximum of $F(x)$ in $[x_1, x_2]$ is attained at an interior point $x_0'$ although $(AF)(x_0') = (Af_0)(x_0') > 0$. This is a contradiction to condition \eqref{eq:XIII.6.5}. 
+
+
+The second step. By \eqref{eq:XIII.6.7} and the first step, we see that there exists a strictly increasing continuous solution $s(x)$ of $A \cdot s = 0$. We reparametrize the interval by $s$ so that we may assume that 
+\begin{equation}
+\label{eq:XIII.6.11}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+the functions $1$ and $x$ are both solutions of $A \cdot f = 0.$
+\end{minipage}
+\end{equation}
+We can then prove that 
+\begin{equation}\label{eq:XIII.6.12}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits if $(Ah)(x) > 0$ for all $x$ in a subinterval $(x_{1}, x_{2})$ of the interval $(r_1, r_2)$, then $h(x)$ is convex downwards in $(x_1, x_2)$.}
+\end{equation}
+
+
+For, the function $u(x) = h(x) - \alpha x - \beta$, which satisfies $(Au)(x) = (Ah)(x) > 0$ for all $x$ in $(x_1, x_2)$, can have no local maximum at an interior point of $(x_1, x_2)$. 
+
+The third step. Let $f \in D(A)$. Then, by \eqref{eq:XIII.6.12} and \eqref{eq:XIII.6.7}, we see that, for sufficiently large $\delta > 0$, the two functions $f_{1}(x) = f(x) + \delta f_{0}(x)$ and $f_{2}(x) = \delta f_{0}(x)$ are both convex downwards. Being the difference of two convex functions, $f(x) = f_{1}(x) - f_{2}(x)$ has a right derivative at every point $x$ of $(r_{1}, r_{2})$. Let us put 
+\begin{equation}\label{eq:XIII.6.13}
+A \cdot f = \varphi , A \cdot f _{0} = \varphi_{0}, D _{x} ^{+} f _{0} (x) = \mu (x).
+\end{equation}
+
+For $g_{t} = f - tf_{0}$, we have $A \cdot g_{t} = Af - tA \cdot f_{0} = \varphi - t\varphi_{0}$. Hence, by ($12$), 
+$t < \min\limits_{x_1<x<x_2} \varphi(x) / \varphi_0(x)$ implies that $g_t(t)$ is convex downwards in $(x_1, x_2)$ and so $D_x^+ g_t(x)$ is increasing in $(x_1, x_2)$. 
+
+Applying the same argument for $t > \max\limits_{x_1<x<x_2} \varphi(x) / \varphi_0(x)$, we obtain: 
+
+for any sub-interval $(x_{1}, x_{2})$ of $(r_1, r_2)$, we have 
+\[
+\begin{aligned}
+\min\limits _ {x _{1} < x < x _{2}} \frac {\varphi (x)}{\varphi_{0} (x)} \times (D _{x} ^{+} f _{0} (x _{2}) - D _{x} ^{+} f _{0} (x _{1}))& \leqq D _{x} ^{+} f (x _{2}) - D _{x} ^{+} f (x _{1})
+\\
+\quad& \leqq \max\limits _ {x _{1} < x < x _{2}} \frac {\varphi (x)}{\varphi_{0} (x)} \times (D _{x} ^{+} f _{0} (x _{2}) - D _{x} ^{+} f _{0} (x _{1})).
+\end{aligned}
+\]
+
+The continuity of the function $\varphi(x)/\varphi_{0}(x)$ implies, by the above inequality, that 
+\[
+D _{x} ^{+} f (x _{2}) - D _{x} ^{+} f (x _{1}) = \int_ {x _{1}} ^ {x _{3}} \frac {\varphi (x)}{\varphi_{0} (x)} d \left(D _{x} ^{+} f _{0} (x)\right),
+\]
+which is precisely the integrated version of $A \cdot f = D_{m}^{+}D_{x}^{+}f$.
+\end{proof}
+
+\begin{remarkn}[Remark $1$] We may consider the operator $D_{m}^{+}D_{s}^{+}$ as a generalized Laplacian in the sense that $D_{s}^{+}$ and $D_{m}^{+}$ correspond to the generalized gradient and the generalized divergence in one dimension, respectively. Feller called $s = s(x)$ the canonical scale and $m = m(x)$ the canonical measure of the Markov process in question. We easily see, from the first step above, that the function $1$ and $s$ constitute a fundamental system of linearly independent solutions of $A\cdot v = 0$ to the effect that any solution of $A\cdot v = 0$ can be expressed uniquely as a linear combination of $1$ and $s(x)$. Thus the canonical scale of $P(t,x,E)$ is determined up to a linear transformation, i.e., another canonical scale $s_1$ must be of the form $s_1 = \alpha s + \beta$ with $\alpha >0$; hence the canonical measure $m_1$ which corresponds to $s_1$ must be of the form $m_1 = \alpha^{-1}m$. 
+\end{remarkn}
+
+\begin{remarkn}[Remark $2$] Theorem~\ref{thm:XIII.6.Theorem.2} gives the representation of the infinitesimal generator $A$ at the interior point $x$ of $(r_{1}, r_{2})$. To determine the operator $A$ as the infinitesimal generator of a positive contraction semi-group $T_{t}$ of class $(C_{0})$ on $C[r_{1}, r_{2}]$ into $C[r_{1}, r_{2}]$, we must consider the lateral condition, that is, the boundary condition of the operator $A$ at both boundary points $r_{1}$ and $r_{2}$ in order to describe the domain $D(A)$ of $A$ concretely and completely. According to \textsc{Feller} \cite{erdelyi57} and \cite{erdelyi61} (cf. E. \textsc{Hille} \cite{hille102}), the boundary points $r_{1}$ (or $r_{2}$) are classified into the regular-boundary, the exit-boundary, the entrance-boundary and the natural-boundary. To this purpose, we introduce four quantities: 
+\begin{align}
+\sigma_{1}& = \iint_ {r _{1} < y < x < r _{1} ^{\prime}} \dd m (x) \dd s (y), \mu_{1} = \iint_ {r _{1} < y < x < r _{1} ^{\prime}} \dd s (x) \dd m (y), \notag \\
+\sigma_{2}& = \iint_ {r _{1} > y > x > r _{1} ^{\prime}} \dd m (x) \dd s (y), \quad \mu_{2} = \iint_ {r _{1} > y > x > r _{1} ^{\prime}} \dd s (x) \dd m (y). \notag
+\end{align}
+\end{remarkn}
+
+The boundary point $r_i$ ( $i = 1, 2$) is called 
+\[
+\sigma_{i} < \infty , \mu_{i} < \infty
+\]
+exit in case 
+\[
+\sigma_{i} = \infty , \mu_{i} < \infty
+\]
+natural in case 
+\begin{gather}r _{1} ^{\prime} \notag \\\left. r _{2} ^{\prime}\right) \notag
+\end{gather}
+
+We shall illustrate by simple examples. 
+
+\begin{example}\label{ex:XIII.6.Example.1} $D_{m}^{+}D_{s}^{+} = d^{2} / \dd x^{2}, S = (-\infty, \infty)$. We can take $s = x$, $m = x$. Hence 
+\begin{equation}\sigma_{2} = \iint_ {\infty > y > x > r _{3} ^{\prime}} \dd x \dd y = \int_ {r _{3} ^{\prime}} ^{\infty} (y - r _{2} ^{\prime}) \dd y = \infty , \mu_{2} = \iint_ {\infty > y > x > r _{1} ^{\prime}} \dd x \dd y = \infty , \notag\end{equation}
+and so $\infty$ is a natural boundary. Similarly $-\infty$ is also a natural boundary. 
+\end{example}
+
+\begin{example}\label{ex:XIII.6.Example.2} $D_{m}^{+}D_{s}^{+} = d^{2} / \dd x^{2}, S = (-\infty,0)$. We can take $s = x$, $m = x$. In this case, $-\infty$ is a natural boundary and $0$ is a regular boundary. 
+\end{example}
+
+\begin{example}\label{ex:XIII.6.Example.3} $D_{m}^{+}D_{s}^{+} = x^{2}\frac{d^{2}}{\dd x^{2}} -\frac{d}{\dd x}, S = (0,\infty)$. A strictly increasing continuous solution $s = s(x)$ of $D_{m}^{+}D_{s}^{+}$ $s = 0$ is given by $s(x) = \int e^{-1/t}\dd t$ so that 
+\[
+D _{s} = e ^{1/x} \frac {d}{\dd x}, D _{m} ^{+} D _{s} ^{+} = x ^{2} e ^{-1/x} \frac {d}{\dd x} e ^{1/x} \frac {d}{\dd x}.
+\]
+\end{example}
+
+Therefore $\dd s = e^{-1/x} \dd x$, $\dd m = x^{-2} e^{1/x} \dd x$. Hence 
+\begin{align}
+\sigma_{1}& = \iint_{0<y<x<1} x ^{-2} e ^{1/x} \dd x e ^{-1/y} \dd y = \int_{0} ^{1} [ - e ^{1/x} ] _{y} ^{1} e ^{-1/y} \dd y < \infty , \notag \\
+\mu_{1}& = \iint_{0<y<z<1} e ^{-1/x} \dd x y ^{-2} e ^{1/y} \dd y = \int_{0} ^{1} e ^{-1/x} [ - e ^{1/y} ] _{0} ^{x} \dd x = \infty . \notag
+\end{align}
+
+Thus $0$ is an exit boundary. Similarly we see 
+\begin{align}
+\sigma_{2}& = \iint_{\infty > y > x > 1} e ^{1/x} x ^{-2} \dd x e ^{-1/y} \dd y = \int_{1} ^{\infty} [ - e ^{1/x} ] _{1} ^{y} \cdot e ^{-1/y} \dd y = \infty , \notag \\
+\mu_{2}& = \iint_{\infty > y > x > 1} e ^{-1/x} \dd x e ^{1/y} y ^{-2} \dd y = \int_{1} ^{\infty} e ^{-1/x} [ - e ^{1/y} ] _{x} ^{\infty} \dd x = \infty . \notag
+\end{align}
+
+That $\infty$ is a natural boundary. 
+
+\begin{example}\label{ex:XIII.6.Example.4} $D_{m}^{+}D_{s}^{+} = x^{2}\frac{d^{2}}{\dd x^{2}} +\frac{d}{\dd x}, S = (0,2)$. As above, we see that $\dd s = e^{1/x}\dd x, \dd m = x^{-2}e^{-1/x}\dd x$, and so we can verify that $0$ is an entrance boundary and $2$ is a regular boundary. 
+\end{example}
+
+Feller's probabilistic interpretation of the above classification is as follows: 
+
+The probability that a particle, located at first in the interior of the open interval $(r_{1}, r_{2})$, will, after a finite lapse of time, reach a regular boundary or an exit boundary, is positive; while, the particle can, after a finite lapse of time, neither reach an entrance boundary nor a natural boundary. 
+
+\yossub{References}
+
+\textsc{Feller}'s original paper was published in $1952$: W. \textsc{Feller} \cite{erdelyi57}. The proof of Theorem~\ref{thm:XIII.6.Theorem.2} given above is adapted from W. \textsc{Feller} \cite{erdelyi58} and \cite{erdelyi59}, who also delivered an inspiring address \cite{erdelyi60}. We also refer the readers to the forthcoming book by K. \textsc{Ito}-H. McKean \cite{hunt120} and E. B. \textsc{Dynkin} [$3$], and the references given in these books. 
+
+
+\yossection{7}{An Extension of the Diffusion Operator}
+\label{sec:XIII.7}
+
+Let the possible state of a (not necessarily temporally homogeneous) Markov process be represented by the point $x$ of an $n$-dimensional $C^{\infty}$ Riemannian space $R$. We denote by $P(s, x, t, E)$, $s \leqq t$, the transition probability that a state $x$ at a time moment $s$ is transferred into a Baire set $E \subseteq R$ at a later time moment $t$. 
+
+We shall be concerned with the possible form of the operator $A_{s}$ defined by 
+\begin{equation}\label{eq:XIII.7.1}
+\left(A _{s} f\right) (x) = \lim\limits _{t \downarrow 0} t ^{-1} \int_{R} P (s, x, s + t, \dd y) (f (y) - f (x)), f \in C _{0} ^{0} (R),
+\end{equation}
+without assuming the Lindeberg type condition: 
+
+\begin{equation}\label{eq:XIII.7.2}
+\begin{minipage}[b]{0.92\linewidth}
+$\lim\limits_{t \downarrow 0} t^{-1} \int_{d(x, y) \geqq \varepsilon} P(s, x, s + t, \dd y) = 0$ for all positive constants $\varepsilon$ \\
+$(d(x,y) =$ the geodesic distance between two points $x$ and $y)$
+\end{minipage}
+\end{equation}
+
+
+We can prove 
+
+\begin{theoremu} Let there exist an increasing sequence $\{k\}$ of positive integers such that, for a fixed pair $\{s, x\}$, 
+\begin{align}
+\lim\limits _{a \uparrow \infty} k \cdot& \int_{d (x, y) \geqq a} P (s, x, s + k ^{-1}, \dd y) = 0 \text{ uniformly in } k, \label{eq:XIII.7.3} \\
+k& \int_ {\dot {R}} \frac {d (x , y) ^{2}}{1 + d (x , y) ^{2}} P (s, x, s + k ^{-1}, \dd y) \text{ is uniformly bounded in } k. \label{eq:XIII.7.4}
+\end{align}
+\end{theoremu}
+
+Suppose that, for a function $f(x) \in C_0^2(R)$, 
+\begin{equation}\label{eq:XIII.7.5}
+\text{ a finite } \lim\limits _{k \to \infty} k \left\{\int_{R} P (s, x, s + k ^{-1}, \dd y) f (y) - f (x) \right\} \text{ exists. }
+\end{equation}
+
+We have then, in any fixed local coordinates $(x_{1}, x_{2}, \ldots, x_{n})$ of the point $x \in R$, 
+\begin{equation}\label{eq:XIII.7.6}
+\begin{aligned}
+(A _{s} f) (x)& = a _{j} (s, x) \frac {\partial f}{\partial x _{j}} + b _{ij} (s, x) \frac {\partial^{2} f}{\partial x _{i} \partial x _{j}}
+\\
+\qquad + \varlimsup\limits_{\varepsilon \downarrow 0}& \int_{d (x, y) \geqq \varepsilon} \left\{f (y) - f (x) - \frac {\varrho (x , y)}{1 + d (x , y) ^{2}} (y _{j} - x _{j}) \frac {\partial f}{\partial x _{j}} \right\}
+\\
+&\quad \qquad \times \frac {1 + d (x , y) ^{2}}{d (x , y) ^{2}} G (s, x, \dd y),
+\end{aligned}
+\end{equation}
+where 
+$G(s, x, E)$ is non-negative and $\sigma$-additive for Baire sets 
+\begin{equation}\label{eq:XIII.7.7}
+E \subseteq R \text{ and } G (s, x, R) < \infty ,
+\end{equation}
+$\varrho(x, y)$ is continuous in $x, y$ such that $\varrho(x, y) = 1$ or 
+\begin{gather}0 \text{ according as } d (x, y) \leqq \delta / 2 \text{ or } > \delta (\delta \text{ is a fixed constant } > 0), \label{eq:XIII.7.8}
+\\\text{ the quadratic form } b _{ij} (s, x) \xi_{i} \xi_{j} \text{ is } \geqq 0. \label{eq:XIII.7.9}
+\end{gather}
+
+\begin{remarku} Formula \eqref{eq:XIII.7.6} is given in K. \textsc{Yosida} \cite{yosida369}. It is an extension of the diffusion operator of the form of the second order elliptic differential operator discussed in the preceding sections. The third term on the right of \eqref{eq:XIII.7.6} is the sum of infinitely many difference operators. The appearance of such a term is due to the fact that we do not assume the condition ($2$) of Lindeberg's type. Formula \eqref{eq:XIII.7.6} is an operator-theoretical counterpart of the P. Lévy-A. Khintchine-K. Itô infinitely divisible law in probability theory. About this point, see E. \textsc{Hille}-\textsc{Phillips} \cite{hille97}, p. $652$. 
+\end{remarku}
+
+\begin{proof}[Proof of Theorem.]
+Consider a sequence of non-negative, $\sigma$-additive measures given by
+\begin{equation}\label{eq:XIII.7.10}
+G _{k} (s, x, E) = k \int_{E} \frac {d (x , y) ^{2}}{1 + d (x , y) ^{2}} P (s, x, s + k ^{-1}, \dd y).
+\end{equation}
+
+We have, by \eqref{eq:XIII.7.3} and \eqref{eq:XIII.7.4}, 
+\begin{align}
+&\quad G _{k} (s, x, E) \text{ is uniformly bounded in } E \text{ and } k, \label{eq:XIII.7.11} \\
+\lim\limits _{a \uparrow \infty}& \int_{d (x, y) \geqq a} G _{k} (s, x, \dd y) = 0 \text{ uniformly in } k. \label{eq:XIII.7.12}
+\end{align}
+
+Hence, for fixed $\{s, x\}$, the linear functional $L_{k}$ given by 
+\[
+L _{k} (g) = \int_{R} G _{k} (s, x, \dd y) g (y), g \in C _{0} ^{0} (R),
+\]
+is non-negative and continuous on the normed linear space $C_{0}^{0}(R)$ with the norm $\|g\|=\sup |g(x)|$; and the norm $L_{k}$ is uniformly bounded in $k$. 
+
+Therefore, by the separability of the normed linear space $C_0^0 (R)$, we can choose a subsequence $\{k'\}$ of $\{k\}$ such that $\lim\limits_{k\to \infty}L_{k'}(g) = L(g)$ exists as a non-negative linear functional on $C_0^0 (R)$. By virtue of a lemma in measure theory (P. R. \textsc{Halmos} \cite{halmos92}) there exists a non-negative, $\sigma$-additive measure $G(s,x,E)$ such that $G(s,x,R) < \infty$ and 
+\begin{equation}\label{eq:XIII.7.13}
+\lim\limits_{k = k' \to \infty} \int_{R} G_k(s, x, \dd y) g(y) = \int_{R} G(s, x, \dd y) g(y) \quad \text{ for all } \quad g \in C_0^0(R).
+\end{equation}
+
+\begin{equation}\label{eq:XIII.7.14}
+\begin{aligned}
+&\quad \text{ We have }
+\\
+&\quad k \left[ \int_ {\tilde {R}} P (s, x, s + k ^{-1}, \dd y) f (y) - f (x) \right]
+\\
+&= \int_ {\tilde {R}} \left\{\left[ f (y) - f (x) - \frac {\varrho (y , x)}{1 + d (y , x) ^{2}} (y _{j} - x _{j}) \frac {\partial f}{\partial x _{j}} \right] \frac {1 + d (y , x) ^{2}}{d (y , x) ^{2}} \right\} G _{k} (s, x, \dd y)
+\\
++& \int_ {\tilde {R}} \frac {\varrho (y , x)}{d (y , x) ^{2}} (y _{j} - x _{j}) \frac {\partial f}{\partial x _{j}} G _{k} (s, x, \dd y).
+\end{aligned}
+\end{equation}
+
+The term $\{\}$ in the first integral on the right is, for sufficiently small $d(y, x)$, 
+\[
+\begin{aligned}
+&= (y _{j} - x _{j}) \frac {\partial f}{\partial x _{j}} + (y _{i} - x _{i}) (y _{j} - x _{j}) \left(\frac {\partial^{2} f}{\partial X _{i} \partial X _{j}}\right) \frac {1 + d (y , x) ^{2}}{d (y , x) ^{2}},
+\\
+\text{ where } X _{j} &= x _{j} + \theta (y _{j} - x _{j}), 0 < \theta < 1.
+\end{aligned}
+\]
+
+Thus $\{\}$ is bounded and continuous in $y$. Hence, by \eqref{eq:XIII.7.12} and ($13$), the first term on the right of \eqref{eq:XIII.7.14} tends, as $k = k' \to \infty$, to $\int_{R} \{\}\ G(s, x, \dd y)$. Therefore, by \eqref{eq:XIII.7.5}, 
+\[
+\text{ a finite } \lim\limits _ {k = k ^{\prime} \rightarrow \infty} \int_{R} \frac {\varrho (y , x)}{d (y , x) ^{2}} \left(y _{j} - x _{j}\right) \frac {\partial f}{\partial x _{j}} G _{k} (s, x, \dd y) = a _{j} (s, x) \frac {\partial f}{\partial x _{j}}
+\]
+exists. Hence, by \eqref{eq:XIII.7.3}, we obtain \eqref{eq:XIII.7.6} by taking 
+\[
+b _{ij} (s, x) = \lim\limits _{\varepsilon \downarrow 0} \lim\limits _ {k = k ^{\prime} \rightarrow \infty} k \int_{d (y, x) \leqq \varepsilon} \left(y _{i} - x _{i}\right)\left(y _{j} - x _{j}\right) P (s, x, s + k ^{-1}, \dd y).
+\]
+\end{proof}
+
+
+\yossection{8}{Markov Processes and Potentials}
+\label{sec:XIII.8}
+
+Let $\{T_t\}$ be an equi-continuous semi-group of class $(C_0)$ on a function space $X$ defined by $(T_t f)(x) = \int_S P(t, x, \dd y) f(y)$ where $P(t, x, E)$ is a Markov process on a measure space $(S, \mathfrak{B})$. Let $A$ be the infinitesimal generator of $T_t$. Suggested by the special case where $A$ is the Laplacian, an element $f \in X$ is called harmonic if $A \cdot f = 0$. Then $f$ is harmonic iff $\lambda (\lambda I - A)^{-1} f = f$ for every $\lambda > 0$. An element $f \in X$ is called a potential if $f = \lim\limits_{\lambda \downarrow 0} (\lambda I - A)^{-1} g$ with some $g$. Because, for such an element $f$, there holds by the closedness of $A$ the Poisson equation 
+\[
+A \cdot f = \lim\limits _{\lambda \downarrow 0} A (\lambda I - A) ^{-1} g = \lim\limits _{\lambda \downarrow 0} \{- g + \lambda (\lambda I - A) ^{-1} g \} = - g.
+\]
+
+Suppose that $X$ is a vector lattice which is also a locally convex linear topological space such that every monotone increasing bounded sequence of elements $\in X$ converges weakly to an element of $X$ which is greater than the elements of the sequence. We also assume that the resolvent $J_{\lambda} = (\lambda I - A)^{-1}$ is positive in the sense that $f \geqq 0$ implies $J_{\lambda} f \geqq 0$. The situation is suggested by the special case where $A$ is the Laplacian considered in a suitable function space. 
+
+We may thus call subharmonic those elements $f \in X$ for which the inequality $A \cdot f \geqq 0$ holds. By virtue of the positivity of $J_{\lambda}$, a subharmonic element $f$ satisfies $\lambda J_{\lambda} f \geqq f$ for all $\lambda > 0$. We shall prove an analogue of a well-known theorem of F. \textsc{Riesz} concerning ordinary subharmonic functions (see T. \textsc{Rado} \cite{rado266}): 
+
+\begin{theoremu} Any subharmonic element $x$ is decomposed as the sum of a harmonic element $x_{h}$ and a potential $x_{p}$, where the harmonic part $x_{h}$ of $x$ is given by $x_{h} = \lim\limits_{\lambda \downarrow 0} \lambda J_{\lambda} x$ and $x_{h}$ is the least harmonic majorant of $x$ in the sense that any harmonic element $x_{H} \geqq x$ satisfies $x_{H} \geqq x_{h}$. 
+\end{theoremu}
+
+Proof (K. \textsc{Yosida} \cite{yosida347}). By the resolvent equation 
+\begin{equation}\label{eq:XIII.8.1}
+J _{\lambda} - J _{\mu} = (\mu - \lambda) J _{\lambda} J _{\mu},
+\end{equation}
+we obtain 
+\begin{equation}\label{eq:XIII.8.2}
+(I - \lambda J _{\lambda}) = (I + (\mu - \lambda) J _{\lambda}) (I - \mu J _{\mu}).
+\end{equation}
+
+Since $x$ is subharmonic, we see, by the positivity of $J_{\lambda}$, that 
+\[
+\lambda > \mu \quad \text{ implies } \quad \lambda J _{\lambda} x \geqq \mu J _{\mu} x \geqq x.
+\]
+
+Hence the weak-lim $\lambda J_{\lambda}x = x_{h}$ exists by virtue of the hypothesis concerning bounded monotone sequences in $X$. Therefore, by the ergodic theorem in Chapter~\ref{chap:VIII}, \ref{sec:VIII.4}, we see that $x_{h} = \lim\limits_{\lambda \downarrow 0} \lambda J_{\lambda}x$ exists and $x_{h}$ is harmonic, i.e., $\lambda J_{\lambda}x_{h} = x_{h}$ for all $\lambda > 0$. We also have $x_{p} = (x - x_{h}) = \lim\limits_{\lambda \downarrow 0} (I - \lambda J_{\lambda})x = \lim\limits_{\lambda \downarrow 0} (-A)(\lambda I - A)^{-1}x = \lim\limits_{\lambda \downarrow 0} (\lambda I - A)^{-1}(-Ax)$ which shows that $x_{p}$ is a potential. 
+
+Let a harmonic element $x_{H}$ satisfy $x_{H} \geqq x$. Then, by the positivity of $\lambda J_{\lambda}$ and the harmonic property of $x_{H}$, we have 
+\[
+x _{H} = \lambda J _{\lambda} x _{H} \geqq \lambda J _{\lambda} x \quad \text{ and hence } \quad x _{H} \geqq \lim\limits _{\lambda \downarrow 0} \lambda J _{\lambda} x = x _{h}.
+\]
+
+
+\yossection{9}{Abstract Potential Operators and Semi-groups}
+\label{sec:XIII.9}
+
+Let $\{T_{t}; t \geqq 0\}$ be an equi-continuous semi-group of class $(C_0)$ of bounded linear operators on a Banach space $X$ into $X$, and let $A$ be its infinitesimal generator. Thus $D(A)^a = X$ and the resolvent $(\lambda I - A)^{-1}$ of $A$ exists for $\lambda > 0$ as a bounded linear operator on $X$ into $X$ satisfying the condition 
+\begin{equation}\label{eq:XIII.9.1}
+\sup\limits _{\lambda > 0} \| \lambda (\lambda I - A) ^{-1} \| < \infty
+\end{equation}
+so that, by applying abelian ergodic theorems in Chapter~\ref{chap:VIII}, \ref{sec:VIII.4}, we obtain 
+\begin{equation}\label{eq:XIII.9.2}
+\begin{aligned}
+&R (A) ^{a}  = R (A (\mu I - A) ^{-1}) ^{a} = \{x \in X; \slim _{\lambda \downarrow 0} \lambda (\lambda I - A) ^{-1} x = 0 \} \text{ for all } \mu > 0
+\end{aligned}
+\end{equation}
+and 
+\begin{equation}\label{eq:XIII.9.3}
+\begin{aligned}
+&D (A) ^{a}  = R ((\mu I - A) ^{-1}) ^{a} = \{x \in X; \slim _{\lambda \uparrow \infty} \lambda (\lambda I - A) ^{-1} x = x \} = X \text{ for all } \mu > 0.
+\end{aligned}
+\end{equation}
+
+We shall be concerned with the situation in which 
+\begin{equation}
+\label{eq:XIII.9.4}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+the inverse $A^{-1}$ exists with its domain $D(A^{-1}) = R(A)$ strongly dense in $X,$
+\end{minipage}
+\end{equation}
+and in case \eqref{eq:XIII.9.4} we shall call $V = -A^{-1}$ as the ``abstract potential operator'' associated with the semi-group $T_{t}$ so that the ``abstract potential $V$ $x$'' satisfies the ``abstract Poisson equation'' 
+\begin{equation}\label{eq:XIII.9.5}
+A V x = - x
+\end{equation}
+with respect to the ``abstract Laplacian operator'' $A$. 
+
+\begin{proposition}[K. \textsc{Yosida} {\cite{yosida377}}]\label{prop:XIII.9.Proposition.1} \eqref{eq:XIII.9.4} is equivalent to the condition 
+\begin{equation}\label{eq:XIII.9.6}
+\slim _{\lambda \downarrow 0} \lambda (\lambda I - A) ^{-1} x = 0 \quad \text{ for every } \quad x \in X.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+ The condition $A$ $x$ = $0$ is equivalent to $\lambda(\lambda I - A)^{-1}$ $x$ = $x$ and so \eqref{eq:XIII.9.6} implies the existence of $A^{-1}$. Moreover, by \eqref{eq:XIII.9.2}, the denseness of $R(A)$ is equivalent to \eqref{eq:XIII.9.6} so that ($4$) must be equivalent to \eqref{eq:XIII.9.6}. 
+\end{proof}
+
+\begin{corollaryu} In case \eqref{eq:XIII.9.6}, the abstract potential operator $V = -A^{-1}$ is defined also by 
+\begin{equation}\label{eq:XIII.9.7}
+V x = \slim _{\lambda \downarrow 0} (\lambda I - A) ^{-1} x.
+\end{equation}
+\end{corollaryu}
+
+\begin{proof}
+ For $x \in D(A^{-1})$, we have 
+\[
+\begin{aligned}
+&- A ^{-1} x - (\lambda I - A) ^{-1} x  = - A ^{-1} x - A (\lambda I - A) ^{-1} A ^{-1} x = \lambda (\lambda I - A) ^{-1} A ^{-1} x
+\end{aligned}
+\]
+so that, by \eqref{eq:XIII.9.6}, we obtain $\slim\limits_{\lambda \downarrow 0} (\lambda I - A)^{-1} x = -A^{-1}x$. On the other hand, let $\slim\limits_{\lambda \downarrow 0} (\lambda I - A)^{-1} x = y$ exists. Then $A(\lambda I - A)^{-1} x = -x + \lambda (\lambda I - A)^{-1} x$ implies, by the closure property of the infinitesimal generator $A$, the equality $A y = -x$, that is, $y = -A^{-1}x$ and so we have proved \eqref{eq:XIII.9.7}. 
+\end{proof}
+
+From now on we shall be concerned with the case 
+\begin{equation}\label{eq:XIII.9.8}
+D (A) ^{a} = X \quad \text{ and } \quad \sup\limits _{\lambda > 0} \| \lambda (\lambda I - A) ^{-1} \| \leqq 1
+\end{equation}
+which characterises the infinitesimal generator $A$ of a contraction semi-group $\{T_{t}; t \geqq 0\}$ of class $(C_{0})$. We can prove 
+
+\begin{theorem}\label{thm:XIII.9.Theorem.1} The abstract potential operator $V$ and its dual operator $V^{*}$ must satisfy the following inequalities, respectively: 
+\begin{align}
+\| \lambda V x + x \|& \geqq \| \lambda V x \| \quad \text{ for all } \quad x \in D (V) \quad \text{ and } \quad \lambda > 0, \label{eq:XIII.9.9} \\
+\| \lambda V ^{*} f ^{*} + f ^{*} \|& \geqq \| \lambda V ^{*} f ^{*} \| \quad \text{ for all } \quad f ^{*} \in D (V ^{*}) \quad \text{ and } \quad \lambda > 0. \label{eq:XIII.9.10}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+ We put $J_{\lambda} = (\lambda I - A)^{-1}$. Then $J_{\lambda}$ satisfies the resolvent equation 
+\begin{equation}\label{eq:XIII.9.11}
+J _{\lambda} - J _{\mu} = (\mu - \lambda) J _{\lambda} J _{\mu}. \end{equation}
+
+Letting $\mu \downarrow 0$ in \eqref{eq:XIII.9.11}, we obtain 
+\begin{equation}\label{eq:XIII.9.12}
+J _{\lambda} x - V x = - \lambda J _{\lambda} V x \quad \text{ for all } \quad x \in D (V) \quad \text{ and all } \quad \lambda > 0.
+\end{equation}
+
+Hence $J_{\lambda}(\lambda V x + x) = V x$ and so, by $\| \lambda J_{\lambda} \| \leqq 1$, we obtain \eqref{eq:XIII.9.9}. 
+
+Since $D(A)$ and $R(A)$ are both strongly dense in $X$, we have 
+\begin{equation}\label{eq:XIII.9.13}
+(A ^{*}) ^{-1} = (A ^{-1}) ^{*} \quad \text{ or equivalently } \quad V ^{*} = (- A ^{-1}) ^{*} = (- A ^{*}) ^{-1}
+\end{equation}
+by R. S. \textsc{Phillips}' theorem in Chapter~\ref{chap:VIII}, \ref{sec:VIII.6}. Therefore, we have, when $f^{*} \in D(V^{*})$, 
+\begin{align}
+V ^{*} f ^{*} - (\lambda I ^{*} - A ^{*}) ^{-1} f ^{*}& = (- A ^{*}) ^{-1} f ^{*} - (\lambda I ^{*} - A ^{*}) ^{-1} f ^{*} \notag \\
+&= (- A ^{*}) ^{-1} f ^{*} - A ^{*} (\lambda I ^{*} - A ^{*}) ^{-1} (A ^{*}) ^{-1} f ^{*} = \lambda (\lambda I ^{*} - A ^{*}) ^{-1} (A ^{*}) ^{-1} f ^{*}. \notag
+\end{align}
+
+Hence we obtain 
+\begin{equation}\label{eq:XIII.9.14}
+V ^{*} f ^{*} = w ^{*} - \lim\limits _{\lambda \downarrow 0} J _{\lambda} ^{*} f ^{*}
+\end{equation}
+since $w^{*} - \lim\limits_{\lambda \downarrow 0} \lambda J_{\lambda}^{*} g^{*} = 0$ for all $g^{*} \in X^{*}$ by \eqref{eq:XIII.9.6}. Thus, as in the case of $V$, we prove \eqref{eq:XIII.9.10} by 
+\begin{equation}\tag{11'}\label{eq:XIII.9.11'}
+J _{\lambda} ^{*} - J _{\mu} ^{*} = (\mu - \lambda) J _{\lambda} ^{*} J _{\mu} ^{*} \quad \text{ and } \quad \sup\limits _{\lambda > 0} \| \lambda J _{\lambda} ^{*} \| \leqq 1.
+\end{equation}
+\end{proof}
+
+\begin{corollaryu} The inverse $(\lambda V + I)^{-1}$ and the inverse $(\lambda V^{*} + I^{*})^{-1}$ both exist as bounded linear operators. 
+\end{corollaryu}
+
+\begin{proof}
+ The existence of $(\lambda V + I)^{-1}$ and of $(\lambda V^{*} + I^{*})^{-1}$ are clear from \eqref{eq:XIII.9.9} and \eqref{eq:XIII.9.10}, respectively. We shall prove 
+\begin{equation}\label{eq:XIII.9.15}
+R (\lambda V + I) = X \quad \text{ for all } \quad \lambda > 0. \end{equation}
+
+The existence of the inverse $(\lambda V^{*} + I^{*})^{-1}$ implies, by the Hahn-Banach theorem, that 
+\[
+R (\lambda V + I)
+\]
+is strongly dense in $X$.\yosparagraphtag{15'}\label{eq:XIII.9.15'}
+
+Hence, for any $y \in X$, there exists a sequence $\{x_n\} \subseteq D(V)$ such that $\slim\limits_{n \to \infty} (\lambda V x_n + x_n) = y$. Thus, by \eqref{eq:XIII.9.9}, we have $\| \lambda V(x_n - x_m) + (x_n - x_m) \| \geqq \| \lambda V(x_n - x_m) \|$ and so $\slim\limits_{n \to \infty} V x_n = z$ exists, proving that $\slim\limits_{n \to \infty} x_n = x$ exists. Since an abstract potential operator is closed by definition, the operator $V$ must be closed. Hence we must have $Vx = z$, that is, $y = \lambda Vx + x$. This proves \eqref{eq:XIII.9.15}, and thus $(\lambda V + I)^{-1}$ is a bounded linear operator by the closed graph theorem. Hence, by the closed range theorem in Chapter~\ref{chap:VIII}, \ref{sec:VIII.5}, we have 
+\begin{equation}\label{eq:XIII.9.16}
+R (\lambda V ^{*} + I ^{*}) = X ^{*} \quad \text{ for all } \quad \lambda > 0,
+\end{equation}
+and so, again by the closed range theorem and \eqref{eq:XIII.9.15}, $(\lambda V^{*} + I^{*})^{-1}$ is a bounded linear operator on the dual space $X^{*}$ into $X^{*}$.
+\end{proof}
+
+We can now give a characterization of abstract potential operators: 
+
+\begin{theorem}[K. \textsc{Yosida} {\cite{yosida378}}]\label{thm:XIII.9.Theorem.2} Let a closed linear operator $V$ with domain $D(V)$ and range $R(V)$ both strongly dense in $X$ be such that $V$ and its dual operator $V^{*}$ satisfy \eqref{eq:XIII.9.9} and \eqref{eq:XIII.9.10}, respectively. Then $V$ is an abstract potential operator, i.e., -$V$ is the inverse of an operator $A$ which is the infinitesimal generator of a contraction semi-group of class $(C_{0})$ in $X$. 
+\end{theorem}
+
+\begin{proof}
+ We first remark that the Corollary above holds good for $V$ and for $V^{*}$, and hence $(\lambda V + I)^{-1}$ is a bounded linear operator on $X$ into $X$. Moreover, the linear operator $J_{\lambda}$ defined through 
+\begin{equation}\label{eq:XIII.9.17}
+\hat {J} _{\lambda} (\lambda V x + x) = V x \quad [ \text{ for all } x \in D (V) \text{ and all } \lambda > 0 ]
+\end{equation}
+is a bounded linear operator on $X$ into $X$ such that 
+\begin{equation}\label{eq:XIII.9.18}
+\hat {J} _{\lambda} = V (\lambda V + I) ^{-1} \quad \text{ and } \quad \sup\limits _{\lambda > 0} \| \lambda \hat {J} _{\lambda} \| \leqq 1. \end{equation}
+
+We can prove, by \eqref{eq:XIII.9.17}, that $J_{\lambda}$ is a pseudo-resolvent. In fact, we have 
+\[
+\begin{aligned} \hat {J} _{\lambda} (\lambda V x + x) - \hat {J} _{\mu} (\lambda V x + x) & = V x - \hat {J} _{\mu} \left(\frac {\lambda}{\mu} (\mu V x + x) + \left(1 - \frac {\lambda}{\mu}\right) x\right) \\ & = V x - \frac {\lambda}{\mu} V x - \left(1 - \frac {\lambda}{\mu}\right) \hat {J} _{\mu} x = \left(1 - \frac {\lambda}{\mu}\right) (V x - \hat {J} _{\mu} x) \end{aligned}
+\]
+and 
+\[
+\begin{aligned}
+&(\mu - \lambda) \hat {J} _{\mu} \hat {J} _{\lambda} (\lambda V x + x) = (\mu - \lambda) \hat {J} _{\mu} V x = (\mu - \lambda) \hat {J} _{\mu} \left(V x + \frac {1}{\mu} x - \frac {1}{\mu} x\right)
+\\
+&= (\mu - \lambda) \frac {1}{\mu} V x - (\mu - \lambda) \frac {1}{\mu} \hat {J} _{\mu} x = \left(1 - \frac {\lambda}{\mu}\right) (V x - \hat {J} _{\mu} x).
+\end{aligned}
+\]
+
+Because of \eqref{eq:XIII.9.18}, we can apply abelian ergodic theorems: 
+\begin{align}
+R (\hat {J} _{\mu}) ^{a}& = \{x \in X; \slim _{\lambda \uparrow \infty} \lambda \hat {J} _{\lambda} x = x \} \quad \text{ for all } \quad \mu > 0, \label{eq:XIII.9.19} \\
+R (I - \mu \hat {J} _{\mu}) ^{a}& = \{x \in X; \slim _{\lambda \downarrow 0} \lambda \hat {J} _{\lambda} x = 0 \} \quad \text{ for all } \quad \mu > 0 \label{eq:XIII.9.20}
+\end{align}
+
+Since $R(V)^{a} = X$, we see $R(\hat{\mathcal{J}}_{\mu})^{a} = X$ by \eqref{eq:XIII.9.17}. On the other hand, the null space of $\hat{\mathcal{J}}_{\lambda}$ is independent of $\lambda$ (see Proposition in Chapter~\ref{chap:VIII}, \ref{sec:VIII.4}). Hence, by \eqref{eq:XIII.9.19} and $R(\hat{\mathcal{J}}_{\mu})^{a} = X$, the null space of $\hat{\mathcal{J}}_{\lambda}$ consists of zero vector only. Therefore $\hat{\mathcal{J}}_{\lambda}$ is the resolvent of a linear operator $A$: 
+\begin{equation}\label{eq:XIII.9.21}
+\hat {J} _{\lambda} = (\lambda I - A) ^{-1}, \quad \text{ where } \quad A = \lambda I - \hat {J} _{\lambda} ^{-1}.
+\end{equation}
+
+Hence we obtain 
+\begin{align}
+D (A) ^{a}& = R (\hat {J} _{\mu}) ^{a} = \{x \in X; \slim _{\lambda \uparrow \infty} \lambda \hat {J} _{\lambda} x = x \} \quad \text{ for all } \quad \mu > 0 \tag{19'}\label{eq:XIII.9.19'} \\
+R (A) ^{a}& = R (I - \mu \hat {J} _{\mu}) ^{a} = \{x \in X; \slim _{\lambda \downarrow 0} \lambda \hat {J} _{\lambda} x = 0 \} \quad \text{ for all } \quad \mu > 0 \tag{20'}\label{eq:XIII.9.20'}
+\end{align}
+
+By \eqref{eq:XIII.9.19'} and $R(\hat{J}_{\mu})^a = X$, we see that $D(A)^a = X$. We can also prove that $R(A)^a = X$. In fact, we have, by \eqref{eq:XIII.9.17} and \eqref{eq:XIII.9.21}, 
+\begin{gather}\quad (\lambda I - A) \hat {J} _{\lambda} (\lambda V x + x)= \lambda V x + x = (\lambda I - A) V x = \lambda V x - A V x, \text{ that is }, \notag
+\\- A V x = x \quad \text{ whenever } \quad x \in D (V) . \label{eq:XIII.9.22}
+\end{gather}
+
+Hence $R(A) \supseteq D(V)$ is strongly dense in $X$, that is, $R(A)^{a} = X$ and so, by \eqref{eq:XIII.9.20'}, $\slim\limits_{\lambda \downarrow 0} \lambda \hat{J}_{\lambda} x = 0$ for all $x \in X$. Therefore, by Proposition~\ref{prop:XIII.9.Proposition.1}, $-A^{-1}$ is an abstract potential operator. 
+
+
+That $V = -A^{-1}$ may be proved as follows. Firstly, the inverse $V^{-1}$ exists since, by \eqref{eq:XIII.9.22}, $V$ $x$ = $0$ implies $x$ = $0$. Thus, by \eqref{eq:XIII.9.18} and \eqref{eq:XIII.9.21}, we obtain 
+\[
+\lambda I - A = \hat {J} _{\lambda} ^{-1} = (\lambda V + I) V ^{-1} = \lambda I + V ^{-1}
+\]
+which proves that $-A^{-1}=V$.
+\end{proof}
+
+\begin{remarku} The above proof shows that \eqref{eq:XIII.9.10} is used only to prove \eqref{eq:XIII.9.15'} and hence \eqref{eq:XIII.9.15}. 
+\end{remarku}
+
+As in Chapter~\ref{chap:IX}, \ref{sec:IX.8}, we introduce a semi-scalar product $[x, y]$ in $X$ satisfying conditions: 
+\begin{equation}\label{eq:XIII.9.23}
+\begin{aligned}
+&{[ x + y, z ] = [ x, z ] + [ y, z ], [ \lambda x, y ] = \lambda [ x, y ],} {[ x, x ] = \| x \| ^{2} \quad \text{ and } \quad | [ x, y ] | \leqq \| x \| \cdot \| y \|.}
+\end{aligned}
+\end{equation}
+
+Then a linear operator $V$, with domain $D(V)$ and range $R(V)$ both in $X$, is called accretive (with respect to $[x, y]$) if 
+\begin{equation}\label{eq:XIII.9.24}
+\operatorname{Re} [ x, V x ] \geqq 0 \quad \text{ whenever } \quad x \in D (V) .
+\end{equation}
+
+We shall prepare three propositions. 
+
+\begin{proposition}\label{prop:XIII.9.Proposition.2} An abstract potential operator $V$ must be accretive. 
+\end{proposition}
+
+\begin{proof}
+ Let $\{T_t; t \geqq 0\}$ be the contraction semi-group of class $(C_0)$ whose infinitesimal generator $A$ is given by $A = -V^{-1}$. We have, by $\| T_t \| \leqq 1$, 
+\[
+\operatorname{Re} \left[ T _{t} x - x, x \right] = \operatorname{Re} [ T x, x ] - \| x \| ^{2} \leqq \| T _{t} x \| \cdot \| x \| - \| x \| ^{2} \leqq 0. \]
+
+Hence, for $x \in D(A)$, we obtain 
+\[
+\operatorname{Re} [ A x, x ] = \lim\limits _{t \downarrow 0} [ t ^{-1} (T _{t} x - x), x ] \leqq 0
+\]
+so that, for $x_0 \in D(V) = D(A^{-1})$, 
+\[
+\operatorname{Re} \left[ A V x _{0}, V x _{0} \right] = \operatorname{Re} \left[ - x _{0}, V x _{0} \right] \leqq 0, \quad \text{ that is }, \quad \operatorname{Re} \left[ x _{0}, V x _{0} \right] \geqq 0.
+\]
+\end{proof}
+
+\begin{proposition}\label{prop:XIII.9.Proposition.3} $V$ satisfies \eqref{eq:XIII.9.9} if $V$ is accretive. 
+\end{proposition}
+
+\begin{proof}
+ We have, by \eqref{eq:XIII.9.23} and \eqref{eq:XIII.9.24}, 
+\[
+\begin{aligned}
+&{\| \lambda V x \| ^{2} = [ \lambda V x, \lambda V x ] \leqq \operatorname{Re} \{[ \lambda V x, \lambda V x ] \}} {\qquad = \operatorname{Re} [ \lambda V x + x, \lambda V x ] \leqq \| \lambda V x + x \| \cdot \| \lambda V x \|,}
+\end{aligned}
+\]
+that is, we have proved \eqref{eq:XIII.9.9}. 
+\end{proof}
+
+\begin{proposition}\label{prop:XIII.9.Proposition.4} Let $V$ be an abstract potential operator associated with a contraction semi-group $\{T_{t}; t \geqq 0\}$ of class $(C_{0})$ with the infinitesimal generator $A$ so that $V = -A^{-1}$. Then the dual operator $V^{*}$ must satisfy, for any semi-scalar product $[f^{*}, g^{*}]$ in the dual space $X^{*}$ of $X$, the inequality 
+\begin{equation}\label{eq:XIII.9.25}
+[ f ^{*}, V ^{+} f ^{*} ] \geqq 0
+\end{equation}
+where 
+$V^{+}$ is the largest restriction of $V^{*}$ with domain and range both in 
+\begin{equation}\label{eq:XIII.9.26}
+R (V ^{*}) ^{a}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+ Let $\{T_t^+; t \geqq 0\}$ be the dual semi-group (see Chapter~\ref{chap:IX}, \ref{sec:IX.13}) of $\{T_t; t \geqq 0\}$, so that, $\{T_t^+; t \geqq 0\}$ be a contraction semi-group of class $(C_0)$ in $X^+ = D(A^*)^a = R(V^*)^a$. Thus the infinitesimal generator $A^+$ of the semi-group $T_t^+$ is the largest restriction of $A^*$ with domain and range both in $X^+ = D(A^*)^a$. Then $V^+ = (-A^+)^{-1}$, and so \eqref{eq:XIII.9.25} is proved as in the case of Proposition~\ref{prop:XIII.9.Proposition.2}. 
+\end{proof}
+
+We are now able to prove 
+
+\begin{theorem}\label{thm:XIII.9.Theorem.3} Let $V$ be a closed linear operator with domain and range both strongly dense in $X$. Then $V$ is an abstract potential operator iff $V$ is accretive and $V^{+}$ is accretive. 
+\end{theorem}
+
+\begin{proof}
+ The ``only if part'' is proved by Proposition~\ref{prop:XIII.9.Proposition.2} and Proposition~\ref{prop:XIII.9.Proposition.4}. We shall prove the ``if part''. Firstly, $V$ satisfies \eqref{eq:XIII.9.9} by Proposition~\ref{prop:XIII.9.Proposition.3}. Next let $\lambda V^{*}f^{*} + f^{*} = 0$. Then $f^{*} \in R(V^{*})$ and so $V^{*}f^{*} = -\lambda^{-1}f^{*} \in R(V^{*})$. Thus $f^{*} \in D(V^{+})$ and $\lambda V^{+}f^{*} = -f^{*}$. Therefore, by the accretive property of $V^{+}$, we obtain 
+\[
+[ \lambda f ^{*}, \lambda V ^{+} f ^{*} ] = \lambda [ f ^{*}, - f ^{*} ] = - \lambda \| f ^{*} \| ^{2} \geqq 0, \quad \text{ that is }, \quad f ^{*} = 0. \]
+
+Hence the inverse $(\lambda V^{*} + I^{*})^{-1}$ exists and so, by the Hahn-Banach theorem, \eqref{eq:XIII.9.15'} and consequently \eqref{eq:XIII.9.15} both hold good. This proves that $V$ is an abstract potential operator. 
+\end{proof}
+
+Comparison with G. A. \textsc{Hunt}'s theory of potentials. Consider a special case in which $X$ is the completion $C_{\infty}(S)$, with respect to the maximum norm, of the space $C_{0}(S)$ of real- or complex-valued continuous functions $x(s)$ with compact support in a locally compact, non-compact separable Hausdorff space $S$. In this case, the semi-scalar product may be defined through 
+$[x, y] = x(s_0) \cdot y(s_0)$, where $s_0$ is any fixed point of $S$ such that 
+\begin{equation}\label{eq:XIII.9.27}
+| y (s _{0}) | = \sup\limits _{s \in S} | y (s) |.
+\end{equation}
+
+\begin{equation}\label{eq:XIII.9.28}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits Therefore the accretive property of the linear operator $V$ is given by $\operatorname{Re}(x(s_0) \cdot (\overline{Vx}(s_0)) \geqq 0$ whenever $|(Vx)(s_0)| = \sup\limits_{s \in S} |(Vx)(s)|$.}
+\end{equation}
+
+This may be compared with the principle of positive maximum for $V$ in Hunt's theory of potentials (G. A. \textsc{Hunt} \cite{hunt119}, cf. P. A. \textsc{Meyer} \cite{meyer194} and K. \textsc{Yosida} \cite{yosida375} and the bibliography referred to in these). Assuming that the space $C_{\infty}(S)$ consists of real-valued functions only, \textsc{Hunt} introduced the notion of the potential operator $U$ as a positive linear operator on the domain $D(U) \subseteq C_{\infty}(S)$ into $C_{\infty}(S)$ satisfying three conditions: \begin{enumerate}[i)]
+\item $D(U) \supseteq C_0(S)$,
+\item $U \cdot C_0(S)$ is strongly dense in $C_{\infty}(S)$
+\item the principle of positive maximum given by 
+\begin{equation}\label{eq:XIII.9.29}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits for each $x(s) \in C_0(S)$, the value $x(s_0) \geqq 0$ whenever $(U x)(s)$ attains its positive supremum at $s = s_{0}$.}
+\end{equation}
+\end{enumerate}
+
+
+
+(In the above, the positivity for $U$ means that $U$ maps non-negative functions into non-negative functions.) \textsc{Hunt} then proved that there exists a uniquely determined semi-group $\{T_{t}; t \geqq 0\}$ of class $(C_{0})$ of positive contraction operators $T_{t}$ on $C_{\infty}(S)$ into $C_{\infty}(S)$ satisfying the following two conditions: 
+
+\begin{equation}\label{eq:XIII.9.30}
+\parbox{0.92\linewidth}{\everymath{}\let\limits\nolimits $A U x = -x$ for every $x(s) \in C_{0}(S)$, where $A$ is the infinitesimal generator of $T_{t}$,}
+\end{equation}
+
+\begin{equation}\label{eq:XIII.9.31}
+(U x) (s) = \int_{0} ^{\infty} \left(T _{t} x\right) (s) \dd t \text{ for every } x (s) \in C _{0} (S), \text{ the integral being }
+\end{equation}
+taken in the strong topology of the $B$-space $C_{\infty}(S)$. 
+
+It is to be noted that our abstract potential operator $V$ is defined without assuming the positivity of the operator $V$. Moreover, in our formulation, ($30$) can be replaced by the true Poisson equation 
+\begin{equation}\tag{30'}\label{eq:XIII.9.30'}
+V = - A ^{-1}.
+\end{equation}
+
+In this connection, it is to be noted that the smallest closed extension $V$ of the operator $U$ restricted to $C_0(S)$ satisfies ($30$) $'$. See K. \textsc{Yosida}, T. \textsc{Watanabe}, H. \textsc{Tanaka} \cite{yosida379} and K. \textsc{Yosida} \cite{yosida380}. Furthermore, in our formulation of the abstract potential operator $V$, \eqref{eq:XIII.9.31} is replaced by a
+more general $(Vx)$ $(s)$ = $s$- $\lim\limits_{n\to\infty}\left((\lambda I-A)^{-1}x\right)$ $(s)$ which is based upon \eqref{eq:XIII.9.7}. This formulation has the advantage that it can be applied to essentially more general class of semi-groups than \eqref{eq:XIII.9.31}. See, e.g., K. \textsc{Yosida} \cite{yosida380}, \cite{yosida381}, A. \textsc{Yamada} \cite{yamada343}, and K. \textsc{Sato} \cite{sato282}, \cite{sato283}. It is to be noted here that F. \textsc{Hirsch} \cite{hirsch106}, \cite{hirsch107} has also developed an abstract potential theory directed by essentially the same idea as the present author. 

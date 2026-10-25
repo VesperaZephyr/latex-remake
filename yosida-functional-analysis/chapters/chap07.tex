@@ -1,0 +1,2165 @@
+% ==== VI ====
+\yoschapter{VI}{Fourier Transform and Differential Equations}
+\label{chap:VI}
+
+The Fourier transform is one of the most powerful tools in classical and modern analysis. Its scope has recently been strikingly extended thanks to the introduction of the notion of generalized functions of S. L. \textsc{Sobolev} \cite{sobolev306} and L. \textsc{Schwartz} \cite{schwartz294}. The extension has been applied successfully to the theory of linear partial differential equations by L. \textsc{Ehrenpreis}, B. \textsc{Malgrange} and especially by L. \textsc{Hörmander} \cite{hormander118}. 
+
+
+\yossection{1}{The Fourier Transform of Rapidly Decreasing Functions}
+\label{sec:VI.1}
+
+\begin{definition}\label{def:VI.1.Definition.1} We denote by $\mathfrak{S}(\mathbb{R}^{n})$ the totality of functions $f \in C^{\infty}(\mathbb{R}^{n})$ such that 
+\begin{equation}\label{eq:VI.1.1}
+\sup\limits _ {x \in \mathbb{R}^{n}} | x ^{\beta} D ^{\alpha} f (x) | < \infty \left(x ^{\beta} = \prod\limits_{j=1} ^{n} x _{j} ^ {\beta_{i}}\right)
+\end{equation}
+for every $\alpha = (\alpha_{1},\alpha_{2},\ldots ,\alpha_{n})$ and $\beta = (\beta_{1},\beta_{2},\dots ,\beta_{n})$ with non-negative integers $\alpha_{j}$ and $\beta_{k}$. Such functions are called rapidly decreasing (at $\infty$). 
+\end{definition}
+
+\begin{examplen} $\exp (-|x|^2)$ and functions $f\in C_0^\infty (\mathbb{R}^{n})$ are rapidly decreasing.
+
+\end{examplen}
+\begin{proposition}\label{prop:VI.1.Proposition.1} $\mathfrak{S}(\mathbb{R}^{n})$ is a locally convex linear topological space by the algebraic operation of function sum and multiplication of functions by complex numbers, and by the topology defined by the system of semi-norms of the form 
+
+\begin{equation}\label{eq:VI.1.2}
+p(f) = \sup\limits_{x\in \mathbb{R}^{n}}|P(x)D^\alpha f(x)|, \text{ where } P(x) \text{ denotes a polynomial}.
+\end{equation}
+\end{proposition}
+
+\begin{proposition}\label{prop:VI.1.Proposition.2} $\mathfrak{S}(\mathbb{R}^{n})$ is closed with respect to the application of linear partial differential operators with polynomial coefficients. 
+\end{proposition}
+
+\begin{proposition}\label{prop:VI.1.Proposition.3} With respect to the topology of $\mathfrak{S}(\mathbb{R}^{n})$, $C_0^\infty (\mathbb{R}^{n})$ is a dense subset of $\mathfrak{S}(\mathbb{R}^{n})$. 
+\end{proposition}
+
+\begin{proof}
+ Let $f \in \mathfrak{S}(\mathbb{R}^{n})$ and take $\psi \in C_0^\infty(\mathbb{R}^{n})$ such that $\psi(x) = 1$ when $|x| \leqq 1$. Then, for any $\varepsilon > 0$, $f_{\varepsilon}(x) = f(x) \psi(\varepsilon x) \in C_0^\infty(\mathbb{R}^{n})$. By applying Leibniz' rule of differentiation of the product of functions, we see that 
+\[
+D ^{\alpha} (f _{e} (x) - f (x)) = D ^{\alpha} \{f (x) (\psi (\varepsilon x) - 1) \}
+\]
+is a finite linear combination of terms of the form 
+$D^{\beta}f(x)\cdot (\varepsilon)^{|\gamma |}\{D^{\gamma}\psi (y)\}_{y = \varepsilon x},$ where $|\beta | + |\gamma | = |\alpha |$ with $|\gamma | > 0,$ 
+and the term $D^{\alpha}f(x) \cdot (\psi(\varepsilon x) - 1)$. Thus it is easy to see that $f_{\varepsilon}(x)$ tends to $f(x)$ in the topology of $\mathfrak{S}(\mathbb{R}^{n})$ when $\varepsilon \downarrow 0$. 
+\end{proof}
+
+\begin{definition}\label{def:VI.1.Definition.2} For any $f \in \mathfrak{S}(\mathbb{R}^{n})$, define its Fourier transform $\hat{f}$ by 
+\begin{equation}\label{eq:VI.1.3}
+\hat {f} (\xi) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{- i \langle \xi , x \rangle} f (x) \dd x,
+\end{equation}
+where $\xi = (\xi_1, \xi_2, \ldots, \xi_n)$, $x = (x_1, x_2, \ldots, x_n)$, $\langle \xi, x \rangle = \sum\limits_{j=1}^{n} \xi_j x_j$ and $\dd x = \dd x_1 \dd x_2 \ldots \dd x_n$. We also define the inverse Fourier transform $\tilde{g}$ of $g \in \mathfrak{S}(\mathbb{R}^{n})$ by 
+\begin{equation}\label{eq:VI.1.4}
+\widetilde {g} (x) = (2 \pi) ^{-n/2} \int e ^{i \langle x, \xi \rangle} g (\xi) \dd \xi .
+\end{equation}
+\end{definition}
+
+\begin{proposition}\label{prop:VI.1.Proposition.4} The Fourier transform: $f \to \hat{f}$ maps $\mathfrak{S}(\mathbb{R}^{n})$ linearly and continuously into $\mathfrak{S}(\mathbb{R}^{n})$. The inverse Fourier transform: $g \to \tilde{g}$ also maps $\mathfrak{S}(\mathbb{R}^{n})$ linearly and continuously into $\mathfrak{S}(\mathbb{R}^{n})$. 
+\end{proposition}
+
+\begin{proof}
+ Differentiating formally under the integral sign, we have 
+\begin{equation}\label{eq:VI.1.5}
+D ^{\alpha} \hat {f} (\xi) = (2 \pi) ^{-n/2} \int e ^{- i \langle \xi , x \rangle} (- i) ^{| \alpha |} x ^{\alpha} f (x) \dd x. \end{equation}
+
+The formal differentiation is permitted since the right hand side is, by \eqref{eq:VI.1.1}, uniformly convergent in $\xi$. Thus $\hat{f} \in C^{\infty}(\mathbb{R}^{n})$. Similarly, we have, by integration by parts, 
+\begin{equation}\label{eq:VI.1.6}
+(i) ^{| \beta |} \xi^{\beta} \hat {f} (\xi) = (2 \pi) ^{-n/2} \int e ^{- i \langle \xi , x \rangle} D ^{\beta} f (x) \dd x.
+\end{equation}
+
+Thus we have 
+\begin{equation}\label{eq:VI.1.7}
+(i) ^{| \beta | + | \alpha |} \xi^{\beta} D ^{\alpha} \hat {f} (\xi) = (2 \pi) ^{-n/2} \int e ^{- i \langle \xi , x \rangle} D ^{\beta} (x ^{\alpha} f (x)) \dd x,
+\end{equation}
+and \eqref{eq:VI.1.7} proves that the mapping $f \to \hat{f}$ is continuous in the topology of $\mathfrak{S}(\mathbb{R}^{n})$. 
+\end{proof}
+
+\begin{theorem}[Fourier's integral theorem]\label{thm:VI.1.Theorem.1} Fourier's inversion theorem holds: 
+\begin{align}
+\tilde {f} (x)& = (2 \pi) ^{-n/2} \int e ^{i \langle x, \xi \rangle} \hat {f} (\xi) \dd \xi = f (x), \text{ i.e., we have } \label{eq:VI.1.8} \\
+\tilde {\hat {f}}& = f, \text{ and similarly } \hat {\tilde {f}} = f. \tag{8'}\label{eq:VI.1.8'}
+\end{align}
+\end{theorem}
+
+Therefore it is easy to see that the Fourier transform maps $\mathfrak{S}(\mathbb{R}^{n})$ onto $\mathfrak{S}(\mathbb{R}^{n})$ linearly and continuously in both directions, and the inverse Fourier transform gives the inverse mapping of the Fourier transform. 
+
+\begin{proof}
+ We have 
+\begin{equation}\label{eq:VI.1.9}
+\int g (\xi) \hat {f} (\xi) e ^{i \langle x, \xi \rangle} \dd \xi = \int \hat {g} (y) f (x + y) \dd y (f \text{ and } g \in \mathfrak {S} (\mathbb{R}^{n})). \end{equation}
+
+In fact, the left hand side is equal to 
+\[
+\begin{aligned}
+&\int g (\xi) \left\{(2 \pi) ^{-n/2} \int e ^{- i \langle \xi , y \rangle} f (y) \dd y \right\} e ^{i \langle x, \xi \rangle} \dd \xi = (2 \pi) ^{-n/2} \int \left\{\int g (\xi) e ^{- i \langle \xi , y - x \rangle} \dd \xi \right\} f (y) \dd y
+\\
+&= \int \hat {g} (y - x) f (y) \dd y = \int \hat {g} (y) f (x + y) \dd y.
+\end{aligned}
+\]
+
+If we take $g(\varepsilon \xi)$ for $g(\xi), \varepsilon > 0$, then 
+\[
+(2 \pi) ^{-n/2} \int e ^{- i \langle y, \xi \rangle} g (\varepsilon \xi) \dd \xi = (2 \pi) ^{-n/2} \varepsilon^{-n} \int g (z) e ^{- i \langle y, z / \varepsilon \rangle} \dd z = \varepsilon^{-n} \hat {g} (y / \varepsilon).
+\]
+
+Hence, by \eqref{eq:VI.1.9}, 
+\[
+\int g (\varepsilon \xi) \hat {f} (\xi) e ^{i \langle x, \xi \rangle} \dd \xi = \int \hat {g} (y) f (x + \varepsilon y) \dd y.
+\]
+
+We shall take, following F. \textsc{Riesz}, $g(x) = e^{-|x|^2/2}$ and let $\varepsilon \downarrow 0$. Then 
+\[
+g (0) \int \hat {f} (\xi) e ^{i \langle x, \xi \rangle} \dd \xi = f (x) \int \hat {g} (y) \dd y.
+\]
+
+This proves \eqref{eq:VI.1.8}, since $g(0) = 1$ and $\int \hat{g}(y) \dd y = (2\pi)^{n/2}$ by the well-known facts: 
+\begin{align}
+(2 \pi) ^{-n/2}& \int e ^ {- | x | ^{2} / 2} e ^{- i \langle y, x \rangle} \dd x = e ^ {- | y | ^{2} / 2}, \label{eq:VI.1.10} \\
+(2 \pi) ^{-n/2}& \int e ^ {- | x | ^{2} / 2} \dd x = 1. \tag{10'}\label{eq:VI.1.10'}
+\end{align}
+\end{proof}
+
+
+\begin{remarku} For the sake of completeness, we will give the proof of \eqref{eq:VI.1.10}. We have 
+\[
+(2 \pi) ^{-1/2} \int_{- \lambda} ^{\lambda} e ^ {- t ^{2} / 2} e ^{-iut} \dd t = e ^ {- u ^{2} / 2} (2 \pi) ^{-1/2} \int_{- \lambda} ^{\lambda} e ^ {- (t + i u) ^{2} / 2} \dd t.
+\]
+\end{remarku}
+
+Let $u > 0$, and integrate the function $e^{-z^2/2}$, which is holomorphic in $z = t + iu$, along the curve consisting of the oriented segments 
+\[
+\overrightarrow {- \lambda , \lambda}, \overrightarrow {\lambda , \lambda + i u}, \overrightarrow {\lambda + i u , - \lambda + i u} \text{ and } \overrightarrow {- \lambda + i u , - \lambda}
+\]
+in this order. By Cauchy's integral theorem, the integral vanishes. Thus 
+\[
+\begin{aligned}
+&(2 \pi) ^{-1/2} \int_{- \lambda} ^{\lambda} e ^ {- (t + i u) ^{2} / 2} \dd t = (2 \pi) ^{-1/2} \int_{- \lambda} ^{\lambda} e ^ {- t ^{2} / 2} \dd t + (2 \pi) ^{-1/2} \int_{u} ^{0} e ^ {- (- \lambda + i u) ^{2} / 2} i \dd u
+\\
+&+ (2 \pi) ^{-1/2} \int_{0} ^{u} e ^ {- (\lambda + i u) ^{2} / 2} i \dd u.
+\end{aligned}
+\]
+
+The second and third terms on the right tend to $0$ as $\lambda \to \infty$, and so, by \eqref{eq:VI.1.10}, 
+\[
+(2 \pi) ^{-1/2} \int_{- \infty} ^{\infty} e ^ {- t ^{2} / 2} e ^{-itu} \dd t = e ^ {- u ^{2} / 2} (2 \pi) ^{-1/2} \int_{- \infty} ^{\infty} e ^ {- t ^{2} / 2} \dd t = e ^ {- u ^{2} / 2}.
+\]
+
+We have thus proved \eqref{eq:VI.1.10} for the case $n$ = $1$, and it is easy to prove the case of a general $n$ by reducing it to the case $n$ = $1$. 
+
+\begin{corollaryn}[Parseval's relation] We have
+\begin{align}
+&\int \hat {f} (\xi) g (\xi) \dd \xi = \int f (x) \hat {g} (x) \dd x, \label{eq:VI.1.11} \\
+&\int f (\xi) \bar {g} (\xi) \dd \xi = \int \tilde {f} (x) \bar {\tilde {g}} (x) \dd x, \label{eq:VI.1.12} \\
+(\widehat {f \star g})& = (2 \pi) ^{n/2} \widehat {f} \cdot \widehat {g} \text{ and } (2 \pi) ^{n/2} (\widehat {f \cdot g}) = \widehat {f} \star \widehat {g}, \label{eq:VI.1.13}
+\end{align}
+where the convolution $f \star g$ is defined through 
+\begin{equation}\label{eq:VI.1.14}
+(f \star g) (x) = \int f (x - y) g (y) \dd y = \int g (x - y) f (y) \dd y.
+\end{equation}
+
+\end{corollaryn}
+\begin{proof}
+ \eqref{eq:VI.1.11} is obtained from \eqref{eq:VI.1.9} by putting $x$ = $0$. \eqref{eq:VI.1.12} is obtained from \eqref{eq:VI.1.11} by observing that the Fourier transform of $\bar{g}$ is equal to $\tilde{\bar{g}}$. We next show that 
+\begin{equation}\label{eq:VI.1.15}
+\begin{gathered}
+(2 \pi) ^{-n/2} \int (f * g) (x) e ^{- i \langle \xi , x \rangle} \dd x = (2 \pi) ^{-n/2} \int g (y) e ^{- i \langle \xi , y \rangle} \left\{\int f (x - y) e ^{- i \langle \xi , x - y \rangle} \dd x \right\} \dd y
+\\
+= (2 \pi) ^{n/2} \hat {f} (\xi) \hat {g} (\xi).
+\end{gathered}
+\end{equation}
+
+Since the product $\hat{f} \cdot \hat{g}$ of functions $\hat{f}$ and $\hat{g} \in \mathfrak{S}(\mathbb{R}^{n})$ is again a function of $\mathfrak{S}(\mathbb{R}^{n})$, we know that the right hand side of \eqref{eq:VI.1.15} belongs to $\mathfrak{S}(\mathbb{R}^{n})$. 
+
+It is easy to see that, the convolution $f \star g$ of two functions of $\mathfrak{S}(\mathbb{R}^{n})$ belongs also to $\mathfrak{S}(\mathbb{R}^{n})$. Thus we have proved the first formula of \eqref{eq:VI.1.13}. The second formula may be proved similarly to \eqref{eq:VI.1.9} by \eqref{eq:VI.1.15}. 
+\end{proof}
+\begin{theorem}[Poisson's Summation Formula]\label{thm:VI.1.Theorem.2} Let $\varphi \in \mathfrak{S}(\mathbb{R}^{1})$ and $\hat{\varphi} \in \mathfrak{S}(\mathbb{R}^{1})$ its Fourier transform. Then we have 
+\begin{equation}\label{eq:VI.1.16}
+\sum\limits_{n = - \infty} ^{\infty} \varphi (2 \pi n) = \sum\limits_{n = - \infty} ^{\infty} \hat {\varphi} (n).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ Set $f(x) = \sum\limits_{n=-\infty}^{\infty} \varphi(x + 2\pi n)$. This series is absolutely convergent, $\in C^\infty$ and $f(x + 2\pi) = f(x)$, as may be proved by the fact that $\varphi(x)$ is rapidly decreasing at $\infty$. In particular, both sides of \eqref{eq:VI.1.16} are convergent. We have to prove the equality. 
+
+
+The Fourier coefficients $c_k$ of $f(x)$ with respect to the complete orthonormal system $\{(2\pi)^{-1/2} e^{-ikx}; k = 0, \pm 1, \pm 2, \ldots\}$ of $L^2(0, 2\pi)$ are given by 
+\[
+\begin{aligned}
+c _{k} &= (2 \pi) ^{-1/2} \int_{0} ^{2 \pi} f (x) e ^{-ikx} \dd x = \sum\limits_{n = - \infty} ^{\infty} (2 \pi) ^{-1/2} \int_{0} ^{2 \pi} \varphi (x + 2 \pi n) e ^{-ikx} \dd x
+\\
+&= \sum\limits_{n = - \infty} ^{\infty} (2 \pi) ^{-1/2} \int_{2 \pi n} ^{2 \pi (n +1)} \varphi (x) e ^{-ikx} \dd x = \hat {\varphi} (k).
+\end{aligned}
+\]
+
+Thus, by $f \in L^2(0, 2\pi)$, we have 
+\[
+f (x) = \sum\limits_{n = - \infty} ^{\infty} \varphi (x + 2 \pi n) = \text{ l.i.m. } \sum\limits_{k=-s} ^{s} \hat {\varphi} (k) e ^{ikx}.
+\]
+
+However, since $\hat{\varphi}(x) \in \mathfrak{S}(\mathbb{R}^{n})$, the series $\sum\limits_{k=-\infty}^{\infty} \hat{\varphi}(k) e^{ikx}$ converges absolutely. Hence 
+\[
+\sum\limits_{n = - \infty} ^{\infty} \varphi (x + 2 \pi n) \equiv \sum\limits_{k = - \infty} ^{\infty} \hat {\varphi} (k) e ^{ikx},
+\]
+and so we obtain \eqref{eq:VI.1.16} by setting $x = 0$.
+\end{proof}
+
+\begin{examplen} We have, by \eqref{eq:VI.1.10},
+\[
+\begin{aligned} (2 \pi) ^{-1/2} \int_{- \infty} ^{\infty} e ^ {- t x ^{2}} e ^{-ixy} \dd x & = (2 \pi) ^{-1/2} \int_{- \infty} ^{\infty} e ^ {- x ^{2} / 2} e ^ {- i x y / \sqrt {2 t}} (2 t) ^{-1/2} \dd x \\ & = (2 t) ^{-1/2} e ^ {- y ^{2} / 4 t}, t > 0. \end{aligned}
+\]
+
+Hence, by \eqref{eq:VI.1.16}, we obtain the so-called $\theta$-formula: 
+\begin{equation}\label{eq:VI.1.17}
+\sum\limits_{n = - \infty} ^{\infty} e ^ {- 4 t \pi^{2} n ^{2}} = \sum\limits_{n = - \infty} ^{\infty} (2 t) ^{-1/2} e ^ {- n ^{2} / 4 t}, t > 0.
+\end{equation}
+
+
+\end{examplen}
+\yossection{2}{The Fourier Transform of Tempered Distributions}
+\label{sec:VI.2}
+
+\begin{definition}\label{def:VI.2.Definition.1} $A$ linear functional $T$ defined and continuous on $\mathfrak{S}(\mathbb{R}^{n})$ is called a tempered distribution (in $\mathbb{R}^{n}$). The totality of tempered distributions is denoted by $\mathfrak{S}(\mathbb{R}^{n})'$. As a dual space of $\mathfrak{S}(\mathbb{R}^{n})$, $\mathfrak{S}(\mathbb{R}^{n})'$ is a locally convex linear topological space by the strong dual topology. 
+\end{definition}
+
+\begin{proposition}\label{prop:VI.2.Proposition.1} Since $C_0^\infty(\mathbb{R}^{n})$ is contained in $\mathfrak{S}(\mathbb{R}^{n})$ as an abstract set, and since the topology in $\mathfrak{D}(\mathbb{R}^{n})$ is stronger than the topology in $\mathfrak{S}(\mathbb{R}^{n})$, the restriction of a tempered distribution to $C_0^\infty(\mathbb{R}^{n})$ is a distribution in $\mathbb{R}^{n}$. Two different tempered distributions define, when restricted to $C_0^\infty(\mathbb{R}^{n})$, two different distributions in $\mathbb{R}^{n}$, because $C_0^\infty(\mathbb{R}^{n})$ is dense in $\mathfrak{S}(\mathbb{R}^{n})$ with respect to the topology of $\mathfrak{S}(\mathbb{R}^{n})$, and hence a distribution $\in \mathfrak{S}(\mathbb{R}^{n})'$ which vanishes on $C_0^\infty(\mathbb{R}^{n})$ must vanish on $\mathfrak{S}(\mathbb{R}^{n})$. Therefore 
+\begin{equation}\label{eq:VI.2.1}
+\mathfrak {S} (\mathbb{R}^{n}) ^{\prime} \subseteq \mathfrak {D} (\mathbb{R}^{n}) ^{\prime}.
+\end{equation}
+\end{proposition}
+
+\begin{example}\label{ex:VI.2.Example.1} $A$ distribution in $\mathbb{R}^{n}$ with a compact support surely belongs to $\mathfrak{S}(\mathbb{R}^{n})'$. Therefore 
+\begin{equation}\label{eq:VI.2.2}
+\mathfrak {E} (\mathbb{R}^{n}) ^{\prime} \subseteq \mathfrak {S} (\mathbb{R}^{n}) ^{\prime}.
+\end{equation}
+\end{example}
+
+\begin{example}\label{ex:VI.2.Example.2} $A$ $\sigma$-finite, non-negative measure $\mu(\dd x)$ which is $\sigma$-additive on Baire sets of $\mathbb{R}^{n}$ is called a slowly increasing measure, if, for some nonnegative $k$, 
+\begin{equation}\label{eq:VI.2.3}
+\int_ {\mathbb{R}^{n}} (1 + | x | ^{2}) ^{-k} \mu (\dd x) < \infty .
+\end{equation}
+\end{example}
+
+Such a measure $\mu$ defines a tempered distribution by 
+\begin{equation}\label{eq:VI.2.4}
+T _{\mu} (\varphi) = \int_ {\mathbb{R}^{n}} \varphi (x) \mu (\dd x), \varphi \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{equation}
+
+For, by the condition $\varphi \in \mathfrak{S}(\mathbb{R}^{n})$, we have $\varphi(x) = 0((1 + |x|^2)^{-k})$ for large $|x|$. 
+
+\begin{example}\label{ex:VI.2.Example.3} As a special case of Example~\hyperref[ex:VI.2.Example.2]{$2$}, any function $f \in L^{p}(\mathbb{R}^{n})$, $p \geqq 1$, defines a tempered distribution 
+\begin{equation}\tag{4'}\label{eq:VI.2.4'}
+T _{f} (\varphi) = \int_ {\mathbb{R}^{n}} \varphi (x) f (x) \dd x, \varphi \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{equation}
+\end{example}
+
+That an $f \in L^{p}(\mathbb{R}^{n})$ gives rise to a slowly increasing measure $\mu(\dd x) = |f(x)| \dd x$ may be proved by applying Hölder's inequality to 
+\[
+\int_ {\mathbb{R}^{n}} (1 + | x | ^{2}) ^{-k} | f (x) | \dd x.
+\]
+
+\begin{definition}\label{def:VI.2.Definition.2} $A$ function $f \in C^{\infty}(\mathbb{R}^{n})$ is called slowly increasing (at $\infty$), if, for any differentiation $D^{j}$, there exists a non-negative integer $N$ such that 
+\begin{equation}\label{eq:VI.2.5}
+\lim\limits _{| x | \rightarrow \infty} | x | ^{-N} | D ^{j} f (x) | = 0.
+\end{equation}
+\end{definition}
+
+The totality of slowly increasing functions will be denoted by $\mathfrak{D}_{M}(\mathbb{R}^{n})$. It is a locally convex linear topological space by the algebraic operations of function sum and multiplication of functions by complex numbers, and by the topology defined by the system of semi-norms of the form 
+\begin{equation}\label{eq:VI.2.6}
+p (f) = p _ {h, D ^{j}} (f) = \sup\limits _ {x \in \mathbb{R}^{n}} | h (x) D ^{j} f (x) |, f \in \mathfrak {D} _{M} (\mathbb{R}^{n}),
+\end{equation}
+where $h(x)$ is an arbitrary function $\in \mathfrak{S}(\mathbb{R}^{n})$ and $D^j$ an arbitrary differentiation. As may be seen by applying Leibniz' formula of differentiation of the product of functions, $h(x) D^j f(x) \in \mathfrak{S}(\mathbb{R}^{n})$ and so $p_{h,Dj}(f)$ is finite for every $f \in \mathfrak{D}_M(\mathbb{R}^{n})$. Moreover, if $p_{h,Dj}(f) = 0$ for all $h \in \mathfrak{S}(\mathbb{R}^{n})$ and $D^j$, then $f(x) \equiv 0$ as may be seen by taking $D = I$ and $h \in \mathfrak{D}(\mathbb{R}^{n})$. 
+
+\begin{proposition}\label{prop:VI.2.Proposition.2} $C_0^\infty (\mathbb{R}^{n})$ is dense in $\mathfrak{D}_M(\mathbb{R}^{n})$ with respect to the topology of $\mathfrak{D}_M(\mathbb{R}^{n})$. 
+\end{proposition}
+
+\begin{proof}
+ Let $f \in \mathfrak{D}_M(\mathbb{R}^{n})$, and take $\psi \in C_0^\infty(\mathbb{R}^{n})$ such that $\psi(x) = 1$ for $|x| \leqq 1$. Then $f_{\varepsilon}(x) = f(x) \psi(\varepsilon x) \in C_0^\infty(\mathbb{R}^{n})$ for any $\varepsilon > 0$. As in Proposition~\ref{prop:VI.1.Proposition.3} in Chapter~\ref{chap:VI}, \ref{sec:VI.1}, we easily prove that $f_{\varepsilon}(x)$ tends to $f(x)$ in the topology of $\mathfrak{D}_M(\mathbb{R}^{n})$ when $\varepsilon \downarrow 0$. 
+\end{proof}
+
+\begin{proposition}\label{prop:VI.2.Proposition.3} Any function $f \in \mathfrak{D}_M(\mathbb{R}^{n})$ defines a tempered distribution 
+\begin{equation}\label{eq:VI.2.7}
+T _{f} (\varphi) = \int_ {\mathbb {R} ^{n}} f (x) \varphi (x) \dd x, \varphi \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{equation}
+\end{proposition}
+
+\begin{definition}\label{def:VI.2.Definition.3} As in the case of a distribution in $\mathbb{R}^{n}$, we can define the generalized derivative of a tempered distribution $T$ by 
+\begin{equation}\label{eq:VI.2.8}
+D ^{j} T (\varphi) = (- 1) ^{|j|} T (D ^{j} \varphi), \varphi \in \mathfrak {S} (\mathbb{R}^{n}),
+\end{equation}
+since the mapping $\varphi(x) \to D^{j}\varphi(x)$ of $\mathfrak{S}(\mathbb{R}^{n})$ into $\mathfrak{S}(\mathbb{R}^{n})$ is linear and continuous in the topology of $\mathfrak{S}(\mathbb{R}^{n})$. We can also define a multiplication by a function $f \in \mathfrak{D}_M(\mathbb{R}^{n})$ to a distribution $T \in \mathfrak{S}(\mathbb{R}^{n})'$ through 
+\begin{equation}\label{eq:VI.2.9}
+(f T) (\varphi) = T (f \varphi), \varphi \in \mathfrak {S} (R) ^{n},
+\end{equation}
+since the mapping $\varphi(x) \to f(x)\varphi(x)$ of $\mathfrak{S}(\mathbb{R}^{n})$ into $\mathfrak{S}(\mathbb{R}^{n})$ is linear and continuous in the topology of $\mathfrak{S}(\mathbb{R}^{n})$. 
+\end{definition}
+
+\yossub{The Fourier Transform of Tempered Distributions}
+
+\begin{definition}\label{def:VI.2.Definition.4} Since the mapping $\varphi(x) \to \hat{\varphi}(x)$ of $\mathfrak{S}(\mathbb{R}^{n})$ onto $\mathfrak{S}(\mathbb{R}^{n})$ is linear and continuous in the topology of $\mathfrak{S}(\mathbb{R}^{n})$, we can define the Fourier transform $\hat{T}$ of a tempered distribution $T$ as the tempered distribution $\hat{T}$ defined through 
+\begin{equation}\label{eq:VI.2.10}
+\hat {T} (\varphi) = T (\hat {\varphi}), \varphi \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{equation}
+\end{definition}
+
+\begin{example}\label{ex:VI.2.Example.1a} If $f \in L^{1}(\mathbb{R}^{n})$, then 
+\begin{equation}\label{eq:VI.2.11}
+\hat {T} _{f} = T _ {\hat {f}}, \text{ where } \hat {f} (x) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{- i \langle x, \xi \rangle} f (\xi) \dd \xi ,
+\end{equation}
+as may be seen by changing the order of integration in $\hat{T}_f(\varphi) = \int f(x) \cdot \hat{\varphi}(x) \dd x = (2\pi)^{-n/2} \int_{\mathbb{R}^{n}} f(x) \left\{ \int_{\mathbb{R}^{n}} e^{-i\langle x, \xi \rangle} \varphi(\xi) \dd\xi \right\} \dd x.$ 
+\end{example}
+
+\begin{remarku} In the above sense, the Fourier transform of a tempered distribution is a generalization of the ordinary Fourier transform of functions. 
+\end{remarku}
+
+\begin{proposition}\label{prop:VI.2.Proposition.4} If we define 
+\begin{equation}\label{eq:VI.2.12}
+\check {f} (x) = f (- x),
+\end{equation}
+then Fourier's integral theorem in the preceding Section~\hyperref[sec:VI.1]{$1$} is expressed by 
+\begin{equation}\label{eq:VI.2.13}
+\hat {\tilde {f}} = \check {f}, f \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{equation}
+\end{proposition}
+
+\begin{corollary}[Fourier's integral theorem]\label{cor:VI.2.Corollary.1} Fourier's integral theorem is generalized to tempered distributions as follows: 
+\begin{equation}\label{eq:VI.2.14}
+\hat {\tilde {T}} = \check {T}, \text{ where } \check {T} (\varphi) = T (\check {\varphi}).
+\end{equation}
+\end{corollary}
+
+In particular, the Fourier transform $T \to \hat{T}$ maps $\mathfrak{S}(\mathbb{R}^{n})'$ linearly onto $\mathfrak{S}(\mathbb{R}^{n})'$. 
+
+\begin{proof}
+ We have, by definition, 
+\[
+\hat {\tilde {T}} (\varphi) = T (\hat {\varphi}) = T (\check {\varphi}) = \check {T} (\varphi) \text{ for all } \varphi \in \mathfrak {S} (\mathbb{R}^{n}). \]
+\end{proof}
+
+\begin{corollary}\label{cor:VI.2.Corollary.2} The Fourier transform $T\to\tilde{T}$ and its inverse are linear and continuous on $\mathfrak{S}(\mathbb{R}^{n})'$ onto $\mathfrak{S}(\mathbb{R}^{n})'$ with respect to the weak* topology of $\mathfrak{S}(\mathbb{R}^{n})'$: 
+\begin{equation}\lim T _{h} (\varphi) = T (\varphi) \text{ for all } \varphi \in \mathfrak {S} (\mathbb{R}^{n}) \text{ implies that } \lim \hat {T} _{h} (\varphi) = \hat {T} (\varphi) \text{ for all } \varphi \in \mathfrak {S} (\mathbb{R}^{n}). \label{eq:VI.2.15}\end{equation}
+\end{corollary}
+
+Here the inverse of the mapping $T \rightarrow \tilde{T}$ is defined by the inverse Fourier transform $T \rightarrow \tilde{T}$ given by 
+\begin{equation}\tag{10'}\label{eq:VI.2.10'}
+\tilde {T} (\varphi) = T (\tilde {\varphi}), \varphi \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{equation}
+
+\begin{example}\label{ex:VI.2.Example.2a} 
+\begin{equation}\hat {T} _{\delta} = (2 \pi) ^{-n/2} T _{1}, \hat {T} _{1} = (2 \pi) ^{n/2} T _{\delta}.\label{eq:VI.2.16}
+\end{equation}
+\end{example}
+
+\begin{proof}
+\[
+ \hat {T} _{\delta} (\varphi) = T _{\delta} (\hat {\varphi}) = \hat {\varphi} (0) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} 1 \cdot \varphi (y) \dd y = (2\pi)^{-n/2}T_{1}(\varphi).
+\]
+and $T_{\delta} = \check{T}_{\delta} = \hat{\tilde{T}}_{\delta} = (2\pi)^{-n/2}\hat{T}_1.$ 
+\end{proof}
+
+\begin{example}\label{ex:VI.2.Example.3a} 
+\begin{align}
+(\widehat {\partial T / \partial x _{j}})& = i x _{j} \hat {T}, \label{eq:VI.2.17} \\
+(\widehat {i x _{j} T})& = - (\partial \hat {T} / \partial x _{j}). \label{eq:VI.2.18}
+\end{align}
+\end{example}
+
+\begin{proof}
+ We have, by \eqref{eq:VI.1.5} in Chapter~\ref{chap:VI}, \ref{sec:VI.1}, 
+\[
+\begin{gathered}
+(\widehat {\partial T / \partial x _{j}}) (\varphi) = (\partial T / \partial x _{j}) (\widehat {\varphi}) = - T (\partial \widehat {\varphi} / \partial x _{j}) = - T (- i x _{j} \varphi (x)) = T (\widehat {i x _{j} \varphi}) = (i x _{j} \widehat {T}) (\varphi).
+\end{gathered}
+\]
+
+We also have, by \eqref{eq:VI.1.6} in Chapter~\ref{chap:VI}, \ref{sec:VI.1}, 
+\[
+\begin{aligned}
+&\widehat {(i x _{j} T)} (\varphi)  = (i x _{j} T) (\hat {\varphi}) = T (i x _{j} \hat {\varphi}) = T (\widehat {\partial \varphi / \partial x _{j}}) = \hat {T} (\partial \varphi / \partial x _{j}) = - (\partial \hat {T} / \partial x _{j}) (\varphi).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{theoremn}[Plancherel's Theorem] If $f \in L^2(\mathbb{R}^{n})$, then the Fourier transform $\hat{T}_f$ of $T_f$ is defined by a function $\hat{f} \in L^2(\mathbb{R}^{n})$, i.e., 
+\begin{equation}\label{eq:VI.2.19}
+\hat {T} _{f} = T _ {\hat {f}} \text{ with } \hat {f} \in L ^{2} (\mathbb{R}^{n}),
+\end{equation}
+
+and 
+\begin{equation}\label{eq:VI.2.20}
+\left\| \hat {f} \right\| = \left(\int_ {\mathbb{R}^{n}} | \hat {f} (x) | ^{2} \dd x\right) ^{1/2} = \left(\int_ {\mathbb{R}^{n}} | f (x) | ^{2} \dd x\right) ^{1/2} = \left\| f \right\|.
+\end{equation}
+\end{theoremn}
+
+\begin{proof}
+ We have, by Schwarz' inequality, 
+\begin{equation}\label{eq:VI.2.21}
+\left| \hat {T} _{f} (\varphi) \right| = \left| T _{f} (\hat {\varphi}) \right| = \left| \int_ {\mathbb{R}^{n}} f (x) \hat {\varphi} (x) \dd x \right| \leqq \| f \| \| \hat {\varphi} \| = \| f \| \| \varphi \|. \end{equation}
+
+The equality above $\|\hat{\varphi}\| = \|\varphi\|$ is proved in \eqref{eq:VI.2.12} of the preceding section $1$. Hence, by F. \textsc{Riesz}' representation theorem in the Hilbert space $L^2(\mathbb{R}^{n})$, there exists a uniquely determined $\hat{f} \in L^2(\mathbb{R}^{n})$ such that 
+\begin{equation}\label{eq:VI.2.22}
+\begin{aligned}
+\hat {T} _{f} (\varphi) &= \int_ {\mathbb{R}^{n}} \varphi (x) \hat {f} (x) \dd x = T _ {\hat {f}} (\varphi), \text{ that is, }
+\\
+\int_ {\mathbb{R}^{n}} \hat {f} (x) \varphi (x) \dd x &= \int_ {\mathbb{R}^{n}} f (x) \hat {\varphi} (x) \dd x \text{ for all } \varphi \in \mathfrak {S} (\mathbb{R}^{n}).
+\end{aligned}
+\end{equation}
+
+Moreover, we have, from \eqref{eq:VI.2.21}, $\|f\| \geqq \|\hat{f}\|$ since $\mathfrak{S}(\mathbb{R}^{n})$ is dense in $L^2(\mathbb{R}^{n})$ in the topology of $L^2(\mathbb{R}^{n})$. We have thus $\|\hat{\hat{f}}\| \leqq \|\hat{f}\| \leqq \|f\|$. On the other hand, we have, by \eqref{eq:VI.2.13} and \eqref{eq:VI.2.22}, 
+\[
+\int_{\mathbb{R}^{n}} \hat {\hat {f}} (x) \varphi (x) \dd x = \int_ {\mathbb{R}^{n}} \hat {f} (x) \hat {\varphi} (x) \dd x = \int_ {\mathbb{R}^{n}} f (- x) \varphi (x) \dd x \text{ for all } \varphi \in \mathfrak {S} (\mathbb{R}^{n})
+\]
+that is, 
+\begin{equation}\label{eq:VI.2.23}
+\hat {\hat {f}} (x) = f (- x) = \check {f} (x) \text{ a.e. }
+\end{equation}
+
+Thus $\|\hat{\hat{f}}\| = \|f\|$ and so, combined with $\|\hat{\hat{f}}\| \leqq \|\hat{f}\| \leqq \|f\|$, we obtain \eqref{eq:VI.2.20}. 
+\end{proof}
+
+\begin{definition}\label{def:VI.2.Definition.5} The above obtained $\hat{f}(x) \in L^{2}(\mathbb{R}^{n})$ is called the Fourier transform of the function $f(x) \in L^{2}(\mathbb{R}^{n})$. 
+\end{definition}
+
+
+\begin{corollary}\label{cor:VI.2.Corollary.1a} We have, for any $f \in L^2(\mathbb{R}^{n})$, 
+\begin{equation}\label{eq:VI.2.24}
+\hat {f} (x) = \underset {h \uparrow \infty} {\text{ l.i.m. }} (2 \pi) ^{-n/2} \int_{| x | \leqq h} e ^{- i \langle x, y \rangle} f (y) \dd y.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+ Put 
+\[
+f _{h} (x) = f (x) \text{ or } = 0 \text{ according as } | x | \leqq h \text{ or } | x | > h. \]
+
+Then $\lim\limits_{h\to \infty}\|f_h - f\| = 0$ and so, by \eqref{eq:VI.2.20}, $\lim\limits_{h\to \infty}\|\hat{f}_h - \hat{f} \| = 0$, that is, $\hat{f}(x) = \underset {h\to \infty}{\text{ l.i.m. }}\hat{f}_h(x)$ a.e. But, by \eqref{eq:VI.2.22}, 
+\[
+\begin{aligned}
+&\int_ {\mathbb{R}^{n}} \hat {f} _{h} (x) \varphi (x) \dd x  = \int_ {\mathbb{R}^{n}} f _{h} (x) \hat {\varphi} (x) \dd x = \int_{| x | \leqq h} f (x) \left\{(2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{- i \langle x, y \rangle} \varphi (y) \dd y \right\} \dd x,
+\end{aligned}
+\]
+which is, by changing the order of integration, equal to 
+\[
+\int_ {\mathbb{R}^{n}} (2 \pi) ^{-n/2} \left\{\int_{| x | \leqq h} e ^{- i \langle x, y \rangle} f (x) \dd x \right\} \varphi (y) \dd y,
+\]
+since $f_{h}(x)$ is integrable over $|x| \leqq h$ as may be seen by Schwarz' inequality. Thus $\hat{f}_{h}(x) = (2\pi)^{-n/2} \int_{|x| \leqq h} e^{-i\langle x, y \rangle} f(y) \, \dd y$ a.e., and so we obtain \eqref{eq:VI.2.24}. 
+\end{proof}
+
+\begin{corollary}\label{cor:VI.2.Corollary.2a} The Fourier transform $f \to \hat{f}$ maps $L^2(\mathbb{R}^{n})$ onto $L^2(\mathbb{R}^{n})$ in a one-one-manner such that 
+\begin{equation}\label{eq:VI.2.25}
+(f, g) = (\hat {f}, \hat {g}) \text{ for all } f, g \in L ^{2} (\mathbb{R}^{n}).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+ Like the Fourier transform $f \to \hat{f}$, the inverse Fourier transform $f \to \tilde{f}$ defined by 
+\begin{equation}\label{eq:VI.2.26}
+\tilde {f} (x) = \underset {h \rightarrow \infty} {\text{ l . i . m . }} (2 \pi) ^{-n/2} \int_{| y | \leqq h} e ^{i \langle x, y \rangle} f (y) \dd y
+\end{equation}
+maps $L^2(\mathbb{R}^{n})$ into $L^2(\mathbb{R}^{n})$ in such a way that $\|\tilde{f}\| = \|f\|$. Hence we see that the Fourier transform $f \to \hat{f}$ maps $L^2(\mathbb{R}^{n})$ onto $L^2(\mathbb{R}^{n})$ in a one-one way such that $\|\hat{f}\| = \|f\|$. Hence, by the linearity of the Fourier transform and 
+\[
+(x, y) = 4 ^{-1} \left(\left\| x + y \right\| ^{2} - \left\| x - y \right\| ^{2}\right) + 4 ^{-1} i \left(\left\| x + i y \right\| ^{2} - \left\| x - i y \right\| ^{2}\right),
+\]
+we obtain \eqref{eq:VI.2.25}. 
+\end{proof}
+
+Parseval's Theorem for the Fourier Transform. Let $f_{1}(x)$ and $f_{2}(x)$ both belong to $L^2(\mathbb{R}^{n})$, and let their Fourier transforms be $\hat{f}_1(u)$ and $\hat{f}_2(u)$, respectively. Then 
+\begin{equation}\label{eq:VI.2.27}
+\int_ {\mathbb{R}^{n}} \hat {f} _{1} (u) \hat {f} _{2} (u) \dd u = \int_ {\mathbb{R}^{n}} f _{1} (x) f _{2} (- x) \dd x,
+\end{equation}
+and so 
+\begin{equation}\label{eq:VI.2.28}
+\int_ {\mathbb{R}^{n}} \hat {f} _{1} (u) \hat {f} _{2} (u) e ^{i \langle u, x \rangle} \dd u = \int_ {\mathbb{R}^{n}} f _{1} (y) f _{2} (x - y) \dd y.
+\end{equation}
+
+Thus, if $\hat{f}_1(u)\hat{f}_2(u)$ as well as both its factors belong to $L^2 (\mathbb{R}^{n})$, it is the Fourier transform of 
+\begin{equation}\label{eq:VI.2.29}
+(2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} f _{1} (y) f _{2} (x - y) \dd y.
+\end{equation}
+
+This will also be true if $f_{1}(x), f_{2}(x)$ and \eqref{eq:VI.2.29} all belong to $L^2(\mathbb{R}^{n})$. 
+
+\begin{proof}
+ It is easy to see that 
+\[
+(2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} \overline {{f _{2} (- x)}} e ^{- i \langle u, x \rangle} \dd x = \overline {{\hat {f} _{2} (u)}},
+\]
+and so, by \eqref{eq:VI.2.25}, we obtain \eqref{eq:VI.2.27}. Next, since the Fourier transform of the function of $y$, $\overline{f_2(x - y)}$, is $\overline{f_2(u)} e^{-i\langle u,x\rangle}$ containing a parameter $x$, we obtain \eqref{eq:VI.2.28} by \eqref{eq:VI.2.25}. The rest of the Theorem is clear from \eqref{eq:VI.2.28} and $\widetilde{f} = f$. 
+\end{proof}
+
+The Negative Norm. The Sobolev space $W^{k,2}(\Omega)$ was defined in Chapter~\ref{chap:I}, \ref{sec:I.9}. Let $f(x) \in W^{k,2}(\mathbb{R}^{n})$. Since $f(x) \in L^2(\mathbb{R}^{n})$, $f$ gives rise to a slowly increasing measure $|f(x)| \dd x$ in $\mathbb{R}^{n}$. Thus we can define the Fourier transform $\hat{T}_f$ of the tempered distribution $T_f$. We have, by \eqref{eq:VI.2.17}, 
+\[
+\widehat {D ^{\alpha} T _{f}} = (i) ^{| \alpha |} \prod\limits_{j=1} ^{n} x _{j} ^ {\alpha_{j}} \hat {T} _{f}.
+\]
+
+By the definition of the space $W^{k,2}(\mathbb{R}^{n})$, $D^\alpha T_f \in L^2(\mathbb{R}^{n})$ for $|\alpha| \leqq k$. Thus, by Plancherel's theorem for $L^2(\mathbb{R}^{n})$, 
+$\|\widehat{D^{\alpha}T_{f}}\|_{0}=\|D^{\alpha}T_{f}\|_{0}, \text{ where } \|\|_{0} \text{ is the } L^{2}(\mathbb{R}^{n})-\text{ norm }.$ 
+
+Hence we see that $(1 + |x|^2)^{k/2}\hat{T}_f \in L^2(\mathbb{R}^{n})$, and so it is easy to show that the norm $\|f\|_k = \left(\sum\limits_{|\alpha| \leqq k} \int_{\mathbb{R}^{n}} |D^\alpha T_f|^2 \dd x\right)^{1/2}$ is equivalent to the norm 
+\begin{equation}\label{eq:VI.2.30}
+\left\| (1 + | x | ^{2}) ^{k/2} \hat {T} _{f} \right\| _{0} = \left\| f \right\| _{k} ^{\prime},
+\end{equation}
+in the sense that there exist two positive constants $c_{1}$ and $c_{2}$ for which we have 
+\[
+c _{1} \leqq \| f \| _{k} / \| f \| _{k} ^{\prime} \leqq c _{2} \text{ whenever } f \in W ^{k,2} (\mathbb{R}^{n})
+\]
+
+We may thus renorm the space $W^{k,2}(\mathbb{R}^{n})$ by $\|f\|_k'$; $W^{k,2}(\mathbb{R}^{n})$ may thus be defined as the totality of $f \in L^2(\mathbb{R}^{n})$ such that $\|f\|_k'$ is finite. One advantage of the new formulation of $W^{k,2}(\mathbb{R}^{n})$ is that we may also consider the case of a negative exponent $k$. Then, as in the case of $L^2(\mathbb{R}^{n})$ pertaining to the ordinary Lebesgue measure $\dd x$, we see that the dual space of the renormed space $W^{k,2}(\mathbb{R}^{n})$ is the space $W^{-k,2}(\mathbb{R}^{n})$ normed by $\|f\|_{-k}'$. This observation due to L. \textsc{Schwartz} \cite{schwartz298} is of an earlier date than the introduction of the negative norm by P. \textsc{Lax} \cite{lewy172}. 
+
+
+\yossection{3}{Convolutions}
+\label{sec:VI.3}
+
+We define the convolution (Faltung) of two functions $f, g$ of $C(\mathbb{R}^{n})$, one of which has a compact support, by (cf. the case in which $f, g \in \mathfrak{S}(\mathbb{R}^{n})$ in Chapter~\ref{chap:VI}, \ref{sec:VI.1}) 
+\begin{equation}\label{eq:VI.3.1}
+(f * g) (x) = \int_ {\mathbb{R}^{n}} f (x - y) g (y) \dd y = \int_ {\mathbb{R}^{n}} f (y) g (x - y) \dd y = (g * f) (x).
+\end{equation}
+
+Suggested by this formula, we define the convolution of a $T \in \mathfrak{D}(\mathbb{R}^{n})'$ and a $\varphi \in \mathfrak{D}(\mathbb{R}^{n})$ (or a $T \in \mathfrak{E}(\mathbb{R}^{n})'$ and a $\varphi \in \mathfrak{E}(\mathbb{R}^{n})$) by 
+\begin{equation}\label{eq:VI.3.2}
+(T * \varphi) (x) = T _{[y]} (\varphi (x - y)),
+\end{equation}
+where $T_{[y]}$ indicates that we apply the distribution $T$ on test functions of $y$. 
+
+\begin{proposition}\label{prop:VI.3.Proposition.1} $(T * \varphi)(x) \in C^{\infty}(\mathbb{R}^{n})$ and $\supp(T * \varphi) \subseteq \supp(T) + \supp(\varphi)$, that is, 
+\[
+\supp (T * \varphi) \subseteq \left\{w \in \mathbb{R}^{n}; w = x + y, x \in \supp (T), y \in \supp (\varphi) \right\}.
+\]
+\end{proposition}
+
+Moreover, we have 
+\begin{equation}\label{eq:VI.3.3}
+D ^{\alpha} (T * \varphi) = T * (D ^{\alpha} \varphi) = (D ^{\alpha} T) * \varphi .
+\end{equation}
+
+\begin{proof}
+ Let $\varphi \in \mathfrak{D}(\mathbb{R}^{n})$ (or $\in \mathfrak{E}(\mathbb{R}^{n})$). If $\lim\limits_{h\to 0}x^h = x$, then, as functions of $y$, $\lim\limits_{h\to 0}\varphi (x^h -y) = \varphi (x - y)$ in $\mathfrak{D}(\mathbb{R}^{n})$ (or in $\mathfrak{E}(\mathbb{R}^{n})$). Hence $T_{[y]}(\varphi (x - y)) = (T*\varphi)(x)$ is continuous in $x$. The inclusion relation of the supports is proved by the fact that $T_{[y]}(\varphi (x - y)) = 0$ unless the support of $T$ and that of $\varphi (x - y)$ as a function of $y$ meet. Next let $e_j$ be the unit vector of $\mathbb{R}^{n}$ along the $x_j$-axis and consider the expression 
+\[
+T _{[y]} \left(\left(\varphi (x + h e _{j} - y) - \varphi (x - y)\right) / h\right). \]
+
+When $h \to 0$, the function enclosed by the outer parenthesis converges, as a function of $y$, to $\left(\frac{\partial \varphi}{\partial x_j}\right)(x - y)$ in $\mathfrak{D}(\mathbb{R}^{n})$ (or in $\mathfrak{E}(\mathbb{R}^{n})$). Thus we have proved 
+\[
+\frac {\partial}{\partial x _{j}} (T * \varphi) (x) = \left(T * \frac {\partial \varphi}{\partial x _{j}}\right) (x).
+\]
+
+Moreover, we have 
+\[
+\left(T * \frac {\partial \varphi}{\partial x _{j}}\right) (x) = T _{[y]} \left(- \frac {\partial \varphi (x - y)}{\partial y _{j}}\right) = \frac {\partial T _{[v]}}{\partial y _{j}} (\varphi (x - y)) = \left(\frac {\partial T}{\partial x _{j}} * \varphi\right) (x).
+\]
+\end{proof}
+
+\begin{proposition}\label{prop:VI.3.Proposition.2} If $\varphi$ and $\psi$ are in $\mathfrak{D}(\mathbb{R}^{n})$ and $T \in \mathfrak{D}(\mathbb{R}^{n})'$ (or $\varphi \in \mathfrak{E}(\mathbb{R}^{n})$, $\psi \in \mathfrak{D}(\mathbb{R}^{n})$ and $T \in \mathfrak{E}(\mathbb{R}^{n})'$), then 
+\begin{equation}\label{eq:VI.3.4}
+(T * \varphi) * \psi = T * (\varphi * \psi).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+ We approximate the function $(\varphi * \psi)(x)$ by the Riemann sum 
+\[
+f _{h} (x) = h ^{n} \sum\limits_{h} \varphi (x - k h) \psi (k h),
+\]
+where $h$ > $0$ and $k$ ranges over points of $\mathbb{R}^{n}$ with integral coordinates. Then, for every differentiation $D^{\alpha}$ and for every compact set of $x$, 
+\[
+D ^{\alpha} f _{h} (x) = h ^{n} \sum\limits_{h} D ^{\alpha} \varphi (x - k h) \psi (k h)
+\]
+converges, as $h \downarrow 0$, to $((D^{\alpha}\varphi) * \psi)(x) = (D^{\alpha}(\varphi * \psi))(x)$ uniformly in $x$. Hence we see that $\lim\limits_{h \downarrow 0} f_h = \varphi * \psi$ in $\mathfrak{D}(\mathbb{R}^{n})$ (or in $\mathfrak{E}(\mathbb{R}^{n})$). Therefore, by the linearity and the continuity of $T$, we have 
+\[ \begin{aligned}
+&(T * (\varphi * \psi)) (x)  = \lim\limits _{h \downarrow 0} (T * f _{h}) (x) = \lim\limits _{h \downarrow 0} h ^{n} \sum\limits_{k} (T * \varphi) (x - k h) \psi (k h) = ((T * \varphi) * \psi) (x).
+\end{aligned}
+\]
+\end{proof}
+
+\begin{definitionu} Let $\varphi \in \mathfrak{D}(\mathbb{R}^{n})$ be non-negative, $\int_{\mathbb{R}^{n}}\varphi \dd x = 1$ and such that $\supp(\varphi) \subseteq \{x \in \mathbb{R}^{n}; |x| \leqq 1\}$. We may, for instance, take 
+\[
+\begin{aligned}
+&\varphi (x) = \exp (1 / (| x | ^{2} - 1)) / \int_{|x|<1} \exp (1 / (| x | ^{2} - 1)) \dd x \text{ if } | x | < 1, = 0 \text{ if } | x | \geqq 1.
+\end{aligned}
+\]
+\end{definitionu}
+
+We write $\varphi_{\varepsilon}(x)$ for $\varepsilon^{-n}\varphi(x/\varepsilon)$, $\varepsilon > 0$, and call $T * \varphi_{\varepsilon}$ the regularization of $T \in \mathfrak{D}(\mathbb{R}^{n})'$ (or $\in \mathfrak{E}(\mathbb{R}^{n})'$) through $\varphi_{\varepsilon}(x)$'s (Cf. Chapter~\ref{chap:I}, \ref{sec:I.1}). 
+
+\begin{theorem}\label{thm:VI.3.Theorem.1} Let $T \in \mathfrak{D}(\mathbb{R}^{n})'$ (or $\in \mathfrak{E}(\mathbb{R}^{n})'$). Then $\lim\limits_{\varepsilon \downarrow 0} (T * \varphi_\varepsilon) = T$ in the weak* topology of $\mathfrak{D}(\mathbb{R}^{n})'$ (or of $\mathfrak{E}(\mathbb{R}^{n})'$). In this sense, $\varphi_\varepsilon$ is called an approximate identity. 
+\end{theorem}
+
+For the proof we prepare a 
+
+\begin{lemmau} For any $\psi \in \mathfrak{D}(\mathbb{R}^{n})$ (or $\in \mathfrak{E}(\mathbb{R}^{n})$), we have $\lim\limits_{\varepsilon \downarrow 0} \psi * \varphi_{\varepsilon} = \psi$ in $\mathfrak{D}(\mathbb{R}^{n})$ (or in $\mathfrak{E}(\mathbb{R}^{n})$). 
+\end{lemmau}
+
+\begin{proof}
+ We first observe that $\supp(\psi * \varphi_{\varepsilon}) \subseteq \supp(\psi) + \supp(\varphi_{\varepsilon}) = \supp(\psi) + \varepsilon$. We have, by \eqref{eq:VI.3.3}, $D^{\alpha}(\psi * \varphi_{\varepsilon}) = (D^{\alpha}\psi) * \varphi_{\varepsilon}$. Hence we have to show that $\lim\limits_{\varepsilon \downarrow 0} (\psi * \varphi_{\varepsilon})(x) = \psi(x)$ uniformly on any compact set of $x$. But, by $\int \varphi_{\varepsilon}(y) \dd y = 1$, 
+\[
+(\psi * \varphi_{\varepsilon}) (x) - \psi (x) = \int_ {\mathbb{R}^{n}} \{\psi (x - y) - \psi (x) \} \varphi_{\varepsilon} (y) \dd y. \]
+
+Therefore, by $\varphi_{\varepsilon}(x) \geqq 0$, $\int_{\mathbb{R}^{n}} \varphi_{\varepsilon}(y) \dd y = 1$ and the uniform continuity of $\psi(x)$ on any compact interval of $x$, we obtain the Lemma. 
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:VI.3.Theorem.1}.]
+We have, by $\check{\psi}(x) = \psi(-x)$,
+\begin{equation}\label{eq:VI.3.5}
+T (\psi) = (T * \check {\psi}) (0).
+\end{equation}
+
+Hence we have to prove that $\lim\limits_{\varepsilon \downarrow 0} ((T * \varphi_{\varepsilon}) * \check{\psi}) (0) = (T * \check{\psi}) (0)$. But, as proved in \eqref{eq:VI.3.4}, $(T * \varphi_{\varepsilon}) * \check{\psi} = T * (\varphi_{\varepsilon} * \check{\psi})$ and so, by \eqref{eq:VI.3.5}, $(T * (\varphi_{\varepsilon} * \check{\psi})) (0) = T((\varphi_{\varepsilon} * \check{\psi})^{\vee})$. Hence we obtain $\lim\limits_{\varepsilon \downarrow 0} ((T * \varphi_{\varepsilon}) * \check{\psi}) (0) = T((\check{\psi})^{\vee}) = T(\psi)$ by the Lemma. 
+
+We next prove a theorem which concerns with a characterization of the operation of convolution. 
+\end{proof}
+
+\begin{theorem}[L. \textsc{Schwartz}]\label{thm:VI.3.Theorem.2} Let $L$ be a continuous linear mapping on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{F}(\mathbb{R}^{n})$ such that 
+\begin{equation}\label{eq:VI.3.6}
+L \tau_{h} \varphi = \tau_{h} L \varphi \text{ for any } h \in \mathbb{R}^{n} \text{ and } \varphi \in \mathfrak {D} (\mathbb{R}^{n}),
+\end{equation}
+where the translation operator $\tau_{h}$ is defined by 
+\begin{equation}\label{eq:VI.3.7}
+\tau_{h} \varphi (x) = \varphi (x - h).
+\end{equation}
+\end{theorem}
+
+Then there exists a uniquely determined $T \in \mathfrak{D}(\mathbb{R}^{n})'$ such that $L\varphi = T * \varphi$. Conversely, any $T \in \mathfrak{D}(\mathbb{R}^{n})'$ defines a continuous linear map $L$ on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{E}(\mathbb{R}^{n})$ by $L\varphi = T * \varphi$ such that $L$ satisfies \eqref{eq:VI.3.6}. 
+
+\begin{proof}
+ Since $\varphi \to \check{\varphi}$ is a continuous linear map of $\mathfrak{D}(\mathbb{R}^{n})$ onto $\mathfrak{D}(\mathbb{R}^{n})$, the linear map $T: \check{\varphi} \to (L\varphi)$ (0) defines a distribution $T \in \mathfrak{D}(\mathbb{R}^{n})'$. Hence, by \eqref{eq:VI.3.5}, $(L\varphi)$ (0) = $T(\check{\varphi}) = (T * \varphi)$ (0). If we replace $\varphi$ by $\tau_h\varphi$ and make use of condition \eqref{eq:VI.3.6}, then we obtain $(L\varphi)$ ( $h) = (T * \varphi)$ ( $h$). The converse part of Theorem~\ref{thm:VI.3.Theorem.2} is easily proved by \eqref{eq:VI.3.2}, Proposition~\ref{prop:VI.3.Proposition.1} and \eqref{eq:VI.3.5}. 
+\end{proof}
+
+\begin{corollaryu} Let $T_{1} \in \mathfrak{D}(\mathbb{R}^{n})'$ and $T_{2} \in \mathfrak{E}(\mathbb{R}^{n})'$. Then the convolution $T_{1} * T_{2}$ may be defined, through the continuous linear map $L$ on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{E}(\mathbb{R}^{n})$ as follows: 
+\begin{equation}\label{eq:VI.3.8}
+\left(T _{1} * T _{2}\right) * \varphi = L (\varphi) = T _{1} * \left(T _{2} * \varphi\right), \varphi \in \mathfrak {D} \left(\mathbb{R}^{n}\right).
+\end{equation}
+\end{corollaryu}
+
+\begin{proof}
+ The map $\varphi \to T_2 * \varphi$ is continuous linear on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{D}(\mathbb{R}^{n})$, since $\supp(T_2)$ is compact. Hence the map $\varphi \to T_1 * (T_2 * \varphi)$ is continuous linear on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{E}(\mathbb{R}^{n})$. It is easily verified that condition \eqref{eq:VI.3.6} is satisfied for the present $L$. 
+\end{proof}
+
+\begin{remarku} We see, by \eqref{eq:VI.3.4}, that the above definition of the convolution $T_{1} \ast T_{2}$ agrees with the previous one in the case where $T_{2}$ is defined by a function $\in \mathfrak{D}(\mathbb{R}^{n})$. It is to be noted that we may also define $T_{1} \ast T_{2}$ by 
+\begin{equation}\tag{8'}\label{eq:VI.3.8'}
+\left(T _{1} * T _{2}\right) (\varphi) = \left(T _{1(x)} \times T _{2(y)}\right) (\varphi (x + y)), \varphi \in \mathfrak {D} \left(\mathbb{R}^{n}\right),
+\end{equation}
+\end{remarku}
+
+where $T_{1(x)} \times T_{2(y)}$ is the tensor product of $T_{1}$ and $T_{2}$. See L. \textsc{Schwartz} \cite{schwartz294}. 
+
+\begin{theorem}\label{thm:VI.3.Theorem.3} Let $T_{1} \in \mathfrak{D}(\mathbb{R}^{n})'$ and $T_{2} \in \mathfrak{E}(\mathbb{R}^{n})'$. Then we can define another ``convolution'' $T_{2} \boxtimes T_{1}$ through the continuous linear map $L$: 
+\[
+\varphi \rightarrow T _{2} * (T _{1} * \varphi) \text{ on } \mathfrak {D} (\mathbb{R}^{n}) \text{ into } \mathfrak {E} (\mathbb{R}^{n})
+\]
+as follows. $(T_{2} \boxtimes T_{1}) (*\varphi) = L(\varphi)$, $\varphi \in \mathfrak{D}(\mathbb{R}^{n})$. Then we can prove $T_{2} \boxtimes T_{1} = T_{1} * T_{2}$ so that the convolution is commutative if it is defined either as $T_{1} * T_{2}$ or as $T_{2} \boxtimes T_{1}$. 
+\end{theorem}
+
+\begin{proof}
+ The map $\varphi \to T_1 * \varphi$ is linear continuous on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{E}(\mathbb{R}^{n})$. Hence the map $\varphi \to T_2 * (T_1 * \varphi)$ is linear continuous on $\mathfrak{D}(\mathbb{R}^{n})$ into $\mathfrak{E}(\mathbb{R}^{n})$. Thus $T_2 \boxplus T_1$ is well-defined. Next, we have for any $\varphi_1, \varphi_2 \in \mathfrak{D}(\mathbb{R}^{n})$, 
+\[
+\begin{aligned} (T _{1} * T _{2}) * (\varphi_{1} * \varphi_{2}) & = T _{1} * (T _{2} * (\varphi_{1} * \varphi_{2})) = T _{1} * ((T _{2} * \varphi_{1}) * \varphi_{2}) \\ & = T _{1} * (\varphi_{2} * (T _{2} * \varphi_{1})) = (T _{1} * \varphi_{2}) * (T _{2} * \varphi_{1}) \end{aligned}
+\]
+by the commutativity of the convolution of functions and Proposition~\ref{prop:VI.3.Proposition.2}, observing that $\supp(T_2 * \varphi_1)$ is compact because of $T_2 \in \mathfrak{E}(\mathbb{R}^{n})'$. Similarly we obtain 
+\[ \begin{aligned} (T _{2} \boxtimes T _{1}) * (\varphi_{1} * \varphi_{2}) & = T _{2} * (T _{1} * (\varphi_{1} * \varphi_{2})) = T _{2} * ((T _{1} * \varphi_{2}) * \varphi_{1}) \\ & = T _{2} * (\varphi_{1} * (T _{1} * \varphi_{2})) = (T _{2} * \varphi_{1}) * (T _{1} * \varphi_{2}) \end{aligned}
+\]
+
+Thus $(T_{1} * T_{2}) * (\varphi_{1} * \varphi_{2}) = (T_{2} \boxtimes T_{1}) * (\varphi_{1} * \varphi_{2})$, and so, by \eqref{eq:VI.3.5} and the Lemma above, we obtain $(T_{1} * T_{2})$ ( $\varphi$) = $(T_{2} \boxtimes T_{1})$ ( $\varphi$) for all $\varphi \in \mathfrak{D}(\mathbb{R}^{n})$, that is, $(T_{1} * T_{2}) = (T_{2} \boxtimes T_{1})$. 
+\end{proof}
+
+\begin{corollaryu}
+\begin{equation}\label{eq:VI.3.9}
+T _{1} * (T _{2} * T _{3}) = (T _{1} * T _{2}) * T _{3}
+\end{equation}
+if all $T_{j}$ except one have compact support, 
+
+\begin{equation}\label{eq:VI.3.10}
+D ^{\alpha} (T _{1} * T _{2}) = (D ^{\alpha} T _{1}) * T _{2} = T _{1} * (D ^{\alpha} T _{2}).
+\end{equation}
+\end{corollaryu}
+
+\begin{proof}
+ We have, by \eqref{eq:VI.3.5} and the definition of $T_{1} * T_{2}$, 
+\[
+\begin{aligned}
+&(T _{1} * (T _{2} * T _{3})) (\varphi)  = \left((T _{1} * (T _{2} * T _{3})) * \check {\varphi}\right) (0) = (T _{1} * ((T _{2} * T _{3}) * \check {\varphi})) (0) \\
+&= (T _{1} * (T _{2} * (T _{3} * \check {\varphi}))) (0)
+\end{aligned}
+\]
+and similarly 
+\[
+\left(\left(T _{1} * T _{2}\right) * T _{3}\right) (\varphi) = \left(T _{1} * \left(T _{2} * \left(T _{3} * \check {\varphi}\right)\right)\right) (0),
+\]
+so that ($9$) holds. 
+
+The proof of \eqref{eq:VI.3.10} is as follows. We observe that, by \eqref{eq:VI.3.3}, 
+\begin{equation}\label{eq:VI.3.11}
+(D ^{\alpha} T _{\delta}) * \varphi = T _{\delta} * (D ^{\alpha} \varphi) = D ^{\alpha} (T _{\delta} * \varphi) = D ^{\alpha} \varphi ,
+\end{equation}
+which implies 
+\[
+(D ^{\alpha} T) * \varphi = T * (D ^{\alpha} \varphi) = T * ((D ^{\alpha} T _{\delta}) * \varphi) = (T * D ^{\alpha} T _{\delta}) * \varphi ,
+\]
+that is, by \eqref{eq:VI.3.5}, 
+\begin{equation}\label{eq:VI.3.12}
+D ^{\alpha} T = (D ^{\alpha} T _{\delta}) * T.
+\end{equation}
+
+Hence, by the commutativity (Theorem~\ref{thm:VI.3.Theorem.3}) and the associativity ($9$), 
+\[
+\begin{aligned} D ^{\alpha} (T _{1} \ast T _{2}) & = (D ^{\alpha} T _{\delta}) \ast (T _{1} \ast T _{2}) = ((D ^{\alpha} T _{\delta}) \ast T _{1}) \ast T _{2} = (D ^{\alpha} T _{1}) \ast T _{2} \\ & = (D ^{\alpha} T _{\delta}) \ast (T _{2} \ast T _{1}) = ((D ^{\alpha} T _{\delta}) \ast T _{2}) \ast T _{1} = (D ^{\alpha} T _{2}) \ast T _{1}. \end{aligned}
+\]
+\end{proof}
+
+The Fourier Transform of the Convolution. We first prove a theorem which will be sharpened to the Paley-Wiener theorem in the next section. 
+
+\begin{theorem}\label{thm:VI.3.Theorem.4} The Fourier transform of a distribution $T \in \mathfrak{E}(\mathbb{R}^{n})'$ is given by the function 
+\begin{equation}\label{eq:VI.3.13}
+\hat {T} (\xi) = (2 \pi) ^{-n/2} T _{[x]} (e ^{- i \langle x, \xi \rangle}).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ When $\varepsilon \downarrow 0$, the regularization $T_{\varepsilon} = T * \varphi_{\varepsilon}$ tends to $T$ in the weak* topology of $\mathfrak{S}(\mathbb{R}^{n})'$ and a fortiori in the weak* topology of $\mathfrak{S}(\mathbb{R}^{n})'$. This we see from $(T * \varphi_{\varepsilon})(\psi) = (T * (\varphi_{\varepsilon} * \check{\psi})) (0) = T_{[x]}((\varphi_{\varepsilon} * \check{\psi})(-x))$ and the Lemma. Thus, by the continuity of the Fourier transform in the weak* topology of $\mathfrak{S}(\mathbb{R}^{n})'$, $\lim\limits_{\varepsilon \downarrow 0} (\widehat{T * \varphi_{\varepsilon}}) = \hat{T}$ in the weak* topology of $\mathfrak{S}(\mathbb{R}^{n})'$. Now formula \eqref{eq:VI.3.13} is clear for the distribution defined by the function $(T * \varphi_{\varepsilon})(x)$. Hence 
+\[
+(2 \pi) ^{n/2} (\widehat {T * \varphi_{\varepsilon}}) (\xi) = (T * \varphi_{\varepsilon}) _{[x]} (e ^{- i \langle x, \xi \rangle}),
+\]
+which is, by \eqref{eq:VI.3.5}, $= (T_{[x]} * (\varphi_{\varepsilon} * e^{-i\langle x,\xi \rangle}))$ (0) $= T_{[x]}(\check{\varphi}_{\varepsilon} * e^{-i\langle x,\xi \rangle})$. The last expression tends, as $\varepsilon \downarrow 0$, to $T_{[x]}(e^{i\langle x,\xi \rangle})$ uniformly in $\xi$ on any bounded set of $\xi$ of the complex $n$-space. This proves Theorem~\ref{thm:VI.3.Theorem.4}. 
+\end{proof}
+
+\begin{theorem}\label{thm:VI.3.Theorem.5} If we define the convolution of a distribution $T \in \mathfrak{S}(\mathbb{R}^{n})'$ and a function $\varphi \in \mathfrak{S}(\mathbb{R}^{n})$ by $(T * \varphi)(x) = T_{[y]}(\varphi(x - y))$, then the linear map $L$ on $\mathfrak{S}(\mathbb{R}^{n})$ into $\mathfrak{E}(\mathbb{R}^{n}): \varphi \to T * \varphi$ is characterized by the continuity and the translation invariance $\tau_h L = L\tau_h$. 
+\end{theorem}
+
+\begin{proof}
+ Similar to the proof of Theorem~\ref{thm:VI.3.Theorem.2}. 
+\end{proof}
+
+\begin{theorem}\label{thm:VI.3.Theorem.6} If $T \in \mathfrak{S}(\mathbb{R}^{n})'$ and $\varphi \in \mathfrak{S}(\mathbb{R}^{n})$, then 
+\begin{equation}\label{eq:VI.3.14}
+(\widehat {T * \varphi}) = (2 \pi) ^{n/2} \hat {\varphi} \hat {T}
+\end{equation}
+\end{theorem}
+
+If $T_{1} \in \mathfrak{S}(\mathbb{R}^{n})'$ and $T_{2} \in \mathfrak{E}(\mathbb{R}^{n})'$, then 
+\begin{equation}\label{eq:VI.3.15}
+(\widehat {T _{1} * T _{2}}) = (2 \pi) ^{n/2} \hat {T} _{2} \cdot \hat {T} _{1},
+\end{equation}
+which has a sense since, as proved above in Theorem~\ref{thm:VI.3.Theorem.4}, $\hat{T}_{2}$ is given by a function. 
+
+\begin{proof}
+ Let $\psi \in \mathfrak{S}(\mathbb{R}^{n})$. Then the Fourier transform of $\hat{\varphi} \cdot \psi$ is, by \eqref{eq:VI.3.13} of Chapter~\ref{chap:VI}, \ref{sec:VI.1}, equal to $(2\pi)^{-n/2} \hat{\bar{\varphi}} * \hat{\psi} = (2\pi)^{-n/2} \check{\varphi} * \hat{\psi}$. Thus 
+\[
+\begin{aligned}
+&\widehat {(T * \varphi)} (\psi)  = (T * \varphi) (\hat {\psi}) = ((T * \varphi) * \check {\tilde {\varphi}}) (0) = (T * (\varphi * \check {\tilde {\psi}})) \\
+&= T ((\varphi * \check {\tilde {\psi}}) ^{\vee}) = T (\check {\varphi} * \hat {\psi}) = T ((2 \pi) ^{n/2} (\hat {\varphi} \cdot \psi) ^{\wedge}) = (2 \pi) ^{n/2} \hat {T} (\hat {\varphi} \psi) = (2 \pi) ^{n/2} \hat {\varphi} \hat {T} (\psi),
+\end{aligned}
+\]
+which proves \eqref{eq:VI.3.14}. 
+
+Let $\psi_{\varepsilon}$ be the regularization $T_{2} * \varphi_{\varepsilon}$. Then the Fourier transform of $T_{1} * \psi_{\varepsilon} = T_{1} * (T_{2} * \varphi_{\varepsilon}) = (T_{1} * T_{2}) * \varphi_{\varepsilon}$ is, by \eqref{eq:VI.3.14}, equal to 
+\[
+(2 \pi) ^{n/2} \hat {T} _{1} \cdot \hat {\psi} _{\varepsilon} = (2 \pi) ^{n/2} \hat {T} _{1} \cdot (2 \pi) ^{n/2} \hat {T} _{2} \cdot \hat {\varphi} _{\varepsilon} = (2 \pi) ^{n/2} (\widehat {T _{1} * T _{2}}) \cdot \hat {\varphi} _{\varepsilon}.
+\]
+
+Hence we obtain \eqref{eq:VI.3.15}, by letting $\varepsilon \downarrow 0$ and using $\lim\limits_{\varepsilon \downarrow 0} \hat{\varphi}_{\varepsilon}(x) = 1$. 
+\end{proof}
+
+
+\yossection{4}{The Paley-Wiener Theorems. The One-sided Laplace Transform}
+\label{sec:VI.4}
+
+The Fourier transform of a function $\in C_0^\infty (\mathbb{R}^{n})$ is characterized by the Paley-Wiener Theorem for Functions. An entire holomorphic function $F(\zeta) = F(\zeta_1,\zeta_2,\dots ,\zeta_n)$ of $n$ complex variables $\zeta_j = \xi_j + i\eta_j$ ( $j = 1,2,\ldots ,n$) is the Fourier-Laplace transform 
+\begin{equation}\label{eq:VI.4.1}
+F (\zeta) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{- i \langle \zeta , x \rangle} f (x) \dd x
+\end{equation}
+of a function $f \in C_0^\infty(\mathbb{R}^{n})$ with $\supp(f)$ contained in the sphere $|x| \leqq B$ of $\mathbb{R}^{n}$ iff there exists for every integer $N$ a positive constant $C_N$ such that 
+\begin{equation}\label{eq:VI.4.2}
+\left| F (\zeta) \right| \leqq C _{N} (1 + | \zeta |) ^{-N} e ^{B | \operatorname{Im} \zeta |}.
+\end{equation}
+
+\begin{proof}
+ The necessity is clear from 
+\[
+\prod\limits_{j=1} ^{n} (i \zeta_{j}) ^ {\beta_{j}} F (\zeta) = (2 \pi) ^{-n/2} \int_{| x | \leqq B} e ^{- i \langle \zeta , x \rangle} D ^{\beta} f (x) \dd x
+\]
+which is obtained by partial integration. 
+
+The sufficiency. Let us define 
+\begin{equation}\label{eq:VI.4.3}
+f (x) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{i \langle x, \xi \rangle} F (\xi) \dd \xi .
+\end{equation}
+
+Then, as for the case of functions $\in \mathfrak{S}(\mathbb{R}^{n})$, we can prove that the Fourier transform $\hat{f}(\xi)$ is equal to $F(\xi)$ and $f \in C^{\infty}(\mathbb{R}^{n})$. The last assertion is proved by differentiation: 
+\begin{equation}\label{eq:VI.4.4}
+D ^{\beta} f (x) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{i \langle x, \xi \rangle} \prod\limits_{j=1} ^{n} (i \xi_{j}) ^ {\beta_{j}} F (\xi) \dd \xi ,
+\end{equation}
+by making use of condition \eqref{eq:VI.4.2}. The same condition \eqref{eq:VI.4.2} and Cauchy's integral theorem enable us to shift the real domain of integration in \eqref{eq:VI.4.3} into the complex domain so that we obtain 
+\begin{equation}\tag{3'}\label{eq:VI.4.3'}
+f (x) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{i \langle x, \xi + i \eta \rangle} F (\xi + i \eta) \dd \xi
+\end{equation}
+for arbitrary real $\eta$ of the form $\eta = \alpha x / |x|$ with $\alpha > 0$. We thus obtain, by taking $N = n + 1$, 
+\[
+\left| f (x) \right| \leqq C _{N} e ^{B | \eta | - \langle x, \eta \rangle} (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} (1 + | \xi |) ^{-N} \dd \xi .
+\]
+
+If $|x| > B$, we obtain $f(x) = 0$ by letting $\alpha \uparrow + \infty$. Hence $\supp(f) \subseteq \{x \in \mathbb{R}^{n}; |x| \leqq B\}$. 
+\end{proof}
+
+The above theorem may be generalized to distributions with compact support. Thus we have 
+
+The Paley-Wiener Theorem for Distributions $\in \mathfrak{E}(\mathbb{R}^{n})'$ (L. \textsc{Schwartz}). An entire holomorphic function $F(\zeta) = F(\zeta_1, \ldots, \zeta_n)$ of $n$ complex variables $\zeta_j = \xi_j + i\,\eta_j$ ( $j = 1, 2, \ldots, n$) is the Fourier-Laplace transform of a distribution $T \in \mathfrak{E}(\mathbb{R}^{n})'$ iff for some positive constants $B$, $N$ and $C$ 
+\begin{equation}\label{eq:VI.4.5}
+\left| F (\zeta) \right| \leqq C (1 + | \zeta |) ^{N} e ^{B | \operatorname{Im} \zeta |}.
+\end{equation}
+
+\begin{proof}
+ The necessity is clear from the fact (Theorem~\ref{thm:I.13.Theorem.2} in Chapter~\ref{chap:I}, \ref{sec:I.13}) that, if $T \in \mathfrak{E}(\mathbb{R}^{n})'$, there exist positive constants $C, N$ and $B$ such that 
+\[
+\left| T (\varphi) \right| \leqq C \sum\limits_{| \beta | \leqq N} \sup\limits _{| x | \leqq B} \left| D ^{\beta} \varphi (x) \right| \quad \text{ whenever } \quad \varphi \in \mathfrak {G} (\mathbb{R}^{n}) \]
+
+For, we have only to take $\varphi(x) = e^{-i\langle x,\xi\rangle}$ and apply \eqref{eq:VI.4.13} of the preceding section. 
+
+The sufficiency. $F(\xi)$ is in $\mathfrak{S}(\mathbb{R}^{n})'$ and so it is the Fourier transform of a distribution $T \in \mathfrak{S}(\mathbb{R}^{n})'$. The Fourier transform of the regularization $T_{\varepsilon} = T * \varphi_{\varepsilon}$ is $(2\pi)^{n/2} \hat{T} \cdot \hat{\varphi}_{\varepsilon}$ by \eqref{eq:VI.4.14} of the preceding section. Since the supp $(\varphi_{\varepsilon})$ is in the sphere $|x| \leqq \varepsilon$ of $\mathbb{R}^{n}$, we have, by the preceding theorem, 
+\[
+\left| \hat {\varphi} _{\varepsilon} (\xi) \right| \leqq C ^{\prime} \cdot e ^{\varepsilon | \operatorname{Im} \zeta |}.
+\]
+
+Moreover, since $\hat{T}$ is defined by the function $F(\xi)$, we see that $(2\pi)^{n/2} \hat{T} \cdot \hat{\varphi}_{\varepsilon}$ is defiend by a function $(2\pi)^{n/2} F(\xi) \cdot \hat{\varphi}_{\varepsilon}(\xi)$ which, when extended to the complex $n$-space analytically, satisfies the estimate of type \eqref{eq:VI.4.5} with $B$ replaced by $B + \varepsilon$. Thus, by the preceding theorem, $T_{\varepsilon} = T * \varphi_{\varepsilon}$ has its support in the sphere $|x| \leqq B + \varepsilon$ of $\mathbb{R}^{n}$. Thus, letting $\varepsilon \downarrow 0$ and making use of the Lemma in the preceding section, we see that the supp $(T)$ is in the sphere $|x| \leqq B$ of $\mathbb{R}^{n}$. 
+\end{proof}
+\begin{remarku} The formulation and the proofs of the Paley-Wiener theorems given above are adapted from L. \textsc{Hörmander} \cite{hormander114}. 
+\end{remarku}
+
+The Fourier Transform and the One-sided Laplace Transform. Let $g(t) \in L^2(0, \infty)$. Then, for $x > 0$, 
+\[
+g (t) e ^{-tx} \in L ^{1} (0, \infty) \cap L ^{2} (0, \infty)
+\]
+as may be seen by Schwarz' inequality. Hence, by Plancherel's theorem, we have, for the Fourier transform 
+\begin{equation}\label{eq:VI.4.6}
+\begin{aligned}
+&f (x + i y)  = (2 \pi) ^{-1/2} \int_{0} ^{\infty} g (t) e ^{-tx} e ^{-ity} \dd t = (2 \pi) ^{-1/2} \int_{0} ^{\infty} g (t) e ^{-t(x+iy)} \dd t \quad (x > 0),
+\end{aligned}
+\end{equation}
+the inequality 
+\begin{equation}\label{eq:VI.4.7}
+\int_{- \infty} ^{\infty} | f (x + i y) | ^{2} \dd y = \int_{0} ^{\infty} | g (t) | ^{2} e ^{-2tx} \dd t \leqq \int_{0} ^{\infty} | g (t) | ^{2} \dd t.
+\end{equation}
+
+The function $f(x + iy)$ is holomorphic in $z = x + iy$ in the right half-plane $\operatorname{Re}(z) = x > 0$, as may be seen by differentiating \eqref{eq:VI.4.6} under the integral sign observing that $g(t) te^{-tz}$ as a function of $t$ belongs to $L^{1}(0, \infty)$ and to $L^{2}(0, \infty)$ when $\operatorname{Re}(z) = x > 0$. We have thus proved 
+
+\begin{theorem}\label{thm:VI.4.Theorem.1} Let $g(t) \in L^2(0, \infty)$. Then the one-sided Laplace transform 
+\begin{equation}\tag{6'}\label{eq:VI.4.6'}
+f (z) = (2 \pi) ^{-1/2} \int_{0} ^{\infty} g (t) e ^{-tz} \dd t \quad (\operatorname{Re} (z) > 0)
+\end{equation}
+belongs to the so-called Hardy-Lebesgue class $H^2(0)$, that is, \begin{enumerate}[(i)]
+\item $f(z)$ is holomorphic in the right half-plane $\operatorname{Re}(z) > 0$,
+\item for each fixed $x > 0$, $f(x + iy)$ as a function of $y$ belongs to $L^2(-\infty, \infty)$ in such a way that
+\begin{equation}\tag{7'}\label{eq:VI.4.7'}
+\sup\limits _{x>0} \left(\int_{- \infty} ^{\infty} | f (x + i y) | ^{2} \dd y\right) < \infty .
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+This theorem admits a converse, that is, we have 
+
+\begin{theorem}[\textsc{Paley}-\textsc{Wiener}]\label{thm:VI.4.Theorem.2} Let $f(z) \in H^2(0)$. Then the boundary function $f(iy) \in L^2(-\infty, \infty)$ of $f(x + iy)$ exists in the sense that 
+\begin{equation}\label{eq:VI.4.8}
+\lim\limits _{x \downarrow 0} \int_{- \infty} ^{\infty} | f (i y) - f (x + i y) | ^{2} \dd y = 0
+\end{equation}
+in such a way that the inverse Fourier transform 
+\begin{equation}\label{eq:VI.4.9}
+g (t) = (2 \pi) ^{-1/2} \underset {N \rightarrow \infty} {\text{ l.i.m. }} \int_{-N} ^{N} f (i y) e ^{ity} \dd y
+\end{equation}
+vanishes for $t$ < $0$ and $f(z)$ may be obtained as the one-sided Laplace transform of $g(t)$. 
+\end{theorem}
+
+\begin{proof}
+ By the local weak compactness of $L^2(-\infty, \infty)$, we see, that there exists a sequence $\{x_n\}$ and an $f(iy) \in L^2(-\infty, \infty)$ such that 
+\[
+x _{n} \downarrow 0 \quad \text{ and } \quad \operatorname * {w e a k - l i m} _{n \to \infty} f (x _{n} + i y) = f (i y). \]
+
+For any $\delta > 0$, there exists a sequence $\{N_k\}$ such that 
+\[
+\lim\limits _{k \rightarrow \infty} N _{k} = \infty \quad \text{ and } \quad \lim\limits _{k \rightarrow \infty} \int_{0+} ^{\delta} | f (x \pm i N _{k}) | ^{2} \dd x = 0,
+\]
+as may be seen from 
+\[
+\int_{-N} ^{N} \left\{\int_{0+} ^{\delta} | f (x + i y) | ^{2} \dd x \right\} \dd y \leqq \int_{0+} ^{\delta} \left\{\int_{- \infty} ^{\infty} | f (x + i y) | ^{2} \dd y \right\} \dd x < \infty
+\]
+
+Thus, by Schwarz' inequality, 
+\begin{equation}\label{eq:VI.4.10}
+\lim\limits _{k \rightarrow \infty} \int_{0+} ^{\delta} | f (x \pm i N _{k}) | \dd x = 0.
+\end{equation}
+
+
+From this we obtain 
+\begin{equation}\label{eq:VI.4.11}
+f (z) = (2 \pi) ^{-1} \int_{- \infty} ^{\infty} \frac {f (i t)}{z - i t} \dd t \quad (\operatorname{Re} (z) > 0).
+\end{equation}
+
+The proof may be obtained as follows. By Cauchy's integral representation, we obtain 
+\begin{equation}\label{eq:VI.4.12}
+f (z) = (2 \pi i) ^{-1} \int_{C} \frac {f (\zeta)}{\zeta - z} \dd \zeta \quad (\operatorname{Re} (z) > 0),
+\end{equation}
+where the path $C$ of integration is composed of the segments 
+\[
+\begin{aligned}
+&\overrightarrow {x _{0} - i N _{k} , x _{1} - i N _{k}}, \overrightarrow {x _{1} - i N _{k} , x _{1} + i N _{k}}, \overrightarrow {x _{1} + i N _{k} , x _{0} + i N _{k}}, \overrightarrow {x _{0} + i N _{k} , x _{0} - i N _{k}}
+\\
+&(x _{0} < \operatorname{Re} (z) < x _{1}, - N _{k} < \operatorname{Im} (z) < N _{k})
+\end{aligned}
+\]
+so that the closed contour $C$ encloses the point $z$. Hence, by letting $k \to \infty$ and observing \eqref{eq:VI.4.10}, we obtain 
+\[
+f (z) = (2 \pi) ^{-1} \int_{- \infty} ^{\infty} \frac {f \left(x _{0} + i t\right)}{z - \left(x _{0} + i t\right)} \dd t + (2 \pi) ^{-1} \int_{- \infty} ^{\infty} \frac {f \left(x _{1} + i t\right)}{\left(x _{1} + i t\right) - z} \dd t.
+\]
+
+We see that the second term on the right tends to $0$ as $x_{1} \to \infty$, because of \eqref{eq:VI.4.7} and Schwarz' inequality. We set, in the first term on the right, $x_{0} = x_{n}$ and letting $n \to \infty$ we obtain \eqref{eq:VI.4.11}. Similarly, we obtain 
+\begin{equation}\label{eq:VI.4.13}
+0 = (2 \pi) ^{-1} \int_{- \infty} ^{\infty} \frac {f (i t)}{i t - z} \dd t (\operatorname{Re} (z) < 0).
+\end{equation}
+
+Let us put, for $\operatorname{Re}(z) > 0$, 
+\[
+h (x) = 0 \quad (\text{ for } x < 0); \quad h (x) = e ^{-zx} \quad (\text{ for } x > 0).
+\]
+
+We then have 
+\[
+\int_{- \infty} ^{\infty} h (x) e ^{ixt} \dd x = \int_{0} ^{\infty} e ^{ixt-zx} \dd x = (z - i t) ^{-1},
+\]
+and so, by Plancherel's theorem, 
+\begin{equation}\label{eq:VI.4.14}
+\underset {N \rightarrow \infty} {\text{ l . i . m . }} (2 \pi) ^{-1} \int_{-N} ^{N} \frac {e ^{-itx}}{z - i t} \dd t = \begin{cases}0&(\text{ for } x < 0)\\e ^{-zx}&(\text{ for } x > 0)\end{cases} \text{ if } \operatorname{Re} (z) > 0.
+\end{equation}
+
+Similarly we have 
+\begin{equation}\tag{14'}\label{eq:VI.4.14'}
+\underset {N \rightarrow \infty} {\text{ l . i . m . }} (2 \pi) ^{-1} \int_{-N} ^{N} \frac {e ^{-itx}}{z - i t} \dd t = \begin{cases}- e ^{-zx} (\text{ for } x < 0)\\0&(\text{ for } x > 0)\end{cases} \quad \text{ if } \operatorname{Re} (z) < 0.
+\end{equation}
+
+Therefore, by applying the Parseval theorem ($27$) of Chapter~\ref{chap:VI}, \ref{sec:VI.2} to \eqref{eq:VI.4.11}, we obtain the result that $f(z)$ is the one-sided Laplace transform of $g(t)$ given by \eqref{eq:VI.4.9}. By applying the Parseval theorem to \eqref{eq:VI.4.13}, we see also that $g(t) = 0$ for $t < 0$. 
+
+
+We finally shall prove that \eqref{eq:VI.4.8} is true. By adding \eqref{eq:VI.4.11} and \eqref{eq:VI.4.13}, we see that $f(z)$ admits Poisson's integral representation 
+\begin{equation}\label{eq:VI.4.15}
+f (z) = f (x + i y) = \frac {x}{\pi} \int_{- \infty} ^{\infty} \frac {f (i t)}{(t - y) ^{2} + x ^{2}} \dd t \quad \text{ whenever } \quad x > 0.
+\end{equation}
+
+By virtue of 
+\begin{equation}\label{eq:VI.4.16}
+\frac {x}{\pi} \int_{- \infty} ^{\infty} \frac {\dd t}{(t - y) ^{2} + x ^{2}} = 1,
+\end{equation}
+we have 
+\[
+\left| f (x + i y) - f (i y) \right| \leqq \frac {x}{\pi} \int_{- \infty} ^{\infty} \frac {\left| f ^{+} (s + y) - f ^{+} (y) \right|}{s ^{2} + x ^{2}} \dd s, \text{ where } f ^{+} (y) = f (i y),
+\]
+and so 
+\[
+\begin{aligned}
+&\int_{- \infty} ^{\infty} | f (x + i y) - f (i y) | ^{2} \dd y  \leqq \left(\frac {x}{\pi}\right) ^{2} \int_{- \infty} ^{\infty} \left\{\int_{- \infty} ^{\infty} \frac {| f ^{+} (s + y) - f ^{+} (y) |}{s ^{2} + x ^{2}} \dd s \right\} ^{2} \dd y \\
+&\leqq \frac {x ^{2}}{\pi^{2}} \int_{- \infty} ^{\infty} \left(\int_{- \infty} ^{\infty} \frac {\dd s}{s ^{2} + x ^{2}}\right) \left(\int_{- \infty} ^{\infty} \frac {| f ^{+} (s + y) - f ^{+} (y) | ^{2}}{s ^{2} + x ^{2}} \dd s\right) \dd y \\
+&= \frac {x}{\pi} \int_{- \infty} ^{\infty} \frac {\dd s}{s ^{2} + x ^{2}} \left\{\int_{- \infty} ^{\infty} | f ^{+} (s + y) - f ^{+} (y) | ^{2} \dd y \right\} = \frac {x}{\pi} \int_{- \infty} ^{\infty} \frac {\mu (f ^{+} ; s)}{s ^{2} + x ^{2}} \dd s,
+\end{aligned}
+\]
+where $0 \leqq \mu(f^{+}; s) \leqq 4 \|f^{+}\|^{2}$ and $\mu(f^{+}; s)$ is continuous in $s$ and has value $0$ at $s = 0$. 
+
+To prove that the right side tends to zero as $x \downarrow 0$, we take, for any $\varepsilon > 0$, a $\delta = \delta(\varepsilon) > 0$ such that $\mu(f^{+}; s) \leqq \varepsilon$ whenever $|s| \leqq \delta$. We decompose the integral 
+\[
+\frac {x}{\pi} \int_{- \infty} ^{\infty} \frac {\mu (f ^{+} ; s)}{s ^{2} + x ^{2}} \dd s = \frac {x}{\pi} \left\{\int_{- \infty} ^{- \delta} + \int_{- \delta} ^{\delta} + \int_{\delta} ^{\infty} \right\} = I _{1} + I _{2} + I _{3}.
+\]
+
+We have $|I_2| \leqq \varepsilon$ by \eqref{eq:VI.4.16}, and $|I_j| \leqq 4\pi^{-1} \|f^+ \|^2 \cdot \cot^{-1}(\delta/x) (j = 1, 2)$. Hence the left integral must tend to zero as $x \downarrow 0$. This proves the Theorem.
+\end{proof}
+
+\begin{remarkn}[Remark $1$] For the original Paley-Wiener theorem, see Paley-Wiener \cite{paley243}. For the one-sided Laplace transform of tempered distributions, see L. \textsc{Schwartz} \cite{schwartz295}. 
+\end{remarkn}
+
+\begin{remarkn}[Remark $2$] M. \textsc{Sato} \cite{sato284} has introduced a happy idea of defining a ``generalized function'' as the ``boundary value of an analytic function''. His idea may be explained as follows. Let $B$ be the totality of functions $\varphi(z)$ which are defined and regular in the upper-half and the lower-half planes of the complex $z$-plane, and let $R$ be the totality of functions which are regular in the whole complex $z$-plane. Then $B$ is a ring with respect to the function sum and function multiplication, and $R$ is a subring of $B$. Sato calls the residue class (mod $R$) containing $\varphi(z)$ as the ``generalized function'' $\hat{\varphi}(x)$ on the real axis $\mathbb{R}^{1}$ defined through $\varphi(z)$. The ``generalized derivative $\dd\hat{\varphi}(x)/\dd x$ of the generalized function $\hat{\varphi}(x)$ '' is naturally defined as the residue class (mod $R$) containing $\dd\varphi(z)/\dd z$. Thus the ``delta function $\delta(x)$ '' is the residue class (mod $R$) containing $-(2\pi i)^{-1}z^{-1}$. Sato's theory of ``generalized function of many variables'' admits the following very interesting topological interpretation. Let $M$ be an $n$-dimensional real analytic manifold and let $X$ be a complexification of $M$. Then the $n$-th relative cohomology group $H^{n}(X \bmod (X - M))$ with the germ of regular functions in $X$ as coefficients gives rise to a notion of the ``generalized function on $M$ ''. That is, the relative cohomology class is a natural definition of the ``generalized function''. 
+\end{remarkn}
+
+\begin{remarkn}[Remark $3$] For more detailed treatment of the Fourier transform of generalized functions, see L. \textsc{Schwartz} \cite{schwartz294} and \textsc{Gelfand}-\textsc{Šilov} \cite{gelfand76}. In the latter book, many interesting classes of basic functions other than $\mathfrak{D}(\mathbb{R}^{n})$, $\mathfrak{S}(\mathbb{R}^{n})$ and $\mathfrak{D}_M(\mathbb{R}^{n})$ are introduced to define generalized functions; the Fourier transform of the corresponding generalized functions are also discussed in \textsc{Gelfand}-\textsc{Šilov} \cite{gelfand76}. Cf. also A. \textsc{Friedman} \cite{friedman68} and L. \textsc{Hörmander} \cite{hormander118}. 
+\end{remarkn}
+
+
+\yossection{5}{Titchmarsh's Theorem}
+\label{sec:VI.5}
+
+\begin{theoremn}[E. C. \textsc{Titchmarsh}] Let $f(x)$ and $g(x)$ be real- or complex-valued continuous functions, $0 \leqq x < \infty$, such that
+\begin{equation}\label{eq:VI.5.1}
+(f * g) (x) = \int_{0} ^{x} f (x - y) g (y) \dd y = \int_{0} ^{x} g (x - y) f (y) \dd y = (g * f) (x)
+\end{equation}
+vanishes identically. Then either one of $f(x)$ or $g(x)$ must vanish identically. 
+
+There is a variety of proofs of this important theorem, such as by \textsc{Titchmarsh} \cite{titchmarsh323} himself and also by \textsc{Crum} and \textsc{Dufresnoy}. The following proof is elementary in the sense that it does not appeal to the theory of functions of a complex variable. It is due to Ryll-Nardzewski \cite{ryllnardzewski279} and given in the book by J. Mikusiński \cite{mikusinski196}. 
+
+\end{theoremn}
+\begin{lemma}[\textsc{Phragmén}$N$]\label{lem:VI.5.Lemma.1} If $g(u)$ is continuous for $0 \leqq u \leqq T$, and $0 \leqq t \leqq T$, then 
+\begin{equation}\label{eq:VI.5.2}
+\lim\limits _{x \rightarrow \infty} \sum\limits_{k=1} ^{\infty} \frac {(- 1) ^{k-1}}{k !} \int_{0} ^{T} e ^{kx(t-u)} g (u) \dd u = \int_{0} ^{t} g (u) \dd u.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+ We have $\sum\limits_{k=1}^{\infty} (-1)^{k-1} (k!)^{-1} e^{kx(t-u)} = 1 - \exp(-e^{x(t-u)})$, and, for fixed $x$ and $t$, the series on the left converges uniformly in $u$ for $0 \leqq u \leqq T$. Thus the summation in \eqref{eq:VI.5.2} may be carried out under the integral sign and we obtain \eqref{eq:VI.5.2} by the Lebesgue-Fatou Lemma. 
+\end{proof}
+
+\begin{lemma}\label{lem:VI.5.Lemma.2} If $f(t)$ is continuous for $0 \leqq t \leqq T$ and $\left| \int_{0}^{T} e^{nt} f(t) \dd t \right| \leqq M$ for $n = 1; 2, \ldots$, where $M$ is a positive constant which is independent of $n$, then $f(t)$ must be $= 0$ for $0 \leqq t \leqq T$. 
+\end{lemma}
+
+\begin{proof}
+ We have 
+\[ \begin{aligned} & \left| \sum\limits_{k=1} ^{\infty} \int_{0} ^{T} \frac {(- 1) ^{k-1}}{k !} e ^{kn(t-u)} f (T - u) \dd u \right| \leqq \sum\limits_{k=1} ^{\infty} \frac {1}{k !} e ^{kn(t-T)} \Bigg | \int_{0} ^{T} e ^{kn(T-u)} f (T - u) \dd u \\ & \quad \leqq M (\exp (e ^{-n(T-t)}) - 1). \end{aligned}
+\]
+
+If $t < T$, the last expression tends to zero as $n \to \infty$. Hence, by Lemma~\ref{lem:VI.5.Lemma.1}, with $g(u) = f(T - u)$, we see that $\int_{0}^{t} f(T - u) \dd u = 0$ for $0 \leqq t \leqq T$. Since $f$ is continuous, it follows that $f(t) = 0$ for $0 \leqq t \leqq T$. 
+\end{proof}
+
+\begin{corollary}\label{cor:VI.5.Corollary.1} If $g(x)$ is continuous for $1 \leqq x \leqq X$ and if there exists a positive number $N$ such that $\left|\int_{1}^{X} x^n g(x) \dd x\right| \leqq N (n = 1, 2, \ldots)$, then $g(x) = 0$ for $1 \leqq x \leqq X$. 
+\end{corollary}
+
+\begin{proof}
+ Putting $x = e^t$, $X = e^T$ and $xg(x) = f(t)$, we obtain, by Lemma~\ref{lem:VI.5.Lemma.2}, that $f(t) = 0$ for $0 \leqq t \leqq T$. Thus $xg(x) = 0$ for $1 \leqq x \leqq X$, and so $g(x) = 0$ for $1 \leqq x \leqq X$. 
+\end{proof}
+
+\begin{corollary}[Lerch's theorem]\label{cor:VI.5.Corollary.2} If $f(t)$ is continuous for $0 \leqq t \leqq T$ and $\int_{0}^{T} t^n f(t) \dd t = 0$ ( $n = 1, 2, \ldots$), then $f(t) = 0$ for $0 \leqq t \leqq T$. 
+\end{corollary}
+
+\begin{proof}
+ Let $t_0$ be any number from the open interval $(0, T)$, and put $t = t_0x$, $T = t_0X$, $f(t) = g(x)$. We then obtain 
+\[
+t _{0} ^{n+1} \int_{0} ^{X} x ^{n} g (x) \dd x = 0 \quad (n = 1, 2, \dots),
+\]
+and so $\left|\int_{1}^{X}x^{n}g(x)\dd x\right| = \left|\int_{0}^{1}x^{n}g(x)\dd x\right|\leqq \int_{0}^{1}|g(x)|\dd x = N (n = 1,2,\ldots)$. Hence, by Corollary~\ref{cor:VI.5.Corollary.1}, we obtain $g(x) = 0$ for $1\leqq x\leqq X$, and so $f(t) = 0$ for $t_0\leqq t\leqq T$. Since $t_0$ was an arbitrary point of $(0,T)$, we must have $f(t) = 0$ for $0\leqq t\leqq T$. 
+\end{proof}
+
+\begin{proof}[Proof of Titchmarsh's theorem.]
+ We shall first prove the Theorem for the special case when $f = g$, that is, if $f(t)$ is continuous and $(f * f)(t) = \int_{0}^{t} f(t - u)f(u)\dd u = 0$ for $0 \leqq t \leqq 2T$, then $f(t) = 0$ for $0 \leqq t \leqq T$. 
+
+We have 
+\[
+\int_{0} ^{2T} e ^{n(2T-t)} \left(\int_{0} ^{t} f (u) f (t - u) \dd u\right) \dd t = 0,
+\]
+and, by the change of variables $u = T - v$, $t = 2T - v - w$, we obtain 
+\[
+\int_{\Delta} \int e ^{n(v+w)} f (T - v) f (T - w) \dd v \dd w = 0
+\]
+where $\Delta$ is the triangle $v + w \geqq 0$, $v \leqq T$, $w \leqq T$ in the $v - w$ plane. Let $\Delta'$ be the triangle $v + w \leqq 0$, $v \geqq -T$, $w \geqq -T$. Then the join $\Delta + \Delta'$ is the square $-T \leqq v$, $w \leqq T$. The above equality shows that the integral of $e^{n(v+w)} f(T - v)f(T - w)$ over $\Delta + \Delta'$ is equal to the integral over $\Delta'$. The integral over $\Delta + \Delta'$ is the product of two single integrals, and in the integral over $\Delta'$ we have $e^{n(v+w)} \leqq 1$. Thus 
+\[
+\begin{aligned} \left| \int_{-T} ^{T} e ^{nu} f (T - u) \dd u \right| ^{2} & = \left| \iint_ {\Delta + \Delta^{\prime}} e ^{n(v+w)} f (T - v) f (T - w) \dd v \dd w \right| \\ & \leqq \iint_ {\Delta^{\prime}} | f (T - v) f (T - w) | \dd v \dd w \leqq 2 T ^{2} \cdot A ^{2}, \end{aligned}
+\]
+where $A$ is the maximum of $|f(t)|$ for $0 \leqq t \leqq 2T$, and $2T^{2}$ is the area of $\Delta'$. We thus have 
+\[
+\left| \int_{-T} ^{T} e ^{nu} f (T - u) \dd u \right| \leqq \sqrt {2} T \cdot A,
+\]
+and, moreover, $\left|\int_{-T}^{0}e^{nu}f(T - u)\dd u\right| \leqq TA$. Therefore 
+\[
+\left| \int_{0} ^{T} e ^{nu} f (T - u) \dd u \right| = \left| \int_{-T} ^{T} - \int_{-T} ^{0} \right| \leqq (1 + \sqrt {2}) T A \quad (n = 1, 2, \dots),
+\]
+and so, by Lemma~\ref{lem:VI.5.Lemma.2}, $f(t) = 0$ for $0 \leqq t \leqq T$. 
+
+
+We are now ready to prove Titchmarsh's theorem for the general case. 
+
+Let $\int_0^t f(t - u)g(u)\dd u = 0$ for $0\leqq t < \infty$. Then we have, for $0\leqq t < \infty$ 
+\[
+\int_{0} ^{t} (t - u) f (t - u) g (u) \dd u + \int_{0} ^{t} f (t - u) u g (u) \dd u = t \int_{0} ^{t} f (t - u) g (u) \dd u = 0.
+\]
+
+This may be written as 
+\[
+\begin{aligned}
+&\left(f _{1} * g\right) (t) + \left(f * g _{1}\right) (t) = 0 (0 \leqq t < \infty), \text{ where } f _{1} (t) = t f (t), g _{1} (t) = t g (t).
+\end{aligned}
+\]
+
+Thus 
+\[
+[ f * \{g _{1} * (f _{1} * g + f * g _{1}) \} ] (t) = 0
+\]
+and so 
+\[
+[ (f * g) * (f _{1} * g _{1}) ] (t) + [ (f * g _{1}) * (f * g _{1}) ] (t) = 0.
+\]
+
+Thus, by $(f*g)(t) = 0$, we have $(f*g_1)* (f*g_1) = 0$, and so, by the special case proved above, $(f*g_1)(t) = 0$, that is, 
+\[
+\int_{0} ^{t} f (t - u) u g (u) \dd u = 0 (0 \leqq t < \infty).
+\]
+
+From this we obtain, similarly to above, 
+\[
+\int_{0} ^{t} f (t - u) u ^{2} g (u) \dd u = 0 (0 \leqq t < \infty).
+\]
+
+Repeating the argument, we find that 
+\[
+\int_{0} ^{t} f (t - u) u ^{n} g (u) \dd u = 0 \quad (0 \leqq t < \infty ; n = 1, 2, \dots).
+\]
+
+Hence, by Lerch's theorem proved above, we obtain 
+\[
+f (t - u) g (u) = 0 \quad \text{ for } \quad 0 \leqq u \leqq t < \infty .
+\]
+
+If a $u_0$ exists for which $g(u_0) \neq 0$, then $f(t - u_0) = 0$ for all $t \geqq u_0$, that is, $f(v) = 0$ for all $v \geqq 0$. Therefore, we have either $f(v) = 0$ for all $v \geqq 0$ or $g(v) = 0$ for all $v \geqq 0$. 
+\end{proof}
+
+\yossection{6}{Mikusiński's Operational Calculus}
+\label{sec:VI.6}
+
+In his ``Electromagnetic Theory'', London ($1899$), the physicist O. \textsc{Heaviside} inaugurated an operational calculus which he successfully applied to ordinary linear differential equations connected with electro-technical problems. In his calculus occurred certain operators whose meaning is not at all obvious. The interpretation of such operators as given by \textsc{Heaviside} himself is difficult to justify. The interpretation given by his successors is unclear with regard to its range of validity, since it is based upon the theory of Laplace transforms. The theory of convolution quotients due to J. Mikusiński provides a clear and simple basis for an operational calculus applicable to ordinary differential equations with constant coefficients, as well as to certain partial differential equations with constant coefficients, difference equations and integral equations. 
+
+We shall give, adapted from K. \textsc{Yosida}-S. \textsc{Okamoto} \cite{yosida383}, a simplified presentation of Mikusiński's theory by introducing the notion of the ring $C_{H}$ in place of his operators (= the convolution quotients). By virtue of this ring we can derive the operational calculus without appealing to Titchmarsh's theorem given in Chapter~\ref{chap:VI}, \ref{sec:VI.5}. 
+
+The ring $C_{H}$. We denote by $C$ the totality of complex-valued continuous functions defined on $[0,\infty)$. In this section, we shall denote such a function by $\{f(t)\}$ or simply by $f$, while $f(t)$ means the value at $t$ of this function $f$. For $f, g \in C$ and $\alpha, \beta \in \mathbb{C}^{1}$ (the complex number field), we define 
+\begin{equation}\label{eq:VI.6.1}
+f + g = \{f (t) + g (t) \} \quad \text{ and } \quad f g = \left\{\int_{0} ^{t} f (t - u) g (u) \dd u \right\}.
+\end{equation}
+
+Then, as proved in Chapter~\ref{chap:VI}, \ref{sec:VI.3}, we have 
+\[
+f g = g f, f (g h) = (f g) h \quad \text{ and } \quad f (g + h) = f g + f h.
+\]
+
+Hence $\mathcal{C}$ is a commutative ring with respect to the above addition and multiplication over the coefficients field $\mathbb{C}^{1}$. 
+
+We shall denote by $h$ ( $l$ in J. Mikusiński \cite{mikusinski196}) the constant function $\{1\} \in \mathcal{C}$ so that we have 
+\begin{equation}\label{eq:VI.6.2}
+h ^{n} = \left\{\frac {t ^{n-1}}{(n - 1) !} \right\} \quad (n = 1, 2, \dots)
+\end{equation}
+and 
+\begin{equation}\label{eq:VI.6.3}
+h f = \left\{\int_{0} ^{t} f (u) \dd u \right\} \text{ for } f \in \mathscr {C},
+\end{equation}
+i.e., $h$ behaves as an operation of integration. Thus we have the fairly trivial 
+
+\begin{proposition}\label{prop:VI.6.Proposition.1} For $k \in H = \{k; k = h^n (n = 1, 2, \ldots)\}$ and $f \in \mathcal{C}$, the equation $kf = 0$ implies $f = 0$, where $0$ denotes $\{0\} \in \mathcal{C}$. 
+\end{proposition}
+
+Therefore, as in the algebra, we can construct the commutative ring $\mathcal{C}_{\mathrm{H}}$ consisting of fractions of the form $f / k$, i.e., 
+\begin{equation}\label{eq:VI.6.4}
+\mathcal {C} _ {\mathrm{H}} = \left\{\frac {f}{k} = f / k; f \in \mathcal {C} \text{ and } k \in H \right\},
+\end{equation}
+where the equality of two fractions is defined by 
+\begin{equation}\label{eq:VI.6.5}
+\frac {f}{k} = \frac {f ^{\prime}}{k ^{\prime}} \quad \text{ iff } \quad f k ^{\prime} = f ^{\prime} k ,
+\end{equation}
+and the addition and multiplication of two fractions are defined through 
+\begin{equation}\label{eq:VI.6.6}
+\frac {f}{k} + \frac {f ^{\prime}}{k ^{\prime}} = \frac {f k ^{\prime} + f ^{\prime} k}{k k ^{\prime}} \quad \text{ and } \quad \frac {f}{k} \frac {f ^{\prime}}{k ^{\prime}} = \frac {f f ^{\prime}}{k k ^{\prime}}.
+\end{equation}
+
+By identifying $f \in \mathcal{C}$ with $kf / k \in \mathcal{C}_{\mathbf{H}}$, the ring $\mathcal{C}$ can isomorphically be embedded as a subring of $\mathcal{C}_{\mathbf{H}}$. 
+
+We next introduce, after Mikusiński, the important notion of the operation of scalar multiplication. We define, for every $\alpha\in \mathbb{C}^{1}$, 
+\begin{equation}\label{eq:VI.6.7}
+[ \alpha ] = \frac {\{\alpha \}}{h} = \{\alpha \} / h \in \mathcal {C} _ {\mathrm{H}}.
+\end{equation}
+
+Then we have, for $\alpha, \beta \in \mathbb{C}^{1}$, $f \in \mathcal{C}$ and $k \in H$, 
+\begin{equation}[ \alpha ] + [ \beta ] = [ \alpha + \beta ], [ \alpha ] [ \beta ] = [ \alpha \beta ], [ \alpha ] f = \alpha f = \{\alpha f (t) \}, [ \alpha ] \frac {f}{k} = \frac {\alpha f}{k}. \label{eq:VI.6.8}\end{equation}
+
+\begin{proof}
+ $[\alpha] + [\beta] = [\alpha + \beta]$ is clear. We have 
+\begin{align}
+[ \alpha ] [ \beta ]& = \frac {\{\alpha \}}{h} \frac {\{\beta \}}{h} = \frac {\{\alpha \beta t \}}{h ^{2}} = \frac {h \{\alpha \beta \}}{h ^{2}} = \frac {\{\alpha \beta \}}{h} = [ \alpha \beta ], \notag \\
+[ \alpha ] \frac {\{f (t) \}}{k}& = \frac {\{\alpha \} \{f (t) \}}{h k} = \frac {\left\{\int_{0} ^{t} \alpha f (u) \dd u \right\}}{h k} = \frac {\{\alpha f (t) \}}{k}. \notag
+\end{align}
+
+Hence $[\alpha]$ can be identified with the complex number $\alpha$, not with $\{\alpha\}$, and we see that the effect of the multiplication by $[\alpha]$ is exactly the scalar multiplication by $\alpha$. [$1$] may be identified with the multiplicative unit I of the ring $C_{H}$, i.e., 
+\begin{equation}\label{eq:VI.6.9}
+I = \frac {h ^{n}}{h ^{n}} \quad (n = 1, 2, \dots).
+\end{equation}
+
+We next define 
+\begin{equation}\label{eq:VI.6.10}
+s = \frac {h ^{n}}{h ^{n+1}} \in \mathcal {C} _ {\mathrm{H}} (n = 0, 1, 2, \dots ; h ^{0} = I) \text{ so that } s h = h s = I
+\end{equation}
+\end{proof}
+
+\begin{proposition}\label{prop:VI.6.Proposition.2} If both $f$ and its derivative $f'$ belong to $C$, then 
+\begin{equation}\label{eq:VI.6.11}
+f ^{\prime} = s f - f (0), \quad \text{ where } \quad f (0) = [ f (0) ],
+\end{equation}
+i.e., $s$ behaves as an operation of differentiation. 
+\end{proposition}
+
+\begin{proof}
+ Clear from \eqref{eq:VI.6.10} and Newton's formula 
+\[
+h f ^{\prime} = \left\{\int_{0} ^{t} f ^{\prime} (u) \dd u \right\} = \{f (t) - f (0) \} = f - [ f (0) ] h. \]
+\end{proof}
+
+\begin{corollaryu} For $n$-times continuously differentiable function $f \in \mathcal{C}$, 
+\begin{equation}\label{eq:VI.6.12}
+\begin{aligned}
+&f ^{(n)} = s ^{n} f - s ^{n-1} f (0) - s ^{n-2} f ^{\prime} (0) - \dots - f ^{(n-1)} (0), \text{ where } f ^{(j)} (0) = [ f ^{(j)} (0) ].
+\end{aligned}
+\end{equation}
+\end{corollaryu}
+
+\begin{proposition}\label{prop:VI.6.Proposition.3} For any $\alpha \in \mathbb{C}^{1}$ and for any positive integer $n$, 
+\[
+(s - \alpha) ^{n} = (s - [ \alpha ]) ^{n} = \left(\frac {h - [ \alpha ] h ^{2}}{h ^{2}}\right) ^{n} = \frac {(h - [ \alpha ] h ^{2}) ^{n}}{h ^{2n}} \in \mathcal {C} _ {\mathrm{H}}
+\]
+admits a uniquely determined multiplicative inverse in $\mathcal{C}_{\mathrm{H}}$ given by 
+\begin{equation}\label{eq:VI.6.13}
+\frac {I}{(s - \alpha) ^{n}} = \left\{\frac {t ^{n-1}}{(n - 1) !} e ^{\alpha t} \right\}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+ We have, by \eqref{eq:VI.6.11}, 
+\[
+(s - \alpha) \left\{\mathrm{e} ^{\alpha t} \right\} = \alpha \left\{e ^{\alpha t} \right\} + [ 1 ] - \alpha \left\{e ^{\alpha t} \right\} = I, \quad \text{ i. e., } \quad I / (s - \alpha) = \left\{e ^{\alpha t} \right\}. \]
+
+Hence, we have $I / (s - \alpha)^2 = \left\{\int_{0}^{t} e^{\alpha(t - u)} e^{\alpha u} \dd u\right\} = \{t e^{\alpha t}\}$ and so on. 
+\end{proof}
+
+Application to the integration of the Cauchy's problem for linear ordinary differential equations with constant coefficients $\in \mathbb{C}^{1}$: 
+\begin{equation}\label{eq:VI.6.14}
+\begin{aligned}
+\alpha_{n} y ^{(n)} + \alpha_{n-1} y ^{(n-1)} + \ldots + \alpha_{0} y &= f \in \mathcal {C} (\alpha_{n} \neq 0),
+\\
+y (0) &= \gamma_{0}, y ^{\prime} (0) = \gamma_{1}, \ldots , y ^{(n-1)} (0) = \gamma_{n-1}.
+\end{aligned}
+\end{equation}
+
+By \eqref{eq:VI.6.12}, we rewrite \eqref{eq:VI.6.14} into 
+\begin{align}
+\left(\alpha_{n} s ^{n} + \alpha_{n-1} s ^{n-1} + \dots + \alpha_{0}\right) y& = f + \beta_{n-1} s ^{n-1} + \beta_{n-2} s ^{n-2} + \dots + \beta_{0}, \tag{14'}\label{eq:VI.6.14'} \\
+\beta_{\nu}& = \alpha_{\nu +1} \gamma_{0} + \alpha_{\nu +2} \gamma_{1} + \dots + \alpha_{n} \gamma_{n - \nu -1} (\nu = 0, 1, 2, \dots , n - 1). \notag
+\end{align}
+
+The polynomial ring of polynomials in $s$ with coefficients $\in \mathbb{C}^{1}$ is free from zero factors, because of the fact that 
+\[
+\left(\delta_{n} s ^{n} + \delta_{n-1} s ^{n-1} + \dots\right) \left(\eta_{m} s ^{m} + \eta_{m-1} s ^{m-1} + \dots\right) = \delta_{n} \eta_{m} s ^{n+m} + \dots .
+\]
+
+Hence we can define rational functions in $s$: 
+\begin{equation}\label{eq:VI.6.15}
+F _{1} = \frac {I}{\alpha_{n} s ^{n} + \dots + \alpha_{0}} \quad \text{ and } \quad F _{2} = \frac {\beta_{n-1} s ^{n-1} + \dots + \beta_{0}}{\alpha_{n} s ^{n} + \dots + \alpha_{0}},
+\end{equation}
+and obtain their partial fraction expressions: 
+\begin{equation}\tag{15'}\label{eq:VI.6.15'}
+F _{1} = \sum\limits_{j} \sum\limits_{k=1} ^ {m _{j}} \frac {c _{jk} I}{(s - r _{j}) ^{k}} \quad \text{ and } \quad F _{2} = \sum\limits_{j} \sum\limits_{k=1} ^ {m _{j}} \frac {d _{jk} I}{(s - r _{j}) ^{k}},
+\end{equation}
+where both $c_{jk}$ and $d_{jk}$ belong to $\mathbb{C}^{1}$ and $r_j's$ are distinct roots of the algebraic equation $\alpha_n z^n + \alpha_{n-1} z^{n-1} + \ldots + \alpha_0 = 0$ so that $\sum\limits_{j} m_j = n$. 
+
+By virtue of \eqref{eq:VI.6.13}, both $F_{1}$ and $F_{2}$ given in \eqref{eq:VI.6.15'} belong to $\mathcal{C} \subseteq \mathcal{C}_{\mathbb{H}}$ so that we obtain the solution of \eqref{eq:VI.6.14'} and hence of \eqref{eq:VI.6.14} as well: 
+\begin{equation}\label{eq:VI.6.16}
+\begin{aligned}
+&\left\{y (t) \right\} = \sum\limits_{j} \sum\limits_{k=1} ^ {m _{j}} c _{jk} \left\{\frac {t ^{k-1}}{(k - 1) !} e ^ {r _{j} t} \right\} \left\{f (t) \right\} + \sum\limits_{j} \sum\limits_{k=1} ^ {m _{j}} d _{jk} \left\{\frac {t ^{k-1}}{(k - 1) !} e ^ {r _{j} t} \right\}.
+\end{aligned}
+\end{equation}
+
+\begin{example}\label{ex:VI.6.Example.1} Solve the equation 
+\[
+x ^{\prime \prime} (t) - x ^{\prime} (t) - 6 x (t) = 2, \quad x (0) = 1, \quad x ^{\prime} (0) = 0.
+\]
+\end{example}
+
+Solution. We rewrite the equation 
+\[
+\{x ^{\prime \prime} (t) - x ^{\prime} (t) - 6 x (t) \} = 2 / s
+\]
+by \eqref{eq:VI.6.12}, obtaining 
+\[
+s ^{2} x - s x (0) - x ^{\prime} (0) - s x + x (0) - 6 x = 2 / s
+\]
+and so, by substituting the initial condition, we get 
+\[
+(s ^{2} - s - 6) x = s - 1 + 2 / s.
+\]
+
+Hence, by \eqref{eq:VI.6.13}, 
+\[
+\begin{aligned}
+&x = \frac {s ^{2} - s + 2}{s (s - 3) (s + 2)} = - \frac {1}{3} \frac {1}{s} + \frac {8}{1 5} \frac {1}{s - 3} + \frac {4}{5} \frac {1}{s + 2} = \left\{- \frac {1}{3} + \frac {8}{1 5} e ^{3t} + \frac {4}{5} e ^{-2t} \right\}.
+\end{aligned}
+\]
+
+\begin{example}\label{ex:VI.6.Example.2} Solve the system of equations 
+\[
+x ^{\prime} (t) - \alpha x (t) - \beta y (t) = \beta e ^{\alpha t}, y ^{\prime} (t) + \beta x (t) - \alpha y (t) = 0,
+\]
+under the initial condition $x(0)=0$, $y(0)=1$. We here assume that $\alpha$ and $\beta$ are real numbers. 
+\end{example}
+
+Solution. Rewrite the equations by \eqref{eq:VI.6.11} and \eqref{eq:VI.6.13}, obtaining 
+\[
+s x - \alpha x - \beta y = \beta / (s - \alpha), s y - 1 + \beta x - \alpha y = 0.
+\]
+
+Hence 
+\[
+x = \frac {2 \beta}{(s - \alpha) ^{2} + \beta^{2}}, \quad y = \frac {(s - \alpha) ^{2} - \beta^{2}}{(s - \alpha) ((s - \alpha) ^{2} + \beta^{2})},
+\]
+from which we get 
+\begin{gather}x = \frac {1}{i} \left\{\frac {1}{s - \alpha - i \beta} - \frac {1}{s - \alpha + i \beta} \right\} = \frac {1}{i} \left\{e ^{(\alpha + i \beta) t} - e ^{(\alpha - i \beta) t} \right\} = {} \{2 e ^{\alpha t} \sin \beta t \}, \notag
+\\\leqq {} y = \frac {2 (s - \alpha)}{(s - \alpha) ^{2} + \beta^{2}} - \frac {1}{(s - \alpha)} = \frac {1}{s - \alpha - i \beta} + \frac {1}{s - \alpha + i \beta} - \frac {1}{s - \alpha} \notag
+\\= \left\{e ^{(\alpha + i \beta) t} + e ^{(\alpha - i \beta) t} - e ^{\alpha t} \right\} = \left\{e ^{\alpha t} (2 \cos \beta t - 1) \right\}. \notag
+\end{gather}
+
+\begin{remarku} Suggested by \eqref{eq:VI.6.2}, we can define the fractional power integration through 
+\begin{equation}\label{eq:VI.6.17}
+h ^{\alpha} = h \left\{t ^{\alpha -1} / \Gamma (\alpha) \right\} / h \in \mathcal {C} _ {\mathrm{H}} (0 < \alpha < 1).
+\end{equation}
+\end{remarku}
+
+Accordingly, we can define the fractional power differentiation through 
+\begin{equation}\label{eq:VI.6.18}
+s ^{\alpha} = h \left\{t ^{- \alpha} / \Gamma (1 - \alpha) \right\} / h ^{2} \in \mathcal {C} _ {\mathrm{H}} (0 < \alpha < 1),
+\end{equation}
+because we obtain 
+\begin{equation}\label{eq:VI.6.19}
+\mathrm{h} ^{\alpha} \mathrm{s} ^{\alpha} = \mathrm{I}
+\end{equation}
+by the Gamma function formula $B(1 - \alpha, \alpha) = \Gamma(1 - \alpha) \Gamma(\alpha)$. 
+
+For further applications of the operational calculus, we refer the reader to J. Mikusiński \cite{mikusinski196} and also to A. \textsc{Erdélyi} \cite{erdelyi55}. 
+
+
+\yossection{7}{Sobolev's Lemma}
+\label{sec:VI.7}
+
+A generalized function is infinitely differentiable in the sense of the distribution (see Chapter~\ref{chap:I}, \ref{sec:I.8}). So the differentiability in the generalized sense has no bearing on the ordinary differentiability. However, we have the following result which is of fundamental importance in modern treatment of partial differential equations. 
+
+\begin{theoremn}[Sobolev's Lemma]\label{thm:VI.7.Sobolev} Let $G$ be a bounded open domain of $\mathbb{R}^{n}$. Let a function $u(x)$ belong to $W^k(G)$ for $k > 2^{-1}n + \sigma$, where $\sigma$ is an integer $\geqq 0$. We thus assume that the distributional derivatives of $u(x)$ of order up to and including $k$ all belong to $L^2(G)$. Then, for any open subset $G_1$ of $G$ such that the closure $G_1^a$ is a compact subset of $G$, there exists a function $u_1(x) \in C^\sigma(G_1)$ such that $u(x) = u_1(x)$ a.e. in $G_1$.
+
+\end{theoremn}
+\begin{proof}
+ Let $\alpha(x)$ be a function $\in C_0^\infty(\mathbb{R}^{n})$ such that 
+\[
+G _{1} \subseteq \supp (\alpha) \subset G, 0 \leqq \alpha (x) \leqq 1 \text{ and } \alpha (x) = 1 \text{ on } G _{1}. \]
+
+We define a function $v(x)$ defined on $\mathbb{R}^{n}$ by 
+\[
+v (x) = \alpha (x) u (x) \text{ for } x \in G; v (x) = 0 \text{ for } x \in \mathbb{R}^{n} - G.
+\]
+
+Then $v(x) = u(x)$ whenever $x \in G_1$. Since $v(x)$ is locally integrable over $\mathbb{R}^{n}$, it defines a distribution $\in \mathfrak{D}(\mathbb{R}^{n})'$. By the assumption that $u \in W^k(G)$, the distributional derivatives $D^s v(x) \in L^2(\mathbb{R}^{n})$ when $|s| \leqq k$. For example, the distributional derivative 
+\[
+\frac {\partial}{\partial x _{j}} (v) = \frac {\partial}{\partial x _{j}} (\alpha u) = \frac {\partial \alpha}{\partial x _{j}} \cdot u + \alpha \frac {\partial}{\partial x _{j}} u
+\]
+belongs to $L^2(\mathbb{R}^{n})$ by the fact that $u, \partial u / \partial x_j$ both belong to $L^2(G)$ and that the infinitely differentiable function $\alpha(x)$ has its support contained in a compact subset of the open domain $G$. By the Fourier transformation $v(x) \to \hat{v}(y)$, we obtain 
+\[
+\widehat {(D ^{s} v)} (y) = (i) ^{|s|} y _{1} ^ {s _{1}} y _{2} ^ {s _{2}} \dots y _{n} ^ {s _{n}} \cdot \hat {v} (y).
+\]
+
+Since, by Plancherel's theorem, the $L^2$-norm is preserved by the Fourier transformation, we have $(\widehat{D^s v})(y) \in L^2(\mathbb{R}^{n})$ for $|s| \leqq k$. Thus 
+\begin{equation}\label{eq:VI.7.1}
+\hat {v} (y) y _{1} ^ {s _{1}} y _{2} ^ {s _{2}} \dots y _{n} ^ {s _{n}} \in L ^{2} (\mathbb{R}^{n}) \quad \text{ for } \quad | s | \leqq k.
+\end{equation}
+
+In particular we have 
+\begin{equation}\tag{1'}\label{eq:VI.7.1'}
+\hat {v} (y) \in L ^{2} (\mathbb{R}^{n}).
+\end{equation}
+
+Let $q = (q_{1}, q_{2}, \ldots, q_{n})$ be a system of non-negative integers. Then by \eqref{eq:VI.7.1}, we can prove that 
+\begin{equation}\label{eq:VI.7.2}
+\hat{v}(y) y_1^{q_1} y_2^{q_2} \ldots y_n^{q_n} \text{ is integrable over } \mathbb{R}^{n} \text{ whenever } |q| + \frac{n}{2} < k.
+\end{equation}
+For the proof, take any positive number $C$. We have, by Schwarz' inequality, 
+\[
+\begin{aligned}
+&\int_{| y | \leqq C} \left| \hat {v} (y) y _{1} ^ {q _{1}} y _{2} ^ {q _{2}} \dots y _{n} ^ {q _{n}} \right| \dd y \leqq \Big (\int_{| y | \leqq C} \left| y _{1} ^ {q _{1}} y _{2} ^ {q _{2}} \dots y _{n} ^ {q _{n}} \right| ^{2} \dd y \cdot \int_{| y | \leqq C} \left| \hat {\pmb v} (y) \right| ^{2} \dd y \Big) ^{1/2} < \infty , \\
+&\quad \int_{|y|>C} \left| \hat {v} (y) y _{1} ^ {q _{1}} y _{2} ^ {q _{2}} \dots y _{n} ^ {q _{n}} \right| \dd y \\
+&\leqq \Big (\int_{|y|>C} \left| (1 + | y | ^{2}) ^{-k/2} y _{1} ^ {q _{1}} y _{2} ^ {q _{2}} \dots y _{n} ^ {q _{n}} \right| ^{2} \dd y \cdot \int_{|y|>C} \left| \hat {v} (y) (1 + | y | ^{2}) ^{k/2} \right| ^{2} \dd y \Big) ^{1/2}.
+\end{aligned}
+\]
+
+The second factor on the right of the last inequality is $< \infty$ by \eqref{eq:VI.7.1}. The first factor is finite by 
+\[
+\dd y = \dd y _{1} \dd y _{2} \dots \dd y _{n} = r ^{n-1} \dd r \dd \Omega_{n},
+\]
+where $\dd\Omega_{n}$ is the hypersurface element of the surface of the unit sphere of $\mathbb{R}^{n}$ with the origin $0$ as its centre, provided 
+\begin{equation}\label{eq:VI.7.3}
+2 | q | - 2 k + n - 1 < - 1, \text{ that is, if } k > \frac {n}{2} + | q |.
+\end{equation}
+
+Now, by Plancherel's theorem, we have 
+\[
+v (x) = \underset {h \rightarrow \infty} {\text{ l.i.m. }} (2 \pi) ^{-n/2} \int_{| y | \leqq h} \hat {v} (y) \exp (i \langle y, x \rangle) \dd y
+\]
+and so, as in the proof of the completeness of $L^2(\mathbb{R}^{n})$, we can choose a subsequence $\{h'\}$ of positive integers $h$ such that 
+\[
+v (x) = \lim\limits _ {h ^{\prime} \rightarrow \infty} (2 \pi) ^{-n/2} \int_ {| y | \leqq h ^{\prime}} \hat {v} (y) \exp (i \langle y, x \rangle) \dd y \text{ for a.e. } x \in \mathbb{R}^{n}.
+\]
+
+But, since $\hat{v}(y)$ is integrable over $\mathbb{R}^{n}$ as proved above, the right side is equal to 
+\[
+v _{1} (x) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} \hat {v} (y) \exp (i \langle x, y \rangle) \dd y,
+\]
+that is, $v(x)$ is equal to $v_{1}(x)$ for a.e. $x \in \mathbb{R}^{n}$. By ($2$), the differentiation of $v_{1}(x)$ under the integral sign is justified up to the order $\sigma$; and the result of the differentiation is continuous in $x$. By taking $u_{1}(x) = v_{1}(x)$ for $x \in G_{1}$, we have proved the Theorem. 
+\end{proof}
+
+\begin{remarku} For the original proof, see S. L. \textsc{Sobolev} \cite{sobolev306}, \cite{sobolev307} and L. \textsc{Kantorovitch}-G. \textsc{Akilov} \cite{kantorovitch133}.\yosstarfootnote{See also Supplementary Notes, p.~\pageref{notes:VI}.} 
+\end{remarku}
+
+
+\yossection{8}{Gårding's Inequality}
+\label{sec:VI.8}
+
+Consider a quadratic integral form defined for $C^\infty$ function $u(x) = u(x_1, x_2, \ldots, x_n)$ with compact support in a bounded domain $G$ of $\mathbb{R}^{n}$: 
+\begin{equation}\label{eq:VI.8.1}
+B [ u, u ] = \sum\limits_{| s |, | t | \leqq m} (c _{st} D ^{s} u, D ^{t} u) _{0},
+\end{equation}
+where the complex-valued coefficients $c_{st}$ are continuous on the closure $G^{a}$ of $G$, and $(u,v)_{0}$ denotes the scalar product in $L^{2}(G)$. 
+
+Then we have 
+
+\begin{theoremn}[L. \textsc{Garding} {\cite{garding74}}] A sufficient condition for the existence of positive constants $c$, $C$ so that the inequality
+\begin{equation}\label{eq:VI.8.2}
+\left\| u \right\| _{m} ^{2} \leqq c \operatorname{Re} B [ u, u ] + C \| u \| _{0} ^{2}
+\end{equation}
+holds for all $u \in C_0^\infty(G)$, is that, for some positive constant $c_0$, 
+$\operatorname{Re} \sum\limits_{|s|,|t|=m} c_{st} \xi^s \xi^t \geqq c_0 |\xi|^2m$ for all $x \in G$ and all real vectors 
+\begin{equation}\label{eq:VI.8.3}
+\xi = (\xi_{1}, \xi_{2}, \dots , \xi_{m}).
+\end{equation}
+
+\end{theoremn}
+\begin{remarku} The inequality \eqref{eq:VI.8.2} is called Gårding's inequality. If condition \eqref{eq:VI.8.3} is satisfied, then the differential operator 
+\begin{equation}\label{eq:VI.8.4}
+L = \sum\limits_{| s | = | t | \leqq m} (- 1) ^{|t|} D ^{t} c _{st} D ^{s}
+\end{equation}
+\end{remarku}
+
+is said to be strongly elliptic in $G$, assuming that $c_{st}$ is $C^m$ on $G^a$. 
+
+\begin{proof}
+ We first prove that, for every $\varepsilon > 0$, there is a constant $C(\varepsilon) > 0$ such that for every $C_0^\infty(G)$ function $u$, 
+\begin{equation}\label{eq:VI.8.5}
+\left\| u \right\| _{m-1} ^{2} \leqq \varepsilon \left\| u \right\| _{m} ^{2} + C (\varepsilon) \left\| u \right\| _{0} ^{2}. \end{equation}
+
+To this purpose, we consider $u$ to belong to $C_0^\infty (\mathbb{R}^{n})$, defining its value as $0$ outside $G$. By the Fourier transformation we have 
+\[
+\left\| D ^{s} u \right\| _{0} ^{2} = \left\| (\widehat {D ^{s} u}) \right\| _{0} ^{2} = \int_ {\mathbb{R}^{n}} \left| \prod\limits_{j=1} ^{n} y _{j} ^{sj} \hat {\boldsymbol {u}} (y) \right| ^{2} \dd y,
+\]
+in virtue of Plancherel's theorem. Thus \eqref{eq:VI.8.5} is a consequence from the fact that 
+\[
+\left(\sum\limits_{| s | \leqq m -1} \prod\limits_{j=1} ^{n} y _{j} ^ {2 s _{j}}\right) / \left(C + \sum\limits_{| t | \leqq m} \prod\limits_{j=1} ^{n} y _{j} ^ {2 t _{j}}\right) \left(| s | = \sum\limits_{j=1} ^{n} s _{j}, | t | = \sum\limits_{j=1} ^{n} t _{j}\right)
+\]
+tends to zero uniformly with respect to $y = (y_{1}, y_{2}, \ldots, y_{n})$ as $C \uparrow \infty$. 
+
+Suppose that the coefficients $c_{st}$ are constant and vanish unless $|s| = |t| = m$. By the Fourier transformation $u(x) \to \hat{u}(\xi)$ and Plancherel's theorem, we have, by \eqref{eq:VI.8.3}, 
+\[
+\begin{aligned}
+\operatorname{Re} B [ u, u ]& = \operatorname{Re} \int \sum\limits_{s,t} c _{st} \xi^{s} \xi^{t} | \hat {u} (\xi) | ^{2} \dd \xi
+\\
+\qquad \qquad \qquad& \geqq \int c _{0} | \xi | ^{2m} | \hat {u} (\xi) | ^{2} \dd \xi \geqq c _{1} (\| u \| _{m} ^{2} - \| u \| _{m-1} ^{2}),
+\end{aligned}
+\]
+where $c_{1} > 0$ is a constant which is independent of $u$. Hence, by \eqref{eq:VI.8.5}, we see that \eqref{eq:VI.8.2} is true for our special case. 
+
+We next consider the case of variable coefficients $c_{st}$. Suppose, first, that the support of $u$ is sufficiently small and contained, say, in a small sphere about the origin. By the preceding case, we have, with a constant $c_{0}^{\prime}>0$ which is independent of $u$, 
+\[
+\begin{aligned}
+c _{0} ^{\prime} \| u \| _{m} ^{2}& \leqq \operatorname{Re} B [ u, u ] + \operatorname{Re} \sum\limits_{|s|=|t|=m} \int (c _{st} (0) - c _{st} (x)) D ^{s} u \cdot D ^{t} \bar {u} \dd x
+\\
+\quad - \operatorname{Re} \sum\limits_{|s|+|t|<2m}& \int c _{st} (x) D ^{s} u \cdot D ^{t} \bar {u} \dd x + C (\varepsilon) \left\| u \right\| _{0} ^{2}.
+\end{aligned}
+\]
+
+If the support of $u$ is so small that $c_{st}$ has very small oscillation there, we see that the second term on the right may be bounded by $2^{-1}c_0'\|u\|_m^2$. The third term on the right is bounded by constant times $\|u\|_m\cdot \|u\|_{m-1}$. Hence we find that, constants denoting positive constants, 
+\[
+2 ^{-1} c _{0} ^{\prime} \| u \| _{m} ^{2} \leqq \operatorname{Re} B [ u, u ] + \text{ constant } \| u \| _{m} \cdot \| u \| _{m-1} + C (\varepsilon) \| u \| _{0} ^{2}.
+\]
+
+Thus, by 
+\begin{equation}\label{eq:VI.8.6}
+\begin{aligned}
+2 | \alpha | \cdot | \beta |& \leqq \varepsilon | \alpha | ^{2} + \varepsilon^{-1} | \beta | ^{2} \text{ which is valid for every }
+\\
+\varepsilon& > 0,
+\end{aligned}
+\end{equation}
+we obtain $\|u\|_{m}^{2}\leqq constant\cdot \operatorname{Re} B[u,u]+\text{ constant }\cdot\|u\|_{m-1}^{2}+C(\varepsilon)\cdot\|u\|_{0}^{2}$, and so, by \eqref{eq:VI.8.5}, we obtain \eqref{eq:VI.8.2}. 
+
+
+Next we consider the general case. Construct a partition of unity in $G$: 
+\[
+1 = \sum\limits_{j=1} ^{N} \omega_{j} ^{2}, \omega_{j} \in C _{0} ^{\infty} (G) \quad \text{ and } \quad \omega_{j} (x) \geqq 0 \text{ in } G,
+\]
+such that the support of each $\omega_{j}$ may be taken as small as we please. Then, by Leibniz' rule of differentiation of the product of functions, Schwarz' inequality and the estimate of the case obtained above, we have 
+\[
+\begin{aligned}
+\operatorname{Re} B [ u, u ] &= \operatorname{Re} \sum\limits_{s,t} \int c _{st} D ^{s} u D ^{t} \overline {{u}} \dd x = \operatorname{Re} \sum\limits_{s,t} \sum\limits_{j} \int \omega_{j} ^{2} c _{st} D ^{s} u D ^{t} \overline {{u}} \dd x
+\\
+&= \operatorname{Re} \int \sum\limits_{j} \sum\limits_{s,t} c _{st} D ^{s} (\omega_{j} u) D ^{t} \overline {{(\omega_{j} u)}} \dd x + 0 (\| u \| _{m} \| u \| _{m-1})
+\\
+& \geqq \sum\limits_{j} \text{ constant } (\| \omega_{j} u \| _{m} ^{2} - \| \omega_{j} u \| _{m-1} ^{2}) + 0 (\| u \| _{m} \cdot \| u \| _{m-1})
+\\
+& \geqq \text{ constant } \| u \| _{m} ^{2} + 0 (\| u \| _{m} \cdot \| u \| _{m-1}).
+\end{aligned}
+\]
+
+Thus we obtain \eqref{eq:VI.8.2} by \eqref{eq:VI.8.5}. We remark that the constants $c$, $C$ in \eqref{eq:VI.8.2} depend upon $c_{0}$, $c_{st}$ and the domain $G$.
+\end{proof}
+
+\yossection{9}{Friedrichs' Theorem}
+\label{sec:VI.9}
+
+Let 
+\begin{equation}\label{eq:VI.9.1}
+L = \sum\limits_{| s |, | t | \leqq m} D ^{s} c _{st} (x) D ^{t}
+\end{equation}
+be strongly elliptic with real $C^{\infty}$ coefficients $c_{st}(x)$ in a bounded open domain of $\mathbb{R}^{n}$. For a given locally square integrable function $f(x)$ in $G$, a locally square integrable function $u(x)$ in $G$ is called a weak solution of 
+\begin{equation}\label{eq:VI.9.2}
+L u = f,
+\end{equation}
+if we have 
+\begin{equation}\label{eq:VI.9.3}
+(u, L ^{*} \varphi) _{0} = (f, \varphi) _{0}, L ^{*} = \sum\limits_{| s |, | t | \leqq m} (- 1) ^{|s|+|t|} D ^{t} c _{st} (x) D ^{s},
+\end{equation}
+for every $\varphi \in C_0^\infty(G)$. Here $(f, g)_0$ denotes the scalar product of the Hilbert space $L^2(G)$. Thus a weak solution $u$ of \eqref{eq:VI.9.2} is a solution in the sense of the distribution. Concerning the differentiability of the weak solution $u$, we have the following fundamental result: 
+
+\begin{theoremn}[K. \textsc{Friedrichs} {\cite{friedrichs69}}] Any weak solution $u$ of \eqref{eq:VI.9.2} has square integrable (distributional) derivatives of order up to $(2m + p)$ in the domain $G_{1} \subseteq G$ where $f$ has square integrable (distributional) derivatives of order up to $p$. In other words, any weak solution $u$ of \eqref{eq:VI.9.2} belongs to $W^{p+2m}(G_1)$ whenever $f$ belongs to $W^{p}(G_{1})$.
+
+\end{theoremn}
+\begin{corollaryu} If $p = \infty$, then, by Sobolev's lemma, there exists a function $u_0(x) \in C^\infty(G_1)$ such that $u(x) = u_0(x)$ for a.e. $x \in G_1$. Thus, after a correction on a set of measure zero, any weak solution $u(x)$ of \eqref{eq:VI.9.2} is $C^\infty$ in the domain $\subseteq G$ where $f(x)$ is $C^\infty$; the corrected solution is hence a genuine solution of the differential equation \eqref{eq:VI.9.2} in the domain where $f(x)$ is $C^\infty$. 
+\end{corollaryu}
+
+\begin{remarku} When $L = \Delta$, the Laplacian, the above Corollary is Weyl's Lemma (see Chapter~\ref{chap:II}, \ref{sec:II.7}). There is extensive literature concerning the extensions of Weyl's Lemma to general elliptic operator $L$; such extensions are sometimes called the Weyl-Schwartz theorem. Among an abundant literature, we refer to the papers by P. \textsc{Lax} \cite{lewy172}, L. \textsc{Nirenberg} \cite{nirenberg236} and L. \textsc{Nirenberg} \cite{nirenberg237}. The proof below is due to the present author (unpublished). A similar proof was given by L. \textsc{Bers} \cite{bers16}. It is to be noted that a non-differentiable, locally integrable function $f(x)$ is a distribution solution of the hyperbolic equation 
+\[
+\frac {\partial f}{\partial x \partial y} = 0,
+\]
+\end{remarku}
+
+as may be seen from 
+\[
+0 = \int_{- \infty} ^{\infty} \left\{\int_{- \infty} ^{\infty} f (x) \frac {\partial \varphi (x , y)}{\partial y \partial x} \dd y \right\} \dd x (\varphi (x, y) \in C _{0} ^{\infty} (\mathbb{R}^{2})).
+\]
+
+\begin{proof}[Proof of the Theorem.]
+We shall be concerned only with real-valued functions. Replacing, if necessary, $L$ by $I + \alpha L$ with a certain constant $\alpha \neq 0$, we may assume that the strongly elliptic operator $L$ itself satisfies Gårding's inequality
+\begin{equation}\label{eq:VI.9.4}
+\begin{aligned}
+&(\varphi , L ^{*} \varphi) _{0} \geqq \delta \| \varphi \| _{m} ^{2} (\delta > 0), | (\varphi , L ^{*} \psi) _{0} | \leqq \gamma \| \varphi \| _{m} \| \psi \| _{m} (\gamma > 0), \text{ whenever } \varphi , \psi \in C _{0} ^{\infty} (G).
+\end{aligned}
+\end{equation}
+
+The latter inequality is proved by partial integration. We assume here that each of the derivatives of the coefficients $c_{st}(x)$ up to order $m$ is bounded in $G$, so that the constants $\delta$ and $\gamma$ are independent of the test functions $\psi$, $\varphi \in C_{0}^{\infty}(G)$. 
+
+Suppose that $G_{1}$ is a periodic parallelogram 
+\begin{equation}\label{eq:VI.9.5}
+0 \leqq x _{j} \leqq 2 \pi \quad (j = 1, 2, \dots , n),
+\end{equation}
+and that the coefficients of $L$ and $f$ periodic with the period $2\pi$ in each $x_{j}$. Under such assumptions, we are to deal with functions $\varphi(x)$ defined on a compact space without boundary, the $n$-dimensional torus $G_{1}$ given by \eqref{eq:VI.9.5}, and the distribution $\in C^{\infty}(G_{1})'$ associated with the space of test functions $\varphi \in C^{\infty}(G_{1})$ consisting of $C^{\infty}$ functions $\varphi(x) = \varphi(x_{1}, x_{2}, \ldots, x_{n})$ periodic with period $2\pi$ in each of the variables $x_{j}$. It is to be noted that, since $G_{1}$ is without boundary, we need not restrict the supports of our test functions $\varphi(x)$. 
+
+The condition $v \in W^{q}(G_{1})$ thus means that the Fourier coefficients $v_{k}$ of $v(x)$ defined by the Fourier expansion 
+\begin{equation}v (x) \sim \sum\limits_{k} v _{k} \exp (i k \cdot x) \left(k = \left(k _{1}, \dots , k _{n}\right), x = \left(x _{1}, \dots , x _{n}\right), \quad \text{ and } \quad k \cdot x = \sum\limits_{j=1} ^{n} k _{j} x _{j}\right) \label{eq:VI.9.6}\end{equation}
+satisfy 
+\begin{equation}\label{eq:VI.9.7}
+\sum\limits_{k} \left| v _{k} \right| ^{2} (1 + | k | ^{2}) ^{q} < \infty \quad \left(| k | ^{2} = \sum\limits_{j=1} ^{n} k _{j} ^{2}\right).
+\end{equation}
+
+For, by partial integration, the Fourier coefficients of the distributional derivative $D^s v$ satisfy 
+\begin{equation}\label{eq:VI.9.8}
+\begin{aligned}
+&(D ^{s} v (x), \exp (i k \cdot x)) _{0}  = (- 1) ^{|s|} (v (x), D ^{s} \exp (i k \cdot x)) _{0} = (- i) ^{|s|} \prod\limits_{j=1} ^{n} k _{j} ^{sj} v _{k}, s = (s _{1}, s _{2}, \dots , s _{n}),
+\end{aligned}
+\end{equation}
+and so, by Parseval's relation for the Fourier coefficients of $D^q v \in L^2(G_1)$, we obtain \eqref{eq:VI.9.7}. 
+
+It is convenient to introduce the space $W^q(G_1)$ with integer $q \geqq 0$, by saying that a sequence $\{w_k; k = (k_1, k_2, \ldots, k_n)\}$ of complex numbers $w_k$ with $w_k = \overline{w}_{-k}$ belongs to $W^q(G_1)$ if \eqref{eq:VI.9.7} holds. This space $W^q(G_1)$ is normed by $\|\{w_k\}\|_q = \left(\sum\limits_k |w_k|^2 (1 + |k|^2)^q\right)^{1/2}$. By virtue of the Parseval relation with respect to the complete orthonormal system $\{(2\pi)^{-n/2} \exp(ik \cdot x)\}$ of $L^2(G_1)$, we see that, when $q \geqq 0$, the norm $\|v\|_q = \left(\sum\limits_{|s| \leqq q} \int_{G_1} |D^s v(x)|^2 \dd x\right)^{1/2}$ is equivalent to the norm $\|\{v_k\}\|_q$, where $v(x) \sim \sum\limits_k v_k \exp(ik \cdot x)$. 
+
+The above proof of \eqref{eq:VI.9.7} shows that, if $f \in W^{p}(G_{1})$, then $D^{s}f \in W^{p-|s|}(G_{1})$, and $\varphi f \in W^{p}(G_{1})$ for $\varphi \in C^{\infty}(G_{1})$. Hence 
+if $f \in W^{p}(G_{1})$, then, for any differential operator $N$ of 
+order $q$ with $C^\infty (G_1)$ coefficients, $Nf\in W^{p-|q|}(G_1)$. 
+
+
+To prove the Theorem for our periodic case, we first show that we may assume that the weak solution $u \in L^{2}(G_{1}) = W^{0}(G_{1})$ of \eqref{eq:VI.9.2} belongs to $W^{m}(G_{1})$. This is justified as follows. Let 
+\[
+u (x) \sim \sum\limits_{k} u _{k} \exp (i k \cdot x), v (x) \sim \sum\limits_{k} u _{k} (1 + | k | ^{2}) ^{-m} \exp (i k \cdot x).
+\]
+
+Then it is easy to see that $v(x) \in W^{2m}(G_1)$ and that $v$ is a weak solution of $(I - \Delta)^m v = u$, where $\Delta$ denotes the Laplacian $\sum\limits_{j=1}^{n} \partial^2 / \partial x_j^2$. Hence $v$ is a weak solution of the strongly elliptic equation of order 4m: 
+\begin{equation}\tag{2'}\label{eq:VI.9.2'}
+L (I - \Delta) ^{m} v = f.
+\end{equation}
+
+If we can show that this weak solution $v \in W^{2m}(G_1)$ actually belongs to $W^{4m+p}(G_1)$, then, by ($8$), $u =: (I - \Delta)^m v$ belongs to $W^{4m+p-2m}(G_1) =$ 
+$W^{p+2m}(G_{1})$. Therefore, without losing the generality, we may assume that the weak solution $u$ of \eqref{eq:VI.9.2} belongs to $W^{m}(G_{1})$, where $m$ is half of the order $2m$ of $L$. 
+
+Next, by Gårding's inequality \eqref{eq:VI.9.4} for $L$ and that for $(I - \Delta)^m$, we may apply the Lax-Milgram theorem (Chapter~\ref{chap:III}, \ref{sec:III.7}) to the following effect. The bilinear forms on $C^\infty(G_1)$: 
+\begin{equation}\label{eq:VI.9.9}
+(\varphi , \psi) ^{\prime} = (\varphi , L ^{*} \psi) _{0} \text{ and } (\varphi , \psi) ^{\prime \prime} = (\varphi , (I - \Delta) ^{m} \psi) _{0}
+\end{equation}
+can both be extended to be continuous bilinear forms on $W^{m}(G_{1})$ such that there exist one-one bicontinuous linear mappings $T'$, $T''$ on $W^{m}(G_{1})$ onto $W^{m}(G_{1})$ satisfying the conditions 
+\[
+(T ^{\prime} \varphi , \psi) ^{\prime} = (\varphi , \psi) _{m}, (T ^{\prime \prime} \varphi , \psi) ^{\prime \prime} = (\varphi , \psi) _{m} \quad \text{ for } \quad \varphi , \psi \in W ^{m} (G _{1}).
+\]
+
+Therefore, there exists a one-one bicontinuous linear map $T_{m} = T^{\prime \prime}(T^{\prime})^{-1}$ on $W^{m}(G_{1})$ onto $W^{m}(G_{1})$ such that 
+\begin{equation}\label{eq:VI.9.10}
+(\varphi , \psi) ^{\prime} = (T _{m} \varphi , \psi) ^{\prime \prime} \text{ whenever } \varphi , \psi \in W ^{m} (G _{1}).
+\end{equation}
+
+We can show that 
+\begin{equation}
+\label{eq:VI.9.11}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+for any $j \geqq 1, T _{m}$ maps $W ^{m+j} (G _{1})$ onto $W ^{m+j} (G _{1})$ in a one-one and bicontinuous way.
+\end{minipage}
+\end{equation}
+
+
+In fact, we have 
+\[
+(\varphi , L ^{*} (I - \Delta) ^{j} \psi) _{0} = (T _{m} \varphi , (I - \Delta) ^{m+j} \psi) _{0} \quad \text{ for } \quad \varphi , \psi \in C ^{\infty} (G _{1}).
+\]
+
+On the other hand, there exists, by the Lax-Milgram theorem as applied to the strongly elliptic operators $(I-\Delta)^{j}L$ and $(I-\Delta)^{m+j}$, a one-one bicontinuous linear map $T_{m+j}$ of $W^{m+j}(G_{1})$ onto $W^{m+j}(G_{1})$ such that 
+\[
+(\varphi , L ^{*} (I - \Delta) ^{j} \psi) _{0} = (T _{m+j} \varphi , (I - \Delta) ^{m+j} \psi) _{0} \quad \text{ for } \quad \varphi , \psi \in C ^{\infty} (G _{1}).
+\]
+
+Therefore, the function $w = (T_{m+j} - T_m)\varphi$ is, for any $\varphi \in C^\infty(G_1)$, a weak solution of $(I - \Delta)^{m+j}w = 0$. But, such a $w(x)$ is identically zero. For, the Fourier coefficient $w_k$ of $w(x)$ satisfies 
+\[
+\begin{aligned}
+0 &= ((I - \Delta) ^{m+j} w (x), \exp (i k \cdot x)) _{0} = (w (x), (I - \Delta) ^{m+j} \exp (i k \cdot x)) _{0}
+\\
+&= (1 + | k | ^{2}) ^{m+j} (w (x), \exp (i k \cdot x)) _{0} = (1 + | k | ^{2}) ^{m+j} w _{k},
+\end{aligned}
+\]
+and so $w_{k} = 0$ for all $k$. Thus $(T_{m+j} - T_{m})$ is $0$ on $C^\infty(G_1)$. The space $C^\infty(G_1)$ is dense in $W^{m+j}(G_1) \subseteq W^m(G_1)$, since trigonometric polynomials $\sum\limits_{|k| < \infty} w_k \exp(ik \cdot x)$ are dense in the space $W^{m+j}(G_1)$. Hence $T_{m+j} = T_m$ on $W^{m+j}(G_1)$. 
+
+We are now ready to prove the differentiability theorem for our periodic case. We have, for $\psi\in C^{\infty}(G_{1})$, 
+\[
+(f, \psi) _{0} = (u, L ^{*} \psi) _{0} = (u, \psi) ^{\prime} = (T _{m} u, \psi) ^{\prime \prime} = (T _{m} u, (I - \Delta) ^{m} \psi) _{0}.
+\]
+
+Hence, for 
+\[
+T _{m} u \sim \sum\limits_{k} c _{k} \exp (i k \cdot x), \psi (x) \sim \sum\limits_{k} \psi_{k} \exp (i k \cdot x),
+\]
+we obtain, by Parseval's relation, 
+\[
+(T _{m} u, (I - \Delta) ^{m} \psi) _{0} = \sum\limits_{k} c _{k} (1 + | k | ^{2}) ^{m} \overline {{{\psi}}} _{k} = \sum\limits_{k} f _{k} \overline {{{\psi}}} _{k}.
+\]
+
+By the arbitrariness of $\psi \in C^{\infty}(G_{1})$, we have $c_k(1 + |k|^2)^m = f_k$, and so, by $f \in W^{p}(G_{1})$, we must have $T_m u \in W^{p+2m}(G_1)$. Hence, by ($11$), $u \in W^{p+2m}(G_1)$. It is to be noted that the above conclusion $u \in W^{p+2m}(G_1)$ is true even in the case $0 \geqq p \geqq (1-m)$, i.e., the case $\{f_k\} \in W^{p}(G)$ with $0 \geqq p \geqq (1-m)$. For, by $p + 2m \geqq m + 1$, we can apply ($11$). 
+
+We finally shall prove, for the general non-periodic case, our differentiability theorem. The following argument is due to P. \textsc{Lax} \cite{lewy172}. 
+
+We want to prove, for the general non-periodic case, the differentiability theorem in a vicinity of a point $x^{0}$ of $G$. Let $\beta(x) \in C_{0}^{\infty}(G)$ be identically one in a vicinity of $x^{0}$. Denote $\beta u$ by $u'$. $u'$ is a weak solution of 
+\begin{equation}\label{eq:VI.9.12}
+L u ^{\prime} = \beta f + N u,
+\end{equation}
+where $N$ is a differential operator of order at most equal to $(2m-1)$ whose coefficients are, together with $\beta(x)$, zero outside some vicinity $V$ of $x^{0}$, and the operator $N$ is to be applied in the sense of the distribution. We denote the distribution $\beta f + Nu$ by $f'$. 
+
+Let the periodic parallelogram $G_{1}$ contain $V$, and imagine the coefficients of $L$ so altered inside $G_{1}$ but outside $V$ that they become periodic without losing their differentiability and ellipticity properties. Denote the so altered $L$ by $L'$. Thus $u'$ is a weak solution in $G$ of 
+\begin{equation}\label{eq:VI.9.13}
+L ^{\prime} u ^{\prime} = f ^{\prime}, \text{ where } f ^{\prime} = \beta f + N u.
+\end{equation}
+
+We can thus apply the result obtained above for the periodic case to our weak solution $u'$. We may assume that the weak solution $u'$ belongs to $W^{m}(G_{1})$. Thus, since $N$ is of order $\leqq(2m-1)$ and with coefficients vanishing onside $V$, $f'=\beta f+Nu$ must satisfy, by ($8$), 
+$f^{\prime}\in W^{p^{\prime}}(G_{1})$ with $p^{\prime} = \min (p,m - (2m - 1)) = \min (p,1 - m)\geqq 1 - m.$ 
+
+Therefore, the weak solution $u'$ of \eqref{eq:VI.9.13} must satisfy 
+\[
+\begin{aligned}
+&u ^{\prime} \in W ^ {p ^{\prime \prime}} (G _{1})  \text{ with } p ^{\prime \prime} = \min (p + 2 m, 1 - m + 2 m) = \min (p + 2 m, m + 1).
+\end{aligned}
+\]
+
+Hence, in a certain vicinity of $x^0$, $u$ has square integrable distributional derivatives up to order $p''$ which is $\geqq (m + 1)$. Thus $f' = \beta f + Nu$ has, in a vicinity of $x^0$, square integrable distributional derivatives of order up to 
+\[
+p ^{\prime \prime \prime} = \min (p, p ^{\prime \prime} - (2 m - 1)) \geqq \min (p, 2 - m).
+\]
+
+Thus again applying the result already obtained, we see that $u'$ has, in a certain vicinity of $x^{0}$, square integrable distributional derivatives up to order 
+\[
+p ^{(4)} = \min (p + 2 m, 2 - m + 2 m) = \min (p + 2 m, m + 2).
+\]
+
+Repeating the process, we see that $u$ has, in a vicinity of $x^{0}$, square integrable distributional derivatives up to order $p + 2m$. 
+\end{proof}
+
+
+\yossection{10}{The Malgrange-Ehrenpreis Theorem}
+\label{sec:VI.10}
+
+There is a striking difference between ordinary differential equations and partial differential equations. A classical result of \textsc{Peano} states that the ordinary differential equation $\dd y/\dd x = f(x, y)$ has a solution under a single condition of the continuity of the function $f$. This result has also been extended to equations of higher order or to systems of equations. However, for partial differential equations, the situation is entirely different. H. \textsc{Lewy} \cite{leray176} constructed in $1957$ the equation 
+\[
+- i \frac {\partial u}{\partial x _{1}} + \frac {\partial u}{\partial x _{2}} - 2 (x _{1} + i x _{2}) \frac {\partial u}{\partial x _{3}} = f (x _{3}),
+\]
+which has no solution at all if $f$ is not analytic, even if $f$ is $C^{\infty}$. Lewy's example led L. \textsc{Hörmander} \cite{hormander115} to develop a systematic method of constructing linear partial differential equations without solutions. Thus it is important to single out classes of linear partial differential equations with solutions. 
+
+Let $P(\xi)$ be a polynomial in $\xi_{1}, \xi_{2}, \ldots, \xi_{n}$, and let $P(D)$ be the linear differential operator obtained by replacing $\xi_{j}$ by $D_{j} = i^{-1}\partial/\partial x_{j}$. $P(D)$ may be written as 
+\begin{equation}P (D) = \sum\limits_{\alpha} c _{\alpha} D _{\alpha}, \text{ where, for } \alpha = (\alpha , \alpha_{2}, \dots , \alpha_{n}), D _{\alpha} = D _{1} ^ {\alpha_{1}} D _{2} ^ {\alpha_{2}} \dots D _{n} ^ {\alpha_{n}}. \notag\end{equation}
+
+\begin{definition}\label{def:VI.10.Definition.1} By a fundamental solution of $P(D)$ we mean a distribution $E$ in $\mathbb{R}^{n}$ such that 
+\[
+P (D) E = \delta = T _{\delta}.
+\]
+\end{definition}
+
+The importance of the notion of the fundamental solution is due to the fact that 
+\[
+u = E * f, \text{ where } f \in C _{0} ^{\infty} (\mathbb{R}^{n}),
+\]
+gives a solution of the equation 
+\[
+P (D) u = f.
+\]
+
+In fact, the differentiation rule \eqref{eq:VI.3.10} in Chapter~\ref{chap:VI}, \ref{sec:VI.3} implies that $P(D)u = (P(D)E)\star f = \delta \star f = f$. 
+
+\begin{examplen} Let $P(D)$ be the Laplacian $\Delta = \sum\limits_{j=1}^{n} \frac{\partial^2}{\partial x_j^2}$ in $\mathbb{R}^{n}$ with $n \geqq 3$. Then the distribution
+$E = T_{g}$, where $g(x) = \frac{1}{(2 - n)S_n} |x|^{2-n}$ and $S_{n} =$ the area of the surface of the unit sphere of $\mathbb{R}^{n}$, 
+is a fundamental solution of $\Delta$. 
+
+\end{examplen}
+\begin{proof}
+ We have, in the polar coordinates, $\dd x = |x|^{n-1} d |x| dS_n$, and so the function $g(x)$ is locally integrable in $\mathbb{R}^{n}$. Hence 
+\[
+\Delta T _ {| x | ^{2-n}} (\varphi) = \lim\limits _{\varepsilon \downarrow 0} \int_{| x | \geqq \varepsilon} | x | ^{2-n} \cdot \Delta \varphi \dd x, \varphi \in \mathfrak {D} (\mathbb{R}^{n}). \]
+
+Let us take two positive numbers $\varepsilon$ and $R (> \varepsilon)$ such that the $\supp(\varphi)$ is contained in the interior of the sphere $|x| \leqq R$. Consider the domain $G: \varepsilon \leqq |x| \leqq R$ of $\mathbb{R}^{n}$ and apply Green's integral theorem, obtaining 
+\[
+\int_{G} \left(| x | ^{2-n} \cdot \Delta \varphi - \Delta | x | ^{2-n} \cdot \varphi\right) \dd x = \int_{\partial G} \left(| x | ^{2-n} \cdot \frac {\partial \varphi}{\partial v} - \frac {\partial | x | ^{2-n}}{\partial v} \cdot \varphi\right) \dd S
+\]
+where $S = \partial G$ is the boundary surfaces given by $|x| = \varepsilon$ and $|x| = R$, and $\nu$ denotes the outwards normal to $S$. Since $\varphi$ vanishes around $|x| = R$, we have, remembering that $\Delta |x|^{2-n} = 0$ for $x \neq 0$ and that $-\frac{\partial}{\partial\nu} = \frac{\partial}{\partial|x|}$ at the points of the inner boundary surface $|x| = \varepsilon$, 
+\[
+\int_ {\mathbb{R}^{n}} | x | ^{2-n} \Delta \varphi \dd x = - \int_{| x | = \varepsilon} \varepsilon^{2-n} \frac {\partial \varphi}{\partial | x |} \dd S + \int_{| x | = \varepsilon} (2 - n) \varepsilon^{1-n} \varphi \dd S.
+\]
+
+When $\varepsilon \downarrow 0$, the expression $\partial \varphi / \partial |x| = \sum\limits_{j=1}^{n} (x_j / |x|) \cdot \partial \varphi / \partial x_j$ is bounded and the area of the boundary surface $|x| = \varepsilon$ is $S_n \varepsilon^{n-1}$. Consequently the first term on the right tends to zero as $\varepsilon \downarrow 0$. By the continuity of $\varphi$ and a similar argument to above, the second term on the right tends, as $\varepsilon \downarrow 0$, to $(2 - n) S_n \cdot \varphi(0)$. Thus $T_g$ is a fundamental solution of $\Delta$. 
+\end{proof}
+
+The existence of a fundamental solution for every linear partial differential equation with constant coefficients was proved independently by B. \textsc{Malgrange} \cite{malgrange186} and L. \textsc{Ehrenpreis} \cite{ehrenpreis53} around $1954$---$55$. The exposition of the result given below is due to L. \textsc{Hörmander} \cite{hormander116}. 
+
+\begin{definition}\label{def:VI.10.Definition.2} Set 
+\begin{equation}\label{eq:VI.10.1}
+\begin{aligned}
+&\tilde {P} (\xi) = \left(\sum\limits_{| \alpha | \geqq 0} | P ^{(\alpha)} (\xi) | ^{2}\right) ^{1/2} \quad \text{ where } \quad P ^{(\alpha)} (\xi) = D _{\xi} ^{\alpha} P (\xi), D _{\xi} ^{\alpha} = \frac {\partial^ {\alpha_{1} + \alpha_{2} + \cdots + \alpha_{n}}}{\partial_ {\xi_{1}} ^ {\alpha_{1}} \partial_ {\xi_{2}} ^ {\alpha_{2}} \ldots \partial_ {\xi_{n}} ^ {\alpha_{n}}}.
+\end{aligned}
+\end{equation}
+\end{definition}
+
+We say that a differential operator $Q(D)$ with constant coefficients is weaker than $P(D)$ if 
+\begin{equation}\label{eq:VI.10.2}
+\tilde {Q} (\xi) \leqq C \tilde {P} (\xi), \xi \in \mathbb{R}^{n}, C \text{ being a positive constant }.
+\end{equation}
+
+\begin{theorem}\label{thm:VI.10.Theorem.1} If $\Omega$ is a bounded domain of $\mathbb{R}^{n}$ and $f \in L^2(\Omega)$, then there exists a solution $u$ of $P(D) u = f$ in $\Omega$ such that $Q(D) u \in L^2(\Omega)$ for all $Q$ weaker than $P$. Here the differential operators $P(D)$ and $Q(D)$ are to be applied in the sense of the theory of distributions. 
+\end{theorem}
+
+The proof is based on 
+
+\begin{theorem}\label{thm:VI.10.Theorem.2} For every $\varepsilon > 0$, there is a fundamental solution $E$ of $P(D)$ such that, with a constant $C$ independent of $u$, 
+\begin{equation}\label{eq:VI.10.3}
+\left| (E * u) (0) \right| \leqq C \sup\limits _{| \eta | \leqq \varepsilon} \int_ {R _{n}} \left| \hat {u} (\xi + i \eta) \right| / \tilde {P} (\xi) \dd \xi , u \in C _{0} ^{\infty} (\mathbb{R}^{n}).
+\end{equation}
+\end{theorem}
+
+Here $\hat{u}$ is the Fourier-Laplace transform of $u$: 
+\[
+\hat {u} (\zeta) = (2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} e ^{- i \langle x, \zeta \rangle} u (x) \dd x, \zeta = \xi + i \eta ,
+\]
+and the finiteness of the right side of \eqref{eq:VI.10.3} is assured by the Paley-Wiener theorem in Chapter~\ref{chap:VI}, \ref{sec:VI.4}. 
+
+Deduction of Theorem~\ref{thm:VI.10.Theorem.1} from Theorem~\ref{thm:VI.10.Theorem.2}. Replace $u$ in \eqref{eq:VI.10.3} by $Q(D) \, u * v$, where $u$ and $v$ are in $C_0^\infty(\mathbb{R}^{n})$. Then, by \eqref{eq:VI.3.10} in Chapter~\ref{chap:VI}, \ref{sec:VI.3}, 
+\[
+\left| (Q (D) E * u * v) (0) \right| = \left| (E * Q (D) u * v) (0) \right| \leqq C N (Q (D) u * v),
+\]
+where $N(u) = \sup\limits_{|\eta| \leqq \varepsilon} \int_{\mathbb{R}^{n}} |\hat{u}(\xi + i\eta)| / \tilde{P}(\xi) \cdot \dd\xi$. 
+
+The Fourier-Laplace transform of $Q(D)$ $u * v$ is, by \eqref{eq:VI.2.17} in Chapter~\ref{chap:VI}, \ref{sec:VI.2} and \eqref{eq:VI.3.15} in Chapter~\ref{chap:VI}, \ref{sec:VI.3}, equal to $(2\pi)^{n/2} Q(\zeta) \hat{u}(\zeta) \hat{v}(\zeta)$. Since, by Taylor's formula, 
+\begin{equation}\label{eq:VI.10.4}
+Q (\xi + i \eta) = \sum\limits_{\alpha} \frac {1}{\alpha !} (- \eta) ^{\alpha} D _{\alpha} Q (\xi), \text{ where } (- \eta) ^{\alpha} = \prod\limits_{j=1} ^{n} (- \eta_{j}) ^ {\alpha_{j}},
+\end{equation}
+we have, by \eqref{eq:VI.10.2}, 
+\[
+\left| Q (\xi + i \eta) \right| / \tilde {P} (\xi) \leqq C ^{\prime} \text{ for } | \eta | \leqq \varepsilon \text{ and } \xi \in \mathbb{R}^{n},
+\]
+where the constant $C'$ may depend on $\varepsilon$. Thus 
+\[
+N (Q (D) u * v) \leqq (2 \pi) ^{n/2} C ^{\prime} \cdot \sup\limits _{| \eta | \leqq \varepsilon} \int_ {\mathbb{R}^{n}} | \hat {u} (\xi + i \eta) \hat {v} (\xi + i \eta) | \dd \xi .
+\]
+
+By Parseval's theorem for the Fourier transform, we obtain, denoting by $\|\|$ the $L^2(\mathbb{R}^{n})$-norm, 
+\[
+\int_ {\mathbb{R}^{n}} | \hat {\boldsymbol {u}} (\xi + i \eta) | ^{2} \dd \xi = \int_ {\mathbb{R}^{n}} | u (x) | ^{2} e ^{2 \langle x, \eta \rangle} \dd x \leqq \| u (x) e ^{\varepsilon | x |} \| ^{2} \text{ when } | \eta | \leqq \varepsilon .
+\]
+and a similar estimate for $\hat{v}$. Thus, by Schwarz' inequality, 
+$N(Q(D)u*v)\leqq C''\left\|u(x)e^{\varepsilon|x|}\right\|\left\|v(x)e^{\varepsilon|x|}\right\|$ whenever $u$ and $v\in C_{0}^{\infty}(\mathbb{R}^{n})$, $C''$ denoting a constant which may depend on $\varepsilon$. 
+
+Therefore we have proved 
+\begin{equation}\label{eq:VI.10.5}
+\left| \int_ {\mathbb{R}^{n}} (Q (D) E * u) (x) v (- x) \dd x \right| \leqq (C C ^{\prime \prime}) \| u e ^{\varepsilon | x |} \| \cdot \| v e ^{\varepsilon | x |} \| \quad (u, v \in C _{0} ^{\infty} (\mathbb{R}^{n})).
+\end{equation}
+
+We shall write $L_{\varepsilon}^{2}(\mathbb{R}^{n})$ for the Hilbert space of functions $w(x)$ normed by 
+\[
+\left(\int_ {\mathbb{R}^{n}} | w (x) | ^{2} e ^{\varepsilon | x |} \dd x\right) ^{1/2} = \left\| w (x) e ^{\varepsilon | x |} \right\|.
+\]
+
+Since $C_0^\infty(\mathbb{R}^{n})$ is dense in $L_{\varepsilon}^2(\mathbb{R}^{n})$ and, as may be proved easily, $L_{-\varepsilon}^2(\mathbb{R}^{n})$ is the conjugate space of $L_{\varepsilon}^2(\mathbb{R}^{n})$, we obtain, by dividing \eqref{eq:VI.10.5} by $\|v(x)e^{\varepsilon|x|}\|$ and taking the supremum over $v \in C_0^\infty(\mathbb{R}^{n})$, 
+\[
+\left\| (Q (D) E * u) (x) e ^{- \varepsilon | x |} \right\| \leqq \left(C C ^{\prime \prime}\right) \left\| u (x) e ^{\varepsilon | x |} \right\|, u \in C _{0} ^{\infty} \left(\mathbb{R}^{n}\right).
+\]
+
+Hence the mapping 
+\begin{equation}\label{eq:VI.10.6}
+u \rightarrow Q (D) E * u
+\end{equation}
+can be extended by continuity from $C_0^\infty (\mathbb{R}^{n})$ to $L_{\varepsilon}^2 (\mathbb{R}^{n})$, so that it becomes a continuous linear mapping on $L_{\varepsilon}^{2}(\mathbb{R}^{n})$ into $L_{-\varepsilon}^{2}(\mathbb{R}^{n})$. Thus, to prove Theorem~\ref{thm:VI.10.Theorem.1}, we have to take $f_{1} = f$ in $\Omega$ and $f_{1} = 0$ in $\mathbb{R}^{n} - \Omega$ and define $u$ as equal to $u = E * f_{1}$. 
+
+For the proof of Theorem~\ref{thm:VI.10.Theorem.2}, we prepare three Lemmas. 
+
+\begin{lemma}[\textsc{Malgrange}]\label{lem:VI.10.Lemma.1} If $f(z)$ is a holomorphic function of a complex variable $z$ for $|z| \leqq 1$ and $p(z)$ is a polynomial in which the coefficient of the highest order term is $A$, then 
+\begin{equation}\label{eq:VI.10.7}
+\left| A f (0) \right| \leqq (2 \pi) ^{-1} \int_{- \pi} ^{\pi} \left| f \left(e ^{i \theta}\right) p \left(e ^{i \theta}\right) \right| \dd \theta .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+ Let $z_{j}$'s be the zeros of $p(z)$ in the unit circle $|z| < 1$ and put 
+\[
+p (z) = q (z) \prod\limits_{j} \frac {z - z _{j}}{\bar {z} _{j} z - 1}. \]
+
+Then $q(z)$ is regular in the unit circle and $|p(z)| = |q(z)|$ for $|z| = 1$. Hence we have 
+\[
+\begin{aligned} (2 \pi) ^{-1} \int_{- \pi} ^{\pi} | f (e ^{i \theta}) p (e ^{i \theta}) | \dd \theta & = (2 \pi) ^{-1} \int_{- \pi} ^{\pi} | f (e ^{i \theta}) q (e ^{i \theta}) | \dd \theta \\ & \geqq (2 \pi) ^{-1} \left| \int_{- \pi} ^{\pi} f (e ^{i \theta}) q (e ^{i \theta}) \dd \theta \right| = | f (0) q (0) |. \end{aligned}
+\]
+
+Thus Lemma~\ref{lem:VI.10.Lemma.1} is proved since $|q(0)/A|$ is equal to the product of the absolute values of zeros of $p(z)$ outside the unit circle. 
+\end{proof}
+
+\begin{lemma}\label{lem:VI.10.Lemma.2} With the notations in Lemma~\ref{lem:VI.10.Lemma.1}, we have, if the degree of $p(z)$ is $\leqq m$, 
+\begin{equation}\label{eq:VI.10.8}
+\left| f (0) p ^{(k)} (0) \right| \leqq \frac {m !}{(m - k) !} (2 \pi) ^{-1} \int_{- \pi} ^{\pi} \left| f \left(e ^{i \theta}\right) p \left(e ^{i \theta}\right) \right| \dd \theta .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+ We may assume that the degree of $p(z)$ is $m$ and that 
+\[
+p (z) = \prod\limits_{j=1} ^{m} (z - z _{j}). \]
+
+Applying the preceding Lemma~\ref{lem:VI.10.Lemma.1} to the polynomial $\prod\limits_{j=1}^{k}(z-z_j)$ and the holomorphic function $f(z) \cdot \prod\limits_{j=k+1}^{m}(z-z_j)$, we obtain 
+\[
+\left| f (0) \prod\limits_{j=k+1} ^{m} z _{j} \right| \leqq (2 \pi) ^{-1} \int_{- \pi} ^{\pi} | f (e ^{i \theta}) p (e ^{i \theta}) | \dd \theta .
+\]
+
+A similar inequality will hold for any product of $(m - k)$ of the numbers $z_{j}$ on the left hand side. Since $p^{(k)}(0)$ is the sum of $m!/(m-k)!$ such terms, multiplied by $(-1)^{m-k}$, we have proved the inequality \eqref{eq:VI.10.8}. 
+\end{proof}
+
+\begin{lemma}\label{lem:VI.10.Lemma.3} Let $F(\zeta) = F(\zeta_1, \zeta_2, \ldots, \zeta_n)$ be holomorphic for $|\zeta| = \left(\sum\limits_{j=1}^{n} |\zeta_j|^2\right)^{1/2} < \infty$ and $P(\zeta) = P(\zeta_1, \zeta_2, \ldots, \zeta_n)$. a polynomial of degree $\leqq m$. Let $\Phi(\zeta) = \Phi(\zeta_1, \zeta_2, \ldots, \zeta_n)$ be a non-negative integrable function with compact support depending only on $|\zeta_1|, |\zeta_2|, \ldots, |\zeta_n|$. Then we have 
+\begin{equation}\label{eq:VI.10.9}
+\left| F (0) D _{\alpha} P (0) \right| \int_{| \zeta | < \infty} \left| \zeta^{\alpha} \right| \Phi (\zeta) \dd \zeta \leqq \frac {m !}{(m - \alpha) !} \int_{| \zeta | < \infty} \left| F (\zeta) P (\zeta) \right| \Phi (\zeta) \dd \zeta ,
+\end{equation}
+where $\dd\zeta$ is the Lebesgue measure $\dd\xi_1\dd\eta_1\ldots \dd\xi_nd\eta_n$ ( $\zeta_k = \xi_k + i\eta_k$) and $m$ is regarded as multi-index $(m, m, \ldots, m)$. 
+\end{lemma}
+
+\begin{proof}
+ Let $f(z)$ be an entire holomorphic function and apply \eqref{eq:VI.10.8} to the functions $f(\mathbf{r}z)$ and $p(\mathbf{r}z)$, where $r > 0$. Then we obtain 
+\[
+\left| f (0) p ^{(k)} (0) \right| \cdot r ^{k} \leqq \frac {m !}{(m - k) !} (2 \pi) ^{-1} \int_{- \pi} ^{\pi} \left| f (r e ^{i \theta}) p (r e ^{i \theta}) \right| \dd \theta . \]
+
+Let $\psi(r)$ be a non-negative, integrable function with compact support. Multiplying the above inequality by $2\pi r\psi(r)$ and integrating with respect to $r$, we obtain 
+\begin{equation}\label{eq:VI.10.10}
+\left| f (0) p ^{(k)} (0) \right| \int | t | ^{k} \psi (| t |) \dd t \leqq \frac {m !}{(m - k) !} \int | f (t) p (t) | \psi (| t |) \dd t
+\end{equation}
+where $\dd t = r \dd r \dd\theta$ and the integration is extended over the whole complex $t$-plane. Lemma~\ref{lem:VI.10.Lemma.3} is obtained by applying \eqref{eq:VI.10.10} successively to the variables $\zeta_{1}, \zeta_{2}, \ldots, \zeta_{n}$, one at a time. 
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:VI.10.Theorem.2}.]
+Put $P(D) \, u = v$, where $u \in C_0^\infty(\mathbb{R}^{n})$. Then $P(\zeta) \, \hat{u}(\zeta) = \hat{v}(\zeta)$. Apply Lemma~\ref{lem:VI.10.Lemma.3} with $F(\zeta) = \hat{u}(\xi + \zeta)$, with $P(\zeta)$ replaced by $P(\xi + \zeta)$ and with $|\Phi(\zeta)| = 1$ when $|\zeta| \leqq \varepsilon$ and $= 0$ otherwise. Since $\tilde{P}(\xi) \leqq \sum\limits_{\alpha} |D^\alpha P(\xi)|$, we obtain, from \eqref{eq:VI.10.9},
+\[
+\left| \hat {u} (\xi) \tilde {P} (\xi) \right| \leqq C _{1} \int_{| \zeta | \leqq \varepsilon} \left| \hat {u} (\xi + \zeta) P (\xi + \zeta) \right| \dd \zeta = C _{1} \int_{| \zeta | \leqq \varepsilon} \left| \hat {v} (\xi + \xi) \right| \dd \zeta .
+\]
+
+Hence, by Fourier's integral theorem, 
+\[
+\begin{aligned}
+\left| u (0) \right|& \leqq (2 \pi) ^{-n/2} \int | \hat {u} (\xi) | \dd \xi \leqq C _{1} ^{\prime} \int_{| \zeta | \leqq e} \left(\int | \hat {v} (\xi + \zeta) | / \tilde {P} (\xi) \dd \xi\right) \dd \zeta
+\\
+\quad& \leqq C _{1} ^{\prime} \int_ {\left(\xi^{\prime 2} + \eta^{\prime 2} \leqq e\right)} | \hat {v} (\xi + \xi^{\prime} + i \eta^{\prime}) | / \tilde {P} (\xi) \dd \xi^{\prime} \dd \eta^{\prime}\left. \right) \dd \xi .
+\end{aligned}
+\]
+
+On the other hand, we have 
+\[
+\tilde {P} (\xi + \xi^{\prime}) / \tilde {P} (\xi) \leqq C _{2} \quad \text{ when } | \xi^{\prime} | \leqq \varepsilon ,
+\]
+because 
+\[
+D ^{\alpha} P (\xi + \xi^{\prime}) = \sum\limits_{\beta} \frac {(\xi^{\prime}) ^{\beta}}{\beta !} D ^{\alpha + \beta} P (\xi),
+\]
+so that $|D^{\alpha}P(\xi + \xi')| / \tilde{P}(\xi)$ is bounded when $|\xi'| \leqq \varepsilon$. Therefore we have 
+\begin{equation}\label{eq:VI.10.11}
+\begin{aligned}
+&\left| u (0) \right| \leqq C _{1} ^{\prime} C _{2} \int \left(\int_ {\xi^{\prime 2} + \eta^{\prime 2} \leqq e ^{2}} \left| \hat {v} (\xi + \xi^{\prime} + i \eta^{\prime}) \right| / \tilde {P} (\xi + \xi^{\prime}) \dd \xi^{\prime} \dd \eta^{\prime}\right) \dd \xi \leqq C _{3} \| v \| ^{\prime}, \text{ where }
+\\
+&\| v \| ^{\prime} = \int_{| \eta | \leqq e} \left(\int | \hat {v} (\xi + i \eta) | / \tilde {P} (\xi) \dd \xi\right) \dd \eta \quad (u \in C _{0} ^{\infty} (R _{n})),
+\end{aligned}
+\end{equation}
+$C_{3}$ denoting a constant depending only on $\varepsilon$. 
+
+By the way, the finiteness of $\|v\|'$ is a consequence of the Paley-Wiener theorem in Chapter~\ref{chap:VI}, \ref{sec:VI.4}. Consider the space $\tilde{C}_{0}^{\infty}(\mathbb{R}^{n})$ which is the completion of $C_{0}^{\infty}(\mathbb{R}^{n})$ with respect to the norm $\|v\|'$. Then, by the Hahn-Banach extension theorem, the linear functional $L$: 
+\[
+v = P (D) u \rightarrow u (0) \quad (\text{ where } u \in C _{0} ^{\infty} (\mathbb{R}^{n}))
+\]
+can be extended to a continuous linear functional $L$ defined on $\tilde{C}_{0}^{\infty}(\mathbb{R}^{n})$. As in the case of the space $L^{1}(\mathbb{R}^{n})$, we see that there exists a Baire function $k(\xi + i\eta)$ bounded a.e. with respect to the measure $\tilde{P}(\xi)^{-1}\dd\xi \dd\eta$ such that the extended linear functional $L$ is represented as 
+\begin{equation}\label{eq:VI.10.12}
+L (v) = \int_{| \eta | \leqq e} (\int \hat {v} (\xi + i \eta) k (\xi + i \eta) / \tilde {P} (\xi) \cdot \dd \xi) \dd \eta .
+\end{equation}
+
+When $v_{h}(x) \in C_0^\infty(\mathbb{R}^{n})$ tends, as $h \to \infty$, to $0$ in the topology of $\mathfrak{D}(\mathbb{R}^{n})$, $v_{h}(x)e^{\langle x,\eta\rangle}$ also tends to zero in the topology of $\mathfrak{D}(\mathbb{R}^{n})$, uniformly with respect to $\eta$ for $|\eta| \leqq \varepsilon$. Hence, as in Chapter~\ref{chap:VI}, \ref{sec:VI.1}, we see easily that $\hat{v}_{h}(\xi + i\eta)$, as function of $\xi$, tends to zero in the topology of $\mathfrak{S}(\mathbb{R}^{n})$, uniformly in $\eta$ for $|\eta| \leqq \varepsilon$. Therefore, by \eqref{eq:VI.10.12}, $L$ defines a distribution $T \in \mathfrak{D}(\mathbb{R}^{n})'$. Thus, by \eqref{eq:VI.3.5} in Chapter~\ref{chap:VI}, \ref{sec:VI.3}. 
+\begin{equation}\label{eq:VI.10.13}
+L (v) = (T * \check {v}) (0) = (\check {T} * v) (0).
+\end{equation}
+
+We have thus proved Theorem~\ref{thm:VI.10.Theorem.2} by taking $E = \check{T}$. \eqref{eq:VI.10.3} is clear from \eqref{eq:VI.10.11}. 
+\end{proof}
+
+
+\yossection{11}{Differential Operators with Uniform Strength}
+\label{sec:VI.11}
+
+The existence theorem of the preceding section may be extended to a linear differential operator 
+\begin{equation}\label{eq:VI.11.1}
+P (x, D) = \sum\limits_{\alpha} a _{\alpha} (x) D _{\alpha}
+\end{equation}
+whose coefficients $a_{\alpha}(x)$ are continuous in an open bounded domain $\Omega$ of $\mathbb{R}^{n}$. 
+
+\begin{definitionu} $P(x, D)$ is said to be of uniform strength in $\Omega$, if 
+\begin{equation}\label{eq:VI.11.2}
+\sup\limits _ {x, y \in \Omega , \xi \in \mathbb{R}^{n}} \tilde {P} (x, \xi) / \tilde {P} (y, \xi) < \infty ,
+\end{equation}
+where $\tilde{P}(x, \xi)$ is defined by $\left(\sum\limits_{\alpha} |P^{(\alpha)}(x, \xi)|^2\right)^{1/2}$ considering $x$ as parameters. 
+\end{definitionu}
+
+\begin{examplen} The differential operator $P(x, D) = \sum\limits_{|s|, |t| \leqq m} D^{s} a_{s,t}(x) D^{t}$ with real, bounded $C^{\infty}$ coefficients $a_{s,t}(x) = a_{t,s}(x)$ in $\Omega$ is strongly elliptic in $\Omega$ (see Chapter~\ref{chap:VI}, \ref{sec:VI.9}) if there exists a positive constant $\delta$ such that
+\begin{equation}\label{eq:VI.11.3}
+\sum\limits_{|s|,|t|=m} \xi^{s} a _{s,t} (x) \xi^{t} \geqq \delta \left(\sum\limits_{j=1} ^{n} \xi_{j} ^{2}\right) ^{m} \text{ in } \Omega .
+\end{equation}
+
+In such a case, $P(x, D)$ satisfies the condition \eqref{eq:VI.11.2}. Next let $P(x, D)$ be strongly elliptic in an open bounded domain $\Omega$ of $\mathbb{R}^{n-1}$. Then 
+\begin{equation}\label{eq:VI.11.4}
+\frac {\partial}{\partial x _{n}} - P (x, D)
+\end{equation}
+is said to be parabolic in the product space $\Omega\times\{x_{n};0<x_{n}\}$. It is easy to see that the operator \eqref{eq:VI.11.4} is of uniform strength in the above product space. 
+
+\end{examplen}
+\begin{theoremn}[\textsc{Hörmander} {\cite{hormander117}}] Let $P(x, D)$ be of uniform strength in an open bounded domain $\Omega$ of $\mathbb{R}^{n}$. For any point $x^0$, there exists an open subdomain $\Omega_1$ of $\Omega$ such that $x^0 \in \Omega_1$ and the equation $P(x, D)$ $u = f$ has, for every $f \in L^2(\Omega_1)$, a distribution solution $u \in L^2(\Omega_1)$ for which, moreover, $Q(D)$ $u \in L^2(\Omega_1)$ for every $Q(D)$ weaker than $P(x, D)$ for any fixed $x \in \Omega_1$.
+
+\end{theoremn}
+\begin{proof}
+ Write $P(x^{0}, D) = P_{0}(D)$. The set of all the differential operators with constant coefficients weaker than $P_{0}(D)$ is a finite dimensional linear space. For, the degree of such operators $Q(D)$ cannot exceed that of $P_{0}(D)$. Thus there exist $P_{1}(D)$, $P_{2}(D)$, $\ldots$, $P_{N}(D)$ which form a basis for the differential operators weaker than $P_{0}(D)$. Hence we can write 
+\begin{equation}\label{eq:VI.11.5}
+P (x, D) = P _{0} (D) + \sum\limits_{j=1} ^{N} b _{j} (x) P _{j} (D), b _{j} (\boldsymbol {x} ^{0}) = 0,
+\end{equation}
+with uniquely determined $b_{j}(x)$ which are continuous in $\Omega$. 
+
+
+By the result of the preceding section, there exists a bounded linear operator $T$ on $L^2(\Omega_1)$ into $L^2(\Omega_1)$ such that 
+\begin{equation}\label{eq:VI.11.6}
+P _{0} (D) T f = f \text{ for all } f \in L ^{2} (\Omega_{1}),
+\end{equation}
+and that the operators $P_j(D)$ $T$ are all bounded as operators on $L^2(\Omega_1)$ into $L^2(\Omega_1)$. Here $\Omega_1$ is any open subdomain of $\Omega$. We have only to take $Tf$ as the restriction to $\Omega_1$ of $E * f_1$ where $f_1 = f$ in $\Omega_1$ and $f_1 = 0$ in $\mathbb{R}^{n} - \Omega_1$. 
+
+The equation $P(x, D)$ $u = f$ is equivalent to 
+\begin{equation}\label{eq:VI.11.7}
+P _{0} (D) u + \sum\limits_{j=1} ^{N} b _{j} (x) P _{j} (D) u = f.
+\end{equation}
+
+We shall seek a solution of the form $u = Tv$. Substituting this in \eqref{eq:VI.11.7}, we obtain, by \eqref{eq:VI.11.6}, 
+\begin{equation}\label{eq:VI.11.8}
+v + \sum\limits_{j=1} ^{N} b _{j} (x) P _{j} (D) T v = f.
+\end{equation}
+
+Let the sum of the norms of the bounded linear operators $P_{j}(D)$ $T$ on $L^{2}(\Omega_{1})$ into $L^{2}(\Omega_{1})$ be denoted by $C$. Since $b_{j}(x)$ is continuous and $b_{j}(x^{0}) = 0$, we may choose $\Omega_{1} \ni x^{0}$ so small that 
+\[
+C \left| b _{j} (x) \right| < 1 / N \text{ whenever } x \in \Omega_{1} (j = 1, 2, \dots , n).
+\]
+
+We may assume that the above inequalities hold whenever $x$ belongs to the compact closure of $\Omega_1$. Thus the norm of the operator $\sum\limits_{j=1}^{N} b_j(x) P_j(D) T$ is less than $1$, and so the equation \eqref{eq:VI.11.8} may be solved by Neumann's series (Theorem~\ref{thm:II.1.Theorem.2} in Chapter~\ref{chap:II}, \ref{sec:II.1}): 
+\[
+v = \left(I + \sum\limits_{j=1} ^{N} b _{j} P _{j} (D) T\right) ^{-1} f = A f,
+\]
+where $A$ is a bounded linear operator on $L^2(\Omega_1)$ into $L^2(\Omega_1)$. Hence $u = TAf$ is the required solution of $P(x, D)u = f$.
+\end{proof}
+
+\yossection{12}{The Hypoellipticity (Hörmänder's Theorem)}
+\label{sec:VI.12}
+
+We have defined in Chapter~\ref{chap:II}, \ref{sec:II.7} the notion of hypoellipticity of $P(D)$ and proved \textsc{Hörmander}'s theorem to the effect that, if $P(D)$ is hypoelliptic, then there exists, for any large positive constant $C_1$, a positive constant $C_2$ such that, for all solutions $\zeta = \xi + i\eta$ of the algebraic equation $P(\zeta) = 0$, 
+\begin{equation}\label{eq:VI.12.1}
+| \xi | < C _{2} \text{ if } | \eta | < C _{1}.
+\end{equation}
+
+To prove conversely that \eqref{eq:VI.12.1} implies the hypoellipticity of $P(D)$, we prepare the 
+
+\begin{lemman}[\textsc{Hörmander} \cite{hormander113}] \eqref{eq:VI.12.1} implies that 
+\begin{equation}\label{eq:VI.12.2}
+\sum\limits_{| \alpha | > 0} \left| P ^{(\alpha)} (\xi) \right| ^{2} / \sum\limits_{| \alpha | \geqq 0} \left| P ^{(\alpha)} (\xi) \right| ^{2} \rightarrow 0 \text{ as } \xi \in \mathbb{R}^{n}, | \xi | \rightarrow \infty .
+\end{equation}
+\end{lemman}
+
+\begin{proof}
+ We first show that, for any real vector $\Theta\in \mathbb{R}^{n}$, we have 
+\begin{equation}\label{eq:VI.12.3}
+P (\xi + \Theta) / P (\xi) \rightarrow 1 \text{ as } \xi \in \mathbb{R}^{n}, | \xi | \rightarrow \infty . \end{equation}
+
+We may assume that the coordinates are so chosen that $\Theta = (1,0,0,\ldots ,0)$. We have, by \eqref{eq:VI.12.1}, 
+\[
+P (\xi + i \eta) \neq 0 \text{ when } | \eta | < C _{1} \text{ and } | \xi | > C _{2}.
+\]
+
+Then the inequality $|\xi - \zeta'| \geqq C_1$ holds if $|\xi| \geqq C_1 + C_2$ and $P(\zeta') = 0$. For, setting $\zeta' = \xi' + i\eta'$, we have either $|\eta'| \geqq C_1$ or else $|\xi'| < C_2$ so that $|\xi - \xi'| \geqq C_1$. Giving fixed values to, $\xi_2, \xi_3, \ldots, \xi_n$ we can write 
+\[
+P (\xi) = C \prod\limits_{k=1} ^{m} \left(\xi_{1} - t _{k}\right), C \neq 0,
+\]
+where $(t_k, \xi_2, \ldots, \xi_n)$ is a zero of $P$. Hence we have $|t_k - \xi_1| \geqq C_1$ if $|\xi| \geqq C_1 + C_2$. Thus 
+\[
+\frac {P (\xi + \Theta)}{P (\xi)} = \prod\limits_{k=1} ^{m} \frac {\xi_{1} + . 1 - t _{k}}{\xi_{1} - t _{k}} = \prod\limits_{k=1} ^{m} \left(1 + \frac {1}{\xi_{1} - t _{k}}\right)
+\]
+satisfies 
+\[
+\left| \frac {P (\xi + \theta)}{P (\xi)} - 1 \right| \leqq m C _{1} ^{-1} (1 + C _{1} ^{-1}) ^{m-1} \quad \text{ if } \quad | \xi | \geqq C _{1} + C _{2}.
+\]
+
+As we may take $C_1$ arbitrarily large by taking $C_2$ sufficiently large, we have proved \eqref{eq:VI.12.3}. 
+
+We have, by Taylor's formula, 
+\[
+P (\xi + \eta) = \sum\limits_{\alpha} \frac {1}{\alpha !} P ^{(\alpha)} (\xi) \eta^{\alpha}
+\]
+and so 
+\begin{equation}\label{eq:VI.12.4}
+\sum\limits_{i=1} ^{k} t _{i} P (\xi + \eta^{(i)}) = \sum\limits_{\alpha} \frac {1}{\alpha !} P ^{(\alpha)} (\xi) \sum\limits_{i=1} ^{k} t _{i} (\eta^{(i)}) ^{\alpha},
+\end{equation}
+where $\eta^{(i)}$ are arbitrary real vectors and $t_i$ arbitrary complex numbers. The coefficients $\sum\limits_{i=1}^{k} t_i (\eta^{(i)})^\alpha$, $|\alpha| \leqq m$, can be given arbitrary values by a convenient choice of $k$, $t_i$ and $\eta^{(i)}$. If otherwise, there would exist constants $C_\alpha$, $|\alpha| \leqq m$, not all equal to zero and such that $\sum\limits_{\alpha} C_\alpha \eta^\alpha = 0$ for every $\eta$. Thus 
+\[
+P ^{(\alpha)} (\xi) = \sum\limits_{i=1} ^{k} t _{i} P (\xi + \eta^{(i)}) \text{ with real vectors } \eta^{(i)}.
+\]
+
+Since the principal part on the right must cancel out when $|\alpha| \neq 0$, we must have $\sum\limits_{i=1}^{k} t_i = 0$. Hence, by \eqref{eq:VI.12.3}, we obtain \eqref{eq:VI.12.2}. 
+\end{proof}
+
+\begin{corollaryu} Suppose that $P_{1}(\xi)$ and $P_{2}(\xi)$ satisfy \eqref{eq:VI.12.2}. Then $P(\xi) = P_{1}(\xi) \cdot P_{2}(\xi)$ also satisfies \eqref{eq:VI.12.2}. Moreover, if $Q_{j}(D)$ is weaker than $P_{j}(D)$ ( $j = 1, 2$), it follows that $Q_{1}(D)$ $Q_{2}(D)$ is weaker than $P(D)$. 
+\end{corollaryu}
+
+\begin{proof}
+ By applying Leibniz' formula of differentiation of product of functions, we see that $P^{(\alpha)}(\xi)$ is a linear combination of products of derivatives of $P_{1}(\xi)$ and $P_{2}(\xi)$ of the order sum $\leqq (\alpha)$. Hence \eqref{eq:VI.12.2} holds for $P(\xi)$. The latter part of the Corollary may be proved similarly. 
+\end{proof}
+
+We are now ready to prove 
+
+\begin{theoremn}[\textsc{Hörmander} {\cite{hormander113}}] $P(D)$ is hypoelliptic iff the condition \eqref{eq:VI.12.2} is satisfied.
+
+\end{theoremn}
+\begin{proof}
+ The ``only if'' part is already proved (Chapter~\ref{chap:II}, \ref{sec:II.7} and what was proved above). We shall prove the ``if'' part. 
+
+Let $\Omega$ be an open subdomain of $\mathbb{R}^{n}$. A distribution $u \in \mathfrak{D}(\Omega)'$ is said to belong to $H_{\mathrm{loc}}^k(\Omega)$ if, for any $\varphi_0 \in C_0^\infty(\Omega)$, the Fourier transform $\hat{u}_0$ of $u_0 = \varphi_0 u$ satisfies (see Chapter~\ref{chap:VI}, \ref{sec:VI.2}) 
+\begin{equation}\label{eq:VI.12.5}
+\int_ {\mathbb{R}^{n}} (1 + | \xi | ^{2}) ^{k} | \hat {u _{0}} (\xi) | ^{2} \dd \xi < \infty , \text{ that is, if } u _{0} = \varphi_{0} u \in W ^{k,2} (\mathbb{R}^{n})
+\end{equation}
+
+By virtue of Sobolev's lemma in Chapter~\ref{chap:VI}, \ref{sec:VI.7}, the ``if'' part is proved by the following proposition: 
+
+Let $P(\xi)$ satisfy \eqref{eq:VI.12.2}. If a distribution $u \in \mathfrak{D}(\Omega)'$ satisfies 
+$P(D) u \in H_{\mathrm{loc}}^{s}(\Omega)$ with a positive $s$, then $u$ belongs to 
+\begin{equation}\label{eq:VI.12.6}
+H _ {\text{ loc }} ^{s} (\Omega)
+\end{equation}
+
+For, if $P(D) u \in C^{\infty}$ in $\Omega$, then $P(D) u \in H_{\mathrm{loc}}^{s}(\Omega)$ for every positive $s$ because of Leibniz' formula of differentiation. 
+
+The following proof of \eqref{eq:VI.12.6} is based upon two Lemmas: 
+
+\begin{lemma}\label{lem:VI.12.Lemma.1} Let $f \in W^{s,2}(\mathbb{R}^{n})$ and $\psi \in C_0^\infty(\mathbb{R}^{n}), s \geqq 0$. Then $\psi f \in W^{s,2}(\mathbb{R}^{n})$. 
+\end{lemma}
+
+\begin{lemma}\label{lem:VI.12.Lemma.2} Let $P(\xi)$ satisfy \eqref{eq:VI.12.2}. Then there exists a positive constant $\mu$ such that $|P^{(\alpha)}(\xi)\xi^{\mu}| / |P(\xi)|\to 0$ as $\xi \in \mathbb{R}^{n}$, $|\xi |\to \infty$ for every $\alpha \neq 0$. 
+\end{lemma}
+
+The proof of Lemma~\ref{lem:VI.12.Lemma.1} will be given later, and the proof of Lemma~\ref{lem:VI.12.Lemma.2} will not be given here (for the latter, we refer the reader to L. \textsc{Hörmander} \cite{hormander118} or to A. \textsc{Friedman} \cite{friedman68}). 
+
+Next, let $\Omega_1$ and $\Omega_0$ be arbitrary open subdomains of $\Omega$ such that their closures $\Omega_1^a$ and $\Omega_0^a$ are compact and $\Omega_1^a \subseteq \Omega_0$, $\Omega_0^a \subseteq \Omega$. By Schwartz' Theorem in Chapter~\ref{chap:III}, \ref{sec:III.11}, the distribution $u \in \mathfrak{D}(\Omega)'$ is, when considered as a distribution $\in \mathfrak{D}(\Omega_0)'$, a distributional derivative of the form $D^t v$ of a function $v(x) \in L^2(\Omega_0)$. Let $\varphi \in C_0^\infty(\Omega_0)$ be such that $\varphi(x) = 1$ in $\Omega_1$. Then $u = u_0 = D^t \varphi v$ as distributions $\in \mathfrak{D}(\Omega_1)'$. $\varphi v$ being $\in L^2(\mathbb{R}^{n})$, we see that there exists a (possibly) negative integer $k$ such that 
+\begin{equation}\label{eq:VI.12.7}
+P ^{(\alpha)} (D) u _{0} = P ^{(\alpha)} (D) D ^{t} \varphi v \in W ^{k,2} \left(\mathbb{R}^{n}\right) \text{ for every } \alpha .
+\end{equation}
+
+Hence, by Lemma~\ref{lem:VI.12.Lemma.1} and the generalized Leibniz formula (see Chapter~\hyperref[chap:I]{$1$}, $8$) 
+\begin{equation}\label{eq:VI.12.8}
+P (D) \varphi_{1} u _{0} = \varphi_{1} P (D) u _{0} + \sum\limits_{(\alpha) > 0} \frac {1}{(\alpha) !} D _{\alpha} \varphi_{1} \cdot P ^{(\alpha)} (D) u _{0},
+\end{equation}
+we see by $P(D)u_0 \in H_{\mathrm{loc}}^s(\Omega)$ that, whenever $\varphi_1 \in C_0^\infty(\Omega_1)$, 
+\begin{equation}\label{eq:VI.12.9}
+P (D) \varphi_{1} u _{0} \in W ^ {k _{1}, 2} (\mathbb{R}^{n}) \text{ with } k _{1} = \min (s, k).
+\end{equation}
+
+Thus the Fourier transform $\hat{u}_1(\xi)$ of $u_1(x) = \varphi_1(x)$ $\dot{u}_0(x)$ satisfies 
+\begin{equation}\label{eq:VI.12.10}
+\int_ {\mathbb{R}^{n}} | P (\xi) \hat {u} _{1} (\xi) | ^{2} (1 + | \xi | ^{2}) ^ {k _{1}} \dd \xi < \infty
+\end{equation}
+and hence, by Lemma~\ref{lem:VI.12.Lemma.2}, 
+\begin{equation}\label{eq:VI.12.11}
+\begin{aligned}
+&\int_ {\mathbb{R}^{n}} | P ^{(\alpha)} (\xi) \hat {u} _ {\mathbf {1}} (\xi) | ^{2} (1 + | \xi | ^{2}) ^ {k _{1} + \mu} \dd \xi < \infty , \text{ that is, }
+\\
+P ^{(\alpha)} (D) u _ {\mathbf {1}}& \in W ^ {k _{1} + \mu , 2} (\mathbb{R}^{n}) \text{ for every } \alpha \neq 0.
+\end{aligned}
+\end{equation}
+
+Let $\Omega_{2}$ be any open subdomain of $\Omega_{1}$ such that its closure $\Omega_{2}^{a}$ is compact and contained in $\Omega_{1}$. Then, for any $\varphi_{2} \in C_{0}^{\infty}(\Omega_{2})$, we prove, by \eqref{eq:VI.12.8} and \eqref{eq:VI.12.11} as above, that 
+\begin{align}
+P (D) \varphi_{2} u _{1}& \in W ^ {k _{2}, 2} (\mathbb{R}^{n}) \text{ with } k _{2} = \min (s, k _{1} + \mu) \text{ and hence } \notag \\
+P ^{(\alpha)} (D) \varphi_{2} u _{1}& \in W ^ {k _{2} + \mu , 2} (\mathbb{R}^{n}) \text{ for every } \alpha \neq 0. \notag
+\end{align}
+
+Repeating the argument a finite number of times, we see that, for any open subdomain $\Omega'$ of $\Omega$ such that its closure is compact and contained in $\Omega$, 
+\[
+P ^{(\alpha)} (D) \varphi u \in W ^{s,2} (\mathbb{R}^{n}) \text{ for all } \alpha \neq 0 \text{ whenever } \varphi \in C _{0} ^{\infty} (\Omega^{\prime})
+\]
+
+Thus, $P^{(\alpha)}(\xi) = \text{ constant } \neq 0$ gives $\varphi u \in W^{s,2}(\mathbb{R}^{n})$. 
+\end{proof}
+
+\begin{proof}[Proof of Lemma~\ref{lem:VI.12.Lemma.1}]
+ The Fourier transform of $\psi f$ is 
+\[
+(2 \pi) ^{-n/2} \int_ {\mathbb{R}^{n}} \hat {\psi} (\eta) \hat {f} (\xi - \eta) \dd \eta (\text{ see Theorem~\hyperref[thm:VI.3.Theorem.6]{6} in Chapter~\hyperref[chap:VI]{VI}, 3 })
+\]
+and thus we have to show that, for $s \geqq 0$, 
+\[
+\int_ {\mathbb{R}^{n}} (1 + | \xi | ^{2}) ^{s} \left| \int_ {\mathbb{R}^{n}} \hat {\psi} (\eta) \hat {f} (\xi - \eta) \dd \eta \right| ^{2} \dd \xi < \infty .
+\]
+
+By Schwarz' inequality, this can be estimated from above by 
+\begin{equation}\label{eq:VI.12.12}
+\begin{gathered}
+\int_ {\mathbb{R}^{n}} (1 + | \xi | ^{2}) ^{s} \left[ \int_ {\mathbb{R}^{n}} | \hat {\psi} (\eta) | \dd \eta \cdot \int_ {\mathbb{R}^{n}} | \hat {\psi} (\eta) | \cdot | \hat {f} (\xi - \eta) | ^{2} \dd \eta \right] \dd \xi
+\\
+= \int_ {\mathbb{R}^{n}} | \hat {\psi} (\eta) | \dd \eta \left[ \int_ {\mathbb{R}^{n}} \int_ {\mathbb{R}^{n}} (1 + | \xi | ^{2}) ^{s} | \hat {\psi} (\eta) | \cdot | \hat {f} (\xi - \eta) | ^{2} \dd \xi \dd \eta \right].
+\end{gathered}
+\end{equation}
+
+We then make use of the inequality 
+\begin{equation}\label{eq:VI.12.13}
+(1 + | \xi | ^{2}) ^{s} \leqq 4 ^{|s|} (1 + | \eta | ^{2}) ^{|s|} (1 + | \xi - \eta | ^{2}) ^{s}
+\end{equation}
+which may be proved by 
+\[
+\frac {1 + | \xi | ^{2}}{1 + | \xi - \eta | ^{2}} \leqq 4 (1 + | \eta | ^{2}), 4 (1 + | \xi | ^{2}) \geqq \frac {1 + | \xi - \eta | ^{2}}{1 + | \eta | ^{2}}.
+\]
+
+By \eqref{eq:VI.12.13}, the right side of \eqref{eq:VI.12.12} is estimated by $\int_{\mathbb{R}^{n}} |\hat{\psi}(\eta)| \dd\eta$ -times 
+\[
+4 ^{|s|} \int_ {\mathbb{R}^{n}} | \hat {\psi} (\eta) | (1 + | \eta | ^{2}) ^{|s|} \dd \eta \cdot \left(\int_ {\mathbb{R}^{n}} (1 + | \xi - \eta | ^{2}) ^{s} | \hat {f} (\xi - \eta) | ^{2} \dd \xi\right).
+\]
+
+This integral converges since $f \in W^{s,2}(\mathbb{R}^{n})$ and $\hat{\psi}(\eta) \in \mathfrak{S}(\mathbb{R}^{n})$. 
+
+We have thus proved our Theorem.
+\end{proof}
+
+\yossub{Further Researches}
+
+$1$. A linear partial differential operator $P(x, D)$ with $C^\infty(\Omega)$ coefficients is said to be formally hypoelliptic in $\Omega \subseteq \mathbb{R}^{n}$ if the following two conditions are satisfied: \begin{enumerate}[i)]
+\item $P(x^0, D)$ is hypoelliptic for every fixed $x^0 \in \Omega$
+\item $P(x^0, \xi) = 0(P(x', \xi))$ as $\xi \in \mathbb{R}^{n}$, $|\xi| \to \infty$ for every fixed $x^0$ and $x' \in \Omega$.
+\end{enumerate}
+ L. \textsc{Hörmander} \cite{hormander117} and B. \textsc{Malgrange} \cite{malgrange187} have proved that, for such an operator $P(x, D)$, any distribution solution $u \in \mathfrak{D}(\Omega)'$ of the equation $P(x, D)u = f$ is $C^\infty$ after correction on a set of measure zero in the open subdomain $\subseteq \Omega$ where $f$ is $C^\infty$. The proof above for the constant coefficients case may be modified so as to apply for the formally hypoelliptic case, see. e.g., J. \textsc{Peetre} \cite{peetre246}. 
+
+$2$. It was proved essentially by I. G. \textsc{Petrowsky} \cite{petrowsky248} that all distribution solutions $u \in \mathfrak{D}(\mathbb{R}^{n})$ of $P(D)u = 0$ are analytic functions in $\mathbb{R}^{n}$ iff the homogeneous part $P_m(\xi)$ of $P(\xi)$ of the highest degree $m$ does not vanish for $\xi \in \mathbb{R}^{n}$. If this condition is satisfied then $P(D)$ is said to be (analytically) elliptic. It is proved that in such a case the degree $m$ is even and $P(D)$ is hypoelliptic. It is to be noted that the hypoellipticity of an analytically elliptic operator $P(D)$ can also be proved by Friedrichs' Theorem in Chapter~\ref{chap:VI}, \ref{sec:VI.9}. For, by the non-vanishing of $P_m(\xi)$, we easily see, by the Fourier transformation, that $P(D)$ or $-P(D)$ is strongly elliptic. For the proof of Petrowsky's Theorem, see, e.g., L. \textsc{Hörmander} \cite{hormander118}, F. \textsc{Trèves} \cite{treves325} and C. B. \textsc{Morrey}-L. \textsc{Nirenberg} \cite{morrey214}.\yosstarfootnote{See also Supplementary Notes, p.~\pageref{notes:I-VI}.} 

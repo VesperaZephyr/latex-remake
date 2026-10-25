@@ -1,0 +1,1982 @@
+% ==== I ====
+\yoschapter{I}{Semi-norms}
+\label{chap:I}
+
+The semi-norm of a vector in a linear space gives a kind of length for the vector. To introduce a topology in a linear space of infinite dimension suitable for applications to classical and modern analysis, it is sometimes necessary to make use of a system of an infinite number of semi-norms. It is one of the merits of the Bourbaki group that they stressed the importance, in functional analysis, of locally convex spaces which are defined through a system of semi-norms satisfying the axiom of separation. If the system reduces to a single semi-norm, the corresponding linear space is called a \emph{normed linear space}. If, furthermore, the space is complete with respect to the topology defined by this semi-norm, it is called a \emph{Banach space}. The notion of complete normed linear spaces was introduced around $1922$ by S. \textsc{Banach} and N. \textsc{Wiener} independently of each other. A modification of the norm, the \emph{quasi-norm} in the present book, was introduced by M. \textsc{Fréchet}. A particular kind of limit, the \emph{inductive limit}, of locally convex spaces is suitable for discussing the generalized functions or the distributions introduced by L. \textsc{Schwartz}, as a systematic development of S. L. \textsc{Sobolev}'s generalization of the notion of functions. 
+
+
+\yossection{1}{Semi-norms and Locally Convex Linear Topological Spaces}
+\label{sec:I.1}
+
+As was stated in the above introduction, the notion of semi-norm is of fundamental importance in discussing linear topological spaces. We shall begin with the definition of the semi-norm. 
+
+\begin{definition}\label{def:I.1.Definition.1} $A$ real-valued function $p(x)$ defined on a linear space $X$ is called a semi-norm on $X$, if the following conditions are satisfied: 
+ \begin{align}
+ P(x + y) &\leqq P(x) + P(y) \text{ (subadditivity) }, \label{eq:I.1.1} \\
+ P(\alpha x) &= | \alpha | P(x). \label{eq:I.1.2}
+ \end{align}
+\end{definition}
+
+
+\begin{example}\label{ex:I.1.Example.1} The $n$-dimensional Euclidean space $\mathbb{R}^{n}$ of points $x = (x_{1}, \ldots, x_{n})$ with coordinates $x_{1}, x_{2}, \ldots, x_{n}$ is an $n$-dimensional linear space by the operations: 
+ \[
+\begin{gathered}
+x + y = (x_{1} + y_{1}, x_{2} + y_{2}, \dots , x_{n} + y_{n}), \alpha x = (\alpha x_{1}, \alpha x_{2}, \dots , \alpha x_{n}).
+\end{gathered}
+\]
+\end{example}
+
+
+In this case $p(x) = \max\limits_{1 \leqq j \leqq n} |x_j|$ is a semi-norm. As will be proved later, $p(x) = \left(\sum\limits_{j=1}^{n} |x_j|^q\right)^{1/q}$ with $q \geqq 1$ is also a semi-norm on $\mathbb{R}^{n}$. 
+
+\begin{proposition}\label{prop:I.1.Proposition.1} $A$ semi-norm $p(x)$ satisfies 
+\begin{align}
+P(0)& = 0, \label{eq:I.1.3} \\
+P\left(x_{1}- x_{2}\right)& \geqq | P\left(x_{1}\right)- P\left(x_{2}\right) |, \text{ in particular, } P(x) \geqq 0. \label{eq:I.1.4}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+ $p(0) = p(0 \cdot x) = 0 \cdot p(x) = 0$. We have, by the subadditivity, $p(x_1- x_2) + p(x_2) \geqq p(x_1)$ and hence $p(x_1- x_2) \geqq p(x_1)- p(x_2)$. Thus $p(x_1- x_2) = |-1| \cdot p(x_2- x_1) \geqq p(x_2)- p(x_1)$ and so we obtain \eqref{eq:I.1.4}. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.1.Proposition.2} Let $p(x)$ be a semi-norm on $X$, and $c$ any positive number. Then the set $M = \{x \in X; p(x) \leqq c\}$ enjoys the properties: 
+\begin{equation}\label{eq:I.1.5}
+M\ni0,
+\end{equation}
+\begin{equation}\label{eq:I.1.6}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+$M$ is convex: $x,y\in M$ and $0<\alpha<1$ imply $\alpha x+(1-\alpha)y\in M$.
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:I.1.7}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+$M$ is balanced (équilibré in Bourbaki's terminology): $x\in M$ and $|\alpha|\leqq1$ imply $\alpha x\in M$.
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:I.1.8}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+$M$ is absorbing: for any $x\in X$, there exists $\alpha>0$ such that $\alpha^{-1}x\in M$.
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:I.1.9}
+P(x)=\inf_{\alpha>0,\,\alpha^{-1}x\in M}\alpha c
+\qquad\text{(inf = infimum = the greatest lower bound).}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+ \eqref{eq:I.1.5} is clear from \eqref{eq:I.1.3}. \eqref{eq:I.1.7} and \eqref{eq:I.1.8} are proved by \eqref{eq:I.1.2}. \eqref{eq:I.1.6} is proved by the subadditivity \eqref{eq:I.1.1} and \eqref{eq:I.1.2}. \eqref{eq:I.1.9} is proved by observing the equivalence of the three propositions below: 
+\[
+[ \alpha^{-1} x \in M ] \rightleftarrows [ P(\alpha^{-1} x) \leqq c ] \rightleftarrows [ P(x) \leqq \alpha c ]. \qedhere\]
+\end{proof}
+
+\begin{definition}\label{def:I.1.Definition.2} The functional 
+\begin{equation}\tag{9'}\label{eq:I.1.9'}
+p_{M} (x) = \inf\limits_ {\alpha > 0, \alpha^{-1} x \in M} \alpha
+\end{equation}
+is called the Minkowski functional of the convex, balanced and absorbing set $M$ of $X$. 
+\end{definition}
+
+\begin{proposition}\label{prop:I.1.Proposition.3} Let a family $\{p_{\gamma}(x); \gamma \in \Gamma\}$ of semi-norms of a linear space $X$ satisfy the axiom of separation: 
+\begin{equation}
+\label{eq:I.1.10}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+For any $x_0\neq0,$ there exists $P_{\gamma_0}(x)$ in the family such that $P_{\gamma_0}(x_0)\neq0.$
+\end{minipage}
+\end{equation}
+\end{proposition}
+
+Take any finite system of semi-norms of the family, say $p_{\gamma_1}(x), p_{\gamma_2}(x), \ldots, \ldots, p_{\gamma_n}(x)$ and any system of $n$ positive numbers $\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n$, and set 
+\begin{equation}\label{eq:I.1.11}
+U = \{x \in X; P_ {\gamma_{j}} (x) \leqq \varepsilon_{j} \quad (j = 1, 2, \dots , n) \}.
+\end{equation}
+
+$U$ is a convex, balanced and absorbing set. Consider such a set $U$ as a neighbourhood of the vector $0$ of $X$, and define a neighbourhood of any vector $x_{0}$ by the set of the form 
+\begin{equation}\label{eq:I.1.12}
+x_{0} + U = \{y \in X; y = x_{0} + u, u \in U \}.
+\end{equation}
+
+Consider a subset $G$ of $X$ which contains a neighbourhood of each of its point. Then the totality $\{G\}$ of such subsets $G$ satisfies the axiom of open sets, given in Chapter~\ref{chap:0}, Preliminaries, \ref{sec:0.2}. 
+
+\begin{proof}
+ We first show that the set $G_0$ of the form $G_0 = \{x \in X; p_\gamma(x) < c\}$ is open. For, let $x_0 \in G_0$ and $p_\gamma(x_0) = \beta < c$. Then the neighbourhood of $x_0, x_0 + U$ where $U = \{x \in X; p_\gamma(x) \leqq 2^{-1}(c- \beta)\}$, is contained in $G_0$, because $u \in U$ implies $p_\gamma(x_0 + u) \leqq p_\gamma(x_0) + p_\gamma(u) < \beta + (c- \beta) = c$. 
+
+Hence, for any point $x_0 \in X$, there is an open set $x_0 + G_0$ which contains $x_0$. It is clear, by the above definition of open sets, that the union of open sets and the intersection of a finite number of open sets are also open. 
+
+Therefore we have only to prove Hausdorff's axiom of separation: If $x_{1} \neq x_{2}$, then there exist disjoint open sets $G_{1}$ and $G_{2}$ such that 
+\begin{equation}\label{eq:I.1.13}
+x_{1} \in G_{1}, x_{2} \in G_{2}.
+\end{equation}
+
+In view of definition \eqref{eq:I.1.12} of the neighbourhood of a general point $x_0$, it will be sufficient to prove \eqref{eq:I.1.13} for the case $x_1 = 0$, $x_2 \neq 0$. We choose, by \eqref{eq:I.1.10}, $p_{\gamma_1}(x)$ such that $p_{\gamma_2}(x_2) = \alpha > 0$. Then $G_1 = \{x \in X; p_{\gamma_1}(x) < \alpha / 2\}$ is open, as proved above. Surely $G_1 \ni 0 = x_1$. We have to show that $G_1$ and $G_2 = x_2 + G_1$ have no point in common. Assume the contrary and let there exist a $y \in G_1 \cap G_2$. $y \in G_2$ implies $y = x_2 + g = x_2- (-g)$ with some $g \in G_1$ and so, by \eqref{eq:I.1.4}, $p_{\gamma_1}(y) \geqq p_{\gamma_2}(x_2)- p(-g) \geqq \alpha- 2^{-1}\alpha = \alpha / 2$, because $-g$ belongs to $G_1$ with $g$. This contradicts the inequality $p_{\gamma_1}(y) < \alpha / 2$ implied by $y \in G_1$. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.1.Proposition.4} By the above definition of open sets, $X$ is a linear topological space, that is, $X$ is a linear space and at the same time a topological space such that the two mappings $X \times X \to X : (x, y) \to x + y$ and $K \times X \to X : (\alpha, x) \to \alpha x$ are both continuous. Moreover, each semi-norm $p_{y}(x)$ is a continuous function on $X$. 
+\end{proposition}
+
+\begin{proof}
+ For any neighbourhood $U$ of $0$, there exists a neighbourhood $V$ of $0$ such that 
+\[
+V + V = \{w \in X; w = v_{1} + v_{2} \text{ where } v_{1}, v_{2} \in V \} \subseteq U,
+\]
+since the semi-norm is subadditive. Hence, by writing 
+\[
+(x + y)- (x_{0} + y_{0}) = (x- x_{0}) + (y- y_{0}),
+\]
+we see that the mapping $(x, y) \to x + y$ is continuous at $x = x_0$, $y = y_0$. For any neighbourhood $U$ of $0$ and any scalar $\alpha \neq 0$, the set $\alpha U = \{x \in X; x = \alpha u, u \in U\}$ is also a neighbourhood of $0$. Thus, by writing 
+\[
+\alpha x- \alpha_{0} x_{0} = \alpha (x- x_{0}) + (\alpha- \alpha_{0}) x_{0},
+\]
+we see by \eqref{eq:I.1.2} that $(\alpha, x) \to \alpha x$ is continuous at $\alpha = \alpha_0$, $x = x_0$. 
+
+The continuity of the semi-norm $p_{\gamma}(x)$ at the point $x = x_{0}$ is proved by $|p_{\gamma}(x)- p_{\gamma}(x_{0})| \leqq p_{\gamma}(x- x_{0})$. 
+\end{proof}
+
+\begin{definition}\label{def:I.1.Definition.3} $A$ linear topological space $X$ is called a locally convex, linear topological space, or, in short, a locally convex space, if any of its open sets $\ni0$ contains a convex, balanced and absorbing open set. 
+\end{definition}
+
+\begin{proposition}\label{prop:I.1.Proposition.5} The Minkowski functional $p_{M}(x)$ of the convex, balanced and absorbing subset $M$ of a linear space $X$ is a semi-norm on $X$. 
+\end{proposition}
+
+\begin{proof}
+ By the convexity of $M$, the inclusions \[
+ x / (P_{M} (x) + \varepsilon) \in M, y / (P_{M} (y) + \varepsilon) \in M \text{ for any } \varepsilon > 0
+ \]
+ imply 
+ \[
+ \frac {P_{M} (x) + \varepsilon}{P_{M} (x) + P_{M} (y) + 2 \varepsilon} \cdot \frac {x}{P_{M} (x) + \varepsilon} + \frac {P_{M} (y) + \varepsilon}{P_{M} (x) + P_{M} (y) + 2 \varepsilon} \cdot \frac {y}{P_{M} (y) + \varepsilon} \in M
+ \]
+ and so $p_{M}(x+y)\leqq p_{M}(x)+p_{M}(y)+2\varepsilon$. Since $\varepsilon>0$ was arbitrary, we obtain the subadditivity of $p_{M}(x)$. Similarly we obtain $p_{M}(\alpha x)=|\alpha|p_{M}(x)$ since $M$ is balanced. 
+\end{proof}
+
+We have thus proved 
+
+
+\begin{theoremu} $A$ linear space $X$, topologized as above by a family of semi-norms $p_{\gamma}(x)$ satisfying the axiom of separation \eqref{eq:I.1.10}, is a locally convex space in which each semi-norm $p_{\gamma}(x)$ is continuous. Conversely, any locally convex space is nothing but the linear topological space, topologized as above through the family of semi-norms obtained as the Minkowski functionals of convex balanced and absorbing open sets of $X$. 
+\end{theoremu}
+
+\begin{definition}\label{def:I.1.Definition.4} Let $f(x)$ be a complex-valued function defined in an open set $\Omega$ of $\mathbb{R}^{n}$. By the support (or carrier) of $f$, denoted by $\supp(f)$, we mean the smallest closed set (of the topological space $\Omega$) containing the set $\{x \in \Omega; f(x) \neq 0\}$. It may equivalently be defined as the smallest closed set of $\Omega$ outside which $f$ vanishes identically. 
+\end{definition}
+
+\begin{definition}\label{def:I.1.Definition.5} By $C^k(\Omega)$, $0 \leqq k \leqq \infty$, we denote the set of all complex-valued functions defined in $\Omega$ which have continuous partial derivatives of order up to and including $k$ (of order $< \infty$ if $k = \infty$). By $C_0^k(\Omega)$, we denote the set of all functions $\in C^k(\Omega)$ with compact support, i.e., those functions $\in C^k(\Omega)$ whose supports are compact subsets of $\Omega$. A classical example of a function $\in C_0^\infty(\mathbb{R}^{n})$ is given by 
+\begin{gather}f (x) = \exp\left((| x | ^{2}- 1) ^{-1}\right) \text{ for } | x | = | (x_{1}, \dots , x_{n}) | = \left(\sum\limits_{j=1} ^{n} x_{j} ^{2}\right) ^{1/2} < 1, = 0 \text{ for } | x | \geqq 1. \label{eq:I.1.14}
+\\\text{ The Space } \mathfrak {E} ^{k} (\Omega) \notag
+\end{gather}
+$C^k (\Omega)$ is a linear space by 
+\[
+\left(f_{1} + f_{2}\right) (x) = f_{1} (x) + f_{2} (x), (\alpha f) (x) = \alpha f (x).
+\]
+\end{definition}
+
+For any compact subset $K$ of $\Omega$ and any non-negative integer $m \leqq k$ ( $m < \infty$ when $k = \infty$), we define the semi-norm 
+\[
+p_{K,m} (f) = \sup\limits_{| s | \leqq m, x \in K} | D ^{s} f (x) |, f \in C ^{k} (\Omega),
+\]
+where $\sup= \text{supremum} =$ the least upper bound and 
+\[
+\begin{aligned}
+&D ^{s} f (x) = \frac {\partial^ {s_{1}} + s_{2} + \cdots + s_{n}}{\partial x_{1} ^ {s_{1}} \partial x_{2} ^ {s_{2}} \cdots \partial x_{n} ^ {s_{n}}} f (x_{1}, x_{2}, \dots , x_{n}), | s | = | (s_{1}, s_{2}, \dots , s_{n}) | = \sum\limits_{j=1} ^{n} s_{j}.
+\end{aligned}
+\]
+
+Then $C^k(\Omega)$ is a locally convex space by the family of these semi-norms. We denote this locally convex space by $\mathfrak{E}^k(\Omega)$. The convergence $\lim\limits_{h\to \infty}f_h = f$ in this space $\mathfrak{E}^k(\Omega)$ is exactly the uniform convergence $\lim\limits_{h\to \infty}D^s f_h(x) = D^s f(x)$ on every compact subset $K$ of $\Omega$, for each $s$ with $|s| \leqq k (|s| < \infty \text{ if } k = \infty)$. We often write $\mathfrak{E}(\Omega)$ for $\mathfrak{E}^\infty (\Omega)$. 
+
+\begin{proposition}\label{prop:I.1.Proposition.6} $\mathfrak{E}^k (\Omega)$ is a metric space. 
+\end{proposition}
+
+\begin{proof}
+ Let $K_{1} \subseteq K_{2} \subseteq \cdots \subseteq K_{n} \subseteq \cdots$ be a monotone increasing sequence of compact subsets of $\Omega$ such that $\Omega = \bigcup\limits_{n=1}^{\infty} K_{n}$. Define, for each positive integer $h$, the distance 
+\[
+d_{h} (f, g) = \sum\limits_{m=0} ^{k} 2 ^{-m} P_ {K_{h}, m} (f- g) \cdot (1 + P_ {K_{h}, m} (f- g)) ^{-1}. \]
+
+Then the convergence $\lim\limits_{s\to \infty}f_s = f$ in $\mathfrak{E}_k(\Omega)$ is defined by the distance 
+\[
+d (f, g) = \sum\limits_{h=1} ^{\infty} 2 ^{-h} d_{h} (f, g) \cdot (1 + d_{h} (f, g)) ^{-1}.
+\]
+
+We have to show that $d_h(f, g)$ and $d(f, g)$ satisfy the triangle inequality. The triangle inequality for $d_h(f, g)$ is proved as follows: by the subadditivity of the semi-norm $p_{K_h,m}(f)$, we easily see that $d_h(f, g)$ satisfies the triangle inequality $d_h(f, g) \leqq d_h(f, k) + d_h(k, g)$, if we can prove the inequality 
+\[
+\begin{aligned}
+&| \alpha- \beta | \cdot (1 + | \alpha- \beta |) ^{-1}  \leqq | \alpha- \gamma | (1 + | \alpha- \gamma |) ^{-1} + | \gamma- \beta | (1 + | \gamma- \beta |) ^{-1}
+\end{aligned}
+\]
+for complex numbers $\alpha, \beta$ and $\gamma$; the last inequality is clear from the inequality valid for any system of non-negative numbers $\alpha, \beta$ and $\gamma$: 
+\[
+(\alpha + \beta) (1 + \alpha + \beta) ^{-1} \leqq \alpha (1 + \alpha) ^{-1} + \beta (1 + \beta) ^{-1}.
+\]
+The triangle inequality for $d(f, g)$ may be proved similarly. 
+\end{proof}
+
+\begin{definition}\label{def:I.1.Definition.6} 
+ Let $X$ be a linear space. Let a family $\{X_{\alpha}\}$ of linear subspaces $X_{\alpha}$ of $X$ be such that $X$ is the union of $X_{\alpha}$'s. Suppose that each $X_{\alpha}$ is a locally convex linear topological space such that, if $X_{\alpha_{1}} \subseteq X_{\alpha_{2}}$, then the topology of $X_{\alpha_{1}}$ is identical with the relative topology of $X_{\alpha_{1}}$ as a subset of $X_{\alpha_{2}}$. We shall call ``open'' every convex balanced and absorbing set $U$ of $X$ iff the intersection $U \cap X_{\alpha}$ is an open set of $X_{\alpha}$ containing the zero vector $0$ of $X_{\alpha}$, for all $X_{\alpha}$. If $X$ is a locally convex linear topological space whose topology is defined in the stated way, then $X$ is called the (strict) inductive limit of $X_{\alpha}$'s. 
+\end{definition}
+
+\begin{remarku} Take, from each $X_{\alpha}$, a convex balanced neighbourhood $U_{\alpha}$ of $0$ of $X_{\alpha}$. Then the convex closure $U$ of the union $V = \bigcup\limits_{\alpha} U_{\alpha}$, i.e., 
+\[
+\begin{aligned}
+U& = \left\{u \in X; u = \sum\limits_{j=1} ^{n} \beta_{j} v_{j}, v_{j} \in V, \beta_{j} \geqq 0 (j = 1, 2, \dots , n), \sum\limits_{j=1} ^{n} \beta_{j} = 1 \right.
+\\
+&\quad \text{ with arbitrary finite } n \Bigg \}
+\end{aligned}
+\]
+\end{remarku}
+
+surely satisfies the condition that it is convex balanced and absorbing in such a way that $U \cap X_{\alpha}$ is a convex balanced neighbourhood of $0$ of $X_{\alpha}$, for all $X_{\alpha}$. The set of all such $U$'s corresponding to an arbitrary choice of $U_{\alpha}$'s is a fundamental system of neighbourhoods of $0$ of the (strict) inductive limit $X$ of $X_{\alpha}$'s, i.e., every neighbourhood of $0$ of the (strict) inductive limit $X$ of $X_{\alpha}$'s contains one of the $U$'s obtained above. This fact justifies the above definition of the (strict) inductive limit. 
+
+\yossub{The Space $\mathfrak{D}(\Omega)$}
+
+$C_0^\infty (\Omega)$ is a linear space by 
+\[
+\left(f_{1} + f_{2}\right) (x) = f_{1} (x) + f_{2} (x), (\alpha f) (x) = \alpha f (x).
+\]
+
+For any compact subset $K$ of $\Omega$, let $\mathfrak{D}_K(\Omega)$ be the set of all functions $f \in C_0^\infty(\Omega)$ such that $\supp(f) \subseteq K$. Define a family of semi-norms on $\mathfrak{D}_K(\Omega)$ by 
+\[
+p_{K,m} (f) = \sup\limits_{| s | \leqq m, x \in K} | D ^{s} f (x) |, \text{ where } m < \infty .
+\]
+$\mathfrak{D}_K(\Omega)$ is a locally convex linear topological space, and, if $K_{1} \subseteq K_{2}$, then it follows that the topology of $\mathfrak{D}_{K_1}(\Omega)$ is identical with the relative topology of $\mathfrak{D}_{K_1}(\Omega)$ as a subset of $\mathfrak{D}_{K_2}(\Omega)$. Then the (strict) inductive limit of $\mathfrak{D}_K(\Omega)$'s, where $K$ ranges over all compact subsets of $\Omega$, is a locally convex, linear topological space. Topologized in this way, $C_0^\infty(\Omega)$ will be denoted by $\mathfrak{D}(\Omega)$. It is to be remarked that, 
+\[
+P(f) = \sup\limits_{x \in \Omega} | f (x) |
+\]
+is one of the semi-norms which defines the topology of $\mathfrak{D}(\Omega)$. For, if we set $U = \{f \in C_0^\infty(\Omega); p(f) \leqq 1\}$, then the intersection $U \cap \mathfrak{D}_K(\Omega)$ is given by $U_K = \{f \in \mathfrak{D}_K(\Omega); p_K(f) = \sup\limits_{x \in K} |f(x)| \leqq 1\}$. 
+
+\begin{proposition}\label{prop:I.1.Proposition.7} The convergence $\lim\limits_{h\to \infty}f_h = 0$ in $\mathfrak{D}(\Omega)$ means that the following two conditions are satisfied: \begin{enumerate}[(i)]
+\item there exists a compact subset $K$ of $\Omega$ such that $\supp(f_h)\subseteq K(h = 1,2,\ldots)$
+\item for any differential operator $D^{s}$, the sequence $\{D^s f_h(x)\}$ converges to $0$ uniformly on $K$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+ We have only to prove (i). Assume the contrary, and let there exist a sequence $\{x^{(k)}\}$ of points $\in\Omega$ having no accumulation points in $\Omega$ and a subsequence $\{f_{h_{j}}(x)\}$ of $\{f_{h}(x)\}$ such that $f_{h_{j}}(x^{(j)})\neq0$. Then the semi-norm 
+\[
+P(f) = \sum\limits_{k=1}^{\infty} 2\sup\limits_{x\in K_k-K_{k-1}}
+\left|f(x)/f_{h_k}\left(x^{(k)}\right)\right|.
+\]
+\begingroup\everymath{}
+Here the monotone increasing sequence of compact subsets $K_j$ of $\Omega$
+satisfies $\bigcup_{j=1}^{\infty}K_j=\Omega$ and
+$x^{(k)}\in K_k-K_{k-1}$ ($k=1,2,\ldots$), with $K_0=\emptyset$.
+This semi-norm defines a neighbourhood $U = \{f \in C_0^\infty(\Omega); p(f) \leqq 1\}$ of $0$ of $\mathfrak{D}(\Omega)$. However, none of the $f_{h_{k}}$'s is contained in $U$. \qedhere\par\endgroup 
+\end{proof}
+
+\begin{corollaryu} The convergence $\lim\limits_{h\to \infty}f_h = f$ in $\mathfrak{D}(\Omega)$ means that the following two conditions are satisfied: \begin{enumerate}[(i)]
+\item there exists a compact subset $K$ of $\Omega$ such that $\supp(f_h)\subseteq K$ ( $h = 1,2,\ldots$)
+\item for any differential operator $D^{s}$, the sequence $D^{s}f_{h}(x)$ converges to $D^{s}f(x)$ uniformly on $K$.
+\end{enumerate}
+\end{corollaryu}
+
+\begin{proposition}[$A$ theorem of approximation]\label{prop:I.1.Proposition.8} Any continuous function $f \in C_0^0(\mathbb{R}^{n})$ can be approximated by functions of $C_0^\infty(\mathbb{R}^{n})$ uniformly on $\mathbb{R}^{n}$. 
+\end{proposition}
+
+\begin{proof}
+ Let $\theta_{1}(x)$ be the function introduced in \eqref{eq:I.1.14} and put 
+\begin{equation}\label{eq:I.1.15}
+\begin{aligned}
+&\theta_{a} (x) = h_{a} ^{-1} \theta_{1} (x / a), \text{ where } a > 0 \text{ and } h_{a} > 0 \text{ are such that } \int_ {\mathbb{R}^{n}} \theta_{a} (x) \dd x = 1.
+\end{aligned}
+\end{equation}
+
+We then define the regularization $f_{a}$ of $f$: 
+\begin{equation}\label{eq:I.1.16}
+\begin{aligned}
+f_{a} (x) &= \int_ {\mathbb{R}^{n}} f (x- y) \theta_{a} (y) \dd y = \int_ {\mathbb{R}^{n}} f (y) \theta_{a} (x- y) \dd y, \text{ where }
+\\
+x- y &= (x_{1}- y_{1}, x_{2}- y_{2}, \ldots , x_{n}- y_{n}).
+\end{aligned}
+\end{equation}
+
+The integral is convergent since $f$ and $\theta_{a}$ have compact support. Moreover, since 
+\[
+f_{a} (x) = \int_ {\supp (f)} f (y) \theta_{a} (x- y) \dd y,
+\]
+the support of $f_{a}$ may be taken to be contained in any neighbourhood of the $\supp(f)$ if we take $a > 0$ sufficiently small. Next, by differentiating under the integral sign, we have 
+\begin{equation}\label{eq:I.1.17}
+D ^{s} f_{a} (x) = D_{x} ^{s} f_{a} (x) = \int_ {\mathbb{R}^{n}} f (y) D_{x} ^{s} \theta_{a} (x- y) \dd y,
+\end{equation}
+and so $f_{a}$ is in $C_0^\infty (\mathbb{R}^{n})$. Finally we have by $\int \limits_{\mathbb{R}^{n}}\theta_a(\dot{x}-y)\dd y = 1$, 
+\[
+\begin{aligned}
+&| f_{a} (x)- f (x) |  \leqq \int_ {\mathbb{R}^{n}} | f (y)- f (x) | \theta_{a} (x- y) \dd y \leqq \int_{| f (y)- f (x) | \leqq \varepsilon} | f (y)- f (x) | \theta_{a} (x- y) \dd y \\
+&+ \int_{| f (y)- f (x) | > \varepsilon} | f (y)- f (x) | \theta_{a} (x- y) \dd y.
+\end{aligned}
+\]
+
+The first term on the right is $\leqq\varepsilon$; and the second term on the right equals $0$ for sufficiently small $a>0$, because, by the uniform continuity of the function $f$ with compact support, there exists an $a>0$ such that $|f(y)-f(x)|>\varepsilon$ implies $|y-x|>a$. We have thus proved our Proposition. 
+\end{proof}
+
+
+\yossection{2}{Norms and Quasi-norms}
+\label{sec:I.2}
+
+\begin{definition}\label{def:I.2.Definition.1} $A$ locally convex space is called a normed linear space, if its topology is defined by just one semi-norm. 
+\end{definition}
+
+Thus a linear space $X$ is called a normed linear space, if for every $x \in X$, there is associated a real number $\|x\|$, the norm of the vector $x$, such that 
+\begin{align}
+\left\| x \right\|& \geqq 0 \text{ and } \left\| x \right\| = 0 \text{ iff } x = 0, \label{eq:I.2.1} \\
+\left\| x + y \right\|& \leqq \left\| x \right\| + \left\| y \right\| (\text{ triangle inequality }), \label{eq:I.2.2} \\
+\left\| \alpha x \right\|& = | \alpha | \cdot \left\| x \right\|. \label{eq:I.2.3}
+\end{align}
+
+The topology of a normed linear space $X$ is thus defined by the distance 
+\begin{equation}\label{eq:I.2.4}
+d (x, y) = \| x- y \|.
+\end{equation}
+
+In fact, $d(x, y)$ satisfies the axiom of distance: 
+\begin{gather}d (x, y) \geqq 0 \text{ and } d (x, y) = 0 \text{ iff } x = y, d (x, y) \leqq d (x, z) + d (z, y) (\text{ triangle inequality }), \notag \\d (x, y) = d (y, x). \notag
+\end{gather}
+
+For, $d(x, y) = \|x- y\| = \|y- x\| = d(y, x)$ and $d(x, y) = \|x- y\| = \|x- z + z- y\| \leqq \|x- z\| + \|z- y\| = d(x, z) + d(z, y)$ by \eqref{eq:I.2.1}, \eqref{eq:I.2.2}, 
+
+\eqref{eq:I.2.3} and \eqref{eq:I.2.4}. 
+
+The convergence $\lim\limits_{n\to\infty}d(x_n,x)=0$ in a normed linear space $X$ will be denoted by $\slim\limits_{n\to\infty}x_n=x$ or simply by $x_n\to x$, and we say that the sequence $\{x_n\}$ converges strongly to $x$. The adjective ``strong'' is introduced to distinguish it from the ``weak'' convergence to be introduced later. 
+
+\begin{proposition}\label{prop:I.2.Proposition.1} In a normed linear space $X$, we have 
+\begin{align}
+\lim\limits_{n \rightarrow \infty} \| x_{n} \|& = \| x \| \text{ if } \slim_{n \rightarrow \infty} x_{n} = x, \label{eq:I.2.5} \\
+\slim_{n \to \infty} \alpha_{n} x_{n}& = \alpha x \text{ if } \lim\limits_{n \to \infty} \alpha_{n} = \alpha \text{ and } \slim_{n \to \infty} x_{n} = x, \label{eq:I.2.6} \\
+\slim_{n \to \infty} (x_{n} + y_{n})& = x + y \text{ if } \slim_{n \to \infty} x_{n} = x \text{ and } \slim_{n \to \infty} y_{n} = y. \label{eq:I.2.7}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+ \eqref{eq:I.2.5}, \eqref{eq:I.2.6} and \eqref{eq:I.2.7} are already proved, since $X$ is a locally convex space topologized by just one semi-norm $p(x) = \|x\|$. However, we shall give a direct proof as follows. As a semi-norm, we have 
+\begin{equation}\label{eq:I.2.8}
+\left\| x- y \right\| \geqq \left| \left\| x \right\|- \left\| y \right\| \right|
+\end{equation}
+and hence \eqref{eq:I.2.5} is clear. \eqref{eq:I.2.7} is proved by $\|(x + y)- (x_n + y_n)\| = \|(x- x_n) + (y- y_n)\| \leqq \|x- x_n\| + \|y- y_n\|$. From $\|\alpha x- \alpha_n x_n\| \leqq \|\alpha x- \alpha_n x\| + \|\alpha_n x- \alpha_n x_n\| \leqq |\alpha- \alpha_n| \cdot \|x\| + |\alpha_n| \cdot \|x- x_n\|$ and the boundedness of the sequence $\{\alpha_n\}$ we obtain \eqref{eq:I.2.6}. 
+\end{proof}
+
+\begin{definition}\label{def:I.2.Definition.2} $A$ linear space $X$ is called a \emph{quasi-normed linear space}, if, for every $x \in X$, there is associated a real number $\|x\|$, the \emph{quasi-norm} of the vector $x$, which satisfies \eqref{eq:I.2.1}, \eqref{eq:I.2.2} and 
+\begin{equation}\tag{3'}\label{eq:I.2.3'}
+\left\|- x \right\| = \left\| x \right\|, \lim\limits_ {\alpha_{n} \rightarrow 0} \left\| \alpha_{n} x \right\| = 0 \text{ and } \lim\limits_ {\left\| x_{n} \right\|\rightarrow 0} \left\| \alpha x_{n} \right\| = 0.
+\end{equation}
+\end{definition}
+
+\begin{proposition}\label{prop:I.2.Proposition.2} In a quasi-normed linear space $X$, we have \eqref{eq:I.2.5}, \eqref{eq:I.2.6} and \eqref{eq:I.2.7}. 
+\end{proposition}
+
+\begin{proof}
+ We need only prove \eqref{eq:I.2.6}. The proof in the preceding Proposition shows that we have to prove 
+\begin{equation}
+\tag{9}\label{eq:I.2.9}
+\begin{minipage}{0.92\linewidth}
+\everymath{}\let\limits\nolimits
+$\lim\limits_{n \rightarrow \infty} \| x_{n} \| = 0$ implies that $\lim\limits_{n \rightarrow \infty} \| \alpha x_{n} \| = 0$ uniformly in $\alpha$ on any bounded set of $\alpha.$
+\end{minipage}
+\end{equation}
+
+The following proof of \eqref{eq:I.2.9} is due to S. \textsc{Kakutani} (unpublished). Consider the functional $p_n(\alpha) = \|\alpha x_n\|$ defined on the linear space $\mathbb{R}^{1}$ of real numbers normed by the absolute value. By the triangle inequality of $p_n(\alpha)$ and \eqref{eq:I.2.3}, $p_n(\alpha)$ is continuous on $\mathbb{R}^{1}$. Hence, from $\lim\limits_{n\to \infty}p_n(\alpha) = 0$ implied by \eqref{eq:I.2.3} and Egorov's theorem (Chapter~\ref{chap:0}, Preliminaries, \ref{sec:0.3}. Measure Spaces), we see that there exists a Baire measurable set $A$ on the real line $\mathbb{R}^{1}$ with the property: 
+\begin{equation}\tag{10}\label{eq:I.2.10}
+\parbox[b]{0.92\linewidth}{\setlength{\parindent}{1.2em}\indent
+the Lebesgue measure $|A|$ of $A$ is $>0$ and $\lim\limits_{n\to\infty}p_n(\alpha)=0$ uniformly on $A$.}
+\end{equation}
+
+
+Since the Lebesgue measure on the real line is continuous with respect to translations, we have, denoting by $B \ominus C$ the symmetric difference $B \cup C- B \cap C$, 
+\[
+\left| (A + \sigma) \ominus A \right|\rightarrow 0 \quad \text{ as } \quad \sigma \rightarrow 0.
+\]
+
+Thus there exists a positive number $\sigma_0$ such that 
+$|\sigma| \leqq \sigma_{0}$ implies $|(A + \sigma) \ominus A| < |A|/2$, in particular, $|(A + \sigma) \cap A| > 0$. Hence, for any real number $\sigma$ with $|\sigma| \leqq \sigma_{0}$, there is a representation 
+\[
+\sigma = \alpha- \alpha^{\prime} \text{ with } \alpha \in A, \alpha^{\prime} \in A.
+\]
+
+Therefore, by $p_n(\sigma) = p_n(\alpha- \alpha') \leqq p_n(\alpha) + p_n(\alpha')$, we see that 
+\[
+\lim\limits_{n \rightarrow \infty} P_{n} (\sigma) = 0 \text{ uniformly in } \sigma \text{ when } | \sigma | \leqq \sigma_{0}.
+\]
+
+Let $M$ be any positive number. Then, taking a positive integer $k \geqq M / \sigma_0$ and remembering $\phi_n(k\sigma) \leqq k\phi_n(\sigma)$, we see that \eqref{eq:I.2.9} is true for $|\alpha| \leqq M$. 
+\end{proof}
+
+\begin{remarku} The above proof may naturally be modified so as to apply to complex quasi-normed linear spaces $X$ as well. 
+\end{remarku}
+
+As in the case of normed linear spaces, the convergence $\lim\limits_{n\to\infty}\left\|x-x_{n}\right|=0$ in a quasi-normed linear space will be denoted by $\slim\limits_{n\to\infty}x_{n}=x$, or simply by $x_{n}\to x$; we shall then say that the sequence $\{x_{n}\}$ converges strongly to $x$. 
+
+\begin{examplen} Let the topology of a locally convex space $X$ be defined by a countable number of semi-norms $p_{n}(x)$ ( $n = 1, 2, \ldots$). Then $X$ is a quasi-normed linear space by the quasi-norm
+\[
+\left\| x \right\| = \sum\limits_{n=1} ^{\infty} 2 ^{-n} P_{n} (x) (1 + P_{n} (x)) ^{-1}.
+\]
+
+For, the convergence $\lim\limits_{h\to \infty}p_n(x_h) = 0$ ( $n = 1,2,\ldots$) is equivalent to $s\text{- }\lim\limits_{h\to \infty}x_h = 0$ with respect to the quasi-norm $\|x\|$ above. 
+
+
+\end{examplen}
+\yossection{3}{Examples of Normed Linear Spaces}
+\label{sec:I.3}
+
+\begin{example}\label{ex:I.3.Example.1} $C(S)$. Let $S$ be a topological space. Consider the set $C(S)$ of all real-valued (or complex-valued), bounded continuous functions $x(s)$ defined on $S$. $C(S)$ is a normed linear space by 
+\[
+(x + y) (s) = x (s) + y (s), (\alpha x) (s) = \alpha x (s), \| x \| = \sup\limits_{s \in S} | x (s) |.
+\]
+\end{example}
+
+In $C(S)$, \slim $x_{n} = x$ means the uniform convergence of the functions $x_{n}(s)$ to $x(s)$. 
+
+\begin{example}\label{ex:I.3.Example.2} $L^p(S, \mathfrak{B}, m)$, or, in short, $L^p(S)$ ($1 \leqq p < \infty$). Let $L^p(S)$ be the set of all real-valued (or complex-valued) $\mathfrak{B}$-measurable functions $x(s)$ defined $m$-a.e. on $S$ such that $|x(s)|^p$ is $m$-integrable over $S$. $L^p(S)$ is a linear space by 
+\[
+(x + y) (s) = x (s) + y (s), (\alpha x) (s) = \alpha x (s).
+\]
+\end{example}
+
+For, $(x(s) + y(s))$ belongs to $L^p(S)$ if $x(s)$ and $y(s)$ both belong to $L^p(S)$, as may be seen from the inequality $|x(s) + y(s)|^p\leqq 2^p(|x(s)|^p+ |y(s)|^p)$. We define the norm in $L^p(S)$ by 
+\begin{equation}\label{eq:I.3.1}
+\left\| x \right\| = \left(\int_{S} | x (s) | ^{p} m (\dd s)\right) ^{1/p}.
+\end{equation}
+
+The subadditivity 
+\begin{equation}\label{eq:I.3.2}
+\begin{aligned}
+&\left(\int_{S} | x (s) + y (s) | ^{p} m (\dd s)\right) ^{1/p}  \leqq \left(\int_{S} | x (s) | ^{p} m (\dd s)\right) ^{1/p} + \left(\int_{S} | y (s) | ^{p} m (\dd s)\right) ^{1/p},
+\end{aligned}
+\end{equation}
+called Minkowski's inequality, is clear for the case $p = 1$. To prove the general case $1 < p < \infty$, we need 
+
+\begin{lemma}\label{lem:I.3.Lemma.1} Let $1 < p < \infty$ and let the conjugate exponent $p'$ of $p$ be defined by 
+\begin{equation}\label{eq:I.3.3}
+\frac {1}{p} + \frac {1}{p^{\prime}} = 1.
+\end{equation}
+\end{lemma}
+
+Then, for any pair of non-negative numbers $a$ and $b$, we have 
+\begin{equation}\label{eq:I.3.4}
+a b \leqq \frac {a ^{p}}{p} + \frac {b ^ {p^{\prime}}}{p^{\prime}},
+\end{equation}
+where the equality is satisfied iff $a = b^{1/(p-1)}$. 
+
+\begin{proof}
+ The minimum of the function $f(c) = \frac{c^p}{p} + \frac{1}{p'}- c$ for $c \geqq 0$ is attained only at $c = 1$, and the minimum value is $0$. By taking $c = ab^{-1/(p-1)}$ we see that the Lemma is true. 
+\end{proof}
+
+\begin{proof}[Proof of \eqref{eq:I.3.2}.]
+ We first prove Hölder's inequality 
+\begin{equation}\label{eq:I.3.5}
+\int | x (s) y (s) | \leqq \left(\int | x (s) | ^{p}\right) ^{1/p} \cdot \left(\int | y (s) | ^ {p^{\prime}}\right) ^ {1 / p^{\prime}}
+\end{equation}
+
+(for convenience, we write $\int z(s)$ for $\int_{S}z(s)m(\dd s)$). 
+
+
+To this end, we assume that $A = \left( \int |x(s)|^p\right)^{1/p}$ and $B = \left( \int |y(s)|^{p'} \right)^{1/p'}$ are both $\neq 0$, since otherwise $x(s)y(s) = 0$ a.e. and so \eqref{eq:I.3.5} would be true. Now, by taking $a = |x(s)|/A$ and $b = |y(s)|/B$ in \eqref{eq:I.3.4} and integrating, we obtain 
+\[
+\frac {\int | x (s) y (s) |}{A B} \leqq \frac {1}{p} \frac {A ^{p}}{A ^{p}} + \frac {1}{p^{\prime}} \frac {B ^ {p^{\prime}}}{B ^ {p^{\prime}}} = 1 \text{ which implies } \eqref{eq:I.3.5}.
+\]
+
+Next, by \eqref{eq:I.3.5}, we have 
+\[
+\begin{aligned}
+&\int | x (s) + y (s) | ^{p} \leqq \int | x (s) + y (s) | ^{p-1} \cdot | x (s) | + \int | x (s) + y (s) | ^{p-1} \cdot | y (s) |
+\\
+&\leqq \left(\int | x (s) + y (s) | ^ {p^{\prime} (p- 1)}\right) ^ {1 / p^{\prime}} \left(\int | x (s) | ^{p}\right) ^{1/p}
+\\
+&\quad + \left(\int | x (s) + y (s) | ^ {p^{\prime} (p- 1)}\right) ^ {1 / p^{\prime}} \left(\int | y (s) | ^{p}\right) ^{1/p},
+\end{aligned}
+\]
+which proves \eqref{eq:I.3.2} by $p'(p - 1) = p$.
+\end{proof}
+
+\begin{remarkn}[Remark $1$] The equality sign in \eqref{eq:I.3.2} holds iff there exists a non-negative constant $c$ such that $x(s) = cy(s)$ $m$-a.e. (or $y(s) = cx(s)$ $m$-a.e.). This is implied from the fact that, by Lemma~\ref{lem:I.3.Lemma.1}, the equality sign in Hölder's inequality \eqref{eq:I.3.5} holds iff $|x(s)| = c \cdot |y(s)|^{1/p-1}$ (or $|y(s)| = c \cdot |x(s)|^{1/p-1}$) are satisfied $m$-a.e. 
+\end{remarkn}
+
+\begin{remarkn}[Remark $2$] The condition $\|x\| = \left(\int |x(s)|^p\right)^{1/p} = 0$ is equivalent to the condition that $x(s) = 0$ $m$-a.e. We shall thus consider two functions of $L^p(S)$ as equivalent if they are equal $m$-a.e. By this convention, $L^p(S)$ becomes a normed linear space. The limit relation $\slim\limits_{n \to \infty} x_n = x$ in $L^p(S)$ is sometimes called the mean convergence of $p$-th order of the sequence of functions $x_n(s)$ to the function $x(s)$. 
+\end{remarkn}
+
+\begin{example}\label{ex:I.3.Example.3} $L^{\infty}(S)$. A $\mathfrak{B}$-measurable function $x(s)$ defined on $S$ is said to be essentially bounded if there exists a constant $\alpha$ such that $|x(s)| \leqq \alpha m$-a.e. The infimum of such constants $\alpha$ is denoted by 
+\[
+\vraimax_{s \in S} | x (s) | \text{ or essential } \sup\limits_{s \in S} | x (s) |.
+\]
+$L^{\infty}(S, \mathfrak{B}, m)$ or, in short, $L^{\infty}(S)$ is the set of all $\mathfrak{B}$-measurable, essentially bounded functions defined $m$-a.e. on $S$. It is a normed linear space by 
+\[
+(x + y) (s) = x (s) + y (s), (\alpha x) (s) = \alpha x (s), \| x \| = \vraimax_{s \in S} | x (s) |,
+\]
+under the convention that we consider two functions of $L^{\infty}(S)$ as equivalent if they are equal $m$-a.e. 
+\end{example}
+
+\begin{theorem}\label{thm:I.3.Theorem.1} Let the total measure $m(S)$ of $S$ be finite. Then we have 
+\begin{equation}\label{eq:I.3.6}
+\lim\limits_{p\rightarrow \infty} \left(\int_{S} | x (s) | ^{p} m (\dd s)\right) ^{1/p} = \vraimax_{s \in S} | x (s) | \quad \text{ for } \quad x (s) \in L ^{\infty} (S)
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ It is clear that
+\begin{equation}\left(\int\limits_{S}\left|x(s)\right|^{p}m(\dd s)\right)^{1/p} \leqq m(S)^{1/p}\vraimax\limits_{s\in S}\left|x(s)\right|, \varlimsup\limits_{p\to\infty}\left(\int\limits_{S}\left|x(s)\right|^{p}\right)^{1/p} \leqq \vraimax\limits_{s\in S}\left|x(s)\right|. \notag\end{equation}
+By the definition of the vrai max, there exists, for any $\varepsilon>0$, a set $B$ of $m$-measure $>0$ at each point of which $\left|x(s)\right|\geqq\vraimax\limits_{s\in S}\left|x(s)\right|-\varepsilon$. Hence
+\begin{align}
+\left(\int\limits_{S}\left|x(s)\right|^{p}m(\dd s)\right)^{1/p}& \geqq m(B)^{1/p}\left(\vraimax\limits_{s\in S}\left|x(s)\right|-\varepsilon\right), \notag
+\end{align}
+and therefore $\lim\limits_{p\to\infty}\left(\int\limits_{S}\left|x(s)\right|^{p}\right)^{1/p}\geqq\vraimax\limits_{s\in S}\left|x(s)\right|-\varepsilon$, and so \eqref{eq:I.3.6} is true. 
+\end{proof}
+
+\begin{example}\label{ex:I.3.Example.4} Let, in particular, $S$ be a discrete topological space consisting of countable points denoted by $1$, $2$, \ldots; the term discrete means that each point of $S = \{1, 2, \ldots\}$ is itself open in $S$. Then as linear subspaces of $C(\{1, 2, \ldots\})$, we define $(c_{0})$, $(c)$ and $(l^{p})$, $1 \leqq p< \infty$. 
+
+$(c_{0})$: Consider a bounded sequence of real or complex numbers $\{\xi_{n}\}$. Such a sequence $\{\xi_{n}\}$ defines a function $x(n)=\xi_{n}$ defined and continuous on the discrete space $S=\{1,2,\ldots\}$; we shall call $x=\{\xi_{n}\}$ a vector with components $\xi_{n}$. The set of all vectors $x = \{\xi_{n}\}$ such that $\lim\limits_{n\to \infty}\xi_n = 0$ constitutes a normed linear space $(c_0)$ by the norm 
+\[
+\left\| x \right\| = \sup\limits_{n} | x (n) | = \sup\limits_{n} \left| \xi_{n} \right|.
+\]
+\end{example}
+
+$(c)$: The set of all vectors $x = \{\xi_n\}$ such that finite $\lim\limits_{n \to \infty} \xi_n$ exist, constitutes a normed linear space $(c)$ by the norm $\|x\| = \sup\limits_n |x(n)| = \sup|\xi_n|$. 
+
+$(l^{p}), 1 \leqq p< \infty$: The set of all vectors $x = \{\xi_{n}\}$ such that $\sum\limits_{n=1}^{\infty} |\xi_{n}|^{p} < \infty$ constitutes a normed linear space $(l^{p})$ by the norm $\|x\| = \left( \sum\limits_{n=1}^{\infty} |\xi_{n}|^{p} \right)^{1/p}$. As an abstract linear space, it is a linear subspace of $C(\{1, 2, \ldots\})$. It is also a special case of $L^{p}(S, \mathfrak{B}, m)$ in which $m(\{1\}) = m(\{2\}) = \cdots = 1$.
+
+$(l^{\infty}) = (m)$: As in the case of $L^{\infty}(S)$, we shall denote by $(l^{\infty})$ the linear space $C(\{1, 2, \ldots\})$, normed by $\|x\| = \sup\limits_{n} |x(n)| = \sup\limits_{n} |\xi_n|$. $(l^{\infty})$ is also denoted by $(m)$. 
+
+The Space of Measures. Let $\mathfrak{B}$ be a $\sigma$-ring of subsets of $S$. Consider the set $A(S, \mathfrak{B})$ of all real- (or complex-) valued functions $\varphi(B)$ defined on $\mathfrak{B}$ such that 
+\begin{equation}\label{eq:I.3.7}
+\left| \varphi (B) \right| \neq \infty \text{ for every } B \in \mathfrak {B},
+\end{equation}
+\begin{equation}\label{eq:I.3.8}
+\varphi \left( \sum\limits_{j=1} ^{\infty} B_j \right) = \sum\limits_{j=1} ^{\infty} \varphi (B_j) \text{ for any disjoint sequence } \{B_j \} \text{ of sets } \in \mathfrak{B}.
+\end{equation}
+
+
+$A(S, \mathfrak{B})$ will be called the space of signed (or complex) measures defined on $(S, \mathfrak{B})$. 
+
+\begin{lemma}\label{lem:I.3.Lemma.2} Let $\varphi \in A(S, \mathfrak{B})$ be real-valued. Then the total variation of $\varphi$ on $S$ defined by 
+\begin{equation}\label{eq:I.3.9}
+V (\varphi ; S) = \overline {{V}} (\varphi ; S) + | \underline {{V}} (\varphi ; S) |
+\end{equation}
+is finite; here the positive variation and the negative variation of $\varphi$ over $B\in\mathfrak{B}$ are given respectively by 
+\begin{equation}\label{eq:I.3.10}
+\overline {{V}} (\varphi ; B) = \sup\limits_ {B_{1} \subseteq B} \varphi (B_{1}) \text{ and } \underline {{V}} (\varphi ; B) = \inf\limits_ {B_{1} \subseteq B} \varphi (B_{1}).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+ Since $\varphi(\emptyset) = 0$, we have $V(\varphi; B) \geqq 0 \geqq \underline{V}(\varphi; B)$. Suppose that $V(\varphi; S) = \infty$. Then there exists a decreasing sequence $\{B_n\}$ of sets $\in \mathfrak{B}$ such that 
+\[
+V (\varphi ; B_{n}) = \infty , | \varphi (B_{n}) | \geqq n- 1. \]
+
+The proof is obtained by induction. Let us choose $B_{1}=S$ and assume that the sets $B_{2}, B_{3}, \ldots, B_{k}$ have been defined so as to satisfy the above conditions. By the first condition with $n=k$, there exists a set $B \in B$ such that $B \subseteq B_k$, $|\varphi(B)| \geqq |\varphi(B_k)| + k$. We have only to set $B_{k+1} = B$ in the case $V(\varphi; B) = \infty$ and $B_{k+1} = B_k- B$ in the case $V(\varphi; B) < \infty$. For, in the latter case, we must have $V(\varphi; B_k- B) = \infty$ and $|\varphi(B_k- B)| \geqq |\varphi(B)|- |\varphi(B_k)| \geqq k$ which completes the induction. 
+
+By the decreasing property of the sequence $\{B_n\}$, we have 
+\[
+\begin{aligned}
+&S- \underset {n = 1} {\overset {\infty} {\cap}} B_{n}  = \underset {n = 1} {\overset {\infty} {\sum}} (S- B_{n}) = (S- B_{1}) + (B_{1}- B_{2}) + (B_{2}- B_{3}) + \dots + (B_{n}- B_{n+1}) + \dots
+\end{aligned}
+\]
+so that, by the countable additivity of $\varphi$, 
+\[
+\begin{aligned} \varphi \left(S- \bigcap\limits_{n=1} ^{\infty} B_{n}\right) & = \varphi (S- B_{1}) + \varphi (B_{1}- B_{2}) + \varphi (B_{2}- B_{3}) + \dots \\ & = [ \varphi (S)- \varphi (B_{1}) ] + [ \varphi (B_{1})- \varphi (B_{2}) ] \\ & \quad + [ \varphi (B_{2})- \varphi (B_{3}) ] + \dots \\ & = \varphi (S)- \lim\limits_{n \to \infty} \varphi (B_{n}) = \infty \text{ or }- \infty , \end{aligned}
+\]
+which is a contradiction of \eqref{eq:I.3.7}. 
+\end{proof}
+\begin{theorem}[Jordan's decomposition]\label{thm:I.3.Theorem.2} Let $\varphi \in A(S, \mathfrak{B})$ be real-valued. Then the positive variation $\overline{V}(\varphi; B)$, the negative variation $\underline{V}(\varphi; B)$ and the total variation $V(\varphi; B)$ are countably additive on $B$. Moreover, we have the Jordan decomposition 
+\begin{equation}\label{eq:I.3.11}
+\varphi (B) = \bar {V} (\varphi ; B) + \underline {{{V}}} (\varphi ; B) \text{ for any } B \in \mathfrak {B}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ Let $\{B_n\}$ be a sequence of disjoint sets $\in \mathfrak{B}$. For any set $B \in \mathfrak{B}$ such that $B \subseteq \sum\limits_{n=1}^{\infty} B_n$, we have $\varphi(B) = \sum\limits_{n=1}^{\infty} \varphi(B \cap B_n) \leqq \sum\limits_{n=1}^{\infty} \overline{V}(\varphi; B_n)$ and hence $\overline{V}\left(\varphi; \sum\limits_{n=1}^{\infty} B_n\right) \leqq \sum\limits_{n=1}^{\infty} \overline{V}(\varphi; B_n)$. On the other hand, if $C_n \in \mathfrak{B}$ is a subset of $B_n$ ( $n = 1, 2, \ldots$), then we have $\overline{V}\left(\varphi; \sum\limits_{n=1}^{\infty} B_n\right) \geqq \varphi\left(\sum\limits_{n=1}^{\infty} C_n\right) = \sum\limits_{n=1}^{\infty} \varphi(C_n)$ and so $\overline{V}\left(\varphi; \sum\limits_{n=1}^{\infty} B_n\right) \geqq \sum\limits_{n=1}^{\infty} \overline{V}(\varphi; B_n)$. Hence we have proved the countable additivity of $\overline{V}(\varphi; B)$ and those of $\underline{V}(\varphi; B)$ and of $V(\varphi; B)$ may be proved similarly. 
+
+
+To establish \eqref{eq:I.3.11}, we observe that, for every $C \in \mathfrak{B}$ with $C \subseteq B$, we have $\varphi(C) = \varphi(B)- \varphi(B- C) \leqq \varphi(B)- \underline{V}(\varphi; B)$ and so $\overline{V}(\varphi; B) \leqq \varphi(B)- \underline{V}(\varphi; B)$. Similarly we obtain $\underline{V}(\varphi; \overline{B}) \geqq \varphi(B)- \overline{V}(\varphi; B)$. These inequalities together give \eqref{eq:I.3.11}.
+\end{proof}
+
+\begin{theorem}[Hahn's decomposition]\label{thm:I.3.Theorem.3} Let $\varphi \in A(S, \mathfrak{B})$ be a signed measure. Then there exists a set $P\in \mathfrak{B}$ such that 
+
+$\varphi(B) \geqq 0$ for every $B \in \mathfrak{B}$ with $B \subseteq P$, 
+$\varphi(B) \leqq 0$ for every $B \in \mathfrak{B}$ with $B \subseteq P^{C} = S- P$. 
+\end{theorem}
+
+The decomposition $S = P+ (S- P)$ is called the Hahn decomposition of $S$ pertaining to $\varphi$. 
+
+\begin{proof}
+ For each positive integer $n$ we choose a set $B_n \in \mathfrak{B}$ such that $\varphi(B_n) \geqq \overline{V}(\varphi; S)- 2^{-n}$. Hence by \eqref{eq:I.3.11}, we have 
+\begin{equation}\label{eq:I.3.12}
+\underline {{{V}}} (\varphi ; B_{n}) \geqq- 2 ^{-n} \quad \text{ and } \quad \overline {{{V}}} (\varphi ; S- B_{n}) \leqq 2 ^{-n}. \end{equation}
+
+The latter inequality is obtained from $\overline{V} (\varphi ;S- B_n) = \overline{V} (\varphi ;S)- \overline{V} (\varphi ;B_n)$ and $\overline{V} (\varphi ;B_n)\geqq \varphi (B_n)$. We then put 
+\[
+P= \varliminf\limits_{n \to \infty} B_{n} = \bigcup\limits_{k=1} ^{\infty} \bigcap\limits_{n=k} ^{\infty} B_{n}.
+\]
+
+Then $S- P= \varlimsup\limits_{n\to \infty}(S- B_n) = \bigcap\limits_{k=1}^{\infty}\bigcup\limits_{n=k}^{\infty}(S- B_n)\subseteq \bigcup\limits_{n=k}^{\infty}(S- B_n)$ every $k$, and therefore, by the $\sigma$-additivity of $\overline{V} (\varphi ;B)$, 
+\[
+\overline {{{V}}} (\varphi ; S- P) \leqq \sum\limits_{n=k} ^{\infty} \overline {{{V}}} (\varphi ; S- B_{n}) \leqq 2 ^{-(k-1)},
+\]
+which gives $\overline{V}(\varphi; S- P) = 0$. On the other hand, the negative variation $\underline{V}(\varphi; B)$ is a non-positive measure and so, by \eqref{eq:I.3.12} and similarly as above, 
+\[
+\left| \underline {{V}} (\varphi ; P) \right| \leqq \varliminf\limits_{n \rightarrow \infty} \left| \underline {{V}} (\varphi ; B_{n}) \right| = 0,
+\]
+which gives $\underline{V} (\varphi ;P) = 0$. The proof is thus completed. 
+\end{proof}
+
+\begin{corollaryu} The total variation $V(\varphi; S)$ of a signed measure $\varphi$ is defined by 
+\begin{equation}\label{eq:I.3.13}
+V (\varphi ; S) = \sup\limits_{\sup| x (s) | \leqq 1} \left| \int_{S} x (s) \varphi (\dd s) \right|
+\end{equation}
+where $x(s)$ ranges through $\mathfrak{B}$-measurable functions defined on $S$ such that $\sup\limits_{s}|x(s)| \leqq 1$. 
+\end{corollaryu}
+
+\begin{proof}
+ If we take $x(s) = 1$ or =-$1$ according as $s \in P$ or $s \in S- P$, then the right hand side of \eqref{eq:I.3.13} gives $V(\varphi; S)$. On the other hand, it is easy to see that 
+\[
+\left| \int_{S} x (s) \varphi (\dd s) \right| \leqq \sup\limits_{s} | x (s) | \cdot \int_{S} V (\varphi ; \dd s) = \sup\limits_{s} | x (s) | \cdot V (\varphi ; S)
+\]
+and hence \eqref{eq:I.3.13} is proved. 
+\end{proof}
+
+\begin{example}\label{ex:I.3.Example.5} $A(S, \mathfrak{B})$. The space $A(S, \mathfrak{B})$ of signed measures $\varphi$ on $\mathfrak{B}$ is a real linear space by 
+\[
+\left(\alpha_{1} \varphi_{1} + \alpha_{2} \varphi_{2}\right) (B) = \alpha_{1} \varphi_{1} (B) + \alpha_{2} \varphi_{2} (B), B \in \mathfrak {B}.
+\]
+\end{example}
+
+It is a normed linear space by the norm 
+\begin{equation}\label{eq:I.3.14}
+\left\| \varphi \right\| = V (\varphi ; S) = \sup\limits_{\sup| x (s) | \leqq 1} \left| \int_{S} x (s) \varphi (\dd s) \right|.
+\end{equation}
+
+\begin{example}\label{ex:I.3.Example.6} The space $A(S, \mathfrak{B})$ of complex measures $\varphi$ is a complex linear space by 
+
+$(\alpha_{1}\varphi_{1} + \alpha_{2}\varphi_{2})(B) = \alpha_{1}\varphi_{1}(B) + \alpha_{2}\varphi_{2}(B), B \in \mathfrak{B}$ with complex $\alpha_{1}, \alpha_{2}$. 
+\end{example}
+
+It is a normed linear space by the norm 
+\begin{equation}\label{eq:I.3.15}
+\left\| \varphi \right\| = \sup\limits_{\sup| x (s) | \leqq 1} \left| \int_{S} x (s) \varphi (\dd s) \right|,
+\end{equation}
+where complex-valued $B$-measurable functions $x(s)$ defined on $S$ are taken into account. We shall call the right hand value of \eqref{eq:I.3.15} the total variation of $\varphi$ on $S$ and denote it by $V(\varphi; S)$. 
+
+
+\yossection{4}{Examples of Quasi-normed Linear Spaces}
+\label{sec:I.4}
+
+\begin{example}\label{ex:I.4.Example.1} $\mathfrak{E}^k (\Omega)$. The linear space $\mathfrak{E}^k (\Omega)$, introduced in Chapter~\ref{chap:I}, \ref{sec:I.1}, is a quasi-normed linear space by the quasi-norm $\|x\| = d(x,0)$, where the distance $d(x,y)$ is as defined there. 
+\end{example}
+
+\begin{example}\label{ex:I.4.Example.2} $M(S, \mathfrak{B}, m)$. Let $m(S) < \infty$ and let $M(S, \mathfrak{B}, m)$ be the set of all complex-valued $\mathfrak{B}$-measurable functions $x(s)$ defined on $S$ and such that $|x(s)| < \infty$ $m$-a.e. Then $M(S, \mathfrak{B}, m)$ is a quasi-normed linear space by the algebraic operations 
+\[
+(x + y) (s) = x (s) + y (s), (\alpha x) (s) = \alpha x (s)
+\]
+and (under the convention that $x = y$ iff $x(s) = y(s)$ $m$-a.e.) 
+\begin{equation}\label{eq:I.4.1}
+\left\| x \right\| = \int_{S} | x (s) | (1 + | x (s) |) ^{-1} m (\dd s).
+\end{equation}
+\end{example}
+
+The triangle inequality for the quasi-norm $\|x\|$ is clear from 
+\[
+\frac {| \alpha + \beta |}{1 + | \alpha + \beta |} \leqq \frac {| \alpha | + | \beta |}{1 + | \alpha | + | \beta |} \leqq \frac {| \alpha |}{1 + | \alpha |} + \frac {| \beta |}{1 + | \beta |}.
+\]
+
+The mapping $\{\alpha, x\} \to \alpha x$ is continuous by the following 
+
+\begin{propositionu} The convergence $\slim\limits_{n \to \infty} x_n = x$ in $M(S, \mathfrak{B}, m)$ is equivalent to the asymptotic convergence (or the convergence in measure) in $S$ of the sequence of functions $\{x_n(s)\}$ to $x(s)$: 
+\begin{equation}\label{eq:I.4.2}
+\text{ For any } \varepsilon > 0, \lim\limits_{n \to \infty} m \{s \in S; | x (s)- x_{n} (s) | \geqq \varepsilon \} = 0.
+\end{equation}
+\end{propositionu}
+
+\begin{proof}
+ Clear from the inequality 
+\[
+\frac {\delta}{1 + \delta} m (B_{\delta}) \leqq \| x \| \leqq m (B_{\delta}) + \frac {\delta}{1 + \delta} m (S- B_{\delta}), B_{\delta} = \{s \in S; | x (s) | \geqq \delta \}. \]
+\end{proof}
+
+\begin{remarku} It is easy to see that the topology of $M(S, \mathfrak{B}, m)$ may also be defined by the quasi-norm 
+\begin{equation}\tag{1'}\label{eq:I.4.1'}
+\left\| x \right\| = \inf\limits_{\varepsilon > 0} \tan^{-1} [ \varepsilon + m \{s \in S; | x (s) | \geqq \varepsilon \} ].
+\end{equation}
+\end{remarku}
+
+\begin{example}\label{ex:I.4.Example.3} $\mathfrak{D}_K(\Omega)$. The linear space $\mathfrak{D}_K(\Omega)$, introduced in Chapter~\ref{chap:I}, \ref{sec:I.1}, is a quasi-normed linear space by the quasi-norm $\|x\| = d(x,0)$, where the distance $d(x,y)$ is defined in Chapter~\ref{chap:I}, \ref{sec:I.1}. 
+\end{example}
+
+
+\yossection{5}{Pre-Hilbert Spaces}
+\label{sec:I.5}
+
+\begin{definition}\label{def:I.5.Definition.1} $A$ real or complex normed linear space $X$ is called a pre-Hilbert space if its norm satisfies the condition 
+\begin{equation}\label{eq:I.5.1}
+\left\| x + y \right\| ^{2} + \left\| x- y \right\| ^{2} = 2 \left(\left\| x \right\| ^{2} + \left\| y \right\| ^{2}\right).
+\end{equation}
+\end{definition}
+
+\begin{theorem}[M. \textsc{Fréchet}-J. \textsc{von} \textsc{Neumann}-P. \textsc{Jordan}]\label{thm:I.5.Theorem.1} We define, in a real pre-Hilbert space $X$, 
+\begin{equation}\label{eq:I.5.2}
+(x, y) = 4 ^{-1} (\| x + y \| ^{2}- \| x- y \| ^{2}).
+\end{equation}
+\end{theorem}
+
+Then we have the properties: 
+\begin{align}
+(\alpha x, y)& = \alpha (x, y) \quad (\alpha \in \mathbb{R}^{1}), \label{eq:I.5.3} \\
+(x + y, z)& = (x, z) + (y, z), \label{eq:I.5.4} \\
+(x, y)& = (y, x), \label{eq:I.5.5} \\
+(x, x)& = \| x \| ^{2}. \label{eq:I.5.6}
+\end{align}
+
+\begin{proof}
+ \eqref{eq:I.5.5} and \eqref{eq:I.5.6} are clear. We have, from \eqref{eq:I.5.1} and \eqref{eq:I.5.2}, 
+\begin{align}
+(x, z) + (y, z)& = 4 ^{-1} \left(\left\| x + z \right\| ^{2}- \left\| x- z \right\| ^{2} + \left\| y + z \right\| ^{2}- \left\| y- z \right\| ^{2}\right) \notag \\
+&= 2 ^{-1} \left(\left\| \frac {x + y}{2} + z \right\| ^{2}- \left\| \frac {x + y}{2}- z \right\| ^{2}\right) \notag
+\\
+&= 2 \left(\frac {x + y}{2}, z\right).  \label{eq:I.5.7}
+\end{align}
+
+If we take $y = 0$, we obtain $(x, z) = 2\left(\frac{x}{2}, z\right)$, because $(0, z) = 0$ by \eqref{eq:I.5.2}. Hence, by \eqref{eq:I.5.7}, we obtain \eqref{eq:I.5.4}. Thus we see that \eqref{eq:I.5.3} holds for rational numbers $\alpha$ of the form $\alpha = m / 2^n$. In a normed linear space, $\|\alpha x + y\|$ and $\|\alpha x- y\|$ are continuous in $\alpha$. Hence, by \eqref{eq:I.5.2}, $(\alpha x, y)$ is continuous in $\alpha$. Therefore \eqref{eq:I.5.3} is proved for every real number $\alpha$. 
+\end{proof}
+
+\begin{corollaryn}[J. von \textsc{Neumann}-P. \textsc{Jordan}] We define, in a complex normed linear space $X$ satisfying \eqref{eq:I.5.1},
+\begin{equation}(x, y) = (x, y)_{1} + i (x, i ^{*} y)_{1}, \text{ where } i = \sqrt {- 1}, (x, y)_{1} = 4 ^{-1} (\| x + y \| ^{2}- \| x- y \| ^{2}). \label{eq:I.5.8}\end{equation}
+
+Then, we have \eqref{eq:I.5.4}, \eqref{eq:I.5.6} and 
+\begin{align}
+(\alpha x, y)& = \alpha (x, y) \quad (\alpha \in \mathbb{C}^{1}), \tag{3'}\label{eq:I.5.3'} \\
+(x, y)& = \overline {{(y , x)}} (\text{ complex- conjugate number }). \tag{5'}\label{eq:I.5.5'}
+\end{align}
+
+\end{corollaryn}
+\begin{proof}
+ $X$ is also a real pre-Hilbert space and so \eqref{eq:I.5.4} and \eqref{eq:I.5.3} with real $\alpha$ hold good. We have, by \eqref{eq:I.5.8}, $(y, x)_1 = (x, y)_1$, $(ix, iy)_1 = (x, y)_1$ and hence $(y, ix)_1 = (-iiy, ix)_1 =-(iy, x)_1 =-(x, iy)_1$. Therefore 
+\[
+(y, x) = (y, x)_{1} + i (y, i x)_{1} = (x, y)_{1}- i (x, i y)_{1} = \overline {{(x , y)}}. \]
+
+Similarly, we have 
+\[
+(i x, y) = (i x, y)_{1} + i (i x, i y)_{1} =- (x, i y)_{1} + i (x, y)_{1} = i (x, y),
+\]
+and therefore we have proved \eqref{eq:I.5.3}. Finally we have \eqref{eq:I.5.6}, because 
+\[
+(x, x)_{1} = \| x \| ^{2} \text{ and } (x, i x)_{1} = 4 ^{-1} (| 1 + i | ^{2}- | 1- i | ^{2}) \| x \| ^{2} = 0.
+\]
+\end{proof}
+
+\begin{theorem}\label{thm:I.5.Theorem.2} $A$ (real or) complex linear space $X$ is a (real or) complex pre-Hilbert space, if to every pair of elements $x, y \in X$ there is associated a (real or) complex number $(x, y)$ satisfying $\eqref{eq:I.5.3}$, $\eqref{eq:I.5.4}$, $\eqref{eq:I.5.5}$ and 
+\begin{equation}\label{eq:I.5.9}
+(x, x) \geqq 0, \text{ and } (x, x) = 0 \text{ iff } x = 0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ For any real number $\alpha$, we have, by \eqref{eq:I.5.3}, \eqref{eq:I.5.4} and \eqref{eq:I.5.5} 
+\[
+\begin{aligned}
+(x + \alpha (x, y) y, x + \alpha (x, y) y) &= \| x \| ^{2} + 2 \alpha | (x, y) | ^{2}
+\\
+\quad + \alpha^{2} | (x, y) | ^{2} \| y \| ^{2} \geqq 0, \text{ where } \| x \| &= (x, x) ^{1/2}
+\end{aligned}
+\]
+so that we have $|(x, y)|^4- \|x\|^2 |(x, y)|^2 \|y\|^2 \leqq 0$. Hence we obtain Schwarz' inequality 
+\begin{equation}\label{eq:I.5.10}
+\left| (x, y) \right| \leqq \left\| x \right\| \cdot \left\| y \right\|,
+\end{equation}
+where the equality is satisfied iff $x$ and $y$ are linearly dependent. 
+
+The latter part of \eqref{eq:I.5.10} is clear from the latter part of \eqref{eq:I.5.9}. 
+
+We have, by \eqref{eq:I.5.10}, the triangle inequality for $\|x\|$: 
+\[
+\begin{aligned}
+&{\| x + y \| ^{2} = (x + y, x + y) = \| x \| ^{2} + (x, y) + (y, x) + \| y \| ^{2}} {\qquad \leqq (\| x \| + \| y \|) ^{2}.}
+\end{aligned}
+\]
+
+Finally, the equality \eqref{eq:I.5.1} is verified easily. 
+\end{proof}
+
+\begin{definition}\label{def:I.5.Definition.2} The number $(x, y)$ introduced above is called the scalar product (or inner product) of two vectors $x$ and $y$ of the pre-Hilbert space $X$. 
+\end{definition}
+
+\begin{example}\label{ex:I.5.Example.1} $L^2(S, \mathfrak{B}, m)$ is a pre-Hilbert space in which the scalar product is given by $(x, y) = \int x(s) \overline{y(s)} m(\dd s)$. 
+\end{example}
+
+\begin{example}\label{ex:I.5.Example.2} The normed linear space $(l^2)$ is a pre-Hilbert space in which the scalar product is given by $(\{\xi_n\}, \{\eta_n\}) = \sum\limits_{n=1}^{\infty} \xi_n \overline{\eta}_n$. 
+\end{example}
+
+\begin{example}\label{ex:I.5.Example.3} Let $\Omega$ be an open domain of $\mathbb{R}^{n}$ and $0 \leqq k < \infty$. Then the totality of functions $f \in C^k(\Omega)$ for which 
+\begin{equation}\label{eq:I.5.11}
+\left\| f \right\|_{k} = \left(\sum\limits_{| j | \leqq k} \int_{\Omega} \left| D ^{j} f (x) \right| ^{2} \dd x\right) ^{1/2} < \infty , \text{ where } \dd x = \dd x_{1} \dd x_{2} \dots \dd x_{n}
+\end{equation}
+constitutes a pre-Hilbert space $\hat{H}^k (\Omega)$ by the scalar product 
+\begin{equation}\label{eq:I.5.12}
+(f, g)_{k} = \sum\limits_{| j | \leqq k} \int_{\Omega} D ^{j} f (x) \cdot D ^{j} \overline {{g (x)}} \dd x.
+\end{equation}
+\end{example}
+
+\begin{example}\label{ex:I.5.Example.4} Let $\Omega$ be an open domain of $\mathbb{R}^{n}$ and $0 \leqq k < \infty$. Then $C_0^k(\Omega)$ is a pre-Hilbert space by the scalar product \eqref{eq:I.5.12} and the norm \eqref{eq:I.5.11}. We shall denote this pre-Hilbert space by $\hat{H}_0^k(\Omega)$. 
+\end{example}
+
+\begin{example}\label{ex:I.5.Example.5} Let $G$ be a bounded open domain of the complex $z$-plane. Let $A^{2}(G)$ be the set of all holomorphic functions $f(z)$ defined in $G$ and such that 
+\begin{equation}\label{eq:I.5.13}
+\left\| f \right\| = \left(\iint_{G} | f (z) | ^{2} \dd x \dd y\right) ^{1/2} < \infty , (z = x + i y).
+\end{equation}
+\end{example}
+
+Then $A^2(G)$ is a pre-Hilbert space by the norm \eqref{eq:I.5.13}, the scalar product 
+\begin{equation}\label{eq:I.5.14}
+(f, g) = \iint_{G} f (z) \overline {{g (z)}} \dd x \dd y
+\end{equation}
+and the algebraic operations 
+\[
+(f + g) (z) = f (z) + g (z), (\alpha f) (z) = \alpha f (z).
+\]
+
+\begin{example}\label{ex:I.5.Example.6} Hardy-Lebesgue class $H- L^2$. Let $H- L^2$ be the set of all functions $f(z)$ which are holomorphic in the unit disk $\{z; |z| < 1\}$ of the complex $z$-plane and such that 
+\begin{equation}\label{eq:I.5.15}
+\sup\limits_{0<r<1} \left(\int_{0} ^{2 \pi} | f (r e ^{i \theta}) | ^{2} \dd \theta\right) < \infty .
+\end{equation}
+\end{example}
+
+Then, if $f(z) = \sum\limits_{n=0}^{\infty} c_n z^n$ is the Taylor expansion of $f$, 
+\[
+\begin{aligned}
+&F (r)  = \frac {1}{2 \pi} \int_{0} ^{2 \pi} | f (r e ^{i \theta}) | ^{2} \dd \theta = \frac {1}{2 \pi} \sum\limits_{n,m=0} ^{\infty} \int_{0} ^{2 \pi} c_{n} \overline {{c}}_{m} r ^{n+m} e ^{i (n- m) \theta} \dd \theta = \sum\limits_{n=0} ^{\infty} | c_{n} | ^{2} r ^{2n}
+\end{aligned}
+\]
+is monotone increasing in $r$, $0 < r < 1$, and bounded from above. Thus it is easy to see that 
+\begin{equation}\label{eq:I.5.16}
+\left\| f \right\| = \sup\limits_{0<r<1} \left[ \frac {1}{2 \pi} \left(\int_{0} ^{2 \pi} | f (r e ^{i \theta}) | ^{2} \dd \theta\right) \right] ^{1/2} = \left(\sum\limits_{n=0} ^{\infty} \left| c_{n} \right| ^{2}\right) ^{1/2}
+\end{equation}
+is a norm which satisfies condition \eqref{eq:I.5.1}, since $(l^2)$ is a pre-Hilbert space. 
+
+\begin{remarku} Let a sequence $\{c_n\} \in (l^2)$ be given, and consider 
+\[
+f (z) = f \left(r e ^{i \theta}\right) = \sum\limits_{n=0} ^{\infty} c_{n} z ^{n} = \sum\limits_{n=0} ^{\infty} c_{n} r ^{n} e ^{i n \theta}, | z | < 1.
+\]
+\end{remarku}
+
+By Schwarz' inequality, we have 
+\[
+\left| \sum\limits_{n=k} ^{\infty} c_{n} z ^{n} \right| \leqq \left(\sum\limits_{n=k} ^{\infty} \left| c_{n} \right| ^{2}\right) ^{1/2} \left(\sum\limits_{n=k} ^{\infty} r ^{2n}\right) ^{1/2},
+\]
+and so $\sum\limits_{n=0}^{\infty} c_n z^n$ is uniformly convergent in any disk $|z| \leqq \varrho$ with $0 < \varrho < 1$. Thus $f(z)$ is a holomorphic function in the unit disk $|z| < 1$ such that \eqref{eq:I.5.15} holds good, that is, $f(z)$ belongs to the class $H- L^2$. 
+
+Therefore we have proved 
+
+\begin{theorem}\label{thm:I.5.Theorem.3} The Hardy-Lebesgue class $H- L^2$ is in one-to-one correspondence with the pre-Hilbert space $(l^2)$ as follows: 
+\[
+H \cdot L ^{2} \ni f (z) = \sum\limits_{n=0} ^{\infty} c_{n} z ^{n} \leftrightarrow \{c_{n} \} \in (l ^{2})
+\]
+in such a way that 
+\begin{align}
+f (z)& = \sum\limits_{n=0} ^{\infty} c_{n} z ^{n} \leftrightarrow \{c_{n} \}, g (z) = \sum\limits_{n=0} ^{\infty} d_{n} z ^{n} \leftrightarrow \{d_{n} \} \text{ imply } \notag \\
+f (z) + g (z)& \leftrightarrow \left\{c_{n} + d_{n} \right\}, \alpha f (z) \leftrightarrow \left\{\alpha c_{n} \right\} \text{ and } \| f \| = \left(\sum\limits_{n=0} ^{\infty} | c_{n} | ^{2}\right) ^{1/2}. \notag
+\end{align}
+\end{theorem}
+
+Hence, as a pre-Hilbert space, $H- L^2$ is isomorphic with $(l^2)$. 
+
+
+\yossection{6}{Continuity of Linear Operators}
+\label{sec:I.6}
+
+\begin{proposition}\label{prop:I.6.Proposition.1} Let $X$ and $Y$ be linear topological spaces over the same scalar field $K$. Then a linear operator $T$ on $D(T) \subseteq X$ into $Y$ is continuous everywhere on $D(T)$ iff it is continuous at the zero vector $x = 0$. 
+\end{proposition}
+
+\begin{proof}
+ Clear from the linearity of the operator $T$ and $T \cdot 0 = 0$. 
+\end{proof}
+
+\begin{theorem}\label{thm:I.6.Theorem.1} Let $X$, $Y$ be locally convex spaces, and $\{p\}$, $\{q\}$ be the systems of semi-norms respectively defining the topologies of $X$ and $Y$. Then a linear operator $T$ on $D(T) \subseteq X$ into $Y$ is continuous iff, for every semi-norm $q \in \{q\}$, there exist a semi-norm $P\in \{p\}$ and a positive number $\beta$ such that 
+\begin{equation}\label{eq:I.6.1}
+q (T x) \leqq \beta P(x) \quad \text{ for all } \quad x \in D (T).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ The condition is sufficient. For, by $T \cdot 0 = 0$, the condition implies that $T$ is continuous at the point $x = 0 \in D(T)$ and so $T$ is continuous everywhere on $D(T)$. 
+
+
+The condition is necessary. The continuity of $T$ at $x = 0$ implies that, for every semi-norm $q \in \{q\}$ and every positive number $\varepsilon$, there exist a semi-norm $P\in \{p\}$ and a positive number $\delta$ such that 
+\[
+x \in D (T) \text{ and } P(x) \leqq \delta \text{ imply } q (T x) \leqq \varepsilon .
+\]
+
+Let $x$ be an arbitrary point of $D(T)$, and let us take a positive number $\lambda$ such that $\lambda p(x) \leqq \delta$. Then we have $p(\lambda x) \leqq \delta$, $\lambda x \in D(T)$ and so $q(T(\lambda x)) \leqq \varepsilon$. Thus $q(Tx) \leqq \varepsilon / \lambda$. Hence, if $p(x) = 0$, we can take $\lambda$ arbitrarily large and so $q(Tx) = 0$; and if $p(x) \neq 0$, we can take $\lambda = \delta / p(x)$ and so, in any case, we have $q(Tx) \leqq \beta p(x)$ with $\beta = \varepsilon / \delta$.
+\end{proof}
+
+\begin{corollary}\label{cor:I.6.Corollary.1} Let $X$ be a locally convex space, and $f$ a linear functional on $D(f) \subseteq X$. Then $f$ is continuous iff there exist a semi-norm $P$ from the system $\{p\}$ of semi-norms defining the topology of $X$ and a positive number $\beta$ such that 
+\begin{equation}\label{eq:I.6.2}
+\left| f (x) \right| \leqq \beta P(x) \text{ for all } x \in D (f).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+ For, the absolute value $|\alpha|$ itself constitutes a system of semi-norms defining the topology of the real or complex number field. 
+\end{proof}
+
+\begin{corollary}\label{cor:I.6.Corollary.2} Let $X$, $Y$ be normed linear spaces. Then a linear operator $T$ on $D(T) \subseteq X$ into $Y$ is continuous iff there exists a positive constant $\beta$ such that 
+\begin{equation}\label{eq:I.6.3}
+\left\| T x \right\| \leqq \beta \left\| x \right\| \text{ for all } x \in D (T).
+\end{equation}
+\end{corollary}
+
+\begin{corollary}\label{cor:I.6.Corollary.3} Let $X$, $Y$ be normed linear spaces. Then a linear operator $T$ on $D(T) \subseteq X$ into $Y$ admits a continuous inverse $T^{-1}$ iff there exists a positive constant $\gamma$ such that 
+\begin{equation}\label{eq:I.6.4}
+\left\| T x \right\| \geqq \gamma \left\| x \right\| \text{ for every } x \in D (T).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+ By \eqref{eq:I.6.4}, $Tx = 0$ implies $x = 0$ and so the inverse $T^{-1}$ exists. The continuity of $T^{-1}$ is proved by \eqref{eq:I.6.4} and the preceding Corollary~\ref{cor:I.6.Corollary.2}. 
+\end{proof}
+
+\begin{definition}\label{def:I.6.Definition.1} Let $T$ be a continuous linear operator on a normed linear space $X$ into a normed linear space $Y$. We define 
+\begin{equation}\label{eq:I.6.5}
+\left\| T \right\| = \inf\limits_{\beta \in B} \beta , \text{ where } B = \{\beta ; \left\| T x \right\| \leqq \beta \left\| x \right\| \text{ for all } x \in X \}.
+\end{equation}
+\end{definition}
+
+By virtue of the preceding Corollary~\ref{cor:I.6.Corollary.2} and the linearity of $T$, it is easy to see that 
+\begin{equation}\label{eq:I.6.6}
+\left\| T \right\| = \sup\limits_{\left\| x \right\| \leqq 1} \left\| T x \right\| = \sup\limits_{\left\| x \right\| = 1} \left\| T x \right\|.
+\end{equation}
+$\|T\|$ is called the norm of $T$. A continuous linear operator on a normed linear space $X$ into $Y$ is called a bounded linear operator on $X$ into $Y$, since, for such an operator $T$, the norm $\|Tx\|$ is bounded when $x$ ranges over the unit disk or the unit sphere $\{x \in X; \|x\| \leqq 1\}$ of $X$. 
+
+\begin{definition}\label{def:I.6.Definition.2} Let $T$ and $S$ be linear operators such that 
+\[
+D (T) \text{ and } D (S) \subseteq X, \text{ and } R (T) \text{ and } R (S) \subseteq Y.
+\]
+\end{definition}
+
+Then the sum $T + S$ and the scalar multiple $\alpha T$ are defined respectively by 
+\[
+(T + S) (x) = T x + S x \quad \text{ for } \quad x \in D (T) \cap D (S), (\alpha T) (x) = \alpha (T x)
+\]
+
+Let $T$ be a linear operator on $D(T) \subseteq X$ into $Y$, and $S$ a linear operator on $D(S) \subseteq Y$ into $Z$. Then the product $ST$ is defined by 
+\[
+(S T) x = S (T x) \quad \text{ for } \quad x \in \{x; x \in D (T) \quad \text{ and } \quad T x \in D (S) \}.
+\]
+$T + S, \alpha T$ and $ST$ are linear operators. 
+
+\begin{remarku} $ST$ and $TS$ do not necessarily coincide even if $X = Y = Z$. An example is given by $Tx = tx(t)$, $Sx(t) = \sqrt{(-1)}\frac{d}{\dd t} x(t)$ considered as linear operators from $L^2(\mathbb{R}^{1})$ into $L^2(\mathbb{R}^{1})$. In this example, we have the commutation relation $(ST- TS)x(t) = \sqrt{-1} x(t)$. 
+\end{remarku}
+
+\begin{proposition}\label{prop:I.6.Proposition.2} If $T$ and $S$ are bounded linear operators on a normed linear space $X$ into a normed linear space $Y$, then 
+\begin{equation}\label{eq:I.6.7}
+\left\| T + S \right\| \leqq \left\| T \right\| + \left\| S \right\|, \left\| \alpha T \right\| = | \alpha | \| T \|.
+\end{equation}
+\end{proposition}
+
+If $T$ is a bounded linear operator on a normed linear space $X$ into a normed linear space $Y$, and $S$ a bounded linear operator on $Y$ into a normed linear space $Z$, then 
+\begin{equation}\label{eq:I.6.8}
+\left\| S T \right\| \leqq \left\| S \right\| \cdot \left\| T \right\|.
+\end{equation}
+
+\begin{proof}
+ We prove the last inequality; \eqref{eq:I.6.7} may be proved similarly. $\|STx\| \leqq \|S\| \|Tx\| \leqq \|S\| \|T\| \|x\|$ and so $\|ST\| \leqq \|S\| \|T\|$. 
+\end{proof}
+
+\begin{corollaryu} If $T$ is a bounded linear operator on a normed linear space $X$ into $X$, then 
+\begin{equation}\label{eq:I.6.9}
+\left\| T ^{n} \right\| \leqq \left\| T \right\| ^{n},
+\end{equation}
+where $T^{n}$ is defined inductively by $T^{n}=TT^{n-1}$ ( $n=1,2,\ldots;T^{0}=I$ which maps every $x$ onto $x$ itself, i.e., $Ix=x$, and $I$ is called the identity operator). 
+\end{corollaryu}
+
+
+\yossection{7}{Bounded Sets and Bornologic Spaces}
+\label{sec:I.7}
+
+\begin{definition}\label{def:I.7.Definition.1} $A$ subset $B$ in a linear topological space $X$ is said to be bounded if it is absorbed by any neighbourhood $U$ of $0$, i.e., if there exists a positive constant $\alpha$ such that $\alpha^{-1}B \subseteq U$. Here $\alpha^{-1}B = \{x \in X; x = \alpha^{-1}b, b \in B\}$. 
+\end{definition}
+
+\begin{propositionu} Let $X$, $Y$ be linear topological spaces. Then a continuous linear operator on $X$ into $Y$ maps every bounded set of $X$ onto a bounded set of $Y$. 
+\end{propositionu}
+
+\begin{proof}
+ Let $B$ be a bounded set of $X$, and $V$ a neighbourhood of $0$ of $Y$. By the continuity of $T$, there exists a neighbourhood $U$ of $0$ of $X$ such that $T \cdot U = \{Tu; u \in U\} \subseteq V$. Let $\alpha > 0$ be such that $B \subseteq \alpha U$. Then $T \cdot B \subseteq T(\alpha U) = \alpha(T \cdot U) \subseteq \alpha V$. This proves that $T \cdot B$ is a bounded set of $Y$. 
+\end{proof}
+
+\begin{definition}\label{def:I.7.Definition.2} $A$ locally convex space $X$ is called bornologic if it satisfies the condition: 
+
+\begin{equation}\label{eq:I.7.1}
+\begin{minipage}[b]{0.92\linewidth}
+If a balanced convex set $M$ of $X$ absorbs every bounded set of $X$, then $M$ is a neighbourhood of $0$ of $X$.
+\end{minipage}
+\end{equation}
+\end{definition}
+
+
+\begin{theorem}\label{thm:I.7.Theorem.1} $A$ locally convex space $X$ is bornologic iff every semi-norm on $X$, which is bounded on every bounded set, is continuous. 
+\end{theorem}
+
+\begin{proof}
+ We first remark that a semi-norm $p(x)$ on $X$ is continuous iff it is continuous at $x = 0$. This we see from the subadditivity of the semi-norm: $p(x- y) \geqq |p(x)- p(y)|$ (Chapter~\ref{chap:I}, \ref{sec:I.1}, \eqref{eq:I.1.4}). 
+
+Necessity. Let a semi-norm $p(x)$ on $X$ be bounded on every bounded set of $X$. The set $M = \{x \in X; p(x) \leqq 1\}$ is convex and balanced. If $B$ is a bounded set of $X$, then $\sup\limits_{b \in B} p(b) = \alpha < \infty$ and therefore $B \subseteq \alpha M$. Since, by the assumption, $X$ is bornologic, $M$ must be a neighbourhood of $0$. Thus we see that $P$ is continuous at $x = 0$. 
+
+Sufficiency. Let $M$ be a convex, balanced set of $X$ which absorbs every bounded set of $X$. Let $P$ be the Minkowski functional of $M$. Then $P$ is bounded on every bounded set, since $M$ absorbs, by the assumption, every bounded set. Hence, by the hypothesis, $p(x)$ is continuous. Thus $M_{1} = \{x \in X; p(x) < 1/2\}$ is an open set $\ni 0$ contained in $M$. This proves that $M$ is a neighbourhood of $0$. 
+\end{proof}
+
+\begin{example}\label{ex:I.7.Example.1} Normed linear spaces are bornologic. 
+\end{example}
+
+\begin{proof}
+ Let $X$ be a normed linear space. Then the unit disk $S = \{x \in X; \| x \| \leqq 1\}$ of $X$ is a bounded set of $X$. Let a semi-norm $p(x)$ on $X$ be bounded on $S$, i.e., $\sup\limits_{x \in S} p(x) = \alpha < \infty$. Then, for any $y \neq 0$, 
+\[
+P(y) = P\left(\left\| y \right\| \cdot \frac {y}{\left\| y \right\|}\right) = \left\| y \right\| P\left(\frac {y}{\left\| y \right\|}\right) \leqq \alpha \left\| y \right\|. \]
+
+Thus $p$ is continuous at $y = 0$ and so continuous at every point of $X$. 
+\end{proof}
+
+\begin{remarku} As will be seen later, the quasi-normed linear space $M(S, \mathfrak{B})$ is not locally convex. Thus a quasi-normed linear space is not necessarily bornologic. However we can prove 
+\end{remarku}
+
+\begin{theorem}\label{thm:I.7.Theorem.2} $A$ linear operator $T$ on one quasi-normed linear space into another such space is continuous iff $T$ maps bounded sets into bounded sets. 
+\end{theorem}
+
+\begin{proof}
+ As was proved in Chapter~\ref{chap:I}, \ref{sec:I.2}, Proposition~\hyperref[prop:I.2.Proposition.2]{$2$}, a quasi-normed linear space is a linear topological space. Hence the ``only if'' part is already proved above in the Proposition. We shall prove the ``if'' part. 
+
+Let $T$ maPbounded sets into bounded sets. Suppose that $\slim\limits_{k\to \infty}x_k = 0$. Then $\lim\limits_{k\to \infty}\| x_k\| = 0$ and so there exists a sequence of integers $\{n_k\}$ such that $\lim\limits_{k\to \infty}\| x_k\| = 0$, while $\lim\limits_{k\to \infty}\| x_k\| = 0$. 
+\[
+\lim\limits_{k \rightarrow \infty} n_{k} = \infty \quad \text{ while } \quad \lim\limits_{k \rightarrow \infty} n_{k} \| x_{k} \| = 0.
+\]
+
+We may take, for instance, $n_k$ as follows: 
+$n_{k}  =$ the largest integer $\leqq \| x_{k} \| ^{-1/2}$ if $x_{k} \neq 0, = k$ if $x_{k} = 0.$
+
+
+Now we have $\left\|n_{k}x_{k}\right\|=\left\|x_{k}+x_{k}+\cdots+x_{k}\right\|\leqq n_{k}\left\|x_{k}\right\|$ so that $\slim\limits_{k\to\infty}n_{k}x_{k}=0$. But, in a quasi-normed linear space, the sequence $\{n_{k}x_{k}\}$, which converges to $0$, is bounded. Thus, by the hypothesis, $\{T(n_{k}x_{k})\}=\{n_{k}Tx_{k}\}$ is a bounded sequence. Therefore 
+\[
+\slim_{k \to \infty} T x_{k} = \slim_{k \to \infty} n_{k} ^{-1} (T (n_{k} x_{k})) = 0,
+\]
+and so $T$ is continuous at $x = 0$ and hence is continuous everywhere. 
+\end{proof}
+
+\begin{theorem}\label{thm:I.7.Theorem.3} Let $X$ be bornologic. If a linear operator $T$ on $X$ into a locally convex linear topological space $Y$ maps every bounded set into a bounded set, then $T$ is continuous. 
+\end{theorem}
+
+\begin{proof}
+ Let $V$ be a convex balanced neighbourhood of $0$ of $Y$. Let $p$ be the Minkowski functional of $V$. Consider $q(x) = p(Tx)$. $q$ is a semi-norm on $X$ which is bounded on every bounded set of $X$, because every bounded set of $Y$ is absorbed by the neighbourhood $V$ of $0$. Since $X$ is bornologic, $q$ is continuous. Thus the set $\{x \in X; Tx \in V^a\} = \{x \in X; q(x) \leqq 1\}$ is a neighbourhood of $0$ of $X$. This proves that $T$ is continuous. 
+\end{proof}
+
+
+\yossection{8}{Generalized Functions and Generalized Derivatives}
+\label{sec:I.8}
+
+A continuous linear functional defined on the locally convex linear topological space $\mathfrak{D}(\Omega)$, introduced in Chapter~\ref{chap:I}, \ref{sec:I.1}, is the ``distribution'' or the ``generalized function'' of L. \textsc{Schwartz}. To discuss the generalized functions, we shall begin with the proof of 
+
+\begin{theorem}\label{thm:I.8.Theorem.1} Let $B$ be a bounded set of $\mathfrak{D}(\Omega)$. Then there exists a compact subset $K$ of $\Omega$ such that 
+\begin{align}
+\supp (\varphi)& \subseteq K \text{ for every } \varphi \in B , \label{eq:I.8.1} \\
+\sup\limits_{x \in K, \varphi \in B} | D ^{j} \varphi (x) |& < \infty \text{ for every differential operator } D ^{j}. \label{eq:I.8.2}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+ Suppose that there exist a sequence of functions $\{\varphi_i\} \subseteq B$ and a sequence of points $\{p_i\}$ such that (i): $\{p_i\}$ has no accumulation point in $\Omega$, and (ii): $\varphi_i(p_i) \neq 0$ ( $i = 1, 2, \ldots$). Then
+\[
+P(\varphi) = \sum\limits_{i=1} ^{\infty} i | \varphi (P_{i}) | / | \varphi_{i} (P_{i}) |
+\]
+is a continuous semi-norm on every $\mathfrak{D}_K(\Omega)$, defined in Chapter~\ref{chap:I}, \ref{sec:I.1}. Hence, for any $\varepsilon > 0$, the set $\{\varphi \in \mathfrak{D}_K(\Omega); p(\varphi) \leqq \varepsilon\}$ is a neighbourhood of $0$ of $\mathfrak{D}_K(\Omega)$. Since $\mathfrak{D}(\Omega)$ is the inductive limit of $\mathfrak{D}_K(\Omega)$'s, we see that $\{\varphi \in \mathfrak{D}(\Omega); p(\varphi) \leqq \varepsilon\}$ is also a neighbourhood of $0$ of $\mathfrak{D}(\Omega)$. Thus $p$ is continuous at $0$ of $\mathfrak{D}(\Omega)$ and so is continuous on $\mathfrak{D}(\Omega)$. Hence $p$ must be bounded on the bounded set $B$ of $\mathfrak{D}(\Omega)$. However, $p(\varphi_i) \geqq i (i = 1, 2, \ldots)$. This proves that we must have \eqref{eq:I.8.1}. 
+
+We next assume that \eqref{eq:I.8.1} is satisfied, and suppose \eqref{eq:I.8.2} is not satisfied. Then there exist a differential operator $D^{j_0}$ and a sequence of functions $\{\varphi_i\} \subseteq B$ such that $\sup\limits_{x \in K} |D^{j_0} \varphi_i(x)| > i$ ( $i = 1, 2, \ldots$). Thus, if we set 
+\[
+\phi (\varphi) = \sup\limits_{x \in K} | D ^ {j_{0}} \varphi (x) | \quad \text{ for } \quad \varphi \in \mathfrak {D}_{K} (\Omega),
+\]
+$p(\varphi)$ is a continuous semi-norm on $\mathfrak{D}_K(\Omega)$ and $p(\varphi_i) > i (i = 1,2,\ldots)$. Hence $\{\varphi_i\} \subseteq B$ cannot be bounded in $\mathfrak{D}_K(\Omega)$, and a fortiori in $\mathfrak{D}(\Omega)$. This contradiction proves that \eqref{eq:I.8.2} must be true. 
+\end{proof}
+\begin{theorem}\label{thm:I.8.Theorem.2} The space $\mathfrak{D}(\Omega)$ is bornologic. 
+\end{theorem}
+
+\begin{proof}
+ Let $q(\varphi)$ be a semi-norm on $\mathfrak{D}(\Omega)$ which is bounded on every bounded set of $\mathfrak{D}(\Omega)$. In view of Theorem~\ref{thm:I.7.Theorem.1} in Chapter~\ref{chap:I}, \ref{sec:I.7}, we have only to show that $q$ is continuous on $\mathfrak{D}(\Omega)$. To this purpose, we show that $q$ is continuous on the space $\mathfrak{D}_K(\Omega)$ where $K$ is any compact subset of $\Omega$. Since $\mathfrak{D}(\Omega)$ is the inductive limit of $\mathfrak{D}_K(\Omega)'s$, we then see that $q$ is continuous on $\mathfrak{D}(\Omega)$. 
+
+But $q$ is continuous on every $\mathfrak{D}_K(\Omega)$. For, by hypothesis, $q$ is bounded on every bounded set of the quasi-normed linear space $\mathfrak{D}_K(\Omega)$, and so, by Theorem~\ref{thm:I.8.Theorem.2} of the preceding section, $q$ is continuous on $\mathfrak{D}_K(\Omega)$. Hence $q$ must be continuous on $\mathfrak{D}(\Omega)$. 
+\end{proof}
+
+We are now ready to define the generalized functions. 
+
+\begin{definition}\label{def:I.8.Definition.1} $A$ linear functional $T$ defined and continuous on $\mathfrak{D}(\Omega)$ is called a generalized function, or an ideal function or a distribution in $\Omega$; and the value $T(\varphi)$ is called the value of the generalized function $T$ at the testing function $\varphi \in \mathfrak{D}(\Omega)$. 
+\end{definition}
+
+By virtue of Theorem~\ref{thm:I.7.Theorem.1} in Chapter~\ref{chap:I}, \ref{sec:I.7} and the preceding Theorem~\ref{thm:I.8.Theorem.2}, we have 
+
+\begin{proposition}\label{prop:I.8.Proposition.1} $A$ linear functional $T$ defined on $\mathfrak{D}(\Omega)$ is a generalized function in $\Omega$ iff it is bounded on every bounded set of $\mathfrak{D}(\Omega)$, that is, iff $T$ is bounded on every set $B \in \mathfrak{D}(\Omega)$ satisfying the two conditions \eqref{eq:I.8.1} and \eqref{eq:I.8.2}. 
+\end{proposition}
+
+\begin{proof}
+ Clear from the fact that $T(\varphi)$ is continuous iff the semi-norm $|T(\varphi)|$ is continuous. 
+\end{proof}
+
+\begin{corollaryu} $A$ linear functional $T$ defined on $C_{0}^{\infty}(\Omega)$ is a generalized function in $\Omega$ iff it satisfies the condition: 
+
+To every compact subset $K$ of $\Omega$, there correspond a 
+positive constant $C$ and a positive integer $k$ such that 
+\begin{equation}\label{eq:I.8.3}
+\left| T (\varphi) \right| \leqq C \sup\limits_{| j | \leqq k, x \in K} \left| D ^{j} \varphi (x) \right| \quad \text{ whenever } \quad \varphi \in \mathfrak {D}_{K} (\varphi).
+\end{equation}
+\end{corollaryu}
+
+\begin{proof}
+ By the continuity of $T$ on the inductive limit $\mathfrak{D}(\Omega)$ of the $\mathfrak{D}_K(\Omega)'s$, we see that $T$ must be continuous on every $\mathfrak{D}_K(\Omega)$. Hence the necessity of condition \eqref{eq:I.8.3} is clear. The sufficiency of the condition \eqref{eq:I.8.3} is also clear, since it implies that $T$ is bounded on every bounded set of $\mathfrak{D}(\Omega)$. 
+\end{proof}
+
+\begin{remarku} The above Corollary is very convenient for all applications, since it serves as a useful definition of the generalized functions. 
+\end{remarku}
+
+\begin{example}\label{ex:I.8.Example.1} Let a complex-valued function $f(x)$ defined a.e. in $\Omega$ be locally integrable in $\Omega$ with respect to the Lebesgue measure $\dd x = \dd x_1 \dd x_2 \cdots \dd x_n$ in $\mathbb{R}^{n}$, in the sense that, for any compact subset $K$ of $\Omega$, $\int |f(x)| \dd x < \infty$. Then 
+\begin{equation}\label{eq:I.8.4}
+T_{f} (\varphi) = \int_{\Omega} f (x) \varphi (x) \dd x, \varphi \in \mathfrak {D} (\Omega),
+\end{equation}
+defines a generalized function $T_{f}$ in $\Omega$. 
+\end{example}
+
+\begin{example}\label{ex:I.8.Example.2} Let $m(B)$ be a $\sigma$-finite, $\sigma$-additive and complex-valued measure defined on Baire subsets $B$ of an open set $\Omega$ of $\mathbb{R}^{n}$. Then 
+\begin{equation}\label{eq:I.8.5}
+T_{m} (\varphi) = \int_{\Omega} \varphi (x) m (\dd x), \varphi \in \mathfrak {D} (\Omega),
+\end{equation}
+defines a generalized function $T_{m}$ in $\Omega$. 
+\end{example}
+
+\begin{example}\label{ex:I.8.Example.3} As a special case of Example~\hyperref[ex:I.8.Example.2]{$2$}, 
+\begin{equation}\label{eq:I.8.6}
+T_{\delta_{p}}(\varphi) = \varphi (p), \text{ where } p \text{ is a fixed point of } \Omega, \varphi \in \mathfrak{D}(\Omega)
+\end{equation}
+defines a generalized function $T_{\delta_p}$ in $\Omega$. It is called the Dirac distribution concentrated at the point $p\in \Omega$. In the particular case $p= 0$, the origin of $\mathbb{R}^{n}$, we shall write $T_{\delta}$ or $\delta$ for $T_{\delta_0}$. 
+\end{example}
+
+\begin{definition}\label{def:I.8.Definition.2} The set of all generalized functions in $\Omega$ will be denoted by $\mathfrak{D}(\Omega)'$. It is a linear space by 
+\begin{equation}\label{eq:I.8.7}
+(T + S) (\varphi) = T (\varphi) + S (\varphi), (\alpha T) (\varphi) = \alpha T (\varphi),
+\end{equation}
+and we call $\mathfrak{D}(\Omega)'$ the space of the generalized functions in $\Omega$ or the dual space of $\mathfrak{D}(\Omega)$. 
+\end{definition}
+
+\begin{remarku} Two distributions $T_{f_1}$ and $T_{f_2}$ are equal as functionals $(T_{f_1}(\varphi) = T_{f_2}(\varphi)$ for every $\varphi \in \mathfrak{D}(\Omega)$) iff $f_1(x) = f_2(x)$ a.e. If this fact is proved, then the set of all locally integrable functions in $\Omega$ is, by $f \leftrightarrow T_f$, in a one-one correspondence with a subset of $\mathfrak{D}(\Omega)'$ in such a way that $(f_1 \text{ and } f_2 \text{ being considered equivalent iff } f_1(x) = f_2(x) \text{ a.e. })$ 
+\begin{equation}\tag{7'}\label{eq:I.8.7'}
+T_ {f_{1}} + T_ {f_{2}} = T_ {f_{1} + f_{2}}, \alpha T_{f} = T_{\alpha f}.
+\end{equation}
+\end{remarku}
+
+In this sense, the notion of the generalized function is, in fact, a generalization of the notion of the locally integrable function. To prove the above assertion, we have only to prove that a locally integrable function $f$ is $= 0$ a.e. in an open set $\Omega$ of $\mathbb{R}^{n}$ if $\int_{B} f(x) \varphi(x) \dd x = 0$ for all $\varphi \in C_0^\infty(\Omega)$. By introducing the Baire measure $\mu(B) = \int_{B} f(x) \dd x$, the latter condition implies that $\int_{\Omega} \varphi(x) \mu(\dd x) = 0$ for all $\varphi \in C_0^\infty(\Omega)$, which further implies that $\int_{\Omega} \varphi(x) \mu(\dd x) = 0$ for all $\varphi \in C_0^0(\Omega)$, by virtue of Proposition~\ref{prop:I.1.Proposition.8} in Chapter~\ref{chap:I}, \ref{sec:I.1}. Let $B$ be a compact $G_\delta$-set in $\Omega$: $B = \bigcap\limits_{n=1}^{\infty} G_n$, where $G_n$ is an open relatively compact set in $\Omega$. By applying Urysohn's theorem in Chapter~\ref{chap:0}, \ref{sec:0.2}, there exists a continuous function $f_n(x)$ such that 
+\[
+\begin{aligned} 0 \leqq f_{n} (x) \leqq 1 & \text{ for } x \in \Omega , f_{n} (x) = 1 \text{ for } x \in G_{n+2} ^{a} \text{ and } f_{n} (x) = 0 \\ & \text{ for } x \in G_{n} ^{a}- G_{n+1} (n = 1, 2, \dots), \end{aligned}
+\]
+assuming that $\{G_n\}$ is a monotone decreasing sequence of open relatively compact sets of $\Omega$ such that $G_{n+2}^a \subseteq G_{n+1}$. Setting $\varphi = f_n$ and letting $n \to \infty$, we see that $\mu(B) = 0$ for all compact $G_\delta$-sets $B$ of $\Omega$. The Baire sets of $\Omega$ are the members of the smallest $\sigma$-ring containing compact $G_\delta$-sets of $\Omega$, we see, by the $\sigma$-additivity of the Baire measure $\mu$, that $\mu$ vanishes for every Baire set of $\Omega$. Hence the density $f$ of this measure $\mu$ must vanish a.e. in $\Omega$. 
+
+We can define the notion of differentiation of generalized functions through 
+
+\begin{proposition}\label{prop:I.8.Proposition.2} If $T$ is a generalized function in $\Omega$, then 
+\begin{equation}\label{eq:I.8.8}
+S (\varphi) =- T \left(\frac {\partial \varphi}{\partial x_{1}}\right), \quad \varphi \in \mathfrak {D} (\Omega),
+\end{equation}
+defines another generalized function $S$ in $\Omega$. 
+\end{proposition}
+
+\begin{proof}
+ $S$ is a linear functional on $\mathfrak{D}(\Omega)$ which is bounded on every bounded set of $\mathfrak{D}(\Omega)$. 
+\end{proof}
+
+\begin{definition}\label{def:I.8.Definition.3} The generalized functional $S$ defined by \eqref{eq:I.8.8} is called the generalized derivative or the distributional derivative of $T$ (with respect to $x_{1}$), and we write 
+\begin{equation}\label{eq:I.8.9}
+S = \frac {\partial}{\partial x_{1}} T,
+\end{equation}
+so that we have 
+\begin{equation}\label{eq:I.8.10}
+\frac {\partial}{\partial x_{1}} T (\varphi) =- T \left(\frac {\partial \varphi}{\partial x_{1}}\right).
+\end{equation}
+\end{definition}
+
+\begin{remarku} The above notion is an extension of the usual notion of the derivative. For, if the function $f$ is continuously differentiable with respect to $x_{1}$, then we have 
+\[
+\begin{aligned} \frac {\partial}{\partial x_{1}} T_{f} (\varphi) & =- T_{f} \left(\frac {\partial \varphi}{\partial x_{1}}\right) =- \int \dots \int_{\Omega} f (x) \frac {\partial \varphi}{\partial x_{1}} \dd x_{1} \dots \dd x_{n} \\ & = \int \dots \int_{\Omega} \frac {\partial}{\partial x_{1}} f (x) \cdot \varphi (x) \dd x_{1} \dots \dd x_{n} = T_ {\partial f / \partial x_{1}} (\varphi), \end{aligned}
+\]
+\end{remarku}
+
+as may be seen by partial integration observing that $\varphi(x)$ vanishes identically outside some compact subset of $\Omega$. 
+
+\begin{corollaryu} $A$ generalized function $T$ in $\Omega$ is infinitely differentiable in the sense of distributions defined above and 
+\begin{equation}\label{eq:I.8.11}
+(D ^{j} T) (\varphi) = (- 1) ^{|j|} T (D ^{j} \varphi), \text{ where } | j | = \sum\limits_{i=1} ^{n} j_{i}, D ^{j} = \frac {\partial^{|j|}}{\partial x_{1} ^ {j_{1}} \dots \partial x_{n} ^ {j_{n}}}.
+\end{equation}
+\end{corollaryu}
+
+\begin{example}\label{ex:I.8.Example.1a} The Heaviside function $H(x)$ is defined by 
+\begin{equation}\label{eq:I.8.12}
+H (x) = 1 \text{ or } = 0 \text{ according as } x \geqq 0 \text{ or } x < 0.
+\end{equation}
+\end{example}
+
+Then we have 
+\begin{equation}\tag{12'}\label{eq:I.8.12'}
+\frac {d}{\dd x} T_{H} = T_ {\delta_{0}},
+\end{equation}
+where $T_{\delta_0}$ is the Dirac distribution concentrated at the origin $0$ of $\mathbb{R}^{1}$. In fact, we have, for any $\varphi \in \mathfrak{D}(\mathbb{R}^{1})$, 
+\[
+\left(\frac {d}{\dd x} T_{H}\right) (\varphi) =- \int_{- \infty} ^{\infty} H (x) \varphi^{\prime} (x) \dd x =- \int_{0} ^{\infty} \varphi^{\prime} (x) \dd x =- [ \varphi (x) ]_{0} ^{\infty} = \varphi (0).
+\]
+
+\begin{example}\label{ex:I.8.Example.2a} Let $f(x)$ have a bounded and continuous derivative in the open set $\mathbb{R}^{1}- \bigcup\limits_{j=1}^{k} x_j$ of $\mathbb{R}^{1}$. Let $s_j = f(x_j + 0)- f(x_j- 0)$ be the saltus or the jump of $f(x)$ at $x = x_j$. Since 
+\[
+\left(\frac {d}{\dd x} T_{f}\right) (\varphi) =- \int_{- \infty} ^{\infty} f (x) \varphi^{\prime} (x) \dd x = \sum\limits_{j} \varphi (x_{j}) s_{j} + \int_{- \infty} ^{\infty} f ^{\prime} (x) \varphi (x) \dd x,
+\]
+we have 
+\begin{equation}\tag{12''}\label{eq:I.8.12a}
+\frac {d}{\dd x} T_{f} = T_ {f ^{\prime}} + \sum\limits_{j} s_{j} \delta_{xj},
+\end{equation}
+where $\delta_{x_{j}}$ is defined by \eqref{eq:I.8.6}. 
+\end{example}
+
+\begin{example}\label{ex:I.8.Example.3a} Let $f(x) = f(x_1, x_2, \ldots, x_n)$ be a continuously differentiable function on a closed bounded domain $\Omega \subseteq \mathbb{R}^{n}$ having a smooth boundary $S$. Define $f$ to be $0$ outside $\Omega$. By partial integration, we have 
+\[
+\begin{aligned}
+&\left(\frac {\partial}{\partial x_{j}} T_{f}\right) (\varphi)  =- \int_{\Omega} f (x) \frac {\partial}{\partial x_{j}} \varphi (x) \dd x = \int_{S} f (x) \varphi (x) \cos (\nu , x_{j}) \dd S + \int_{\Omega} \frac {\partial f}{\partial x_{j}} \varphi (x) \dd x,
+\end{aligned}
+\]
+where $\pmb{\nu}$ is the inner normal to $S$, $(\pmb{\nu}, x_j) = (x_j, \pmb{\nu})$ is the angle between $\pmb{\nu}$ and the positive $x_j$-axis and $dS$ is the surface element. We have thus 
+\begin{equation}\tag{12''}\label{eq:I.8.12''}
+\frac {\partial}{\partial x_{j}} T_{f} = T_ {\partial f / \partial x_{j}} + T_{S}, \text{ where } T_{S} (\varphi) = \int_{S} f (x) \cos (\nu , x_{j}) \varphi (x) \dd S.
+\end{equation}
+\end{example}
+
+\begin{corollaryu} If $f(x) = f(x_1, x_2, \ldots, x_n)$ is $C^2$ on $\Omega$ and is $0$ outside, then, from \eqref{eq:I.8.12''} and $\frac{\partial}{\partial \nu} = \sum\limits_j \frac{\partial}{\partial x_j} \cos (x_j, \nu)$ we obtain Green's 
+integral theorem 
+\begin{equation}\tag{12'''}\label{eq:I.8.12''a}
+\left(\Delta T_{f}\right) (\varphi) = T_{\Delta f} (\varphi) + \int_{S} \frac {\partial f}{\partial \nu} \varphi (x) \dd S- \int_{S} f (x) \frac {\partial \varphi}{\partial \nu} \dd S,
+\end{equation}
+where $\Delta$ is the Laplacian $\sum\limits_{j=1}^{n} \partial^2 / \partial x_j^2$. 
+\end{corollaryu}
+
+\begin{proposition}\label{prop:I.8.Proposition.3} If $T$ is a generalized function in $\Omega$ and $f \in C^{\infty}(\Omega)$, then 
+\begin{equation}\label{eq:I.8.13}
+S (\varphi) = T (f \varphi), \varphi \in \mathfrak {D} (\Omega),
+\end{equation}
+defines another generalized function $S$ in $\Omega$. 
+\end{proposition}
+
+\begin{proof}
+ $S$ is a linear functional on $\mathfrak{D}(\Omega)$ which is bounded on every bounded set of $\mathfrak{D}(\Omega)$. This we see by applying Leibniz' formula to $f\varphi$. 
+\end{proof}
+
+\begin{definition}\label{def:I.8.Definition.4} The generalized function $S$ defined by \eqref{eq:I.8.13} is called the product of the function $f$ and the generalized function $T$. 
+\end{definition}
+
+Leibniz' Formula. We have, denoting $S$ in \eqref{eq:I.8.13} by $fT$, 
+\begin{equation}\label{eq:I.8.14}
+\frac {\partial}{\partial x_{j}} (f T) = \frac {\partial f}{\partial x_{j}} T + f \frac {\partial T}{\partial x_{j}}
+\end{equation}
+because we have 
+\[
+- T \left(f \frac {\partial \varphi}{\partial x_{j}}\right) = T \left(\frac {\partial f}{\partial x_{j}} \varphi\right)- T \left(\frac {\partial}{\partial x_{j}} (f \varphi)\right)
+\]
+by Leibniz' formula for $\partial (f\varphi) / \partial x_j$. This formula is generalized as follows. 
+
+Let $P(\xi)$ be a polynomial in $\xi_1, \xi_2, \ldots, \xi_n$, and consider a linear partial differential operator $P(D)$ with constant coefficients, obtained by replacing $\xi_j$ by $i^{-1} \partial/\partial x_j$. The introduction of the imaginary coefficient $i^{-1}$ is suitable for the symbolism in the Fourier transform theory in Chapter~\ref{chap:VI}. 
+
+\begin{theorem}[Generalized Leibniz' Formula of L. \textsc{Hörmander}]\label{thm:I.8.Theorem.3} We have 
+\begin{equation}\label{eq:I.8.15}
+P(D) (f T) = \sum\limits_{s} \left(D_{s} f\right) \frac {1}{s !} P^{(s)} (D) T,
+\end{equation}
+where, for $s = (s_1, s_2, \ldots, s_n)$, 
+\begin{equation}\label{eq:I.8.16}
+\begin{yoslines}
+&\displaystyle P^{(s)} (\xi) = \frac {\partial^ {s_{1} + s_{2} + \dots + s_{n}}}{\partial \xi_{1} ^ {s_{1}} \partial \xi_{2} ^ {s_{2}} \cdots \partial \xi_{n} ^ {s_{n}}} P(\xi) = D_{\xi} ^{s} P(\xi), \displaystyle D_{s} = \left(\frac {1}{i} \frac {\partial}{\partial x_{1}}\right) ^ {s_{1}} \left(\frac {1}{i} \frac {\partial}{\partial x_{2}}\right) ^ {s_{2}} \dots \left(\frac {1}{i} \frac {\partial}{\partial x_{n}}\right) ^ {s_{n}},
+\end{yoslines}
+\end{equation}
+and 
+\begin{equation}\label{eq:I.8.17}
+s! = s_{1}! s_{2}! \dots s_{n}! .
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+ Repeated application of \eqref{eq:I.8.14} gives an identity of the form 
+ \begin{equation}\label{eq:I.8.18}
+ P(D) (f T) = \sum\limits_{s} \left(D_{s} f\right) Q_{s} (D) T,
+ \end{equation}
+where $Q_{s}(\xi)$'s are polynomials. Since \eqref{eq:I.8.18} is an identity, we may substitute 
+\[
+f (x) = e ^{i \langle x, \xi \rangle} \text{ and } T = e ^{i \langle x, \eta \rangle}, \text{ where } \langle x, \xi \rangle = \sum\limits_{j=1} ^{n} x_{j} \xi_{j}
+\]
+in \eqref{eq:I.8.18}. Thus, by the symbolism 
+\begin{equation}\label{eq:I.8.19}
+P(D) e ^{i \langle x, \xi \rangle} = P(\xi) e ^{i \langle x, \xi \rangle},
+\end{equation}
+we obtain 
+\[
+P(\xi + \eta) = \sum\limits_{s} \xi^{s} Q_{s} (\eta), \text{ where } \xi^{s} = \xi_{1} ^ {s_{1}} \xi_{2} ^ {s_{2}} \dots \xi_{n} ^ {s_{n}}.
+\]
+
+On the other hand, we have, by Taylor's formula, 
+\[
+P(\xi + \eta) = \sum\limits_{s} \frac {1}{s !} \xi^{s} P^{(s)} (\eta).
+\]
+
+ Thus we obtain 
+ \[
+ Q_{s} (\eta) = \frac {1}{s !} P^{(s)} (\eta).
+ \]
+\end{proof}
+
+\yossection{9}{\texorpdfstring{$B$}{B}-spaces and \texorpdfstring{$F$}{F}-spaces}
+\label{sec:I.9}
+
+In a quasi-normed linear space $X$, $\lim\limits_{n\to \infty}\|x_n- x\| = 0$ implies, by the triangle inequality $\|x_n- x_m\|\leqq \|x_n- x\| + \|x- x_m\|$, that $\{x_n\}$ is a Cauchy sequence, i.e., $\{x_n\}$ satisfies Cauchy's convergence condition 
+\begin{equation}\label{eq:I.9.1}
+\lim\limits_{n, m \rightarrow \infty} \| x_{n}- x_{m} \| = 0.
+\end{equation}
+
+\begin{definition}\label{def:I.9.Definition.1} $A$ quasi-normed (or normed) linear space $X$ is called an $F$-space (or a $B$-space) if it is complete, i.e., if every Cauchy sequence $\{x_{n}\}$ of $X$ converges strongly to a point $x_{\infty}$ of $X$: 
+\begin{equation}\label{eq:I.9.2}
+\lim\limits_{n \rightarrow \infty} \| x_{n}- x_{\infty} \| = 0.
+\end{equation}
+\end{definition}
+
+Such a limit $x_{\infty}$, if it exists, is uniquely determined because of the triangle inequality $\|x- x' \| \leqq \|x- x_n\| + \|x_n- x'\|$. A complete pre-Hilbert space is called a Hilbert space. 
+
+\begin{remarku} The names $F$-space and $B$-space are abbreviations of Fréchet space and Banach space, respectively. It is to be noted that \textsc{Bourbaki} uses the term Fréchet spaces for locally convex spaces which are quasi-normed and complete. 
+\end{remarku}
+
+\begin{proposition}\label{prop:I.9.Proposition.1} Let $\Omega$ be an open set of $\mathbb{R}^{n}$, and denote by $\mathfrak{E}(\Omega) = C^\infty(\Omega)$ the locally convex space, quasi-normed as in Proposition~\ref{prop:I.1.Proposition.6} in Chapter~\ref{chap:I}, \ref{sec:I.1}. This $\mathfrak{E}(\Omega)$ is an $F$-space. 
+\end{proposition}
+
+\begin{proof}
+ The condition $\lim\limits_{n,m\to \infty}\|f_n- f_m\| = 0$ in $\mathfrak{E}(\Omega)$ means that, for any compact subset $K$ of $\Omega$ and for any differential operator $D^{\alpha}$, the sequence $\{D^{\alpha}f_n(x)\}$ of functions converges, as $n\to \infty$, uniformly on $K$. Hence there exists a function $f(x)\in C^{\infty}(\Omega)$ such that $\lim\limits_{n\to \infty}D^{\alpha}f_n(x) =$ 
+
+$D^{\alpha}f(x)$ uniformly on $K$. $D^{\alpha}$ and $K$ being arbitrary, this means that $\lim\limits_{n\to \infty}\| f_n- f\| = 0$ in $\mathfrak{E}(\Omega)$. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.9.Proposition.2} $L^p(S) = L^p(S, \mathfrak{B}, m)$ is a $B$-space. In particular, $L^2(S)$ and $(l^2)$ are Hilbert spaces. 
+\end{proposition}
+
+\begin{proof}
+ Let $\lim\limits_{n,m\to\infty}\left\|x_{n}-x_{m}\right\|=0$ in $L^{p}(S)$. Then we can choose a subsequence $\{x_{n_{k}}\}$ such that $\sum\limits_{k}\left\|x_{n_{k+1}}-x_{n_{k}}\right\|<\infty$. Applying the triangle inequality and the Lebesgue-Fatou Lemma to the sequence of functions 
+\[
+y_{t} (s) = \left| x_ {n_{1}} (s) \right| + \sum\limits_{k=1} ^{t} \left| x_ {n_{k+1}} (s)- x_ {n_{k}} (s) \right| \in L ^{p} (S),
+\]
+we see that 
+\[
+\int_{\Omega} \left(\lim\limits_{t \rightarrow \infty} y_{t} (s) ^{p}\right) m (\dd s) \leqq \varliminf\limits_{t \rightarrow \infty} \| y_{t} \| ^{p} \leqq \left(\| x_ {n_{1}} \| + \sum\limits_{k=1} ^{\infty} \| x_ {n_{k+1}}- x_ {n_{k}} \|\right) ^{p}. \]
+
+Thus a finite $\lim\limits_{t\to \infty}y_t(s)$ exists a.e. Hence a finite $\lim\limits_{t\to \infty}x_{n_{t+1}}(s) = x_{\infty}(s)$ exists a.e. and $x_{\infty}(s)\in L^{p}(S)$, since $|x_{n_{t+1}}(s)|\leqq \lim\limits_{t\to \infty}y_t(s)\in L^p(S)$. Applying again the Lebesgue-Fatou Lemma, we obtain 
+\[
+\left\| x_{\infty}- x_ {n_{k}} \right\| ^{p} = \int_{\Omega} \left(\lim\limits_{t \rightarrow \infty} \left| x_ {n_{t}} (s)- x_ {n_{k}} (s) \right| ^{p}\right) m (\dd s) \leqq \left(\sum\limits_{l=k} ^{\infty} \left\| x_ {n_{l+1}}- x_ {n_{l}} \right\|\right) ^{p}.
+\]
+
+Therefore $\lim\limits_{k\to \infty}\|x_{\infty}- x_{n_{k}}\| = 0$, and hence, by the triangle inequality and Cauchy's convergence condition $\lim\limits_{n,m\to \infty}\|x_n- x_m\| = 0$, we obtain 
+\[
+\varlimsup\limits_{n \rightarrow \infty} \| x_{\infty}- x_{n} \| \leqq \varlimsup\limits_{k \rightarrow \infty} \| x_{\infty}- x_ {n_{k}} \| + \varlimsup\limits_{k, n \rightarrow \infty} \| x_ {n_{k}}- x_{n} \| = 0.
+\]
+\end{proof}
+
+Incidentally we have proved the following important 
+
+\begin{corollaryu} $A$ sequence $\{x_{n}\} \in L^{p}(S)$ which satisfies Cauchy's convergence condition \eqref{eq:I.9.1} contains a subsequence $\{x_{n_{k}}\}$ such that 
+a finite $\lim\limits_{b\to \infty}x_{n_{k}}(s) = x_\infty (s)$ exists a.e., $x_{\infty}(s)\in L^{p}(S)$ and 
+\begin{equation}\label{eq:I.9.3}
+\slim\limits_{n \rightarrow \infty} x_{n} = x_{\infty}.
+\end{equation}
+\end{corollaryu}
+
+\begin{remarku} In the above Proposition and the Corollary, we have assumed in the proof that $1 \leqq p< \infty$. However the results are also valid for the case $P= \infty$, and the proof is somewhat simpler than for the case $1 \leqq p< \infty$. The reader should carry out the proof. 
+\end{remarku}
+
+\begin{proposition}\label{prop:I.9.Proposition.3} The space $A^2(G)$ is a Hilbert space. 
+\end{proposition}
+
+\begin{proof}
+ Let $\{f_n(z)\}$ be a Cauchy sequence of $A^2(G)$. Since $A^2(G)$ is a linear subspace of the Hilbert space $L^2(G)$, there exists a subsequence $\{f_{n_{k}}(z)\}$ such that 
+
+a finite $\lim\limits_{k\to \infty}f_{n_{k}}(z) = f_\infty (z)$ exists a.e., $f_{\infty}\in L^{2}(G)$ and 
+\[
+\lim\limits_{n \rightarrow \infty} \int_{G} | f_{\infty} (z)- f_{n} (z) | ^{2} \dd x \dd y = 0. \]
+
+We have to show that $f_{\infty}(z)$ is holomorphic in $G$. To do this, let the sphere $|z- z_0| \leqq \varrho$ be contained in $G$. The Taylor expansion $f_n(z)- f_m(z) = \sum\limits_{j=0}^{\infty} c_j (z- z_0)^j$ implies 
+\begin{equation}\label{eq:I.9.4}
+\begin{aligned}
+&\left\| f_{n}- f_{m} \right\| ^{2} \geqq \int_ {\left| z- z_{0} \right| \leqq \varrho} \left| f_{n} (z)- f_{m} (z) \right| ^{2} \dd x \dd y = \int_{0} ^{\varrho} \left(\int_{0} ^{2 \pi} \sum\limits_{j} c_{j} r ^{j} e ^{i j \theta} \sum\limits_{k} \bar {c}_{k} r ^{k} e ^{- i k \theta} \dd \theta\right) r \dd r
+\\
+&= \sum\limits_{j} 2 \pi \int_{0} ^{\varrho} \left| c_{j} \right| ^{2} r ^{2j+1} \dd r = 2 \pi \sum\limits_{j=0} ^{\infty} \varrho^{2j+2} \left| c_{j} \right| ^{2} (2 j + 2) ^{-1} \geqq \pi \left| c_{0} \right| ^{2} \varrho^{2}
+\\
+&= \pi \varrho^{2} \left| f_{n} (z_{0})- f_{m} (z_{0}) \right| ^{2}.
+\end{aligned}
+\end{equation}
+
+Thus the sequence $\{f_n(z)\}$ itself converges uniformly on any closed sphere contained in $G$. $f_n(z)$'s being holomorphic in $G$, we see that $f_\infty(z) = \lim\limits_{n \to \infty} f_n(z)$ must be holomorphic in $G$. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.9.Proposition.4} $M(S, \mathfrak{B}, m)$ with $m(S) < \infty$ is an $F$-space. 
+\end{proposition}
+
+\begin{proof}
+ Let $\{x_{n}\}$ be a Cauchy sequence in $M(S, \mathfrak{B}, m)$. Since the convergence in $M(S, \mathfrak{B}, m)$ is the asymptotic convergence, we can choose a sub-sequence $\{x_{n_{k}}(s)\}$ of $\{x_{n}(s)\}$ such that 
+\[
+m \left(B_{k}\right) \leqq 2 ^{-k} \quad \text{ for } \quad B_{k} = \{s \in S; 2 ^{-k} \leqq \left| x_ {n_{k+1}} (s)- x_ {n_{k}} (s) \right| \}. \]
+
+The sequence $x_{n_{k}}(s) = x_{n_1}(s) + \sum\limits_{j=1}^{k-1} (x_{n_{j+1}}(s)- x_{n_{j}}(s))$ ( $k = 1, 2, \ldots$) is $s$-convergent to a function $\in M(S, \mathfrak{B}, m)$, because, if $s \in \bigcup\limits_{j=t}^{\infty} B_j$, we have $\sum\limits_{j=t}^{\infty} |x_{n_{j+1}}(s)- x_{n_{j}}(s)| \leqq \sum\limits_{j=t}^{\infty} 2^{-j} \leqq 2^{1-t}$ and $m\left(\bigcup\limits_{j=t}^{\infty} B_j\right) \leqq \sum\limits_{j=t}^{\infty} m(B_j) \leqq \sum\limits_{j=t}^{\infty} 2^{-j} \leqq 2^{1-t}$; consequently we see, by letting $t \to \infty$, that the sequence $\{x_{n_{k}}(s)\}$ converges $m$-a.e. to a function $x_\infty(s) \in M(S, \mathfrak{B}, m)$. Hence $\lim\limits_{k \to \infty} \|x_{n_{k}}- x_\infty\| = 0$ and so, by $\lim\limits_{n, m \to \infty} \|x_n- x_m\| = 0$, we obtain $\lim\limits_{n \to \infty} \|x_n- x_\infty\| = 0$. 
+\end{proof}
+
+The Space $(s)$. The set $(s)$ of all sequences $\{\xi_{n}\}$ of numbers quasi-normed by 
+\[
+\left\| \left\{\xi_{n} \right\} \right\| = \sum\limits_{j=1} ^{\infty} 2 ^{-j} \left| \xi_{j} \right| / (1 + \left| \xi_{j} \right|)
+\]
+constitutes an $F$-space by $\{\xi_n\} + \{\eta_n\} = \{\xi_n + \eta_n\}$, $\alpha\{\xi_n\} = \{\alpha\xi_n\}$. The proof of the completeness of $(s)$ may be obtained as in the case of $M(S, \mathfrak{B}, m)$. The quasi-norm 
+$\|\{\xi_{n}\}\|=\inf\limits_{\varepsilon>0}\tan^{-1}\left\{\varepsilon+\text{ the number of }\xi_{n}\text{ 's which satisfy }|\xi_{n}|>\varepsilon\right\}$ also gives an equivalent topology of $(s)$. 
+
+\begin{remarku} It is clear that $C(S), (c_0)$ and $(c)$ are $B$-spaces. The completeness of the space $(l^p)$ is a consequence of that of $L^p(S)$. Hence, by Theorem~\ref{thm:I.5.Theorem.3} in Chapter~\ref{chap:I}, \ref{sec:I.5}, the space $H- L^2$ is a Hilbert space with $(l^2)$. 
+\end{remarku}
+
+Soboley Spaces $W^{k,p}(\Omega)$. Let $\Omega$ be an open set of $\mathbb{R}^{n}$, and $k$ a positive integer. For $1 \leqq p< \infty$, we denote by $W^{k,p}(\Omega)$ the set of all complex-valued functions $f(x) = f(x_1, x_2, \ldots, x_n)$ defined in $\Omega$ such that $f$ and its distributional derivatives $D^s f$ of order $|s| = \sum\limits_{j=1}^{n} |s_j| \leqq k$ all belong to $L^p(\Omega)$. $W^{k,p}(\Omega)$ is a normed linear space by 
+\[
+\begin{aligned} (f_{1} + f_{2}) (x) & = f_{1} (x) + f_{2} (x), (\alpha f) (x) = \alpha f (x) \text{ and } \\ \| f \|_{k,p} & = \left(\sum\limits_{| s | \leqq k} \int_{\Omega} | D ^{s} f (x) | ^{p} \dd x\right) ^{1/p}, \dd x = \dd x_{1} \dd x_{2} \dots \dd x_{n} \end{aligned}
+\]
+under the convention that we consider two functions $f_{1}$ and $f_{2}$ as the same vector of $W^{k,p}(\Omega)$ if $f_{1}(x) = f_{2}(x)$ a.e. in $\Omega$. It is easy to see that $W^{k,2}(\Omega)$ is a pre-Hilbert space by the scalar product 
+\[
+(f, g)_{k,2} = \left(\sum\limits_{| s | \leqq k} \int_{\Omega} D ^{s} f (x) \overline {{D ^{s} g (x)}} \dd x\right).
+\]
+
+\begin{proposition}\label{prop:I.9.Proposition.5} The space $W^{k,p}(\Omega)$ is a $B$-space. In particular, $W^k (\Omega) = W^{k,2}(\Omega)$ is a Hilbert space by the norm $\|f\|_k = \|f\|_{k,2}$ and the scalar product $(f,g)_k = (f,g)_{k,2}$. 
+\end{proposition}
+
+\begin{proof}
+ Let $\{f_h\}$ be a Cauchy sequence in $W^{h,p}(\Omega)$. Then, for any differential operator $D^s$ with $|s|\leqq k$, the sequence $\{D^s f_h\}$ is a Cauchy sequence in $L^p(\Omega)$ and so, by the completeness of $L^p(\Omega)$, there exist functions $f^{(s)}\in L^{p}(\Omega)$ ( $|s|\leqq k$) such that $\lim\limits_{h\to \infty}\int_{\Omega}|D^{s}f_{h}(x)- f^{(s)}(x)|^{p}\dd x = 0$. By virtue of Hölder's inequality in Chapter~\ref{chap:I}, \ref{sec:I.3}, applied to compact sets of $\Omega$, we easily see that $f_{h}$ is locally integrable in $\Omega$. Hence, for any function $\varphi \in C_0^\infty (\Omega)$, 
+\[
+T_ {D ^{s} f_{h}} (\varphi) = \int_{\Omega} D ^{s} f_{h} (x) \cdot \varphi (x) \dd x = (- 1) ^{|s|} \int_{\Omega} f_{h} (x) D ^{s} \varphi (x) \dd x,
+\]
+and so, again applying Hölder's inequality, we obtain, by $\lim\limits_{h\to \infty}\int_{\Omega}|f_h(x)- f^{(0)}(x)|^p\dd x = 0,$ 
+\[
+\lim\limits_{h \rightarrow \infty} T_ {D ^{s} f_{h}} (\varphi) = (- 1) ^{|s|} T_ {f ^{(0)}} (D ^{s} \varphi) = D ^{s} T_ {f ^{(0)}} (\varphi). \]
+
+Similarly we have, by $\lim\limits_{h\to \infty}\int_{\Omega}|D^{s}f_{h}(x)- f^{(s)}(x)|^{p}\dd x = 0$ 
+\[
+\lim\limits_{h \rightarrow \infty} T_ {D ^{s} f_{h}} (\varphi) = T_ {f ^{(s)}} (\varphi).
+\]
+
+Hence we must have $D^{s}T_{f^{(0)}} = T_{f^{(s)}}$, that is, the distributional derivative $D^{s}f^{(0)}$ equals $f^{(s)}$. This proves that $\lim\limits_{h\to \infty}\| f_h- f^{(0)}\|_{k,p} = 0$ and $W^{k,p}(\Omega)$ is complete. 
+\end{proof}
+
+
+\yossection{10}{The Completion}
+\label{sec:I.10}
+
+The completeness of an $F$-space (and a $B$-space) will play an important role in functional analysis in the sense that we can apply to such spaces Baire's category arguments given in Chapter~\ref{chap:0}, Preliminaries. The following theorem of completion will be of frequent use in this book. 
+
+\begin{theoremn}[of completion] Let $X$ be a quasi-normed linear space which is not complete. Then $X$ is isomorphic and isometric to a dense linear subspace of an $F$-space $\tilde{X}$, i.e., there exists a one-to-one correspondence $x \leftrightarrow \tilde{x}$ of $X$ onto a dense linear subspace of $\tilde{X}$ such that
+\begin{equation}\label{eq:I.10.1}
+\left(\widetilde {x + y}\right) = \tilde {x} + \tilde {y}, (\widetilde {\alpha x}) = \alpha \tilde {x}, \| \tilde {x} \| = \| x \|.
+\end{equation}
+
+The space $\tilde{X}$ is uniquely determined up to isometric isomorphism. If $X$ is itself a normed linear space, then $\tilde{X}$ is a $B$-space. 
+
+\end{theoremn}
+\begin{proof}
+ The proof proceeds as in Cantor's construction of real numbers from rational numbers. 
+
+
+The set of all Cauchy sequences $\{x_{n}\}$ of $X$ can be classified according to the equivalence $\{x_{n}\} \sim \{y_{n}\}$ which means that $\lim\limits_{n\to \infty}\|x_n- y_n\| = 0$. We denote by $\{x_{n}\}'$ the class containing $\{x_{n}\}$. Then the set $\tilde{X}$ of all such classes $\tilde{x} = \{x_{n}\}'$ is a linear space by 
+\[
+\{x_{n} \} ^{\prime} + \{y_{n} \} ^{\prime} = \{x_{n} + y_{n} \} ^{\prime}, \alpha \{x_{n} \} ^{\prime} = \{\alpha x_{n} \} ^{\prime}.
+\]
+
+We have $\|x_n\|- \|x_m\| \leqq \|x_n- x_m\|$ and hence $\lim\limits_{n \to \infty} \|x_n\|$ exists. We put 
+\[
+\left\|\left\{x_{n} \right\} ^{\prime} \right\| = \lim\limits_{n \rightarrow \infty} \left\| x_{n} \right\|.
+\]
+
+It is easy to see that these definitions of the vector sum $\{x_{n}\}^{\prime} + \{y_{n}\}^{\prime}$, the scalar multiplication $\alpha\{x_{n}\}^{\prime}$ and the norm $\|\{x_{n}\}^{\prime}\|$ do not depend on the particular representations for the classes $\{x_{n}\}^{\prime}, \{y_{n}\}^{\prime}$, respectively. For example, if $\{x_{n}\} \sim \{x_{n}^{\prime}\}$, then 
+\[
+\lim\limits_{n \rightarrow \infty} \| x_{n} \| \leqq \lim\limits_{n \rightarrow \infty} \| x_{n} ^{\prime} \| + \lim\limits_{n \rightarrow \infty} \| x_{n} ^{\prime}- x_{n} \| \leqq \lim\limits_{n \rightarrow \infty} \| x_{n} ^{\prime} \|
+\]
+and similarly $\lim\limits_{n\to \infty}\|x_n'\|\leqq \lim\limits_{n\to \infty}\|x_n\|$ so that we have $\|\{x_n\}'\| = \|\{x_n'\}''\|$ 
+
+To prove that $\|\{x_n\}'\|$ is a quasi-norm, we have to show that 
+\[
+\lim\limits_{\alpha \rightarrow 0} \| \alpha \{x_{n} \} ^{\prime} \| = 0 \quad \text{ and } \quad \lim\limits_ {\| \{x_{n} \} ^{\prime} \| \rightarrow 0} \| \alpha \{x_{n} \} ^{\prime} \| = 0.
+\]
+
+The former is equivalent to $\lim\limits_{\alpha\to0}\lim\limits_{n\to\infty}\|\alpha x_{n}\|=0$ and the latter is equivalent to $\lim\limits_{n\to\infty}\|\alpha x_{n}\|=0$. And these are true because $\|\alpha x\|$ is continuous in both variables $\alpha$ and $x$. 
+
+To prove the completeness of $\tilde{X}$, let $\{\tilde{x}_k\} = \{\{x_n^{(k)}\}\}$ be a Cauchy sequence of $\tilde{X}$. For each $k$, we can choose $n_k$ such that 
+\begin{equation}\label{eq:I.10.2}
+\left\| x_{m} ^{(k)}- x_ {n_{k}} ^{(k)} \right\| < k ^{-1} \quad \text{ if } \quad m > n_{k}.
+\end{equation}
+
+Then we can show that the sequence $\{\tilde{x}_k\}$ converges to the class containing the Cauchy sequence of $X$: 
+\begin{equation}\label{eq:I.10.3}
+\left\{x_ {n_{1}} ^{(1)}, x_ {n_{2}} ^{(2)}, \dots , x_ {n_{k}} ^{(k)}, \dots \right\}.
+\end{equation}
+
+To this purpose, we denote by $\bar{x}_{n_{k}}^{(k)}$ the class containing 
+\begin{equation}\label{eq:I.10.4}
+\left\{x_ {n_{k}} ^{(k)}, x_ {n_{k}} ^{(k)}, \ldots , x_ {n_{k}} ^{(k)}, \ldots \right\}.
+\end{equation}
+
+Then, by \eqref{eq:I.10.2}, 
+\begin{equation}\label{eq:I.10.5}
+\left\| \tilde {x}_{k}- \bar {x}_ {n_{k}} ^{(k)} \right\| = \lim\limits_{m \rightarrow \infty} \left\| x_{m} ^{(k)}- x_ {n_{k}} ^{(k)} \right\| \leqq k ^{-1}
+\end{equation}
+and hence 
+\[
+\begin{aligned} \| x_ {n_{k}} ^{(k)}- x_ {n_{m}} ^{(m)} \| = & \| \bar {x}_ {n_{k}} ^{(k)}- \bar {x}_ {n_{m}} ^{(m)} \| \leqq \| \bar {x}_ {n_{k}} ^{(k)}- \tilde {x}_{k} \| + \| \tilde {x}_{k}- \tilde {x}_{m} \| + \| \tilde {x}_{m}- \bar {x}_ {n_{m}} ^{(m)} \| \\ & \leqq \| \tilde {x}_{k}- \tilde {x}_{m} \| + k ^{-1} + m ^{-1}. \end{aligned}
+\]
+
+Thus \eqref{eq:I.10.3} is a Cauchy sequence of $X$. Let $\tilde{x}$ be the class containing \eqref{eq:I.10.3}. Then, by \eqref{eq:I.10.5}, 
+\[
+\left\| \tilde {x}- \tilde {x}_{k} \right\| \leqq \left\| \tilde {x}- \bar {x}_ {n_{k}} ^{(k)} \right\| + \left\| \bar {x}_ {n_{k}} ^{(k)}- \tilde {x}_{k} \right\| \leqq \left\| \tilde {x}- \bar {x}_ {n_{k}} ^{(k)} \right\| + k ^{-1}.
+\]
+
+Since, as shown above, 
+\[
+\left\| \tilde {x}- \bar {x}_ {n_{k}} ^{(k)} \right\| \leqq \lim\limits_{p\rightarrow \infty} \left\| x_ {n_{p}} ^{(p)}- x_ {n_{k}} ^{(k)} \right\| \leqq \lim\limits_{p\rightarrow \infty} \left\| \tilde {x}_{p}- \tilde {x}_{k} \right\| + k ^{-1}
+\]
+we prove that $\lim\limits_{k\to \infty}\|\tilde{x}-\bar{x}_{n_{k}}^{(k)}\| = 0$, and so $\lim\limits_{k\to \infty}\|\tilde{x}-\tilde{x}_k\| = 0.$ 
+
+The above proof shows that the correspondence 
+\[
+X \ni x \leftrightarrow \tilde {x} = \{x, x, \dots , x, \dots \} ^{\prime} = \bar {x}
+\]
+is surely isomorphic and isometric, and the image of $X$ in $\tilde{X}$ by this correspondence is dense in $\tilde{X}$. The last part of the Theorem is clear.
+\end{proof}
+
+\begin{examplen} Let $\Omega$ be an open set of $\mathbb{R}^{n}$ and $k < \infty$. The completion of the space $C_0^k(\Omega)$ normed by 
+\[
+\left\| f \right\|_{k} = \left(\sum\limits_{| s | \leqq k} \int_{\Omega} \left| D ^{s} f (x) \right| ^{2} \dd x\right) ^{1/2}
+\]
+will be denoted by $H_0^k(\Omega)$; thus $H_0^k(\Omega)$ is the completion of the pre-Hilbert space $\hat{H}_0^k(\Omega)$ defined in Chapter~\ref{chap:I}, \ref{sec:I.5}, Example~\hyperref[ex:I.5.Example.4]{$4$}. Therefore $H_0^k(\Omega)$ is a Hilbert space. The completion of the pre-Hilbert space $\hat{H}^k(\Omega)$ in Chapter~\ref{chap:I}, \ref{sec:I.5}, Example~\hyperref[ex:I.5.Example.3]{$3$} will similarly be denoted by $H^k(\Omega)$. 
+\end{examplen}
+
+The elements of $H_0^k(\Omega)$ are obtained concretely as follows: Let $\{f_h\}$ be a Cauchy sequence of $C_0^k(\Omega)$ with regard to the norm $\|f\|_k$. Then, by the completeness of the space $L^2(\Omega)$, we see that there exist functions $f^{(s)}(x) \in L^2(\Omega)$ with $|s| = \sum\limits_{j=1}^{n} s_j \leqq k$ such that 
+\[
+\lim\limits_{h \rightarrow \infty} \int_{\Omega} | f ^{(s)} (x)- D ^{s} f_{h} (x) | ^{2} \dd x = 0 \quad (\dd x = \dd x_{1} \dd x_{2} \dots \dd x_{n}).
+\]
+
+Since the scalar product is continuous in the norm of $L^2(\Omega)$, we see, for any test function $\varphi(x) \in C_0^\infty(\Omega)$, that 
+\[
+\begin{aligned} T_ {f ^{(s)}} (\varphi) & = \lim\limits_{h \to \infty} \langle D ^{s} f_{h}, \varphi \rangle = \lim\limits_{h \to \infty} (- 1) ^{|s|} T_ {f_{h}} (D ^{s} \varphi) \\ & = (- 1) ^{|s|} \lim\limits_{h \to \infty} \langle f_{h}, D ^{s} \varphi \rangle = (- 1) ^{|s|} \langle f ^{(0)}, D ^{s} \varphi \rangle = (D ^{s} T_ {f ^{(0)}}) (\varphi). \end{aligned}
+\]
+
+Therefore we see that $f^{(s)} \in L^2(\Omega)$ is, when considered as a generalized function, the distributional derivative of $f^{(0)}: f^{(s)} = D^s f^{(0)}$. 
+
+We have thus proved that the Hilbert space $H_{0}^{k}(\Omega)$ is a linear subspace of the Hilbert space $W^{k}(\Omega)$, the Sobolev space. In general $H_{0}^{k}(\Omega)$ is a proper subspace of $W^{k}(\Omega)$. However, we can prove 
+
+\begin{propositionu} $H_0^k (\mathbb{R}^{n}) = W^k (\mathbb{R}^{n})$. 
+\end{propositionu}
+
+\begin{proof}
+ We know that the space $W^{k}(\mathbb{R}^{n})$ is the space of all functions $f(x) \in L^{2}(\mathbb{R}^{n})$ such that the distributional derivatives $D^{s}f(x)$ with $|s| = \sum\limits_{j=1}^{n}s_{j} \leqq k$ all belong to $L^{2}(\mathbb{R}^{n})$, and the norm in $W^{k}(\mathbb{R}^{n})$ is given by 
+\[
+\left\| f \right\|_{k} = \left(\sum\limits_{| s | \leqq k} \left| D ^{s} f (x) \right| ^{2} \dd x\right) ^{1/2}. \]
+
+Let $f \in W^{k}(\mathbb{R}^{n})$ and define $f_{N}$ by 
+\[
+f_{N} (x) = \alpha_{N} (x) f (x),
+\]
+where the function $\alpha_{N}(x) \in C_{0}^{\infty}(\mathbb{R}^{n})$ ( $N = 1, 2, \ldots$) is such that 
+\[
+\alpha_{N} (x) = 1 \text{ for } | x | \leqq N \text{ and } \sup\limits_ {x \in \mathbb{R}^{n}; | s | \leqq k; N = 1, 2, \dots} | D ^{s} \alpha_{N} (x) | < \infty .
+\]
+
+Then by Leibniz' formula, we have 
+\begin{equation}D ^{s} f (x)- D ^{s} f_{N} (x) = 0 \text{ for } | x | \leqq N, D ^{t} \alpha_{N} (x) \cdot D ^{u} f (x) \text{ with } | u | + | t | \leqq k \text{ for } | x | > N. \notag\end{equation}
+
+Hence, by $D^s f \in L^2(\mathbb{R}^{n})$ for $|s| \leqq k$, we see that $\lim\limits_{N \to \infty} \|D^s f_N- D^s f\|_0 = 0$ and so $\lim\limits_{N \to \infty} \|f_N- f\|_k = 0$. 
+
+Therefore, it will be sufficient to show that, for any $f \in W^{k}(\mathbb{R}^{n})$ with compact support, there exists a sequence $\{f_{a}(x)\} \subseteq C_{0}^{\infty}(\mathbb{R}^{n})$ such that $\lim\limits_{a \to \infty} \|f_{a}- f\|_{h} = 0$. To this purpose, consider the regularization of $f$ (see \eqref{eq:I.1.16} in Chapter~\ref{chap:I}, \ref{sec:I.1}): 
+\[
+f_{a} (x) = \int_ {\mathbb{R}^{n}} f (y) \theta_{a} (x- y) \dd y, a > 0.
+\]
+
+By differentiation, we have 
+\[
+\begin{aligned}
+D ^{s} f_{a} (x) &= \int_ {\mathbb{R}^{n}} f (y) D_{x} ^{s} \theta_{a} (x- y) \dd y = (- 1) ^{|s|} \int_ {\mathbb{R}^{n}} f (y) D_{y} ^{s} \theta_{a} (x- y) \dd y
+\\
+\qquad &= (D ^{s} T_{f}) (\theta_{a,x}) \text{ (where } \theta_{a,x} (y) = \theta_{a} (x- y))
+\\
+\qquad &= \int_ {\mathbb{R}^{n}} D ^{s} f (y) \cdot \theta_{a} (x- y) \dd y \quad (\text{ for } | s | \leqq k).
+\end{aligned}
+\]
+
+Hence, by Schwarz' inequality, 
+\[
+\begin{aligned}
+& \int_ {\mathbb{R}^{n}} | D ^{s} f_{a} (x)- D ^{s} f (x) | ^{2} \dd x
+\\
+& \leqq \left(\int_ {\mathbb{R}^{n}} \theta_{a} (x- y) \dd y\right) \int_ {\mathbb{R}^{n}} \left[ \int_ {\mathbb{R}^{n}} | D_{y} ^{s} f (y)- D_{x} ^{s} f (x) | ^{2} \theta_{a} (x- y) \dd y \right] \dd x
+\\
+&= \int_{| \varepsilon | \leqq a} \left[ \int_ {\mathbb{R}^{n}} | D_{y} ^{s} f (y)- D_{y} ^{s} f (y + \varepsilon) | ^{2} \dd y \right] \theta_{a} (\varepsilon) \dd \varepsilon , \text{ where }
+\\
+y + \varepsilon &= (y_{1} + \varepsilon_{1}, y_{2} + \varepsilon_{2}, \ldots , y_{n} + \varepsilon_{n}).
+\end{aligned}
+\]
+
+We know that the inner integral on the extreme right tends to $0$ as $\varepsilon \to 0$ (see Theorem~\ref{thm:0.3.Theorem.1} in Chapter~\ref{chap:0}, \ref{sec:0.3}), and hence $\lim\limits_{a\to 0}\int \limits_{\mathbb{R}^{n}}|D^s f_a(x)- D^s f(x)|^2 \dd x = 0$. Thus $\lim\limits_{a\to 0}\|f_a- f\|_k = 0$. Therefore, the completion $H_0^k (\mathbb{R}^{n})$ of $C_0^k (\mathbb{R}^{n})$ with regard to the norm $\|\|_k$ is identical with the space $W^{k}(\mathbb{R}^{n})$. 
+\end{proof}
+
+\begin{corollaryu} $H_0^k (\mathbb{R}^{n}) = H^k (\mathbb{R}^{n}) = W^k (\mathbb{R}^{n})$. 
+\end{corollaryu}
+
+
+\yossection{11}{Factor Spaces of a \texorpdfstring{$B$}{B}-space}
+\label{sec:I.11}
+
+Suppose that $X$ is a normed linear space and that $M$ is a closed linear subspace in $X$. We consider the factor space $X/M$, i.e., the space whose elements are classes modulo $M$. In virtue of the fact that $M$ is closed, all these classes $\xi$ are closed in $X$. 
+
+\begin{propositionu} If we define 
+\begin{equation}\label{eq:I.11.1}
+\left\| \xi \right\| = \inf\limits_{x \in \xi} \left\| x \right\|,
+\end{equation}
+then all the axioms concerning the norm are satisfied by $\|\xi \|$ 
+\end{propositionu}
+
+\begin{proof}
+ If $\xi = 0$, then $\xi$ coincides with $M$ and contains the zero vector of $X$; consequently, it follows from \eqref{eq:I.11.1} that $\|\xi\| = 0$. Suppose, conversely, that $\|\xi\| = 0$. It follows then from \eqref{eq:I.11.1} that the class contains a sequence $\{x_n\}$ for which we have $\lim\limits_{n \to \infty} \|x_n\| = 0$, and hence the zero vector of $X$ belongs to the closed set $\xi$ of $X$. This proves that $\xi = M$ and hence is the zero vector in $X/M$. 
+
+
+Next suppose $\xi, \eta \in X / M$. By definition \eqref{eq:I.11.1}, there exists for any $\varepsilon > 0$, vectors $x \in \xi, y \in \eta$ such that 
+\[
+\left\| x \right\| \leqq \left\| \xi \right\| + \varepsilon , \left\| y \right\| \leqq \left\| \eta \right\| + \varepsilon .
+\]
+
+Hence $\|x + y\| \leqq \|x\| + \|y\| \leqq \|\xi\| + \|\eta\| + 2\varepsilon$. On the other hand, $(x + y) \in (\xi + \eta)$, and therefore $\|\xi + \eta\| \leqq \|x + y\|$ by \eqref{eq:I.11.1}. Consequently, we have $\|\xi + \eta\| \leqq \|\xi\| + \|\eta\| + 2\varepsilon$ and so we obtain the triangle inequality $\|\xi + \eta\| \leqq \|\xi\| + \|\eta\|$. 
+
+Finally it is clear that the axiom $\|\alpha \xi \| = |\alpha \||\xi \|$ holds good.
+\end{proof}
+
+\begin{definitionu} The space $X$/$M$, normed by \eqref{eq:I.11.1}, is called a normed factor space. 
+\end{definitionu}
+
+\begin{theoremu} If $X$ is a $B$-space and $M$ a closed linear subspace in $X$, then the normed factor space $X$/$M$ is also a $B$-space. 
+\end{theoremu}
+
+\begin{proof}
+ Suppose $\{\xi_n\}$ is a Cauchy sequence in $X / M$. Then $\{\xi_n\}$ contains a subsequence $\{\xi_{n_{k}}\}$ such that $\| \xi_{n_{k+1}}- \xi_{n_{k}} \| < 2^{-k-2}$. Further, by definition \eqref{eq:I.11.1} of the norm in $X / M$, one can choose in every class $(\xi_{n_{k+1}}- \xi_{n_{k}})$ a vector $y_k$ such that 
+\[
+\left\| y_{k} \right\| < \left\| \xi_ {n_{k+1}}- \xi_ {n_{k}} \right\| + 2 ^{-k-2} < 2 ^{-k-1}. \]
+
+Let $x_{n_1} \in \xi_{n_1}$. The series $x_{n_1} + y_1 + y_2 + \cdots$ converges in norm and consequently, in virtue of the completeness of $X$, it converges to an element $x$ of $X$. Let $\xi$ be the class containing $x$. We shall prove that $\xi = \slim\limits_{n \to \infty} \xi_n$. 
+
+
+Denote by $s_{k}$ the partial sum $x_{n_{1}} + y_{1} + y_{2} + \cdots + y_{k}$ of the above series. Then $\lim\limits_{k \to \infty} \|x- s_{k}\| = 0$. On the other hand, it follows from the relations $x_{n_{1}} \in \xi_{n_{1}}, y_{p} \in (\xi_{n_{p+1}}- \xi_{n_{p}})$ that $s_{k} \in \xi_{n_{k+1}}$, and so, by \eqref{eq:I.11.1}, 
+\[
+\left\| \xi- \xi_ {n_{k}} \right\| \leqq \left\| x- s_{k} \right\|\rightarrow 0 \quad \text{ as } \quad k \rightarrow \infty .
+\]
+
+Therefore, from the inequality $\|\xi- \xi_n\| \leqq \|\xi- \xi_{n_{k}}\| + \|\xi_{n_{k}}- \xi_n\|$ and the fact that $\{\xi_n\}$ is a Cauchy sequence, we conclude that $\lim\limits_{n \to \infty} \|\xi- \xi_n\| = 0$.
+\end{proof}
+
+\yossection{12}{The Partition of Unity}
+\label{sec:I.12}
+
+To discuss the support of a generalized function, in the next section, we shall prepare the notion and existence of the partition of unity. 
+
+\begin{propositionu} Let $G$ be an open set of $\mathbb{R}^{n}$. Let a family $\{U\}$ of open subsets $U$ of $G$ constitute an open base of $G$: any open subset of $G$ is representable as the union of open sets belonging to the family $\{U\}$. Then there exists a countable system of open sets of the family $\{U\}$ with the properties: 
+\begin{equation}\label{eq:I.12.1}
+\parbox{0.90\linewidth}{the union of open sets of this system equals $G$,}
+\end{equation}
+\begin{equation}\label{eq:I.12.2}
+\parbox{0.90\linewidth}{any compact subset of $G$ meets (has a non-void intersection with) only a finite number of open sets of this system.}
+\end{equation}
+\end{propositionu}
+
+\begin{definition}\label{def:I.12.Definition.1} The above system of open sets is said to constitute a scattered open covering of $G$ subordinate to $\{U\}$. 
+\end{definition}
+
+\begin{proof}[Proof of the Proposition.]
+$G$ is representable as the union of a countable number of compact subsets. For example, we may take the system of all closed spheres contained in $G$ such that the centres are of rational coordinates and the radii of rational numbers.
+
+Hence we see that there exists a sequence of compact subsets $K_r$ such that \begin{enumerate}[(i)]
+\item $K_r \subseteq K_{r+1}$ ( $r = 1, 2, \ldots$),
+\item $G$ is the union of $K_r$'s
+\item each $K_r$ is contained in the interior of $K_{r+1}$
+\end{enumerate}
+. Set
+$U_{r} = (\text{ the interior of } K_{r+1})- K_{r-2}$ and $V_{r} = K_{r}- (\text{ the interior of } K_{r-1})$, where for convention we set $K_{0} = K_{-1} =$ the void set. Then $U_{r}$ is open and $V_{r}$ is compact such that $G = \bigcup\limits_{r=1}^{\infty} V_{r}$. For any point $x \in V_{r}$, take an open set $U(x; r) \in \{U\}$ such that $x \in U(x; r) \subseteq U_{r}$. Since $V_{r}$ is compact, there exists a finite system of points $x^{(1)}, x^{(2)}, \ldots, x^{(h_{r})}$ such that $V_{r} \subseteq \bigcup\limits_{i=1}^{h_{r}} U(x^{(i)}; r)$. Then, since any compact set of $G$ meets only a finite number of $U_{r}$'s, it is easy to see that the system of open sets $U(x^{(i)}; r)$ ( $r = 1, 2, \ldots; 1 \leqq i \leqq h_{r}$) is a scattered open covering of $G$ subordinate to $\{U\}$. 
+\end{proof}
+
+\begin{theoremn}[the partition of unity] Let $G$ be an open set of $\mathbb{R}^{n}$, and let a family of open sets $\{G_i; i \in I\}$ cover $G$, i.e., $G = \bigcup\limits_{i \in I} G_i$. Then there exists a system of functions $\{\alpha_j(x); j \in J\}$ of $C_0^\infty(\mathbb{R}^{n})$ such that
+\begin{equation}\label{eq:I.12.3}
+\parbox{0.90\linewidth}{for each $j \in J$, $\supp (\alpha_j)$ is contained in some $G_i$,}
+\end{equation}
+\begin{align}
+\text{ for every } j& \in J, 0 \leqq \alpha_{j} (x) \leqq 1, \label{eq:I.12.4} \\
+\sum\limits_{j \in J} \alpha_{j} (x)& \equiv 1 \quad \text{ for } \quad x \in G. \label{eq:I.12.5}
+\end{align}
+
+\end{theoremn}
+\begin{proof}
+ Let $x^{(0)} \in G$ and take a $G_i$ which contains $x^{(0)}$. Let the closed sphere $S(x^{(0)}; r)$ of centre $x^{(0)}$ and radius $r$ be contained in $G_i$. We construct, as in ($14$), Chapter~\ref{chap:I}, \ref{sec:I.1}, a function $\beta_{x^{(0)}}^{(r)}(x) \in C_0^\infty(\mathbb{R}^{n})$ such that $\beta_{x^{(0)}}^{(r)}(x) > 0$ for $|x- x^{(0)}| < r$, $\beta_{x^{(0)}}^{(r)}(x) = 0$ for $|x- x^{(0)}| \geqq r$. 
+
+
+We put $U_{x^{(0)}}^{(r)} = \{x; \beta_{x^{(0)}}^{(r)}(x) \neq 0\}$. Then $U_{x^{(0)}}^{(r)} \subseteq G_i$ and $\bigcup\limits_{x^{(0)} \in G, r > 0} U_{x^{(0)}}^{(r)} = G$, and, moreover, $\supp\left(\beta_{x^{(0)}}^{(r)}\right)$ is compact. 
+
+There exists, by the Proposition, a scattered open covering $\{U_j; j \in J\}$ subordinate to the open base $\{U_{x^{(0)}}^{(r)}; x^{(0)} \in G, r > 0\}$ of $G$. Let $\beta_j(x)$ be any function of the family $\{\beta_{x^{(0)}}^{(r)}(x)\}$ which is associated with $U_j$. Then, since $\{U_j; j \in J\}$ is a scattered open covering, only a finite number of $\beta_j(x)$'s do not vanish at a fixed point $x$ of $G$. Thus the sum $s(x) = \sum\limits_{j \in J} \beta_j(x)$ is convergent and is $>0$ at every point $x$ of $G$. Hence the functions 
+\[
+\alpha_{j} (x) = \beta_{j} (x) / s (x) (j \in J)
+\]
+satisfy the condition of our theorem.
+\end{proof}
+
+\begin{definition}\label{def:I.12.Definition.2} The system $\{\alpha_j(x); j \in J\}$ is called a partition of unity subordinate to the covering $\{G_i; i \in I\}$. 
+\end{definition}
+
+
+\yossection{13}{Generalized Functions with Compact Support}
+\label{sec:I.13}
+
+\begin{definition}\label{def:I.13.Definition.1} We say that a distribution $T \in \mathfrak{D}(\Omega)'$ vanishes in an open set $U$ of $\Omega$ if $T(\varphi) = 0$ for every $\varphi \in \mathfrak{D}(\Omega)$ with support contained in $U$. The support of $T$, denoted by $\supp(T)$, is defined as the smallest closed set $F$ of $\Omega$ such that $T$ vanishes in $\Omega- F$. 
+\end{definition}
+
+To justify the above definition, we have to prove the existence of the largest open set of $\Omega$ in which $T$ vanishes. This is done by the following 
+
+\begin{theorem}\label{thm:I.13.Theorem.1} If a distribution $T \in \mathfrak{D}(\Omega)'$ vanishes in each $U_i$ of a family $\{U_i; i \in I\}$ of open sets of $\Omega$, then $T$ vanishes in $U = \bigcup\limits_{i \in I} U_i$. 
+\end{theorem}
+
+\begin{proof}
+ Let $\varphi \in \mathfrak{D}(\Omega)$ be a function with $\supp(\varphi) \subseteq U$. We construct a partition of unity $\{\alpha_j(x); j \in J\}$ subordinate to the covering of $\Omega$ consisting of $\{U_i; i \in I\}$ and $\Omega- \supp(\varphi)$. Then $\varphi = \sum\limits_{j \in J} \alpha_j \varphi$ is a finite sum and so $T(\varphi) = \sum\limits_{j \in J} T(\alpha_j \varphi)$. If the $\supp(\alpha_j)$ is contained in some $U_i$, $T(\alpha_j \varphi) = 0$ by the hypothesis; if the $\supp(\alpha_j)$ is contained in $\Omega- \supp(\varphi)$, then $\alpha_j \varphi = 0$ and so $T(\alpha_j \varphi) = 0$. Therefore we have $T(\varphi) = 0$. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.13.Proposition.1} $A$ subset $B$ of the space $\mathfrak{E}(\Omega)$ is bounded iff, for any differential operator $D^{j}$ and for any compact subset $K$ of $\Omega$, the set of functions $\{D^{j}f(x); f \in B\}$ is uniformly bounded on $K$. 
+\end{proposition}
+
+\begin{proof}
+ Clear from the definition of the semi-norms defining the topology of $\mathfrak{E}(\Omega)$. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.13.Proposition.2} $A$ linear functional $T$ on $\mathfrak{E}(\Omega)$ is continuous iff $T$ is bounded on every bounded set of $\mathfrak{E}(\Omega)$. 
+\end{proposition}
+
+\begin{proof}
+ Since $\mathfrak{E}(\Omega)$ is a quasi-normed linear space, the Proposition is a consequence of Theorem~\ref{thm:I.7.Theorem.2} in Chapter~\ref{chap:I}, \ref{sec:I.7}. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.13.Proposition.3} $A$ distribution $T \in \mathfrak{D}(\Omega)'$ with compact support can be extended in one and only one way to a continuous linear functional $T_0$ on $\mathfrak{E}(\Omega)$ such that $T_0(f) = 0$ if $f \in \mathfrak{E}(\Omega)$ vanishes in a neighbourhood of $\supp(T)$. 
+\end{proposition}
+
+\begin{proof}
+ Let us put $\supp(T) = K$ where $K$ is a compact subset of $\Omega$. For any point $x^0 \in K$ and $\varepsilon > 0$, we take a sphere $S(x^0, \varepsilon)$ of centre $x^0$ and radius $\varepsilon$. For any $\varepsilon > 0$ sufficiently small, the compact set $K$ is covered by a finite number of spheres $S(x^0, \varepsilon)$ with $x^0 \in K$. Let $\{\alpha_j(x); j \in J\}$ be the partition of the unity subordinate to this finite system of spheres. Then the function $\psi(x) = \sum\limits_{\supp(\alpha_j) \cap K' \neq \emptyset} \alpha_j(x)$, where $K'$ is a compact neighbourhood of $K$ contained in the interior of the finite system of spheres above, satisfies: 
+\[
+\psi (x) \in C_{0} ^{\infty} (\Omega) \quad \text{ and } \quad \psi (x) = 1 \text{ in a neighbourhood of } K. \]
+
+We define $T_0(f)$ for $f \in C^\infty(\Omega)$ by $T_0(f) = T(\psi f)$. This definition is independent of the choice of $\psi$. For, if $\psi_1 \in C_0^\infty(\Omega)$ equals $1$ in a neighbourhood of $K$, then, for any $f \in C^\infty(\Omega)$, the function $(\psi- \psi_1)f \in \mathfrak{D}(\Omega)$ vanishes in a neighbourhood of $K$ so that $T(\psi f)- T(\psi_1f) = T((\psi- \psi_1)f) = 0$. 
+
+
+It is easy to see, by applying Leibniz' formula of differentiation to $\psi f$, that $\{\psi f\}$ ranges over a bounded set of $\mathfrak{D}(\Omega)$ when $\{f\}$ ranges over a bounded set of $\mathfrak{E}(\Omega)$. Thus, since a distribution $T \in \mathfrak{D}(\Omega)'$ is bounded on bounded sets of $\mathfrak{D}(\Omega)$, the functional $T_0$ is bounded on bounded sets of $\mathfrak{E}(\Omega)$. Hence, by the Theorem~\ref{thm:I.7.Theorem.2} in Chapter~\ref{chap:I}, \ref{sec:I.7} mentioned above, $T_0$ is a continuous linear functional on $\mathfrak{E}(\Omega)$. Let $f \in \mathfrak{E}(\Omega)$ vanish in a neighbourhood $U(K)$ of $K$. Then, by choosing a $\psi \in C_0^\infty(\Omega)$ that vanishes in $(\Omega- U(K))$, we see that $T_0(f) = T(\psi f) = 0$.
+\end{proof}
+
+\begin{proposition}\label{prop:I.13.Proposition.4} Let $K'$ be the support of $\psi$ in the above definition of $T_0$. Then for some constants $C$ and $k$ 
+\[
+\left| T_{0} (f) \right| \leqq C \sup\limits_ {| j | \leqq k, x \in K ^{\prime}} \left| D ^{j} f (x) \right| \quad \text{ for all } \quad f \in C ^{\infty} (\Omega).
+\]
+\end{proposition}
+
+\begin{proof}
+ Since $T$ is a continuous linear functional on $\mathfrak{D}(\Omega)$, there exist, for any compact set $K'$ of $\Omega$, constants $C'$ and $k'$ such that 
+\[
+\left| T (\varphi) \right| \leqq C ^{\prime} \sup\limits_ {| j | \leqq k ^{\prime}, x \in K ^{\prime}} \left| D ^{j} \varphi (x) \right| \quad \text{ for all } \quad \varphi \in \mathfrak {D}_ {K ^{\prime}} (\Omega) \]
+
+(the Corollary of Proposition~\ref{prop:I.8.Proposition.1} in Chapter~\ref{chap:I}, \ref{sec:I.8}). But, for any $g \in C^{\infty}(\Omega)$, we have $\varphi = \psi g \in D_{K'}(\Omega)$. Consequently, we see, by Leibniz' formula of differentiation, that 
+\[
+\sup\limits_ {| j | \leqq k ^{\prime}, x \in K ^{\prime}} | D ^{j} (\psi g) (x) | \leqq C ^{\prime \prime} \sup\limits_ {| j | \leqq k ^{\prime}, x \in K ^{\prime}} | D ^{j} g (x) |
+\]
+with a constant $C''$ which is independent of $g$. Setting $g = f$ and $k = k'$, we obtain the Proposition. 
+\end{proof}
+
+\begin{proposition}\label{prop:I.13.Proposition.5} Let $S_0$ be a linear functional on $C^\infty(\Omega)$ such that, for some constant $C$ and a positive integer $k$ and compact subset $K$ of $\Omega$, 
+\[
+\left| S_{0} (f) \right| \leqq C \sup\limits_{| j | \leqq k, x \in K} \left| D ^{j} f (x) \right| \quad \text{ for all } \quad f \in C ^{\infty} (\Omega).
+\]
+\end{proposition}
+
+Then the restriction of $S_{0}$ to $C_{0}^{\infty}(\Omega)$ is a distribution $T$ with support contained in $K$. 
+
+\begin{proof}
+ We observe that $S_0(f) = 0$ if $f$ vanishes identically in a neighbourhood of $K$. Thus, if $\psi \in C_0^\infty(\Omega)$ equals $1$ in a neighbourhood of $K$, then 
+\[
+S_{0} (f) = S_{0} (\psi f) \quad \text{ for all } \quad f \in C ^{\infty} (\Omega). \]
+
+It is easy to see that if $\{f\}$ ranges over a bounded set of $\mathfrak{D}(\Omega)$, then, in virtue of Leibniz' formula, $\{\psi f\}$ ranges over a set which is contained in a set of the form 
+\[
+\{g \in C ^{\infty} (\Omega); \sup\limits_{| j | \leqq k, x \in K} | D ^{j} g (x) | = C_{k} < \infty \}.
+\]
+
+Thus $S_0(\psi f) = T(f)$ is bounded on bounded sets of $\mathfrak{D}(\Omega)$ so that $T$ is a continuous linear functional on $\mathfrak{D}(\Omega)$. 
+\end{proof}
+
+We have thus proved the following 
+
+
+\begin{theorem}\label{thm:I.13.Theorem.2} The set of all distributions in $\Omega$ with compact support is identical with the space $\mathfrak{E}(\Omega)'$ of all continuous linear functionals on $\mathfrak{E}(\Omega)$, the dual space of $\mathfrak{E}(\Omega)$. A linear functional $T$ on $C^\infty(\Omega)$ belongs to $\mathfrak{E}(\Omega)'$ iff, for some constants $C$ and $k$ and a compact subset $K$ of $\Omega$, 
+\[
+\left| T (f) \right| \leqq C \sup\limits_{| j | \leqq k, x \in K} \left| D ^{j} f (x) \right| \quad \text{ for all } \quad f \in C ^{\infty} (\Omega).
+\]
+\end{theorem}
+
+We next prove a theorem which gives the general expression of distributions whose supports reduce to a single point. 
+
+\begin{theorem}\label{thm:I.13.Theorem.3} Let an open set $\Omega$ of $\mathbb{R}^{n}$ contain the origin $0$. Then the only distributions $T \in \mathfrak{D}(\Omega)'$ with supports reduced to the origin $0$ are those which are expressible as finite linear combinations of Dirac's distribution and its derivatives at $0$. 
+\end{theorem}
+
+\begin{proof}
+ For such a distribution $T$, there exist, by the preceding Theorem~\ref{thm:I.13.Theorem.2}, some constants $C$ and $k$ and a compact subset $K$ of $\Omega$ which contains the origin $0$ in such a way that 
+\[
+\left| T (f) \right| \leqq C \sup\limits_{| j | \leqq k, x \in K} \left| D ^{j} f (x) \right| \quad \text{ for all } \quad f \in C ^{\infty} (\Omega). \]
+
+We shall prove that the condition 
+\[
+D ^{j} f (0) = 0 \quad \text{ for all } \quad j \quad \text{ with } | j | \leqq k
+\]
+implies $T(f) = 0$. To this purpose, we take a function $\psi \in C^{\infty}(\Omega)$ which is equal to $1$ in a neighbourhood of $0$ and put 
+\[
+f_{\varepsilon} (x) = f (x) \psi (x / \varepsilon).
+\]
+
+We have $T(f) = T(f_{\varepsilon})$ since $f = f_{\varepsilon}$ in a neighbourhood of the origin $0$. By Leibniz' formula, the derivative of $f_{\varepsilon}$ of order $\leqq k$ is a linear combination of terms of the form $|\varepsilon|^{-j}D^{i}\psi \cdot D^{i}f$ with $|i| + |j| \leqq k$. Since, by the assumption, $D^{i}f(0) = 0$ for $|i| \leqq k$, we see, by Taylor's formula, that a derivative of order $|s|$ of $f_{\varepsilon}$ is $0(\varepsilon^{k+1-|s|})$ in the support of $\psi (x / \varepsilon)$. Thus, when $\varepsilon \downarrow 0$, the derivatives of $f_{\varepsilon}$ of order $\leqq k$ converge to $0$ uniformly in a neighbourhood of $0$. Hence $T(f) = \lim\limits_{\varepsilon \downarrow 0}T(f_{\varepsilon}) = 0$. 
+
+Now, for a general $f$, we denote by $f_k$ the Taylor's expansion of $f$ up to the order $k$ at the origin. Then, by what we have proved above, 
+\[
+T (f) = T \left(f_{k}\right) + T \left(f- f_{k}\right) = T \left(f_{k}\right) + 0 = T \left(f_{k}\right).
+\]
+
+This shows that $T$ is a linear combination of linear functionals in the derivatives of $f$ at the origin of order $\leqq k$. 
+\end{proof}
+
+
+\yossection{14}{The Direct Product of Generalized Functions}
+\label{sec:I.14}
+
+We first prove a theorem of approximation. 
+
+\begin{theorem}\label{thm:I.14.Theorem.1} Let $x = (x_{1}, x_{2}, \ldots, x_{n}) \in \mathbb{R}^{n}$, $y = (y_{1}, y_{2}, \ldots, y_{m}) \in \mathbb{R}^{m}$ and $z = x \times y = (x_{1}, x_{2}, \ldots, x_{n}, y_{1}, y_{2}, \ldots, y_{m}) \in \mathbb{R}^{n+m}$. Then, for any function $\varphi(z) = \varphi(x, y) \in C_{0}^{\infty}(\mathbb{R}^{n+m})$, we can choose functions $u_{ij}(x) \in C_{0}^{\infty}(\mathbb{R}^{n})$ and functions $v_{ij}(y) \in C_{0}^{\infty}(\mathbb{R}^{m})$ such that the sequence of functions 
+\begin{equation}\label{eq:I.14.1}
+\varphi_{i} (z) = \varphi_{i} (x, y) = \sum\limits_{j=1} ^ {k_{i}} u_{ij} (x) v_{ij} (y)
+\end{equation}
+tends, as $i \to \infty$, to $\varphi(z) = \varphi(x, y)$ in the topology of $\mathfrak{D}(\mathbb{R}^{n+m})$. 
+\end{theorem}
+
+\begin{proof}
+ We shall prove Theorem~\ref{thm:I.14.Theorem.1} for the case $n = m = 1$. Consider 
+\begin{align}
+\Phi (x, y, t)& = \left(2 \sqrt {\pi t}\right) ^{-2} \int_{- \infty} ^{\infty} \int_{- \infty} ^{\infty} \varphi (\xi , \eta) \exp\left(- ((x- \xi) ^{2} + (y- \eta) ^{2}) / 4 t\right) \dd \xi \dd \eta , \notag \\
+t& > 0; \Phi (x, y, 0) = \varphi (x, y).  \label{eq:I.14.2}
+\end{align}
+
+We have, by the change of variables $\xi_{1} = (\xi- x)/2\sqrt{t}$, $\eta_{1} = (\eta- y)/2\sqrt{t}$, 
+\[
+\Phi (x, y, t) = (\sqrt {\pi}) ^{-2} \int_{- \infty} ^{\infty} \int_{- \infty} ^{\infty} \varphi (x + 2 \xi_{1} \sqrt {t}, y + 2 \eta_{1} \sqrt {t}) e ^ {- \xi_{1} ^{2}- \eta_{1} ^{2}} \dd \xi_{1} \dd \eta_{1}.
+\]
+
+Hence, by $\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-\xi_1^2-\eta_1^2}\dd\xi_1\dd\eta_1 = \pi ,$ 
+\[
+\begin{aligned}
+&\left| \Phi (x, y, t)- \varphi (x, y) \right| \leqq \left(\sqrt {\pi}\right) ^{-2} \int_{- \infty} ^{\infty} \int_{- \infty} ^{\infty} \left| \varphi (x + 2 \xi \sqrt {t}, y + 2 \eta \sqrt {t})- \varphi (x, y) \right| \times e ^ {- \xi^{2}- \eta^{2}} \dd \xi \dd \eta
+\\
+&\leqq \pi^{-1} \left\{\iint_ {\xi^{2} + \eta^{2} \geqq T ^{2}} + \iint_ {\xi^{2} + \eta^{2} < T ^{2}} \right\}.
+\end{aligned}
+\]
+
+Since the function $\varphi$ is bounded and $e^{-\xi^2- \eta^2}$ is integrable in $\mathbb{R}^{2}$, we see that the first term on the right tends to zero as $T \uparrow \infty$. The second term on the right tends, for fixed $T > 0$, to zero as $t \downarrow 0$. Hence we have proved that $\lim\limits_{t \downarrow 0} \Phi(x, y, t) = \varphi(x, y)$ uniformly in $(x, y)$. 
+
+
+Next, since $\supp(\varphi)$ is compact, we see, by partial integration, 
+\[
+\begin{aligned} \frac {\partial^{m+k} \Phi (x , y , t)}{\partial x ^{m} \partial y ^{k}} & = \iint_{- \infty} ^{\infty} (2 \sqrt {\pi t}) ^{-2} \frac {\partial^{m+k} \varphi (\xi , \eta)}{\partial \xi^{m} \partial \eta^{k}} e ^ {- [ (x- \xi) ^{2} + (y- \eta) ^{2} ] / 4 t} \dd \xi \dd \eta , t > 0, \\ & = \frac {\partial^{m+k} \varphi (x , y)}{\partial x ^{m} \partial y ^{k}}, t = 0. \end{aligned}
+\]
+
+Thus we see as above that 
+\begin{equation}\label{eq:I.14.3}
+\lim\limits_{t \downarrow 0} \frac {\partial^{m+k} \Phi (x , y , t)}{\partial x ^{m} \partial y ^{k}} = \frac {\partial^{m+k} \varphi (x , y)}{\partial x ^{m} \partial y ^{k}} \quad \text{ uniformly in } (x, y).
+\end{equation}
+
+It is easy to see that $\Phi(x, y, t)$ for $t > 0$ given by \eqref{eq:I.14.2} may be extended as a holomorphic function of the complex variables $x$ and $y$ for $|x| < \infty$, 
+$|y|<\infty$. Hence, for any given $\gamma>0$, the function $\Phi(x,y,t)$ for fixed $t>0$ may be expanded into Taylor's series 
+\[
+\Phi (x, y, t) = \sum\limits_{m=0} ^{\infty} \sum\limits_{s=0} ^{m} c_{s} (t) x ^{s} y ^{m-s}
+\]
+which is absolutely and uniformly convergent for $|x| \leqq \gamma$, $|y| \leqq \gamma$ and may be differentiated term by term: 
+\[
+\frac {\partial^{m+k} \Phi (x , y , t)}{\partial x ^{m} \partial y ^{k}} = \sum\limits_ {m_{1} = 0} ^{\infty} \sum\limits_{s=0} ^ {m_{1}} c_{s} (t) \frac {\partial^{m+k} x ^{s} y ^ {m_{1}- s}}{\partial x ^{m} \partial y ^{k}}.
+\]
+
+Let $\{t_i\}$ be a sequence of positive numbers such that $t_i \downarrow 0$. By the above we can choose, for each $t_i$, a polynomial section $P_i(x, y)$ of the series $\sum\limits_{m=0}^{\infty} \sum\limits_{s=0}^{m} c_s(t) x^s y^{m-s}$ such that 
+\[
+\lim\limits_{i \to \infty} P_{i} (x, y) = \varphi (x, y) \text{ in the topology of } \mathfrak {E} (\mathbb{R}^{2}),
+\]
+that is, for any compact subset $K$ of $\mathbb{R}^{2}$, $\lim\limits_{i \to \infty} D^s P_i(x, y) = D^s \varphi(x, y)$ uniformly on $K$ for every differential operator $D^s$. Let us take $\varrho(x) \in C_0^\infty(\mathbb{R}^{1})$ and $\sigma(y) \in C_0^\infty(\mathbb{R}^{1})$ such that $\varrho(x) \sigma(y) = 1$ on the supP$(\varphi(x, y))$. Then we easily see that $\varphi_i(x, y) = \varrho(x) \sigma(y) P_i(x, y)$ satisfies the condition of Theorem~\ref{thm:I.14.Theorem.1}.
+\end{proof}
+
+\begin{remarku} We shall denote by $\mathfrak{D}(\mathbb{R}^{n}) \times \mathfrak{D}(\mathbb{R}^{m})$ the totality of functions $\in \mathfrak{D}(\mathbb{R}^{n+m})$ which are expressible as 
+\[
+\sum\limits_{j=1} ^{k} \varphi_{j} (x) \psi_{j} (y) \quad \text{ with } \quad \varphi_{j} (x) \in \mathfrak {D} (\mathbb{R}^{n}), \psi_{j} (y) \in \mathfrak {D} (\mathbb{R}^{m}).
+\]
+\end{remarku}
+
+The above Theorem~\ref{thm:I.14.Theorem.1} says that $\mathfrak{D}(\mathbb{R}^{n}) \times \mathfrak{D}(\mathbb{R}^{m})$ is dense in $\mathfrak{D}(\mathbb{R}^{n+m})$ in the topology of $\mathfrak{D}(\mathbb{R}^{n+m})$. The linear subspace $\mathfrak{D}(\mathbb{R}^{n}) \times \mathfrak{D}(\mathbb{R}^{m})$ of $\mathfrak{D}(\mathbb{R}^{n+m})$ equipped with the relative topology is called the direct product of $\mathfrak{D}(\mathbb{R}^{n})$ and $\mathfrak{D}(\mathbb{R}^{m})$. 
+
+We are now able to define the direct product of distributions. To indicate explicitly the independent variables $x = (x_1, x_2, \ldots, x_n)$ of the function $\varphi(x) \in \mathfrak{D}(\mathbb{R}^{n})$, we shall write $(\mathfrak{D}_x)$ for $\mathfrak{D}(\mathbb{R}^{n})$. We also write $(\mathfrak{D}_y)$ for $\mathfrak{D}(\mathbb{R}^{m})$ consisting of the functions $\psi(y), y = (y_1, y_2, \ldots, y_m)$. Likewise we shall write $(\mathfrak{D}_{x \times y})$ for $\mathfrak{D}(\mathbb{R}^{n+m})$ consisting of the functions $\chi(x, y)$. We shall accordingly write $T_{(x)}$ for the distribution $T \in \mathfrak{D}(\mathbb{R}^{n})' = (\mathfrak{D}_x)'$ in order to show that $T$ is to be applied to functions $\varphi(x)$ of $x$. 
+
+\begin{theorem}\label{thm:I.14.Theorem.2} Let $T_{(x)} \in (\mathfrak{D}_x)'$, $S_{(y)} \in (\mathfrak{D}_y)'$. Then we can define in one and only one way a distribution $W = W_{(x \times y)} \in (\mathfrak{D}_{x \times y})'$ such that 
+\begin{align}
+W (u (x) v (y))& = T_{(x)} (u (x)) S_{(y)} (v (y)) \quad \text{ for } \quad u \in (\mathfrak {D}_{x}), v \in (\mathfrak {D}_{y}), \label{eq:I.14.4} \\
+W (\varphi (x, y))& = S_{(y)} \left(T_{(x)} (\varphi (x, y))\right) = T_{(x)} \left(S_{(y)} (\varphi (x, y))\right) \quad \text{ for } \quad \varphi \in (\mathfrak {D}_{x \times y}) \label{eq:I.14.5}
+\end{align}
+\end{theorem}
+
+\begin{remarku} The distribution $W$ is called the direct product or the tensor product of $T_{(x)}$ and $S_{(y)}$, and we shall write 
+\begin{equation}\label{eq:I.14.6}
+W = T_{(x)} \times S_{(y)} = S_{(y)} \times T_{(x)}.
+\end{equation}
+\end{remarku}
+
+\begin{proof}[Proof of Theorem~\ref{thm:I.14.Theorem.2}.]
+Let $\mathfrak{B} = \{\varphi(x, y)\}$ be a bounded set of the space $(\mathfrak{D}_{x \times y})$. For fixed $y^{(0)}$, the set $\{\varphi(x, y^{(0)}); \varphi \in \mathfrak{B}\}$ is a bounded set of $(\mathfrak{D}_x)$. We shall show that
+\begin{equation}\label{eq:I.14.7}
+\{\psi (y ^{(0)}); \psi (y ^{(0)}) = T_{(x)} (\varphi (x, y ^{(0)})), \varphi \in \mathfrak {B} \}
+\end{equation}
+is a bounded set of $(\mathfrak{D}_{y^{(0)}})$. The proof is given as follows. 
+
+Since $\mathfrak{B}$ is a bounded set of $(\mathfrak{D}_{x\times y})$, there exist a compact set $K_{x}\subset \mathbb{R}^{n}$ and a compact set $K_{y}\subset \mathbb{R}^{m}$ such that 
+$\supp(\varphi) \subseteq \{(x, y) \in \mathbb{R}^{n+m}; x \in K_x, y \in K_y\}$ whenever $\varphi \in \mathfrak{B}$. 
+
+Hence $y^{(0)} \in K_y$ implies $\varphi(x, y^{(0)}) = 0$ and $\psi(y^{(0)}) = T_{(x)}(\varphi(x, y^{(0)})) = 0$. Thus 
+\begin{equation}\label{eq:I.14.8}
+\supp (\psi) \subseteq K_{y} \quad \text{ whenever } \quad \varphi \in \mathfrak {B}.
+\end{equation}
+
+We have to show that, for any differential operator $D_{y}$ in $\mathbb{R}^{m}$, 
+\begin{equation}\label{eq:I.14.9}
+\sup\limits_{y, \psi} | D_{y} \psi (y) | < \infty \text{ where } \psi (y) = T_{(x)} (\varphi (x, y)), \varphi \in \mathfrak {B}.
+\end{equation}
+
+To prove this, we take, e.g., $D_{y_1} = \partial/\partial y_1$. Then, by the linearity of $T_{(x)}$, 
+\begin{gather}\quad \frac {\psi \left(y_{1} + h , y_{2} , \dots , y_{m}\right)- \psi \left(y_{1} , y_{2} , \dots , y_{m}\right)}{h} \notag \\= T_{(x)} \left\{\frac {\varphi (x , y_{1} + h , y_{2} , \dots , y_{m})- \varphi (x , y_{1} , y_{2} , \dots , y_{m})}{h} \right\}. \notag
+\end{gather}
+
+When $\varphi$ ranges over $\mathfrak{B}$, the functions $\left\{\dfrac{\varphi (x, y_{1} + h, y_{2}, \dots , y_{m}) - \varphi (x, y_{1}, y_{2}, \dots , y_{m})}{h}\right\}$ of $x$, with parameters $y \in \mathbb{R}^{m}$ and $h$ such that $|h| \leqq 1$, constitute a bounded set of $(\mathfrak{D}_x)$. This we see from the fact that $\mathfrak{B}$ is a bounded set of $(\mathfrak{D}_{x \times y})$. Hence we see, by letting $h \to 0$ and remembering Proposition~\ref{prop:I.8.Proposition.1} in Chapter~\ref{chap:I}, \ref{sec:I.8}, that \eqref{eq:I.14.9} is true. 
+
+Therefore, by the same Proposition~\ref{prop:I.8.Proposition.1}, we see that the set of values 
+\begin{equation}\label{eq:I.14.10}
+\{S_{(y)} \left(T_{(x)} (\varphi (x, y))\right); \varphi \in \mathfrak {B} \}
+\end{equation}
+is bounded. Consequently, the same Proposition~\ref{prop:I.8.Proposition.1} shows that we have defined a distribution $W^{(1)} \in (\mathfrak{D}_{x \times y})'$ through 
+\begin{equation}\label{eq:I.14.11}
+W ^{(1)} (\varphi) = S_{(y)} \left(T_{(x)} (\varphi (x, y))\right).
+\end{equation}
+
+Similarly we define a distribution $W^{(2)} \in (\mathfrak{D}_{x \times y})'$ through 
+\begin{equation}\label{eq:I.14.12}
+W ^{(2)} (\varphi) = T_{(x)} \left(S_{(y)} (\varphi (x, y))\right).
+\end{equation}
+
+Clearly we have, for $u \in (\mathfrak{D}_x)$ and $v \in (\mathfrak{D}_y)$, 
+\begin{equation}\label{eq:I.14.13}
+W ^{(1)} (u (x) v (y)) = W ^{(2)} (u (x) v (y)) = T_{(x)} (u (x)) \cdot S_{(y)} (v (y)).
+\end{equation}
+
+Therefore, by the preceding Theorem~\ref{thm:I.14.Theorem.1} and the continuity of the distributions $W^{(1)}$ and $W^{(2)}$, we obtain $W^{(1)} = W^{(2)}$. This proves our Theorem~\ref{thm:I.14.Theorem.2} by setting $W = W^{(1)} = W^{(2)}$. 
+\end{proof}
+
+\yossub{References for Chapter I}
+
+For locally convex linear topological spaces and Banach spaces, see N. \textsc{Bourbaki} \cite{bourbaki27}, A. \textsc{Grothendieck} \cite{grothendieck87}, G. \textsc{Köthe} \cite{konishi164}, S. \textsc{Banach} \cite{banach9}, N. \textsc{Dunford}-J. \textsc{Schwartz} \cite{dunford44} and E. \textsc{Hille}-R. S. \textsc{Phillips} \cite{hille97}. For generalized functions, see L. \textsc{Schwartz} \cite{schwartz294}, I. M. \textsc{Gelfand}-G. E. \textsc{Šilov} \cite{gelfand76}, L. \textsc{Hörmander} \cite{hormander118} and A. \textsc{Friedman} \cite{friedman68}.\yosstarfootnote{See also Supplementary Notes, p.~\pageref{notes:I-VI}.} 
