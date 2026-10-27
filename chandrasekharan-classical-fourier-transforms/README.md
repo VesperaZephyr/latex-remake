@@ -2,7 +2,7 @@
 
 *LaTeX 重排版* — 高保真重排 / high-fidelity LaTeX retypeset
 
-本目录是 **latex-remake（LaTeX 书籍重排合集）** 合集的一个子项目。
+本目录是 **latex-remake（LaTeX 书籍重排合集）** 的一个子项目。
 
 ---
 
@@ -22,7 +22,7 @@ This directory is part of the **latex-remake (LaTeX book retypesetting collectio
 - **完整的超链接支持**：目录、引用、定理编号、索引页码均为可点击链接
 - **开源**：所有 LaTeX 源以 CC BY-NC-SA 4.0 国际许可证托管，可自由获取与改进
 
-- **Faithful to the source**: layout, formulas, theorem numbering and exercise arrangement strictly follow the original (retypeset) / rendered into Chinese while staying close to the meaning (translation)
+- **Faithful to the source**: layout, formulas, theorem numbering and exercise arrangement strictly follow the original; no content is altered
 - **Professional LaTeX typesetting**: crisp and sharp mathematical formulas with modern fonts
 - **Optimized reading experience**: carefully adjusted line spacing and margins for screen and print
 - **Full hyperlink support**: table of contents, citations, theorem numbers and index page numbers are clickable
@@ -72,8 +72,7 @@ chandrasekharan-classical-fourier-transforms/
 ├── backup_v4/  (3 个 .tex)
 ├── backup_v5/  (3 个 .tex)
 ├── backup_v6/  (3 个 .tex)
-├── chapters/  (4 个 .tex)
-└── tt/  (36 个 .tex)
+└── chapters/  (4 个 .tex)
 ```
 
 > 说明：上表为源码概要；被 `\includegraphics` 实际引用的插图（如 `figs/`、`figures/`）一并纳入，构建产物（`*.pdf`、`*.aux` 等）不随仓库分发。

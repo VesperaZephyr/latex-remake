@@ -2,7 +2,7 @@
 
 *LaTeX 重排版* — 高保真重排 / high-fidelity LaTeX retypeset
 
-本目录是 **latex-remake（LaTeX 书籍重排合集）** 合集的一个子项目。
+本目录是 **latex-remake（LaTeX 书籍重排合集）** 的一个子项目。
 
 ---
 
@@ -22,7 +22,7 @@ This directory is part of the **latex-remake (LaTeX book retypesetting collectio
 - **完整的超链接支持**：目录、引用、定理编号、索引页码均为可点击链接
 - **开源**：所有 LaTeX 源以 CC BY-NC-SA 4.0 国际许可证托管，可自由获取与改进
 
-- **Faithful to the source**: layout, formulas, theorem numbering and exercise arrangement strictly follow the original (retypeset) / rendered into Chinese while staying close to the meaning (translation)
+- **Faithful to the source**: layout, formulas, theorem numbering and exercise arrangement strictly follow the original; no content is altered
 - **Professional LaTeX typesetting**: crisp and sharp mathematical formulas with modern fonts
 - **Optimized reading experience**: carefully adjusted line spacing and margins for screen and print
 - **Full hyperlink support**: table of contents, citations, theorem numbers and index page numbers are clickable
@@ -110,9 +110,9 @@ Full license text: see the `LICENSE` file in this directory.
 
 ## 致谢 / Acknowledgments
 
-- 由衷感谢《数学分析（第三册）》的原作者 **徐森林 & 薛春华** 写下这部著作。
+- 由衷感谢《数学分析（第三册）》的原作者 **徐森林、金亚东、薛春华** 写下这部著作。
 - 感谢所有为本子项目贡献力量与建议的数学爱好者。
 
-- Sincere thanks to **徐森林 & 薛春华** for writing *数学分析（第三册）*.
+- Sincere thanks to **徐森林、金亚东、薛春华** for writing *数学分析（第三册）*.
 - Thanks to all mathematics enthusiasts who contributed to this sub-project.
 

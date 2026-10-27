@@ -18,12 +18,12 @@ This repository collects high-fidelity LaTeX retypesettings of mathematics textb
 | `matsumura-commutative-ring-theory/` | Commutative Ring Theory（交换环论） | Hideyuki Matsumura |
 | `gelbart-automorphic-forms/` | Automorphic Forms on Adele Groups（自守形式） | Stephen S. Gelbart |
 | `stein-weiss-fourier-analysis-euclidean/` | Introduction to Fourier Analysis on Euclidean Spaces（欧氏空间上的傅里叶分析） | Elias M. Stein & Guido Weiss |
-| `katz-p-adic-modular-forms/` | p-adic Properties of Modular Schemes and Modular Forms（模格式与模形式的 p 进性质） | Nicholas M. Katz |
-| `seminar-on-complex-multiplication/` | Seminar on Complex Multiplication（复乘讨论班） | Jean-Pierre Serre & John Tate |
+| `katz-p-adic-modular-forms/` | p-adic Properties of Modular Schemes and Modular Forms（模概形与模形式的 p 进性质） | Nicholas M. Katz |
+| `seminar-on-complex-multiplication/` | Seminar on Complex Multiplication（复乘讨论班） | A. Borel, S. Chowla, C. S. Herz, K. Iwasawa & J.-P. Serre |
 | `fengkeqin-algebraic-number-theory/` | 代数数论 | 冯克勤 |
 | `xushulin-mathanalysis-v1/` | 数学分析（第一册） | 徐森林 & 薛春华 |
 | `xushulin-mathanalysis-v2/` | 数学分析（第二册） | 徐森林 & 薛春华 |
-| `xushulin-mathanalysis-v3/` | 数学分析（第三册） | 徐森林 & 薛春华 |
+| `xushulin-mathanalysis-v3/` | 数学分析（第三册） | 徐森林、金亚东 & 薛春华 |
 | `deng-concise-mathanalysis-v1/` | 数学分析简明教程（上册） | 邓东皋 & 尹小玲 |
 | `deng-concise-mathanalysis-v2/` | 数学分析简明教程（下册） | 邓东皋 & 尹小玲 |
 | `mathanalysis-exam-collection/` | 数学分析试题汇总 | — |
